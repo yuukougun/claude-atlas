@@ -32,3 +32,19 @@
 | C12 | symptoms（26） | `catalog-C12.md` | 完了（symptoms 33） |
 
 2段目の結果：361ページ（必須174・推奨150・任意37）。registry の378候補は、採る346・まとめた31・採らない1。メインが、ほかの分野で消えた id を指していた4か所を直し、eval の2ページ（test-the-verifier・experiment-log）に `wave: 1` を付けた。検査はエラー0・警告6（比例則）。
+
+## 3段目：提案の統合（2段目の後、並列）
+
+共通の指示は [brief-integrate.md](brief-integrate.md)。材料は [open-issues.md](open-issues.md)（担当の open_issues 165件の全文と振り分け）と、`catalog-C12.md` §7 の逆引きの表。担当ごとの抜き出しは `state/step3-integrate/<担当>-input.md`（追跡しない。open-issues.md から作り直せる）。分野ごとに持ち主を1人に決め、同じファイルを2人が書かないようにした。メインは先に、機能の id の一覧（`features.yaml`）を置き、台帳に2項目を足した。
+
+| 担当 | 受け持ちの分野 | 報告 | 状態 |
+| --- | --- | --- | --- |
+| I1 | start・changes・basics・judgment | `integrate-I1.md` | 実行中 |
+| I2 | surfaces・models・cost・api・app | `integrate-I2.md` | 実行中 |
+| I3 | prompting・japanese・context | `integrate-I3.md` | 実行中 |
+| I4 | cli・extend・contest | `integrate-I4.md` | 実行中 |
+| I5 | verify・eval・enforce | `integrate-I5.md` | 実行中 |
+| I6 | safety・delegate・team | `integrate-I6.md` | 実行中 |
+| I7 | symptoms・recipes | `integrate-I7.md` | 実行中 |
+
+メインが扱うもの（open-issues.md の「メイン」の印）：設計書への反映（境界の表・横断のページ・数値ファイルの表・生成のページ）、用語の仮の決定を工程5で確かめること、作者に確かめてもらう候補の一覧、kyopro-atlas の書き方との食い違いの報告。
