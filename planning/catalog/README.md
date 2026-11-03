@@ -2,9 +2,9 @@
 
 全ページの一覧を置く。上位の規則は設計書（[../design.md](../design.md)）の §2〜§5。語彙は [../../schema/site.yml](../../schema/site.yml)。この文書はその詳細である。
 
-catalog は骨格（工程8a）で各ページの front matter の元になる。骨格の後は front matter が正になり、catalog は凍結して執筆の指示（materials・templates・visual）としてだけ使う。
+catalog は骨格（工程6c）で各ページの front matter の元になる。骨格の後は front matter が正になり、catalog は凍結して執筆の指示（materials・templates・visual）としてだけ使う。
 
-- 版：2026-11-04 第1版（同日、統合の後に §4.5 の4に重なりの規則を足した）
+- 版：2026-11-04 第1版（同日、統合の後に §4.5 の4に重なりの規則を足した。工程4で、症状のページの routes〔§3・§4.4 の6〕と第一波の数え方〔§4.6 の3〕を足し、§4.6 の2を設計書 §5.3 に合わせ、§6 に検査を足した）
 
 ## 1. ファイル
 
@@ -58,8 +58,11 @@ pages:                              # 並び順が、ナビゲーションの順
     signs:
       - {type: symptom, text: "CLAUDE.md に書いたのに守られない"}
       - {type: symptom, text: "長い会話の途中から規則を無視し始める"}
-    prerequisites: [request-vs-lock]
-    related: [hooks-basics, permissions-deny]
+    prerequisites: [request-vs-lock]  # 症状のページは、診断を読むのに要る概念のページだけ（§4.4 の6）
+    routes:                         # 症状のページだけ。原因ごとの振り分け先（§4.4 の6）
+      - {cause: 散らかっている, to: [what-to-put-in-claude-md, claude-md-length]}
+      - {cause: 縛っていない, to: [when-to-lock, hooks-basics#events]}
+    related: [permissions-deny]     # 症状のページは、routes にない近いページだけ
     tracks: [claude-md, hooks, permissions]
     outdated_advice: [important-caps]
     volatility: 中
@@ -115,6 +118,12 @@ open_issues:                        # ほかの分野への提案、決めきれ
 3. 必須のページの前提は、必須のページにする（第一波と初版を前提でたどって閉じるため）
 4. 入ってくる道（どのページの prerequisites・related にも出てこない）のないページを作らない。ただし start の入口のページは除く
 5. related は近いものから順に書く（20件まで）。節を指すときは `id#anchor`（相手の sections にある anchor）
+6. **症状のページの前提と振り分け先（`routes`）**（design-review DR-02）
+   - 症状のページの `prerequisites` は、診断を読むのに要る概念のページ（ふつう basics と start。型が concept・guide・hub のもの）だけにする。level は、その症状に出会う段階にする（§4.3 の1）
+   - 原因ごとの対処は `routes` に書く：`routes: [{cause: <prevents か pitfalls の値>, to: [<id か id#anchor>, …]}]`。原因ごとに中心の対処を1〜3件、近い順に書く。routes を持てるのは symptom の型のページだけ。cause には、そのページの prevents・pitfalls の原因を使い、どの原因にも routes を書く（対処のページがない原因は notes に書く）
+   - routes には段階と優先度の規則（§4.3 の3、この節の3）を当てない（上の段の対処も、推奨の対処も置ける）。比例則（§4.3 の4）の前提・関連にも数えない。routes の先は、入ってくる道（4）に数える
+   - 症状のページの related は、routes にない近いページだけにする（routes に置いたページを、前提・関連に重ねて置かない）
+   - 知識マップ・症状の原因別の表（設計書 §8.3）・第一波の数え方（§4.6 の3）・診断の節の目印は routes を読む
 
 ### 4.5 文章
 
@@ -128,8 +137,11 @@ open_issues:                        # ほかの分野への提案、決めきれ
 ### 4.6 優先度と第一波
 
 1. `priority` は 00 §3 の表を基本にする。新しいページは担当が決め、理由を `notes` に書く
-2. `wave: 1` は第一波の核のページにだけ付ける（start・symptoms・changes・eval・judgment・japanese の分野の、総論と、その分野のほかのページの多くが前提にするページ）。核でない分野には付けない
-3. 第一波の全体は、核から前提でたどれるページを `tools/check_catalog.py` が数える
+2. `wave: 1` は核の分野の総論と、その分野のほかのページの多くが前提にするページに付ける。入口（start）と症状辞典（symptoms）は全ページに付ける（設計書 §5.3。核の分野は site.yml の first_wave_core_fields：start・symptoms・changes・eval・judgment・japanese。核でない分野には付けない）
+3. **第一波の数え方**（design-review DR-02・DR-03。範囲は工程5でユーザーに確かめる。いまの値は仮）：第一波は閉包である。核（`wave: 1` のページ）と、核の症状のページの `routes` の先と、名指しの正本を種にし、そこから `prerequisites` でたどれるページをすべて入れる（routes の先の前提と、正本の前提も含む）。数え方は site.yml の `first_wave` に書く
+   - `routes`：routes の先をどこまで種に入れるか。`none`（入れない）・`first`（各 cause の to のうち、最初の必須の先。必須の先がない cause からは入れず、その先は第一波では「準備中」になる）・`all`（優先度を問わず全部）
+   - `named`：名指しで入れる正本のページの id
+   - `tools/check_catalog.py --stats` が、第一波の数と内訳（wave: 1・前提でたどって届くもの・routes から・named から）、routes を none・first・all にしたときの数、必須の先がない cause の数を出す。内訳は、この順に足したときに新しく増えるページの数（routes から＝routes の先と、その前提でたどって新しく届くページ）
 
 ### 4.7 そのほかの項目
 
@@ -162,4 +174,11 @@ open_issues:                        # ほかの分野への提案、決めきれ
 
 ## 6. 検査
 
-`python3 tools/check_catalog.py` で検査する（工程3で作る）。見るもの：YAML の形、必須の項目、語彙（schema/site.yml）、id の一意と書式、registry との対応（registry の候補が pages・merged・dropped のどこかにあるか）、前提と関連の解決（`id#anchor` の anchor を含む）、循環、レベルの逆転、必須の前提は必須、比例則、入ってくる道、summary の長さと使わない語、signs の種類、tracks の id、outdated_advice の id、分野ごとの数（優先度・レベル・型）、第一波の数（核から前提でたどれるページ）。
+`python3 tools/check_catalog.py` で検査する（工程3で作る）。見るもの：YAML の形、必須の項目、語彙（schema/site.yml）、id の一意と書式、registry との対応（registry の候補が pages・merged・dropped のどこかにあるか）、前提・関連・routes の解決（`id#anchor` の anchor を含む）、循環、レベルの逆転、必須の前提は必須、推移的な前提、比例則、入ってくる道、summary の長さと使わない語、signs の種類、逆引きの重複（症状のページの signs と同じ文）、症状のページの routes と前提（§4.4 の6）、tracks の id、outdated_advice の id、wave の付け方（§4.6 の2）、分野ごとの数（優先度・レベル・型）、第一波の数と内訳（§4.6 の3）。
+
+routes の検査（工程4で足した）：
+
+| 重さ | 見るもの |
+| --- | --- |
+| エラー | symptom でないページの routes、cause が語彙（site.yml の prevents・pitfalls）にない、to が空、to の参照が解決しない（`id#anchor` の anchor も）、cause・to がない、形の誤り |
+| 警告 | 症状のページに routes がない、同じページで cause が重なる・1つの cause の to に同じ id が2回ある、1つの cause の to が4件以上、routes の先が同じページの prerequisites か related にもある、routes の cause がそのページの prevents・pitfalls にない・prevents・pitfalls の原因に routes がない、症状のページの前提の型が concept・guide・hub でない、routes の先が registry の候補のまま（未処理の候補） |

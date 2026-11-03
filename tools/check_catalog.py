@@ -5,7 +5,7 @@
 使い方:
   python3 tools/check_catalog.py                   全分野を検査して、エラーと警告を1件1行で出す
   python3 tools/check_catalog.py --field symptoms  その分野に関わる指摘だけを出す（読むのと参照の解決は全体で行う）
-  python3 tools/check_catalog.py --stats           集計（分野ごとのページ数と内訳・第一波の数・必須の数）も出す
+  python3 tools/check_catalog.py --stats           集計（分野ごとのページ数と内訳・第一波の数と内訳・必須の数）も出す
   python3 tools/check_catalog.py -q                警告を出さない（件数だけを最後の行に出す）
   python3 tools/check_catalog.py --root DIR        DIR を根にして読む（DIR/schema/site.yml と DIR/planning/catalog/。試験用）
 終了コード: 0＝エラーがない（警告だけなら 0）、1＝エラーがある（--field のときは、その分野に関わるエラーで決める）、
@@ -18,18 +18,25 @@
   schema/site.yml                 語彙（道具に語彙を直書きしない）。visual と templates の kind は、site.yml に
                                   visual_kinds・template_kinds があればそれを、なければ catalog/README.md の §3・§4.7 の
                                   書き方から読む。あれば読むもの：fields_without_level（level を持たない分野）、
-                                  entry_fields（入ってくる道を問わない分野。なければ fields の最初の分野＝start）
+                                  entry_fields（入ってくる道を問わない分野。なければ fields の最初の分野＝start）。
+                                  第一波の数え方は first_wave（routes：none・first・all、named：名指しの正本の id）
   planning/catalog/registry.yaml  候補（pages）と、古くなった助言の台帳の項目（ledger）
   planning/catalog/<field>.yaml   分野のページ。ファイル名が site.yml の fields の id のものだけを読む
   機能の id（tracks）             planning/catalog/features.yaml があればそこから、なければ catalog/README.md §5 の表から読み、
                                   どの分野のファイルの new_features の id も加える。features.yaml は、id の文字列のリスト、
                                   {id: …} のリスト、それらを面ごとの見出しの下に置いたマッピング（features: の下でもよい）を読む
 
-参照（prerequisites・related・merged の into）の解決:
-  ページの id                          解決する。related の id#anchor は、相手の sections の anchor も確かめる
+参照（prerequisites・related・症状のページの routes の to・merged の into）の解決:
+  ページの id                          解決する。related と routes の id#anchor は、相手の sections の anchor も確かめる
   分野のファイルがまだない registry の候補  指摘しない（その分野のファイルができてから確かめる）
   分野のファイルはあるのに、その pages・merged・dropped のどこにもない registry の候補   警告（未処理の候補）
   merged・dropped にした候補、どこにもない id   エラー（参照）
+
+第一波（--stats。catalog/README §4.6 の3）: 閉包。wave: 1 のページ（核）と、核の症状のページの routes の先と、site.yml の
+  first_wave の named を種にし、そこから prerequisites でたどって届くページをすべて入れる。routes の先は first_wave の
+  routes で決める（none：入れない、first：各 cause の to のうち最初の必須の先。必須の先がない cause からは入れない、
+  all：優先度を問わず全部）。内訳は、核 → 前提でたどって届くもの → routes から → named から の順に足したときに新しく
+  増えるページの数。routes を none・first・all にしたときの数と、必須の先がない cause の数も出す
 
 構造（設計書 §8.3）: 読む層（load_catalog：YAML を読んでページのモデルにする）→ 検査（@check で登録した関数。
 1検査1関数で、重さは登録のときに決める）→ 出力（format_issue・format_stats・summary_line）。検査の一覧は -h の末尾。
@@ -70,17 +77,18 @@ PAGE_SHAPE = {
     "id": STR, "chapter": STR, "title": STR, "nav_title": STR, "aliases": STRS, "type": STR, "level": STR,
     "level_evidence": STR, "priority": STR, "wave": WAVE, "surfaces": STRS, "principle": STRS,
     "prevents": STRS, "pitfalls": STRS, "scenes": STRS, "summary": STR, "signs": MAPS,
-    "prerequisites": STRS, "related": STRS, "tracks": STRS, "outdated_advice": STRS, "volatility": STR,
-    "sections": MAPS, "templates": MAPS, "visual": MAP, "materials": STRS, "notes": ANY,
+    "prerequisites": STRS, "routes": MAPS, "related": STRS, "tracks": STRS, "outdated_advice": STRS,
+    "volatility": STR, "sections": MAPS, "templates": MAPS, "visual": MAP, "materials": STRS, "notes": ANY,
 }
 PAGE_REQUIRED = ("id", "title", "type", "priority", "summary", "volatility")   # level は型による（§4.3-2）
 PART_SHAPES = {   # ページの中の要素
     "signs": {"type": STR, "text": STR},
+    "routes": {"cause": STR, "to": STRS},     # 症状のページの、原因ごとの振り分け先（§4.4 の6）
     "sections": {"title": STR, "anchor": STR, "level": STR},
     "templates": {"name": STR, "kind": STR, "safety": BOOL},
     "visual": {"kind": STR, "text": STR},
 }
-PART_REQUIRED = {"signs": ("type", "text"), "sections": ("title", "anchor"),
+PART_REQUIRED = {"signs": ("type", "text"), "routes": ("cause", "to"), "sections": ("title", "anchor"),
                  "templates": ("name", "kind"), "visual": ("kind", "text")}
 FILE_SHAPE = {"field": STR, "chapters": STRS, "pages": MAPS, "merged": MAPS, "dropped": MAPS,
               "open_issues": ANY, "new_features": MAPS, "notes": ANY}
@@ -101,20 +109,26 @@ LEDGER_REQUIRED = ("id", "title")
 PAGE_VOCAB = {"type": "types", "level": "levels", "priority": "priorities", "volatility": "volatility",
               "surfaces": "surfaces", "principle": "principles", "prevents": "prevents",
               "pitfalls": "pitfalls", "scenes": "scenes"}
-PART_VOCAB = {("signs", "type"): "sign_types", ("sections", "level"): "levels",
+PART_VOCAB = {("signs", "type"): "sign_types", ("routes", "cause"): "causes", ("sections", "level"): "levels",
               ("templates", "kind"): "template_kinds", ("visual", "kind"): "visual_kinds"}
 CANDIDATE_VOCAB = {"field": "fields", "type": "types", "priority": "priorities", "level": "levels"}
 
-# 規則が名指しする語彙と数（catalog/README.md §4.1・§4.4・§4.5・§4.7）。
+# 規則が名指しする語彙と数（catalog/README.md §4.1・§4.4・§4.5・§4.6・§4.7）。
 # 名指しする語彙が site.yml にあるかは、読むときに確かめる（なければ「設定」の警告）
-SYMPTOM_TYPE = "symptom"        # 症状のページ：困りごとのサインを2つ以上、prevents を1つ以上
+SYMPTOM_TYPE = "symptom"        # 症状のページ：困りごとのサインを2つ以上、prevents を1つ以上。routes を持てるのはこの型だけ
 SYMPTOM_SIGN = "symptom"        # 困りごとのサインの種類
 FEATURE_TYPE = "feature"        # 機能のページ：tracks が要る
+SYMPTOM_PREREQUISITE_TYPES = ("concept", "guide", "hub")   # 症状のページの前提に置く型（診断を読むのに要る概念。§4.4 の6）
 MIN_SYMPTOM_SIGNS = 2
 MAX_PREREQUISITES = 4           # 直接の前提は4つまで（5つ以上で警告）
 MAX_RELATED = 20
+MAX_ROUTE_TARGETS = 3           # routes の1つの cause の to は、中心の対処を3件まで（4件以上で警告）
 MAX_SUMMARY_SENTENCES = 2
 NEW_MARK = "新規"                # registry にないページの notes に書く印
+
+# site.yml の first_wave（第一波の数え方。§4.6 の3）。routes の値は道具の数え方の名前（語彙ではない）
+FIRST_WAVE_ROUTES = ("none", "first", "all")   # 症状のページの routes の先を：入れない・各 cause の最初の必須の先・全部
+FIRST_WAVE_KEYS = ("routes", "named")
 
 # catalog/README.md から読むもの（site.yml にないとき）
 VISUAL_KINDS_RE = re.compile(r"visual[^\n]*?kind\s*は\s*([^）)。\n]+)")
@@ -398,6 +412,8 @@ class Vocab:
     proportional_levels: list[str] = dc_field(default_factory=list)
     guard_fields: list[str] = dc_field(default_factory=list)
     first_wave_core_fields: list[str] = dc_field(default_factory=list)
+    first_wave_routes: str = "none"      # site.yml の first_wave の routes（FIRST_WAVE_ROUTES のどれか）
+    first_wave_named: list[str] = dc_field(default_factory=list)   # site.yml の first_wave の named
     entry_fields: list[str] = dc_field(default_factory=list)
     summary_banned_words: list[str] = dc_field(default_factory=list)
     summary_max_chars: int | None = None
@@ -411,6 +427,13 @@ class Vocab:
         """必須（site.yml の priorities の最初）。"""
         return self.priorities[0] if self.priorities else None
 
+    @property
+    def causes(self) -> list[str] | None:
+        """routes の cause の語彙（prevents と pitfalls。どちらかが読めなければ None）。"""
+        if self.prevents is None or self.pitfalls is None:
+            return None
+        return self.prevents + self.pitfalls
+
 
 # site.yml のリストの語彙：Vocab の属性 → (site.yml のキー, 使う検査)
 VOCAB_LISTS = {
@@ -419,8 +442,8 @@ VOCAB_LISTS = {
     "priorities": ("priorities", "priority の語彙・必須の前提"),
     "surfaces": ("surfaces", "surfaces の語彙"),
     "principles": ("principles", "principle の語彙"),
-    "prevents": ("prevents", "prevents の語彙"),
-    "pitfalls": ("pitfalls", "pitfalls の語彙"),
+    "prevents": ("prevents", "prevents と routes の cause の語彙"),
+    "pitfalls": ("pitfalls", "pitfalls と routes の cause の語彙"),
     "scenes": ("scenes", "scenes の語彙"),
     "sign_types": ("sign_types", "signs の type の語彙"),
 }
@@ -472,6 +495,7 @@ def load_vocab(root: Path, findings: list[Finding]) -> Vocab:
     if not vocab.proportional_levels or not vocab.guard_fields:
         note("site.yml の proportional_rule（levels・guard_fields）がない（比例則を検査しない）")
     vocab.first_wave_core_fields = str_list("first_wave_core_fields", "wave の付け方") or []
+    read_first_wave(data.get("first_wave"), vocab, note)
     vocab.summary_banned_words = str_list("summary_banned_words", "summary の使わない語") or []
     mc = data.get("summary_max_chars")
     if isinstance(mc, int) and not isinstance(mc, bool) and mc > 0:
@@ -494,15 +518,43 @@ def load_vocab(root: Path, findings: list[Finding]) -> Vocab:
         for x in values:
             if pool is not None and x not in pool:
                 note(f"site.yml の {what} の「{x}」が {pool_key} にない")
-    for value, pool, key, uses in ((SYMPTOM_TYPE, vocab.types, "types", "症状の signs・prevents"),
-                                   (FEATURE_TYPE, vocab.types, "types", "機能の tracks"),
-                                   (SYMPTOM_SIGN, vocab.sign_types, "sign_types", "症状の signs")):
+    named_values = [(SYMPTOM_TYPE, vocab.types, "types", "症状の signs・prevents・routes"),
+                    (FEATURE_TYPE, vocab.types, "types", "機能の tracks"),
+                    (SYMPTOM_SIGN, vocab.sign_types, "sign_types", "症状の signs")]
+    named_values += [(t, vocab.types, "types", "症状の前提") for t in SYMPTOM_PREREQUISITE_TYPES]
+    for value, pool, key, uses in named_values:
         if pool is not None and value not in pool:
             note(f"道具の規則が名指しする「{value}」が site.yml の {key} にない（{uses}の検査が当たらない。"
                  "tools/check_catalog.py の規則の定数を直す）")
     if vocab.priorities == []:
         note("site.yml の priorities が空（必須の前提を検査しない）")
     return vocab
+
+
+def read_first_wave(fw, vocab: Vocab, note: Callable[[str], None]) -> None:
+    """site.yml の first_wave（第一波の数え方。catalog/README §4.6 の3）を読む。読めない分は、routes を none、
+    named を空として数え、「設定」の警告にする。"""
+    fallback = "第一波を wave: 1 と前提だけで数える"
+    if fw is None:
+        note(f"site.yml の first_wave がない（{fallback}）")
+        return
+    if not isinstance(fw, dict):
+        note(f"site.yml の first_wave がマッピング（routes・named）でない（{fallback}）")
+        return
+    for k in fw:
+        if k not in FIRST_WAVE_KEYS:
+            note(f"site.yml の first_wave の知らない項目「{k}」")
+    mode = fw.get("routes")
+    if isinstance(mode, str) and mode in FIRST_WAVE_ROUTES:
+        vocab.first_wave_routes = mode
+    else:
+        now = "がない" if mode is None else f"の「{mode}」が {joined(FIRST_WAVE_ROUTES)} のどれでもない"
+        note(f"site.yml の first_wave の routes {now}（routes の先を入れずに数える）")
+    named = fw.get("named")
+    if isinstance(named, list) and all(isinstance(x, str) for x in named):
+        vocab.first_wave_named = list(dict.fromkeys(x.strip() for x in named if x.strip()))
+    elif named is not None:
+        note("site.yml の first_wave の named が文字列のリストでない（named を数えない）")
 
 
 def parse_kinds(text: str | None, pattern: re.Pattern) -> list[str]:
@@ -863,6 +915,20 @@ def page_refs(p: Page) -> Iterator[tuple[str, Ref]]:
             yield key, ref
 
 
+def route_label(route: dict, index: int) -> str:
+    """routes の1件の呼び名（「routes（縛っていない）」。cause がなければ「routes の N 番目」）。"""
+    cause = as_text(route.get("cause"))
+    return f"routes（{cause}）" if cause else f"routes の {index + 1} 番目"
+
+
+def route_refs(p: Page) -> Iterator[tuple[str, Ref]]:
+    """routes の to の1件ずつ（呼び名「routes（cause）の to」, 参照）。"""
+    for i, route in enumerate(p.parts("routes")):
+        label = f"{route_label(route, i)}の to"
+        for s in as_strings(route.get("to")):
+            yield label, Ref.parse(s)
+
+
 def bad_target(r: Resolution) -> str | None:
     """解決しない参照の説明（解決するか、まだ確かめられないなら None）。"""
     if r.status == MISSING:
@@ -922,7 +988,7 @@ def check_shape(cat: Catalog) -> Iterator[Finding]:
 def check_required(cat: Catalog) -> Iterator[Finding]:
     """必須の項目がない：ページの id・title・type・priority・summary・volatility と、型による level
     （site.yml の types_without_level の型は書かない）。分野のファイルの field・pages、registry の pages・ledger と
-    各項目の id・field・title、merged の id・into、signs の type・text、sections の title・anchor など"""
+    各項目の id・field・title、merged の id・into、signs の type・text、routes の cause・to、sections の title・anchor など"""
     reg = cat.registry
     if reg.raw is not None:
         for key in REGISTRY_REQUIRED:
@@ -962,7 +1028,8 @@ def check_required(cat: Catalog) -> Iterator[Finding]:
 @check("語彙", ERROR)
 def check_vocab(cat: Catalog) -> Iterator[Finding]:
     """値が語彙（schema/site.yml）にない：type・level・priority・volatility・surfaces・principle・prevents・pitfalls・
-    scenes、signs の type、sections の level、visual と templates の kind、registry の候補の field・type・priority・level"""
+    scenes、signs の type、routes の cause（prevents か pitfalls の値）、sections の level、visual と templates の kind、
+    registry の候補の field・type・priority・level"""
     v = cat.vocab
     for p in cat.pages:
         for key, attr in PAGE_VOCAB.items():
@@ -1065,10 +1132,10 @@ def check_field_names(cat: Catalog) -> Iterator[Finding]:
 
 @check("参照", ERROR)
 def check_refs(cat: Catalog) -> Iterator[Finding]:
-    """prerequisites・related・merged の into が解決しない：存在しない id、merged・dropped にした候補、
-    related の id#anchor の anchor が相手の sections にない"""
+    """prerequisites・related・routes の to・merged の into が解決しない：存在しない id、merged・dropped にした候補、
+    related と routes の id#anchor の anchor が相手の sections にない"""
     for p in cat.pages:
-        for key, ref in page_refs(p):
+        for key, ref in [*page_refs(p), *route_refs(p)]:
             if not ref.target:
                 yield at(p, f"{key} に空の id がある（{ref.raw!r}）")
                 continue
@@ -1076,11 +1143,11 @@ def check_refs(cat: Catalog) -> Iterator[Finding]:
             problem = bad_target(r)
             if problem:
                 yield at(p, f"{key} の「{ref.raw}」{problem}")
-            elif key == "related" and ref.anchor is not None and r.status == PAGE:
+            elif key != "prerequisites" and ref.anchor is not None and r.status == PAGE:
                 anchors = r.page.anchors()
                 if ref.anchor not in anchors:
                     have = f"あるのは {joined(anchors)}" if anchors else "sections がない"
-                    yield at(p, f"related の「{ref.raw}」: {r.page.id} の sections に anchor「{ref.anchor}」がない（{have}）")
+                    yield at(p, f"{key} の「{ref.raw}」: {r.page.id} の sections に anchor「{ref.anchor}」がない（{have}）")
     for ff in cat.files.values():
         for e in ff.merged:
             into = Ref.parse(e.text("into")).target
@@ -1229,6 +1296,22 @@ def check_overlap(cat: Catalog) -> Iterator[Finding]:
                 yield at(p, f"「{t}」が prerequisites と related の両方にある（related から外す）")
 
 
+@check("routes", ERROR)
+def check_routes(cat: Catalog) -> Iterator[Finding]:
+    """routes（症状のページの、原因ごとの振り分け先）を symptom でないページが持っている。routes の to が空
+    （cause の語彙は「語彙」、to の解決は「参照」、cause・to がないものは「必須」が出す）"""
+    types = cat.vocab.types
+    for p in cat.pages:
+        if p.raw.get("routes") is None:
+            continue
+        t = p.text("type")
+        if t != SYMPTOM_TYPE and types is not None and t in types:   # type がない・語彙にないときは、ほかのエラーが出る
+            yield at(p, f"routes は type が {SYMPTOM_TYPE} のページだけが持つ（このページは {t}。ほかのページへの道は related に書く）")
+        for i, route in enumerate(p.parts("routes")):
+            if route.get("to") == []:
+                yield at(p, f"{route_label(route, i)}の to が空（振り分け先のページを1件以上書く）")
+
+
 # ---- 警告（終了コードは変えない）
 
 
@@ -1246,14 +1329,14 @@ def check_ref_style(cat: Catalog) -> Iterator[Finding]:
 
 @check("未処理の候補", WARNING)
 def check_unprocessed(cat: Catalog) -> Iterator[Finding]:
-    """prerequisites・related・merged の into が指す registry の候補が、その分野のファイル（はある）の pages・merged・
-    dropped のどこにもない（その分野が書きかけなら、後で解決する）"""
+    """prerequisites・related・routes の to・merged の into が指す registry の候補が、その分野のファイル（はある）の
+    pages・merged・dropped のどこにもない（その分野が書きかけなら、後で解決する）"""
     def message(r: Resolution) -> str:
         f = r.entry.text("field")
         return f"は registry の候補だが、{f}.yaml の pages・merged・dropped のどこにもない（{f} が書きかけなら後で解決する）"
 
     for p in cat.pages:
-        for key, ref in page_refs(p):
+        for key, ref in [*page_refs(p), *route_refs(p)]:
             r = cat.resolve(ref.target) if ref.target else None
             if r is not None and r.status == UNPROCESSED:
                 yield at(p, f"{key} の「{ref.raw}」{message(r)}", r.field)
@@ -1267,7 +1350,8 @@ def check_unprocessed(cat: Catalog) -> Iterator[Finding]:
 
 @check("レベルの逆転", WARNING)
 def check_level_inversion(cat: Catalog) -> Iterator[Finding]:
-    """前提のページの level が、そのページの level より上の段（site.yml の levels の順）"""
+    """前提のページの level が、そのページの level より上の段（site.yml の levels の順）。routes の先は見ない
+    （上の段の対処も振り分け先に置ける。catalog/README §4.4 の6）"""
     rank = cat.vocab.level_rank
     for p in cat.pages:
         lv = p.text("level")
@@ -1284,7 +1368,8 @@ def check_level_inversion(cat: Catalog) -> Iterator[Finding]:
 
 @check("必須の前提", WARNING)
 def check_required_prerequisites(cat: Catalog) -> Iterator[Finding]:
-    """必須（site.yml の priorities の最初）のページの前提が必須でない"""
+    """必須（site.yml の priorities の最初）のページの前提が必須でない。routes の先は見ない（推奨の対処も振り分け先に
+    置ける）"""
     v = cat.vocab
     top = v.top_priority
     if top is None:
@@ -1325,7 +1410,8 @@ def check_transitive_prerequisites(cat: Catalog) -> Iterator[Finding]:
 def check_proportional(cat: Catalog) -> Iterator[Finding]:
     """site.yml の proportional_rule の levels（任せる・仕組みにする・回す）のページが、guard_fields（verify・eval・enforce・
     safety）の分野のページを前提にも関連にも持たない（guard_fields の分野のページは除く。まだない分野の候補は registry
-    の分野で数える）。任せる幅を広げる内容のページだけが対象なので、そうでないページは notes に理由を書いて残してよい"""
+    の分野で数える。routes の先は数えない）。任せる幅を広げる内容のページだけが対象なので、そうでないページは notes に
+    理由を書いて残してよい"""
     v = cat.vocab
     levels, guards = set(v.proportional_levels), set(v.guard_fields)
     if not levels or not guards:
@@ -1342,11 +1428,11 @@ def check_proportional(cat: Catalog) -> Iterator[Finding]:
 
 @check("入ってくる道", WARNING)
 def check_incoming(cat: Catalog) -> Iterator[Finding]:
-    """どのページの prerequisites・related にも出てこない（入ってくる道がない）。入口の分野（site.yml の entry_fields。
-    なければ fields の最初の start）は除く"""
+    """どのページの prerequisites・related・routes にも出てこない（入ってくる道がない）。入口の分野（site.yml の
+    entry_fields。なければ fields の最初の start）は除く。症状のページの routes の先は、診断の節から道があるので数える"""
     incoming: set[str] = set()
     for p in cat.pages:
-        for _, ref in page_refs(p):
+        for _, ref in [*page_refs(p), *route_refs(p)]:
             r = cat.resolve(ref.target) if ref.target else None
             if r is not None and r.status == PAGE and r.page.id != p.id:
                 incoming.add(r.page.id)
@@ -1354,7 +1440,7 @@ def check_incoming(cat: Catalog) -> Iterator[Finding]:
     later = f"。まだファイルのない {len(absent)} 分野からの参照は数えていない" if absent else ""
     for pid, p in cat.by_id.items():
         if p.field not in cat.vocab.entry_fields and pid not in incoming:
-            yield at(p, f"どのページの prerequisites・related にも出てこない（入ってくる道がない{later}）")
+            yield at(p, f"どのページの prerequisites・related・routes にも出てこない（入ってくる道がない{later}）")
 
 
 def count_sentences(s: str) -> int:
@@ -1446,6 +1532,98 @@ def check_symptom_prevents(cat: Catalog) -> Iterator[Finding]:
     for p in cat.pages:
         if p.text("type") == SYMPTOM_TYPE and not p.strings("prevents"):
             yield at(p, f"{SYMPTOM_TYPE} のページの prevents が空（防ぐ・診断する原因を1つ以上書く）")
+
+
+@check("症状の前提", WARNING)
+def check_symptom_prerequisites(cat: Catalog) -> Iterator[Finding]:
+    """symptom のページの前提の type が concept・guide・hub でない（症状のページの前提は、診断を読むのに要る概念の
+    ページだけにする。対処のページは routes に置く。catalog/README §4.4 の6）
+
+    見るのは分野のファイルにある前提のページだけ。type がない・語彙にない前提は、そのページのエラーが出るので見ない。"""
+    types = cat.vocab.types
+    allowed = joined(SYMPTOM_PREREQUISITE_TYPES)
+    for p in cat.pages:
+        if p.text("type") != SYMPTOM_TYPE:
+            continue
+        for t in prerequisite_targets(p):
+            r = cat.resolve(t)
+            q = r.page.text("type") if r.status == PAGE else ""
+            if q and q not in SYMPTOM_PREREQUISITE_TYPES and (types is None or q in types):
+                yield at(p, f"前提「{t}」の type が {q}（症状のページの前提は、診断を読むのに要る {allowed} のページだけに"
+                            "する。対処のページは routes に置く）")
+
+
+@check("症状の routes", WARNING)
+def check_symptom_routes(cat: Catalog) -> Iterator[Finding]:
+    """symptom のページに routes（原因ごとの振り分け先）がない"""
+    for p in cat.pages:
+        if p.text("type") == SYMPTOM_TYPE and not p.parts("routes"):
+            yield at(p, f"{SYMPTOM_TYPE} のページに routes がない（原因ごとに、中心の対処のページを1〜{MAX_ROUTE_TARGETS} 件、"
+                        "近い順に書く）")
+
+
+@check("routes と原因", WARNING)
+def check_route_causes(cat: Catalog) -> Iterator[Finding]:
+    """routes の cause が、そのページの prevents・pitfalls にない。そのページの prevents・pitfalls の原因に routes がない
+    （routes と prevents の両方を書いた symptom のページだけを見る）
+
+    語彙にない cause は「語彙」のエラーが出るので見ない（site.yml の prevents か pitfalls が読めなければ、この検査を
+    しない）。対処のページがない原因は、notes に理由を書いて残してよい。"""
+    causes = cat.vocab.causes
+    if causes is None:
+        return
+    for p in cat.pages:
+        routes = p.parts("routes")
+        prevents, pitfalls = p.strings("prevents"), p.strings("pitfalls")
+        if p.text("type") != SYMPTOM_TYPE or not routes or not prevents:
+            continue
+        routed = list(dict.fromkeys(c for c in (as_text(r.get("cause")) for r in routes) if c in causes))
+        for c in routed:
+            if c not in prevents and c not in pitfalls:
+                yield at(p, f"routes の cause「{c}」が、このページの prevents・pitfalls にない（診断で問う原因に足すか、"
+                            "routes から外す）")
+        for key, values in (("prevents", prevents), ("pitfalls", pitfalls)):
+            for c in dict.fromkeys(values):
+                if c not in routed and c in causes:
+                    yield at(p, f"{key} の「{c}」に routes がない（その原因の中心の対処を routes に書く。対処のページが"
+                                "ない原因なら、notes に書く）")
+
+
+@check("routes の重なり", WARNING)
+def check_route_overlap(cat: Catalog) -> Iterator[Finding]:
+    """routes に同じ cause が2回ある。1つの cause の to に同じ id が2回ある。routes の先のページが、同じページの
+    prerequisites か related にもある（ページの id で比べる。related には routes にない近いページだけを置く）"""
+    for p in cat.pages:
+        routes = p.parts("routes")
+        if not routes:
+            continue
+        for c, n in collections.Counter(as_text(r.get("cause")) for r in routes).items():
+            if c and n > 1:
+                yield at(p, f"routes の cause「{c}」が {n} 回ある（1つにまとめる）")
+        for i, route in enumerate(routes):
+            for x, n in collections.Counter(s.strip() for s in as_strings(route.get("to"))).items():
+                if x and n > 1:
+                    yield at(p, f"{route_label(route, i)}の to に「{x}」が {n} 回ある")
+        pre = set(prerequisite_targets(p))
+        rel = {r.target for r in p.refs("related") if r.target}
+        for t in dict.fromkeys(ref.target for _, ref in route_refs(p) if ref.target):
+            if t in pre:
+                yield at(p, f"routes の先「{t}」が prerequisites にもある（どちらか一方にする。前提は、診断を読むのに要る概念の"
+                            "ページだけ）")
+            if t in rel:
+                yield at(p, f"routes の先「{t}」が related にもある（related から外す。related には、routes にない近いページ"
+                            "だけを置く）")
+
+
+@check("routes の数", WARNING)
+def check_route_counts(cat: Catalog) -> Iterator[Finding]:
+    """routes の1つの cause の to が4件以上（原因ごとに、中心の対処を3件まで）"""
+    for p in cat.pages:
+        for i, route in enumerate(p.parts("routes")):
+            n = len(as_strings(route.get("to")))
+            if n > MAX_ROUTE_TARGETS:
+                yield at(p, f"{route_label(route, i)}の to が {n} 件（中心の対処を {MAX_ROUTE_TARGETS} 件までにする。"
+                            "ほかは related に置く）")
 
 
 @check("機能の tracks", WARNING)
@@ -1625,13 +1803,17 @@ def check_level_usage(cat: Catalog) -> Iterator[Finding]:
 @check("wave", WARNING)
 def check_wave(cat: Catalog) -> Iterator[Finding]:
     """第一波の核の分野（site.yml の first_wave_core_fields）でないページに wave: 1 がある。核の分野のファイルに
-    wave: 1 のページがない"""
+    wave: 1 のページがない。入口の分野（entry_fields）のページと症状（symptom）のページに wave: 1 がない（核の分野の
+    ものは全ページに付ける。catalog/README §4.6 の2）"""
     core = cat.vocab.first_wave_core_fields
     if not core:
         return
     for p in cat.pages:
         if p.is_wave and p.field not in core:
             yield at(p, f"wave: 1 は第一波の核の分野（{joined(core)}）のページにだけ付ける")
+        elif (not p.is_wave and p.field in core
+              and (p.field in cat.vocab.entry_fields or p.text("type") == SYMPTOM_TYPE)):
+            yield at(p, "wave: 1 がない（入口の分野のページと症状のページは、全ページに付ける）")
     for f in core:
         ff = cat.files.get(f)
         if ff is not None and ff.pages and not any(p.is_wave for p in ff.pages):
@@ -1642,34 +1824,111 @@ def check_wave(cat: Catalog) -> Iterator[Finding]:
 @check("設定", WARNING)
 def check_config(cat: Catalog) -> Iterator[Finding]:
     """検査の材料が足りない（registry.yaml がない、site.yml に語彙がない、機能の id の表がない、など）。足りない分の
-    検査はしない"""
+    検査はしない。site.yml の first_wave が読めない、first_wave の named がページを指していない"""
     yield from loaded(cat, "設定")
+    for x in cat.vocab.first_wave_named:
+        ref = Ref.parse(x)
+        r = cat.resolve(ref.target)
+        problem = bad_target(r)
+        if problem:
+            yield Finding(SITE_YML, None, "-", f"site.yml の first_wave の named の「{x}」{problem}（第一波に数えない）", ALWAYS)
+        elif ref.anchor is not None and r.status == PAGE and ref.anchor not in r.page.anchors():
+            yield Finding(SITE_YML, None, "-", f"site.yml の first_wave の named の「{x}」: {r.page.id} の sections に "
+                                               f"anchor「{ref.anchor}」がない（ページは第一波に数える）", ALWAYS)
 
 # ============================================================================
 # 集計（--stats）
 # ============================================================================
 
 
-def first_wave(cat: Catalog) -> tuple[list[Page], list[Page], list[str]]:
-    """第一波：wave: 1 のページと、そこから prerequisites をたどって届くページ。
-    (wave: 1 のページ, たどって届いたページ, たどれない前提＝分野のファイルにまだない候補の id)。"""
+@dataclass(frozen=True)
+class Lacking:
+    """核の症状のページの routes のうち、to に必須の先がない cause（first では、そこから何も入れない）。"""
+
+    page: Page
+    cause: str                 # cause の値（なければ「N 番目」）
+    targets: tuple[str, ...]   # to の先のページの id
+
+
+@dataclass
+class FirstWave:
+    """第一波の数（catalog/README §4.6 の3）。内訳は、核 → 前提 → routes → named の順に足したときに新しく増えるページ。"""
+
+    mode: str                  # routes の数え方（FIRST_WAVE_ROUTES のどれか）
+    core: list[Page]           # wave: 1 のページ
+    prerequisites: list[Page]  # 核から前提でたどって届くもの
+    routes: list[Page]         # routes から：核の症状のページの routes の先と、その前提でたどって新しく届くもの
+    named: list[Page]          # named から：site.yml の first_wave の named と、その前提でたどって新しく届くもの
+    unresolved: list[str]      # たどれない候補（分野のファイルにまだない候補の id）
+    lacking: list[Lacking]     # 必須の先がない cause（数え方によらず、核の症状のページの routes を見る）
+
+    @property
+    def pages(self) -> list[Page]:
+        return self.core + self.prerequisites + self.routes + self.named
+
+
+def target_priority(cat: Catalog, target: str) -> str:
+    """参照の先の priority（ページならページの、分野のファイルにまだない候補なら registry の見当）。"""
+    r = cat.resolve(target)
+    if r.status == PAGE:
+        return r.page.text("priority")
+    if r.status in (PENDING, UNPROCESSED) and r.entry is not None:
+        return r.entry.text("priority")
+    return ""
+
+
+def route_seeds(cat: Catalog, p: Page, mode: str) -> tuple[list[str], list[Lacking]]:
+    """症状のページの routes から第一波の種にする先のページの id と、必須の先がない cause。first は各 cause の to のうち
+    最初の必須（site.yml の priorities の最初）の先、all は全部、none は無し。id#anchor はページの id にする。"""
+    if p.text("type") != SYMPTOM_TYPE:
+        return [], []
+    top = cat.vocab.top_priority
+    seeds: list[str] = []
+    lacking: list[Lacking] = []
+    for i, route in enumerate(p.parts("routes")):
+        targets = list(dict.fromkeys(t for t in (Ref.parse(s).target for s in as_strings(route.get("to"))) if t))
+        required = [t for t in targets if top is None or target_priority(cat, t) == top]
+        if not required:
+            lacking.append(Lacking(p, as_text(route.get("cause")) or f"{i + 1} 番目", tuple(targets)))
+        seeds += targets if mode == "all" else required[:1] if mode == "first" else []
+    return list(dict.fromkeys(seeds)), lacking
+
+
+def first_wave(cat: Catalog, mode: str | None = None) -> FirstWave:
+    """第一波（閉包）：wave: 1 のページ（核）と、核の症状のページの routes の先（mode。省くと site.yml の first_wave の
+    routes）と、site.yml の first_wave の named を種にし、そこから prerequisites でたどって届くページをすべて入れる。"""
+    mode = cat.vocab.first_wave_routes if mode is None else mode
     core = [p for p in cat.by_id.values() if p.is_wave]
     seen = {p.id for p in core}
-    reached: list[Page] = []
     unresolved: list[str] = []
-    queue = collections.deque(core)
-    while queue:
-        p = queue.popleft()
-        for ref in p.refs("prerequisites"):
-            r = cat.resolve(ref.target)
+
+    def grow(seeds: Iterable[str], expand: Iterable[Page] = ()) -> list[Page]:
+        """seeds と、そこ（と expand のページ）から前提でたどって新しく届くページ。"""
+        added: list[Page] = []
+        queue = collections.deque(expand)
+
+        def visit(target: str) -> None:
+            r = cat.resolve(target)
             if r.status == PAGE:
                 if r.page.id not in seen:
                     seen.add(r.page.id)
-                    reached.append(r.page)
+                    added.append(r.page)
                     queue.append(r.page)
-            elif r.status in (PENDING, UNPROCESSED) and ref.target not in unresolved:
-                unresolved.append(ref.target)
-    return core, reached, unresolved
+            elif r.status in (PENDING, UNPROCESSED) and target not in unresolved:
+                unresolved.append(target)
+
+        for t in seeds:
+            visit(t)
+        while queue:
+            for t in prerequisite_targets(queue.popleft()):
+                visit(t)
+        return added
+
+    picks = [route_seeds(cat, p, mode) for p in core]
+    reached = grow((), expand=core)
+    routed = grow(t for seeds, _ in picks for t in seeds)
+    named = grow(Ref.parse(x).target for x in cat.vocab.first_wave_named)
+    return FirstWave(mode, core, reached, routed, named, unresolved, [x for _, lack in picks for x in lack])
 
 
 COVERAGE = ("採る", "まとめた", "採らない", "ほかの分野", "未処理")
@@ -1734,6 +1993,39 @@ def format_field_stats(cat: Catalog, st: FieldStats, has_file: bool = True) -> s
             f"レベル {counts(st.level, (v.levels or []) + ['なし'])}｜型 {counts(st.type, v.types or [])}｜{cand}")
 
 
+def format_first_wave(cat: Catalog, only: str | None = None) -> list[str]:
+    """第一波の行：数と内訳（wave: 1・前提でたどって届くもの・routes から・named から）、routes の数え方ごとの数、
+    必須の先がない cause、たどれない候補。only のときは、全体でたどってから、その分野のページを数える（cause は全体）。"""
+    fw = first_wave(cat)
+    alt = {m: first_wave(cat, m).pages for m in FIRST_WAVE_ROUTES}
+
+    def n(pages: list[Page]) -> int:
+        return sum(1 for p in pages if only is None or p.field == only)
+
+    parts = (f"wave: 1 が {n(fw.core)}、前提でたどって届くもの {n(fw.prerequisites)}、routes から {n(fw.routes)}、"
+             f"named から {n(fw.named)}")
+    by_mode = joined(f"{m} {n(alt[m])}" for m in FIRST_WAVE_ROUTES)
+    head = f"  routes の数え方ごとの第一波（site.yml の first_wave の routes。いまは {fw.mode}）: "
+    if only is None:
+        per = collections.Counter(p.field for p in fw.pages)
+        lines = [f"第一波: {n(fw.pages)} ページ（{parts}）｜{counts(per, cat.vocab.fields)}", head + by_mode]
+    else:
+        whole = joined(f"{m} {len(alt[m])}" for m in FIRST_WAVE_ROUTES)
+        lines = [f"第一波（{only} のページ）: {n(fw.pages)} ページ（{parts}。全体では {len(fw.pages)} ページ）",
+                 f"{head}{by_mode}（全体では {whole}）"]
+    first_ids = {p.id for p in alt["first"]}
+    outside = sum(1 for x in fw.lacking if not first_ids.intersection(x.targets))
+    by_page: dict[str, list[str]] = collections.defaultdict(list)
+    for x in fw.lacking:
+        by_page[x.page.label].append(x.cause)
+    listed = "、".join(f"{pid}（{joined(cs)}）" for pid, cs in by_page.items())
+    lines.append(f"  必須の先がない cause（first ではそこから入れない）: {len(fw.lacking)}"
+                 + (f"（うち、first で先がどれも第一波に入らないもの {outside}）｜{listed}" if fw.lacking else ""))
+    if fw.unresolved:
+        lines.append(f"  たどれない候補（分野のファイルにまだない）: {joined(fw.unresolved)}")
+    return lines
+
+
 def format_stats(cat: Catalog, only: str | None = None) -> list[str]:
     """集計の行（--stats）。only のときはその分野だけ（第一波は全体でたどってから、その分野のページを数える）。"""
     v = cat.vocab
@@ -1751,17 +2043,7 @@ def format_stats(cat: Catalog, only: str | None = None) -> list[str]:
         total.add(st)
     if only is None:
         lines.append(f"  計: {format_field_stats(cat, total)}")
-    core, reached, unresolved = first_wave(cat)
-    wave = core + reached
-    if only is not None:
-        mine = [p for p in wave if p.field == only]
-        lines.append(f"第一波（{only} のページ）: {len(mine)} ページ（全体では {len(wave)} ページ）")
-    else:
-        per = collections.Counter(p.field for p in wave)
-        lines.append(f"第一波: {len(wave)} ページ（wave: 1 が {len(core)}、前提でたどって届くもの {len(reached)}）｜"
-                     f"{counts(per, v.fields)}")
-    if unresolved:
-        lines.append(f"  前提でたどれない候補（分野のファイルにまだない）: {joined(unresolved)}")
+    lines += format_first_wave(cat, only)
     top = v.top_priority
     if top is not None:
         n = sum(1 for p in cat.pages if p.text("priority") == top and (only is None or p.field == only))
@@ -1814,7 +2096,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--root", metavar="DIR",
                         help="置き場所の根（既定はこのリポジトリ。DIR/schema/site.yml と DIR/planning/catalog/ を読む）")
     parser.add_argument("--field", metavar="ID", help="その分野に関わる指摘だけを出す（読むのと参照の解決は全体で行う）")
-    parser.add_argument("--stats", action="store_true", help="集計（分野ごとのページ数と内訳・第一波の数・必須の数）も出す")
+    parser.add_argument("--stats", action="store_true", help="集計（分野ごとのページ数と内訳・第一波の数と内訳・必須の数）も出す")
     parser.add_argument("-q", "--quiet", action="store_true", help="警告を出さない（件数だけを最後の行に出す）")
     return parser
 

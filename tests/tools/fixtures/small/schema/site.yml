@@ -52,6 +52,12 @@ proportional_rule:
 # 第一波の核を持つ分野（D10 と decisions 2026-11-03「第一波に足すもの」）
 first_wave_core_fields: [start, symptoms, changes, eval, judgment, japanese]
 
+# 第一波の数え方（design-review DR-02・DR-03、catalog/README §4.6 の3）。工程5でユーザーに確かめる（仮）。
+# 試験用：named は本物（default-safety-settings）の代わりに、試験用の目次の parallel-sessions にした
+first_wave:
+  routes: first                   # routes の先を種に、none：入れない・first：各 cause の to のうち最初の必須の先・all：全部
+  named: [parallel-sessions]      # 名指しで入れる正本
+
 # summary に使わない語（design.md §5.3）
 summary_banned_words: [このページ, ここでは, 扱う, 紹介する, まとめる]
 summary_max_chars: 120

@@ -23,7 +23,7 @@ pages:
     title: permissions で禁じる
     type: feature
     level: 仕組みにする
-    priority: 推奨
+    priority: 必須
     surfaces: [claude-code]
     principle: [縛る]
     summary: "読ませない・実行させない操作を permissions に書いて、確認なしに止める。"

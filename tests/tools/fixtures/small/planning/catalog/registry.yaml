@@ -5,7 +5,7 @@ pages:
   - {id: request-vs-lock, field: basics, title: お願いと鍵, type: concept, priority: 必須, level: 整える, origin: "試験"}
   - {id: completion-check, field: verify, title: 完了を確かめる, type: concept, priority: 必須, level: 整える, origin: "試験"}
   - {id: hooks-basics, field: enforce, title: hooks の基本, type: feature, priority: 推奨, level: 仕組みにする, origin: "試験"}
-  - {id: permissions-deny, field: enforce, title: permissions で禁じる, type: feature, priority: 推奨, level: 仕組みにする, origin: "試験"}
+  - {id: permissions-deny, field: enforce, title: permissions で禁じる, type: feature, priority: 必須, level: 仕組みにする, origin: "試験"}
   - {id: parallel-sessions, field: delegate, title: 並列で動かす, type: feature, priority: 推奨, level: 回す, origin: "試験"}
   - {id: instructions-ignored, field: symptoms, title: CLAUDE.md や指示が守られない, type: symptom, priority: 必須, level: 整える, origin: "試験", wave_core: true}
   - {id: done-but-not-done, field: symptoms, title: 完了と言うのに終わっていない, type: symptom, priority: 必須, level: 任せる, origin: "試験"}

@@ -1,9 +1,13 @@
 """tools/check_catalog.py（目次の検査）の試験。python3 -m unittest discover -s tests/tools で動く。
 
-fixtures/small/ は、エラーも警告も出ない小さな目次（schema/site.yml は本物の写し、planning/catalog/README.md は
-道具が読むところの抜き書き。eval の分野のファイルはまだない形）。各試験は、それを一時フォルダに写して1か所だけ
-変え、出るはずの指摘（検査の名前とページの id の組）だけが出ることを確かめる。試験は検査ごとに書き、@covers で
-記録する（test_every_check_has_a_test が、登録したすべての検査に試験があることを確かめる）。
+fixtures/small/ は、エラーも警告も出ない小さな目次（schema/site.yml は本物の写し。ただし first_wave の named は
+試験用のページにした。planning/catalog/README.md は道具が読むところの抜き書き。eval の分野のファイルはまだない形）。
+各試験は、それを一時フォルダに写して1か所だけ変え、出るはずの指摘（検査の名前とページの id の組）だけが出ることを
+確かめる。試験は検査ごとに書き、@covers で記録する（test_every_check_has_a_test が、登録したすべての検査に試験が
+あることを確かめる）。
+
+試験用の目次の症状のページの routes（catalog/README §4.4 の6）：instructions-ignored は 散らかっている → outdated-advice-ledger、
+縛っていない → hooks-basics#exit-codes・permissions-deny。done-but-not-done（wave: 1 なし）は 確かめていない → hooks-basics。
 """
 from __future__ import annotations
 
@@ -37,6 +41,15 @@ def covers(*names: str):
     """その試験が確かめる検査の名前を記録する。"""
     COVERED.update(names)
     return lambda func: func
+
+
+def make_routes(*pairs: tuple[str, list[str]]) -> list[dict]:
+    """routes の値を (cause, to) の組から作る。"""
+    return [{"cause": cause, "to": list(to)} for cause, to in pairs]
+
+
+II_ROUTES = (("散らかっている", ["outdated-advice-ledger"]),        # 試験用の目次の instructions-ignored の routes
+             ("縛っていない", ["hooks-basics#exit-codes", "permissions-deny"]))
 
 
 class CatalogCase(unittest.TestCase):
@@ -169,7 +182,8 @@ class TestShape(CatalogCase):
     @covers("形")
     def test_wave_must_be_1(self):
         self.edit_page("start.yaml", "how-to-use", wave=2)
-        self.assertFound(("形", "how-to-use"), ("wave", "-"))   # start の核がなくなる
+        # start の核がなくなり、入口の分野のページに wave: 1 がないことにもなる
+        self.assertFound(("形", "how-to-use"), ("wave", "-"), ("wave", "how-to-use"))
 
     @covers("形")
     def test_safety_must_be_bool(self):
@@ -295,7 +309,7 @@ class TestIdFormat(CatalogCase):
     def test_bad_anchor(self):
         self.edit_page("enforce.yaml", "hooks-basics", sections=[{"title": "節", "anchor": "Exit_Codes"}])
         self.edit_page("symptoms.yaml", "instructions-ignored",
-                       related=["hooks-basics#Exit_Codes", "permissions-deny", "done-but-not-done"])
+                       routes=make_routes(II_ROUTES[0], ("縛っていない", ["hooks-basics#Exit_Codes", "permissions-deny"])))
         self.assertFound(("id の書式", "hooks-basics"))
 
     @covers("id の書式")
@@ -372,8 +386,8 @@ class TestRefs(CatalogCase):
     @covers("参照")
     def test_ref_to_merged_candidate(self):
         self.edit_page("symptoms.yaml", "done-but-not-done", related=["parallel-sessions", "rules-not-followed"])
-        self.edit_page("symptoms.yaml", "instructions-ignored", related=["hooks-basics#exit-codes", "permissions-deny"])
-        # instructions-ignored の related から外したので、done-but-not-done は instructions-ignored#… 以外から入れない
+        self.edit_page("symptoms.yaml", "instructions-ignored", related=["completion-check"])
+        # instructions-ignored の related から外したので、done-but-not-done に入ってくる道がなくなる
         issues = self.assertFound(("参照", "done-but-not-done"), ("入ってくる道", "done-but-not-done"))
         self.assertIn("「instructions-ignored」にまとめた", only(issues, "参照")[0].message)
 
@@ -501,8 +515,8 @@ class TestOverlap(CatalogCase):
 
     @covers("前提と関連の重複")
     def test_page_and_its_section_in_related_are_not_duplicates(self):
-        self.edit_page("symptoms.yaml", "instructions-ignored",
-                       related=["hooks-basics#exit-codes", "hooks-basics", "permissions-deny", "done-but-not-done"])
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       related=["instructions-ignored#diagnosis", "instructions-ignored", "parallel-sessions"])
         self.assertFound()
 
 
@@ -758,6 +772,258 @@ class TestReverseIndexOverlap(CatalogCase):
                       hooks.message)
 
 
+class TestRoutes(CatalogCase):
+    """症状のページの routes（catalog/README §4.4 の6）。形・必須・語彙・参照は、ほかのキーと同じ検査が見る。"""
+
+    @covers("routes")
+    def test_routes_on_a_page_that_is_not_a_symptom(self):
+        self.edit_page("enforce.yaml", "hooks-basics", routes=make_routes(("縛っていない", ["completion-check"])))
+        issues = self.assertFound(("routes", "hooks-basics"))
+        self.assertEqual(issues[0].severity, cc.ERROR)
+        self.assertEqual(issues[0].message, "routes は type が symptom のページだけが持つ（このページは feature。ほかのページ"
+                                            "への道は related に書く）")
+        self.assertEqual(issues[0].fields, frozenset({"enforce"}))
+        self.assertRegex(cc.format_issue(issues[0]), LINE_RE)
+
+    @covers("routes")
+    def test_empty_to(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored", routes=make_routes(II_ROUTES[0], ("縛っていない", [])))
+        issues = self.assertFound(("routes", "instructions-ignored"))
+        self.assertIn("routes（縛っていない）の to が空（振り分け先のページを1件以上書く）", issues[0].message)
+
+    @covers("routes")
+    def test_symptom_pages_and_pages_without_a_known_type(self):
+        self.edit_page("enforce.yaml", "hooks-basics", routes=None)   # routes: null は書いていないのと同じ
+        self.assertFound()
+        # type が語彙にないページの routes は、type のエラーだけを出す（症状のページのつもりかもしれない）
+        self.edit_page("symptoms.yaml", "done-but-not-done", type="symptomm")
+        self.assertFound(("語彙", "done-but-not-done"))
+
+    @covers("語彙")
+    def test_route_cause_vocabulary(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored",
+                       routes=make_routes(("散らかってる", ["outdated-advice-ledger"]), II_ROUTES[1]))
+        # 綴りを誤った cause は「散らかっている」の routes に数えない
+        issues = self.assertFound(("語彙", "instructions-ignored"), ("routes と原因", "instructions-ignored"))
+        self.assertIn("routes の cause の「散らかってる」が語彙にない（見えていない・散らかっている・確かめていない・縛っていない・"
+                      "合っていない・境界がない・預けすぎる・同意を根拠にする・やめられない・体感を信じる・みんなの案になる）",
+                      only(issues, "語彙")[0].message)
+
+    @covers("参照")
+    def test_route_targets_are_resolved(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored", routes=make_routes(
+            ("散らかっている", ["outdated-advice-ledger", "no-such-page", "rules-not-followed"]),
+            ("縛っていない", ["hooks-basics#nothing", "permissions-deny", ""])))
+        issues = self.assertFound(("参照", "instructions-ignored"))
+        messages = [i.message for i in issues]
+        self.assertEqual(len(messages), 4, messages)
+        self.assertIn("routes（散らかっている）の to の「no-such-page」が存在しない id", messages[0])
+        self.assertIn("routes（散らかっている）の to の「rules-not-followed」は", messages[1])
+        self.assertIn("「instructions-ignored」にまとめた", messages[1])
+        self.assertEqual(messages[2], "routes（縛っていない）の to の「hooks-basics#nothing」: hooks-basics の sections に "
+                                      "anchor「nothing」がない（あるのは exit-codes）")
+        self.assertEqual(messages[3], "routes（縛っていない）の to に空の id がある（''）")
+
+    @covers("参照")
+    def test_route_to_candidate_without_field_file_is_not_flagged(self):
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       routes=make_routes(("確かめていない", ["hooks-basics", "verifier-basics#metrics"])))
+        self.assertFound()
+
+    @covers("形")
+    def test_route_shapes(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored", routes=[
+            {"cause": "散らかっている", "to": "outdated-advice-ledger"},
+            {"cause": "縛っていない", "to": ["hooks-basics#exit-codes", "permissions-deny"]},
+            "縛っていない"])
+        self.edit_page("symptoms.yaml", "done-but-not-done", routes={"cause": "確かめていない", "to": ["hooks-basics"]})
+        issues = self.assertFound(("形", "instructions-ignored"), ("形", "done-but-not-done"))
+        messages = [i.message for i in issues]
+        self.assertIn("routes の要素の to をリスト（[…]）にする（いまは 'outdated-advice-ledger'）", messages)
+        self.assertIn("routes の 3 番目をマッピング（{…}）にする（いまは '縛っていない'）", messages)
+        self.assertIn("routes をリスト（[…]）にする（いまは {'cause': '確かめていない', 'to': ['hooks-basi…）", messages)
+
+    @covers("必須")
+    def test_route_without_cause_or_to(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored",
+                       routes=[{"cause": "散らかっている", "to": ["outdated-advice-ledger"]},
+                               {"to": ["hooks-basics#exit-codes", "permissions-deny"]}])
+        self.edit_page("symptoms.yaml", "done-but-not-done", routes=[{"cause": "確かめていない"}])
+        issues = self.assertFound(("必須", "instructions-ignored"), ("必須", "done-but-not-done"),
+                                  ("routes と原因", "instructions-ignored"))   # 縛っていない の routes がなくなる
+        self.assertIn("routes の要素に cause がない", only(issues, "必須")[0].message)
+        self.assertIn("routes の要素に to がない（{'cause': '確かめていない'}）", only(issues, "必須")[1].message)
+
+    @covers("知らない項目")
+    def test_unknown_key_in_routes(self):
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       routes=[{"cause": "確かめていない", "to": ["hooks-basics"], "reason": "テストを走らせる"}])
+        issues = self.assertFound(("知らない項目", "done-but-not-done"))
+        self.assertIn("routes の要素の知らない項目「reason」", issues[0].message)
+
+    @covers("未処理の候補")
+    def test_route_to_unprocessed_candidate(self):
+        self.add_candidate(id="secret-scan", field="enforce", title="秘密を探す", type="feature", priority="推奨")
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       routes=make_routes(("確かめていない", ["hooks-basics", "secret-scan"])))
+        issues = self.assertFound(("registry の候補", "secret-scan"), ("未処理の候補", "done-but-not-done"))
+        i = only(issues, "未処理の候補")[0]
+        self.assertIn("routes（確かめていない）の to の「secret-scan」は registry の候補だが", i.message)
+        self.assertEqual(i.fields, frozenset({"symptoms", "enforce"}))
+
+    @covers("入ってくる道")
+    def test_routes_count_as_incoming(self):
+        # permissions-deny に入ってくる道を、instructions-ignored の routes だけにする
+        self.edit_page("enforce.yaml", "hooks-basics", related=[])
+        self.edit_page("delegate.yaml", "parallel-sessions", related=[])
+        self.assertFound()
+        self.edit_page("symptoms.yaml", "instructions-ignored",
+                       routes=make_routes(II_ROUTES[0], ("縛っていない", ["hooks-basics#exit-codes"])))
+        issues = self.assertFound(("入ってくる道", "permissions-deny"))
+        self.assertIn("どのページの prerequisites・related・routes にも出てこない", issues[0].message)
+
+    @covers("レベルの逆転", "必須の前提")
+    def test_rules_for_prerequisites_do_not_apply_to_routes(self):
+        # instructions-ignored（整える・必須）の routes に、上の段で推奨の parallel-sessions（回す・推奨）を置いてよい
+        self.edit_page("symptoms.yaml", "instructions-ignored",
+                       routes=make_routes(II_ROUTES[0], ("縛っていない", ["parallel-sessions", "permissions-deny"])))
+        self.assertFound()
+        # 同じページを前提にも置くと、前提の規則が当たる
+        self.edit_page("symptoms.yaml", "instructions-ignored", prerequisites=["request-vs-lock", "parallel-sessions"])
+        self.assertFound(("レベルの逆転", "instructions-ignored"), ("必須の前提", "instructions-ignored"),
+                         ("症状の前提", "instructions-ignored"), ("routes の重なり", "instructions-ignored"))
+
+    @covers("比例則")
+    def test_routes_do_not_count_for_the_proportional_rule(self):
+        # done-but-not-done（任せる）の routes には enforce の hooks-basics があるが、比例則は前提と関連だけを見る
+        self.edit_page("symptoms.yaml", "done-but-not-done", prerequisites=["request-vs-lock"])
+        self.assertFound(("比例則", "done-but-not-done"))
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       related=["instructions-ignored#diagnosis", "parallel-sessions", "fact-check"])
+        self.assertFound()   # verify の fact-check を関連に置けば満たす
+
+
+class TestRouteWarnings(CatalogCase):
+    @covers("症状の前提")
+    def test_prerequisite_that_is_not_a_concept(self):
+        self.edit_page("symptoms.yaml", "done-but-not-done", prerequisites=["completion-check", "outdated-advice-ledger"])
+        issues = self.assertFound(("症状の前提", "done-but-not-done"))
+        self.assertEqual(issues[0].severity, cc.WARNING)
+        self.assertEqual(issues[0].message, "前提「outdated-advice-ledger」の type が ledger（症状のページの前提は、診断を読む"
+                                            "のに要る concept・guide・hub のページだけにする。対処のページは routes に置く）")
+        self.assertEqual(issues[0].fields, frozenset({"symptoms"}))
+        self.assertRegex(cc.format_issue(issues[0]), LINE_RE)
+
+    @covers("症状の前提")
+    def test_concept_guide_and_hub_are_fine(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored", prerequisites=["request-vs-lock", "how-to-use"])
+        self.assertFound()
+        self.edit_page("start.yaml", "how-to-use", type="hub")
+        self.assertFound()
+        # 症状のページでないページの前提は見ない
+        self.edit_page("delegate.yaml", "parallel-sessions", prerequisites=["hooks-basics"])
+        self.assertFound()
+        # 前提の type が語彙にないときは、そのページのエラーだけを出す
+        self.edit_page("basics.yaml", "request-vs-lock", type="conceptt")
+        self.assertFound(("語彙", "request-vs-lock"))
+
+    @covers("設定")
+    def test_named_types_must_be_in_vocabulary(self):
+        self.edit("site.yml", lambda d: d["types"].remove("hub"))
+        issues = self.assertFound(("設定", "-"))   # types_without_level の hub の指摘も出る
+        self.assertTrue(any("道具の規則が名指しする「hub」が site.yml の types にない（症状の前提の検査が当たらない" in i.message
+                            for i in issues), [i.message for i in issues])
+
+    @covers("症状の routes")
+    def test_symptom_page_without_routes(self):
+        self.edit_page("symptoms.yaml", "done-but-not-done", routes=DELETE)
+        issues = self.assertFound(("症状の routes", "done-but-not-done"))
+        self.assertEqual(issues[0].severity, cc.WARNING)
+        self.assertEqual(issues[0].message, "symptom のページに routes がない（原因ごとに、中心の対処のページを1〜3 件、"
+                                            "近い順に書く）")
+        self.edit_page("symptoms.yaml", "done-but-not-done", routes=[])
+        self.assertFound(("症状の routes", "done-but-not-done"))
+
+    @covers("症状の routes")
+    def test_routes_are_not_asked_of_other_pages(self):
+        cat = cc.load_catalog(self.root)
+        self.assertEqual([p.id for p in cat.pages if p.parts("routes")], ["instructions-ignored", "done-but-not-done"])
+        self.assertFound()
+
+    @covers("routes と原因")
+    def test_cause_that_the_page_does_not_diagnose(self):
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       routes=make_routes(("確かめていない", ["hooks-basics"]), ("縛っていない", ["permissions-deny"])))
+        issues = self.assertFound(("routes と原因", "done-but-not-done"))
+        self.assertEqual(issues[0].message, "routes の cause「縛っていない」が、このページの prevents・pitfalls にない"
+                                            "（診断で問う原因に足すか、routes から外す）")
+
+    @covers("routes と原因")
+    def test_cause_without_routes(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored", routes=make_routes(II_ROUTES[1]))
+        self.edit_page("symptoms.yaml", "done-but-not-done", pitfalls=["預けすぎる"])
+        issues = self.assertFound(("routes と原因", "instructions-ignored"), ("routes と原因", "done-but-not-done"))
+        self.assertEqual([i.message for i in issues], [
+            "prevents の「散らかっている」に routes がない（その原因の中心の対処を routes に書く。対処のページがない原因なら、"
+            "notes に書く）",
+            "pitfalls の「預けすぎる」に routes がない（その原因の中心の対処を routes に書く。対処のページがない原因なら、"
+            "notes に書く）"])
+
+    @covers("routes と原因")
+    def test_pitfalls_can_be_routed_and_empty_prevents_is_left_to_its_check(self):
+        self.edit_page("symptoms.yaml", "done-but-not-done", pitfalls=["預けすぎる"],
+                       routes=make_routes(("確かめていない", ["hooks-basics"]), ("預けすぎる", ["fact-check"])))
+        self.assertFound()
+        self.edit_page("symptoms.yaml", "done-but-not-done", prevents=[])
+        self.assertFound(("症状の prevents", "done-but-not-done"))
+        self.edit("site.yml", lambda d: d.pop("pitfalls"))   # 語彙が読めなければ、この検査をしない
+        self.assertFound(("症状の prevents", "done-but-not-done"), ("設定", "-"))
+
+    @covers("routes の重なり")
+    def test_same_cause_and_same_target_twice(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored", routes=make_routes(
+            II_ROUTES[0], ("縛っていない", ["hooks-basics#exit-codes", "permissions-deny", "permissions-deny"]),
+            ("散らかっている", ["fact-check"])))
+        issues = self.assertFound(("routes の重なり", "instructions-ignored"))
+        self.assertEqual([i.message for i in issues], ["routes の cause「散らかっている」が 2 回ある（1つにまとめる）",
+                                                       "routes（縛っていない）の to に「permissions-deny」が 2 回ある"])
+
+    @covers("routes の重なり")
+    def test_route_target_also_in_prerequisites_or_related(self):
+        # ページの id で比べる：routes の hooks-basics#exit-codes と related の hooks-basics（instructions-ignored）、
+        # routes の hooks-basics と related の hooks-basics#exit-codes（done-but-not-done）
+        self.edit_page("symptoms.yaml", "instructions-ignored", related=["done-but-not-done", "completion-check", "hooks-basics"],
+                       routes=make_routes(("散らかっている", ["request-vs-lock"]), II_ROUTES[1]))
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       related=["instructions-ignored#diagnosis", "parallel-sessions", "hooks-basics#exit-codes"])
+        issues = self.assertFound(("routes の重なり", "instructions-ignored"), ("routes の重なり", "done-but-not-done"))
+        self.assertEqual([i.message for i in issues], [
+            "routes の先「request-vs-lock」が prerequisites にもある（どちらか一方にする。前提は、診断を読むのに要る概念の"
+            "ページだけ）",
+            "routes の先「hooks-basics」が related にもある（related から外す。related には、routes にない近いページ"
+            "だけを置く）",
+            "routes の先「hooks-basics」が related にもある（related から外す。related には、routes にない近いページ"
+            "だけを置く）"])
+        self.assertEqual([i.page for i in issues], ["instructions-ignored", "instructions-ignored", "done-but-not-done"])
+
+    @covers("routes の重なり")
+    def test_same_page_in_two_causes_is_fine(self):
+        self.edit_page("symptoms.yaml", "instructions-ignored",
+                       routes=make_routes(("散らかっている", ["hooks-basics"]), II_ROUTES[1]))
+        self.assertFound()
+
+    @covers("routes の数")
+    def test_four_targets_for_one_cause(self):
+        three = ["hooks-basics#exit-codes", "permissions-deny", "fact-check"]
+        self.edit_page("symptoms.yaml", "instructions-ignored", routes=make_routes(II_ROUTES[0], ("縛っていない", three)))
+        self.assertFound()
+        self.edit_page("symptoms.yaml", "instructions-ignored",
+                       routes=make_routes(II_ROUTES[0], ("縛っていない", three + ["parallel-sessions"])))
+        issues = self.assertFound(("routes の数", "instructions-ignored"))
+        self.assertEqual(issues[0].message, "routes（縛っていない）の to が 4 件（中心の対処を 3 件までにする。ほかは related "
+                                            "に置く）")
+
+
 class TestTracks(CatalogCase):
     @covers("tracks の id")
     def test_unknown_track(self):
@@ -897,6 +1163,19 @@ class TestOtherWarnings(CatalogCase):
         issues = self.assertFound(("wave", "-"))
         self.assertEqual(issues[0].file, "planning/catalog/changes.yaml")
 
+    @covers("wave")
+    def test_every_entry_and_symptom_page_needs_wave(self):
+        # 入口（start）と症状辞典は全ページに付ける（catalog/README §4.6 の2）。ほかの核の分野は総論などだけでよい
+        self.edit_page("symptoms.yaml", "done-but-not-done", wave=DELETE)
+        issues = self.assertFound(("wave", "done-but-not-done"))
+        self.assertEqual(issues[0].message, "wave: 1 がない（入口の分野のページと症状のページは、全ページに付ける）")
+        # 入口の分野は site.yml の entry_fields から読む。changes を入口にすると、start のページは全ページでなくてよい
+        # （start の核がないことと、how-to-use に入ってくる道がないことだけが出る）
+        self.edit("site.yml", lambda d: d.update(entry_fields=["changes"]))
+        self.edit_page("symptoms.yaml", "done-but-not-done", wave=1)
+        self.edit_page("start.yaml", "how-to-use", wave=DELETE)
+        self.assertFound(("wave", "-"), ("入ってくる道", "how-to-use"))
+
 
 class TestConfig(CatalogCase):
     @covers("設定")
@@ -933,24 +1212,178 @@ class TestConfig(CatalogCase):
         self.assertIn("「symptom」", only(issues, "設定")[0].message)
 
 
+def wave_ids(fw: cc.FirstWave) -> dict[str, list[str]]:
+    return {"core": [p.id for p in fw.core], "prerequisites": [p.id for p in fw.prerequisites],
+            "routes": [p.id for p in fw.routes], "named": [p.id for p in fw.named]}
+
+
 class TestFirstWave(CatalogCase):
+    """第一波の数え方（catalog/README §4.6 の3）。試験用の目次の site.yml は first_wave: {routes: first,
+    named: [parallel-sessions]}。核（wave: 1）は how-to-use・instructions-ignored・done-but-not-done・outdated-advice-ledger。
+    routes の先の priority は、outdated-advice-ledger と permissions-deny が必須、hooks-basics が推奨。"""
+
+    def wave(self, mode: str | None = None) -> cc.FirstWave:
+        return cc.first_wave(cc.load_catalog(self.root), mode)
+
+    def lacking(self, fw: cc.FirstWave) -> list[tuple[str, str, tuple[str, ...]]]:
+        return [(x.page.id, x.cause, x.targets) for x in fw.lacking]
+
     def test_fixture(self):
-        core, reached, unresolved = cc.first_wave(cc.load_catalog(self.root))
-        self.assertEqual([p.id for p in core], ["how-to-use", "instructions-ignored", "outdated-advice-ledger"])
-        self.assertEqual([p.id for p in reached], ["request-vs-lock"])
-        self.assertEqual(unresolved, [])
+        fw = self.wave()
+        self.assertEqual(fw.mode, "first")
+        self.assertEqual(wave_ids(fw), {
+            "core": ["how-to-use", "instructions-ignored", "done-but-not-done", "outdated-advice-ledger"],
+            "prerequisites": ["request-vs-lock", "completion-check"],
+            # 各 cause の to のうち最初の必須の先：散らかっている は outdated-advice-ledger（もう核にある）、縛っていない は
+            # 推奨の hooks-basics#exit-codes を飛ばして permissions-deny。done-but-not-done の 確かめていない は推奨の先だけ
+            "routes": ["permissions-deny"],
+            "named": ["parallel-sessions"]})   # その前提の completion-check は、もう前提から入っている
+        self.assertEqual(self.lacking(fw), [("done-but-not-done", "確かめていない", ("hooks-basics",))])
+        self.assertEqual(fw.unresolved, [])
+        self.assertEqual(len(fw.pages), 8)
+
+    def test_routes_modes(self):
+        self.assertEqual(wave_ids(self.wave("none"))["routes"], [])
+        self.assertEqual(wave_ids(self.wave("first"))["routes"], ["permissions-deny"])
+        self.assertEqual(wave_ids(self.wave("all"))["routes"], ["hooks-basics", "permissions-deny"])   # 優先度を問わない
+        self.assertEqual([len(self.wave(m).pages) for m in cc.FIRST_WAVE_ROUTES], [7, 8, 9])
+        self.assertEqual(self.lacking(self.wave("all")), self.lacking(self.wave("none")))   # 数え方によらない
+        self.edit("site.yml", lambda d: d["first_wave"].update(routes="all"))
+        self.assertEqual((self.wave().mode, len(self.wave().pages)), ("all", 9))
+
+    def test_first_takes_only_the_first_required_target(self):
+        self.edit_page("verify.yaml", "fact-check", priority="必須")
+        self.edit_page("symptoms.yaml", "instructions-ignored", routes=make_routes(
+            II_ROUTES[0], ("縛っていない", ["hooks-basics#exit-codes", "fact-check", "permissions-deny"])))
+        fw = self.wave()
+        self.assertEqual(wave_ids(fw)["routes"], ["fact-check"])
+        self.assertNotIn("permissions-deny", [p.id for p in fw.pages])   # 2つ目の必須の先は入れない
+        self.assertEqual(wave_ids(self.wave("all"))["routes"], ["hooks-basics", "fact-check", "permissions-deny"])
+
+    def test_priority_of_a_candidate_without_field_file_comes_from_registry(self):
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       routes=make_routes(("確かめていない", ["hooks-basics", "verifier-basics"])))   # registry では必須
+        fw = self.wave()
+        self.assertEqual((self.lacking(fw), fw.unresolved), ([], ["verifier-basics"]))
+        self.edit("registry.yaml", lambda d: next(e for e in d["pages"] if e["id"] == "verifier-basics").update(priority="推奨"))
+        fw = self.wave()
+        self.assertEqual(self.lacking(fw), [("done-but-not-done", "確かめていない", ("hooks-basics", "verifier-basics"))])
+        self.assertEqual(fw.unresolved, [])
+
+    def test_closure_takes_prerequisites_of_routes_and_named(self):
+        # done-but-not-done の前提を外すと、completion-check は核から前提で届かなくなる
+        self.edit_page("symptoms.yaml", "done-but-not-done", prerequisites=["request-vs-lock"])
+        self.assertEqual(wave_ids(self.wave())["named"], ["parallel-sessions", "completion-check"])   # named の前提
+        self.edit_page("verify.yaml", "fact-check", priority="必須")
+        self.edit_page("symptoms.yaml", "done-but-not-done", routes=make_routes(("確かめていない", ["fact-check"])))
+        fw = self.wave()
+        self.assertEqual(wave_ids(fw)["routes"], ["permissions-deny", "fact-check", "completion-check"])   # routes の先の前提
+        self.assertEqual(wave_ids(fw)["named"], ["parallel-sessions"])
+
+    def test_routes_are_taken_only_from_core_symptom_pages(self):
+        self.edit_page("verify.yaml", "fact-check", priority="必須")
+        self.edit_page("symptoms.yaml", "done-but-not-done", routes=make_routes(("確かめていない", ["fact-check"])))
+        self.assertIn("fact-check", [p.id for p in self.wave().pages])
+        # 核でない症状のページの routes は種にしない。routes の先から入った症状のページの routes もたどらない
+        self.edit_page("symptoms.yaml", "done-but-not-done", wave=DELETE)
+        self.assertNotIn("fact-check", [p.id for p in self.wave("all").pages])
+        self.edit_page("symptoms.yaml", "instructions-ignored",
+                       routes=make_routes(("散らかっている", ["done-but-not-done"]), II_ROUTES[1]), related=["completion-check"])
+        fw = self.wave("all")
+        self.assertEqual(wave_ids(fw)["routes"], ["done-but-not-done", "hooks-basics", "permissions-deny", "completion-check"])
+        self.assertNotIn("fact-check", [p.id for p in fw.pages])
+        self.assertEqual(self.lacking(fw), [])   # 核でない done-but-not-done の cause は数えない
+        # 症状のページでないページの routes（エラー）もたどらない
+        self.edit_page("start.yaml", "how-to-use", routes=make_routes(("見えていない", ["fact-check"])))
+        self.assertNotIn("fact-check", [p.id for p in self.wave("all").pages])
+
+    def test_named_counts_only_what_it_adds(self):
+        # permissions-deny は first でも routes から入るので、named から足すものはない
+        self.edit("site.yml", lambda d: d["first_wave"].update(named=["permissions-deny"]))
+        self.assertEqual(wave_ids(self.wave("none"))["named"], ["permissions-deny"])
+        self.assertEqual(wave_ids(self.wave("first"))["named"], [])
+        self.edit("site.yml", lambda d: d["first_wave"].update(named=[]))
+        self.assertEqual(len(self.wave().pages), 7)
+
+    def test_unresolved_candidates(self):
+        # ファイルのまだない分野の候補（verifier-basics）は、前提・routes・named のどれから指してもたどれない候補にする
+        self.edit_page("symptoms.yaml", "instructions-ignored",
+                       routes=make_routes(II_ROUTES[0], ("縛っていない", ["verifier-basics"])))
+        self.assertEqual(self.wave().unresolved, ["verifier-basics"])
+        self.assertEqual(self.wave("none").unresolved, [])
+        self.edit("site.yml", lambda d: d["first_wave"].update(named=["verifier-basics"]))
+        self.assertEqual(self.wave("none").unresolved, ["verifier-basics"])
 
     def test_follows_prerequisites_transitively(self):
+        # completion-check に、核から前提を2段たどって届く形にする（instructions-ignored → request-vs-lock → completion-check）
+        self.edit_page("symptoms.yaml", "done-but-not-done", prerequisites=[],
+                       related=["instructions-ignored#diagnosis", "parallel-sessions", "fact-check"])
         self.edit_page("basics.yaml", "request-vs-lock", prerequisites=["completion-check"])
         self.edit_page("verify.yaml", "completion-check", prerequisites=["verifier-basics"], related=["fact-check"])
         self.assertFound()
-        core, reached, unresolved = cc.first_wave(cc.load_catalog(self.root))
-        self.assertEqual([p.id for p in reached], ["request-vs-lock", "completion-check"])
-        self.assertEqual(unresolved, ["verifier-basics"])
+        fw = self.wave()
+        self.assertEqual(wave_ids(fw)["prerequisites"], ["request-vs-lock", "completion-check"])
+        self.assertEqual(fw.unresolved, ["verifier-basics"])
         code, out, _ = self.run_cli("--stats")
-        self.assertIn("第一波: 5 ページ（wave: 1 が 3、前提でたどって届くもの 2）｜start 1・basics 1・verify 1・symptoms 1・"
-                      "changes 1", out)
-        self.assertIn("前提でたどれない候補（分野のファイルにまだない）: verifier-basics", out)
+        self.assertIn("第一波: 8 ページ（wave: 1 が 4、前提でたどって届くもの 2、routes から 1、named から 1）｜start 1・"
+                      "basics 1・verify 1・enforce 1・delegate 1・symptoms 2・changes 1", out)
+        self.assertIn("  たどれない候補（分野のファイルにまだない）: verifier-basics", out)
+
+
+class TestFirstWaveConfig(CatalogCase):
+    """site.yml の first_wave が読めないときは「設定」の警告にして、routes を none・named を空として数える。"""
+
+    def config(self) -> list[str]:
+        return [i.message for i in only(self.issues(), "設定")]
+
+    @covers("設定")
+    def test_missing_first_wave(self):
+        self.edit("site.yml", lambda d: d.pop("first_wave"))
+        issues = self.assertFound(("設定", "-"))
+        self.assertIn("first_wave がない", issues[0].message)
+        self.assertEqual(issues[0].fields, cc.ALWAYS)
+        fw = cc.first_wave(cc.load_catalog(self.root))
+        self.assertEqual((fw.mode, len(fw.pages)), ("none", 6))   # 工程3の数え方（核と前提だけ）
+
+    @covers("設定")
+    def test_bad_values(self):
+        self.edit("site.yml", lambda d: d.update(first_wave={"routes": "some", "named": "parallel-sessions", "name": []}))
+        self.assertFound(("設定", "-"))
+        messages = self.config()
+        self.assertEqual(len(messages), 3, messages)
+        self.assertTrue(any("routes の「some」が none・first・all のどれでもない" in m for m in messages), messages)
+        self.assertTrue(any("named が文字列のリストでない" in m for m in messages), messages)
+        self.assertTrue(any("知らない項目「name」" in m for m in messages), messages)
+        fw = cc.first_wave(cc.load_catalog(self.root))
+        self.assertEqual((fw.mode, fw.named), ("none", []))
+        self.edit("site.yml", lambda d: d.update(first_wave=["first"]))
+        self.assertTrue(any("first_wave がマッピング" in m for m in self.config()))
+
+    @covers("設定")
+    def test_named_must_point_to_a_page(self):
+        self.edit("site.yml", lambda d: d["first_wave"].update(named=["no-such-page", "rules-not-followed", "verifier-basics"]))
+        issues = self.assertFound(("設定", "-"))
+        self.assertEqual(len(issues), 2)   # ファイルのまだない分野の候補（verifier-basics）は指摘しない
+        self.assertIn("named の「no-such-page」が存在しない id", issues[0].message)
+        self.assertIn("named の「rules-not-followed」は", issues[1].message)
+        self.assertIn("「instructions-ignored」にまとめた", issues[1].message)
+        self.assertEqual(issues[0].file, "schema/site.yml")
+
+    @covers("設定")
+    def test_named_anchor(self):
+        self.edit("site.yml", lambda d: d["first_wave"].update(named=["instructions-ignored#diagnosis", "hooks-basics#nothing"]))
+        issues = self.assertFound(("設定", "-"))
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0].message, "site.yml の first_wave の named の「hooks-basics#nothing」: hooks-basics の "
+                                            "sections に anchor「nothing」がない（ページは第一波に数える）")
+        self.assertEqual(wave_ids(cc.first_wave(cc.load_catalog(self.root)))["named"], ["hooks-basics"])
+
+    def test_real_site_yml(self):
+        findings: list = []
+        vocab = cc.load_vocab(REPO, findings)
+        self.assertEqual(findings, [])
+        self.assertIn(vocab.first_wave_routes, cc.FIRST_WAVE_ROUTES)
+        self.assertTrue(vocab.first_wave_named)
 
 
 class TestCli(CatalogCase):
@@ -1012,16 +1445,40 @@ class TestCli(CatalogCase):
         self.assertEqual(code, 0)
         self.assertIn("  symptoms（症状辞典）: 2 ページ｜優先度 必須 2｜レベル 整える 1・任せる 1｜型 symptom 2｜"
                       "registry の候補 4（採る 2・まとめた 1・採らない 1）", out)
-        self.assertIn("  計: 10 ページ｜優先度 必須 6・推奨 4｜", out)
-        self.assertIn("第一波: 4 ページ（wave: 1 が 3、前提でたどって届くもの 1）｜start 1・basics 1・symptoms 1・changes 1", out)
-        self.assertIn("必須: 6 ページ", out)
+        self.assertIn("  計: 10 ページ｜優先度 必須 7・推奨 3｜", out)
+        self.assertIn("第一波: 8 ページ（wave: 1 が 4、前提でたどって届くもの 2、routes から 1、named から 1）｜start 1・basics 1・"
+                      "verify 1・enforce 1・delegate 1・symptoms 2・changes 1\n"
+                      "  routes の数え方ごとの第一波（site.yml の first_wave の routes。いまは first）: none 7・first 8・all 9\n"
+                      "  必須の先がない cause（first ではそこから入れない）: 1（うち、first で先がどれも第一波に入らないもの 1）｜"
+                      "done-but-not-done（確かめていない）\n"
+                      "必須: 7 ページ", out)
+        self.assertNotIn("たどれない候補", out)
+
+    def test_stats_without_lacking_causes(self):
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       routes=make_routes(("確かめていない", ["hooks-basics", "completion-check"])))
+        code, out, _ = self.run_cli("--stats")
+        self.assertIn("  必須の先がない cause（first ではそこから入れない）: 0\n", out)
+        # 必須の先がない cause の先が、ほかの道で第一波に入っていれば、準備中にはならない
+        self.edit_page("symptoms.yaml", "done-but-not-done",
+                       routes=make_routes(("確かめていない", ["hooks-basics"])), prerequisites=["completion-check", "hooks-basics"])
+        code, out, _ = self.run_cli("--stats")
+        self.assertIn("  必須の先がない cause（first ではそこから入れない）: 1（うち、first で先がどれも第一波に入らないもの 0）｜"
+                      "done-but-not-done（確かめていない）\n", out)
 
     def test_stats_for_one_field(self):
         code, out, _ = self.run_cli("--stats", "--field", "symptoms")
         self.assertIn("集計（symptoms の分野）:", out)
-        self.assertIn("第一波（symptoms のページ）: 1 ページ（全体では 4 ページ）", out)
+        self.assertIn("第一波（symptoms のページ）: 2 ページ（wave: 1 が 2、前提でたどって届くもの 0、routes から 0、named から 0。"
+                      "全体では 8 ページ）", out)
         self.assertIn("必須: 2 ページ", out)
         self.assertNotIn("verify（確かめる）", out)
+        code, out, _ = self.run_cli("--stats", "--field", "enforce")
+        self.assertIn("第一波（enforce のページ）: 1 ページ（wave: 1 が 0、前提でたどって届くもの 0、routes から 1、named から 0。"
+                      "全体では 8 ページ）\n"
+                      "  routes の数え方ごとの第一波（site.yml の first_wave の routes。いまは first）: none 0・first 1・all 2"
+                      "（全体では none 7・first 8・all 9）\n"
+                      "  必須の先がない cause（first ではそこから入れない）: 1", out)   # cause は全体の数
 
     def test_cannot_check(self):
         code, _, err = self.run_cli("--field", "nope")

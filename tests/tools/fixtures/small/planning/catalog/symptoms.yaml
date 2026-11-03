@@ -21,7 +21,10 @@ pages:
       - {type: symptom, text: "CLAUDE.md に書いたのに守られない"}
       - {type: symptom, text: "長い会話の途中から規則を無視し始める"}
     prerequisites: [request-vs-lock]
-    related: [hooks-basics#exit-codes, permissions-deny, done-but-not-done]
+    routes:
+      - {cause: 散らかっている, to: [outdated-advice-ledger]}
+      - {cause: 縛っていない, to: [hooks-basics#exit-codes, permissions-deny]}
+    related: [done-but-not-done, completion-check]
     tracks: [claude-md, hooks, permissions]
     outdated_advice: [important-caps]
     volatility: 中
@@ -39,6 +42,7 @@ pages:
     level: 任せる
     level_evidence: "長い作業を任せ始めた段階で出会う"
     priority: 必須
+    wave: 1
     surfaces: [claude-code]
     principle: [確かめる]
     prevents: [確かめていない]
@@ -47,6 +51,8 @@ pages:
       - {type: symptom, text: "完了と言うのにテストが通らない"}
       - {type: symptom, text: "直したと言うのに同じ不具合が出る"}
     prerequisites: [completion-check]
+    routes:
+      - {cause: 確かめていない, to: [hooks-basics]}
     related: [instructions-ignored#diagnosis, parallel-sessions]
     volatility: 中
 merged:
