@@ -417,7 +417,7 @@ pages:
     templates: []
     visual: {kind: static, text: "入力を開発用・検証用・ロックボックスの三層に分け、誰がいつ見るかを示す図"}
     materials: ["11 第1節 分野09 p34#53・p34#218・p34#221・p34#222・p34#232", "11 第4節 #20・#28", "research/24 A-8", "research/23 #5", "10 第18章", "requirements §10.3（hold-out の読み取りを塞ぐ）"]
-    notes: "可視のテストで高く非公開で0になった C コンパイラは Codex の例（research/24 A-8）。Claude の値として使えるのは SpecBench の Claude Code（Opus 4.6）の可視と非公開の差で、版依存なので数値ファイルに置く。hold-out を読めなくする設定（Read の deny と sandbox）は enforce に置き、ここは考え方と置き場所を書く。Read と Edit の deny は任意の子プロセスに効かない（research/23 #5）。ロックボックスを見る頻度（長期戦で月1回程度）は 10 の実践の目安"
+    notes: "可視のテストで高く非公開で0になった C コンパイラは、Claude 以外のコーディング用のモデルの例（research/24 A-8。目次のほかの notes にそろえ、他社のモデルの失敗を名前で書かない。2026-11-04 工程6）。Claude の値として使えるのは SpecBench の Claude Code（Opus 4.6）の可視と非公開の差で、版依存なので数値ファイルに置く。hold-out を読めなくする設定（Read の deny と sandbox）は enforce に置き、ここは考え方と置き場所を書く。Read と Edit の deny は任意の子プロセスに効かない（research/23 #5）。ロックボックスを見る頻度（長期戦で月1回程度）は 10 の実践の目安"
 
   - id: measure-the-upper-bound
     chapter: 実験を回す
