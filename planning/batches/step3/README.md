@@ -11,6 +11,7 @@
 | --- | --- | --- | --- |
 | C0 | `planning/catalog/registry.yaml`（全候補の id・分野・題名・優先度・レベルの見当・出どころ、台帳の項目の id） | `registry-C0.md` | 完了（候補378：必須164・推奨161・任意53。台帳35。核の候補47） |
 | T1 | `tools/check_catalog.py` と `tests/tools/test_check_catalog.py` | `tool-T1.md` | 完了（検査31：エラー10・警告21。試験114が通る） |
+| T2 | `tools/check_catalog.py` に警告2つ（推移的な前提・逆引きの重複）と試験を足す（3段目の後） | `tool-T2.md` | 実行中 |
 
 ## 2段目：分野ごとの目次（一覧ができてから、並列）
 
