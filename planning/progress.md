@@ -9,7 +9,7 @@
 | 0 | 形式と運用を決める（工程1の前に入れた） | 完了（2026-11-03） | [format-and-operations.md](format-and-operations.md)（v1.1）・[decisions.md](decisions.md)・[questions-for-kyopro-atlas.md](questions-for-kyopro-atlas.md)・[research/20-kyopro-atlas-retrospective.md](research/20-kyopro-atlas-retrospective.md) |
 | 1 | 質問 | 完了（2026-11-03） | [decisions.md](decisions.md)・[research/21-step1-findings.md](research/21-step1-findings.md) |
 | 2 | 調査の補完 | 完了（2026-11-04） | [batches/step2/](batches/step2/README.md)・research/22〜28（担当の報告）・調査資料と requirements.md への訂正と注記 |
-| 3 | 設計 | 未着手 | |
+| 3 | 設計 | 進行中（2026-11-04〜） | [design.md](design.md)（第1版）・[catalog/](catalog/README.md)・schema/site.yml |
 | 4 | 設計の見直し | 未着手 | |
 | 5 | 決定の提示 | 未着手 | |
 | 6 | 土台作り | 未着手 | |
@@ -32,7 +32,7 @@
 
 ## 次にやること
 
-1. 工程3（設計）は、ユーザーが進めると言ってから始める。材料は format-and-operations.md（v1.1）・decisions.md（特に「工程2で確かめた事実（設計の前提）」）・research/22〜28
+1. 工程3（設計）：設計書の第1版を書いた。次に、目次の一覧（catalog/registry.yaml）を担当1つが作り、並行して目次の検査（tools/check_catalog.py）を担当1つが作る。一覧ができたら、分野の担当が並列に catalog/<field>.yaml を書く（割り当てと状態は batches/step3/README.md）。その後、工程4（見直し）を経て、工程5でユーザーに決定の一覧を示す
 2. 土台作り（工程6）の始めに GitHub のリポジトリを作る。最初の push の前に、調査資料の中の実在の人物・団体についての疑わしい記述を、直すか注記を付ける（decisions 2026-11-03）
 
 ## ユーザーにお願いしていること
