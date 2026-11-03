@@ -1,0 +1,18 @@
+field: start
+chapters: [入口]
+pages:
+  - id: how-to-use
+    chapter: 入口
+    title: この教材の引き方
+    type: guide
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code, api]
+    summary: "困りごとややりたいことから、読むページを引ける。"
+    prerequisites: []
+    related: [instructions-ignored, outdated-advice-ledger]
+    volatility: 低
+    materials: ["試験"]
+merged: []
+dropped: []
+open_issues: []

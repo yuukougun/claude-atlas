@@ -1,0 +1,18 @@
+field: delegate
+chapters: [並列]
+pages:
+  - id: parallel-sessions
+    chapter: 並列
+    title: 並列で動かす
+    type: feature
+    level: 回す
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [握る]
+    summary: "独立した作業を並べて動かし、終わったものから確かめて取り込む。"
+    prerequisites: [completion-check]
+    related: [permissions-deny]
+    tracks: [worktrees, parallel-dashboard]
+    volatility: 高
+new_features:
+  - {id: parallel-dashboard, title: 並列の一覧, note: "試験用の新しい機能の id"}

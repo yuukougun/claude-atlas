@@ -1,0 +1,56 @@
+field: symptoms
+chapters: [指示と仕組み, 確かめ方]
+pages:
+  - id: instructions-ignored
+    chapter: 指示と仕組み
+    title: CLAUDE.md や指示が守られない
+    nav_title: null
+    aliases: [指示を無視される, CLAUDE.md が効かない]
+    type: symptom
+    level: 整える
+    level_evidence: "CLAUDE.md を書き始めた段階で最初に出会う"
+    priority: 必須
+    wave: 1
+    surfaces: [claude-code, app]
+    principle: [縛る, 見せる]
+    prevents: [散らかっている, 縛っていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "CLAUDE.md や指示に書いた規則が破られる原因を切り分け、どれを仕組みに移すかを決める。"
+    signs:
+      - {type: symptom, text: "CLAUDE.md に書いたのに守られない"}
+      - {type: symptom, text: "長い会話の途中から規則を無視し始める"}
+    prerequisites: [request-vs-lock]
+    related: [hooks-basics#exit-codes, permissions-deny, done-but-not-done]
+    tracks: [claude-md, hooks, permissions]
+    outdated_advice: [important-caps]
+    volatility: 中
+    sections:
+      - {title: "原因を安く確かめる順", anchor: diagnosis}
+    templates:
+      - {name: "規則を hook に移す例", kind: hook, safety: false}
+    visual: {kind: static, text: "お願いと鍵の二層の図"}
+    materials: ["試験"]
+    notes: null
+  - id: done-but-not-done
+    chapter: 確かめ方
+    title: 完了と言うのに終わっていない
+    type: symptom
+    level: 任せる
+    level_evidence: "長い作業を任せ始めた段階で出会う"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    summary: "完了の報告と実際の状態が食い違う原因を切り分け、確かめ方を依頼に含める。"
+    signs:
+      - {type: symptom, text: "完了と言うのにテストが通らない"}
+      - {type: symptom, text: "直したと言うのに同じ不具合が出る"}
+    prerequisites: [completion-check]
+    related: [instructions-ignored#diagnosis, parallel-sessions]
+    volatility: 中
+merged:
+  - {id: rules-not-followed, into: instructions-ignored, reason: "同じ症状の変種なので節にする"}
+dropped:
+  - {id: old-candidate, reason: "試験用の、採らない候補"}
+open_issues: []

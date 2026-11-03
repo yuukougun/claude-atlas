@@ -1,0 +1,15 @@
+field: basics
+chapters: [仕組み]
+pages:
+  - id: request-vs-lock
+    chapter: 仕組み
+    title: お願いと鍵
+    type: concept
+    level: 整える
+    level_evidence: "指示が守られないと気づいた段階で要る"
+    priority: 必須
+    principle: [縛る]
+    summary: "指示（お願い）と仕組み（鍵）の強さの違いが分かる。守らせたい規則を、どちらに置くかを決められる。"
+    prerequisites: []
+    related: []
+    volatility: 低

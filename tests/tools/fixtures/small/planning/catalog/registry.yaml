@@ -1,0 +1,19 @@
+# 試験用の小さな目次（tests/tools/test_check_catalog.py）。エラーも警告も出ない形にしておく。
+# eval.yaml は置かない（分野のファイルがまだない候補 verifier-basics の扱いを試す）
+pages:
+  - {id: how-to-use, field: start, title: この教材の引き方, type: guide, priority: 必須, origin: "試験", wave_core: true}
+  - {id: request-vs-lock, field: basics, title: お願いと鍵, type: concept, priority: 必須, level: 整える, origin: "試験"}
+  - {id: completion-check, field: verify, title: 完了を確かめる, type: concept, priority: 必須, level: 整える, origin: "試験"}
+  - {id: hooks-basics, field: enforce, title: hooks の基本, type: feature, priority: 推奨, level: 仕組みにする, origin: "試験"}
+  - {id: permissions-deny, field: enforce, title: permissions で禁じる, type: feature, priority: 推奨, level: 仕組みにする, origin: "試験"}
+  - {id: parallel-sessions, field: delegate, title: 並列で動かす, type: feature, priority: 推奨, level: 回す, origin: "試験"}
+  - {id: instructions-ignored, field: symptoms, title: CLAUDE.md や指示が守られない, type: symptom, priority: 必須, level: 整える, origin: "試験", wave_core: true}
+  - {id: done-but-not-done, field: symptoms, title: 完了と言うのに終わっていない, type: symptom, priority: 必須, level: 任せる, origin: "試験"}
+  - {id: rules-not-followed, field: symptoms, title: rules が守られない, type: symptom, priority: 推奨, level: 整える, origin: "試験"}
+  - {id: old-candidate, field: symptoms, title: 採らない候補, type: symptom, priority: 任意, level: 使う, origin: "試験"}
+  - {id: outdated-advice-ledger, field: changes, title: 古くなった助言の台帳, type: ledger, priority: 必須, origin: "試験", wave_core: true}
+  - {id: verifier-basics, field: eval, title: 検証器を作る, type: concept, priority: 必須, level: 任せる, origin: "試験"}
+ledger:
+  - {id: important-caps, title: "IMPORTANT や YOU MUST で強調すれば守られる", origin: "試験"}
+notes:
+  - "試験用。eval の分野のファイルはまだない"

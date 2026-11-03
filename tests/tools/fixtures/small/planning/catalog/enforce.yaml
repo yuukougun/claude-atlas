@@ -1,0 +1,33 @@
+field: enforce
+chapters: [hooks と permissions]
+pages:
+  - id: hooks-basics
+    chapter: hooks と permissions
+    title: hooks の基本
+    type: feature
+    level: 仕組みにする
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [縛る]
+    summary: "決まった時点で必ず走る処理を置き、指示ではなく仕組みで規則を守らせる。"
+    prerequisites: [request-vs-lock]
+    related: [permissions-deny]
+    tracks: [hooks]
+    volatility: 中
+    sections:
+      - {title: "終了コードで止める", anchor: exit-codes, level: 仕組みにする}
+    templates:
+      - {name: "危ないコマンドを止める hook", kind: hook, safety: true}
+  - id: permissions-deny
+    chapter: hooks と permissions
+    title: permissions で禁じる
+    type: feature
+    level: 仕組みにする
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [縛る]
+    summary: "読ませない・実行させない操作を permissions に書いて、確認なしに止める。"
+    prerequisites: [request-vs-lock]
+    related: [hooks-basics]
+    tracks: [permissions]
+    volatility: 中

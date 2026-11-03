@@ -39,6 +39,9 @@ prevents: [見えていない, 散らかっている, 確かめていない, 縛
 pitfalls: [預けすぎる, 同意を根拠にする, やめられない, 体感を信じる, みんなの案になる]   # 人の側の五つの落とし穴
 scenes: [開発, 文章, 調べもの, データ分析, 学習, コンテスト, チーム]
 sign_types: [symptom, goal, situation]
+visual_kinds: [static, mermaid, dynamic]
+template_kinds: [settings, hook, skill, subagent, claude-md, prompt, other]
+entry_fields: [start]   # 入口の分野。「入ってくる道のないページ」の検査から除く
 
 volatility_days: {低: 365, 中: 90, 高: 30}   # 点検の期限
 stages: [stub, draft, reviewed, done]

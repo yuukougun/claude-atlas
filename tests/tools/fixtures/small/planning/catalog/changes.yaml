@@ -1,0 +1,13 @@
+field: changes
+chapters: [台帳]
+pages:
+  - id: outdated-advice-ledger
+    chapter: 台帳
+    title: 古くなった助言の台帳
+    type: ledger
+    priority: 必須
+    wave: 1
+    summary: "以前は正しかった助言のうち、いまは勧めないものと、代わりのやり方が分かる。"
+    prerequisites: []
+    related: [instructions-ignored]
+    volatility: 中

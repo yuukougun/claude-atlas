@@ -1,0 +1,27 @@
+field: verify
+chapters: [完了]
+pages:
+  - id: completion-check
+    chapter: 完了
+    title: 完了を確かめる
+    type: concept
+    level: 整える
+    level_evidence: "結果を確かめて直す段階で要る"
+    priority: 必須
+    principle: [確かめる]
+    summary: "完了の条件と確かめ方を決めて、依頼に含めて渡せる。"
+    prerequisites: []
+    related: [fact-check, verifier-basics]
+    volatility: 低
+  - id: fact-check
+    chapter: 完了
+    title: 事実を確かめる
+    type: concept
+    level: 整える
+    priority: 推奨
+    principle: [確かめる]
+    summary: "返答の中の事実を、出典と照らして確かめられる。"
+    prerequisites: [completion-check]
+    related: []
+    volatility: 低
+    notes: "新規：試験用の、registry にないページ"
