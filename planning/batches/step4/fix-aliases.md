@@ -2,6 +2,7 @@
 
 - メインが道具で作った（2026-11-04）。別名（aliases）を小文字にし、空白を除いて比べた。題名と同じ語が別のページの別名にあるものも入れた
 - 主のページは見当の規則で選んだ：題名がその語 → 題名にその語を含む → 機能（feature）のページ → 分野の並びで最初。違うと思えば、受け持ちの担当が報告に理由を書いて替えてよい
+- 2026-11-04：統合の担当の報告を受けて4語の主を替えた（困りごとの言い方は症状のページを主にする。permission modes は Claude Code の側）
 - 直し方：主でないページからその別名を外す。ただし、そのページが扱う別の機能の公式の名前で、外すと引けなくなるものは残し、報告に書く
 
 重なり：49語
@@ -20,8 +21,8 @@
 | prompt injection | data-vs-instructions（basics） | 題名にこの語を含む | prompt-injection-in-practice（safety） |
 | 間接プロンプトインジェクション | data-vs-instructions（basics） | 分野の並びで最初（見当） | prompt-injection-in-practice（safety） |
 | 拡張思考 | effort-levels（models） | 機能のページ | how-thinking-works（basics） |
-| 性能が落ちた | suspected-degradation（models） | 分野の並びで最初（見当） | seems-less-capable（symptoms） |
-| 提案だけで止まる | suggest-or-do（prompting） | 分野の並びで最初（見当） | keeps-stopping（symptoms） |
+| 性能が落ちた | seems-less-capable（symptoms） | 困りごとの言い方なので症状のページ（2026-11-04 F2 の報告で替えた） | suspected-degradation（models） |
+| 提案だけで止まる | keeps-stopping（symptoms） | 困りごとの言い方なので症状のページ（2026-11-04 F3 の報告で替えた） | suggest-or-do（prompting） |
 | 自動圧縮 | compact-and-auto-compact（context） | 題名にこの語を含む | what-survives-compaction（basics） |
 | /context | inspect-context（context） | 題名にこの語を含む | usage-context-statusline（cli） |
 | Research | using-research（app） | 機能のページ | search-research-thinking（app） |
@@ -29,7 +30,7 @@
 | Skills | skills-in-the-app（app） | 機能のページ | how-skills-load（extend） |
 | Agent Skills | skills-in-the-app（app） | 機能のページ | how-skills-load（extend） |
 | Plugins | plugins-in-the-app（app） | 機能のページ | plugins-and-marketplaces（extend） |
-| permission modes | permission-modes-in-the-app（app） | 機能のページ | permission-modes-overview（cli） |
+| permission modes | permission-modes-overview（cli） | Claude Code の公式の文書の名前（2026-11-04 F4 の報告で替えた） | permission-modes-in-the-app（app） |
 | Scheduled tasks | tasks-and-schedules-in-the-app（app） | 機能のページ | loop-and-scheduling（delegate） |
 | 組織の指示 | shared-projects-and-org-skills（app） | 機能のページ | where-to-put-instructions（app） |
 | 音声入力 | voice-and-mobile（app） | 機能のページ | images-and-voice（prompting） |
@@ -55,5 +56,5 @@
 | 自動化バイアス | over-reliance（judgment） | 分野の並びで最初（見当） | curb-sycophancy-and-overtrust（team） |
 | prompt caching | prompt-caching-in-practice（api） | 機能のページ | why-prompt-caching（basics） |
 | 経費精算 | paying-in-yen（cost） | 分野の並びで最初（見当） | office-paperwork（recipes） |
-| 英語に戻る | keep-replies-in-japanese（japanese） | 分野の並びで最初（見当） | replies-in-english（symptoms） |
+| 英語に戻る | replies-in-english（symptoms） | 困りごとの言い方なので症状のページ（2026-11-04 F3 の報告で替えた） | keep-replies-in-japanese（japanese） |
 | 評価環境 | build-test-harness（recipes） | 分野の並びで最初（見当） | evaluators-by-format（contest） |

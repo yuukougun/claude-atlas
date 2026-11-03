@@ -11,7 +11,7 @@ pages:
     chapter: 指示と記憶
     title: "アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）"
     nav_title: "指示の置き場所"
-    aliases: [Instructions for Claude, 全会話の指示, Project instructions, プロジェクトの指示, 組織の指示, カスタム指示, Styles]
+    aliases: [Instructions for Claude, 全会話の指示, Project instructions, プロジェクトの指示, カスタム指示, Styles]
     type: comparison
     level: 整える
     level_evidence: "同じ前提を何度も書いていると気づき、指示の置き場所を整え始める段階で最初に要る"
@@ -25,7 +25,7 @@ pages:
       - {type: goal, text: "返答の口調や形式をいつも揃えたい"}
       - {type: symptom, text: "設定した指示が、関係のない会話にまで効いてしまう"}
     prerequisites: [attention-budget, where-instructions-sit]
-    related: [using-projects, how-memory-works, skills-in-the-app, shared-projects-and-org-skills, repeating-the-same-explanation, claude-md-vs-rules-skills-styles, output-style-modes, keep-replies-in-japanese, "tidy-the-desk#in-the-app", always-on-costs]
+    related: [using-projects, how-memory-works, skills-in-the-app, "shared-projects-and-org-skills#org-instructions", repeating-the-same-explanation, claude-md-vs-rules-skills-styles, output-style-modes, keep-replies-in-japanese, "tidy-the-desk#in-the-app", always-on-costs]
     tracks: [personal-instructions, project-instructions, app-memory, app-skills, styles]
     outdated_advice: [styles-for-tone]
     volatility: 中
@@ -38,7 +38,7 @@ pages:
       - {name: "Claude への指示に書く短い方針の例（言語・文体・前提）", kind: prompt, safety: false}
     visual: {kind: static, text: "効く範囲の入れ子（アカウント全体・プロジェクト・一つの会話）に指示・メモリ・スキルを置き、毎回読まれるか必要なときだけ読まれるかを色で分けた図"}
     materials: ["00 §3 分野06「指示の置き場所」の行とその注記", "02 §1-3（公式の使い分け：全体は Instructions、案件は project instructions、形式と届け方は skills）", "research/26 #1〜#3・§3.1（Styles の skills への移行、Instructions の場所）", "research/27 #15〜#17・§3.1・§3.2 の claude.ai（訳語、組織の指示、返答の言語を固定する設定はない）", "00 §4 返答と品質の困りごと「毎回同じ背景を説明している」"]
-    notes: "registry の題名から Styles を外したまま（00 §3 分野06 の注記）。Styles は aliases と節 styles にだけ置く。2026-06 の移行の告知の後の公式の使い分け（research/26 §3.1）で書き、画面に Styles のメニューが残るかは確かめていない（research/26 §5）と添える。Claude Code の出力スタイル（output style）とは別の機能で、cli の output-style-modes を関連に置いて取り違えを防ぐ。題名と要約の全会話の指示（Instructions for Claude）を、メインの決めた表記の「Claude への指示」にした（画面の名前は確かめていない。research/27 §5。「全会話の指示」は aliases に移した）。basics の where-instructions-sit（整える・必須。指示がシステムプロンプトとユーザーメッセージのどこに入るか）を前提に足した。Styles の移行の説明は台帳の styles-for-tone に一本化し、このページと skills-in-the-app の outdated_advice から指す。japanese の文体と表記のページのアプリのタブも、同じ書き方に揃えられる。症状の文「毎回同じ背景を説明している」は symptoms の repeating-the-same-explanation の signs にあり、そのページがこのページを前提にして振り分けるので、ここから外した（2026-11-04 統合：M1・basics#6・app#3・japanese#5・M3・M2）"
+    notes: "registry の題名から Styles を外したまま（00 §3 分野06 の注記）。Styles は aliases と節 styles にだけ置く。2026-06 の移行の告知の後の公式の使い分け（research/26 §3.1）で書き、画面に Styles のメニューが残るかは確かめていない（research/26 §5）と添える。Claude Code の出力スタイル（output style）とは別の機能で、cli の output-style-modes を関連に置いて取り違えを防ぐ。題名と要約の全会話の指示（Instructions for Claude）を、メインの決めた表記の「Claude への指示」にした（画面の名前は確かめていない。research/27 §5。「全会話の指示」は aliases に移した）。basics の where-instructions-sit（整える・必須。指示がシステムプロンプトとユーザーメッセージのどこに入るか）を前提に足した。Styles の移行の説明は台帳の styles-for-tone に一本化し、このページと skills-in-the-app の outdated_advice から指す。japanese の文体と表記のページのアプリのタブも、同じ書き方に揃えられる。症状の文「毎回同じ背景を説明している」は symptoms の repeating-the-same-explanation の signs にあり、そのページがこのページを前提にして振り分けるので、ここから外した（2026-11-04 統合：M1・basics#6・app#3・japanese#5・M3・M2）。別名の「組織の指示」は shared-projects-and-org-skills を主にしたので外した。節 org-instructions は、組織の指示があるときに個人とプロジェクトの指示とどう重なるかだけを書き、設定と配布は shared-projects-and-org-skills#org-instructions を指す（2026-11-04 工程4：DR-19 d）"
 
   - id: using-projects
     chapter: 指示と記憶
@@ -54,8 +54,8 @@ pages:
     scenes: [文章, 調べもの]
     summary: "同じ資料と指示で繰り返す作業を、プロジェクトに入れる単位と中身で整えられる。資料を置くと使用量が抑えられる理由と、目的を混ぜない理由も分かる。"
     signs:
-      - {type: goal, text: "同じ資料を使う作業を何度も繰り返す"}
-      - {type: symptom, text: "会話を変えるたびに資料を貼り直している"}
+      - {type: situation, text: "同じ資料を使う作業を何度も繰り返す"}
+      - {type: goal, text: "同じ資料を、会話のたびに添付し直さずに使いたい"}
       - {type: goal, text: "案件ごとに指示と資料を分けて持ちたい"}
     prerequisites: [attention-budget]
     related: [where-to-put-instructions, too-much-project-knowledge, how-memory-works, shared-projects-and-org-skills, feature-to-api-mapping, why-prompt-caching, "tidy-the-desk#in-the-app", what-uses-up-limits, handing-long-documents]
@@ -68,7 +68,7 @@ pages:
     templates:
       - {name: "プロジェクトの指示の雛形（目的・資料の使い方・出力の形）", kind: prompt, safety: false}
     materials: ["00 §3 分野06", "02 §1-2（knowledge・instructions・project memory・共有）", "02 §2-2（公式の節約の勧め：よく使う資料は project に置いて cache を効かせる。使わないと切れる）", "04 Q4（Projects の日本語の実践：少数のファイルから、1プロジェクト1目的）", "research/26 §3.13・research/27 #17（project instructions のプランの条件が記事の間で食い違う）"]
-    notes: "Free で project instructions を使えるかは、ヘルプセンターの記事の間で食い違う（research/26 §3.13・§5、research/27 #17）。本文はプランに中立に書き、数値ファイルに「食い違いあり」で置く。「1プロジェクト1目的」は実践者の勧め（04 Q4、企業の記事）なので、根拠の強さを添える"
+    notes: "Free で project instructions を使えるかは、ヘルプセンターの記事の間で食い違う（research/26 §3.13・§5、research/27 #17）。本文はプランに中立に書き、数値ファイルに「食い違いあり」で置く。「1プロジェクト1目的」は実践者の勧め（04 Q4、企業の記事）なので、根拠の強さを添える。sign「会話を変えるたびに資料を貼り直している」は symptoms の repeating-the-same-explanation（同じ手順書を何度も貼っている・新しい会話のたびにプロジェクトの説明からやり直している）の言い換えなので、やりたいことの形（添付し直さずに使いたい）にした。「同じ資料を使う作業を何度も繰り返す」は置かれた状況の文なので、型を goal から situation にした（2026-11-04 工程4：DR-19 a）"
 
   - id: too-much-project-knowledge
     chapter: 指示と記憶
@@ -87,72 +87,49 @@ pages:
       - {type: situation, text: "プロジェクトに資料をたくさん入れている"}
       - {type: symptom, text: "資料を足すほど、答えが資料を踏まえなくなった気がする"}
     prerequisites: [using-projects]
-    related: [how-attachments-are-read, handing-long-documents, lost-in-the-middle, context-rot, choose-what-to-read]
+    related: [how-attachments-are-read, handing-long-documents, context-rot, choose-what-to-read]
     tracks: [projects]
     volatility: 中
     sections:
       - {title: "容量に近づくと何が変わるか", anchor: rag-mode}
       - {title: "資料の絞り方と入れ直し方", anchor: curate}
     materials: ["00 §3 分野06", "02 §1-2（有料プランでは容量に近づくと RAG mode が自動で有効になる）", "02 §2-3（長さの上限に当たったときの公式の対処：project のファイルを減らす）", "04 Q4（最初は少数のファイルにし、古い版は消す）"]
-    notes: "RAG mode で読み方がどう変わるかは、調査資料では「容量が広がる」までしか確かめていない（02 §1-2）。本文で「一部しか読まれない」と断定せず、公式の説明と、確かめ方（引用とページの番号を出させる）を書く"
+    notes: "RAG mode で読み方がどう変わるかは、調査資料では「容量が広がる」までしか確かめていない（02 §1-2）。本文で「一部しか読まれない」と断定せず、公式の説明と、確かめ方（引用とページの番号を出させる）を書く。basics の lost-in-the-middle が context-rot の節にまとめられたので、related から外した（context-rot が同じリストにある）（2026-11-04 工程4：DR-19 p）"
 
   - id: how-memory-works
     chapter: 指示と記憶
-    title: "アプリのメモリの仕組みと範囲"
-    aliases: [Memory, Claude のメモリ, 過去チャットの検索, Search and reference chats, chat search]
+    title: "アプリのメモリ（仕組み・範囲・消し方と止め方）"
+    nav_title: "アプリのメモリ"
+    aliases: [Memory, Claude のメモリ, 過去チャットの検索, Search and reference chats, chat search, Memory FAQ, メモリの Pause と Reset]
     type: feature
     level: 整える
-    level_evidence: "メモリは既定で働くが、何を覚えさせるかを把握して文脈を整える段階で初めて要る"
+    level_evidence: "メモリは既定で働くが、何を覚えさせるかを把握して文脈を整える段階で初めて要る。記憶が混ざる・消えないといった困りごとに出会うのも、文脈を整え始めた段階"
     priority: 必須
     surfaces: [app]
-    principle: [見せる]
+    principle: [見せる, 確かめる]
     prevents: [散らかっている, 境界がない]
-    summary: "アプリのメモリが何を、いつ、どの範囲で覚えるかが分かり、確かめ方と直し方を選べる。過去チャットの検索との違いも分かる。"
+    summary: "アプリのメモリが何を、いつ、どの範囲で覚えるかが分かり、見る・直す・消す・止める手段を選べる。会話を消してもメモリは残ることと、過去チャットの検索との違いも分かる。"
     signs:
       - {type: goal, text: "前の会話で話したことを覚えていてほしい"}
       - {type: goal, text: "前の会話の内容を探して使わせたい"}
       - {type: goal, text: "何を覚えられているかを確かめたい"}
+      - {type: goal, text: "間違って覚えられた内容を直したい"}
+      - {type: goal, text: "しばらく記憶を使わせずに話したい"}
     prerequisites: []
-    related: [memory-faq, unexpected-memories, incognito-chats, where-to-put-instructions, using-projects, using-auto-memory, where-your-data-goes, "tidy-the-desk#in-the-app", feature-to-api-mapping]
-    tracks: [app-memory, chat-search]
+    related: [unexpected-memories, incognito-chats, where-to-put-instructions, using-projects, using-auto-memory, where-your-data-goes, "tidy-the-desk#in-the-app", feature-to-api-mapping]
+    tracks: [app-memory, chat-search, incognito]
     outdated_advice: [memory-daily-summary]
     volatility: 高
     sections:
       - {title: "何が、いつ保存されるか", anchor: what-is-saved}
       - {title: "アカウントのメモリとプロジェクトのメモリ", anchor: scope}
       - {title: "過去チャットの検索との違い", anchor: chat-search}
-      - {title: "見る・直す・止める", anchor: manage}
+      - {title: "覚えた内容を見る・直す（棚卸し）", anchor: manage}
+      - {title: "会話を消しても残るもの", anchor: deleted-chats}
+      - {title: "消し方と止め方（Pause・Reset・会話ごとのオフ・シークレットチャット）", anchor: turning-off}
     visual: {kind: static, text: "アカウントのメモリ・プロジェクトのメモリ・シークレットチャットの範囲と、どの会話からどれが読めるかを示す図"}
-    materials: ["00 §3 分野06", "02 §1-4（保存の方式・カテゴリ・機微な話題・管理・プロジェクトのメモリ・chat search）", "02 §1-0（2026-07-10 と 08-25 の変更）", "05 §2-4（メモリの仕様と対処）", "04 Q4（日本語のメモリの解説記事：チャットの検索との使い分け、Pause と Reset）", "00 §5 台帳「Memory は会話の後に日次で要約される」"]
-    notes: "registry の searching-past-chats（過去チャットの検索）をまとめた（節 chat-search）。2026年に二度大きく変わった（02 §1-0）ので volatility を高にした。プランごとの既定は数値ファイルに置く。Claude Code の CLAUDE.md と自動メモリ（extend の using-auto-memory）とは別の機能なので、関連に置いて違いを書き、用語集で分ける。症状の文「別のプロジェクトの記憶が混ざる」は symptoms の unexpected-memories の signs にあり、そこが面をまたいで切り分けてからこのページと memory-faq へ振り分けるので、ここから外した（2026-11-04 統合：M2・symptoms#11）"
-
-  - id: memory-faq
-    chapter: 指示と記憶
-    title: "アプリのメモリで困ったとき（消したのに覚えている・話が混ざる）"
-    nav_title: "メモリで困ったとき"
-    aliases: [Memory FAQ, メモリの困りごと, メモリの Pause と Reset]
-    type: feature
-    level: 整える
-    level_evidence: "記憶が混ざる・消えないといった困りごとは、文脈を整え始めた段階で出会いやすい"
-    priority: 必須
-    surfaces: [app]
-    principle: [見せる, 確かめる]
-    prevents: [散らかっている, 境界がない]
-    summary: "会話を消したのに覚えている、別のプロジェクトの話が混ざる、といったメモリの困りごとの原因と直し方が分かる。止め方の違いも選べる。"
-    signs:
-      - {type: symptom, text: "間違った思い込みを覚えられてしまった"}
-      - {type: goal, text: "しばらく記憶を使わせずに話したい"}
-    prerequisites: [how-memory-works]
-    related: [unexpected-memories, incognito-chats, where-your-data-goes, using-auto-memory, using-projects]
-    tracks: [app-memory, incognito]
-    volatility: 高
-    sections:
-      - {title: "会話を消したのに覚えている", anchor: deleted-chats}
-      - {title: "別のプロジェクトの話が混ざる", anchor: mixed-projects}
-      - {title: "止め方の違い（Pause・Reset・会話ごとのオフ・シークレットチャット）", anchor: turning-off}
-      - {title: "覚えた内容を棚卸しする", anchor: review}
-    materials: ["00 §3 分野06", "02 §1-4（会話を消しても memory は残る、Pause と Reset、会話ごとにオフにする）", "05 §2-4", "00 §4 会話と文脈の困りごと（別のプロジェクトの記憶が混ざる・会話を消したのに覚えている）", "11 第2節 分野08 auto memory（p34#114：誤った結論が自動の記憶に入り、後の実験を汚した。棚卸しする。単独の経験談）"]
-    notes: "症状の診断（どの記憶の仕組みが持ち込んだかの切り分け）は symptoms の unexpected-memories が持ち、ここはアプリのメモリの操作の答えを持つ（symptoms の担当もそう分けている）。棚卸しの節の根拠（11 p34#114）は Claude Code の自動メモリでの単独の経験談で、アプリのメモリを調べたものではない。本文では類推と根拠の強さ（弱）を添える。how-memory-works とまとめる案もある（open_issues）。symptoms の担当の分担（このページはアプリのメモリの操作の本体：消し方・Pause と Reset・会話ごとのオフ。unexpected-memories は面をまたいだ切り分け）に合わせて分けたままにし、症状の文「会話を消したのに覚えている」「別のプロジェクトの記憶が混ざる」は unexpected-memories の signs に任せて、ここから外した。節 deleted-chats・mixed-projects はその振り分けの受け皿として残す（2026-11-04 統合：symptoms#11・app#6・M2）"
+    materials: ["00 §3 分野06（Memory の仕組みと範囲・困りごと FAQ）", "02 §1-4（保存の方式・カテゴリ・機微な話題・管理・プロジェクトのメモリ・chat search。会話を消しても memory は残る、Pause と Reset、会話ごとにオフにする）", "02 §1-0（2026-07-10 と 08-25 の変更）", "05 §2-4（メモリの仕様と対処）", "04 Q4（日本語のメモリの解説記事：チャットの検索との使い分け、Pause と Reset）", "00 §4 会話と文脈の困りごと（別のプロジェクトの記憶が混ざる・会話を消したのに覚えている）", "11 第2節 分野08 auto memory（p34#114：誤った結論が自動の記憶に入り、後の実験を汚した。棚卸しする。単独の経験談）", "00 §5 台帳「Memory は会話の後に日次で要約される」"]
+    notes: "registry の searching-past-chats（過去チャットの検索）をまとめた（節 chat-search）。2026年に二度大きく変わった（02 §1-0）ので volatility を高にした。プランごとの既定は数値ファイルに置く。Claude Code の CLAUDE.md と自動メモリ（extend の using-auto-memory）とは別の機能なので、関連に置いて違いを書き、用語集で分ける。症状の文「別のプロジェクトの記憶が混ざる」は symptoms の unexpected-memories の signs にあり、そこが面をまたいで切り分けてからこのページへ振り分けるので、ここから外した（2026-11-04 統合：M2・symptoms#11）。工程4で memory-faq（アプリのメモリで困ったとき）をまとめた（R3-8・I6-6）。memory-faq は題名も節も症状の文そのもので、unexpected-memories と同じ困りごとに答え、止め方はこのページの節とも重なっていた。困りごとの入口は unexpected-memories だけにし、ここはアプリのメモリの操作の本体（見る・直す・消す・止める）を持つ。memory-faq の節は、deleted-chats と turning-off をそのままの anchor で足し、mixed-projects は節 scope、review は節 manage（棚卸し）が受ける。signs はすべて goal の形にし、memory-faq の symptom「間違った思い込みを覚えられてしまった」は「間違って覚えられた内容を直したい」にした。memory-faq の別名のうち、症状の言い方の「メモリの困りごと」は外した。棚卸しの根拠（11 p34#114）は Claude Code の自動メモリでの単独の経験談で、アプリのメモリを調べたものではないので、本文では類推と根拠の強さ（弱）を添える。シークレットチャットは止め方の一つとして節 turning-off で触れるので tracks に incognito を足した（2026-11-04 工程4：DR-19 i・a）"
 
   - id: incognito-chats
     chapter: 指示と記憶
@@ -170,14 +147,14 @@ pages:
       - {type: goal, text: "記録を残さずに相談したい"}
       - {type: goal, text: "記憶や履歴に影響させずに試したい"}
     prerequisites: [how-memory-works]
-    related: [where-your-data-goes, memory-faq, entrusted-data, files-and-code-execution, what-each-surface-cannot-do]
+    related: [where-your-data-goes, entrusted-data, files-and-code-execution, what-each-surface-cannot-do]
     tracks: [incognito]
     volatility: 中
     sections:
       - {title: "残らないもの・残るもの", anchor: retention}
       - {title: "使えない機能", anchor: limits}
     materials: ["00 §3 分野06", "02 §1-5", "research/26 #26（学習に使わない、バックエンドには既定で残る、新しい体験ではファイル作成とコード実行が使えない）", "00 §4 会話と文脈の困りごと（記録を残さずに相談したい）"]
-    notes: "残る期間と組織での見え方は数値ファイルと safety の where-your-data-goes に置き、ここでは使い分けの判断を書く"
+    notes: "残る期間と組織での見え方は数値ファイルと safety の where-your-data-goes に置き、ここでは使い分けの判断を書く。memory-faq を前提の how-memory-works にまとめたので、related から外した（メモリの止め方の中での位置づけは how-memory-works#turning-off）（2026-11-04 工程4：DR-19 i）"
 
   # ── 資料と長い会話 ──
   - id: how-attachments-are-read
@@ -197,7 +174,7 @@ pages:
       - {type: symptom, text: "Word の資料に入れた図を読んでくれない"}
       - {type: goal, text: "大きな資料を漏れなく読ませたい"}
     prerequisites: []
-    related: [skipped-later-pages, handing-long-documents, lost-in-the-middle, long-context-first, images-and-voice, checking-citations, too-much-project-knowledge, files-and-code-execution, documents-in-japanese, feature-to-api-mapping]
+    related: [skipped-later-pages, handing-long-documents, "context-rot#lost-in-the-middle", long-context-first, images-and-voice, checking-citations, too-much-project-knowledge, files-and-code-execution, documents-in-japanese, feature-to-api-mapping]
     tracks: [file-uploads, files-api]
     volatility: 中
     sections:
@@ -207,7 +184,7 @@ pages:
       - {title: "API で渡すとき（Files API・PDF・画像）", anchor: api, level: 仕組みにする}
     visual: {kind: static, text: "PDF のページ数で、図も読む範囲・文字だけを読む範囲・受け付けない範囲が分かれる帯の図（境目の値は数値ファイルから）"}
     materials: ["00 §3 分野06", "05 §2-5（Upload files：PDF の視覚要素の範囲、PDF 以外は文字だけ、大きさと数の上限）", "02 §1-7（大きな PDF は実行環境の中で処理する）", "02 §5-6（Files API・PDF・Vision）", "00 §3 分野13「ファイル・PDF・画像の扱い」", "00 §4 返答と品質の困りごと（長い PDF の後半の図について答えられない）"]
-    notes: "api の files-pdfs-and-images をまとめ、面のタブ（アプリ／API）にした（D9）。Claude Code での読み込みは context の choose-what-to-read の受け持ちで、ここにはタブを置かない。症状の入口は symptoms の skipped-later-pages。境目のページ数とファイルの上限は数値ファイル（file-uploads）に置き、summary・signs・題名に書かない。症状の文「長い PDF の後半の図について答えられない」は skipped-later-pages の signs にあり、そこがこのページを前提にして振り分けるので、ここから外した（2026-11-04 統合：M2）"
+    notes: "api の files-pdfs-and-images をまとめ、面のタブ（アプリ／API）にした（D9）。Claude Code での読み込みは context の choose-what-to-read の受け持ちで、ここにはタブを置かない。症状の入口は symptoms の skipped-later-pages。境目のページ数とファイルの上限は数値ファイル（file-uploads）に置き、summary・signs・題名に書かない。症状の文「長い PDF の後半の図について答えられない」は skipped-later-pages の signs にあり、そこがこのページを前提にして振り分けるので、ここから外した（2026-11-04 統合：M2）。basics の lost-in-the-middle が context-rot の節にまとめられたので、related をまとめた先の節 context-rot#lost-in-the-middle に替えた（2026-11-04 工程4：DR-19 p）"
 
   - id: long-chat-limits
     chapter: 資料と長い会話
@@ -224,8 +201,8 @@ pages:
     scenes: [文章, 調べもの]
     summary: "アプリの長い会話で、上限が近づくと何が自動で要約され何が残るかが分かり、長さの上限に当たったときの対処を選べる。"
     signs:
-      - {type: situation, text: "一つの会話で長い作業を続けている"}
-      - {type: symptom, text: "会話が長くなり、それ以上続けられなくなった"}
+      - {type: situation, text: "claude.ai で一つの長い会話を使い続けている"}
+      - {type: goal, text: "アプリの長い会話で、自動の要約が働くと何が残るか知りたい"}
     prerequisites: [rereads-whole-history]
     related: ["tidy-the-desk#in-the-app", when-to-start-fresh, forgets-in-long-chats, what-survives-compaction, compact-and-auto-compact, files-and-code-execution, what-uses-up-limits, handoff-documents, feature-to-api-mapping]
     tracks: [app-context-management, context-window]
@@ -234,13 +211,13 @@ pages:
       - {title: "上限が近づくと何が起きるか", anchor: auto-management}
       - {title: "長さの上限に当たったとき", anchor: at-the-limit}
     materials: ["00 §3 分野06", "02 §2-3（窓の大きさ、自動の管理は古いメッセージを要約し、履歴そのものは残る、上限に当たったときの公式の対処）", "02 §1-7（自動の管理は code execution が有効なときに働く）", "02 §2-2（自動の管理が働くほど長い会話は使用量も多い）"]
-    notes: "いつ新しい会話にするかの判断の本体は context の tidy-the-desk（節 in-the-app。registry の managing-context-in-the-app をまとめた先）と when-to-start-fresh（design §4.2：会話の長さの判断は context）。ここは自動の管理の仕組みと、上限に当たったときの公式の対処だけを書く。窓の大きさはモデルとプランで違うので数値ファイルに置く。自動の管理が働く閾値は公開されていない（02 §2 Gaps）"
+    notes: "いつ新しい会話にするかの判断の本体は context の tidy-the-desk（節 in-the-app。registry の managing-context-in-the-app をまとめた先）と when-to-start-fresh（design §4.2：会話の長さの判断は context）。ここは自動の管理の仕組みと、上限に当たったときの公式の対処だけを書く。窓の大きさはモデルとプランで違うので数値ファイルに置く。自動の管理が働く閾値は公開されていない（02 §2 Gaps）。sign「会話が長くなり、それ以上続けられなくなった」は symptoms の hits-limits-quickly（「会話が長すぎる」と表示されて続けられない。このページへ振り分ける）の言い換えなので外し、自動の要約で何が残るかを知りたいやりたいことにした（R3 付表A の11）。状況の文「一つの会話で長い作業を続けている」は、context の tidy-the-desk の「claude.ai で一つの長い会話を使い続けている」と同じ状況なので、同じ文にそろえた（逆引きで1行に束ね、判断〔tidy-the-desk〕と仕組み〔このページ〕を並べる。DR-15）（2026-11-04 工程4：DR-19 a）"
 
   # ── 調べる・作る ──
   - id: search-research-thinking
     chapter: 調べる・作る
     title: "web 検索・リサーチ・拡張思考の使い分け"
-    aliases: [web search, Research, extended thinking, Thinking]
+    aliases: [web search]
     type: comparison
     level: 整える
     level_evidence: "最新の情報や広い調査が要る依頼を、機能を選んで整える段階で要る"
@@ -255,7 +232,7 @@ pages:
       - {type: goal, text: "検索より、じっくり考えて答えてほしい"}
       - {type: goal, text: "調べものに、どこまで時間をかけさせるか決めたい"}
     prerequisites: [knowledge-cutoff]
-    related: [using-research, doesnt-know-latest, effort-levels, how-thinking-works, fact-checking, research-and-reports, what-uses-up-limits]
+    related: [using-research, doesnt-know-latest, "effort-levels#thinking-toggle", how-thinking-works, fact-checking, research-and-reports, what-uses-up-limits]
     tracks: [web-search, research, effort]
     outdated_advice: [cowork-separate-app]
     volatility: 中
@@ -263,7 +240,7 @@ pages:
       - {title: "三つの使い分け", anchor: comparison}
       - {title: "組み合わせる", anchor: combine}
     materials: ["00 §3 分野06", "02 §1-8（公式の使い分けと、組み合わせたときの違い）", "02 §1-9（Thinking と Extended の表示）", "02 §1-1（新しい体験には web 検索のトグルがない）", "02 §6（検索を使う場面）", "00 §5 台帳「Cowork は別アプリ、Web search はトグルで入れる」"]
-    notes: "呼び出しの回数と時間の目安（公式の使い分けの記事）は数値ファイルに置く。effort の段階と思考の設定の本体は models の effort-levels。Help Center の日本語版の web search の訳語は確かめていないので、題名は「web 検索」にした"
+    notes: "呼び出しの回数と時間の目安（公式の使い分けの記事）は数値ファイルに置く。effort の段階と思考の設定の本体は models の effort-levels。Help Center の日本語版の web search の訳語は確かめていないので、題名は「web 検索」にした。別名の Research は app の using-research、thinking と extended thinking は basics の how-thinking-works を主にしたので外した（アプリの思考の切り替えは models の effort-levels#thinking-toggle と、このページの比較で引ける）（2026-11-04 工程4：DR-19 d）"
 
   - id: using-research
     chapter: 調べる・作る
@@ -426,7 +403,7 @@ pages:
     scenes: [文章, チーム]
     summary: "決まった手順や書式をスキルとしてアプリに持たせ、必要な場面だけ読ませられる。使われないときに確かめることも分かる。"
     signs:
-      - {type: symptom, text: "同じ手順の説明を会話のたびに貼っている"}
+      - {type: goal, text: "長い手順を、必要なときだけ読ませたい"}
       - {type: goal, text: "決まった書式の文書を、いつも同じ手順で作らせたい"}
       - {type: symptom, text: "以前使っていた文体の設定が見当たらない"}
     prerequisites: [how-skills-load]
@@ -442,7 +419,7 @@ pages:
     templates:
       - {name: "アプリに入れるスキルの最小の例", kind: skill, safety: false}
     materials: ["00 §3 分野06", "02 §1-10（Skills：組み込みのスキル、description の書き方、使われないときの確かめ方、組織での共有、code execution が要る）", "research/26 #1〜#3・§3.1（Styles から skills への移行、移された style の有効化と呼び方）", "research/22 #38（Plugins のページ）・#29（claude.ai から同期した skills）", "research/27 §3.2（スキルで口調や形式を加える）"]
-    notes: "Styles の移行は 2026-06 の告知で、2026-11-03 時点で記事は取り下げられ、画面にメニューが残るかは確かめていない（research/26 §3.1・§5）。summary は移行の後の公式の使い分け（形式や届け方はスキル）だけに拠った。skill の考え方の本体は extend の how-skills-load、作り方は writing-skills・skill-descriptions。Plugins のページへの切り替えが 2026-11-30 まで続くので volatility を高にした。比例則の守りは safety の vetting-extensions（他人のスキルを入れる前の確認）。台帳の styles-for-tone（Styles で応答の調子と形式を切り替える）を outdated_advice に入れ、節 migrated-styles の移行の説明はその「今どうするか」に揃える。extend の担当の境界の案に合わせ、ここにはアプリに固有の操作（アップロード・有効化・組織での配布・Plugins のページ）だけを書き、読み込みの仕組みは前提の how-skills-load に任せる（2026-11-04 統合：M3・app#3・japanese#5・extend#8）"
+    notes: "Styles の移行は 2026-06 の告知で、2026-11-03 時点で記事は取り下げられ、画面にメニューが残るかは確かめていない（research/26 §3.1・§5）。summary は移行の後の公式の使い分け（形式や届け方はスキル）だけに拠った。skill の考え方の本体は extend の how-skills-load、作り方は writing-skills・skill-descriptions。Plugins のページへの切り替えが 2026-11-30 まで続くので volatility を高にした。比例則の守りは safety の vetting-extensions（他人のスキルを入れる前の確認）。台帳の styles-for-tone（Styles で応答の調子と形式を切り替える）を outdated_advice に入れ、節 migrated-styles の移行の説明はその「今どうするか」に揃える。extend の担当の境界の案に合わせ、ここにはアプリに固有の操作（アップロード・有効化・組織での配布・Plugins のページ）だけを書き、読み込みの仕組みは前提の how-skills-load に任せる（2026-11-04 統合：M3・app#3・japanese#5・extend#8）。sign「同じ手順の説明を会話のたびに貼っている」は symptoms の repeating-the-same-explanation（同じ手順書を何度も貼っている）の言い換えなので外し、前提の how-skills-load の goal「長い手順を、必要なときだけ読ませたい」と同じ文にそろえた（逆引きで1行に束ね、考え方〔how-skills-load〕とアプリの操作〔このページ〕を並べる。DR-15。R3 付表A の9）。別名の Skills と Agent Skills は fix-aliases の表でこのページが主のまま残した（2026-11-04 工程4：DR-19 a）"
 
   - id: plugins-in-the-app
     chapter: つなぐ・足す
@@ -476,7 +453,7 @@ pages:
     chapter: 任せる
     title: "アプリの権限モード（Auto と Manual）と安全"
     nav_title: "権限モードと安全"
-    aliases: [permission modes, Trusted folders, Storage folder]
+    aliases: [Trusted folders, Storage folder]
     type: feature
     level: 任せる
     level_evidence: "アプリにファイルやブラウザを操作させて任せる段階で、最初に決めることになる"
@@ -488,8 +465,8 @@ pages:
     summary: "アプリが確認なしに進める Auto と、毎回確かめる Manual を選べる。読める範囲と行動できる範囲を同時に広げない置き方と、低いリスクから始める手順が分かる。"
     signs:
       - {type: situation, text: "アプリに自分のファイルやブラウザを操作させる"}
-      - {type: goal, text: "取り消しにくい操作の前だけ止まってほしい"}
-      - {type: symptom, text: "確認なしにどこまで進めてよいか分からない"}
+      - {type: goal, text: "確認なしで進めつつ、危ない操作だけは止めたい"}
+      - {type: goal, text: "アプリに任せる範囲を、低いリスクの作業から広げたい"}
     prerequisites: [choosing-a-surface, lethal-trifecta]
     related: [what-auto-mode-stops, approval-fatigue, browser-agent-cautions, browser-control, where-it-runs, default-safety-settings, prompt-injection-in-practice, wrong-amount-of-approvals, permission-modes-overview, tasks-and-schedules-in-the-app]
     tracks: [app-permission-modes]
@@ -500,7 +477,7 @@ pages:
       - {title: "専用のフォルダと、低いリスクの作業から", anchor: start-small}
     visual: {kind: static, text: "信頼の外の情報を読めることと、被害につながる行動ができることの二つの条件と、片方を外す手段（専用のフォルダ・Manual・コネクタの許可）を並べた図"}
     materials: ["00 §3 分野06「権限モード（Auto と Manual）と安全」", "02 §1-1（権限モードとプランごとの既定、会話全体に効く）", "02 §1-15（Cowork の安全の指針：二つの条件、専用の作業フォルダ、低いリスクから、取り消しにくい操作を定期にしない。computer use には隔離がない）", "research/23 §3.7（アプリでも新しいセッションを auto mode で始めるという 10-22 の追記）・§5（Permission modes の Desktop と Web のタブは読んでいない）", "decisions 2026-11-03「安全の既定の勧め方」"]
-    notes: "プランごとの既定は数値ファイルに置く。アプリの Auto と Claude Code の auto mode が同じ分類器かは確かめていないので、本文で同じものと書かない（research/23 §3.7・§5）。比例則の守りは safety の lethal-trifecta（前提）と browser-agent-cautions・prompt-injection-in-practice（関連）。前提の choosing-a-surface は、統合の後のアプリの姿（節 app-chat-and-tasks）のため。Claude in Chrome と computer use の使い方は surfaces の browser-control の受け持ち"
+    notes: "プランごとの既定は数値ファイルに置く。アプリの Auto と Claude Code の auto mode が同じ分類器かは確かめていないので、本文で同じものと書かない（research/23 §3.7・§5）。比例則の守りは safety の lethal-trifecta（前提）と browser-agent-cautions・prompt-injection-in-practice（関連）。前提の choosing-a-surface は、統合の後のアプリの姿（節 app-chat-and-tasks）のため。Claude in Chrome と computer use の使い方は surfaces の browser-control の受け持ち。sign「確認なしにどこまで進めてよいか分からない」は symptoms の wrong-amount-of-approvals（確認なしで実行されて怖い）に近いので外し、節 start-small が答えるやりたいこと（低いリスクの作業から広げたい）にした。goal「取り消しにくい操作の前だけ止まってほしい」は、enforce の what-auto-mode-stops の「確認なしで進めつつ、危ない操作だけは止めたい」と safety の destructive-commands の「取り返しのつかない操作の前には、必ず止めてほしい」と並ぶ近い文だったので、面ごとの答えになる what-auto-mode-stops の文にそろえた（逆引きで1行に束ね、Claude Code とアプリの印を付ける。DR-15）（2026-11-04 工程4：DR-19 a）"
 
   - id: tasks-and-schedules-in-the-app
     chapter: 任せる
@@ -520,8 +497,8 @@ pages:
       - {type: goal, text: "毎朝決まった調査をさせたい"}
       - {type: goal, text: "席を外している間も進めてほしい"}
       - {type: goal, text: "調べた結果をファイルに仕上げるところまで任せたい"}
-    prerequisites: [choosing-a-surface, define-done, permission-modes-in-the-app]
-    related: [ask-for-outcomes, evidence-not-reports, destructive-commands, what-not-to-delegate, five-questions-before-delegating, loop-and-scheduling, cloud-schedules, choosing-automation, where-it-runs, browser-control, voice-and-mobile, what-uses-up-limits]
+    prerequisites: [define-done, permission-modes-in-the-app]
+    related: ["choosing-a-surface#app-tasks-or-claude-code", ask-for-outcomes, evidence-not-reports, destructive-commands, what-not-to-delegate, five-questions-before-delegating, loop-and-scheduling, cloud-schedules, choosing-automation, where-it-runs, browser-control, voice-and-mobile, what-uses-up-limits]
     tracks: [app-tasks]
     outdated_advice: [cowork-separate-app]
     volatility: 高
@@ -534,7 +511,7 @@ pages:
       - {name: "タスクを結果で頼む文の型（完了の条件・触ってよい範囲・止まる条件）", kind: prompt, safety: false}
     visual: {kind: static, text: "どこで動くか（クラウド・Desktop を開いた PC）と、何に触れるか（ローカルのファイル・ブラウザ・コネクタ）を並べた表の図"}
     materials: ["00 §3 分野06「タスクと定期実行（旧 Cowork）」", "02 §1-1（Tasks・Cloud タスク・Storage folder と Trusted folders・Scheduled tasks・モバイル・展開の状況・2026-10-06 からのクラウドでの実行）", "02 §1-15（Cowork の安全の指針：取り消しにくい操作を定期タスクにしない、行動の責任は利用者）", "00 §5 台帳「Cowork は別アプリ、Web search はトグルで入れる」", "00 §4 費用・選び方・任せ方（毎朝決まった調査をさせたい・席を外している間も進めてほしい）"]
-    notes: "registry の題名の「旧 Cowork」は、ヘルプセンターが今も Claude Cowork の名前を使う（research/22 §5 の 11-02 の新しい記事の題）ので「Cowork」にした。統合の後のアプリの姿と、アプリのタスクか Claude Code かの使い分けは surfaces の choosing-a-surface（節 app-chat-and-tasks・app-tasks-or-claude-code。registry の unified-claude と claude-code-vs-cowork をまとめた先）、実行場所の違いは where-it-runs の受け持ち。統合の経緯は changes の change-timeline-2026 と台帳の cowork-separate-app。段階的な展開でプランごとに見え方が違う（02 §1-1）ので volatility を高にした。比例則の守りは verify の define-done（前提）と evidence-not-reports、safety の destructive-commands（関連）"
+    notes: "registry の題名の「旧 Cowork」は、ヘルプセンターが今も Claude Cowork の名前を使う（research/22 §5 の 11-02 の新しい記事の題）ので「Cowork」にした。統合の後のアプリの姿と、アプリのタスクか Claude Code かの使い分けは surfaces の choosing-a-surface（節 app-chat-and-tasks・app-tasks-or-claude-code。registry の unified-claude と claude-code-vs-cowork をまとめた先）、実行場所の違いは where-it-runs の受け持ち。統合の経緯は changes の change-timeline-2026 と台帳の cowork-separate-app。段階的な展開でプランごとに見え方が違う（02 §1-1）ので volatility を高にした。比例則の守りは verify の define-done（前提）と evidence-not-reports、safety の destructive-commands（関連）。前提の choosing-a-surface は、前提の permission-modes-in-the-app からたどって届く（推移的な前提）ので外し、使い分けの節 choosing-a-surface#app-tasks-or-claude-code を related の先頭に置いた（2026-11-04 工程4：DR-19 e）"
 
   # ── チームとモバイル ──
   - id: shared-projects-and-org-skills
@@ -580,7 +557,7 @@ pages:
     summary: "音声で話しかけ、Mac ではどのアプリからでも呼び出し、スマホから作業の進み具合を見て直せる。モバイルでできないことも分かる。"
     signs:
       - {type: goal, text: "移動中に話しかけて使いたい"}
-      - {type: goal, text: "スマホから作業の進み具合を見たい"}
+      - {type: goal, text: "スマホのアプリから、任せたタスクの進み具合を見たい"}
       - {type: goal, text: "いま見ている画面をすぐ見せて聞きたい"}
     prerequisites: []
     related: [images-and-voice, tasks-and-schedules-in-the-app, what-each-surface-cannot-do, can-i-prompt-in-japanese]
@@ -591,12 +568,15 @@ pages:
       - {title: "Quick entry（Mac）", anchor: quick-entry}
       - {title: "モバイルでできること・できないこと", anchor: mobile}
     materials: ["00 §3 分野06", "02 §1-15（Quick entry）", "02 §1-16（Voice mode・モバイル・表示の言語）", "02 §1-1（モバイルからタスクを見る・答える・直す・始める。モバイルはアーティファクトに対応しない）", "research/27 #15（音声の言語は表示の言語と別の設定）"]
-    notes: "Quick entry は機能の id を足していない（tracks は voice だけ。任意のページなので点検は voice の変化で足りると見た）。モバイルのウィジェットとショートカットは工程2のどの報告も扱っていない（02 §1 Gaps の注記）"
+    notes: "Quick entry は機能の id を足していない（tracks は voice だけ。任意のページなので点検は voice の変化で足りると見た）。モバイルのウィジェットとショートカットは工程2のどの報告も扱っていない（02 §1 Gaps の注記）。sign「スマホから作業の進み具合を見たい」は cli の control-from-phone（外出先から、手元のセッションの承認や指示をしたい）と surfaces の where-it-runs の sign と並ぶ近い文だったので、アプリのタスクの場面に書き分けた（DR-15。R1-06）（2026-11-04 工程4：DR-19 a）"
 
 merged:
   - id: searching-past-chats
     into: how-memory-works
     reason: "過去チャットの検索は、メモリと取り違えやすい別の機能で、単独では「メモリとの違い」のほかに独自の判断が薄い。how-memory-works の節 chat-search で、違いと止め方を書く（02 §1-4 も同じ節で扱っている）"
+  - id: memory-faq
+    into: how-memory-works
+    reason: "工程4（2026-11-04。DR-19 i・R3-8）でまとめた。題名も節も症状の文そのもの（消したのに覚えている・話が混ざる）で、symptoms の unexpected-memories と同じ困りごとに答え、止め方（Pause・Reset・会話ごとのオフ・シークレットチャット）は how-memory-works の節とも重なっていた。困りごとの入口は unexpected-memories だけにし、操作の本体は how-memory-works に置く。節の行き先：deleted-chats と turning-off は how-memory-works の同じ anchor、mixed-projects は how-memory-works#scope、review は how-memory-works#manage"
   - id: research-and-writing-in-the-app
     into: research-and-reports
     reason: "用途ごとの進め方は recipes の受け持ち（design §4.2）で、面ごとにページを分けない（D9）。recipes の research-and-reports にアプリのタブを置き、リサーチ・プロジェクト・アーティファクトの各ページを指す（recipes の担当がそうした。research-and-reports の前提に search-research-thinking、関連に using-research・using-projects・artifacts-overview がある）"
@@ -626,11 +606,11 @@ open_issues:
   - "提案（changes とメイン）：台帳に「Styles で応答の調子と形式を揃える」を足すかを決めてほしい（changes の担当も registry の ledger への同じ提案を書いている。2026-06-01 に skills への移行が告知。今どうするか：いつも揃えるなら全会話の指示、場面ごとならスキル、移された style は名前から作られる slash command で呼ぶ。research/26 §3.1）。台帳の id は registry にあるので、足すならメインが registry を直す。足したら app の where-to-put-instructions と skills-in-the-app の outdated_advice に入れる"
   - "提案（japanese）：claude.ai には返答の言語を固定する設定がなく、指示で頼むしかない（research/27 #15）。keep-replies-in-japanese のアプリのタブから where-to-put-instructions を指してほしい"
   - "提案（start の用語集〔2026-11-04 に id を glossary にした〕）：アプリの題名は、ヘルプセンターの日本語版の訳語（プロジェクト・メモリ・シークレットチャット・アーティファクト・リサーチ・コネクタ・スキル・音声モード）にし、英語の名前を aliases に置いた（research/27 §3.1 の案の列）。用語集で決めるとき、アプリのメモリと Claude Code のメモリ・自動メモリ、アプリの Styles と Claude Code の output style を分けてほしい。全会話の指示（Instructions for Claude）の画面の名前は確かめていない（research/27 §5）"
-  - "決めきれなかった点：memory-faq を how-memory-works にまとめるか。00 が両方を必須で別に立て、逆引き（00 §4）も両方を指すので分けた。symptoms の unexpected-memories ができて困りごとの入口はそちらにもあるが、symptoms・safety・extend の担当は memory-faq を「アプリの操作の本体」として指しているので残した。まとめれば1ページで済む。工程4で見てほしい"
+  - "決めた（2026-11-04 工程4：DR-19 i）：memory-faq を how-memory-works にまとめた（merged。困りごとの入口は symptoms の unexpected-memories だけにする。R3-8）。memory-faq を指していたほかの分野の related（extend の using-auto-memory、symptoms の unexpected-memories、safety の where-your-data-goes）は、メインが道具で直す。3つとも how-memory-works を同じページの前提か related にすでに持つので、how-memory-works に置き換えずに外す（置き換えると重複のエラーになる）。unexpected-memories の優先度を必須にするのは symptoms の担当（DR-19 i）"
   - "確かめていないこと（作者に頼むなら一度にまとめる）：Styles のメニューが今も出るか（research/26 §5）、Free でプロジェクトの指示を使えるか（記事の間で食い違い。research/26 §3.13）、Desktop の新しい設定画面での claude_desktop_config.json の入口（research/26 §5）、アプリの権限モードの Desktop と Web の既定（research/23 §5）、日本語の画面の項目名（research/27 §5）"
 
 notes:
-  - "ページ数：registry の22候補から、pages 20・merged 2・dropped 0。新規はない（会話の共有は safety の shared-artifacts-and-files が持つので足さなかった。open_issues）"
+  - "ページ数：registry の22候補から、pages 20・merged 2・dropped 0。新規はない（会話の共有は safety の shared-artifacts-and-files が持つので足さなかった。open_issues）。工程4で memory-faq を how-memory-works にまとめたので、pages 19・merged 3（2026-11-04 工程4：DR-19 i）"
   - "題名の訳語：アプリの機能名は、公式の日本語版（ヘルプセンター）の訳語に合わせ（research/27 §3.1）、英語の名前は aliases に置いた。テンプレートの名前（Docs・Slides・Design・Dashboards）、Quick entry、Auto と Manual は日本語版の訳語を確かめていないので英語のままにした"
   - "変わりやすい値（ページ数・ファイルの大きさ・保持の日数・窓の大きさ・プランごとの既定・使うモデルの名前）は summary・signs・題名に書かず、本文では数値ファイル（new_features の各項目）を経由する"
   - "周辺製品（Claude Design・Science・Duet・Office アドイン・Claude Tag）は surfaces の peripheral-products の受け持ち（D15）で、app にはページを置いていない。本体に入った会話の中の Design・Docs は artifacts-overview で使い方まで書く（方針 B6）。Claude in Chrome の使い方は surfaces の browser-control を関連で指す"

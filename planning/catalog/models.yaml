@@ -131,7 +131,7 @@ pages:
     summary: "effort で、考える深さとツールの使い方・待ち時間・使用量の釣り合いを変えられる。既定の段を確かめてから、作業に合わせて上げ下げする。"
     signs:
       - {type: goal, text: "返答をもっと深く考えさせたい"}
-      - {type: symptom, text: "簡単な作業なのに返答が遅く、使用量も多い"}
+      - {type: goal, text: "簡単な作業では、深く考えさせずに速く済ませたい"}
       - {type: situation, text: "アプリと Claude Code と API で、同じモデルなのに振る舞いが違う気がする"}
     prerequisites: [how-thinking-works]
     related: [choosing-a-model, thinking-keywords, suspected-degradation, too-slow, after-switching-models, split-models-by-role, fast-mode-and-advisor, what-uses-up-limits, search-research-thinking, measure-changes]
@@ -156,7 +156,7 @@ pages:
       - "10 第15章（最高の推論量は過剰に考えることがある。待ち時間もコスト）"
       - "11 第2節 分野03 p34#158・p34#163（逸話）・p34#164（推論）"
       - "research/27 §3.1（effort と努力レベルの表記）"
-    notes: "既定の effort が面で違うこと（research/23 #8：同じモデルでも API と Claude Code・アプリで既定が違う）は、節 defaults-by-surface で数値ファイルの「モデル × 面」の表から道具が書く（design §6.7）。summary・signs には値を書かない。表記は公式の日本語版の多数派の effort にし、Help Center の訳の「努力レベル」を aliases に置いた。新しい症状のページ too-slow（返事が遅い）を related に置いた（2026-11-04 統合：symptoms#8）。"
+    notes: "既定の effort が面で違うこと（research/23 #8：同じモデルでも API と Claude Code・アプリで既定が違う）は、節 defaults-by-surface で数値ファイルの「モデル × 面」の表から道具が書く（design §6.7）。summary・signs には値を書かない。表記は公式の日本語版の多数派の effort にし、Help Center の訳の「努力レベル」を aliases に置いた。新しい症状のページ too-slow（返事が遅い）を related に置いた（2026-11-04 統合：symptoms#8）。sign「簡単な作業なのに返答が遅く、使用量も多い」は too-slow が振り分ける困りごと（簡単な質問なのに長く考え込む）の言い換えなので、やりたいことの形（簡単な作業では速く済ませたい）にした（2026-11-04 工程4：DR-19 a）"
 
   - id: thinking-keywords
     chapter: effort・思考・コンテキスト
@@ -171,11 +171,11 @@ pages:
     principle: []
     prevents: [合っていない]
     pitfalls: []
-    summary: "「よく考えて」「think hard」と書いても effort は上がらず、普通の文として渡ることが分かる。深く考えさせたいときは effort を上げ、1ターンだけなら ultrathink を使う。"
+    summary: "「よく考えて」「think hard」と書いても effort は上がらず、普通の文として渡ることが分かる。深く考えさせたいときは effort を上げ、その依頼だけ深く考えさせる手段もある。"
     signs:
       - {type: goal, text: "「think hard」や「よく考えて」が効くのか知りたい"}
       - {type: situation, text: "古い記事の「段階的に深く考えさせるキーワード」が今も効くか分からない"}
-      - {type: goal, text: "この1回の質問だけ、深く考えさせたい"}
+      - {type: goal, text: "この質問だけ、深く考えさせたい"}
     prerequisites: [effort-levels]
     related: [how-thinking-works, emphasis-words, unfaithful-reasoning, outdated-advice-ledger]
     tracks: [ultrathink, effort]
@@ -194,7 +194,7 @@ pages:
       - "11 第2節 分野03 p34#160（「ただの文字列」も「認識されない」も少し強すぎる）・p34#169"
       - "11 第4節 #14"
       - "research/27 #18（日本語の思考のキーワードは当時は公式の機能。今の扱いは未確認）"
-    notes: "00 と 01 の「think hard は認識されない」は【2026-11-03 注記】で一部誤りとされたので根拠にせず、summary と signs は research/23 #9 で確かめた内容（effort を上げるキーワードではなく、普通の文として渡る）で書いた。ultrathink が上げる段・効く版・効く面は数値ファイルに置く。"
+    notes: "00 と 01 の「think hard は認識されない」は【2026-11-03 注記】で一部誤りとされたので根拠にせず、summary と signs は research/23 #9 で確かめた内容（effort を上げるキーワードではなく、普通の文として渡る）で書いた。ultrathink が上げる段・効く版・効く面は数値ファイルに置く。summary の「1ターンだけなら ultrathink を使う」は、効く版と面が数値ファイルの項目（design §9.1 の models#2）なので、「その依頼だけ深く考えさせる手段もある」の形にした。ultrathink の名前は題名と節 ultrathink に置き、使える版と面は本文で数値ファイルから書く。sign の「この1回の質問だけ」も数を外した（2026-11-04 工程4：DR-19 o）"
 
   - id: large-context-window
     chapter: effort・思考・コンテキスト
@@ -234,39 +234,41 @@ pages:
 
   - id: suspected-degradation
     chapter: 替えたとき・劣化を疑うとき
-    title: 「劣化した」と感じたら（版と effort を確かめる）
-    nav_title: 「劣化した」と感じたら
-    aliases: [性能が落ちた, 品質の低下, nerf, 賢くなくなった]
-    type: concept
+    title: 劣化を疑ったら測って確かめる
+    nav_title: null
+    aliases: [品質の低下, nerf, 劣化の確かめ方]
+    type: recipe
     level: 整える
-    level_evidence: "使い込んで結果が以前と違うと感じた段階で出会う。原因の切り分けは結果を確かめて直す段階の技能"
+    level_evidence: "使い込んで結果が以前と違うと感じ、症状のページで安い確かめを済ませても疑いが残る段階で要る。測って確かめるのは、結果を確かめて直す段階の技能"
     priority: 必須
     surfaces: [claude-code, app, api]
     principle: [確かめる]
     prevents: [合っていない]
     pitfalls: [体感を信じる]
-    summary: "結果が前より悪いと感じたとき、版・effort・モデル・文脈の量を安い順に確かめ、製品の変更か自分の環境かを切り分けられる。体感だけで結論を出さない。"
+    summary: "劣化を疑ったとき、版と effort を記録して同じ課題を何度か流して比べ、体感でなく結果で確かめられる。製品の側の変更が原因だった例から、公式の報告と変更履歴の確かめ方も分かる。"
     signs:
-      - {type: goal, text: "性能が落ちたのが製品の変更か自分の設定かを切り分けたい"}
-      - {type: situation, text: "更新の後から、結果が変わった気がする"}
+      - {type: goal, text: "「劣化した」と感じたのが本当かを、測って確かめたい"}
+      - {type: goal, text: "更新の前と後で、同じ課題の結果を比べたい"}
+      - {type: situation, text: "「性能が落とされた」という話を見かけ、自分の環境でも起きているか確かめたい"}
     prerequisites: [effort-levels, felt-vs-measured]
-    related: [seems-less-capable, measure-changes, after-switching-models, forgets-in-long-chats, nondeterminism, checking-for-updates, change-timeline-2026]
+    related: [seems-less-capable, measure-changes, nondeterminism, checking-for-updates, change-timeline-2026, after-switching-models]
     tracks: [effort, model-selection]
     outdated_advice: []
     volatility: 中
     sections:
-      - {title: "安く確かめる順", anchor: check-order}
+      - {title: "版と effort を記録して、同じ課題で比べる", anchor: measure}
+      - {title: "製品の側の変更を確かめる先（公式の報告・変更履歴・稼働状況）", anchor: official-sources}
+      - {title: "製品の側だったときの手当て（更新の通り道・報告）", anchor: if-product-side}
       - {title: "製品の側の変更だった例", anchor: postmortem-example}
-      - {title: "測って比べる", anchor: measure}
     templates: []
     visual: null
     materials:
       - "00 §3 分野03（「劣化した」と感じたら：2026年3〜4月のポストモーテムを実例に）"
       - "research/23 F3（ポストモーテムが説明する既定の effort の変更と戻し方。一次資料で確かめた経緯）"
-      - "03 F7（ポストモーテムの要約とユーザー側の教訓。二次情報経由なので数値は一次資料で確かめる）"
-      - "04 Q3（2026年3〜4月の品質低下とポストモーテム、ユーザー向けの教訓。二次情報）"
-      - "research/22 #1・#3（版と stable の通り道）"
-    notes: "症状の振り分けは symptoms の seems-less-capable が持ち、ここは「合っていない」（版・effort・モデル）の対処の本体にする。そのため症状の sign（雑な返事が増えた）は外し、症状の文は seems-less-capable の signs に任せた（symptoms#1。逆引きで症状のページの振り分けを飛ばさないため。M2）。体感と実測の本体は eval の felt-vs-measured。eval の担当が 整える・必須にしたので、related から前提に移した（「体感だけで結論を出さない」はこのページの要点で、その根拠を前提で読ませる）（2026-11-04 統合：eval#3・symptoms#1）。"
+      - "03 F7（ポストモーテムの要約とユーザー側の教訓「版と effort をまず確かめる」。二次情報経由なので数値は一次資料で確かめる。2026年1月の ultrathink の廃止の記述に【2026-11-03 注記】あり）"
+      - "04 Q3（2026年3〜4月の品質低下とポストモーテム、ユーザー向けの教訓：/effort の確認・モデルを替えたら effort を設定し直す・stable チャネル・/feedback。二次情報）"
+      - "research/22 #1・#3（版と stable の通り道。stable は大きな退行のある版を飛ばす）"
+    notes: "症状の振り分けは symptoms の seems-less-capable が持ち、ここは「合っていない」（版・effort・モデル）の対処の本体にする。そのため症状の sign（雑な返事が増えた）は外し、症状の文は seems-less-capable の signs に任せた（symptoms#1。逆引きで症状のページの振り分けを飛ばさないため。M2）。体感と実測の本体は eval の felt-vs-measured。eval の担当が 整える・必須にしたので、related から前提に移した（「体感だけで結論を出さない」はこのページの要点で、その根拠を前提で読ませる）（2026-11-04 統合：eval#3・symptoms#1）。工程4で、安く確かめる順（版・effort・モデル・文脈の量）は seems-less-capable だけに置き（節 check-order を外した）、ここは測って確かめる手順（版と effort を記録して同じ課題で比べる）と、製品の側の変更の確かめ方と例に絞った（R3-9）。題名を対処の形にし、中身が手順になったので型を concept から recipe にした（確かめるページの felt-vs-measured を前提に持つ）。測り方の一般は eval の measure-changes、ばらつきは basics の nondeterminism。signs から、seems-less-capable の困りごとの言い換え（更新の後から結果が変わった気がする）と、切り分けの goal を外した。aliases の「性能が落ちた」「賢くなくなった」は seems-less-capable の別名と題名の言葉なので外した（「性能が落ちた」の主のページは seems-less-capable にするよう、報告のメインへに書いた）。nerf は、製品の側で弱められたという話を確かめる語として残した。forgets-in-long-chats は、文脈の量を確かめる順を seems-less-capable に移したので related から外した（2026-11-04 工程4：DR-19 j・a・d）"
 
   - id: model-quirks
     chapter: 替えたとき・劣化を疑うとき
@@ -286,7 +288,7 @@ pages:
       - {type: symptom, text: "モデルを替えたら、確認ばかりで止まるようになった"}
       - {type: goal, text: "使うモデルに合わせてプロンプトを直したい"}
     prerequisites: [choosing-a-model]
-    related: [after-switching-models, keeps-stopping, does-more-than-asked, output-shape, permission-to-stop, suggest-or-do, does-double-check-work, emphasis-words, felt-vs-measured, current-models]
+    related: [after-switching-models, keeps-stopping, does-more-than-asked, output-shape, permission-to-stop, suggest-or-do, "verification-ladder#verbal-checks", emphasis-words, felt-vs-measured, current-models]
     tracks: []
     outdated_advice: [add-double-check, tell-it-to-use-subagents, keep-going-dont-be-lazy]
     volatility: 高
@@ -302,7 +304,7 @@ pages:
       - "10 第16章（モデルの「性格」は暗記ではなく観察の対象）"
       - "requirements §6.3（モデルの「性格」を固定的な事実として教えない）"
       - "decisions 2026-11-03 書き方の方針（第三者・根拠・コンテスト）7"
-    notes: "モデルごとの指針の文と値は確認日つきで数値ファイルに置き（方針7）、本文は症状と対処と観察の仕方を書く。調査資料にあるほかの会社のモデルの否定的な傾向の例は、第三者を否定的な文脈で名指ししないため使わない（design §6.12）。prompting の担当の提案で、モデルごとの癖（冗長さ・止まりすぎ・やりすぎ・自分で検証するので確認を重ねると過剰になる）はこのページに置き、prompting の頼み方のページから指される。逆に指す先として does-double-check-work と emphasis-words を related に足した。症状の文「回答が長すぎる・短すぎる」は symptoms の not-what-i-meant の signs にあるので、ここから外した（M2）（2026-11-04 統合：prompting#4）。"
+    notes: "モデルごとの指針の文と値は確認日つきで数値ファイルに置き（方針7）、本文は症状と対処と観察の仕方を書く。調査資料にあるほかの会社のモデルの否定的な傾向の例は、第三者を否定的な文脈で名指ししないため使わない（design §6.12）。prompting の担当の提案で、モデルごとの癖（冗長さ・止まりすぎ・やりすぎ・自分で検証するので確認を重ねると過剰になる）はこのページに置き、prompting の頼み方のページから指される。逆に指す先として does-double-check-work と emphasis-words を related に足した。症状の文「回答が長すぎる・短すぎる」は symptoms の not-what-i-meant の signs にあるので、ここから外した（M2）（2026-11-04 統合：prompting#4）。prompting の does-double-check-work が verify の verification-ladder の節 verbal-checks にまとめられたので、related をその節に替えた（2026-11-04 工程4：DR-19 q）"
 
   - id: after-switching-models
     chapter: 替えたとき・劣化を疑うとき
@@ -323,7 +325,7 @@ pages:
       - {type: symptom, text: "モデルを替えてから、API がエラーを返すようになった"}
       - {type: goal, text: "旧いモデルが使えなくなる前に、移行を済ませたい"}
     prerequisites: [choosing-a-model, effort-levels, measure-changes]
-    related: [model-quirks, harness-over-model, emphasis-words, does-double-check-work, structured-outputs-basics, claude-md-length, outdated-advice-ledger, change-timeline-2026]
+    related: [model-quirks, harness-over-model, emphasis-words, "verification-ladder#verbal-checks", structured-outputs-basics, claude-md-length, outdated-advice-ledger, change-timeline-2026]
     tracks: [model-selection, effort, adaptive-thinking]
     outdated_advice: [budget-tokens, prefill-for-json, lower-temperature, important-caps, add-double-check]
     volatility: 高
@@ -342,13 +344,13 @@ pages:
       - "11 第2節 分野03 p34#159（旧モデルの設定を流用せず、自分の評価で effort を振る）・p34#144（ハーネスの部品を一つずつ外して効果を測る）"
       - "research/22 #23・#41（退役と選択肢からの削除）・#42（API の版で temperature などが 400 になる）"
       - "00 §5 台帳（budget_tokens・prefill・IMPORTANT の強調）と research/22 §3.4（temperature の行）"
-    notes: "registry の model-retirements（旧モデルの退役と既定モデルの変化）を節 retirements-and-default-changes にまとめた。退役や既定の変化は「替えたら見直す」の引き金の一つで、日付は数値ファイルと changes の change-timeline-2026 に置くため。00 の「/doctor prompt-audit」は調査資料のほかに裏付けがないので、書く前に一次資料で確かめる。節 checklist の見直しの項目に、強い言い方を和らげること（emphasis-words）と、確認を命じる一文を外すこと（does-double-check-work。台帳の add-double-check）を入れる（prompting#4）。「外すものは一つずつ外し、効果を測る」がこのページの要点で、recipe は確かめるページを前提に持つ（design §2.2）ので、eval の measure-changes（任せる・必須）を related から前提に移した（eval#3）（2026-11-04 統合：prompting#4・eval#3）。"
+    notes: "registry の model-retirements（旧モデルの退役と既定モデルの変化）を節 retirements-and-default-changes にまとめた。退役や既定の変化は「替えたら見直す」の引き金の一つで、日付は数値ファイルと changes の change-timeline-2026 に置くため。00 の「/doctor prompt-audit」は調査資料のほかに裏付けがないので、書く前に一次資料で確かめる。節 checklist の見直しの項目に、強い言い方を和らげること（emphasis-words）と、確認を命じる一文を外すこと（does-double-check-work。台帳の add-double-check）を入れる（prompting#4）。「外すものは一つずつ外し、効果を測る」がこのページの要点で、recipe は確かめるページを前提に持つ（design §2.2）ので、eval の measure-changes（任せる・必須）を related から前提に移した（eval#3）（2026-11-04 統合：prompting#4・eval#3）。prompting の does-double-check-work が verify の verification-ladder の節 verbal-checks にまとめられたので、related をその節に替えた（節 checklist の「確認を命じる一文を外す」の根拠もそこを指す）（2026-11-04 工程4：DR-19 q）"
 
   - id: split-models-by-role
     chapter: 役割で使い分ける
-    title: 計画・実装・サブエージェントでモデルを分ける（opusplan など）
+    title: 計画・実装・サブエージェントでモデルを分ける
     nav_title: 役割でモデルを分ける
-    aliases: [計画は Opus・実装は Sonnet, サブエージェントのモデル, subagent のモデル, Haiku の使いどころ, 軽いモデルの使いどころ, CLAUDE_CODE_SUBAGENT_MODEL]
+    aliases: [opusplan, 計画は Opus・実装は Sonnet, サブエージェントのモデル, subagent のモデル, Haiku の使いどころ, 軽いモデルの使いどころ, CLAUDE_CODE_SUBAGENT_MODEL]
     type: concept
     level: 任せる
     level_evidence: "計画させてから任せる段階で、計画と実装でモデルを分けるかを最初に考える"
@@ -381,7 +383,7 @@ pages:
       - "03 $2（モデルの使い分けの実践。非公式のまとめを含む）"
       - "research/22 #21（別のモデルで動くサブエージェントは、そのモデルの保存した effort か既定で動く）"
       - "00 §5 台帳（Opus は高いので避ける）"
-    notes: "registry の when-to-use-haiku（Haiku を使いどころで使う）を節 lighter-models にまとめた。軽いモデルの使いどころは、サブエージェントや大量の分類にモデルを割り当てる判断の一部であるため（系統の位置づけは current-models）。題名は registry の「計画は Opus、実装は Sonnet（opusplan など）」から、組み合わせが変わりうるモデルの名前を外した形に改め、旧い言い方は aliases に残した。表記は公式の日本語版の多数派のサブエージェントにし、subagent を aliases に置いた。（2026-11-04 メイン：id を opusplan から改めた。モデルの系統の名前を id に入れない。分野の名前で始まる id を避けて split- を付けた。design-review DR-19 n）"
+    notes: "registry の when-to-use-haiku（Haiku を使いどころで使う）を節 lighter-models にまとめた。軽いモデルの使いどころは、サブエージェントや大量の分類にモデルを割り当てる判断の一部であるため（系統の位置づけは current-models）。題名は registry の「計画は Opus、実装は Sonnet（opusplan など）」から、組み合わせが変わりうるモデルの名前を外した形に改め、旧い言い方は aliases に残した。表記は公式の日本語版の多数派のサブエージェントにし、subagent を aliases に置いた。（2026-11-04 メイン：id を opusplan から改めた。モデルの系統の名前を id に入れない。分野の名前で始まる id を避けて split- を付けた。design-review DR-19 n）。題名に残っていた「（opusplan など）」も、モデルの系統の名前を含むエイリアスの名前なので外し、opusplan は aliases の先頭に置いた（名前で引ける）（2026-11-04 工程4：DR-19 o）"
 
   - id: fast-mode-and-advisor
     chapter: 役割で使い分ける
@@ -420,7 +422,7 @@ pages:
 merged:
   - {id: fable-and-mythos, into: current-models, reason: "Fable と Mythos は同じモデルで安全装置の強さと提供の範囲が違うだけで、Mythos は検証の制度を通した組織に限られ、読者が選び分ける組ではない（catalog/README §4.2 の4）。系統の位置づけの一部として current-models の節 fable-and-mythos にする。透かしは2モデルに限らない（research/25 P5b）"}
   - {id: model-retirements, into: after-switching-models, reason: "退役と既定の変化は「モデルが替わったら見直す」の引き金の一つで、独自の判断は気づき方と移行の手順なので after-switching-models の節 retirements-and-default-changes にする。日付は数値ファイルと changes の change-timeline-2026 に置く"}
-  - {id: when-to-use-haiku, into: split-models-by-role, reason: "軽いモデルを使う判断は、サブエージェント・大量の処理・分類にどのモデルを割り当てるかの判断の一部なので、opusplan の節 lighter-models にする。系統ごとの得意な仕事は current-models の表に置く"}
+  - {id: when-to-use-haiku, into: split-models-by-role, reason: "軽いモデルを使う判断は、サブエージェント・大量の処理・分類にどのモデルを割り当てるかの判断の一部なので、split-models-by-role（旧 id は opusplan）の節 lighter-models にする。系統ごとの得意な仕事は current-models の表に置く"}
 dropped: []
 new_features:
   - {id: advisor, title: "advisor（Claude Code の /advisor と API の Advisor tool）", note: "fast-mode-and-advisor が追う。成熟度は beta（02 §5-8、2026-10-29 の調査）。一次資料で確かめてから facts.yml に入れる"}
@@ -428,4 +430,5 @@ open_issues:
   - "提案（changes・データ）：台帳の budget-tokens と avoid-opus-as-expensive の行の「今どうするか」から、それぞれ effort-levels と choosing-a-model へリンクしてほしい（think-hard-keywords から thinking-keywords へは outdated-advice-ledger の related で結ばれている）"
   - "提案（数値ファイル）：data/facts.yml に、既定の effort の「モデル × 面」の表（research/23 §3.2。Claude API・Claude Code・アプリ）、ultrathink が上げる段と効く版と面、fast mode の対象と料金と削除の日付、退役の予定を、出典と確認日つきで持つ。公式同士の食い違いは両方の出典を残す（design §6.7）"
   - "迷った点：harness-over-model は 11 が分野02 に置く案も挙げる。モデルを替えるかの判断の直前に読まれるので models に置いた"
+  - "提案（symptoms。2026-11-04 工程4：DR-19 j・d）：suspected-degradation を「測って確かめる手順と製品の側の変更の例」に絞り、安く確かめる順（版・effort・モデル・文脈の量）の節を外した。seems-less-capable の診断の節がその順の本体になる。測って確かめる先は suspected-degradation#measure、製品の側の変更の確かめ方は suspected-degradation#official-sources。別名「性能が落ちた」は suspected-degradation から外したので、seems-less-capable に残してほしい（fix-aliases.md の見当とは逆。症状の言葉なので症状のページを主にする）。「nerf」は suspected-degradation に残した"
   - "取り込み済み（2026-11-04 に確かめた）：basics の how-thinking-works は effort-levels・thinking-keywords・choosing-a-model を、context の compact-and-auto-compact・tidy-the-desk は large-context-window を、extend の writing-subagents は effort-levels#subagents-and-org-limits と split-models-by-role を、changes の checking-for-updates は suspected-degradation・after-switching-models を、prompting の emphasis-words・does-double-check-work は after-switching-models を、prompting の suggest-or-do・state-the-scope・output-shape・does-double-check-work は model-quirks を、eval の felt-vs-measured は suspected-degradation を指している。symptoms の seems-less-capable は suspected-degradation を、keeps-stopping・does-more-than-asked は model-quirks と effort-levels を指している"

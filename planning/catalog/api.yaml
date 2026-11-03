@@ -3,7 +3,7 @@
 # 材料：research/00 §3 分野13・§4・§5、research/02 §4・§5、research/01 J・2-3、research/05 §3、
 #       工程2の報告 research/22・23・26・28。research/11 第1節には分野13の行がない（第2節の分野05・09 の3行が関わる）
 field: api
-chapters: [アプリと API の対応, API の主な機能, エージェントを組む]
+chapters: [アプリと API の対応, API の主な機能, 上限とエラー, エージェントを組む]
 
 pages:
   # ── アプリと API の対応 ──
@@ -36,7 +36,7 @@ pages:
   - id: stateless-messages-api
     chapter: アプリと API の対応
     title: "Messages API と会話の正体"
-    aliases: [ステートレス, stateless, message threads, system と messages]
+    aliases: [stateless, message threads, system と messages]
     type: concept
     level: 任せる
     level_evidence: "長い会話の重さと費用の理由を、仕組みから理解したくなる段階で要る"
@@ -59,13 +59,13 @@ pages:
       - {title: "message threads（送る量だけを減らす）", anchor: message-threads}
     visual: {kind: static, text: "毎回それまでの全履歴を渡してモデルが読み直す流れと、message threads では送る量だけが減り、モデルが読む量は変わらないことを並べた図"}
     materials: ["00 §3 分野13", "02 §5-1", "research/22 #40（message threads：送るのは差分にできるが、モデルが読む量・料金・rate limit は変わらない。ZDR と HIPAA の対象外）", "requirements §6.6（毎回読み直す受験者）"]
-    notes: "比喩と「なぜ」の本体は basics の rereads-whole-history（前提）。ここは API の形（状態を持たない、system と messages、message threads）だけを書く（basics の担当の提案のうち、API に固有の操作に絞る案を採った）。message threads のデータの扱いを safety の where-your-data-goes へつなぐ。比例則の対象外（任せる幅を広げる内容ではない）。basics の提案に合わせ、要約と signs から「なぜ長い会話が重く高くなるか」（rereads-whole-history の要約と sign と同じ問い）を外し、API の形（呼び出し側が渡す・message threads で減るのは送る量だけ）に絞った（2026-11-04 統合：basics#3）"
+    notes: "比喩と「なぜ」の本体は basics の rereads-whole-history（前提）。ここは API の形（状態を持たない、system と messages、message threads）だけを書く（basics の担当の提案のうち、API に固有の操作に絞る案を採った）。message threads のデータの扱いを safety の where-your-data-goes へつなぐ。比例則の対象外（任せる幅を広げる内容ではない）。basics の提案に合わせ、要約と signs から「なぜ長い会話が重く高くなるか」（rereads-whole-history の要約と sign と同じ問い）を外し、API の形（呼び出し側が渡す・message threads で減るのは送る量だけ）に絞った（2026-11-04 統合：basics#3）。別名の「ステートレス」は basics の rereads-whole-history を主にしたので外した。英語の stateless は API の形の語として残した（2026-11-04 工程4：DR-19 d）"
 
   # ── API の主な機能 ──
   - id: tool-use-loop
     chapter: API の主な機能
     title: "tool use のループ"
-    aliases: [ツールの呼び出し, function calling, client tools, server tools, tool_choice]
+    aliases: [function calling, client tools, server tools, tool_choice]
     type: concept
     level: 仕組みにする
     level_evidence: "自分の道具（MCP・自作のツール）を Claude に使わせる仕組みを作る段階で要る"
@@ -88,7 +88,7 @@ pages:
       - {title: "ループを誰が回すか", anchor: who-runs-the-loop}
     visual: {kind: mermaid, text: "client tool の往復（tool_use → 呼び出し側で実行 → tool_result）と、server tool がサーバーの中で完結する流れのシーケンス図"}
     materials: ["00 §3 分野13", "02 §5-1（client tools と server tools、tool_choice、strict、tool runner、description で選ぶ、隠れた system prompt）", "02 §4-11（行動するか提案にとどめるか、並列の呼び出し）"]
-    notes: "エージェントのループの考え方は basics の agent-loop（前提。basics の担当の提案と同じ）。モデルの世代で強制の指定が使えないことがある（02 §5-1）ので、本文では仕組みとして書き、モデルごとの可否は数値ファイルに置く。道具の結果は外からの入力なので、比例則の守りとして safety の lethal-trifecta を関連に置いた"
+    notes: "エージェントのループの考え方は basics の agent-loop（前提。basics の担当の提案と同じ）。モデルの世代で強制の指定が使えないことがある（02 §5-1）ので、本文では仕組みとして書き、モデルごとの可否は数値ファイルに置く。道具の結果は外からの入力なので、比例則の守りとして safety の lethal-trifecta を関連に置いた。別名の「ツールの呼び出し」は basics の agent-loop を主にしたので外した（function calling・client tools・server tools・tool_choice は API の公式の語として残した）（2026-11-04 工程4：DR-19 d）"
 
   - id: structured-outputs-basics
     chapter: API の主な機能
@@ -134,7 +134,7 @@ pages:
     summary: "答えの各主張について、渡した資料のどの箇所が根拠かを API に返させられる。引用させる指示より確かな理由と、一緒に使えない機能が分かる。"
     signs:
       - {type: goal, text: "答えの根拠を、資料のどこかまで示させたい"}
-      - {type: symptom, text: "引用させても、資料にない文が混ざる"}
+      - {type: symptom, text: "API で資料を渡して引用させても、資料にない文が引用に混ざる"}
     prerequisites: [checking-citations]
     related: [fact-checking, structured-outputs-basics, plausible-falsehoods, how-attachments-are-read, using-research]
     tracks: [citations]
@@ -143,7 +143,7 @@ pages:
       - {title: "引用させる指示との違い", anchor: vs-prompting}
       - {title: "一緒に使えない機能", anchor: limits}
     materials: ["00 §3 分野13", "02 §5-5（対応する形式、プロンプトで引用させるのに比べた利点、画像は引用できない、structured outputs と併用できない）", "02 §6（主張ごとに引用を付けさせる公式の策）"]
-    notes: "事実の確かめ方の本体は verify の checking-citations（前提）と fact-checking。verify の側はこのページを関連に置いている"
+    notes: "事実の確かめ方の本体は verify の checking-citations（前提）と fact-checking。verify の側はこのページを関連に置いている。sign「引用させても、資料にない文が混ざる」は symptoms の plausible-falsehoods（確かめると数字や引用が原文と違っている）に近く、アプリの読者もこの API のページに着くので、このページが直接の答えになる場面（API で資料を渡して引用させる）に狭めた（2026-11-04 工程4：DR-19 a）"
 
   - id: prompt-caching-in-practice
     chapter: API の主な機能
@@ -191,13 +191,47 @@ pages:
       - {type: goal, text: "急がない大量の処理を安く流したい"}
       - {type: goal, text: "評価用の大量のプロンプトをまとめて実行したい"}
     prerequisites: [stateless-messages-api]
-    related: [checking-unattended-runs, measure-changes, reading-api-pricing, prompt-caching-in-practice, choosing-automation, batch-and-p-loops]
+    related: [checking-unattended-runs, measure-changes, reading-api-pricing, prompt-caching-in-practice, rate-limits-and-errors, choosing-automation, batch-and-p-loops]
     tracks: [batch-api]
     volatility: 中
     sections:
       - {title: "向く仕事・向かない仕事", anchor: fit}
     materials: ["00 §3 分野13", "02 §5-3（割引、処理の時間と期限、上限、用途：大規模な評価・モデレーション・大量の生成）"]
-    notes: "割引の率・処理の期限・上限は数値ファイルと cost の受け持ち。Claude Code の /batch（delegate の batch-and-p-loops）とは別のものなので、本文で名前の取り違えに注意を促す。取り違えた読者が移れるよう、batch-and-p-loops を related に置いた（delegate の側にも、同じ注意を頼んでいる）。比例則の守りは verify の checking-unattended-runs と eval の measure-changes（2026-11-04 統合：api#1）"
+    notes: "割引の率・処理の期限・上限は数値ファイルと cost の受け持ち。Claude Code の /batch（delegate の batch-and-p-loops）とは別のものなので、本文で名前の取り違えに注意を促す。取り違えた読者が移れるよう、batch-and-p-loops を related に置いた（delegate の側にも、同じ注意を頼んでいる）。比例則の守りは verify の checking-unattended-runs と eval の measure-changes（2026-11-04 統合：api#1）。急がない大量の処理を同期の呼び出しで流して rate limits に当たる読者の移り先として、工程4で足した rate-limits-and-errors を related に置いた。バッチの上限は、上のとおり数値ファイルに置く（2026-11-04 工程4：DR-19 g）"
+
+  # ── 上限とエラー ──
+  - id: rate-limits-and-errors
+    chapter: 上限とエラー
+    title: "rate limits とエラー（混雑と再試行）"
+    nav_title: "rate limits とエラー"
+    aliases: [レート制限, API のエラー, "429", "529", overloaded, 再試行, リトライ]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "API で作った仕組みを動かし、呼び出しの数や量が増えて、上限や混雑のエラーに最初に出会う段階で要る"
+    priority: 推奨
+    surfaces: [api, claude-code]
+    principle: [確かめる, 握る]
+    prevents: []
+    scenes: [開発]
+    summary: "API が返す上限のエラーと混雑のエラーを見分け、待って再試行するか、送る量や時期を変えるかを決められる。再試行には間隔と回数の上限を設ける。"
+    signs:
+      - {type: symptom, text: "API が 429 や 529 のエラーを返す"}
+      - {type: goal, text: "混雑や上限で失敗した呼び出しを、安全に再試行したい"}
+      - {type: goal, text: "大量の呼び出しを流す前に、上限に当たらないかを確かめたい"}
+    prerequisites: []
+    related: [when-ai-is-unavailable, how-usage-limits-work, batch-api-basics, prompt-caching-in-practice, checking-unattended-runs, "structured-outputs-basics#not-guaranteed", when-requests-are-refused, reading-api-pricing, sdk-comparison, agent-sdk-basics]
+    tracks: [messages-api, api-rate-limits]
+    volatility: 高
+    sections:
+      - {title: "エラーの見分け方（自分の上限・全体の混雑・要求の誤り）", anchor: kinds}
+      - {title: "上限の種類と、今の値の確かめ方", anchor: limit-types}
+      - {title: "再試行の考え方（間隔を広げ、回数に上限を設ける）", anchor: retry}
+      - {title: "上限に当たりにくい送り方", anchor: reduce-pressure}
+      - {title: "エラーにならずに止まる応答（長さの上限・拒否）", anchor: non-error-stops}
+      - {title: "Claude Code で同じエラーを見たとき", anchor: in-claude-code}
+    visual: {kind: mermaid, text: "エラーの種類（自分の組織の上限・全体の混雑・要求の誤り）から、待って再試行する・送る量や時期を変える・直して送り直す、に分かれる流れ図"}
+    materials: ["R1-12（工程4の見直し：API で組む開発者がまず当たる rate limits と混雑・再試行の入口がない。「429」「レート」「rate」「overloaded」で0件）", "02 §5-1（stop_reason と client tools の往復）・§5-4（structured outputs で形が保証されない場合：拒否・max_tokens での途切れ）", "research/26 §3.3 (a)・(b) の5（API の拒否は HTTP 200 の応答の stop_reason で返る。別のモデルへ送り直す fallback〔server-side は beta・SDK の middleware・手書きの再試行〕を公式が勧める。Claude Code に errors のページがある）", "research/22 #40（message threads は送る量を差分にできるが、rate limit は変わらない）", "書く前に確かめる一次資料（調査資料にない）：Platform の Rate limits と Errors のページ、SDK の再試行の既定、Claude Code の errors のページ"]
+    notes: "新規（2026-11-04 工程4）：DR-19 g・R1-12。API で組む開発者がまず当たる rate limits と混雑のエラー、再試行の考え方の入口がなかった。優先度は DR-19 g のとおり推奨。調査資料にこの話題がないので、上限の種類と段階・応答のヘッダー・エラーの種類と状態コード・SDK の自動の再試行の有無と既定は、書く前に一次資料で確かめて数値ファイル（new_features の api-rate-limits）に置く。summary・signs・題名には値を書かない（429・529 は読者が目にする状態コードとして、sign と aliases にだけ置いた）。コード例とパラメータの一覧は書かず公式へリンクする（このファイルの notes）。境界：サブスクリプションの利用枠は cost の how-usage-limits-work、障害や上限で止まったときの備えは cost の when-ai-is-unavailable、拒否の扱いの本体は safety の when-requests-are-refused、出力の形が保証されない場合は structured-outputs-basics#not-guaranteed、急がない大量の処理は batch-api-basics。節 non-error-stops は、エラーにならずに止まる応答（長さの上限・拒否）を見分けて、それらのページへ振り分けるだけにする。Claude Code で同じ状態コードの表示を見た読者もここに着くので、面に claude-code を入れ、節 in-claude-code で利用枠との違いと移り先だけを書く（表示の文と自動の再試行は Claude Code の errors のページで確かめる）。比例則：再試行は無人で回る処理に入ることが多いので、verify の checking-unattended-runs を関連に置いた（任せる幅を広げる内容ではない）。題名は、API の機能名を英語のまま書く決まり（design §6.2）に合わせて rate limits とし、レート制限を aliases に置いた（2026-11-04 工程4：DR-19 g）"
 
   # ── エージェントを組む ──
   - id: sdk-comparison
@@ -273,7 +307,7 @@ pages:
     summary: "長く動くエージェントで文脈が溢れないよう、要約・古い結果の削除・外部の記憶をどう組み合わせるかが分かる。何を文脈に残し、何をファイルに出すかも判断できる。"
     signs:
       - {type: goal, text: "何時間も動くエージェントの文脈が溢れないようにしたい"}
-      - {type: symptom, text: "長く動かしたエージェントが、前に決めたことを忘れる"}
+      - {type: symptom, text: "API で組んだエージェントを長く動かすと、前に決めたことを忘れる"}
     prerequisites: [what-survives-compaction, stateless-messages-api]
     related: [checking-unattended-runs, progress-logs-for-long-jobs, progress-files, handoff-documents, compact-and-auto-compact, feature-to-api-mapping, agent-sdk-basics, using-auto-memory]
     tracks: [api-compaction, context-editing, memory-tool]
@@ -283,7 +317,7 @@ pages:
       - {title: "状態をファイルに持たせる", anchor: external-state}
     visual: {kind: static, text: "compaction（要約に置き換える）・context editing（古い道具の結果を消す）・memory tool（外に書き残す）が、文脈のどこに効くかを並べた図"}
     materials: ["00 §3 分野13", "02 §5-7（compaction は on-demand を公式が勧める、context editing はより細かく制御したいとき、memory tool は compaction と組み合わせる、path traversal の対策）", "11 第2節 分野05 進捗ファイル（p34#115：状態は JSON で持ち、変えてよい欄を限る。分野13 にも関わると書く）"]
-    notes: "compaction と context editing は beta（02 §5-7）なので volatility を高にした。Claude Code での同じ考え（/compact・handoff・進捗ファイル）は context と delegate の受け持ちで、ここは API の手段だけ。比例則の守りは verify の checking-unattended-runs"
+    notes: "compaction と context editing は beta（02 §5-7）なので volatility を高にした。Claude Code での同じ考え（/compact・handoff・進捗ファイル）は context と delegate の受け持ちで、ここは API の手段だけ。比例則の守りは verify の checking-unattended-runs。sign「長く動かしたエージェントが、前に決めたことを忘れる」は symptoms の forgot-after-compaction（圧縮されたら前に決めたことを忘れた）と forgets-in-long-chats の言い換えで、Claude Code の読者もこの API のページに着くので、このページが直接の答えになる場面（API で組んだエージェント）に狭めた（2026-11-04 工程4：DR-19 a）"
 
   - id: designing-agent-tools
     chapter: エージェントを組む
@@ -338,6 +372,9 @@ new_features:
   - id: memory-tool
     title: "memory tool（API）"
     note: "02 §5-7。会話をまたいでファイルを残す client 側の道具。保存先は呼び出し側が決める"
+  - id: api-rate-limits
+    title: "API の rate limits とエラーの種類（上限の種類と段階・応答のヘッダー・混雑のエラー・SDK の再試行）"
+    note: "rate-limits-and-errors が追う（2026-11-04 工程4：DR-19 g）。調査資料にない（R1-12）。書く前に一次資料（Platform の Rate limits・Errors、SDK の文書、Claude Code の errors）で確かめ、確認日つきで facts.yml に置く"
 
 open_issues:
   - "提案（delegate）：choosing-automation の related の managed-agents-basics は sdk-comparison にまとめた（同じ related にすでにある）ので外してほしい。外さないと [参照] のエラーになる（2026-11-04 の全体の検査で出ている）。あわせて batch-and-p-loops で、Claude Code の /batch と API の Message Batches API（api の batch-api-basics）の取り違えに触れてほしい"
@@ -345,9 +382,9 @@ open_issues:
   - "決めきれなかった点：files-pdfs-and-images をアプリの how-attachments-are-read にまとめた（D9）ので、API の読者が分野の一覧から見つけにくくなるおそれがある。feature-to-api-mapping から how-attachments-are-read#api を指して補った"
 
 notes:
-  - "ページ数：registry の14候補から、pages 11・merged 3・dropped 0。新規はない"
+  - "ページ数：registry の14候補から、pages 11・merged 3・dropped 0。新規はない。工程4で新規を1つ足した（rate-limits-and-errors。DR-19 g・R1-12。章「上限とエラー」を足した）ので、pages は12"
   - "API の挙動は公式の文書と確認日で書き、API キーで呼んで確かめない（decisions 2026-11-03「API キー」）。パラメータの一覧とコード例は書かず、公式の文書へリンクする（requirements §6.3）。雛形（templates）は置かない"
   - "料金（cache・batch・Managed Agents の時間あたり・fast mode など）は cost の受け持ち（design §4.2）。api のページは仕組みと判断だけを書き、cost の reading-api-pricing・check-billing-path を指す"
-  - "比例則：任せる以上の段の11ページのうち、feature-to-api-mapping・stateless-messages-api・prompt-caching-in-practice は任せる幅を広げる内容ではない（対応関係・仕組み・費用の整え方）。ただし stateless-messages-api は message threads のデータの扱いで safety の where-your-data-goes を関連に持つ。ほかの8ページは verify・eval・enforce・safety のページを前提か関連に持つ"
+  - "比例則：任せる以上の段の11ページのうち、feature-to-api-mapping・stateless-messages-api・prompt-caching-in-practice は任せる幅を広げる内容ではない（対応関係・仕組み・費用の整え方）。ただし stateless-messages-api は message threads のデータの扱いで safety の where-your-data-goes を関連に持つ。ほかの8ページは verify・eval・enforce・safety のページを前提か関連に持つ。工程4で足した rate-limits-and-errors（仕組みにする）も、verify の checking-unattended-runs と safety の when-requests-are-refused を関連に持つ"
   - "registry の見当から level を変えたもの：designing-agent-tools を回すから仕組みにするへ（MCP サーバーや自作のツールを作るのは仕組みにする段階。level_evidence）"
   - "ほかの分野の担当が api の扱いに合わせたことを確かめた（2026-11-04）：eval の measure-changes が prompt-evals-intro の中身（成功の基準を先に決める・task などの語・pass@k と pass^k・batch-api-basics への関連・台帳の console-prompt-generator）を持った。surfaces が agent-sdk-and-managed-agents を sdk-comparison にまとめた。cost の reading-api-pricing と check-billing-path が api のページを指す。basics の rereads-whole-history・why-prompt-caching・agent-loop、verify の checking-citations、delegate の headless-basics が api のページを関連に持つ。台帳の lower-temperature・budget-tokens・thinking-tags は basics・models・prompting のページに付いた。symptoms の skipped-later-pages と unexpected-memories は、まとめた候補（files-pdfs-and-images・searching-past-chats）への参照を外してくれた"

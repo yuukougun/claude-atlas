@@ -20,7 +20,7 @@ pages:
       - {type: symptom, text: "アプリをたくさん使った日は、Claude Code でも早く上限に当たる"}
       - {type: goal, text: "上限がいつ戻るのか知りたい"}
     prerequisites: []
-    related: [what-uses-up-limits, saving-priorities, when-to-start-fresh, choosing-a-plan, usage-credits-basics, before-using-top-model, hits-limits-quickly, "usage-context-statusline#statusline", when-ai-is-unavailable]
+    related: [what-uses-up-limits, saving-priorities, when-to-start-fresh, choosing-a-plan, usage-credits-basics, before-using-top-model, hits-limits-quickly, "usage-context-statusline#statusline", when-ai-is-unavailable, rate-limits-and-errors]
     tracks: [usage-limits, plans, auto-continue, wrap-up-allowance]
     outdated_advice: [wait-out-5-hour-limit]
     volatility: 高
@@ -38,13 +38,13 @@ pages:
       - "research/22 #26（上限での自動の継続。3回で止まる）・#36（Wrap-Up Allowance。導入の時期は未確認）"
       - "research/26 §3.13（Ultra プランと確認の仕組み）"
       - "04 Q3（利用制限の歴史とユーザーの不満。二次情報）"
-    notes: "registry の題名で外した「5時間・週」は外したまま（確認済みの Ultra の口座は週の上限だけ。research/22 #33）。プランごとの枠の種類と倍率は節 limit-types で数値ファイルから道具が書く。aliases の five-hour limit・weekly limit は公式の名前、session limit は Claude Code の旧い呼び方として置いた。公式の日本語版では「利用制限」の語も使われるので、用語集で表記を決める。「/clear すれば上限は戻るのか」（00 §4）の答えはこのページが持ち（sign と要約）、context の when-to-start-fresh から指される。/clear が上限を戻さなくても、関係のない作業の間で区切る価値は残るので、when-to-start-fresh を related に置いた（2026-11-04 統合：context#9）。"
+    notes: "registry の題名で外した「5時間・週」は外したまま（確認済みの Ultra の口座は週の上限だけ。research/22 #33）。プランごとの枠の種類と倍率は節 limit-types で数値ファイルから道具が書く。aliases の five-hour limit・weekly limit は公式の名前、session limit は Claude Code の旧い呼び方として置いた。公式の日本語版では「利用制限」の語も使われるので、用語集で表記を決める。「/clear すれば上限は戻るのか」（00 §4）の答えはこのページが持ち（sign と要約）、context の when-to-start-fresh から指される。/clear が上限を戻さなくても、関係のない作業の間で区切る価値は残るので、when-to-start-fresh を related に置いた（2026-11-04 統合：context#9）。API キーで呼ぶときの rate limits はプランの利用枠と別の仕組みなので、取り違えた読者が移れるよう api の rate-limits-and-errors を related の末尾に置いた（2026-11-04 工程4：DR-19 g）"
 
   - id: what-uses-up-limits
     chapter: 上限と節約
     title: 上限を早く使う要因
     nav_title: null
-    aliases: [使用量が多い, トークンを食う, Claude Code のコストを見る, /usage の内訳, /cost]
+    aliases: [使用量が多い, トークンを食う, Claude Code のコストを見る, /usage の内訳]
     type: concept
     level: 整える
     level_evidence: "会話の長さや資料の渡し方を整える段階で、何が枠を使っているかを知る必要が出る"
@@ -55,8 +55,8 @@ pages:
     pitfalls: []
     summary: "長い会話の送り直し・大きな添付・ツール・effort・並列の作業など、利用枠を早く減らす原因と、自分の場合に何が使っているかの確かめ方が分かる。"
     signs:
-      - {type: symptom, text: "少し使っただけなのに上限に当たる"}
       - {type: goal, text: "何が使用量を食っているのか知りたい"}
+      - {type: goal, text: "/usage の内訳から、何を減らせばよいかを読み取りたい"}
       - {type: symptom, text: "長いセッションを続けると、消費が急に増える"}
     prerequisites: [how-usage-limits-work, rereads-whole-history]
     related: [saving-priorities, hits-limits-quickly, "usage-context-statusline#instruments", insights-and-usage-review, always-on-costs, effort-levels, "large-context-window#cost-of-long-context", before-using-top-model, parallel-and-loop-costs]
@@ -66,7 +66,7 @@ pages:
     sections:
       - {title: "枠を早く減らす原因", anchor: causes}
       - {title: "長いセッションで増える理由", anchor: long-sessions}
-      - {title: "自分の場合を確かめる（/usage の内訳など）", anchor: find-what-uses-it}
+      - {title: "/usage の内訳の読み方（自分の場合を確かめる）", anchor: find-what-uses-it}
     templates: []
     visual: {kind: static, text: "毎ターン全履歴を送り直すので、会話が長いほど1回の消費が増え、休んだ後はキャッシュが切れてさらに増える図"}
     materials:
@@ -76,7 +76,7 @@ pages:
       - "10 第15章（消費を最も左右するのは、長いコンテキストの再送と、subagent・並列・ワークフローの増殖）"
       - "11 第2節 分野14 p34#156・p34#161（圧縮そのものにもコストがかかる、/clear はゼロ）"
       - "research/22 §3.4（idle compaction）"
-    notes: "registry の claude-code-costs（Claude Code のコストを見る（/usage・status line））を節 find-what-uses-it にまとめた。/usage の内訳と推奨は「何が枠を使っているか」を確かめる手段で、原因のページと同じ問いに答えるため（面に固有の操作の本体は cli の usage-context-statusline、振り返りは eval の insights-and-usage-review）。題名から数（七つ）を外した（公式が挙げる要因の数は変わりうる）。"
+    notes: "registry の claude-code-costs（Claude Code のコストを見る（/usage・status line））を節 find-what-uses-it にまとめた。/usage の内訳と推奨は「何が枠を使っているか」を確かめる手段で、原因のページと同じ問いに答えるため（面に固有の操作の本体は cli の usage-context-statusline、振り返りは eval の insights-and-usage-review）。題名から数（七つ）を外した（公式が挙げる要因の数は変わりうる）。工程4で、/usage の内訳の読み方の持ち主をこのページの節 find-what-uses-it に決めた（R3-25。内訳の読み方が cli・cost・eval の3ページにあった）。cli の usage-context-statusline は道具の一覧と設定（節 instruments）、eval の insights-and-usage-review は振り返りの判断（どれを削るか）だけを持ち、内訳の読み方はこの節を指す。/context の内訳の読み方は context の inspect-context が持つ。内訳の項目の名前と並びは画面で変わりやすいので、本文では数値ファイルの usage の項目から書く。sign「少し使っただけなのに上限に当たる」は symptoms の hits-limits-quickly（すぐ上限に当たる）の言い換えなので外し、内訳を読むやりたいことの形にした（R3 付表A の10）。別名の /cost は cli の usage-context-statusline を主にしたので外した（/cost と /stats が /usage にまとまった経緯は台帳の slash-cost-and-stats）（2026-11-04 工程4：DR-19 v・a・d）"
 
   - id: saving-priorities
     chapter: 上限と節約
@@ -150,7 +150,7 @@ pages:
       - "research/22 #32（2026-10-30 に旧 Max 20x が Ultra に改名、Max は1段）・#34・#35・#44（Ultra の週の上限が旧 20x と同じかは一次資料にない）"
       - "research/26 #19・#20・§3.13"
       - "04 Q3（円換算。二次情報）"
-    notes: "2026-10-30 の改名（旧 Max 20x が Ultra になり、Max は1段）は、節 plan-table の表（数値ファイルから生成）と、台帳の max-5x-or-20x、旧名からの引き方は start の term-index（changes の old-and-new-names をまとめた先）、改名の時期は changes の change-timeline-2026 で扱う。プランの名前と料金は題名・summary・signs・aliases に書かない。旧 20x と Ultra で使える量が同じかは一次資料にないので、本文で断定しない（research/22 #44）。組織のプランは team の enterprise-vs-team-plans。逆引きの「Pro と Max のどちらにすべきか」（00 §4）は、プランの名前を使わない「どのプランにすべきか迷う」の形で signs に入れた（2026-11-04 統合：B #60・symptoms#15）。"
+    notes: "2026-10-30 の改名（旧 Max 20x が Ultra になり、Max は1段）は、節 plan-table の表（数値ファイルから生成）と、台帳の max-5x-or-20x、旧名からの引き方は start の term-index（changes の old-and-new-names をまとめた先）、改名の時期は changes の change-timeline-2026 で扱う。プランの名前と料金は題名・summary・signs・aliases に書かない。旧 20x と Ultra で使える量が同じかは一次資料にないので、本文で断定しない（research/22 #44）。組織のプランは team の enterprise-vs-team-plans。逆引きの「Pro と Max のどちらにすべきか」（00 §4）は、プランの名前を使わない「どのプランにすべきか迷う」の形で signs に入れた（2026-11-04 統合：B #60・symptoms#15）。改名の事実（旧名・今の名前・変わった時期）は数値ファイルの名称の表を正にし、節 plan-table・台帳の max-5x-or-20x・change-timeline-2026・term-index は名称の id を指してそこから引く（二か所に持たない。台帳の行は消さない）（2026-11-04 工程4：DR-18）"
 
   - id: before-using-top-model
     chapter: プランと支払い
@@ -388,7 +388,7 @@ pages:
       - {type: situation, text: "締め切りの直前に AI が使えなくなったら困る"}
       - {type: symptom, text: "障害や上限で止まり、作業が進められなくなった"}
     prerequisites: [how-usage-limits-work]
-    related: [over-reliance, how-much-understanding-to-keep, own-generated-code, what-not-to-delegate, handoff-documents, progress-files, usage-credits-basics, competition-day-operations]
+    related: [over-reliance, how-much-understanding-to-keep, own-generated-code, what-not-to-delegate, handoff-documents, progress-files, usage-credits-basics, rate-limits-and-errors, competition-day-operations]
     tracks: [usage-limits, auto-continue]
     outdated_advice: []
     volatility: 中
@@ -405,7 +405,7 @@ pages:
       - "11 第1節 分野14 p56#79（障害の日付と時間は未検証：research/24 B-57）"
       - "10 第23章（本番の運用：AI が止まっても続けられる冗長性と、AI なしでも最低限の提出を作れる状態。「最も安い保険」は言い過ぎ）"
       - "research/22 #26・#36（上限での自動の継続と Wrap-Up Allowance）"
-    notes: "「最も安い保険」（11 第4節 #64）と、未検証の障害の事例（research/24 B-57）は summary と signs の根拠にしない。障害の事例は、一次資料（公式の稼働状況の記録など）で日付を確かめたものだけを使う。AI なしで最低限を進める考えは推論を含むので、本文で根拠の強さを示す。コンテストの本番の運用は contest の competition-day-operations。"
+    notes: "「最も安い保険」（11 第4節 #64）と、未検証の障害の事例（research/24 B-57）は summary と signs の根拠にしない。障害の事例は、一次資料（公式の稼働状況の記録など）で日付を確かめたものだけを使う。AI なしで最低限を進める考えは推論を含むので、本文で根拠の強さを示す。コンテストの本番の運用は contest の competition-day-operations。API で組んだ仕組みが混雑や rate limits で止まるときのエラーの見分け方と再試行は、工程4で足した api の rate-limits-and-errors が持つ（R1-12 の案のうち、このページに API の節を足す案でなく、api に1ページ足す案を採った）。このページは止まったときの備え（切り替え先と最低限の進め方）にとどめ、related で指す（2026-11-04 工程4：DR-19 g）"
 
 merged:
   - {id: claude-code-costs, into: what-uses-up-limits, reason: "/usage の内訳と推奨・status line で見る使用量は、「何が枠を使っているか」を自分の場合に確かめる手段で、what-uses-up-limits と同じ問いに答える。面に固有の操作は面の分野に置く（design §6.5）ので、操作の本体は cli の usage-context-statusline に任せ、費用の読み方を節 find-what-uses-it にする"}

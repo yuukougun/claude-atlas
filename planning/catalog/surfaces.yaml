@@ -18,7 +18,7 @@ pages:
     summary: "頼みたい作業を、アプリ・Claude Code・API のどれで進めるかを、誰が手を動かすか・何に触れるか・どこで動くかの三つで選べる。迷ったら、触れる必要のあるものから決める。"
     signs:
       - {type: goal, text: "この作業をアプリと Claude Code のどちらでやるべきか決めたい"}
-      - {type: goal, text: "コードを書かない仕事にも Claude Code を使うべきか知りたい"}
+      - {type: goal, text: "コードを書かない仕事は、アプリと Claude Code のどちらが向くか知りたい"}
       - {type: situation, text: "古い記事の「Cowork は別のアプリ」という説明が、今の画面と合わない"}
       - {type: goal, text: "自分のプログラムから Claude を呼ぶべきか、今ある面で足りるかを決めたい"}
     prerequisites: []
@@ -43,13 +43,13 @@ pages:
       - "02 §5-9（Agent SDK・Managed Agents・Client SDK の使い分け表）"
       - "00 §5 台帳（Cowork は別アプリ、Web search はトグルで入れる）"
       - "00 §3 分野07（Claude Code を非エンジニアが使う：Desktop の Code タブ・作業用のフォルダ・手動のモードで始める。cli の担当は for-non-engineers を採らず、00 §4 のサイン「コードを書かない仕事に Claude Code を使いたい」をここか recipes の office-paperwork に置く提案をした）"
-    notes: "registry の unified-claude（統合された Claude）と claude-code-vs-cowork（Claude Code と Cowork の使い分け）を、app-chat-and-tasks と app-tasks-or-claude-code の節にまとめた。2026-09 の統合で Cowork はアプリの会話のタスクの機能になり、「アプリのタスクか Claude Code か」はこのページの比較の中心そのものになったため。タスクの使い方の本体は app の tasks-and-schedules-in-the-app、API・SDK の比較の本体は api の sdk-comparison。比較の表は数値ファイルの面の属性から生成する（open_issues の提案）。アプリのタスクの機能の id（app-tasks。app の new_features）を tracks に入れた（2026-11-04 統合：surfaces#1・app#2）。"
+    notes: "registry の unified-claude（統合された Claude）と claude-code-vs-cowork（Claude Code と Cowork の使い分け）を、app-chat-and-tasks と app-tasks-or-claude-code の節にまとめた。2026-09 の統合で Cowork はアプリの会話のタスクの機能になり、「アプリのタスクか Claude Code か」はこのページの比較の中心そのものになったため。タスクの使い方の本体は app の tasks-and-schedules-in-the-app、API・SDK の比較の本体は api の sdk-comparison。比較の表は数値ファイルの面の属性から生成する（open_issues の提案）。アプリのタスクの機能の id（app-tasks。app の new_features）を tracks に入れた（2026-11-04 統合：surfaces#1・app#2）。sign「コードを書かない仕事にも Claude Code を使うべきか知りたい」は recipes の office-paperwork の「コードを書かない仕事に Claude Code を使いたい」と並ぶ近い文だったので、面を選ぶ問い（アプリと Claude Code のどちらが向くか）に書き分けた（DR-15。R1-06・R3-5）（2026-11-04 工程4：DR-19 a）"
 
   - id: where-it-runs
     chapter: 面の選び方
     title: 実行場所の違い（クラウド・自分の PC・リモート操作）
     nav_title: 実行場所の違い
-    aliases: [どこで動くか, クラウドで動く, 手元で動く, Remote Control, クラウドセッション]
+    aliases: [どこで動くか, クラウドで動く, 手元で動く]
     type: concept
     level: 整える
     level_evidence: "アプリのタスクやクラウドのセッションを使い始め、手元のファイルや設定が見えない理由に最初に出会う段階"
@@ -63,8 +63,8 @@ pages:
     signs:
       - {type: symptom, text: "クラウドで動かすと、手元の設定が効いていない"}
       - {type: symptom, text: "アプリのタスクが手元のファイルを読めない"}
-      - {type: goal, text: "PC を閉じても作業を続けさせたい"}
-      - {type: goal, text: "外出先から、手元の PC で動いている作業を見たい"}
+      - {type: goal, text: "PC を閉じても作業を進めておいてほしい"}
+      - {type: goal, text: "外出先から触る作業を、手元とクラウドのどちらで動かすか決めたい"}
     prerequisites: [choosing-a-surface]
     related: ["cloud-sessions-and-teleport#settings", "tasks-and-schedules-in-the-app#where-it-runs", lethal-trifecta, sandboxing, protecting-secrets, settings-layers, loop-and-scheduling, claude-code-surfaces, browser-control, what-each-surface-cannot-do]
     tracks: [cloud-sessions, remote-control, desktop-code, app-tasks]
@@ -84,13 +84,13 @@ pages:
       - "01 P-1・P-2（クラウドのセッションが読まない設定・Remote Control）"
       - "research/26 §3.8（Desktop とクラウドのセッションは API キーの環境変数を読まない）"
       - "11 第1節 分野02 p12#47（【競】実行環境を用意できないと解けない例。中〜弱・時点依存）"
-    notes: "アプリのタスクがクラウドと Desktop のどちらで動くかを扱うので、アプリのタスクの機能の id（app-tasks）を tracks に入れた（2026-11-04 統合：surfaces#1・app#2）。"
+    notes: "アプリのタスクがクラウドと Desktop のどちらで動くかを扱うので、アプリのタスクの機能の id（app-tasks）を tracks に入れた（2026-11-04 統合：surfaces#1・app#2）。工程4で signs と aliases を直した。「PC を閉じても作業を続けさせたい」は cli の cloud-sessions-and-teleport と delegate の cloud-schedules に近い文が並んでいた（R3-5・R1-06）。どこで動けば PC を閉じても続くかはこのページが答えるので、このページを一般の問い「PC を閉じても作業を進めておいてほしい」の受け皿にした（R1-06 の (2)。cloud-sessions-and-teleport と cloud-schedules は、同じ工程でそれぞれの手段に固有の goal に書き分けられた）。「外出先から、手元の PC で動いている作業を見たい」は cli の control-from-phone と app の voice-and-mobile の sign と並ぶ近い文だったので、このページが答える問い（手元とクラウドのどちらで動かすか）に書き分けた。別名の Remote Control は cli の control-from-phone を主にしたので外し、クラウドセッションも cli の cloud-sessions-and-teleport の題名の語なので外した（2026-11-04 工程4：DR-19 a・d）"
 
   - id: claude-code-surfaces
     chapter: 面ごとの違い
     title: Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）
     nav_title: Claude Code の面
-    aliases: [VS Code 拡張, JetBrains, Desktop の Code タブ, claude.ai/code, Claude Code on the Web]
+    aliases: [Desktop の Code タブ, Claude Code をどこで使うか]
     type: comparison
     level: 整える
     level_evidence: "ターミナルのほかに IDE や Desktop でも使い始め、面ごとの差に出会う段階"
@@ -122,7 +122,7 @@ pages:
       - "research/26 §3.4（IDE 拡張の固有の機能。公式の文書による。動作は試していない）"
       - "research/22 #3（stable の通り道）・#20（ultrathink の動きの端末と VS Code の差が縮んだ）"
       - "decisions 2026-11-03 書き方の方針（安全・面・表現）5（WSL・Linux の CLI を基準にし、ほかの OS と IDE は未確認と書く）"
-    notes: "WSL・Linux の CLI を基準にし、ほかの OS と IDE の拡張の動作は「未確認」と書く（decisions の方針5）。各面の使い方の本体は cli の分野（IDE・クラウドセッション・スマホからの操作）。表は数値ファイルから生成する。"
+    notes: "WSL・Linux の CLI を基準にし、ほかの OS と IDE の拡張の動作は「未確認」と書く（decisions の方針5）。各面の使い方の本体は cli の分野（IDE・クラウドセッション・スマホからの操作）。表は数値ファイルから生成する。工程4で aliases を直した。claude.ai/code と Claude Code on the Web は cli の cloud-sessions-and-teleport を主にしたので外した。VS Code 拡張と JetBrains も、cli の using-ides の題名と別名（VS Code の拡張・JetBrains のプラグイン）と同じ語なので外した（使い方の本体のページを主にする）。Desktop の Code タブは、Desktop の使い方を持つページがほかにないので残した。比較の問いの言い換え（Claude Code をどこで使うか）を足した（2026-11-04 工程4：DR-19 d）"
 
   - id: what-each-surface-cannot-do
     chapter: 面ごとの違い
