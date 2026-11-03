@@ -23,7 +23,6 @@ pages:
     signs:
       - {type: symptom, text: "CLAUDE.md に「〜しない」と書いたのに破られる"}
       - {type: symptom, text: "「push しないで」と言ったのに、しばらくすると push された"}
-      - {type: situation, text: "同じ注意を何度も繰り返している"}
       - {type: goal, text: "例外なく守らせたい規則がある"}
     prerequisites: [request-vs-lock, what-survives-compaction]
     related: [request-lock-table, permission-rules, hooks-basics, lock-side-effects, move-judgment-into-scripts, instructions-ignored, forgot-after-compaction, promises-after-compaction, what-to-put-in-claude-md#what-to-leave-out, emphasis-words, hook-vs-skill]
@@ -45,7 +44,7 @@ pages:
       - "05 1-5・1-6"
       - "research/23 §3.1・§3.7（現行の Best practices の What you can stop doing）"
       - "design §3.1（任せる → 仕組みにするの上がる条件）・§10.5（縛るのは機械的に判定でき、害の大きい規則だけ）"
-    notes: "registry の spoken-prohibitions-fade（会話で言った禁止事項は圧縮で消える）を節 spoken-rules-fade にまとめた（merged）。なぜ消えるかの本体は basics の what-survives-compaction、約束の扱いは context の promises-after-compaction に任せ、ここは「だから鍵に移す」の判断だけを持つ。00 の強調語の行の「1行だけにする」は改稿前の Best practices の勧めなので（00 §5 の注記、research/23 §3.7）、要約とサインの根拠にしない。節 spoken-rules-fade では、圧縮で残るもの・消えるものの一覧（公式の表）を繰り返さず、what-survives-compaction を指す（一覧はそこに一本化する。basics の提案）。約束の置き場所の判断全般（CLAUDE.md・rules・計画のファイル）は promises-after-compaction、会話で言った禁止を拒否ルールとフックに移す判断はこの節が持つ（context の提案。compact-and-auto-compact と promises-after-compaction がこの節を指す）（2026-11-04 統合：basics#2・context#6）"
+    notes: "registry の spoken-prohibitions-fade（会話で言った禁止事項は圧縮で消える）を節 spoken-rules-fade にまとめた（merged）。なぜ消えるかの本体は basics の what-survives-compaction、約束の扱いは context の promises-after-compaction に任せ、ここは「だから鍵に移す」の判断だけを持つ。00 の強調語の行の「1行だけにする」は改稿前の Best practices の勧めなので（00 §5 の注記、research/23 §3.7）、要約とサインの根拠にしない。節 spoken-rules-fade では、圧縮で残るもの・消えるものの一覧（公式の表）を繰り返さず、what-survives-compaction を指す（一覧はそこに一本化する。basics の提案）。約束の置き場所の判断全般（CLAUDE.md・rules・計画のファイル）は promises-after-compaction、会話で言った禁止を拒否ルールとフックに移す判断はこの節が持つ（context の提案。compact-and-auto-compact と promises-after-compaction がこの節を指す）（2026-11-04 統合：basics#2・context#6）。goal「例外なく守らせたい規則がある」は、prompting の emphasis-words の近い goal（担当 F3 が「強調に頼らずに、大事な指示を守らせたい」に書き分けた）と並ぶので、このまま残した（DR-15）。symptom の2文（CLAUDE.md に書いた禁止が破られる・会話で禁じた push をされた）は、鍵に移すことが直接の答えになる狭い場面として残した（catalog/README §4.5 の4の例）。situation「同じ注意を何度も繰り返している」は、症状のページ repeating-the-same-explanation（毎回同じ説明をしている）と instructions-ignored が振り分ける困りごとの言い換えなので外した（担当 F4 も extend の when-to-add-what の同じ文を goal に替えた）。goal の形は、when-to-add-what（繰り返しをどの仕組みに移すか）・basics の request-vs-lock（どの規則を強制するか）と、このページの「例外なく守らせたい規則がある」で足りる。「同じ注意を二回した」は鍵に移す合図として summary と節 signals に残す（2026-11-04 工程4：DR-19 a）"
 
   - id: request-lock-table
     chapter: 何を縛るか
@@ -99,7 +98,7 @@ pages:
     summary: "毎回 Claude に判断させている作業を、Claude に書かせたスクリプトに移せる。結果が毎回同じになり、確かめやすくなる。"
     signs:
       - {type: goal, text: "同じ集計や変換を、毎回 Claude にやらせている"}
-      - {type: symptom, text: "同じ作業なのに、毎回結果が少しずつ違う"}
+      - {type: symptom, text: "同じ集計なのに、頼むたびに数字が少しずつ違う"}
     prerequisites: [request-vs-lock, nondeterminism]
     related: [when-to-lock, request-lock-table, mcp-or-cli, shrink-failing-inputs, bisect-regressions, build-observation-tools, hook-recipes, writing-skills, designing-agent-tools]
     tracks: [skills, hooks]
@@ -110,7 +109,7 @@ pages:
     materials:
       - "11 第1節 分野10 p34#68（入力の縮小は、LLM にやらせるより縮小のスクリプトを書かせるほうが強い。1研究からの一般化。根拠：中〜強）"
       - "00 §3 分野08（MCP か CLI か）"
-    notes: "11 は分野08 に置く案も挙げる。お願いと鍵の延長（判断を決定論的な道具に移す）なので enforce に置いた。根拠は1研究からの一般化なので、本文で根拠の強さを書く。具体の手順は recipes の shrink-failing-inputs・build-observation-tools に任せる"
+    notes: "11 は分野08 に置く案も挙げる。お願いと鍵の延長（判断を決定論的な道具に移す）なので enforce に置いた。根拠は1研究からの一般化なので、本文で根拠の強さを書く。具体の手順は recipes の shrink-failing-inputs・build-observation-tools に任せる。symptom「同じ作業なのに、毎回結果が少しずつ違う」は、症状のページ plausible-falsehoods の「同じ質問をするたびに答えが変わる」に近いので、スクリプトに移すことが直接の答えになる場面（集計）にした（2026-11-04 工程4：DR-19 a）"
 
   # ---------------------------------------------------------------- 権限と封じ込め
   - id: permission-rules
@@ -130,7 +129,7 @@ pages:
     signs:
       - {type: goal, text: "`.env` や migrations を絶対に触らせたくない"}
       - {type: goal, text: "よく使う安全なコマンドは、毎回確認させたくない"}
-      - {type: symptom, text: "拒否のルールに書いたのに、そのファイルを読まれた"}
+      - {type: symptom, text: "拒否のルールに書いたのに、下のフォルダにある同じ名前のファイルは読まれた"}
     prerequisites: [permission-modes-overview]
     related: [what-auto-mode-stops, sandboxing, protected-paths, protecting-secrets, when-to-lock, settings-layers, freeze-eval-assets, managed-settings-enforcement, lock-side-effects, before-opening-unknown-repos, share-team-settings, hook-vs-skill]
     tracks: [permissions, settings]
@@ -151,7 +150,7 @@ pages:
       - "research/28 #10〜#13・#19"
       - "research/22 #4・#8"
       - "11 第4節 #21（deny のパスの書き方。Read(./.env) は直下だけに当たる）"
-    notes: "工程2の事実：Write・NotebookEdit・Glob のパスのルールは受け付けられるが何にも当たらない（書き込みは Edit、Glob の代わりは Read で書く。research/23 #4、research/28 #11）。Read と Edit の deny は、組み込みの道具と Claude Code が見分けるシェルのコマンドにしか効かず、任意の子プロセスには効かない（すべてのプロセスを止めるのは sandbox。research/23 #5）。deny と ask は信頼の前から効き、プロジェクトの allow は信頼の後だけ（research/28 #19）。フックの allow で deny は外せない（research/28 #13）。/permissions のタブの旧名 Recently denied は、台帳ではなく数値ファイルと本文の注記で扱う（research/22 #8・§3.4）。題名の括弧の allow・ask・deny は設定のキーなので原文のまま残し、本文と summary のルールの呼び名は M1 の仮の表記（許可ルール・確認ルール・拒否ルール）にそろえ、aliases に allow ルール・ask ルール・deny ルールを入れた。逆引きの「`.env` や migrations を絶対に触らせたくない」は、同じ意味の sign（`.env` や特定のフォルダ）を逆引きの文に置き換え、block-with-exit-2 と同じ文にした（2026-11-04 統合：M1・B #37）"
+    notes: "工程2の事実：Write・NotebookEdit・Glob のパスのルールは受け付けられるが何にも当たらない（書き込みは Edit、Glob の代わりは Read で書く。research/23 #4、research/28 #11）。Read と Edit の deny は、組み込みの道具と Claude Code が見分けるシェルのコマンドにしか効かず、任意の子プロセスには効かない（すべてのプロセスを止めるのは sandbox。research/23 #5）。deny と ask は信頼の前から効き、プロジェクトの allow は信頼の後だけ（research/28 #19）。フックの allow で deny は外せない（research/28 #13）。/permissions のタブの旧名 Recently denied は、台帳ではなく数値ファイルと本文の注記で扱う（research/22 #8・§3.4）。題名の括弧の allow・ask・deny は設定のキーなので原文のまま残し、本文と summary のルールの呼び名は M1 の仮の表記（許可ルール・確認ルール・拒否ルール）にそろえ、aliases に allow ルール・ask ルール・deny ルールを入れた。逆引きの「`.env` や migrations を絶対に触らせたくない」は、同じ意味の sign（`.env` や特定のフォルダ）を逆引きの文に置き換え、block-with-exit-2 と同じ文にした（2026-11-04 統合：M1・B #37）。symptom「拒否のルールに書いたのに、そのファイルを読まれた」は sandboxing の「拒否のルールを書いたのに、スクリプト経由で読まれた」と近く、症状のページ secrets-exposed の「.env の中身を読まれた」にも重なるので、このページが直接の答えになる場面（パスの書き方。Read(./.env) は直下だけに当たる。11 第4節 #21・節 path-rules）に書き分けた（R1-06・DR-15）（2026-11-04 工程4：DR-19 a）"
 
   - id: what-auto-mode-stops
     chapter: 権限と封じ込め
@@ -213,6 +212,7 @@ pages:
       - {type: goal, text: "auto モードに任せて大丈夫か"}
       - {type: situation, text: "スクリプトやテストを、確認なしで実行させたい"}
       - {type: symptom, text: "拒否のルールを書いたのに、スクリプト経由で読まれた"}
+      - {type: goal, text: "Docker や devcontainer の中で Claude Code を動かすべきか決めたい"}
     prerequisites: [permission-rules]
     related: [protecting-secrets, where-bypass-is-ok, what-auto-mode-stops, approval-fatigue, protected-paths, lethal-trifecta, freeze-eval-assets, "default-safety-settings#by-stage", before-opening-unknown-repos, writing-safe-hooks, dynamic-workflows]
     tracks: [sandbox]
@@ -222,6 +222,7 @@ pages:
       - {title: "読み取りは既定で広い", anchor: default-reads}
       - {title: "起動できないときに通さない", anchor: fail-if-unavailable}
       - {title: "Linux と WSL2 で使う", anchor: linux-wsl}
+      - {title: "コンテナ（Docker・devcontainer）との使い分け", anchor: containers}
     templates:
       - {name: "秘密の場所を塞いでサンドボックスを有効にする設定の例", kind: settings, safety: true}
     visual: {kind: static, text: "サンドボックスの内側（Bash とその子プロセス）と外側（組み込みのファイルの道具・MCP・フック）の境界の図"}
@@ -233,7 +234,9 @@ pages:
       - "research/28 #9・#36〜#44・§3.6"
       - "research/22 #4・#7"
       - "decisions 2026-11-03「安全の既定の勧め方」「危ない雛形を試す場所」"
-    notes: "level を registry の「仕組みにする」から「任せる」に改めた（decisions 2026-11-03「安全の既定の勧め方」）。工程2の事実：Linux と WSL2 では bubblewrap と socat を使う（research/28 #36。制作の環境には 2026-11-04 に入った）。依存が欠けると既定でサンドボックスなしで動くので、頼る設定には failIfUnavailable を付ける（#40）。sandbox の denyRead は Read の道具を止めず、Read の deny は子プロセスを止めないので二重にする（research/23 #5）。フック・MCP・組み込みのファイルの道具は外側（#43）。権限ルールとサンドボックスでパスの書き方が違う（#41）。逆引きの「auto モードに任せて大丈夫か」を what-auto-mode-stops と同じ文で置いた（auto モードは安全を保証しないので、任せる段階ではサンドボックスで囲う）。段階ごとの既定の正本は safety の default-safety-settings#by-stage なので、related をその節に向けた（2026-11-04 統合：B #51・M6）"
+      - "05 4-6（公式の Security：機密性の高いリポジトリは、sandbox runtime か dev container の中で動かす）"
+      - "04 Q3（DevContainer のファイアウォールを使うチームの運用）"
+    notes: "level を registry の「仕組みにする」から「任せる」に改めた（decisions 2026-11-03「安全の既定の勧め方」）。工程2の事実：Linux と WSL2 では bubblewrap と socat を使う（research/28 #36。制作の環境には 2026-11-04 に入った）。依存が欠けると既定でサンドボックスなしで動くので、頼る設定には failIfUnavailable を付ける（#40）。sandbox の denyRead は Read の道具を止めず、Read の deny は子プロセスを止めないので二重にする（research/23 #5）。フック・MCP・組み込みのファイルの道具は外側（#43）。権限ルールとサンドボックスでパスの書き方が違う（#41）。逆引きの「auto モードに任せて大丈夫か」を what-auto-mode-stops と同じ文で置いた（auto モードは安全を保証しないので、任せる段階ではサンドボックスで囲う）。段階ごとの既定の正本は safety の default-safety-settings#by-stage なので、related をその節に向けた（2026-11-04 統合：B #51・M6）。WSL2 では、サンドボックスの中から Windows の実行ファイル（cmd.exe や /mnt/c の下）を起動でき、止めるには seccomp のフィルタが要る（research/28 #37、R4-8）。雛形には failIfUnavailable: true を入れ、Windows の実行ファイルの経路を動作確認の期待に足す（2026-11-04 工程4：DR-07）。見せ方：検証ノート（制作の環境の WSL2 で、サンドボックスが止めたものと止めなかったものを、版と日付付きで記録する）（2026-11-04 工程4：DR-17）。R1-14：節 containers と goal「Docker や devcontainer の中で Claude Code を動かすべきか決めたい」を足した。コンテナや VM の中で動かす形（公式の Security は、機密性の高いリポジトリで sandbox runtime か dev container での実行を勧める。05 4-6）と、組み込みのサンドボックスの使い分けを書く。第三者の道具の名前を出すときは成熟度と確認日を付ける（DR-17）。別名の devcontainer・Docker・コンテナは、いったんここに足したが、担当 F6 が safety の where-bypass-is-ok に置いた（使い捨てのコンテナの雛形と sign「コンテナの中で Claude Code を無人で動かしたい」があり、このページの OS のサンドボックスはコンテナではない）ので、重ねないようここからは外した（DR-19 d）。無人で bypassPermissions を使うのは隔離したコンテナか VM の中だけで、その条件と手順の雛形は where-bypass-is-ok が持つ。コンテナの雛形はここに置かない（この環境では試せない：podman がなく、Docker Desktop は WSL と連携していない。DR-07、decisions「危ない雛形を試す場所」）（2026-11-04 工程4：DR-19 h・d）"
 
   - id: protected-paths
     chapter: 権限と封じ込め
@@ -303,7 +306,7 @@ pages:
       - "research/25 P6（bypass を使えなくする公式の設定）"
       - "research/22 #13（server-managed settings の適用）"
       - "research/28 #26・#28・#29（--setting-sources・--safe-mode でも管理設定は効く）"
-    notes: "工程2の事実：bypass を使えなくする公式の設定は permissions.disableBypassPermissionsMode を \"disable\" にするもの（同じ形で permissions.disableAutoMode）。調査資料 04 の bypassPermissionsDisabled は公式にない名前で、雛形に写すと効かない（research/25 P6）。team の org-managed-settings-and-mcp と重なるので、team の担当の提案に合わせて、設定のキーと強制の仕組み（優先の順番・使えなくする設定・利用者の側から外せない範囲）はこちら、配る経路・グループごとの設定・MCP の許可は team に任せた（design §4.2。team は org-managed-settings-and-mcp の前提にこのページを置いた）。registry の題名の「managed settings」は、公式の日本語版の多数派の「管理設定」にした（research/27 §3.1）。節 disable-modes が使えなくするモードを、cli の permission-modes-overview（モードの一覧の入口）へ related でつないだ（cli の提案）（2026-11-04 統合：cli#8）"
+    notes: "工程2の事実：bypass を使えなくする公式の設定は permissions.disableBypassPermissionsMode を \"disable\" にするもの（同じ形で permissions.disableAutoMode）。調査資料 04 の bypassPermissionsDisabled は公式にない名前で、雛形に写すと効かない（research/25 P6）。team の org-managed-settings-and-mcp と重なるので、team の担当の提案に合わせて、設定のキーと強制の仕組み（優先の順番・使えなくする設定・利用者の側から外せない範囲）はこちら、配る経路・グループごとの設定・MCP の許可は team に任せた（design §4.2。team は org-managed-settings-and-mcp の前提にこのページを置いた）。registry の題名の「managed settings」は、公式の日本語版の多数派の「管理設定」にした（research/27 §3.1）。節 disable-modes が使えなくするモードを、cli の permission-modes-overview（モードの一覧の入口）へ related でつないだ（cli の提案）（2026-11-04 統合：cli#8）。managed settings・managed-settings.json・server-managed settings の別名は、fix-aliases.md の表でこのページが主（team の org-managed-settings-and-mcp からは外す）。雛形の管理設定の例は、DR-07 の「この環境で試せない雛形」に当たる（/etc に書くので sudo が要る。R4-7）。既定では雛形を載せず条件と概念だけを書き、作者に頼むかは工程7の終わりの頼みで聞く（2026-11-04 工程4：DR-19 d・DR-07）"
 
   # ---------------------------------------------------------------- フック
   - id: hooks-basics
@@ -427,24 +430,27 @@ pages:
     prevents: [縛っていない, 散らかっている]
     pitfalls: []
     scenes: [開発, チーム]
-    summary: "編集後の整形・危ない操作の遮断・テスト出力の絞り込み・終わりの通知・担当にだけ禁じる操作を、フックで組める。どの型も、当てる範囲を狭くし、効いたかを確かめてから常設する。"
+    summary: "編集後の整形・危ない操作の遮断・決めたコマンドへの誘導・テスト出力の絞り込み・終わりの通知・担当にだけ禁じる操作を、フックで組める。どの型も、当てる範囲を狭くし、効いたかを確かめてから常設する。"
     signs:
       - {type: goal, text: "編集のたびにフォーマッタをかけさせたい"}
+      - {type: goal, text: "pip ではなく uv のように、決めたコマンドを必ず使わせたい"}
       - {type: goal, text: "テストやログの出力で会話が埋まるのを防ぎたい"}
       - {type: goal, text: "サブエージェントにだけ commit を禁じたい"}
     prerequisites: [block-with-exit-2, writing-safe-hooks]
-    related: [hooks-basics, stop-hooks, textlint-hook, protecting-secrets, destructive-commands, freeze-eval-assets, lock-side-effects, writing-subagents, what-subagents-dont-inherit, completion-notifications]
+    related: [hooks-basics, stop-hooks, textlint-hook, protecting-secrets, destructive-commands, "what-to-put-in-claude-md#what-to-write", freeze-eval-assets, lock-side-effects, writing-subagents, what-subagents-dont-inherit, completion-notifications]
     tracks: [hooks]
     volatility: 中
     sections:
       - {title: "編集の後に整形する", anchor: format-after-edit}
       - {title: "危ない操作を止める", anchor: block-dangerous}
+      - {title: "決めたコマンドへ誘導する（pip の代わりに uv など）", anchor: redirect-commands}
       - {title: "テストの出力を絞る", anchor: filter-test-output}
       - {title: "終わったら知らせる", anchor: notify}
       - {title: "担当にだけ禁じる（agent_id）", anchor: subagent-only}
     templates:
       - {name: "編集の後にフォーマッタを走らせるフック", kind: hook, safety: false}
       - {name: "危ない Bash のコマンドを止めるフック", kind: hook, safety: true}
+      - {name: "決めていないコマンド（pip など）を止め、決めたコマンド（uv run など）を理由とともに返すフック", kind: hook, safety: false}
       - {name: "テストの出力を失敗の行だけに絞るフック", kind: hook, safety: false}
       - {name: "サブエージェントにだけ git commit を禁じるフック", kind: hook, safety: false}
     materials:
@@ -454,7 +460,9 @@ pages:
       - "research/28 #1・#14・§3.1"
       - "research/22 #5"
       - "design §10.5（制作の縛り H1〜H4）"
-    notes: "担当にだけ禁じる型は、入力の agent_id の有無で見分ける（agent_type は --agent でメインにも付くので使わない。permissions の deny はメインも止め、disallowedTools は指定子を付けても Bash 全体を外す。research/28 #1・#14）。制作の .claude/settings.json の H3 と同じ型なので、土台作りで確かめた結果を雛形の動作確認に使える。日本語の表記の検査（textlint）の型は japanese の textlint-hook に任せる"
+      - "03 Q8 F6（決めた道具を使わない：uv でなく pip で入れる）・T4 の反対意見（フックで誘導しきれず、PATH の差し替えで止めた例）"
+      - "01 F-1（フックの if に権限ルールの構文を書ける）・research/28 #6（if の Bash の判定は best-effort）"
+    notes: "担当にだけ禁じる型は、入力の agent_id の有無で見分ける（agent_type は --agent でメインにも付くので使わない。permissions の deny はメインも止め、disallowedTools は指定子を付けても Bash 全体を外す。research/28 #1・#14）。制作の .claude/settings.json の H3 と同じ型なので、土台作りで確かめた結果を雛形の動作確認に使える。日本語の表記の検査（textlint）の型は japanese の textlint-hook に任せる。R1-13：決めたコマンドへ誘導する型を節 redirect-commands と goal と雛形で足した。PreToolUse で決めていないコマンドを止め、決めたコマンドを理由とともに返す（返し方は block-with-exit-2#reason）。if の Bash の判定は best-effort なので、確実に止めるには拒否ルールと組む（research/28 #6）。フックで誘導しきれず PATH の差し替えで止めた実践の例もあり、手段の一つとして並べる（03 Q8 F6・T4）。決めたコマンドはまず CLAUDE.md に書く（extend の what-to-put-in-claude-md#what-to-write）。困りごとの文（決めたコマンドを使わず別の方法で実行する）は症状のページ instructions-ignored か what-to-put-in-claude-md が持つので、ここは goal の形にした（2026-11-04 工程4：DR-19 h）。見せ方：雛形と並べて、制作の .claude/settings.json の deny とフック（DR-08 の H2：止めて理由と代わりの gen_site.py を返す＝節 redirect-commands の実例、H3：担当にだけ commit を禁じる＝節 subagent-only）を注釈付きで示す（2026-11-04 工程4：DR-17）"
 
   - id: stop-hooks
     chapter: フック
@@ -490,7 +498,7 @@ pages:
       - "11 第4節 #23（連続のブロックの上限を確かめた行）"
       - "research/28 #17（Stop には onFailure が効かない）"
       - "research/27 §3.2（Stop フックの last_assistant_message と stop_hook_active）"
-    notes: "工程2の事実：Stop と SubagentStop のフックは、ツールの呼び出しを挟まずに続けて止めると決まった回数で上書きされ、警告付きでターンが終わる（回数と変える環境変数は数値ファイルに置く。research/23 #3）。対策は入力の stop_hook_active を見て早めに抜けること。調査資料 10 付録A-1 の「連続8回」は「ツールの呼び出しを挟まずに」が抜けている（research/23 #3）。テストのほかの例として、最後の返事の言語を確かめて書き直させる japanese の keep-replies-in-japanese#stop-hook を related に足した（japanese の提案。hook-recipes の例の textlint-hook は元からある）（2026-11-04 統合：japanese#4）"
+    notes: "工程2の事実：Stop と SubagentStop のフックは、ツールの呼び出しを挟まずに続けて止めると決まった回数で上書きされ、警告付きでターンが終わる（回数と変える環境変数は数値ファイルに置く。research/23 #3）。対策は入力の stop_hook_active を見て早めに抜けること。調査資料 10 付録A-1 の「連続8回」は「ツールの呼び出しを挟まずに」が抜けている（research/23 #3）。テストのほかの例として、最後の返事の言語を確かめて書き直させる japanese の keep-replies-in-japanese#stop-hook を related に足した（japanese の提案。hook-recipes の例の textlint-hook は元からある）（2026-11-04 統合：japanese#4）。見せ方：検証ノート（制作の環境で、ツールの呼び出しを挟まずに続けて止めたときに、ターンが警告付きで終わる様子を版と日付付きで記録する。回数の値は数値ファイル）（2026-11-04 工程4：DR-17）"
 
   # ---------------------------------------------------------------- 縛りの運用
   - id: freeze-eval-assets
@@ -510,8 +518,8 @@ pages:
     signs:
       - {type: goal, text: "テストや採点のスクリプトを、Claude に書き換えさせたくない"}
       - {type: situation, text: "スコアを上げる改善を、長い時間 Claude に任せる"}
-    prerequisites: [verifier-three-conditions, permission-rules, sandboxing]
-    related: [protect-tests, lockbox-and-holdout, rewrote-tests-to-pass, reward-hacking, test-the-verifier, build-test-harness, protected-paths, hook-recipes, misses-broken-evaluation, selection-pressure]
+    prerequisites: [verifier-three-conditions, sandboxing]
+    related: [protect-tests, permission-rules, lockbox-and-holdout, rewrote-tests-to-pass, reward-hacking, test-the-verifier, build-test-harness, protected-paths, hook-recipes, misses-broken-evaluation, selection-pressure]
     tracks: [permissions, sandbox, hooks]
     volatility: 中
     sections:
@@ -527,7 +535,7 @@ pages:
       - "11 第4節 #19〜#21（雛形 A-4 の fail-open・部分一致、hold-out の読み取り、deny の構文）"
       - "research/23 #4・#5"
       - "research/28 #11・#12・#41"
-    notes: "verify の protect-tests（なぜテストが書き換えられるか・見つけ方）と重なる。こちらは止める設定（権限ルール・サンドボックス・ファイルの権限）の手順を受け持ち、protect-tests からリンクしてもらう（open_issues）。Edit の deny は Python などのスクリプトが自分で開くファイルを止めないので、検証器を守るにはサンドボックスの denyWrite か OS のファイルの権限が要る（research/23 #5）。Write のパスのルールは当たらないので Edit で書き、NotebookEdit は Read の deny では止まらないので Edit の deny を足す（research/23 #4、research/28 #11）。雛形 A-4 は直してから使う（requirements §10.3）"
+    notes: "verify の protect-tests（なぜテストが書き換えられるか・見つけ方）と重なる。こちらは止める設定（権限ルール・サンドボックス・ファイルの権限）の手順を受け持ち、protect-tests からリンクしてもらう（open_issues）。Edit の deny は Python などのスクリプトが自分で開くファイルを止めないので、検証器を守るにはサンドボックスの denyWrite か OS のファイルの権限が要る（research/23 #5）。Write のパスのルールは当たらないので Edit で書き、NotebookEdit は Read の deny では止まらないので Edit の deny を足す（research/23 #4、research/28 #11）。雛形 A-4 は直してから使う（requirements §10.3）。前提の permission-rules は sandboxing からたどって届く（推移的な前提）ので、related の2番目に移した。goal「テストや採点のスクリプトを、Claude に書き換えさせたくない」は verify の protect-tests と同じ文にそろえてある（DR-15）（2026-11-04 工程4：DR-19 e）"
 
   - id: lock-side-effects
     chapter: 縛りの運用
@@ -548,8 +556,8 @@ pages:
       - {type: symptom, text: "フックで止めたら、別のコマンドで同じことをしようとする"}
       - {type: symptom, text: "縛りを増やしたら、作業が進まなくなった"}
       - {type: goal, text: "入れた縛りが役に立っているか見直したい"}
-    prerequisites: [when-to-lock, block-with-exit-2]
-    related: [writing-safe-hooks, permission-rules, hook-recipes, what-auto-mode-stops, stuck-in-a-check-loop, keeps-stopping, blames-the-tools, postmortems, paved-roads]
+    prerequisites: [block-with-exit-2]
+    related: ["when-to-lock#what-not-to-lock", writing-safe-hooks, permission-rules, hook-recipes, what-auto-mode-stops, stuck-in-a-check-loop, keeps-stopping, blames-the-tools, postmortems, paved-roads]
     tracks: [hooks, permissions]
     volatility: 中
     sections:
@@ -561,7 +569,7 @@ pages:
       - "decisions 2026-11-03「hooks と permissions」（縛りが柔軟さを奪い、不適切な対処を招くことへの注意）"
       - "research/28 #5・#6・#13・#16・#18・§3.1・§3.2"
       - "05 1-9（公式の頼み方の指針：障害に当たっても、安全確認を迂回する近道をしない）・4-6（auto モードが止める、認証の失敗の後に別のトークンを探す行動）"
-    notes: "新規：仕組みで縛る分野は鍵を足す話だけになりやすく、縛りすぎの害（止めすぎ・回り込み・判断を含む規則の機械化）を受け持つページが registry にない。design §10.5 の決まり（ユーザーの注意から作った）を、読者向けの判断にする。根拠は公式の文書（matcher の正規表現・Claude に渡す文の書き方・記録を取るイベント）と、制作の記録（production-log の「hooks が止めた例と見直し」）。回り込みが起きる頻度を示す研究はないので、本文では根拠の強さを書き、推論の部分はそう書く。優先度は推奨（必須のページの前提にしない）"
+    notes: "新規：仕組みで縛る分野は鍵を足す話だけになりやすく、縛りすぎの害（止めすぎ・回り込み・判断を含む規則の機械化）を受け持つページが registry にない。design §10.5 の決まり（ユーザーの注意から作った）を、読者向けの判断にする。根拠は公式の文書（matcher の正規表現・Claude に渡す文の書き方・記録を取るイベント）と、制作の記録（production-log の「hooks が止めた例と見直し」）。回り込みが起きる頻度を示す研究はないので、本文では根拠の強さを書き、推論の部分はそう書く。優先度は推奨（必須のページの前提にしない）。前提の when-to-lock は block-with-exit-2 → hooks-basics からたどって届く（推移的な前提）ので、related の先頭に節 what-not-to-lock（鍵にしない規則）として移した（2026-11-04 工程4：DR-19 e）。見せ方：注釈付きのセッション記録（制作の縛りが止めた操作の記録 state/blocks.log と、バッチの報告の「止められた操作」の欄から、止めすぎ・回り込みと見直しの例を選ぶ。design-review DR-08 の H2）（2026-11-04 工程4：DR-17）"
 
 merged:
   - id: spoken-prohibitions-fade
