@@ -39,9 +39,10 @@
 
 ## 次にやること
 
-1. 工程6a（土台作り）の始め：planning/ の公開するファイル（工程3以降の batches の報告・catalog を含む）から否定的な文脈の実名を探し、見つかれば外す（decisions 2026-11-03「実名を外す範囲」）
-2. GitHub に公開のリポジトリ yuukougun/claude-atlas を作り、push する（decisions 2026-11-04「決定の一覧の承認」）
-3. 土台作りのバッチを組む（design §10.1 の6a〜6c：CI とサイト、道具の層、テンプレート、textlint と prh、手引きとチェックリスト、CLAUDE.md、hooks と permissions、Issue のテンプレート、data の初版、骨格）
+1. 工程6a（土台作り）：1段目の担当5人（B1 サイトと CI・B2 読む層と data・B3 書き方の検査・B4 縛り・B5 手引きとチェックリスト）が並列に作る（batches/step6/README.md）。終わったら2段目（作る層・検査の層・見た目）、3段目（つなぐ：空のサイトのデプロイ、hooks の確かめ）
+2. 6b data の初版、6c 骨格
+
+済んだこと（2026-11-04）：planning/ の実名の検索（0件。batches/step6/names-N1.md）、GitHub の公開のリポジトリ yuukougun/claude-atlas の作成と push
 
 ## ユーザーにお願いしていること
 
