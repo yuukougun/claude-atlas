@@ -1,0 +1,433 @@
+field: models
+chapters: [モデルを選ぶ, effort・思考・コンテキスト, 替えたとき・劣化を疑うとき, 役割で使い分ける]
+pages:
+  - id: current-models
+    chapter: モデルを選ぶ
+    title: 現行モデルの一覧と位置づけ
+    nav_title: null
+    aliases: [モデルの比較, モデルのラインナップ, Opus と Sonnet の違い, Haiku とは, Fable とは, Mythos とは]
+    type: comparison
+    level: 使う
+    level_evidence: "アプリのモデルの選択肢を初めて開いた段階で要る"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: []
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "いま選べるモデルを系統ごとに、得意な仕事・速さ・料金の位置で比べられる。名前や世代より、どの仕事に向くかで覚える。"
+    signs:
+      - {type: goal, text: "モデルの選択肢が多くて、それぞれ何が違うのか知りたい"}
+      - {type: situation, text: "新しいモデルの名前を聞いたが、今使っているものとの関係が分からない"}
+    prerequisites: []
+    related: [choosing-a-model, effort-levels, before-using-fable, opusplan, model-quirks, 1m-context, after-switching-models, knowledge-cutoff, glossary, change-timeline-2026]
+    tracks: [model-selection]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "系統ごとの位置づけ（表）", anchor: lineup}
+      - {title: "Fable と Mythos", anchor: fable-and-mythos}
+      - {title: "面とプランごとに選べるモデル", anchor: by-surface}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野03（現行モデルの一覧と位置づけ・Fable と Mythos）"
+      - "02 §3-1（現行モデル表）・§3-3（Fable と Mythos）・§3-4（各モデルの位置づけ）・§3-5（公式の選択マトリクス）"
+      - "research/22 #23（アプリのモデルの選択肢から Haiku 4.5 を外した）・#41（退役の予定）"
+      - "research/25 P5（Fable 5 の提供停止の経緯は Anthropic の説明による。透かしは2モデルに限らず、2026-08-02 より後に出たモデルの出力が対象）"
+      - "research/26 #12（knowledge cutoff は reliable と training を分けて持つ）"
+    notes: "registry の fable-and-mythos（Fable と Mythos）を節 fable-and-mythos にまとめた。Mythos は検証の制度を通した組織だけに提供され、読者が選び分ける組ではないため（比較のページは混同されやすい組だけ）。透かしは Fable と Mythos に限らない（research/25 P5b）ので、二つの違いとして書かない。モデルの名前・世代・料金・既定は表と数値ファイルに置き、題名・summary・signs に書かない。"
+
+  - id: choosing-a-model
+    chapter: モデルを選ぶ
+    title: モデルの選び方（三段階）
+    nav_title: null
+    aliases: [どのモデルを使うか, モデル選択, effort を上げるかモデルを替えるか]
+    type: concept
+    level: 使う
+    level_evidence: "対話で頼み始め、返答に物足りなさを感じた段階で最初に要る"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "まず既定のモデルで試し、足りなければ effort を上げ、それでも足りないときだけ上位のモデルに替える順で選べる。替えた効果は自分の作業で確かめる。"
+    signs:
+      - {type: goal, text: "effort を上げるべきか、モデルを替えるべきか迷う"}
+      - {type: goal, text: "一番賢いモデルを常に使うべきか知りたい"}
+      - {type: symptom, text: "モデルを替えたのに、良くなったのかどうか分からない"}
+    prerequisites: [current-models]
+    related: [effort-levels, before-using-fable, harness-over-model, opusplan, fast-mode-and-advisor, measure-changes, felt-vs-measured, choosing-a-plan]
+    tracks: [model-selection, effort]
+    outdated_advice: [avoid-opus-as-expensive]
+    volatility: 高
+    sections:
+      - {title: "三段階：既定 → effort → 上位のモデル", anchor: three-steps}
+      - {title: "モデルより effort を先に動かす理由", anchor: effort-first}
+      - {title: "プランとの関係", anchor: plans}
+      - {title: "判断例", anchor: examples}
+    templates: []
+    visual: {kind: static, text: "既定 → effort を上げる → 上位のモデル、の三段の階段と、段を上がるごとに増える待ち時間と使用量"}
+    materials:
+      - "00 §3 分野03（モデルの選び方（三段階）。本文：迷ったら既定の上位から始め、モデルを替える前に effort を調整する）"
+      - "02 §3-5（公式のモデル選択ガイド：二つの始め方・effort はモデルを替えるより良い手であることが多い・評価セットが最も大事）"
+      - "02 §2-4（上位のモデルとプランの関係）・§1-9（アプリでの公式の推奨）"
+      - "10 第15章（モデルと effort は既定から始め、難所でだけ上げ、効果を自分の評価で確かめる。根拠は中・版依存）"
+      - "11 第2節 分野03 p34#155・p34#169"
+      - "decisions 2026-11-03 書き方の方針（第三者・根拠・コンテスト）7（本文は「既定から始めて測る」、モデルごとの値は数値ファイル）"
+      - "00 §5 台帳（Opus は高いので避ける）"
+    notes: "三段の順は、公式の選択ガイド（モデルを替える前に effort を動かす・足りなければ上位へ）を、アプリと Claude Code の既定から始める形に言い換えたもの（02 §3 の Inferences）。公式には効率を先にする始め方（軽いモデルから上げる）もあるので、節 three-steps で並べる。どのモデルが既定か・どれが上位かは数値ファイルから書く（版で変わりうるので volatility は 高）。"
+
+  - id: harness-over-model
+    chapter: モデルを選ぶ
+    title: モデルの差よりハーネスの差
+    nav_title: null
+    aliases: [harness, ハーネスエンジニアリング, モデルを替える前に, ツールを乗り換える前に]
+    type: concept
+    level: 任せる
+    level_evidence: "長い作業を任せて結果が足りず、モデルやツールを替えるかを迷う段階で要る"
+    priority: 推奨
+    surfaces: [claude-code, api]
+    principle: [確かめる, 見せる]
+    prevents: [合っていない, 確かめていない]
+    pitfalls: [体感を信じる]
+    scenes: [開発, データ分析, コンテスト]
+    summary: "結果の差がモデルではなく、検証の手段・渡す文脈・指示といったハーネスから来る場合があることが分かる。モデルを替える前にハーネスを直し、自分の評価で比べる。"
+    signs:
+      - {type: symptom, text: "モデルを替えても結果があまり変わらない"}
+      - {type: goal, text: "別の AI ツールのほうが良いと聞き、乗り換えるか迷う"}
+      - {type: situation, text: "同じ課題でも、AI ツールの順位が条件によって入れ替わる話を見た"}
+    prerequisites: [choosing-a-model]
+    related: [verifier-defines-problem, measure-changes, felt-vs-measured, verification-ladder, extensions-at-a-glance, after-switching-models, compare-hypotheses-in-parallel]
+    tracks: []
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "ハーネスとは何か", anchor: what-is-harness}
+      - {title: "差がハーネスから来るとき", anchor: when-harness-matters}
+      - {title: "比べるときは自分の評価で", anchor: compare-with-your-eval}
+    templates: []
+    visual: null
+    materials:
+      - "requirements §4.2 models（モデルの差よりハーネスの差を足す）"
+      - "11 第1節 分野03 p34#178（【競】データ分析コンテストの比較で優劣が競技ごとに入れ替わり、差の多くがハーネスに帰せられた。中・版依存）"
+      - "10 第14章（ハーネスの各部品は「モデルが単独ではできないこと」の仮定。単体実行とフルハーネスの差）・第16章（別系統のモデルの比較）"
+      - "02 §3-5（評価セットが最も大事）"
+      - "03 W5（ミスのたびにハーネスへ書き戻す）"
+    notes: "registry の新しい候補（requirements §4.2）で、優先度は registry のまま推奨。根拠は一つの比較の実験と公式の記事で中なので、必須にしない。ほかの会社の製品と比べる例は、評価の語を使わず、条件と時点を添えて書く（design §6.12）。"
+
+  - id: effort-levels
+    chapter: effort・思考・コンテキスト
+    title: effort の段階と使い分け
+    nav_title: null
+    aliases: [努力レベル, /effort, 推論の量, 拡張思考, thinking のオンとオフ]
+    type: feature
+    level: 整える
+    level_evidence: "頼み方を整える段階で、返答の深さと速さを調整したくなって最初に要る"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "effort で、考える深さとツールの使い方・待ち時間・使用量の釣り合いを変えられる。既定の段を確かめてから、作業に合わせて上げ下げする。"
+    signs:
+      - {type: goal, text: "返答をもっと深く考えさせたい"}
+      - {type: symptom, text: "簡単な作業なのに返答が遅く、使用量も多い"}
+      - {type: situation, text: "アプリと Claude Code と API で、同じモデルなのに振る舞いが違う気がする"}
+    prerequisites: [how-thinking-works]
+    related: [choosing-a-model, thinking-keywords, suspected-degradation, after-switching-models, opusplan, fast-mode-and-advisor, what-uses-up-limits, search-research-thinking, measure-changes]
+    tracks: [effort, adaptive-thinking]
+    outdated_advice: [budget-tokens]
+    volatility: 高
+    sections:
+      - {title: "段ごとの振る舞い", anchor: levels}
+      - {title: "既定の段（モデル × 面の表）", anchor: defaults-by-surface}
+      - {title: "面ごとの変え方", anchor: how-to-set}
+      - {title: "サブエージェントと組織の上限", anchor: subagents-and-org-limits}
+      - {title: "thinking の切り替え", anchor: thinking-toggle}
+    templates:
+      - {name: "モデルごとの effort を設定に書く例", kind: settings, safety: false}
+    visual: {kind: static, text: "effort の段と、ツール呼び出し・計画の説明・待ち時間の増え方の関係"}
+    materials:
+      - "00 §3 分野03（effort の段階と使い分け：トークン予算ではなく振る舞いの合図）"
+      - "02 §1-9（アプリの effort と thinking の設定・公式の推奨）・§3-6（Adaptive thinking と Effort の概念）"
+      - "01 L-2（Claude Code の effort と thinking。think hard の記述に【2026-11-03 注記】あり）"
+      - "research/23 #8・§3.2（既定の effort は面で違う。モデル × 面の表と、Claude Code での決まり方）・F3"
+      - "research/22 #21（別のモデルで動くサブエージェントはそのモデルの既定で動く）・#22（組織の上限）"
+      - "10 第15章（最高の推論量は過剰に考えることがある。待ち時間もコスト）"
+      - "11 第2節 分野03 p34#158・p34#163（逸話）・p34#164（推論）"
+      - "research/27 §3.1（effort と努力レベルの表記）"
+    notes: "既定の effort が面で違うこと（research/23 #8：同じモデルでも API と Claude Code・アプリで既定が違う）は、節 defaults-by-surface で数値ファイルの「モデル × 面」の表から道具が書く（design §6.7）。summary・signs には値を書かない。表記は公式の日本語版の多数派の effort にし、Help Center の訳の「努力レベル」を aliases に置いた。"
+
+  - id: thinking-keywords
+    chapter: effort・思考・コンテキスト
+    title: 「考えて」と書くことの現在（ultrathink）
+    nav_title: null
+    aliases: [think hard, 熟考, よく考えて, 考えさせるキーワード]
+    type: feature
+    level: 整える
+    level_evidence: "頼み方を整える段階で、「よく考えて」と書くと効くかを最初に疑う"
+    priority: 必須
+    surfaces: [claude-code, app]
+    principle: []
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "「よく考えて」「think hard」と書いても effort は上がらず、普通の文として渡ることが分かる。深く考えさせたいときは effort を上げ、1ターンだけなら ultrathink を使う。"
+    signs:
+      - {type: goal, text: "「think hard」や「よく考えて」が効くのか知りたい"}
+      - {type: situation, text: "古い記事の「段階的に深く考えさせるキーワード」が今も効くか分からない"}
+      - {type: goal, text: "この1回の質問だけ、深く考えさせたい"}
+    prerequisites: [effort-levels]
+    related: [how-thinking-works, emphasis-words, unfaithful-reasoning, outdated-advice-ledger]
+    tracks: [ultrathink, effort]
+    outdated_advice: [think-hard-keywords]
+    volatility: 高
+    sections:
+      - {title: "普通の文として渡る言い回し", anchor: plain-text-phrases}
+      - {title: "ultrathink の使いどころ", anchor: ultrathink}
+      - {title: "なぜ変わったか（キーワードしかなかった時代の回避策）", anchor: history}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野03（「考えて」と書くことの現在。行に【2026-11-03 注記】あり）・§5 台帳の4行目（注記あり）"
+      - "research/23 #9（think hard などは effort を上げるキーワードではなく普通の文。ultrathink はそのターンだけ深く考えるよう頼む）・§3.5（ultrathink の経緯）"
+      - "research/22 #20・§3.4（ultrathink がそのターンの段を上げる版と面）"
+      - "11 第2節 分野03 p34#160（「ただの文字列」も「認識されない」も少し強すぎる）・p34#169"
+      - "11 第4節 #14"
+      - "research/27 #18（日本語の思考のキーワードは当時は公式の機能。今の扱いは未確認）"
+    notes: "00 と 01 の「think hard は認識されない」は【2026-11-03 注記】で一部誤りとされたので根拠にせず、summary と signs は research/23 #9 で確かめた内容（effort を上げるキーワードではなく、普通の文として渡る）で書いた。ultrathink が上げる段・効く版・効く面は数値ファイルに置く。"
+
+  - id: 1m-context
+    chapter: effort・思考・コンテキスト
+    title: 広いコンテキストウィンドウとの付き合い方
+    nav_title: null
+    aliases: [1M コンテキスト, 1M context, "[1m] のモデル", 長いコンテキスト]
+    type: concept
+    level: 整える
+    level_evidence: "会話の長さを整える段階で、窓が広ければ気にしなくてよいのかを最初に問う"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [散らかっている]
+    pitfalls: []
+    summary: "窓が広くなり溢れる心配は減ったが、関係のない文脈が答えの質と費用を下げる点は変わらないことが分かる。やめてよい節約と、続ける片付けを分けられる。"
+    signs:
+      - {type: goal, text: "コンテキストが広いモデルなら、会話の長さを気にしなくてよいのか知りたい"}
+      - {type: situation, text: "コンテキストを節約する古いコツが、今も要るのか分からない"}
+    prerequisites: [attention-budget]
+    related: [when-to-start-fresh, compact-and-auto-compact, context-rot, always-on-costs, what-uses-up-limits, current-models]
+    tracks: [context-window, compaction]
+    outdated_advice: [save-context-for-200k]
+    volatility: 高
+    sections:
+      - {title: "やめてよいこと", anchor: what-to-stop}
+      - {title: "続けること", anchor: what-to-keep}
+      - {title: "長い文脈の費用", anchor: cost-of-long-context}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野03（1M コンテキストとの付き合い方）・§4（1M コンテキストなら気にしなくてよいのか）"
+      - "research/23 #1（現行の Best practices は、コンテキストを最大の制約として管理することを「やめてよいこと」に入れ、関係のない作業の間の /clear は今も勧める）・§3.1（改稿の前と後）"
+      - "02 §2-3（アプリの窓と自動の文脈管理）・§3-1（1M の料金とトークナイザー）"
+      - "04 Q2（自動の圧縮の窓の設定の実践）"
+      - "research/22 §3.4（idle compaction）"
+    notes: "題名から数値（1M）を外し、aliases に置いた（変わりやすい値を題名に書かない）。id は公式の機能名（1M context）から作った registry のまま。会話の長さと圧縮の判断の本体は context の分野にあり、ここはモデルの窓が広くなって何が変わったかに絞る。改稿前の Best practices の「埋まるほど性能が落ちる」（research/23 #1）は根拠にしない。"
+
+  - id: suspected-degradation
+    chapter: 替えたとき・劣化を疑うとき
+    title: 「劣化した」と感じたら（版と effort を確かめる）
+    nav_title: 「劣化した」と感じたら
+    aliases: [性能が落ちた, 品質の低下, nerf, 賢くなくなった]
+    type: concept
+    level: 整える
+    level_evidence: "使い込んで結果が以前と違うと感じた段階で出会う。原因の切り分けは結果を確かめて直す段階の技能"
+    priority: 必須
+    surfaces: [claude-code, app, api]
+    principle: [確かめる]
+    prevents: [合っていない]
+    pitfalls: [体感を信じる]
+    summary: "結果が前より悪いと感じたとき、版・effort・モデル・文脈の量を安い順に確かめ、製品の変更か自分の環境かを切り分けられる。体感だけで結論を出さない。"
+    signs:
+      - {type: goal, text: "性能が落ちたのが製品の変更か自分の設定かを切り分けたい"}
+      - {type: situation, text: "更新の後から、結果が変わった気がする"}
+      - {type: symptom, text: "同じ頼み方なのに、前より雑な返事が増えた"}
+    prerequisites: [effort-levels]
+    related: [seems-less-capable, felt-vs-measured, measure-changes, after-switching-models, forgets-in-long-chats, nondeterminism, checking-for-updates, change-timeline-2026]
+    tracks: [effort, model-selection]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "安く確かめる順", anchor: check-order}
+      - {title: "製品の側の変更だった例", anchor: postmortem-example}
+      - {title: "測って比べる", anchor: measure}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野03（「劣化した」と感じたら：2026年3〜4月のポストモーテムを実例に）"
+      - "research/23 F3（ポストモーテムが説明する既定の effort の変更と戻し方。一次資料で確かめた経緯）"
+      - "03 F7（ポストモーテムの要約とユーザー側の教訓。二次情報経由なので数値は一次資料で確かめる）"
+      - "04 Q3（2026年3〜4月の品質低下とポストモーテム、ユーザー向けの教訓。二次情報）"
+      - "research/22 #1・#3（版と stable の通り道）"
+    notes: "症状の振り分けは symptoms の seems-less-capable が持ち、ここは「合っていない」（版・effort・モデル）の対処の本体にする。体感と実測の本体は eval の felt-vs-measured（level が上なので前提ではなく related）。"
+
+  - id: model-quirks
+    chapter: 替えたとき・劣化を疑うとき
+    title: モデル別の癖と、プロンプトの合わせ方
+    nav_title: null
+    aliases: [モデルごとの傾向, モデル別のプロンプトの指針, モデルの性格]
+    type: concept
+    level: 任せる
+    level_evidence: "長い作業を任せ、止まりすぎ・やりすぎ・報告の少なさに出会う段階"
+    priority: 推奨
+    surfaces: [claude-code, api, app]
+    principle: [確かめる]
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "止まりすぎ・やりすぎ・冗長さなど、モデルごとに出やすい傾向を公式の指針から知り、自分の環境で観察してプロンプトを合わせられる。傾向は版で変わるので、暗記せず記録する。"
+    signs:
+      - {type: symptom, text: "モデルを替えたら、確認ばかりで止まるようになった"}
+      - {type: symptom, text: "返答が長すぎる・短すぎる"}
+      - {type: goal, text: "使うモデルに合わせてプロンプトを直したい"}
+    prerequisites: [choosing-a-model]
+    related: [after-switching-models, keeps-stopping, does-more-than-asked, output-shape, permission-to-stop, suggest-or-do, felt-vs-measured, current-models]
+    tracks: []
+    outdated_advice: [add-double-check, tell-it-to-use-subagents, keep-going-dont-be-lazy]
+    volatility: 高
+    sections:
+      - {title: "公式の指針に出てくる傾向", anchor: official-guidance}
+      - {title: "自分の環境で観察して記録する", anchor: observe-and-record}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野03（モデル別の癖と、プロンプトの合わせ方）"
+      - "02 §4-13（モデル別の差分：公式の各モデルのプロンプトの指針）"
+      - "11 第2節 分野03 p34#180・p34#183（性格の差を体系的に測ったデータはなく、版で変わる。観察して記録する対象。根拠は弱）"
+      - "10 第16章（モデルの「性格」は暗記ではなく観察の対象）"
+      - "requirements §6.3（モデルの「性格」を固定的な事実として教えない）"
+      - "decisions 2026-11-03 書き方の方針（第三者・根拠・コンテスト）7"
+    notes: "モデルごとの指針の文と値は確認日つきで数値ファイルに置き（方針7）、本文は症状と対処と観察の仕方を書く。調査資料にあるほかの会社のモデルの否定的な傾向の例は、第三者を否定的な文脈で名指ししないため使わない（design §6.12）。"
+
+  - id: after-switching-models
+    chapter: 替えたとき・劣化を疑うとき
+    title: 新しいモデルに替えたら見直すこと
+    nav_title: null
+    aliases: [モデルの移行, 既定のモデルが変わったとき, 旧モデルの退役, モデルの非推奨]
+    type: recipe
+    level: 任せる
+    level_evidence: "CLAUDE.md や頼み方の型を持ち、モデルを替えるとそれらを見直す必要が出る段階"
+    priority: 必須
+    surfaces: [claude-code, api, app]
+    principle: [確かめる]
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "モデルを替えたときや既定が変わったときに、effort の持ち越し・古い強調や検証の指示・使えなくなった API の引数を見直せる。外すものは一つずつ外し、効果を測る。"
+    signs:
+      - {type: situation, text: "既定のモデルが新しくなったと知った"}
+      - {type: symptom, text: "モデルを替えてから、API がエラーを返すようになった"}
+      - {type: goal, text: "旧いモデルが使えなくなる前に、移行を済ませたい"}
+    prerequisites: [choosing-a-model, effort-levels]
+    related: [model-quirks, measure-changes, harness-over-model, emphasis-words, does-double-check-work, structured-outputs-basics, claude-md-length, outdated-advice-ledger, change-timeline-2026]
+    tracks: [model-selection, effort, adaptive-thinking]
+    outdated_advice: [budget-tokens, prefill-for-json, lower-temperature, important-caps]
+    volatility: 高
+    sections:
+      - {title: "見直す順", anchor: checklist}
+      - {title: "API の引数とモデルの世代", anchor: api-parameters}
+      - {title: "ハーネスの部品を一つずつ外して測る", anchor: remove-one-at-a-time}
+      - {title: "退役と既定の変化に気づく", anchor: retirements-and-default-changes}
+    templates:
+      - {name: "モデルを替えたときの見直しの点検表", kind: other, safety: false}
+    visual: null
+    materials:
+      - "00 §3 分野03（新しいモデルに替えたら見直すこと・旧モデルの退役と既定モデルの変化）"
+      - "01 L-2（世代を替えるときは以前の effort を持ち越さない）"
+      - "02 §3-7（旧モデルの退役）・§4-13（共通の移行の注意）"
+      - "11 第2節 分野03 p34#159（旧モデルの設定を流用せず、自分の評価で effort を振る）・p34#144（ハーネスの部品を一つずつ外して効果を測る）"
+      - "research/22 #23・#41（退役と選択肢からの削除）・#42（API の版で temperature などが 400 になる）"
+      - "00 §5 台帳（budget_tokens・prefill・IMPORTANT の強調）と research/22 §3.4（temperature の行）"
+    notes: "registry の model-retirements（旧モデルの退役と既定モデルの変化）を節 retirements-and-default-changes にまとめた。退役や既定の変化は「替えたら見直す」の引き金の一つで、日付は数値ファイルと changes の change-timeline-2026 に置くため。00 の「/doctor prompt-audit」は調査資料のほかに裏付けがないので、書く前に一次資料で確かめる。"
+
+  - id: opusplan
+    chapter: 役割で使い分ける
+    title: 計画・実装・サブエージェントでモデルを分ける（opusplan など）
+    nav_title: 役割でモデルを分ける
+    aliases: [計画は Opus・実装は Sonnet, サブエージェントのモデル, subagent のモデル, Haiku の使いどころ, 軽いモデルの使いどころ, CLAUDE_CODE_SUBAGENT_MODEL]
+    type: concept
+    level: 任せる
+    level_evidence: "計画させてから任せる段階で、計画と実装でモデルを分けるかを最初に考える"
+    priority: 推奨
+    surfaces: [claude-code, api]
+    principle: [見せる]
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "計画と実装、本体とサブエージェントでモデルを分けるかを、仕事の重さの差と費用で決められる。分けた側で動く effort と、引き継がれる文脈も確かめる。"
+    signs:
+      - {type: goal, text: "計画は賢いモデル、実装は安いモデルに分けたい"}
+      - {type: goal, text: "サブエージェントだけ軽いモデルで動かして、使用量を抑えたい"}
+      - {type: situation, text: "「計画は上位のモデル、実装は安いモデル」というコツが今も得か分からない"}
+    prerequisites: [choosing-a-model, subagent-isolation]
+    related: ["effort-levels#subagents-and-org-limits", when-to-plan, writing-subagents, fast-mode-and-advisor, current-models, saving-priorities, independent-review]
+    tracks: [model-selection, subagents]
+    outdated_advice: [avoid-opus-as-expensive]
+    volatility: 高
+    sections:
+      - {title: "分ける形（計画と実装・本体とサブエージェント）", anchor: patterns}
+      - {title: "分ける価値があるとき", anchor: when-to-split}
+      - {title: "軽いモデルの使いどころ", anchor: lighter-models}
+    templates:
+      - {name: "サブエージェントにモデルを指定する例", kind: subagent, safety: false}
+    visual: null
+    materials:
+      - "00 §3 分野03（計画は Opus、実装は Sonnet（opusplan など）：分業の是非・価格の変化。Haiku を使いどころで使う：大量処理・subagent・分類）"
+      - "01 L-1（opusplan のエイリアス）・M-1（公式のトークン削減策：サブエージェントに軽いモデル）"
+      - "02 §3-4（軽いモデルの位置づけ）・§3-5（複数モデルの組み合わせの二つの形）"
+      - "03 $2（モデルの使い分けの実践。非公式のまとめを含む）"
+      - "research/22 #21（別のモデルで動くサブエージェントは、そのモデルの保存した effort か既定で動く）"
+      - "00 §5 台帳（Opus は高いので避ける）"
+    notes: "registry の when-to-use-haiku（Haiku を使いどころで使う）を節 lighter-models にまとめた。軽いモデルの使いどころは、サブエージェントや大量の分類にモデルを割り当てる判断の一部であるため（系統の位置づけは current-models）。題名は registry の「計画は Opus、実装は Sonnet（opusplan など）」から、組み合わせが変わりうるモデルの名前を外した形に改め、旧い言い方は aliases に残した。表記は公式の日本語版の多数派のサブエージェントにし、subagent を aliases に置いた。"
+
+  - id: fast-mode-and-advisor
+    chapter: 役割で使い分ける
+    title: fast mode と advisor
+    nav_title: null
+    aliases: [/fast, /advisor, 高速モード, Advisor tool]
+    type: feature
+    level: 任せる
+    level_evidence: "長い作業を任せ、速さや要所の判断の質に不満が出る段階"
+    priority: 任意
+    surfaces: [claude-code, api]
+    principle: []
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "速さが要るときは fast mode で料金と引き換えに出力を速め、要所の判断だけ質を上げたいときは advisor で別のモデルに助言させられる。どちらも既定と effort で足りないときに足す。"
+    signs:
+      - {type: goal, text: "料金が上がってもよいので、返答を速くしたい"}
+      - {type: goal, text: "難しい判断のところだけ、より賢いモデルに相談させたい"}
+    prerequisites: [effort-levels]
+    related: [opusplan, choosing-a-model, reading-api-pricing, independent-review]
+    tracks: [fast-mode, advisor]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "fast mode", anchor: fast-mode}
+      - {title: "advisor", anchor: advisor}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野03（fast mode と advisor：速度とコスト。重要な局面だけ別モデルに助言させる）"
+      - "01 L-2（/fast と /advisor）"
+      - "02 §5-8（Advisor tool（beta）・Fast mode の速さと料金）・§3-5（executor が advisor にエスカレーションする形）"
+      - "research/22 #19（旧い世代の fast mode の非推奨と削除の予定。11-30 に確かめ直す）"
+    notes: "fast mode の対象のモデル・料金・非推奨と削除の日付は数値ファイルに置く。advisor の機能の id は catalog/README §5 にないので new_features に足した。"
+
+merged:
+  - {id: fable-and-mythos, into: current-models, reason: "Fable と Mythos は同じモデルで安全装置の強さと提供の範囲が違うだけで、Mythos は検証の制度を通した組織に限られ、読者が選び分ける組ではない（catalog/README §4.2 の4）。系統の位置づけの一部として current-models の節 fable-and-mythos にする。透かしは2モデルに限らない（research/25 P5b）"}
+  - {id: model-retirements, into: after-switching-models, reason: "退役と既定の変化は「モデルが替わったら見直す」の引き金の一つで、独自の判断は気づき方と移行の手順なので after-switching-models の節 retirements-and-default-changes にする。日付は数値ファイルと changes の change-timeline-2026 に置く"}
+  - {id: when-to-use-haiku, into: opusplan, reason: "軽いモデルを使う判断は、サブエージェント・大量の処理・分類にどのモデルを割り当てるかの判断の一部なので、opusplan の節 lighter-models にする。系統ごとの得意な仕事は current-models の表に置く"}
+dropped: []
+new_features:
+  - {id: advisor, title: "advisor（Claude Code の /advisor と API の Advisor tool）", note: "fast-mode-and-advisor が追う。成熟度は beta（02 §5-8、2026-10-29 の調査）。一次資料で確かめてから facts.yml に入れる"}
+open_issues:
+  - "提案（changes・データ）：台帳の budget-tokens と avoid-opus-as-expensive の行の「今どうするか」から、それぞれ effort-levels と choosing-a-model へリンクしてほしい（think-hard-keywords から thinking-keywords へは outdated-advice-ledger の related で結ばれている）"
+  - "提案（数値ファイル）：data/facts.yml に、既定の effort の「モデル × 面」の表（research/23 §3.2。Claude API・Claude Code・アプリ）、ultrathink が上げる段と効く版と面、fast mode の対象と料金と削除の日付、退役の予定を、出典と確認日つきで持つ。公式同士の食い違いは両方の出典を残す（design §6.7）"
+  - "迷った点：harness-over-model は 11 が分野02 に置く案も挙げる。モデルを替えるかの判断の直前に読まれるので models に置いた"
+  - "取り込み済み（2026-11-04 に確かめた）：basics の how-thinking-works は effort-levels・thinking-keywords・choosing-a-model を、context の compact-and-auto-compact・tidy-the-desk は 1m-context を、extend の writing-subagents は effort-levels#subagents-and-org-limits と opusplan を、changes の checking-for-updates は suspected-degradation・after-switching-models を、prompting の emphasis-words・does-double-check-work は after-switching-models を、prompting の suggest-or-do・state-the-scope・output-shape・does-double-check-work は model-quirks を、eval の felt-vs-measured は suspected-degradation を指している。symptoms の seems-less-capable は suspected-degradation を、keeps-stopping・does-more-than-asked は model-quirks と effort-levels を指している"

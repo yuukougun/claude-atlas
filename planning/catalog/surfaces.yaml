@@ -1,0 +1,244 @@
+field: surfaces
+chapters: [面の選び方, 面ごとの違い, ブラウザと周辺製品]
+pages:
+  - id: choosing-a-surface
+    chapter: 面の選び方
+    title: アプリ・Claude Code・API の選び方
+    nav_title: null
+    aliases: [面の選び方, どの Claude を使うか, Claude Code と Cowork の使い分け, 統合された Claude, Chat と Cowork の統合]
+    type: comparison
+    level: 使う
+    level_evidence: "対話で頼み始めた段階で、どの面で作業するかを最初に選ぶ"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [合っていない]
+    pitfalls: []
+    scenes: [開発, 文章, 調べもの, データ分析]
+    summary: "頼みたい作業を、アプリ・Claude Code・API のどれで進めるかを、誰が手を動かすか・何に触れるか・どこで動くかの三つで選べる。迷ったら、触れる必要のあるものから決める。"
+    signs:
+      - {type: goal, text: "この作業をアプリと Claude Code のどちらでやるべきか決めたい"}
+      - {type: goal, text: "コードを書かない仕事にも Claude Code を使うべきか知りたい"}
+      - {type: situation, text: "古い記事の「Cowork は別のアプリ」という説明が、今の画面と合わない"}
+      - {type: goal, text: "自分のプログラムから Claude を呼ぶべきか、今ある面で足りるかを決めたい"}
+    prerequisites: []
+    related: [where-it-runs, claude-code-surfaces, what-each-surface-cannot-do, product-map, tasks-and-schedules-in-the-app, permission-modes-in-the-app, sdk-comparison, headless-basics, office-paperwork, browser-control, peripheral-products]
+    tracks: []
+    outdated_advice: [cowork-separate-app]
+    volatility: 高
+    sections:
+      - {title: "三つの面を比べる", anchor: compare-surfaces}
+      - {title: "アプリはチャットとタスクを一つの会話で扱う", anchor: app-chat-and-tasks}
+      - {title: "アプリのタスクか Claude Code か", anchor: app-tasks-or-claude-code}
+      - {title: "自分のプログラムから呼ぶとき（API・SDK）", anchor: when-to-build-with-api}
+      - {title: "判断例", anchor: examples}
+    templates: []
+    visual: {kind: static, text: "三つの面を、誰が手を動かすか・何に触れるか・どこで動くかの三つの軸で並べた図"}
+    materials:
+      - "00 §3 分野02（アプリ・Claude Code・API の選び方・統合された Claude・Claude Code と Cowork の使い分け）"
+      - "00 §4 費用・選び方・任せ方（アプリと Claude Code のどちらでやるべきか・コードを書かない仕事に Claude Code を使いたい・自分のアプリに Claude を組み込みたい）"
+      - "02 §1-1（統合された Claude 体験：Tasks・権限モード・現時点の制約・展開状況）"
+      - "04 Q4（Code と Cowork の使い分け「Cowork から始め、繰り返す作業になったら Code へ」。二次情報）"
+      - "01 P-1〜P-3（Claude Code の面）"
+      - "02 §5-9（Agent SDK・Managed Agents・Client SDK の使い分け表）"
+      - "00 §5 台帳（Cowork は別アプリ、Web search はトグルで入れる）"
+      - "00 §3 分野07（Claude Code を非エンジニアが使う：Desktop の Code タブ・作業用のフォルダ・手動のモードで始める。cli の担当は for-non-engineers を採らず、00 §4 のサイン「コードを書かない仕事に Claude Code を使いたい」をここか recipes の office-paperwork に置く提案をした）"
+    notes: "registry の unified-claude（統合された Claude）と claude-code-vs-cowork（Claude Code と Cowork の使い分け）を、app-chat-and-tasks と app-tasks-or-claude-code の節にまとめた。2026-09 の統合で Cowork はアプリの会話のタスクの機能になり、「アプリのタスクか Claude Code か」はこのページの比較の中心そのものになったため。タスクの使い方の本体は app の tasks-and-schedules-in-the-app、API・SDK の比較の本体は api の sdk-comparison。比較の表は数値ファイルの面の属性から生成する（open_issues の提案）。"
+
+  - id: where-it-runs
+    chapter: 面の選び方
+    title: 実行場所の違い（クラウド・自分の PC・リモート操作）
+    nav_title: 実行場所の違い
+    aliases: [どこで動くか, クラウドで動く, 手元で動く, Remote Control, クラウドセッション]
+    type: concept
+    level: 整える
+    level_evidence: "アプリのタスクやクラウドのセッションを使い始め、手元のファイルや設定が見えない理由に最初に出会う段階"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる, 縛る]
+    prevents: [見えていない, 境界がない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "同じ依頼でも、クラウド・自分の PC・リモート操作のどこで動くかで、触れられるファイル・ブラウザ・設定・秘密と、PC を閉じても続くかが変わる理由が分かる。"
+    signs:
+      - {type: symptom, text: "クラウドで動かすと、手元の設定が効いていない"}
+      - {type: symptom, text: "アプリのタスクが手元のファイルを読めない"}
+      - {type: goal, text: "PC を閉じても作業を続けさせたい"}
+      - {type: goal, text: "外出先から、手元の PC で動いている作業を見たい"}
+    prerequisites: [choosing-a-surface]
+    related: ["cloud-sessions-and-teleport#settings", "tasks-and-schedules-in-the-app#where-it-runs", lethal-trifecta, sandboxing, protecting-secrets, settings-layers, loop-and-scheduling, claude-code-surfaces, browser-control, what-each-surface-cannot-do]
+    tracks: [cloud-sessions, remote-control, desktop-code]
+    outdated_advice: [code-on-the-web-remote]
+    volatility: 高
+    sections:
+      - {title: "三つの実行場所", anchor: three-locations}
+      - {title: "クラウドで動くときに届かないもの", anchor: what-cloud-cannot-reach}
+      - {title: "手元で動かすときの境界", anchor: local-boundaries}
+      - {title: "リモート操作は実行を手元に残す", anchor: remote-control}
+    templates: []
+    visual: {kind: static, text: "実行場所（クラウド・自分の PC・リモート操作）と、届くもの（ファイル・ブラウザ・設定・秘密）の対応図"}
+    materials:
+      - "00 §3 分野02（実行場所の違い：ローカルのファイルやブラウザ操作には Desktop が要る。クラウドのセッションは user 設定を読まない）"
+      - "02 §1-1（Cloud タスクと Desktop。Pro・Max の新しいタスクのクラウド実行）"
+      - "02 §1-15（Cowork の安全指針：信頼境界の外を読めることと被害につながる行動の二条件）"
+      - "01 P-1・P-2（クラウドのセッションが読まない設定・Remote Control）"
+      - "research/26 §3.8（Desktop とクラウドのセッションは API キーの環境変数を読まない）"
+      - "11 第1節 分野02 p12#47（【競】実行環境を用意できないと解けない例。中〜弱・時点依存）"
+    notes: null
+
+  - id: claude-code-surfaces
+    chapter: 面ごとの違い
+    title: Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）
+    nav_title: Claude Code の面
+    aliases: [VS Code 拡張, JetBrains, Desktop の Code タブ, claude.ai/code, Claude Code on the Web]
+    type: comparison
+    level: 整える
+    level_evidence: "ターミナルのほかに IDE や Desktop でも使い始め、面ごとの差に出会う段階"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [見せる]
+    prevents: [合っていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "Claude Code をターミナル・IDE・Desktop・Web・モバイルのどれで使うかを、動く場所・読む設定・画面の機能の違いで選べる。中で動くエージェントループは同じである。"
+    signs:
+      - {type: goal, text: "ターミナルと VS Code の拡張のどちらで Claude Code を使うか決めたい"}
+      - {type: symptom, text: "ターミナルではできたことが、IDE や Desktop ではできない"}
+      - {type: goal, text: "ブラウザやスマホから Claude Code に作業を頼みたい"}
+    prerequisites: [where-it-runs]
+    related: [choosing-a-surface, "using-ides#vs-cli", cloud-sessions-and-teleport, control-from-phone, settings-layers, agent-view-and-background, what-each-surface-cannot-do]
+    tracks: [ide-extensions, desktop-code, cloud-sessions, remote-control]
+    outdated_advice: [code-on-the-web-remote]
+    volatility: 高
+    sections:
+      - {title: "同じエージェントループ、違う窓口", anchor: same-loop}
+      - {title: "面ごとの違い（表）", anchor: comparison-table}
+      - {title: "選び方", anchor: how-to-choose}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野02（Claude Code の面：同じエージェントループ。面ごとの差）"
+      - "01 P-1〜P-3（クラウド・Remote Control・Desktop・Mobile・IDE）"
+      - "research/26 §3.4（IDE 拡張の固有の機能。公式の文書による。動作は試していない）"
+      - "research/22 #3（stable の通り道）・#20（ultrathink の動きの端末と VS Code の差が縮んだ）"
+      - "decisions 2026-11-03 書き方の方針（安全・面・表現）5（WSL・Linux の CLI を基準にし、ほかの OS と IDE は未確認と書く）"
+    notes: "WSL・Linux の CLI を基準にし、ほかの OS と IDE の拡張の動作は「未確認」と書く（decisions の方針5）。各面の使い方の本体は cli の分野（IDE・クラウドセッション・スマホからの操作）。表は数値ファイルから生成する。"
+
+  - id: what-each-surface-cannot-do
+    chapter: 面ごとの違い
+    title: 面ごとにできないこと（早見表）
+    nav_title: null
+    aliases: [面の制約, モバイルでできないこと, シークレットチャットでできないこと, 機能の対応表]
+    type: ledger
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: []
+    prevents: []
+    pitfalls: []
+    summary: "アプリの Web・Desktop・モバイル、Claude Code の各面、API のそれぞれで使えない機能を引ける。使いたい機能がない面では、使える面に移るかを決める。"
+    signs:
+      - {type: symptom, text: "スマホのアプリだと、Web で使えた機能が出てこない"}
+      - {type: symptom, text: "シークレットチャットではファイルを作ってくれない"}
+      - {type: goal, text: "使いたい機能がどの面で使えるかを、始める前に確かめたい"}
+    prerequisites: []
+    related: [choosing-a-surface, claude-code-surfaces, where-it-runs, "incognito-chats#limits", "voice-and-mobile#mobile", default-safety-settings]
+    tracks: [incognito, artifacts, file-creation, code-execution, connectors]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "早見表（面 × 機能）", anchor: table}
+      - {title: "別の面に移すとき", anchor: moving-between-surfaces}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野02（面ごとにできないこと一覧：Incognito では作れない、モバイルでは artifact が使えない、など）"
+      - "02 §1-1（統合の後の制約：GitHub からの追加・会話の分岐・Incognito・古いタスクの検索）・§1-15・§1-16"
+      - "research/26 #26（Incognito の新しい体験ではファイル作成とコード実行が使えない）・#4（共有）"
+      - "01 P-1（クラウドのセッションが読まない設定）"
+    notes: "registry の型は comparison・level 整える。中身が数値ファイルから生成する面 × 機能の対応表なので ledger にし、level を外した（design §2.2・§3.1 の規則2）。手で書くのは読み方と、別の面に移すときの注意だけ。"
+
+  - id: browser-control
+    chapter: ブラウザと周辺製品
+    title: Claude in Chrome と computer use（ブラウザと画面の操作）
+    nav_title: Claude in Chrome と computer use
+    aliases: [Chrome 拡張, ブラウザ操作, 画面操作, コンピュータの操作]
+    type: feature
+    level: 任せる
+    level_evidence: "ログイン済みのブラウザや手元のアプリの操作を任せる段階で最初に要る（任せる幅が広がる）。registry の見当は 整える"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [確かめる, 縛る]
+    prevents: [確かめていない, 境界がない]
+    pitfalls: []
+    scenes: [開発, 調べもの]
+    summary: "Claude in Chrome でブラウザを、computer use で手元のアプリの画面を操作させ、作った画面の確かめや手作業の代行に使える。connector があればそちらを先に使い、機微な作業は任せない。"
+    signs:
+      - {type: goal, text: "作った Web の画面を、Claude に実際のブラウザで確かめさせたい"}
+      - {type: goal, text: "ブラウザでのフォーム入力のような手作業を代わりにやってほしい"}
+      - {type: situation, text: "API も connector もないアプリを Claude に操作させたい"}
+    prerequisites: [where-it-runs]
+    related: [browser-agent-cautions, visual-checks, lethal-trifecta, prompt-injection-in-practice, connectors-in-the-app, permission-modes-in-the-app, office-paperwork]
+    tracks: [claude-in-chrome, computer-use]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "connector・ブラウザ・画面の順に選ぶ", anchor: which-to-use}
+      - {title: "Claude in Chrome", anchor: claude-in-chrome}
+      - {title: "computer use は最後の手段", anchor: computer-use}
+      - {title: "任せない作業", anchor: what-not-to-hand-over}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野02（Claude in Chrome とブラウザ操作・Computer use（画面操作））"
+      - "02 §1-12（Claude in Chrome：有料プラン・Chrome のみ・Claude Code との連携・公式の注意）"
+      - "02 §1-15（computer use：優先順は connector → ブラウザ → 画面操作。アプリと Claude Code の間に sandbox がない。アプリごとに許可）"
+      - "01 P-3（Claude in Chrome による UI の検証）"
+      - "03 N4（Claude in Chrome でフォーム入力などを任せる実践。英語圏）"
+      - "decisions 2026-11-03 書き方の方針（安全・面・表現）6（検証に使う Claude in Chrome は使い方まで書く）"
+    notes: "registry の screen-control（Computer use（画面操作））を computer-use の節にまとめた。computer use は beta で概念と注意が中心になり、公式の優先順（connector → ブラウザ → 画面操作）の判断を Claude in Chrome と同じページで示せるため。安全の注意の本体は safety の browser-agent-cautions、画面での確かめ方の本体は verify の visual-checks。"
+
+  - id: peripheral-products
+    chapter: ブラウザと周辺製品
+    title: 周辺製品の一覧
+    nav_title: null
+    aliases: [Claude Design, Claude Science, Claude Duet, Claude Tag, Claude in Slack, Office アドイン, Claude for Microsoft 365, Google Workspace アドオン]
+    type: hub
+    priority: 任意
+    surfaces: [app]
+    principle: []
+    prevents: []
+    pitfalls: []
+    summary: "Office アドインや Slack など、本体のアプリの外で使う Claude の製品の位置づけと、確認日つきの一覧を引ける。"
+    signs:
+      - {type: goal, text: "Excel や Word の中から Claude を使いたい"}
+      - {type: situation, text: "聞いたことのない Claude の製品名が出てきて、何のことか分からない"}
+    prerequisites: []
+    related: [choosing-a-surface, product-map, "artifacts-overview#claude-design", office-paperwork, make-slides, browser-control]
+    tracks: [office-add-ins, claude-in-slack]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "一覧（確認日つき）", anchor: list}
+      - {title: "Office アドイン", anchor: office-add-ins}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野02（Office アドインと Google Workspace・Claude Design・Science・Duet・Tag）"
+      - "02 §1-13（M365 と Google Workspace アドオン）・§1-14（Claude Tag）・§1-17（新しい周辺プロダクト）"
+      - "research/26 §3.6・#10・#11（M365 の各アドインの機能・プラン・データの扱い）"
+      - "requirements §6.3（周辺製品は一覧ページだけ）"
+      - "decisions 2026-11-03 書き方の方針（安全・面・表現）6（本体に入って読者がふつうに触れる機能だけ使い方まで書く）"
+    notes: "registry の office-and-workspace（Office アドインと Google Workspace）をまとめた。requirements §6.3 で周辺製品は一覧だけにするため。会話の中で作る Design・Docs・Slides は app の artifacts-overview が使い方まで受け持つ（方針 B6）。research preview の製品名は変わりやすいので、題名と summary に書かず aliases と生成の一覧に置く。"
+
+merged:
+  - {id: unified-claude, into: choosing-a-surface, reason: "2026-09 の統合でアプリはチャットとタスクを一つの会話で扱うようになり、面を選ぶときの前提そのものになった。独自の判断は「どこで動き、何に触れるか」で選ぶことで、choosing-a-surface と where-it-runs の判断と同じなので、節 app-chat-and-tasks にする。タスクの使い方は app の tasks-and-schedules-in-the-app"}
+  - {id: claude-code-vs-cowork, into: choosing-a-surface, reason: "統合の後の Cowork はアプリの会話のタスクの機能で、「アプリのタスクか Claude Code か」は choosing-a-surface の比較の中心と同じ軸。比較のページを同じ軸で二つにしないため、節 app-tasks-or-claude-code にする（「繰り返す作業になったら Claude Code へ」という実践知を含む）"}
+  - {id: screen-control, into: browser-control, reason: "computer use は beta で、概念と注意が中心になる（catalog/README §4.2 の7）。公式の優先順（connector → ブラウザ → 画面操作）は Claude in Chrome との選び分けで一つの判断になるので、browser-control の節 computer-use にする"}
+  - {id: office-and-workspace, into: peripheral-products, reason: "requirements §6.3 で Office アドインなどの周辺製品は一覧のページだけにする。research/26 §3.6 の機能の詳細は一覧の節と数値ファイルに置く"}
+  - {id: agent-sdk-and-managed-agents, into: sdk-comparison, reason: "design §4.2 で API・SDK の概念は api の分野が持つ。Agent SDK と Managed Agents の位置づけ（自分のプロセスに組み込むか、Anthropic にホストさせるか）は api の sdk-comparison の比較と同じ問いなので、そちらへまとめ、choosing-a-surface の節 when-to-build-with-api からリンクする"}
+dropped: []
+open_issues:
+  - "提案（app・features）：アプリのタスク（Cowork）の機能の id が catalog/README §5 にない。app の担当が new_features で足すなら、choosing-a-surface と where-it-runs の tracks にも入れる"
+  - "提案（api）：agent-sdk-and-managed-agents を sdk-comparison にまとめた。sdk-comparison に「面の中での位置づけ（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で対話する）」の観点を入れ、related に choosing-a-surface を持ってほしい。sdk-comparison を merged・dropped にするときは、この merged の into を直す必要がある"
+  - "提案（数値ファイル）：data/facts.yml に「面の属性」の表（面ごとの、手を動かす主体・触れられるもの・動く場所・読む設定・PC を閉じても続くか・できないこと）を確認日つきで持つ。choosing-a-surface・claude-code-surfaces・what-each-surface-cannot-do の表はそこから生成する"
+  - "取り込み済み（2026-11-04 に確かめた）：start の product-map は choosing-a-surface・where-it-runs などを指し、safety の browser-agent-cautions と verify の visual-checks は browser-control を、recipes の make-slides・office-paperwork は peripheral-products#office-add-ins を指している。cli の using-ides は claude-code-surfaces を、cloud-sessions-and-teleport は where-it-runs を前提にし、control-from-phone は where-it-runs を指している。app の提案で choosing-a-surface の related に permission-modes-in-the-app を、peripheral-products の related に artifacts-overview#claude-design を入れた。app の permission-modes-in-the-app・tasks-and-schedules-in-the-app は、まとめた unified-claude の代わりに choosing-a-surface を前提にした"

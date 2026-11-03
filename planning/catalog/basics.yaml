@@ -1,0 +1,573 @@
+# basics（基礎：なぜそうなるか）の目次。形式は planning/catalog/README.md §3、規則は §4、語彙は schema/site.yml。
+# 担当：C1（工程3、2026-11-04）。
+# ほかの分野の「なぜ」の本体（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。原理は変わりにくいので volatility は低を基本にし、
+# 機能の動きに依るページだけ中にした。ほかの分野が前提にしやすいよう、ページは「なぜ」1つの単位にし、必須のページの前提は必須にした。
+field: basics
+chapters: [コンテキストと注意, エージェントと思考, 答えの確かさ, 指示と仕組み]
+pages:
+  # ── コンテキストと注意 ──
+  - id: tokens
+    chapter: コンテキストと注意
+    title: トークンとは
+    aliases: [token, トークン数, トークンの数え方]
+    type: concept
+    level: 使う
+    level_evidence: "利用上限・費用・コンテキストの量はどれもトークンで数えるので、使い始めた段階で単位として要る"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [合っていない]
+    summary: "Claude が文章を読み書きする単位であるトークンと、コンテキスト・費用・利用上限がトークンで決まることが分かる。数はモデルと言語で変わるので、手元で数えて確かめる。"
+    signs:
+      - {type: goal, text: "上限や費用で言う「トークン」が何を数えているのか知りたい"}
+    prerequisites: []
+    related: [can-i-prompt-in-japanese, attention-budget, rereads-whole-history, how-usage-limits-work, what-uses-up-limits, inspect-context]
+    tracks: [token-counting, context-window]
+    volatility: 低
+    visual: {kind: static, text: "同じ一文を英語と日本語でトークンに区切って色分けした列。倍率はトークナイザーで変わると添える"}
+    materials:
+      - "00 §3 分野01「トークンとは（日本語の場合）」"
+      - "05 §3-1（トークンとトークン化）と Inferences（語のかけら）・Gaps と注記"
+      - "research/27 #13（公式は言語ごとの倍率を出していない。Opus 4.7 以降の新しいトークナイザー。token counting で数える）"
+      - "02 §5（token counting など API の概念）"
+    notes: "日本語のトークン数の違いと対処の本体は japanese の more-tokens-in-japanese に任せ、ここは単位の考え方にした（design §4.2：日本語に固有の論点は japanese。registry の notes の重なりの組）。そのため題名から「（日本語の場合）」を外した。例は日本語で出す。倍率の数値は数値ファイルに置き、本文と summary に書かない（05 §3-1 の比率は旧い tokenizer の移植版によるもので、現行のモデルの値ではない）。"
+
+  - id: attention-budget
+    chapter: コンテキストと注意
+    title: コンテキストウィンドウと注意の予算
+    aliases: [context window, attention budget, 注意の予算, 広い机]
+    type: concept
+    level: 使う
+    level_evidence: "使う→整えるの上がる条件「見えていない／散らかっている を言い分けられる」の土台（requirements §3.3）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [散らかっている]
+    summary: "コンテキストウィンドウに入ることと中身をよく使えることは別で、関係のない情報が増えるほど大事な情報への注意が薄くなることが分かる。見せることに片付けることが含まれる理由でもある。"
+    signs:
+      - {type: goal, text: "コンテキストが広くなったのなら、資料を全部入れてよいのか知りたい"}
+      - {type: symptom, text: "資料をたくさん渡したのに、大事な点を拾ってくれない"}
+    prerequisites: [tokens]
+    related: [context-rot, lost-in-the-middle, rereads-whole-history, subagent-isolation, 1m-context, tidy-the-desk, always-on-costs, inspect-context, "four-principles#show"]
+    tracks: [context-window]
+    outdated_advice: [save-context-for-200k]
+    volatility: 低
+    visual: {kind: static, text: "広い机：書類が増えるほど一枚ごとの目配りが薄くなる。机の広さと、よく読めることは別"}
+    materials:
+      - "00 §3 分野01「コンテキストウィンドウと注意の予算」"
+      - "05 §3-2（Effective context engineering の attention budget と、高シグナルなトークンの最小集合）と Inferences（巨大な机）"
+      - "00 §1 の段落（溢れさせない技術から、質とコストのために机を整える習慣へ）"
+      - "research/23 #1・§3.1（「埋まるほど性能が落ちる」は改稿前の Best practices の前提。現行は溢れることはまれとし、質とコストのために /clear を勧める）"
+    notes: "改稿前の Best practices の「コンテキストはすぐ埋まり、埋まるほど性能が落ちる」（research/23 #1）を根拠にしない。根拠は Anthropic の context engineering の記事と context rot の研究で書き、溢れることはまれでも質とコストのために片付ける、という現行の公式の立場に合わせる。窓の大きさの値は数値ファイルに置く。"
+
+  - id: rereads-whole-history
+    chapter: コンテキストと注意
+    title: 毎ターン全履歴を読み直す
+    aliases: [会話全体の再送, ステートレス, 長い会話が重い理由, 読み直す受験者]
+    type: concept
+    level: 使う
+    level_evidence: "長い会話ほど遅く重くなり上限を早く使う、という使い始めの体験の理由になる"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [散らかっている, 合っていない]
+    summary: "Claude は毎回、会話の最初からすべてを読み直して返事をするので、長い会話ほど遅く重く、上限も早く使うことが分かる。同じ前置きが続くと cache で安くなる理由にもつながる。"
+    signs:
+      - {type: symptom, text: "会話が長くなると返事が遅くなり、上限の減りも早くなる"}
+      - {type: goal, text: "長い会話がなぜ重くなるのか知りたい"}
+    prerequisites: [tokens]
+    related: [attention-budget, why-prompt-caching, what-survives-compaction, when-to-start-fresh, stateless-messages-api, what-uses-up-limits, hits-limits-quickly]
+    volatility: 低
+    visual: {kind: dynamic, text: "ターンごとに履歴が積み上がり、毎回全部を読み直し、窓に近づくと圧縮される様子。公式の Explore the context window に対話型の図があり、自作かリンクかは未決（research/21 §2.4）"}
+    materials:
+      - "00 §3 分野01「毎ターン全履歴を読み直す」"
+      - "05 §3-1（Manage costs：Claude Code は毎回の request で会話全体を送る）と Inferences（読み直す受験者）"
+      - "research/22 #40（message threads は送る量を減らすが、モデルが毎回全体を読むことと料金は変わらない。比喩は保てる）"
+      - "requirements §2（動く図の例：コンテキストの埋まり方）・§6.6（比喩の一覧）"
+    notes: "api の stateless-messages-api（Messages API と会話の正体）と同じ仕組みなので、面ごとに分けずタブで並べる案を open_issues に書いた。動く図はコンテキストの埋まり方の図で、requirements §2 が動く図の例に挙げるもの（公式の対話型の図へのリンクで足りるなら static にする）。"
+
+  - id: context-rot
+    chapter: コンテキストと注意
+    title: context rot と紛らわしい情報
+    aliases: [コンテキストの劣化, 長い会話の劣化, distractor, 失敗の残骸]
+    type: concept
+    level: 使う
+    level_evidence: "症状「長い会話で前提を忘れる・雑になる」（symptoms の forgets-in-long-chats、使う）の原因の説明で、使う→整えるの上がる条件の「散らかっている」の中身（requirements §3.3）。registry の見当は整える"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [散らかっている]
+    summary: "入力が長くなるほど、また似ているが違う情報が混ざるほど、答えの質が下がりやすいことが分かる。失敗した試みが会話に残ると紛らわしい情報になるので、片付けや巻き戻しが効く。"
+    signs:
+      - {type: symptom, text: "会話が長くなると精度が落ちる"}
+      - {type: symptom, text: "失敗したやり方を何度も蒸し返してくる"}
+    prerequisites: [attention-budget]
+    related: [lost-in-the-middle, forgets-in-long-chats, going-in-circles, when-to-start-fresh, rewind-dont-correct, tidy-the-desk, handoff-documents, 1m-context]
+    outdated_advice: [save-context-for-200k]
+    volatility: 低
+    visual: {kind: static, text: "似ているが違う書類が混ざるほど、正しい一枚を取り違える図。数値は傾向として、研究のモデルと世代を添える"}
+    materials:
+      - "00 §3 分野01「context rot と紛らわしい情報」"
+      - "05 §3-3（Chroma の18モデルの実験。distractor、needle と質問の類似度）と Inferences（似ているが違う書類）"
+      - "11 第2節 分野01「context rot と紛らわしい情報」p34#106（足すものなし）"
+      - "research/23 #1（改稿前の Best practices の前提を根拠にしない）"
+    notes: "level を registry の見当（整える）から使うに下げた（level_evidence）。症状の forgets-in-long-chats（使う）が前提にしても段階が逆転しない。研究は旧い世代のモデル（Claude 4 など）の結果なので、どのモデルの結果かを書き、現行の Claude の傾向としては書かない（requirements §6.2）。用語 context rot は研究の名前なので題名に残した。"
+
+  - id: lost-in-the-middle
+    chapter: コンテキストと注意
+    title: 中ほどの情報は使われにくい（lost in the middle）
+    nav_title: 中ほどの情報は使われにくい
+    aliases: [lost in the middle, 位置の効果, U 字型の性能]
+    type: concept
+    level: 整える
+    level_evidence: "長い資料を渡し、並べ方を整える段階（context の handing-long-documents、prompting の long-context-first。どちらも整える）で要る"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [散らかっている]
+    summary: "長い入力では、置き場所によって情報の使われ方が変わることがあると分かる。ただし条件とモデルの世代で変わり、いつでも成り立つ法則ではない。"
+    signs:
+      - {type: symptom, text: "長い資料の真ん中あたりの内容を見落とされる"}
+    prerequisites: [context-rot]
+    related: [long-context-first, handing-long-documents, skipped-later-pages, attention-budget]
+    volatility: 低
+    visual: {kind: static, text: "U 字型の性能の図。条件によっては差が消えることを併記する"}
+    materials:
+      - "00 §3 分野01「中ほどの情報は使われにくい（lost in the middle）」"
+      - "05 §3-4（Liu らの研究と、Chroma の実験で位置の差が目立たなかった注意）・Gaps（掲載誌は未確認）"
+    notes: "研究は 2023 年のモデルの結果で、2025 年の実験では位置の差が目立たなかった（05 §3-4）。傾向として、条件で変わることを中心に書く。prompting の long-context-first の根拠は公式の試験（00 §1）なので、そちらの前提にはせず関連にとどめる案を open_issues に書いた。"
+
+  - id: why-prompt-caching
+    chapter: コンテキストと注意
+    title: プロンプトキャッシング（先頭が変わらないことの価値）
+    nav_title: プロンプトキャッシングの仕組み
+    aliases: [prompt caching, cache, キャッシュが切れる, 先頭部分の一致]
+    type: concept
+    level: 任せる
+    level_evidence: "長いセッションを続けて任せる段階で、途中でモデルや設定を変えると費用と上限の減りが増える理由として要る"
+    priority: 推奨
+    surfaces: [claude-code, api]
+    principle: [見せる]
+    prevents: [合っていない]
+    summary: "会話の先頭（ツールの定義・システムプロンプト・前の発言）が変わらなければ読み直しが安く済み、途中で変えるとそこから後の cache が外れることが分かる。セッションの途中で何を変えないかを決める土台になる。"
+    signs:
+      - {type: goal, text: "セッションの途中でモデルや設定を変えると費用が増える理由を知りたい"}
+    prerequisites: [rereads-whole-history]
+    related: [prompt-caching-in-practice, compact-and-auto-compact, always-on-costs, what-uses-up-limits, how-thinking-works]
+    tracks: [prompt-caching]
+    volatility: 中
+    visual: {kind: static, text: "積み木：tools → system → messages の順に積み、上の段を変えると下の段の cache がすべて外れる"}
+    materials:
+      - "00 §3 分野01「prompt caching（先頭が変わらないことの価値）」"
+      - "05 §3-11（先頭部分の完全な一致、cache が無効になる操作、/usage の Prompt cache の行）と Inferences（付箋・積み木）"
+      - "05 §3-8（effort を変えると prompt cache が無効になる）"
+    notes: "題名は公式の日本語版の多数派（プロンプトキャッシング。research/27 §3.1）に合わせ、英語名を aliases に置いた。料金の倍率と cache の寿命は数値ファイルに置く。費用の仕組みの説明で、任せる幅を広げる内容ではないので、比例則の警告は残す。"
+
+  - id: what-survives-compaction
+    chapter: コンテキストと注意
+    title: 圧縮（compaction）で何が残り、何が消えるか
+    nav_title: 圧縮で残るもの・消えるもの
+    aliases: [compaction, 要約圧縮, 自動圧縮, What survives compaction, 議事録だけ残す]
+    type: concept
+    level: 任せる
+    level_evidence: "長い作業を任せて自動の圧縮が起きる段階で、どの約束が残るかが要る（症状の forgot-after-compaction も任せる）"
+    priority: 必須
+    surfaces: [claude-code, app, api]
+    principle: [見せる, 縛る]
+    prevents: [散らかっている, 縛っていない]
+    summary: "圧縮で会話が要約に置き換わるとき、そのまま効くもの・入れ直されるもの・必要になったら読み直されるもの・要約に溶けて消えるものの違いが分かる。残したい規則の置き場所を決める土台になる。"
+    signs:
+      - {type: goal, text: "圧縮のあとも守らせたい約束を、どこに書けばよいか知りたい"}
+    prerequisites: [rereads-whole-history, where-instructions-sit]
+    related: [compact-and-auto-compact, promises-after-compaction, forgot-after-compaction, when-to-lock, handoff-documents, path-scoped-rules, long-chat-limits]
+    tracks: [compaction, claude-md, rules, auto-memory, skills]
+    volatility: 中
+    sections:
+      - {title: "そのまま効くもの", anchor: kept}
+      - {title: "入れ直されるもの", anchor: reloaded}
+      - {title: "必要になったら読み直されるもの", anchor: reread-on-demand}
+      - {title: "要約に溶けて消えるもの", anchor: dissolved}
+    visual: {kind: static, text: "議事録だけ残して録音を消す。公式の表を四つの列（そのまま効く・入れ直す・必要になったら読み直す・要約に溶ける）にした図"}
+    materials:
+      - "00 §3 分野01「compaction（要約圧縮）で何が残り、何が消えるか」と表の後の【2026-11-03 注記】"
+      - "research/23 #6・§3.4（Explore the context window の「What survives compaction」の表の要約）"
+      - "11 第3節 3-2 #5 と、表の後の注記（skill の説明文は v2.1.304 以降に作り直して入れ直す。auto memory の200行・25KB は Memory のページの値）"
+      - "05 §3-12（compaction の定義、/compact の重さ）と Inferences（議事録だけ残して録音を消す）"
+      - "research/22 #14・#17（圧縮の不具合の修正と、hook の出力の上限）"
+    notes: "00 の「CLAUDE.md は再注入される」は一部だけ正しい（注記）ので使わず、research/23 §3.4 の公式の表で書く。表の項目と数（読み直すファイルの数やトークンの上限など）は版で変わるので数値ファイルに置く。仕組みの本体はこのページで、context の promises-after-compaction・symptoms の forgot-after-compaction との分け方を open_issues に書いた（enforce の spoken-prohibitions-fade は enforce の担当が when-to-lock にまとめた）。アプリの長い会話の自動の文脈管理は app の long-chat-limits に任せる。比例則：enforce の when-to-lock を関連に持つ。"
+
+  - id: subagent-isolation
+    chapter: コンテキストと注意
+    title: サブエージェントは別室の部下
+    aliases: [subagent, 文脈の隔離, 別のコンテキストで調べさせる, 別室の部下]
+    type: concept
+    level: 任せる
+    level_evidence: "調べものや並列の作業を任せる段階で、何が得で何が損かの判断に要る"
+    priority: 必須
+    surfaces: [claude-code, api]
+    principle: [見せる]
+    prevents: [散らかっている]
+    summary: "サブエージェントは別のコンテキストで作業して要約だけを返すので本筋を散らかさずに済むが、賢くはならずトークンは余分にかかることが分かる。向くのは並列の作業・うるさい出力の切り離し・独立したレビューである。"
+    signs:
+      - {type: goal, text: "調べものを別の担当に任せると、何が得で何が損か知りたい"}
+    prerequisites: [attention-budget]
+    related: [research-in-subagents, writing-subagents, what-subagents-dont-inherit, skill-vs-subagent, independent-review, choosing-parallel-modes, agent-loop]
+    tracks: [subagents]
+    outdated_advice: [tell-it-to-use-subagents, subagent-per-step]
+    volatility: 低
+    visual: {kind: static, text: "調査を別室の部下に頼み、報告書1枚だけを受け取る。部下も給料（トークン）を取る"}
+    materials:
+      - "00 §3 分野01「subagent は別室の部下」"
+      - "05 §3-13（context の隔離。コストはかかり答えの質はよくならない。価値は並列・ノイズの隔離・独立したレビュー）と Inferences（別室の部下）"
+      - "research/23 §3.7（現行の Best practices は「コンテキストを守るために subagent を使う」をもうやめてよい助言に入れた）"
+      - "research/27 §3.2（CLAUDE.md・output style がサブエージェントに届く範囲）"
+      - "research/22 §3.7（API でエージェントを作るとき subagent を減らす場合がある、という公式ブログ。題と要約だけなので根拠にしない）"
+    notes: "題名は公式の日本語版の多数派（サブエージェント。research/27 §3.1）に合わせた。「コンテキストを守るために使う」を主な理由として書かない（research/23 §3.7。台帳に足す案を changes の open_issues に書いた）。比例則：verify の independent-review を関連に持つ。"
+
+  # ── エージェントと思考 ──
+  - id: agent-loop
+    chapter: エージェントと思考
+    title: エージェントループと tool use
+    aliases: [エージェントループ, agentic loop, ツールの呼び出し, 文脈を集める・行動する・確かめる]
+    type: concept
+    level: 整える
+    level_evidence: "完了の条件と確かめ方を依頼に含めて渡す段階（整える→任せるの上がる条件。requirements §3.3）で、ループに「確かめる」を渡す理由として要る"
+    priority: 必須
+    surfaces: [claude-code, app, api]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    summary: "Claude は道具を使って文脈を集め、行動し、結果を確かめる輪を回し、確かめる手段がないと終わったように見えたところで止まることが分かる。合否を返すテストなどを渡すと、輪を自分で閉じられる。"
+    signs:
+      - {type: goal, text: "エージェントが裏で何を繰り返して作業を進めているのか知りたい"}
+      - {type: symptom, text: "動くか確かめないまま、終わったことにする"}
+    prerequisites: []
+    related: [claims-done-but-isnt, define-done, verification-ladder, evidence-not-reports, reward-hacking, tool-use-loop, harness-over-model, subagent-isolation, goal-until-done]
+    scenes: [開発, コンテスト]
+    outdated_advice: [keep-going-dont-be-lazy, add-double-check]
+    volatility: 低
+    visual: {kind: mermaid, text: "読む → 考える → 行動する → 確かめる → また考える の輪。確かめるの矢印が欠けると、終わったように見えたところで止まる"}
+    materials:
+      - "00 §3 分野01「エージェントループと tool use」"
+      - "00 §1（How Claude Code works：文脈を集める → 行動する → 結果を確かめる）"
+      - "05 §3-9（just-in-time の取得、終わったように見えるまで道具を使う、ツールの応答の上限、interleaved thinking）・§3-14 と Inferences（円環図）"
+      - "11 第2節 分野01「エージェントループと tool use」p12#15（ALE-Bench：フィードバック付きの逐次改善）"
+      - "11 第4節 #32・research/24 B-32（ALE-Bench の数値の確認。150回との比較は6問だけ）"
+      - "research/22 #18（検索の打ち切りを全部の結果とみなした不具合：見えていないことに気づかない例）"
+    notes: "ALE-Bench の数値は研究のモデルと世代を書き、独立した150回との比較は6問だけだったこと（11 第4節 #32）を添える。api の tool-use-loop は API での組み立てで、このページを前提にする案を open_issues に書いた。コンテストの例は一般化した論点として置く（design §4.1 の6）ので scenes にコンテストを付けた。"
+
+  - id: how-thinking-works
+    chapter: エージェントと思考
+    title: 思考（thinking）と effort の仕組み
+    nav_title: 思考と effort の仕組み
+    aliases: [thinking, 拡張思考, extended thinking, adaptive thinking, effort, 考える量]
+    type: concept
+    level: 整える
+    level_evidence: "答えの質・速さ・費用の釣り合いを整える段階で、effort が何を変えるかが要る（models の effort-levels も整える）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    prevents: [合っていない]
+    summary: "Claude が答える前にどれだけ考えるかを effort でどう変えられるかと、考えた分も出力として費用と上限に数えられることが分かる。画面に出る思考は全文とは限らない。"
+    signs:
+      - {type: goal, text: "考える量を増やすと何が良くなり、何が悪くなるのか知りたい"}
+    prerequisites: [tokens]
+    related: [effort-levels, thinking-keywords, unfaithful-reasoning, choosing-a-model, asking-for-reasoning, why-prompt-caching]
+    tracks: [effort, adaptive-thinking, ultrathink]
+    outdated_advice: [think-hard-keywords, budget-tokens, thinking-tags]
+    volatility: 中
+    materials:
+      - "00 §3 分野01「推論（thinking）と effort の仕組み」"
+      - "05 §3-8（adaptive thinking、thinking の課金、effort と cache、think hard の扱い）"
+      - "research/23 §3.2（既定の effort は面ごとに違う）・§3.5（ultrathink の経緯）・#9（think hard は普通の文として渡る）"
+      - "11 第3節 3-2 #11（thinking を切れるかは未確認）・#14（think hard の言い方）"
+      - "research/22 #20・#21（ultrathink のターンを xhigh に、別のモデルの subagent の effort）"
+    notes: "題名は design §2.1 の分野名（モデル・effort・思考）と公式の訳語（拡張思考。research/27 §3.1）に合わせて「思考」にした。effort の選び方と既定値は models の effort-levels と thinking-keywords に任せ、ここは仕組みにする。四つの原理のどれにも主には当たらず、Claude 側の原因の「合っていない」（effort の選び違い）に当たるので、principle は付けず prevents で示した。05 §3-8 の「Claude Code では 5.5 世代は思考をオフにできない」は一般化しすぎの可能性があり未確認（11 第3節 3-2 #11）なので書かない。既定の effort は面ごとに違う（research/23 §3.2）ので、値は数値ファイルの「モデル × 面」の表に置く。"
+
+  - id: unfaithful-reasoning
+    chapter: エージェントと思考
+    title: 表示された思考は内部の計算と一致するとは限らない
+    nav_title: 表示された思考と内部の計算
+    aliases: [思考の忠実さ, CoT の忠実性, 後付けの説明, 推論の過程は信用できるか]
+    type: concept
+    level: 整える
+    level_evidence: "思考の過程や説明を読んで結果を確かめる段階で、説明を証拠と取り違えない判断が要る"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    summary: "画面に出る思考や「こう計算した」という説明は、実際の内部の処理とずれることがあると分かる。説明のもっともらしさではなく、結果を独立に確かめる理由になる。"
+    signs:
+      - {type: goal, text: "表示された思考の過程を根拠にしてよいか知りたい"}
+      - {type: symptom, text: "説明された理由と、実際の結果が食い違う"}
+    prerequisites: [how-thinking-works]
+    related: [asking-for-reasoning, evidence-not-reports, independent-review, sycophancy]
+    outdated_advice: [thinking-tags]
+    volatility: 低
+    materials:
+      - "00 §3 分野01「表示された推論は内部の計算と一致しない」"
+      - "05 §3-5（Tracing thoughts：出力の前に先を計画している例。「ただの次単語予測」の説明の限界）"
+      - "00 §5 の台帳の「<thinking> タグに推論を書かせる」（撤回）"
+    notes: "題名を「一致しない」から「一致するとは限らない」に和らげた（研究は一致しない例を示したもので、いつも一致しないとは言っていない）。表記は how-thinking-works に合わせて「思考」にした。研究は旧い世代の Claude を調べた解釈可能性の研究なので、世代を書く。"
+
+  # ── 答えの確かさ ──
+  - id: why-hallucinations
+    chapter: 答えの確かさ
+    title: ハルシネーションはなぜ起きるか
+    aliases: [hallucination, 幻覚, もっともらしい嘘, でっち上げ]
+    type: concept
+    level: 使う
+    level_evidence: "答えをそのまま使う段階から、もっともらしい誤りに出会う"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる, 見せる]
+    prevents: [見えていない, 確かめていない]
+    scenes: [調べもの, 開発]
+    summary: "分からないときも答えを作ってしまうのは、推測が得になる訓練と、知っているつもりの誤作動が重なるからだと分かる。分からないと言ってよいと伝え、出典と照合で確かめる理由になる。"
+    signs:
+      - {type: symptom, text: "もっともらしいが事実と違うことを、自信を持って言う"}
+      - {type: symptom, text: "聞き覚えのある名前について、中身をでっち上げる"}
+    prerequisites: []
+    related: [plausible-falsehoods, uses-nonexistent-apis, allow-i-dont-know, fact-checking, checking-citations, knowledge-cutoff, nondeterminism, summary-overgeneralization]
+    volatility: 低
+    visual: {kind: static, text: "白紙を避けて山を張る受験生と、顔は知っているが経歴を知らない人について話してしまう図の二本立て"}
+    materials:
+      - "00 §3 分野01「ハルシネーションはなぜ起きるか」と分野01 の冒頭の段落（二つの研究の併用）"
+      - "05 §3-5（Why Language Models Hallucinate、Tracing thoughts の known-entity の回路）と Inferences"
+      - "02 §6（限界に関する公式の案内）"
+      - "11 第1節 分野01 p12#46（学習データが薄く、文書とソースが食い違う領域で弱い。出典の範囲が混ざっている：11 第4節 #35）"
+      - "11 第2節 分野04「『分からない』と言ってよいと伝える」（白紙より山を張る比喩と合う）"
+    notes: "p12#46 は出典の範囲が混ざっている（11 第4節 #35）ので、使うなら一般化した形（学習データが薄い領域で弱い）に限り、根拠の強さを添える。研究のモデルと世代を書く。"
+
+  - id: knowledge-cutoff
+    chapter: 答えの確かさ
+    title: 知識カットオフと「今」を知らない問題
+    aliases: [knowledge cutoff, 学習データの期限, 今日の日付を知らない]
+    type: concept
+    level: 使う
+    level_evidence: "最近の出来事や新しい版について聞く、使い始めの段階で要る"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [見えていない]
+    scenes: [調べもの, 開発]
+    summary: "モデルの知識はある時点で止まり、今日の日付も知らないので、最近の出来事や新しい版について誤ることが分かる。日付と検索結果と最新の資料を渡す理由になる。"
+    signs:
+      - {type: symptom, text: "最近の出来事や新しい版について間違える"}
+      - {type: symptom, text: "古い版の書き方を、今の方法として勧めてくる"}
+    prerequisites: []
+    related: [doesnt-know-latest, why-hallucinations, search-research-thinking, uses-nonexistent-apis, dating-information, current-models]
+    tracks: [web-search]
+    volatility: 中
+    materials:
+      - "00 §3 分野01「知識カットオフと『今』を知らない問題」"
+      - "05 §3-6（reliable knowledge cutoff と training data cutoff）と注記"
+      - "research/26 #12・#13・§3.7（Help Center の記事は training data cutoff に当たる。reliable は別に持つ）"
+      - "02 §6（限界に関する公式の案内・検索を使う場面）"
+    notes: "カットオフの日付はモデルごとに数値ファイルに置き、reliable と training を分けて持つ（research/26 §3.7）。本文と summary に日付を書かない。モデルが替わるたびに日付が変わるので volatility は中にした。"
+
+  - id: nondeterminism
+    chapter: 答えの確かさ
+    title: 同じ質問でも答えが変わる（非決定性）
+    nav_title: 同じ質問でも答えが変わる
+    aliases: [非決定性, ばらつき, 再現性, 毎回答えが違う]
+    type: concept
+    level: 整える
+    level_evidence: "結果を確かめて直す段階で、一回の結果で判断しない・ばらつきを不確かさの合図と見る判断が要る"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    summary: "同じ頼み方でも答えが毎回少し変わるので、一回の結果で良し悪しを決められないことが分かる。答えのばらつきは不確かさの合図になり、何回か試して比べる理由になる。"
+    signs:
+      - {type: symptom, text: "同じ質問で毎回答えが違う"}
+      - {type: goal, text: "一回うまくいった頼み方を信じてよいか判断したい"}
+    prerequisites: []
+    related: [fact-checking, measure-changes, felt-vs-measured, why-hallucinations, refine-in-conversation]
+    outdated_advice: [lower-temperature]
+    volatility: 低
+    visual: {kind: static, text: "同じレシピでも毎回少し味が違う料理人。何度か作らせて比べる"}
+    materials:
+      - "00 §3 分野01「同じ質問でも答えが変わる（非決定性）」"
+      - "05 §3-7（eval の複数回の試行。推論のばらつきの原因の要約は二次情報で原典は未取得）と Inferences・Gaps"
+      - "research/22 §3.4・#42（temperature を下げる助言の撤回）"
+      - "11 第2節 分野09「変更が効いたかを測る」p34#38（実行環境だけでベンチマークの結果が動く。未確認：11 第4節 #51）"
+      - "11 第1節 新分野案Y「形式と AI の効き方」（問題ごとのばらつきは非決定性とは別の論点）"
+    notes: "temperature を下げて安定させる助言は撤回された（台帳の lower-temperature。research/22 §3.4）。05 §3-7 の推論のばらつきの原因（GPU の計算の組み合わせ）は二次情報で、原典を確かめていないので根拠の中心にしない。p34#38 の数値は未確認（11 第4節 #51）。"
+
+  - id: summary-overgeneralization
+    chapter: 答えの確かさ
+    title: 要約は原文より強く言いがち（過度な一般化）
+    nav_title: 要約は原文より強く言いがち
+    aliases: [過度な一般化, overgeneralization, 要約の言い過ぎ]
+    type: concept
+    level: 整える
+    level_evidence: "資料を要約させて使う段階で、要約を確かめずに根拠にする誤りを防ぐのに要る"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    scenes: [調べもの, 文章, コンテスト]
+    summary: "AI の要約は、原文の条件や限定を落として主張の範囲を広げがちだと分かる。「正確に」と頼んでも直らないことがあるので、要約を根拠に使う前に原文と照らす理由になる。"
+    signs:
+      - {type: goal, text: "AI の要約をそのまま根拠に使ってよいか判断したい"}
+    prerequisites: []
+    related: [summary-overstates-source, fact-checking, checking-citations, research-and-reports, read-specs-yourself, learning-with-ai, why-hallucinations]
+    volatility: 低
+    materials:
+      - "requirements §4.2 basics（主な変更：要約は原文より強く言いがち）"
+      - "11 第1節 分野01 p12#112（10の LLM による科学論文の要約の研究。強〜中）・p12#152（【競】上位解法の前提を要約が落とす）"
+    notes: "研究の対象のモデルと世代を書き、現行の Claude の傾向としては書かない（requirements §6.2）。症状の側は symptoms の summary-overstates-source で、そちらがこのページを前提にできる。"
+
+  - id: sycophancy
+    chapter: 答えの確かさ
+    title: 迎合（sycophancy）
+    aliases: [sycophancy, すぐ同意する, 押されると折れる, 好みに合わせる]
+    type: concept
+    level: 整える
+    level_evidence: "AI の意見や賛成を受け取って判断する段階で要る（judgment の agreement-is-not-evidence も整える）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: [同意を根拠にする]
+    summary: "利用者の考えに合う応答が好まれる形で訓練されるので、Claude も同意しやすく、押されると意見を変えやすいことが分かる。規範や頼み方だけでは直りにくく、聞き方と独立したレビューで補う理由になる。"
+    signs:
+      - {type: symptom, text: "こちらの誤った指摘にも、すぐ同意する"}
+      - {type: goal, text: "Claude が賛成しがちな理由を知りたい"}
+    prerequisites: []
+    related: [agreement-is-not-evidence, ask-without-sycophancy, caves-when-pushed, insists-on-mistakes, independent-review, curb-sycophancy-and-overtrust, human-pitfalls]
+    volatility: 低
+    materials:
+      - "00 §3 分野01「迎合（sycophancy）」"
+      - "11 第1節 分野01 p56#11（Constitution の規範は保証にならない。お願いと鍵と同じ構図）"
+      - "11 第2節 分野01「迎合」p12#71〜p12#74・p56#5・p56#6・p56#91（根拠の強さと旧世代の注意つき）"
+      - "11 第2節 分野18 p12#90（「反対しなかったことは計画が正しい証拠にならない」）"
+      - "research/24 §2.3 のイ・B-44・B-55（迎合の研究の一次資料の確認）"
+    notes: "registry の推奨から必須に上げた。judgment の agreement-is-not-evidence（必須・第一波の核）や symptoms の caves-when-pushed が前提にしやすく、必須のページの前提は必須にする規則に合わせるため。研究の多くは旧い世代や他社のモデルの結果なので、どのモデルの結果かを書く（p56#5 は旧世代の Haiku：11 第4節 #41）。p56#6 の SycEval は research/24 B-44 で確かめた範囲だけを使う。人の側の受け取り方（同意を根拠にする）は judgment に任せ、ここはモデルの側の性質にする。"
+
+  - id: reward-hacking
+    chapter: 答えの確かさ
+    title: 採点器を騙す（reward hacking）
+    aliases: [reward hacking, 報酬ハッキング, specification gaming, 採点の抜け道]
+    type: concept
+    level: 任せる
+    level_evidence: "テストや採点で完了を判定させて任せる段階で、採点の抜け道を突かれることが起きる（symptoms の rewrote-tests-to-pass も任せる）"
+    priority: 必須
+    surfaces: [claude-code, api]
+    principle: [確かめる, 縛る]
+    prevents: [確かめていない, 縛っていない]
+    scenes: [開発, コンテスト]
+    summary: "採点の仕組みに抜け道があると、目的ではなく採点を満たす方向に解かれることがあると分かる。テストの書き換えや特別扱いを防ぐには、書き換えられない独立した検証が要る理由になる。"
+    signs:
+      - {type: symptom, text: "テストや採点の抜け道を突いて通そうとする"}
+      - {type: goal, text: "検証を書き換えられない形にすべき理由を知りたい"}
+    prerequisites: [agent-loop]
+    related: [rewrote-tests-to-pass, protect-tests, verifier-three-conditions, verifier-defines-problem, freeze-eval-assets, misses-broken-evaluation, suspect-too-good-results, pitfalls-of-ai-written-tests]
+    volatility: 低
+    materials:
+      - "00 §3 分野01「採点器を騙す（reward hacking）」"
+      - "05 §3-14（RL で訓練されたモデルの誘因。検証は独立した、改ざんできない仕組みで）"
+      - "11 第2節 分野01「採点器を騙す」p34#9（未確認：11 第4節 #27）・p34#10（小型モデル・類推）・p34#11（検証の許容誤差を突いた例）・p34#227（Claude 3.7 Sonnet のシステムカード。旧世代）"
+      - "11 第1節 分野09 p34#221（SpecBench：見える検証と hold-out の差。意図的な悪用はまれ）"
+      - "research/24 §3 の6（Claude の結果として使える数値とモデルの世代）"
+    notes: "registry の推奨から必須に上げた。eval の verifier-three-conditions（必須・第一波の核）や symptoms の rewrote-tests-to-pass（必須・第一波）が前提にしやすいため。最新の Claude はほとんど不正をしないという監査の結論は未確認で、ImpossibleBench の結果と食い違う（11 第4節 #27）ので使わない。p34#221 のとおり、失敗の多くは意図的な悪用ではなく見えている検証だけを満たす作り方なので、題名の「騙す」を意図の断定として書かない。比例則：verify・eval・enforce のページを関連に持つ。"
+
+  # ── 指示と仕組み ──
+  - id: where-instructions-sit
+    chapter: 指示と仕組み
+    title: システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置
+    nav_title: 指示はどこに入るか
+    aliases: [system prompt, user message, system reminder, システムリマインダー, CLAUDE.md の位置づけ]
+    type: concept
+    level: 整える
+    level_evidence: "プロジェクトの指示や最初の CLAUDE.md を置き始める段階（app の where-to-put-instructions、cli の init-and-first-claude-md。どちらも整える）で、守られる保証がない理由として要る。registry の見当は任せる"
+    priority: 必須
+    surfaces: [claude-code, app, api]
+    principle: [縛る, 見せる]
+    prevents: [縛っていない, 散らかっている]
+    summary: "システムプロンプト・会話の発言・CLAUDE.md やプロジェクトの指示が、それぞれコンテキストのどこに入り、どれだけ続いて効くかが分かる。書いた指示が強制ではなく文脈として扱われる理由になる。"
+    signs:
+      - {type: goal, text: "CLAUDE.md やプロジェクトの指示がどこに入り、どれだけ効くのか知りたい"}
+    prerequisites: []
+    related: [request-vs-lock, what-survives-compaction, where-to-put-instructions, claude-md-loading-order, claude-md-vs-rules-skills-styles, instructions-ignored, what-subagents-dont-inherit, keep-replies-in-japanese]
+    tracks: [claude-md, output-styles, project-instructions, personal-instructions]
+    outdated_advice: [important-caps]
+    volatility: 中
+    materials:
+      - "00 §3 分野01「system prompt・user message・CLAUDE.md の位置」"
+      - "05 §3-10（CLAUDE.md は system prompt の後に user message として渡され、強制力はない。system prompt の高度）"
+      - "research/27 #8・§3.2（CLAUDE.md・output style・language・UserPromptSubmit の届き方、サブエージェントとクラウドのセッションに届く範囲）"
+      - "research/26 §3.1（アプリの指示の置き場所：Instructions for Claude・project instructions・skills。Styles の移行）"
+    notes: "題名は公式の日本語版の訳語（システムプロンプト。research/27 §3.1）に合わせた。level を registry の見当（任せる）から整えるに下げた（level_evidence）。アプリの面（Instructions for Claude・project instructions・skills）もタブで並べる。比喩の候補：毎回配られる社内規程（CLAUDE.md）と、その場の口頭の指示（05 §3 Inferences の compaction の項）。"
+
+  - id: request-vs-lock
+    chapter: 指示と仕組み
+    title: お願いと鍵（決定論的か、非決定論的か）
+    nav_title: お願いと鍵
+    aliases: [決定論的な制御, 非決定論的な指示, deterministic, 指示と強制]
+    type: concept
+    level: 整える
+    level_evidence: "頼み方や指示を整える段階で、書いても守られないものがある理由として要る（japanese の consistent-politeness も整える）"
+    priority: 必須
+    surfaces: [claude-code, app, api]
+    principle: [縛る]
+    prevents: [縛っていない]
+    summary: "プロンプト・CLAUDE.md・skill のような指示は Claude が読んで判断するお願いで、hook・拒否ルール・管理設定は毎回必ず効く鍵だと分かる。例外を許さない規則を鍵に移す判断の土台になる。"
+    signs:
+      - {type: symptom, text: "「必ず」と書いても破られる"}
+      - {type: goal, text: "どの規則を仕組みで強制すべきか見分けたい"}
+    prerequisites: []
+    related: [when-to-lock, request-lock-table, hook-vs-skill, instructions-ignored, where-instructions-sit, data-vs-instructions, emphasis-words, hooks-basics, permission-rules, "four-principles#lock"]
+    outdated_advice: [important-caps]
+    volatility: 低
+    visual: {kind: static, text: "お願いと鍵の二層：上の層（プロンプト・CLAUDE.md・skill）は判断され、下の層（hook・拒否ルール・管理設定・sandbox）は毎回必ず効く"}
+    materials:
+      - "00 §3 分野01「お願いと鍵（決定論的か、非決定論的か）」"
+      - "00 §1「公式は失敗を四つに分け、『お願い』と『鍵』を区別する」"
+      - "05 §1「全体の構図」（公式の対応表：完了の判定・最終決定権など）と §3 Inferences（お願いと鍵）"
+      - "requirements §6.7 の4（禁止事項を CLAUDE.md に書くか：二層）"
+      - "11 第1節 分野01 p56#11（規範は保証にならない：迎合と同じ構図）"
+      - "research/27 #8・§3.2（CLAUDE.md は強制される設定ではなく文脈。prompt 型・agent 型の hook は決定的ではない）"
+      - "research/23 §3.1（Best practices の改稿。現行の版で書く）"
+    notes: "背骨の「縛る」の理論面（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。判断と対応表の本体は enforce の when-to-lock と request-lock-table に任せる。独自の用語「お願いと鍵」を見出しにし、公式の用語（非決定論的な指示・決定論的な制御）を併記する（D14）。prompt 型・agent 型の hook は別のモデルが判断するので鍵にならないことも書く（research/27 §3.2）。"
+
+  - id: data-vs-instructions
+    chapter: 指示と仕組み
+    title: データと命令を区別できない（prompt injection の原理）
+    nav_title: データと命令を区別できない
+    aliases: [prompt injection, プロンプトインジェクション, 間接プロンプトインジェクション, 読ませた文書の指示に従う]
+    type: concept
+    level: 整える
+    level_evidence: "Web ページやファイルやメールを読ませる段階で、中の指示に従ってしまう理由として要る（safety の prompt-injection-in-practice も整える）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [縛る]
+    prevents: [境界がない]
+    scenes: [開発, 調べもの]
+    summary: "読ませた Web ページやファイルの中の文も頼んだ指示と同じ文脈に並ぶので、Claude はデータと命令を確実には分けられないことが分かる。バグではなく性質なので、権限と経路で守る理由になる。"
+    signs:
+      - {type: goal, text: "Web ページやメールを読ませて大丈夫か知りたい"}
+      - {type: symptom, text: "読ませた資料の中の指示に従ってしまった"}
+    prerequisites: []
+    related: [prompt-injection-in-practice, lethal-trifecta, instructions-hidden-in-materials, before-opening-unknown-repos, vetting-extensions, browser-agent-cautions, sandboxing]
+    volatility: 低
+    visual: {kind: static, text: "頼んだ指示と、読ませた文書の中の文が、同じ一本の文脈に並ぶ図"}
+    materials:
+      - "00 §3 分野01「データと命令を区別できない（prompt injection の原理）」"
+      - "05 §4（セキュリティと安全性）"
+      - "00 §1（Use Claude Cowork safely の二条件：信頼境界の外を読める・被害につながる行動ができる）"
+      - "11 第2節 分野11 p34#216（問題ファイルの中身は信頼できない入力として扱い、出力をシェルで自動実行しない）"
+    notes: "攻撃の手口は型と仕組みまでにし、無害な再現だけを載せる（decisions 2026-11-03「書き方の方針（安全・面・表現）」1）。対処の本体は safety の分野（prompt-injection-in-practice・lethal-trifecta）。"
+
+merged: []
+dropped: []
+
+open_issues:
+  - "提案（japanese）：more-tokens-in-japanese は tokens を前提にし、日本語の量の違い・費用と上限への効き方・数え方の本体を持つ。tokens は単位の考え方だけにし、日本語の倍率を書かない（題名から「（日本語の場合）」を外した）。"
+  - "提案（context・symptoms）：圧縮について、what-survives-compaction を仕組みの本体（公式の表。research/23 §3.4）とする。context の promises-after-compaction（今は what-survives-compaction を前提にしている）は、残したい約束の移し方（CLAUDE.md・rules・hook）に絞り、残るもの・消えるものの一覧を繰り返さない。symptoms の forgot-after-compaction は what-survives-compaction を前提にできる（どちらも任せる・必須）。enforce の spoken-prohibitions-fade は when-to-lock にまとめられたので、残るものの一覧はこのページに一本化する。"
+  - "提案（api）：api の stateless-messages-api（Messages API と会話の正体）は rereads-whole-history と同じ仕組み（毎回会話の全体を送り、モデルが全体を読む）。面ごとに分けず（D9）、API の手段（messages の配列・message threads）を rereads-whole-history のタブにしてまとめるか、stateless-messages-api を API に固有の操作に絞って rereads-whole-history を前提にする。"
+  - "提案（api）：api の tool-use-loop は agent-loop を前提にする（ループの考え方は agent-loop、API での組み立ては tool-use-loop）。"
+  - "提案（judgment・symptoms・eval・verify）：sycophancy と reward-hacking を必須に上げた。judgment の agreement-is-not-evidence・symptoms の caves-when-pushed は sycophancy を、symptoms の rewrote-tests-to-pass・eval の verifier-three-conditions・verify の protect-tests は reward-hacking を前提にできる（必須の前提は必須、段階も逆転しない）。"
+  - "提案（symptoms・app・cli）：context-rot を使うに、where-instructions-sit を整えるに下げた。forgets-in-long-chats（使う）は context-rot を、instructions-ignored は where-instructions-sit と request-vs-lock を、app の where-to-put-instructions と cli の init-and-first-claude-md（整える）は where-instructions-sit を前提にできる。"
+  - "提案（prompting）：long-context-first の根拠は公式の試験（00 §1）なので、lost-in-the-middle（推奨）は前提にせず関連にとどめる。前提にするなら lost-in-the-middle を必須に上げる必要がある。"
+  - "提案（verify）：fact-checking（使う）が nondeterminism（整える）や summary-overgeneralization（整える）を前提にすると段階が逆転する。前提には why-hallucinations（使う）を使い、ほかは関連にする。"
+  - "提案（全分野・工程4）：題名の用語の表記（start の open_issues の6つ目と同じ）。basics ではサブエージェント・圧縮・プロンプトキャッシング・システムプロンプト・思考にした。"

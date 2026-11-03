@@ -1,0 +1,419 @@
+field: cost
+chapters: [上限と節約, プランと支払い, 課金の経路と API, 任せて回すとき]
+pages:
+  - id: how-usage-limits-work
+    chapter: 上限と節約
+    title: 利用上限の仕組み（面をまたいで共有する枠）
+    nav_title: 利用上限の仕組み
+    aliases: [usage limits, 利用制限, 使用制限, five-hour limit, weekly limit, session limit]
+    type: concept
+    level: 使う
+    level_evidence: "対話で使い始めて、最初に上限に当たる段階で要る"
+    priority: 必須
+    surfaces: [app, claude-code]
+    principle: []
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "アプリ・Claude Code・Desktop が同じ利用枠を分け合うことと、枠の種類と戻り方が分かる。会話を片付けても、使った分は戻らない。"
+    signs:
+      - {type: goal, text: "/clear すれば上限が戻るのか知りたい"}
+      - {type: symptom, text: "アプリをたくさん使った日は、Claude Code でも早く上限に当たる"}
+      - {type: goal, text: "上限がいつ戻るのか知りたい"}
+    prerequisites: []
+    related: [what-uses-up-limits, saving-priorities, choosing-a-plan, usage-credits-basics, before-using-fable, hits-limits-quickly, "usage-context-statusline#statusline", when-ai-is-unavailable]
+    tracks: [usage-limits, plans, auto-continue, wrap-up-allowance]
+    outdated_advice: [wait-out-5-hour-limit]
+    volatility: 高
+    sections:
+      - {title: "面をまたいで一つの枠", anchor: shared-limit}
+      - {title: "枠の種類と戻る時刻（プランごとの表）", anchor: limit-types}
+      - {title: "残りを見る場所", anchor: where-to-check}
+      - {title: "上限に当たったとき", anchor: when-you-hit-the-limit}
+    templates: []
+    visual: {kind: static, text: "アプリ・Claude Code・Desktop が一つの枠を分け合う図（枠の種類はプランで違う）"}
+    materials:
+      - "00 §3 分野14（利用上限の仕組み：面をまたいで共有、/clear では上限は戻らない。本文と表に【2026-11-03 注記】あり）・§4（/clear すれば上限は戻るのか）"
+      - "02 §2-2（Usage limit の仕組み。注記あり）"
+      - "research/22 #32・#33（2026-10-30 の改名と、確認済みの Ultra の口座は週の上限だけ。呼び方は five-hour limit と 5-hour limit）"
+      - "research/22 #26（上限での自動の継続。3回で止まる）・#36（Wrap-Up Allowance。導入の時期は未確認）"
+      - "research/26 §3.13（Ultra プランと確認の仕組み）"
+      - "04 Q3（利用制限の歴史とユーザーの不満。二次情報）"
+    notes: "registry の題名で外した「5時間・週」は外したまま（確認済みの Ultra の口座は週の上限だけ。research/22 #33）。プランごとの枠の種類と倍率は節 limit-types で数値ファイルから道具が書く。aliases の five-hour limit・weekly limit は公式の名前、session limit は Claude Code の旧い呼び方として置いた。公式の日本語版では「利用制限」の語も使われるので、用語集で表記を決める。"
+
+  - id: what-uses-up-limits
+    chapter: 上限と節約
+    title: 上限を早く使う要因
+    nav_title: null
+    aliases: [使用量が多い, トークンを食う, Claude Code のコストを見る, /usage の内訳, /cost]
+    type: concept
+    level: 整える
+    level_evidence: "会話の長さや資料の渡し方を整える段階で、何が枠を使っているかを知る必要が出る"
+    priority: 必須
+    surfaces: [app, claude-code]
+    principle: [見せる]
+    prevents: [散らかっている, 合っていない]
+    pitfalls: []
+    summary: "長い会話の送り直し・大きな添付・ツール・effort・並列の作業など、利用枠を早く減らす原因と、自分の場合に何が使っているかの確かめ方が分かる。"
+    signs:
+      - {type: symptom, text: "少し使っただけなのに上限に当たる"}
+      - {type: goal, text: "何が使用量を食っているのか知りたい"}
+      - {type: symptom, text: "長いセッションを続けると、消費が急に増える"}
+    prerequisites: [how-usage-limits-work, rereads-whole-history]
+    related: [saving-priorities, hits-limits-quickly, "usage-context-statusline#instruments", insights-and-usage-review, always-on-costs, effort-levels, "1m-context#cost-of-long-context", before-using-fable, parallel-and-loop-costs]
+    tracks: [usage, usage-limits]
+    outdated_advice: [slash-cost-and-stats]
+    volatility: 中
+    sections:
+      - {title: "枠を早く減らす原因", anchor: causes}
+      - {title: "長いセッションで増える理由", anchor: long-sessions}
+      - {title: "自分の場合を確かめる（/usage の内訳など）", anchor: find-what-uses-it}
+    templates: []
+    visual: {kind: static, text: "毎ターン全履歴を送り直すので、会話が長いほど1回の消費が増え、休んだ後はキャッシュが切れてさらに増える図"}
+    materials:
+      - "00 §3 分野14（上限を早く使う七つの要因・Claude Code のコストを見る（/usage・status line）：内訳と推奨、cache の状態）"
+      - "02 §2-2（消費を早める要因・補足：effort・ツールと connector・自動の文脈管理）"
+      - "01 M-1（/usage の内訳と推奨・長時間のセッションで使用量が増える理由・公式のトークン削減策）"
+      - "10 第15章（消費を最も左右するのは、長いコンテキストの再送と、subagent・並列・ワークフローの増殖）"
+      - "11 第2節 分野14 p34#156・p34#161（圧縮そのものにもコストがかかる、/clear はゼロ）"
+      - "research/22 §3.4（idle compaction）"
+    notes: "registry の claude-code-costs（Claude Code のコストを見る（/usage・status line））を節 find-what-uses-it にまとめた。/usage の内訳と推奨は「何が枠を使っているか」を確かめる手段で、原因のページと同じ問いに答えるため（面に固有の操作の本体は cli の usage-context-statusline、振り返りは eval の insights-and-usage-review）。題名から数（七つ）を外した（公式が挙げる要因の数は変わりうる）。"
+
+  - id: saving-priorities
+    chapter: 上限と節約
+    title: 節約の優先順位（手戻りを減らすのが先）
+    nav_title: 節約の優先順位
+    aliases: [節約のコツ, トークンを節約する, 使用量を減らす]
+    type: concept
+    level: 整える
+    level_evidence: "結果を確かめて直す段階で、直しの往復が使用量の多くを占めることに気づく"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる, 見せる]
+    prevents: [合っていない, 散らかっている]
+    pitfalls: []
+    summary: "小手先の節約より、計画と確かめで手戻りを減らすほうが効く理由が分かる。次に関係のない文脈を片付けて常駐するものを減らし、effort やモデルを下げるのは最後にする。"
+    signs:
+      - {type: goal, text: "上限に当たらないように、使い方を節約したい"}
+      - {type: situation, text: "節約のコツをいろいろ試したが、あまり変わらない"}
+    prerequisites: [what-uses-up-limits]
+    related: [define-done, when-to-plan, when-to-start-fresh, always-on-costs, pruning-extensions, hook-recipes, verification-ladder, effort-levels, opusplan]
+    tracks: []
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "優先順位", anchor: order}
+      - {title: "手戻りを減らす", anchor: reduce-rework}
+      - {title: "面ごとの節約の手段", anchor: by-surface}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野14（節約の優先順位：計画、検証、/clear、常駐物の削減、effort）・分野14 の本文（一番効くのは手戻りを減らすこと。トークンの約半分が訂正に消えたという報告は個人の観察なので、使うなら「経験則」と書く）"
+      - "02 §2-2（公式の節約の Tips）"
+      - "01 M-1（公式のトークン削減策）"
+      - "10 第15章（無関係なタスクの間で /clear、使わない接続を外す、テスト出力は失敗の行だけに絞る）"
+      - "11 第2節 分野14 p34#170"
+    notes: null
+
+  - id: choosing-a-plan
+    chapter: プランと支払い
+    title: プランの選び方
+    nav_title: null
+    aliases: [料金プラン, プランの比較, 個人向けプラン, サブスクリプション]
+    type: comparison
+    level: 使う
+    level_evidence: "使い始めて、無料か有料か、どの段にするかを最初に決める"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: []
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "個人向けのプランを、使う面・Claude Code の量・上位のモデルの扱い・上限の形で比べて選べる。料金と倍率は確認日つきの表で確かめる。"
+    signs:
+      - {type: goal, text: "今のプランから上げるべきか迷う"}
+      - {type: situation, text: "プランの名前が変わり、どれが前のどれに当たるか分からない"}
+      - {type: goal, text: "Claude Code をよく使うので、合うプランを知りたい"}
+    prerequisites: [how-usage-limits-work]
+    related: [before-using-fable, usage-credits-basics, paying-in-yen, check-billing-path, choosing-a-model, enterprise-vs-team-plans, glossary, change-timeline-2026]
+    tracks: [plans, usage-limits]
+    outdated_advice: [max-5x-or-20x]
+    volatility: 高
+    sections:
+      - {title: "比べる観点", anchor: what-to-compare}
+      - {title: "プランの表（確認日つき）", anchor: plan-table}
+      - {title: "判断例", anchor: examples}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野14（プランの選び方。行に【2026-11-03 注記】あり）・§4（Pro と Max のどちらにすべきか）"
+      - "02 §2-1（プラン一覧。Max の行に注記あり）"
+      - "research/22 #32（2026-10-30 に旧 Max 20x が Ultra に改名、Max は1段）・#34・#35・#44（Ultra の週の上限が旧 20x と同じかは一次資料にない）"
+      - "research/26 #19・#20・§3.13"
+      - "04 Q3（円換算。二次情報）"
+    notes: "2026-10-30 の改名（旧 Max 20x が Ultra になり、Max は1段）は、節 plan-table の表（数値ファイルから生成）と、台帳の max-5x-or-20x、旧名からの引き方は start の glossary（changes の old-and-new-names をまとめた先）、改名の時期は changes の change-timeline-2026 で扱う。プランの名前と料金は題名・summary・signs・aliases に書かない。旧 20x と Ultra で使える量が同じかは一次資料にないので、本文で断定しない（research/22 #44）。組織のプランは team の enterprise-vs-team-plans。"
+
+  - id: before-using-fable
+    chapter: プランと支払い
+    title: Fable を使う前に
+    nav_title: null
+    aliases: [最上位のモデルの料金, Fable の上限, Fable の使用量]
+    type: concept
+    level: 整える
+    level_evidence: "既定と effort で足りない仕事に出会い、上位のモデルを試す段階"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "最上位のモデルは、プランの枠との関係がほかのモデルと違い、使用量の減りも速いことが分かる。使う前に、どの枠や支払いから引かれるかと、本当に要る仕事かを確かめる。"
+    signs:
+      - {type: goal, text: "最上位のモデルを試してみたい"}
+      - {type: symptom, text: "上位のモデルを少し使っただけで、残りの枠が大きく減った"}
+    prerequisites: [how-usage-limits-work, choosing-a-model]
+    related: [usage-credits-basics, choosing-a-plan, "current-models#fable-and-mythos", what-uses-up-limits, harness-over-model]
+    tracks: [plans, usage-limits, usage-credits]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "どの枠から引かれるか（プランごとの表）", anchor: which-limit}
+      - {title: "使う価値がある仕事", anchor: when-worth-it}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野14（Fable を使う前に）・分野03 の本文（Fable の扱いはプランで大きく違う。モデルを選ぶページでは必ずプランとの関係を添える）"
+      - "02 §2-4（Usage credits と Fable の扱い）・§2-2（Fable の消費は速い。倍率は非公開）"
+      - "research/22 #34（Ultra を足す。Claude Code で使える版）"
+      - "research/26 #22（料金のページの「週上限の半分まで」と、Max・Ultra の記事の「別の週上限」の書き方の違い）"
+    notes: "料金のページと Max・Ultra の記事で、上位のモデルの枠の書き方が違う（research/26 #22）。数値ファイルに両方の出典を残し「食い違いあり」とする（design §6.7）。モデルを選ぶ判断の本体は models の choosing-a-model、ここは費用と枠に絞る。"
+
+  - id: usage-credits-basics
+    chapter: プランと支払い
+    title: usage credits（上限を超えた分の従量課金）
+    nav_title: usage credits
+    aliases: [extra usage, 超過分の課金, 上限を超えて使う, 追加の使用量]
+    type: feature
+    level: 整える
+    level_evidence: "上限に当たっても作業を止めたくない段階で最初に要る"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [握る]
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "プランの上限を使い切っても、usage credits で従量課金に切り替えて作業を続けられる。思わぬ請求を防ぐため、月の上限額と通知を先に決めておく。"
+    signs:
+      - {type: goal, text: "上限に当たっても、作業を止めたくない"}
+      - {type: symptom, text: "上限を超えた分の請求が、思ったより多かった"}
+      - {type: situation, text: "プランに付く API credits と usage credits の違いが分からない"}
+    prerequisites: [how-usage-limits-work]
+    related: ["check-billing-path#monthly-api-credits", choosing-a-plan, before-using-fable, paying-in-yen, parallel-and-loop-costs, when-ai-is-unavailable]
+    tracks: [usage-credits]
+    outdated_advice: [workflow-keyword-extra-usage]
+    volatility: 高
+    sections:
+      - {title: "切り替わる仕組み", anchor: how-it-works}
+      - {title: "上限額と通知を決める", anchor: set-a-cap}
+      - {title: "API credits との違い", anchor: vs-api-credits}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野14（usage credits：自動チャージと月の上限額。日本では6か月で失効する）"
+      - "02 §2-4（Usage credits の仕組み・日本に固有の注意）"
+      - "research/26 §3.11（プランに付く API credits は usage credits に使えない）"
+      - "00 §5 台帳（extra usage → usage credits）"
+    notes: "失効の期間など日本に固有の値は数値ファイルに置く。"
+
+  - id: paying-in-yen
+    chapter: プランと支払い
+    title: 円での支払い・消費税・インボイス
+    nav_title: null
+    aliases: [日本円での支払い, 為替, 適格請求書, 経費精算]
+    type: concept
+    level: 使う
+    level_evidence: "有料プランを契約する時点で要る"
+    priority: 任意
+    surfaces: [app, claude-code, api]
+    principle: []
+    prevents: []
+    pitfalls: []
+    summary: "ドル建ての料金を円で払うときの為替・消費税・適格請求書の扱いと、公式の案内の在り処が分かる。税と会計の判断は、公式の案内と自分の組織の規則に従う。"
+    signs:
+      - {type: goal, text: "Claude の料金を経費で精算したい"}
+      - {type: situation, text: "会社で契約するので、請求書や消費税の扱いを確かめたい"}
+    prerequisites: [choosing-a-plan]
+    related: [usage-credits-basics]
+    tracks: [plans]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "為替と消費税", anchor: currency-and-tax}
+      - {title: "請求書と支払いの方法", anchor: invoices}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野14（円での支払い・消費税・インボイス）"
+      - "04 Q3（円換算・消費税の加算・登録番号・クレジットカードのみ。二次情報なので一次資料で確かめてから書く）"
+      - "02 §2-4（日本では usage credits が購入から一定の期間で失効する）"
+    notes: "法令と税の解釈は書かない（design §6.11）。Anthropic の登録番号・消費税の扱い・支払いの方法は、一次資料（Anthropic の請求の案内など）で確かめた日付つきの事実だけを書く。"
+
+  - id: check-billing-path
+    chapter: 課金の経路と API
+    title: 課金の経路を確かめる（API キーとサブスクリプション）
+    nav_title: 課金の経路を確かめる
+    aliases: [ANTHROPIC_API_KEY, API キーの課金, サブスクリプションで使う, 認証の優先順位, API credits]
+    type: concept
+    level: 任せる
+    level_evidence: "スクリプトや CI から Claude Code を動かし始め、どの支払いで動いているかが見えにくくなる段階"
+    priority: 推奨
+    surfaces: [claude-code, api]
+    principle: [確かめる]
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "Claude Code がプランと API キーのどちらで課金されているかを確かめ、思わぬ従量課金を防げる。環境変数・起動の仕方・面で経路が変わるので、無人で回す前に確かめる。"
+    signs:
+      - {type: symptom, text: "サブスクリプションで使っているつもりが、API の請求が来た"}
+      - {type: goal, text: "スクリプトから動かすとき、どの支払いで動くのか確かめたい"}
+      - {type: situation, text: "プランに付く API credits を Claude Code で使えるのか分からない"}
+    prerequisites: [how-usage-limits-work]
+    related: ["headless-basics#billing-path", "bare-mode#authentication", "agent-sdk-basics#billing", protecting-secrets, "usage-credits-basics#vs-api-credits", reading-api-pricing, settings-layers, sdk-comparison, github-actions-with-claude, via-cloud-providers]
+    tracks: [headless, agent-sdk, api-credits]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "経路が決まる順", anchor: how-the-path-is-chosen}
+      - {title: "API キーの環境変数があるとき", anchor: api-key-in-env}
+      - {title: "今の経路を確かめる", anchor: check-current-path}
+      - {title: "プランに付く API credits", anchor: monthly-api-credits}
+    templates:
+      - {name: "claude -p の前に、API キーの環境変数がないことを確かめる例（値を画面に出さない）", kind: other, safety: true}
+    visual: null
+    materials:
+      - "requirements §4.4 cost（課金経路を確かめる）"
+      - "11 第1節 分野14 p34#173（出典は二次情報。11 第4節 #10 で未確認とされ、research/26 で一次資料を確かめた）"
+      - "research/26 #14・#15・§3.8（認証の優先順位・-p は変数があれば確認なしにその鍵を使う・Desktop とクラウドのセッションは読まない・/status で確かめる・--bare）・§3.11（月の API credits の使い道）"
+      - "research/22 #35・#37（Help Center：API キーがあるとプランではなく API の料金。プランでログインした SDK と -p はプランの上限から引く）"
+      - "10 第15章 ⑤（本番前に課金経路を確認する。注記あり）"
+      - "decisions 2026-11-03 工程2で確かめた事実（API キーと課金）"
+    notes: "`ANTHROPIC_API_KEY` があると `claude -p` が確認なしにその鍵を使い、従量の課金になること（research/26 §3.8）は、節 api-key-in-env の本体にする。挙動は版で変わりうるので summary と signs には書かず、確かめた版と日付を数値ファイルに置く。雛形は認証情報に関わるので safety: true（鍵の値を画面やログに出さない形にする）。"
+
+  - id: reading-api-pricing
+    chapter: 課金の経路と API
+    title: API 料金の読み方
+    nav_title: null
+    aliases: [API の料金, トークン単価, MTok あたりの料金, Console の使用量]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "API や SDK で仕組みを作り、費用を見積もる段階で要る"
+    priority: 任意
+    surfaces: [api]
+    principle: []
+    prevents: [合っていない]
+    pitfalls: []
+    summary: "API の料金を、入力と出力・キャッシュ・バッチ・思考のトークン・ツールやホストの料金に分けて読み、作る仕組みの費用を見積もれる。日本語はトークンが多めになる点も入れる。"
+    signs:
+      - {type: goal, text: "API で作る仕組みの費用を、前もって見積もりたい"}
+      - {type: symptom, text: "API の請求が見積もりより多い"}
+    prerequisites: [tokens]
+    related: [prompt-caching-in-practice, batch-api-basics, "sdk-comparison#managed-agents", "can-i-prompt-in-japanese#tokens", how-thinking-works, check-billing-path, protecting-secrets, fast-mode-and-advisor, parallel-and-loop-costs]
+    tracks: [messages-api, prompt-caching, batch-api, token-counting]
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "料金の内訳", anchor: price-components}
+      - {title: "見積もりの手順", anchor: estimate}
+      - {title: "Claude Code を API の料金で使うときの目安", anchor: claude-code-on-api}
+    templates: []
+    visual: null
+    materials:
+      - "00 §3 分野14（API 料金の読み方：入力と出力、cache、batch。日本語は token が多めになる）"
+      - "02 §3-1（料金・1M の料金・トークナイザー）・§3-6（thinking のトークンは出力として課金）・§5-2（prompt caching の料金の倍率）・§5-3（Batch の割引）・§5-8（ツールの料金・data residency）・§5-9（Managed Agents のセッションの時間の料金）"
+      - "01 M-1（企業導入の平均の費用。公式の値）"
+      - "research/22 #39（Usage and Cost Analytics API）"
+    notes: "prompt caching や Batch API の使い方の本体は api の分野にあり、ここは課金の読み方だけにする（design §4.2）。api の担当の提案で、キャッシュとバッチの料金の倍率と Managed Agents の時間の料金をここに置く。料金の値はすべて数値ファイルから書く。"
+
+  - id: parallel-and-loop-costs
+    chapter: 任せて回すとき
+    title: 並列・ループ・workflows のコスト
+    nav_title: null
+    aliases: [並列の費用, 自動ループの費用, サブエージェントの費用, agent teams の費用, ultracode の費用]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "並列やループを仕組みとして回し始める段階で、費用が回数と本数に比例して膨らむ"
+    priority: 必須
+    surfaces: [claude-code, api]
+    principle: [握る, 縛る]
+    prevents: [合っていない]
+    pitfalls: [やめられない]
+    summary: "並列・ループ・workflows の費用が、本数と回数と1回の文脈の大きさの掛け算で膨らむ理由が分かる。始める前に、同時に動かす数と止める条件と費用の上限を決める。"
+    signs:
+      - {type: goal, text: "並列やループで回す前に、費用の見当をつけたい"}
+      - {type: symptom, text: "夜通しループを回したら、上限や請求が一気に増えた"}
+      - {type: situation, text: "agent teams や workflows を試したいが、どれだけ使うか分からない"}
+    prerequisites: [what-uses-up-limits]
+    related: [humans-set-the-parallel-limit, choosing-parallel-modes, goal-until-done, loop-and-scheduling, dynamic-workflows, agent-teams-experimental, research-in-subagents, checking-unattended-runs, decide-when-to-quit, open-ended-loop-trap, usage-credits-basics]
+    tracks: [workflows, agent-teams, loop, goal, subagents]
+    outdated_advice: [ralph-loops, workflow-keyword-extra-usage]
+    volatility: 高
+    sections:
+      - {title: "費用が膨らむ掛け算", anchor: multiplication}
+      - {title: "始める前に決める三つ", anchor: decide-before-starting}
+      - {title: "実例の読み方（自己申告と時点）", anchor: reading-examples}
+    templates:
+      - {name: "ループに回数の上限と止める条件を書く例", kind: prompt, safety: false}
+    visual: {kind: static, text: "本数 × 回数 × 1回あたりの文脈の大きさで費用が膨らむ図"}
+    materials:
+      - "00 §3 分野14（並列・ループ・workflows のコスト。行に【2026-11-03 注記】あり：agent teams の約7倍は teammate が plan mode で動くときの値）"
+      - "research/23 #7（agent teams の倍率の条件。Agent teams のページは倍率を書かない）"
+      - "01 M-1（長時間のセッションで使用量が増える理由）"
+      - "10 第16章（数十のエージェントの構成の費用は論評の推定）"
+      - "11 第2節 分野14 p12#50（【競】実例の費用。時点依存。欧州の CTF の値は一つのプレプリントによる：11 第4節 #7）・p34#162（2025年の Research 機能の値。Claude Code の subagent に直接当てはまらない：11 第4節 #14）・p34#190（論評の推定）"
+      - "research/22 #26（上限での自動の継続は3回で止まる）"
+    notes: "倍率は条件つきで数値ファイルに置く（research/23 #7）。実例の金額は時点依存・自己申告・一研究の値と明記し、summary と signs に書かない。"
+
+  - id: when-ai-is-unavailable
+    chapter: 任せて回すとき
+    title: AI が使えないときの備え（障害・上限）
+    nav_title: AI が使えないときの備え
+    aliases: [障害のとき, サービスの停止, 上限で止まったとき, 代わりの手段]
+    type: concept
+    level: 任せる
+    level_evidence: "締め切りのある作業を任せ始め、止まったときの影響が大きくなる段階"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [握る]
+    prevents: []
+    pitfalls: [預けすぎる]
+    scenes: [開発, チーム, コンテスト]
+    summary: "障害や上限で AI が止まっても仕事を続けられるように、AI なしで最低限を進められる状態と、止まったときの切り替え先を先に決めておける。"
+    signs:
+      - {type: situation, text: "締め切りの直前に AI が使えなくなったら困る"}
+      - {type: symptom, text: "障害や上限で止まり、作業が進められなくなった"}
+    prerequisites: [how-usage-limits-work]
+    related: [over-reliance, how-much-understanding-to-keep, own-generated-code, what-not-to-delegate, handoff-documents, progress-files, usage-credits-basics, competition-day-operations]
+    tracks: [usage-limits, auto-continue]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "止まり方の種類（障害・上限・規則）", anchor: kinds}
+      - {title: "AI なしで最低限を進められる状態", anchor: minimum-without-ai}
+      - {title: "止まったときの切り替え先", anchor: fallbacks}
+    templates:
+      - {name: "AI が止まったときの手順書の雛形", kind: other, safety: false}
+    visual: null
+    materials:
+      - "requirements §4.4 cost（AI が使えないときの備え）"
+      - "11 第1節 分野14 p56#73（中・推論。「最も安い保険」は言い過ぎで「保険として有効」に弱める：11 第4節 #64）"
+      - "11 第1節 分野14 p56#79（障害の日付と時間は未検証：research/24 B-57）"
+      - "10 第23章（本番の運用：AI が止まっても続けられる冗長性と、AI なしでも最低限の提出を作れる状態。「最も安い保険」は言い過ぎ）"
+      - "research/22 #26・#36（上限での自動の継続と Wrap-Up Allowance）"
+    notes: "「最も安い保険」（11 第4節 #64）と、未検証の障害の事例（research/24 B-57）は summary と signs の根拠にしない。障害の事例は、一次資料（公式の稼働状況の記録など）で日付を確かめたものだけを使う。AI なしで最低限を進める考えは推論を含むので、本文で根拠の強さを示す。コンテストの本番の運用は contest の competition-day-operations。"
+
+merged:
+  - {id: claude-code-costs, into: what-uses-up-limits, reason: "/usage の内訳と推奨・status line で見る使用量は、「何が枠を使っているか」を自分の場合に確かめる手段で、what-uses-up-limits と同じ問いに答える。面に固有の操作は面の分野に置く（design §6.5）ので、操作の本体は cli の usage-context-statusline に任せ、費用の読み方を節 find-what-uses-it にする"}
+dropped: []
+new_features:
+  - {id: api-credits, title: "月の API credits（プランに付く API の残高）", note: "check-billing-path と usage-credits-basics が追う。対象のプランと額・使い道（API キーで動かす API・Playground・Managed Agents・Agent SDK）・使えないもの（対話の Claude Code・usage credits）は research/26 §3.11"}
+  - {id: auto-continue, title: "上限での自動の継続（autoContinueAtUsageLimit）", note: "how-usage-limits-work と when-ai-is-unavailable が追う。既定で有効になった版と、3回で止まる決まりは research/22 #26"}
+  - {id: wrap-up-allowance, title: "Wrap-Up Allowance（上限に達した応答を区切りまで続ける）", note: "how-usage-limits-work が追う。段階的に展開中で、導入の時期は一次資料で確かめられていない（research/22 #36）"}
+open_issues:
+  - "提案（start・changes）：プランの改名（旧 Max 20x → Ultra）と上限の呼び方（session limit → 5-hour limit）を、start の glossary の旧名の対応（changes の old-and-new-names をまとめた先）と changes の change-timeline-2026 に、数値ファイルから入れてほしい（research/22 §3.4 が「台帳ではなく数値ファイルと aliases で持つ」とした項目）"
+  - "提案（数値ファイル）：data/facts.yml に、プランの表（名前・料金・枠の種類と倍率・上位のモデルの扱い・API credits）、上位のモデルの枠（料金のページと記事の書き方の食い違いを両方の出典つきで）、usage credits の日本での失効の期間、API の料金（入力・出力・キャッシュ・バッチ・fast mode・ツール）、agent teams の倍率とその条件を、出典と確認日つきで持つ"
+  - "取り込み済み（2026-11-04 に確かめた）：delegate の headless-basics・bare-mode・humans-set-the-parallel-limit・dynamic-workflows・goal-until-done、contest の competition-day-operations、team の enterprise-vs-team-plans・audit-logs-and-telemetry、safety の protecting-secrets は cost のページを指している。team の提案で choosing-a-plan の related に enterprise-vs-team-plans を、delegate の提案で parallel-and-loop-costs の related に agent-teams-experimental を、safety の提案で check-billing-path と protecting-secrets の相互の related を入れた。check-billing-path からは headless-basics#billing-path と bare-mode#authentication を指す。api の提案で、キャッシュとバッチの料金の倍率と Managed Agents の時間の料金を reading-api-pricing に置き、check-billing-path から agent-sdk-basics#billing を指した。japanese が more-tokens-in-japanese を can-i-prompt-in-japanese にまとめたので、reading-api-pricing からは can-i-prompt-in-japanese#tokens を指す。cli の usage-context-statusline と context の inspect-context は、まとめた claude-code-costs の代わりに what-uses-up-limits#find-what-uses-it を指した（cli の提案の境界：/usage の内訳の読み方と節約の判断は cost、道具の一覧と設定は cli）。symptoms の hits-limits-quickly は how-usage-limits-work・what-uses-up-limits・saving-priorities などを指している"

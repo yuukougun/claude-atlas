@@ -1,0 +1,353 @@
+# claude-atlas 目次：api（API・SDK の概念）
+# 形式：planning/catalog/README.md §3。語彙：schema/site.yml。書いた担当：C5（工程3、2026-11-04）
+# 材料：research/00 §3 分野13・§4・§5、research/02 §4・§5、research/01 J・2-3、research/05 §3、
+#       工程2の報告 research/22・23・26・28。research/11 第1節には分野13の行がない（第2節の分野05・09 の3行が関わる）
+field: api
+chapters: [アプリと API の対応, API の主な機能, エージェントを組む]
+
+pages:
+  # ── アプリと API の対応 ──
+  - id: feature-to-api-mapping
+    chapter: アプリと API の対応
+    title: "アプリの機能と API の概念の対応表"
+    aliases: [API との対応, 機能と API の対応]
+    type: comparison
+    level: 任せる
+    level_evidence: "アプリや Claude Code で長い作業を任せ、cache や要約の挙動の理由を知りたくなる段階で要る。プログラムを書かなくても読める"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: []
+    summary: "プロジェクトの cache・長い会話の自動の要約・メモリ・スキルなどが、API のどの概念に当たるかが分かる。アプリや Claude Code の挙動を仕組みから説明できる。"
+    signs:
+      - {type: goal, text: "アプリの挙動を仕組みから理解したい"}
+      - {type: goal, text: "アプリでしていることを、自分のプログラムで再現したい"}
+    prerequisites: [rereads-whole-history, using-projects]
+    related: [stateless-messages-api, prompt-caching-in-practice, why-prompt-caching, what-survives-compaction, long-chat-limits, how-memory-works, using-auto-memory, skills-in-the-app, how-skills-load, connectors-in-the-app, search-research-thinking, "how-attachments-are-read#api", tasks-and-schedules-in-the-app, "sdk-comparison#managed-agents", long-running-agent-context, effort-levels, product-map]
+    tracks: [projects, prompt-caching, app-context-management, api-compaction, app-memory, memory-tool, app-skills, server-tools, mcp-connector, files-api, agent-sdk, managed-agents]
+    volatility: 中
+    sections:
+      - {title: "対応表", anchor: table}
+      - {title: "対応から分かること", anchor: insights}
+    visual: {kind: static, text: "上の段にアプリと Claude Code の機能、下の段に対応する API の概念を並べ、線でつないだ二層の図"}
+    materials: ["00 §3 分野13 冒頭（project knowledge の cache と prompt caching、自動の context 管理と compaction、Memory と memory tool、アプリの Skills と Agent Skills の対応。公式の出典つき）と表", "02 §5 Takeaway・Inferences", "02 §5-2（アプリ側の対応物）", "02 §5-7", "02 §5-8", "02 §5-9"]
+    notes: "対応表は、アプリと Claude Code の機能を行に、API の概念を列にする（Claude Code の /compact・自動メモリ・スキル・-p も API の概念に当たる）。02 の Inferences が挙げる対応のうち、定期タスクと Managed Agents の対応は推測なので、本文では公式の記述（Managed Agents は定期の実行に向く。02 §5-9）の範囲で書く。比例則の対象外（任せる幅を広げる内容ではない。対応関係の表）"
+
+  - id: stateless-messages-api
+    chapter: アプリと API の対応
+    title: "Messages API と会話の正体"
+    aliases: [ステートレス, stateless, message threads, system と messages]
+    type: concept
+    level: 任せる
+    level_evidence: "長い会話の重さと費用の理由を、仕組みから理解したくなる段階で要る"
+    priority: 推奨
+    surfaces: [api]
+    principle: [見せる]
+    prevents: [散らかっている]
+    scenes: [開発]
+    summary: "API は会話を覚えず、モデルは毎回それまでの全体を読み直していることが分かる。長い会話が重く高くなる理由と、送る量を減らす仕組みの限界も分かる。"
+    signs:
+      - {type: symptom, text: "API で呼ぶと、前の発言を覚えていない"}
+      - {type: goal, text: "長い会話がなぜ重く高くなるのかを知りたい"}
+    prerequisites: [rereads-whole-history]
+    related: [feature-to-api-mapping, prompt-caching-in-practice, long-running-agent-context, where-instructions-sit, attention-budget, where-your-data-goes, what-uses-up-limits]
+    tracks: [messages-api, message-threads]
+    volatility: 中
+    sections:
+      - {title: "毎回、全体を渡す", anchor: stateless}
+      - {title: "system と messages", anchor: system-and-messages}
+      - {title: "message threads（送る量だけを減らす）", anchor: message-threads}
+    visual: {kind: static, text: "毎回それまでの全履歴を渡してモデルが読み直す流れと、message threads では送る量だけが減り、モデルが読む量は変わらないことを並べた図"}
+    materials: ["00 §3 分野13", "02 §5-1", "research/22 #40（message threads：送るのは差分にできるが、モデルが読む量・料金・rate limit は変わらない。ZDR と HIPAA の対象外）", "requirements §6.6（毎回読み直す受験者）"]
+    notes: "比喩と「なぜ」の本体は basics の rereads-whole-history（前提）。ここは API の形（状態を持たない、system と messages、message threads）だけを書く（basics の担当の提案のうち、API に固有の操作に絞る案を採った）。message threads のデータの扱いを safety の where-your-data-goes へつなぐ。比例則の対象外（任せる幅を広げる内容ではない）"
+
+  # ── API の主な機能 ──
+  - id: tool-use-loop
+    chapter: API の主な機能
+    title: "tool use のループ"
+    aliases: [ツールの呼び出し, function calling, client tools, server tools, tool_choice]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "自分の道具（MCP・自作のツール）を Claude に使わせる仕組みを作る段階で要る"
+    priority: 推奨
+    surfaces: [api]
+    principle: [縛る, 見せる]
+    prevents: [縛っていない, 境界がない]
+    scenes: [開発]
+    summary: "Claude が道具の呼び出しを頼み、呼び出し側が実行して結果を返すループの形が分かる。必ず呼ばせたい・形を守らせたいときに、指示でなく設定で縛る理由も分かる。"
+    signs:
+      - {type: goal, text: "自分の関数を Claude に呼ばせたい"}
+      - {type: symptom, text: "道具を呼んでほしい場面で、呼ばずに答えてしまう"}
+    prerequisites: [agent-loop]
+    related: [designing-agent-tools, structured-outputs-basics, sdk-comparison, lethal-trifecta, data-vs-instructions, request-vs-lock, connecting-mcp]
+    tracks: [tool-use, server-tools]
+    volatility: 中
+    sections:
+      - {title: "client tools と server tools", anchor: client-and-server}
+      - {title: "呼ばせ方を縛る（tool_choice・strict）", anchor: forcing}
+      - {title: "ループを誰が回すか", anchor: who-runs-the-loop}
+    visual: {kind: mermaid, text: "client tool の往復（tool_use → 呼び出し側で実行 → tool_result）と、server tool がサーバーの中で完結する流れのシーケンス図"}
+    materials: ["00 §3 分野13", "02 §5-1（client tools と server tools、tool_choice、strict、tool runner、description で選ぶ、隠れた system prompt）", "02 §4-11（行動するか提案にとどめるか、並列の呼び出し）"]
+    notes: "エージェントのループの考え方は basics の agent-loop（前提。basics の担当の提案と同じ）。モデルの世代で強制の指定が使えないことがある（02 §5-1）ので、本文では仕組みとして書き、モデルごとの可否は数値ファイルに置く。道具の結果は外からの入力なので、比例則の守りとして safety の lethal-trifecta を関連に置いた"
+
+  - id: structured-outputs-basics
+    chapter: API の主な機能
+    title: "structured outputs（形式を保証する）"
+    aliases: [構造化出力, JSON outputs, strict tool use, "--json-schema"]
+    type: feature
+    level: 仕組みにする
+    level_evidence: "Claude の出力を別のプログラムに渡す仕組みを作る段階で要る"
+    priority: 推奨
+    surfaces: [api, claude-code]
+    principle: [縛る, 確かめる]
+    prevents: [縛っていない]
+    scenes: [開発, データ分析]
+    summary: "出力やツールの呼び出しを、指定したスキーマどおりの形で受け取れる。それでも形が崩れる場合と、形が正しくても中身は別に確かめる理由が分かる。"
+    signs:
+      - {type: symptom, text: "JSON で返すよう頼んでも形が崩れる"}
+      - {type: goal, text: "出力を必ず決まった形で受け取りたい"}
+    prerequisites: [request-vs-lock]
+    related: [output-shape, looks-are-not-quality, tool-use-loop, citations-basics, headless-basics]
+    tracks: [structured-outputs]
+    outdated_advice: [prefill-for-json]
+    volatility: 中
+    sections:
+      - {title: "JSON outputs と strict tool use", anchor: two-modes}
+      - {title: "形が保証されない場合", anchor: not-guaranteed}
+      - {title: "prefill からの移行", anchor: from-prefill}
+      - {title: "Claude Code の -p で形を指定する", anchor: claude-code}
+    materials: ["00 §3 分野13", "02 §5-4（二つの方式、保証されない場合、citations と併用できない）", "02 §4-8（Prefilling の廃止）", "01 J-1（`claude -p` の `--json-schema` で structured_output を受け取る）", "00 §5 台帳「prefill で JSON の形を強制する」"]
+    notes: "「お願いと鍵」の API の例：出力の形を頼むのはお願い、スキーマで縛るのは鍵（basics の request-vs-lock）。形の保証は中身の正しさの保証ではないので、比例則の守りとして verify の looks-are-not-quality を関連に置いた"
+
+  - id: citations-basics
+    chapter: API の主な機能
+    title: "citations（根拠の箇所を返させる）"
+    aliases: [Citations, 引用機能, cited_text]
+    type: feature
+    level: 仕組みにする
+    level_evidence: "根拠付きの答えを返す仕組みを、API で作る段階で要る"
+    priority: 任意
+    surfaces: [api]
+    principle: [確かめる, 縛る]
+    prevents: [確かめていない]
+    scenes: [調べもの, 開発]
+    summary: "答えの各主張について、渡した資料のどの箇所が根拠かを API に返させられる。引用させる指示より確かな理由と、一緒に使えない機能が分かる。"
+    signs:
+      - {type: goal, text: "答えの根拠を、資料のどこかまで示させたい"}
+      - {type: symptom, text: "引用させても、資料にない文が混ざる"}
+    prerequisites: [checking-citations]
+    related: [fact-checking, structured-outputs-basics, plausible-falsehoods, how-attachments-are-read, using-research]
+    tracks: [citations]
+    volatility: 中
+    sections:
+      - {title: "引用させる指示との違い", anchor: vs-prompting}
+      - {title: "一緒に使えない機能", anchor: limits}
+    materials: ["00 §3 分野13", "02 §5-5（対応する形式、プロンプトで引用させるのに比べた利点、画像は引用できない、structured outputs と併用できない）", "02 §6（主張ごとに引用を付けさせる公式の策）"]
+    notes: "事実の確かめ方の本体は verify の checking-citations（前提）と fact-checking。verify の側はこのページを関連に置いている"
+
+  - id: prompt-caching-in-practice
+    chapter: API の主な機能
+    title: "プロンプトキャッシングの実務"
+    aliases: [prompt caching, cache_control, キャッシュのブレークポイント]
+    type: feature
+    level: 仕組みにする
+    level_evidence: "API で同じ前置きを繰り返し送る仕組みを作り、費用と待ち時間を整える段階で要る"
+    priority: 推奨
+    surfaces: [api]
+    principle: [見せる]
+    prevents: [合っていない]
+    scenes: [開発]
+    summary: "毎回同じ先頭部分を cache して、API の費用と待ち時間を抑えられる。区切りをどこに置くか、何を変えると cache が無効になるかが分かる。"
+    signs:
+      - {type: goal, text: "長いシステムプロンプトや資料を毎回送る費用を抑えたい"}
+      - {type: symptom, text: "キャッシュを指定したのに効いていない"}
+    prerequisites: [why-prompt-caching, stateless-messages-api]
+    related: [reading-api-pricing, feature-to-api-mapping, using-projects, batch-api-basics, effort-levels, saving-priorities]
+    tracks: [prompt-caching]
+    volatility: 中
+    sections:
+      - {title: "どこまでが cache されるか（tools・system・messages の順）", anchor: prefix}
+      - {title: "cache を無効にする変更", anchor: invalidation}
+      - {title: "区切りの置き方", anchor: breakpoints}
+    visual: {kind: static, text: "tools・system・messages の順に積んだ積み木と、変えた段から後ろが崩れる（cache が無効になる）ことを示す図"}
+    materials: ["00 §3 分野13", "02 §5-2（先頭の一致、自動と明示の区切り、寿命、最小の長さ、無効にする操作、公式の勧め）", "requirements §6.6（積み木の比喩）"]
+    notes: "「先頭が変わらないことの価値」と積み木の比喩の本体は basics の why-prompt-caching（前提）。料金の倍率と cache の寿命は cost と数値ファイルに置く（design §4.2）。effort を変えると cache が無効になる（02 §5-2）ので models の effort-levels を関連に置いた。比例則の対象外（任せる幅を広げる内容ではない）"
+
+  - id: batch-api-basics
+    chapter: API の主な機能
+    title: "Message Batches API（急がない大量の処理）"
+    nav_title: "Message Batches API"
+    aliases: [Batch API, バッチ処理]
+    type: feature
+    level: 回す
+    level_evidence: "プログラムから大量の要求を無人で流す段階で要る"
+    priority: 任意
+    surfaces: [api]
+    principle: [確かめる]
+    prevents: [合っていない]
+    scenes: [開発, データ分析]
+    summary: "急がない大量の要求を一括で非同期に処理させ、費用を抑えられる。評価や一括の生成に向き、対話や待てない処理に向かない理由が分かる。"
+    signs:
+      - {type: goal, text: "急がない大量の処理を安く流したい"}
+      - {type: goal, text: "評価用の大量のプロンプトをまとめて実行したい"}
+    prerequisites: [stateless-messages-api]
+    related: [checking-unattended-runs, measure-changes, reading-api-pricing, prompt-caching-in-practice, choosing-automation]
+    tracks: [batch-api]
+    volatility: 中
+    sections:
+      - {title: "向く仕事・向かない仕事", anchor: fit}
+    materials: ["00 §3 分野13", "02 §5-3（割引、処理の時間と期限、上限、用途：大規模な評価・モデレーション・大量の生成）"]
+    notes: "割引の率・処理の期限・上限は数値ファイルと cost の受け持ち。Claude Code の /batch（delegate の batch-and-p-loops）とは別のものなので、本文で名前の取り違えに注意を促す。比例則の守りは verify の checking-unattended-runs と eval の measure-changes"
+
+  # ── エージェントを組む ──
+  - id: sdk-comparison
+    chapter: エージェントを組む
+    title: "Client SDK・Agent SDK・Managed Agents・CLI の比較"
+    nav_title: "SDK と CLI の比較"
+    aliases: [Claude Managed Agents, Agent SDK と Managed Agents の位置づけ, どの SDK を使うか, Anthropic SDK]
+    type: comparison
+    level: 仕組みにする
+    level_evidence: "対話の外へ出して、スクリプトや製品に組み込む前に、どの層で動かすかを決めるときに要る"
+    priority: 必須
+    surfaces: [api, claude-code]
+    principle: [握る, 縛る]
+    prevents: [合っていない]
+    scenes: [開発]
+    summary: "Client SDK・Agent SDK・Managed Agents・CLI を、ループを誰が回すか、どこで動くかで比べ、自分の用途に合う層を選べる。"
+    signs:
+      - {type: goal, text: "自分のアプリに Claude を組み込みたい"}
+      - {type: goal, text: "エージェントのループを自分で書くか、任せるかを決めたい"}
+    prerequisites: [choosing-a-surface, agent-loop]
+    related: [agent-sdk-basics, tool-use-loop, headless-basics, choosing-automation, where-your-data-goes, sandboxing, long-running-agent-context, feature-to-api-mapping]
+    tracks: [messages-api, agent-sdk, managed-agents, headless]
+    volatility: 中
+    sections:
+      - {title: "層ごとの比較（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で動かす）", anchor: comparison}
+      - {title: "Managed Agents（Anthropic がループと環境を持つ）", anchor: managed-agents}
+      - {title: "選び方の判断例", anchor: examples}
+    visual: {kind: static, text: "ループを誰が回すか（自分・ライブラリ・Anthropic）と、どこで動くか（自分の環境・Anthropic のクラウド）の二つの軸に、それぞれの層を置いた図"}
+    materials: ["00 §3 分野13", "02 §5-9（Agent SDK の概要と使い分けの表、Managed Agents の構成要素と向く用途、データの扱いの対象外の制度）", "00 §3 分野02「Agent SDK と Managed Agents の位置づけ」", "00 §4 費用・選び方・任せ方（自分のアプリに Claude を組み込みたい）", "research/26 §3.11（API credits を使える層）"]
+    notes: "registry の managed-agents-basics をまとめた（節 managed-agents）。surfaces の担当が agent-sdk-and-managed-agents（Agent SDK と Managed Agents の位置づけ）をここへまとめたので、旧題を aliases に入れ、面の中での位置づけの観点を比較の節に入れた。choosing-a-surface は前提に置いた（surfaces の担当の提案は関連だったが、前提で同じ道ができる）。自分の作業を自動で回す比較は delegate の choosing-automation が持ち、こちらは製品への組み込み。Managed Agents は beta で、データの扱いの対象外の制度がある（02 §5-9）ので、safety の where-your-data-goes を関連に置いた"
+
+  - id: agent-sdk-basics
+    chapter: エージェントを組む
+    title: "Agent SDK（Claude Code をライブラリとして使う）"
+    nav_title: "Agent SDK"
+    aliases: [Claude Agent SDK, claude-agent-sdk]
+    type: feature
+    level: 回す
+    level_evidence: "Claude Code の動きを、自分のプログラムや社内の仕組みから回す段階で要る"
+    priority: 推奨
+    surfaces: [api, claude-code]
+    principle: [縛る, 確かめる]
+    prevents: [縛っていない, 境界がない]
+    scenes: [開発]
+    summary: "Claude Code と同じ道具とループを、自分のプログラムからライブラリとして使える。読み込む設定・権限・課金の経路を、対話の Claude Code との違いとして押さえられる。"
+    signs:
+      - {type: goal, text: "Claude Code と同じ動きを自分のプログラムから使いたい"}
+      - {type: situation, text: "社内の仕組みに Claude Code を組み込む"}
+    prerequisites: [sdk-comparison, permission-rules]
+    related: [headless-basics, bare-mode, hooks-basics, sandboxing, protecting-secrets, check-billing-path, checking-unattended-runs, github-actions-with-claude, long-running-agent-context]
+    tracks: [agent-sdk, headless]
+    volatility: 高
+    sections:
+      - {title: "Claude Code と同じもの・違うもの", anchor: same-and-different}
+      - {title: "読み込む設定を決める", anchor: setting-sources}
+      - {title: "権限と承認", anchor: permissions}
+      - {title: "課金の経路", anchor: billing}
+    materials: ["00 §3 分野13", "02 §5-9（Claude Code as a library、対応する機能、第三者が claude.ai のログインや枠を提供することの制限）", "01 J-1・J-3（`claude -p` は Agent SDK の CLI の形）", "research/23 F2-b（`-p` と Agent SDK の既定の権限モードと、承認の要る呼び出しの扱い）", "research/26 §3.8・§3.11（課金の経路と API credits）", "research/22 #12（SDK の hook のコールバックの onFailure）", "research/28 S18（settingSources）"]
+    notes: "既定の権限モードと承認の扱いは版で変わった（research/23 F2-b）ので volatility を高にした。課金の経路の本体は cost の check-billing-path、`-p` の基本は delegate の headless-basics（循環を避けて関連にした）。比例則の守りは enforce の permission-rules（前提）と sandboxing、safety の protecting-secrets、verify の checking-unattended-runs"
+
+  - id: long-running-agent-context
+    chapter: エージェントを組む
+    title: "長時間エージェントのコンテキスト管理"
+    aliases: [compaction（API）, context editing, memory tool, コンテキスト編集]
+    type: concept
+    level: 回す
+    level_evidence: "API で長時間・無人で動くエージェントを回す段階で要る"
+    priority: 推奨
+    surfaces: [api]
+    principle: [見せる]
+    prevents: [散らかっている]
+    scenes: [開発]
+    summary: "長く動くエージェントで文脈が溢れないよう、要約・古い結果の削除・外部の記憶をどう組み合わせるかが分かる。何を文脈に残し、何をファイルに出すかも判断できる。"
+    signs:
+      - {type: goal, text: "何時間も動くエージェントの文脈が溢れないようにしたい"}
+      - {type: symptom, text: "長く動かしたエージェントが、前に決めたことを忘れる"}
+    prerequisites: [what-survives-compaction, stateless-messages-api]
+    related: [checking-unattended-runs, progress-logs-for-long-jobs, progress-files, handoff-documents, compact-and-auto-compact, feature-to-api-mapping, agent-sdk-basics, using-auto-memory]
+    tracks: [api-compaction, context-editing, memory-tool]
+    volatility: 高
+    sections:
+      - {title: "三つの手段（compaction・context editing・memory tool）", anchor: three-tools}
+      - {title: "状態をファイルに持たせる", anchor: external-state}
+    visual: {kind: static, text: "compaction（要約に置き換える）・context editing（古い道具の結果を消す）・memory tool（外に書き残す）が、文脈のどこに効くかを並べた図"}
+    materials: ["00 §3 分野13", "02 §5-7（compaction は on-demand を公式が勧める、context editing はより細かく制御したいとき、memory tool は compaction と組み合わせる、path traversal の対策）", "11 第2節 分野05 進捗ファイル（p34#115：状態は JSON で持ち、変えてよい欄を限る。分野13 にも関わると書く）"]
+    notes: "compaction と context editing は beta（02 §5-7）なので volatility を高にした。Claude Code での同じ考え（/compact・handoff・進捗ファイル）は context と delegate の受け持ちで、ここは API の手段だけ。比例則の守りは verify の checking-unattended-runs"
+
+  - id: designing-agent-tools
+    chapter: エージェントを組む
+    title: "エージェント用のツールを設計する原則"
+    aliases: [ツールの設計, Writing effective tools for agents, MCP サーバーの設計]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "MCP サーバーや自作のツールを作る、仕組みにする段階で要る。registry の見当（回す）から下げた"
+    priority: 任意
+    surfaces: [api, claude-code]
+    principle: [見せる, 確かめる]
+    prevents: [散らかっている, 見えていない]
+    scenes: [開発]
+    summary: "エージェントに渡す道具を少なく統合し、返す情報を絞り、評価で直すという設計の原則が分かる。MCP サーバーや自作のツールを作るときに使える。"
+    signs:
+      - {type: goal, text: "エージェント用の道具や MCP サーバーを作りたい"}
+      - {type: symptom, text: "道具を増やしたら、エージェントが道具を選び間違える"}
+    prerequisites: [tool-use-loop]
+    related: [measure-changes, lethal-trifecta, mcp-or-cli, choosing-mcp-servers, move-judgment-into-scripts, always-on-costs, connecting-mcp]
+    tracks: [tool-use]
+    volatility: 低
+    sections:
+      - {title: "少なく、まとめて", anchor: fewer-tools}
+      - {title: "返す情報を絞る", anchor: high-signal-output}
+      - {title: "評価で直す", anchor: evaluate}
+    materials: ["00 §3 分野13", "01 2-3（Writing effective tools for agents、2025-09-11：統合する、名前空間、高シグナルの出力、ツールの説明、評価で改善する）"]
+    notes: "原理の層なので volatility を低にした。根拠は公式の engineering の記事1本（公B）。比例則の守りは eval の measure-changes（評価で直す）と safety の lethal-trifecta"
+
+merged:
+  - id: files-pdfs-and-images
+    into: how-attachments-are-read
+    reason: "アプリの添付と同じ話題（資料のどこまでが図も含めて読まれるか）で、面ごとにページを分けない（D9）。app の how-attachments-are-read に API のタブ（節 api：Files API・PDF・画像）を置いた。任意で、概念と対応関係だけを書く分野（requirements §6.3）では単独の判断が薄い"
+  - id: managed-agents-basics
+    into: sdk-comparison
+    reason: "beta の機能で、API と SDK は概念と対応関係だけを書く（requirements §6.3）。独自の判断は「ループと実行の環境を Anthropic に預けるか」で、比較のページの判断そのもの。sdk-comparison の節 managed-agents に置いた（題名に Managed Agents があるので名前でも引ける）"
+  - id: prompt-evals-intro
+    into: measure-changes
+    reason: "評価の指標と実験は eval の受け持ち（design §4.2、D4）。task・trial・grader・pass@k と pass^k は eval の measure-changes（小さな eval。節 graders・how-many-runs）と同じ内容になる。registry の notes が api と eval の担当に判断を任せた点で、eval の担当もまとめる案を挙げている。eval への提案は open_issues"
+
+dropped: []
+
+new_features:
+  - id: message-threads
+    title: "message threads（API、beta）"
+    note: "research/22 #40。2026-11-02 に beta。送る量を差分にできるが、モデルが読む量と料金・rate limit は変わらない。スレッドの寿命、ZDR と HIPAA の対象外を数値ファイルに持つ"
+  - id: api-compaction
+    title: "compaction（API、beta）"
+    note: "02 §5-7。on-demand と閾値での自動。README §5 の compaction は Claude Code の行なので分けた"
+  - id: context-editing
+    title: "context editing（API、beta）"
+    note: "02 §5-7。古い道具の結果と thinking のブロックを規則で消す"
+  - id: memory-tool
+    title: "memory tool（API）"
+    note: "02 §5-7。会話をまたいでファイルを残す client 側の道具。保存先は呼び出し側が決める"
+
+open_issues:
+  - "提案（delegate）：choosing-automation の related の managed-agents-basics は sdk-comparison にまとめた（同じ related にすでにある）ので外してほしい。外さないと [参照] のエラーになる（2026-11-04 の全体の検査で出ている）。あわせて batch-and-p-loops で、Claude Code の /batch と API の Message Batches API（api の batch-api-basics）の取り違えに触れてほしい"
+  - "決めきれなかった点：API の題名の訳語。Platform の日本語版の訳語は工程2で調べていない（research/27 は Claude Code の文書とヘルプセンターだけ）。prompt caching だけ Claude Code の日本語版の多数派（プロンプトキャッシング）に合わせ、ほかは英語の名前のままにした。用語集で決めるときに見直してほしい"
+  - "決めきれなかった点：files-pdfs-and-images をアプリの how-attachments-are-read にまとめた（D9）ので、API の読者が分野の一覧から見つけにくくなるおそれがある。feature-to-api-mapping から how-attachments-are-read#api を指して補った"
+
+notes:
+  - "ページ数：registry の14候補から、pages 11・merged 3・dropped 0。新規はない"
+  - "API の挙動は公式の文書と確認日で書き、API キーで呼んで確かめない（decisions 2026-11-03「API キー」）。パラメータの一覧とコード例は書かず、公式の文書へリンクする（requirements §6.3）。雛形（templates）は置かない"
+  - "料金（cache・batch・Managed Agents の時間あたり・fast mode など）は cost の受け持ち（design §4.2）。api のページは仕組みと判断だけを書き、cost の reading-api-pricing・check-billing-path を指す"
+  - "比例則：任せる以上の段の11ページのうち、feature-to-api-mapping・stateless-messages-api・prompt-caching-in-practice は任せる幅を広げる内容ではない（対応関係・仕組み・費用の整え方）。ただし stateless-messages-api は message threads のデータの扱いで safety の where-your-data-goes を関連に持つ。ほかの8ページは verify・eval・enforce・safety のページを前提か関連に持つ"
+  - "registry の見当から level を変えたもの：designing-agent-tools を回すから仕組みにするへ（MCP サーバーや自作のツールを作るのは仕組みにする段階。level_evidence）"
+  - "ほかの分野の担当が api の扱いに合わせたことを確かめた（2026-11-04）：eval の measure-changes が prompt-evals-intro の中身（成功の基準を先に決める・task などの語・pass@k と pass^k・batch-api-basics への関連・台帳の console-prompt-generator）を持った。surfaces が agent-sdk-and-managed-agents を sdk-comparison にまとめた。cost の reading-api-pricing と check-billing-path が api のページを指す。basics の rereads-whole-history・why-prompt-caching・agent-loop、verify の checking-citations、delegate の headless-basics が api のページを関連に持つ。台帳の lower-temperature・budget-tokens・thinking-tags は basics・models・prompting のページに付いた。symptoms の skipped-later-pages と unexpected-memories は、まとめた候補（files-pdfs-and-images・searching-past-chats）への参照を外してくれた"

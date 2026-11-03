@@ -1,0 +1,459 @@
+# claude-atlas 目次：eval（評価と実験）
+# 形式：planning/catalog/README.md §3。語彙：schema/site.yml。担当：C8（工程3、2026-11-04）
+# 境界（design §4.2、D4）：検証器を作って守る・実験を回す・評価の指標は eval。完了・事実・レビューの確かめ方は verify（verify.yaml）
+# 第一波の核（D10「評価と実験の核」）：総論 verifier-defines-problem と、eval のほかのページの多くが前提にする
+#   felt-vs-measured・measure-changes・verifier-three-conditions の4ページに wave: 1 を付けた（理由は各ページの notes と報告 catalog-C8.md）
+# 前提の流れ：verify の verification-ladder → 総論 → 三条件 → 検証器の確かめ方。体感と実測 → 小さな eval → 選択圧 → 実験台帳・ロックボックス
+# 用語：verifier を「検証器」にそろえた（評価器・採点器は aliases と本文の言い換え）
+field: eval
+chapters: [総論, 変化を測る, 検証器を作る, 実験を回す]
+pages:
+  # ── 総論 ──
+  - id: verifier-defines-problem
+    chapter: 総論
+    title: "検証器が問題を定義する（Claude は置かれたループを何でも加速する）"
+    nav_title: "検証器が問題を定義する"
+    aliases: [評価器が問題を定義する, 評価を握る, 最初の成果物は検証器]
+    type: concept
+    level: 任せる
+    level_evidence: "テストや点数を目標に Claude に反復させ始める任せるの段で、検証器の質が結果を決めるようになる"
+    priority: 必須
+    wave: 1
+    surfaces: [claude-code, api]
+    principle: [確かめる, 握る]
+    prevents: [確かめていない]
+    pitfalls: [預けすぎる]
+    scenes: [開発, データ分析, コンテスト]
+    summary: "Claude は渡された検証器（テスト・採点・ベンチマーク）が定める問題を解き、置かれたループを何でも速めることが分かる。検証器が誤れば、誤りも同じ速さで増える。"
+    signs:
+      - {type: goal, text: "Claude に長く改善を回させても、方向を誤らせたくない"}
+      - {type: symptom, text: "テストは全部通るのに、欲しかったものになっていない"}
+      - {type: situation, text: "スコアやテストを目標に、Claude に試行を繰り返させている"}
+    prerequisites: [verification-ladder]
+    related: [verifier-three-conditions, selection-pressure, measure-changes, reward-hacking, four-principles, protect-tests, what-not-to-delegate, misses-broken-evaluation, build-test-harness, evaluators-by-format, open-ended-loop-trap, goal-until-done]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "ループは何でも速める", anchor: loops-amplify}
+      - {title: "最初の成果物は検証器", anchor: verifier-first}
+      - {title: "評価と実験の地図", anchor: map}
+    templates: []
+    visual: {kind: static, text: "ループの図：Claude の変更 → 検証器 → 合否や点数 → 次の変更。検証器がずれていると、ずれた方向へ速く進むことを示す"}
+    materials: ["requirements §3.1（握る）・§4.3（eval の総論）", "11 第1節 分野09 総論 p34#1・p34#5", "11 第2節 分野09 p34#3・p12#64・p12#45", "11 第2節 分野00 p12#1・p12#16・p12#86", "10 第8章", "research/24 A-7・B-32"]
+    notes: "総論。reward hacking（basics）より広く、正直に最適化しても検証器の穴に合わせ込むことを書く。評価のループで大きく伸びた ALE-Bench の比較（p12#16）は Claude 以外のモデルの結果で、Claude の傾向としては書かない。C コンパイラの事例（p34#3）は Claude の並列の例で版依存。「AI はほぼ全形式で人の最上位に並んだ」は言い過ぎ（research/24 A-7）なので、総論の導入に使わない。人が規則の範囲で再現できる構造の話は、大会の規則で使える範囲に限って書く（research/24 B-60）"
+
+  # ── 変化を測る ──
+  - id: felt-vs-measured
+    chapter: 変化を測る
+    title: "体感と実測"
+    nav_title: null
+    aliases: [体感を信じる, 生産性の錯覚, 実測で確かめる]
+    type: judgment
+    level: 整える
+    level_evidence: "頼み方や設定を変えて「良くなった」「劣化した」と判断し始める整えるの段から要る。judgment の総論と、ほかの落とし穴のページの段にそろえた"
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code]
+    principle: [確かめる, 握る]
+    prevents: []
+    pitfalls: [体感を信じる]
+    scenes: [開発, チーム, 学習]
+    summary: "速くなった・良くなった・劣化したという体感が、実測とずれる理由が分かる。体感ではなく、同じ物差しで取った記録で判断する。"
+    signs:
+      - {type: symptom, text: "AI で速くなった気がするが、本当か分からない"}
+      - {type: symptom, text: "前より賢くなくなった気がする"}
+      - {type: goal, text: "AI を使った効果を、感覚ではなく記録で確かめたい"}
+    prerequisites: [human-pitfalls]
+    related: [measure-changes, suspected-degradation, seems-less-capable, insights-and-usage-review, over-reliance, agreement-is-not-evidence, decide-when-to-quit, ai-ideas-are-everyones, experiment-log]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "何が起きるか（研究と根拠の強さ）", anchor: evidence}
+      - {title: "なぜ体感はずれるか", anchor: why}
+      - {title: "記録で測るもの", anchor: what-to-record}
+    templates: []
+    visual: {kind: static, text: "予想・終わった後の体感・実測を並べた図。研究の値には、道具とモデルの世代と標本の大きさを添える"}
+    materials: ["00 §3 分野09", "05 5-4", "11 第2節 分野09 p12#79・p56#90", "research/24 F1・§2.3（エの行）・B-55", "requirements §3.2（人の側の落とし穴エ）"]
+    notes: "priority を推奨から必須に、level を任せるから整えるに、type を concept から judgment に変えた。理由：人の側の五つの落とし穴のエ（体感を信じる）を受け持つページで、judgment の総論とア・イ・ウ・オのページ（必須、主に整える）とそろえるため。models の suspected-degradation と symptoms の seems-less-capable（どちらも必須・整える）の前提に置ける。根拠の強さは research/24 F1 のエの行（強。ただし METR は熟練の開発者16人・2025年前半の道具で、追試は確かめていない。学習のずれの研究は GPT-4 と高校の数学）。「AI は遅い」の結論には使わない（00 §3 分野09）"
+
+  - id: measure-changes
+    chapter: 変化を測る
+    title: "変更が効いたかを測る（小さな eval）"
+    nav_title: null
+    aliases: [小さな eval, プロンプトの評価（eval）入門, 前後で比べる, 変更の効果の測り方, pass^k]
+    type: recipe
+    level: 任せる
+    level_evidence: "CLAUDE.md や skill を育て始める任せるの段で、変えたものが効いたかを確かめる必要が出る（逆引き「CLAUDE.md を変えて良くなったか知りたい」）"
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: [体感を信じる]
+    scenes: [開発, 文章]
+    summary: "CLAUDE.md・プロンプト・skill の変更が効いたかを、失敗したタスクを前後で何度か走らせて比べる小さな eval で確かめられる。一度の試行では判断しない。"
+    signs:
+      - {type: goal, text: "CLAUDE.md を変えて良くなったか知りたい"}
+      - {type: goal, text: "プロンプトや手順書を直した効果を比べたい"}
+      - {type: symptom, text: "一度試して良かった変更が、次には効かなかった"}
+      - {type: symptom, text: "平均は良くなったのに、一部のケースで悪くなっていた"}
+    prerequisites: [felt-vs-measured, nondeterminism, define-done]
+    related: [model-based-grading, experiment-log, selection-pressure, after-switching-models, claude-md-length, pruning-extensions, before-after-prompts, prompt-patterns, "keep-replies-in-japanese#measure", check-the-metric, test-the-verifier, insights-and-usage-review, headless-basics, batch-api-basics, measure-the-upper-bound, verifier-defines-problem]
+    tracks: []
+    outdated_advice: [console-prompt-generator]
+    volatility: 低
+    sections:
+      - {title: "成功の基準を先に決める（task・trial・grader・transcript・outcome）", anchor: terms}
+      - {title: "小さな eval の手順", anchor: small-eval}
+      - {title: "採点の種類（コード・モデル・人）", anchor: graders}
+      - {title: "試行の数と差の大きさ", anchor: how-many-runs}
+      - {title: "合計ではなく、層別と最悪ケースで見る", anchor: by-stratum, level: 仕組みにする}
+      - {title: "transcript を読む", anchor: read-transcripts}
+    templates:
+      - {name: "小さな eval の記録表（タスク・変更の前後・試行ごとの合否と失敗の様子）", kind: other, safety: false}
+    visual: {kind: static, text: "同じタスクを変更の前後で数回ずつ走らせた結果の表。少なくとも1回の成功（pass@k）と、毎回の成功（pass^k）の違いを示す"}
+    materials: ["00 §3 分野09", "00 §3 分野13（プロンプトの評価（eval）入門：api の prompt-evals-intro をまとめた）", "00 §4 確かめ方の困りごと", "02 4-0（成功の基準を先に決める）", "05 3-14・5-2・5-3", "11 第1節 分野09 p12#88・p56#71・p56#96", "11 第2節 分野09 p34#38・p34#39・p34#40・p34#166・p34#4", "11 第1節 分野09 小項目 p34#52（層別と最悪ケース）", "research/24 A-12・B-51・B-53"]
+    notes: "priority を推奨から必須に、level を仕組みにするから任せるに変えた。理由：逆引き「CLAUDE.md を変えて良くなったか知りたい」の受け皿で、eval のほかのページの多くが前提にする（registry の wave_core）。models の after-switching-models（必須・任せる）の前提にも置ける。registry の stratified-and-worst-case をまとめ、節 by-stratum にした（merged）。「失敗したタスクを数個〜二十個ほど、前後で数回ずつ」は 05 の推論の提案なので、本文では目安として書く。小さな集合では大きな差しか見分けられないこと（p34#39、research/24 B-53 で検算）と、実行環境だけで結果が動くこと（research/24 B-51。Claude のモデルで測った）を添える。p34#4 は採点・仕様・課題を直し scaffold も替えた例（research/24 A-12）。api の prompt-evals-intro（プロンプトの評価入門）は api の担当がここにまとめた：成功の基準を先に決めること（公式のプロンプトの手引きの前提）、task・trial・grader・transcript・outcome の語と pass@k・pass^k の違いを節 terms と graders に入れ、API で多数の試行を回す手段は api の batch-api-basics にリンクする。例には、CLAUDE.md の変更のほかに、プロンプトや指示を変えたときの小さな eval（prompting の提案）と、英語への回帰を数える検証ノート（japanese の keep-replies-in-japanese#measure。japanese の提案）を使う"
+
+  - id: insights-and-usage-review
+    chapter: 変化を測る
+    title: "/insights と /usage で振り返る"
+    nav_title: null
+    aliases: [使い方の振り返り, 摩擦の分析, /cost, /stats]
+    type: feature
+    level: 任せる
+    level_evidence: "使い方を振り返り、仕組みに移すものを選ぶ、任せるから仕組みにするへの節目で使う"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: []
+    pitfalls: []
+    scenes: [開発]
+    summary: "/insights と /usage で、摩擦の起きた所と使い方の内訳を振り返り、仕組みに移すものや削るものを選べる。出てきた提案は、判断ではなく下書きとして読む。"
+    signs:
+      - {type: goal, text: "自分の使い方のどこに無駄や引っかかりがあるか知りたい"}
+      - {type: goal, text: "どの拡張がどれだけ使われているかを見たい"}
+    prerequisites: [felt-vs-measured]
+    related: [usage-context-statusline, always-on-costs, pruning-extensions, when-to-add-what, repeating-the-same-explanation, postmortems, measure-changes]
+    tracks: [insights, usage]
+    outdated_advice: [slash-cost-and-stats]
+    volatility: 中
+    sections:
+      - {title: "/insights の提案を下書きとして読む", anchor: insights-as-drafts}
+      - {title: "/usage の内訳から削るものを選ぶ", anchor: usage-breakdown}
+    templates: []
+    visual: null
+    materials: ["00 §3 分野09", "01 M（/usage と /insights）", "05 5-3", "11 第2節 分野09 p56#95", "00 §5 台帳（/cost・/stats）"]
+    notes: "/usage の操作の本体は cli の usage-context-statusline、費用の見方は cost に任せ、ここは振り返りの使い方に絞る。/insights の「月1回程度」は p56#95 の目安で、規則として書かない。提案を判断にしないことは judgment の振り返りのページの考え方（AI は集計係）とそろえる"
+
+  # ── 検証器を作る ──
+  - id: verifier-three-conditions
+    chapter: 検証器を作る
+    title: "検証器の三条件（正しい・書き換えられない・本番を代表する）"
+    nav_title: "検証器の三条件"
+    aliases: [評価器の要件, 検証器の質, 本番を代表するテスト]
+    type: concept
+    level: 任せる
+    level_evidence: "検証器を目標に反復させる任せるの段で、その検証器が信用できるかを問う必要が出る"
+    priority: 必須
+    wave: 1
+    surfaces: [claude-code, api]
+    principle: [確かめる, 縛る]
+    prevents: [確かめていない, 縛っていない]
+    pitfalls: []
+    scenes: [開発, データ分析, コンテスト]
+    summary: "検証器が満たすべき三つの条件（正しい・書き換えられない・本番を代表する）で、評価の仕組みを使う前に点検できる。手元の勝ちが本番の勝ちを意味するかを問う。"
+    signs:
+      - {type: goal, text: "Claude に回させる前に、評価の仕組みが信用できるか確かめたい"}
+      - {type: symptom, text: "手元の評価では勝つのに、本番では効かない"}
+    prerequisites: [verifier-defines-problem, reward-hacking]
+    related: [test-the-verifier, protect-tests, lockbox-and-holdout, check-the-metric, differential-testing, model-based-grading, freeze-eval-assets, misses-broken-evaluation, rewrote-tests-to-pass, build-test-harness, evaluators-by-format]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "正しい", anchor: correct}
+      - {title: "書き換えられない", anchor: tamper-proof}
+      - {title: "本番を代表する", anchor: representative}
+    templates: []
+    visual: null
+    materials: ["11 第1節 分野09 p34#2・p12#49・p34#14・p34#6・p34#16・p34#15", "11 第2節 分野09 p12#64", "10 第8章"]
+    notes: "「本番を代表する」の例の多く（対戦型の大会の事後報告）は類推と書き、業務の例（手元のデータと本番のデータの違い）と並べる。「書き換えられない」の手段は verify の protect-tests と enforce の freeze-eval-assets、「本番を代表する」の手段は lockbox-and-holdout と check-the-metric にリンクする。basics が reward-hacking を必須に上げたので、「書き換えられない」の「なぜ」として前提にした（basics の提案）。recipes・contest の前提になるので、段は任せるより上にしない（recipes・contest の提案）"
+
+  - id: test-the-verifier
+    chapter: 検証器を作る
+    title: "検証器そのものを確かめる（red/green・手で計算したケース）"
+    nav_title: "検証器そのものを確かめる"
+    aliases: [検証器のテスト, 採点スクリプトの検証, 評価器の red/green]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "仕組みにするの段の上がる条件「検証器を自分で確かめられる」そのもの（design §3.1）"
+    priority: 必須
+    wave: 1
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発, コンテスト]
+    summary: "検証器を使う前に、何もしない解が負け、強い解が勝ち、手で計算した値と一致し、わざと壊した検証器では落ちることを確かめてから凍結できる。"
+    signs:
+      - {type: symptom, text: "採点のスクリプト自体にバグがあった"}
+      - {type: symptom, text: "どの方法を試しても点が出ず、何かがおかしい"}
+      - {type: goal, text: "評価の仕組みが正しく採点しているか確かめてから使いたい"}
+    prerequisites: [verifier-three-conditions]
+    related: [differential-testing, model-based-grading, freeze-eval-assets, misses-broken-evaluation, build-test-harness, evaluators-by-format, add-tests, tests-first, pitfalls-of-ai-written-tests]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "red/green を検証器に当てる", anchor: red-green}
+      - {title: "手で計算したケース", anchor: hand-calculated}
+      - {title: "わざと壊した検証器で落ちるか", anchor: broken-copy}
+      - {title: "入力の生成器の分布を人が見る", anchor: input-distribution}
+      - {title: "採点の正本は一か所に", anchor: single-scorer}
+      - {title: "確かめてから凍結する", anchor: freeze}
+    templates:
+      - {name: "検証器の red/green テストを書かせる依頼（新しいテストは提案用の場所に書かせ、人が見てから凍結する場所へ移す。A-13）", kind: prompt, safety: false}
+    visual: {kind: static, text: "検証器に当てる確認の表（何もしない解・ランダムな解・明らかに強い解・手で計算したケース・わざと壊した検証器）と、それぞれの期待"}
+    materials: ["11 第1節 分野09 p34#7・p56#141・p34#27・p34#30・p34#32（小項目「採点の正本は一か所に」）", "11 第5節 A-13", "11 第2節 分野09 p34#4", "research/24 A-12", "10 第8章"]
+    notes: "registry では wave_core だが、eval のほかのページの前提にならない（葉のレシピ）ので wave を付けていない。必須なので初版には入る（報告 §3）。11 の小項目「採点の正本は一か所に」は節 single-scorer に入れた（registry の notes どおり）。「多数の試行で0%なら、たいてい壊れた課題」は research/24 A-12 で原文どおりと確かめた経験則で、値は本文で出典付きで書く。先後を入れ替えた勝率の確認は対戦型に固有なので、折りたたみか contest の evaluators-by-format へ（2026-11-04 メインの判断で wave: 1 を付けた。検証器を自分で確かめることは「仕組みにする」の段の上がる条件で、実験台帳とともに評価と実験の核の中心にあたるため）"
+
+  - id: check-the-metric
+    chapter: 検証器を作る
+    title: "評価指標そのものを確かめる"
+    nav_title: null
+    aliases: [指標のずれ, 評価指標の選び方, 手元の指標と本番の指標]
+    type: concept
+    level: 任せる
+    level_evidence: "点数を目標に任せる段で、指標と目的のずれが効いてくる"
+    priority: 推奨
+    surfaces: [claude-code, api]
+    principle: [握る, 確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [データ分析, コンテスト, 開発]
+    summary: "検証器が測る指標と本当の目的のずれを、最適化を始める前に確かめられる。指標が良いことは、正しいことを意味しない。"
+    signs:
+      - {type: symptom, text: "手元のスコアは良いのに、本当の目的では悪い"}
+      - {type: goal, text: "最適化させる指標が、本当に欲しいものと合っているか確かめたい"}
+    prerequisites: [verifier-defines-problem]
+    related: [verifier-three-conditions, define-done, suspect-too-good-results, measure-changes, lockbox-and-holdout, data-analysis, read-specs-yourself, misses-broken-evaluation]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "指標と目的のずれ", anchor: mismatch}
+    templates: []
+    visual: null
+    materials: ["11 第1節 分野09 p12#109・p12#110・p12#88"]
+    notes: "根拠は弱から中（データ分析の大会の一例と、勝者の共通点の分析）。指標が良くても正しくなかった一次資料の例（p12#88）は強いので、本文の導入に使える。Claude に渡した完了の定義と本当の目的のずれも同じ形の落とし穴として書く（verify の define-done へリンク）"
+
+  - id: differential-testing
+    chapter: 検証器を作る
+    title: "答えの分かる遅い解と比べる（差分テスト・オラクル）"
+    nav_title: "答えの分かる遅い解と比べる"
+    aliases: [オラクル, ストレステスト, 参照実装との比較, 愚直解との比較]
+    type: recipe
+    level: 任せる
+    level_evidence: "正しさの確かめを Claude に作らせて回させる任せるの段で要る"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発, コンテスト]
+    summary: "遅くても明らかに正しい解（愚直解・旧実装・公式の道具）と突き合わせる差分テストを、Claude に作らせて回させられる。正解の側を本解に合わせて直させない。"
+    signs:
+      - {type: goal, text: "正解の分かる遅い実装と突き合わせて、正しさを確かめたい"}
+      - {type: symptom, text: "テストでは見つからない間違いが、本番の入力で出る"}
+      - {type: situation, text: "古い実装を新しく書き直している"}
+    prerequisites: [verifier-three-conditions]
+    related: [pitfalls-of-ai-written-tests, test-the-verifier, shrink-failing-inputs, property-based-tests, bisect-regressions, refactor-and-migrate, performance-tuning, fix-a-bug, build-test-harness, search-code-checklist]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "手順", anchor: steps}
+      - {title: "正解の側を守る", anchor: protect-the-oracle}
+    templates:
+      - {name: "愚直解と入力の生成器でストレステストを回させ、最初の不一致で止めさせる依頼（A-9 前半）", kind: prompt, safety: false}
+    visual: {kind: mermaid, text: "入力の生成器 → 本解と愚直解 → 出力の比較 → 不一致なら入力と両方の出力を保存して止まる、の流れ"}
+    materials: ["11 第1節 分野09 p34#58・p56#136・p34#65・p34#66・p34#79・p56#137", "11 第5節 A-9", "10 第10章"]
+    notes: "業務の例（旧い実装や既存の道具との突き合わせ）とコンテストの例（競技プログラミングのストレステスト）を並べる。C コンパイラの事例（p34#65）は Claude の並列の例で版依存。入力を縮める手順の本体は recipes の shrink-failing-inputs。A-9 後半（差分の点数の更新と全再計算の一致の assert）は局所探索に固有なので、contest の提案どおり contest の search-code-checklist の雛形にし、ここからリンクする（11 第5節は差分テストのページに置く案）"
+
+  - id: model-based-grading
+    chapter: 検証器を作る
+    title: "Claude に採点させる（人の判定で較正する）"
+    nav_title: null
+    aliases: [LLM as a judge, モデルによる採点, model-based grader, AI の採点の較正]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "AI の採点を評価の仕組みに組み込む段で要る"
+    priority: 推奨
+    surfaces: [claude-code, api, app]
+    principle: [確かめる, 握る]
+    prevents: [確かめていない]
+    pitfalls: [同意を根拠にする]
+    scenes: [文章, 開発]
+    summary: "機械で判定しにくい出力を Claude に採点させるとき、人の判定と比べて採点の基準を較正できる。較正していない AI の採点は、合否の根拠にしない。"
+    signs:
+      - {type: goal, text: "文章の質のような、機械で判定しにくいものを Claude に採点させたい"}
+      - {type: symptom, text: "AI の採点は高いのに、読んでみると良くない"}
+    prerequisites: [verifier-three-conditions, measure-changes]
+    related: [test-the-verifier, agreement-is-not-evidence, ask-without-sycophancy, sycophancy, independent-review, instructing-reviewers, goal-until-done, textlint-hook]
+    tracks: []
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "コードで判定できるものはコードで", anchor: prefer-code}
+      - {title: "人の判定と比べて較正する", anchor: calibrate}
+      - {title: "判定役が見ているもの", anchor: what-the-judge-sees}
+    templates:
+      - {name: "採点の基準を書いた採点の依頼と、人の判定と食い違った例を読み直す手順", kind: prompt, safety: false}
+    visual: null
+    materials: ["05 5-2（公式の grader の種類：コード・モデル・人。モデルの採点は人との較正が要る）", "11 第2節 分野09 p34#226・p34#166", "11 第3節 3-2 #7（完了の判定役は会話だけを見る）", "10 第18章"]
+    notes: "新規：design §4.2 で eval が持つ「評価の指標」のうち、AI に採点させるときの較正が registry の候補になかった。材料は公式（05 5-2 の Demystifying evals、11 第2節 p34#226・p34#166 のハーネスの記事）で、理由は、文章や日本語の品質のように機械で判定しにくい評価で、素の AI の採点が凡庸な出来を褒めるから。優先度は推奨（初版の核ではないが、eval の分野の穴を埋める）。判定役が会話しか見ない例（/goal）は版依存なので数値ファイル経由で書く。機械で判定できる表記は textlint のような決定的な検査に任せる（japanese の textlint-hook）"
+
+  # ── 実験を回す ──
+  - id: selection-pressure
+    chapter: 実験を回す
+    title: "選択圧：良かった版を選び続ける罠"
+    nav_title: null
+    aliases: [勝者の呪い, 評価への過適合, 選んだ版の上振れ]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "試行を何度も回して良い版を選ぶ、ループを仕組みにする段で効いてくる"
+    priority: 必須
+    surfaces: [claude-code, api]
+    principle: [握る, 確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発, データ分析, コンテスト]
+    summary: "Claude が正直でも、良かった版を選び続けるだけで評価の穴に合わせ込んでしまう罠が分かる。試行を増やすほど強まり、一変更一評価・台帳・見せないデータで防ぐ。"
+    signs:
+      - {type: symptom, text: "改善を重ねてスコアは上がったのに、新しい入力では伸びない"}
+      - {type: situation, text: "何十通りも試させて、いちばん良かった版を採っている"}
+    prerequisites: [verifier-defines-problem, measure-changes]
+    related: [experiment-log, lockbox-and-holdout, open-ended-loop-trap, compare-hypotheses-in-parallel, goal-until-done, dynamic-workflows, decide-when-to-quit, suspect-too-good-results, running-contest-experiments]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "なぜ正直でも外れるか", anchor: why}
+      - {title: "防ぎ方", anchor: defenses}
+      - {title: "同じアイデアの再挑戦に上限を置く", anchor: retry-cap}
+    templates: []
+    visual: {kind: dynamic, text: "効果のない変更を何度も試し、手元の評価で最も良い版を選び続けると、手元の点だけが上がり、見せないデータの点は上がらない様子を動かして見せる（動く図の候補）"}
+    materials: ["11 第1節 分野09 p34#33・p34#34・p34#35・p34#36・p34#54", "10 第9章", "11 第4節 #38・#50", "research/24 B-50・B-51"]
+    notes: "priority を推奨から必須に変えた。理由：実験台帳（必須）とロックボックスの前提で、D4 の「実験を回す」の考え方の中心（10 第9章の題が、台帳とロックボックスを選択圧への防ぎとして並べる）。p34#34（見かけの改善の約3割が崩れた）は二次のブログ1本で未確認（11 第4節 #38）、p34#35 は理由の取り違えの注記がある（research/24 B-50：再挑戦の上限は運のよい試行を通しすぎないための目安）。どちらも summary・signs に使わず、上限の回数はチェスエンジンの検定の慣行の例として書く。wave は付けていない（前提にするのは eval の2ページだけ）"
+
+  - id: experiment-log
+    chapter: 実験を回す
+    title: "実験台帳（仮説を先に書く・提案者・分母・検証器の版）"
+    nav_title: "実験台帳"
+    aliases: [実験ノート, 実験の記録, 実験のログ]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "実験を繰り返し回す仕組みを持つ段で要る"
+    priority: 必須
+    wave: 1
+    surfaces: [claude-code]
+    principle: [握る, 確かめる]
+    prevents: [確かめていない]
+    pitfalls: [体感を信じる]
+    scenes: [開発, データ分析, コンテスト, チーム]
+    summary: "実験ごとに、実行前に書く仮説・提案者・分母・検証器の版・採否と判定者を台帳に残せる。結果を見てからの後付けと、同じ失敗の繰り返しを防ぐ。"
+    signs:
+      - {type: goal, text: "どの変更がなぜ効いたかを、後から追えるようにしたい"}
+      - {type: symptom, text: "前に失敗した案を、また試していた"}
+      - {type: symptom, text: "結果を見てから、効いた理由を後付けしている"}
+    prerequisites: [selection-pressure]
+    related: [decide-when-to-quit, lockbox-and-holdout, measure-changes, verifier-three-conditions, progress-files, keep-failure-lessons, compare-hypotheses-in-parallel, running-contest-experiments, own-generated-code, record-decisions, postmortems, measure-the-upper-bound]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "台帳の項目", anchor: fields}
+      - {title: "仮説を先に書く", anchor: hypothesis-first}
+      - {title: "検証器の版を残す", anchor: verifier-version}
+      - {title: "提案者を記録する", anchor: proposer}
+    templates:
+      - {name: "実験台帳の1件分（A-15。閾値と回数は例と明記する）", kind: other, safety: false}
+    visual: null
+    materials: ["11 第1節 分野09 p34#51・p56#143・p34#29・p34#46", "11 第5節 A-15", "research/24 A-15", "10 第9章", "11 第2節 分野09 p34#57"]
+    notes: "題名の「評価器の版」を「検証器の版」にした（eval の用語をそろえた）。registry では wave_core だが、eval のほかのページの前提にならない（葉のレシピ）ので wave を付けていない。必須なので初版には入る（報告 §3）。A-15 の撤退基準の値と再試行の回数は出典のない例（research/24 A-15）。撤退基準の本体は judgment の decide-when-to-quit で、雛形 A-15 を分け合う。作業を続けるための進捗ファイル（context の progress-files）と、採否の記録である台帳の違いを書く。提案者ごとの当たりの率を比べる案（p56#71）は先行例のない独自の提案なので、書くなら印を付ける（2026-11-04 メインの判断で wave: 1 を付けた。検証器を自分で確かめることは「仕組みにする」の段の上がる条件で、実験台帳とともに評価と実験の核の中心にあたるため）"
+
+  - id: lockbox-and-holdout
+    chapter: 実験を回す
+    title: "ロックボックスと hold-out（人だけが持つ検証用データ）"
+    nav_title: "ロックボックスと hold-out"
+    aliases: [ホールドアウト, 隠しテスト, 見せない検証データ, lockbox]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "評価の仕組みを常設し、何度も選ぶ段で、見せないデータが要る"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [縛る, 握る]
+    prevents: [縛っていない, 確かめていない]
+    pitfalls: []
+    scenes: [データ分析, コンテスト, 開発]
+    summary: "入力を開発用・検証用・人だけが持つロックボックスに分け、節目にだけ見る運用ができる。エージェントには点数だけを返し、中身を見せない。"
+    signs:
+      - {type: goal, text: "Claude に見せない検証用のデータを持ちたい"}
+      - {type: symptom, text: "見えているテストは通るのに、隠れたテストで大きく落ちる"}
+    prerequisites: [verifier-three-conditions, selection-pressure]
+    related: [protect-tests, freeze-eval-assets, sandboxing, permission-rules, suspect-too-good-results, experiment-log, check-the-metric, misses-broken-evaluation, data-analysis, evaluators-by-format]
+    tracks: [permissions, sandbox]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "三層に分ける", anchor: three-tiers}
+      - {title: "点数だけを返す", anchor: scores-only}
+      - {title: "読めない所に置く", anchor: keep-out-of-reach}
+    templates: []
+    visual: {kind: static, text: "入力を開発用・検証用・ロックボックスの三層に分け、誰がいつ見るかを示す図"}
+    materials: ["11 第1節 分野09 p34#53・p34#218・p34#221・p34#222・p34#232", "11 第4節 #20・#28", "research/24 A-8", "research/23 #5", "10 第18章", "requirements §10.3（hold-out の読み取りを塞ぐ）"]
+    notes: "可視のテストで高く非公開で0になった C コンパイラは Codex の例（research/24 A-8）。Claude の値として使えるのは SpecBench の Claude Code（Opus 4.6）の可視と非公開の差で、版依存なので数値ファイルに置く。hold-out を読めなくする設定（Read の deny と sandbox）は enforce に置き、ここは考え方と置き場所を書く。Read と Edit の deny は任意の子プロセスに効かない（research/23 #5）。ロックボックスを見る頻度（長期戦で月1回程度）は 10 の実践の目安"
+
+  - id: measure-the-upper-bound
+    chapter: 実験を回す
+    title: "上界を測って「限界です」を反証する"
+    nav_title: null
+    aliases: [上界, 改善の余地を測る, 緩和した問題の点数]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "改善のループを回し、Claude が限界を主張する場面で使う"
+    priority: 任意
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [コンテスト, 開発]
+    summary: "条件を緩めたときの点数を上界の目安として測り、Claude の「限界です」を確かめられる。実践例のない推論にもとづく手法なので、目安として使う。"
+    signs:
+      - {type: symptom, text: "「これ以上は改善できません」と言われた"}
+      - {type: goal, text: "改善の余地がどれだけ残っているかを知りたい"}
+    prerequisites: [measure-changes]
+    related: [share-targets-and-bounds, wont-rethink-approach, experiment-log, performance-tuning, selection-pressure]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections: []
+    templates: []
+    visual: null
+    materials: ["11 第1節 分野09 p34#55", "10 第9章（実践の⑥）"]
+    notes: "補完調査自身が推論と明記している（p34#55）。decisions の書き方の方針3 に合わせ「推論（実践例なし）」の印を付け、任意のまま残した。達成できる値を Claude に伝える側の話は prompting の share-targets-and-bounds"
+
+merged:
+  - {id: stratified-and-worst-case, into: measure-changes, reason: "11 は「小項目」として挙げ、根拠は1行（p34#52）。結果を合計や平均で読まず層別と最悪ケースで見るのは、測った結果の読み方の一つなので、measure-changes の節 by-stratum（level 仕組みにする）にした。必須の measure-changes に入れることで、第一波にも入る。実験台帳の結果の欄（平均・最悪帯・区間）からも節を指せる。recipes（performance-tuning・data-analysis・audit-ml-pipelines）と contest（running-contest-experiments）は measure-changes#by-stratum を、prompting（share-targets-and-bounds）は measure-changes を指すように直した。symptoms の misses-broken-evaluation は未対応（open_issues）"}
+dropped: []
+
+open_issues:
+  - "提案（main）：eval の wave は、総論と、eval のほかのページの多くが前提にする3ページ（felt-vs-measured・measure-changes・verifier-three-conditions）の計4に付けた。registry の wave_core の test-the-verifier と experiment-log は、eval のどのページの前提にもならないので付けていない（どちらも必須で、初版には入る）。第一波に検証器の確かめ方と実験台帳まで出すなら、この2つに wave: 1 を足す。前提（verifier-three-conditions と、delegate の open-ended-loop-trap から届く selection-pressure）はすでに第一波にあるので、増えるのはこの2ページだけ（2026-11-04 の全体の検査）"
+  - "提案（symptoms）：misses-broken-evaluation の related の stratified-and-worst-case は、eval で measure-changes にまとめたので measure-changes#by-stratum に直してほしい（今は symptoms.yaml に参照のエラーが出る。recipes・contest・prompting は直した）。registry の seems-less-capable（必須・wave_core）が symptoms.yaml の pages・merged・dropped にまだない。作るなら felt-vs-measured（必須・整える）を前提か関連に置ける"
+  - "提案（models）：suspected-degradation（必須・整える）は felt-vs-measured を、after-switching-models（必須・任せる）は measure-changes を、related でなく前提にも置ける（段と優先度が合う）。今の related のままでもよい"
+  - "受けた提案：api が prompt-evals-intro を measure-changes にまとめたので、成功の基準を先に決めること・eval の語・batch-api-basics への関連・旧い題名の別名を measure-changes に入れた。prompting と japanese の提案で、measure-changes の例にプロンプトの変更と英語への回帰の測り方（keep-replies-in-japanese#measure）を足した。basics の reward-hacking の必須化を受けて verifier-three-conditions の前提にした。recipes の test-the-verifier → add-tests の related を足した。contest の提案で A-9 後半の雛形を search-code-checklist に任せた。recipes・contest の前提になる verifier-three-conditions は任せるのままにした。delegate・judgment・enforce・recipes・contest は、こちらの提案（selection-pressure・experiment-log・verifier-three-conditions を前提にする、など）をすでに取り込んでいる"
+
+new_features: []

@@ -1,0 +1,595 @@
+# claude-atlas 目次：verify（確かめる）
+# 形式：planning/catalog/README.md §3。語彙：schema/site.yml。担当：C8（工程3、2026-11-04）
+# 境界（design §4.2、D4）：完了・事実・レビューの確かめ方は verify。検証器を作って守る・実験を回す・評価の指標は eval（eval.yaml）
+# 前提の向き：verify の基本（define-done → evidence-not-reports → verification-ladder）を、eval と他分野の必須のページが前提にする。
+#   そのため必須のページの前提は、basics の必須のページと verify の必須のページだけにした
+field: verify
+chapters: [完了を確かめる, 事実を確かめる, テストで確かめる, レビューで確かめる, 結果を疑う]
+pages:
+  # ── 完了を確かめる ──
+  - id: define-done
+    chapter: 完了を確かめる
+    title: "「完了」を定義して渡す"
+    nav_title: null
+    aliases: [完了条件, 完了の定義, Definition of Done, 終わりの条件を渡す]
+    type: concept
+    level: 整える
+    level_evidence: "完了の条件と確かめ方を依頼に含めて渡せることが、整えるから任せるへ上がる条件そのものである（design §3.1）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる, 見せる]
+    prevents: [確かめていない, 見えていない]
+    pitfalls: []
+    scenes: [開発, 文章]
+    summary: "どのコマンドがどう返れば終わりか・変えてはならないもの・止まって報告する条件を決め、「完了」を測れる形で Claude に渡せる。終わったように見えた所で止まる理由も分かる。"
+    signs:
+      - {type: symptom, text: "「完了しました」と言うのに、頼んだ状態になっていない"}
+      - {type: symptom, text: "途中で止まるか、頼んでいない所まで広げるかのどちらかになる"}
+      - {type: goal, text: "どこまでやったら終わりかを、はっきり伝えたい"}
+      - {type: goal, text: "席を外す前に、終わりの条件を決めて渡したい"}
+    prerequisites: [agent-loop]
+    related: [evidence-not-reports, verification-ladder, four-specifics, state-the-scope, permission-to-stop, claims-done-but-isnt, does-more-than-asked, tests-first, spec-first, goal-until-done, measure-changes, check-the-metric]
+    tracks: []
+    outdated_advice: [keep-going-dont-be-lazy]
+    volatility: 低
+    sections:
+      - {title: "終わったように見えた所で止まる", anchor: why-it-stops}
+      - {title: "完了の定義に入れるもの", anchor: what-to-include}
+      - {title: "止まって報告する条件", anchor: stop-and-report}
+    templates:
+      - {name: "完了の定義を含む依頼の型（完了のコマンドと期待する出力・変えないもの・止まって報告する条件）", kind: prompt, safety: false}
+    visual: {kind: static, text: "Before/After：「直して」だけの依頼と、完了のコマンド・変えないもの・止まる条件を書いた依頼を並べ、何を足したかを注記する"}
+    materials: ["00 §3 分野09", "05 1-2（終わったように見えると止まる。公式の Best practices）", "11 第2節 分野09 p34#137・p34#124・p34#3", "research/25 P9・§3.4（「終わったように見えると止まる」は研究ではなく Best practices の内容）", "00 §5 台帳（keep going と書く）"]
+    notes: "p34#137 の「止まって報告すべき条件」は prompting の permission-to-stop と重なる。ここでは完了の定義の一部として書き、止まる権利の効き方（Claude Opus 4.1 では効果が小さい。research/24 A-10）は permission-to-stop と protect-tests に任せる。アプリと API では、完了は形式・分量・合格の基準として渡す（タブで並べる）"
+
+  - id: evidence-not-reports
+    chapter: 完了を確かめる
+    title: "報告ではなく証拠を求める"
+    nav_title: null
+    aliases: [自己申告ではなく証拠, 実行結果で確かめる, 生の出力を出させる]
+    type: concept
+    level: 整える
+    level_evidence: "結果を確かめて直す整えるの段で、完了の報告をそのまま信じない習慣が要る"
+    priority: 必須
+    surfaces: [claude-code, app]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発, データ分析]
+    summary: "完了の報告を、実行したコマンドと生の出力と分母のそろった証拠で受け取れる。説明と事実が食い違えば、実行・grep・git で見た事実を正とする。"
+    signs:
+      - {type: symptom, text: "「全部通りました」と言うが、信用できない"}
+      - {type: symptom, text: "テストの件数が、報告のたびに変わっている"}
+      - {type: symptom, text: "うまくいった場合だけを並べた報告が返ってくる"}
+      - {type: goal, text: "見ていなかった作業が本当に済んだかを、短い時間で確かめたい"}
+    prerequisites: [define-done]
+    related: [verification-ladder, claims-done-but-isnt, visual-checks, diffs-humans-must-read, looks-are-not-quality, suspect-too-good-results, checking-unattended-runs, insists-on-mistakes, unfaithful-reasoning, does-double-check-work, experiment-log]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "証拠の形（コマンド・生の出力・分母）", anchor: what-counts}
+      - {title: "説明と事実が食い違ったら", anchor: facts-win}
+    templates:
+      - {name: "改善を報告させる形式（実行コマンド・生の出力・分母・最悪の帯・前回比。分母は変えない）", kind: prompt, safety: false}
+    visual: {kind: static, text: "「全部通りました」という報告と、実行したコマンドと生の出力（分母つき）を並べた対比"}
+    materials: ["00 §3 分野09", "00 §4 確かめ方の困りごと", "05 1-2・5-1", "11 第1節 分野09 p12#114", "11 第2節 分野09 p34#138・p34#230・p56#127・p34#219・p34#26", "11 第4節 #46（原典の issue を使う）", "11 第5節 A-3（報告の形式）", "research/22 #18・#24"]
+    notes: "件数を変えて「ALL PASSED」と報告した事例は GitHub の原典を使う（11 第4節 #46）。research/22 #18（検索が途中で切れたのに全部の結果とみなした不具合）と #24（claude -p が起動に失敗しても 0 で終わった不具合）は、版の付いた例として本文で使い、値は数値ファイルへ。p34#26 の「都合のよい部分集合を強調する要約」もここに足す"
+
+  - id: verification-ladder
+    chapter: 完了を確かめる
+    title: "検証の階段"
+    nav_title: null
+    aliases: [確かめ方の段階, 検証の強さ, Give Claude a check to run]
+    type: concept
+    level: 任せる
+    level_evidence: "計画させて長い作業を任せる段で、確かめ方の強さを任せる幅に合わせて選ぶ必要が出る"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [確かめる, 縛る]
+    prevents: [確かめていない, 縛っていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "完了の確かめを、依頼に書く・判定役に見張らせる・フックで終了を止める・書いていない者に確かめさせる、の段から任せる幅に応じて選べる。「確かめて」と書き足すより、手段を渡すほうが効く。"
+    signs:
+      - {type: goal, text: "テストが通るまで終わらせたくない"}
+      - {type: symptom, text: "「確かめて」と書いても、確かめずに終わる"}
+      - {type: goal, text: "任せる範囲に合わせて、確かめ方の強さを選びたい"}
+      - {type: situation, text: "長い作業を任せて、途中は見ないつもりでいる"}
+    prerequisites: [evidence-not-reports, request-vs-lock]
+    related: [goal-until-done, stop-hooks, independent-review, protect-tests, verifier-defines-problem, does-double-check-work, when-to-lock, five-questions-before-delegating, claims-done-but-isnt, checking-unattended-runs, visual-checks, four-principles]
+    tracks: [goal, hooks, code-review]
+    outdated_advice: [add-double-check]
+    volatility: 中
+    sections:
+      - {title: "四つの段", anchor: four-steps}
+      - {title: "「確かめて」と書き足すことの今", anchor: verbal-checks}
+      - {title: "任せる幅に合わせて段を選ぶ", anchor: choose-step}
+    templates: []
+    visual: {kind: static, text: "四段の階段の図（依頼に書く → 完了の判定役 → フックで終了を止める → 書いていない者のレビュー）。上るほどお願いから鍵に近づくことを示す"}
+    materials: ["00 §3 分野09（冒頭）", "00 §2 背骨が効く五つの経路の三つ目", "research/25 §3.4・P9（現行の Best practices の四段階）", "research/23 §3.1（Best practices の改稿。01 2-1 は改稿前）", "11 第2節 分野09 p34#124・p34#126・p34#128・p12#45", "03 W1（言葉での念押しと、確かめる手段の区別）", "11 第3節 3-2 #6・#7、3-3 #2・#4", "research/23 #3", "05 1-2"]
+    notes: "段は現行の Best practices（2026-10-27 ごろ以降）の四段階で書く。01 2-1 の「検証用 subagent / workflow（別モデルに反証させる）」は改稿前の書き方（research/23 §3.1、research/25 §3.4）。/goal の判定役は会話しか読まないこと（証拠を会話に出させる）と、Stop hook の連続ブロックの上限は、版と確認日を付けて数値ファイルに置く。/goal と Stop hook の使い方の本体は delegate の goal-until-done と enforce の stop-hooks。prompting の does-double-check-work と台帳 add-double-check を分け合う"
+
+  - id: visual-checks
+    chapter: 完了を確かめる
+    title: "画面で確かめる（ブラウザ・スクリーンショット・/verify）"
+    nav_title: "画面で確かめる"
+    aliases: [スクリーンショットで確かめる, ブラウザで動作確認, E2E で確かめる]
+    type: feature
+    level: 任せる
+    level_evidence: "画面を持つものの実装を任せ、仕上がりを確かめさせる段で要る"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "画面を持つ成果物を、ブラウザの操作やスクリーンショットの比較で、人が使うのと同じように確かめさせられる。単体テストや応答の確認だけで完了とみなすのを防ぐ。"
+    signs:
+      - {type: goal, text: "見た目の崩れを確かめさせたい"}
+      - {type: symptom, text: "テストは通るのに、画面を開くと動かない"}
+      - {type: goal, text: "モックと出来上がりの画面の違いを挙げさせたい"}
+    prerequisites: [evidence-not-reports]
+    related: [browser-control, images-and-voice, verification-ladder, browser-agent-cautions, looks-are-not-quality, frontend-design, make-slides, claims-done-but-isnt]
+    tracks: [claude-in-chrome, verify-skill]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "人のユーザーとして確かめさせる", anchor: as-a-user}
+      - {title: "スクリーンショットで比べる", anchor: screenshots}
+    templates:
+      - {name: "画面で確かめさせる依頼（人のユーザーとして操作し、スクリーンショットとモックの差を挙げさせる）", kind: prompt, safety: false}
+    visual: null
+    materials: ["00 §3 分野09", "11 第2節 分野09 p34#132", "01 D（バンドルの skill の /verify）", "05 5-1", "research/25 §3.4"]
+    notes: "Playwright などの第三者の道具は例として名前を出すだけ（D13）。ブラウザを操作させると Web の内容が入力になるので、safety の browser-agent-cautions へリンクする。/verify の挙動（手動専用、verify という名前の自作 skill の扱い）は版で変わるので、tracks の verify-skill（new_features）で追う"
+
+  - id: checking-unattended-runs
+    chapter: 完了を確かめる
+    title: "無人実行の結果を確かめる"
+    nav_title: null
+    aliases: [無人実行の検証, headless の結果を確かめる, 夜間の実行の確認]
+    type: recipe
+    level: 回す
+    level_evidence: "人が見ていない実行（headless・定期・CI）を回す段で初めて要る"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [確かめる, 握る]
+    prevents: [確かめていない]
+    pitfalls: [預けすぎる]
+    scenes: [開発, チーム]
+    summary: "人が見ていない実行の結果を、終了コードや要約だけでなく、出力・記録・差分で確かめられる。監督が少ないほど確かめを強め、最後の判断は人とブランチの保護に置く。"
+    signs:
+      - {type: situation, text: "夜間や CI で、人が見ていない間に Claude を動かしている"}
+      - {type: symptom, text: "無人で回した結果は成功だったのに、中身が壊れていた"}
+      - {type: symptom, text: "止まった理由が分からないまま、無人の実行が終わっている"}
+      - {type: goal, text: "無人の実行の結果を、毎回全部読まずに信頼したい"}
+    prerequisites: [verification-ladder]
+    related: [headless-basics, five-questions-before-delegating, progress-logs-for-long-jobs, github-actions-with-claude, cloud-schedules, tasks-and-schedules-in-the-app, automated-pr-review, choosing-automation, what-auto-mode-stops, evidence-not-reports, independent-review, diffs-humans-must-read]
+    tracks: [headless, github-actions, scheduled-tasks]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "終了コードと要約だけで決めない", anchor: beyond-exit-codes}
+      - {title: "記録と差分で確かめる", anchor: records}
+      - {title: "最後の判断を人に置く", anchor: final-decision}
+    templates:
+      - {name: "無人の実行の結果を確かめる点検表（終了コード・出力・記録・差分・承認する人）", kind: other, safety: false}
+    visual: null
+    materials: ["00 §3 分野09", "05 1-2（無人で走らせる前の五つの問い）・5-1", "research/22 #11・#24（版の付いた例）", "11 第2節 分野09 p34#124"]
+    notes: "type を concept から recipe にした（点検の手順が本体）。delegate の無人の実行のページ（headless-basics・github-actions-with-claude・cloud-schedules など）が比例則で前提か関連に置く受け皿にする。claude -p の終了コードと auto モードの止まり方の版の差は、本文では数値ファイル経由で書く"
+
+  # ── 事実を確かめる ──
+  - id: fact-checking
+    chapter: 事実を確かめる
+    title: "事実を確かめる（引用・照合・best-of-N）"
+    nav_title: "事実を確かめる"
+    aliases: [ファクトチェック, 裏取り, ハルシネーション対策]
+    type: recipe
+    level: 使う
+    level_evidence: "返答を読んで使う最初の段から、事実の誤りは起きる"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [確かめていない, 見えていない]
+    pitfalls: []
+    scenes: [調べもの, 文章, 学習]
+    summary: "答えの中の事実を、根拠の引用・資料との照合・同じ質問の繰り返しで確かめられる。重要な事実ほど、一次の資料で裏を取る。"
+    signs:
+      - {type: symptom, text: "同じ質問で毎回答えが違う"}
+      - {type: goal, text: "答えの中の事実が正しいか確かめたい"}
+      - {type: symptom, text: "「そんなファイルはない」と言い切られたが、本当か分からない"}
+      - {type: symptom, text: "要約に、原文にない言い切りが混ざっている"}
+    prerequisites: [why-hallucinations]
+    related: [checking-citations, plausible-falsehoods, allow-i-dont-know, doesnt-know-latest, knowledge-cutoff, nondeterminism, search-research-thinking, using-research, summary-overgeneralization, summary-overstates-source, handing-long-documents, research-and-reports, read-specs-yourself, citations-basics]
+    tracks: [web-search, research, citations]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "主張ごとに引用させる", anchor: quotes}
+      - {title: "渡した資料の範囲で答えさせる", anchor: sources-only}
+      - {title: "何度か聞いて比べる（best-of-N）", anchor: best-of-n}
+      - {title: "要約を原文と照らす", anchor: summaries}
+    templates:
+      - {name: "主張ごとに引用を付けさせ、引用できない主張を外させる依頼", kind: prompt, safety: false}
+      - {name: "要約の主張ごとに原文の短い引用を付けさせ、書かれていることと推測を分けさせる依頼", kind: prompt, safety: false}
+    visual: null
+    materials: ["00 §3 分野09", "05 2-2・5-1（公式の Reduce hallucinations）", "00 §4 返答と品質の困りごと", "11 第2節 分野09 p12#155・p56#146", "11 第5節 A-16", "research/22 #18"]
+    notes: "type を concept から recipe にした（確かめる手順が本体）。「使う」のページなので短くする。A-16 後半（上位解法を、手法・それを正当化した性質・原文の引用の表で要約させる型）は judgment の learning-with-ai が雛形として持つので、ここは調べもの一般の要約の照らし方を書き、そこへリンクする。Claude Code で「ない」と言い切られたときに検索の打ち切りを疑う例は research/22 #18（v2.1.317 で直った不具合）"
+
+  - id: checking-citations
+    chapter: 事実を確かめる
+    title: "引用や出典の確かめ方"
+    nav_title: null
+    aliases: [出典の確認, 参考文献の確認, 引用の幻覚, hallucinated citations]
+    type: recipe
+    level: 整える
+    level_evidence: "調べものの結果を資料に使い、出典を確かめて直す整えるの段で要る"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [調べもの, 文章]
+    summary: "AI が挙げた引用や出典を、原文を開いて題名・著者・年と引用の文言まで照らして確かめられる。実在する文献でも細部が違う誤りに気づける。"
+    signs:
+      - {type: symptom, text: "もっともらしいが、出典が怪しい"}
+      - {type: goal, text: "調査結果の出典を確かめたい"}
+      - {type: symptom, text: "引用された論文の題名や著者が、微妙に違っていた"}
+      - {type: symptom, text: "出典はあるのに、その文献に書いてある内容と合わない"}
+    prerequisites: [fact-checking]
+    related: [plausible-falsehoods, using-research, citations-basics, research-and-reports, summary-overstates-source]
+    tracks: [research, citations]
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "よくある誤りの形", anchor: error-types}
+      - {title: "確かめる手順", anchor: steps}
+    templates:
+      - {name: "出典の確認表（題名・著者・年・引用の文言・主張を支えているか）", kind: other, safety: false}
+    visual: null
+    materials: ["00 §3 分野09", "05 2-2（引用の誤りの事例と公式の対策）", "00 §4 返答と品質の困りごと・確かめ方の困りごと"]
+    notes: "type を concept から recipe にした。引用の誤りの事例は出典付きで書き、個人を名指ししない（decisions の書き方の方針1）。Research の出典の見方の本体は app の using-research"
+
+  # ── テストで確かめる ──
+  - id: tests-first
+    chapter: テストで確かめる
+    title: "テストを先に書かせる"
+    nav_title: null
+    aliases: [TDD, テスト駆動開発, テストファースト, red/green]
+    type: recipe
+    level: 任せる
+    level_evidence: "実装をまとめて任せるときに、完了の条件をテストとして先に渡す"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "仕様からテストを先に書かせ、落ちることを確かめてから実装させられる。テストが実装の後追いになり、今の挙動をそのまま正解にするのを防ぐ。"
+    signs:
+      - {type: goal, text: "テストを先に書かせてから実装させたい"}
+      - {type: symptom, text: "実装に合わせてテストまで書かれ、何を確かめたのか分からない"}
+      - {type: symptom, text: "テストと実装がかみ合わず、直しの往復が続く"}
+    prerequisites: [define-done]
+    related: [pitfalls-of-ai-written-tests, protect-tests, add-tests, spec-first, fix-a-bug, verification-ladder, test-the-verifier]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "手順", anchor: steps}
+      - {title: "テストの変更は特に読む", anchor: review-test-changes}
+    templates:
+      - {name: "テストを先に書かせて失敗を確かめさせる依頼", kind: prompt, safety: false}
+    visual: null
+    materials: ["00 §3 分野09", "03 W7（注意点：初期のテストが実装とかみ合わないことがある）", "04 Q2", "01 2-1（テストを書く者と実装する者を分ける話は改稿前の版。research/23 §3.1）"]
+    notes: "type を concept から recipe にした（手順が本体）。仕様駆動の第三者の道具（TDD の工程を持つもの）は例として名前を出すだけ（D13）"
+
+  - id: pitfalls-of-ai-written-tests
+    chapter: テストで確かめる
+    title: "AI に書かせたテストの落とし穴"
+    nav_title: null
+    aliases: [生成されたテストの質, テストの強さ, カバレッジの罠, ミューテーションテスト]
+    type: concept
+    level: 任せる
+    level_evidence: "テストを書く作業ごと任せる段で、テストの質を確かめる必要が出る"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "AI に書かせたテストが、今のバグ入りの挙動を正解として固めたり、壊しても落ちなかったりする落とし穴が分かる。テストそのものの強さを確かめる手を選べる。"
+    signs:
+      - {type: symptom, text: "テストは全部通るのに、バグが残っている"}
+      - {type: symptom, text: "カバレッジは高いのに、コードを壊しても落ちないテストばかりだ"}
+      - {type: goal, text: "Claude に書かせたテストが役に立っているか確かめたい"}
+    prerequisites: [define-done]
+    related: [tests-first, protect-tests, differential-testing, add-tests, property-based-tests, test-the-verifier, looks-are-not-quality, diffs-humans-must-read]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "今の挙動を正解として固める", anchor: pinning-bugs}
+      - {title: "通るだけのテスト", anchor: weak-tests}
+      - {title: "テストの強さを確かめる", anchor: test-strength}
+    templates: []
+    visual: null
+    materials: ["11 第1節 分野09 p34#59・p34#61・p34#62・p34#63", "10 第10章（テストの質）", "03 W7（注意点）", "11 第4節 #52", "10 第18章（品質の指標のゲーム化）"]
+    notes: "根拠の行のうち p34#61（バグを正当化するテストの割合）と p34#63（プロパティテストの失敗の割合）は未確認、p34#62 は単一の例（11 第4節 #52）。数値は summary・signs に使わず、本文で使うなら原典で確かめて一研究の値と書く。プロパティテストの頼み方の本体は recipes の property-based-tests"
+
+  - id: protect-tests
+    chapter: テストで確かめる
+    title: "テストを守る（改ざんを防ぐ）"
+    nav_title: null
+    aliases: [テストの改ざんを防ぐ, テストを書き換えさせない, 評価資産を守る, reward hacking への備え]
+    type: concept
+    level: 任せる
+    level_evidence: "テストに通るまで反復させる任せるの段で書き換えが起きる。鍵の設定は仕組みにするの段で enforce のページが持つ"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [確かめる, 縛る]
+    prevents: [確かめていない, 縛っていない]
+    pitfalls: []
+    scenes: [開発, コンテスト]
+    summary: "Claude がテストや採点を書き換えて通すのを、依頼・差分のレビュー・ファイルの鍵・見せないデータの層で防げる。テストは正しさを確かめるもので、解を決めるものではない。"
+    signs:
+      - {type: symptom, text: "テストのほうを書き換えて通された"}
+      - {type: symptom, text: "特定の入力のときだけ正しい値を返すコードになっていた"}
+      - {type: goal, text: "テストや採点のファイルを Claude に触らせたくない"}
+    prerequisites: [verification-ladder, reward-hacking]
+    related: [rewrote-tests-to-pass, freeze-eval-assets, verifier-three-conditions, lockbox-and-holdout, permission-rules, hook-recipes, block-with-exit-2, sandboxing, permission-to-stop, diffs-humans-must-read, pitfalls-of-ai-written-tests, tests-first, request-lock-table]
+    tracks: [permissions, hooks, sandbox]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "なぜテストが書き換えられるか", anchor: why}
+      - {title: "守りの層", anchor: layers}
+      - {title: "依頼に書くこと", anchor: in-the-request}
+    templates:
+      - {name: "テストを変えずに一般解で直させ、テストの誤りは止まって報告させる依頼", kind: prompt, safety: false}
+    visual: {kind: static, text: "守りの層の図（依頼 → 差分のレビュー → deny と hook → リポジトリの外の hold-out → sandbox）。外側ほど例外を許さない"}
+    materials: ["00 §3 分野09", "00 §4 確かめ方の困りごと", "05 1-3", "11 第2節 分野09 p34#8・p34#28・p56#129・p34#99・p34#131・p56#125", "11 第4節 #19〜#21・#26・#27", "11 第5節 A-3・A-4", "research/24 A-10・B-27", "research/23 #4・#5", "research/22 #4"]
+    notes: "priority を推奨から必須に、level を仕組みにするから任せるに変えた。理由：逆引き「テストのほうを書き換えて通された」の受け皿で、symptoms の必須の rewrote-tests-to-pass（任せる）の対処の本体であり、requirements §1 の核「検証器を作って守る」に当たる。最初に要るのは反復を任せる段で、ここは「なぜ書き換えられるか・見つけ方・依頼に書くこと」を受け持つ。止める設定（権限ルール・サンドボックス・ファイルの権限）と雛形 A-4 の直した形は enforce の freeze-eval-assets が持つので、そこへリンクする（enforce の提案と同じ分担。A-4 の直す点は 11 第4節 #19〜#21 と requirements §10.3）。止まる権利は Claude Opus 4.1 では効きが小さかったので、言葉での許可より構造の防御を主にする（research/24 A-10）。ImpossibleBench の値は Opus 4.1 世代。basics が reward-hacking を必須に上げたので前提にした（basics の提案）"
+
+  # ── レビューで確かめる ──
+  - id: independent-review
+    chapter: レビューで確かめる
+    title: "書いた本人ではない者にレビューさせる"
+    nav_title: null
+    aliases: [独立したレビュー, 新しいセッションでレビュー, Writer/Reviewer パターン, /code-review]
+    type: concept
+    level: 任せる
+    level_evidence: "書いたものを自分で全部は読まなくなる任せるの段で要る"
+    priority: 必須
+    surfaces: [claude-code, app]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: [同意を根拠にする]
+    scenes: [開発, 文章, チーム]
+    summary: "変更を生んだ推論を見ていない者（新しいセッション・サブエージェント・別の人）にレビューさせる理由と分け方が分かる。AI の承認は人の承認に数えない。"
+    signs:
+      - {type: situation, text: "自分の目で全部レビューする時間がない"}
+      - {type: symptom, text: "Claude に自分の作業を確認させると、いつも問題なしと言う"}
+      - {type: goal, text: "書いた本人ではない目でレビューさせたい"}
+    prerequisites: [verification-ladder, subagent-isolation]
+    related: [instructing-reviewers, agreement-is-not-evidence, diffs-humans-must-read, second-opinion-from-another-model, own-generated-code, writing-subagents, risk-tiered-approval, separate-roles, sycophancy, ask-without-sycophancy, automated-pr-review, create-and-review-prs, review-bottlenecks]
+    tracks: [code-review, subagents]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "誰にレビューさせるか", anchor: who}
+      - {title: "推論を見せない", anchor: hide-reasoning}
+      - {title: "AI の承認を人の承認に数えない", anchor: ai-approval}
+    templates:
+      - {name: "編集できないレビュアーのサブエージェント（読み取りの道具だけを持つ。A-5）", kind: subagent, safety: false}
+    visual: {kind: static, text: "書いた本人・新しいセッション・サブエージェント・別の人を、推論を見たか・編集できるか・責任を持つかで比べる表"}
+    materials: ["00 §3 分野09（注記：Writer/Reviewer は改稿前の語）", "05 1-3・5-1", "11 第1節 分野09 p34#175", "11 第2節 分野09 p56#18・p56#15・p56#51・p56#54・p56#130・p34#226", "11 第5節 A-5", "research/25 P4・§3.3・§3.4", "03 W8"]
+    notes: "Writer/Reviewer は改稿前の Best practices の語なので、aliases に旧い呼び名として残し、本文は現行の「書いていない者のレビュー」で書く（research/23 §3.1）。AI の承認を人の承認に数えないことの原文と条件（信頼済みの作者・分類器・常に人が見るパス）は research/25 P4・§3.3。組織の承認の段階の本体は team の risk-tiered-approval"
+
+  - id: instructing-reviewers
+    chapter: レビューで確かめる
+    title: "レビュアーへの指示の書き方"
+    nav_title: null
+    aliases: [レビューの頼み方, レビュー用のプロンプト, 指摘の出させ方]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "レビュー役のサブエージェントや skill を作って使い回す段で、指示の書き方が結果を左右する"
+    priority: 推奨
+    surfaces: [claude-code, app]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発, 文章]
+    summary: "レビュー役に、何を基準に何を出させるかを決めて頼める。網羅と選別を分け、自分の見立てを書き添えず、指摘ごとに確かめ方を付けさせる。"
+    signs:
+      - {type: symptom, text: "レビューを頼むと、細かい好みの指摘ばかり出てくる"}
+      - {type: symptom, text: "「重大なものだけ」と頼んだら、大事な指摘まで減った"}
+      - {type: goal, text: "レビュー役に、何をどこまで出させるかを決めたい"}
+    prerequisites: [independent-review]
+    related: [ask-without-sycophancy, sycophancy, model-quirks, does-more-than-asked, grow-review-checklists, writing-subagents, second-opinion-from-another-model, automated-pr-review, agreement-is-not-evidence]
+    tracks: [subagents, code-review]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "網羅と選別を分ける", anchor: exhaustive-then-filter}
+      - {title: "自分の見立てを書き添えない", anchor: hide-your-view}
+      - {title: "指摘ごとに確かめ方を付けさせる", anchor: per-finding}
+    templates:
+      - {name: "網羅させてから選別するレビューの依頼（指摘ごとに確信度・影響の大きさ・確かめる最小の実験）", kind: prompt, safety: false}
+    visual: null
+    materials: ["00 §3 分野09", "11 第2節 分野09 p12#76・p56#7・p56#3・p56#8・p56#9・p56#10・p56#19", "research/24 B-40", "03 W8", "11 第5節 A-5"]
+    notes: "p12#76 の反転の割合は一部誤り（research/24 B-40）で、コードスメル判定の研究。Claude のレビュー一般に広げず、数値は summary・signs に使わない。「保守的に」「重大なものだけ」と書くと報告が減るのは公式のモデル別の指針で、モデルの世代で変わる（値と世代は数値ファイル。decisions の書き方の方針7）。p56#8 は旧い世代を含むモデルの結果"
+
+  - id: diffs-humans-must-read
+    chapter: レビューで確かめる
+    title: "人間が読むべき差分の箇所"
+    nav_title: null
+    aliases: [差分レビューの優先順位, 赤信号の差分, diff の読み方]
+    type: concept
+    level: 任せる
+    level_evidence: "差分を全部は読めないほど任せる段で要る"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる, 握る]
+    prevents: [確かめていない]
+    pitfalls: [預けすぎる]
+    scenes: [開発, チーム]
+    summary: "差分を全部は読めないとき、人が必ず読む箇所（テストと採点の変更・特例の分岐・例外の握りつぶし・件数の変化など）を見分けられる。"
+    signs:
+      - {type: situation, text: "差分が大きすぎて、全部は読めない"}
+      - {type: goal, text: "人が必ず目を通すべき変更を見分けたい"}
+    prerequisites: [evidence-not-reports]
+    related: [independent-review, protect-tests, suspect-too-good-results, own-generated-code, reward-hacking, review-bottlenecks, grow-review-checklists, risk-tiered-approval, create-and-review-prs, working-with-git]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "赤信号の一覧", anchor: red-flags}
+      - {title: "要の処理と周辺の読み分け", anchor: core-vs-periphery}
+    templates:
+      - {name: "差分の赤信号の点検表", kind: other, safety: false}
+    visual: null
+    materials: ["00 §3 分野09", "11 第2節 分野09 p34#220・p34#231・p56#61", "03 W13", "research/25 §3.3（機密のパスと CI のワークフローは常に人が見る）", "11 第3節 C-22（注釈付きのセッション記録の題材）"]
+    notes: "p56#61 は AI レビューの製品の販売元の分析なので、使うなら利害を併記する。11 第3節 C-22 の「バグ入りの AI 解をどう見抜いたか」は、注釈付きのセッション記録の題材にできる"
+
+  - id: own-generated-code
+    chapter: レビューで確かめる
+    title: "生成コードを自分のものにする"
+    nav_title: null
+    aliases: [説明できないコードを出荷しない, 認知負債, AI が書いたコードの理解]
+    type: concept
+    level: 任せる
+    level_evidence: "まとまったコードを任せて受け取る段で、理解の確かめが要る"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [握る, 確かめる]
+    prevents: [確かめていない]
+    pitfalls: [預けすぎる]
+    scenes: [開発, 学習, コンテスト]
+    summary: "生成されたコードを、Claude に処理の流れを説明させ、自分の言葉で説明できるようになってから採れる。説明できないコードを出荷しない線を、中核の変更に引く。"
+    signs:
+      - {type: symptom, text: "マージしたコードを、自分で説明できない"}
+      - {type: symptom, text: "障害が起きたとき、AI が書いた部分を自分で直せない"}
+      - {type: goal, text: "生成されたコードを理解したうえで採りたい"}
+    prerequisites: []
+    related: [how-much-understanding-to-keep, learning-with-ai, over-reliance, looks-are-not-quality, diffs-humans-must-read, independent-review, explore-a-codebase, create-and-review-prs, review-bottlenecks, experiment-log]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "説明させて確かめる", anchor: explain}
+      - {title: "中核の変更のゲート", anchor: gate}
+    templates:
+      - {name: "中核の変更を採る前に理解を確かめる依頼（処理の流れを図で説明させ、想定する入力の端と確かめ方を挙げさせ、自分の言葉で説明し直す）", kind: prompt, safety: false}
+    visual: null
+    materials: ["00 §3 分野09", "11 第1節 分野09 p56#40", "11 第2節 分野09 p34#57・p34#82・p56#37・p56#41・p56#43・p56#46・p56#145", "11 第5節 A-16・A-17", "research/24 A-13・A-15"]
+    notes: "judgment と分担する：中核と周辺の線引きは judgment の how-much-understanding-to-keep、学ぶ手順（生成の後に自分に問いを出させる A-16 前半の雛形）は learning-with-ai、ここは出荷の基準（説明できないものは採らない）と、採る前の確かめ方（judgment の提案どおりの書き分け。前提にし合うと循環しうるので related にとどめた）。p34#82 のスキル形成の研究は小規模の RCT（n=52、類型は各 n=4 程度）で、AI 群は GPT-4o ベース、類型と結果の因果は主張されていない（research/24 A-13）。「自分の言葉で3行で説明」の3行は出典のない例（research/24 A-15）"
+
+  - id: second-opinion-from-another-model
+    chapter: レビューで確かめる
+    title: "別のモデルに第二の意見を求める（一致は証拠にならない）"
+    nav_title: "別のモデルに第二の意見を求める"
+    aliases: [セカンドオピニオン, 別系統のモデルでレビュー, 複数のモデルで確かめる]
+    type: concept
+    level: 任せる
+    level_evidence: "長い作業が行き詰まったときや、重要な変更を任せた後に使う"
+    priority: 任意
+    surfaces: [claude-code, app]
+    principle: [確かめる, 握る]
+    prevents: [確かめていない]
+    pitfalls: [同意を根拠にする]
+    scenes: [開発, コンテスト]
+    summary: "行き詰まったときや重要な変更で、別の系統のモデルに第二の意見を求める使いどころが分かる。何体が同意しても証拠にはならず、決め手は実行と計測である。"
+    signs:
+      - {type: situation, text: "Claude と何度やっても行き詰まっている"}
+      - {type: goal, text: "重要な変更を、別の系統のモデルにも見てもらいたい"}
+      - {type: symptom, text: "複数の AI が同意したので正しいと思ったが、違っていた"}
+    prerequisites: [independent-review]
+    related: [agreement-is-not-evidence, instructing-reviewers, harness-over-model, going-in-circles, wont-rethink-approach, entrusted-data, evidence-not-reports]
+    tracks: []
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "使いどころ", anchor: when}
+      - {title: "一致は証拠にならない", anchor: agreement}
+    templates: []
+    visual: null
+    materials: ["11 第1節 分野09 p34#174・p34#175・p34#177・p34#179・p34#191", "10 第16章", "03 W8"]
+    notes: "根拠は中から弱（p34#177 は対照のない小さな事例研究で未確認、p34#179 は逸話）。数値は summary・signs に使わない。他社のモデルは例として名前を出すだけにし、推薦しない（D13）。モデルの性格の差は観察して記録する対象として書く（requirements §6.3）。コードを別の提供元に送るときのデータの扱いは safety の entrusted-data へ。同意を根拠にしない判断の本体は judgment の agreement-is-not-evidence"
+
+  # ── 結果を疑う ──
+  - id: looks-are-not-quality
+    chapter: 結果を疑う
+    title: "見た目は品質の証拠ではない"
+    nav_title: null
+    aliases: [体裁は証拠にならない, 立派なリポジトリ, 整った資料を疑う]
+    type: concept
+    level: 任せる
+    level_evidence: "リポジトリや資料をまるごと作らせる段で、見た目に頼る誤りが起きる"
+    priority: 推奨
+    surfaces: [claude-code, app]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発, 文章]
+    summary: "コミット・README・テストのそろった見た目が AI で安く作れるようになり、品質の証拠でなくなった理由が分かる。見た目ではなく、実行と中身で判断する。"
+    signs:
+      - {type: symptom, text: "README もテストもそろっているのに、中身が動かない"}
+      - {type: situation, text: "AI で作られた立派なリポジトリや資料を評価する"}
+      - {type: symptom, text: "丁寧で整った報告書なのに、肝心の数字が合っていない"}
+    prerequisites: [evidence-not-reports]
+    related: [own-generated-code, suspect-too-good-results, diffs-humans-must-read, independent-review, vetting-extensions, frontend-design, make-slides, claims-done-but-isnt, pitfalls-of-ai-written-tests]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections: []
+    templates: []
+    visual: null
+    materials: ["11 第1節 分野09 p34#229", "10 第18章", "requirements §4.3"]
+    notes: "根拠は実践者の意見（p34#229）で、本文では意見として書く。11 は own-generated-code との統合も挙げるが、requirements §4.3 が独立のページとして足すので残した。見た目の信号が壊れたという判断は、他人の拡張やリポジトリを選ぶとき（safety の vetting-extensions）にも効く"
+
+  - id: suspect-too-good-results
+    chapter: 結果を疑う
+    title: "良すぎる結果を疑う"
+    nav_title: null
+    aliases: [うますぎる結果, リークを疑う, 偽の高速化, 結果の偽装]
+    type: concept
+    level: 任せる
+    level_evidence: "性能改善や分析を任せて結果を受け取る段で要る"
+    priority: 推奨
+    surfaces: [claude-code, app]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発, データ分析, コンテスト]
+    summary: "急な高速化や満点に近いスコアのような良すぎる結果を、リーク・退化・採点の省略を疑って確かめてから受け取れる。報告の前に Claude に自己点検させる。"
+    signs:
+      - {type: symptom, text: "急に何倍も速くなったと報告された"}
+      - {type: symptom, text: "精度がほぼ満点になって、かえって怪しい"}
+      - {type: goal, text: "うますぎる結果を、受け取る前に確かめたい"}
+    prerequisites: [evidence-not-reports]
+    related: [lockbox-and-holdout, check-the-metric, verifier-three-conditions, selection-pressure, differential-testing, protect-tests, performance-tuning, data-analysis, audit-ml-pipelines, misses-broken-evaluation, looks-are-not-quality]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "まず疑うもの", anchor: what-to-suspect}
+      - {title: "報告の前に自己点検させる", anchor: self-check}
+    templates:
+      - {name: "良すぎる結果を自己点検させてから報告させる指示（退化・採点の省略・リーク・特例の分岐）", kind: prompt, safety: false}
+    visual: null
+    materials: ["11 第1節 分野09 p34#98・p56#128・p34#233・p34#19", "10 第11章・第18章", "11 第4節 #29・#45", "research/24 A-9", "11 第5節 A-3"]
+    notes: "偽の高速化の例（PERFOPT-Bench・KernelBench-Verified）は Claude 以外のモデルの結果で、「モデルを問わず起きる」の根拠にだけ使う（research/24 A-9）。漏洩変数で検証の値がほぼ満点になった例は原典未確認（11 第4節 #45）。「2倍を超える向上」は 10 の実践の目安で、規則として書かない"
+
+merged: []
+dropped: []
+
+open_issues:
+  - "提案（safety）：vetting-extensions の related に looks-are-not-quality を（見た目の整った拡張やリポジトリを信用しない）"
+  - "取り込まれた提案（確認のため残す）：symptoms は claims-done-but-isnt・plausible-falsehoods・summary-overstates-source の前提に define-done・evidence-not-reports・fact-checking・checking-citations を、rewrote-tests-to-pass の関連に protect-tests を置いた。prompting は does-double-check-work と台帳 add-double-check を分け合い、permission-to-stop の関連に protect-tests を置いた"
+  - "受けた提案：basics の reward-hacking の必須化を受けて protect-tests の前提にした。enforce の分担（protect-tests はなぜと見つけ方、止める設定は freeze-eval-assets）に合わせた。recipes の related の追加（fact-checking に read-specs-yourself、visual-checks・looks-are-not-quality に frontend-design・make-slides、suspect-too-good-results に audit-ml-pipelines）を入れた。judgment の書き分け（own-generated-code は出荷の基準、学ぶ手順は learning-with-ai）に合わせ、A-16 の雛形は learning-with-ai に任せた"
+  - "決めきれなかった点：second-opinion-from-another-model は他社のモデルを使う話で、根拠は中から弱（小さな事例研究と逸話）。任意のまま残した。教材が Claude を対象にするので、初版の後に需要を見て書くかを決める"
+
+new_features:
+  - {id: verify-skill, title: "/verify（アプリを起動して確かめる組み込みの skill）", note: "visual-checks が指す。01 D のバンドルの skill の項：手動専用で、verify という名前の自作の skill はコミットの前に実行される（v2.1.286 以降とある。版の確認が要る）"}
+  - {id: code-review, title: "/code-review（会話を見ていないサブエージェントによるレビュー）", note: "independent-review・verification-ladder・instructing-reviewers が指す。/simplify との改名の経緯があり、名前が揺れた（01 Gaps）。delegate の管理された Code Review と /ultrareview は別の項目にする"}

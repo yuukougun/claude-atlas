@@ -1,0 +1,379 @@
+# 分野 japanese（日本語で使う）の目次。形式：planning/catalog/README.md §3、規則：§4。語彙：schema/site.yml
+# 担当：C3（工程3、2026-11-04）。材料：research/27（全部）、00 §3 分野15・§4・§5、04 Q3・Q6、research/23・25・26
+field: japanese
+chapters: [考え方, 返答とコミットの言語, 文体と表記, 資料と環境]
+notes:
+  - "第一波の核（decisions 2026-11-03「第一波に足すもの」：英語への回帰と、文体・表記を仕組みで揃えるページの数ページ）は、総論の align-japanese-output（新規）・keep-replies-in-japanese・consistent-politeness・consistent-notation・textlint-hook の5ページ"
+  - "用語は公式の日本語版の本文の多数派に合わせる（research/27 §3.1、design §6.2）。日本語の出力を揃える公式の仕組みと、その届く範囲は research/27 §3.2 を本体の材料にする"
+  - "GitHub の issue は個人のアカウント名を出さず番号で示し、利用者の集計は自己申告と書く（research/27 冒頭の注意）。第三者のプラグインと skill は名前だけにして推薦しない（D13）"
+  - "頼み方の一般論は prompting に置き、ここは日本語に固有の論点だけにする（design §4.2）"
+pages:
+  # ── 考え方 ──
+  - id: can-i-prompt-in-japanese
+    chapter: 考え方
+    title: "日本語で指示して大丈夫か"
+    aliases: ["日本語のプロンプト", "英語で書くべきか", "日本語と英語の精度", "CLAUDE.md は英語で書くべきか"]
+    type: concept
+    level: 使う
+    level_evidence: "日本語で使い始めた最初の段階で出る問い"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [見えていない]
+    scenes: [開発, 文章]
+    summary: "日本語で頼んでよく、作業の指示を日本語と英語で比べたデータはない。言語を替えるより、具体性と構造を整え、コマンド・パス・識別子を原文のまま書くほうが先である。"
+    signs:
+      - {type: symptom, text: "日本語で頼むと精度が落ちる気がする"}
+      - {type: goal, text: "英語で書いたほうがよいのか知りたい"}
+      - {type: symptom, text: "日本語だとトークンや上限を早く使う気がする"}
+      - {type: goal, text: "CLAUDE.md を日本語で書いてよいか知りたい"}
+    prerequisites: [tokens]
+    related: [four-specifics, felt-vs-measured, keep-replies-in-japanese, what-uses-up-limits, saving-priorities, thinking-keywords, init-and-first-claude-md, documents-in-japanese]
+    tracks: [token-counting]
+    outdated_advice: [think-hard-keywords]
+    volatility: 中
+    sections:
+      - {title: "日本語と英語を比べた公式の評価と、その限り", anchor: evaluation}
+      - {title: "原文のまま書くもの（コマンド・パス・識別子）", anchor: keep-original}
+      - {title: "CLAUDE.md を日本語で書くか", anchor: claude-md}
+      - {title: "日本語のトークン数と、上限への効き方", anchor: tokens}
+      - {title: "「熟考」と書けば深く考えるか", anchor: thinking-words}
+    materials: ["00 §3 分野15（注記：research/27 #12）", "00 §1 対立点の表「日本語か英語か」（注記）", "04 Q3（日本語での返答・日本語か英語か：注記つき、日本語のトークン消費、日本語の思考キーワード：注記つき）", "04 Q3 Gaps（注記）", "research/27 #12・#13・#18", "05 §3-1"]
+    notes: "merged：more-tokens-in-japanese をトークンの節（tokens）にまとめ、basics の tokens（単位の考え方だけを持つ）を前提にした。日本語の量の違い・費用と上限への効き方・数え方の本体はこの節が持つ（basics の提案）。「測定データはない」は一部誤り（research/27 #12）で、公式の多言語の評価（旧い世代のモデルの知識問題）がある。summary と signs は訂正の後の内容で書き、評価の値は数値ファイルに置き、現行のモデルと作業に当てはめるのは類推と書く。「言語より構造」は実践者の経験則として書く。トークンの倍率は非公表でモデルの tokenizer で変わるので、token counting で自分の文章を数える形で示す。日本語の思考のキーワードは当時は公式の機能だった（CHANGELOG 1.0.8、research/27 #18）が、今効くかは未確認なので、effort の調整へつなぐ（models の thinking-keywords）"
+
+  - id: align-japanese-output
+    chapter: 考え方
+    title: "日本語の出力を揃える：お願いで足りること、仕組みが要ること"
+    nav_title: "日本語の出力を揃える仕組み"
+    aliases: ["日本語の出力品質", "返答の言語と文体を固定する", "お願いと鍵（日本語の場合）"]
+    type: concept
+    level: 整える
+    level_evidence: "英語への回帰や文体の揺れに初めて出会い、指示を整えて直そうとする整える段階で要る。フックで確かめて差し戻す節は仕組みにする"
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code, api]
+    principle: [縛る, 確かめる]
+    prevents: [縛っていない, 確かめていない]
+    scenes: [開発, 文章, チーム]
+    summary: "返答の言語・文体・表記を揃える手段を、届く範囲と強制力で選び分けられる。指示はどれも保証にならず、仕組みで止められる場所にも限りがあることを前提に組む。"
+    signs:
+      - {type: symptom, text: "日本語で、と何度書いても英語や文体の揺れが戻ってくる"}
+      - {type: goal, text: "日本語の出力を、いつも同じ文体と表記にしたい"}
+      - {type: situation, text: "チームで日本語の文書を Claude に書かせる"}
+    prerequisites: [request-vs-lock]
+    related: [keep-replies-in-japanese, consistent-politeness, consistent-notation, textlint-hook, replies-in-english, inconsistent-japanese-style, where-to-put-instructions, claude-md-vs-rules-skills-styles, request-lock-table, when-to-lock, output-style-modes]
+    tracks: [language-setting, claude-md, output-styles, hooks, personal-instructions, project-instructions, app-skills]
+    volatility: 中
+    sections:
+      - {title: "お願いの層：設定・CLAUDE.md・出力スタイル・アプリの指示", anchor: request-layer}
+      - {title: "確かめて差し戻す層：フックと lint", anchor: lock-layer, level: 仕組みにする}
+      - {title: "届く範囲（サブエージェント・圧縮の後・クラウドのセッション）", anchor: reach}
+      - {title: "アプリには指示しかない", anchor: app}
+      - {title: "縛る規則は少なく保つ", anchor: keep-few}
+    visual: {kind: static, text: "日本語の出力を揃える手段を、届く範囲（主の会話・サブエージェント・圧縮の後・クラウドのセッション）と強制力（お願い・鍵）の二軸に置いた表と図"}
+    materials: ["research/27 §3.2", "research/27 §3.4", "research/27 #8", "requirements §1（既存の教材との違い 3）", "00 §1（日本語特有の論点の段落、訂正：research/27 #9・#10）", "04 Q3 Inferences", "decisions 2026-11-03「第一波に足すもの」", "decisions 2026-11-03「hooks と permissions」"]
+    notes: "新規：japanese の核の総論（catalog/README §4.6 の2）。registry に総論の候補がなかったので足した。英語への回帰（keep-replies-in-japanese）と文体・表記（consistent-politeness・consistent-notation・textlint-hook）が共通に前提にする「どの手段がどこまで届き、どれが強制か」を集め、research/27 §3.2 の表と「効く範囲の三つの要点」を本体の材料にする。強制できる場所（ターンの終わりとツールの前後）と、アプリに機械の仕組みがないことは、版に依る挙動として確認日と版を付けて本文に書き、summary には書かない。縛る規則を少なく保つ注意は decisions「hooks と permissions」と Best practices による"
+
+  # ── 返答とコミットの言語 ──
+  - id: keep-replies-in-japanese
+    chapter: 返答とコミットの言語
+    title: "日本語で返し続けさせる"
+    aliases: ["英語に戻る", "英語への回帰", "返答の言語を固定する", "language 設定"]
+    type: recipe
+    level: 整える
+    level_evidence: "Claude Code が英語のツール出力を読む普段の作業で出会い、言語の設定と指示で直そうとする整える段階で要る。Stop フックで確かめる節は仕組みにする"
+    priority: 必須
+    wave: 1
+    surfaces: [claude-code, app, api]
+    principle: [縛る, 確かめる]
+    prevents: [縛っていない]
+    scenes: [開発]
+    summary: "英語のツール出力やサブエージェントの報告を読んだ後に英語へ戻る返答を、設定・指示・フックの組み合わせで減らす。どれも完全には防げず、ツールの合間の短い一言が画面に出る前に止める仕組みはない。"
+    signs:
+      - {type: symptom, text: "日本語で話しているのに、途中から返事が英語になる"}
+      - {type: symptom, text: "日本語の設定や指示をしても、英語に戻る"}
+      - {type: symptom, text: "ツールを使った直後の一言だけ英語で出る"}
+    prerequisites: [align-japanese-output]
+    related: [replies-in-english, where-to-put-instructions, stop-hooks, output-style-modes, settings-layers, what-subagents-dont-inherit, what-survives-compaction, cloud-sessions-and-teleport, agent-loop, where-instructions-sit, hook-recipes, commit-and-comment-language]
+    tracks: [language-setting, claude-md, output-styles, hooks, subagents, cloud-sessions]
+    volatility: 高
+    sections:
+      - {title: "英語に戻りやすい場面", anchor: when}
+      - {title: "言語の設定と、効かないときに確かめること", anchor: language-setting}
+      - {title: "CLAUDE.md と出力スタイル（お願いの層）", anchor: instructions}
+      - {title: "Stop フックで最後の返事を確かめる", anchor: stop-hook, level: 仕組みにする}
+      - {title: "届かない所（サブエージェント・圧縮の要約・クラウドのセッション）", anchor: reach}
+      - {title: "アプリと API の場合", anchor: app-and-api}
+      - {title: "どこまで減ったかを測る（検証ノート）", anchor: measure}
+    templates:
+      - {name: "最後の返事が英語なら書き直させる Stop フック", kind: hook, safety: false}
+      - {name: "language の設定の例（個人の設定に置く）", kind: settings, safety: false}
+    visual: {kind: static, text: "1ターンの中で英語が出る場所（ツールの合間の一言・最後の返事）と、それぞれに届く仕組み（Stop・PreToolUse・MessageDisplay）を示す図"}
+    materials: ["research/27 §3.2・§3.3", "research/27 #2・#3・#5・#6・#7・#8・#9・#10・#11", "research/27 §4 P10・P12・P13", "04 Q3（日本語での返答：注記つき）", "00 §3 分野15（訂正と注記）", "00 §1（日本語特有の論点の段落、訂正）", "design §6.10（大事な数件は回数の上限を決めて繰り返し「傾向」と書く）"]
+    notes: "registry の level（任せる）を整えるに下げ（level_evidence）、型も concept から recipe にした（設定 → 指示 → hook → 測る、の手順が本体になるため）。根拠の強さは research/27 §3.3 の表のとおりに付ける（戻ることがある：中、ツールの合間の一言は Stop で拾えず画面に出る前に止められない：強、圧縮の後に戻る：弱、など）。特定のモデルで増えたという報告は根拠の強さと確認日を付けて本文に書き、summary・signs には書かない。日本語を保つ hook の実践例は「保つ仕組み」と書き、強制とは書かない（00 分野15 の訂正）。検証ノートの測り方は research/27 P12（回数の上限はメインが決める）。症状の診断（安く確かめる順、research/27 P13）は symptoms の replies-in-english が持ち、ここは対処の本体にする"
+
+  - id: commit-and-comment-language
+    chapter: 返答とコミットの言語
+    title: "コミットメッセージ・コメントの言語"
+    aliases: ["コミットを日本語で書かせる", "コードのコメントの言語", "CLAUDE.local.md に置く"]
+    type: concept
+    level: 任せる
+    level_evidence: "コミットやコメントまで Claude に任せる任せるの段階で、どの言語で書かせるかと、チームの設定との衝突に出会う"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [見せる, 縛る]
+    prevents: [見えていない, 縛っていない]
+    scenes: [開発, チーム]
+    summary: "コミットメッセージとコメントの言語はチームの決まりとして共有の指示に書き、個人の好みは個人の設定に分けて置く。返答の言語の設定がそこまで効くかは公式に書かれていない。"
+    signs:
+      - {type: goal, text: "コミットメッセージは日本語、コードのコメントは英語にしたい"}
+      - {type: situation, text: "OSS で、自分だけ日本語で返事をもらいたい"}
+      - {type: symptom, text: "返事は日本語なのに、コミットメッセージだけ英語になる"}
+    prerequisites: [keep-replies-in-japanese]
+    related: [settings-layers, claude-md-loading-order, what-to-put-in-claude-md, working-with-git, share-team-settings, cloud-sessions-and-teleport, hook-recipes]
+    tracks: [language-setting, claude-md, settings]
+    volatility: 中
+    sections:
+      - {title: "チームの決まりと個人の好みを分ける", anchor: team-vs-personal}
+      - {title: "共有の設定の言語は個人の設定を上書きする", anchor: override}
+      - {title: "クラウドのセッションに届く指示", anchor: cloud}
+      - {title: "設定がどこまで効くかは確かめる（検証ノート）", anchor: verify-note}
+    materials: ["research/27 #4・#5", "research/27 §3.2（設定の層とクラウドのセッション）", "04 Q3（注記：research/27 #4）", "00 §3 分野15（表の後の注記）"]
+    notes: "「language はコメントやコミットメッセージには効かない」は一次資料で確かめられなかった（research/27 #4）ので、summary・signs の根拠にせず、公式の記述がないことを書いて検証ノートにする。共有の設定が個人の設定を上書きすること（#5）と、クラウドのセッションが個人の設定と ~/.claude/CLAUDE.md を読まないこと（§3.2）は公式。比例則：任せる幅を広げる内容ではないが、コミットの言語を確かめる hook の例として enforce の hook-recipes を関連に置いた"
+
+  # ── 文体と表記 ──
+  - id: consistent-politeness
+    chapter: 文体と表記
+    title: "です・ます／だ・であるを揃える"
+    aliases: ["敬体と常体を揃える", "文体の統一", "文末が揺れる"]
+    type: recipe
+    level: 整える
+    level_evidence: "日本語の文章を書かせて直す整える段階で、文末の揺れに出会う"
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code]
+    principle: [見せる, 縛る]
+    prevents: [縛っていない, 見えていない]
+    scenes: [文章, 開発, チーム]
+    summary: "文体を一行で指定し、手本の文章を見せ、毎回読まれる場所に置くと揺れが減る。それでも揺れは残るので、混在は lint で見つけて直させる。"
+    signs:
+      - {type: symptom, text: "です・ますとだ・であるが混ざる"}
+      - {type: symptom, text: "途中から文体が変わる"}
+      - {type: goal, text: "チームの文書を、いつも同じ文体で書かせたい"}
+    prerequisites: [align-japanese-output]
+    related: [inconsistent-japanese-style, consistent-notation, textlint-hook, show-examples, where-to-put-instructions, output-style-modes, less-ai-sounding-japanese, write-docs, requesting-prose, measure-changes]
+    tracks: [personal-instructions, project-instructions, app-skills, styles, claude-md, output-styles]
+    volatility: 中
+    sections:
+      - {title: "文体は一行で、理由と一緒に指定する", anchor: specify}
+      - {title: "手本の文章を見せる", anchor: example}
+      - {title: "置き場所（アプリの指示・スキル・CLAUDE.md・出力スタイル）", anchor: where}
+      - {title: "混在を lint で見つける", anchor: lint}
+      - {title: "揃ったかを確かめる", anchor: check}
+    templates:
+      - {name: "文体の指定の例（CLAUDE.md とアプリの指示）", kind: claude-md, safety: false}
+    materials: ["00 §3 分野15", "04 Q3（文体・表記ゆれ・textlint・「AI臭さ」、表記ゆれと漢字の開き）", "04 Q3 Gaps（文体を守らせる手段を比べた記事はない）", "research/27 §3.2", "research/27 #16", "research/26 §3.1（Styles は skills へ移った）", "research/23 #2（output style の組み込み）", "00 §4 返答と品質の困りごと"]
+    notes: "アプリの Styles は skills への移行が告知され、公式の記事が取り下げられている（research/26 §3.1）ので、置き場所は Instructions・プロジェクトの指示・skill で書き、Styles を頼りにしない（research/27 #16）。CLAUDE.md・skill・hook の効果を比べた記事はない（04 Q3 Gaps）ので、比べるなら検証ノートにする。混在を見つけるルールの設定は textlint-hook に置く"
+
+  - id: consistent-notation
+    chapter: 文体と表記
+    title: "表記ゆれと漢字の開き"
+    aliases: ["表記の統一", "「サーバー」と「サーバ」", "用語集を渡す", "漢字をひらく", "prh"]
+    type: recipe
+    level: 整える
+    level_evidence: "日本語の文書を書かせて直す整える段階で、用語や送り仮名の揺れに出会う"
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code]
+    principle: [見せる, 縛る]
+    prevents: [縛っていない, 見えていない]
+    scenes: [文章, 開発, チーム]
+    summary: "用語の表記と漢字を開く語を一覧にして渡し、機械で見つけられる揺れは辞書つきの lint で直させる。一覧は人が持つ正本から作り、指示と検査に同じものを使う。"
+    signs:
+      - {type: symptom, text: "「サーバー」と「サーバ」が混在する"}
+      - {type: symptom, text: "漢字が多くて硬い文章になる"}
+      - {type: goal, text: "社内の用語集どおりの表記で書かせたい"}
+    prerequisites: [align-japanese-output]
+    related: [inconsistent-japanese-style, consistent-politeness, textlint-hook, documents-in-japanese, less-ai-sounding-japanese, where-to-put-instructions, path-scoped-rules]
+    tracks: [project-instructions, claude-md]
+    volatility: 中
+    sections:
+      - {title: "表記の一覧（用語集）を作る", anchor: glossary}
+      - {title: "漢字を開く語を決める", anchor: open-kanji}
+      - {title: "一覧を指示と lint の両方に使う", anchor: single-source}
+    templates:
+      - {name: "表記の一覧から作る prh の辞書の例", kind: other, safety: false}
+    materials: ["00 §3 分野15", "04 Q3（表記ゆれと漢字の開き）", "research/27 §3.1（公式の日本語版でも表記が割れる語がある：一つに決めて辞書に入れる例）", "research/27 §3.4", "design §6.2（用語集を正とし prh はそこから作る）", "00 §4 返答と品質の困りごと"]
+    notes: "registry の優先度（推奨）を必須に上げた：文体・表記を仕組みで揃えるのは日本語の核（requirements §1、decisions 2026-11-03「第一波に足すもの」）で、第一波に入れるため。プロジェクトの指示に表記の決まりを書く方法（04 Q3）はアプリのタブに置く。この教材自身の用語集と prh の作り方（design §6.2）は、正本を一つにする例に使える"
+
+  - id: less-ai-sounding-japanese
+    chapter: 文体と表記
+    title: "日本語の「AI 臭さ」を減らす"
+    aliases: ["AI っぽい日本語", "定型の言い回し", "日本語の推敲", "日本語推敲スキル", "読みやすい日本語にする"]
+    type: recipe
+    level: 整える
+    level_evidence: "日本語の文章を書かせて読み直す整える段階で出会う。推敲をスキルにする節は仕組みにする"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [見せる, 確かめる]
+    prevents: [見えていない]
+    scenes: [文章]
+    summary: "定型の言い回し・過剰な装飾・硬すぎる漢字遣いなど、読みにくさの型を具体的に挙げて直させる。AI が書いたと分からなくするためではなく、読み手のための品質として直す。"
+    signs:
+      - {type: symptom, text: "日本語の文章が「AI っぽい」定型の言い回しばかりになる"}
+      - {type: symptom, text: "太字や箇条書きが多く、読み物として読みにくい"}
+      - {type: goal, text: "推敲の手順を、決まった形で毎回かけたい"}
+    prerequisites: [requesting-prose]
+    related: [consistent-politeness, consistent-notation, textlint-hook, show-examples, how-skills-load, writing-skills, skills-in-the-app, vetting-extensions, disclosure-and-provenance]
+    tracks: [app-skills, skills]
+    volatility: 中
+    sections:
+      - {title: "読みにくさの型を具体的に挙げる", anchor: patterns}
+      - {title: "自分の文章を手本にする", anchor: own-writing}
+      - {title: "推敲を書く手順と分ける", anchor: revise-step}
+      - {title: "推敲をスキルにする（文体を保つか、構成から直すか）", anchor: proofreading-skill, level: 仕組みにする}
+      - {title: "lint に任せる所と、判断の要る所", anchor: lint-vs-judgment}
+    templates:
+      - {name: "推敲の観点を書いた依頼の例", kind: prompt, safety: false}
+    materials: ["00 §3 分野15（「AI臭さ」を減らす・日本語推敲 skill の選び方）", "04 Q3（日本語推敲 Skill：訂正つき）", "04 Q1 K", "04 Q6（注記：research/25 P3・P10）", "research/27 §3.4（文体の手引きを参照用の skill に置く公式の例）", "decisions 2026-11-03 書き方の方針（安全・面・表現）4"]
+    notes: "merged：proofreading-skills-for-japanese を推敲 skill の節（proofreading-skill）にまとめた。第三者の推敲 skill は考え方の例として名前を出すだけにし、推薦や順位を付けない（D13、requirements §6.4）。比べた記事は1回の出力だけなので、選ぶ軸（文体を保つか、構成から直すか）と、入れる前の確認（safety の vetting-extensions）だけを書く。「AI 臭さ」は読みやすさの品質として扱い（方針 B4）、AI の利用を隠す方法は書かない。開示の考え方は safety の disclosure-and-provenance へ。読者の反応の例（04 Q6）は数件のコメントで、量の根拠にしない（research/25 P3）"
+
+  - id: textlint-hook
+    chapter: 文体と表記
+    title: "textlint をフックで回す"
+    aliases: ["textlint の hook", "textlint", "文章の lint", "書いた後に検査して差し戻す", "日本語の文章を機械で検査する"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "文体と表記の決まりをフックで常設化する、仕組みにする段階の作業"
+    priority: 必須
+    wave: 1
+    surfaces: [claude-code]
+    principle: [縛る, 確かめる]
+    prevents: [縛っていない]
+    scenes: [文章, 開発, チーム]
+    summary: "ファイルを書いた直後に textlint を走らせ、残った違反を Claude に返して直させる。指示では揺れる文体と表記を、機械で見つけられる範囲だけ仕組みで揃える。"
+    signs:
+      - {type: goal, text: "文体や表記の決まりを、毎回自動で守らせたい"}
+      - {type: symptom, text: "何度言っても表記の揺れが残る"}
+      - {type: situation, text: "日本語のドキュメントを Claude Code で大量に書かせている"}
+    prerequisites: [align-japanese-output, hooks-basics, block-with-exit-2]
+    related: [consistent-politeness, consistent-notation, inconsistent-japanese-style, hook-recipes, writing-safe-hooks, share-team-settings, less-ai-sounding-japanese, keep-replies-in-japanese]
+    tracks: [hooks]
+    volatility: 中
+    sections:
+      - {title: "どのルールを機械に任せるか", anchor: rules}
+      - {title: "書いた後に走らせて差し戻す", anchor: post-tool-use}
+      - {title: "拾えない書き込み（シェルで書いたファイル）", anchor: gaps}
+      - {title: "フックが落ちたときと、規則を増やしすぎないこと", anchor: failure-and-few}
+      - {title: "チームで共有する", anchor: share}
+    templates:
+      - {name: "Edit・Write の後に textlint を走らせ、違反を返す PostToolUse フック", kind: hook, safety: false}
+      - {name: "文体と表記のルールを入れた textlint の設定の例", kind: other, safety: false}
+    visual: {kind: mermaid, text: "ファイルを書く → textlint → 違反があれば Claude に返す → 直す → 違反がなくなるまで、の流れ図"}
+    materials: ["00 §3 分野15", "04 Q3（textlint と PostToolUse フックの連携）", "research/27 #14・§3.4", "research/27 §4 P7", "research/28 #17（フックは既定で失敗すると通す）", "decisions 2026-11-03「hooks と permissions」"]
+    notes: "registry の優先度（推奨）を必須に上げた：文体・表記を仕組みで揃える日本語の核の中心で、第一波に入れるため。雛形の matcher は Edit|Write にする（MultiEdit は現行の文書で legacy）。シェルのヒアドキュメントなどで書いたファイルは PostToolUse では拾えないので、必要なら FileChanged を使う（research/27 §3.4）。公式の文書とリポジトリに textlint の例はなく、実践者の記事と、形が同じ公式の例（編集後の整形の hook、Stop hook での検査）を材料にする。強制する規則は少なく保ち、止めるときは理由を返す（decisions「hooks と permissions」）"
+
+  # ── 資料と環境 ──
+  - id: documents-in-japanese
+    chapter: 資料と環境
+    title: "日本語の資料を読ませる・書かせる"
+    aliases: ["日本語の PDF を読ませる", "縦書きの資料", "敬語のメールを書かせる", "社内用語を使わせる"]
+    type: recipe
+    level: 整える
+    level_evidence: "日本語の PDF や社内文書を渡して読ませ、書かせる整える段階で要る"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [見せる, 確かめる]
+    prevents: [見えていない]
+    scenes: [文章, 調べもの, チーム]
+    summary: "日本語の PDF や社内文書は、読めたかを引用で確かめてから使う。敬語や社内用語を使わせるときは、読み手・相手との関係・用語の一覧を添えて頼む。"
+    signs:
+      - {type: goal, text: "日本語の PDF（縦書きやスキャン）を読ませたい"}
+      - {type: goal, text: "取引先に送る敬語のメールを書かせたい"}
+      - {type: symptom, text: "社内の言い方と違う用語で書かれる"}
+    prerequisites: [long-context-first]
+    related: [handing-long-documents, how-attachments-are-read, consistent-notation, consistent-politeness, skipped-later-pages, can-i-prompt-in-japanese, character-encodings, write-docs, research-and-reports]
+    volatility: 中
+    sections:
+      - {title: "日本語の PDF を渡す前と後に確かめること", anchor: pdf}
+      - {title: "敬語は読み手と関係を渡す", anchor: keigo}
+      - {title: "社内用語は一覧で渡す", anchor: glossary}
+    materials: ["00 §3 分野15（根拠は「新」）", "04 Q3（表記ゆれと漢字の開き）", "02 §1-7（ファイル分析）", "05 §2-5（添付ファイルが全部は読まれていない）"]
+    notes: "材料が薄い（00 の根拠は独自の整理）。縦書きやスキャンの PDF がどう読まれるかは、制作の環境で試した検証ノートで書き、試していないことを推論で断定しない（推論は必須ページの中心にしない方針。このページは推奨）"
+
+  - id: character-encodings
+    chapter: 資料と環境
+    title: "文字コード（Shift_JIS の CSV など）"
+    aliases: ["Shift_JIS", "CP932", "文字化け", "UTF-8 に変換する"]
+    type: recipe
+    level: 整える
+    level_evidence: "表計算ソフトや古い業務システムが書き出したファイルを渡す整える段階で出会う"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [見せる]
+    prevents: [見えていない]
+    scenes: [データ分析, 開発]
+    summary: "Shift_JIS などで保存されたファイルは文字化けや集計の空欄の元になるので、UTF-8 に変えてから渡すか、文字コードを伝えて読ませる。Claude Code の編集の道具がそうしたファイルを拒むこともある。"
+    signs:
+      - {type: symptom, text: "CSV を集計させたら、日本語の列が空欄や文字化けになった"}
+      - {type: symptom, text: "Shift_JIS のファイルを編集させようとしたら断られた"}
+      - {type: situation, text: "Excel や古い業務システムが書き出したファイルを渡す"}
+    prerequisites: []
+    related: [files-and-code-execution, how-attachments-are-read, data-analysis, office-paperwork, documents-in-japanese, windows-wsl-ime]
+    volatility: 中
+    sections:
+      - {title: "渡す前に文字コードを確かめる", anchor: check}
+      - {title: "UTF-8 に変えてから渡す", anchor: convert}
+      - {title: "Claude Code の編集の道具と文字コード", anchor: claude-code}
+    materials: ["00 §3 分野15", "04 Q3（文字コード）", "research/27 #19"]
+    notes: "版ごとの挙動（UTF-8 でないファイルの編集と書き込みを拒むようになった版など）は数値ファイルに置き、本文は確認日と版で書く。Windows のシェルの出力の文字コードの問題は windows-wsl-ime"
+
+  - id: windows-wsl-ime
+    chapter: 資料と環境
+    title: "Windows・WSL・IME で困ったら"
+    aliases: ["IME の変換候補の位置", "全角の入力", "Windows の文字化け", "WSL2 で使う"]
+    type: recipe
+    level: 整える
+    level_evidence: "日本語の環境で Claude Code を使い始めた整える段階で出会う"
+    priority: 任意
+    surfaces: [claude-code, app]
+    principle: [見せる]
+    prevents: [見えていない, 合っていない]
+    scenes: [開発]
+    summary: "日本語の入力・表示・文字化けの不具合は版ごとに個別に直されてきたので、まず版を確かめ、変更の記録で既知の不具合かを探す。"
+    signs:
+      - {type: symptom, text: "日本語入力の変換候補が変な位置に出る"}
+      - {type: symptom, text: "Windows で日本語の出力が文字化けする"}
+      - {type: situation, text: "Windows で Claude Code を使っている"}
+    prerequisites: []
+    related: [character-encodings, checking-for-updates, using-ides, sandboxing]
+    volatility: 高
+    sections:
+      - {title: "まず版と既知の不具合を確かめる", anchor: version}
+      - {title: "IME と全角の入力", anchor: ime}
+      - {title: "Windows の文字化け", anchor: mojibake}
+      - {title: "WSL で使う", anchor: wsl}
+    materials: ["00 §3 分野15（注記：research/27 #19）", "research/27 #19", "04 Q6（よくある質問：文字化け・Windows と WSL）", "design §6.5（WSL・Linux を基準にし、ほかの OS は未確認と書く）"]
+    notes: "体系的な資料はなく、CHANGELOG の個別の修正の記録を版つきで使う（research/27 #19）。ネイティブの Windows と IDE の拡張の動作は「未確認」と書く（方針 B5）。sandbox を WSL2 で使う話の本体は enforce の sandboxing"
+
+merged:
+  - id: more-tokens-in-japanese
+    into: can-i-prompt-in-japanese
+    reason: "日本語のトークンの論点は「倍率は非公表でモデルの tokenizer で変わる、自分の文章を数える、英語に替えて節約するのは先に打つ手ではない」で、独立のページには薄い。「日本語で大丈夫か」の問いの一部（tokens の節）にした。トークンの仕組みそのものは basics の tokens が持つ"
+  - id: proofreading-skills-for-japanese
+    into: less-ai-sounding-japanese
+    reason: "第三者の推敲 skill を比べて選ぶページは推薦の一覧になりやすく（D13、requirements §6.4）、比べた記事も1回の出力だけ。選ぶ軸（文体を保つか、構成から直すか）と、文体の手引きを自分で skill にする公式の形を、AI 臭さのページの節（proofreading-skill）にした"
+dropped: []
+open_issues:
+  - "提案（basics・extend）：まとめた2つの候補を指す参照がほかの分野に残っていて、検査のエラー（参照）になる（2026-11-04 の時点で3件）。basics の tokens の related の more-tokens-in-japanese は can-i-prompt-in-japanese#tokens に、extend の writing-skills と hook-vs-skill の related の proofreading-skills-for-japanese は less-ai-sounding-japanese#proofreading-skill（推敲を skill にする節。hook-vs-skill には lint-vs-judgment の節も合う）に直してほしい"
+  - "提案（symptoms）：replies-in-english の診断は research/27 P13 の順（language を設定したか・どの層か → リポジトリの設定に別の値がないか → output style → モデル → 英語のツール出力・サブエージェントの直後か → クラウドのセッションか → Stop hook を足す）にし、対処の本体を keep-replies-in-japanese と align-japanese-output にしてほしい。keep-replies-in-japanese は level を整えるにした（replies-in-english の registry の level と同じ）ので、前提に置いても逆転しない"
+  - "提案（basics）：tokens（題名に「日本語の場合」）と、まとめた more-tokens-in-japanese（can-i-prompt-in-japanese#tokens）の重なり。tokens はトークンの仕組みと日本語の量の考え方、can-i-prompt-in-japanese#tokens は英語に替えて節約するかの判断と数え方、に分けたい。tokens の related に can-i-prompt-in-japanese#tokens を入れてほしい"
+  - "提案（enforce）：stop-hooks の例として keep-replies-in-japanese#stop-hook（最後の返事の言語を確かめて書き直させる）を、hook-recipes の例として textlint-hook を、関連に入れてほしい"
+  - "提案（app）：where-to-put-instructions は consistent-politeness・consistent-notation・align-japanese-output のアプリのタブの前提になる。Styles が skills に移ったこと（research/26 §3.1）の書き方を揃えたい"
+  - "提案（changes）：Styles から skills への移行（research/26 §3.1）を台帳の項目にするなら、consistent-politeness・align-japanese-output の outdated_advice に付けたい。think-hard-keywords の日本語の「熟考」には、当時は公式の機能だった一次資料（CHANGELOG 1.0.8、research/27 #18）を足せる"
+  - "提案（safety）：disclosure-and-provenance から less-ai-sounding-japanese へリンクし、「AI 臭さ」は読みやすさの品質であって AI の利用を隠す話ではないことを両方で揃えたい（方針 B4）"
+  - "提案（eval）：英語への回帰の検証ノート（research/27 P12：数える単位・判定・条件・回数の上限）は keep-replies-in-japanese#measure に置く。measure-changes の例に使うならリンクしてほしい"
+  - "提案（cli）：output-style-modes と settings-layers は keep-replies-in-japanese・commit-and-comment-language の言語の設定の説明に使う。output style が fork でないサブエージェントに届かないこと（research/27 §3.2）をそちらでも書くなら揃えたい"
+  - "提案（メイン）：tracks に新しい機能の id language-setting を使った。new_features を features.yaml にまとめてほしい。訳語の割れ（plan モード／プランモード、effort／努力レベル、allow ルール／許可ルール）は research/27 P11 の案どおり用語集で決める"
+new_features:
+  - {id: language-setting, title: "Claude Code の language 設定（返答の言語）", note: "settings のキー language。v2.1.0 から。値は検証されず、音声入力とセッションの題名の言語も決める（research/27 #2・#3）。サブエージェント・圧縮の要約・コミットメッセージに効くかは公式に書かれていない（#4）。keep-replies-in-japanese・align-japanese-output・commit-and-comment-language が指す"}

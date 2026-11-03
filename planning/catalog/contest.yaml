@@ -1,0 +1,331 @@
+field: contest
+chapters: [入口と現在地, 規則と練習, 評価と実験, 本番とチーム戦]
+pages:
+  # ---------------------------------------------------------------- 入口と現在地
+  - id: format-cheatsheet
+    chapter: 入口と現在地
+    title: "コンテストの形式別の早見表（AI の効き方と人が握るところ）"
+    nav_title: "形式別の早見表"
+    aliases: ["形式と AI の効き方", "大会の形式ごとの AI の使いどころ"]
+    type: hub
+    priority: 推奨
+    surfaces: [claude-code, app]
+    principle: [確かめる, 握る]
+    prevents: []
+    pitfalls: []
+    scenes: [コンテスト]
+    summary: "七つの形式ごとに、AI が効くところ・人が握るところ・評価器・規則の類型・当日の注意を一つの表で引ける。形式で効き方が違う理由も五つの軸で分かる。"
+    signs:
+      - {type: situation, text: "AHC や Kaggle、ISUCON、CTF に AI を使って出たい"}
+      - {type: goal, text: "出る大会で、AI がどこまで役に立つか見当を付けたい"}
+      - {type: situation, text: "初めての形式の大会に出るので、AI の使いどころが分からない"}
+    prerequisites: [is-the-task-ai-suited]
+    related: [ai-in-contests-today, competition-rules, practice-vs-contest-day, evaluators-by-format, competition-day-operations, running-contest-experiments, search-code-checklist, long-team-competitions, verifier-defines-problem, checking-ai-rules, read-specs-yourself, build-observation-tools, think-before-asking, ai-ideas-are-everyones, entrusted-data, instructions-hidden-in-materials, disclosure-and-provenance, performance-tuning]
+    tracks: []
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "形式で効き方が違う理由（五つの軸）", anchor: why-formats-differ}
+      - {title: "短時間のアルゴリズム", anchor: algorithm}
+      - {title: "ヒューリスティック（短期・長期）", anchor: heuristic}
+      - {title: "性能改善", anchor: performance-tuning}
+      - {title: "CTF", anchor: ctf}
+      - {title: "データ分析", anchor: data-analysis}
+      - {title: "ハッカソン・作品", anchor: hackathon}
+      - {title: "対戦型・長期チーム戦", anchor: battle-and-team}
+    visual: {kind: static, text: "七つの形式を、検証器の速さと信頼性・問題の典型度・入出力がテキストで完結するか・環境の制約・期間の五つの軸で並べた表（AI の効きやすさの見当）"}
+    materials: ["requirements §4.3 contest（七つの形式）", "decisions 2026-11-03「コンテストの分野」（七つの形式を同じ厚さで）", "10 第2章（表と五つの軸。注記つき）", "11 第1節 新分野案Y「形式別の早見表」p12#53〜p12#62", "11 第1節 新分野案Y「形式と AI の効き方」p12#17・p34#94", "11 第1節 分野12 p12#63（五つの軸の一般の判断は delegate の is-the-task-ai-suited）", "11 第3節 C-12", "11 第4節 #49・#59", "research/24 A-1・A-3・A-5・A-7・B-2・B-3・B-6・§2.4", "research/22 #45・#46"]
+    notes: "contest の formats-and-ai-fit をまとめた（形式と AI の効き方の五つの軸は、表の列と導入の節 why-formats-differ にする。軸の一般の判断は delegate の is-the-task-ai-suited が持つので前提にし、ここは大会の形式への当てはめだけにする（delegate の担当の提案と同じ）。成績の数値は ai-in-contests-today の確認日付きの囲みに置く）。型は hub にした（registry の見当は comparison）。七つの形式は比べて選ぶものではなく、自分の形式の行から規則・評価器・練習・本番のページへ進む題材の入口なので（design §1.2「題材の入口」、requirements §4.3 の置き方の理由3）。decisions 2026-11-03「コンテストの分野」により七つの形式を同じ厚さで扱う。requirements §4.3 の七つに短期のヒューリスティック（短期 AHC）がないので、ヒューリスティックの行の中で短期と長期を分ける。表の規則の列は条文を書かず、類型だけを数値ファイルから出す（方針 A4）。一次資料で確かめたのは長期 AHC の2部門制（AHC074 から、告知の範囲は今後数回）と ISUCON2026 のレギュレーションの所在だけで、ほかの版は「未確認」（research/24 §2.4、research/22 #45）。言語別の一発生成の平均は言語選びの根拠にしない（11 第4節 #49）。「AI はほぼ全形式でトップに並んだ」とは書かない（research/24 A-7）。対戦型と長期チーム戦の行は直接の研究がなく類推と書く（requirements §4.3）。例は調査の厚い AtCoder（ABC・AHC）から多く取る（decisions「コンテストの分野」）。AtCoder の規則の細部と競技の練習法は kyopro-atlas へリンクする（方針 A5。atcoder-system#ai-rules・practice-method・contest-strategy・stress-testing など）。優先度は推奨のまま（contest は第一波の後。decisions 2026-11-03「第一波に足すもの」）。"
+
+  - id: ai-in-contests-today
+    chapter: 入口と現在地
+    title: "AI はコンテストでどこまで来たか（確認日付き）"
+    nav_title: null
+    aliases: ["AI の大会の成績", "AI はコンテストで勝てるか"]
+    type: concept
+    level: 使う
+    level_evidence: "大会に AI を使うか考え始める段階で、何ができて何ができないかの見当として最初に引く"
+    priority: 推奨
+    surfaces: []
+    principle: [確かめる, 握る]
+    prevents: []
+    pitfalls: []
+    scenes: [コンテスト]
+    summary: "AI が人の上位に並んだ大会と届かなかった大会を確認日付きで示し、勝ち方の構造と、人の寄与がどこに残ったかを読み取れる。"
+    signs:
+      - {type: goal, text: "AI がプログラミングコンテストでどこまで勝てるのか知りたい"}
+      - {type: situation, text: "AI が大会で優勝したと聞いて、自分の大会でも同じことができるか考えている"}
+      - {type: situation, text: "考察は人にしかできないと思って、AI をほとんど使っていない"}
+    prerequisites: []
+    related: [format-cheatsheet, evaluators-by-format, verifier-defines-problem, competition-rules, what-not-to-delegate, ai-ideas-are-everyones, agent-loop, dating-information]
+    tracks: []
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "確認日付きの成績", anchor: dated-results}
+      - {title: "勝ち方の構造（大量の試行と局所評価による選別）", anchor: how-ai-wins}
+      - {title: "届かなかった場面", anchor: where-ai-falls-short}
+      - {title: "人の寄与が残ったところ", anchor: human-contributions}
+      - {title: "規則の中で持ち込めるもの", anchor: what-you-can-reuse}
+    visual: {kind: static, text: "知識を足した分と評価のループを足した分の伸びの比較（AHC の過去問のベンチマークのアブレーション。確認日とモデル名付き）"}
+    materials: ["requirements §4.3 contest（確認日付きの囲み）", "10 第1章（訂正・注記つき）", "11 第1節 新分野案Y「AI はコンテストでどこまで来たか」p12#2〜p12#12・p12#14・p56#77", "11 第1節 新分野案Y「形式と AI の効き方」p12#17", "11 第2節 分野00 p12#1・p12#16", "11 第1節 分野12 p12#18〜p12#22", "11 第4節 #32〜#37・#57・#59・#60", "research/24 A-6・A-7・B-32・B-33・B-36・B-37・B-57・B-60・§3 の5・6", "research/25 P1"]
+    notes: "優先度：成績は月単位で古くなるので数値ファイルの囲みに隔離し（requirements §4.3 の置き方の理由2）、原則のページから切り離すための受け皿。必須にはしない（推奨。registry の見当）。研究や事例の紹介だけのページにしないよう、「成績から何を読むか」（構造を取り出す、届かない場面、人の寄与、規則の中で持ち込めるもの）を本体にする（design §4.1-5）。成績の数値は本文に書かず、数値ファイルに出典の種類と確認日付きで置く。AWTF 2026 Heuristic について工程2で直した誤った記述（出場していない上位の競技者が負けたとする記述）を繰り返さない。観戦者としての発言を出場者の言葉として書かない（research/24 A-6、research/25 P1）。AWTF 2025 の結果、ICPC 2025 の OpenAI の12問、IOI 2025 の6位相当、AWTF 2026 Algorithm の5問は工程2で一次資料を確かめていない（research/24 §5）。使う前に確かめるか、出典の種類（報道）を添える。ICPC の検証の範囲の但し書きは Gemini の結果に付ける（research/24 B-36）。MLE-bench は公式のリーダーボードの値（B-37）、CTF の Anthropic の順位の一つはベンダー自身の推定（B-57）。「ほぼ全形式でトップ」とは書かず、届かなかった場面（難しい CTF で0問など）を並べる（A-7）。AI 単独の優勝事例は真似る方法として書かず、構造だけを取り出す（requirements §6.3）。AI のループが禁じられる大会で持ち込めるのは、人が回す局所評価のループだけ（B-60）。人の寄与の事例の順位は自己申告と書き、否定的な文脈で個人を名指ししない（方針 A1）。contest の formats-and-ai-fit の材料のうち、問題ごとの成績のばらつき（p12#17）はここの囲みに置く。"
+
+  # ---------------------------------------------------------------- 規則と練習
+  - id: competition-rules
+    chapter: 規則と練習
+    title: "大会の規則の早見（禁止・部門分け・許可と開示）"
+    nav_title: "大会の規則の早見"
+    aliases: ["コンテストの AI ルール", "大会の生成 AI の利用規則"]
+    type: concept
+    level: 使う
+    level_evidence: "大会で AI を使う前に、使ってよいかを確かめる段階で最初に要る"
+    priority: 必須
+    surfaces: []
+    principle: [握る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [コンテスト]
+    summary: "大会の AI の規則が禁止・部門分け・許可と開示に割れる理由と、主な大会の類型・版・確認日・一次資料の所在が分かり、出る前に何を確かめるかを決められる。"
+    signs:
+      - {type: situation, text: "出る大会で、AI をどこまで使ってよいか確かめたい"}
+      - {type: situation, text: "規約に AI のことが書かれていない大会に出る"}
+      - {type: symptom, text: "大会の AI のルールが前と変わっていて、どれが最新か分からない"}
+    prerequisites: [checking-ai-rules]
+    related: [practice-vs-contest-day, format-cheatsheet, disclosure-and-provenance, instructions-hidden-in-materials, entrusted-data, dating-information, competition-day-operations, ai-in-contests-today]
+    tracks: []
+    outdated_advice: []
+    volatility: 高
+    sections:
+      - {title: "規則が割れる理由", anchor: why-rules-differ}
+      - {title: "類型ごとの大会（確認日付き）", anchor: rules-by-type}
+      - {title: "文言がないことは許可ではない", anchor: silence-is-not-permission}
+      - {title: "版が確かめられないとき", anchor: unverified-versions}
+    visual: {kind: static, text: "規則の三類型の図：個人の考える力を測る大会は禁止へ、成果物を測る大会は許可と開示へ、両方を測る大会は部門分けへ"}
+    materials: ["requirements §4.3 contest・§6.5（【2026-11-03 注記】を含む）", "decisions 2026-11-03「大会の規則の版」・書き方の方針（第三者・根拠・コンテスト）の4と5", "design §6.13・§4.2", "10 第1章 ルールの地図（注記つき）", "11 第1節 分野11 p12#23・p12#29・p34#199・p12#36・p12#39", "11 第3節 C-1〜C-12（注記つき）", "11 第4節 #1〜#8（注記つき）", "research/24 A-1〜A-5・B-2・B-3・B-6・B-8・§2.4・P-4", "research/22 #45・#46"]
+    notes: "優先度：大会で AI を使う前に必ず通る確認で、requirements §6.3 の「日付と版のない『この大会では AI が使える／使えない』という断定」を避ける受け皿なので必須（registry の見当）。規則の表は数値ファイルから作り、類型・版・確認日・一次資料へのリンクだけを持つ。条文の要約は載せない（方針 A4、design §6.13）。主催者の公式 X など AI の利用を断るドメインの外の一次資料で確かめたのは、長期 AHC の2部門制（AHC074 から、告知の範囲は今後数回）、長期 AHC の規則の案の試験コンテストの日程（2026-10-15〜18）、ISUCON2026 のレギュレーションの所在（許可）、Universal Cup の録画の義務、高専プロコンの公式ページ（行動規範の熟読を求める）、IEEEXtreme 20.0 の規則の AI の節の所在（research/24 A-1・A-4・B-6・B-8、research/22 #45・#46）。ABC・ARC・AGC の20261014版、短期 AHC の20260818版、長期 AHC の20261026版と各部門の範囲、Codeforces の規則、「過去問の練習には適用されない」は「未確認」とし、規則のページへのリンクだけを置く（decisions「大会の規則の版」）。atcoder.jp・codeforces.com へのリンクは張ってよいが、中身を AI で読まない。AtCoder の規則の細部は kyopro-atlas の atcoder-system#ai-rules へリンクする（方針 A5）。一般の類型と確認表（10 付録A-2）は safety の checking-ai-rules が持ち、ここは大会の早見に絞る（design §4.2）。前提の checking-ai-rules は、safety の担当が必須に上げた（registry の見当は推奨）ので、必須の前提の規則も満たす。"
+
+  - id: practice-vs-contest-day
+    chapter: 規則と練習
+    title: "練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）"
+    nav_title: "練習と本番の使い分け"
+    aliases: ["本番で AI を使えない大会の準備", "Human Only 部門に向けた練習"]
+    type: concept
+    level: 整える
+    level_evidence: "AI に頼って練習を進める段階で、本番に AI が使えない大会との食い違いに出会う"
+    priority: 必須
+    surfaces: [claude-code, app]
+    principle: [握る, 確かめる]
+    prevents: []
+    pitfalls: [預けすぎる, 体感を信じる]
+    scenes: [コンテスト, 学習]
+    summary: "本番で AI を使えない大会に向けて、練習では AI を解説役・採点役・テストの作り手として使い、本番の条件で自力を確かめる使い分けが分かる。"
+    signs:
+      - {type: situation, text: "AI を禁じる大会に向けて練習している"}
+      - {type: symptom, text: "AI と一緒だと解けるのに、本番では手が止まる"}
+      - {type: situation, text: "AI を使ってよい部門と使えない部門の、どちらに出るか迷っている"}
+    prerequisites: [competition-rules, learning-with-ai]
+    related: [how-much-understanding-to-keep, felt-vs-measured, when-ai-is-unavailable, competition-day-operations, "format-cheatsheet#algorithm", think-before-asking, read-specs-yourself, own-generated-code, differential-testing]
+    tracks: []
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "本番で使えない線引き", anchor: rules-change-the-line}
+      - {title: "練習で AI に頼むこと", anchor: what-to-ask-in-practice}
+      - {title: "本番の条件で自力を確かめる", anchor: test-under-contest-conditions}
+      - {title: "部門のある大会で、練習の場を選ぶ", anchor: choosing-divisions}
+    materials: ["requirements §4.3 contest・§6.3（AI を禁止する大会を目指す読者に、本番での利用を前提にした手順だけを教えない）・§6.5（注記つき）", "10 第4章 実践の但し書き・第21章 実践④", "11 第1節 新分野案Y「練習と本番の使い分け」p12#103・p56#48・p56#119", "11 第1節 分野14 p56#73（AI なしでも提出できる状態）", "research/24 A-1・A-3・P-3", "decisions 2026-11-03 書き方の方針（第三者・根拠・コンテスト）の5"]
+    notes: "優先度：requirements §6.3 の「AI を禁止する大会を目指す読者に、本番での利用を前提にした手順だけを教えない」を満たすページなので必須（registry の見当）。競技の練習法そのもの（解説の読み方・復習など）は方針 A5 により kyopro-atlas の practice-method へリンクし、ここでは AI への渡し方と確かめ方に絞る。「AtCoder の規則は過去問の練習には適用されない」は未確認（requirements §6.5 の注記、research/24 P-3）なので書かない。練習と本番で規則の扱いが違うことがある、という一般の注意にとどめる。部門の類型（Human Only は生成 AI 禁止、With AI は使用可）は公式 X で確かめた範囲（research/24 A-1）。部門の選び方や細則は未確認。体感と実測のずれ（AI と一緒なら解けるという感覚）は eval の felt-vs-measured と judgment の learning-with-ai につなぐ。"
+
+  # ---------------------------------------------------------------- 評価と実験
+  - id: evaluators-by-format
+    chapter: 評価と実験
+    title: "形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）"
+    nav_title: "形式別の評価器"
+    aliases: ["ローカルテスタ", "ローカル評価", "評価環境"]
+    type: concept
+    level: 任せる
+    level_evidence: "大会で実装を AI に任せ始める前の、最初の成果物として要る。eval の verifier-three-conditions（任せる）と同じ段"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [コンテスト]
+    summary: "形式ごとに検証器が何に当たるか（テスタ・ベンチマーカー・CV・flag の検証・対戦場など）と、公式や本番とのずれをどう確かめるかが分かる。"
+    signs:
+      - {type: goal, text: "AHC のローカルテスタを AI に作らせたい"}
+      - {type: symptom, text: "手元のスコアは上がったのに、本番の順位が上がらない"}
+      - {type: goal, text: "対戦型の大会で、ボットの強さを手元で比べたい"}
+    prerequisites: [verifier-three-conditions]
+    related: [test-the-verifier, verifier-defines-problem, differential-testing, lockbox-and-holdout, check-the-metric, build-test-harness, build-observation-tools, running-contest-experiments, competition-day-operations, format-cheatsheet, freeze-eval-assets, protect-tests, misses-broken-evaluation, suspect-too-good-results]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "どの形式でも、最初の成果物は評価器", anchor: evaluator-first}
+      - {title: "短時間のアルゴリズム：愚直解との比較", anchor: stress-test}
+      - {title: "ヒューリスティック：公式とスコアが一致するテスタ", anchor: tester}
+      - {title: "性能改善：ベンチマーカーと計装", anchor: benchmarker}
+      - {title: "CTF：提出の前の flag の検証", anchor: flag}
+      - {title: "データ分析：分布の差を確かめた CV", anchor: cv}
+      - {title: "ハッカソン：機械の評価器がないとき", anchor: no-mechanical-evaluator}
+      - {title: "対戦型：対戦場と基準のボット", anchor: arena}
+    materials: ["requirements §4.3 contest", "10 第2章 実践（人が最初にやる仕事は検証器づくり）・第8章", "11 第1節 新分野案Y「形式別の評価器」p34#20・p34#21・p34#22・p34#17・p34#31・p34#24・p34#217・p56#86・p34#206", "11 第2節 分野09 p34#26（基準のボットの均質化は仮説）", "11 第1節 分野16 p34#23（性能改善の計装）"]
+    notes: "優先度：推奨（registry の見当）。一般の原理（検証器が問題を定義する・三条件・red/green）は eval が持ち、ここは形式ごとの当てはめに絞る（design §4.2）。七つの形式を同じ厚さで扱うため（decisions「コンテストの分野」）、機械の評価器がないハッカソンも節にする。第三者のツール（テスタの実行ツール、対戦のリーグのツール）は例として名前を出すだけにする（D13）。同じモデルに書かせた基準のボットは戦略が似通う、は仮説（11 第2節 p34#26）。誤答で提出が止まる大会の例は版に依存するので、規則のページの確認に回す。level：registry の見当は仕組みにするだったが、AI に任せる前の最初の成果物なので任せるにした（competition-day-operations と search-code-checklist の前提にするため）。評価器の red/green の雛形（10 付録A-13）は eval の test-the-verifier に置かれる（11 第5節）ので、ここは関連でつなぐ。"
+
+  - id: running-contest-experiments
+    chapter: 評価と実験
+    title: "実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）"
+    nav_title: "実験の回し方"
+    aliases: ["ローカル評価の回し方", "勝率の判定", "パラメータ調整"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "評価器を常設し、台帳と統計の規律で実験を回し続ける段階で要る（eval の experiment-log と同じ段）"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: [体感を信じる]
+    scenes: [コンテスト]
+    summary: "結果のぶれを見込んでケース数と集計の方法を決め、パラメータの調整と勝率の判定を、誤差に負けない試合数で回す手順が分かる。"
+    signs:
+      - {type: symptom, text: "改善したはずの版が、ケースを増やすと負ける"}
+      - {type: goal, text: "勝率が本当に上がったのか、何試合やれば言えるか知りたい"}
+      - {type: goal, text: "AI にパラメータの探索を回させたい"}
+    prerequisites: [experiment-log, selection-pressure, evaluators-by-format]
+    related: ["measure-changes#by-stratum", lockbox-and-holdout, open-ended-loop-trap, compare-hypotheses-in-parallel, parallel-and-loop-costs, decide-when-to-quit, suspect-too-good-results, progress-logs-for-long-jobs]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "ぶれるならケースを増やす", anchor: more-cases}
+      - {title: "集計の方法を選ぶ（相対スコア）", anchor: aggregation}
+      - {title: "勝率に要る試合数", anchor: games-for-win-rate}
+      - {title: "パラメータは入力の性質ごとに", anchor: parameters-by-input}
+      - {title: "効かなかった実験も残す", anchor: keep-all-runs}
+    materials: ["requirements §4.3 contest", "10 第9章", "11 第1節 新分野案Y「実験の回し方」p34#41・p34#42・p34#45・p34#48・p34#49", "11 第4節 #53（試合数の概算。検算済み）", "research/24 B-53"]
+    notes: "優先度：推奨（registry の見当）。一般の実験の規律（台帳・選択圧・ロックボックス・層別と最悪のケース）は eval が持ち、ここは大会での数え方（ケース数・相対スコアの集計・試合数・入力の性質ごとのパラメータ）に絞る。試合数の概算は、引き分けのない独立な試合を前提にした値として前提を添える（research/24 B-53）。ケース数の例（数千ケースなど）は上位者の経験則として書く。前提の selection-pressure と、関連の measure-changes#by-stratum（層別と最悪のケース。eval が stratified-and-worst-case をまとめた先）は eval の担当の提案による。比例則：前提の experiment-log・selection-pressure（eval）で満たす。"
+
+  - id: search-code-checklist
+    chapter: 評価と実験
+    title: "探索コードと高速化の点検表（AI に書かせたとき）"
+    nav_title: "探索コードと高速化の点検表"
+    aliases: ["焼きなましのバグの点検", "差分更新の検証", "高速化の確かめ方"]
+    type: recipe
+    level: 任せる
+    level_evidence: "探索や高速化の実装を AI に任せ、出てきたコードを確かめる段階で要る"
+    priority: 任意
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [コンテスト]
+    summary: "AI に書かせた探索コードと高速化を、差分更新と全再計算の一致・取り消し漏れ・時間の確認・乱数の種などの観点で点検し、速さを実測で確かめる手順が分かる。"
+    signs:
+      - {type: symptom, text: "AI に書かせた焼きなましのスコアが、ときどきおかしい"}
+      - {type: goal, text: "AI に高速化させた探索コードが、壊れていないか確かめたい"}
+    prerequisites: [evaluators-by-format]
+    related: [performance-tuning, differential-testing, suspect-too-good-results, show-examples, running-contest-experiments, pitfalls-of-ai-written-tests, fix-a-bug, shrink-failing-inputs]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "探索コードの点検の観点", anchor: search-code}
+      - {title: "高速化は計測が先", anchor: measure-first}
+      - {title: "人の知見を点検表として渡す", anchor: checklist-as-context}
+    templates:
+      - {name: "差分スコアと全再計算の一致、取り消した後の状態の一致を、デバッグのビルドでだけ確かめる assert を入れさせる", kind: prompt, safety: false}
+    materials: ["requirements §4.3 contest", "10 第11章", "11 第1節 新分野案Y「探索コードと高速化の点検表」p34#75・p34#77・p34#92・p34#93・p34#102・p34#91・p34#101", "11 第5節 A-9（後半の差分スコアの assert）・A-11（第4節 #22 の矛盾を直したもの）"]
+    notes: "優先度：任意（registry の見当）。ヒューリスティックの形式に限られ、点検表の多くは補完自身が推論と明記した項目（11 p34#77）なので、根拠のある規則としては書かず、本文で推論と書く。一般の性能改善の頼み方（プロファイルが先・出力の一致・実測）は recipes の performance-tuning が持ち、ここはコンテストに固有の点検だけにする（recipes の担当の提案と同じ）。高速化の技法そのもの（競技者の点検表）は競技の技術なので、方針 A5 により kyopro-atlas へリンクし、ここでは AI に頼むときの点検と計測に絞る。ジャッジと手元の速度の差は定量の資料がないので余裕を取る、と書く（11 p34#102）。差分スコアの assert（10 付録A-9 の後半）は局所探索に固有なので、ここに置く案（11 第5節は eval の差分テストのページの折りたたみに置く。open_issues に提案）。"
+
+  # ---------------------------------------------------------------- 本番とチーム戦
+  - id: competition-day-operations
+    chapter: 本番とチーム戦
+    title: "本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）"
+    nav_title: "本番の運用"
+    aliases: ["コンテスト当日の進め方", "本番での AI の使い方"]
+    type: recipe
+    level: 任せる
+    level_evidence: "本番で AI を並べて任せ、途中で舵を取る段階で要る"
+    priority: 推奨
+    surfaces: [claude-code, app]
+    principle: [確かめる, 縛る]
+    prevents: [確かめていない, 縛っていない]
+    pitfalls: [やめられない]
+    scenes: [コンテスト]
+    summary: "前日・開始直後・中盤・終盤・提出の各段で、規則の確認、評価器を先に立てること、変更の凍結、AI が止まっても提出できる備えを順に進める手順が分かる。"
+    signs:
+      - {type: situation, text: "AI を使ってよい大会の本番に出る"}
+      - {type: symptom, text: "終了間際の変更で、提出したものが壊れていた"}
+      - {type: situation, text: "大会の途中で、AI の利用上限や障害に当たらないか不安"}
+    prerequisites: [competition-rules, evaluators-by-format]
+    related: [when-ai-is-unavailable, check-billing-path, permission-rules, freeze-eval-assets, instructions-hidden-in-materials, going-in-circles, stuck-in-a-check-loop, when-to-start-fresh, decide-when-to-quit, long-team-competitions, practice-vs-contest-day, format-cheatsheet, what-uses-up-limits, verification-ladder]
+    tracks: [permissions, usage-limits]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "前日までに", anchor: day-before}
+      - {title: "開始直後：人が読み、評価器を先に", anchor: opening}
+      - {title: "中盤：頭打ちとループを見る", anchor: midgame}
+      - {title: "終盤：凍結と最終確認", anchor: endgame}
+      - {title: "提出：人が確かめる", anchor: submission}
+      - {title: "AI が止まっても続けられる備え", anchor: fallback}
+    templates:
+      - {name: "本番の手順表（前日・開始直後・中盤・終盤・提出に、確かめることと AI に頼むことを並べる）", kind: other, safety: false}
+    visual: {kind: static, text: "本番の時間線：前日（規則・利用枠・課金経路・AI なしの手順）→ 開始直後（評価器を先に）→ 中盤（頭打ちとループ）→ 終盤（凍結と最終確認）→ 提出（人が確かめる）"}
+    materials: ["requirements §4.3 contest", "10 第23章（注記・訂正つき）", "11 第1節 新分野案Y「本番の運用」p56#72・p56#76・p56#82・p56#83・p56#81・p56#85・p56#87・p34#204", "11 第1節 分野14 p56#73・p56#79", "11 第1節 分野11 p34#199・p34#214", "11 第2節 分野05 p56#84", "11 第3節 C-24（模擬本番は演習にしない）", "11 第4節 #57・#64・#65", "research/24 A-3・B-57・A-15"]
+    notes: "優先度：推奨（registry の見当）。大会中に AI の上限や障害に当たった参加記は見つかっておらず、全体は事例からの推論（11 p56#72）。本文でそう書く。「最も安い保険」とは書かず「保険として有効」にとどめる（11 第4節 #64）。本番の1か月前などの数値は例（research/24 A-15）。長期 AHC の「初回提出の前に部門を選ばないと Human Only として扱われる」は未確認（research/24 A-3）なので書かない。Universal Cup のプロンプトインジェクションの禁止は工程2で確かめていない（11 第1節 新分野案Y の注記）。障害の日付と長さは確かめていない（research/24 §5）。CLAUDE.md に書く規約の要旨はお願いにすぎないので、終盤の編集の禁止は権限ルールで止める（enforce の permission-rules・freeze-eval-assets）。比例則：本番で AI を並べて任せる内容なので、enforce・safety・verify のページを関連に置いた。模擬本番は演習にしない（11 第3節 C-24）。業務の版の「AI が使えないときの備え」は cost の when-ai-is-unavailable が持つ。"
+
+  - id: long-team-competitions
+    chapter: 本番とチーム戦
+    title: "チーム戦の運用（長期・対戦型）"
+    nav_title: null
+    aliases: ["数か月の大会のチーム運用", "ボット対戦の大会"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "数か月の大会で、チームの役割・承認・記録を常設の仕組みにする段階で要る"
+    priority: 任意
+    surfaces: [claude-code]
+    principle: [握る, 確かめる]
+    prevents: []
+    pitfalls: [やめられない, 同意を根拠にする]
+    scenes: [コンテスト, チーム]
+    summary: "数か月のチーム戦や対戦型の大会で、評価の定義・撤退・合意を人が持ち、役割を分け、旧版との対戦で採否を決めて終盤に凍結する進め方が分かる。"
+    signs:
+      - {type: situation, text: "数か月かけるチーム戦の大会に、AI を使って出る"}
+      - {type: symptom, text: "手元で強くなったボットが、ほかのチームに勝てない"}
+    prerequisites: [separate-roles, competition-day-operations]
+    related: [decide-when-to-quit, "evaluators-by-format#arena", lockbox-and-holdout, freeze-eval-assets, risk-tiered-approval, record-decisions, ideate-independently, curb-sycophancy-and-overtrust, compare-hypotheses-in-parallel, parallel-with-worktrees, ai-ideas-are-everyones, competition-rules]
+    tracks: []
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "人が持つもの、AI に回すもの", anchor: who-holds-what}
+      - {title: "役割を分ける", anchor: roles}
+      - {title: "採否は旧版とほかのチームの両方で決める", anchor: adoption}
+      - {title: "要項と行動規範を確かめて記録する", anchor: rules-and-conduct}
+      - {title: "凍結とリハーサル", anchor: freeze-and-rehearse}
+    materials: ["requirements §4.3 contest（対戦型と長期チーム戦は類推）・§10.4（データが存在しない論点）", "10 第2章 表の最後の行・第22章・第23章", "11 第1節 新分野案Y p12#62・p56#87・p12#58", "11 第1節 分野17 p56#63・p56#66", "11 第4節 #8", "research/24 B-8"]
+    notes: "優先度：任意（registry の見当）。対戦型と数か月のチーム戦での AI の活用には直接の研究がなく、隣接分野からの類推と本文で書く（requirements §4.3・§10.4）。チームの運用の一般論（役割・承認・決定の記録・案出し）は team が持ち、ここは大会への当てはめ（評価担当・実装担当・批評担当、旧版との対戦、終盤の凍結とリハーサル）に絞る。高専プロコンは公式ページに生成 AI の記述がなく行動規範の熟読を求める例（research/24 B-8）。行動規範の本文は確かめていないので、読者に確かめさせる。リハーサルの回数や凍結の時期の数値は例（research/24 A-15）。"
+
+merged:
+  - {id: formats-and-ai-fit, into: format-cheatsheet, reason: "中身は、五つの軸（検証器・典型度・テキストで完結するか・環境の制約・期間）と、形式ごとの当てはめである。軸の一般の判断は 11 が delegate の is-the-task-ai-suited に置き（11 第1節 分野12 p12#63）、形式ごとの当てはめは早見表の列そのものなので、早見表の導入の節 why-formats-differ にまとめた。成績の数値（問題ごとのばらつき）は ai-in-contests-today の囲みに置く。コンテストの分野は固有の論点だけにする（D5）。"}
+  - {id: insight-patterns, into: think-before-asking, reason: "11 は考察の五つの問いと順序（先に自分、その後で AI。AI には問い・反論・観察の道具を頼む）を新分野案X「AI に頼む前に自分で考える」に置き（p12#120・p12#138）、新分野案Y「考察の型」の行（p12#121〜p12#126 など）は上位者の考察の手順で、競技の技術そのものとする。AI への頼み方は judgment の think-before-asking の節 five-questions に置き、競技の技術は方針 A5 により kyopro-atlas へリンクする。"}
+  - {id: reading-top-solutions, into: learning-with-ai, reason: "AI に関わる中身は、上位解法を AI に要約させると手法を正当化した条件が落ちること（11 p12#144、10 第7章）と、作業の後に AI の使い方を書き残すこと（p56#101）で、どちらも一般化できる。前者を judgment の learning-with-ai の節 summaries-of-solutions に、後者を retros-without-ai-verdicts の節 record-ai-usage に置いた。上位解法を読む練習そのもの（p12#151）は競技の練習法なので、方針 A5 により kyopro-atlas へリンクする。With AI 部門の解説の義務（p56#101 の根拠）は未確認（research/24 A-3）。"}
+dropped: []
+
+notes:
+  - "D5 によりコンテストに固有の論点だけを置いた。一般化できる論点（迎合・撤退・均質化・学び方・評価器の原理・実験の規律・性能改善）は judgment・eval・verify・recipes・delegate のページに置かれ、それらは scenes にコンテストを付ける（各分野の担当）。この分野は、確認日の要る情報（成績・規則）の隔離と、コンテストから引く読者の入口（format-cheatsheet）を受け持つ（requirements §4.3 の置き方の理由1〜4）。"
+  - "wave は付けていない（decisions 2026-11-03「第一波に足すもの」：コンテストの分野は第一波の後）。必須は competition-rules と practice-vs-contest-day の2つ（registry の見当のまま）。"
+  - "七つの形式は、format-cheatsheet と evaluators-by-format で同じ厚さの節にした（decisions「コンテストの分野」）。規則の確認表は safety の checking-ai-rules が持つ（design §4.2）。"
+  - "大会の規則と成績は、類型・版・確認日・出典の種類・リンクだけを数値ファイルに置き、確かめられない版は「未確認」（方針 A4、decisions「大会の規則の版」）。対戦型と長期チーム戦は類推と書く（requirements §4.3）。"
+  - "materials と notes に実在の個人の名前を書いていない。事例は 11 の元ID と research/24・25 の項目の番号で指した。失敗例を名指ししない（方針 A1）。"
+  - "kyopro-atlas へのリンク（方針 A5）は catalog の id では指せないので、各ページの notes に書いた（atcoder-system#ai-rules・practice-method・contest-strategy・stress-testing など、2026-11-04 に kyopro-atlas の docs を読んで見当を付けた）。"
+
+open_issues:
+  - "確認（safety・C7）：competition-rules は design §4.2 のとおり safety の checking-ai-rules を前提にした。checking-ai-rules は C7 が必須に上げたので、必須の前提の規則も満たす。C7 の提案のうち practice-vs-contest-day の前提への checking-ai-rules は、competition-rules を通して推移的に届くので書いていない（catalog/README §4.4-1。直接の前提だけを書く）。10 付録A-2（大会の規則の確認表）は 11 第5節のとおり checking-ai-rules の折りたたみ例で、competition-rules からはリンクする。"
+  - "確認（ほかの分野からの参照）：formats-and-ai-fit を format-cheatsheet に、insight-patterns を think-before-asking に、reading-top-solutions を learning-with-ai にまとめた。2026-11-04 の途中で delegate の is-the-task-ai-suited・team の ideate-independently・recipes の build-observation-tools がまとめた候補を指して参照のエラーになったが、各担当が直し、いまはエラーがない。あとで書く分野がまとめた候補を指したら、まとめた先に替えてほしい（insight-patterns は、think-before-asking をすでに前提か関連に持つページなら外すだけでよい。#five-questions に替えると前提と関連の重複になる）。recipes の提案（practice-vs-contest-day と早見表から read-specs-yourself へ、evaluators-by-format から build-test-harness へ、search-code-checklist は固有の点検だけ）と、team の提案（long-team-competitions の前提に separate-roles）と、delegate の提案（早見表の前提に is-the-task-ai-suited）は取り込んだ。"
+  - "提案（eval・C8）：10 付録A-9 の後半（差分スコアと全再計算の一致の assert、取り消した後の状態の一致）は局所探索に固有なので、eval の differential-testing の折りたたみではなく contest の search-code-checklist の雛形にする案（11 第5節は差分テストのページに置く）。eval の担当の提案（evaluators-by-format の前提に verifier-three-conditions、running-contest-experiments の前提に experiment-log と selection-pressure、層別は measure-changes#by-stratum）は取り込んだ。工程4で直すときも verifier-three-conditions を任せるより上の段にしないでほしい（evaluators-by-format は任せる）。"
+  - "提案（メイン・数値ファイル）：data/facts.yml に、大会の規則の項目（大会・部門・類型〔禁止・部門分け・許可と開示〕・版・版の状態〔一次資料で確認・未確認〕・確認日・一次資料の所在・確かめた資料の種類〔主催者の公式 X など〕）と、AI の成績の項目（大会・日付・結果・出典の種類〔一次・報道・ベンダーの推定・自己申告〕・確認日）を持たせる形を design §9.1 に足してほしい。competition-rules・format-cheatsheet・ai-in-contests-today の表はここから作る。"
+  - "報告（メイン）：方針 A5 でリンクする kyopro-atlas の atcoder-system#ai-rules は、「AtCoder生成AI対策ルール（20261014 版）は…過去問の練習には適用されない」と言い切っている（2026-11-04 に kyopro-atlas の docs/start/atcoder-system.md を読んで確認）。claude-atlas はこの点と版を「未確認」とする（decisions 2026-11-03「大会の規則の版」）。リンクするのはよいが、二つの教材の書き方が食い違って見える。kyopro-atlas は変えていない（読むだけ）。"

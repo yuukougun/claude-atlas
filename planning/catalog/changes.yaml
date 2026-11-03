@@ -1,0 +1,139 @@
+# changes（古くなった助言と変更の記録）の目次。形式は planning/catalog/README.md §3、規則は §4、語彙は schema/site.yml。
+# 担当：C1（工程3、2026-11-04）。
+# 台帳の行は registry の ledger（35項目）。台帳と年表の表は data から生成し、手書きは導入だけ（design §7・§9.1）。
+field: changes
+chapters: [台帳と年表, 古い情報を見分ける]
+pages:
+  # ── 台帳と年表 ──
+  - id: outdated-advice-ledger
+    chapter: 台帳と年表
+    title: 古くなった助言の台帳
+    aliases: [古い助言, 撤回された助言, 使えなくなった小技, もうやめてよい助言, What you can stop doing]
+    type: ledger
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code, api]
+    summary: "撤回・置換された助言を、今どうするか・変わった時期と版・どの原理の回避策だったかと並べて引ける。回避策が正式な仕組みに置き換わる規則から、次に古くなるものの見当もつく。"
+    signs:
+      - {type: symptom, text: "古い記事や本のやり方が今は通じない"}
+      - {type: symptom, text: "前は効いた書き方や設定が効かなくなった"}
+      - {type: goal, text: "ネットで見た小技が今も使えるか確かめたい"}
+    prerequisites: []
+    related: [dating-information, checking-for-updates, change-timeline-2026, glossary, four-principles, thinking-keywords, emphasis-words, writing-skills, goal-until-done]
+    volatility: 高
+    sections:
+      - {title: "台帳の読み方（状態と、どの原理の回避策だったか）", anchor: how-to-read}
+      - {title: "回避策は正式な仕組みに置き換わる", anchor: workarounds}
+      - {title: "台帳", anchor: ledger}
+      - {title: "自分の設定や記事で見つける", anchor: find-in-your-setup}
+    visual: {kind: static, text: "回避策から正式な仕組みへの置き換わり：think hard → effort、IMPORTANT の連打 → hooks、確認を飛ばす起動 → auto mode と sandbox、自作のループ → /goal、.claude/commands/ → skills"}
+    materials:
+      - "00 §5「古くなった助言は台帳にして『どの原理の回避策だったか』を残す」（31項目の表、行の項目、状態の三つ、表の後の【2026-11-03 注記】2つ、かつてなぜ正しかったか）"
+      - "00 §2 の五つ目の経路（古い助言を原理で解釈する）"
+      - "research/22 §3.4（影響のある3行と、足す候補4項目。台帳ではなく数値ファイルと aliases で持つもの）"
+      - "research/23 §3.1・§3.7（Best practices の改稿と「What you can stop doing」の7行。撤回の表の時期）・§3.5（ultrathink の経緯）・#9"
+      - "research/26 §3.1（Styles の skills への移行）"
+      - "01 KQ4 4-2（廃止・削除・改名・非推奨）"
+      - "design §9.1（data/outdated-advice.yml の項目）・§9.4 の4（状態が変わる更新は作者が承認）"
+      - "registry の ledger（35項目）"
+    notes: "台帳の行は registry の ledger（35項目）で、表は data/outdated-advice.yml から生成する（design §7・§9.1）。手書きは導入（読み方と、回避策が正式な仕組みに置き換わる規則）だけで、規則の詳しい説明は dating-information に置いてリンクする。台帳の状態（撤回・置換・条件付き）が変わる更新は作者が承認する（decisions 2026-11-03「鮮度の更新の承認」）。00 §5 の行のうち注記の付いた「強調は1行だけにし」（改稿前の Best practices の勧め）と「2026-01〜03 に変遷」（1月の変化は確かめられない）は使わず、research/23 §3.5・§3.7 で書く。否定的な文脈なので、助言を広めた個人や記事を名指ししない（design §6.12）。Claude Code の版は月に二十数版出る（research/23 §3.6）ので、点検の期限を短くした（volatility 高）。"
+
+  - id: change-timeline-2026
+    chapter: 台帳と年表
+    title: 2026 年の主な変更の年表
+    nav_title: 2026 年の変更の年表
+    aliases: [変更の記録, 年表, 2026 年の変化, リリースの歴史, 改名の時期]
+    type: ledger
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    summary: "2026 年のアプリ・Claude Code・モデル・API の主な変更を、日付と版付きで時系列に引ける。統合・自律の既定化・effort 中心の制御という流れも分かる。"
+    signs:
+      - {type: goal, text: "いつ何が変わったかを時系列で知りたい"}
+      - {type: situation, text: "しばらく使っていない間の変化に追いつきたい"}
+    prerequisites: []
+    related: [outdated-advice-ledger, glossary, checking-for-updates, dating-information]
+    volatility: 高
+    sections:
+      - {title: "この年の変化の流れ", anchor: trends}
+      - {title: "年表", anchor: timeline}
+    visual: {kind: static, text: "四つの列（アプリ・Claude Code・モデル・API）の年表"}
+    materials:
+      - "00 §1「2026年の変化は統合・自律の既定化・effort 中心の制御に集約される」（表と、表の後の注記）"
+      - "01 KQ4 4-1（2026年の主な追加）・4-2（廃止・削除・改名）"
+      - "02 §1 Cited Findings（Help Center のリリースノートの日付）"
+      - "research/22 §3.1・§3.2（10-29 より後の版と、教材に効く変更）"
+      - "research/23 §3.3（auto mode の既定化の段階）・§3.5（ultrathink の経緯）・§3.6（版の数え方）"
+      - "research/26 §3.1（Styles の移行）・research/22 #32（Ultra への改名）"
+    notes: "年ごとのページにする（2027 年の変更は次の年のページ。過ぎた年の表は変わらない記録になる）。行は数値ファイルの日付と版、台帳の「変わった時期」から生成し、手書きは冒頭の流れの説明だけ（design §7）。版の数は npm の公開記録で期間を明記して数える（decisions 2026-11-03「工程2で確かめた事実」、research/23 §3.6）。00 §1 の「約235版」は誤り（注記）で使わない。旧名と新名の対応は start の glossary に置き、改名の時期はこの年表に置く。"
+
+  # ── 古い情報を見分ける ──
+  - id: dating-information
+    chapter: 古い情報を見分ける
+    title: いつの情報かを見分ける
+    aliases: [情報の鮮度, 古い記事の見分け方, 助言はなぜ古くなるか, 版と日付の確かめ方]
+    type: concept
+    level: 使う
+    level_evidence: "使い始めた日から、記事・本・動画の古い助言に出会う。この辞典の確認日の読み方ともつながる"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [確かめる]
+    summary: "助言が古くなる仕組み（古くなる速さの三つの層と、回避策が正式な仕組みに置き換わる規則）が分かり、記事や本の助言が今も通じるかを日付と版から見分けられる。"
+    signs:
+      - {type: goal, text: "読んでいる記事や本の情報が今も正しいか見分けたい"}
+      - {type: symptom, text: "記事によって書いてあることが食い違う"}
+    prerequisites: []
+    related: [outdated-advice-ledger, checking-for-updates, change-timeline-2026, knowledge-cutoff, "how-to-use#freshness", glossary]
+    volatility: 低
+    sections:
+      - {title: "古くなる速さの三つの層", anchor: layers}
+      - {title: "回避策は正式な仕組みに置き換わる", anchor: workarounds}
+      - {title: "日付と版の確かめ方", anchor: check-date-and-version}
+    materials:
+      - "00 §3 分野19「いつの情報かを見分ける」"
+      - "requirements §6.1（古くなる速さで分ける三つの層：原理・機能の使い方・数値と名称）"
+      - "00 §5 の台帳の後の段落（かつてはなぜ正しかったか。回避策が正式な仕組みに置き換わる規則）・00 §2 の五つ目の経路"
+      - "00 §6「変わりやすさでページを分け、数値は一か所に集める」"
+      - "00 §1「既存教材は機能順の一本道で、症状・検証・鮮度が空白のまま」（公式の教材も古くなる例）"
+      - "research/23 §3.1（公式の文書も改稿される：Best practices の例と Wayback の写し）"
+      - "research/22 §3.2 の7（変更の在り処が分かれている）"
+    notes: "brief の「なぜ古くなるか」の入口をこのページに持たせた。台帳（outdated-advice-ledger）の導入は短くし、ここへリンクする。日付のない記事の扱い、機能名と既定値を書いた記事の見方、公式の文書も改稿されることを書く。否定的な文脈で実在の記事や著者を名指ししない（design §6.12）。level は 00 の L1 のまま使うにした。"
+
+  - id: checking-for-updates
+    chapter: 古い情報を見分ける
+    title: 最新を自分で確かめる方法
+    aliases: [変更の追い方, 変更履歴の読み方, リリースノート, 手元の版を確かめる]
+    type: recipe
+    level: 整える
+    level_evidence: "頼み方や設定を整える段階で、記事の手順が手元の版で動くかを自分で確かめる必要が出る"
+    priority: 推奨
+    surfaces: [claude-code, app, api]
+    principle: [確かめる]
+    summary: "手元の版と、Claude Code の変更履歴・Help Center と API のリリースノート・公式の文書の改稿を自分で確かめられる。自分の設定や指示に古い書き方が残っていないかも点検できる。"
+    signs:
+      - {type: goal, text: "新しい版で何が変わったかを自分で追いたい"}
+      - {type: symptom, text: "記事の手順どおりにしても手元では動かない"}
+    prerequisites: []
+    related: [dating-information, outdated-advice-ledger, change-timeline-2026, ask-claude-code, suspected-degradation, after-switching-models]
+    volatility: 中
+    templates:
+      - {name: "自分の CLAUDE.md や skills に古い書き方が残っていないかを点検させる頼み方", kind: prompt, safety: false}
+    materials:
+      - "00 §3 分野19「最新を自分で確かめる方法」（CHANGELOG・/release-notes・Claude に聞く・/doctor prompt-audit）"
+      - "01 KQ1（/doctor prompt-audit で旧モデル向けの書き方を監査する。CHANGELOG）・KQ4"
+      - "research/22 §3.1（版と日付。CHANGELOG のない版と欠番）・§3.2 の7（変更の在り処：リリースノートに載らない Help Center の変更、docs に遅れて入る CHANGELOG の変更、stable の遅れ）・#3（stable と latest）"
+      - "research/23 §3.1（Wayback の写しで文書の改稿を見分ける）・§3.6（版の数え方）"
+      - "design §9.4（この辞典の点検の手順。読者が自分で使える形に写す）"
+    notes: "この辞典の鮮度の点検（design §9.4）と同じ手順を、読者が自分の環境で使える形にする。/doctor prompt-audit と /release-notes の今の名前と動きは、書く前に一次資料で確かめる（00 と 01 の材料で、工程2では確かめていない）。"
+
+merged:
+  - id: old-and-new-names
+    into: glossary
+    reason: "start の glossary（用語索引と旧名の対応）と中身が重なる（registry の notes の重なりの組）。design §7 も旧名の対応を用語索引（生成：title・aliases）に置き、changes には台帳と年表だけを置く。旧名からの引き方は glossary に、改名の時期と版は change-timeline-2026 に置き、同じ改名を三か所に持たない。"
+
+dropped: []
+
+open_issues:
+  - "提案（registry の ledger）：台帳に2項目を足す。(1)「Styles で応答の調子と形式を切り替える」→ 今は Instructions for Claude（いつも）か skill（場面ごと）。2026-06-01 に skills への移行が告知され、2026-11-03 には公式の記事が取り下げられている。UI にメニューが残るかは未確認（research/26 §3.1）。状態は置換。(2)「コンテキストを守るために subagent を使う」→ 溢れることはまれになり、並列の作業・うるさい出力の切り離し・独立したレビューのために使う。どれも追加のトークンがかかる（現行の Best practices の「What you can stop doing」の行。research/23 §3.1・§3.7）。状態は条件付き。同じ表の「よい答えのために subagent に任せる」は tell-it-to-use-subagents の「今どうするか」に入れられる。"
+  - "提案（全分野）：old-and-new-names を start の glossary にまとめた。旧名と新名の対応表を前提や関連に書いたページは glossary を指す。改名の時期と版は change-timeline-2026 に置く。"
+  - "提案（土台作り・data/outdated-advice.yml）：台帳の行の「変わった時期」は、00 §5 の値のうち注記のあるもの（think-hard-keywords の「2026-01〜03 に変遷」、important-caps の「強調は1行だけにし」）を research/23 §3.5・§3.7 の内容で入れる。「2026（公式の撤回表）」とした行（important-caps・architecture-in-claude-md・keep-going-dont-be-lazy）と save-context-for-200k は「2026-10-27 ごろ（Best practices の改稿）」にできる（research/23 §3.7）。research/22 §3.4 の3行（think-hard-keywords・yolo-skip-permissions・save-context-for-200k）の足す内容も入れる。"
+  - "提案（check_catalog.py・全分野）：台帳の35行のうち、どのページの outdated_advice からも指されない行がないかを、全分野の目次がそろった後に確かめる（台帳の逆リンクが空の行は、行の置き場所か、指すべきページが抜けている）。検査に足す案。"

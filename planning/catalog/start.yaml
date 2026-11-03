@@ -1,0 +1,324 @@
+# start（入口と地図）の目次。形式は planning/catalog/README.md §3、規則は §4、語彙は schema/site.yml。
+# 担当：C1（工程3、2026-11-04）。design §7 の横断のページのうち start に置くものを受け持つ。
+# start のページは入口なので level を持たない（design §3.1 の規則2）。入ってくる道の検査からも外れる（catalog/README §4.4 の4）。
+field: start
+chapters: [使い方, 背骨, 辞書として引く, 地図と道順, 方針]
+pages:
+  # ── 使い方 ──
+  - id: how-to-use
+    chapter: 使い方
+    title: この辞典の引き方
+    aliases: [使い方, 辞典の使い方, バッジの読み方, 確認日の読み方, 下書きの帯]
+    type: guide
+    priority: 必須
+    wave: 1
+    summary: "困りごと・やりたいこと・名前から目的のページへ着く道と、冒頭の要点・バッジ・確認日・下書きの帯の読み方が分かる。誤りや古い情報の報告のしかたも示す。"
+    signs:
+      - {type: situation, text: "この辞典を初めて開いた"}
+      - {type: goal, text: "書いてあることをどこまで信用してよいか知りたい"}
+      - {type: goal, text: "自分の AI にこの辞典を読ませたい"}
+      - {type: situation, text: "辞典の内容に誤りや古い情報を見つけた"}
+    prerequisites: []
+    related: [reverse-index, glossary, terminology, roadmap, knowledge-map, four-principles, six-causes, product-map, ai-and-sources, outdated-advice-ledger, dating-information]
+    volatility: 低
+    sections:
+      - {title: "引き方（困りごと・やりたいこと・名前から）", anchor: lookup}
+      - {title: "冒頭の要点とバッジ", anchor: badges}
+      - {title: "レベル（委任の段階）", anchor: levels}
+      - {title: "確認日と期限切れの注意書き", anchor: freshness}
+      - {title: "根拠の強さの書き分け", anchor: evidence}
+      - {title: "面のタブ", anchor: surface-tabs}
+      - {title: "段階と下書きの帯", anchor: stage}
+      - {title: "公式ドキュメントとの役割分担", anchor: official-docs}
+      - {title: "自分の AI に読ませる（llms.txt）", anchor: llms-txt}
+      - {title: "誤りや古い情報の報告", anchor: report}
+    visual: {kind: static, text: "ページの見取り図：バッジの列・冒頭の要点・別名の行・本文・前提と次に読む・段階と更新日の位置"}
+    materials:
+      - "design §1.2（使われ方と設計の条件）・§3.1（レベル）・§6.4（冒頭の要点とバッジ）・§6.6（根拠の強さ）・§8.5（バッジ・下書きの帯・期限切れの注意書き）・§9.2〜§9.5"
+      - "00 §3 分野00「この辞典の引き方」"
+      - "00 §6「変わりやすさでページを分け、数値は一か所に集める」（確認日と期限）"
+      - "requirements §1（範囲の濃淡：公式へのリンクで済ませるもの）・§5.3・§6.3"
+      - "research/27 #1・§3.1（公式の日本語版の範囲。公式ドキュメントとの役割分担の根拠）"
+      - "research/22 #3（stable と latest で手元の版が違う。版の下限の読み方）"
+      - "decisions 2026-11-03「Claude 用の索引」（llms.txt）・「公開する段階」（下書きの帯）"
+      - "kyopro-atlas の docs/start/how-to-use.md（手本。構成をまねない）"
+    notes: "公式ドキュメントとの役割分担（インストール・全コマンド・全設定キーは公式へ。requirements §1・§6.3）を書く。版の下限の読み方は、stable の通り道が latest より遅れることを添える（research/22 #3）。段階「完成」の意味は ai-and-sources に置き、ここからリンクする。"
+
+  # ── 背骨 ──
+  - id: four-principles
+    chapter: 背骨
+    title: 四つの原理と比例則（見せる・確かめる・縛る・握る）
+    nav_title: 四つの原理と比例則
+    aliases: [見せる, 確かめる, 縛る, 握る, 比例則, 背骨の考え方]
+    type: guide
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code, api]
+    summary: "うまくいかない理由と次の一手を、見せる・確かめる・縛る・握るの四つの原理で考えられる。任せる幅を広げるほど確かめる仕組みと封じ込めを強める比例則も分かる。"
+    signs:
+      - {type: goal, text: "個別の小技ではなく、うまく使うための考え方の筋をつかみたい"}
+      - {type: goal, text: "どこまで任せてよいかを決める基準がほしい"}
+    prerequisites: []
+    related: [six-causes, roadmap, attention-budget, context-rot, agent-loop, why-hallucinations, request-vs-lock, data-vs-instructions, tidy-the-desk, verification-ladder, when-to-lock, what-not-to-delegate, verifier-defines-problem, human-pitfalls, five-questions-before-delegating, what-auto-mode-stops, lethal-trifecta, ai-amplifies-organizations, outdated-advice-ledger, terminology]
+    volatility: 低
+    sections:
+      - {title: "見せる", anchor: show}
+      - {title: "確かめる", anchor: verify}
+      - {title: "縛る", anchor: lock}
+      - {title: "握る", anchor: hold}
+      - {title: "比例則", anchor: proportional-rule}
+      - {title: "面ごとの手段", anchor: by-surface}
+    visual: {kind: static, text: "四つの原理の表と比例則の図：任せる幅（横軸）が広がるほど確かめる仕組みと封じ込め（縦軸）を強め、握るものはどの段階でも手放さない"}
+    materials:
+      - "requirements §3.1（四つの原理と一つの比例則）・§9 D1"
+      - "00 §2「三つの原理と一つの比例則」（表：なぜ成り立つか・代表的な手段。アプリ／Claude Code／API）"
+      - "00 §1「公式は失敗を四つに分け、『お願い』と『鍵』を区別する」"
+      - "00 §2「背骨が分野構成・メタデータ・レベルに効く五つの経路」"
+      - "11 第2節 分野00「三つの原理」p12#1・p12#16・p12#86・p56#78"
+      - "11 第4節 #59・#60（p12#1 の見出しは証拠より強い。AI のループを禁じる大会では限定が要る）"
+      - "research/24 B-32（ALE-Bench の細部を一次資料で確かめた）"
+      - "10 第4章・第5部（握るの根拠。requirements §3.1 の説明）"
+    notes: "00 の「三つの原理」に、requirements §3.1 の「握る」を足して四つにした（registry の notes）。原理のページそのものなので principle は付けない。各原理の「なぜ」は basics へ、手段は各分野へリンクする（design §4.2 の背骨の行）。Anthropic の AI Fluency（4D）は参考文献に挙げるだけにし、構成に使わない（requirements §3.1。ライセンスの一次の表示は未確認：research/21 F5）。11 第2節の p12#1 は見出しが証拠より強い（11 第4節 #59・#60）ので、例に使うなら research/24 B-32 で確かめた ALE-Bench の数値だけにし、研究のモデルと世代を書く。team の ai-amplifies-organizations は比例則の組織版として関連に置いた（11 第1節 分野17 p56#59 は全体地図の前提にする案も挙げるが採らない）。"
+
+  - id: six-causes
+    chapter: 背骨
+    title: 失敗の二つの軸と診断の入口
+    aliases: [六つの失敗原因, 六つの「ない」, Claude 側の原因, 人の側の落とし穴, 診断の手順, 原因の切り分け]
+    type: guide
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code, api]
+    prevents: [見えていない, 散らかっている, 確かめていない, 縛っていない, 合っていない, 境界がない]
+    pitfalls: [預けすぎる, 同意を根拠にする, やめられない, 体感を信じる, みんなの案になる]
+    summary: "うまくいかないとき、Claude 側の六つの原因を安く確かめられる順に問い、人の側の五つの落とし穴も疑って、どの症状のページへ進むかを決められる。"
+    signs:
+      - {type: symptom, text: "うまくいかないが、何が悪いのか見当がつかない"}
+      - {type: symptom, text: "AI に任せて失敗したが、原因が AI なのか自分の判断なのか分からない"}
+      - {type: goal, text: "症状から原因を順に切り分けたい"}
+    prerequisites: []
+    related: [four-principles, reverse-index, human-pitfalls, not-what-i-meant, doesnt-know-latest, forgets-in-long-chats, going-in-circles, claims-done-but-isnt, instructions-ignored, hits-limits-quickly, seems-less-capable, deleted-something-important, over-reliance, agreement-is-not-evidence, decide-when-to-quit, felt-vs-measured, ai-ideas-are-everyones, roadmap]
+    volatility: 低
+    sections:
+      - {title: "Claude 側の六つの原因", anchor: claude-side}
+      - {title: "安く確かめられる順の診断", anchor: diagnosis}
+      - {title: "人の側の五つの落とし穴", anchor: human-side}
+      - {title: "二つの軸に分ける理由", anchor: why-two-axes}
+      - {title: "症状のページへの振り分け", anchor: to-symptoms}
+    visual: {kind: mermaid, text: "診断の流れ：見せたか → 片付けたか → 確かめさせたか → 縛ったか → 合っているか → 境界はあるか の順に問い、並べて人の側の五つを点検する"}
+    materials:
+      - "requirements §3.2（二つの軸の表と、表の後の【2026-11-03 注記】）・§9 D2"
+      - "00 §2「六つの失敗原因は公式の四分類を研究と実践知で広げたもの」（安く確かめられる順と、その理由）"
+      - "00 §4（逆引き73項目の原因タグ。振り分けの例）"
+      - "05 §1「全体の構図」（公式の四分類）"
+      - "research/24 F1・§2.3・P-1（人の側の五つの根拠の強さの付け直し）"
+      - "research/21 §2.2 F1"
+      - "11 第1節 新分野案X の冒頭の段落（⑦にせず別の軸として持つ）"
+    notes: "design §7 の「失敗の二つの軸と診断の入口」の1ページにするため、registry の human-pitfalls-intro をまとめた（merged）。id は、症状のページなどから前提や関連に指されやすい six-causes のままにした。人の側の五つの本体は judgment の human-pitfalls（総論）で、ここは入口として並べ、各落とし穴のページへ案内する。人の側の五つの根拠の強さは現象ごとに違う（ア・イ・エは強、オは中、ウは人の現象としては強だが AI と組み合わさって強まる点は推論。どれもコンテストや現行の Claude を直接調べたものではなく類推。research/24 F1・§2.3）。requirements §3.2 の「（根拠：強）」は工程2で直したので、summary・signs・入口の表で強さを一括して断定しない。強さの区別は human-pitfalls に書く。「AI に頼って負けた経験の大半がこの重なりで説明できる」という統合の主張は弱（推論）で、入口に書かない。"
+
+  # ── 辞書として引く ──
+  - id: reverse-index
+    chapter: 辞書として引く
+    title: 逆引き辞典（症状・やりたいこと・状況）
+    nav_title: 逆引き辞典
+    aliases: [逆引き, 困りごとから引く, 症状から引く, やりたいことから引く]
+    type: hub
+    priority: 必須
+    wave: 1
+    summary: "困りごと・やりたいこと・置かれた状況の言葉から、引くページと疑う原因へ進める。表は各ページのサインから作り、どれから疑うかの注記を手で添える。"
+    signs: []
+    prerequisites: []
+    related: [six-causes, how-to-use, glossary, outdated-advice-ledger]
+    volatility: 低
+    sections:
+      - {title: "引き方", anchor: how-to-read}
+      - {title: "困りごとから引く", anchor: by-symptom}
+      - {title: "やりたいことから引く", anchor: by-goal}
+      - {title: "置かれた状況から引く", anchor: by-situation}
+      - {title: "同じ言葉が複数のページに当たるとき", anchor: disambiguation}
+    materials:
+      - "00 §4（逆引き73項目。章立てと原因タグの手本）"
+      - "design §1.2・§1.3 の1（症状の言葉から3回のクリック以内）・§2.2・§7"
+      - "catalog/README §4.5 の4（signs の三種）"
+      - "kyopro-atlas の docs/guide/reverse-index-signs.md（手本。構成をまねない）"
+    notes: "表の本体は各ページの signs から生成し（design §2.2・§7）、手書きは導入と、同じ言葉が複数のページに当たるときの注記だけ。registry の題名に「状況」を足した（signs の三種。design §7）。第一波の症状辞典へ読者が入る道なので wave: 1 にした（D10 の「入口」）。"
+
+  - id: glossary
+    chapter: 辞書として引く
+    title: 用語索引と旧名の対応
+    aliases: [用語索引, 索引, 旧名, 英語名から引く, 公式の訳語から引く, 名前から引く]
+    type: hub
+    priority: 必須
+    wave: 1
+    summary: "機能名・旧名・英語名・公式の日本語訳から、その語のページを引ける。全ページの題名と別名から作り、旧名には今の名前を添える。"
+    signs:
+      - {type: symptom, text: "古い記事に出てくる機能の名前が、今の画面や文書に見当たらない"}
+      - {type: goal, text: "英語の機能名から日本語の説明を探したい"}
+    prerequisites: []
+    related: [terminology, reverse-index, outdated-advice-ledger, change-timeline-2026, how-to-use]
+    volatility: 低
+    sections:
+      - {title: "引き方", anchor: how-to-read}
+      - {title: "五十音順", anchor: kana}
+      - {title: "英字の名前", anchor: latin}
+      - {title: "旧名から引く", anchor: old-names}
+    materials:
+      - "00 §3 分野00「用語索引と旧名の対応」・分野19「旧名と新名の対応表」"
+      - "00 §1 の変化の表の後の段落（名前の揺れ：routines・extra usage・workflow・/simplify）"
+      - "01 KQ4 4-2（廃止・削除・改名）と Inferences（旧名からの参照）"
+      - "research/22 §3.4（台帳ではなく数値ファイルと aliases で持つ名前の変更）"
+      - "research/27 §3.1（公式の日本語版の訳語）"
+      - "11 第3節 3-2 #4（default＝Manual を用語索引に載せる）"
+      - "kyopro-atlas の docs/guide/term-index.md（手本。構成をまねない）"
+    notes: "changes の old-and-new-names（旧名と新名の対応表）をまとめた（changes.yaml の merged）。旧名は各ページの aliases から引き、変わった時期と版は changes の change-timeline-2026 と台帳に置く（同じ改名を三か所に持たない）。旧名を「旧名」と示すには、aliases のどれが旧名かを道具が知る手段が要る（open_issues）。第一波の核の old-and-new-names を受けるので wave: 1。語の意味と表記の正規形は terminology（用語集）に分けた。本体は生成（design §7）。"
+
+  - id: terminology
+    chapter: 辞書として引く
+    title: 用語集（独自の用語と公式の訳語）
+    nav_title: 用語集
+    aliases: [用語の定義, 訳語の対応, 表記の約束, 表記の正規形, 独自の用語]
+    type: guide
+    priority: 必須
+    wave: 1
+    summary: "この辞典の独自の用語（お願いと鍵・六つの「ない」など）の意味と公式の用語との対応、公式の日本語版に合わせた訳語と表記の正規形を引ける。"
+    signs:
+      - {type: goal, text: "この辞典の言葉が、公式の文書のどの言葉に当たるか知りたい"}
+    prerequisites: []
+    related: [glossary, how-to-use, four-principles, six-causes, request-vs-lock]
+    volatility: 中
+    sections:
+      - {title: "訳語の決め方", anchor: translation-policy}
+      - {title: "独自の用語と公式の用語", anchor: own-terms}
+      - {title: "公式で表記が割れている語", anchor: split-terms}
+      - {title: "用語の定義", anchor: definitions}
+    materials:
+      - "design §6.2（用語集のページを正とし、prh.yml はそこから作る）・§13 O（公式の日本語版の多数派に合わせる）"
+      - "research/27 §3.1（公式の日本語版の範囲と主な訳語の表）・§4 P11"
+      - "requirements §3.1・§9 D14（独自の用語を見出しにし、公式の用語を併記する）"
+      - "research/26 §3.1（アプリの Styles と Claude Code の output styles を用語集で分ける）"
+      - "00 §6 の末尾（略語のツールチップ、公式の訳語の併記）"
+      - "kyopro-atlas の docs/guide/glossary.md（手本。構成をまねない）"
+    notes: "新規：design §6.2 は用語集のページを正として prh.yml を作るとするが、registry にも design §7 の表にも候補がない。生成の用語索引（glossary）とは別の手書きのページにした（kyopro-atlas と同じ分け方）。prh の元になるので、土台作り（工程6）で本文より先に書く必要があり、必須・wave: 1 にした。公式で表記が割れている語（plan モード／プランモード、effort／努力レベル、allow ルール／許可ルール）を決め、決めた表記を全分野の題名にそろえる（open_issues）。"
+
+  # ── 地図と道順 ──
+  - id: product-map
+    chapter: 地図と道順
+    title: 全体地図：Claude の面と層
+    aliases: [製品の全体像, 面の地図, 全体図, アプリと Claude Code と API の関係]
+    type: hub
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code, api]
+    summary: "アプリ・Claude Code・API と周辺製品の関係と、モデル・拡張・縛りの層の重なりが分かり、困りごとをどの分野で引くかの見当がつく。"
+    signs:
+      - {type: goal, text: "Claude の製品と機能の全体像をつかみたい"}
+      - {type: situation, text: "読んでいる記事がアプリ・Claude Code・API のどれの話か分からない"}
+    prerequisites: []
+    related: [choosing-a-surface, where-it-runs, claude-code-surfaces, what-each-surface-cannot-do, peripheral-products, sdk-comparison, feature-to-api-mapping, extensions-at-a-glance, current-models, harness-over-model, agent-loop, four-principles]
+    volatility: 中
+    visual: {kind: static, text: "面（アプリ・Claude Code・API・周辺製品）を横に、層（モデル・ハーネス・拡張・縛り）を縦に置いた地図"}
+    materials:
+      - "00 §3 分野00「全体地図：Claude の面と層」"
+      - "00 §1「2026年の変化は統合・自律の既定化・effort 中心の制御に集約される」（表と注記）"
+      - "02 §1（アプリ）・§3（モデル）・§5（API と SDK）"
+      - "01 KQ1（Claude Code の領域別インベントリ）"
+      - "research/22 §2.6・§3.2 の1（プランの改名）"
+      - "research/26 §3.1（Styles の移行）・§3.4（IDE 拡張）・§3.6（Office アドイン）"
+    notes: "面の名前・統合の時期・周辺製品の顔ぶれは変わりやすいので、地図の中の名前は数値ファイルの名称の項目から道具が書く（design §6.7）。周辺製品の一覧は surfaces の peripheral-products に任せる（D15）。面の選び方の判断は surfaces の choosing-a-surface に任せ、ここは案内にとどめる。"
+
+  - id: roadmap
+    chapter: 地図と道順
+    title: ロードマップ（委任の段階別）
+    aliases: [学ぶ順, 何から読むか, 委任の段階, レベル, 使う・整える・任せる・仕組みにする・回す]
+    type: hub
+    priority: 必須
+    wave: 1
+    summary: "使う・整える・任せる・仕組みにする・回すの段階ごとに、次の段へ上がる条件と読むページの順が分かる。どの段階でも人が握るものを冒頭に示す。"
+    signs:
+      - {type: goal, text: "次にどこまで任せられるようになればよいか知りたい"}
+      - {type: goal, text: "何から順に読めばよいか知りたい"}
+      - {type: situation, text: "毎日使っているが、使いこなせている気がしない"}
+    prerequisites: []
+    related: [four-principles, five-questions-before-delegating, what-not-to-delegate, how-much-understanding-to-keep, human-pitfalls, verification-ladder, when-to-lock, knowledge-map, "how-to-use#levels"]
+    volatility: 低
+    sections:
+      - {title: "どの段階でも人が握るもの", anchor: always-hold}
+      - {title: "五つの段階と上がる条件", anchor: levels}
+      - {title: "段階ごとのページの列", anchor: reading-order}
+      - {title: "段階は仮説である", anchor: hypothesis}
+    visual: {kind: static, text: "委任の段階のはしご：五つの段と、段ごとの上がる条件と、強める確かめ・縛り"}
+    materials:
+      - "requirements §3.3（レベルは委任の段階。どの段階でも人が握るものを冒頭に置く）"
+      - "design §3.1"
+      - "00 §3「レベル・優先度・根拠の凡例」"
+      - "11 第2節 分野00「ロードマップ」p56#102（ゲートつきで広げる・地力の並走）・p56#103（段階的な自律を直接検証した研究はない）"
+      - "11 第3節 3-3 の末尾の段落（L1〜L5 も仮説だと明記する）"
+      - "10 第25章（ゲートつきで任せる範囲を広げる。requirements §3.3 の最後の項）"
+    notes: "段階ごとのページの列は level と prerequisites から生成し（design §7）、手書きは冒頭の「どの段階でも人が握るもの」と、上がる条件と、段階が仮説であること（11 第2節 p56#103）。p56#102 の「地力の並走」は根拠が中なので、段の節目に添える程度にする。カリキュラムとしては作らない（requirements §3.3）。"
+
+  - id: knowledge-map
+    chapter: 地図と道順
+    title: 知識マップ
+    aliases: [前提の地図, 前提関係のグラフ, 依存関係の地図]
+    type: hub
+    priority: 必須
+    wave: 1
+    summary: "ページの前提関係を図で見て、選んだページの前提と次に読むページをたどれる。図は各ページの前提と段階から作る。"
+    signs: []
+    prerequisites: []
+    related: [roadmap, how-to-use, reverse-index]
+    volatility: 低
+    visual: {kind: dynamic, text: "前提の有向グラフ。分野ごとの表示と、選んだページの祖先と子孫だけの表示（design §8.5）"}
+    materials:
+      - "design §1.2（次の段階へ進む：level と prerequisites から知識マップを生成する）・§7・§8.5（知識マップ）"
+      - "kyopro-atlas の docs/guide/knowledge-map.md（手本。進捗の部品は外す：design §8.3・D17）"
+    notes: "新規：design §2.1 の start の中身と §7 の横断のページにあるが、registry に候補がない（registry の notes）。本体は graph.json から生成し、JS で描く（design §7）。kyopro-atlas の「理解した」の塗り分けは入れない（D17）。生成のページで書く手間は導入の数行だけなので、ロードマップ・逆引き・用語索引とそろえて必須・wave: 1 にした。"
+
+  # ── 方針 ──
+  - id: ai-and-sources
+    chapter: 方針
+    title: 出典と AI 利用の方針
+    aliases: [この辞典の作り方, ライセンス, 免責, 連絡先, 非公式の教材, AI が書いた教材]
+    type: guide
+    priority: 必須
+    wave: 1
+    summary: "この辞典を AI が書き、別の担当と機械の検査で確かめる流れと、段階「完成」の意味が分かる。出典の示し方、AI の利用を断るサイトの扱い、ライセンス、注意書き、連絡の窓口も示す。"
+    signs:
+      - {type: goal, text: "この辞典の文章を誰がどう書いて確かめているか知りたい"}
+      - {type: goal, text: "この辞典の文章や雛形を自分の資料に使いたい"}
+    prerequisites: []
+    related: [how-to-use, "how-to-use#freshness", "how-to-use#stage", "how-to-use#report", terminology]
+    volatility: 低
+    sections:
+      - {title: "AI で書いていることと確かめ方", anchor: ai-writing}
+      - {title: "段階「完成」の意味", anchor: done}
+      - {title: "出典の示し方", anchor: citations}
+      - {title: "AI の利用を断るサイトを資料にしない", anchor: noai}
+      - {title: "非公式の教材であること", anchor: unofficial}
+      - {title: "安全と法律についての注意", anchor: disclaimers}
+      - {title: "ライセンス", anchor: license}
+      - {title: "連絡と誤りの報告", anchor: contact}
+    materials:
+      - "design §6.1 の8（公開の約束・方針・ライセンスは作者の承認）・§6.8（出典と AI の利用の指定）・§6.12・§7・§10.8"
+      - "decisions 2026-11-03「工程1（質問）の回答」（ライセンス・作者の表記と URL・作者が目を通す範囲と「完成」の意味）"
+      - "decisions 2026-11-03「書き方の方針（安全・面・表現）」7（「安全を保証するものではない」「法的な助言ではない」）"
+      - "requirements §1（非公式であることを明記する）・§2（noai の確認）・§9 D19・D20"
+      - "research/22・research/28 の「AI の利用を断る指定の確認」（出典のドメインの確かめ方）"
+      - "kyopro-atlas の docs/start/ai-and-sources.md（手本。構成をまねない）"
+    notes: "新規：design §7 の横断のページ（出典と AI 利用の方針）。registry に候補がない（registry の notes）。公開の約束・方針・ライセンスに関わる文なので、下書きでも作者の承認を得てから出す（design §6.1 の8・§10.8、decisions 2026-11-03）。第一波の公開に注意書きとライセンスが要るので、必須・wave: 1 にした。段階「完成」の意味は、kyopro-atlas の定め（一通りの作業を終え、作者が公開してよいとしたもの。すべての記述を作者が確かめた意味ではない）を元に設計で決める（decisions 2026-11-03「作者が目を通す範囲」）。"
+
+merged:
+  - id: human-pitfalls-intro
+    into: six-causes
+    reason: "design §7 は「失敗の二つの軸と診断の入口」を start の1ページとする。人の側の五つだけの入口を別に立てると、judgment の human-pitfalls（総論）と同じ内容の薄いページになる（registry の notes の3つ目）。入口は six-causes の節（human-side）に置き、本体と根拠の強さの区別は human-pitfalls に任せる。"
+
+dropped: []
+
+open_issues:
+  - "提案（judgment）：human-pitfalls-intro を six-causes（失敗の二つの軸と診断の入口）にまとめた。人の側の五つの本体と根拠の強さの区別（research/24 F1・§2.3）は human-pitfalls に置き、human-pitfalls の関連に six-causes を置く案。前提や関連に human-pitfalls-intro を書いた分野は、six-causes か human-pitfalls に替える。"
+  - "提案（symptoms）：症状のページは six-causes を前提か関連に持つと、診断の順（安く確かめられる順）とその理由を各ページで繰り返さずに済む。six-causes の anchor は claude-side・diagnosis・human-side・why-two-axes・to-symptoms。"
+  - "提案（設計書 §2.2・catalog/README §3）：本体を生成するページ（start の reverse-index・glossary・roadmap・knowledge-map、changes の outdated-advice-ledger・change-timeline-2026）を目次でどう示すかを決める。今は type を hub と ledger にし、notes に生成と書いた。印のキー（例：generated）を足すなら README §3 と check_catalog.py に入れる。"
+  - "提案（設計書 §7）：用語集（terminology）を start に新規で足した。design §7 の表に「用語集」の行（手書き。prh.yml の元。design §6.2）を足す。"
+  - "提案（土台作り）：用語索引（glossary）で旧名を「旧名」と示すには、aliases のどれが旧名かを生成の道具が知る手段が要る（例：data/facts.yml の名称の項目に旧名と変わった時期を持ち、aliases と照らす）。"
+  - "提案（全分野・工程4）：題名の用語の表記を、design §13 O・research/27 §4 P11 の (a)（公式の日本語版の本文の多数派）にそろえる。basics ではサブエージェント・圧縮・プロンプトキャッシング・システムプロンプトにし、英語名を aliases に置いた。registry の題名には英語の表記（subagent・compaction・prompt caching・Hooks・Skill）が多く、分野の間でそろっていない。用語集（terminology）で決め、工程4で全分野の題名をそろえる。"
+  - "提案（メイン）：ai-and-sources（出典と AI 利用の方針）は作者の承認が要る（design §10.8）。第一波の最初のバッチより前に、作者に見せる文の一覧に入れる。"
+  - "迷った点：start の全ページに wave: 1 を付けた。D10 の第一波の「入口」を分野00（入口と地図）の全体と読み、symptoms の全ページを核にした registry の扱いとそろえた。第一波を絞るなら、生成のページ（roadmap・knowledge-map）の手書きの導入を後にできる。"

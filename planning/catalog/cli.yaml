@@ -1,0 +1,614 @@
+# 分野 cli（Claude Code の基本操作）の目次。形式は planning/catalog/README.md §3、規則は §4。担当：C4（工程3、2026-11-04）
+# 境界（design §4.2）：操作は cli、会話の長さ・圧縮・/clear の判断（なぜ・いつ）は context。/clear と /compact の判断と操作は
+# context の when-to-start-fresh と compact-and-auto-compact が持ち、cli の must-know-operations と command-cheatsheet から指す。
+# /goal・/loop・並列・worktree・workflows・無人実行・定期実行は delegate が持ち、cli からリンクする。
+# 本文は WSL・Linux の CLI を基準にし、ほかの OS と IDE の拡張の動作は「未確認」と書く（decisions 2026-11-03 の方針 B5）
+
+field: cli
+chapters: [入力と基本の操作, 権限モードと計画, 巻き戻しとセッション, 見る・切り分ける, 設定と最初の準備, ほかの面と離席, 早見表]
+
+pages:
+  # ── 入力と基本の操作 ──
+  - id: input-symbols
+    chapter: 入力と基本の操作
+    title: "入力の記号（/ ! @）と Esc"
+    aliases: ["入力の4記号", "スラッシュコマンド", "! でシェルを実行する", "@ でファイルを参照する", "Esc で止める", "割り込んで指示する"]
+    type: feature
+    level: 使う
+    level_evidence: "Claude Code を使い始めた日に要る操作"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [見せる]
+    prevents: [見えていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "/ でコマンドと skill を呼び、! で自分でシェルを実行して結果を会話に入れ、@ でファイルを直接指し、Esc で作業を止めて方向を直す。ずれに気づいたら早く止めるほど手戻りが小さい。"
+    signs:
+      - {type: goal, text: "Claude Code の入力欄でできることを最初に知りたい"}
+      - {type: symptom, text: "間違った方向に進み始めたのに、止め方が分からない"}
+    prerequisites: []
+    related: [must-know-operations, choose-what-to-read, checkpoints-and-rewind, ask-claude-code, command-cheatsheet, images-and-voice]
+    tracks: [interactive-mode]
+    outdated_advice: [hash-to-memorize]
+    volatility: 中
+    sections:
+      - {title: "/ コマンドと skill を呼ぶ", anchor: slash}
+      - {title: "! シェルを自分で走らせる", anchor: bang}
+      - {title: "@ ファイルを直接指す", anchor: at}
+      - {title: "Esc で止める・割り込む", anchor: esc}
+    templates: []
+    materials: ["00 §3 分野07", "01 0-1（Esc で中断、実行中の入力で割り込み）・N-1・D-1", "04 Q1 A（まず覚えるコマンドと記号）"]
+    notes: "題名から「4」を外した（# の記憶は v2.0.70 で削除され、記号の数は版で変わる。台帳 hash-to-memorize）。旧題は aliases"
+
+  - id: must-know-operations
+    chapter: 入力と基本の操作
+    title: "知らないと損をする操作"
+    aliases: ["知らないと損をする操作20", "キーボードショートカット", "Shift+Tab", "外部エディタで書く", "画像を貼り付ける", "トランスクリプトを見る"]
+    type: feature
+    level: 整える
+    level_evidence: "入力の記号に慣れた後、作業の手戻りを減らす段階で要る（00 は L2）"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [見せる]
+    prevents: [見えていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "権限モードの切り替え、長い指示を外部エディタで書く、画像を貼る、作業の様子を見る、実行中の処理を背景に回すなど、知っていると手戻りが減る操作を場面ごとに引ける。"
+    signs:
+      - {type: goal, text: "Claude Code の操作をもっと速くしたい"}
+      - {type: situation, text: "スクリーンショットや長い指示を渡したい"}
+    prerequisites: [input-symbols]
+    related: [command-cheatsheet, permission-modes-overview, checkpoints-and-rewind, resume-and-branch, side-questions-btw, images-and-voice, agent-view-and-background, windows-wsl-ime]
+    tracks: [interactive-mode, permission-modes]
+    outdated_advice: [removed-commands]
+    volatility: 高
+    sections:
+      - {title: "モードを切り替える", anchor: modes}
+      - {title: "長い指示と画像を渡す", anchor: input}
+      - {title: "様子を見る・背景に回す", anchor: watch-and-background}
+      - {title: "端末と WSL での違い", anchor: terminals}
+    templates: []
+    materials: ["00 §3 分野07", "01 N-1・I-3", "04 Q1 A（まず覚えるコマンド）", "research/26 §3.4（IDE の拡張にない近道）"]
+    notes: "題名から「20」を外した（数は本文の選び方で変わる）。キーの割り当ては端末と面で違う（Windows・WSL の画像の貼り付けなど）ので、数値ファイルに置き、本文は WSL・Linux の CLI を基準にする。「Ctrl+G で計画を編集する」は改稿の前の Best practices の例に出てくる（01 2-1 の注記）ので、操作の存在は Interactive mode の文書で確かめてから書く。/clear と /compact の判断は context のページへ案内する"
+
+  - id: ask-claude-code
+    chapter: 入力と基本の操作
+    title: "Claude Code 自身に聞く"
+    aliases: ["使い方を Claude に聞く", "/powerup", "Claude Code のヘルプ"]
+    type: concept
+    level: 使う
+    level_evidence: "使い始めた日から、機能や設定の疑問はまず Claude Code に聞ける"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [見せる]
+    prevents: [見えていない]
+    pitfalls: []
+    scenes: [開発, 学習]
+    summary: "Claude Code の機能や設定の使い方を Claude Code 自身に聞くと、公式の文書を調べて答える。答えは手元の版より新しい機能を含みうるので、版を確かめてから使う。"
+    signs:
+      - {type: goal, text: "hooks の書き方などを、その場で調べたい"}
+      - {type: situation, text: "記事に書かれたやり方が、手元の版で動かない"}
+    prerequisites: [input-symbols]
+    related: [checking-for-updates, dating-information, outdated-advice-ledger, insights-and-usage-review, command-cheatsheet]
+    tracks: []
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "何を聞けるか", anchor: what-to-ask}
+      - {title: "答えの版を確かめる", anchor: check-version}
+    templates: []
+    materials: ["00 §3 分野07", "01 KQ3（Claude に機能を聞く：最新の文書を調べ、実行中の版に限られない）・2-5", "research/22 #3（stable の通り道は1週間ほど前の版）"]
+    notes: "型を registry の見当（feature）から concept にした（特定の機能ではなく、聞き方と答えの確かめ方の判断のため）。stable の通り道の読者は、文書や答えにある機能をまだ持たないことがある（research/22 #3）"
+
+  # ── 権限モードと計画 ──
+  - id: permission-modes-overview
+    chapter: 権限モードと計画
+    title: "権限モードの選び方"
+    aliases: ["権限モードの全体像", "permission modes", "Manual・acceptEdits・plan・auto・dontAsk・bypassPermissions", "Shift+Tab でモードを切り替える", "auto モード"]
+    type: feature
+    level: 整える
+    level_evidence: "Claude Code を使い始めてすぐ、承認の出方とモードの切り替えに出会う（00 は L2）。緩める判断の本体は enforce と safety の任せる以上のページにある"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [縛る]
+    prevents: [境界がない, 合っていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "権限モードごとに何が確認なしで進むかを知り、作業の危うさと見ていられる度合いに合わせて選ぶ。既定は版で変わってきたので、手元の既定と確認の出方を確かめてから任せる。"
+    signs:
+      - {type: goal, text: "確認を減らしたいが、どのモードにすればよいか分からない"}
+      - {type: situation, text: "確認なしで進むのが既定になってから、何が勝手に実行されるのか不安"}
+    prerequisites: [agent-loop]
+    related: [what-auto-mode-stops, permission-rules, sandboxing, where-bypass-is-ok, default-safety-settings, approval-fatigue, protected-paths, destructive-commands, when-to-plan, settings-layers, wrong-amount-of-approvals, permission-modes-in-the-app]
+    tracks: [permission-modes, auto-mode]
+    outdated_advice: [approve-everything-first, yolo-skip-permissions]
+    volatility: 中
+    sections:
+      - {title: "モードごとに確認なしで進むもの", anchor: modes}
+      - {title: "既定のモードと版", anchor: defaults}
+      - {title: "選び方の判断例", anchor: examples}
+    templates:
+      - {name: "既定の権限モードを決める settings の例", kind: settings, safety: true}
+    visual: {kind: static, text: "モードを、確認なしで進む範囲の広さの順に並べ、どの段で sandbox と deny を足すかを添えた図"}
+    materials: ["00 §3 分野07", "01 C-1・C-2", "05 1-10", "research/23 F2-a・F2-b・§3.3", "research/22 #8・#10", "research/26 §3.4（VS Code の最初の権限モード）"]
+    notes: "既定のモードの変遷（Pro・Max・Team は 2026-08-14、ターミナルと VS Code の対話は v2.1.283〜284、-p は Manual）は数値ファイルに置く（research/23 F2）。auto モードが何を止めるかは enforce の what-auto-mode-stops、bypassPermissions の使いどころは safety の where-bypass-is-ok、アプリの権限モードは app の permission-modes-in-the-app が持つ。level は整えるにしたので比例則の検査の対象外だが、緩める内容を含むので enforce と safety のページを related に置いた"
+
+  - id: when-to-plan
+    chapter: 権限モードと計画
+    title: "plan モードの使いどころ"
+    aliases: ["plan mode", "プランモード", "計画モード", "/plan", "計画させてから実装する"]
+    type: feature
+    level: 整える
+    level_evidence: "任せる前の段階で、計画を読んで直してから実装させる習慣として要る（00 は L2）。任せる段階のページの前提になる"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [握る, 見せる]
+    prevents: [見えていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "plan モードで編集を止めたまま調べさせ、出てきた計画を読んで直してから実装に入る。誤解は計画の段階で見つけるほど安く直せるので、方針や範囲に迷いがある作業で使う。"
+    signs:
+      - {type: goal, text: "いきなり実装させず、先に方針を確かめたい"}
+      - {type: symptom, text: "実装が終わってから、前提の誤解に気づくことが多い"}
+    prerequisites: [permission-modes-overview]
+    related: [spec-first, let-claude-ask, define-done, opusplan, not-what-i-meant, does-more-than-asked, handoff-documents, using-ides, cloud-sessions-and-teleport]
+    tracks: [plan-mode]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "計画が効く作業、省いてよい作業", anchor: when}
+      - {title: "計画の読み方と直し方", anchor: review}
+      - {title: "計画を承認した後", anchor: after-approval}
+    templates: []
+    materials: ["00 §3 分野07", "01 C-2", "11 第2節 分野07 p34#135（出典は要再確認）", "11 第4節 #13", "research/23 §3.4（plan モードで書いた計画は圧縮の後にディスクから入れ直す）", "research/26 §3.4（VS Code の計画のレビュー）"]
+    notes: "「diff を一文で説明できる変更なら計画を省いてよい」は現行の Best practices で見つかっていない（11 第4節 #13）。要約とサインの根拠にせず、本文で使うなら現行の文書で確かめる。題名は公式の日本語版の多数派（plan モード、79%）に合わせた。プランモード（Help Center）との統一は用語集で決める（research/27、open_issues）"
+
+  # ── 巻き戻しとセッション ──
+  - id: checkpoints-and-rewind
+    chapter: 巻き戻しとセッション
+    title: "チェックポイントと /rewind（git との違い）"
+    aliases: ["checkpoint", "rewind", "Esc を2回", "/undo", "/checkpoint", "巻き戻し"]
+    type: feature
+    level: 整える
+    level_evidence: "試しに任せて、駄目なら戻すという使い方を始める段階（00 は L2）"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [見せる]
+    prevents: [散らかっている]
+    pitfalls: []
+    scenes: [開発]
+    summary: "プロンプトごとの時点に、コード・会話・その両方を戻し、途中から要約もできる。Bash で変えたファイルや外での変更は戻らないので、git の代わりにはしない。"
+    signs:
+      - {type: goal, text: "試しにやらせて、駄目なら元に戻したい"}
+      - {type: symptom, text: "巻き戻したのに、一部のファイルが元に戻らない"}
+    prerequisites: [input-symbols]
+    related: [rewind-dont-correct, working-with-git, recover-lost-work, resume-and-branch, compact-and-auto-compact, deleted-something-important, destructive-commands, using-ides]
+    tracks: [checkpoints]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "戻せるもの・戻せないもの", anchor: what-is-restored}
+      - {title: "途中から要約する", anchor: summarize}
+      - {title: "git と組み合わせる", anchor: with-git}
+    templates: []
+    visual: {kind: static, text: "戻せる変更（Claude のファイルの道具での編集）と戻せない変更（Bash のコマンド・外での変更・多くの subagent の編集）を色分けした図"}
+    materials: ["00 §3 分野07", "01 C-5", "05 1-1・1-9（checkpoint で戻せるのは Claude のファイルの道具の編集だけ）", "research/26 §3.4（VS Code の checkpoints）"]
+    notes: "題名の checkpoint は公式の日本語版の多数派（チェックポイント、96%）に合わせた。保持の数と期間（直近の数、日数、cleanupPeriodDays）は数値ファイルに置く"
+
+  - id: working-with-git
+    chapter: 巻き戻しとセッション
+    title: "git との付き合い方"
+    aliases: ["コミットを任せるか", "小さくコミットする", "draft PR", "git を Claude に任せる"]
+    type: concept
+    level: 整える
+    level_evidence: "Claude Code で変更を重ね始めた段階で、どこで区切り、誰がコミットするかを決める（00 は L2）"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [握る, 確かめる]
+    prevents: [確かめていない, 境界がない]
+    pitfalls: [預けすぎる]
+    scenes: [開発, チーム]
+    summary: "変更を小さく区切ってコミットし、コミットと push を人が握るか任せるかを段階で決める。一つの変更を一つの評価と一つのコミットに対応させると、悪くなったときにすぐ戻せる。"
+    signs:
+      - {type: goal, text: "コミットや PR の作成をどこまで任せてよいか決めたい"}
+      - {type: situation, text: "Claude の変更が大きくなり、どこで区切ればよいか分からない"}
+    prerequisites: [checkpoints-and-rewind]
+    related: [create-and-review-prs, diffs-humans-must-read, destructive-commands, measure-changes, parallel-with-worktrees, bisect-regressions, own-generated-code, commit-and-comment-language, resume-and-branch]
+    tracks: []
+    outdated_advice: []
+    volatility: 低
+    sections:
+      - {title: "どこで区切るか", anchor: granularity}
+      - {title: "誰がコミットするか", anchor: who-commits}
+      - {title: "1変更1評価1コミット", anchor: one-change-one-eval}
+    templates: []
+    materials: ["00 §3 分野07", "00 §1 の対立点の表（git をどこまで任せるか）", "03 Q3 X2（/clear と git の戻しで新旧のコードを混ぜない）", "01 C-1（auto モードが既定で止める git の操作）", "11 第2節 分野07 p34#50・p56#60・p56#68"]
+    notes: "実践者の立場は割れる（人が握る／PR まで任せる）ので、公式の立場・実践者の幅・この教材の推奨（慣れるまでは人が握り、慣れたら draft PR）の三段で書く。DORA の AI ケイパビリティモデル（11 p56#60、中）は「小さく頻繁に」の根拠として本文で使える"
+
+  - id: resume-and-branch
+    chapter: 巻き戻しとセッション
+    title: "セッションに名前を付けて再開・分岐する"
+    aliases: ["セッションの再開・分岐・命名", "--continue", "/resume", "/branch", "/rename", "--fork-session", "--from-pr", "セッションをブランチのように扱う"]
+    type: feature
+    level: 整える
+    level_evidence: "作業を中断して戻る、別の案を試す段階で要る（00 分野07 は L2。まとめた sessions-as-branches は L3 だったが、操作そのものは整えるで要る）"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [見せる]
+    prevents: [散らかっている]
+    pitfalls: []
+    scenes: [開発]
+    summary: "セッションに名前を付けてブランチのように扱い、続きから再開したり、分岐して別の案を試したりする。関係のない作業は新しいセッションに分け、戻る先を名前で見つけられるようにする。"
+    signs:
+      - {type: goal, text: "昨日のセッションの続きから再開したい"}
+      - {type: goal, text: "今の会話を残したまま、別の案を試したい"}
+    prerequisites: [when-to-start-fresh]
+    related: [recover-lost-work, handoff-documents, checkpoints-and-rewind, working-with-git, parallel-with-worktrees, agent-view-and-background, cloud-sessions-and-teleport]
+    tracks: [sessions]
+    outdated_advice: [fork-to-branch]
+    volatility: 中
+    sections:
+      - {title: "再開する", anchor: resume}
+      - {title: "分岐して別案を試す", anchor: branch}
+      - {title: "名前の付け方", anchor: naming}
+    templates: []
+    visual: {kind: mermaid, text: "名前を付けたセッションが分岐し、別案を試した枝と本筋の枝に分かれ、片方へ戻る様子を git のブランチになぞらえた図"}
+    materials: ["00 §3 分野05（セッションに名前を付けて再開・分岐する）", "00 §3 分野07（セッションの再開・分岐・命名）", "01 N-2", "03 Q3 X7（/branch で別案を試す）", "05 1-11（/clear のときに名前を付ける）", "11 第2節 分野05 p34#120・p34#195", "research/22 #7"]
+    notes: "context の sessions-as-branches をまとめた。題名は sessions-as-branches の題名を取った（読者の言葉で、操作と判断の両方が分かる。旧題は aliases）。/fork は v2.1.77 で /branch に改名され、今の /fork は別の機能（台帳 fork-to-branch）。並列にセッションを走らせる使い方は delegate の agent-view-and-background・parallel-with-worktrees が持つ"
+
+  - id: recover-lost-work
+    chapter: 巻き戻しとセッション
+    title: "セッション記録から失った作業を取り戻す"
+    aliases: ["transcript から復元する", "セッションのログを探す", "昨日の作業が見つからない", "~/.claude/projects"]
+    type: recipe
+    level: 任せる
+    level_evidence: "並列や長い作業で成果の所在を見失う段階（任せる〜仕組みにする）で要る"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: []
+    pitfalls: []
+    scenes: [開発]
+    summary: "見失った成果や消えた変更を、セッションの一覧・保存された transcript・チェックポイント・git の記録の順に探して取り戻す。transcript には秘密も平文で残るので、扱いに気をつける。"
+    signs:
+      - {type: symptom, text: "前日の作業の成果が、どのセッションにあったか分からない"}
+      - {type: symptom, text: "圧縮や異常終了の後に、途中の内容が見当たらない"}
+      - {type: goal, text: "過去のセッションのやり取りを読み返したい"}
+    prerequisites: [resume-and-branch, checkpoints-and-rewind]
+    related: [protecting-secrets, what-feedback-sends, working-with-git, progress-files, handoff-documents, parallel-with-worktrees, deleted-something-important]
+    tracks: [sessions, checkpoints]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "探す順", anchor: order}
+      - {title: "transcript の場所と読み方", anchor: transcripts}
+      - {title: "残る期間と、残しておく工夫", anchor: retention}
+    templates: []
+    visual: {kind: mermaid, text: "探す順の流れ図（セッションの一覧と名前 → transcript の検索 → チェックポイント → git の reflog と worktree）"}
+    materials: ["requirements §4.2（cli の主な変更）", "11 第1節 分野07 p34#167", "01 N-2（~/.claude/projects/ に JSONL で保存、/export）・C-5（保持の期間）・I-3（Ctrl+O のトランスクリプト）", "03 Q6 N3（過去のトランスクリプトを検索させる）", "05 4-6（手元のセッション記録は平文で残り、既定の期間で消える）"]
+    notes: "priority を registry の見当（任意）から推奨に上げた：失った作業の復旧は困ったときに引かれ、公式の機能（再開・transcript・チェックポイント）だけで書ける。根拠の経験談は1件（11 は中）なので必須にはしない。transcript を秘密の側から扱うのは safety の protecting-secrets と what-feedback-sends。保持の期間（cleanupPeriodDays）は数値ファイルに置く"
+
+  # ── 見る・切り分ける ──
+  - id: usage-context-statusline
+    chapter: 見る・切り分ける
+    title: "/usage・/context・status line で状態を見る"
+    nav_title: "/usage・/context・status line"
+    aliases: ["/usage", "/context", "status line", "ステータスライン", "/statusline", "/cost", "/stats", "使用量を見る"]
+    type: feature
+    level: 整える
+    level_evidence: "上限や文脈の量を気にし始めた段階で、まず見る道具として要る（00 は L2）"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [確かめる, 見せる]
+    prevents: [合っていない]
+    pitfalls: []
+    scenes: [開発, コンテスト]
+    summary: "上限の使い方は /usage、文脈の内訳は /context で見て、遅い・高い・言うことを聞かない理由を推測せずに測る。status line に出しておけば、長い作業の途中でも気づける。"
+    signs:
+      - {type: goal, text: "上限やコンテキストの使用量を、いつも見えるようにしたい"}
+      - {type: symptom, text: "気づいたら上限に当たって、作業が止まっていた"}
+    prerequisites: [how-usage-limits-work]
+    related: [inspect-context, "what-uses-up-limits#find-what-uses-it", insights-and-usage-review, felt-vs-measured, hits-limits-quickly, isolate-with-safe-mode, command-cheatsheet]
+    tracks: [usage, statusline, context-window]
+    outdated_advice: [slash-cost-and-stats]
+    volatility: 中
+    sections:
+      - {title: "三つの道具で見えるもの", anchor: instruments}
+      - {title: "status line に出すもの", anchor: statusline}
+      - {title: "いつ見るか", anchor: when}
+    templates:
+      - {name: "文脈と上限の使用率を出す status line の設定", kind: settings, safety: false}
+    materials: ["00 §3 分野07", "01 I-2（注記を含む）・M-1", "11 第2節 分野07 p34#157・p34#165・p34#171", "research/22 #33（5-hour limit の呼び方）"]
+    notes: "「status line でコンテキストの使用量を常に監視する」は改稿の前の Best practices の勧めで、現行の版にない（01 I-2 の注記）。公式の勧めとしては書かず、実践の例（11 p34#171、実践で章の評価は中）として書く。/usage の内訳と費用の判断は cost の what-uses-up-limits（節 find-what-uses-it。cost は claude-code-costs をここにまとめた）、/context の読み方と片付け方は context の inspect-context が持つ。status line に渡る項目の名前は数値ファイルに置く"
+
+  - id: isolate-with-safe-mode
+    chapter: 見る・切り分ける
+    title: "設定を外して切り分ける（--safe-mode）"
+    aliases: ["--safe-mode", "拡張なしで起動する", "自分の設定のせいか確かめる", "Debug your configuration"]
+    type: feature
+    level: 任せる
+    level_evidence: "CLAUDE.md・skills・hooks・MCP を足した後に、不調が設定のせいかを切り分ける段階で要る"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [散らかっている, 合っていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "CLAUDE.md・skills・plugins・hooks・MCP などを読まずに起動し、同じ依頼で挙動を比べて、不調が自分の設定から来るかを切り分ける。権限と管理の設定は効いたままで、安全の設定を外す道具ではない。"
+    signs:
+      - {type: goal, text: "おかしな挙動が、自分の設定や拡張のせいか確かめたい"}
+      - {type: situation, text: "拡張を入れてから急に挙動が変わった"}
+    prerequisites: [settings-layers]
+    related: [seems-less-capable, instructions-ignored, replies-in-english, blames-the-tools, suspected-degradation, pruning-extensions, felt-vs-measured, usage-context-statusline]
+    tracks: [safe-mode]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "外れるもの・残るもの", anchor: what-is-disabled}
+      - {title: "比べ方", anchor: compare}
+    templates:
+      - {name: "--safe-mode と通常の起動で同じ依頼を比べる手順", kind: other, safety: false}
+    materials: ["research/28 #28（--safe-mode）", "research/28 #25〜#27・#31（--setting-sources・CLAUDE_CONFIG_DIR・壊れた設定）", "research/26 §3.3 (b)（断られたときの切り分けに --safe-mode）"]
+    notes: "新規：registry にない。不調の原因が自分の設定（CLAUDE.md・skills・hooks・MCP・出力スタイル）か、モデルや版かを切り分ける操作は、症状のページの診断から引かれる（instructions-ignored・seems-less-capable・replies-in-english など）。起動の仕方なので cli に置いた（design §4.2 の基本操作）。v2.1.169 以降（research/28 #28）。公式の「Debug your configuration」の手順（新しい CLAUDE_CONFIG_DIR と --setting-sources での起動）も本文で並べる（research/28 #27）。優先度は推奨：診断の手間を大きく減らすが、症状のページから related で引く補助なので必須にしない"
+
+  # ── 設定と最初の準備 ──
+  - id: settings-layers
+    chapter: 設定と最初の準備
+    title: "設定ファイルの階層と優先順位"
+    aliases: ["設定ファイルの階層（最小限）", "settings.json", "settings.local.json", "user・project・local・managed", "/status", "/config"]
+    type: feature
+    level: 任せる
+    level_evidence: "権限の許可や環境の設定を足して任せる幅を広げる段階で、どこに書いたかが効き方を決める（00 は L3）"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [縛る]
+    prevents: [縛っていない]
+    pitfalls: []
+    scenes: [開発, チーム]
+    summary: "設定をユーザー・プロジェクト・手元だけ・管理の層のどこに書くかで、誰に効き、どれが勝つかが決まる。読み込まれた設定は /status で確かめ、許可の一覧は層をまたいで合わさることを知っておく。"
+    signs:
+      - {type: symptom, text: "設定を書いたのに効いていない"}
+      - {type: goal, text: "自分だけの設定と、チームで共有する設定を分けたい"}
+    prerequisites: []
+    related: [permission-rules, share-team-settings, managed-settings-enforcement, permission-modes-overview, isolate-with-safe-mode, output-style-modes, claude-md-loading-order, protecting-secrets]
+    tracks: [settings, managed-settings]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "層と優先順位", anchor: layers}
+      - {title: "合わさる設定、上書きされる設定", anchor: merge}
+      - {title: "効いているかを確かめる", anchor: verify}
+    templates: []
+    materials: ["00 §3 分野07", "01 B-1", "research/28 #25〜#27・#31（-p では壊れた設定が黙って飛ばされる）", "research/22 #13（server-managed settings）", "decisions 2026-11-03「工程2で確かめた事実」（settings の schema）"]
+    notes: "題名の「（最小限）」は作り手の言葉なので外し、aliases に残した。公式の文書が案内する SchemaStore のスキーマは古い版のもので、新しいキーを書いた正しい設定を誤りとして落とす（decisions 2026-11-03）。補完のために $schema を勧めるなら、この注意を添える。チームでの共有は team の share-team-settings、組織の強制は enforce の managed-settings-enforcement が持つ"
+
+  - id: init-and-first-claude-md
+    chapter: 設定と最初の準備
+    title: "/init と最初の CLAUDE.md"
+    aliases: ["/init", "CLAUDE.md を作る", "最初の CLAUDE.md の作り方"]
+    type: feature
+    level: 整える
+    level_evidence: "プロジェクトで同じ説明を繰り返し始めた段階で、最初の CLAUDE.md を作る（00 は L2）。中身の判断は extend の任せる段階のページへ"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [見せる]
+    prevents: [見えていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "/init で作らせた CLAUDE.md を叩き台にし、推測できる説明を削って、推測できない約束と落とし穴だけを残す。手で一行ずつ書く流儀もあり、どちらでも書いた後に削る。"
+    signs:
+      - {type: goal, text: "最初の CLAUDE.md を手早く作りたい"}
+      - {type: situation, text: "/init が作った CLAUDE.md を、そのまま使ってよいか迷っている"}
+    prerequisites: []
+    related: [what-to-put-in-claude-md, claude-md-length, when-to-add-what, repeating-the-same-explanation, agents-md, output-style-modes]
+    tracks: [claude-md]
+    outdated_advice: [architecture-in-claude-md, hash-to-memorize]
+    volatility: 中
+    sections:
+      - {title: "叩き台をどう削るか", anchor: prune}
+      - {title: "手で書く流儀との違い", anchor: by-hand}
+    templates:
+      - {name: "/init の叩き台を削った後の CLAUDE.md の例", kind: claude-md, safety: false}
+    materials: ["00 §3 分野07", "00 §1 の対立点の表（/init で CLAUDE.md を作るか）", "research/25 H1・§3.2（原文は /init や自動生成を避け、1行ずつ考えて書くよう勧める）", "01 2-1（注記を含む）"]
+    notes: "/init の扱いは実践者の間で割れる（叩き台に使う／1行ずつ手で書く）ので、公式の立場・実践者の幅・この教材の推奨の三段で書く（design §6.6）。CLAUDE.md の中身の判断は extend の what-to-put-in-claude-md ほかが持つ。「CLAUDE.md を /init で作り育てる」の文は 01 2-1（改稿の前の版の要約）にあるので、現行の文書で確かめてから書く"
+
+  - id: output-style-modes
+    chapter: 設定と最初の準備
+    title: "出力スタイルで応答の仕方を切り替える"
+    nav_title: "出力スタイル"
+    aliases: ["output style", "出力スタイル", "/output-style", "output style（応答のスタイルを切り替える）"]
+    type: feature
+    level: 整える
+    level_evidence: "応答の量・説明の多さ・確認の多さを調整したくなった段階で要る。00 は L3 だが、任せる幅を広げる機能ではない"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [見せる]
+    prevents: [合っていない]
+    pitfalls: [預けすぎる]
+    scenes: [開発, 学習]
+    summary: "組み込みや自作の出力スタイルで、説明の多さ・簡潔さ・確認の仕方・学び方をセッション全体について切り替える。何を知るべきかは CLAUDE.md、どう答えるかは出力スタイルに置く。"
+    signs:
+      - {type: goal, text: "説明を増やしたり簡潔にしたりを、毎回言わずに切り替えたい"}
+      - {type: goal, text: "コードを学びながら進めたいので、一部を自分で書きたい"}
+    prerequisites: []
+    related: [claude-md-vs-rules-skills-styles, init-and-first-claude-md, learning-with-ai, how-much-understanding-to-keep, keeps-stopping, does-more-than-asked, keep-replies-in-japanese]
+    tracks: [output-styles]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "組み込みのスタイル", anchor: built-in}
+      - {title: "自作のスタイル", anchor: custom}
+      - {title: "CLAUDE.md・skill との分担", anchor: vs-claude-md}
+      - {title: "日本語の応答との関係", anchor: japanese}
+    templates:
+      - {name: "自作の出力スタイルの例", kind: other, safety: false}
+    materials: ["00 §3 分野07（注記を含む）", "01 I-1", "research/23 #2", "research/27 §3.2（出力スタイルは指示で保証しない。fork でない subagent には効かない）", "research/26 §3.1（アプリの Styles とは別の機能）", "11 第2節 分野07 p12#154・p56#49（Learning の TODO(human)）"]
+    notes: "組み込みの種類と入った版（Proactive・Concise・Explanatory・Learning。Concise は v2.1.237 以降）は数値ファイルに置き、題名に並べない（registry の注記、research/23 #2）。題名は公式の日本語版の多数派（出力スタイル、84%）に合わせた。level を registry の見当（任せる）から整えるに下げた（理由は level_evidence）。アプリの Styles（2026-06 に skills への移行が告知）とは別の機能なので、用語集で分ける（research/26 §3.1）。Learning の学習の効果は実証されていないので、設計の意図として書く（11 p12#154）"
+
+  # ── ほかの面と離席 ──
+  - id: using-ides
+    chapter: ほかの面と離席
+    title: "IDE（VS Code・JetBrains）で使う"
+    aliases: ["VS Code の拡張", "JetBrains のプラグイン", "IDE 連携", "/ide"]
+    type: feature
+    level: 整える
+    level_evidence: "普段の IDE の中で差分と計画を見ながら使い始める段階（00 は L2）"
+    priority: 任意
+    surfaces: [claude-code]
+    principle: [確かめる, 見せる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "IDE の拡張では、計画を文書として読んでコメントで返し、差分を一つずつ受け入れ、選んだ範囲を自動で渡せる。ターミナルの CLI とできることが一部違い、IDE が自動で実行する設定ファイルの書き換えには注意する。"
+    signs:
+      - {type: goal, text: "VS Code の中で差分を見ながら Claude Code を使いたい"}
+      - {type: situation, text: "WSL の CLI から IDE につながらない"}
+    prerequisites: [claude-code-surfaces]
+    related: [when-to-plan, checkpoints-and-rewind, permission-modes-overview, diffs-humans-must-read, protecting-secrets, windows-wsl-ime]
+    tracks: [ide-extensions]
+    outdated_advice: []
+    volatility: 中
+    sections:
+      - {title: "IDE で得られるもの", anchor: what-you-get}
+      - {title: "CLI との違い", anchor: vs-cli}
+      - {title: "安全の注意", anchor: safety}
+    templates: []
+    materials: ["00 §3 分野07（注記を含む）", "research/26 §3.4", "01 KQ1 Gaps（注記を含む）"]
+    notes: "動作は制作の環境で試していない。公式の文書と確認日で書き、未確認と添える（decisions 2026-11-03 の方針 B5、research/26 §3.4 の書き方の案）。面の選び方は surfaces の claude-code-surfaces が持つ"
+
+  - id: cloud-sessions-and-teleport
+    chapter: ほかの面と離席
+    title: "クラウドセッションと teleport"
+    aliases: ["claude.ai/code", "--cloud", "/teleport", "Claude Code on the Web", "--remote"]
+    type: feature
+    level: 任せる
+    level_evidence: "手元を閉じても作業を続けさせる段階（00 は L3）"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [握る, 縛る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "作業をクラウドのセッションで走らせて手元を閉じても続けさせ、終わったら teleport で手元の端末に取り込む。クラウドは手元の設定の一部を読まないので、計画と縛りをリポジトリに置いてから送る。"
+    signs:
+      - {type: goal, text: "PC を閉じても作業を進めておいてほしい"}
+      - {type: situation, text: "クラウドで動かしたセッションを、手元で続けたい"}
+    prerequisites: [when-to-plan, where-it-runs]
+    related: [control-from-phone, resume-and-branch, agent-view-and-background, choosing-parallel-modes, cloud-schedules, protecting-secrets, checking-unattended-runs, share-team-settings]
+    tracks: [cloud-sessions]
+    outdated_advice: [code-on-the-web-remote]
+    volatility: 高
+    sections:
+      - {title: "クラウドに送ってよい作業", anchor: what-to-send}
+      - {title: "手元の設定との違い", anchor: settings}
+      - {title: "teleport で取り込む", anchor: teleport}
+    templates: []
+    materials: ["00 §3 分野07", "00 §5 台帳（Claude Code on the Web と --remote）", "01 P-1・B-1（クラウドのセッションは user と local の設定を読まない）", "research/22 #25（クラウドの中で動かした -p のセッション ID）"]
+    notes: "並列と無人の使い方は delegate（choosing-parallel-modes・agent-view-and-background・cloud-schedules）が持つ。実行場所の比べ方は surfaces の where-it-runs。使えるプランは数値ファイルに置く"
+
+  - id: control-from-phone
+    chapter: ほかの面と離席
+    title: "スマホから操作する（Remote Control）"
+    aliases: ["Remote Control", "--remote-control", "--rc", "/remote-control", "モバイルから承認する"]
+    type: feature
+    level: 任せる
+    level_evidence: "席を離れている間も、手元のセッションを進めさせる段階（00 は L3）"
+    priority: 任意
+    surfaces: [claude-code]
+    principle: [握る]
+    prevents: []
+    pitfalls: []
+    scenes: [開発]
+    summary: "手元の PC で動くセッションを、ブラウザやスマホのアプリから見て指示し、承認する。実行もファイルも手元に残るので、クラウドに出したくない作業を席を離れて進めるときに使う。"
+    signs:
+      - {type: goal, text: "外出先から、手元のセッションの承認や指示をしたい"}
+    prerequisites: [permission-modes-overview]
+    related: [cloud-sessions-and-teleport, where-it-runs, completion-notifications, approval-fatigue, voice-and-mobile]
+    tracks: [remote-control]
+    outdated_advice: []
+    volatility: 高
+    sections: []
+    templates: []
+    materials: ["00 §3 分野07", "01 P-2"]
+    notes: "スマホの小さな画面での承認は、中身を読まずに許可しやすい。safety の approval-fatigue を related に置いた"
+
+  - id: completion-notifications
+    chapter: ほかの面と離席
+    title: "終わったら知らせてもらう"
+    aliases: ["通知", "Notification hook", "完了通知", "入力待ちの通知"]
+    type: feature
+    level: 任せる
+    level_evidence: "作業を任せて別のことをする段階で要る（00 は L3）"
+    priority: 任意
+    surfaces: [claude-code]
+    principle: [握る]
+    prevents: []
+    pitfalls: []
+    scenes: [開発]
+    summary: "作業の終わりや承認待ちを hook などで通知させ、画面に張りつかずに任せる。知らせが多すぎると作業が細切れになるので、確認するタイミングを自分で決める流儀もある。"
+    signs:
+      - {type: goal, text: "任せている間に別の作業をしたいので、終わったら知らせてほしい"}
+      - {type: symptom, text: "承認待ちで止まっていたことに、後から気づく"}
+    prerequisites: []
+    related: [hook-recipes, hooks-basics, control-from-phone, agent-view-and-background, humans-set-the-parallel-limit]
+    tracks: [hooks]
+    outdated_advice: []
+    volatility: 中
+    sections: []
+    templates:
+      - {name: "作業の終わりと入力待ちを通知する hook の例", kind: hook, safety: false}
+    materials: ["00 §3 分野07", "03 Q4 T4（通知の好みは正反対に分かれる）", "04 Q1 F（Hooks で完了通知を受け取る入門記事）", "01 KQ3 Gaps（通知は hooks の Notification イベントと端末の設定）"]
+    notes: "通知が要るかは実践者で正反対に分かれる（03 Q4 T4）ので、両方の流儀を並べる。hook の書き方の本体は enforce の hooks-basics と hook-recipes が持つ"
+
+  # ── 早見表 ──
+  - id: command-cheatsheet
+    chapter: 早見表
+    title: "主要コマンド早見表"
+    aliases: ["スラッシュコマンド一覧", "コマンド一覧", "旧コマンドとの対応"]
+    type: ledger
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: []
+    prevents: []
+    pitfalls: []
+    summary: "よく使うコマンドを、何に使うか・判断を書いたページ・旧名とあわせて引ける。全コマンドの網羅は公式の一覧に任せる。"
+    signs:
+      - {type: goal, text: "コマンドの名前から、使い方のページを引きたい"}
+      - {type: situation, text: "古い記事に出てくるコマンドが、手元で動かない"}
+    prerequisites: []
+    related: [input-symbols, must-know-operations, ask-claude-code, init-and-first-claude-md, "glossary#old-names", outdated-advice-ledger]
+    tracks: []
+    outdated_advice: [slash-cost-and-stats, fork-to-branch, removed-commands, commands-directory, agents-command]
+    volatility: 高
+    sections: []
+    templates: []
+    materials: ["00 §3 分野07", "00 §5 台帳", "01 D-1・4-2", "research/22 #8"]
+    notes: "生成のページにする（数値ファイルの機能の項目から、コマンド・旧名・判断を書いたページを引いて表を作る。design §2.2・§7）。型は registry の見当どおり ledger にした。全コマンドの網羅はしない（requirements §6.3）。/clear・/compact・/context・/btw の行は context のページを指す"
+
+merged: []
+
+dropped:
+  - id: for-non-engineers
+    reason: "decisions 2026-11-03「読者の前提」（どのページも git・ターミナル・プログラミングの経験を前提にし、非エンジニア向けの説明は省く）と食い違う。コードを書かない仕事に Claude Code を使う話は recipes（office-paperwork・write-docs・chores-monorepo）、Desktop の Code タブは surfaces（claude-code-surfaces・claude-code-vs-cowork）が持てる。00 §4 のサイン「コードを書かない仕事に Claude Code を使いたい」の受け皿は open_issues で提案した"
+
+open_issues:
+  - "提案（recipes か surfaces）：for-non-engineers を採らなかったので、00 §4 のサイン「コードを書かない仕事に Claude Code を使いたい」を recipes の office-paperwork か surfaces の claude-code-vs-cowork に置く。00 分野07 の要点「作業用のフォルダを作り、手動のモードで始める」は office-paperwork の前提か、safety の default-safety-settings に足す"
+  - "提案（symptoms）：instructions-ignored・seems-less-capable・replies-in-english・blames-the-tools の診断に、新しいページ isolate-with-safe-mode（--safe-mode で自分の設定を外して同じ依頼を比べる）を related で足す。wrong-amount-of-approvals から permission-modes-overview を、deleted-something-important から checkpoints-and-rewind と recover-lost-work を指す"
+  - "確認（cost）：cost は claude-code-costs を what-uses-up-limits にまとめ、操作の本体を usage-context-statusline に置いた（cost.yaml の merged）。境界はこの分野の考えと同じ（/usage の内訳の読み方と節約の判断は cost、道具の一覧と status line の設定は cli）。usage-context-statusline と inspect-context からは what-uses-up-limits#find-what-uses-it を指した"
+  - "提案（設計書 §4.2）：「基本操作（起動・権限モード・/clear・/compact・rewind・plan mode）→ cli」の行に、/clear と /compact は判断と操作を context のページ（when-to-start-fresh・compact-and-auto-compact）に置き、cli は must-know-operations と command-cheatsheet から指す、と書き足す。registry に cli の /clear・/compact の候補がなく、操作だけのページは薄くなるため"
+  - "提案（start の glossary）：plan モード（Claude Code の日本語版の79%）とプランモード（Help Center）の表記を用語集で決める（research/27 §3.1）。cli の題名は plan モードにした。出力スタイル・チェックポイント・圧縮・自動圧縮・権限モードは、公式の日本語版の多数派に合わせた"
+  - "提案（changes の checking-for-updates）：stable の通り道は latest より1週間ほど遅れ、大きな退行のある版を飛ばす（research/22 #3）。文書や Claude Code の答え（ask-claude-code）にある機能が手元の版にないことがあるので、版の確かめ方として書く"
+  - "提案（delegate）：cloud-sessions-and-teleport・control-from-phone・completion-notifications・resume-and-branch は、並列と無人の使い方を choosing-parallel-modes・agent-view-and-background・cloud-schedules・parallel-with-worktrees に任せ、related で指している。delegate の側からも、操作の入口としてこれらを指す"
+  - "提案（enforce と safety）：permission-modes-overview は level を整えるにした（Shift+Tab と既定の auto モードに使い始めてすぐ出会う）。緩める判断の本体（what-auto-mode-stops・where-bypass-is-ok・sandboxing）は任せる以上なので前提にせず、related で指している。enforce と safety の側からは、モードの一覧の入口としてこのページを前提か related に置く"
+  - "確認（extend）：extend は what-to-leave-out-of-claude-md を what-to-put-in-claude-md にまとめ、そこと claude-md-length#prune から init-and-first-claude-md を、claude-md-vs-rules-skills-styles#vs-claude-md から output-style-modes を指している。この分野からは what-to-put-in-claude-md・claude-md-length・claude-md-vs-rules-skills-styles を指し返した"
+  - "確認（changes）：changes は old-and-new-names を start の glossary にまとめた。command-cheatsheet からは glossary#old-names を指した"
+
+new_features:
+  - {id: interactive-mode, title: "対話モードの操作（入力の記号・キーボードショートカット）", note: "公式の Interactive mode の文書。# の記憶は v2.0.70 で削除、/vim は v2.1.92 で削除され /config の Editor mode へ（01 N-1・4-2）。キーの割り当ては端末で違う。input-symbols と must-know-operations が tracks で指す"}
+  - {id: sessions, title: "セッションの保存・再開・分岐・命名（--continue・/resume・/branch・/rename・transcript）", note: "会話は ~/.claude/projects/ に JSONL で保存（01 N-2）。/fork は v2.1.77 で /branch に改名され、今の /fork は別の機能。保持の期間は cleanupPeriodDays（01 C-5、05 4-6）。resume-and-branch と recover-lost-work が tracks で指す"}
+  - {id: safe-mode, title: "--safe-mode（自分の設定と拡張を読まずに起動する）", note: "v2.1.169（2026-06-08）。CLAUDE.md・skills・plugins・hooks・MCP・自作の commands と agents・出力スタイル・workflows・auto memory などを読まない。認証・モデル・組み込みのツール・権限と管理の設定は効く（research/28 #28）。isolate-with-safe-mode が tracks で指す"}
+
+notes:
+  - "ページ19（必須7・推奨9・任意3。使う2・整える10・任せる6・level なし1。feature 15・concept 2・recipe 1・ledger 1）。registry の19候補のうち18を採り、1つを採らず、新しく1つ（isolate-with-safe-mode）を足した。context の sessions-as-branches をこの分野の resume-and-branch にまとめた"
+  - "題名を変えた候補：input-symbols・must-know-operations（数を外した）、checkpoints-and-rewind・when-to-plan・output-style-modes（公式の日本語版の訳語）、usage-context-statusline・settings-layers・resume-and-branch（理由は各ページの notes）。type を変えた候補：ask-claude-code（feature → concept）。level を変えた候補：output-style-modes（任せる → 整える）。priority を変えた候補：recover-lost-work（任意 → 推奨）"
+  - "比例則：任せるのページ6つのうち、任せる幅を広げるのは cloud-sessions-and-teleport・control-from-phone・completion-notifications・settings-layers。どれにも verify・eval・enforce・safety のページを related に置いた。recover-lost-work と isolate-with-safe-mode は広げる内容ではないが、近い safety・eval のページを related に置いた"

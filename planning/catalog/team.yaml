@@ -1,0 +1,446 @@
+# 分野 team（組織・チームで使う）の目次。形式：planning/catalog/README.md §3。担当：C9（工程3、2026-11-04）
+# 読者は開発の経験がある人（decisions 2026-11-03「読者の前提」）。PR・CI・ADR・MDM などの語は説明しない。
+# 組織の承認・役割・規程・導入は team、hooks・permissions・managed settings の仕組みは enforce、規則の類型と確認表は safety（design §4.2）。
+field: team
+chapters: [導入と決まり, レビューと判断, 管理と契約]
+pages:
+  # ── 導入と決まり ──
+  - id: paved-roads
+    chapter: 導入と決まり
+    title: "禁止ではなく安全な道を作る"
+    aliases: ["paved road", "舗装された道", "野良の AI 利用", "シャドー AI"]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "チームで安全な既定を常設にし、共有する段階"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [縛る, 握る]
+    prevents: [境界がない, 縛っていない]
+    pitfalls: []
+    scenes: [チーム, 開発]
+    summary: "AI の利用を禁じる代わりに、安全な既定と許す面を用意した、使ってよい道を作れる。セキュリティの担当と組み、危険の小さい作業から広げる。"
+    signs:
+      - {type: situation, text: "会社が AI の利用を禁じていて、隠れて使う人がいる"}
+      - {type: goal, text: "AI を禁止せずに、安全に使える状態を作りたい"}
+    prerequisites: [default-safety-settings, request-vs-lock]
+    related: [ai-usage-guidelines, share-team-settings, org-managed-settings-and-mcp, rolling-out-to-teams, managed-settings-enforcement, sandboxing, where-your-data-goes, entrusted-data, checking-ai-rules, approval-fatigue]
+    volatility: 低
+    sections:
+      - {title: "注意力に頼らない既定", anchor: defaults-over-attention}
+      - {title: "危険の小さい作業から始める", anchor: start-low-risk}
+    materials: ["00 §3 分野17「禁止ではなく安全な道を作る」", "04 Q3 社内導入（研修・ガードレール・書籍の第11章・5つのリスク）", "decisions 2026-11-03「安全の既定の勧め方」"]
+    notes: "事例の企業名は、出典付きで肯定的な文脈に限って本文で出す（D12）。研修の形や効果の数値は自己申告と書く"
+
+  - id: ai-usage-guidelines
+    chapter: 導入と決まり
+    title: "社内ガイドラインに書くこと"
+    aliases: ["AI 利用ポリシー", "生成 AI ガイドライン", "AI 利用規程"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "チームの決まりとして文書にし、共有する段階"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [握る, 縛る]
+    prevents: [境界がない]
+    pitfalls: [同意を根拠にする]
+    scenes: [チーム, 開発]
+    summary: "チームの AI 利用の決まりに、データの区分・許す面とモード・レビューの責任・止まって相談する場面を書ける。書いた禁止はお願いにすぎないので、守らせたいものは設定で縛る。"
+    signs:
+      - {type: situation, text: "チームの AI 利用のルールを書くことになった"}
+      - {type: goal, text: "どのデータを AI に渡してよいか、チームで決めたい"}
+    prerequisites: [checking-ai-rules, where-your-data-goes, request-vs-lock]
+    related: [paved-roads, entrusted-data, disclosure-and-provenance, protecting-secrets, permission-rules, managed-settings-enforcement, risk-tiered-approval, agreement-is-not-evidence, separate-roles, record-decisions, what-to-put-in-claude-md, org-managed-settings-and-mcp]
+    volatility: 中
+    sections:
+      - {title: "書くこと（データの区分・面とモード・レビューの責任）", anchor: what-to-write}
+      - {title: "任せてよい・止まって相談する・禁止", anchor: three-categories}
+      - {title: "禁止は設定で縛る", anchor: lock-the-prohibitions}
+    templates:
+      - {name: "チームの AI 利用ルール（任せてよい・止まって相談する・禁止）", kind: claude-md, safety: true}
+    materials: ["00 §3 分野17「社内ガイドラインに書くこと」", "11 第2節 分野17 p56#55（AI はレビューの補助はできるが、唯一または最終の判定者にはなれない、という規約の例）・p56#122", "11 第1節 分野17 p56#21（judgment の agreement-is-not-evidence に含めた）", "11 第5節 A-3（禁止の節は A-4 と組にする。第3節 C-13、第4節 #20）", "04 Q3 社内導入（5つのリスク、deny の例）", "00 §4 安全の困りごと「会社や学校で使ってよいか確かめたい」"]
+    notes: "雛形 A-3 は、禁止の節がお願いにすぎないことを注記し、deny と hook の雛形（enforce・verify の A-4）と組にして示す（11 第5節）。データの扱いを含むので safety: true。法令の解釈と社内規則の回避は書かない（design §6.11）"
+
+  - id: share-team-settings
+    chapter: 導入と決まり
+    title: "チームで設定を共有する"
+    aliases: [".claude/settings.json", ".mcp.json", "settings.local.json", "共有の設定"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "設定を常設化してチームで共有する段階（design §3.1 の仕組みにする）"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [見せる, 縛る]
+    prevents: [見えていない, 縛っていない]
+    pitfalls: []
+    scenes: [チーム, 開発]
+    summary: "CLAUDE.md・共有の設定・MCP の設定・plugins をリポジトリに入れ、チームで同じ前提と縛りで Claude Code を使える。個人の好みと秘密は共有のファイルに入れない。"
+    signs:
+      - {type: goal, text: "チームで同じ設定を使いたい"}
+      - {type: symptom, text: "人によって Claude Code の振る舞いが違う"}
+    prerequisites: [settings-layers, permission-rules]
+    related: [what-to-put-in-claude-md, agents-md, connecting-mcp, plugins-and-marketplaces, protected-paths, protecting-secrets, vetting-extensions, before-opening-unknown-repos, managed-settings-enforcement, org-managed-settings-and-mcp, rolling-out-to-teams]
+    tracks: [settings, claude-md, mcp, plugins, permissions]
+    volatility: 中
+    sections:
+      - {title: "共有するものと個人に残すもの", anchor: shared-vs-personal}
+      - {title: "信頼してから効く設定", anchor: after-trust}
+    templates:
+      - {name: "共有の .claude/settings.json と個人の settings.local.json の分け方", kind: settings, safety: true}
+    materials: ["00 §3 分野17「チームで設定を共有する」", "01 B-1（設定の階層と落とし穴：project の allow と env は信頼の後に効く）", "01 G-1（MCP のスコープ）", "research/28 #20（.claude/ は保護されたパス）", "04 Q3 社内導入（チーム運用の事例）", "00 §4 指示と仕組みの困りごと「チームで同じ設定を使いたい」"]
+    notes: "共有の設定に許可（allow）を入れると、リポジトリを開いた全員に効く。知らないリポジトリの設定を信頼する側の注意は safety の before-opening-unknown-repos へ送る。権限を含む雛形なので safety: true"
+
+  - id: rolling-out-to-teams
+    chapter: 導入と決まり
+    title: "チームに広める（/team-onboarding など）"
+    nav_title: "チームに広める"
+    aliases: ["/team-onboarding", "社内展開", "導入の進め方"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "仕組みと知見をチームに広める段階"
+    priority: 任意
+    surfaces: [claude-code, app]
+    principle: [見せる, 握る]
+    prevents: [見えていない]
+    pitfalls: [預けすぎる]
+    scenes: [チーム, 開発]
+    summary: "チームに Claude Code を広めるとき、立ち上げの手引きと共有の設定を用意し、知見が人の間で回るようにできる。AI が最初の相談相手になると、同僚とのやりとりが減ることにも備える。"
+    signs:
+      - {type: situation, text: "チームに Claude Code を導入する"}
+      - {type: goal, text: "うまく使っている人の知見を、チームに広めたい"}
+    prerequisites: [share-team-settings, paved-roads]
+    related: [ai-usage-guidelines, ai-amplifies-organizations, record-decisions, review-bottlenecks, org-managed-settings-and-mcp, default-safety-settings, insights-and-usage-review, learning-with-ai, shared-projects-and-org-skills]
+    tracks: [team-onboarding]
+    volatility: 中
+    sections:
+      - {title: "立ち上げの手引きを作る", anchor: onboarding-guide}
+      - {title: "同僚とのやりとりを減らさない", anchor: keep-peer-review}
+    materials: ["00 §3 分野17「チームに広める（/team-onboarding など）」", "01 D-1（/team-onboarding）", "11 第1節 分野17 p56#53・p56#62（社内コンテストの事例。根拠は弱い）", "04 Q3 社内導入（5社まとめの共通軸：配布範囲・自動実行をどこまで許すか・文脈の配布の構造）"]
+    notes: "/team-onboarding は機能の id がないので new_features に足した。社内の導入事例の数値は自己申告として書く"
+
+  - id: ai-amplifies-organizations
+    chapter: 導入と決まり
+    title: "AI は組織の強みも機能不全も増幅する"
+    aliases: ["増幅器としての AI", "DORA"]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "組織に広げる前に、土台を見直す段階"
+    priority: 任意
+    surfaces: [claude-code, app]
+    principle: [確かめる, 握る]
+    prevents: []
+    pitfalls: [体感を信じる]
+    scenes: [チーム, 開発]
+    summary: "AI の導入は、テスト・レビュー・小さな変更といった組織の土台の強さも弱さも増幅することが分かる。土台が弱いまま広げると、速さと一緒に不安定さも増えうる。"
+    signs:
+      - {type: symptom, text: "AI を入れて速くなったのに、障害や手戻りが増えた"}
+      - {type: situation, text: "組織全体に AI を広げる前に、何を整えるか考える"}
+    prerequisites: [four-principles]
+    related: [review-bottlenecks, risk-tiered-approval, rolling-out-to-teams, paved-roads, measure-changes, felt-vs-measured, harness-over-model, product-map]
+    volatility: 低
+    materials: ["11 第1節 分野17 p56#59（大規模調査。分野00「全体地図」の前提にする案もある）"]
+    notes: "優先度は任意にした（C0 の見当のまま）：根拠は中（大規模調査）だが、判断は比例則の組織版で、review-bottlenecks・paved-roads と重なる。11 は start の全体地図の前提にする案も挙げる。team に置き、start の product-map から related で指す提案を open_issues に書いた。調査は相関で、因果は書かない"
+
+  # ── レビューと判断 ──
+  - id: review-bottlenecks
+    chapter: レビューと判断
+    title: "レビューのボトルネックと疲労"
+    aliases: ["レビュー疲れ", "レビューが追いつかない"]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "並列や委任で変更が増え、チームのレビューを仕組みとして組み直す段階"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [確かめる, 握る]
+    prevents: [確かめていない]
+    pitfalls: [預けすぎる, 体感を信じる]
+    scenes: [チーム, 開発]
+    summary: "AI で変更が増えると、レビューと動作確認が人に積もって詰まり、疲れも溜まりやすい理由が分かる。変更を出す速さではなく、レビューできる量に合わせて流す。"
+    signs:
+      - {type: symptom, text: "AI で PR が増えて、レビューが追いつかない"}
+      - {type: symptom, text: "マネージャーのところで PR が止まる"}
+      - {type: symptom, text: "AI の作業を見守るだけで疲れる"}
+    prerequisites: [humans-set-the-parallel-limit, independent-review]
+    related: [diffs-humans-must-read, own-generated-code, risk-tiered-approval, separate-roles, grow-review-checklists, automated-pr-review, curb-sycophancy-and-overtrust, approval-fatigue, felt-vs-measured, ai-amplifies-organizations]
+    volatility: 低
+    sections:
+      - {title: "詰まる場所はレビューと動作確認", anchor: where-it-clogs}
+      - {title: "事例の数値の読み方（自己申告と標本の大きさ）", anchor: reading-case-numbers}
+      - {title: "流す量をレビューに合わせる", anchor: match-review-capacity}
+    visual: {kind: static, text: "PR が増え、レビューと動作確認の待ちが人に積もる流れ"}
+    materials: ["00 §3 分野17「レビューのボトルネックと疲労」（冒頭の段落の注記）", "research/25 P7a（疲労の調査：12名の自己申告、並列との因果は示されていない）・P7b（マージまでの時間：導入1か月の自社計測）", "11 第2節 分野12 p34#185・p56#56（自己申告）", "04 Q6（人間側がボトルネックになり、疲労する）"]
+    notes: "事例の数値は、どれも小さな標本の自己申告か自社計測なので、条件（標本・期間・測り方）を添える（research/25 P7）。delegate の humans-set-the-parallel-limit は一人の並列の本数、こちらはチームのレビューの流れを持つ"
+
+  - id: risk-tiered-approval
+    chapter: レビューと判断
+    title: "リスク段階別の承認（AI の承認を人の承認に数えない）"
+    nav_title: "リスク段階別の承認"
+    aliases: ["リスク別の承認", "承認の段階"]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "承認の決まりを仕組みにする段階"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる, 握る]
+    prevents: [確かめていない]
+    pitfalls: [同意を根拠にする]
+    scenes: [チーム, 開発]
+    summary: "変更をリスクの段に分け、段ごとに人の承認の数を決められる。AI の承認は人の承認に数えず、危ない場所は常に人が見る。"
+    signs:
+      - {type: goal, text: "AI が書いた変更の承認の仕方を、危なさで分けたい"}
+      - {type: situation, text: "AI のレビューが通ったら、人の承認は要らないか迷っている"}
+    prerequisites: [independent-review, agreement-is-not-evidence]
+    related: [review-bottlenecks, automated-pr-review, separate-roles, curb-sycophancy-and-overtrust, protected-paths, freeze-eval-assets, diffs-humans-must-read, ai-usage-guidelines, create-and-review-prs, github-actions-with-claude]
+    volatility: 中
+    sections:
+      - {title: "三つの段と承認の数", anchor: three-tiers}
+      - {title: "AI の承認を数えない", anchor: ai-approval-doesnt-count}
+      - {title: "段を決めるのは中身、常に人が見る場所", anchor: always-human}
+    templates:
+      - {name: "リスクの段と承認者の表（例）", kind: other, safety: false}
+    visual: {kind: static, text: "低・中・高の段と、人の承認の数（AI の承認は数えない）"}
+    materials: ["11 第1節 分野17 p56#58（2026-11-03 訂正済みの行）・p56#66（コンテストへの翻案）", "research/25 P4・§3.3（原典で確かめた条件：低リスクで人の承認が要らないのは、自動のレビューとセキュリティの確認が通り、作者が信頼済みの一覧にいる場合だけ。段は分類器が変更の中身で決める。機密のパスと CI のワークフローは常に人が見る）", "11 第4節 #16"]
+    notes: "11 の行は 2026-11-03 に訂正済み。summary・signs は訂正後の内容と原典の確認（research/25 P4）で書いた。段の中身はある一つのチームの運用（2026-10-15 の記事）で、読者のチームの規則として写すものではないと書く。優先度は推奨にした（C0 の見当のまま）：AI レビュアーの一致を根拠にしない原則は judgment の agreement-is-not-evidence（必須）が持つ"
+
+  - id: separate-roles
+    chapter: レビューと判断
+    title: "役割を分ける（書く人・承認する人・疑う人）"
+    nav_title: "役割を分ける"
+    aliases: ["役割分担", "評価担当", "批評担当"]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "チームの役割を仕組みとして決める段階"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [握る, 確かめる]
+    prevents: [確かめていない]
+    pitfalls: [同意を根拠にする, やめられない]
+    scenes: [チーム, 開発, コンテスト]
+    summary: "AI と進めるチームの役割を、書く人・承認する人・疑う人に分け、評価と撤退の判断を実装する人から離せる。疑う役は持ち回りにする。"
+    signs:
+      - {type: situation, text: "AI と進めるチームで、誰が何を決めるかを決める"}
+      - {type: symptom, text: "実装した人が自分で評価して、撤退の判断もしている"}
+    prerequisites: [independent-review, decide-when-to-quit]
+    related: [risk-tiered-approval, curb-sycophancy-and-overtrust, review-bottlenecks, lockbox-and-holdout, verifier-three-conditions, what-not-to-delegate, ideate-independently, record-decisions, long-team-competitions]
+    volatility: 低
+    visual: {kind: static, text: "書く人・承認する人・疑う人の三つの役割と、それぞれが持つもの（評価器・撤退の判定・批評）"}
+    materials: ["11 第1節 分野17 p56#63（業務では QA・実装・レビューに読み替える）", "11 第2節 分野12 p56#116（役割の分離）"]
+    notes: "優先度は推奨にした（C0 の見当のまま）：根拠は中で、チームが前提。一部はコンテストに固有なので、例は業務の形（QA・実装・レビュー）を先に書く"
+
+  - id: curb-sycophancy-and-overtrust
+    chapter: レビューと判断
+    title: "チームで迎合と過信を防ぐ"
+    aliases: ["自動化バイアス", "AI のお墨付き"]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "チームの決まりで迎合と過信を防ぐ段階"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [確かめる, 握る]
+    prevents: [確かめていない]
+    pitfalls: [同意を根拠にする, 預けすぎる]
+    scenes: [チーム, 開発]
+    summary: "AI の同意や AI のレビュー済みを、チームの中で正しさの根拠に数えない決まりと、それを守る役割の置き方が分かる。人どうしの批評は、迎合への安価な備えの一つになる。"
+    signs:
+      - {type: symptom, text: "「AI も賛成した」が決め手になっている"}
+      - {type: symptom, text: "AI のレビューが通った PR を、人がよく見ずに承認している"}
+    prerequisites: [agreement-is-not-evidence, over-reliance]
+    related: [ask-without-sycophancy, second-opinion-from-another-model, separate-roles, risk-tiered-approval, automated-pr-review, ai-usage-guidelines, retros-without-ai-verdicts, ideate-independently, sycophancy, caves-when-pushed]
+    volatility: 低
+    materials: ["11 第1節 分野17 p56#50", "11 第4節 #64（「最も安価」は根拠のない修辞なので弱める）", "research/24 §2.3（イ：同意を根拠にする）・B-44（迎合の研究の数値。旧い世代を含む）", "requirements §6.3（複数の AI レビュアーが一致したから正しい、と判断しない）"]
+    notes: "優先度は推奨にした（C0 の見当のまま）：根拠は中（類推）。「最も安価な対策」とは書かず「安価な備えの一つ」にした（11 第4節 #64）。11 の新「チームで使う意味」（p56#52）は【2026-11-03 注記】付きの行なので根拠にしない。使うなら論文の本文で確かめてから（research/24 B-43）"
+
+  - id: grow-review-checklists
+    chapter: レビューと判断
+    title: "レビューの観点を育てる"
+    aliases: ["レビューの観点", "レビューチェックリスト"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "レビューの観点を常設の仕組みとして育てる段階"
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [確かめる]
+    prevents: [確かめていない]
+    pitfalls: []
+    scenes: [チーム, 開発]
+    summary: "見落としを直した PR から見落とした理由を抜き出し、人の承認を経てレビューの観点に足していける。AI のレビュアーへの指示も同じ観点で育てる。"
+    signs:
+      - {type: symptom, text: "同じ種類の見落としが、レビューをすり抜ける"}
+      - {type: goal, text: "見落としから、レビューの観点を増やしていきたい"}
+    prerequisites: [instructing-reviewers]
+    related: [independent-review, automated-pr-review, risk-tiered-approval, review-bottlenecks, postmortems, keep-failure-lessons, writing-skills]
+    volatility: 低
+    templates:
+      - {name: "修正の PR から見落とした理由を抜き出す依頼文", kind: prompt, safety: false}
+    materials: ["11 第1節 分野17 p56#57（企業ブログ。分野09「レビュアーへの指示の書き方」に置く案もある）"]
+    notes: "優先度は推奨にした（C0 の見当のまま）：根拠は中（企業ブログ）。11 は verify の instructing-reviewers に置く案も挙げるが、チームでレビューの観点を育てる手順なので team に置き、instructing-reviewers を前提にした"
+
+  - id: ideate-independently
+    chapter: レビューと判断
+    title: "案出しは独立に、突き合わせは AI に"
+    aliases: ["独立した案出し", "ブレインストーミング"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "チームの案出しの手順を決める段階"
+    priority: 任意
+    surfaces: [app, claude-code]
+    principle: [握る]
+    prevents: []
+    pitfalls: [みんなの案になる]
+    scenes: [チーム, 開発, コンテスト]
+    summary: "最初の案出しは AI を使わずに各自で行い、突き合わせた後で AI にメモの間の矛盾と誰も検討していない観点を挙げさせられる。案が似通うのを抑える。"
+    signs:
+      - {type: symptom, text: "チームの案がみんな似通ってくる"}
+      - {type: goal, text: "AI を使っても、チームの発想の幅を保ちたい"}
+    prerequisites: [ai-ideas-are-everyones]
+    related: [think-before-asking, ask-for-options, ask-without-sycophancy, curb-sycophancy-and-overtrust, separate-roles, record-decisions, long-team-competitions]
+    volatility: 低
+    templates:
+      - {name: "メモの間の矛盾と、誰も検討していない観点を挙げさせる依頼文", kind: prompt, safety: false}
+    materials: ["11 第1節 分野17 p56#69（類推：創造性・均質化の研究）", "research/24 §2.3（オ：均質化は中）"]
+    notes: "優先度は任意にした（C0 の見当のまま）：根拠は類推で、チームの案出しの場面に限られる。比例則の警告が出ても残す：任せる幅を広げる内容ではない（案出しの手順）"
+
+  - id: record-decisions
+    chapter: レビューと判断
+    title: "決定を文書に残す（ADR と週次アップデート）"
+    nav_title: "決定を文書に残す"
+    aliases: ["ADR", "Architecture Decision Record", "週次アップデート"]
+    type: recipe
+    level: 仕組みにする
+    level_evidence: "決定の記録を仕組みにする段階"
+    priority: 推奨
+    surfaces: [claude-code, app]
+    principle: [見せる, 握る]
+    prevents: [見えていない]
+    pitfalls: []
+    scenes: [チーム, 開発]
+    summary: "決めたことと理由を ADR に残し、週ごとに決めたこと・AI に任せたこと・見てほしい点を書面で共有できる。新しい人が文書だけで作業を始められるかで、書けているかを確かめる。"
+    signs:
+      - {type: symptom, text: "なぜそう決めたかが、後から分からない"}
+      - {type: goal, text: "AI に任せたことと決めたことを、チームに書面で伝えたい"}
+    prerequisites: [handoff-documents]
+    related: [keep-failure-lessons, postmortems, experiment-log, disclosure-and-provenance, what-to-put-in-claude-md, agents-md, separate-roles, rolling-out-to-teams, compare-hypotheses-in-parallel]
+    volatility: 低
+    templates:
+      - {name: "ADR の雛形と、週次アップデートの型", kind: other, safety: false}
+    materials: ["11 第1節 分野17 p56#70（分野05「handoff 文書」のチーム版）", "11 第2節 分野12 p56#116（新メンバー役が CLAUDE.md と ADR だけで1つの作業をこなせるか、を確かめの基準にする）"]
+    notes: "優先度は推奨にした（C0 の見当のまま）：根拠は中で、handoff 文書のチーム版。レビューを頼む点は「何に照らして、何は除外して」の形で書く（p56#70）"
+
+  # ── 管理と契約 ──
+  - id: enterprise-vs-team-plans
+    chapter: 管理と契約
+    title: "Team と Enterprise の違い"
+    aliases: ["Team プラン", "Enterprise プラン", "組織のプラン"]
+    type: comparison
+    level: 仕組みにする
+    level_evidence: "組織で契約し、設定や監査を常設にする段階"
+    priority: 任意
+    surfaces: [app, claude-code]
+    principle: [縛る]
+    prevents: [合っていない, 境界がない]
+    pitfalls: []
+    scenes: [チーム]
+    summary: "組織で使うプランを、人の管理・監査・データの保持・使用量の管理の細かさで選べる。プランごとの機能は確認日付きの表で比べる。"
+    signs:
+      - {type: situation, text: "会社で Claude を契約するプランを選ぶ"}
+      - {type: goal, text: "SSO や監査ログが要るかで、プランを決めたい"}
+    prerequisites: [where-your-data-goes]
+    related: [choosing-a-plan, usage-credits-basics, audit-logs-and-telemetry, org-managed-settings-and-mcp, via-cloud-providers, shared-projects-and-org-skills, entrusted-data, paved-roads]
+    tracks: [plans]
+    volatility: 高
+    materials: ["00 §3 分野17「Team と Enterprise の違い（概念）」", "02 1-18（Team と Enterprise の機能、2026年に足された管理機能）", "research/26 §3.12（商用の規約の側は学習に使わない）", "research/22 #35（Team の API credits）", "04 Q3 社内導入（セキュリティガイドの見立て。数値は自己申告）"]
+    notes: "題名から「（概念）」を外した。席の数・料金・機能の有無は数値ファイルの表から生成し、本文に書かない。個人のプランの選び方は cost の choosing-a-plan が持つ"
+
+  - id: org-managed-settings-and-mcp
+    chapter: 管理と契約
+    title: "組織に設定と MCP サーバーを配る（managed settings）"
+    nav_title: "組織に設定を配る"
+    aliases: ["managed-settings.json", "server-managed settings", "managedMcpServers", "MDM で配る"]
+    type: feature
+    level: 仕組みにする
+    level_evidence: "組織に設定を配って常設化する段階（registry の見当の回すから改めた）"
+    priority: 任意
+    surfaces: [claude-code, app]
+    principle: [縛る]
+    prevents: [縛っていない, 境界がない]
+    pitfalls: []
+    scenes: [チーム]
+    summary: "組織の全員に設定と MCP サーバーの許可を配り、個人の設定より優先して効かせられる。配る経路（管理コンソール・MDM など）と、グループごとに設定を分けるかを決める。"
+    signs:
+      - {type: situation, text: "全社に Claude Code を配り、設定をそろえる"}
+      - {type: goal, text: "社員が使える MCP サーバーを、組織で決めたい"}
+    prerequisites: [managed-settings-enforcement, share-team-settings]
+    related: [vetting-extensions, choosing-mcp-servers, connectors-in-the-app, paved-roads, audit-logs-and-telemetry, via-cloud-providers, enterprise-vs-team-plans, shared-projects-and-org-skills]
+    tracks: [managed-settings, mcp]
+    volatility: 中
+    sections:
+      - {title: "配る経路", anchor: delivery}
+      - {title: "グループごとに設定を分ける", anchor: per-group-settings}
+      - {title: "MCP サーバーの許可", anchor: mcp-allowlist}
+    templates:
+      - {name: "組織で許す MCP サーバーの一覧の例", kind: settings, safety: true}
+    materials: ["00 §3 分野17「managed settings と MCP の組織管理」", "01 B-1（Managed の優先）・G-1（managedMcpServers）", "research/22 #13（server-managed settings の適用の変更）・#22（組織の effort の上限）・#38（アプリの Plugins のページ。Skills を切った組織では Desktop の plugins も止まる）", "04 Q3 社内導入（MDM でグループごとに別の設定を配る事例、Bedrock 経由の統制）", "research/25 §3.4（bypass permissions を止める公式の設定）"]
+    notes: "level を registry の見当（回す）から仕組みにするに改めた：組織に設定を配って常設化するのは design §3.1 の仕組みにするで、回す（並列・無人・定期・プログラム）ではない。enforce の managed-settings-enforcement との境界：こちらは配る経路・グループごとの設定・MCP の許可の決め方、enforce は設定のキーと強制の仕組み（open_issues に提案を書いた）"
+
+  - id: audit-logs-and-telemetry
+    chapter: 管理と契約
+    title: "監査ログと可視化（OpenTelemetry など）"
+    nav_title: "監査ログと可視化"
+    aliases: ["Compliance API", "利用状況の記録", "Analytics API"]
+    type: feature
+    level: 仕組みにする
+    level_evidence: "組織に配った後、使われ方を記録して見る段階（registry の見当の回すから改めた）"
+    priority: 任意
+    surfaces: [claude-code, app]
+    principle: [確かめる]
+    prevents: [確かめていない, 境界がない]
+    pitfalls: []
+    scenes: [チーム]
+    summary: "組織での Claude の使われ方を、監査ログ・OpenTelemetry・使用量の集計で記録して見られる。何が記録され、何が記録されないかを先に確かめる。"
+    signs:
+      - {type: goal, text: "社内で Claude がどう使われているか、記録して見たい"}
+      - {type: situation, text: "監査のために、AI の利用の記録を求められた"}
+    prerequisites: [org-managed-settings-and-mcp]
+    related: [where-your-data-goes, disclosure-and-provenance, enterprise-vs-team-plans, "what-uses-up-limits#find-what-uses-it", insights-and-usage-review, via-cloud-providers, managed-settings-enforcement]
+    tracks: [otel-telemetry, usage-analytics-api, plans]
+    volatility: 中
+    sections:
+      - {title: "記録されるもの、されないもの", anchor: what-is-recorded}
+      - {title: "管理していない端末", anchor: unmanaged-devices}
+    materials: ["00 §3 分野17「監査ログと可視化（OpenTelemetry など）」", "04 Q3 社内導入（OpenTelemetry の記録の範囲：プロンプト本文とコマンドは opt-in、チャットと Cowork は対象外、管理していない端末では回避できる）", "01 M-1（組織向けの分析と spend limit）", "02 1-18（監査ログ・Compliance API・Analytics API）", "research/22 #39（Usage and Cost Analytics API）"]
+    notes: "level を registry の見当（回す）から仕組みにするに改めた（組織に広げて常設化した後に要る）。記録の範囲は面とプランと版で変わるので、確認日付きで書く。プロンプトの本文を記録するかは、預かったデータの扱い（safety の where-your-data-goes）と合わせて決める"
+
+  - id: via-cloud-providers
+    chapter: 管理と契約
+    title: "Bedrock・Vertex AI・Foundry 経由で使う"
+    nav_title: "クラウドの提供元経由で使う"
+    aliases: ["Amazon Bedrock", "Google Cloud Vertex AI", "Microsoft Foundry", "クラウドの提供元"]
+    type: feature
+    level: 仕組みにする
+    level_evidence: "組織の契約の中で使う構成を決める段階（registry の見当の回すから改めた）"
+    priority: 任意
+    surfaces: [claude-code, api]
+    principle: [縛る]
+    prevents: [合っていない]
+    pitfalls: []
+    scenes: [チーム, 開発]
+    summary: "Bedrock・Vertex AI・Foundry 経由で Claude Code を使い、組織のクラウドの契約と統制の中で動かせる。claude.ai の管理コンソールが使えないので、設定の配り方と使える機能の違いを先に確かめる。"
+    signs:
+      - {type: situation, text: "会社の AWS や Google Cloud の契約の中で Claude を使う"}
+      - {type: symptom, text: "Bedrock 経由だと、使えない機能がある"}
+    prerequisites: [check-billing-path]
+    related: [org-managed-settings-and-mcp, enterprise-vs-team-plans, audit-logs-and-telemetry, what-each-surface-cannot-do, where-your-data-goes, managed-settings-enforcement, github-actions-with-claude]
+    tracks: [cloud-providers, managed-settings]
+    volatility: 中
+    materials: ["00 §3 分野17「Bedrock・Vertex・Foundry 経由で使う」", "04 Q3 社内導入（Bedrock 経由の統制：管理コンソールが使えない）", "research/23 #9（ultrathink のターンの引き上げは Bedrock などでは効かない）", "research/26 §3.8（認証の優先の順）・§3.11（プランの API credits は Bedrock などには使えない）", "research/22 #15（idle compaction の対象の広がり）"]
+    notes: "level を registry の見当（回す）から仕組みにするに改めた（組織の構成を決める段階で要る）。提供元ごとの機能の違いは版で変わるので数値ファイルの表から。機能の id がないので new_features に cloud-providers を足した"
+merged: []
+dropped: []
+open_issues:
+  - "決定（11 の新「チームで使う意味（個人＋AI と チーム＋AI）」は足さない）：根拠の行 p56#52 は1件だけで、【2026-11-03 注記】（P&G の実験の人数 791 人と、SSRN の要旨の 776 人の食い違い）が付く。さらに research/24 B-43 は、行の中心の「上位10%の解が約3倍」が要旨になく確かめていないとする。catalog/README §4.5 の5により summary と signs の根拠にできず、研究の紹介だけのページになる（design §4.1 の5）。チームで AI を使う意味の判断は、curb-sycophancy-and-overtrust（人どうしの批評）・ideate-independently（独立の案出し）・separate-roles（役割）が持つ。研究は、論文の本文で人数と数値を確かめてから、これらのページの根拠の候補にする"
+  - "提案（cost・C2）：choosing-a-plan の related に enterprise-vs-team-plans を足してほしい（個人のプランと組織のプランの境目）"
+  - "取り込み済み（2026-11-04 に確かめた）：verify の independent-review・instructing-reviewers・diffs-humans-must-read、eval の experiment-log、context の progress-files、cli の settings-layers・cloud-sessions-and-teleport、app の shared-projects-and-org-skills、enforce の managed-settings-enforcement は org-managed-settings-and-mcp#delivery を指し、境界（enforce は設定のキーと強制、team は配る経路・グループごとの設定・MCP の許可）が合っている。safety の approval-fatigue・checking-ai-rules、judgment の agreement-is-not-evidence・ai-ideas-are-everyones・think-before-asking・retros-without-ai-verdicts・postmortems、extend の plugins-and-marketplaces・what-to-put-in-claude-md、recipes の create-and-review-prs、contest の long-team-competitions（separate-roles を前提）、start の four-principles（ai-amplifies-organizations）は、team のページをすでに指している"
+new_features:
+  - {id: team-onboarding, title: "/team-onboarding（利用履歴からチーム向けの立ち上げの手引きを作る）", note: "research/01 D-1・4-1（追加の時期は不明）"}
+  - {id: otel-telemetry, title: "OpenTelemetry による利用の記録（Claude Code）", note: "research/04 Q3（記録の範囲。プロンプト本文とコマンドは opt-in）、research/01 M-1"}
+  - {id: usage-analytics-api, title: "Usage and Cost Analytics API（組織の使用量と費用の集計）", note: "research/22 #39（beta、2026-10-29）。前の Usage and Cost API は legacy"}
+  - {id: cloud-providers, title: "Bedrock・Vertex AI・Foundry 経由の利用", note: "使える機能が面で違う（research/23 #9 の ultrathink など）。プランの API credits は使えない（research/26 §3.11）"}

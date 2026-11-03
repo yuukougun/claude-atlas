@@ -1,0 +1,650 @@
+# 分野 12 safety（安全とデータ）の目次。工程3 C7（2026-11-04）。
+# 形式は planning/catalog/README.md §3、規則は §4。語彙は schema/site.yml。
+# 安全の既定は decisions 2026-11-03「安全の既定の勧め方」に従う（公式の既定の auto モードを基準に限界を書き、比例則で段階ごとの既定を示す。
+# 任せる段階からはサンドボックスと秘密の読み取りの禁止、無人の実行は使い捨ての環境、預かったデータは契約のある面だけ）。
+# 攻撃の手口は型と仕組みまで、無害な再現だけ（方針 B1）。安全とデータの雛形はすべて safety: true（方針 B2）。法令の解釈と社内規則の回避は書かない。
+field: safety
+chapters: [既定と承認, データの扱い, 悪意ある入力, 秘密と壊す操作, 規則と開示]
+pages:
+
+  # ---------------------------------------------------------------- 既定と承認
+  - id: default-safety-settings
+    chapter: 既定と承認
+    title: 安全の早見表（面ごとの既定と、段階ごとに足すもの）
+    nav_title: 安全の早見表
+    aliases: [安全の既定, 安全の設定の早見表, 最低限の安全の設定]
+    type: comparison
+    level: 整える
+    level_evidence: "自分の使い方を整える段階で面ごとの既定を知り、次の段階で足すものを見通す（00 でも L2）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [縛る, 握る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発, チーム]
+    summary: "アプリ・Claude Code・API の、権限・通信・データ・記録の既定を並べて比べられる。公式の既定を基準に、任せる段階ごとに足す設定が分かる。"
+    signs:
+      - {type: goal, text: "安全のために、最低限どこまで設定すればよいか知りたい"}
+      - {type: goal, text: "アプリと Claude Code で、既定の安全の設定がどう違うか知りたい"}
+      - {type: situation, text: "Claude に任せる範囲を広げようとしている"}
+    prerequisites: [where-your-data-goes, permission-modes-overview]
+    related: [what-auto-mode-stops, sandboxing, protecting-secrets, where-bypass-is-ok, entrusted-data, lethal-trifecta, approval-fatigue, permission-modes-in-the-app, four-principles, five-questions-before-delegating, headless-basics, incognito-chats]
+    tracks: [permission-modes, auto-mode, sandbox, incognito, app-memory]
+    volatility: 高
+    sections:
+      - {title: "面ごとの既定（生成の表）", anchor: defaults-by-surface}
+      - {title: "段階ごとに足すもの", anchor: by-stage}
+      - {title: "公式の既定の限界", anchor: limits}
+    visual: {kind: static, text: "委任の段階（使う → 回す）ごとに足す安全の設定を積み上げた図。基準は公式の既定（auto モード）、任せるからサンドボックスと秘密の読み取りの禁止、回すで使い捨ての環境、全段で預かったデータは契約のある面だけ"}
+    materials:
+      - "00 §3 分野11（安全の早見表）"
+      - "decisions 2026-11-03「安全の既定の勧め方」"
+      - "design §6.6（安全の既定の書き方）・§9.4（安全の既定が変わる更新は作者が承認）"
+      - "research/23 F2-a・F2-b・§3.3（auto モードの既定化の経緯）"
+      - "02 §1（アプリの権限モードの既定）"
+      - "11 第2節 分野11 p34#201（信頼できない内容についての公式の4つの勧め）"
+      - "research/26 §3.12（学習と保持）"
+    notes: "題名に段階ごとの勧めを足した（decisions 2026-11-03「安全の既定の勧め方」を受け持つページにした）。面ごとの既定の表は数値ファイルから生成し、確認日を付ける。段階ごとの勧め（節 by-stage）は教材の推奨で安全の既定なので、変えるときは作者の承認が要る（design §9.4）。法令の解釈と社内規則の回避は書かない。安全を保証するものではないことは、サイトの注意書き（decisions 2026-11-03 の方針7）とそろえる"
+
+  - id: approval-fatigue
+    chapter: 既定と承認
+    title: 承認疲れ
+    aliases: [approval fatigue, 確認を読まずに押す, 承認のしすぎ]
+    type: judgment
+    level: 整える
+    level_evidence: "確認のたびに承認しながら使い方を整える段階で出会う（00 でも L2）"
+    priority: 推奨
+    surfaces: [claude-code, app]
+    principle: [握る, 縛る]
+    prevents: [境界がない]
+    pitfalls: [預けすぎる]
+    scenes: [開発]
+    summary: "確認が多いと中身を読まずに承認するようになり、確認が安全の仕組みとして働かなくなる理由が分かる。確認を auto モード・許可ルール・サンドボックスで減らし、残す確認を絞れる。"
+    signs:
+      - {type: symptom, text: "確認のボタンを、読まずに押している"}
+      - {type: symptom, text: "確認が多すぎて、席を外すと作業が止まっている"}
+    prerequisites: [permission-modes-overview]
+    related: [what-auto-mode-stops, permission-rules, sandboxing, wrong-amount-of-approvals, keeps-stopping, over-reliance, review-bottlenecks, permission-modes-in-the-app, default-safety-settings]
+    tracks: [auto-mode, permission-modes]
+    outdated_advice: [approve-everything-first]
+    volatility: 中
+    sections:
+      - {title: "なぜ読まなくなるか", anchor: why}
+      - {title: "確認を減らす順番", anchor: reduce-prompts}
+      - {title: "残す確認を選ぶ", anchor: keep-prompts}
+    materials:
+      - "00 §3 分野11（承認疲れ）"
+      - "00 §4 安全の困りごと（確認ボタンを読まずに押している）"
+      - "05 1-10"
+      - "research/23 F2-c・§3.3（承認の割合の公式の値は二つの記事で時期とデータが違う。人は長いセッションほど止めなくなった）"
+    notes: "型を registry の concept から judgment にした：人の側の慣れで確認が働かなくなる話で、判断例（どの確認を残すか）と握るものが本体になるため（人の側の落とし穴の「預けすぎる」に当たる）。00 の「93% が承認されている」は、97% も公式の値で、時期とデータが違う（00 §7 の注記、research/23 F2-c）。どちらも測った期間と母集団の説明がない。数値は数値ファイルに出典の日付付きで置き、要約とサインに書かない。05 1-10 の「headless ではプロセスが終了する」は注記付きで使わない"
+
+  - id: where-bypass-is-ok
+    chapter: 既定と承認
+    title: bypassPermissions と無人の実行はどこで動かすか
+    aliases: ["--dangerously-skip-permissions", YOLO モード, 全許可モード, 使い捨ての環境, bypassPermissions はどこで使ってよいか]
+    type: concept
+    level: 仕組みにする
+    level_evidence: "確認を外す・無人で動かすことを考え始める段階（仕組みにする）で最初に要り、回すのページの前提になる（00 でも L4）"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [縛る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "確認をすべて外すモードや無人の実行を、隔離した使い捨ての環境だけで動かす理由と、その環境の条件が分かる。確認を減らすだけなら、先に auto モードとサンドボックスを使う。"
+    signs:
+      - {type: goal, text: "--dangerously-skip-permissions で、確認なしに走らせたい"}
+      - {type: situation, text: "夜間や CI で、人が見ていない間に Claude を動かす"}
+    prerequisites: [what-auto-mode-stops, sandboxing]
+    related: [headless-basics, five-questions-before-delegating, managed-settings-enforcement, protected-paths, before-opening-unknown-repos, github-actions-with-claude, cloud-sessions-and-teleport, checking-unattended-runs, destructive-commands, cloud-schedules, default-safety-settings]
+    tracks: [permission-modes, headless, cloud-sessions]
+    outdated_advice: [yolo-skip-permissions]
+    volatility: 中
+    sections:
+      - {title: "なぜ隔離した環境だけか", anchor: why-isolate}
+      - {title: "使い捨ての環境の条件", anchor: requirements}
+      - {title: "書き込みを作業ディレクトリに閉じても代わりにならない", anchor: not-a-substitute}
+    templates:
+      - {name: "使い捨てのコンテナで無人の実行を動かす手順の例", kind: other, safety: true}
+    materials:
+      - "00 §3 分野11（bypassPermissions はどこで使ってよいか）"
+      - "00 §5 台帳（--dangerously-skip-permissions で YOLO 運用）"
+      - "01 C-1（公式の警告：prompt injection にも意図しない操作にも保護がない、root では起動しない）"
+      - "11 第2節 分野11 p34#198・p34#212"
+      - "research/22 §3.4（作業ディレクトリの外への書き込みを閉じる設定は、bypass でも効くがシェルは止めない）"
+      - "05 4-8（クラウドセッションは隔離した VM）"
+      - "02 §1-15（取り消しにくい操作を予定のタスクにしない）"
+      - "decisions 2026-11-03「安全の既定の勧め方」（無人の実行は使い捨ての環境）"
+    notes: "題名を registry の「bypassPermissions はどこで使ってよいか」から、無人の実行も含む題名に改めた（旧題は aliases に残した）。decisions 2026-11-03「安全の既定の勧め方」の「無人の実行は使い捨ての環境」を受け持つ。優先度を推奨から必須に上げた：安全の既定は初版に入れ、delegate の回すのページ（headless-basics など）の比例則の受け皿になるため。bypass を組織で使えなくする設定は enforce の managed-settings-enforcement。安全装置を外す近道は勧めない（requirements §6.3）"
+
+  # ---------------------------------------------------------------- データの扱い
+  - id: where-your-data-goes
+    chapter: データの扱い
+    title: 送ったデータの行方（学習・保持期間）
+    aliases: [学習に使われるか, データの保持期間, Help improve our AI models, オプトアウト]
+    type: concept
+    level: 使う
+    level_evidence: "対話で使い始めた時点で、送った内容が学習に使われるかと、どれだけ残るかを知る必要がある（00 でも L1）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [握る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発, 文章, チーム]
+    summary: "送った会話やコードが学習に使われる条件と残る期間を、個人のプランと商用のプランに分けて確かめられる。手元に残る記録は、これとは別に考える。"
+    signs:
+      - {type: goal, text: "入力した内容が学習に使われるか知りたい"}
+      - {type: goal, text: "記録を残さずに相談したい"}
+      - {type: symptom, text: "会話を消したのに、まだどこかに残っていないか不安"}
+    prerequisites: []
+    related: [incognito-chats, what-feedback-sends, entrusted-data, shared-artifacts-and-files, default-safety-settings, how-memory-works, memory-faq, when-requests-are-refused, enterprise-vs-team-plans, data-analysis, office-paperwork, check-billing-path]
+    tracks: [incognito, app-memory]
+    volatility: 中
+    sections:
+      - {title: "個人のプランと商用のプラン", anchor: consumer-vs-commercial}
+      - {title: "学習への利用の設定", anchor: training-setting}
+      - {title: "残る期間", anchor: retention}
+      - {title: "手元に残る記録", anchor: local-transcripts}
+    materials:
+      - "00 §3 分野11（送ったデータの行方）"
+      - "00 §4 会話と文脈の困りごと（記録を残さずに相談したい・会話を消したのに覚えている）・安全の困りごと（学習に使われるか）"
+      - "05 4-6・4-7"
+      - "research/26 #23〜#26・§3.12"
+      - "11 第2節 分野11 p34#207・p34#215"
+      - "research/22 #40（API の message threads は ZDR の対象外）"
+    notes: "保持の期間とプランの名前は数値ファイルに置く（2026-10-30 に旧 Max 20x が Ultra に改名された。11 第2節の注記、research/22 #32）。「30日」は消した会話がバックエンドから消えるまでの期間と書く（Privacy Center の書き方。research/26 §3.12）。違反と判定された会話は長く残る点を、when-requests-are-refused と結ぶ。学校が配るアカウントの扱いは未確認（11 p34#215）。Memory の困りごと（消したのに覚えている）の本体は app の memory-faq"
+
+  - id: what-feedback-sends
+    chapter: データの扱い
+    title: /feedback・トランスクリプトの共有で送られるもの
+    aliases: ["/feedback", "/bug", "/share", transcript の共有, フィードバックで送られるもの, テレメトリ]
+    type: feature
+    level: 整える
+    level_evidence: "不具合の報告や、セッションの評価の依頼に答える前に要る（00 でも L2）"
+    priority: 推奨
+    surfaces: [claude-code, app]
+    principle: [握る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "/feedback やトランスクリプトの共有に応じると、会話とコードが送られて長く残ることを知り、送る前に中身を選べる。/share は共有のリンクを作る機能ではない。"
+    signs:
+      - {type: situation, text: "不具合を /feedback で報告しようとしている"}
+      - {type: situation, text: "セッションの評価の後に、トランスクリプトを共有するか聞かれた"}
+    prerequisites: [where-your-data-goes]
+    related: [protecting-secrets, shared-artifacts-and-files, entrusted-data, default-safety-settings, audit-logs-and-telemetry]
+    tracks: [feedback]
+    volatility: 中
+    sections:
+      - {title: "送られるものと残る期間", anchor: what-is-sent}
+      - {title: "/share は共有のリンクではない", anchor: share-is-bug}
+      - {title: "テレメトリと報告の機能を止める", anchor: telemetry}
+    materials:
+      - "00 §3 分野11（/feedback・transcript 共有で送られるもの）"
+      - "05 4-6・4-7"
+      - "research/26 #25・§3.2・§3.12"
+    notes: "保持の期間は数値ファイルに置く。アプリの評価（👍👎）とバグの報告も同じ扱いで残る（research/26 §3.12）。tracks の feedback は new_features に提案した"
+
+  - id: shared-artifacts-and-files
+    chapter: データの扱い
+    title: 共有リンクと公開アーティファクトの扱い
+    aliases: [会話の共有, 公開リンク, 公開された artifact, 共有の取り消し, 公開された artifact とファイルの扱い]
+    type: concept
+    level: 整える
+    level_evidence: "会話や成果物を人に渡し始める段階で最初に要る（00 でも L2）"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [握る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [文章, チーム, コンテスト]
+    summary: "会話やアーティファクトの公開リンクで、何が誰に見えるか、取り消して消えるものと消えないものが分かる。他人が公開したものは、知らない送り主から届いたファイルと同じに疑う。"
+    signs:
+      - {type: goal, text: "会話やアーティファクトを人に見せたい"}
+      - {type: symptom, text: "共有したリンクに、見せたくない内容が入っていた"}
+      - {type: situation, text: "他人が公開したアーティファクトを開こうとしている"}
+    prerequisites: [artifacts-overview]
+    related: [where-your-data-goes, what-feedback-sends, entrusted-data, prompt-injection-in-practice, artifacts-as-apps, competition-day-operations]
+    tracks: [artifacts, chat-sharing]
+    volatility: 中
+    sections:
+      - {title: "共有されるもの（その時点の写し）", anchor: snapshot}
+      - {title: "見られる人と、プランによる違い", anchor: who-can-see}
+      - {title: "取り消せるもの・取り消せないもの", anchor: revoke}
+      - {title: "他人が公開したものを開くとき", anchor: opening-others}
+    materials:
+      - "00 §3 分野11（公開された artifact とファイルの扱い）"
+      - "research/26 #4・#25・§3.2"
+      - "11 第1節 分野11 p34#214（競技中は private のリポジトリ・共有リンクの無効化・公開ページへの出力の禁止）"
+    notes: "題名を registry の「公開された artifact とファイルの扱い」から、共有する側も含む題名に改めた（旧題は aliases に残した）。research/26 §3.2 で会話の共有の仕様（写し・招待と公開リンク・取り消し・消せない写し）が確かめられ、app の分野に共有のページがないため。優先度を任意から推奨に上げた：公式も「公開リンクは公開したものとして扱う」と勧める流出の経路で、読者が日常的に触れるため。プランごとの共有の可否は数値ファイルに置く。tracks の chat-sharing は new_features に提案した"
+
+  - id: entrusted-data
+    chapter: データの扱い
+    title: 預かったデータ・規約付きのデータを AI に渡してよいか
+    aliases: [機密のデータを AI に渡す, NDA のデータ, 顧客のデータ, コンペのデータの規約, 社外秘の資料]
+    type: concept
+    level: 整える
+    level_evidence: "仕事の資料やデータを渡して頼み始める段階（整える）で最初に要る"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [握る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発, データ分析, チーム, コンテスト]
+    summary: "顧客のデータや、NDA・規約の付いたデータを、どの面なら渡してよいかを判断できる。預かったデータは、契約で扱いが決まっている面だけで使う。"
+    signs:
+      - {type: situation, text: "顧客から預かったデータを分析させたい"}
+      - {type: situation, text: "コンペのデータを、クラウドで動くエージェントに読ませようとしている"}
+      - {type: goal, text: "社外秘の資料を AI に渡してよいか確かめたい"}
+    prerequisites: [where-your-data-goes]
+    related: [checking-ai-rules, default-safety-settings, protecting-secrets, where-it-runs, ai-usage-guidelines, via-cloud-providers, enterprise-vs-team-plans, data-analysis, office-paperwork, cloud-sessions-and-teleport]
+    volatility: 中
+    sections:
+      - {title: "誰のデータで、何が決まっているか", anchor: whose-data}
+      - {title: "契約のある面だけで使う", anchor: contracted-surfaces}
+      - {title: "クラウドで動く作業に気をつける", anchor: cloud-runs}
+    materials:
+      - "11 第1節 分野11 p34#208（コンペのデータをクラウドのエージェントに送ることがデータ規約に抵触しうる。業務の NDA や第三者のデータに一般化。類推・版依存）"
+      - "05 4-7・4-8"
+      - "research/26 §3.12（商用の規約の側は、顧客が明示して提供しない限り学習に使わない）"
+      - "02 §1（アプリのタスクはクラウドで実行される）"
+      - "decisions 2026-11-03「安全の既定の勧め方」（預かったデータは契約のある面だけ）"
+    notes: "優先度を registry の推奨から必須に上げた：decisions 2026-11-03「安全の既定の勧め方」の「預かったデータは契約のある面だけ」を受け持つページで、安全の既定は初版に入れるため。法令の解釈（個人情報の保護の法令などへの当てはめ）と社内規則の回避は書かない（同じ節）。具体的な契約の条項は確かめていないので、確かめる観点と確認先だけを書く"
+
+  # ---------------------------------------------------------------- 悪意ある入力
+  - id: prompt-injection-in-practice
+    chapter: 悪意ある入力
+    title: プロンプトインジェクションの実際
+    aliases: [prompt injection, 間接プロンプトインジェクション, tool poisoning, 仕込まれた指示]
+    type: concept
+    level: 整える
+    level_evidence: "Web ページ・ファイル・issue などを読ませ始める段階で最初に要る（00 でも L2）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [縛る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発, 調べもの]
+    summary: "読ませた Web ページ・ファイル・issue・道具の説明に仕込まれた指示に、Claude が従ってしまう経路と型が分かる。防ぐ手立ては、モデルの賢さではなく、持たせる権限と通信の組み合わせの側にある。"
+    signs:
+      - {type: situation, text: "Web ページやメールを読ませるのが不安"}
+      - {type: symptom, text: "読ませた資料の中の指示どおりに Claude が動いた"}
+      - {type: goal, text: "外部の資料を、安全に読ませたい"}
+    prerequisites: [data-vs-instructions]
+    related: [lethal-trifecta, instructions-hidden-in-materials, vetting-extensions, before-opening-unknown-repos, browser-agent-cautions, what-auto-mode-stops, sandboxing, connectors-in-the-app, connecting-mcp]
+    tracks: [mcp, connectors, web-search]
+    volatility: 中
+    sections:
+      - {title: "指示が入ってくる経路", anchor: channels}
+      - {title: "よくある型（無害な再現）", anchor: patterns}
+      - {title: "検出に頼れない理由", anchor: why-detection-fails}
+    templates:
+      - {name: "仕込まれた指示の無害な再現（送信・削除・秘密の読み取りを伴わない）", kind: other, safety: true}
+    visual: {kind: static, text: "信頼できない入力が、読み込み → 判断 → 道具の呼び出しへ流れる経路の図"}
+    materials:
+      - "00 §3 分野11（prompt injection の実際）"
+      - "00 §4 安全の困りごと（Web ページやメールを読ませるのが不安）"
+      - "05 4-1・4-3・4-4"
+      - "11 第2節 分野11 p34#197・p34#216"
+      - "research/22 #9（アカウントのメールアドレスを送る前の確認）"
+    notes: "攻撃の手口は型と仕組みまでにし、送信・削除・秘密の読み取りを伴わない無害な再現だけを載せる。回避の手順は書かない。文書にない回避の方法を見つけたら、公開より先に Anthropic に報告する（decisions 2026-11-03 の方針 B1）。11 第2節 p34#200 の数値は未確認で、人の側は標本が小さい（11 第4節 #39）ので、要約とサインの根拠にしない。05 4-3 の調査の割合は二次引用で原典未確認。事例の報告者の個人名は出さない。原理の本体は basics の data-vs-instructions"
+
+  - id: instructions-hidden-in-materials
+    chapter: 悪意ある入力
+    title: 課題資料・問題文に仕込まれた指示
+    aliases: [AI 向けの隠し指示, 問題文のプロンプトインジェクション, 資料に埋め込まれた指示]
+    type: concept
+    level: 整える
+    level_evidence: "受け取った資料をそのまま読ませ始める段階（整える）で最初に出会う"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [握る, 縛る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [学習, コンテスト, 文章, チーム]
+    summary: "課題の資料や問題文、受け取った文書に AI 向けの指示が仕込まれていたときに、何が起きているかと扱い方を判断できる。AI の利用を禁じる合図なら、規則に従う。"
+    signs:
+      - {type: symptom, text: "資料を読ませたら、頼んでいない指示に従った答えが返ってきた"}
+      - {type: situation, text: "課題や問題文の PDF を、AI に読ませようとしている"}
+    prerequisites: [prompt-injection-in-practice]
+    related: [checking-ai-rules, disclosure-and-provenance, practice-vs-contest-day, competition-rules, data-vs-instructions, lethal-trifecta]
+    volatility: 中
+    sections:
+      - {title: "仕込まれる指示の二つの型（攻撃と、利用の規則の合図）", anchor: two-kinds}
+      - {title: "規則を先に確かめる", anchor: check-rules}
+      - {title: "資料をデータとして扱う", anchor: treat-as-data}
+    materials:
+      - "11 第1節 分野11 p34#203（問題の PDF に AI 向けの誘導文が仕込まれていた例。業務で受け取る資料に一般化。類推）"
+      - "11 第2節 分野11 p34#197・p34#216（問題ファイルは信頼できない入力として扱い、モデルの出力をシェルで自動実行しない）"
+      - "decisions 2026-11-03 の方針 B1"
+    notes: "AI を禁じる課題の隠し指示を外す方法は書かない（decisions 2026-11-03 の方針 B1）。仕込んだ側（出題者・主催者）を否定的に扱わない。大会の名前を本文の例に出すなら一次資料で確かめる。prompt-injection-in-practice と重なるが、利用の規則の合図という型と「規則を先に確かめる」判断が固有なので、別のページにした"
+
+  - id: lethal-trifecta
+    chapter: 悪意ある入力
+    title: 三つを同時に持たせない（lethal trifecta と Rule of Two）
+    nav_title: 三つを同時に持たせない
+    aliases: [lethal trifecta, Rule of Two, Agents Rule of Two, 最小権限]
+    type: concept
+    level: 任せる
+    level_evidence: "道具とコネクタを持たせて任せる構成を決める段階で最初に要る（00 でも L3）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [縛る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発, 調べもの, チーム]
+    summary: "信頼できない入力・秘密や私的なデータ・外への送信や変更の三つを一つの構成に同時に持たせないことで、仕込まれた指示が被害につながる経路を断てる。三つとも要る作業には人の承認を挟む。"
+    signs:
+      - {type: goal, text: "メールや Web を読ませつつ、社内のデータにもつなぎたい"}
+      - {type: situation, text: "コネクタや MCP を増やして、何でもできる構成になっている"}
+    prerequisites: [prompt-injection-in-practice]
+    related: [vetting-extensions, browser-agent-cautions, sandboxing, protecting-secrets, what-auto-mode-stops, default-safety-settings, permission-modes-in-the-app, connectors-in-the-app, connecting-mcp, five-questions-before-delegating, tasks-and-schedules-in-the-app]
+    volatility: 低
+    sections:
+      - {title: "三つの能力", anchor: three-capabilities}
+      - {title: "面ごとの当てはめ", anchor: by-surface}
+      - {title: "三つとも要るとき", anchor: when-all-three}
+    visual: {kind: static, text: "三つの能力（信頼できない入力・私的なデータ・外への送信や変更）の三つ巴の図と、どれか一つを外した構成の例"}
+    materials:
+      - "00 §3 分野11（三つを同時に持たせない）"
+      - "00 §6（Rule of Two の三つ巴の図）"
+      - "05 4-2・4-3（最小権限の例）"
+      - "02 §1-15（アプリの安全の指針の二条件：信頼境界の外の情報を読める・被害につながる行動ができる）"
+      - "research/22 #27（予定のタスクに頼んでいないコネクタが付いたときの警告）"
+    notes: "アプリの安全の指針の二条件との対応を節 by-surface に書く。研究者の個人名は、出典の表記として以外は出さない"
+
+  - id: before-opening-unknown-repos
+    chapter: 悪意ある入力
+    title: 知らないリポジトリを開く前に
+    aliases: [clone したリポジトリの確認, workspace trust, 信頼のダイアログ, 設定ファイルもコードとして扱う]
+    type: recipe
+    level: 任せる
+    level_evidence: "他人のコードを Claude に読ませて作業を任せる段階で最初に要る（00 でも L3）"
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [縛る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発, コンテスト]
+    summary: "知らないリポジトリを Claude Code で開く前に、設定・フック・MCP の定義など、開くだけで動きうるものを確かめられる。信頼の確認が出ない非対話の実行は、隔離した環境で動かす。"
+    signs:
+      - {type: situation, text: "知らない人のリポジトリを開きたい"}
+      - {type: situation, text: "配られたコードや README の手順を、Claude に実行させたい"}
+    prerequisites: [prompt-injection-in-practice, permission-rules]
+    related: [vetting-extensions, writing-safe-hooks, hooks-basics, sandboxing, where-bypass-is-ok, protecting-secrets, explore-a-codebase, headless-basics, cloud-sessions-and-teleport]
+    tracks: [settings, hooks, mcp]
+    volatility: 中
+    sections:
+      - {title: "開く前に見るファイル", anchor: files-to-check}
+      - {title: "信頼の前と後で効くもの", anchor: trust}
+      - {title: "非対話の実行では確認が出ない", anchor: headless}
+      - {title: "隔離して動かす", anchor: isolate}
+    templates:
+      - {name: "開く前の確認の手順（チェックリスト）", kind: other, safety: true}
+    materials:
+      - "00 §3 分野11（知らないリポジトリを開く前に）"
+      - "00 §4 安全の困りごと（知らない人のリポジトリを開きたい）"
+      - "05 4-3（プロジェクトの設定ファイル経由の事例。どれも修正済み）・4-5（信頼の確認）"
+      - "11 第2節 分野11 p34#200・p34#210・p34#213"
+      - "research/28 #19・#30"
+    notes: "攻撃の手口は型と仕組みまでにし、無害な再現だけを載せる（decisions 2026-11-03 の方針 B1）。事例は修正済みであることと時期を添える（05 4-3）。11 p34#200 の数値は未確認（11 第4節 #39）なので要約とサインの根拠にしない。工程2の事実：-p は信頼のダイアログを出さず、設定ファイルのフック・env と .mcp.json のサーバーが承認なしに使われる一方、プロジェクトの permissions.allow は使われない（research/28 #30）。対話では信頼を受け入れるまでフックは走らず、deny は信頼の前から効く（#19）"
+
+  - id: vetting-extensions
+    chapter: 悪意ある入力
+    title: MCP・プラグイン・スキルを入れる前の確認
+    aliases: [MCP サーバーの安全, tool poisoning, rug pull, プラグインの確認, スキルの確認, MCP・plugins・skills を入れる前の確認]
+    type: recipe
+    level: 任せる
+    level_evidence: "道具を足して任せる範囲を広げる段階で最初に要る（00 でも L3）"
+    priority: 必須
+    surfaces: [claude-code, app]
+    principle: [縛る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発, チーム]
+    summary: "MCP サーバー・プラグイン・スキルを入れる前に、出所・持つ権限・道具の説明の中身を確かめられる。入れたものは利用者の権限でコードを動かし、後から中身が変わることもある。"
+    signs:
+      - {type: situation, text: "便利そうな MCP やプラグインを見つけた"}
+      - {type: goal, text: "入れた拡張が安全かを確かめたい"}
+    prerequisites: [prompt-injection-in-practice, connecting-mcp]
+    related: [lethal-trifecta, plugins-and-marketplaces, choosing-mcp-servers, connectors-in-the-app, plugins-in-the-app, skills-in-the-app, writing-safe-hooks, pruning-extensions, org-managed-settings-and-mcp]
+    tracks: [mcp, plugins, marketplaces, skills, connectors]
+    volatility: 中
+    sections:
+      - {title: "出所を確かめる", anchor: provenance}
+      - {title: "中身を読む（道具の説明・フック・スクリプト）", anchor: read-contents}
+      - {title: "入れた後に変わる（rug pull）", anchor: changes-after-install}
+    templates:
+      - {name: "入れる前の確認表", kind: other, safety: true}
+    materials:
+      - "00 §3 分野11（MCP・plugins・skills を入れる前の確認）"
+      - "00 §4 安全の困りごと（便利そうな MCP や plugin を見つけた）"
+      - "05 4-3・4-4"
+      - "11 第2節 分野11 p34#202"
+    notes: "tool poisoning・rug pull などの手口は型と仕組みまでにする（decisions 2026-11-03 の方針 B1）。Anthropic は MCP サーバーのセキュリティの監査をしていない（05 4-4、11 p34#202）。05 4-3 の調査の割合は二次引用で原典未確認なので使わない。第三者のサーバーやプラグインは例として名前を出すだけにし、推薦しない（D13）"
+
+  - id: browser-agent-cautions
+    chapter: 悪意ある入力
+    title: ブラウザや画面の操作を任せるときの注意
+    aliases: [Claude in Chrome の注意, Computer use の注意, ブラウザ操作の安全, Chrome・computer use・ブラウザでの注意]
+    type: concept
+    level: 整える
+    level_evidence: "ブラウザで画面を確かめさせ始める段階（整える）で最初に触れる（00 でも L2）"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [縛る]
+    prevents: [境界がない]
+    pitfalls: []
+    scenes: [開発, 調べもの]
+    summary: "ブラウザや画面の操作を Claude に任せるとき、ログイン済みのサイトや開いているアプリまで届くことを踏まえて、任せる範囲を決められる。機微な情報に触れる作業には使わない。"
+    signs:
+      - {type: situation, text: "Claude in Chrome で作業を任せようとしている"}
+      - {type: goal, text: "画面の操作を任せても大丈夫な作業を見分けたい"}
+    prerequisites: [prompt-injection-in-practice]
+    related: [browser-control, lethal-trifecta, visual-checks, default-safety-settings]
+    tracks: [claude-in-chrome, computer-use]
+    volatility: 高
+    sections:
+      - {title: "届く範囲（ログイン済みのサイト・開いているアプリ）", anchor: reach}
+      - {title: "任せない作業", anchor: what-not-to-do}
+    materials:
+      - "00 §3 分野11（Chrome・computer use・ブラウザでの注意）"
+      - "02 §1-12・§1-15（公式の注意：機微な情報に使わない、Computer use とアプリの間にサンドボックスはない、銀行・医療などのアプリはオフ）"
+      - "05 4-3（ブラウザの red teaming の結果。research preview の時点）"
+    notes: "題名を、対象（ブラウザと画面の操作）が分かる形に改めた（旧題は aliases に残した）。使い方は surfaces の browser-control（screen-control をまとめた先）に任せ、ここは安全の判断だけを持つ。数値は research preview の時点のもので、使うなら時期を書く。beta の機能を含むので volatility は高"
+
+  # ---------------------------------------------------------------- 秘密と壊す操作
+  - id: protecting-secrets
+    chapter: 秘密と壊す操作
+    title: 秘密情報（.env・API キー）を守る
+    aliases: [".env を読ませない", API キーの漏洩, 認証情報を守る, 秘密の読み取りの禁止]
+    type: recipe
+    level: 任せる
+    level_evidence: "decisions 2026-11-03「安全の既定の勧め方」で、任せる段階からは秘密の読み取りの禁止を既定にする（00 でも L3）"
+    priority: 必須
+    surfaces: [claude-code, app]
+    principle: [縛る]
+    prevents: [境界がない, 縛っていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: ".env や API キー、認証情報を Claude に読ませない設定を、権限ルールとサンドボックスの二重にして作れる。会話に貼った秘密は、手元の記録に平文で残る。"
+    signs:
+      - {type: goal, text: "`.env` や API キーを、絶対に読ませたくない"}
+      - {type: symptom, text: "会話に API キーを貼ってしまった"}
+      - {type: situation, text: "認証情報のあるマシンで、Claude Code に作業を任せる"}
+    prerequisites: [permission-rules, sandboxing]
+    related: [lethal-trifecta, what-feedback-sends, where-your-data-goes, what-auto-mode-stops, hook-recipes, before-opening-unknown-repos, check-billing-path, default-safety-settings]
+    tracks: [permissions, sandbox]
+    volatility: 中
+    sections:
+      - {title: "秘密を作業ディレクトリに置かない", anchor: keep-out}
+      - {title: "権限ルールとサンドボックスの二重にする", anchor: two-layers}
+      - {title: "貼ってしまったとき", anchor: if-leaked}
+    templates:
+      - {name: "秘密の読み取りを権限ルールとサンドボックスで拒む設定の例", kind: settings, safety: true}
+    materials:
+      - "00 §3 分野11（秘密情報を守る）"
+      - "00 §4 指示と仕組みの困りごと（.env を絶対に触らせたくない）"
+      - "05 4-6"
+      - "11 第2節 分野11 p34#211"
+      - "11 第4節 #11（deny だけで足りるとする書き方は不十分。子プロセスには効かない）"
+      - "research/23 #5"
+      - "research/28 #12・#41・#42"
+      - "research/22 #9（メールアドレスを送る前の確認）"
+      - "research/26 §3.8（環境の API キーと課金の経路）"
+    notes: "工程2の事実：Read と Edit の deny は任意の子プロセスには効かず（research/23 #5）、サンドボックスの denyRead は Read の道具を止めない（同）ので、二重にする。サンドボックスは既定でホームの秘密の場所も読める（research/28 #42）。秘密の読み取りの禁止は decisions 2026-11-03 の安全の既定。雛形は偽の秘密だけで確かめる（decisions「危ない雛形を試す場所」）。「貼ってしまったとき」は鍵の無効化など提供元の一般的な手順と、手元の記録の残り方だけを書き、法令の解釈はしない"
+
+  - id: destructive-commands
+    chapter: 秘密と壊す操作
+    title: 消されたくないもの（破壊的コマンド）
+    aliases: ["rm -rf", "git reset --hard", force push, 破壊的な操作, 取り返しのつかない操作]
+    type: concept
+    level: 任せる
+    level_evidence: "確認なしにコマンドを動かして任せ始める段階で最初に要る（00 でも L3）"
+    priority: 必須
+    surfaces: [claude-code, app]
+    principle: [縛る, 握る]
+    prevents: [境界がない, 縛っていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "取り返しのつかない削除や書き換えが起きる経路と、巻き戻しで戻らないものが分かり、消されたくないものを権限ルール・サンドボックス・バックアップで守れる。"
+    signs:
+      - {type: symptom, text: "ファイルを消された・消されそうで怖い"}
+      - {type: goal, text: "本番のデータベースやリモートのブランチに触らせたくない"}
+    prerequisites: [checkpoints-and-rewind, permission-rules]
+    related: [deleted-something-important, protected-paths, sandboxing, what-auto-mode-stops, block-with-exit-2, hook-recipes, working-with-git, where-bypass-is-ok]
+    tracks: [checkpoints, auto-mode, sandbox, permissions]
+    volatility: 中
+    sections:
+      - {title: "消える経路", anchor: how-it-happens}
+      - {title: "巻き戻しで戻らないもの", anchor: not-recoverable}
+      - {title: "確認を求めさせる頼み方と、鍵", anchor: guard}
+    templates:
+      - {name: "取り返しのつかない操作を拒むルールとフックの例", kind: settings, safety: true}
+    materials:
+      - "00 §3 分野11（消されたくないもの）"
+      - "00 §4 安全の困りごと（ファイルを消された・消されそうで怖い）"
+      - "05 1-9"
+      - "01 C-1（Critical paths）・C-5（checkpoint の限界）"
+    notes: "事例は公開の issue と公式の記事による（報告者の個人名は出さない）。auto モードの見逃しの割合は数値ファイルに置く。症状からの入口は symptoms の deleted-something-important、checkpoint の操作は cli の checkpoints-and-rewind"
+
+  # ---------------------------------------------------------------- 規則と開示
+  - id: checking-ai-rules
+    chapter: 規則と開示
+    title: 学校・組織・コンテストの規則（類型と確認表）
+    nav_title: 学校・組織・コンテストの規則
+    aliases: [AI の利用の規則, 生成 AI のガイドライン, 大会の AI のルール, 規則の確認表]
+    type: concept
+    level: 使う
+    level_evidence: "使い始める前に、所属する場の規則を確かめる必要がある（00 でも L1）"
+    priority: 必須
+    surfaces: [app, claude-code, api]
+    principle: [握る]
+    prevents: []
+    pitfalls: []
+    scenes: [学習, コンテスト, チーム]
+    summary: "学校・組織・大会の AI の規則が、禁止・部門分け・許可と開示のどの型かを見分け、確かめる点を確認表で押さえられる。規則に AI の文言がないことは、使ってよいことを意味しない。"
+    signs:
+      - {type: situation, text: "会社や学校で使ってよいか確かめたい"}
+      - {type: situation, text: "AI の利用に規則のある大会に出る"}
+      - {type: goal, text: "規則のどこを読めばよいか知りたい"}
+    prerequisites: []
+    related: [competition-rules, practice-vs-contest-day, disclosure-and-provenance, entrusted-data, ai-usage-guidelines, instructions-hidden-in-materials, where-your-data-goes, when-requests-are-refused]
+    volatility: 中
+    sections:
+      - {title: "なぜ規則が割れるか（三つの型）", anchor: why-rules-differ}
+      - {title: "確認表", anchor: checklist}
+      - {title: "文言がないとき・分からないとき", anchor: when-unclear}
+    templates:
+      - {name: "規則の確認表（AI の許可の範囲の6区分を含む）", kind: other, safety: true}
+    materials:
+      - "00 §3 分野11（学校・組織・コンテストの規則）"
+      - "00 §4 安全の困りごと（会社や学校で使ってよいか確かめたい）"
+      - "11 第1節 分野11 解説節「なぜ規則が割れるか」（p12#23・p12#29・p34#199）"
+      - "11 第2節 分野11（p12#35・p12#40・p56#121・p12#41・p12#42・p56#44・p56#108・p56#109）"
+      - "11 第5節（雛形 A-2 大会ルール確認表）"
+      - "requirements §6.5"
+      - "research/24 §2.4・P-3・P-4"
+      - "decisions 2026-11-03「大会の規則の版」・書き方の方針（第三者・根拠・コンテスト）4"
+    notes: "優先度を registry の推奨から必須に上げた：design §4.2 で contest の competition-rules（必須）と practice-vs-contest-day（必須）がこのページの確認表を前提にするため（必須の前提は必須）。個別の規則の条文の要約は載せず、版・確認日・類型・一次資料へのリンクだけを数値ファイルに置く（design §6.13）。AI の利用を断るドメインの規則は「未確認」とし、リンクだけを置く。11 第2節の注記の付いた行（長期 AHC の部門ごとの範囲・部門の選び方・終了前の解法公開の禁止）と、requirements §6.5 の「過去問の練習には適用されない」（注記あり）は根拠にしない。法令の解釈と社内規則の回避は書かない。確認表は規則とデータの雛形として safety: true にし、別の担当の確認を通ってから載せる"
+
+  - id: disclosure-and-provenance
+    chapter: 規則と開示
+    title: AI 利用の開示と出所の記録
+    aliases: [AI 利用の申告, AI を使った旨の明記, 出所の明示, フェアプレー]
+    type: concept
+    level: 整える
+    level_evidence: "成果物を人に出す段階（整える）で、AI をどこに使ったかを説明できるようにしておく"
+    priority: 推奨
+    surfaces: [app, claude-code]
+    principle: [握る]
+    prevents: []
+    pitfalls: []
+    scenes: [学習, コンテスト, チーム, 文章, 開発]
+    summary: "AI をどこにどう使ったかを開示し、事前に作ったコードや資料の出所を記録しておくと、規則の確認と説明の求めに答えられる。開示の求め方は場ごとに違うので、規則で確かめる。"
+    signs:
+      - {type: situation, text: "レポートや提出物に、AI を使った箇所を書くよう求められた"}
+      - {type: goal, text: "AI で作ったコードを使ったことを、後で説明できるようにしたい"}
+    prerequisites: [checking-ai-rules]
+    related: [instructions-hidden-in-materials, competition-rules, practice-vs-contest-day, own-generated-code, record-decisions]
+    volatility: 中
+    sections:
+      - {title: "開示・相談・出所・意図の四つの観点", anchor: four-points}
+      - {title: "出所を記録する", anchor: provenance}
+      - {title: "説明できる状態を保つ", anchor: explainable}
+    materials:
+      - "11 第1節 分野11 p12#36・p12#39（開示・外部への相談の禁止の延長・事前に作ったコードの出所・主催者の意図の尊重。根拠：中）"
+      - "11 第2節 分野11 p56#44・p56#108"
+      - "research/25 P5b（Anthropic の説明による、出力の不可視の透かし）"
+    notes: "11 第1節 p12#38（単独の個人のブログで、否定的な文脈を含む）は使わない。開示は規則が求める範囲で書き、AI が書いたと分からなくする方法は書かない（decisions 2026-11-03 の方針 B4）。透かしの記述は「Anthropic によれば」として書く（research/25 P5）"
+
+  - id: when-requests-are-refused
+    chapter: 規則と開示
+    title: 正当な依頼が断られたとき
+    aliases: [断られた, 拒否された, 分類器に止められた, モデルが切り替わった, 断られたときの頼み直し]
+    type: concept
+    level: 使う
+    level_evidence: "対話で使う段階から、正当な依頼が分類器に止められることがある"
+    priority: 推奨
+    surfaces: [app, claude-code, api]
+    principle: [見せる]
+    prevents: [見えていない]
+    pitfalls: []
+    scenes: [開発, 調べもの]
+    summary: "正当な依頼が止められたときに、公式が案内する手段（巻き戻す・本当の目的を書き足す・誤判定を報告する・検証の制度）から選べる。言い換えや分割で回避しない理由も分かる。"
+    signs:
+      - {type: symptom, text: "正当な依頼なのに断られた"}
+      - {type: symptom, text: "途中で別のモデルに切り替わって、答えが変わった"}
+      - {type: symptom, text: "同じセッションで言い直しても、止められ続ける"}
+    prerequisites: []
+    related: [give-reasons, checkpoints-and-rewind, when-to-start-fresh, rewind-dont-correct, asking-for-reasoning, checking-ai-rules, where-your-data-goes]
+    volatility: 高
+    sections:
+      - {title: "面ごとの止まり方", anchor: by-surface}
+      - {title: "公式が案内する手段", anchor: official-steps}
+      - {title: "回避の言い換えをしない理由", anchor: why-not-evade}
+    materials:
+      - "research/26 #5・#6・#7・§3.3"
+      - "decisions 2026-11-03「断られたときの頼み直し」・書き方の方針（安全・面・表現）3"
+    notes: "新規：research/26 §3.3 で断られたときの公式の案内が確かめられ、decisions 2026-11-03「断られたときの頼み直し」で書く範囲（公式が案内する手段だけ。本当の目的と文脈を足し、偽らない。巻き戻しや新しい会話、誤判定の報告、専門の仕事には検証の制度。アプリの自動のモデルの切り替えは仕組みとして説明する）が決まったが、受け持つページが registry にない。提供元の規則（利用ポリシー）と安全の仕組み（分類器）の話なので safety に置いた。言い換え・分割・偽の文脈など、利用ポリシーを回避する頼み方は書かない。分類器は会話全体（読み込んだ資料を含む）を見るので、同じ会話では止まり続けることがある。症状のページは symptoms への提案（open_issues）。推論の全文を求める指示が止められる点は prompting の asking-for-reasoning と重なる"
+
+merged: []
+
+dropped: []
+
+new_features:
+  - {id: feedback, title: "/feedback・/bug とトランスクリプトの共有（Claude Code）", note: "送られるものと保持の期間は facts.yml に置く。/share は /bug の別名で、公開リンクを作らない（research/26 #25）。safety の what-feedback-sends が tracks で指す"}
+  - {id: chat-sharing, title: "会話の共有（claude.ai の招待と公開リンク）", note: "共有の写し・プランごとの公開リンクの可否・取り消し（research/26 §3.2）。safety の shared-artifacts-and-files が tracks で指す"}
+
+open_issues:
+  - "提案（symptoms）：症状のページ「正当な依頼が断られる・止められる」を足し、対処の本体を safety の when-requests-are-refused に振り分ける（research/26 §3.3、decisions 2026-11-03「断られたときの頼み直し」）。symptoms か prompting が対処の本体を持つなら、when-requests-are-refused を merged にしてよい"
+  - "提案（contest）：competition-rules と practice-vs-contest-day の前提に checking-ai-rules を置く（design §4.2。必須に上げたので必須の前提の規則も満たす）。大会ごとの早見は contest、一般の類型と確認表は safety"
+  - "提案（delegate）：headless-basics・github-actions-with-claude・cloud-schedules・five-questions-before-delegating の前提か関連に where-bypass-is-ok を置く（decisions 2026-11-03「安全の既定の勧め方」の「無人の実行は使い捨ての環境」。比例則）。parallel-with-worktrees・goal-until-done には enforce の sandboxing を"
+  - "提案（app）：permission-modes-in-the-app から enforce の what-auto-mode-stops（何を止めるか）と lethal-trifecta（アプリの安全の指針の二条件）へ、incognito-chats から where-your-data-goes へ、artifacts-overview から shared-artifacts-and-files へ related を張る。app の分野に会話の共有のページがないので、共有の仕様は shared-artifacts-and-files が持つ"
+  - "提案（surfaces）：browser-control（screen-control をまとめた先）から browser-agent-cautions へ related を張る（使い方は surfaces、安全の判断は safety）"
+  - "提案（basics）：data-vs-instructions から prompt-injection-in-practice へ related を張る（原理は basics、型と対処は safety）"
+  - "提案（team）：ai-usage-guidelines の前提か関連に checking-ai-rules と entrusted-data を置く。社内規則の回避は書かない（decisions 2026-11-03）"
+  - "提案（recipes）：explore-a-codebase から before-opening-unknown-repos へ、data-analysis から entrusted-data へ related を張る"
+  - "提案（cost）：check-billing-path と protecting-secrets を相互に related にする（環境に置いた API キーは課金の経路も変える。research/26 §3.8）"
+  - "提案（start・design）：default-safety-settings#by-stage を「安全の既定」の正本とし、start の four-principles（比例則）とロードマップの「どの段階でも人が握るもの」から related で指す。安全の既定が変わる更新は作者が承認する（design §9.4）ので、点検の対象として目印を付けるとよい"

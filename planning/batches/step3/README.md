@@ -18,15 +18,17 @@
 
 | 担当 | 分野（registry の候補数） | 報告 | 状態 |
 | --- | --- | --- | --- |
-| C1 | start（8）・changes（5）・basics（20） | `catalog-C1.md` | 実行中 |
-| C2 | surfaces（11）・models（14）・cost（12） | `catalog-C2.md` | 実行中 |
-| C3 | prompting（24）・japanese（12） | `catalog-C3.md` | 実行中 |
-| C4 | context（19）・cli（19） | `catalog-C4.md` | 実行中 |
-| C5 | app（22）・api（14） | `catalog-C5.md` | 実行中 |
-| C6 | extend（26） | `catalog-C6.md` | 実行中 |
-| C7 | enforce（15）・safety（17） | `catalog-C7.md` | 実行中 |
-| C8 | verify（17）・eval（13） | `catalog-C8.md` | 実行中 |
-| C9 | delegate（23）・team（16） | `catalog-C9.md` | 実行中 |
-| C10 | judgment（11）・contest（12） | `catalog-C10.md` | 実行中 |
-| C11 | recipes（22） | `catalog-C11.md` | 実行中 |
-| C12 | symptoms（26） | `catalog-C12.md` | 実行中 |
+| C1 | start（8）・changes（5）・basics（20） | `catalog-C1.md` | 完了（start 10・changes 4・basics 20） |
+| C2 | surfaces（11）・models（14）・cost（12） | `catalog-C2.md` | 完了（surfaces 6・models 11・cost 11） |
+| C3 | prompting（24）・japanese（12） | `catalog-C3.md` | 完了（prompting 24・japanese 11） |
+| C4 | context（19）・cli（19） | `catalog-C4.md` | 完了（context 15・cli 19） |
+| C5 | app（22）・api（14） | `catalog-C5.md` | 完了（app 20・api 11） |
+| C6 | extend（26） | `catalog-C6.md` | 完了（extend 24） |
+| C7 | enforce（15）・safety（17） | `catalog-C7.md` | 完了（enforce 15・safety 18） |
+| C8 | verify（17）・eval（13） | `catalog-C8.md` | 完了（verify 17・eval 13） |
+| C9 | delegate（23）・team（16） | `catalog-C9.md` | 完了（delegate 22・team 16） |
+| C10 | judgment（11）・contest（12） | `catalog-C10.md` | 完了（judgment 11・contest 9） |
+| C11 | recipes（22） | `catalog-C11.md` | 完了（recipes 21） |
+| C12 | symptoms（26） | `catalog-C12.md` | 完了（symptoms 33） |
+
+2段目の結果：361ページ（必須174・推奨150・任意37）。registry の378候補は、採る346・まとめた31・採らない1。メインが、ほかの分野で消えた id を指していた4か所を直し、eval の2ページ（test-the-verifier・experiment-log）に `wave: 1` を付けた。検査はエラー0・警告6（比例則）。
