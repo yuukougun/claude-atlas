@@ -55,7 +55,13 @@ class NoKnownRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):  # noqa: ANN001
         if known_noai(newurl):
             raise urllib.error.URLError(f"既知の noai のドメインへの転送なので、たどらない: {newurl}")
+        if code == 308:
+            # Python 3.10 の urllib は 308 をたどらない（たどるのは 3.11 から）。307 と同じに扱う
+            code = 307
         return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+    # Python 3.10 には http_error_308 がない（3.11 からは同じものが定義されている）
+    http_error_308 = urllib.request.HTTPRedirectHandler.http_error_302
 
 
 OPENER = urllib.request.build_opener(NoKnownRedirect)
