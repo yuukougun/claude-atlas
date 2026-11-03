@@ -9,15 +9,22 @@
 | 0 | 形式と運用を決める（工程1の前に入れた） | 完了（2026-11-03） | [format-and-operations.md](format-and-operations.md)（v1.1）・[decisions.md](decisions.md)・[questions-for-kyopro-atlas.md](questions-for-kyopro-atlas.md)・[research/20-kyopro-atlas-retrospective.md](research/20-kyopro-atlas-retrospective.md) |
 | 1 | 質問 | 完了（2026-11-03） | [decisions.md](decisions.md)・[research/21-step1-findings.md](research/21-step1-findings.md) |
 | 2 | 調査の補完 | 完了（2026-11-04） | [batches/step2/](batches/step2/README.md)・research/22〜28（担当の報告）・調査資料と requirements.md への訂正と注記 |
-| 3 | 設計 | 進行中（2026-11-04〜） | [design.md](design.md)（第1版）・[catalog/](catalog/README.md)・schema/site.yml |
-| 4 | 設計の見直し | 未着手 | |
-| 5 | 決定の提示 | 未着手 | |
+| 3 | 設計 | 完了（2026-11-04） | [design.md](design.md)・[catalog/](catalog/README.md)・schema/site.yml・[batches/step3/](batches/step3/README.md) |
+| 4 | 設計の見直し | 完了（2026-11-04） | [design-review.md](design-review.md)・設計書の第2版・[batches/step4/](batches/step4/README.md) |
+| 5 | 決定の提示 | 進行中（2026-11-04） | design.md §12 |
 | 6 | 土台作り | 未着手 | |
 | 7 | 試作 | 未着手 | |
 | 8 | 本制作 | 未着手 | |
 | 9 | 仕組み作り | 未着手 | |
 | 10 | 全体の検証 | 未着手 | |
 | 11 | 公開と鮮度の運用 | 未着手 | |
+
+## 工程3・4：設計と見直し（完了 2026-11-04）
+
+- 工程3：メインが設計書の第1版を書き、担当 C0 が全候補の一覧（registry）、T1 が目次の検査の道具、C1〜C12 が23分野の目次、I1〜I7 が担当どうしの提案の統合、T2 が検査の追加を受け持った（batches/step3/）
+- 工程4：4人の担当（R1 読者の立場・R2 要件と決定との照合・R3 目次の質・R4 技術と進め方）が見直し、113件（重大9件）を挙げた。メインが対応を design-review.md に決め（DR-01〜DR-20）、D1 が設計書を第2版にし、T3 が検査の道具を症状のページの振り分け先（routes）に合わせ、F1〜F7 が目次を直し、V1〜V3 が反映を確かめた（batches/step4/）
+- いまの目次：357ページ（必須177・推奨144・任意36）。症状のページ34すべてに routes。検査はエラー0・警告3（比例則。理由は notes）。第一波は推奨の数え方で135ページ
+- 使用量の目安（担当の完了の通知の値の合計）：工程3の統合の担当7人と T2 で約265万トークン（C0・T1・C1〜C12 の値はこの記録に残していない）。工程4の見直し4人で約167万、反映の9人（D1・T3・F1〜F7）で約404万、確かめる V1・V2 で約82万
 
 ## 工程2：調査の補完（完了 2026-11-04）
 
@@ -32,8 +39,8 @@
 
 ## 次にやること
 
-1. 工程3（設計）：設計書の第1版、目次の一覧（registry）と検査の道具、23分野の目次（361ページ）、機能の id の一覧（features.yaml）ができた。いまは、担当どうしの提案（165件）と逆引きの振り分けを、7人の統合の担当（I1〜I7）が分野ごとに反映している（batches/step3/README.md の3段目）。終わったら検査を通し、工程4（見直し。4つの観点の担当 R1〜R4。batches/step4/）へ進み、指摘への対応を design-review.md に決めて第2版にする。工程5でユーザーに決定の一覧を示し、承認を得るまで土台作りに入らない
-2. 土台作り（工程6）の始めに GitHub のリポジトリを作る。その前に、planning/ の公開するファイル（工程3以降の batches の報告・catalog を含む）から否定的な文脈の実名を探す（調査資料の人物・団体の記述は工程2で直した。decisions 2026-11-03「実名を外す範囲」）
+1. 工程5（決定の提示）：設計書 §12 の一覧をユーザーに示し、確かめる5点（第一波の範囲・比例則の読み・事例の記録の skill・文書にない回避方法の報告・割れている3語）の答えと承認を得る。答えを decisions.md に記録し、設計書・目次・site.yml の仮の値を直す
+2. 承認を得るまで土台作り（工程6）に入らない。土台作りの始めに、planning/ の公開するファイル（工程3以降の batches の報告・catalog を含む）から否定的な文脈の実名を探してから、GitHub のリポジトリを作る（調査資料の人物・団体の記述は工程2で直した。decisions 2026-11-03「実名を外す範囲」）
 
 ## ユーザーにお願いしていること
 
