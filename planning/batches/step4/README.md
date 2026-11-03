@@ -19,12 +19,21 @@
 
 | 担当 | 受け持ち | 主な行（DR-19） | 報告 | 状態 |
 | --- | --- | --- | --- | --- |
-| D1 | `planning/design.md`（第2版） | DR-01〜DR-18 の設計書の部分 | `fix-D1.md` | 実行中 |
-| T3 | `tools/check_catalog.py`・試験・catalog/README §3・§4・§6 | DR-02（routes の検査と第一波の内訳） | `fix-T3.md` | 実行中 |
-| F1 | start・changes・basics・judgment | a・b（changes の一般的な sign）・d・e・k（judgment 側）・p（lost-in-the-middle）・DR-17（how-to-use・ai-and-sources の notes） | `fix-F1.md` | 実行中 |
-| F2 | surfaces・models・cost・api・app | a・d・e・g・i・j（suspected-degradation）・o（thinking-keywords）・v（what-uses-up-limits） | `fix-F2.md` | 実行中 |
-| F3 | prompting・japanese・context | a・d・e・h（R1-18）・q（does-double-check-work）・u・v（inspect-context）・w | `fix-F3.md` | 実行中 |
-| F4 | cli・extend・contest | a・d・e・h（R1-17）・l・m（recover-lost-work）・q（completion-notifications）・r・w（settings-layers） | `fix-F4.md` | 実行中 |
-| F5 | verify・eval・enforce | a・d・e・h（R1-13 の hook-recipes・R1-14 の sandboxing・R1-15）・k（own-generated-code） | `fix-F5.md` | 実行中 |
-| F6 | safety・delegate・team | a・d・e（付表B）・f・h（R1-14・R1-16）・m（protecting-secrets・when-requests-are-refused）・o（cloud-schedules・enterprise-vs-team-plans）・p（ai-amplifies-organizations）・q（curb-sycophancy-and-overtrust）・s | `fix-F6.md` | 実行中 |
-| F7 | symptoms・recipes | x（routes。T3 の後に始める）・b・c・d・e・h（R1-13）・i（unexpected-memories）・j・m・q（add-tests）・t | `fix-F7.md` | 未着手 |
+| D1 | `planning/design.md`（第2版） | DR-01〜DR-18 の設計書の部分 | `fix-D1.md` | 完了 |
+| T3 | `tools/check_catalog.py`・試験・catalog/README §3・§4・§6 | DR-02（routes の検査と第一波の内訳） | `fix-T3.md` | 完了 |
+| F1 | start・changes・basics・judgment | a・b（changes の一般的な sign）・d・e・k（judgment 側）・p（lost-in-the-middle）・DR-17（how-to-use・ai-and-sources の notes） | `fix-F1.md` | 完了 |
+| F2 | surfaces・models・cost・api・app | a・d・e・g・i・j（suspected-degradation）・o（thinking-keywords）・v（what-uses-up-limits） | `fix-F2.md` | 完了 |
+| F3 | prompting・japanese・context | a・d・e・h（R1-18）・q（does-double-check-work）・u・v（inspect-context）・w | `fix-F3.md` | 完了 |
+| F4 | cli・extend・contest | a・d・e・h（R1-17）・l・m（recover-lost-work）・q（completion-notifications）・r・w（settings-layers） | `fix-F4.md` | 完了 |
+| F5 | verify・eval・enforce | a・d・e・h（R1-13 の hook-recipes・R1-14 の sandboxing・R1-15）・k（own-generated-code） | `fix-F5.md` | 完了 |
+| F6 | safety・delegate・team | a・d・e（付表B）・f・h（R1-14・R1-16）・m（protecting-secrets・when-requests-are-refused）・o（cloud-schedules・enterprise-vs-team-plans）・p（ai-amplifies-organizations）・q（curb-sycophancy-and-overtrust）・s | `fix-F6.md` | 完了 |
+| F7 | symptoms・recipes | x（routes。T3 の後に始める）・b・c・d・e・h（R1-13）・i（unexpected-memories）・j・m・q（add-tests）・t | `fix-F7.md` | 実行中 |
+
+## 3段目：反映を確かめる（2段目の後）
+
+共通の指示は [brief-verify.md](brief-verify.md)。書いた担当とは別の担当が、決定どおりかを確かめる（design §10.2「メインが書いた直しも、別の担当が確かめる」）。
+
+| 担当 | 見るもの | 報告 | 状態 |
+| --- | --- | --- | --- |
+| V1 | 設計書の第2版（design.md）と catalog/README・schema/site.yml を、design-review の DR-01〜DR-20 と §6 に照らす | `verify-V1.md` | 未着手 |
+| V2 | 目次（planning/catalog/）の直しを、DR-19 の各行・fix-aliases.md・担当の報告に照らす。検査の道具を流す | `verify-V2.md` | 未着手 |
