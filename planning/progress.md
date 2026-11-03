@@ -37,5 +37,5 @@
 
 ## ユーザーにお願いしていること
 
-- 制作に入る前に、/config の Dynamic workflow size を変える（decisions 2026-11-03）
-- 雛形の動作確認を始める前に、`sudo apt install bubblewrap socat` で sandbox の道具を入れる（decisions 2026-11-03「危ない雛形を試す場所」）
+- ~~制作に入る前に、/config の Dynamic workflow size を変える（decisions 2026-11-03）~~ 済み（2026-11-04。large にした）
+- 雛形の動作確認を始める前に、`sudo apt install bubblewrap socat` で sandbox の道具を入れる（decisions 2026-11-03「危ない雛形を試す場所」）。Claude Code の `!` ではパスワードを入力できないので、普段の WSL の端末で実行する（2026-11-04 に `!` で試して失敗した）
