@@ -24,7 +24,16 @@ requirements §11「進め方」の2。既存の調査を読み、§10 の誤り
 
 | 担当 | 直すファイル | 報告 | 状態 |
 | --- | --- | --- | --- |
-| W-A | `requirements.md`・`research/00-content-report.md`・`research/06-existing-curricula.md` | `apply-W-A.md` | 実行中 |
-| W-B | `research/01-official-claude-code.md`・`research/02-official-app-models-prompting.md` | `apply-W-B.md` | 実行中 |
-| W-C | `research/03-community-english.md`・`research/04-community-japanese.md`・`research/05-failures-safety-fundamentals.md` | `apply-W-C.md` | 実行中 |
-| W-D | `research/10-contest-supplement.md`・`research/11-contest-crosscheck.md`・`research/11a〜11c` | `apply-W-D.md` | 実行中 |
+| W-A | `requirements.md`・`research/00-content-report.md`・`research/06-existing-curricula.md` | `apply-W-A.md` | 完了 |
+| W-B | `research/01-official-claude-code.md`・`research/02-official-app-models-prompting.md` | `apply-W-B.md` | 完了 |
+| W-C | `research/03-community-english.md`・`research/04-community-japanese.md`・`research/05-failures-safety-fundamentals.md` | `apply-W-C.md` | 完了 |
+| W-D | `research/10-contest-supplement.md`・`research/11-contest-crosscheck.md`・`research/11a〜11c` | `apply-W-D.md` | 完了 |
+
+## 反映を確かめる
+
+反映した担当とは別の担当が、反映の前との差分と資料の全体を確かめる。共通の指示は [brief-verify.md](brief-verify.md)。
+
+| 担当 | 確かめるファイル | 報告 | 状態 |
+| --- | --- | --- | --- |
+| V1 | `requirements.md`・`research/00`・`06`（W-A）、`research/01`・`02`（W-B） | `verify-V1.md` | 実行中 |
+| V2 | `research/03`・`04`・`05`（W-C）、`research/10`・`11`・`11a〜11c`（W-D） | `verify-V2.md` | 実行中 |
