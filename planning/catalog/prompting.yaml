@@ -105,7 +105,7 @@ pages:
     summary: "形や文体は言葉で説明するより、典型的で多様な例を見せるほうが揃う。自分の過去の文章やコードを手本にすると、言葉にしにくい好みまで伝わる。"
     signs:
       - {type: symptom, text: "説明しても、欲しい形式や文体にならない"}
-      - {type: goal, text: "自分の書き方に寄せた文章を書かせたい"}
+      - {type: goal, text: "自分の文体に近い文章を書かせたい"}
     prerequisites: [brief-a-new-colleague]
     related: [four-specifics, consistent-politeness, requesting-prose, output-shape, xml-tags, less-ai-sounding-japanese, prompt-patterns]
     volatility: 低
@@ -115,7 +115,7 @@ pages:
       - {title: "自分の文章を手本にする", anchor: own-writing}
       - {title: "例にだけ合う出力に気をつける", anchor: overfit}
     materials: ["00 §3 分野04", "02 §4-3", "04 Q3（表記ゆれと漢字の開き：自分の文章を Few-shot で見せる）", "11 第2節 分野04 p12#105（例にしか合わないコード）"]
-    notes: "registry の題名の「（3〜5個）」は、数値を題名に書かない規則（catalog/README §4.5）に合わせて外した。公式の勧める数は数値ファイルに置き、how-many の節に道具が書き込む"
+    notes: "registry の題名の「（3〜5個）」は、数値を題名に書かない規則（catalog/README §4.5）に合わせて外した。公式の勧める数は数値ファイルに置き、how-many の節に道具が書き込む。goal の「自分の書き方に寄せた文章を書かせたい」は requesting-prose の「自分の文体に近い文章を書かせたい」と同じ問いなので、同じ文にそろえた（逆引きで1行に束ね、考え方と手順の印で並べる。DR-15）（2026-11-04 工程4：DR-19 a）"
 
   - id: say-what-you-want
     chapter: 頼み方の原則
@@ -158,7 +158,7 @@ pages:
     signs:
       - {type: symptom, text: "IMPORTANT や「必ず」を付けても守られない"}
       - {type: symptom, text: "強く書いた指示を、関係のない場面にまで当てはめる"}
-      - {type: goal, text: "絶対に守らせたい規則がある"}
+      - {type: goal, text: "強調に頼らずに、大事な指示を守らせたい"}
     prerequisites: [request-vs-lock]
     related: [instructions-ignored, when-to-lock, say-what-you-want, claude-md-length, give-reasons, request-lock-table, after-switching-models, model-quirks, outdated-advice-ledger]
     tracks: [claude-md]
@@ -170,7 +170,7 @@ pages:
       - {title: "「手を抜くな」「続けて」と書く代わりに", anchor: keep-going}
       - {title: "かつて強調が効いた理由", anchor: history}
     materials: ["00 §3 分野04（行の注記：research/23 §3.7）", "00 §1 対立点の表「強調語」（注記）", "00 §5 台帳の IMPORTANT の行（注記）と keep going の行", "research/23 §3.1・§3.7・§4.2", "02 §4-11", "03 Q2 C9"]
-    notes: "「強調は1行だけにする」は改稿前の Best practices の勧め（research/23 §3.7）なので、summary・signs の根拠にせず、現行の版の「守られないなら、ファイルを短くするか hook にする」を軸にする。強調の効き目は実践者の間で割れるので、公式の立場・実践者の幅・この教材の推奨の三段で書く（design §6.6）。台帳の時期は「Best practices の改稿（2026-10-27 ごろ）」（research/23 §4.2）。強い言い方が過剰に効くというモデルごとの癖は models の model-quirks を関連で指す（2026-11-04 統合：prompting#4）"
+    notes: "「強調は1行だけにする」は改稿前の Best practices の勧め（research/23 §3.7）なので、summary・signs の根拠にせず、現行の版の「守られないなら、ファイルを短くするか hook にする」を軸にする。強調の効き目は実践者の間で割れるので、公式の立場・実践者の幅・この教材の推奨の三段で書く（design §6.6）。台帳の時期は「Best practices の改稿（2026-10-27 ごろ）」（research/23 §4.2）。強い言い方が過剰に効くというモデルごとの癖は models の model-quirks を関連で指す（2026-11-04 統合：prompting#4）。goal の「絶対に守らせたい規則がある」は enforce の when-to-lock の「例外なく守らせたい規則がある」と同じ問い（逆引きで近い行が並ぶ）なので、強調に頼らない形に書き分けた（DR-15）。symptom の「IMPORTANT や「必ず」を付けても守られない」は、強調の効き目に直接答えるこのページを持ち主にして残した（R1-06 の (3)。同じ型の sign は、同じ工程で basics の request-vs-lock が goal に替え、extend の claude-md-length が外した）（2026-11-04 工程4：DR-19 a）"
 
   # ── 何をどこまで頼むか ──
   - id: suggest-or-do
@@ -185,7 +185,7 @@ pages:
     principle: [見せる]
     prevents: [見えていない, 合っていない]
     scenes: [開発]
-    summary: "「提案して」と「変えて」で Claude の動きは変わる。提案だけか、実行までか、懸念があれば止まって相談してほしいのかを、動詞ではっきり示す。"
+    summary: "提案だけか、実行までか、懸念があれば止まって相談するのかを動詞で書き分けると、勝手に書き換えられることも提案で止まることも減る。既定でどちらに寄せるかも、指示に書いておける。"
     signs:
       - {type: symptom, text: "相談のつもりだったのに、ファイルを書き換えられた"}
       - {type: goal, text: "大事な方針の変更では、手を止めて相談してほしい"}
@@ -197,7 +197,7 @@ pages:
       - {title: "既定の振る舞いを決める（すぐ実行するか、指示を待つか）", anchor: default}
       - {title: "懸念があれば止まって相談させる", anchor: stop-and-discuss}
     materials: ["00 §3 分野04", "02 §4-11", "02 §4-13", "11 第2節 分野04 p56#12・p56#123", "00 §4 返答と品質の困りごと"]
-    notes: "モデルごとの既定の癖（止まりすぎ・やりすぎ）は models の model-quirks が持つ。懸念を一文で述べて続けさせる書き方と、方針や評価に関わる変更では手を止めて議論させる書き方を対にして示す（11 第2節。最新のモデルの手引きに同じ記述があるかは未確認）。sign の「提案だけで止まり、実行してくれない」は症状の keeps-stopping と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M2）"
+    notes: "モデルごとの既定の癖（止まりすぎ・やりすぎ）は models の model-quirks が持つ。懸念を一文で述べて続けさせる書き方と、方針や評価に関わる変更では手を止めて議論させる書き方を対にして示す（11 第2節。最新のモデルの手引きに同じ記述があるかは未確認）。sign の「提案だけで止まり、実行してくれない」は症状の keeps-stopping と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M2）。summary の1文目が「動きは変わる」だけで何をすればよいかが分からなかったので、動詞で書き分けると何が減るかの答えにした（R3-22。節 default の既定の振る舞いを2文目に置いた）（2026-11-04 工程4：DR-19 w）"
 
   - id: state-the-scope
     chapter: 何をどこまで頼むか
@@ -213,7 +213,7 @@ pages:
     scenes: [開発]
     summary: "依頼に、やること・やらないこと・触ってよい範囲を書くと、頼んでいない機能や変更が増えにくくなる。例外を許さない範囲は、言葉ではなく権限やフックで縛る。"
     signs:
-      - {type: symptom, text: "小さな修正のつもりが、大きな書き換えになった"}
+      - {type: goal, text: "小さな修正は、小さいまま終わらせたい"}
       - {type: goal, text: "触ってよいファイルを限りたい"}
     prerequisites: [four-specifics, request-vs-lock]
     related: [does-more-than-asked, say-what-you-want, suggest-or-do, permission-rules, protected-paths, "when-to-lock#spoken-rules-fade", model-quirks]
@@ -223,7 +223,7 @@ pages:
       - {title: "いまの作業に要る最小限を求める", anchor: minimum}
       - {title: "例外を許さない範囲は仕組みで縛る（二層）", anchor: two-layers}
     materials: ["00 §3 分野04", "02 §4-12", "02 §4-13", "03 Q5 P7", "requirements §6.7（禁止事項を CLAUDE.md に書くか）", "00 §4 返答と品質の困りごと"]
-    notes: "requirements §6.7 の4行目の統合方針を two-layers の節に置く。会話で言った禁止が圧縮で消えうることは、enforce の when-to-lock の節 spoken-rules-fade（enforce が spoken-prohibitions-fade をまとめた先）にリンクする。sign の「頼んでいない機能やファイルが増える」は症状の does-more-than-asked と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：enforce#2・M2）"
+    notes: "requirements §6.7 の4行目の統合方針を two-layers の節に置く。会話で言った禁止が圧縮で消えうることは、enforce の when-to-lock の節 spoken-rules-fade（enforce が spoken-prohibitions-fade をまとめた先）にリンクする。sign の「頼んでいない機能やファイルが増える」は症状の does-more-than-asked と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：enforce#2・M2）。symptom の「小さな修正のつもりが、大きな書き換えになった」も does-more-than-asked の「小さな修正を頼んだのに周りまで書き換えられる」の言い換え（R3 付表A の14）なので、このページが直接答える goal の形にした（2026-11-04 工程4：DR-19 a）"
 
   - id: ask-for-outcomes
     chapter: 何をどこまで頼むか
@@ -266,7 +266,7 @@ pages:
     scenes: [開発, データ分析, コンテスト]
     summary: "達成できる値や理論上の上界が分かっていれば依頼に書くと、早く打ち切ったり「限界です」と言ったりしにくくなる。分からないときは、先に上界を測る。"
     signs:
-      - {type: symptom, text: "少し改善しただけで「これ以上は難しい」と言う"}
+      - {type: goal, text: "最適化を、目標の値に届くまで粘らせたい"}
       - {type: symptom, text: "最適化を頼むと、早々に打ち切る"}
       - {type: situation, text: "性能改善やスコアを競う課題を任せている"}
     prerequisites: [ask-for-outcomes]
@@ -276,7 +276,7 @@ pages:
       - {title: "目標値を書く", anchor: targets}
       - {title: "上界が分からないときは測る", anchor: measure}
     materials: ["requirements §4.2 prompting", "11 第1節 分野04 p34#56・p34#133・p34#140", "11b p34#56（未確認）", "10 第9章（実践⑥）", "10 第13章（目標値の提示・実践⑤）"]
-    notes: "根拠は中〜弱。性能最適化で達成できる値を伝えて停滞を抜けた例（p34#56）は未確認、目標スコアの実験（p34#133）は類推なので、summary・signs の根拠にせず、本文で根拠の強さを書く。上界を測る方法は eval の measure-the-upper-bound（推論の手法）へ"
+    notes: "根拠は中〜弱。性能最適化で達成できる値を伝えて停滞を抜けた例（p34#56）は未確認、目標スコアの実験（p34#133）は類推なので、summary・signs の根拠にせず、本文で根拠の強さを書く。上界を測る方法は eval の measure-the-upper-bound（推論の手法）へ。symptom の「少し改善しただけで「これ以上は難しい」と言う」は症状の wont-rethink-approach の「少し試しただけで「これ以上は無理です」と言われる」の言い換え（R3 付表A の6、R1-04）なので goal の形にした。「最適化を頼むと、早々に打ち切る」は、目標値を渡すことが直接の答えになる狭い場面（最適化）として残した（2026-11-04 工程4：DR-19 a）"
 
   - id: output-shape
     chapter: 何をどこまで頼むか
@@ -293,7 +293,7 @@ pages:
     summary: "書式・長さ・要約の有無は望む形で指定し、頼む文の書き方も出力の形に合わせる。機械が読む出力で形を必ず守らせたいなら、形式を保証する仕組みを使う。"
     signs:
       - {type: symptom, text: "箇条書きと見出しばかりの返事になる"}
-      - {type: goal, text: "決まった形式で必ず返させたい"}
+      - {type: goal, text: "返事の書式や長さを、用途に合わせて指定したい"}
     prerequisites: [say-what-you-want]
     related: [show-examples, structured-outputs-basics, model-quirks, xml-tags, requesting-prose, less-ai-sounding-japanese, output-style-modes, "where-to-put-instructions#styles"]
     tracks: [structured-outputs]
@@ -304,7 +304,7 @@ pages:
       - {title: "長さと要約の有無", anchor: length}
       - {title: "必ず守らせたい形式は仕組みで", anchor: guaranteed}
     materials: ["00 §3 分野04", "02 §4-10", "02 §4-8", "02 §4-13", "00 §5 台帳の prefill の行", "00 §4 返答と品質の困りごと", "research/26 §3.1（Styles のスキルへの移行）"]
-    notes: "モデルごとの冗長さの癖は models の model-quirks に置く。形式の保証（structured outputs）の使い方の本体は api の structured-outputs-basics。アプリで形式と長さをいつも揃えたいときの置き場所は、Styles の移行の後の公式の使い分け（いつもなら Claude への指示、場面ごとならスキル。research/26 §3.1）で書き、台帳 styles-for-tone と app の where-to-put-instructions#styles を指す。sign の「回答が長すぎる・短すぎる」は症状の not-what-i-meant と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M3・M2）"
+    notes: "モデルごとの冗長さの癖は models の model-quirks に置く。形式の保証（structured outputs）の使い方の本体は api の structured-outputs-basics。アプリで形式と長さをいつも揃えたいときの置き場所は、Styles の移行の後の公式の使い分け（いつもなら Claude への指示、場面ごとならスキル。research/26 §3.1）で書き、台帳 styles-for-tone と app の where-to-put-instructions#styles を指す。sign の「回答が長すぎる・短すぎる」は症状の not-what-i-meant と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M3・M2）。goal の「決まった形式で必ず返させたい」は api の structured-outputs-basics の「出力を必ず決まった形で受け取りたい」と同じ問いで、形の保証はあちらが直接の答えなので、このページは書式と長さを指定する goal に書き分けた（DR-15。guaranteed の節からあちらを指す）（2026-11-04 工程4：DR-19 a）"
 
   # ── 資料と入力の渡し方 ──
   - id: long-context-first
@@ -325,7 +325,7 @@ pages:
       - {type: goal, text: "複数の文書を読ませて比べたい"}
       - {type: goal, text: "資料のどこを根拠にしたのか示してほしい"}
     prerequisites: [attention-budget]
-    related: [handing-long-documents, lost-in-the-middle, xml-tags, checking-citations, skipped-later-pages, documents-in-japanese, think-before-asking, allow-i-dont-know]
+    related: [handing-long-documents, "context-rot#lost-in-the-middle", xml-tags, checking-citations, skipped-later-pages, documents-in-japanese, think-before-asking, allow-i-dont-know]
     volatility: 低
     sections:
       - {title: "資料を先、質問を最後に置く", anchor: order}
@@ -333,7 +333,7 @@ pages:
       - {title: "原文を見せるか、自分の要約を渡すか", anchor: source-or-summary}
     visual: {kind: static, text: "資料と質問の並べ方の Before/After（質問が先頭の依頼と、資料が先で質問が最後の依頼）"}
     materials: ["00 §3 分野04", "02 §4-6", "05 §2-2（公式の hallucination 対策：先に逐語の引用を抜かせる）", "requirements §6.7（原文を見せるか、要約して渡すか）", "11 第3節 C-15", "10 第6章"]
-    notes: "資料の形と量（分割する・Markdown にする・添付の読まれ方）は context の handing-long-documents が持ち、ここは依頼の中の並べ方と引用の抜き出しに絞る。requirements §6.7 の3行目に従い、理解と確認のためには原文を見せる。発想の段階で自分の言葉の要約を先に作る助言は「類推・弱」として添える（11 C-15）。品質が上がった割合は数値ファイルに置き、summary に書かない"
+    notes: "資料の形と量（分割する・Markdown にする・添付の読まれ方）は context の handing-long-documents が持ち、ここは依頼の中の並べ方と引用の抜き出しに絞る。requirements §6.7 の3行目に従い、理解と確認のためには原文を見せる。発想の段階で自分の言葉の要約を先に作る助言は「類推・弱」として添える（11 C-15）。品質が上がった割合は数値ファイルに置き、summary に書かない。related の lost-in-the-middle は basics が context-rot の節にまとめたので、context-rot#lost-in-the-middle を指し直した（2026-11-04 工程4：DR-19 p）"
 
   - id: xml-tags
     chapter: 資料と入力の渡し方
@@ -349,7 +349,7 @@ pages:
     scenes: [開発, 調べもの]
     summary: "指示・資料・例を説明的なタグで区切ると、どれが何かを Claude が取り違えにくくなる。タグの名前に決まりはなく、一貫していればよい。"
     signs:
-      - {type: symptom, text: "資料の中の文を、こちらの指示と取り違える"}
+      - {type: symptom, text: "指示・資料・例を一つの依頼に詰め込むと、どれがどれか混ざる"}
       - {type: goal, text: "長い依頼を、読み違えられない形に整えたい"}
     prerequisites: []
     related: [long-context-first, show-examples, data-vs-instructions, prompt-injection-in-practice, output-shape, prompt-patterns]
@@ -359,12 +359,12 @@ pages:
       - {title: "文書を入れ子にする", anchor: nesting}
       - {title: "外から貼った文章を包む", anchor: wrap-untrusted}
     materials: ["00 §3 分野04", "02 §4-4", "02 §4-6", "02 §4-13（貼り付けた外部の文章をタグで包む）"]
-    notes: "外から貼った文章を包むのは prompt injection への手当ての一部で、防ぎきれないことを書き、safety の prompt-injection-in-practice へつなぐ"
+    notes: "外から貼った文章を包むのは prompt injection への手当ての一部で、防ぎきれないことを書き、safety の prompt-injection-in-practice へつなぐ。symptom の「資料の中の文を、こちらの指示と取り違える」は症状の followed-injected-instructions（読ませたページやファイルの指示に従ってしまった）の言い換えに読めるので、タグで区切ることが直接の答えになる狭い場面（一つの依頼に指示・資料・例が混ざる。節 separate）にした（2026-11-04 工程4：DR-19 a）"
 
   - id: images-and-voice
     chapter: 資料と入力の渡し方
     title: "画像・スクリーンショット・音声で渡す"
-    aliases: ["スクショを貼る", "画面の画像を渡す", "音声入力", "voice mode"]
+    aliases: ["スクショを貼る", "画面の画像を渡す", "音声入力", "/voice"]
     type: concept
     level: 整える
     level_evidence: "文章で説明しにくい画面や状況を渡したくなる整える段階で要る"
@@ -386,7 +386,7 @@ pages:
       - {title: "画像で渡すと速いもの", anchor: images}
       - {title: "音声でまとめて話して渡す", anchor: voice}
     materials: ["00 §3 分野04", "03 Q5 P5", "01（interactive-mode・common-workflows：画像の貼り付けと /voice）", "02 §1-16", "02 §4-13（図表とスクリーンショットの読み取り）", "research/27 #2（language が音声入力の言語も決める）"]
-    notes: "「プロンプトの9割に画像を添える」などは個人の実践の自己申告なので、summary・signs の根拠にしない。音声入力の第三者の道具は名前だけにする（D13）。日本語の音声入力の言語の設定は japanese の keep-replies-in-japanese の language-setting の節に置く"
+    notes: "「プロンプトの9割に画像を添える」などは個人の実践の自己申告なので、summary・signs の根拠にしない。音声入力の第三者の道具は名前だけにする（D13）。日本語の音声入力の言語の設定は japanese の keep-replies-in-japanese の language-setting の節に置く。別名の voice mode はアプリの音声モード（app の voice-and-mobile が主）なので外し、代わりにこのページが tracks で持つ Claude Code の音声入力のコマンド /voice を足した。別名「音声入力」は fix-aliases の表では外す側だが、features.yaml の voice-dictation の題名「音声入力（/voice）」で、Claude Code の音声入力を扱うのはこのページだけなので残した（外すと Claude Code の音声入力を名前で引けない。brief-fix §3 の3の例外）（2026-11-04 工程4：DR-19 d）"
 
   # ── 詰め方と頼み直し ──
   - id: refine-in-conversation
@@ -404,7 +404,7 @@ pages:
     summary: "最初は平易に頼み、返事を見て足りない情報だけを足すほうが、完璧な依頼文を先に作るより速い。ずれが大きいときは、訂正を重ねるより元の依頼を直して頼み直す。"
     signs:
       - {type: symptom, text: "完璧なプロンプトを書こうとして、頼む前に時間がかかる"}
-      - {type: symptom, text: "訂正を重ねるほど返事がこじれていく"}
+      - {type: goal, text: "返事を見ながら、依頼を少しずつ詰めたい"}
     prerequisites: [brief-a-new-colleague]
     related: [rewind-dont-correct, build-on-results, let-claude-ask, going-in-circles, when-to-start-fresh, four-specifics, measure-changes]
     volatility: 低
@@ -413,7 +413,7 @@ pages:
       - {title: "訂正を重ねるより依頼を直す", anchor: edit-the-request}
       - {title: "良くなったかを確かめる", anchor: check}
     materials: ["00 §3 分野04", "research/23 §3.1（現行の Best practices の冒頭：多くの依頼は既定のままの平易な一文で足りる）", "03 Q5 P3", "03 Q3 X3"]
-    notes: "訂正より巻き戻す・編集する操作と、その理由（失敗の残骸を残さない）は context の rewind-dont-correct が持ち、ここは頼み方を一回で決めない考え方に絞る"
+    notes: "訂正より巻き戻す・編集する操作と、その理由（失敗の残骸を残さない）は context の rewind-dont-correct が持ち、ここは頼み方を一回で決めない考え方に絞る。節 edit-the-request は1行にして rewind-dont-correct を指す（本体を二か所に持たない。R3-24）。sign の「訂正を重ねるほど返事がこじれていく」は rewind-dont-correct の sign と近いので外し、訂正を重ねる場面の sign は rewind-dont-correct の1か所にした。代わりに、このページが直接答える goal を足した（2026-11-04 工程4：DR-19 u）"
 
   - id: let-claude-ask
     chapter: 詰め方と頼み直し
@@ -430,7 +430,7 @@ pages:
     summary: "自分でも要件が固まっていないときは、先に Claude に質問させて決めるべき点を洗い出す。大きな作業は、質問で仕様を文書にしてから新しい会話で作らせる。"
     signs:
       - {type: goal, text: "何を作りたいか、まだ自分でもはっきりしない"}
-      - {type: symptom, text: "作らせてから、前提の食い違いに気づく"}
+      - {type: symptom, text: "頼んだ後になって、伝え忘れた条件が次々に出てくる"}
       - {type: goal, text: "作る前に仕様を詰めたい"}
     prerequisites: [four-specifics]
     related: [spec-first, ask-for-options, when-to-plan, refine-in-conversation, not-what-i-meant, think-before-asking]
@@ -443,12 +443,12 @@ pages:
     templates:
       - {name: "インタビューで仕様を詰める依頼（汎用の機能の例と、評価環境の例）", kind: prompt, safety: false}
     materials: ["00 §3 分野04", "03 Q1 W3", "03 Q5 P4", "11 第2節 分野04 p12#119・p34#134・p56#131（注記：research/26 #16）", "research/26 #16・#17・§3.9", "10 付録A-6", "11 第5節 A-6"]
-    notes: "現行の Best practices はツール名を出さず「spec が書けるまでインタビューして SPEC.md に書いて」と頼む形を示す（research/26 #17）ので、頼み方の文はその形にする。1回の質問数などの値は数値ファイルへ。仕様を先に固める進め方の本体は recipes の spec-first。雛形（A-6）は snippets の1か所に置き、spec-first と取り込みで共有する（design §6.9）"
+    notes: "現行の Best practices はツール名を出さず「spec が書けるまでインタビューして SPEC.md に書いて」と頼む形を示す（research/26 #17）ので、頼み方の文はその形にする。1回の質問数などの値は数値ファイルへ。仕様を先に固める進め方の本体は recipes の spec-first。雛形（A-6）は snippets の1か所に置き、spec-first と取り込みで共有する（design §6.9）。symptom の「作らせてから、前提の食い違いに気づく」は、直す前の時点で recipes の spec-first（作らせ終えてから、思っていたものと違うと気づく）と cli の when-to-plan（実装が終わってから、前提の誤解に気づくことが多い）と同じ困りごとで、逆引きで近い行が3つ並んでいたので、質問させることが直接の答えになる場面（伝え忘れた条件が後から出る）に書き分けた（DR-15）（2026-11-04 工程4：DR-19 a）"
 
   - id: ask-for-options
     chapter: 詰め方と頼み直し
     title: "選択肢と推奨案を出させる"
-    aliases: ["複数案と推奨を出させる", "比べてから選ぶ", "自分の案を批評させる"]
+    aliases: ["複数案と推奨を出させる", "比べてから選ぶ", "自分の案を批評させる", "設計の壁打ち"]
     type: concept
     level: 整える
     level_evidence: "方針に迷ったときに頼む、整える段階の頼み方"
@@ -461,7 +461,8 @@ pages:
     summary: "答えを選ぶ場面では、選択肢と推奨案と理由を出させてから人が決める。独自性が要る発想の場面では、先に自分の案を書き、AI には問いと反論を求める。"
     signs:
       - {type: goal, text: "どの方針がよいか、比べてから決めたい"}
-      - {type: symptom, text: "AI の最初の案にそのまま引っ張られてしまう"}
+      - {type: goal, text: "設計や技術の選び方を壁打ちしたい"}
+      - {type: symptom, text: "一つの案しか出てこず、ほかと比べられない"}
     prerequisites: [suggest-or-do]
     related: [think-before-asking, ai-ideas-are-everyones, ask-without-sycophancy, agreement-is-not-evidence, sycophancy, let-claude-ask]
     volatility: 低
@@ -472,7 +473,7 @@ pages:
     templates:
       - {name: "自分の案の批評を頼む（問い役・批評役）", kind: prompt, safety: false}
     materials: ["00 §3 分野04", "03 Q5 P8", "requirements §6.7（選択肢を出させるか、最初は AI の案を見ないか）", "11 第3節 C-14", "11 第2節 分野04 p56#133", "10 付録A-7", "11 第5節 A-7"]
-    notes: "requirements §6.7 の2行目の統合方針に従う。発想の場面の順序（先に自分、後で AI）の本体は judgment の think-before-asking、均質化の根拠と強さ（中）は ai-ideas-are-everyones にあり、ここからリンクする"
+    notes: "requirements §6.7 の2行目の統合方針に従う。発想の場面の順序（先に自分、後で AI）の本体は judgment の think-before-asking、均質化の根拠と強さ（中）は ai-ideas-are-everyones にあり、ここからリンクする。開発者がよく頼む「設計や技術の選び方を壁打ちしたい」の入口がなかった（R1-18）ので、goal と別名「設計の壁打ち」を足した（批評の頼み方は節 critique、迎合を避ける聞き方は judgment の ask-without-sycophancy）。symptom の「AI の最初の案にそのまま引っ張られてしまう」は judgment の think-before-asking の「最初に AI の案を見ると、それ以外が思いつかなくなる」と同じ困りごと（先に自分で考える順序の本体はあちら）なので、選択肢を出させることが直接の答えになる場面に書き分けた（DR-15）（2026-11-04 工程4：DR-19 h・a）"
 
   # ── 正直さと確かめ方 ──
   - id: allow-i-dont-know
@@ -489,17 +490,17 @@ pages:
     scenes: [調べもの, 学習, コンテスト]
     summary: "分からなければ分からないと答えてよい、根拠のない所は推測と書け、と添えると、もっともらしい作り話が減る。減るだけで無くならないので、大事な事実は確かめる。"
     signs:
-      - {type: symptom, text: "知らないはずのことまで自信満々に答える"}
-      - {type: symptom, text: "存在しない文献や数字を、それらしく出してくる"}
+      - {type: goal, text: "分からないときは、分からないと答えてほしい"}
+      - {type: goal, text: "根拠のない部分は、推測だと分かるように書いてほしい"}
     prerequisites: [why-hallucinations]
-    related: [plausible-falsehoods, fact-checking, checking-citations, permission-to-stop, does-double-check-work, long-context-first, uses-nonexistent-apis]
+    related: [plausible-falsehoods, fact-checking, checking-citations, permission-to-stop, "verification-ladder#verbal-checks", long-context-first, uses-nonexistent-apis]
     volatility: 低
     sections:
       - {title: "分からないと言える逃げ道を作る", anchor: escape-hatch}
       - {title: "渡した資料だけを根拠にさせる", anchor: source-only}
       - {title: "答えを迫ると作り話が増える", anchor: pressure}
     materials: ["00 §3 分野04", "05 §2-2（公式の hallucination 対策）", "05 §3-5", "11 第2節 分野04 p12#98・p34#205"]
-    notes: "コンテストでの帰結（誤答の罰・偽の提出）は、場面がコンテストの例として本文に置く（11 第2節）。作業を任せる場面での版は permission-to-stop"
+    notes: "コンテストでの帰結（誤答の罰・偽の提出）は、場面がコンテストの例として本文に置く（11 第2節）。作業を任せる場面での版は permission-to-stop。symptom の2文（知らないはずのことまで自信満々に答える・存在しない文献や数字をそれらしく出してくる）は、症状の plausible-falsehoods の困りごとの言い換え（R3 付表A の12）なので、このページが直接答える goal の形にした。related の does-double-check-work は verify の verification-ladder にまとめたので、その節 verbal-checks を指し直した（2026-11-04 工程4：DR-19 a・q）"
 
   - id: permission-to-stop
     chapter: 正直さと確かめ方
@@ -515,8 +516,7 @@ pages:
     scenes: [開発, データ分析, コンテスト]
     summary: "テストや評価がおかしいと判断したら回避せずに止まって報告してよい、と依頼に書く。言葉の許可だけでは防ぎきれないので、テストを書き換えられない仕組みと組み合わせる。"
     signs:
-      - {type: symptom, text: "テストが通らないと、テストのほうを変えて通そうとする"}
-      - {type: symptom, text: "評価のおかしさに気づいても、黙って進める"}
+      - {type: goal, text: "テストが間違っていそうなら、書き換えずに報告してほしい"}
       - {type: goal, text: "仕様と食い違うときは、手を止めて知らせてほしい"}
     prerequisites: [allow-i-dont-know]
     related: [rewrote-tests-to-pass, protect-tests, misses-broken-evaluation, reward-hacking, verifier-three-conditions, suggest-or-do]
@@ -528,33 +528,7 @@ pages:
     templates:
       - {name: "止まって報告する条件を書いた CLAUDE.md の数行", kind: claude-md, safety: false}
     materials: ["requirements §4.2 prompting", "11 第1節 分野04 p34#125・p56#124・p34#130", "11 第4節 #26", "research/24 A-10・B-27", "10 第13章（注記つき）", "02 §4-12（テストが誤っていれば回避せず報告させる）", "10 付録A-3", "11 第5節 A-3"]
-    notes: "言葉で止まる権利を渡す効果は、研究では GPT 系で大きく、Claude（Opus 4.1）ではずっと小さい（research/24 A-10）。Claude 向けにはテストを読み取り専用にするなど構造の防御を主にし、このページは添える一行として書く。「効果が確かめられている」「ほぼ消える」とは書かない（research/24 B-27）。雛形 A-3 は「禁止」の節がお願いにすぎず、hold-out の保護が A-4 と食い違う（11 第4節 #20）ので、止まる条件の数行だけを取り出す"
-
-  - id: does-double-check-work
-    chapter: 正直さと確かめ方
-    title: "「念のため確認して」は効くか"
-    aliases: ["double-check して", "見直して と書く", "自分で検証させる"]
-    type: concept
-    level: 整える
-    level_evidence: "結果を確かめて直す整える段階で、確認を言葉で頼むか手段を渡すかに出会う。整えるから任せるへ上がる条件（完了の条件と確かめ方を依頼に含める）と同じ論点"
-    priority: 推奨
-    surfaces: [app, claude-code, api]
-    principle: [確かめる]
-    prevents: [確かめていない]
-    scenes: [開発]
-    summary: "「念のため確認して」と言葉で頼むより、テストや照合など確かめる手段を渡すほうが効く。自分で検証するモデルに確認を重ねて命じると、確認ばかりで進まなくなることがある。"
-    signs:
-      - {type: symptom, text: "「確認しました」と言うのに、間違いが残っている"}
-      - {type: symptom, text: "見直しを頼んだら、確認ばかり繰り返して進まない"}
-    prerequisites: [evidence-not-reports]
-    related: [verification-ladder, claims-done-but-isnt, define-done, stuck-in-a-check-loop, model-quirks, tests-first, after-switching-models]
-    outdated_advice: [add-double-check]
-    volatility: 中
-    sections:
-      - {title: "確認を命じるより、確認する道具を渡す", anchor: tools-not-words}
-      - {title: "モデルの世代で変わったこと", anchor: by-generation}
-    materials: ["00 §3 分野04", "00 §5 台帳の double-check の行", "02 §4-7", "02 §4-13", "03 Q5 Inferences", "11 第2節 分野04 p34#129", "10 第13章"]
-    notes: "registry の level（任せる）を整えるに下げた（level_evidence）。モデルの世代ごとの記述は数値ファイルと models の model-quirks に置き、summary にモデルの名前を書かない"
+    notes: "言葉で止まる権利を渡す効果は、研究では GPT 系で大きく、Claude（Opus 4.1）ではずっと小さい（research/24 A-10）。Claude 向けにはテストを読み取り専用にするなど構造の防御を主にし、このページは添える一行として書く。「効果が確かめられている」「ほぼ消える」とは書かない（research/24 B-27）。雛形 A-3 は「禁止」の節がお願いにすぎず、hold-out の保護が A-4 と食い違う（11 第4節 #20）ので、止まる条件の数行だけを取り出す。symptom の「テストが通らないと、テストのほうを変えて通そうとする」は症状の rewrote-tests-to-pass（テストのほうを書き換えて通された）の、「評価のおかしさに気づいても、黙って進める」は症状の misses-broken-evaluation（評価のやり方の誤りを指摘してくれない）の言い換えなので、前者は goal の形にし、後者は外した（仕様と食い違うときの goal が同じ場面を受ける）（2026-11-04 工程4：DR-19 a）"
 
   - id: asking-for-reasoning
     chapter: 正直さと確かめ方
@@ -568,7 +542,7 @@ pages:
     principle: [確かめる]
     prevents: [確かめていない]
     scenes: [開発, 学習]
-    summary: "推論の全文を本文に書かせる指示は断られることがあり、書かれた推論が内部の計算と一致する保証もない。理由を知りたいときは、短い根拠の説明か、表示される思考の要約を読む。"
+    summary: "答えの理由を知りたいときは、短い根拠の説明を頼むか、表示される思考の要約を読む。推論の全文を本文に書かせる指示は断られることがあり、書かれた推論が実際の計算と一致する保証もない。"
     signs:
       - {type: goal, text: "なぜその答えになったのか、過程を全部見せてほしい"}
       - {type: symptom, text: "推論を書き出すよう頼んだら断られた"}
@@ -581,7 +555,7 @@ pages:
       - {title: "全文を求める指示が断られる理由", anchor: refusal}
       - {title: "短い根拠と思考の要約で読む", anchor: alternatives}
     materials: ["00 §3 分野04", "02 §4-7", "00 §5 台帳の <thinking> の行", "research/26 §3.3 (b)2・(d)", "research/26 #7（推論の抜き出しの分類は、止まっても課金される。2026-09 時点）", "05 §2-3", "00 §4 返答と品質の困りごと"]
-    notes: "registry の優先度（任意）を推奨に上げた：推論の全文を求める指示は面を問わず拒否の引き金になり（research/26 §3.3）、symptoms の refused-or-blocked と safety の when-requests-are-refused からの振り分け先になるため。level も任せるから整えるに下げた（level_evidence）。推論の全文を求めて止められたときも課金される分類がある（research/26 §3.3 (d)）ことを refusal の節で触れる（分類の名前と課金の扱いは数値ファイル）。課金の注意の出どころとして research/26 #7 を materials に足した（2026-11-04 統合：symptoms#6）"
+    notes: "registry の優先度（任意）を推奨に上げた：推論の全文を求める指示は面を問わず拒否の引き金になり（research/26 §3.3）、symptoms の refused-or-blocked と safety の when-requests-are-refused からの振り分け先になるため。level も任せるから整えるに下げた（level_evidence）。推論の全文を求めて止められたときも課金される分類がある（research/26 §3.3 (d)）ことを refusal の節で触れる（分類の名前と課金の扱いは数値ファイル）。課金の注意の出どころとして research/26 #7 を materials に足した（2026-11-04 統合：symptoms#6）。summary の1文目が注意だけで何をすればよいかが分からなかったので、理由を知りたいときにすること（短い根拠を頼む・思考の要約を読む）を1文目にし、注意を2文目にした（R3-22）。goal の「なぜその答えになったのか、過程を全部見せてほしい」は basics の unfaithful-reasoning と同じ問いで、basics が同じ工程でこの文にそろえたので、変えずに残した（逆引きで1行に束ね、考え方と頼み方の印で並べる。DR-15）（2026-11-04 工程4：DR-19 w）"
 
   # ── 型と例文 ──
   - id: before-after-prompts
@@ -596,12 +570,12 @@ pages:
     principle: [見せる, 確かめる]
     prevents: [見えていない]
     scenes: [開発, 文章, 調べもの, データ分析]
-    summary: "よくある依頼の書き換え前と後を並べ、何を足すとどう変わるかを原則ごとに示す。同じ書き換えを、アプリ・Claude Code・API のタブで比べられる。"
+    summary: "よくある依頼の書き換え前と後を比べて、自分の依頼に足りないもの（具体性・理由・範囲と完了・確かめる手段）を見つけられる。同じ書き換えを、アプリ・Claude Code・API のタブで比べられる。"
     signs:
       - {type: goal, text: "良い頼み方の具体例を見たい"}
       - {type: goal, text: "自分の依頼のどこが足りないか、例と比べて知りたい"}
     prerequisites: [four-specifics]
-    related: [brief-a-new-colleague, give-reasons, show-examples, say-what-you-want, suggest-or-do, state-the-scope, long-context-first, does-double-check-work, prompt-patterns, fix-a-bug, measure-changes]
+    related: [brief-a-new-colleague, give-reasons, show-examples, say-what-you-want, suggest-or-do, state-the-scope, long-context-first, "verification-ladder#verbal-checks", prompt-patterns, fix-a-bug, measure-changes]
     volatility: 中
     sections:
       - {title: "具体性を足す", anchor: specifics}
@@ -610,7 +584,7 @@ pages:
       - {title: "確かめる手段を足す", anchor: verification}
     visual: {kind: static, text: "Before/After の対比表（足したものと、それが防ぐ原因の注記つき）"}
     materials: ["00 §3 分野04（この分野は全ページを Before/After で書く）", "00 §1（Best practices の Instead of / Try の例）", "requirements §6.6（Before/After）", "design §6.10"]
-    notes: "例は分野のページごとの Before/After から選び、何を足したかと防ぐ原因を注記する。00 の「30例程度」は目安で、薄い例を数のために足さない"
+    notes: "例は分野のページごとの Before/After から選び、何を足したかと防ぐ原因を注記する。00 の「30例程度」は目安で、薄い例を数のために足さない。summary の1文目が「示す」でページの説明になっていたので、読者ができること（自分の依頼に足りないものを見つける）にした（R3-22）。related の does-double-check-work は verify の verification-ladder にまとめたので、その節 verbal-checks を指し直した（節 verification の Before/After の「なぜ」の先）（2026-11-04 工程4：DR-19 w・q）"
 
   - id: prompt-patterns
     chapter: 型と例文
@@ -662,8 +636,8 @@ pages:
     scenes: [文章]
     summary: "文章を頼むときは、読み手・目的・分量・手本と、避けたい言い回しを具体的に渡す。「もっと自然に」と形容詞で頼むより、嫌な箇所を例で示すほうが直る。"
     signs:
-      - {type: symptom, text: "書かせた文章が、型どおりの言い回しばかりになる"}
-      - {type: symptom, text: "飾りが多く、中身の薄い文章になる"}
+      - {type: symptom, text: "「もっと自然に」と頼んでも、文章が良くならない"}
+      - {type: goal, text: "読み手と目的に合った文章を書かせたい"}
       - {type: goal, text: "自分の文体に近い文章を書かせたい"}
     prerequisites: [show-examples]
     related: [less-ai-sounding-japanese, output-shape, write-docs, consistent-politeness, disclosure-and-provenance]
@@ -673,11 +647,15 @@ pages:
       - {title: "嫌な点は例で示す", anchor: concrete-dislikes}
       - {title: "推敲を別の手順に分ける", anchor: revise}
     materials: ["00 §3 分野04", "03 Q5 P1（形容詞ではなく具体例で嫌な点を伝える）", "02 §4-13（モデル別の手引き：mannered prose を外す）", "decisions 2026-11-03 書き方の方針（安全・面・表現）4"]
-    notes: "「AI 臭さ」は読みやすさの品質として扱い、AI が書いたと分からなくする方法は書かない（方針 B4）。registry の題名の「（AI 臭さを避ける）」は、検出を逃れる話と読まれうるので、読み手・目的・手本を渡す形に改めた。日本語に固有の癖（定型の言い回し・漢字の多さなど）は japanese の less-ai-sounding-japanese"
+    notes: "「AI 臭さ」は読みやすさの品質として扱い、AI が書いたと分からなくする方法は書かない（方針 B4）。registry の題名の「（AI 臭さを避ける）」は、検出を逃れる話と読まれうるので、読み手・目的・手本を渡す形に改めた。日本語に固有の癖（定型の言い回し・漢字の多さなど）は japanese の less-ai-sounding-japanese。symptom の2文（型どおりの言い回しばかりになる・飾りが多く中身の薄い文章になる）は、症状の not-what-i-meant の「文章が AI っぽい」の言い換え（less-ai-sounding-japanese の sign とも近い）なので、形容詞で頼んでも直らない場面（節 concrete-dislikes が直接の答え）と goal に書き分けた。goal の「自分の文体に近い文章を書かせたい」は show-examples と同じ文にそろえた（逆引きで1行に束ねる。DR-15）（2026-11-04 工程4：DR-19 a）"
 
-merged: []
+merged:
+  - id: does-double-check-work
+    into: verification-ladder
+    reason: "独自の判断を1行で書けない（R3-17、DR-19 q。2026-11-04 工程4）。要点の「「念のため確認して」と言葉で書き足すより、確かめる手段（実行するテスト・照らす先）を渡す」は、verify の verification-ladder の節 verbal-checks（「確かめて」と書き足すことの今）と summary の2文目と同じで、00 §3 分野09 もこの区別を検証の階段に置く。答えの本体（確かめる手段と証拠）は evidence-not-reports にもある。自分で検証するモデルに確認を重ねて命じると過剰になる点は models の model-quirks と after-switching-models が持ち、台帳 add-double-check は verification-ladder も指している。題名と別名は、まとめ先の aliases に移る（verify の側が同じ工程で「「念のため確認して」は効くか」「double-check して」を足した）。prompting からは allow-i-dont-know・before-after-prompts が verification-ladder#verbal-checks を指す"
 dropped: []
 open_issues:
+  - "提案（models・symptoms・メイン）：does-double-check-work を verify の verification-ladder（節 verbal-checks）にまとめた（2026-11-04 工程4：DR-19 q）。verify の側は同じ工程で、題名と別名を verification-ladder の aliases に移し、evidence-not-reports・verification-ladder の related から外した。残る参照（symptoms の claims-done-but-isnt。models の model-quirks・after-switching-models は同じ工程で直された）は verification-ladder#verbal-checks に直すか外す。下の2026-11-04 統合の提案のうち does-double-check-work を指すものは、まとめ先に読み替える"
   - "提案（symptoms・safety）：断られたときの頼み直しは、prompting にも新規のページ（when-refused）を足しかけたが、safety の when-requests-are-refused（新規）と題も中身も同じなので取り下げ、症状の入口は symptoms の refused-or-blocked、対処の本体は safety の when-requests-are-refused とみなして、give-reasons・asking-for-reasoning からそこを指した。refused-or-blocked の related に when-requests-are-refused を入れてほしい。あわせて、decisions 2026-11-03「断られたときの頼み直し」の手段の一覧に「モデルを変える」はなく、アプリの自動のモデル切り替えは仕組みとして説明する、とある。research/26 §4.3 も、モデルを変えると通ることがあるという案内は回避と紛らわしいので自動の切り替えの説明にとどめる案である。refused-or-blocked の notes の「モデルを変える」を、この線に揃えたい。自動の切り替えの設定を tracks で追うなら、機能の id（例：switch-models-when-flagged）を safety か symptoms の new_features に足すとよい"
   - "提案（context）：資料の渡し方の境界。依頼の中の並べ方・答えの前に引用を抜かせること・原文か要約か（requirements §6.7 の3行目）は prompting の long-context-first、資料の形と量（分割・Markdown にする・添付）は handing-long-documents に置きたい。handing-long-documents の related に long-context-first を入れてほしい"
   - "提案（context）：refine-in-conversation（頼み方を一回で決めない考え方）と、rewind-dont-correct・build-on-results（巻き戻す・結果を踏まえて直す操作とその理由）を分けた。rewind-dont-correct から refine-in-conversation へリンクしてほしい"

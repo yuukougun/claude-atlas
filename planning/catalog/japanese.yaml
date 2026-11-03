@@ -57,7 +57,7 @@ pages:
     scenes: [開発, 文章, チーム]
     summary: "返答の言語・文体・表記を揃える手段を、届く範囲と強制力で選び分けられる。指示はどれも保証にならず、仕組みで止められる場所にも限りがあることを前提に組む。"
     signs:
-      - {type: symptom, text: "日本語で、と何度書いても英語や文体の揺れが戻ってくる"}
+      - {type: situation, text: "日本語の指示を足しても揃わず、仕組みにすべきか迷っている"}
       - {type: goal, text: "日本語の出力を、いつも同じ文体と表記にしたい"}
       - {type: situation, text: "チームで日本語の文書を Claude に書かせる"}
     prerequisites: [request-vs-lock]
@@ -73,7 +73,7 @@ pages:
       - {title: "縛る規則は少なく保つ", anchor: keep-few}
     visual: {kind: static, text: "日本語の出力を揃える手段を、届く範囲（主の会話・サブエージェント・圧縮の後・クラウドのセッション）と強制力（お願い・鍵）の二軸に置いた表と図"}
     materials: ["research/27 §3.2", "research/27 §3.4", "research/27 #8", "requirements §1（既存の教材との違い 3）", "00 §1（日本語特有の論点の段落、訂正：research/27 #9・#10）", "04 Q3 Inferences", "decisions 2026-11-03「第一波に足すもの」", "decisions 2026-11-03「hooks と permissions」"]
-    notes: "新規：japanese の核の総論（catalog/README §4.6 の2）。registry に総論の候補がなかったので足した。英語への回帰（keep-replies-in-japanese）と文体・表記（consistent-politeness・consistent-notation・textlint-hook）が共通に前提にする「どの手段がどこまで届き、どれが強制か」を集め、research/27 §3.2 の表と「効く範囲の三つの要点」を本体の材料にする。強制できる場所（ターンの終わりとツールの前後）と、アプリに機械の仕組みがないことは、版に依る挙動として確認日と版を付けて本文に書き、summary には書かない。縛る規則を少なく保つ注意は decisions「hooks と permissions」と Best practices による。アプリの Styles はスキルへの移行が告知された（research/26 §3.1）ので、お願いの層に Styles を挙げず、台帳 styles-for-tone を outdated_advice で指す（2026-11-04 統合：japanese#6・M3）"
+    notes: "新規：japanese の核の総論（catalog/README §4.6 の2）。registry に総論の候補がなかったので足した。英語への回帰（keep-replies-in-japanese）と文体・表記（consistent-politeness・consistent-notation・textlint-hook）が共通に前提にする「どの手段がどこまで届き、どれが強制か」を集め、research/27 §3.2 の表と「効く範囲の三つの要点」を本体の材料にする。強制できる場所（ターンの終わりとツールの前後）と、アプリに機械の仕組みがないことは、版に依る挙動として確認日と版を付けて本文に書き、summary には書かない。縛る規則を少なく保つ注意は decisions「hooks と permissions」と Best practices による。アプリの Styles はスキルへの移行が告知された（research/26 §3.1）ので、お願いの層に Styles を挙げず、台帳 styles-for-tone を outdated_advice で指す（2026-11-04 統合：japanese#6・M3）。symptom の「日本語で、と何度書いても英語や文体の揺れが戻ってくる」は、症状の replies-in-english（途中から英語に切り替わって戻らない）と inconsistent-japanese-style（指定した文体が長い文章の途中で崩れる）の言い換えなので、お願いと鍵を選び分けるこのページが直接答える状況（指示では揃わず、仕組みにするか迷う）にした（2026-11-04 工程4：DR-19 a）"
 
   # ── 返答とコミットの言語 ──
   - id: keep-replies-in-japanese
@@ -91,9 +91,9 @@ pages:
     scenes: [開発]
     summary: "英語のツール出力やサブエージェントの報告を読んだ後に英語へ戻る返答を、設定・指示・フックの組み合わせで減らす。どれも完全には防げず、ツールの合間の短い一言が画面に出る前に止める仕組みはない。"
     signs:
-      - {type: symptom, text: "日本語で話しているのに、途中から返事が英語になる"}
-      - {type: symptom, text: "日本語の設定や指示をしても、英語に戻る"}
-      - {type: symptom, text: "ツールを使った直後の一言だけ英語で出る"}
+      - {type: symptom, text: "言語を日本語に設定しても、英語の返事が混ざる"}
+      - {type: goal, text: "Claude Code の返事を、いつも日本語にしたい"}
+      - {type: goal, text: "最後の返事が英語のときは、自動で日本語に直させたい"}
     prerequisites: [align-japanese-output]
     related: [replies-in-english, where-to-put-instructions, stop-hooks, output-style-modes, settings-layers, what-subagents-dont-inherit, what-survives-compaction, cloud-sessions-and-teleport, agent-loop, where-instructions-sit, hook-recipes, commit-and-comment-language, measure-changes]
     tracks: [language-setting, claude-md, output-styles, hooks, subagents, cloud-sessions]
@@ -111,7 +111,7 @@ pages:
       - {name: "language の設定の例（個人の設定に置く）", kind: settings, safety: false}
     visual: {kind: static, text: "1ターンの中で英語が出る場所（ツールの合間の一言・最後の返事）と、それぞれに届く仕組み（Stop・PreToolUse・MessageDisplay）を示す図"}
     materials: ["research/27 §3.2・§3.3", "research/27 #2・#3・#5・#6・#7・#8・#9・#10・#11", "research/27 #15（claude.ai には返答の言語を固定する設定がない）", "research/27 §4 P10・P12・P13", "04 Q3（日本語での返答：注記つき）", "00 §3 分野15（訂正と注記）", "00 §1（日本語特有の論点の段落、訂正）", "design §6.10（大事な数件は回数の上限を決めて繰り返し「傾向」と書く）"]
-    notes: "registry の level（任せる）を整えるに下げ（level_evidence）、型も concept から recipe にした（設定 → 指示 → hook → 測る、の手順が本体になるため）。根拠の強さは research/27 §3.3 の表のとおりに付ける（戻ることがある：中、ツールの合間の一言は Stop で拾えず画面に出る前に止められない：強、圧縮の後に戻る：弱、など）。特定のモデルで増えたという報告は根拠の強さと確認日を付けて本文に書き、summary・signs には書かない。日本語を保つ hook の実践例は「保つ仕組み」と書き、強制とは書かない（00 分野15 の訂正）。検証ノートの測り方は research/27 P12（回数の上限はメインが決める）。症状の診断（安く確かめる順、research/27 P13）は symptoms の replies-in-english が持ち、ここは対処の本体にする。claude.ai には返答の言語を固定する設定がなく指示で頼むしかない（research/27 #15）ので、app-and-api の節のアプリのタブから app の where-to-put-instructions を指す。measure の節の検証ノートは eval の measure-changes の例から指されるので、related に measure-changes を置いた（2026-11-04 統合：app#4・eval#4・japanese#8）"
+    notes: "registry の level（任せる）を整えるに下げ（level_evidence）、型も concept から recipe にした（設定 → 指示 → hook → 測る、の手順が本体になるため）。根拠の強さは research/27 §3.3 の表のとおりに付ける（戻ることがある：中、ツールの合間の一言は Stop で拾えず画面に出る前に止められない：強、圧縮の後に戻る：弱、など）。特定のモデルで増えたという報告は根拠の強さと確認日を付けて本文に書き、summary・signs には書かない。日本語を保つ hook の実践例は「保つ仕組み」と書き、強制とは書かない（00 分野15 の訂正）。検証ノートの測り方は research/27 P12（回数の上限はメインが決める）。症状の診断（安く確かめる順、research/27 P13）は symptoms の replies-in-english が持ち、ここは対処の本体にする。claude.ai には返答の言語を固定する設定がなく指示で頼むしかない（research/27 #15）ので、app-and-api の節のアプリのタブから app の where-to-put-instructions を指す。measure の節の検証ノートは eval の measure-changes の例から指されるので、related に measure-changes を置いた（2026-11-04 統合：app#4・eval#4・japanese#8）。symptom の3文（途中から英語になる・設定や指示をしても英語に戻る・ツールの直後の一言だけ英語）は、症状の replies-in-english の3文の言い換え（R3 付表A の8、R1-04）なので、設定してもなお混ざる狭い場面（R1-04 の例。診断の最初の確かめを済ませた読者が直接ここに来る）と、このページが直接答える goal（いつも日本語にする・最後の返事を Stop フックで直させる）にした。別名「英語に戻る」は fix-aliases でこのページが主なので残した（2026-11-04 工程4：DR-19 a）"
 
   - id: commit-and-comment-language
     chapter: 返答とコミットの言語
@@ -158,7 +158,7 @@ pages:
     scenes: [文章, 開発, チーム]
     summary: "文体を一行で指定し、手本の文章を見せ、毎回読まれる場所に置くと揺れが減る。それでも揺れは残るので、混在は lint で見つけて直させる。"
     signs:
-      - {type: symptom, text: "途中から文体が変わる"}
+      - {type: goal, text: "文書を、です・ますか、だ・であるのどちらかに揃えたい"}
       - {type: goal, text: "チームの文書を、いつも同じ文体で書かせたい"}
     prerequisites: [align-japanese-output]
     related: [inconsistent-japanese-style, consistent-notation, textlint-hook, show-examples, where-to-put-instructions, "skills-in-the-app#migrated-styles", output-style-modes, less-ai-sounding-japanese, write-docs, requesting-prose, measure-changes]
@@ -174,7 +174,7 @@ pages:
     templates:
       - {name: "文体の指定の例（CLAUDE.md とアプリの指示）", kind: claude-md, safety: false}
     materials: ["00 §3 分野15", "04 Q3（文体・表記ゆれ・textlint・「AI臭さ」、表記ゆれと漢字の開き）", "04 Q3 Gaps（文体を守らせる手段を比べた記事はない）", "research/27 §3.2", "research/27 #16", "research/26 §3.1（Styles は skills へ移った）", "research/23 #2（output style の組み込み）", "00 §4 返答と品質の困りごと"]
-    notes: "アプリの Styles は skills への移行が告知され、公式の記事が取り下げられている（research/26 §3.1）ので、置き場所は Instructions・プロジェクトの指示・skill で書き、Styles を頼りにしない（research/27 #16）。CLAUDE.md・skill・hook の効果を比べた記事はない（04 Q3 Gaps）ので、比べるなら検証ノートにする。混在を見つけるルールの設定は textlint-hook に置く。台帳 styles-for-tone を outdated_advice で指し、移された Styles の書き方は app の where-to-put-instructions（節 styles）と skills-in-the-app（節 migrated-styles）に揃える（画面にメニューが残るかは確かめていない。research/26 §5）。sign の「です・ますとだ・であるが混ざる」は症状の inconsistent-japanese-style と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：japanese#5・japanese#6・M3・M2）"
+    notes: "アプリの Styles は skills への移行が告知され、公式の記事が取り下げられている（research/26 §3.1）ので、置き場所は Instructions・プロジェクトの指示・skill で書き、Styles を頼りにしない（research/27 #16）。CLAUDE.md・skill・hook の効果を比べた記事はない（04 Q3 Gaps）ので、比べるなら検証ノートにする。混在を見つけるルールの設定は textlint-hook に置く。台帳 styles-for-tone を outdated_advice で指し、移された Styles の書き方は app の where-to-put-instructions（節 styles）と skills-in-the-app（節 migrated-styles）に揃える（画面にメニューが残るかは確かめていない。research/26 §5）。sign の「です・ますとだ・であるが混ざる」は症状の inconsistent-japanese-style と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：japanese#5・japanese#6・M3・M2）。残っていた symptom の「途中から文体が変わる」も inconsistent-japanese-style の「指定した文体が長い文章の途中で崩れる」の言い換えなので、このページが直接答える goal の形にした（2026-11-04 工程4：DR-19 a）"
 
   - id: consistent-notation
     chapter: 文体と表記
@@ -220,7 +220,7 @@ pages:
     scenes: [文章]
     summary: "定型の言い回し・過剰な装飾・硬すぎる漢字遣いなど、読みにくさの型を具体的に挙げて直させる。AI が書いたと分からなくするためではなく、読み手のための品質として直す。"
     signs:
-      - {type: symptom, text: "日本語の文章が「AI っぽい」定型の言い回しばかりになる"}
+      - {type: symptom, text: "推敲を頼んでも、日本語の言い回しの癖が直らない"}
       - {type: symptom, text: "太字や箇条書きが多く、読み物として読みにくい"}
       - {type: goal, text: "推敲の手順を、決まった形で毎回かけたい"}
     prerequisites: [requesting-prose]
@@ -236,7 +236,7 @@ pages:
     templates:
       - {name: "推敲の観点を書いた依頼の例", kind: prompt, safety: false}
     materials: ["00 §3 分野15（「AI臭さ」を減らす・日本語推敲 skill の選び方）", "04 Q3（日本語推敲 Skill：訂正つき）", "04 Q1 K", "04 Q6（注記：research/25 P3・P10）", "research/27 §3.4（文体の手引きを参照用の skill に置く公式の例）", "decisions 2026-11-03 書き方の方針（安全・面・表現）4"]
-    notes: "merged：proofreading-skills-for-japanese を推敲 skill の節（proofreading-skill）にまとめた。第三者の推敲 skill は考え方の例として名前を出すだけにし、推薦や順位を付けない（D13、requirements §6.4）。比べた記事は1回の出力だけなので、選ぶ軸（文体を保つか、構成から直すか）と、入れる前の確認（safety の vetting-extensions）だけを書く。「AI 臭さ」は読みやすさの品質として扱い（方針 B4）、AI の利用を隠す方法は書かない。開示の考え方は safety の disclosure-and-provenance へ。読者の反応の例（04 Q6）は数件のコメントで、量の根拠にしない（research/25 P3）"
+    notes: "merged：proofreading-skills-for-japanese を推敲 skill の節（proofreading-skill）にまとめた。第三者の推敲 skill は考え方の例として名前を出すだけにし、推薦や順位を付けない（D13、requirements §6.4）。比べた記事は1回の出力だけなので、選ぶ軸（文体を保つか、構成から直すか）と、入れる前の確認（safety の vetting-extensions）だけを書く。「AI 臭さ」は読みやすさの品質として扱い（方針 B4）、AI の利用を隠す方法は書かない。開示の考え方は safety の disclosure-and-provenance へ。読者の反応の例（04 Q6）は数件のコメントで、量の根拠にしない（research/25 P3）。symptom の「日本語の文章が「AI っぽい」定型の言い回しばかりになる」は症状の not-what-i-meant の「文章が AI っぽい」の言い換え（prompting の requesting-prose の sign とも近い）なので、読みにくさの型を挙げて直させることが直接の答えになる狭い場面（推敲を頼んでも癖が残る）にした（2026-11-04 工程4：DR-19 a）"
 
   - id: textlint-hook
     chapter: 文体と表記
@@ -254,10 +254,10 @@ pages:
     summary: "ファイルを書いた直後に textlint を走らせ、残った違反を Claude に返して直させる。指示では揺れる文体と表記を、機械で見つけられる範囲だけ仕組みで揃える。"
     signs:
       - {type: goal, text: "文体や表記の決まりを、毎回自動で守らせたい"}
-      - {type: symptom, text: "何度言っても表記の揺れが残る"}
+      - {type: symptom, text: "用語集を渡して頼んでも、表記の揺れが残る"}
       - {type: situation, text: "日本語のドキュメントを Claude Code で大量に書かせている"}
-    prerequisites: [align-japanese-output, hooks-basics, block-with-exit-2]
-    related: [consistent-politeness, consistent-notation, inconsistent-japanese-style, hook-recipes, writing-safe-hooks, share-team-settings, less-ai-sounding-japanese, keep-replies-in-japanese]
+    prerequisites: [align-japanese-output, block-with-exit-2]
+    related: [consistent-politeness, consistent-notation, inconsistent-japanese-style, hook-recipes, hooks-basics, writing-safe-hooks, share-team-settings, less-ai-sounding-japanese, keep-replies-in-japanese]
     tracks: [hooks]
     volatility: 中
     sections:
@@ -271,7 +271,7 @@ pages:
       - {name: "文体と表記のルールを入れた textlint の設定の例", kind: other, safety: false}
     visual: {kind: mermaid, text: "ファイルを書く → textlint → 違反があれば Claude に返す → 直す → 違反がなくなるまで、の流れ図"}
     materials: ["00 §3 分野15", "04 Q3（textlint と PostToolUse フックの連携）", "research/27 #14・§3.4", "research/27 §4 P7", "research/28 #17（フックは既定で失敗すると通す）", "decisions 2026-11-03「hooks と permissions」"]
-    notes: "registry の優先度（推奨）を必須に上げた：文体・表記を仕組みで揃える日本語の核の中心で、第一波に入れるため。雛形の matcher は Edit|Write にする（MultiEdit は現行の文書で legacy）。シェルのヒアドキュメントなどで書いたファイルは PostToolUse では拾えないので、必要なら FileChanged を使う（research/27 §3.4）。公式の文書とリポジトリに textlint の例はなく、実践者の記事と、形が同じ公式の例（編集後の整形の hook、Stop hook での検査）を材料にする。強制する規則は少なく保ち、止めるときは理由を返す（decisions「hooks と permissions」）"
+    notes: "registry の優先度（推奨）を必須に上げた：文体・表記を仕組みで揃える日本語の核の中心で、第一波に入れるため。雛形の matcher は Edit|Write にする（MultiEdit は現行の文書で legacy）。シェルのヒアドキュメントなどで書いたファイルは PostToolUse では拾えないので、必要なら FileChanged を使う（research/27 §3.4）。公式の文書とリポジトリに textlint の例はなく、実践者の記事と、形が同じ公式の例（編集後の整形の hook、Stop hook での検査）を材料にする。強制する規則は少なく保ち、止めるときは理由を返す（decisions「hooks と permissions」）。前提の hooks-basics は、前提の block-with-exit-2 からたどって届く（推移的な前提）ので外し、近いので related に移した。symptom の「何度言っても表記の揺れが残る」は症状の inconsistent-japanese-style（「サーバー」と「サーバ」が混在する）の言い換えなので、機械で検査することが直接の答えになる狭い場面（用語集を渡しても揺れが残る）にした（2026-11-04 工程4：DR-19 e・a）"
 
   # ── 資料と環境 ──
   - id: documents-in-japanese

@@ -79,7 +79,7 @@ pages:
   - id: rewind-dont-correct
     chapter: 新しくする・巻き戻す
     title: "違うと返すより、巻き戻す・編集する"
-    aliases: ["プロンプトを編集して送り直す", "Esc を2回", "失敗の残骸を残さない", "訂正の往復をやめる"]
+    aliases: ["プロンプトを編集して送り直す", "失敗の残骸を残さない", "訂正の往復をやめる"]
     type: concept
     level: 整える
     level_evidence: "返答を確かめて直す段階で、訂正の往復が文脈を汚すことに気づく。使う操作はアプリのメッセージの編集と Claude Code の /rewind だけ"
@@ -91,7 +91,7 @@ pages:
     scenes: [開発, 文章]
     summary: "期待と違う返答には、訂正を重ねるより、前のメッセージを直して送り直すか巻き戻すほうがよい理由が分かる。間違った試みが会話に残ると、次の答えがそれに引きずられる。"
     signs:
-      - {type: symptom, text: "「そうじゃない」と何度返しても方向が直らない"}
+      - {type: situation, text: "期待と違う返事が来て、訂正を書こうとしている"}
       - {type: goal, text: "失敗したやり取りをなかったことにしてやり直したい"}
     prerequisites: [context-rot]
     related: [checkpoints-and-rewind, when-to-start-fresh, keep-failure-lessons, build-on-results, tidy-the-desk, going-in-circles, insists-on-mistakes, refine-in-conversation]
@@ -105,7 +105,7 @@ pages:
     templates: []
     visual: {kind: static, text: "Before/After。訂正を重ねた会話と、巻き戻して頼み直した会話を並べ、文脈に残るもの（失敗した2回の試み）の違いに注記する"}
     materials: ["00 §3 分野05", "03 Q3 X3（反論を含む）", "04 Q6（/clear や /rewind を使わない人もいる）", "05 1-1", "research/26 §3.3 (b)（断られたときは引き金になったやり取りより前に戻す）"]
-    notes: "巻き戻すと失敗の教訓も消えるという反論（03 X3）は keep-failure-lessons で受ける。断られたときに巻き戻すのは公式が案内する手段の一つ（research/26 §3.3）で、利用ポリシーを回避する頼み方とは分けて書く（decisions 2026-11-03）"
+    notes: "巻き戻すと失敗の教訓も消えるという反論（03 X3）は keep-failure-lessons で受ける。断られたときに巻き戻すのは公式が案内する手段の一つ（research/26 §3.3）で、利用ポリシーを回避する頼み方とは分けて書く（decisions 2026-11-03）。訂正より巻き戻す理由と操作の本体はこのページが持ち、prompting の refine-in-conversation の節 edit-the-request は1行でここを指す（R3-24）。訂正を重ねる場面の sign はこのページの1か所にした。ただし symptom の「「そうじゃない」と何度返しても方向が直らない」は症状の going-in-circles（直してと言うたびに同じ間違いが戻ってくる）の言い換えなので、訂正を書く前の状況の形にした。別名「Esc を2回」は cli の checkpoints-and-rewind が主なので外した（fix-aliases）（2026-11-04 工程4：DR-19 a・d・u）"
 
   - id: build-on-results
     chapter: 新しくする・巻き戻す
@@ -140,7 +140,7 @@ pages:
   - id: compact-and-auto-compact
     chapter: 圧縮
     title: "/compact と自動圧縮"
-    aliases: ["compaction", "コンテキスト圧縮", "自動圧縮", "auto-compact", "idle compaction", "/autocompact", "休憩と cache 切れ", "1M 時代の圧縮設定"]
+    aliases: ["コンテキスト圧縮", "自動圧縮", "auto-compact", "idle compaction", "/autocompact", "休憩と cache 切れ", "1M 時代の圧縮設定"]
     type: feature
     level: 任せる
     level_evidence: "長い作業を一つのセッションで続けさせる段階で、圧縮をいつ・どう使うかが要る（00 は L3）"
@@ -170,7 +170,7 @@ pages:
       - {name: "残す焦点を指示した /compact と、CLAUDE.md に書く圧縮の方針の例", kind: prompt, safety: false}
     visual: {kind: mermaid, text: "続けて /compact するか、書き出して /clear するかを、残したいもの（決めごと・試した経緯・ファイルの位置とエラーの文）と次の作業の近さで選ぶ分かれ道の図"}
     materials: ["00 §3 分野05（/compact と自動圧縮・休憩と cache 切れ・1M 時代の圧縮設定）", "00 §1 の対立点の表（長い作業の続け方）", "01 K-1（注記を含む）・K-2・C-5（途中から要約）", "03 Q3 X4・X5（注記を含む）", "04 Q2（compact の目安、離席の前に畳む）", "05 1-6", "research/22 #14・#15・#17", "research/23 #6・§3.4"]
-    notes: "compaction-settings（設定の節）と breaks-and-cache-expiry（idle compaction の節）をまとめた。実践者の圧縮の目安（使用率の半分、約150k トークン、自動圧縮の窓を 500000 にする など。04 Q2）は幅があり、自動圧縮の発動の割合（95%・80%）はベンダーの記事で確かめていない（03 X5）ので、要約とサインに使わない。idle compaction の条件（会話の大きさ・放置の時間）と入った版は数値ファイルに置く（research/22 #15）。CLAUDE.md の Compact instructions は Manage costs の文書にある（05 1-6）。アプリの長い会話の自動 context 管理は app の long-chat-limits へ案内する（タブ）。圧縮の要約が英語で書かれるという報告は根拠が弱い（research/27 §3.3）ので、本文で触れるなら弱と書く。何が残り何が消えるかの一覧は basics の what-survives-compaction に一本化し、auto-compact の節では繰り返さない（2026-11-04 統合：basics#2）"
+    notes: "compaction-settings（設定の節）と breaks-and-cache-expiry（idle compaction の節）をまとめた。実践者の圧縮の目安（使用率の半分、約150k トークン、自動圧縮の窓を 500000 にする など。04 Q2）は幅があり、自動圧縮の発動の割合（95%・80%）はベンダーの記事で確かめていない（03 X5）ので、要約とサインに使わない。idle compaction の条件（会話の大きさ・放置の時間）と入った版は数値ファイルに置く（research/22 #15）。CLAUDE.md の Compact instructions は Manage costs の文書にある（05 1-6）。アプリの長い会話の自動 context 管理は app の long-chat-limits へ案内する（タブ）。圧縮の要約が英語で書かれるという報告は根拠が弱い（research/27 §3.3）ので、本文で触れるなら弱と書く。何が残り何が消えるかの一覧は basics の what-survives-compaction に一本化し、auto-compact の節では繰り返さない（2026-11-04 統合：basics#2）。別名「compaction」は、題名にその語を含む basics の what-survives-compaction が主なので外した（fix-aliases。「自動圧縮」はこのページが主で残す）。機能 compaction の題名「圧縮（/compact と自動圧縮）」はこのページに当たるので、用語索引で機能の主のページを決めるとき（features.yaml の page）はこのページが合う（2026-11-04 工程4：DR-19 d）"
 
   - id: promises-after-compaction
     chapter: 圧縮
@@ -187,8 +187,8 @@ pages:
     scenes: [開発]
     summary: "圧縮のあとも守らせたい決めごとを、圧縮の後に読み直される CLAUDE.md や計画のファイルに書き、例外を許さないものは拒否ルールやフックに移す。会話の中だけで伝えた約束は要約に溶けうる。"
     signs:
-      - {type: goal, text: "圧縮されても守ってほしいことを、どこに書けばよいか知りたい"}
-      - {type: symptom, text: "最初に伝えた禁止事項を、途中から守らなくなった"}
+      - {type: goal, text: "圧縮のあとも守らせたい約束を、どこに書けばよいか知りたい"}
+      - {type: goal, text: "長いセッションで、最初に決めた約束を最後まで守らせたい"}
     prerequisites: [what-survives-compaction]
     related: [compact-and-auto-compact, "when-to-lock#spoken-rules-fade", permission-rules, path-scoped-rules, what-to-put-in-claude-md, how-skills-load, handoff-documents, forgot-after-compaction, request-vs-lock]
     tracks: [compaction, claude-md, rules]
@@ -203,7 +203,7 @@ pages:
       - {name: "会話で伝えた禁止を deny ルールに移す例", kind: settings, safety: true}
     visual: {kind: static, text: "約束の種類（続く規則・この作業の決めごと・例外を許さない禁止）と置き場所（直下の CLAUDE.md・計画や handoff のファイル・deny と hook）を結んだ対応の図"}
     materials: ["00 §3 分野05", "05 1-6", "11 第2節 分野05 p34#109", "01 C-1（会話で伝えた禁止は圧縮で失われうる）", "research/23 #6・§3.4", "research/22 #17", "research/27 §3.2（直下の CLAUDE.md は圧縮の後にディスクから読み直される）"]
-    notes: "basics の what-survives-compaction（仕組みと公式の表）、enforce の when-to-lock の節 spoken-rules-fade（会話で言った禁止を鍵に移す。enforce は spoken-prohibitions-fade をここにまとめた）、symptoms の forgot-after-compaction（診断と振り分け）と重なる。このページは「どこに置くか」の判断だけを持ち、表の本体は basics に任せる。11 3-2 #5 の「skill の一覧は圧縮の後に戻らない」は誤りで、v2.1.304 以降は今の skills から作り直して入れ直す（research/23 #6）。題名は registry の「圧縮のあとに残る約束、消える約束」から、判断が分かる形に変えた（旧題は aliases）。このページは残したい約束の移し方（CLAUDE.md・rules・フック）に絞る。what-comes-back の節は置き場所を決めるのに要る要点だけにし、残るもの・消えるものの一覧は basics の what-survives-compaction に一本化して繰り返さない（節の題も一覧と読まれない形にした。anchor は変えない）。summary と節の題の用語は公式の日本語版の多数派（拒否ルール〔仮〕・フック・スキル）に揃えた（2026-11-04 統合：basics#2・M1）"
+    notes: "basics の what-survives-compaction（仕組みと公式の表）、enforce の when-to-lock の節 spoken-rules-fade（会話で言った禁止を鍵に移す。enforce は spoken-prohibitions-fade をここにまとめた）、symptoms の forgot-after-compaction（診断と振り分け）と重なる。このページは「どこに置くか」の判断だけを持ち、表の本体は basics に任せる。11 3-2 #5 の「skill の一覧は圧縮の後に戻らない」は誤りで、v2.1.304 以降は今の skills から作り直して入れ直す（research/23 #6）。題名は registry の「圧縮のあとに残る約束、消える約束」から、判断が分かる形に変えた（旧題は aliases）。このページは残したい約束の移し方（CLAUDE.md・rules・フック）に絞る。what-comes-back の節は置き場所を決めるのに要る要点だけにし、残るもの・消えるものの一覧は basics の what-survives-compaction に一本化して繰り返さない（節の題も一覧と読まれない形にした。anchor は変えない）。summary と節の題の用語は公式の日本語版の多数派（拒否ルール〔仮〕・フック・スキル）に揃えた（2026-11-04 統合：basics#2・M1）。symptom の「最初に伝えた禁止事項を、途中から守らなくなった」は症状の forgets-in-long-chats（最初に伝えた前提を途中から忘れる）と forgot-after-compaction（会話で禁止したことを圧縮の後にやられた）の言い換えで、圧縮でない人もここに着く（R3 付表A の15、R1-04）ので、goal の形にした。goal の「圧縮されても守ってほしいことを、どこに書けばよいか知りたい」は、basics の what-survives-compaction にあった同じ問いの文（圧縮のあとも守らせたい約束を、どこに書けばよいか知りたい）にした。basics は同じ工程でその goal を「何が残り、何が消えるのか」の問いに替えたので、置き場所の問いはこのページだけが持つ（DR-15）（2026-11-04 工程4：DR-19 a）"
 
   # ── 書き出す ──
   - id: handoff-documents
@@ -320,9 +320,9 @@ pages:
     summary: "/context の内訳から、会話・読み込んだファイル・常駐するもののどれが場所を取っているかを見分け、片付け方を選ぶ。起動直後の値を控えておくと、増えた分が分かる。"
     signs:
       - {type: goal, text: "何がコンテキストを占めているか知りたい"}
-      - {type: situation, text: "拡張を足してから、起動した直後から文脈が重い気がする"}
-    prerequisites: [usage-context-statusline, attention-budget]
-    related: [always-on-costs, choose-what-to-read, compact-and-auto-compact, research-in-subagents, pruning-extensions, felt-vs-measured, "what-uses-up-limits#find-what-uses-it"]
+      - {type: goal, text: "拡張を足した後、起動直後にどれだけ場所を取っているか確かめたい"}
+    prerequisites: [attention-budget]
+    related: [usage-context-statusline, always-on-costs, choose-what-to-read, compact-and-auto-compact, research-in-subagents, pruning-extensions, felt-vs-measured, "what-uses-up-limits#find-what-uses-it"]
     tracks: [context-window]
     outdated_advice: []
     volatility: 中
@@ -333,7 +333,7 @@ pages:
     templates: []
     visual: {kind: static, text: "/context の内訳を、会話・読み込み・常駐の三つに色分けし、それぞれに効く片付け方（/clear と /compact・出力を絞る・常駐を減らす）を添えた図"}
     materials: ["00 §3 分野05", "03 Q3 X7（起動直後に /context all）", "01 K-1", "11 第2節 分野07 p34#157", "21 §2.4（公式の Explore the context window）"]
-    notes: "cli の usage-context-statusline（見る道具の一覧と status line の設定）を前提にし、このページは /context の読み方と片付け方の判断を持つ。公式の「Explore the context window」は埋まり方を対話で見せるページなので、本文からリンクする。動く図は basics の rereads-whole-history の visual が持ち、自作するか公式の図にリンクするかは執筆のときに公式の図と比べて決める（メインの決定 M8。目次の visual は変えない）（2026-11-04 統合：context#4）"
+    notes: "cli の usage-context-statusline（見る道具の一覧と status line の設定）を関連で指し（2026-11-04 工程4 で前提から移した。下記）、このページは /context の読み方と片付け方の判断を持つ。公式の「Explore the context window」は埋まり方を対話で見せるページなので、本文からリンクする。動く図は basics の rereads-whole-history の visual が持ち、自作するか公式の図にリンクするかは執筆のときに公式の図と比べて決める（メインの決定 M8。目次の visual は変えない）（2026-11-04 統合：context#4）。/context の内訳の読み方の持ち主はこのページ（節 reading。R3-25）で、cli の usage-context-statusline と、ほかに /context の内訳に触れるページは、何を見るかの判断だけにしてここを指す（/usage の内訳の読み方の持ち主は cost の what-uses-up-limits#find-what-uses-it）。持ち主のページを読むのに見る道具の一覧は要らないので、usage-context-statusline を前提から関連の先頭に移した。situation の「拡張を足してから、起動した直後から文脈が重い気がする」は症状の too-slow の「入れた拡張が多すぎて重い」の言い換えに読めるので、このページが直接答える goal（起動直後の基準値。節 baseline）にした（2026-11-04 工程4：DR-19 v・a）"
 
   - id: always-on-costs
     chapter: 見る・絞る
@@ -409,9 +409,9 @@ pages:
     summary: "長い資料は、分けたり、テキストや Markdown に直したりして、形と量を整えてから渡す。面ごとの読み込みの限界を知っておくと、読まれていない部分に気づける。"
     signs:
       - {type: goal, text: "長い PDF や仕様書をもとに答えさせたい"}
-      - {type: symptom, text: "資料に書いてあることを無視した答えが返る"}
+      - {type: goal, text: "長い資料を、読み落とされにくい形にしてから渡したい"}
     prerequisites: [attention-budget]
-    related: [how-attachments-are-read, long-context-first, skipped-later-pages, lost-in-the-middle, checking-citations, summary-overstates-source, choose-what-to-read, too-much-project-knowledge, documents-in-japanese, research-and-reports]
+    related: [how-attachments-are-read, long-context-first, skipped-later-pages, "context-rot#lost-in-the-middle", checking-citations, summary-overstates-source, choose-what-to-read, too-much-project-knowledge, documents-in-japanese, research-and-reports]
     tracks: []
     outdated_advice: []
     volatility: 中
@@ -421,7 +421,7 @@ pages:
       - {title: "面ごとの読み込みの限界", anchor: limits}
     templates: []
     materials: ["00 §3 分野05", "00 §3 分野06（添付ファイルはどこまで読まれるか）", "00 §1（長い資料を先頭に置く）", "03 Q6 N3（元資料を Markdown にしてから渡す）", "05 2-1（中ほどの情報は使われにくい）"]
-    notes: "prompting の long-context-first（並べる順）、app の how-attachments-are-read（読み込みの仕様）、symptoms の skipped-later-pages（症状）と分け、このページは資料をどう用意して渡すかの判断を持つ。面ごとのページ数などの限界は数値ファイルから。依頼の中の並べ方・答えの前に引用を抜かせること・原文か要約かは prompting の long-context-first が持つので、summary は資料の形と量（分ける・Markdown にする。添付の読まれ方は limits の節と app の how-attachments-are-read）にし、quotes-first の節は要点と long-context-first への案内だけにする（2026-11-04 統合：prompting#2）"
+    notes: "prompting の long-context-first（並べる順）、app の how-attachments-are-read（読み込みの仕様）、symptoms の skipped-later-pages（症状）と分け、このページは資料をどう用意して渡すかの判断を持つ。面ごとのページ数などの限界は数値ファイルから。依頼の中の並べ方・答えの前に引用を抜かせること・原文か要約かは prompting の long-context-first が持つので、summary は資料の形と量（分ける・Markdown にする。添付の読まれ方は limits の節と app の how-attachments-are-read）にし、quotes-first の節は要点と long-context-first への案内だけにする（2026-11-04 統合：prompting#2）。symptom の「資料に書いてあることを無視した答えが返る」は症状の skipped-later-pages の「添付したのに読んでいないような答えが返る」の言い換えなので、このページが直接答える goal の形（形と量を整えてから渡す）にした。related の lost-in-the-middle は basics が context-rot の節にまとめたので、context-rot#lost-in-the-middle を指し直した（2026-11-04 工程4：DR-19 a・p）"
 
   # ── 脇道を分ける ──
   - id: research-in-subagents
