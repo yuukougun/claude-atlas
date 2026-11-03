@@ -2,6 +2,7 @@
 # 担当：C1（工程3、2026-11-04）。design §7 の横断のページのうち start に置くものを受け持つ。
 # start のページは入口なので level を持たない（design §3.1 の規則2）。入ってくる道の検査からも外れる（catalog/README §4.4 の4）。
 # 2026-11-04 統合：I1（提案の扱いは planning/batches/step3/integrate-I1.md）。
+# 2026-11-04 工程4：F1（design-review の DR-19 と、関わる DR-02・DR-15・DR-17・DR-18 を反映した。扱いは planning/batches/step4/fix-F1.md）。
 field: start
 chapters: [使い方, 背骨, 辞書として引く, 地図と道順, 方針]
 pages:
@@ -13,12 +14,13 @@ pages:
     type: guide
     priority: 必須
     wave: 1
-    summary: "困りごと・やりたいこと・名前から目的のページへ着く道と、冒頭の要点・バッジ・確認日・下書きの帯の読み方が分かる。誤りや古い情報の報告のしかたも示す。"
+    summary: "困りごと・やりたいこと・名前から目的のページへ着く道と、冒頭の要点・バッジ・確認日・下書きの帯の読み方が分かる。公式の文書や教材との使い分けと、誤りや古い情報の報告のしかたも示す。"
     signs:
       - {type: situation, text: "この辞典を初めて開いた"}
       - {type: goal, text: "書いてあることをどこまで信用してよいか知りたい"}
       - {type: goal, text: "自分の AI にこの辞典を読ませたい"}
       - {type: situation, text: "辞典の内容に誤りや古い情報を見つけた"}
+      - {type: goal, text: "公式の文書や講座とこの辞典を、どう使い分ければよいか知りたい"}
     prerequisites: []
     related: [reverse-index, term-index, glossary, roadmap, knowledge-map, four-principles, six-causes, product-map, ai-and-sources, outdated-advice-ledger, dating-information]
     volatility: 低
@@ -29,11 +31,11 @@ pages:
       - {title: "確認日と期限切れの注意書き", anchor: freshness}
       - {title: "根拠の強さの書き分け", anchor: evidence}
       - {title: "面のタブ", anchor: surface-tabs}
-      - {title: "段階と下書きの帯", anchor: stage}
-      - {title: "公式ドキュメントとの役割分担", anchor: official-docs}
+      - {title: "段階・下書きの帯・「準備中」の題名", anchor: stage}
+      - {title: "公式ドキュメント・公式の教材との役割分担", anchor: official-docs}
       - {title: "自分の AI に読ませる（llms.txt）", anchor: llms-txt}
       - {title: "誤りや古い情報の報告", anchor: report}
-    visual: {kind: static, text: "ページの見取り図：バッジの列・冒頭の要点・別名の行・本文・前提と次に読む・段階と更新日の位置"}
+    visual: {kind: static, text: "ページの見取り図：冒頭の非公式の文・バッジの列・冒頭の要点・別名の行・本文・前提と次に読む（未公開のページは「題名（準備中）」）・段階と更新日・フッターの非公式の文とライセンスの位置"}
     materials:
       - "design §1.2（使われ方と設計の条件）・§3.1（レベル）・§6.4（冒頭の要点とバッジ）・§6.6（根拠の強さ）・§8.5（バッジ・下書きの帯・期限切れの注意書き）・§9.2〜§9.5"
       - "00 §3 分野00「この辞典の引き方」"
@@ -43,7 +45,11 @@ pages:
       - "research/22 #3（stable と latest で手元の版が違う。版の下限の読み方）"
       - "decisions 2026-11-03「Claude 用の索引」（llms.txt）・「公開する段階」（下書きの帯）"
       - "kyopro-atlas の docs/start/how-to-use.md（手本。構成をまねない）"
-    notes: "公式ドキュメントとの役割分担（インストール・全コマンド・全設定キーは公式へ。requirements §1・§6.3）を書く。版の下限の読み方は、stable の通り道が latest より遅れることを添える（research/22 #3）。段階「完成」の意味は ai-and-sources に置き、ここからリンクする。"
+      - "research/06 §1（Anthropic の公式の学習教材：Academy・anthropics/courses・Claude Code の文書。講座の名前と数は調べた時点のもの）"
+      - "decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」2（公式の教材は案内する）"
+      - "research/20 A4・I4、format-and-operations L15（守れない約束を公開のページに書かない）"
+      - "design-review DR-01（題名（準備中））・DR-10（段階の移り方）・DR-11（期限の計算）・DR-14（サイトのトップと非公式の文）・DR-17"
+    notes: "公式ドキュメントとの役割分担（インストール・全コマンド・全設定キーは公式へ。requirements §1・§6.3）を書く。版の下限の読み方は、stable の通り道が latest より遅れることを添える（research/22 #3）。段階「完成」の意味は ai-and-sources に置き、ここからリンクする。工程4の直し：(1) 節 official-docs で公式の教材（Anthropic Academy の講座・公式の文書）を案内する（方針 A2。DR-17・R2-18）。どの用に向くかだけを書き、評価や推薦の語は使わない。講座の名前と数は変わるので、入口へのリンクを主にし、名前を書くなら確認日を付ける（research/06 §1）。AI Fluency（4D）の枠組みは参考文献に挙げるだけで、この辞典の構成と用語には使わない（four-principles の notes）。(2) 守れない約束を書かない（DR-17・R2-31。research/20 A4・I4）：節 report は、報告の窓口と書いてほしいこと（題名・URL・確認日と版・何が違うか）だけにし、返事や直す時期を約束しない。節 freshness は、確認日と期限切れの注意書きが何を示すか（期限を過ぎたら公式の文書で確かめる）を書き、期限までに必ず点検するとは書かない。(3) 節 report・freshness の文は、ai-and-sources の方針の文・全ページの冒頭とフッターの文とまとめて作者の承認に入れる（design §6.1 の8。頼むのは工程7の終わりの1回。DR-06・DR-17）。(4) 節 stage は、段階の移り方（draft〔帯は「下書き・未検証」。確認日と版はまだない〕→ reviewed〔検証役が確認日と版を書く〕→ done〔完成〕。DR-10。reviewed の表示の名前は design 第2版に合わせる）と、まだ公開していないページを指す所に出る「題名（準備中）」の平文（DR-01）の読み方を書く。(5) 節 freshness の期限の日は、ページの確認日と、ページが含む各数値の確認日から道具が計算する（DR-11）。読み方は design 第2版の §8.5・§9.2 に合わせる。(6) サイトのトップ（docs/index.md。DR-14）は三つの入口・検索・症状辞典と台帳への道だけを置くので、引き方の詳しい説明はこのページが持ち、節 lookup から症状辞典の入口を直接指す。冒頭とフッターの非公式の文は見取り図に位置だけを示し、文は ai-and-sources#unofficial と同じものにする。（2026-11-04 工程4：DR-17・DR-01・DR-10・DR-11・DR-14）"
 
   # ── 背骨 ──
   - id: four-principles
@@ -60,7 +66,7 @@ pages:
       - {type: goal, text: "個別の小技ではなく、うまく使うための考え方の筋をつかみたい"}
       - {type: goal, text: "どこまで任せてよいかを決める基準がほしい"}
     prerequisites: []
-    related: [six-causes, roadmap, attention-budget, context-rot, agent-loop, why-hallucinations, request-vs-lock, data-vs-instructions, tidy-the-desk, verification-ladder, when-to-lock, what-not-to-delegate, verifier-defines-problem, human-pitfalls, "default-safety-settings#by-stage", five-questions-before-delegating, what-auto-mode-stops, lethal-trifecta, ai-amplifies-organizations, outdated-advice-ledger]
+    related: [six-causes, roadmap, attention-budget, context-rot, agent-loop, why-hallucinations, request-vs-lock, data-vs-instructions, tidy-the-desk, verification-ladder, when-to-lock, what-not-to-delegate, verifier-defines-problem, human-pitfalls, "default-safety-settings#by-stage", five-questions-before-delegating, what-auto-mode-stops, lethal-trifecta, "paved-roads#amplifier", outdated-advice-ledger]
     volatility: 低
     sections:
       - {title: "見せる", anchor: show}
@@ -79,7 +85,7 @@ pages:
       - "11 第4節 #59・#60（p12#1 の見出しは証拠より強い。AI のループを禁じる大会では限定が要る）"
       - "research/24 B-32（ALE-Bench の細部を一次資料で確かめた）"
       - "10 第4章・第5部（握るの根拠。requirements §3.1 の説明）"
-    notes: "00 の「三つの原理」に、requirements §3.1 の「握る」を足して四つにした（registry の notes）。原理のページそのものなので principle は付けない。各原理の「なぜ」は basics へ、手段は各分野へリンクする（design §4.2 の背骨の行）。Anthropic の AI Fluency（4D）は参考文献に挙げるだけにし、構成に使わない（requirements §3.1。ライセンスの一次の表示は未確認：research/21 F5）。11 第2節の p12#1 は見出しが証拠より強い（11 第4節 #59・#60）ので、例に使うなら research/24 B-32 で確かめた ALE-Bench の数値だけにし、研究のモデルと世代を書く。team の ai-amplifies-organizations は比例則の組織版として関連に置いた（11 第1節 分野17 p56#59 は全体地図の前提にする案も挙げるが採らない）。段階ごとに足す安全の既定の正本は safety の default-safety-settings#by-stage（design §4.2）で、比例則の節は既定の中身を繰り返さずにそこを指す。安全の既定が変わる更新は作者が承認する（design §9.4）。related は20件までなので、用語集（glossary）は外した（how-to-use と term-index から入れる）。（2026-11-04 統合：safety#10・M6）"
+    notes: "00 の「三つの原理」に、requirements §3.1 の「握る」を足して四つにした（registry の notes）。原理のページそのものなので principle は付けない。各原理の「なぜ」は basics へ、手段は各分野へリンクする（design §4.2 の背骨の行）。Anthropic の AI Fluency（4D）は参考文献に挙げるだけにし、構成に使わない（requirements §3.1。ライセンスの一次の表示は未確認：research/21 F5）。11 第2節の p12#1 は見出しが証拠より強い（11 第4節 #59・#60）ので、例に使うなら research/24 B-32 で確かめた ALE-Bench の数値だけにし、研究のモデルと世代を書く。team の ai-amplifies-organizations は比例則の組織版として関連に置いた（11 第1節 分野17 p56#59 は全体地図の前提にする案も挙げるが採らない）。段階ごとに足す安全の既定の正本は safety の default-safety-settings#by-stage（design §4.2）で、比例則の節は既定の中身を繰り返さずにそこを指す。安全の既定が変わる更新は作者が承認する（design §9.4）。related は20件までなので、用語集（glossary）は外した（how-to-use と term-index から入れる）。（2026-11-04 統合：safety#10・M6）上の ai-amplifies-organizations は、team の担当が paved-roads の節 amplifier にまとめた（DR-19 p）ので、関連を paved-roads#amplifier に替えた。比例則の組織版として置く理由は変わらない。（2026-11-04 工程4：DR-19 p）"
 
   - id: six-causes
     chapter: 背骨
@@ -114,7 +120,7 @@ pages:
       - "research/24 F1・§2.3・P-1（人の側の五つの根拠の強さの付け直し）"
       - "research/21 §2.2 F1"
       - "11 第1節 新分野案X の冒頭の段落（⑦にせず別の軸として持つ）"
-    notes: "design §7 の「失敗の二つの軸と診断の入口」の1ページにするため、registry の human-pitfalls-intro をまとめた（merged）。id は、症状のページなどから前提や関連に指されやすい six-causes のままにした。人の側の五つの本体は judgment の human-pitfalls（総論）で、ここは入口として並べ、各落とし穴のページへ案内する。人の側の五つの根拠の強さは現象ごとに違う（ア・イ・エは強、オは中、ウは人の現象としては強だが AI と組み合わさって強まる点は推論。どれもコンテストや現行の Claude を直接調べたものではなく類推。research/24 F1・§2.3）。requirements §3.2 の「（根拠：強）」は工程2で直したので、summary・signs・入口の表で強さを一括して断定しない。強さの区別は human-pitfalls に書く。「AI に頼って負けた経験の大半がこの重なりで説明できる」という統合の主張は弱（推論）で、入口に書かない。症状の全ページ（どれもこのページを前提か関連に持つ）への道は、節 to-symptoms の表で作る。表は症状のページの prevents・pitfalls から生成し（design §8.4 の生成の目印。どのページに生成するかは作る層の設定に持つ）、related は20件までなので、使うの段の必須の症状と各原因の代表だけを置く。（2026-11-04 統合：symptoms#9・start#2）"
+    notes: "design §7 の「失敗の二つの軸と診断の入口」の1ページにするため、registry の human-pitfalls-intro をまとめた（merged）。id は、症状のページなどから前提や関連に指されやすい six-causes のままにした。人の側の五つの本体は judgment の human-pitfalls（総論）で、ここは入口として並べ、各落とし穴のページへ案内する。人の側の五つの根拠の強さは現象ごとに違う（ア・イ・エは強、オは中、ウは人の現象としては強だが AI と組み合わさって強まる点は推論。どれもコンテストや現行の Claude を直接調べたものではなく類推。research/24 F1・§2.3）。requirements §3.2 の「（根拠：強）」は工程2で直したので、summary・signs・入口の表で強さを一括して断定しない。強さの区別は human-pitfalls に書く。「AI に頼って負けた経験の大半がこの重なりで説明できる」という統合の主張は弱（推論）で、入口に書かない。症状の全ページ（どれもこのページを前提か関連に持つ）への道は、節 to-symptoms の表で作る。表は症状のページの prevents・pitfalls から生成し（design §8.4 の生成の目印。どのページに生成するかは作る層の設定に持つ）、related は20件までなので、使うの段の必須の症状と各原因の代表だけを置く。（2026-11-04 統合：symptoms#9・start#2）症状のページは原因ごとの振り分け先を routes に持つようになったので、節 to-symptoms の表（症状の原因別の表）は prevents・pitfalls に加えて routes も読んで作る（DR-02。形は design 第2版の §8.3）。（2026-11-04 工程4：DR-02）"
 
   # ── 辞書として引く ──
   - id: reverse-index
@@ -141,7 +147,7 @@ pages:
       - "design §1.2・§1.3 の1（症状の言葉から3回のクリック以内）・§2.2・§7"
       - "catalog/README §4.5 の4（signs の三種）"
       - "kyopro-atlas の docs/guide/reverse-index-signs.md（手本。構成をまねない）"
-    notes: "表の本体は各ページの signs から生成し（design §2.2・§7）、手書きは導入と、同じ言葉が複数のページに当たるときの注記だけ。registry の題名に「状況」を足した（signs の三種。design §7）。第一波の症状辞典へ読者が入る道なので wave: 1 にした（D10 の「入口」）。表は signs から作るので、症状の全ページ（どれも困りごとの sign を2つ以上持つ）へここから道ができる。症状の項目の文は症状のページにだけ置き、対処のページに同じ文を重ねない（同じ文が二か所に出ると、症状のページの振り分けを飛ばす読み方になる）。対処のページには「理由を知りたい」などの goal を置く。（2026-11-04 統合：symptoms#9・M2）"
+    notes: "表の本体は各ページの signs から生成し（design §2.2・§7）、手書きは導入と、同じ言葉が複数のページに当たるときの注記だけ。registry の題名に「状況」を足した（signs の三種。design §7）。第一波の症状辞典へ読者が入る道なので wave: 1 にした（D10 の「入口」）。表は signs から作るので、症状の全ページ（どれも困りごとの sign を2つ以上持つ）へここから道ができる。症状の項目の文は症状のページにだけ置き、対処のページに同じ文を重ねない（同じ文が二か所に出ると、症状のページの振り分けを飛ばす読み方になる）。対処のページには「理由を知りたい」などの goal を置く。（2026-11-04 統合：symptoms#9・M2）表の作り方は DR-15 で決めた：困りごとの節は症状辞典の章で分け、対処のページの困りごとは振り分け先の症状のページの章に入れる（分野から章への対応表は作る層の設定に持つ）。やりたいことの節は場面か分野で分ける。同じ文の sign は1行に束ね、行き先に面や型の短い印（アプリ・Claude Code、考え方・手順）を付ける。節 disambiguation の手書きの注記は、束ねた行のうち選び方の説明が要るものだけにする。試作（工程7）で生成し、読者の課題で引いて確かめる。（2026-11-04 工程4：DR-15）"
 
   - id: term-index
     chapter: 辞書として引く
@@ -152,7 +158,7 @@ pages:
     wave: 1
     summary: "機能名・旧名・英語名・公式の日本語訳から、その語のページを引ける。全ページの題名と別名から作り、旧名には今の名前を添える。"
     signs:
-      - {type: symptom, text: "古い記事に出てくる機能の名前が、今の画面や文書に見当たらない"}
+      - {type: goal, text: "古い記事に出てくる機能の名前から、今の名前を知りたい"}
       - {type: goal, text: "英語の機能名から日本語の説明を探したい"}
     prerequisites: []
     related: [glossary, reverse-index, outdated-advice-ledger, change-timeline-2026, how-to-use]
@@ -170,7 +176,7 @@ pages:
       - "research/27 §3.1（公式の日本語版の訳語）"
       - "11 第3節 3-2 #4（default＝Manual を用語索引に載せる）"
       - "kyopro-atlas の docs/guide/term-index.md（手本。構成をまねない）"
-    notes: "changes の old-and-new-names（旧名と新名の対応表）をまとめた（changes.yaml の merged。題名を aliases に入れた）。旧名は各ページの aliases から引き、変わった時期と版は changes の change-timeline-2026 と台帳に置く（同じ改名を三か所に持たない）。旧名を「旧名」と示す印と変わった時期は、数値ファイルの名称の項目（今の名前・旧名・変わった時期）を aliases と照らして生成する（design §7・§9.1）。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、research/22 §3.4 が台帳ではなく数値ファイルと aliases で持つとした項目で、この名称の項目から入れる。第一波の核の old-and-new-names を受けるので wave: 1。語の意味と表記の正規形は glossary（用語集）に分けた。本体は生成（design §7）。（2026-11-04 統合：start#5・cost#1・changes#2）（2026-11-04 メイン：用語集と用語索引の id を入れ替えた。用語集を glossary、用語索引を term-index にした。英語の glossary はふつう用語集を指し、kyopro-atlas の docs/guide/glossary.md・term-index.md とも揃う。id は URL になるので骨格の前に決めた。I1 の報告のメインへ3）"
+    notes: "changes の old-and-new-names（旧名と新名の対応表）をまとめた（changes.yaml の merged。題名を aliases に入れた）。旧名は各ページの aliases から引き、変わった時期と版は changes の change-timeline-2026 と台帳に置く（同じ改名を三か所に持たない）。旧名を「旧名」と示す印と変わった時期は、数値ファイルの名称の項目（今の名前・旧名・変わった時期）を aliases と照らして生成する（design §7・§9.1）。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、research/22 §3.4 が台帳ではなく数値ファイルと aliases で持つとした項目で、この名称の項目から入れる。第一波の核の old-and-new-names を受けるので wave: 1。語の意味と表記の正規形は glossary（用語集）に分けた。本体は生成（design §7）。（2026-11-04 統合：start#5・cost#1・changes#2）（2026-11-04 メイン：用語集と用語索引の id を入れ替えた。用語集を glossary、用語索引を term-index にした。英語の glossary はふつう用語集を指し、kyopro-atlas の docs/guide/glossary.md・term-index.md とも揃う。id は URL になるので骨格の前に決めた。I1 の報告のメインへ3）工程4の直し：(1) sign の「古い記事に出てくる機能の名前が、今の画面や文書に見当たらない」は、症状辞典に足す「記事や前のやり方が通じない」（必須。DR-19 b）が受け、旧名から引く道としてこのページへ振り分ける困りごとなので、このページが答える goal（旧名から今の名前を引く）にした（R1-05）。(2) 旧名・今の名前・変わった時期は数値ファイルの名称の表を正にし、台帳の改名の行も同じ名称の id を指す（DR-18）。(3) 同じ語が複数のページの別名にあるときは、機能ごとの主のページ（features.yaml の page）を先に出し、ほかのページを短い印付きで並べる。ほかのページの題名と同じ別名は外す（DR-15・DR-19 d。工程4の主のページの一覧は planning/batches/step4/fix-aliases.md）。(4) 載せるのは stage が draft 以上のページだけ（DR-01）。（2026-11-04 工程4：DR-19 b・d・DR-15・DR-18）"
 
   - id: glossary
     chapter: 辞書として引く
@@ -267,7 +273,7 @@ pages:
     type: hub
     priority: 必須
     wave: 1
-    summary: "ページの前提関係を図で見て、選んだページの前提と次に読むページをたどれる。図は各ページの前提と段階から作る。"
+    summary: "ページの前提関係を図で見て、選んだページの前提と次に読むページをたどれる。図は各ページの前提と段階、症状のページの振り分け先から作る。"
     signs: []
     prerequisites: []
     related: [roadmap, how-to-use, reverse-index]
@@ -276,13 +282,13 @@ pages:
     materials:
       - "design §1.2（次の段階へ進む：level と prerequisites から知識マップを生成する）・§7・§8.5（知識マップ）"
       - "kyopro-atlas の docs/guide/knowledge-map.md（手本。進捗の部品は外す：design §8.3・D17）"
-    notes: "新規：design §2.1 の start の中身と §7 の横断のページにあるが、registry に候補がない（registry の notes）。本体は graph.json から生成し、JS で描く（design §7）。kyopro-atlas の「理解した」の塗り分けは入れない（D17）。生成のページで書く手間は導入の数行だけなので、ロードマップ・逆引き・用語索引とそろえて必須・wave: 1 にした。"
+    notes: "新規：design §2.1 の start の中身と §7 の横断のページにあるが、registry に候補がない（registry の notes）。本体は graph.json から生成し、JS で描く（design §7）。kyopro-atlas の「理解した」の塗り分けは入れない（D17）。生成のページで書く手間は導入の数行だけなので、ロードマップ・逆引き・用語索引とそろえて必須・wave: 1 にした。症状のページの前提は診断に要る概念だけになり、原因ごとの振り分け先は routes に分けたので、図は routes も読む（DR-02。描き方は design 第2版に従う）。載せるのは stage が draft 以上のページだけ（DR-01）。（2026-11-04 工程4：DR-02・DR-01）"
 
   # ── 方針 ──
   - id: ai-and-sources
     chapter: 方針
     title: 出典と AI 利用の方針
-    aliases: [この辞典の作り方, ライセンス, 免責, 連絡先, 非公式の教材, AI が書いた教材]
+    aliases: [この辞典の作り方, この辞典のライセンス, 免責, 連絡先, 非公式の教材, AI が書いた教材]
     type: guide
     priority: 必須
     wave: 1
@@ -296,7 +302,7 @@ pages:
     sections:
       - {title: "AI で書いていることと確かめ方", anchor: ai-writing}
       - {title: "段階「完成」の意味", anchor: done}
-      - {title: "出典の示し方", anchor: citations}
+      - {title: "出典の示し方（訳して載せない・写さない）", anchor: citations}
       - {title: "AI の利用を断るサイトを資料にしない", anchor: noai}
       - {title: "非公式の教材であること", anchor: unofficial}
       - {title: "安全と法律についての注意", anchor: disclaimers}
@@ -309,7 +315,10 @@ pages:
       - "requirements §1（非公式であることを明記する）・§2（noai の確認）・§9 D19・D20"
       - "research/22・research/28 の「AI の利用を断る指定の確認」（出典のドメインの確かめ方）"
       - "kyopro-atlas の docs/start/ai-and-sources.md（手本。構成をまねない）"
-    notes: "新規：design §7 の横断のページ（出典と AI 利用の方針）。registry に候補がない（registry の notes）。公開の約束・方針・ライセンスに関わる文なので、下書きでも作者の承認を得てから出す（design §6.1 の8・§10.8、decisions 2026-11-03）。作者には、第一波の最初のバッチより前に、ほかの方針の文とまとめて見せる（design §10.8）。第一波の公開に注意書きとライセンスが要るので、必須・wave: 1 にした。段階「完成」の意味は、kyopro-atlas の定め（一通りの作業を終え、作者が公開してよいとしたもの。すべての記述を作者が確かめた意味ではない）を元に設計で決める（decisions 2026-11-03「作者が目を通す範囲」）。（2026-11-04 統合：start#7）"
+      - "design-review DR-10（段階の移り方と「完成」の意味）・DR-14（全ページの冒頭とフッターの非公式の文）・DR-17（訳して載せない・守れない約束を書かない）・DR-06（作者への頼み）"
+      - "requirements §11「注意点」（公式文書を訳して載せない。他者の記事は文章を転載しない。参考にした資料は出典に残す）"
+      - "research/20 A4・I4、format-and-operations L15（守れない約束を公開のページに書かない）"
+    notes: "新規：design §7 の横断のページ（出典と AI 利用の方針）。registry に候補がない（registry の notes）。公開の約束・方針・ライセンスに関わる文なので、下書きでも作者の承認を得てから出す（design §6.1 の8・§10.8、decisions 2026-11-03）。作者には、第一波の最初のバッチより前に、ほかの方針の文とまとめて見せる（design §10.8）。第一波の公開に注意書きとライセンスが要るので、必須・wave: 1 にした。段階「完成」の意味は、kyopro-atlas の定め（一通りの作業を終え、作者が公開してよいとしたもの。すべての記述を作者が確かめた意味ではない）を元に設計で決める（decisions 2026-11-03「作者が目を通す範囲」）。（2026-11-04 統合：start#7）工程4の直し：(1) 段階の移り方と「完成」の意味は DR-10 で決まった（上の「設計で決める」を改める）。執筆者が draft にする（帯は「下書き・未検証」で、確認日と版はまだない）→ 検証役が、指摘0件か直しの差分を確かめ直して reviewed にし、確認日と版を書く → メインが、検査0件と未解決の指摘がないことを確かめて done にする。「完成」は作者がすべての記述を確かめた意味ではない（kyopro-atlas と同じ趣旨）。節 done はこの流れを読者の言葉で書き、その文を作者の承認に入れる（design 第2版の §3.3・§10.2）。(2) 節 unofficial の文は、全ページの冒頭とフッターに出す非公式の文・「© 2026 yuukougun」・ライセンスの表示（DR-14。decisions 2026-11-03「作者の表記と URL」）と同じ文にそろえる。Anthropic のロゴと意匠をまねない。(3) 節 citations に、公式の文書を訳して載せないこと、ほかの記事の文を転載しないこと、参考にした資料は出典に残すことを書く（DR-17・R2-11。requirements §11）。(4) 守れない約束を書かない（DR-17・R2-31）：節 contact と disclaimers は、窓口と、この辞典がしないこと（安全を保証しない・法的な助言をしない）だけを書き、返事や直す時期を約束しない。(5) 作者への頼みは工程7の終わりの1回にまとめる（DR-06）。このページの文、how-to-use の節 report・freshness、全ページの冒頭とフッターの文を一緒に見せる（上の「第一波の最初のバッチより前」は、この頼みで満たす）。(6) 別名の「ライセンス」を「この辞典のライセンス」にした。AI が書いたコードを製品や OSS に入れてよいか（権利・ライセンス）で引いた読者が、この辞典自身のライセンスのページに着かないようにするため（R1-16。その入口は safety の担当が足す。DR-19 h）。（2026-11-04 工程4：DR-17・DR-10・DR-14・DR-06・DR-19 h）"
 
 merged:
   - id: human-pitfalls-intro
@@ -321,9 +330,9 @@ dropped: []
 open_issues:
   - "提案（judgment）：human-pitfalls-intro を six-causes（失敗の二つの軸と診断の入口）にまとめた。人の側の五つの本体と根拠の強さの区別（research/24 F1・§2.3）は human-pitfalls に置き、human-pitfalls の関連に six-causes を置く案。前提や関連に human-pitfalls-intro を書いた分野は、six-causes か human-pitfalls に替える。"
   - "提案（symptoms）：症状のページは six-causes を前提か関連に持つと、診断の順（安く確かめられる順）とその理由を各ページで繰り返さずに済む。six-causes の anchor は claude-side・diagnosis・human-side・why-two-axes・to-symptoms。"
-  - "提案（設計書 §2.2・catalog/README §3）：本体を生成するページ（start の reverse-index・term-index・roadmap・knowledge-map、changes の outdated-advice-ledger・change-timeline-2026）を目次でどう示すかを決める。今は type を hub と ledger にし、notes に生成と書いた。印のキー（例：generated）を足すなら README §3 と check_catalog.py に入れる。"
+  - "提案（設計書 §2.2・catalog/README §3）：本体を生成するページ（start の reverse-index・term-index・roadmap・knowledge-map、changes の outdated-advice-ledger・change-timeline-2026）を目次でどう示すかを決める。今は type を hub と ledger にし、notes に生成と書いた。印のキー（例：generated）を足すなら README §3 と check_catalog.py に入れる。（2026-11-04 工程4：DR-17 で決まった。本体を生成するページも hub・ledger の型を持ち、生成の部分は目印で作る。型を持たないのは分野の入口と lists/ だけ）"
   - "提案（設計書 §7）：用語集（glossary）を start に新規で足した。design §7 の表に「用語集」の行（手書き。prh.yml の元。design §6.2）を足す。"
   - "提案（土台作り）：用語索引（term-index）で旧名を「旧名」と示すには、aliases のどれが旧名かを生成の道具が知る手段が要る（例：data/facts.yml の名称の項目に旧名と変わった時期を持ち、aliases と照らす）。"
   - "提案（全分野・工程4）：題名の用語の表記を、design §13 O・research/27 §4 P11 の (a)（公式の日本語版の本文の多数派）にそろえる。basics ではサブエージェント・圧縮・プロンプトキャッシング・システムプロンプトにし、英語名を aliases に置いた。registry の題名には英語の表記（subagent・compaction・prompt caching・Hooks・Skill）が多く、分野の間でそろっていない。用語集（glossary）で決め、工程4で全分野の題名をそろえる。"
-  - "提案（メイン）：ai-and-sources（出典と AI 利用の方針）は作者の承認が要る（design §10.8）。第一波の最初のバッチより前に、作者に見せる文の一覧に入れる。"
+  - "提案（メイン）：ai-and-sources（出典と AI 利用の方針）は作者の承認が要る（design §10.8）。第一波の最初のバッチより前に、作者に見せる文の一覧に入れる。（2026-11-04 工程4：作者への頼みは工程7の終わりの1回にまとめる〔DR-06〕。how-to-use の節 report・freshness と全ページの冒頭とフッターの文も同じ頼みに入れる〔DR-17・DR-14〕。ai-and-sources と how-to-use の notes に書いた）"
   - "迷った点：start の全ページに wave: 1 を付けた。D10 の第一波の「入口」を分野00（入口と地図）の全体と読み、symptoms の全ページを核にした registry の扱いとそろえた。第一波を絞るなら、生成のページ（roadmap・knowledge-map）の手書きの導入を後にできる。"

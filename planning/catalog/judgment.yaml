@@ -1,4 +1,5 @@
 # 2026-11-04 統合：I1（提案の扱いは planning/batches/step3/integrate-I1.md）。
+# 2026-11-04 工程4：F1（design-review の DR-19 と、関わる DR-02・DR-15・DR-17・DR-18 を反映した。扱いは planning/batches/step4/fix-F1.md）。
 field: judgment
 chapters: [総論, 落とし穴ごとの対策, 理解を手放さない, 振り返りと再発防止]
 pages:
@@ -24,7 +25,7 @@ pages:
       - {type: situation, text: "AI に任せる範囲が広がってきて、自分の判断に自信が持てない"}
       - {type: goal, text: "AI と組んだ作業の失敗を、自分の側から振り返りたい"}
     prerequisites: [four-principles]
-    related: [over-reliance, agreement-is-not-evidence, decide-when-to-quit, felt-vs-measured, ai-ideas-are-everyones, learning-with-ai, six-causes, what-not-to-delegate, how-much-understanding-to-keep, retros-without-ai-verdicts, curb-sycophancy-and-overtrust, roadmap]
+    related: [over-reliance, agreement-is-not-evidence, decide-when-to-quit, felt-vs-measured, ai-ideas-are-everyones, learning-with-ai, six-causes, what-not-to-delegate, how-much-understanding-to-keep, retros-without-ai-verdicts, "separate-roles#against-sycophancy", roadmap]
     tracks: []
     outdated_advice: []
     volatility: 低
@@ -38,7 +39,7 @@ pages:
       - {name: "五つの落とし穴で失敗を点検する問い（どの判断を預けたか・反対されなかった場面でどう聞いたか・撤退を考えるべき日はいつか・体感と実測のずれ・自分の案はどこまで「みんなの案」か）", kind: other, safety: false}
     visual: {kind: static, text: "二つの軸の図：Claude 側の六つの原因と人の側の五つの落とし穴を別の軸に並べ、それぞれを確かめる・縛る・握るのどれで防ぐかにつなぐ"}
     materials: ["requirements §3.2（【2026-11-03 注記】を含む）", "research/24 F1・§2.3（五つの現象の根拠の強さの付け直し）", "10 第3章（注記つき）", "11 第1節 新分野案X 総論 p12#65・p56#1・p12#85・p12#87・p56#120", "11 第3節 C-17（敗戦の解剖の演習を点検の問いに変える）", "11 第4節 #61・#62", "research/24 A-14（使い込むほど強まる、は誤り）", "design §7（失敗の二つの軸と診断の入口）"]
-    notes: "優先度：requirements §4.3 の総論で、D10 の判断と理解の核の中心なので必須・wave 1。summary と signs に根拠の強さを書かない。本文の強さは research/24 §2.3 に従う（ア・イ・エは強、オは中、ウは人の現象として強で、AI と組み合わさって強まる点は推論（実践例なし））。どれもコンテストや現行の Claude を直接調べたものではない（類推）。「AI に頼って負けた経験の大半を説明できる」という統合の主張は弱で、「説明の枠組み」として出す（11 第4節 #61）。「使い込むほど強まる」とは書かず「長い会話や押し返しで強まりうる」にとどめる（research/24 A-14）。「先に人が答える」と「確かめるのを安くすると依存が減る」の研究は工程2で一次資料を確かめていない（research/24 §5）。本文に使う前に確かめる。体感を信じる（エ）の本体は eval の felt-vs-measured で、ここからリンクする。自分の失敗の点検は演習にせず、問いの一覧と判断例にする（11 第3節 C-17）。"
+    notes: "優先度：requirements §4.3 の総論で、D10 の判断と理解の核の中心なので必須・wave 1。summary と signs に根拠の強さを書かない。本文の強さは research/24 §2.3 に従う（ア・イ・エは強、オは中、ウは人の現象として強で、AI と組み合わさって強まる点は推論（実践例なし））。どれもコンテストや現行の Claude を直接調べたものではない（類推）。「AI に頼って負けた経験の大半を説明できる」という統合の主張は弱で、「説明の枠組み」として出す（11 第4節 #61）。「使い込むほど強まる」とは書かず「長い会話や押し返しで強まりうる」にとどめる（research/24 A-14）。「先に人が答える」と「確かめるのを安くすると依存が減る」の研究は工程2で一次資料を確かめていない（research/24 §5）。本文に使う前に確かめる。体感を信じる（エ）の本体は eval の felt-vs-measured で、ここからリンクする。自分の失敗の点検は演習にせず、問いの一覧と判断例にする（11 第3節 C-17）。team の curb-sycophancy-and-overtrust は team の担当が separate-roles の節 against-sycophancy にまとめた（DR-19 q）ので、関連をその節に替えた。（2026-11-04 工程4：DR-19 q）"
 
   # ---------------------------------------------------------------- 落とし穴ごとの対策
   - id: over-reliance
@@ -92,11 +93,11 @@ pages:
     scenes: [開発, チーム, コンテスト]
     summary: "Claude の賛成や、複数の AI レビュアーの一致が正しさの証拠にならない理由と、代わりに何を証拠として数えるかが分かる。"
     signs:
-      - {type: symptom, text: "Claude も賛成したのに、方針が間違っていた"}
+      - {type: goal, text: "Claude の賛成を、方針が正しい根拠にしてよいか知りたい"}
       - {type: symptom, text: "自分の案を AI に見せると、たいてい褒められる"}
       - {type: situation, text: "複数の AI にレビューさせて、全部が問題なしと答えた"}
     prerequisites: [human-pitfalls, sycophancy]
-    related: [ask-without-sycophancy, caves-when-pushed, independent-review, second-opinion-from-another-model, model-based-grading, evidence-not-reports, risk-tiered-approval, curb-sycophancy-and-overtrust, ai-usage-guidelines, instructing-reviewers, insists-on-mistakes, retros-without-ai-verdicts, over-reliance]
+    related: [ask-without-sycophancy, caves-when-pushed, independent-review, second-opinion-from-another-model, model-based-grading, evidence-not-reports, risk-tiered-approval, "separate-roles#against-sycophancy", ai-usage-guidelines, instructing-reviewers, insists-on-mistakes, retros-without-ai-verdicts, over-reliance]
     tracks: []
     outdated_advice: []
     volatility: 低
@@ -106,7 +107,7 @@ pages:
       - {title: "AI レビュアーの一致", anchor: reviewer-agreement}
       - {title: "証拠として数えるもの", anchor: what-counts}
     materials: ["10 第3章 二つ目（迎合）・実践", "11 第1節 分野17 p56#21", "11 第1節 分野09 p34#175", "11 第2節 分野18 p12#90・p12#75（注記つき）", "11 第2節 分野01 p12#71〜p12#74", "11 第2節 分野09 p34#226", "research/24 §2.3 イ・A-14・B-44・B-55", "requirements §6.3（複数の AI レビュアーが一致したから正しい、という判断を書かない）"]
-    notes: "優先度：落とし穴イの本体で、requirements §6.3 の「書かないもの」の裏返しを持つページなので必須・wave 1。確信を込めた押しの説得率（「84.5%」）は工程2で確かめていない（research/24 B-44、11 第2節 分野18 の注記）ので、summary・signs の根拠にしない。人の側の証拠は対人の相談の領域で、AI の賛成を技術の判断の証拠にすることを直接調べた研究はない（類推。research/24 §2.3 イ）。迎合の率はモデルと世代で変わるので、現行の Claude の傾向として書かない。研究の公刊の版と査読前の版で数値が違うものは、公刊の版を使う（research/24 §3 の9）。聞き方の技法の本体は ask-without-sycophancy、チームの決まりにする話は team の curb-sycophancy-and-overtrust と risk-tiered-approval。"
+    notes: "優先度：落とし穴イの本体で、requirements §6.3 の「書かないもの」の裏返しを持つページなので必須・wave 1。確信を込めた押しの説得率（「84.5%」）は工程2で確かめていない（research/24 B-44、11 第2節 分野18 の注記）ので、summary・signs の根拠にしない。人の側の証拠は対人の相談の領域で、AI の賛成を技術の判断の証拠にすることを直接調べた研究はない（類推。research/24 §2.3 イ）。迎合の率はモデルと世代で変わるので、現行の Claude の傾向として書かない。研究の公刊の版と査読前の版で数値が違うものは、公刊の版を使う（research/24 §3 の9）。聞き方の技法の本体は ask-without-sycophancy、チームの決まりにする話は team の curb-sycophancy-and-overtrust（工程4で separate-roles の節 against-sycophancy にまとめられた。関連もその節に替えた。DR-19 q）と risk-tiered-approval。sign の「Claude も賛成したのに、方針が間違っていた」は症状の caves-when-pushed（Claude も賛成したのに計画が失敗した）の言い換えなので、このページが答える goal（賛成を根拠にしてよいか）にした（R1-04・R3 付表A の2）。「自分の案を見せると褒められる」と「複数の AI レビュアーが全部問題なし」は、このページが直接の答えになる狭い場面なので残した。（2026-11-04 工程4：DR-19 a・q）"
 
   - id: ask-without-sycophancy
     chapter: 落とし穴ごとの対策
@@ -128,7 +129,7 @@ pages:
       - {type: symptom, text: "「この方針で良いよね？」と聞くと、いつも同意される"}
       - {type: goal, text: "いくつかの案から、偏りなく選ばせたい"}
     prerequisites: [agreement-is-not-evidence]
-    related: [sycophancy, ask-for-options, suggest-or-do, independent-review, instructing-reviewers, caves-when-pushed, subagent-isolation, think-before-asking, data-analysis, ideate-independently, curb-sycophancy-and-overtrust, prompt-patterns, before-after-prompts]
+    related: [sycophancy, ask-for-options, suggest-or-do, independent-review, instructing-reviewers, caves-when-pushed, subagent-isolation, think-before-asking, data-analysis, ideate-independently, "separate-roles#against-sycophancy", prompt-patterns, before-after-prompts]
     tracks: [subagents]
     outdated_advice: []
     volatility: 中
@@ -142,7 +143,7 @@ pages:
       - {name: "並べて比べる（自分の案を含む複数案を、誰の案かを伏せて同じ表で比べさせる。業務向けの言い換えも並べる）", kind: prompt, safety: false}
       - {name: "自分の案の批評（新しい解法は出させず、誤った前提・見落とした条件・崩れそうな入力を挙げさせる）", kind: prompt, safety: false}
     materials: ["10 第19章（注記つき）", "11 第1節 新分野案X「迎合させない聞き方」p56#2・p56#4・p56#16・p56#134・p56#17・p56#13・p56#14", "11 第5節 A-7（本文の中心の Before/After）", "11 第3節 C-18（迎合の自己実験は検証ノートにする）", "11 第2節 分野04 p56#12・p56#133", "research/24 B-40・B-44"]
-    notes: "優先度：対策の根拠は中で、研究の多くは旧い世代や小さなモデル（類推）なので推奨のまま（registry の見当）。必須の agreement-is-not-evidence の前提にはせず、こちらがそれを前提にする。多くの研究の数値のうち、コードスメルの研究の「41〜73%」「26%」「41〜46%」は使わない（research/24 B-40）。悪魔の代弁者と「挑発」の研究は工程2で確かめていない（research/24 B-44）。迎合の自己実験は演習にせず、制作の環境で試した検証ノート（観察）にする（11 第3節 C-18、decisions 2026-11-03「検証ノートの実験」）。モデル別の公式の指針（範囲の指示や「重大なものだけ」で報告が減ること）は版に依存するので、確認日付きで書くか数値ファイルに置く。新しい文脈での批評は、アプリでは新しいチャット、Claude Code では新しいセッションか subagent のタブで並べる。"
+    notes: "優先度：対策の根拠は中で、研究の多くは旧い世代や小さなモデル（類推）なので推奨のまま（registry の見当）。必須の agreement-is-not-evidence の前提にはせず、こちらがそれを前提にする。多くの研究の数値のうち、コードスメルの研究の「41〜73%」「26%」「41〜46%」は使わない（research/24 B-40）。悪魔の代弁者と「挑発」の研究は工程2で確かめていない（research/24 B-44）。迎合の自己実験は演習にせず、制作の環境で試した検証ノート（観察）にする（11 第3節 C-18、decisions 2026-11-03「検証ノートの実験」）。モデル別の公式の指針（範囲の指示や「重大なものだけ」で報告が減ること）は版に依存するので、確認日付きで書くか数値ファイルに置く。新しい文脈での批評は、アプリでは新しいチャット、Claude Code では新しいセッションか subagent のタブで並べる。team の curb-sycophancy-and-overtrust は team の担当が separate-roles の節 against-sycophancy にまとめた（DR-19 q）ので、関連をその節に替えた。（2026-11-04 工程4：DR-19 q）"
 
   - id: decide-when-to-quit
     chapter: 落とし穴ごとの対策
@@ -162,8 +163,8 @@ pages:
     summary: "費やした分だけ方針を捨てにくくなる傾向に対し、やめる基準を着手前に書き、作った本人以外が判定して守る方法が分かる。"
     signs:
       - {type: symptom, text: "ここまで作ったので、今さら方針を変えられない"}
-      - {type: symptom, text: "微修正を続けているのに、いっこうに良くならない"}
-      - {type: situation, text: "Claude に「もう打ち手がない」と言われて、やめるか迷っている"}
+      - {type: goal, text: "頭打ちになった方針を、続けるかやめるか決めたい"}
+      - {type: goal, text: "Claude の「もう打ち手がない」を、やめる根拠にしてよいか判断したい"}
     prerequisites: [human-pitfalls]
     related: [experiment-log, lockbox-and-holdout, when-to-start-fresh, wont-rethink-approach, going-in-circles, what-not-to-delegate, open-ended-loop-trap, selection-pressure, keep-failure-lessons, separate-roles, agreement-is-not-evidence, running-contest-experiments, competition-day-operations, long-team-competitions]
     tracks: []
@@ -180,7 +181,7 @@ pages:
       - {name: "撤退基準の登録（方針・期日・基準・判定者・同じアイデアの再試行の上限を、登録日付きで台帳に書く）", kind: other, safety: false}
     visual: {kind: static, text: "方針の時間線：着手前に期日と基準と判定者を書く → 期日に判定者が台帳と照らす → 続ける・やめる・作り直す"}
     materials: ["10 第20章（訂正・注記つき）", "11 第1節 新分野案X「やめどきを先に決める」p12#77・p56#25・p12#78・p56#22・p56#23・p34#47・p56#24・p56#28・p56#32・p56#144・p56#33・p56#34・p56#35", "11 第5節 A-15（後半）", "11 第1節 分野18 p56#29・p56#30", "research/24 §2.3 ウ・A-15・B-50・B-58", "research/25 P12（観戦の投稿の要約は本人の助言として使わない）"]
-    notes: "優先度：落とし穴ウの本体で、症状の wont-rethink-approach・going-in-circles から方針の単位の対処として指されるので必須・wave 1。人の固執の要因はメタ分析で確かめられている（research/24 §2.3 ウ）。AI の速さと迎合が固執を強めるという筋は推論（実践例なし）で、本文でそう書き、ページの中心にしない（方針 A3）。中心は、着手前の基準と、判定を作った本人から離すこと。「リスクや機会費用の情報は固執を弱める」は工程2で確かめていない（research/24 §5）。0.60 や 4回などの値は例と明記し、4回は Fishtest の目安（4〜5回。チェスエンジンの検定の慣行で、運のよい試行を通しすぎないため）を借りた例とする（research/24 A-15・B-50）。変えすぎの失敗は一人の研究者の助言として書く（research/24 B-58）。コンテストの事例（実装の前の概算で方針を棄却する、など）は個人の名前を出さずに型として書く。観戦の投稿の要約（research/25 P12）は本人の助言として使わない。10 付録A-15 は、前半（実験台帳）を eval の experiment-log、後半（撤退基準）をここで分け合う（eval の担当の提案と同じ）。"
+    notes: "優先度：落とし穴ウの本体で、症状の wont-rethink-approach・going-in-circles から方針の単位の対処として指されるので必須・wave 1。人の固執の要因はメタ分析で確かめられている（research/24 §2.3 ウ）。AI の速さと迎合が固執を強めるという筋は推論（実践例なし）で、本文でそう書き、ページの中心にしない（方針 A3）。中心は、着手前の基準と、判定を作った本人から離すこと。「リスクや機会費用の情報は固執を弱める」は工程2で確かめていない（research/24 §5）。0.60 や 4回などの値は例と明記し、4回は Fishtest の目安（4〜5回。チェスエンジンの検定の慣行で、運のよい試行を通しすぎないため）を借りた例とする（research/24 A-15・B-50）。変えすぎの失敗は一人の研究者の助言として書く（research/24 B-58）。コンテストの事例（実装の前の概算で方針を棄却する、など）は個人の名前を出さずに型として書く。観戦の投稿の要約（research/25 P12）は本人の助言として使わない。10 付録A-15 は、前半（実験台帳）を eval の experiment-log、後半（撤退基準）をここで分け合う（eval の担当の提案と同じ）。sign の「微修正を続けているのに、いっこうに良くならない」は症状の wont-rethink-approach（直し続けて方針を疑わない）・going-in-circles・stuck-in-a-check-loop の言い換えに、situation の「Claude に「もう打ち手がない」と言われて、やめるか迷っている」は wont-rethink-approach（「これ以上は無理です」と言われる）の言い換えになるので、どちらもこのページが答える goal（頭打ちのときの判断、AI の撤退の勧めの再検証）にした。人の側の固執の「今さら方針を変えられない」は症状のページにない困りごとなので残した。（2026-11-04 工程4：DR-19 a）"
 
   - id: ai-ideas-are-everyones
     chapter: 落とし穴ごとの対策
@@ -269,7 +270,6 @@ pages:
     scenes: [学習, 開発, コンテスト]
     summary: "AI に書かせると速く進む一方で理解が残りにくいことと、生成の後に理解を確かめる、エラーは自分で直す、といった理解が残る使い方が分かる。"
     signs:
-      - {type: symptom, text: "AI に書かせたコードを、自分では説明できない"}
       - {type: symptom, text: "AI と一緒だと分かった気になるが、AI なしでは解けない"}
       - {type: situation, text: "新しいライブラリや手法を、AI と一緒に覚えたい"}
       - {type: goal, text: "コンテストの上位解法や解説を AI に要約させて学びたい"}
@@ -288,13 +288,13 @@ pages:
       - {name: "生成の後に、役割について自分に質問を出させる（答えるまで正解を言わせず、先に進ませない）", kind: prompt, safety: false}
       - {name: "上位解法を、手法・その手法を正当化した問題の性質・原文の引用の三列で要約させる", kind: prompt, safety: false}
     materials: ["10 第7章（注記つき）", "10 第21章 根拠", "11 第1節 新分野案X「AI で新しい技術を学ぶ」p12#144〜p12#150・p56#38・p56#39・p12#80・p12#81・p56#105・p56#107・p12#153", "11 第1節 新分野案Y「振り返りと上位解法の読み方」p12#151・p56#101", "11 第5節 A-16", "research/24 A-13・§2.3 エ（高校生の実験の自己評価は本文の節）・§3 の8", "11 第4節 #31・#56"]
-    notes: "優先度：registry の見当（推奨）から必須に上げ、wave 1 にした。D10 の「判断と理解の核」の理解の側の中心で、根拠に無作為化実験がある（Anthropic の研究は52人・GPT-4o ベースのアシスタント・課題の直後のクイズ、高校生の実験は約1,000人・GPT-4。research/24 A-13・§2.3 エ）。contest の practice-vs-contest-day（必須）と judgment の how-much-understanding-to-keep の前提になる。理解が残る型・残らない型は各 n=2〜7 の傾向で、因果は主張されていない（research/24 A-13）。数値を出すときは n と、Claude 固有の結果ではないことを添える。「エージェントでは影響がさらに大きくなりうる」は著者の推測と書く。Learning の output style は設計の意図として紹介し、学習効果は示さない。contest の reading-top-solutions をまとめた（節 summaries-of-solutions。上位解法を読む技術そのものは方針 A5 により kyopro-atlas の practice-method などへリンクする。AI の使い方を書き残す点は retros-without-ai-verdicts の節 record-ai-usage）。A-16 の前半（生成の後に理解を確かめる）は、11 第5節が verify の own-generated-code に置く案だったが、verify の担当が雛形をこのページに任せた。own-generated-code は出荷の基準（説明できないものは採らない）、ここは学ぶ手順として書き分け、雛形はここだけに置く。（2026-11-04 統合：verify#3・judgment#1）"
+    notes: "優先度：registry の見当（推奨）から必須に上げ、wave 1 にした。D10 の「判断と理解の核」の理解の側の中心で、根拠に無作為化実験がある（Anthropic の研究は52人・GPT-4o ベースのアシスタント・課題の直後のクイズ、高校生の実験は約1,000人・GPT-4。research/24 A-13・§2.3 エ）。contest の practice-vs-contest-day（必須）と judgment の how-much-understanding-to-keep の前提になる。理解が残る型・残らない型は各 n=2〜7 の傾向で、因果は主張されていない（research/24 A-13）。数値を出すときは n と、Claude 固有の結果ではないことを添える。「エージェントでは影響がさらに大きくなりうる」は著者の推測と書く。Learning の output style は設計の意図として紹介し、学習効果は示さない。contest の reading-top-solutions をまとめた（節 summaries-of-solutions。上位解法を読む技術そのものは方針 A5 により kyopro-atlas の practice-method などへリンクする。AI の使い方を書き残す点は retros-without-ai-verdicts の節 record-ai-usage）。A-16 の前半（生成の後に理解を確かめる）は、11 第5節が verify の own-generated-code に置く案だったが、verify の担当が雛形をこのページに任せた。own-generated-code は出荷の基準（説明できないものは採らない）、ここは学ぶ手順として書き分け、雛形はここだけに置く。（2026-11-04 統合：verify#3・judgment#1）分担を DR-19 k（R3-10）に合わせた：理解の線引き（中核と周辺・説明できないものは採らない）は how-much-understanding-to-keep、採る前に説明させて確かめる手順は verify の own-generated-code、ここは学ぶ手順。sign の「AI に書かせたコードを、自分では説明できない」は own-generated-code の「マージしたコードを、自分で説明できない」と同じ困りごとだった。own-generated-code は工程4で困りごとの sign を外して手順の goal にしたので、説明できないものを採ってよいかの線引きを持つ how-much-understanding-to-keep に1か所で移した（R3-10「signs は1か所にする」）。学ぶ場面の困りごとは「AI なしでは解けない」で受ける。（2026-11-04 工程4：DR-19 k）"
 
   - id: how-much-understanding-to-keep
     chapter: 理解を手放さない
     title: "どこまで理解を手放してよいか（中核と周辺）"
     nav_title: null
-    aliases: ["理解の外注", "認知負債", "監督のパラドックス"]
+    aliases: ["理解の外注", "監督のパラドックス"]
     type: judgment
     level: 任せる
     level_evidence: "実装の多くを任せ始めた段階で、どの部分の理解を自分に残すかを決める必要が出る"
@@ -307,10 +307,11 @@ pages:
     summary: "コードを中核と周辺に分け、周辺は任せきり、中核は説明できるまで理解を確かめる線引きと、任せるほど確かめる力が衰えうることへの備えが分かる。"
     signs:
       - {type: symptom, text: "AI が書いたコードが増えて、全体を把握できなくなってきた"}
+      - {type: symptom, text: "AI に書かせたコードを、自分では説明できない"}
       - {type: goal, text: "どこまで AI に任せて、どこは自分で理解しておくか決めたい"}
       - {type: situation, text: "障害が起きたら、自分でデバッグしなければならない部分がある"}
-    prerequisites: [learning-with-ai, what-not-to-delegate]
-    related: [own-generated-code, diffs-humans-must-read, review-bottlenecks, pairing-and-delegating, practice-vs-contest-day, over-reliance, independent-review, create-and-review-prs, human-pitfalls]
+    prerequisites: [learning-with-ai]
+    related: [what-not-to-delegate, own-generated-code, diffs-humans-must-read, review-bottlenecks, pairing-and-delegating, practice-vs-contest-day, over-reliance, independent-review, create-and-review-prs, human-pitfalls]
     tracks: []
     outdated_advice: []
     volatility: 低
@@ -320,7 +321,7 @@ pages:
       - {title: "確かめる力が衰える（監督のパラドックス）", anchor: supervision-paradox}
       - {title: "AI を使わない時間を残す", anchor: ai-free-time}
     materials: ["10 第21章（注記・訂正つき）", "11 第1節 新分野案X「どこまで理解を手放してよいか」p56#45", "11 第1節 新分野案X「AI で新しい技術を学ぶ」p56#42・p56#47・p56#118", "11 第1節 新分野案X 総論 p56#120（使ったかではなく、説明できるか・確かめたかで評価する）", "11 第3節 C-21（自分でやるか任せるかの判断例は delegate）", "research/24 A-15"]
-    notes: "優先度：根拠は中（実践と企業の社内調査）なので推奨（registry の見当）。「3行で説明できるまでマージしない」の3行は例（research/24 A-15）。監督のパラドックスは企業の社内調査（中）。AI を使わない時間は課題ではなく習慣として推奨にとどめる（11 p56#47）。どの段階でも任せないものの一覧（中核の理解を含む）は delegate の what-not-to-delegate が持ち、ここはどこに線を引くかと、理解の保ち方を本体にする。比例則：周辺を任せきる内容を含むので、verify の own-generated-code と diffs-humans-must-read を関連に置いた。"
+    notes: "優先度：根拠は中（実践と企業の社内調査）なので推奨（registry の見当）。「3行で説明できるまでマージしない」の3行は例（research/24 A-15）。監督のパラドックスは企業の社内調査（中）。AI を使わない時間は課題ではなく習慣として推奨にとどめる（11 p56#47）。どの段階でも任せないものの一覧（中核の理解を含む）は delegate の what-not-to-delegate が持ち、ここはどこに線を引くかと、理解の保ち方を本体にする。比例則：周辺を任せきる内容を含むので、verify の own-generated-code と diffs-humans-must-read を関連に置いた。k：理解の線引き（中核と周辺を分ける・説明できないものは採らない）はこのページが持つ。verify の own-generated-code は説明させて確かめる手順に絞り、このページを前提にできる（どちらも推奨・任せる）。障害のときに自分で直す部分の線引きの困りごと（situation の「障害が起きたら…」）と、learning-with-ai から移した「AI に書かせたコードを、自分では説明できない」はここに置き（own-generated-code は工程4で困りごとの sign を外し、採る前の手順の goal にした）、学ぶ手順の learning-with-ai と、確かめる手順の own-generated-code とは場面を書き分ける（DR-19 k。R3-10「signs は1か所にする」）。d：別名の「認知負債」は own-generated-code を用語索引の主にしたので外した（11 の材料も「理解が追いつかないままコードが増える」を生成コードを自分のものにする話に置く。fix-aliases）。e：what-not-to-delegate を前提から関連の先頭に移した。任せないものの一覧を読まなくても線引きは読める、判断どうしの辺だった（catalog/README §4.4 の1。R1-10）。直しの前は祖先11ページ・6段で、own-generated-code がこのページを前提にするとさらに伸びた（delegate の担当が what-not-to-delegate の前提を減らした後は、前提に残しても祖先5ページ・4段）。（2026-11-04 工程4：DR-19 k・d・e）"
 
   # ---------------------------------------------------------------- 振り返りと再発防止
   - id: retros-without-ai-verdicts
@@ -374,7 +375,7 @@ pages:
     summary: "AI と組んだ作業の失敗を、誰の誤りかではなくどの仕組みの隙間が許したかで書き、再発防止を CLAUDE.md・フック・レビューの観点のどこに入れるかを決められる。"
     signs:
       - {type: situation, text: "AI に任せた作業で事故が起きたので、再発を防ぎたい"}
-      - {type: symptom, text: "同じ種類の失敗を、注意しても何度も繰り返す"}
+      - {type: symptom, text: "注意したのに、同じ種類の失敗が別の作業でまた起きた"}
     prerequisites: [when-to-lock]
     related: [retros-without-ai-verdicts, hook-recipes, what-to-put-in-claude-md, grow-review-checklists, keep-failure-lessons, recover-lost-work, record-decisions, deleted-something-important, instructions-ignored, request-lock-table, decide-when-to-quit]
     tracks: [claude-md, hooks]
@@ -388,7 +389,7 @@ pages:
     templates:
       - {name: "ポストモーテムの項目（要約・影響・人と AI の操作の時間線・根本原因・うまくいったこと・アクション項目・再発防止の置き場所）", kind: other, safety: false}
     materials: ["10 第24章 実践②③（注記つき）", "11 第1節 新分野案X「失敗を仕組みに戻す」p56#93・p56#94・p56#98・p56#99", "11 第1節 新分野案X p56#100（プレモーテムは人が書き終えた後に別枠で）", "requirements §6.3（プレモーテムを効果が実証された手法として紹介しない）", "research/24 A-15"]
-    notes: "優先度：定評ある実務の型（中〜弱）で、再発防止を縛る仕組みへつなぐ背骨のページなので推奨（registry の見当）。プレモーテムの「原因特定能力が30%向上」は、挙げた理由の数を測ったもので質は測っていない（11 p56#94）。効果が実証された手法として紹介しない（requirements §6.3）。プレモーテムの時期（本番の1か月前など）は例（research/24 A-15）。セッションの記録の保存場所は版に依存するので、cli の recover-lost-work へリンクし、確認日を付ける。（2026-11-04 統合：M1）"
+    notes: "優先度：定評ある実務の型（中〜弱）で、再発防止を縛る仕組みへつなぐ背骨のページなので推奨（registry の見当）。プレモーテムの「原因特定能力が30%向上」は、挙げた理由の数を測ったもので質は測っていない（11 p56#94）。効果が実証された手法として紹介しない（requirements §6.3）。プレモーテムの時期（本番の1か月前など）は例（research/24 A-15）。セッションの記録の保存場所は版に依存するので、cli の recover-lost-work へリンクし、確認日を付ける。（2026-11-04 統合：M1）sign の「同じ種類の失敗を、注意しても何度も繰り返す」は、症状の going-in-circles の題名（同じ失敗を繰り返す）の言い換えに読めるので、このページが直接の答えになる狭い場面（作業をまたいで同じ種類の失敗が再び起きる）に書き換えた。（2026-11-04 工程4：DR-19 a）"
 
 merged: []
 dropped: []
@@ -405,5 +406,5 @@ notes:
 
 open_issues:
   - "提案（verify・C8）：11 第5節が own-generated-code に置く A-16 の前半（生成の後に理解を確かめる）は、learning-with-ai の雛形と近い。own-generated-code は出荷の基準、learning-with-ai は学ぶ手順として書き分けたい。"
-  - "依頼（delegate・C9）：how-much-understanding-to-keep は what-not-to-delegate を前提にした（どちらも任せる）。工程4で直すときも、what-not-to-delegate の level を任せるより上にしないでほしい（上げると段の逆転になる）。"
+  - "依頼（delegate・C9）：how-much-understanding-to-keep は what-not-to-delegate を前提にした（どちらも任せる）。工程4で直すときも、what-not-to-delegate の level を任せるより上にしないでほしい（上げると段の逆転になる）。（2026-11-04 工程4：what-not-to-delegate を前提から関連に移したので、この依頼は要らなくなった。DR-19 e）"
   - "提案（symptoms・C12）：人の側の落とし穴の診断で指す先の案。caves-when-pushed → agreement-is-not-evidence・ask-without-sycophancy。wont-rethink-approach → decide-when-to-quit（どちらも任せる）。going-in-circles（整える）は会話の単位の撤退が本体なので、decide-when-to-quit（任せる）は前提にせず関連にすると段の逆転を避けられる。"

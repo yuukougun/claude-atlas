@@ -2,6 +2,7 @@
 # 担当：C1（工程3、2026-11-04）。
 # 台帳の行は registry の ledger（37項目。2026-11-04 の統合で2項目が足された）。台帳と年表の表は data から生成し、手書きは導入だけ（design §7・§9.1）。
 # 2026-11-04 統合：I1（提案の扱いは planning/batches/step3/integrate-I1.md）。
+# 2026-11-04 工程4：F1（design-review の DR-19 と、関わる DR-02・DR-15・DR-17・DR-18 を反映した。扱いは planning/batches/step4/fix-F1.md）。
 field: changes
 chapters: [台帳と年表, 古い情報を見分ける]
 pages:
@@ -16,9 +17,9 @@ pages:
     surfaces: [app, claude-code, api]
     summary: "撤回・置換された助言を、今どうするか・変わった時期と版・どの原理の回避策だったかと並べて引ける。回避策が正式な仕組みに置き換わる規則から、次に古くなるものの見当もつく。"
     signs:
-      - {type: symptom, text: "前は効いた書き方や設定が効かなくなった"}
+      - {type: goal, text: "前は効いた書き方や設定を、今はどうすればよいか知りたい"}
       - {type: goal, text: "ネットで見た小技が今も使えるか確かめたい"}
-      - {type: goal, text: "「think hard」は効くのか"}
+      - {type: goal, text: "「think hard」や「よく考えて」が効くのか知りたい"}
     prerequisites: []
     related: [dating-information, checking-for-updates, change-timeline-2026, term-index, four-principles, thinking-keywords, effort-levels, choosing-a-model, emphasis-words, writing-skills, "goal-until-done#from-homemade-loops"]
     volatility: 高
@@ -39,7 +40,7 @@ pages:
       - "design §9.1（data/outdated-advice.yml の項目）・§9.4 の4（状態が変わる更新は作者が承認）"
       - "registry の ledger（37項目。2026-11-04 の統合で styles-for-tone・subagents-to-save-context を足した）"
       - "planning/batches/step3/open-issues.md の changes#3（台帳の行の「変わった時期」の材料。design §9.1）"
-    notes: "台帳の行は registry の ledger（37項目）で、表は data/outdated-advice.yml から生成する（design §7・§9.1）。手書きは導入（読み方と、回避策が正式な仕組みに置き換わる規則）だけで、規則の詳しい説明は dating-information に置いてリンクする。台帳の状態（撤回・置換・条件付き）が変わる更新は作者が承認する（decisions 2026-11-03「鮮度の更新の承認」）。00 §5 の行のうち注記の付いた「強調は1行だけにし」（改稿前の Best practices の勧め）と「2026-01〜03 に変遷」（1月の変化は確かめられない）は使わず、research/23 §3.5・§3.7 で書く。否定的な文脈なので、助言を広めた個人や記事を名指ししない（design §6.12）。Claude Code の版は月に二十数版出る（research/23 §3.6）ので、点検の期限を短くした（volatility 高）。症状の項目「古い記事のやり方が通じない」は症状の doesnt-know-latest に置き、そこからこのページへ進む（M2）。行の材料（data/outdated-advice.yml を作るとき）：(1) important-caps の今どうするかは「強調せず平易に書く。守られないなら、ファイルを短くするかフック・拒否ルールへ」、時期は「2026-10-27 ごろ（Best practices の改稿で撤回の表に入った）」（research/23 §4.2）。architecture-in-claude-md・keep-going-dont-be-lazy・save-context-for-200k の時期も同じ改稿。(2) think-hard-keywords の時期は ultrathink の復活と xhigh の版で書き（research/23 §4.2）、日本語の「熟考」には当時は公式の機能だった一次資料（CHANGELOG 1.0.8。research/27 #18）を足す。(3) research/22 §3.4 の3行（think-hard-keywords・yolo-skip-permissions・save-context-for-200k）の足す内容を入れる。save-context-for-200k には idle compaction を足す。(4) budget-tokens の今どうするかから effort-levels へ、avoid-opus-as-expensive から choosing-a-model へ、ralph-loops から goal-until-done#from-homemade-loops へリンクする。(5) 足した2行：styles-for-tone は「いつも揃えるなら全会話の指示（Claude への指示）、場面ごとならスキル。移された style は名前から作られるスラッシュコマンドで呼ぶ」、時期は 2026-06-01 の移行の告知、状態は置換（research/26 §3.1）。subagents-to-save-context は「うるさい出力の切り離し・並列の作業・独立したレビューに限る。どれもトークンが余分にかかる」、時期は Best practices の改稿、状態は条件付き（research/23 §3.1・§3.7）。tell-it-to-use-subagents（Opus 5 世代の頼み方の手引きが出どころ）とは出典と理由が違うので行を分ける。同じ表の「よい答えのために subagent に任せる」は tell-it-to-use-subagents の今どうするかに入れられる。（2026-11-04 統合：models#1・prompting#9・context#5・app#3・extend#3・japanese#6・delegate#1・M2・M3）"
+    notes: "台帳の行は registry の ledger（37項目）で、表は data/outdated-advice.yml から生成する（design §7・§9.1）。手書きは導入（読み方と、回避策が正式な仕組みに置き換わる規則）だけで、規則の詳しい説明は dating-information に置いてリンクする。台帳の状態（撤回・置換・条件付き）が変わる更新は作者が承認する（decisions 2026-11-03「鮮度の更新の承認」）。00 §5 の行のうち注記の付いた「強調は1行だけにし」（改稿前の Best practices の勧め）と「2026-01〜03 に変遷」（1月の変化は確かめられない）は使わず、research/23 §3.5・§3.7 で書く。否定的な文脈なので、助言を広めた個人や記事を名指ししない（design §6.12）。Claude Code の版は月に二十数版出る（research/23 §3.6）ので、点検の期限を短くした（volatility 高）。症状の項目「古い記事のやり方が通じない」は症状の doesnt-know-latest に置き、そこからこのページへ進む（M2）。行の材料（data/outdated-advice.yml を作るとき）：(1) important-caps の今どうするかは「強調せず平易に書く。守られないなら、ファイルを短くするかフック・拒否ルールへ」、時期は「2026-10-27 ごろ（Best practices の改稿で撤回の表に入った）」（research/23 §4.2）。architecture-in-claude-md・keep-going-dont-be-lazy・save-context-for-200k の時期も同じ改稿。(2) think-hard-keywords の時期は ultrathink の復活と xhigh の版で書き（research/23 §4.2）、日本語の「熟考」には当時は公式の機能だった一次資料（CHANGELOG 1.0.8。research/27 #18）を足す。(3) research/22 §3.4 の3行（think-hard-keywords・yolo-skip-permissions・save-context-for-200k）の足す内容を入れる。save-context-for-200k には idle compaction を足す。(4) budget-tokens の今どうするかから effort-levels へ、avoid-opus-as-expensive から choosing-a-model へ、ralph-loops から goal-until-done#from-homemade-loops へリンクする。(5) 足した2行：styles-for-tone は「いつも揃えるなら全会話の指示（Claude への指示）、場面ごとならスキル。移された style は名前から作られるスラッシュコマンドで呼ぶ」、時期は 2026-06-01 の移行の告知、状態は置換（research/26 §3.1）。subagents-to-save-context は「うるさい出力の切り離し・並列の作業・独立したレビューに限る。どれもトークンが余分にかかる」、時期は Best practices の改稿、状態は条件付き（research/23 §3.1・§3.7）。tell-it-to-use-subagents（Opus 5 世代の頼み方の手引きが出どころ）とは出典と理由が違うので行を分ける。同じ表の「よい答えのために subagent に任せる」は tell-it-to-use-subagents の今どうするかに入れられる。（2026-11-04 統合：models#1・prompting#9・context#5・app#3・extend#3・japanese#6・delegate#1・M2・M3）工程4の直し：(a) 上の「症状の項目「古い記事のやり方が通じない」は doesnt-know-latest に置く」を改める。読者の読んだ記事・本・自分の設定が古い場合は、症状辞典に足すページ「記事や前のやり方が通じない」（必須。symptoms の担当が足す）が受け、台帳・用語索引の旧名・版の確かめ方へ振り分ける。doesnt-know-latest は Claude の知識の締め切りに絞る（DR-19 b・R1-05）。(b) その困りごとの一般的な言い方だった symptom「前は効いた書き方や設定が効かなくなった」は、台帳が直接答える goal（今どうするか）にした。(c) 「「think hard」は効くのか」は、わざと1つの問いにまとめる goal なので、models の thinking-keywords の sign と同じ文にそろえた（逆引きで1行に束ねる。DR-15）。(d) 名前と画面の変更の行（routines-name・slash-cost-and-stats・fork-to-branch・code-on-the-web-remote・customize-tabs・max-5x-or-20x）は消さない。古い記事の手順が通じない読者の入口になる（例：/fork は改名され、今の /fork は別の機能）。旧名・今の名前・変わった時期は数値ファイルの名称の表を正にし、台帳の行は名称の id を指して時期をそこから引く（二か所に持たない。DR-18・R3-13）。（2026-11-04 工程4：DR-19 b・DR-18）"
 
   - id: change-timeline-2026
     chapter: 台帳と年表
@@ -67,7 +68,7 @@ pages:
       - "research/22 §3.1・§3.2（10-29 より後の版と、教材に効く変更）"
       - "research/23 §3.3（auto mode の既定化の段階）・§3.5（ultrathink の経緯）・§3.6（版の数え方）"
       - "research/26 §3.1（Styles の移行）・research/22 #32（Ultra への改名）"
-    notes: "年ごとのページにする（2027 年の変更は次の年のページ。過ぎた年の表は変わらない記録になる）。行は数値ファイルの日付と版、台帳の「変わった時期」から生成し、手書きは冒頭の流れの説明だけ（design §7）。版の数は npm の公開記録で期間を明記して数える（decisions 2026-11-03「工程2で確かめた事実」、research/23 §3.6）。00 §1 の「約235版」は誤り（注記）で使わない。旧名と新名の対応は start の term-index に置き、改名の時期はこの年表に置く。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、台帳ではなく数値ファイルの名称の項目に持ち（research/22 §3.4・design §9.1）、そこから年表の行と用語索引の旧名を作る。（2026-11-04 統合：cost#1）"
+    notes: "年ごとのページにする（2027 年の変更は次の年のページ。過ぎた年の表は変わらない記録になる）。行は数値ファイルの日付と版、台帳の「変わった時期」から生成し、手書きは冒頭の流れの説明だけ（design §7）。版の数は npm の公開記録で期間を明記して数える（decisions 2026-11-03「工程2で確かめた事実」、research/23 §3.6）。00 §1 の「約235版」は誤り（注記）で使わない。旧名と新名の対応は start の term-index に置き、改名の時期はこの年表に置く。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、台帳ではなく数値ファイルの名称の項目に持ち（research/22 §3.4・design §9.1）、そこから年表の行と用語索引の旧名を作る。（2026-11-04 統合：cost#1）名前と画面の変更の事実（旧名・今の名前・変わった時期）は数値ファイルの名称の表を正にし、年表の行・用語索引の旧名・台帳の改名の行（max-5x-or-20x など。台帳の行は消さない）の時期は、どれもそこから引く（DR-18・R3-13）。上の「台帳ではなく」は、事実を台帳に二重に持たないという意味に読む。（2026-11-04 工程4：DR-18）"
 
   # ── 古い情報を見分ける ──
   - id: dating-information
@@ -83,7 +84,7 @@ pages:
     summary: "助言が古くなる仕組み（古くなる速さの三つの層と、回避策が正式な仕組みに置き換わる規則）が分かり、記事や本の助言が今も通じるかを日付と版から見分けられる。"
     signs:
       - {type: goal, text: "読んでいる記事や本の情報が今も正しいか見分けたい"}
-      - {type: symptom, text: "記事によって書いてあることが食い違う"}
+      - {type: goal, text: "記事どうしで書いてあることが食い違うとき、どちらが新しい情報か見分けたい"}
     prerequisites: []
     related: [outdated-advice-ledger, checking-for-updates, change-timeline-2026, knowledge-cutoff, "how-to-use#freshness", term-index]
     volatility: 低
@@ -99,7 +100,7 @@ pages:
       - "00 §1「既存教材は機能順の一本道で、症状・検証・鮮度が空白のまま」（公式の教材も古くなる例）"
       - "research/23 §3.1（公式の文書も改稿される：Best practices の例と Wayback の写し）"
       - "research/22 §3.2 の7（変更の在り処が分かれている）"
-    notes: "brief の「なぜ古くなるか」の入口をこのページに持たせた。台帳（outdated-advice-ledger）の導入は短くし、ここへリンクする。日付のない記事の扱い、機能名と既定値を書いた記事の見方、公式の文書も改稿されることを書く。否定的な文脈で実在の記事や著者を名指ししない（design §6.12）。level は 00 の L1 のまま使うにした。"
+    notes: "brief の「なぜ古くなるか」の入口をこのページに持たせた。台帳（outdated-advice-ledger）の導入は短くし、ここへリンクする。日付のない記事の扱い、機能名と既定値を書いた記事の見方、公式の文書も改稿されることを書く。否定的な文脈で実在の記事や著者を名指ししない（design §6.12）。level は 00 の L1 のまま使うにした。sign の「記事によって書いてあることが食い違う」は、症状辞典に足す「記事や前のやり方が通じない」（DR-19 b）が受ける古い記事の困りごとの一般的な言い方なので、このページが答える goal（日付と版でどちらが新しいかを見分ける）にした（R1-05）。（2026-11-04 工程4：DR-19 b）"
 
   - id: checking-for-updates
     chapter: 古い情報を見分ける
@@ -114,7 +115,7 @@ pages:
     summary: "手元の版と、Claude Code の変更履歴・Help Center と API のリリースノート・公式の文書の改稿を自分で確かめられる。自分の設定や指示に古い書き方が残っていないかも点検できる。"
     signs:
       - {type: goal, text: "新しい版で何が変わったかを自分で追いたい"}
-      - {type: symptom, text: "記事の手順どおりにしても手元では動かない"}
+      - {type: goal, text: "記事の手順が手元の版でも通じるか、自分で確かめたい"}
       - {type: symptom, text: "公式の文書にある機能やコマンドが、手元では見つからない"}
     prerequisites: []
     related: [dating-information, outdated-advice-ledger, change-timeline-2026, ask-claude-code, suspected-degradation, after-switching-models]
@@ -127,7 +128,7 @@ pages:
       - "research/22 §3.1（版と日付。CHANGELOG のない版と欠番）・§3.2 の7（変更の在り処：リリースノートに載らない Help Center の変更、docs に遅れて入る CHANGELOG の変更、stable の遅れ）・#3（stable と latest）"
       - "research/23 §3.1（Wayback の写しで文書の改稿を見分ける）・§3.6（版の数え方）"
       - "design §9.4（この辞典の点検の手順。読者が自分で使える形に写す）"
-    notes: "この辞典の鮮度の点検（design §9.4）と同じ手順を、読者が自分の環境で使える形にする。/doctor prompt-audit と /release-notes の今の名前と動きは、書く前に一次資料で確かめる（00 と 01 の材料で、工程2では確かめていない）。手元の版の確かめ方として、stable の通り道は latest より遅れて届き、大きな退行のある版を飛ばすことを書く。公式の文書や Claude Code に聞いた答え（ask-claude-code）にある機能が、手元の版にまだないことがある（research/22 #3）。遅れの日数は数値ファイルに置く。（2026-11-04 統合：cli#6）"
+    notes: "この辞典の鮮度の点検（design §9.4）と同じ手順を、読者が自分の環境で使える形にする。/doctor prompt-audit と /release-notes の今の名前と動きは、書く前に一次資料で確かめる（00 と 01 の材料で、工程2では確かめていない）。手元の版の確かめ方として、stable の通り道は latest より遅れて届き、大きな退行のある版を飛ばすことを書く。公式の文書や Claude Code に聞いた答え（ask-claude-code）にある機能が、手元の版にまだないことがある（research/22 #3）。遅れの日数は数値ファイルに置く。（2026-11-04 統合：cli#6）sign の「記事の手順どおりにしても手元では動かない」は、症状辞典に足す「記事や前のやり方が通じない」（DR-19 b）が受ける困りごとそのものなので、このページが答える goal（手元の版で通じるかを自分で確かめる）にした（R1-05）。「公式の文書にある機能やコマンドが、手元では見つからない」は、文書が手元の版より新しい場合（stable の遅れ）の狭い場面で、このページの版の確かめ方が直接の答えになるので残した。（2026-11-04 工程4：DR-19 b）"
 
 merged:
   - id: old-and-new-names
