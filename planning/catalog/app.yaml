@@ -10,7 +10,7 @@ pages:
   - id: where-to-put-instructions
     chapter: 指示と記憶
     title: "アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）"
-    nav_title: "指示の置き場所"
+    nav_title: 指示の置き場所（アプリ）
     aliases: [Instructions for Claude, 全会話の指示, Project instructions, プロジェクトの指示, カスタム指示, Styles]
     type: comparison
     level: 整える

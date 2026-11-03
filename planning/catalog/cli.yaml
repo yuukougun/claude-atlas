@@ -418,7 +418,7 @@ pages:
     chapter: 設定と最初の準備
     title: "出力スタイルで応答の仕方を切り替える"
     nav_title: "出力スタイル"
-    aliases: ["output style", "出力スタイル", "/output-style", "output style（応答のスタイルを切り替える）"]
+    aliases: ["output style", "/output-style", "output style（応答のスタイルを切り替える）"]
     type: feature
     level: 整える
     level_evidence: "応答の量・説明の多さ・確認の多さを調整したくなった段階で要る。00 は L3 だが、任せる幅を広げる機能ではない"
