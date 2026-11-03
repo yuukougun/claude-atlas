@@ -1,0 +1,20 @@
+# 追跡しないもの（planning/design.md §8.2・§10.4）
+state/            # いま動いているもの・経過・作者の判断・ワークフローの args
+notes/            # 事例の記録
+
+# ビルドの出力と依存
+site/
+.venv/
+node_modules/
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+
+# エディタ・OS
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
