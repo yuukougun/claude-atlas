@@ -8,7 +8,9 @@
 ## Q1. パワーユーザーが推奨するワークフロー(計画先行、spec 駆動、TDD、別セッションでのレビュー、並列セッション、vibe coding と規律ある agentic coding、著名開発者の実践)
 
 ### Takeaway
-最も強いコンセンサスは「①Claude に自分で検証できる手段(テスト・ビルド・ブラウザ・スクリーンショット)を渡す」「②いきなり書かせず計画(Plan Mode/spec)を固める」「③タスクを小さく切る」「④失敗したら CLAUDE.md/AGENTS.md などの“ハーネス”に教訓を書き戻して次回に効かせる」の 4 つ。Anthropic が約 40 万セッションを分析した研究(2026年6月)も、熟練度の差は「指示の具体性」「検証の与え方」「誰が誰を訂正しているか」に現れると報告しており、実践者の経験則を裏づけている。一方、並列セッション/worktree の本数や自律ループ(Ralph、/goal、dynamic workflows)の使いどころは人によって大きく異なり、「上級者向け/好み」の扱いが妥当。
+最も強いコンセンサスは「①Claude に自分で検証できる手段(テスト・ビルド・ブラウザ・スクリーンショット)を渡す」「②いきなり書かせず計画(Plan Mode/spec)を固める」「③タスクを小さく切る」「④失敗したら CLAUDE.md/AGENTS.md などの“ハーネス”に教訓を書き戻して次回に効かせる」の 4 つ。Anthropic が約 40 万セッションを分析した研究(2026年6月)では、その課題の領域の知識(熟練度)が高い利用者ほど成功しやすく、行き詰まっても立て直しやすかった。ただし熟練度は、指示の正確さ・何を確かめさせるか・どちらが相手の誤りを正すかを手がかりに Claude が記録から判定したもので、著者は暫定の結果としている。一方、並列セッション/worktree の本数や自律ループ(Ralph、/goal、dynamic workflows)の使いどころは人によって大きく異なり、「上級者向け/好み」の扱いが妥当。
+
+> 【2026-11-03 訂正】元の文は、研究が熟練度の差は「指示の具体性」「検証の与え方」「誰が誰を訂正しているか」に現れると報告し、実践者の経験則を裏づけているとしていた。研究はこの 3 つを、Claude が熟練度を判定する手がかりとして使っている（一次資料の Anthropic「Agentic coding and persistent returns to expertise」、2026-06-16 で確認）。そのため研究の発見として経験則の裏づけには引けない（research/25 の見方では、熟練度の定義に近い）。research/25 の P9・§3.1。
 
 ### Cited Findings
 
@@ -21,8 +23,11 @@
 
 #### W1. まず Claude に「自分で検証する手段」を渡す(最重要 tip)
 - **内容**: テスト、ビルドの終了コード、lint、ブラウザ操作(Chrome 拡張・Playwright)、スクリーンショット比較など、Claude 自身が実行できるチェックを用意し、「通るまで続けさせる」。規模に応じて段階を変える。単純な作業は bash コマンド1つ、中規模はテストスイート、複雑な UI はブラウザやシミュレータで確認する。
-- **根拠/なぜ効くか**: Boris Cherny(Claude Code 作者)は「最も重要な tip」として挙げ、品質が「2〜3倍」上がると述べている — [paddo.dev](https://paddo.dev/blog/how-boris-uses-claude-code)(元: [X 2026-01-03](https://x.com/bcherny/status/2007179832300581177))。ただし 2〜3倍という数値に裏づけデータはない — [Karo Zieminski](https://karozieminski.substack.com/p/boris-cherny-claude-code-workflow)。Anthropic の研究要約によれば、Claude は「終わったように見えると止まる」ため、実行可能なチェックがあれば人間抜きでループが閉じる。段階は 4 つ示されている。プロンプト内のチェック、`/goal` 条件、チェックが通るまでターンを止める Stop hook、セカンドオピニオン用の検証サブエージェント — [Analytics Vidhya](https://www.analyticsvidhya.com/blog/2026/08/claude-code-best-practices-analysis/)。Simon Willison も「しっかりした自動テストがエージェントの価値を大きく上げる」と述べている — [Simon Willison](https://simonwillison.net/2025/Sep/30/designing-agentic-loops)。Armin Ronacher は「機械へのフィードバックループが良いほど結果が良い」と書いている — [Armin Ronacher](https://lucumr.pocoo.org/2025/12/22/a-year-of-vibes/)
-- **広まり具合**: ◎(Boris、Anthropic 研究、Simon、Mitchell、Armin、HN で一致)
+- **根拠/なぜ効くか**: Boris Cherny(Claude Code 作者)は「最も重要な tip」として挙げ、品質が「2〜3倍」上がると述べている — [paddo.dev](https://paddo.dev/blog/how-boris-uses-claude-code)(元: [X 2026-01-03](https://x.com/bcherny/status/2007179832300581177))。ただし、2〜3倍を裏づけるデータは、どの記事にも示されていない(この下調べの判断)。公式の Best practices(「Give Claude a check to run」)によれば、Claude は作業が終わったように見えると止まる。確かめ方は 4 段階で示されている。プロンプト内のチェック、`/goal` 条件、チェックが通るまでターンを止める Stop hook、書いた本人ではない者によるレビュー(新しい subagent での `/code-review`) — [Best practices](https://code.claude.com/docs/en/best-practices)。Simon Willison も「しっかりした自動テストがエージェントの価値を大きく上げる」と述べている — [Simon Willison](https://simonwillison.net/2025/Sep/30/designing-agentic-loops)。Armin Ronacher は「機械へのフィードバックループが良いほど結果が良い」と書いている — [Armin Ronacher](https://lucumr.pocoo.org/2025/12/22/a-year-of-vibes/)
+  > 【2026-11-03 訂正】元の文は「2〜3倍という数値に裏づけデータはない」を Karo Zieminski の記事（2026-01-07）の主張としていたが、取り違えだった。その記事は同じ数字（「It improves quality 2-3x」）を留保なしに書いていて、裏づけがないとは述べていない。2〜3倍は paddo.dev が Boris Cherny 本人の言葉として引用している（元の X の投稿は読めていない）。「裏づけがない」は、この下調べの判断として書き直した。research/25 の P8。
+  >
+  > 【2026-11-03 訂正】元の文は「Claude は終わったように見えると止まる」と確かめ方の 4 段階を、Analytics Vidhya を出典に「Anthropic の研究要約」の内容としていた。この内容は Anthropic の研究（2026-06-16）にはなく、公式の Best practices の「Give Claude a check to run」にある（2026-11-03 確認）。Analytics Vidhya は出典を示さずに書いている。出典を Best practices に替え、4 段階の最後を Best practices の書き方に合わせ、下の「広まり具合」の「Anthropic 研究」も「公式の Best practices」に直した。元の文の「実行可能なチェックがあれば人間抜きでループが閉じる」は、報告が Best practices で確かめた範囲の外なので外した。research/25 の P9・§3.1。
+- **広まり具合**: ◎(Boris、公式の Best practices、Simon、Mitchell、Armin、HN で一致)
 - **現在も有効か**: 有効。ただし Opus 5 向け公式プロンプトガイドでは「モデルは指示されなくても自分の作業を検証する」とされ、「最後に検証ステップを入れて」「サブエージェントで検証して」「double-check して」といった**文言での検証指示は過剰検証を招くので削除せよ**と書かれている — [Prompting Claude Opus 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)。教材では、検証の「手段」(テスト・コマンド・ブラウザ)を整える価値は残り、「念のため確認して」と書き足す価値は下がった、と区別して書くとよい。
 - **出典**: 上記
 
@@ -98,14 +103,17 @@
 - **現在も有効か**: 有効
 
 ### Inferences
-- 教材の柱は「検証手段」「計画」「分割」「ハーネスへの書き戻し」の 4 つにするのが、英語圏コミュニティの合意と最もよく合う。Anthropic の研究もこれを定量的に裏づけている(ただし数値は二次要約経由)。
+- 教材の柱は「検証手段」「計画」「分割」「ハーネスへの書き戻し」の 4 つにするのが、英語圏コミュニティの合意と最もよく合う。Anthropic の研究(約 40 万セッション)で一次資料と一致するのは、熟練度が高い利用者ほど 1 回の指示で Claude にさせる仕事が多く、成功しやすく、行き詰まっても立て直しやすいことである(熟練度は Claude の判定で、著者は暫定の結果としている)。
+  > 【2026-11-03 訂正】元の文は、研究がこの 4 つの柱を定量的に裏づけているとしていたが、研究の結論として引けるのは上の点までである（たとえば研究は作業の切り方を比べていない）。一次資料は research/25 で読んだ。research/25 の P9・§3.1。
 - 並列セッション・自律ループは Boris のような上級者の setup が拡散したもので、反論も多い。「上級編・コスト注意」の枠で扱うのが妥当。
 - 2026年に `/goal`・Dynamic Workflows・Auto mode が入り、2025年に流行した手作りの仕組み(Ralph プラグイン、`--dangerously-skip-permissions` 常用、自作の検証ループ)は組み込み機能で置き換えられつつある。「旧手法 → 現行機能」の対応表を作ると読者の役に立つ。
 - Opus 5 世代では「検証しろ」「サブエージェントを使え」と文言で書き足す tip が逆効果になりうる(公式ガイドが削除を推奨)。2025年の記事の「プロンプトに書くべきこと」は再検証が必要。
 
 ### Gaps
 - 公式ベストプラクティス(https://code.claude.com/docs/en/best-practices)の本文は取得できなかった(allowlist 外)。「explore → plan → code → commit」の現行版の記述は未確認。
+  > 【2026-11-03 注記】Best practices の本文は research/23 の §3.1 で確かめた（2026-10-26〜27 ごろに大きく書き直され、「もうやめてよい助言」の表が入った）。「explore → plan → code → commit」の今の記述は、報告では確かめていない。
 - Anthropic 研究の一次ページ(https://www.anthropic.com/research/claude-code-expertise)は取得できず、数値は Creeta と Analytics Vidhya の二次要約に頼った。2 つの要約は整合している。
+  > 【2026-11-03 注記】一次ページは research/25 の §3.1 で読んだ。2 つの要約は数値では整合するが、要約者の解釈が研究の結論として引かれていた（Q1 と Q5 の訂正を参照）。research/25 の P9。
 - Kieran Klaassen(Every)の「compound engineering」と Steve Yegge の Gas Town/Beads の具体的な運用法は、検索予算が尽きたため調べきれていない。Yegge については「Beads の CLI はエージェントのために作られている」という引用のみ確認した — [Simon Willison](https://simonwillison.net/2026/Jan/30/steve-yegge/)。
 - YouTube の講演要約(AI Engineer など)は直接調べられていない。
 
@@ -121,8 +129,10 @@
 #### C1. 長さは短く(〜200 行、理想はもっと短く)
 - **内容**: 200 行未満に保つ — [marmelab](https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html)、[israynotarray(公式ドキュメントの推奨として引用)](https://israynotarray.com/en/ai/2026/10/11/claude-code-save-token-cost/)、[Morph](https://www.morphllm.com/claude-code-usage-limits)。HumanLayer 自身のルートの CLAUDE.md は 60 行未満で、一般的な目安は 300 行未満 — [redreamality(HumanLayer 記事の要約)](https://redreamality.com/garden/notes/library/writing-a-good-claude-md/)。500 行を超えたら progressive disclosure でリファクタせよ — [Tembo](https://www.tembo.io/blog/how-to-write-a-great-claude-md)。300 行は簡素化すべきサイン — [shareuhack](https://www.shareuhack.com/en/posts/claude-code-claude-md-setup-guide-2026)。「何も書かないところから始め、同じことを繰り返し言うようになったら足す」 — [ykdojo](https://awesomeclaude.ai/claude-code-tips)
 - **根拠/なぜ効くか**: 最先端モデルが確実に従える指示はおよそ 150〜200 個。Claude Code のシステムプロンプトにすでに約 50 個あるため、CLAUDE.md の指示を増やすほど全体の遵守率が下がる — [redreamality(HumanLayer 要約)](https://redreamality.com/garden/notes/library/writing-a-good-claude-md/)、[Tembo](https://www.tembo.io/blog/how-to-write-a-great-claude-md)。CLAUDE.md は毎ターンのコンテキストに乗るので、トークン代も毎回かかる — [israynotarray](https://israynotarray.com/en/ai/2026/10/11/claude-code-save-token-cost/)
+  > 【2026-11-03 注記】原文と細部が違う。原文（HumanLayer「Writing a good CLAUDE.md」、2025-11-25）は「おおむね一貫して従える（with reasonable consistency）」で、「確実に」ではない。150〜200 は原文が arXiv 2507.11538 を引いて示した値で、原文自身がこの問題は厳密には調べられていないと断っている（論文そのものは読んでいない）。約 50 は、HumanLayer が当時（2025-11）の Claude Code のシステムプロンプトを調べた自社の見積もりである。research/25 の H1・§3.2。
 - **広まり具合**: ◎
 - **現在も有効か**: 有効。ただし「150〜200 指示」は 2025年末時点のコミュニティの推定で、Opus 5.5 世代で再測定した資料は見つからなかった
+  > 【2026-11-03 注記】「コミュニティの推定」は出どころの書き方が違う。HumanLayer の記事（2025-11-25）が論文（arXiv 2507.11538）を引いて書いた目安で、記事自身が厳密な調査はないと断っている。research/25 の H1・§3.2。
 
 #### C2. 入れるべきもの: WHAT / WHY / HOW+暗黙知
 - **内容**: WHAT(技術スタック、構成、どこに何があるか)、WHY(目的、各部分の役割)、HOW(ビルド・テスト・型チェック・検証の方法) — [redreamality(HumanLayer 要約)](https://redreamality.com/garden/notes/library/writing-a-good-claude-md/)。技術スタック、アーキテクチャ上の決定とその理由、プロジェクト固有の規約、既知の落とし穴、主要ディレクトリ、予定している移行など「他の場所に書かれていない文脈」 — [Tembo](https://www.tembo.io/blog/how-to-write-a-great-claude-md)。データモデル、命名規約、社内ルールなど、Claude が知らない業務文脈とドメイン知識 — [marmelab](https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html)。好み、避けること、構造、パッケージや import のルール(Reddit の CurveSudden1104) — [Reddit snapshot](https://reddit.sentinel-team.org/posts/1qspcip/snapshots/2026-02-01T05%3A38%3A27.093042Z)。「本物の落とし穴を書いた 50 行は、当たり前の指示を並べた長文に勝る」 — [shareuhack](https://www.shareuhack.com/en/posts/claude-code-claude-md-setup-guide-2026)
@@ -176,8 +186,10 @@
 
 ### Gaps
 - HumanLayer の原文(https://www.humanlayer.dev/blog/writing-a-good-claude-md)は取得できず、中国語の AI 要約(redreamality)経由の数値を使った。原文で照合することを推奨する。
+  > 【2026-11-03 注記】原文（著者表記は Kyle、2025-11-25）は research/25 の §3.2 で読んだ。要約の中身は原文と一致し、細部の差（「確実に」と、150〜200・約 50 の出どころ）は C1 の注記に書いた。research/25 の H1。
 - Shrivu Shankar の「How I Use Every Claude Code Feature」(https://blog.sshh.io/p/how-i-use-every-claude-code-feature)の CLAUDE.md の節(@ でファイルを埋め込まない、「Never」には代替案を書く、など)は本文を取得できず未確認。
 - 公式ドキュメントの「200 行」推奨を一次ソースで確認できていない(複数の二次記事が引用)。
+  > 【2026-11-03 注記】公式の文書（Memory のページ）が CLAUDE.md 1ファイルあたり200行未満を目安にしていることは、research/24 の A-15 で確かめた。
 
 ---
 
@@ -214,6 +226,7 @@
 
 #### X5. `/compact` の使い方と自動 compaction
 - **内容**: `/compact` には焦点を指示する(例: "focus on X") — [dsebastien](https://www.dsebastien.net/claude-code-tips-and-best-practices/)。迷走しだしたら手動で `/compact` する — [DoltHub](https://www.dolthub.com/blog/2025-06-30-claude-code-gotchas/)。既定の自動 compaction は 95% で発動するが、80% で発動させるほうがよいという意見もある — [Morph](https://www.morphllm.com/claude-code-auto-compact)(ベンダー記事、2026-03)。200K トークンを超えたセッションではアイドル時の compaction が既定で有効で、`"idleCompaction": false` で無効にできるという記述もある — [dsebastien](https://www.dsebastien.net/claude-code-tips-and-best-practices/)(単一ソース、未検証)
+  > 【2026-11-03 注記】アイドル時の compaction は research/22 の #15 で確かめた。端末では v2.1.299（2026-10-14）から既定で有効で、会話が既定で 200,000 トークン以上のとき、約1時間放置すると cache が切れる前に要約する。`idleCompaction: false` か /config で止められる。
 - **注意点**: compaction の後に「バカになる」(読んだファイルや以前の訂正を忘れる)という報告がある — [DoltHub](https://www.dolthub.com/blog/2025-06-30-claude-code-gotchas/)。CLAUDE.md の内容は compaction 後も残る — [dsebastien](https://www.dsebastien.net/claude-code-tips-and-best-practices/)
 - **広まり具合**: ⚔(`/compact` を使う派と、handoff+`/clear` 派に分かれる)
 - **現在も有効か**: 有効
@@ -223,6 +236,7 @@
 - **注意点**: サブエージェントも利用上限を消費する — [israynotarray](https://israynotarray.com/en/ai/2026/10/11/claude-code-save-token-cost/)、[Claude Code Docs](https://code.claude.com/docs/en/sub-agents.md)。サブエージェントは会話履歴を見ないので、委任時のプロンプトに必要な文脈を入れる。報告が多いとメインのコンテキストもやはり埋まる — [Claude Code Docs](https://code.claude.com/docs/en/sub-agents.md)。Opus 5 は以前のモデルより委任しやすく、小さなタスクでもコストが膨らむので、「独立して並列化できる大きなタスク以外は委任しない」と指示する。`CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` などで上限も設定する — [Prompting Claude Opus 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)
 - **広まり具合**: ◎(「use subagents」と付け足す tip 自体は ○)
 - **現在も有効か**: 有効。ただし Opus 5 世代では「もっと使え」より「使いすぎを抑えよ」の方向に変わっている
+  > 【2026-11-03 注記】「メインのコンテキストを守る」ために使う、という理由での「有効」は、現行の Best practices と合わない。2026-10-26〜27 ごろの改稿の後の Best practices は、「コンテキストを守るために subagent を使う」を、もうやめてよい助言の表に入れた。溢れることがまれになったためで、並列の作業・うるさい出力を本筋から離すこと・独立のレビューには今も向くが、どれも追加のトークンがかかる、とする。research/23 の §3.7・§3.1。
 
 #### X7. 小技(`/context`、`/btw`、`/branch`、Ctrl+O)
 - **内容**: `/context` でコンテキストを何が占めているか(システムプロンプト、ツール、メモリファイル、MCP、メッセージ)を見る。新しいセッションで `/context all` を実行すると、起動時のベースラインがわかる — [dsebastien](https://www.dsebastien.net/claude-code-tips-and-best-practices/)、[Hannah Stulberg](https://hannahstulberg.substack.com/p/claude-code-for-everything-30-claude-code-tips-and-tricks)。`/btw` は本筋のコンテキストを汚さずに横道の質問をする。`/branch` はセッションをフォークして別案を試す(`--fork-session` も同様) — [The Neuron](https://www.theneuron.ai/explainer-articles/-claude-codes-creator-just-dropped-his-15-favorite-power-features-most-people-dont-know-about-/)。Ctrl+O で Claude が開いたファイルや推論をリアルタイムに表示する — [Hannah Stulberg](https://hannahstulberg.substack.com/p/claude-code-for-everything-30-claude-code-tips-and-tricks)
@@ -241,6 +255,7 @@
 ### Gaps
 - Shrivu Shankar の「Document & Clear」や `/catchup` 自作コマンドの原文は取得できなかった。
 - 自動 compaction の現在の閾値やアイドル時 compaction は二次ソースのみで、公式ドキュメントでの確認はできていない。
+  > 【2026-11-03 注記】アイドル時の compaction は research/22 の #15 で確かめた（X5 の注記を参照）。自動 compaction の閾値は確かめていない。
 
 ---
 
@@ -312,13 +327,16 @@
 ## Q5. エージェント時代に効くプロンプト習慣(具体性、検証手段、インタビュー、think/ultrathink、選択肢を出させる、してはいけないことの伝え方)
 
 ### Takeaway
-長さより具体性が効く。「どのファイルか、どんなシナリオか、何をもって完了か、どのパターンに倣うか」を書くことが熟練者の特徴(Anthropic 研究)。スクリーンショットと音声入力での大量の文脈投入も上級者に共通する。「think/think hard/ultrathink」はキーワードの効果が何度も変わっており(2026年1月に廃止 → 3月に復活)、現在は `/effort`(low/medium/high/xhigh/max)を正面から使うのが本筋。「するな」より「こうしてほしい」という正の例のほうが効く、と公式ガイドは述べている。
+具体性が効く。公式の Best practices は、依頼に対象のファイル・症状・直った状態を先に書くよう勧めている。「どのファイルか、どんなシナリオか、何をもって完了か、どのパターンに倣うか」を書くことを熟練者の特徴とする解説もあるが、これは解説の書き手の解釈で、Anthropic の研究の結論ではない。スクリーンショットと音声入力での大量の文脈投入も上級者に共通する。「think/think hard/ultrathink」はキーワードの効果が何度も変わっており(2026年1月に廃止 → 3月に復活)、現在は `/effort`(low/medium/high/xhigh/max)を正面から使うのが本筋。「するな」より「こうしてほしい」という正の例のほうが効く、と公式ガイドは述べている。
+
+> 【2026-11-03 訂正】元の文は「長さより具体性が効く」と、4 つの要素を書くことが熟練者の特徴であることを、Anthropic の研究の結論としていた。研究はプロンプトの長さを測っておらず、4 つの要素は Analytics Vidhya の書き手の解釈である（同じ趣旨の助言は公式の Best practices の「Write a specific prompt」にある）。P1 の内容と根拠も同じに直した。research/25 の P9・§3.1。
 
 ### Cited Findings
 
 #### P1. 具体性: 対象ファイル・シナリオ・完了条件・お手本
-- **内容**: 良いプロンプトは「ファイル、シナリオ、"done" の意味、従うべきパターン」を述べる。違いはプロンプトの長さではない — [Analytics Vidhya(Anthropic 研究の要約)](https://www.analyticsvidhya.com/blog/2026/08/claude-code-best-practices-analysis/)。新しい senior engineer に頼むつもりで、関連ファイルと「良い」実装例を示す — [Thorsten Ball](https://thorstenball.com/talks/how-i-prompt/)。Claude を「明示すれば非常に有能なジュニア開発者」として扱う(HN の ToJans) — [sankalp](https://sankalp.bearblog.dev/claude-code-tips-techniques-from-the-hn-community/)。「もっとパンチを」のような形容詞ではなく、具体例で嫌な点を伝える — [Ruben Hassid](https://ruben.substack.com/p/1800-hours-of-claude)
-- **根拠**: 研究では、トラブルになったセッションで初心者の 19% が 1 行もコードを書かずに放棄したのに対し、他の層は 5〜7% だった。熟練度の差が最も出るのは立て直しの場面 — [Creeta](https://news.creeta.com/en/claude-code-expertise-domain-over-coding-2026/)
+- **内容**: 良いプロンプトは「ファイル、シナリオ、"done" の意味、従うべきパターン」を述べ、違いはプロンプトの長さではない、と Analytics Vidhya の書き手は書いている(Anthropic の研究の結論ではない) — [Analytics Vidhya](https://www.analyticsvidhya.com/blog/2026/08/claude-code-best-practices-analysis/)。同じ趣旨の助言は公式の Best practices の「Write a specific prompt」にある(対象のファイルを名指しし、症状を書き、直った状態を先に言う) — [Best practices](https://code.claude.com/docs/en/best-practices)。新しい senior engineer に頼むつもりで、関連ファイルと「良い」実装例を示す — [Thorsten Ball](https://thorstenball.com/talks/how-i-prompt/)。Claude を「明示すれば非常に有能なジュニア開発者」として扱う(HN の ToJans) — [sankalp](https://sankalp.bearblog.dev/claude-code-tips-techniques-from-the-hn-community/)。「もっとパンチを」のような形容詞ではなく、具体例で嫌な点を伝える — [Ruben Hassid](https://ruben.substack.com/p/1800-hours-of-claude)
+- **根拠**: Anthropic の研究(2026-06-16)では、行き詰まったセッションで、失敗と判定され 1 行もコードが書かれなかった「放棄」が初心者で 19%、ほかの段階で 5〜7% だった。著者は、熟練者は難しい問題で行き詰まることが多いので、差の一部はその違いによると注意している — [Anthropic](https://www.anthropic.com/research/claude-code-expertise)
+  > 【2026-11-03 訂正】内容の「ファイル、シナリオ、"done" の意味、従うべきパターン」と「違いはプロンプトの長さではない」は、Analytics Vidhya の書き手の解釈で、Anthropic の研究の要約ではなかった（研究はプロンプトの長さを測っていない）ので、書き手の主張として書き直した。根拠の「熟練度の差が最も出るのは立て直しの場面」は Creeta の解釈で、研究はそう書いていないので外し、出典を一次資料に替えた。19% と 5〜7% は一次資料と一致する。research/25 の P9・§3.1。
 - **広まり具合**: ◎
 - **現在も有効か**: 有効
 
@@ -344,8 +362,10 @@
 
 #### P6. think / think hard / ultrathink(キーワードの変遷)
 - **内容と変遷**: 2025年半ばには「think」「think hard」「think harder」「ultrathink」が段階的に大きな思考予算に対応していた。2026年1月16日、思考が既定で最大予算(31,999 トークン)になったため、キーワードは廃止された。2026年3月5日(v2.1.68)、「ultrathink」はその 1 ターンだけ effort を high に上げるキーワードとして復活した。同時に Opus 4.6 の既定 effort は medium に下がった — [Awesome Agents](https://awesomeagents.ai/news/claude-code-ultrathink-returns-medium-effort-default/)。この medium への引き下げは「誤ったトレードオフ」として 2026年4月7日に戻され、全モデルの既定が high または xhigh になった — [InfoQ(Anthropic のポストモーテム)](https://infoq.com/news/2026/05/anthropic-claude-code-postmortem)。Opus 5 の API の既定 effort は high で、難しいコーディングでは xhigh を使う — [Prompting Claude Opus 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)。「現在効くのは ultrathink だけ」とする解説もある(日付不明) — [nikiforovall](https://nikiforovall.blog/claude-code-rules/tips-and-tricks/ultrathink)
+  > 【2026-11-03 注記】「2026年1月16日、…キーワードは廃止された」は、一次資料（CHANGELOG）で確かめられなかった（出典は二次情報。research/23 の §3.5）。Q5 の Takeaway の「2026年1月に廃止」と Inferences の「2026年1月」も同じ。また「全モデルの既定が high または xhigh になった」は一部誤りで、2026-04 の時点の記述である。ポストモーテム（2026-04-23）では、4月7日に戻したときに Opus 4.7 を xhigh、ほかのモデルを high にした。その後に出た Opus 5.5・Sonnet 5.5・Haiku 5.5 は、Claude Code の既定が medium である（2026-11-03 確認。research/23 の F3）。
 - **広まり具合**: かつて ◎、現在は ⚔(仕様変更が多すぎて混乱が大きい)
 - **現在も有効か**: **要注意**。2025年の「think hard と書け」系の tip は古い。現在は `/effort`(または `/model` の設定)で low〜max を明示的に選ぶのが確実。ultrathink がまだ 1 ターンの上書きとして効くかは、Opus 5.5 世代で一次確認できていない(Gaps 参照)
+  > 【2026-11-03 注記】ultrathink が今もそのターンだけ深い推論を頼む言葉として認識されること（セッションの effort は変えない）は、research/23 の #9・§3.5 で確かめた。v2.1.311 からは、対話の端末で Opus 5.5・Sonnet 5.5・Haiku 5.5・Fable 5.1 を Anthropic の API で使うとき、そのターンを xhigh で動かす（VS Code は v2.1.316 から。research/22 の #20）。
 
 #### P7. 「するな」より「こうしてほしい」+範囲の明示
 - **内容**: 望むスタイルは正の例で示すほうが、「〜するな」という指示より効く — [Prompting Claude Opus 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)。規則は例と反例をつけて書く — [shareuhack](https://www.shareuhack.com/en/posts/claude-code-claude-md-setup-guide-2026)。spec には anti-goals を書く — [VelvetShark](https://velvetshark.com/stop-prompting-claude-code-let-it-interview-you)。git worktree を使わない、プロセスのライフサイクルはこう、といった制約は書かなければモデルには分からない — [Thorsten Ball](https://thorstenball.com/talks/how-i-prompt/)。Opus 5 は範囲を広げがちなので、「頼んだことを、意図した範囲で行う」スコープ指定のプロンプトが公式に示されている — [Prompting Claude Opus 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)
@@ -369,6 +389,7 @@
 ### Gaps
 - 「CRITICAL/MUST などの強い言い回しを控えよ」という Claude 4.5 世代のガイダンスは一次ソースを取得できず、確認していない。Opus 5 のガイドにはその記述が見当たらなかった。
 - Opus 5.5 における ultrathink キーワードの挙動(既定 effort が high の場合に意味があるか)は確認できなかった。
+  > 【2026-11-03 注記】ultrathink の今の挙動は research/23 の #9・§3.5 で確かめた（P6 の注記を参照）。Opus 5.5 の Claude Code での既定の effort は medium である（research/23 の §3.2）。
 
 ---
 
@@ -417,12 +438,15 @@
 ## Q7. コスト・利用上限の管理(モデル選択、Max プランの使い方、無駄の回避)
 
 ### Takeaway
-Pro/Max の使用量は claude.ai と Claude Code で共有され、5 時間ごとのセッション枠と週次枠がある。上限に効く主な要因は「モデル(Opus/Fable はクォータの減りが速い)」「並列数・自律ループ」「常駐するコンテキスト(CLAUDE.md・MCP・skill の一覧)」。定番の節約策は、Opus で計画して Sonnet で実装する分業、effort を下げる、`/clear`、MCP や skill の整理。一方 Boris は「トークン単価ではなく、信頼できる変更 1 件あたりのコストで考えて最強モデルを使え」という逆の立場で、ここは意見が割れる。
+Pro/Max の使用量は claude.ai と Claude Code で共有され、5 時間ごとのセッション枠と週次枠がある。上限に効く主な要因は「モデル(Opus/Fable はクォータの減りが速い)」「並列数・自律ループ」「常駐するコンテキスト(CLAUDE.md・MCP・skill の一覧)」。定番の節約策は、Opus で計画して Sonnet で実装する分業、effort を下げる、`/clear`、MCP や skill の整理。一方 Boris は全作業で Opus(当時 4.5)と thinking を使っていて、Karo Zieminski はこれを「トークン単価ではなく、信頼できる変更 1 件あたりのコストで最適化する」流儀と解釈している。ここは意見が割れる。
+
+> 【2026-11-03 訂正】元の文は「トークン単価ではなく、信頼できる変更 1 件あたりのコストで考えて最強モデルを使え」を Boris Cherny の立場としていたが、取り違えだった。全作業で Opus 4.5 と thinking を使うのは Boris Cherny の実践（2026-01-03 の X の投稿を paddo.dev と Karo Zieminski の記事が紹介）で、「信頼できる変更 1 件あたりのコスト」は Karo Zieminski の解釈である。「常に最強を使う」という言い方は、どちらの記事にもない。$2 の「反対意見」の書き分けが正しい。research/25 の P2。
 
 ### Cited Findings
 
 #### $1. プランと上限の仕組み
 - **内容**: Claude Code と claude.ai(web・デスクトップ・モバイル)は 1 つの使用量プールを共有する。有料プランには 5 時間ごとのセッション上限と週次上限がある。Pro は $20/月、Max 5x は $100、Max 20x は $200。`/usage` や `/status` で確認する。2026年9月14日から週次上限は以前の標準の 125% になった。上限に達したら、API 料金での usage credits を有効にするか(上限 $2,000/日)、Console の API アカウントに切り替える — [Morph](https://www.morphllm.com/claude-code-usage-limits)(ベンダー記事、2026-09-30)。まず $20 のプランで自分に必要な量を把握する — [israynotarray](https://israynotarray.com/en/ai/2026/10/11/claude-code-save-token-cost/)
+  > 【2026-11-03 注記】プランの名前と上限は 2026-10-29 より後に変わった。2026-10-30 に旧 Max 20x は Ultra（月 $200）に改名され、Max は月 $100 の1段になった。確認済みの Ultra の口座には5時間の上限がなく、週の上限だけである。Q7 の Takeaway と Inferences の「5 時間ごと」「5 時間・週次」も同じ（research/22 の #32・#33）。
 - **広まり具合**: ◎(基本情報)
 - **現在も有効か**: 有効(数値は頻繁に変わるので、教材では日付を併記する)
 
@@ -458,6 +482,7 @@ Pro/Max の使用量は claude.ai と Claude Code で共有され、5 時間ご�
 
 ### Gaps
 - モデル名と価格に食い違いがある。Morph は「Sonnet 5.5」「Haiku 4.5」、ClaudeLog は「Sonnet 5」と書いている。dsebastien の「Fable 5.1」も一次ソースでは確認できなかった。教材にする前に公式の価格ページで確認が必要。
+  > 【2026-11-03 注記】Sonnet 5.5・Sonnet 5・Fable 5.1 がどれも公式の文書にあるモデルであることは、research/23 の §3.2 で確かめた。Haiku 4.5 は 2026-10-29 にアプリのモデルの選択肢から外れたが、Claude Code・Team と Enterprise・API には残る（research/22 の #23）。価格は報告では確かめていない。
 - Max プランの具体的な使用量(トークン数)は Anthropic が公表しておらず、倍率しか分からない — [Morph](https://www.morphllm.com/claude-code-usage-limits)。
 
 ---
@@ -503,12 +528,14 @@ Pro/Max の使用量は claude.ai と Claude Code で共有され、5 時間ご�
 
 #### F7. 品質が「劣化した」と感じる時期(nerf 疑惑)とポストモーテム
 - **内容**: 2026年3〜4月の約 6 週間、Claude Code の品質が不安定だった。Anthropic は原因を製品層の 3 つの変更と特定した。①既定 effort を high から medium に下げた(3月4日〜4月7日)、②思考履歴を消すバグ(3月26日〜4月10日)、③冗長さを抑える制限(ツール呼び出しの間は 25 語、最終応答は 100 語。4月16日〜20日、品質を 3% 下げた)。v2.1.116(4月20日)で全部解消し、全加入者の使用量上限をリセットした — [InfoQ](https://infoq.com/news/2026/05/anthropic-claude-code-postmortem)。2026年1月にも、ultrathink の廃止前後に品質劣化の報告が相次いだ(#17171、#19098) — [Awesome Agents](https://awesomeagents.ai/news/claude-code-ultrathink-returns-medium-effort-default/)
+  > 【2026-11-03 注記】「ultrathink の廃止」（2026年1月）は、一次資料（CHANGELOG）で確かめられなかった（research/23 の §3.5）。
 - **ユーザー側の教訓**: 「劣化した」と感じたら、Claude Code のバージョンと effort 設定をまず確認する — [InfoQ](https://infoq.com/news/2026/05/anthropic-claude-code-postmortem)
 - **広まり具合**: ◎(Reddit で頻発するテーマ。r/ClaudeAI には常設の「Performance and Bugs Megathread」がある — 検索結果で確認)
 - **現在も有効か**: 教訓(バージョンと effort を確認する)は有効
 
 #### F8. 人間側の失敗: 過信・理解しないまま出荷・並列での疲弊
-- **内容**: AI が書いたコードが数週間後にクラッシュを起こし、原因の追跡に何時間もかかった(HN の ModernMech)。離れた箇所の依存に気づかずに変更してしまう(libraryofbabel) — [sankalp](https://sankalp.bearblog.dev/claude-code-tips-techniques-from-the-hn-community/)。期日どおりに出荷したが、作者がなぜそう作ったか説明できない。リサーチと計画は省略しない — [Fin Ideas](https://ideas.fin.ai/p/what-were-learning-from-engineers)。監督なしのエージェントは、人間が気づくより速くエラーを積み上げる(Addy Osmani の「人間がボトルネックであることはバグではなく機能だった」の引用) — [marmelab](https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html)。自分のペースを超えて先走る(「over my skis」)ことへの注意 — [Harper Reed](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)。PR だけでは AI 生成コードをレビューする情報が足りず、プロンプトも見たい(Armin)。レビューされていない機械生成の PR が OSS に送られてくる問題 — [Armin Ronacher](https://lucumr.pocoo.org/2025/12/22/a-year-of-vibes/)
+- **内容**: AI が書いたコードが数週間後にクラッシュを起こし、原因の追跡に何時間もかかった(HN のある利用者)。離れた箇所の依存に気づかずに変更してしまう(HN の別の利用者) — [sankalp](https://sankalp.bearblog.dev/claude-code-tips-techniques-from-the-hn-community/)。期日どおりに出荷したが、作者がなぜそう作ったか説明できない。リサーチと計画は省略しない — [Fin Ideas](https://ideas.fin.ai/p/what-were-learning-from-engineers)。監督なしのエージェントは、人間が気づくより速くエラーを積み上げる(Addy Osmani の「人間がボトルネックであることはバグではなく機能だった」の引用) — [marmelab](https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html)。自分のペースを超えて先走る(「over my skis」)ことへの注意 — [Harper Reed](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)。PR だけでは AI 生成コードをレビューする情報が足りず、プロンプトも見たい(Armin)。レビューされていない機械生成の PR が OSS に送られてくる問題 — [Armin Ronacher](https://lucumr.pocoo.org/2025/12/22/a-year-of-vibes/)
+  > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
 - **広まり具合**: ◎
 - **現在も有効か**: 有効
 

@@ -19,6 +19,7 @@
 - 2026-01-16 Cowork を Pro（macOS）へ拡大。Team Standard seat に Claude Code を同梱。Opus 4 / 4.1 をモデル選択から削除 — [Release notes](https://support.claude.com/en/articles/12138966-release-notes)
 - 2026-02-05 Claude for PowerPoint add-in 登場。Claude for Excel を Opus 4.6 へ更新（ピボットテーブル編集・条件付き書式）— [Release notes](https://support.claude.com/en/articles/12138966-release-notes)
 - 2026-02-24/25 Cowork plugin marketplace と管理者向け制御。定期・オンデマンドの scheduled tasks。skills・plugins・connectors をまとめた「Customize」セクション — [Release notes](https://support.claude.com/en/articles/12138966-release-notes)
+  > 【2026-11-03 注記】この「Customize」は 2026-10-29 より後に変わった。2026-10-29 から順に一つの Plugins のページに切り替わり、11-09 に一般提供、Enterprise は 11-30 からである（1-10 の注記、research/22 の #38）。
 - 2026-03-02 「チャット履歴からのMemory」が全ユーザー（Free含む）に開放 — [Release notes](https://support.claude.com/en/articles/12138966-release-notes)
 - 2026-03-11 Excel / PowerPoint add-in 間で会話コンテキストを共有。skills対応、LLM gateway経由のアクセスに対応 — [Release notes](https://support.claude.com/en/articles/12138966-release-notes)
 - 2026-03-12 チャット回答の中にインタラクティブなチャート・図・可視化を描画。2026-03-25 に mobile でも対応 — [Release notes](https://support.claude.com/en/articles/12138966-release-notes)
@@ -78,6 +79,7 @@
   - 応答の形式や届け方 → skills
   — [同上](https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features)
 - Styles: personalization 記事には Styles の記載がない。一方、Incognito 記事には「Incognito でもプロフィール情報（custom styles や preferences）は使われる」とあり、Styles 自体は残っているように読める — [Use incognito chats](https://support.claude.com/en/articles/12260368-use-incognito-chats)
+  > 【2026-11-03 注記】「Styles 自体は残っているように読める」は一部誤り。2026-06-01 に「Styles are moving to skills」が告知され、custom styles は skills へ自動で移す、既定の Concise・Explanatory・Formal はなくなり Learning は skill として残る、移行が終わると styles のメニューは消える、とされた。2026-11-03 にはこの告知の記事も Styles の記事も 404 で、Incognito の記事の「custom styles」は古い記述の残りである。今も画面に styles のメニューが出るかは、一次資料で確かめられなかった。research/26 の #1・#3（§3.1）。
 - 確認日: 2026-10-29
 
 #### 1-4. Memory と過去チャット検索
@@ -215,6 +217,7 @@
   - Pro 以上で使える。
   — [Use plugins in Claude](https://support.claude.com/en/articles/13837440-use-plugins-in-claude)
 - Plugins の入手: Customize > Plugins の Discover タブから入れる。Knowledge Work marketplace が既定で入っており、Financial Services / Legal / Life Sciences の marketplace もある。GitHub などのリポジトリから marketplace を追加でき、「Plugin Create」で自作もできる — [同上](https://support.claude.com/en/articles/13837440-use-plugins-in-claude)
+  > 【2026-11-03 注記】上の Skills の「Customize > Skills からアップロード」と、この「Customize > Plugins の Discover タブ」は、2026-11-03 には古くなった（展開中）。2026-10-29 から Free・Pro・Max・Ultra・Team に順に展開し、11-09 に一般提供、Enterprise は 11-30 から既定で有効になる。Customize は Plugins という名前になり、一つの Plugins のページが Skills・Connectors・Plugins の各タブに代わる（skill と connector で絞り込める）。skill は「+」か「/」で使う。research/22 の #38。
 - 確認日: 2026-10-29
 
 #### 1-11. Connectors（MCP、Google Workspace、Microsoft 365 など）
@@ -354,9 +357,15 @@
 
 ### Gaps
 - Styles（preset / custom）の現行仕様は、取得した記事では確認できなかった（Incognito 記事に custom styles への言及があるだけ）。
+  > 【2026-11-03 注記】Styles の現行の扱いは research/26 の #2（§3.1）で確かめた。2026-06 に skills への移行が告知され、公式の記事は取り下げられている（1-3 の注記）。今も画面に styles のメニューが出るかは確かめられていない（#3）。
 - チャットの共有（share link / snapshot）の現行仕様は、検索上限に達したため調べられなかった。分かったのは「Free/Pro/Max ではファイル成果物を含む会話の公開共有が無効」という一点だけ（[Create and edit files](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude)）。
+  > 【2026-11-03 注記】チャット共有の現行の仕様は research/26 の #4（§3.2）で確かめた。特定の人への招待と公開リンク（Free・Pro・Max・Ultra だけ）の2つがあり、共有されるのはその時点の snapshot である。ファイルを含む会話の公開共有の無効は今も同じで、Ultra も対象である。
 - Desktop のローカル MCP（設定ファイル方式）の現行手順、mobile のウィジェットや Shortcuts の詳細は取得していない。
+  > 【2026-11-03 注記】Desktop のローカル MCP（desktop extensions と `claude_desktop_config.json`）は research/26 の #9（§3.5）で確かめた。mobile のウィジェットと Shortcuts は、工程2のどの報告も扱っていない。
 - Claude for Excel / PowerPoint / Word / Outlook それぞれの単体機能（Word・Outlook の提供開始日など）は、cross-app 記事以外では確認できなかった。
+  > 【2026-11-03 注記】Excel・PowerPoint・Word・Outlook それぞれの機能は research/26 の #11（§3.6）で確かめた（Excel・PowerPoint・Word は一般提供、Outlook は beta）。提供開始日は確かめていない。
+
+> 【2026-11-03 注記】このファイルにない、個人プランで会話を学習に使うかの設定と保持の期間（工程1で 02 の空白とした点。research/21 §2.3）は、research/26 の §3.12 で確かめた。
 
 ---
 
@@ -365,13 +374,19 @@
 ### Takeaway
 有料プランには「5時間ごとにリセットされる session limit」と「週1回リセットされる weekly limit」の2層がある。claude.ai・Claude Code・Desktop で同じ上限を共有する。消費を早める要因は、メッセージ長、添付サイズ、会話の長さ、ツール（Research や web search）、モデル、effort、artifacts、多段タスク。Fable は Max と Team/Enterprise の premium seat で「週上限の50%まで」含まれ、Pro と standard seat では usage credits が必要。金額や倍率は変わりやすいので、教材では日付付きで書く。
 
+> 【2026-11-03 注記】「有料プランには…2層がある」は、2026-10-30 以降は一部誤り。旧 Max 20x が Ultra に改名され、確認済みの Ultra の口座は週の上限だけで、5時間の上限がない（ほかの有料プランは2層のまま）。claude.ai・Claude Code・Desktop で共有する点は変わらない。Fable の別の上限（週の上限の半分まで）は Max と Ultra にある。research/22 の #32・#33。
+
 ### Cited Findings
 
 #### 2-1. プラン一覧（2026-10-29 時点の公開価格）
 - Free: $0。web / desktop / mobile でチャットでき、Memory あり、Projects は5個まで。Claude Code と Research はなし。モデルは Sonnet と Haiku（Opus と Fable は含まれない）— [Plans & pricing](https://claude.com/pricing)
 - Pro: 年払いで月$17（$200前払い）、月払いで$20。Claude Code、Claude Science、Projects、Research、Memory、Dashboards（beta）。Opus を含む。Fable は usage credits で使う — [Plans & pricing](https://claude.com/pricing)
 - Max: 5x が月$100、20x が月$200（web価格。mobile では異なる場合がある。月払いのみ）。Pro に比べ session あたり5倍または20倍の利用量。新モデルや新機能への優先アクセス。Claude Code を同梱 — [What is the Max plan?](https://support.claude.com/en/articles/11049741-what-is-the-max-plan)
+  > 【2026-11-03 注記】この行は 2026-10-30 の改名で古くなった（誤り）。旧 Max 20x は Ultra に改名され、契約者は料金を変えずに自動で移った。今の Max は月 $100 の一つだけで、5時間ごとと週ごとに Pro の5倍を持つ。Ultra は月 $200（月払いのみ）で、週あたり Pro の10倍、確認済みの口座には5時間の上限がない（確認は口座と支払いの履歴などから自動で行い、まだのときは一時的な上限がかかる）。research/22 の #32、research/26 の #19。
 - Max の API credits: 月次で 5x に$100、20x に$200 — [Plans & pricing](https://claude.com/pricing)
+  > 【2026-11-03 注記】名前が古い（一部誤り）。月の API credits は Max に $100、Ultra に $200。下の「Max での Fable」の上限（週の上限の半分まで）も、Ultra に同じものがある。research/22 の #33・#34・#35、research/26 の #20。
+  >
+  > 【2026-11-03 注記】API credits の使い道（工程1で空白とした点。research/21 §2.3）は research/26 の §3.11 で確かめた。API キーで動かす Claude API・Playground・Managed Agents・Agent SDK に使え、対話の Claude Code・usage credits・Bedrock などには使えない。
 - Max での Fable: 週上限の50%まで — [Plans & pricing](https://claude.com/pricing)
 - Team:
   - Standard seat は年払い$20 / 月払い$25、Premium seat は年払い$100 / 月払い$125（米国価格）。
@@ -389,6 +404,9 @@
 
 #### 2-2. Usage limit の仕組み
 - 有料プランには5時間ごとにリセットされる session limit と、週1回リセットされる weekly limit がある。claude.ai・Claude Code・Claude Desktop の利用は同じ上限にカウントされる。アップグレードすると新しい上限がすぐに適用される — [How do usage and length limits work?](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)
+  > 【2026-11-03 注記】2026-10-30 以降は一部誤り。確認済みの Ultra（旧 Max 20x）の口座は週の上限だけで、5時間の上限がない。共有の部分は変わらない。呼び方は、Help Center が five-hour limit、Claude Code が v2.1.312 から 5-hour limit（それまでは session limit）である。research/22 の #33。
+  >
+  > 【2026-11-03 注記】2-2 にない、Claude Code が応答の途中で5時間の上限に達したときに区切りまで少し続ける仕組み（Wrap-Up Allowance。v2.1.277 以上、段階的に展開中）は research/22 の #36 で確かめた。いつ入ったかは一次資料で確かめられなかった。
 - weekly limit のリセット時刻はアカウントごとに固定 — [What is the Max plan?](https://support.claude.com/en/articles/11049741-what-is-the-max-plan)
 - 2026-09-22（Opus 5.5 の発表時）に、Pro / Max / Team / seat-based Enterprise の5時間上限が引き上げられた。あわせて、保存して後で使える rate limit reset が付与された — [Introducing Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5)
 - 消費を早める要因:
@@ -578,6 +596,7 @@
 ### Gaps
 - claude.ai の各プランでの既定モデル（Free の既定が Sonnet 5.5 なのか Haiku 5.5 なのか）は公式記事で確認できなかった。
 - training data cutoff（reliable ではない方）は Transparency Hub に載っているとされるが、未取得。
+  > 【2026-11-03 注記】training data cutoff は research/26 の #12・§3.7 で確かめた。現行の4モデルは reliable・training とも2026年6月で、古いモデルでは二つが違う（Opus 4.6 は reliable が2025年5月、training が2025年8月）。
 - Mythos 5（Fable 5 と同時期のもの）の現在の提供状態の詳細は未確認。
 
 ---
@@ -843,6 +862,8 @@
 - Web search: 1,000回あたり$10。Code execution は web search / web fetch と併用すれば無料 — [Pricing](https://platform.claude.com/docs/en/about-claude/pricing)
 - 確認日: 2026-10-29
 
+> 【2026-11-03 注記】5章にない、API の版 `2026-10-21`（`temperature`・`top_p`・`top_k` を送ると 400。Claude 4.7 以降のモデルは前の版でも既定以外の値で 400）と、Messages API などの要求の大きさの上限の 32 MB から 128 MB への引き上げ（10-28）は、research/22 の #42 で確かめた。
+
 #### 5-9. Agent SDK と Managed Agents、Client SDK の違い
 - Agent SDK:
   - 「Claude Code as a library」。Claude Code と同じツール、agent loop、context 管理を Python / TypeScript から使える。
@@ -871,6 +892,7 @@
 ### Gaps
 - Tool search、Programmatic tool calling、Advisor tool の詳細ページは取得していない（概要表のみ）。
 - Agent SDK を Claude プランで使う場合の具体的な条件（Help Center 記事 15036540）は本文を取得していない。
+  > 【2026-11-03 注記】この記事は research/22 の #37 で確かめた。プランでログインしているときは、SDK と `claude -p` もプランの上限から引く。月の API credits は、紐付けた Console の組織の API キーで SDK・`claude -p`・Managed Agents を動かすときに使える。課金の経路は research/26 の #15（§3.8・§3.11）にもある。
 
 ---
 
@@ -910,4 +932,5 @@
 
 ### Gaps
 - Help Center にある「Claude の knowledge cutoff と、cutoff 以降の情報の扱い」専用記事は、検索上限のため取得できなかった（web search 記事にリンクがあることだけ確認）。
+  > 【2026-11-03 注記】この記事は research/26 の #13（§3.7）で確かめた。題は「How up-to-date is Claude's training data?」で、モデルごとに並ぶ日付は Platform の文書の training data cutoff に当たる。
 - 公式の「Increase output consistency」「Mitigate jailbreaks」「Reduce prompt leak」ページは名前を確認しただけで、本文は取得していない（[Prompt engineering overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview) のサイドバー）。

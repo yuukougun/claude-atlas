@@ -147,6 +147,7 @@
   - Invariant Labs の GitHub MCP 攻撃も、多くのユーザーが「Always Allow」を選んで個々の操作を見なくなることを前提にしていた — [Invariant Labs](https://invariantlabs.ai/blog/mcp-github-vulnerability)
 - **対処・予防**:
   - auto mode（2026年10月時点の既定）: 別の classifier モデルが行動を事前に審査する。3回連続または合計20回ブロックすると一時停止して人間に確認を戻す。headless（`-p`）ではプロセスが終了する — [Best practices](https://code.claude.com/docs/en/best-practices) / [auto mode](https://anthropic.com/engineering/claude-code-auto-mode)
+    > 【2026-11-03 注記】「headless（`-p`）ではプロセスが終了する」は、今の文書と合わない。2026-03-25 の記事はそう書いていたが、現行の Permission modes（2026-11-03 確認）では、`--permission-prompt-tool` のない `-p` は、しきい値に達してもその操作を実行しないだけで、実行は止めない。変わった版は CHANGELOG で見つかっていない。research/23 の §3.3。
   - classifier が毎回止める日常的な操作は、`autoMode.allow` に追加するか、信頼できるインフラを auto mode 設定で平文で説明する（`/auto-mode-setup` が下書きを作る）。`autoMode` ブロックは project ではなく `~/.claude/settings.json` に置く必要がある — [Best practices](https://code.claude.com/docs/en/best-practices)
   - sandbox を auto-allow で有効にすると、sandbox 内の Bash コマンドは Manual mode でも prompt なしで実行される（例外あり） — [Sandboxing](https://code.claude.com/docs/en/sandboxing)
   - よく使う安全なコマンドは、ユーザー単位・コードベース単位・組織単位で allowlist できる — [Security](https://code.claude.com/docs/en/security)
@@ -165,6 +166,7 @@
 - **症状**:「You've hit your session limit / weekly limit」が出る。長いセッションで、使った感覚以上に使用量が減る。
 - **原因**:
   - Pro・Max には5時間のセッション上限と週次上限があり、どちらも Claude（チャット）と Claude Code で共有される — [Use Claude Code with your Pro or Max plan](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan)
+    > 【2026-11-03 注記】上限の一部は 2026-10-29 より後に変わった。2026-10-30 に旧 Max 20x は Ultra に改名され、確認済みの Ultra の口座には5時間の上限がなく、週の上限だけになった（共有の部分は変わらない）。上限の呼び方も、Help Center は five-hour limit、Claude Code は v2.1.312 から 5-hour limit（それまでは session limit）で、症状の「session limit」は v2.1.312 より前の呼び方である。research/22 の #33。
   - 公式「長いセッションで使用量が増える理由」 — [Manage costs](https://code.claude.com/docs/en/costs)
     - Claude Code は毎回の request で会話全体を送り、tool を使うたびに別の request も送る（cache が効いている間は割安なレートで読み直す）
     - cache の寿命を超えて休憩すると、次のメッセージで cache miss が起き、全コンテキストを再処理する
@@ -177,6 +179,7 @@
   - `/usage` で、skill・subagent・plugin・MCP サーバー別の内訳と推奨事項（10%以上の要因）を見る。`f` キーで一部の推奨を自動適用できる（v2.1.305 以降） — [Manage costs](https://code.claude.com/docs/en/costs)
   - /clear、焦点付き /compact、CLAUDE.md を200行未満に保つ、使わない MCP サーバーを無効化する、MCP より CLI（gh など）を優先する、単純な subagent には `model: haiku` を指定する、effort を下げる — [Manage costs](https://code.claude.com/docs/en/costs)
   - 5時間上限は全モデル共通なので、`/model` で切り替えても回復しない。モデル別の上限（「Opus limit」など）なら別ファミリーへの切り替えで継続できる。v2.1.234 以降はリセット後に中断したタスクを自動で再開できる — [Manage costs](https://code.claude.com/docs/en/costs)
+    > 【2026-11-03 注記】リセットの後に自動で続ける機能（設定は `autoContinueAtUsageLimit`。v2.1.234 から既定で有効で、自動の継続は3回で止まる）は research/22 の #26 で確かめた。応答の途中で5時間の上限に当たったときに区切りまで少し続ける Wrap-Up Allowance も、research/22 の #36 で確かめた（入った時期は確かめられない）。
 - **根拠・出典URL**: https://code.claude.com/docs/en/costs / https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan
 
 #### 1-13. subagent の過信（「任せれば賢くなる」という誤解）
@@ -195,6 +198,7 @@
 - 5.x 世代（Opus 5.5 など）で、過剰設計・迎合・テスト改ざんの傾向がどの程度残っているかを定量的に示す一次資料は見つからなかった。prompting ガイドの過剰設計の記述は Opus 4.5/4.6 についてのもの。
 - compaction 後に CLAUDE.md が無視されるという GitHub issue 群は、タイトルを見ただけで本文・時期・修正状況を確認していない。現行ドキュメントは「ルート CLAUDE.md は再注入される」と明記しているので、古い issue は修正前の可能性がある。
 - 公式ドキュメント「What survives compaction」（context-window ページ）は取得できず（allowlist 外）、残る要素と失われる要素の完全な一覧は未確認。
+  > 【2026-11-03 注記】圧縮の後に残るものの一覧（「What survives compaction」の表）は research/23 の #6・§3.4 で確かめた。
 - 「Usage limit best practices」ガイドの本文は未取得。
 
 ---
@@ -261,6 +265,7 @@
 #### 2-6. 最新情報を知らない・古い情報で答える（knowledge cutoff）
 - **症状**: 最新のライブラリのバージョン、最近の出来事、新しい製品仕様について、古い情報で自信を持って答える。
 - **仕様**: 2026年10月時点の現行モデルは、どれも reliable knowledge cutoff が 2026年6月。training data cutoff は Transparency Hub を参照するよう案内されている — [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview)
+  > 【2026-11-03 注記】現行4モデルの training data cutoff も 2026年6月であることは research/26 の #12 で確かめた（古いモデルでは二つが違う）。knowledge cutoff の Help Center の記事（How up-to-date is Claude's training data?）は research/26 の #13 で確かめた。
 - **対処・予防**: カットオフ以降の事柄は web 検索を使わせる。公式ドキュメントの URL を渡して読ませる（推論）。
 - **根拠・出典URL**: https://platform.claude.com/docs/en/about-claude/models/overview
 
@@ -327,6 +332,7 @@
 
 #### 3-6. 知識カットオフ
 - 現行モデルの reliable knowledge cutoff は 2026年6月。training data cutoff と合わせて Transparency Hub で確認するよう案内されている — [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview)
+  > 【2026-11-03 注記】現行4モデルの training data cutoff も 2026年6月であることは research/26 の #12 で確かめた。
 
 #### 3-7. サンプリングと非決定性
 - Thinking Machines Lab の Horace He「Defeating Nondeterminism in LLM Inference」（2025-09-10）: LLM の応答のばらつきは、推論時に GPU kernel をどう組み合わせて実行するかに起因し、そこを注意深く制御すれば再現可能な応答にできる — [TechCrunch 2025-09-10](https://www.techcrunch.com/2025/09/10/thinking-machines-lab-wants-to-make-ai-models-more-consistent)（原典ブログは未取得。「temperature 0 でもばらつく」「batch invariance」などの詳細は二次情報経由で未確認）
@@ -385,6 +391,7 @@
 
 ### Gaps
 - 現行の Claude 5.x 世代 tokenizer での、日本語と英語のトークン比の公式値・実測値は見つからなかった。Opus 4.7 以降の新 tokenizer で日本語の比率がどう変わったかも不明。教材では「アプリやコンソールのトークン数表示で自分で測る」よう誘導するのが安全（Anthropic の token counting 機能のページは今回未取得）。
+  > 【2026-11-03 注記】公式が言語ごとのトークンの比率を出していないことは research/27 の #13 で確かめた。公式の用語集は Opus 4.7 以降の新しいトークナイザーで同じ文章がおよそ30%多いとし、Opus 5.5 の移行の手引きは1〜1.35倍（内容による）とし、正確な数は token counting で数えるよう案内している。
 - Thinking Machines の原典ブログは取得できず、「temperature 0 でも非決定的」「batch invariance」の詳細は未確認。
 - Lost in the Middle の掲載誌（TACL 2024 と広く言われる）は、取得した arXiv ページでは確認できなかった。
 - 「Building effective agents」など、エージェントループの古典的な Anthropic 記事は今回取得していない。
@@ -486,6 +493,8 @@
   - AHC は別ルール。AtCoder Weekday Contest Beta は β版の間は AI 利用可
 - 旧版「AtCoder生成AI対策ルール – 20240607版」は ABC だけが対象で、現在は失効している — [info.atcoder.jp アーカイブ 2024-06-07](https://info.atcoder.jp/archive/2024/06/07)
 
+> 【2026-11-03 注記】この項の版（20261014版）・改定の日付・要旨は、一次資料で確かめられなかった。公式のページは AI の利用を断るドメイン（atcoder.jp・info.atcoder.jp）にあり、開かない決まりである。版の名前と日付はコミュニティの索引の記事名などの二次の記録と一致するが、要旨は二次情報のままで、出典の ISSOH のコラムは 2026-11-03 には取得が拒まれ（403）読めなかった（research/24 の F4・§2.4）。最後の項（20240607版）は info.atcoder.jp のページを出典にしていて、この教材では根拠にしない（decisions.md 2026-11-03「大会の規則の版」）。Inferences の4つ目も同じ二次情報による。
+
 ### Inferences
 - 教材では「prompt injection はバグではなく、LLM が『データ』と『命令』を区別できない性質」と位置づけるのがよい。対策を「モデルを賢くする」「フィルタを入れる」ではなく、「3つの能力を同時に持たせない」「被害範囲を OS レベルで封じる」という設計の問題として教えると、Rule of Two・sandbox・deny rule の必要性が自然につながる。
 - Claude Code の利用者向けには、「clone しただけのリポジトリは他人のコード実行環境になりうる」（Check Point の事例）と「`-p` で動かすと trust dialog が出ない」の2点を、自動化や CI で使う人への強い警告にすべきと考えられる。
@@ -494,6 +503,7 @@
 
 ### Gaps
 - AtCoder の公式ルールページを直接取得できず、要旨は二次情報（ISSOH）に頼っている。公開前に公式ページで条文を確認する必要がある。
+  > 【2026-11-03 注記】公式のページは AI の利用を断るドメインにあり、開かない決まりである。版は「未確認」とし、規則のページへのリンクだけを置く。条文の要約は載せず、作者にも確かめを頼まない（decisions.md 2026-11-03「大会の規則の版」、research/24 の §2.4）。
 - 文部科学省ガイドライン Ver.2.0 の具体的な内容（個人情報・著作権・評価など）は本文を取得できず未確認。大学の生成 AI ポリシーの例も今回は未調査。
 - Claude for Chrome（現行版）や Claude Code の prompt injection 耐性に関する最新の公式数値は見つからなかった（Chrome の数値は 2025年8月の research preview 時点）。
 - `.env` を自動で読み込む、あるいは秘密情報を送信したといった Claude Code 固有の漏洩事例は、検索予算の上限に達したため調べられなかった。

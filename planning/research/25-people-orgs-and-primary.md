@@ -34,16 +34,18 @@
 | S10 | Understanding AI「An OpenAI model crushed top human programmers at a world coding competition」（Kai Williams、2026-07-10。後半は有料で読めない）https://www.understandingai.org/p/an-openai-model-crushed-top-human | 二次（報道） | P1 |
 | S11 | OfficeChai「After Finishing 2nd Last Year, OpenAI Is Dominating The AtCoder Coding Competition 2026」（2026-07-07）https://officechai.com/ai/after-finishing-2nd-last-year-openai-is-dominating-the-atcoder-coding-competition-2026/ | 二次（報道） | P1・P12 |
 | S12 | ALGO ARTIS のプレスリリース（PR TIMES、2026-07-03）https://prtimes.jp/main/html/rd/p/000000072.000085809.html | 一次（出場する会社の発表。大会の日程と同社の出場者3名だけ） | P1 |
-| S13 | はてなブックマークの3件のエントリー：zenn.dev/417 の記事（265 users）、qiita.com/wataru86 の記事（384 users）、zenn.dev/masayan1126 の本（170 users） | 一次（コメントそのもの。ページに表示された分だけ） | P3・P10 |
+| S13 | はてなブックマークの3件のエントリー：題に「完全ガイド」を掲げたある個人の Zenn の記事（265 users）、qiita.com/wataru86 の記事（384 users）、ある個人の Zenn の本（170 users） | 一次（コメントそのもの。ページに表示された分だけ） | P3・P10 |
 | S14 | CodeKnights「Claudeの日本企業の導入事例まとめ【2026年夏】」（2026-07-31）https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer | 二次（出典つきのまとめ） | P6・P7 |
 | S15 | resqnet「Claude Code導入3ヶ月後の社内アンケートから分かったこと」（Zenn、2025-10-23）https://zenn.dev/resqnet/articles/a1cfd81a562e07 （CodeKnights のリンク先 zenn.dev/readyfor_blog/articles/a1cfd81a562e07 から転送） | 一次（READYFOR の社内アンケートの報告として CodeKnights が引くもの） | P7 |
 | S16 | 久保田将規（Rehab for JAPAN、EM）「Claude Code導入による開発効率化と全社展開までの段階的アプローチ」（Findy Tools、2026-01-21）https://findy-tools.io/products/claudecode/1065/825 | 一次（利用企業の担当者のレビュー） | P7 |
 | S17 | @IT「メルカリが明かす『Claude Code全社展開』『シャドーAI対策』を支える仕組み」（石川俊明、2026-08-13。後半は会員限定）https://atmarkit.itmedia.co.jp/ait/spv/2608/04/news002.html | 一次に近い（メルカリの担当者3名へのインタビュー） | P6 |
-| S18 | 濱田優貴「Claude Codeを会社で配るとき何が正解か — 5社事例から見えた2026年の指針」（Zenn、2026-07-30）https://zenn.dev/yukibjj/articles/claude-code-enterprise-rollout-5-companies-2026 、BinxAI のメルカリ事例の解説 https://binxai.co.jp/blog/mercari-claude-code-company-wide-rollout | 二次（まとめ） | P6 |
+| S18 | ある個人のまとめ記事（Zenn、2026-07-30）、BinxAI のメルカリ事例の解説 https://binxai.co.jp/blog/mercari-claude-code-company-wide-rollout | 二次（まとめ） | P6 |
 | S19 | Mercari Engineering「The AI Lied to Me — And That's When I Learned How to Use It」（eg01ste、2025-10-28）https://engineering.mercari.com/en/blog/entry/20251028-the-ai-lied-to-me-and-thats-when-i-learned-how-to-use-it/ | 一次 | P11 |
 | S20 | Analytics Vidhya「Claude Code Best Practices: 3 Lessons from 400,000 Sessions」（Sree Vamsi、2026-08-06）、Creeta「An accountant can outperform a senior dev on Claude Code」（Sungjae Lee、2026-06-24） | 二次（S1 の要約） | P9 |
 | S21 | Simon Willison（2026-10-16）https://simonwillison.net/2026/Oct/16/code-review/ | 二次（S4 の引用。著者名の照合） | P4 |
 | S22 | Mitchell Hashimoto「My AI Adoption Journey」（2026-02-05）https://mitchellh.com/writing/my-ai-adoption-journey | 一次（抜き取りの確認） | §3.4 |
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「工程2：反映を確かめた後の判断」）。S13 の1件目と3件目、S18 の1件目（書き手の名前・題・URL）。
 
 ### 1.2 AI の利用を断る指定の確認
 
@@ -64,8 +66,8 @@
 | prtimes.jp | S12 | — |
 | x.com | Psyho の 2026 の投稿 | 指定はないが、本文は HTTP 402 で読めない |
 | cdn.syndication.twimg.com | 同じ投稿の配信用の経路 | 指定はないが、使っていない（§1 の理由） |
-| b.hatena.ne.jp | S13 のうち2件（masayan1126 のエントリーは同じドメインなので省いた） | — |
-| zenn.dev | 417 の記事、yukibjj の記事、readyfor_blog の記事（resqnet へ転送） | — |
+| b.hatena.ne.jp | S13 のうち2件（本のエントリーは同じドメインなので省いた） | — |
+| zenn.dev | S13 の「完全ガイド」の記事、S18 のまとめ記事、readyfor_blog の記事（resqnet へ転送） | — |
 | qiita.com | wataru86 の記事 | 確かめたが本文は読んでいない（ブックマークのページだけ読んだ） |
 | www.codeknights.co.jp | S14 | — |
 | findy-tools.io | S16 | — |
@@ -78,6 +80,8 @@
 | mitchellh.com | S22 | — |
 | claudelog.com・alexop.dev・horadecodar.com.br・lucumr.pocoo.org | 調査資料の出典の URL | 確かめたが、読む必要がなくなり読んでいない |
 
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「工程2：反映を確かめた後の判断」）。b.hatena.ne.jp と zenn.dev の行。
+
 ---
 
 ## 2. 結果の一覧
@@ -88,7 +92,7 @@
 | --- | --- | --- | --- | --- | --- |
 | P1 | AWTF 2026 Heuristic で「Psyho 本人が OpenAI に『完全に粉砕された』と述べる結果になった」（10 第1章、50行。11a S5・#4、11 #34・360行、requirements §10.2 は疑いとして記録済み） | 誤り | Psyho は 2026 年は出場していない（S11）。「completely demolished human competitors」は、Psyho が観戦者として X に書いた言葉で、負けたのは出場した人間たちである（S10。投稿そのものは読めない）。「人間に有利な問題を選んだ」も S10 の記述で、順位と点数を含めて二次報道だけによる | S10・S11・S12 | コンテストの分野（第一波の後）、「考察は人間にしかできない」の反証の例。書き方の方針（第三者）1 |
 | P2 | 対立点の表「モデルの経済」で、「信頼できる変更1件あたりのコストで考え、常に最強を使う」を Karo Zieminski の立場とする（00 §1、44行） | 一部誤り | 全作業で Opus 4.5 と thinking を使うのは Boris Cherny の実践（2026-01-03 の X の投稿を S8・S9 が紹介）。Karo が書いたのはその解釈で、「トークン単価ではなく、信頼できる変更1件あたりのコストで最適化せよ」。「常に最強を使う」という言い方はどちらの記事にもない。03 §2（431行）は正しく書き分けている | S8・S9 | 分野03 のモデル選び、対立点の三段の書き方（requirements §6.2）、「個人の構成を標準にしない」（§6.3） |
-| P3 | 「『自称完全ガイド』や AI 生成風の有料記事には強い反発がある」「『changelog を追っていればわかるが誇張のない良心的な記事』といった整理のほうが評価されている」（00 §1、52行） | 一部誤り | 出典の2件は役割が違う。417 の記事のエントリーは、題の「完全ガイド」に疑問を示すコメントの例（表示された3件のうち2件）で、AI 生成や有料には触れていない。wataru86 の記事のエントリーは「誇張なく良心的」と評したコメントの例（原文は「claude code の changelog 追ってればわかることだけど、誇張なく良心的な記事」）。「AI 生成風の有料記事」への反応は、04 Q6 の別の本のエントリーの閲覧者の印象（「AIくさいな」など）で、AI で書かれたと確かめたものではない。どれも数件のコメントで、批判と評価の代表は同じ1人の利用者のもの。「強い反発」「評価されている」は言い過ぎ | S13 | 「誇張せず出典を示す」方針の根拠の書き方。書き方の方針（第三者）1 |
+| P3 | 「『自称完全ガイド』や AI 生成風の有料記事には強い反発がある」「『changelog を追っていればわかるが誇張のない良心的な記事』といった整理のほうが評価されている」（00 §1、52行） | 一部誤り | 出典の2件は役割が違う。ある個人の記事のエントリーは、題の「完全ガイド」に疑問を示すコメントの例（表示された3件のうち2件）で、AI 生成や有料には触れていない。wataru86 の記事のエントリーは「誇張なく良心的」と評したコメントの例（原文は「claude code の changelog 追ってればわかることだけど、誇張なく良心的な記事」）。「AI 生成風の有料記事」への反応は、04 Q6 の別の本のエントリーの閲覧者の印象（「AIくさいな」など）で、AI で書かれたと確かめたものではない。どれも数件のコメントで、批判と評価の代表は同じ1人の利用者のもの。「強い反発」「評価されている」は言い過ぎ | S13 | 「誇張せず出典を示す」方針の根拠の書き方。書き方の方針（第三者）1 |
 | P4 | レビュー運用の記事の原典は claude.dev のブログで、著者は「Addy Osmani ほか」、「確認済み一致」（11 第4節 #16、796行。11c S9、232行） | 正しい | 原典は S4（2026-10-15）で、著者の表記は Addy Osmani, Morgan Westlee Lunt, Qing Wang（役職の記載なし）。claude.dev は Anthropic の開発者向けのブログ（S5）。段階の中身と数値は一致する。ただし当時の「確認済み一致」は二次要約どうしの一致だった。補うこと：低リスクで人の承認が要らないのは、自動のレビューとセキュリティの確認が通り、作者がリポジトリの信頼済みの一覧にいる場合だけ。段階は分類器が変更の中身で決め、機密と指定されたパスと CI のワークフローは常に人が見る。引用の原文は "An agent's approval never counts as a person's, either."（11 が alexop.dev の要約から引いた「A bot's approval…」は、原典の文ではない）。merged PR の倍増と revert の割合の40%超の減少は、2026年6〜9月の Claude Code のリポジトリの値 | S4・S5・S21 | 分野17「リスク段階別の承認」、分野09「書いた本人ではない者にレビューさせる」 |
 | P5a | 2026-06-12 に米国政府が Fable 5・Mythos 5 に輸出管理を適用し、国籍をその場で確かめられないため全員への提供を止め、06-30 に解除、07-01 に世界で再提供（02 §3-2、492〜496行） | 正しい | Anthropic の発表（S2）と一致する。根拠は Anthropic の側の説明だけで、発表は機関の名前を出していない。補うこと：措置は外国籍の人への提供の制限で、07-01 の再提供は Claude Platform・Claude.ai・Claude Code・Claude Cowork（AWS・Google Cloud・Microsoft Foundry はその時点では戻っていない）。Mythos 5 は 06-26 の米国政府の承認の後、米国の一部の組織にだけ戻った。ブロックした依頼は Opus 4.8 に回す | S2 | 分野03（モデル）、数値ファイル。実在の政府についての記述は「Anthropic によれば」とする |
 | P5b | 「両モデル共通の措置：出力に不可視の透かしが入る（EU AI Act 対応）」（02 §3-3、507行） | 正しい（補足あり） | Anthropic の発表（S3）と一致するが、透かしはこの2モデルに限らない。2026-08-02 より後に出たモデルの出力（文章）が対象で、Anthropic が 2026-07 に EU AI Act の AI 生成コンテンツの透明性の行動規範（Code of Practice on Transparency of AI-Generated Content）に署名したことに伴う、と Anthropic は説明している。検出 API がない人には見えず、利用者の情報は含まないとされる。検出 API は規制当局・報道・研究者などに向けた private preview | S3 | 分野11（安全とデータ）、分野03 |
@@ -102,6 +106,8 @@
 | P11 | メルカリのブログ「The AI lied to me…」（2025-10-28、本文は未取得）は「Claude Code は嘘をつく、手抜きで『完了』と言う」と同じテーマ（04 Q6、338行） | 正しい（補足あり） | 本文を読んだ。Claude Code が存在しない API の項目を自信を持って答えた例と、指定した静的解析の道具（Phan）を使わずに別の方法で作り、動くことだけを確かめて完了と報告した例がある。記事の主題は、構造と検証のもとで AI を使う方法である | S19 | 分野18（偽の完了）の事例。名指しはしない |
 | P12 | 「Psyho は、順位表で桁違いの AI のスコアを見ると人間は良い方針を捨てて時間切れになりがちなので、有望な方針に早く決めて磨くべきだと助言している」（10 第20章、301行） | 確かめられない | S11 の地の文による、Psyho の X の観戦の投稿の要約で、本人の言葉は引かれていない。投稿そのものは読めない | S11 | コンテストの分野。本人の助言として断定しない |
 | H1 | HumanLayer の CLAUDE.md の記事の要約（03 Q2 C1〜C6、117〜154行。00 §1 の表、39〜40行。04、61・151行）。原文は未取得（03 178行、00 882行） | 正しい（細部に差） | 原文（S7）を読み、要約の中身と一致した。差は2点。(1) 03 の「確実に従える指示は150〜200個」は、原文では「おおむね一貫して従える」で、原文が arXiv 2507.11538 を引いて示し、厳密には調べられていないと断っている。00 §5（704行）と 03（125行）の「コミュニティの推定」もこの出どころを書いていない。(2) システムプロンプトの「約50個」は HumanLayer が当時の Claude Code を調べた自社の見積もり。詳しくは §3.2 | S7 | 分野08（CLAUDE.md）、分野05 |
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「工程2：反映を確かめた後の判断」）。P3 の行。
 
 ---
 
@@ -217,9 +223,11 @@
 
 (a) 一部誤り。出典の2件は批判の例と評価の例で、「AI 生成風の有料記事」は別の本のエントリーの印象。量も「強い」と言えない。
 
-(b) **00 §1「日本語圏には固有の重心がある」の段落（52行）**、「…といった整理のほうが評価されている (はてブ 417; はてブ wataru86)。」の直後に：
+(b) **00 §1「日本語圏には固有の重心がある」の段落（52行）**、「…といった整理のほうが評価されている (はてブ〔ある個人の記事〕; はてブ wataru86)。」の直後に：
 
-> 【2026-11-03 注記】この2文は出典より強い。はてブ 417 は、記事の題の「完全ガイド」に疑問を示すコメント（表示された3件のうち2件）の例で、AI 生成や有料には触れていない。はてブ wataru86 は「誇張なく良心的」と評したコメントの例で、原文は「claude code の changelog 追ってればわかることだけど、誇張なく良心的な記事」である。「AI 生成風の有料記事」への反応は、この2件ではなく 04 Q6 の別の本へのコメント（閲覧者の印象）によるもので、その本が AI で書かれたと確かめたわけではない。どれも数件のコメントで、批判と評価の代表は同じ1人の利用者のものなので、「強い反発」「評価されている」と一般化できる量ではない。教材では、個々の記事や書き手を名指しして評価しない（decisions.md 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」1）。research/25 の P3。
+> 【2026-11-03 注記】この2文は出典より強い。ある個人の記事のはてブは、記事の題の「完全ガイド」に疑問を示すコメント（表示された3件のうち2件）の例で、AI 生成や有料には触れていない。はてブ wataru86 は「誇張なく良心的」と評したコメントの例で、原文は「claude code の changelog 追ってればわかることだけど、誇張なく良心的な記事」である。「AI 生成風の有料記事」への反応は、この2件ではなく 04 Q6 の別の本へのコメント（閲覧者の印象）によるもので、その本が AI で書かれたと確かめたわけではない。どれも数件のコメントで、批判と評価の代表は同じ1人の利用者のものなので、「強い反発」「評価されている」と一般化できる量ではない。教材では、個々の記事や書き手を名指しして評価しない（decisions.md 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」1）。research/25 の P3。
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「工程2：反映を確かめた後の判断」）。この報告の (b) の、場所を示す引用と、上の注記の案。
 
 #### P4（レビュー運用の記事の著者）
 
@@ -257,7 +265,9 @@
 
 (b-1) **04 Q3「社内導入・セキュリティ・情報漏洩対策」のメルカリの「補足」（227行）**の末尾に：
 
-> 【2026-11-03 注記】`bypassPermissionsDisabled: true` は公式の設定名と合わない。bypass permissions を使えなくする公式の設定は `permissions.disableBypassPermissionsMode` を `"disable"` にするもの（code.claude.com の Permissions・Permission modes、Claude Code 2.1.317、2026-11-03 確認）で、`bypassPermissionsDisabled` は公式文書にも CHANGELOG にもない。この設定と「非エンジニア1人あたり月10〜15時間の削減」は、まとめ記事（濱田優貴、Zenn、2026-07-30。出典はその記事の「全文」の側に回されている）にだけあり、メルカリの一次資料では確かめられない。@IT のインタビュー（2026-08-13。後半は会員限定）の読める範囲には出てこない。メルカリがこの設定を使っているとは書かない。research/25 の P6。
+> 【2026-11-03 注記】`bypassPermissionsDisabled: true` は公式の設定名と合わない。bypass permissions を使えなくする公式の設定は `permissions.disableBypassPermissionsMode` を `"disable"` にするもの（code.claude.com の Permissions・Permission modes、Claude Code 2.1.317、2026-11-03 確認）で、`bypassPermissionsDisabled` は公式文書にも CHANGELOG にもない。この設定と「非エンジニア1人あたり月10〜15時間の削減」は、まとめ記事（ある個人の Zenn の記事、2026-07-30。出典はその記事の「全文」の側に回されている）にだけあり、メルカリの一次資料では確かめられない。@IT のインタビュー（2026-08-13。後半は会員限定）の読める範囲には出てこない。メルカリがこの設定を使っているとは書かない。research/25 の P6。
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「工程2：反映を確かめた後の判断」）。上の (b-1) の注記の案。
 
 (b-2) **04 Q3「日本企業の導入事例一覧（CodeKnights）」（231行）**の末尾に：
 
@@ -404,7 +414,8 @@
 - **Psyho と Boris Cherny の X の投稿**：x.com は HTTP 402 で読めない。配信用の経路は止められたので使っていない。どちらの言葉も、報道や紹介記事の引用による
 - **Understanding AI の後半**：有料の部分は読めていない
 - **米国政府の側の輸出管理の文書**：Anthropic の発表は機関の名前を出しておらず、探していない
-- **メルカリの一次資料**：@IT の後半（会員限定）と、メルカリ自身の Claude Code の全社展開の記事は読めていない（検索でも見つからなかった）。濱田優貴の記事の「全文」も読んでいない
+- **メルカリの一次資料**：@IT の後半（会員限定）と、メルカリ自身の Claude Code の全社展開の記事は読めていない（検索でも見つからなかった）。S18 のまとめ記事の「全文」も読んでいない
+  > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「工程2：反映を確かめた後の判断」）。
 - **04 Q3 の各社の一次資料**：否定的な2つの値（READYFOR・Rehab for JAPAN）以外は、CodeKnights との一致だけを確かめた
 - **READYFOR の記事の移動の経緯**：Zenn の READYFOR の Publication から著者の個人のアカウントへ移ったと見られるが、いつ・なぜかは確かめていない
 - **arXiv 2507.11538（150〜200 の指示）**：HumanLayer が引く論文そのものは読んでいない

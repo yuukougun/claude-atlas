@@ -8,12 +8,18 @@
 > - **重要**: 旧エンジニアリングブログ記事「Claude Code: Best practices for agentic coding」の URL（anthropic.com/engineering/claude-code-best-practices）は現在 **公式ドキュメントの Best practices ページへ 302 リダイレクト**される。つまり同記事の内容は docs に吸収・継続更新されている — [リダイレクト元](https://www.anthropic.com/engineering/claude-code-best-practices) → [Best practices](https://code.claude.com/docs/en/best-practices)
 > - 公式ドキュメントのサイト構成（教材の章立ての参考）: Getting started / Core concepts / Use Claude Code / Platforms and integrations（cloud, desktop, mobile, Chrome, computer use, VS Code, JetBrains, Slack）/ Code review and PRs / Agents and parallel work / MCP / Skills / Artifacts / Automation（hooks, channels, scheduled tasks, goal, headless, deep links）/ Plugins（Mods 含む）/ Troubleshooting — [docs map](https://code.claude.com/docs/en/claude_code_docs_map.md)
 
+> 【2026-11-03 注記】「確認時点の最新版」の版は 2026-11-03 には古い。今は npm の latest と next が v2.1.317（2026-11-02 23:57 UTC 公開）、stable が v2.1.311 である（v2.1.313 は欠番）。v2.1.312 より後の変更は research/22 にまとめた（#1、版の一覧は §3.1）。
+
+> 【2026-11-03 注記】Best practices を出典にしたほかの項目（0-1・A-1（含める／除外の表を含む）・C-2〜C-5・F-1・H-1・J-1・K-1・N-2・P-3 と KQ3 の推論）も、確認日を 2026-10-29 とするが、改稿前の版（2026-10-26 ごろまで）の要約である可能性がある。research/23 は、01 が改稿前の版を引いていたとする（#1・§3.1）。research/23 が改稿前の版の勧めとした箇所と、それと同じ勧めの箇所には、それぞれに注記を付けた。ほかの項目は、使う前に現行の版で確かめる。
+
 ---
 
 ## Key Question 1: Claude Code の現行機能・概念の全体像（領域別インベントリ）
 
 ### Takeaway
 2026年10月時点の Claude Code は「エージェントループ（コンテキスト収集→行動→検証）＋ツール」の上に、常時ロードされる文脈（CLAUDE.md / rules / output style）、必要時ロード（skills / MCP tool search）、隔離実行（subagents / workflows / worktrees / cloud）、決定的自動化（hooks / permissions / sandbox）の4層の拡張を重ねた構造で、公式は「コンテキストウィンドウが最重要資源」という一点からほぼ全ての推奨を導いている。2026年に auto mode（v2.1.283 で既定化）、dynamic workflows、agent view、/goal、cross-session messaging、AGENTS.md 対応、Mods などが追加され、旧来の `#` メモリショートカットや `/agents` ウィザードなどは削除済み。
+
+> 【2026-11-03 注記】「公式は『コンテキストウィンドウが最重要資源』という一点からほぼ全ての推奨を導いている」は誤り。改稿前の Best practices（2026-10-26 ごろまで）の要約である。Best practices は 2026-10-27 ごろに大きく書き直され、コンテキストを最大の制約として積極的に管理する助言は「What you can stop doing」（もうやめてよい助言）の表に移った。多くの現行モデルが 1M トークンの窓を持ち、圧縮も自動なので、溢れることはまれだからである。関係のない作業の間の `/clear` は、焦点の合った文脈のほうが答えがよく安いので、今も勧めている。research/23 の #1・F6（改稿の時期は §3.1）。
 
 ### Cited Findings
 
@@ -35,6 +41,8 @@
 - **公式の推奨**: status line でコンテキスト使用量を常時監視、`/context` で内訳確認 — [Best practices](https://code.claude.com/docs/en/best-practices)
 - **確認日**: 2026-10-29
 
+> 【2026-11-03 注記】0-3 の見出しの「最重要資源」、概要の「満ちるほど性能が劣化する」とその引用文、公式の推奨の「status line でコンテキスト使用量を常時監視」は、改稿前の Best practices（2026-10-26 ごろまで）のもので、現行の版（2026-10-27 ごろ以降）とは合わない（誤り）。現行の版に引用の文はなく、コンテキストを最大の制約として管理する助言は「What you can stop doing」の表に入った（1M トークンの窓と自動の圧縮で、溢れることはまれなため）。status line で常時監視する勧めもない。文書の全体では近い記述が二つ残る。How Claude Code works は、自動で圧縮しても会話の初めの指示は失われうるので、続く規則は CLAUDE.md に置くと書く。Large codebases は、大きなコードベースで関係のない指示や読み込みが窓を埋めると、トークンを使い性能も落ちると書く。research/23 の #1・F6（§3.1）。
+
 **0-4. 拡張機能の使い分け（Extend Claude Code）**
 - **概要（公式の比較表）**: CLAUDE.md=毎セッション常駐の規約 / Output style=応答の役割・トーン・形式 / Skill=再利用可能な知識・起動可能ワークフロー / Subagent=隔離コンテキストで要約を返す / Dynamic workflow=多数の subagent をスクリプトで回す / Cross-session messaging=自分の別セッションへメッセージ / Code intelligence=LSP による定義ジャンプ・型エラー / MCP=外部サービス接続 / Hook=ライフサイクルイベントで必ず実行 / Artifact=出力を非公開 Web ページとして公開 / Plugin=これらを束ねる配布単位 — [features-overview](https://code.claude.com/docs/en/features-overview)
 - **公式の「段階的に足す」トリガー表**: 同じ規約・コマンドを2回間違えた→CLAUDE.md / 毎回「短く」「説明多めに」と言っている→output style / 同じ開始プロンプトを打っている→user-invocable skill / 同じ手順書を3回目に貼った→skill / ブラウザからデータをコピペし続けている→MCP / シンボル探索で多数ファイルを読む→code intelligence plugin / 副作業の出力が会話を埋める→subagent / 毎回必ず起きてほしい→hook / 2つ目のリポジトリに同じ設定→plugin — [features-overview](https://code.claude.com/docs/en/features-overview)
@@ -53,6 +61,7 @@
 - **@import**: `@path/to/import` で他ファイルを展開。相対パスはインポート元ファイル基準、再帰は**最大4ホップ**。ただし import は整理用でありコンテキストコストは減らない（一緒にロードされる）。プロジェクト外の import は初回承認ダイアログが出る — [memory](https://code.claude.com/docs/en/memory)
 - **なぜ重要か**: コードから推測できない文脈（コマンド、規約、落とし穴）を毎回与える唯一の常駐手段。ただし「enforced configuration ではなく context」なので、絶対に守らせたいことは PreToolUse hook で — [memory](https://code.claude.com/docs/en/memory)
 - **公式の推奨**: 1ファイル **200行未満**を目安。`/init` で雛形生成→育てる。各行に「これを消したら Claude は間違えるか?」と問い、No なら削る。含める: 推測できない Bash コマンド、既定と違うコードスタイル、テスト手順、ブランチ命名/PR 規約、プロジェクト固有の設計判断、環境の癖、非自明な落とし穴。除外: コードを読めば分かること、標準的言語規約、詳細な API ドキュメント（リンクにする）、頻繁に変わる情報、長い説明、ファイル単位の説明、「きれいなコードを書け」等の自明事項。守られない1行だけ「IMPORTANT」等で強調（多用すると効かない）。git に入れてチームで育てる。`/doctor` でコードから導出可能な内容の削減案を出せる — [Best practices](https://code.claude.com/docs/en/best-practices)
+  > 【2026-11-03 注記】「守られない1行だけ『IMPORTANT』等で強調」は、改稿前の Best practices（2026-10-26 ごろまで）の勧めで、現行の版とは合わない（誤り）。現行の版は IMPORTANT や全大文字での強調を「What you can stop doing」の表に入れ、守られない行に IMPORTANT を足しても直らないので、ファイルが長すぎるなら短くし、例外のない規則なら hook にする、とする。research/23 の F6・§3.1・§3.7。
 - **監査**: `/doctor prompt-audit`（`/checkup prompt-audit` も可）で CLAUDE.md・skills・agents・commands を「旧モデル向けの書き方」について監査 — [CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md), [memory](https://code.claude.com/docs/en/memory)
 - **大規模リポジトリ**: 他チームの CLAUDE.md を `claudeMdExcludes`（glob, 全設定層でマージ）で除外可能。managed CLAUDE.md は除外不可 — [memory](https://code.claude.com/docs/en/memory)
 - **確認日**: 2026-10-29
@@ -108,6 +117,7 @@
 - **概要**: 評価順は **deny → ask → allow**、最初の一致が勝ち、具体性は順序を変えない。スコープを跨いでも deny が勝つ — [permissions](https://code.claude.com/docs/en/permissions)
 - **構文例**: `Bash(npm run *)`（末尾 ` *` で前方一致。スペース無し `Bash(git diff*)` は `git diff-index` にも一致するので注意。`:*` 記法も同等）、`Read(./.env)`、`Edit(...)`、`WebFetch(domain:example.com)`（サブドメインは `*.example.com`）、MCP は `mcp__server__tool`、subagent は `Agent(Explore)`、skill は `Skill(deploy *)` — [permissions](https://code.claude.com/docs/en/permissions), [headless](https://code.claude.com/docs/en/headless), [skills](https://code.claude.com/docs/en/skills)
 - **管理**: `/permissions` で閲覧・追加・削除、作業ディレクトリ管理、"Recently denied" 確認。「Yes, and don't ask again」は `.claude/settings.local.json` に allow として保存 — [settings](https://code.claude.com/docs/en/settings), [commands](https://code.claude.com/docs/en/commands)
+  > 【2026-11-03 注記】"Recently denied" は 2026-11-03 には古い。このタブは v2.1.314（2026-10-30）で Recently blocked に改名された（文書の permission-modes も Recently blocked）。research/22 の #8。
 - **公式の推奨**: 信頼できるツールを `/permissions` で事前許可、sandbox で自由度を上げる。トランスクリプトから読み取り専用コマンドの allowlist 案を作る skill `/fewer-permission-prompts`（CHANGELOG 上は `/less-permission-prompts` として追加）— [Best practices](https://code.claude.com/docs/en/best-practices), [commands](https://code.claude.com/docs/en/commands), [CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 - **確認日**: 2026-10-29
 
@@ -243,6 +253,7 @@
 **I-2. Status line**
 - **概要**: 画面下部に任意のシェルスクリプト出力を表示。stdin で JSON（`model.display_name`, `workspace.current_dir`, `cost.total_cost_usd`, `context_window.used_percentage`, `rate_limits.five_hour.used_percentage`, `session_id` 等）を受け取る。`/statusline` で説明から自動設定（シェルプロンプトから自動生成も可）— [statusline](https://code.claude.com/docs/en/statusline)
 - **公式の推奨**: コンテキスト使用量を常時追跡するために使う — [Best practices](https://code.claude.com/docs/en/best-practices)
+  > 【2026-11-03 注記】これは改稿前の Best practices（2026-10-26 ごろまで）の勧めで、現行の版（2026-10-27 ごろ以降）に status line で常時監視する勧めはない（誤り）。research/23 の F6・§3.1。
 - **確認日**: 2026-10-29
 
 **I-3. TUI / テーマ / その他表示**
@@ -276,6 +287,7 @@
 
 **K-1. `/clear`, `/compact`, 自動圧縮, `/context`, `/btw`**
 - **概要**: `/clear`=空のコンテキストで新会話（名前を付けて `/resume` で戻れる）。`/compact [指示]`=要約して空きを作る。自動圧縮は上限接近時に古いツール出力を消し、必要なら会話を要約。`/autocompact` で圧縮ウィンドウ設定。`/context`=使用量をカラーグリッドで可視化。`/btw`=回答が履歴に入らないサイド質問。rewind の「Summarize from here / up to here」で部分圧縮 — [commands](https://code.claude.com/docs/en/commands), [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Best practices](https://code.claude.com/docs/en/best-practices)
+  > 【2026-11-03 注記】K-1 にない、長く放置した大きな会話を自動で要約する仕組み（idle compaction）は research/22 の #15 で確かめた（端末は v2.1.299 から既定で有効、VS Code と Desktop の Code タブは v2.1.314 から。`idleCompaction: false` か /config で止める）。
 - **公式の推奨**: 無関係なタスクの間で頻繁に `/clear`。CLAUDE.md に「When compacting, always preserve the full list of modified files and any test commands」等の "Compact Instructions" を書く。永続ルールは会話でなく CLAUDE.md に。巨大ファイルで圧縮が繰り返す "thrashing" は自動停止しエラー表示 — [Best practices](https://code.claude.com/docs/en/best-practices), [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
 - **確認日**: 2026-10-29
 
@@ -296,6 +308,7 @@
 **L-2. Effort と extended thinking**
 - **概要**: effort は `low`/`medium`/`high`/`xhigh`/`max`。既定は多くのモデルで `high`、**Opus 5.5 / Sonnet 5.5 / Haiku 5.5 は `medium`**。`/effort`（スライダー、`/effort high`、`/effort auto`）、`--effort`、`CLAUDE_CODE_EFFORT_LEVEL`、`effortLevel` 設定、skill/subagent の `effort` frontmatter。**Ultracode** は effort レベルではなく workflow 自動化の別設定（`/effort ultracode`）— [model-config](https://code.claude.com/docs/en/model-config)
 - **Thinking**: `Option+T`/`Alt+T` でセッション内切替、`alwaysThinkingEnabled`。Opus 5.5/Sonnet 5.5/Haiku 5.5/Fable は thinking を無効化できない。**`ultrathink` はそのターンだけ深い推論を要求するキーワードとして現在も有効。「think hard」等のフレーズは認識されない** — [model-config](https://code.claude.com/docs/en/model-config), [interactive-mode](https://code.claude.com/docs/en/interactive-mode)
+  > 【2026-11-03 注記】「『think hard』等のフレーズは認識されない」は一部誤り。think・think hard などはキーワードとしては認識されず、普通の文として渡る。effort を上げるキーワードではなく、effort の設定の範囲で軽く後押しするだけである（Best practices・Model configuration、2026-11-03 確認）。research/23 の #9（research/22 の #20 も同じ内容）。
 - **公式の推奨（effort）**: low=すぐ確認する短いやり取り、medium=範囲の明確な日常作業、high=バグ修正など検証が重要な作業、xhigh=より深い推論、max=難問だが過剰思考や逓減もあるので試してから採用。Opus 5 → 5.5 移行時は以前のレベルを持ち越さず `medium` から — [model-config](https://code.claude.com/docs/en/model-config)
 - **Fast mode / Advisor**: `/fast`（`Option+O`/`Alt+O`）で高速モード、`/advisor` で重要局面に第2モデルの助言を受ける — [commands](https://code.claude.com/docs/en/commands), [interactive-mode](https://code.claude.com/docs/en/interactive-mode)
 - **確認日**: 2026-10-29
@@ -320,6 +333,7 @@
 - **概要**: `Esc`=中断（作業は保持）/ `Esc`+`Esc`=入力クリア or rewind / `Shift+Tab`=権限モード切替 / `Ctrl+C`=中断・入力クリア / `Ctrl+D`=終了 / `Ctrl+G`=外部エディタで編集 / `Ctrl+O`=トランスクリプト / `Ctrl+R`=履歴逆検索 / `Ctrl+V`（iTerm2 は `Cmd+V`、Windows/WSL は `Alt+V`）=画像貼り付け（`[Image #N]`）/ `Ctrl+B`=実行中タスクを背景化 / `Ctrl+T`=Claude の To-do 表示 / `Ctrl+S`=入力の退避・復元 / `Ctrl+Enter`=キュー中メッセージを即送信 / `Option+P`=モデル切替 / `Option+T`=thinking 切替 / `Option+O`=fast mode / `?`=ショートカット一覧 — [interactive-mode](https://code.claude.com/docs/en/interactive-mode)
 - **プレフィックス**: `/`=コマンド・skill、`!`=シェルモード（直接実行し出力をセッションに追加）、`@`=ファイルパス補完・参照（ディレクトリは一覧のみ、該当ディレクトリの CLAUDE.md も読み込まれる、MCP リソースも `@server:resource`）。**`#` メモリショートカットは v2.0.70（2025-12-15）で削除済み**（Claude に CLAUDE.md を編集するよう頼む）— [interactive-mode](https://code.claude.com/docs/en/interactive-mode), [common-workflows](https://code.claude.com/docs/en/common-workflows), [CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 - **その他**: Vim モード（`/config` → Editor mode。`/vim` コマンドは v2.1.92 で削除）、`/terminal-setup` で Shift+Enter 改行、音声入力 `/voice`（既定 space の push-to-talk）、プロンプト候補表示、`/diff` で変更レビュー、使用上限リセット後に自動継続、PR ステータス表示 — [interactive-mode](https://code.claude.com/docs/en/interactive-mode), [commands](https://code.claude.com/docs/en/commands), [CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+  > 【2026-11-03 注記】「使用上限リセット後に自動継続」の仕組み（設定は `autoContinueAtUsageLimit`、v2.1.234 から既定で有効。自動の継続は3回で止まり、続けた作業でも許可の確認は出る）は research/22 の #26 で確かめた。
 - **`@` 参照の注意**: `@` 参照はツール呼び出しを伴わないため PreToolUse hook が走らない。読ませたくないパスは `Read` deny ルールで — [common-workflows](https://code.claude.com/docs/en/common-workflows)
 - **確認日**: 2026-10-29
 
@@ -375,9 +389,11 @@
 - 「CLAUDE.md・skill・output style は *指示* であり強制力が無い／hooks・permissions・sandbox・managed settings が *強制*」という二分法が、公式全体で繰り返される最重要の概念区別。辞書の各項目に「強制力: あり/なし」の属性を付けると誤用を防げる。
 - 2026年に追加された機能の多く（agent view、agent teams、cloud scheduled tasks、projects、workflows の一部）は research preview / experimental / public beta 表記であり、UI・名称が変わりやすい。辞書では「成熟度」欄を設け、確認日とバージョンを必ず併記するのが安全。
 - 機能の追加頻度は非常に高く（2026年1月の v2.0.77 から10月末の v2.1.312 まで約235リリース。npm 公開日から算出）、静的な辞書は数か月で陳腐化する前提で更新運用を設計すべき。
+  > 【2026-11-03 注記】「約235リリース」は誤り。npm の公開記録では、v2.0.77（2026-01-06）から v2.1.312（2026-10-27）までに271版が出ている。同じ範囲の CHANGELOG の見出しは254で、どちらの数え方でも235にならない。research/22 の #2、research/23 の #10（数え方は §3.6）。
 
 ### Gaps
 - VS Code / JetBrains / Desktop / Mobile / Slack / Claude in Chrome / computer use の個別ページは本調査で本文未取得（docs map 上の存在のみ確認）。IDE 固有機能（diff 表示、選択範囲共有等）の詳細は未確認。
+  > 【2026-11-03 注記】VS Code と JetBrains の固有の機能（計画のレビュー、差分、選択範囲の共有など）は research/26 の #8（§3.4）で確かめた（公式の文書による。動作は試していない）。
 - Agent teams、Artifacts、Code Review（マネージド製品）、Channels、Fast mode、Advisor、Agent SDK overview の各専用ページは未取得で、他ページ・CHANGELOG からの二次的記述に留まる。
 - MCP ページはツール出力が途中で切れ、`claude mcp serve`（Claude Code を MCP サーバーとして使う機能）、resources/prompts の詳細節、managed MCP の詳細は未確認。
 - Hooks リファレンスはイベント別詳細スキーマの途中で切れている（イベント一覧・終了コード・JSON フィールドは取得済み）。
@@ -392,18 +408,24 @@
 ### Takeaway
 公式推奨の中核は ①Claude が自分で実行できる検証手段（テスト・ビルド・スクリーンショット）を渡す ②Explore → Plan → Implement → Commit で調査と実装を分ける ③具体的なファイル・制約・既存パターンを指示する ④コンテキストを積極管理（/clear、subagent に調査させる、2回訂正して駄目ならやり直す）⑤非対話モード・並列セッション・Writer/Reviewer・fan-out でスケールする、の5点。2025年の engineering ブログ記事は現在 docs の Best practices に統合・更新されており、context engineering・tool 設計の記事が理論的裏付けを与えている。
 
+> 【2026-11-03 注記】④の「コンテキストを積極管理（/clear、subagent に調査させる、…）」と⑤の「Writer/Reviewer・fan-out」は、改稿前の Best practices（2026-10-26 ごろまで）の要約で、現行の版とは合わない（誤り）。現行の版（2026-10-27 ごろ以降）は、コンテキストを最大の制約として管理すること、コンテキストを守るために subagent を使うことを「What you can stop doing」の表に入れた。関係のない作業の間の `/clear` は今も勧める。Writer/Reviewer と fan-out の語は現行の版にない。research/23 の #1・F6（§3.1・§3.7）。
+
 ### Cited Findings
 
 #### 2-1. 「Best practices for Claude Code」（公式 docs, 旧 engineering ブログ記事の後継）
 - **出典の状態**: 旧 URL anthropic.com/engineering/claude-code-best-practices は docs の Best practices に 302 リダイレクト（2026-10-29 確認）— [Best practices](https://code.claude.com/docs/en/best-practices)
 - **大前提**: 「Claude's context window fills up fast, and performance degrades as it fills」— [Best practices](https://code.claude.com/docs/en/best-practices)
+  > 【2026-11-03 注記】この「大前提」の文は改稿前の Best practices（2026-10-26 ごろまで）のもので、現行の版（2026-10-27 ごろ以降）にはない（誤り）。2-1 は全体が改稿前の版を要約している。kitchen sink session・Writer/Reviewer・fan-out・trust-then-verify gap・infinite exploration・validateEmail の例・Ctrl+G・adversarial review・AskUserQuestion でのインタビュー・status line での常時監視は、現行の Best practices に出てこない。現行の版は、多くの場合は Claude Code の既定（auto mode、subagent への委任、窓が埋まる前の自動の圧縮）で最初の平易な依頼が正しく動くとし、既定で足りないとき（Claude に見えない情報、確かめる手段、例外のない規則、既定の手間とコスト）を扱う。コンテキストを最大の制約とする助言は「What you can stop doing」の表に移った。検証の段階（プロンプト・/goal・Stop hook・書いていない者によるレビュー）は現行の版にもある（research/25 の P9）。この節を使う前に、現行の版で確かめ直す。research/23 の #1・F6（§3.1）。
 - **検証手段を渡す（最優先）**: 「Give Claude a check it can run: tests, a build, a screenshot to compare. It's the difference between a session you watch and one you walk away from.」例: 「validateEmail を書き、テストケース X/Y/Z、実装後にテストを実行」「スクショを貼り、結果のスクショと比較して差分を列挙し修正」「エラーを貼り、根本原因を直し、エラーを抑制しない」。ゲートの強さを段階的に上げる: 1プロンプト内で指示 → `/goal` 条件 → Stop hook（決定的）→ 検証用 subagent / workflow（別モデルに反証させる）。成功を主張させず証拠（テスト出力、実行コマンド、スクショ）を示させる。`/verify` で実アプリ確認 — [Best practices](https://code.claude.com/docs/en/best-practices)
 - **Explore → Plan → Implement → Commit**: plan mode で `/src/auth を読んで理解して` → `Google OAuth を追加したい。変更ファイルとセッションフローは? 計画を作って`（`Ctrl+G` で計画を直接編集）→ plan mode を抜けて実装＋テスト → コミットと PR 作成。ただし diff を1文で説明できる小さな変更は直接やらせる — [Best practices](https://code.claude.com/docs/en/best-practices)
 - **具体的に指示する**: タスクのスコープ（どのファイル・どのシナリオ・モック回避等）、情報源を指す（「git 履歴を見て API の経緯を要約」）、既存パターンを参照（「HotDogWidget.php を手本に」）、症状・場所・"直った"の定義を述べる（「失敗するテストを書いて再現してから直す」= TDD 的）。探索段階では曖昧な質問も有用 — [Best practices](https://code.claude.com/docs/en/best-practices)
 - **リッチな入力**: `@` でファイル参照、画像の貼り付け/ドラッグ、URL（よく使うドメインは `/permissions` で許可）、`cat error.log | claude -p` でパイプ、Claude 自身に取りに行かせる — [Best practices](https://code.claude.com/docs/en/best-practices)
 - **環境設定**: CLAUDE.md を `/init` で作り育てる（含める/除外表、各行の削除テスト、IMPORTANT は1行だけ）、`/permissions` と `/sandbox`、CLI ツール（`gh` 等。未知の CLI は `--help` で学ばせる）、MCP、hooks（「必ず毎回」用）、skills（`disable-model-invocation: true` で副作用ワークフロー）、custom subagents、plugins（型付き言語は code intelligence plugin）— [Best practices](https://code.claude.com/docs/en/best-practices)
+  > 【2026-11-03 注記】「IMPORTANT は1行だけ」は改稿前の版の勧め（誤り）。現行の版は、守られない行に IMPORTANT を足しても直らず、ファイルを短くするか、例外のない規則なら hook にする、とする。research/23 の F6・§3.7。
 - **コミュニケーション**: シニアエンジニアに聞くようにコードベースの質問をする（オンボーディングに有効）。大きな機能は「AskUserQuestion ツールで詳しくインタビューして→SPEC.md を書いて」→新セッションで実装。良い spec は自己完結（関与ファイル・インターフェース・スコープ外・E2E 検証手順）— [Best practices](https://code.claude.com/docs/en/best-practices)
+  > 【2026-11-03 注記】「AskUserQuestion ツールで詳しくインタビューして」は文言が古い（一部誤り）。現行の Best practices はツール名を出さず、spec が書けるまでインタビューして SPEC.md に書くよう頼むと、Claude が選択式の質問を返す、と書く。research/26 の #17。
 - **セッション管理**: 早く頻繁に軌道修正（`Esc`、`Esc Esc`/`/rewind`、「Undo that」、`/clear`）。**同じ問題で2回以上訂正したら `/clear` して学びを反映した良いプロンプトでやり直す**。コンテキストを積極管理（`/clear`、`/compact <指示>`、部分要約、CLAUDE.md の圧縮指示、`/btw`）。調査は subagent に（「use subagents to investigate X」）。checkpoint でリスクある試行。`/rename` でセッションをブランチのように — [Best practices](https://code.claude.com/docs/en/best-practices)
+  > 【2026-11-03 注記】「コンテキストを積極管理」と「調査は subagent に」は改稿前の版の勧め（誤り）。現行の版は、コンテキストを最大の制約として管理すること、コンテキストを守るために subagent を使うことを「What you can stop doing」の表に入れた。関係のない作業の間の `/clear` は、答えの質とコストのために今も勧める。subagent は、並列の作業・うるさい出力を本筋から離す・独立のレビューには今も向くが、どれも追加のトークンがかかる、とする。research/23 の #1・F6・§3.7。
 - **自動化とスケール**: `claude -p` を CI・pre-commit・スクリプトに。並列セッション（worktrees、cross-session messaging、desktop、cloud、agent view、agent teams）。**Writer/Reviewer パターン**（別セッションの新鮮なコンテキストでレビュー、テストを書く Claude と実装する Claude を分ける）。**Fan-out**: `/batch` または `claude -p` ループ＋`--allowedTools`＋`--permission-mode dontAsk`、まず2〜3ファイルで試してから全体へ。auto mode で無人実行。**Adversarial review step**: 完了扱いの前に subagent に diff を新鮮な文脈でレビューさせる（`/code-review` や PLAN.md との照合）。ただし「指摘を探せ」と言われたレビュアーは健全な作業にも指摘を出すので、正しさ・要件に関わる指摘だけを必須にし過剰設計を避ける — [Best practices](https://code.claude.com/docs/en/best-practices)
 - **よくある失敗パターン**: kitchen sink session（無関係タスク混在→`/clear`）、何度も訂正（→2回失敗で `/clear`）、肥大化した CLAUDE.md（→容赦なく削る or hook 化）、trust-then-verify gap（→検証できないなら出荷しない）、infinite exploration（→調査範囲を絞るか subagent）— [Best practices](https://code.claude.com/docs/en/best-practices)
 - **直感を育てる**: ガイドは出発点。深い問題では文脈を溜める、探索的タスクでは計画を省く、など状況判断を — [Best practices](https://code.claude.com/docs/en/best-practices)
@@ -432,7 +454,9 @@
 
 ### Inferences
 - 旧ブログ記事（2025年）にあった「Explore-plan-code-commit」「TDD」「visual iteration」「be specific」「course-correct early」「/clear」「subagents for investigation」「headless」「multi-Claude（Writer/Reviewer, worktrees, fan-out）」はすべて現行 docs に形を変えて残っており、加えて 2026 年版では「検証手段を渡す」が最上位に昇格し、`/goal`・Stop hook・adversarial review・auto mode・`/batch`・workflows といった新機能と結び付けられている。教材ではこの「検証の階段（プロンプト→/goal→Stop hook→別エージェント）」を中心概念に据える価値が高い。
+  > 【2026-11-03 注記】ここの「現行 docs」「2026 年版」は、改稿前の Best practices（2026-10-26 ごろまで）を指す（誤り）。現行の版（2026-10-27 ごろ以降）には Writer/Reviewer・fan-out・adversarial review の語がなく、コンテキストを守るために subagent を使うことは「What you can stop doing」の表に入った。検証の段階（プロンプト・/goal・Stop hook・書いていない者によるレビュー）は現行の版にもある（research/25 の P9）。research/23 の F6（§3.1・§3.7）。
 - 旧記事で推奨されていた「think / think hard / ultrathink」の段階的キーワードは、現行では `ultrathink` のみ有効で「think hard」は認識されない（model-config 記載）。旧情報の転載に注意が必要。
+  > 【2026-11-03 注記】「『think hard』は認識されない」は一部誤り。think hard などはキーワードとしては認識されず、普通の文として渡る（effort は上がらない）。research/23 の #9。
 - 旧記事の「safe YOLO mode（`--dangerously-skip-permissions` をコンテナで）」に相当する推奨は、現行では「auto mode（分類器）」「sandbox」「bypassPermissions は隔離環境のみ」に置き換わっている。
 
 ### Gaps
@@ -517,6 +541,7 @@
 - **`claude --remote` は `--cloud` の非推奨エイリアス** — [claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web)
 - **MCP の SSE transport は非推奨**（HTTP を使う）— [mcp](https://code.claude.com/docs/en/mcp)
 - **Thinking キーワード**: `ultrathink` のみ有効、「think hard」等は非認識。5.5 世代と Fable は thinking 常時 ON — [model-config](https://code.claude.com/docs/en/model-config)
+  > 【2026-11-03 注記】「『think hard』等は非認識」は一部誤り。think hard などはキーワードとしては認識されず、普通の文として渡る（effort は上がらない）。research/23 の #9。
 - **`/cost`, `/stats` は `/usage` の別名に統合** — [commands](https://code.claude.com/docs/en/commands)
 - **ドキュメントの所在変更**: Claude Code ドキュメントは code.claude.com/docs に移行、旧 engineering ブログのベストプラクティス記事も docs へリダイレクト — [Best practices](https://code.claude.com/docs/en/best-practices)
 - **GitHub Action**: `@beta` → `@v1`（`mode`, `direct_prompt`, `max_turns` 等の入力は廃止/移動）— [github-actions](https://code.claude.com/docs/en/github-actions)

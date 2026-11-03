@@ -98,7 +98,9 @@
 ### Cited Findings
 **日本語書籍の全体像**
 - クリスタルメソッドの一覧(2026-06-08公開、10-23更新)が、出版社の公式ページで書誌を確認できた11冊を発売順に並べている。平川(技評 2025-12-05)、西見ほか(技評 2025-12-26)、箕輪(インプレス NextPublishing 2026-02-20)、大澤(マイナビ 2026-05-19)、佐藤(技評 2026-06-08)、掌田(秀和システム新社 2026-06-16)、Oikon・前川(SB 2026-08-14)、齊藤(インプレス 2026-08-18、全15章528ページ、「辞典的な構成」)、増山(技評 2026-09-08)、御田「みのるん式」(技評 2026-09-24、事務仕事への活用や社内のセキュリティの壁の越え方)、羽田野(インプレス 2026-09-25)の11冊 — [クリスタルメソッド](https://crystal-method.com/blog/claude-code-books/)
-- DotAI(2026-04-05)はレベル別の読書順として「平川 → 西見ほか → 箕輪」を推奨し、物語形式の『ストーリーで覚えるClaude Code開発ガイド』(Kindle のみ、2026-02-13、280ページ)は並行して読んでよいとしている。評価は、平川本「一部古くなっている情報もある」、西見本「入門者には分量が重い」、箕輪本「154ページと薄く入門者には難しい」。運営元による主観評価 — [DotAI TIMES](https://dot-ai.myuuu.co.jp/times/108)
+- DotAI(2026-04-05)はレベル別の読書順として「平川 → 西見ほか → 箕輪」を推奨し、物語形式の『ストーリーで覚えるClaude Code開発ガイド』(Kindle のみ、2026-02-13、280ページ)は並行して読んでよいとしている。3冊への評価には、分量・薄さ・情報の古さへの注意も含まれる。運営元による主観評価 — [DotAI TIMES](https://dot-ai.myuuu.co.jp/times/108)
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
 
 **個別の目次**
 - 『実践Claude Code入門 ―現場で活用するためのAIコーディングの思考法』(西見公宏・吉田真吾・大嶋勇樹、技術評論社、2025-12-26、304ページ)。第1部 ハンズオン(1 ソフトウェアエンジニアリングへの組み込み / 2 基礎 / 3 MCP / 4 スペック駆動開発 / 5 Claude Code Action)、第2部 動作原理と開発フローの体系化(6 仕組みの理解 / 7 意図通りに動かす / 8・9 スペック駆動開発フローの体系化(設計・実践))、付録 — [gihyo.jp](https://gihyo.jp/book/2026/978-4-297-15354-0)
@@ -117,8 +119,10 @@
 
 ### Inferences
 - 日本語書籍の章立ては「制御(CLAUDE.md・settings・Hooks・sandbox)」と「拡張(Skills・MCP・マルチエージェント・Plugins)」の二分法に収束しつつある(Oikon 本、箕輪本の副題「拡張・制御・運用」)。辞書サイトのカテゴリ設計で、この軸は日本の読者に馴染みやすい。
-- 書籍は発売から数か月で陳腐化しやすい(平川本に「一部古くなっている」という声。in Action も改訂済み)。紙ではできない「継続更新される辞書」であること自体が差別化になる。
+- 書籍は発売から数か月で陳腐化しやすい(ある書籍に「一部古くなっている」という評価がある(2026-04)。in Action も改訂済み)。紙ではできない「継続更新される辞書」であること自体が差別化になる。
 - 近刊の SB 本(書名未確定)の「よくある失敗パターン」「分割の判断基準」「12項目チェックリスト」は、本プロジェクトのエントリ形式(症状・判断シグナル)に近い。競合として発売後に確認すべき。
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（2つ目の項。decisions.md 2026-11-03「否定的な文脈の実名」）。
 
 ### Gaps
 - 大澤本(マイナビ)、掌田本(秀和システム新社)、増山本(技評)、御田本(技評)、ストーリー本の詳細目次は、検索上限のため未取得。
@@ -132,7 +136,7 @@
 大規模なコミュニティガイドは「ペルソナ・レベル別の学習パス + 時間見積もり + クイズ + テンプレート集 + 図」というコース型に寄っている。ClaudeLog は「Mechanics(概念)/ FAQ(疑問形スラッグ230+)/ Add-ons」に分けたサイト型。awesome リストは「悩み別カテゴリ」の索引型。日本語では Zenn の「逆引きコマンド事典」が「〜したい」形式の一問一答をとっており、本プロジェクトの逆引き索引に最も近い先行例。
 
 ### Cited Findings
-- **Claude Code Ultimate Guide**(Florian Bruniaux、v3.41.1、2026-07-29更新): ロール別の「Choose Your Path」(テックリード / CTO / PM / 開発者 / キャリアチェンジ組など)、7モジュールの学習パス(8〜11時間)、1ページのチートシート、473問のクイズ(Junior / Senior / Power User / PM の4プロファイル)、Mermaid 図48点(ASCII のフォールバック付き)、「agents vs skills vs commands」の判断フレームワーク、Golden Rules(コンテキスト使用率の閾値を含む5原則)、57枚のリキャップカード、AI 向けの機械可読ファイル(llms.txt / reference.yaml)、MCP サーバー、脅威データベース(CVE 対応28件、悪性スキル655件)。テンプレート数は箇所により268と275で不一致 — [README](https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/693d97d284ea342c8c8fb13894df0cee26d3a3d3/README.md)
+- **Claude Code Ultimate Guide**(Florian Bruniaux、v3.41.1、2026-07-29更新): ロール別の「Choose Your Path」(テックリード / CTO / PM / 開発者 / キャリアチェンジ組など)、7モジュールの学習パス(8〜11時間)、1ページのチートシート、473問のクイズ(Junior / Senior / Power User / PM の4プロファイル)、Mermaid 図48点(ASCII のフォールバック付き)、「agents vs skills vs commands」の判断フレームワーク、Golden Rules(コンテキスト使用率の閾値を含む5原則)、57枚のリキャップカード、AI 向けの機械可読ファイル(llms.txt / reference.yaml)、MCP サーバー、脅威データベース(CVE 対応28件、悪性スキル655件) — [README](https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/693d97d284ea342c8c8fb13894df0cee26d3a3d3/README.md)
 - 同ガイドの学習パスは、モジュールごとに ⭐ の難易度(Beginner / Intermediate / Advanced)と演習・チェックポイントを持つ。学習者レベルは利用期間で定義されている(初日 / 1〜4週間 / 1か月以上)。各モジュールは `/lesson-quiz [topic]` で確認し、最後に `/self-assessment comprehensive` を行う — [learning-path README](https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/693d97d284ea342c8c8fb13894df0cee26d3a3d3/guide/learning-path/README.md)
 - **claude-howto**(luongnv89、2026-10-26更新): 冒頭で既存教材の問題を3つ挙げている。「ドキュメントは機能を説明するが組み合わせ方を示さない」「学習順序が不明確」「例が基本的すぎる」。10モジュールにそれぞれレベル(Beginner / Beginner+ / Intermediate / Intermediate+ / Advanced)と時間を付けている(Slash Commands 30分 → Memory 45分 → Checkpoints → CLI → Skills → Hooks → MCP → Subagents 1.5時間 → Advanced → Plugins、合計11〜13時間)。ほかに「Find Your Level」、公式ドキュメントとの比較表、「What Can You Build」表(用途 → 組み合わせる機能)、do's and don'ts、トラブルシューティング、`/self-assessment`、EPUB — [claude-howto README](https://cdn.jsdelivr.net/gh/luongnv89/claude-howto@main/README.md)
 - **awesome-claude-code**(hesreallyhim): カテゴリは Start Here / From Anthropic / Documentation, Knowledge & Learning / … / Security / Multi-Agent Orchestration / Skills / Memory & Context Persistence / Usage & Cost Monitoring / Observability など。各エントリには評価的なコメントが付き、一部には作成日・最終コミット・ライセンス・スター数のメタデータがある — [awesome-claude-code ミラー](https://gh.mise.run.place/hesreallyhim/awesome-claude-code)。スター数は約4.7万(記事執筆時点、年は不明)。記事の勧めは「自分の悩みに対応するカテゴリから入る」「全部入れない、Context bloat is real」 — [DEV Community](https://dev.to/tienbku/the-github-repository-every-claude-code-user-needs-to-bookmark-2b6f)
@@ -144,10 +148,14 @@
 - 典型的な日本語の体験記事(MIXI、2025-02-27公開、06-02更新)は、セットアップ → 実践 → 注意点と進む線形の記録で、日付付きの追記で鮮度を保っている — [Zenn](https://zenn.dev/mixi/articles/daee52c49e739b)
 - 「Skills vs Subagents vs Hooks vs MCP をどう使い分けるか」を主題にしたブログ記事は多数ある(例: davidloor「When to use skills, CLAUDE.md, subagents, hooks, MCP」、gautamkhorana「skills vs commands vs subagents vs hooks vs MCP」、claudedirectory「Which Claude Code Extension Should You Use?」、productpeak「The Four Claude Code Building Blocks」)。いずれも検索結果のタイトルで確認しただけで、本文は未確認 — [davidloor](https://davidloor.com/en/blog/when-to-use-skills-claudemd-subagents-hooks-mcp); [gautamkhorana](https://gautamkhorana.com/blog/claude-code-skills-vs-commands-vs-subagents-vs-hooks-vs-mcp/); [claudedirectory](https://claudedirectory.org/blog/claude-code-skills-vs-subagents-vs-mcp); [productpeak](https://productpeak.substack.com/p/the-four-claude-code-building-blocks)
 
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（1つ目の項の最後の、誤りの指摘の一文を外した。名前と URL は中立の記述に残した。decisions.md 2026-11-03「否定的な文脈の実名」）。
+
 ### Inferences
 - 「機能の使い分け」記事が乱立していること自体が、判断支援への需要が大きいことを示している。辞書の中核エントリとして「X vs Y」比較ページ群を用意する価値は高い。
 - ClaudeLog の疑問形 FAQ スラッグと ML_Bear の「〜したい」見出しは、逆引き索引の見出し語のつけ方(症状・欲求の文で引く)の先行例になる。ただしどちらも、レベルや前提知識、関連ページといったメタデータは構造化されていない。
-- コミュニティガイドは分量が大きく(2.4万行超、テンプレート275件など)、数値の不整合も見られる。網羅を競うより、エントリの粒度を揃え、検証日を明示する方が信頼性で差別化できる。
+- コミュニティガイドは分量が大きく(2.4万行超など)、数値の不整合も見られる。網羅を競うより、エントリの粒度を揃え、検証日を明示する方が信頼性で差別化できる。
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（3つ目の項から、特定のガイドと結び付く件数を外した。decisions.md 2026-11-03「否定的な文脈の実名」）。
 
 ### Gaps
 - everything-claude-code など他の大型リポジトリの構造は未確認。
@@ -250,18 +258,20 @@
 | Educative Claude Code | — | テキスト+エディタ | — | 5モジュール | AI Tutor([Educative](https://www.educative.io/courses/claude-code)) | 詳細不明 |
 | YouTube ロードマップ | 2026-10-25 | 動画20本 | 初〜上級 | 4段階 | 無料・長尺([Developer Educators](https://developereducators.com/roadmap/claude-code/)) | 「作って売る」寄り、内容がばらつく |
 | Agentic Engineering Patterns(Willison) | 2026-02〜 | Web ガイド16章 | 中〜上級 | パターン名の章立て+アンチパターン章 | ツール非依存、テスト中心([Willison](https://simonwillison.net/guides)) | Claude Code の機能リファレンスはない |
-| 実践Claude Code入門(技評) | 2025-12-26 | 書籍304ページ | 実務者 | 2部(ハンズオン/原理と体系化) | スペック駆動開発、動作原理([gihyo](https://gihyo.jp/book/2026/978-4-297-15354-0)) | 入門者には重い([DotAI](https://dot-ai.myuuu.co.jp/times/108)) |
-| AI駆動開発入門(技評、平川) | 2025-12-05 | 書籍320ページ | 入門 | 成果物時間付きの章 | すぐ体験できる、付録のコマンド一覧と索引([gihyo](https://gihyo.jp/book/2025/978-4-297-15275-8)) | 一部情報が古い([DotAI](https://dot-ai.myuuu.co.jp/times/108)) |
-| Claude Code実践入門(SB、Oikon・前川) | 2026-08-14 | 書籍・全7章 | 入門〜組織導入 | 使う→制御→拡張→現場→企業 | 制御と拡張の整理、コスト、エンタープライズ([丸善ジュンク堂](https://www.maruzenjunkudo.co.jp/products/9784815643119)) | 紙ゆえの陳腐化(推論) |
+| 実践Claude Code入門(技評) | 2025-12-26 | 書籍304ページ | 実務者 | 2部(ハンズオン/原理と体系化) | スペック駆動開発、動作原理([gihyo](https://gihyo.jp/book/2026/978-4-297-15354-0)) | — |
+| AI駆動開発入門(技評、平川) | 2025-12-05 | 書籍320ページ | 入門 | 成果物時間付きの章 | すぐ体験できる、付録のコマンド一覧と索引([gihyo](https://gihyo.jp/book/2025/978-4-297-15275-8)) | — |
+| Claude Code実践入門(SB、Oikon・前川) | 2026-08-14 | 書籍・全7章 | 入門〜組織導入 | 使う→制御→拡張→現場→企業 | 制御と拡張の整理、コスト、エンタープライズ([丸善ジュンク堂](https://www.maruzenjunkudo.co.jp/products/9784815643119)) | — |
 | テクニック集(齊藤) | 2026-05〜08 | 書籍522〜528ページ | 中級 | 機能別15章 | 辞典的([クリスタルメソッド](https://crystal-method.com/blog/claude-code-books/)) | 機能から引く構成で、症状からは引けない(推論) |
 | Agent Skills入門(技評、佐藤) | 2026-06-08 | 書籍272ページ | 実務 | スキル特化・公式スキルのカタログ | skill-creator、配布、セキュリティ([gihyo](https://gihyo.jp/book/2026/978-4-297-15698-5)) | 対象範囲が狭い |
 | 1週間で基礎(インプレス) | 2026-09-25 | 書籍360ページ | 非エンジニア入門 | 7日間 | ターミナル不要([koubo](https://koubo.jp/press-release/prtimes/c5875_r7683)) | Pro 前提 |
 | Agentic Coding with Claude Code(Packt) | 2026-03-27 | 書籍376ページ | 開発者 | Context Engineering から始める | 概念の土台([Packt](https://www.packtpub.com/product/agentic-coding-with-claude-code/9781806022595)) | — |
 | Beyond Vibe Coding(O'Reilly) | 2025-08 | 書籍254ページ | 開発者 | 70%問題→信頼と自律 | 生成コードのレビューと所有([O'Reilly](https://www.oreilly.com/library/view/beyond-vibe-coding/9798341634749)) | ツール非依存 |
-| Ultimate Guide(Bruniaux) | 2026-07-29 | GitHub/Web | 全レベル・ロール別 | 学習パス+クイズ+図+テンプレート | 図48点、クイズ473問、脅威DB([README](https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/693d97d284ea342c8c8fb13894df0cee26d3a3d3/README.md)) | 巨大、数値の不整合 |
+| Ultimate Guide(Bruniaux) | 2026-07-29 | GitHub/Web | 全レベル・ロール別 | 学習パス+クイズ+図+テンプレート | 図48点、クイズ473問、脅威DB([README](https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/693d97d284ea342c8c8fb13894df0cee26d3a3d3/README.md)) | 巨大 |
 | claude-howto | 2026-10-26 | GitHub | 5段階 | 10モジュール+時間 | レベル・時間・自己評価([claude-howto](https://cdn.jsdelivr.net/gh/luongnv89/claude-howto@main/README.md)) | 機能順(推論) |
 | ClaudeLog | 継続 | Web | — | Mechanics / FAQ 230+ / Add-ons | 疑問形 FAQ([ClaudeLog](https://claudelog.com/llms.txt)) | メタデータが構造化されていない(推論) |
-| 逆引きコマンド事典(Zenn) | 2025-06-23 | 記事 | — | 「〜したい」一問一答 | 逆引き形式([Zenn](https://zenn.dev/ml_bear/articles/84e92429698177)) | 1記事規模、更新が止まっている可能性(推論) |
+| 逆引きコマンド事典(Zenn) | 2025-06-23 | 記事 | — | 「〜したい」一問一答 | 逆引き形式([Zenn](https://zenn.dev/ml_bear/articles/84e92429698177)) | 1記事規模 |
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。表の「弱み」の欄のうち、個々の著作を低く評価したもの（5行）を外し、名前と出典は中立の欄に残した。外した中身は、名前なしで次のとおり。第三者の評価として、日本語の書籍の2冊に「入門者には重い」「一部情報が古い」がある（DotAI、2026-04）。調べた側の推論と観察として、紙の書籍の陳腐化、記事の更新の停止、コミュニティガイドの数値の不整合を挙げていた。範囲や構成を述べた弱み（対象範囲が狭い、ツール非依存 など）と、団体の教材への評価は残した。
 
 **(a) ほぼ全教材が扱うトピック**(上の教材の目次を横断して確認)
 - インストールと初期設定、プラン・料金(CC101、平川本、Oikon 本、1週間本、Shipyard)

@@ -35,5 +35,11 @@ requirements §11「進め方」の2。既存の調査を読み、§10 の誤り
 
 | 担当 | 確かめるファイル | 報告 | 状態 |
 | --- | --- | --- | --- |
-| V1 | `requirements.md`・`research/00`・`06`（W-A）、`research/01`・`02`（W-B） | `verify-V1.md` | 実行中 |
-| V2 | `research/03`・`04`・`05`（W-C）、`research/10`・`11`・`11a〜11c`（W-D） | `verify-V2.md` | 実行中 |
+| V1 | `requirements.md`・`research/00`・`06`（W-A）、`research/01`・`02`（W-B） | `verify-V1.md` | 完了 |
+| V2 | `research/03`・`04`・`05`（W-C）、`research/10`・`11`・`11a〜11c`（W-D） | `verify-V2.md` | 完了 |
+
+## 直しと確かめ直し
+
+- V1 の指摘8件と V2 の指摘17件を、反映した担当（W-A〜W-D）が直した（各 apply-W-*.md の §5）。実名を外す決まりを planning/ の全部に当てることになったので、担当 W-E が research/21〜28 と verify-V1.md から否定的な文脈の実名を外した（apply-W-E.md）。共通の指示は v1.1 にした
+- V1・V2 が直しを確かめ直した（verify-V1.md・verify-V2.md の §5）。残った指摘5件（V1-9・V1-10・#18〜#20）はメインが直し、V2 が確かめた（verify-V2.md §6）
+- 2026-11-04 に、反映した資料・報告・記録を commit した

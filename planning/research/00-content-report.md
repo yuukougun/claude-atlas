@@ -2,6 +2,8 @@
 
 この教材の中心に書くべきなのは、機能の一覧ではない。「なぜうまくいかないか」と「次に何を足し、どう確かめるか」という判断である。Claude Code の公式ドキュメントはすでに日本語を含む11言語に訳されていて（各228ページ）、翻訳や機能ツアーでは付加価値が出にくい ([Claude Code docs llms.txt](https://code.claude.com/docs/llms.txt))。その公式自身が、うまくいかないセッションの原因を四つに分けている。「Claude に見えない情報」「検証手段の欠如」「例外を許さないルールをお願いで守らせている」「既定値の手間とコスト」である。さらに指示を「Claude が判断するもの」と「Claude Code が必ず実行するもの」に二分している ([Best practices](https://code.claude.com/docs/en/best-practices))。本報告はこれを「見せる・確かめる・縛る」の三原理と、研究と実践知で広げた六つの失敗原因に整理し直し、全ページ共通のメタデータにすることを提案する。そうすれば、kyopro-atlas 形式の逆引き・知識マップ・ロードマップを、症状と原因と委任の段階から自然に生成できる。構成案は**20分野・300ページ候補**で、そのうち初版に必須とするのは**151ページ**である。中でも逆引きの受け皿になる症状辞典と、古くなった助言の台帳を最優先にする。差別化の核は四つある。症状から引ける索引、検証と無人実行の信頼性、日本語の出力品質、確認日と版を持つ「古くなった助言」の台帳である。どれも既存の日本語書籍・講座・記事ではほぼ空白になっている。Claude Code は2026年1月から10月末までに約235版が出るほど変化が速い ([npm registry](https://registry.npmjs.org/@anthropic-ai/claude-code))。鮮度の管理を後付けにせず設計の一部にしなければ、公開から数か月で誤った助言を配る辞典になってしまう。
 
+> 【2026-11-03 注記】「約235版」は誤り。npm の公開記録では、2026年1〜10月に出た版は274（v2.0.77〜v2.1.316）、v2.0.77〜v2.1.312（2026-01-06〜10-27）に限っても271である（CHANGELOG の見出しでは254）。research/23 の #10・§3.6、research/22 の #2。
+
 ## 1. 2026年の重心は「機能を覚える」から「任せて確かめる」へ移った
 
 ### 公式は失敗を四つに分け、「お願い」と「鍵」を区別する
@@ -28,7 +30,9 @@ Claude Code の auto mode についても、公式は「承認の手間は減ら
 
 英語圏で最も強い合意は、Claude が自分で実行できる検証手段を渡すことである。テスト、ビルドの終了コード、ブラウザ、スクリーンショット比較などがこれに当たる。Claude Code の作者 Boris Cherny はこれを「最も重要な tip」と呼び ([paddo.dev](https://paddo.dev/blog/how-boris-uses-claude-code))、Simon Willison や Armin Ronacher も同じ趣旨を述べている ([Simon Willison](https://simonwillison.net/2025/Sep/30/designing-agentic-loops); [Armin Ronacher](https://lucumr.pocoo.org/2025/12/22/a-year-of-vibes/))。
 
-これに次の三つが続く。計画を先に固めること。完了を定義できる単位にタスクを切ること。ミスのたびに CLAUDE.md・スクリプト・hook へ再発防止策を書き戻すことで、Mitchell Hashimoto はこれを harness engineering と呼ぶ ([Mitchell Hashimoto](https://mitchellh.com/writing/my-ai-adoption-journey))。Anthropic が約40万セッションを分析した研究も、熟練者との差は長さではなく具体性に出ると報告している。具体性とは「対象ファイル・シナリオ・完了の意味・倣うパターン」を書くことである。熟練者のセッションは、1回の依頼あたりの仕事量がむしろ大きい。ただしこの研究は二次要約でしか確認できていない ([Analytics Vidhya](https://www.analyticsvidhya.com/blog/2026/08/claude-code-best-practices-analysis/); [Creeta](https://news.creeta.com/en/claude-code-expertise-domain-over-coding-2026/))。
+これに次の三つが続く。計画を先に固めること。完了を定義できる単位にタスクを切ること。ミスのたびに CLAUDE.md・スクリプト・hook へ再発防止策を書き戻すことで、Mitchell Hashimoto はこれを harness engineering と呼ぶ ([Mitchell Hashimoto](https://mitchellh.com/writing/my-ai-adoption-journey))。Anthropic が Claude Code の約40万の対話セッション（約23.5万人、2025年10月〜2026年4月）を分析した研究では、その課題の領域の知識（熟練度）が高い利用者ほど、1回の指示で Claude にさせる仕事が多く（熟練者は1回あたり約12の操作と約3,200語の出力、初心者は約5と約600語）、成功しやすく、行き詰まっても立て直しやすかった。差の大部分は初心者から中級に上がるところで生じ、職種による差は小さい。熟練度は、Claude が記録を読み、指示の正確さ・確かめさせる内容・どちらが誤りを正すかから判定したもので、著者は暫定の結果としている ([Anthropic, 2026-06-16](https://www.anthropic.com/research/claude-code-expertise))。依頼に対象のファイル・症状・完了の形・倣う例を書くという助言は、公式の Best practices のものである ([Best practices](https://code.claude.com/docs/en/best-practices))。
+
+> 【2026-11-03 訂正】Anthropic の研究について書いた文を、一次資料（2026-06-16 の研究の報告）で確かめた内容に直し、出典を二次要約から一次資料に替えた。研究はプロンプトの長さを測っておらず、「熟練者との差は長さではなく具体性に出る」と「具体性とは対象ファイル・シナリオ・完了の意味・倣うパターン」は研究の結論ではなかった（二次要約の書き手の解釈で、同じ趣旨の助言は公式の Best practices にある）。「1回の依頼あたりの仕事量」は Claude の操作と出力の量で、利用者のプロンプトの長さではない。research/25 の P9・§3.1。
 
 日本語圏の合意もほぼ同じ六点に収まる。コンテキストを最重要の資源として扱うこと、Plan を先に作ること、検証手段を与えること、CLAUDE.md を短くして守らせたいことは Hooks や permissions で強制すること、タスクを小さく切って要点をファイルに外出しすること、別のコンテキストでレビューすることである。クラスメソッドはこれを「同じ注意を2回したら、それは仕組みに落とすタイミング」と表現した ([DevelopersIO](https://dev.classmethod.jp/articles/lt-devio2026-tokyo-harness-engineering/))。
 
@@ -41,7 +45,7 @@ Claude Code の auto mode についても、公式は「承認の手間は減ら
 | 構成説明を CLAUDE.md に書くか | 書かない。Claude は自分で読む（[Best practices](https://code.claude.com/docs/en/best-practices)） | WHAT/WHY/HOW を書く（[Tembo](https://www.tembo.io/blog/how-to-write-a-great-claude-md)） | 推測できない「理由」と落とし穴だけを書く |
 | 長い作業の続け方 | 焦点を指定して /compact | 書き出してから /clear（[dsebastien](https://www.dsebastien.net/claude-code-tips-and-best-practices/)） | 要約で失いたくない作業は書き出しを使う |
 | 並列セッションの本数 | 5〜10本以上（[Boris](https://paddo.dev/blog/how-boris-uses-claude-code)） | 1本（[Mitchell](https://mitchellh.com/writing/my-ai-adoption-journey)）、上限3〜4本（[marmelab](https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html)） | 1〜3本から始める。上限を決めるのは人間のレビュー能力 |
-| モデルの経済 | Opus で計画し Sonnet で実装（[ClaudeLog](https://claudelog.com/faqs/how-to-use-opus-5-in-claude-code/)） | 信頼できる変更1件あたりのコストで考え、常に最強を使う（[Karo Zieminski](https://karozieminski.substack.com/p/boris-cherny-claude-code-workflow)） | 両論に、2026年の価格変化を添える |
+| モデルの経済 | Opus で計画し Sonnet で実装（[ClaudeLog](https://claudelog.com/faqs/how-to-use-opus-5-in-claude-code/)） | 全作業で Opus（当時 4.5）と thinking を使う（Boris Cherny の実践として [paddo.dev](https://paddo.dev/blog/how-boris-uses-claude-code) と Karo Zieminski が紹介）。Karo Zieminski はこれを、トークン単価ではなく信頼できる変更1件あたりのコストで考える流儀と解釈した（[Karo Zieminski](https://karozieminski.substack.com/p/boris-cherny-claude-code-workflow)） | 両論に、2026年の価格変化を添える |
 | git をどこまで任せるか | 人が握る（[DoltHub](https://www.dolthub.com/blog/2025-06-30-claude-code-gotchas/)） | PR まで任せる（Boris、[ykdojo](https://awesomeclaude.ai/claude-code-tips)） | 慣れるまでは人が握り、慣れたら draft PR |
 | 強調語 | IMPORTANT で遵守率が上がる（[seabat](https://qiita.com/seabat-dev/items/27cb2e1dbd1e9bc1e4b8)） | 過剰適用を招く（[Best practices](https://code.claude.com/docs/en/best-practices)） | 使うのは1行だけ。守られないなら仕組みに移す |
 | レビュアーへの指示 | 正しさに関わる指摘だけ出させる（[Best practices](https://code.claude.com/docs/en/best-practices)） | 全部出させて、別のパスで絞る（[Opus 5 ガイド](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)） | モデルの世代で書き方が変わる例として載せる |
@@ -49,9 +53,19 @@ Claude Code の auto mode についても、公式は「承認の手間は減ら
 | 日本語か英語か | 日本語で問題ない（[入江](https://devtools.shingoirie.com/blog/claude-code-japanese-claude-md-guide/)） | プログラミングは英語が有利な場合もある（[仁頼](https://jinrai.co.jp/blog/claude-japanese/)） | 測定データがない。言語より構造を優先する |
 | カスタムコマンドや hooks | 1日に2回やることは skill にする（Boris） | ほとんど使わなくなった（[Armin](https://lucumr.pocoo.org/2025/7/30/things-that-didnt-work/)） | 足すきっかけと剪定をセットで教える |
 
-日本語圏には固有の重心がある。最も読まれたのは二つで、公式ベストプラクティスを21枚に要約したスライド（64k views）と、非エンジニアの日常業務への応用記事（Qiita 2,374いいね）である。需要は「公式の忠実な体系化」と「コードを書かない使い方」に集中している ([みのるん Speaker Deck](https://speakerdeck.com/minorun365/claude-codebesutopurakuteisumatome); [みのるん Qiita](https://qiita.com/minorun365/items/114f53def8cb0db60f47))。一方で、「自称完全ガイド」や AI 生成風の有料記事には強い反発がある。「changelog を追っていればわかるが誇張のない良心的な記事」といった整理のほうが評価されている ([はてブ 417](https://b.hatena.ne.jp/entry/s/zenn.dev/417/articles/c15af4f4106a9f); [はてブ wataru86](https://b.hatena.ne.jp/entry/s/qiita.com/wataru86/items/b859f1578191a1e15808))。public に公開する教材にとって、誇張せず出典を示すことは信頼の条件そのものである。
+> 【2026-11-03 訂正】「モデルの経済」の行の「他方の立場」を直した。全作業で Opus と thinking を使うのは Boris Cherny の実践（2026-01-03 の X の投稿を paddo.dev と Karo Zieminski の記事が紹介。投稿そのものは読めていない）で、Karo Zieminski 自身の立場ではない。Karo Zieminski が書いたのは、その解釈（トークン単価ではなく、信頼できる変更1件あたりのコストで最適化する）である。「常に最強を使う」という言い方は、どちらの記事にもない。research/25 の P2。
 
-日本語特有の論点は、「日本語で書くと精度が落ちるか」よりも出力の側にある。Opus 5.5 は英語のツール出力を読んだ後に英語へ戻ることがあり、hook で強制的に止める解決策が出ている ([DevelopersIO](https://dev.classmethod.jp/articles/claude-code-hooks-prevent-english-reply/))。textlint を PostToolUse hook で走らせて文体を揃える手法もある ([Zenn](https://zenn.dev/yuki_fujisawa/articles/a01e472dc190cf))。日本語推敲 skill を比べた記事は 342 いいねを集めた ([Qiita](https://qiita.com/inoyu-qiita/items/0ffe6e74ecaf3aaa8b14))。どれも「お願いでは揺れるものを仕組みで縛る」という背骨を、日本語に当てはめた例である。
+> 【2026-11-03 注記】「強調語」の行の「使うのは1行だけ」は、改稿前の Best practices（2026-10-26 ごろまで）の勧めである。現行の版は、IMPORTANT を足しても守られないときは、ファイルが長すぎるか例外のない規則なので、ファイルを短くするか hook にする、とする。research/23 の §3.7。
+
+> 【2026-11-03 注記】「日本語か英語か」の行の「測定データがない」は一部誤り。公式の多言語の評価がある（人が訳した MMLU で、英語を100%とした日本語は Claude Sonnet 4.5 で96.8%、Haiku 4.5 で93.5%）。ただし旧い世代のモデルの知識問題で、エージェントの作業で日本語と英語の指示を比べたデータはない。research/27 の #12。
+
+日本語圏には固有の重心がある。最も読まれたのは二つで、公式ベストプラクティスを21枚に要約したスライド（64k views）と、非エンジニアの日常業務への応用記事（Qiita 2,374いいね）である。需要は「公式の忠実な体系化」と「コードを書かない使い方」に集中している ([みのるん Speaker Deck](https://speakerdeck.com/minorun365/claude-codebesutopurakuteisumatome); [みのるん Qiita](https://qiita.com/minorun365/items/114f53def8cb0db60f47))。一方で、はてなブックマークでは、題に「完全ガイド」を掲げたある個人の Zenn の記事に、その題を疑うコメントが付き、別の Zenn の本には「AIくさいな」などの閲覧者の印象のコメントが付いた（04 Q6）。逆に「claude code の changelog 追ってればわかることだけど、誇張なく良心的な記事」と評された記事もある ([はてブ wataru86](https://b.hatena.ne.jp/entry/s/qiita.com/wataru86/items/b859f1578191a1e15808))。どれも表示された数件のコメントで、反発や評価の広がりを量で示すものではない。public に公開する教材にとって、誇張せず出典を示すことは信頼の条件そのものである。
+
+> 【2026-11-03 訂正】出典の2件の役割を取り違え、量も言い過ぎていたので直した。「完全ガイド」への疑問は、その記事の題へのコメント（表示された3件のうち2件）で、AI 生成や有料には触れていない。「AI 生成風の有料記事」への反応は、別の本への閲覧者の印象（04 Q6）で、本が AI で書かれたと確かめたものではない（有料かどうかもコメントによる）。残した出典（wataru86 の記事のエントリー）は、「誇張なく良心的」と評したコメントの例である。どれも数件のコメントで、批判と評価の代表は同じ1人の利用者のものだった。research/25 の P3・P10。あわせて、否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
+
+日本語特有の論点は、「日本語で書くと精度が落ちるか」よりも出力の側にある。Opus 5.5 は英語のツール出力を読んだ後に英語へ戻ることがあり、hook で日本語を保つ仕組みが出ている ([DevelopersIO](https://dev.classmethod.jp/articles/claude-code-hooks-prevent-english-reply/))。textlint を PostToolUse hook で走らせて文体を揃える手法もある ([Zenn](https://zenn.dev/yuki_fujisawa/articles/a01e472dc190cf))。日本語推敲 skill を比べた記事は 342 いいねを集めた ([Qiita](https://qiita.com/inoyu-qiita/items/0ffe6e74ecaf3aaa8b14))。どれも「お願いでは揺れるものを仕組みで縛る」という背骨を、日本語に当てはめた例である。
+
+> 【2026-11-03 訂正】クラスメソッドの仕組みの説明を、分野15 の訂正に合わせて「強制的に止める解決策」から「日本語を保つ仕組み」に直した。MessageDisplay の hook は表示を差し替えるだけで止められず、記事も英語が一度は画面に出ると書いている。research/27 の #9・#10。
 
 ### 既存教材は機能順の一本道で、症状・検証・鮮度が空白のまま
 
@@ -61,7 +75,9 @@ Claude Code の auto mode についても、公式は「承認の手間は減ら
 
 陳腐化は公式教材にも起きている。公式コース Introduction to Subagents は `/agents` での作成を教えているが ([pasqualepillitteri.it](https://pasqualepillitteri.it/en/news/371/anthropic-academy-free-courses-claude))、このウィザードは v2.1.198（2026-07-01）で削除された ([CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))。公式のインタラクティブなプロンプト教材も Claude 3 世代向けのまま残っていて、食い違う点は Prompting best practices に従うよう注記されている ([Prompt engineering overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview))。
 
-日本語には、さらに四つの空白がある。claude.ai の Research と Artifacts を深く使う方法、日本語の文書品質を仕組みで担保する体系、効果の測り方、そして人間側の負荷である。人間側の負荷については、auto mode で承認の連打が減った代わりに「レビュー地獄」になったという報告がある ([DevelopersIO](https://dev.classmethod.jp/articles/devio2026-tokyo-claude-code-automode-unattended-environment/))。並列作業によって**42%が疲労感の増加**を訴えた企業事例もある ([CodeKnights](https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer))。注釈付きのセッション記録を中心に据えた教材は、日英どちらでも見つからなかった。
+日本語には、さらに四つの空白がある。claude.ai の Research と Artifacts を深く使う方法、日本語の文書品質を仕組みで担保する体系、効果の測り方、そして人間側の負荷である。人間側の負荷については、auto mode で承認の連打が減った代わりに「レビュー地獄」になったという報告がある ([DevelopersIO](https://dev.classmethod.jp/articles/devio2026-tokyo-claude-code-automode-unattended-environment/))。ある企業の開発チーム12名の社内アンケート（導入から3か月、2025年7〜9月、自己申告）では、12人中5人（42%）が**疲労感が増えた**と答えた。並列作業が増えたと答えたのは8人（66.7%）で、別の設問であり、両者の因果は調べられていない ([元の記事](https://zenn.dev/resqnet/articles/a1cfd81a562e07)。[CodeKnights](https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer) のまとめで見つけた)。注釈付きのセッション記録を中心に据えた教材は、日英どちらでも見つからなかった。
+
+> 【2026-11-03 訂正】元の記事（社内アンケートの報告、2025-10-23。今は著者の個人のアカウントにある）を読み、文を直した。「並列作業によって」は元にない因果である。疲労感が増えた（12人中5人）と並列作業が増えた（8人）は別々の設問で、筆者は疲労の一因に、AI の作業を見守る時間を挙げている。research/25 の P7。
 
 ### 2026年の変化は統合・自律の既定化・effort 中心の制御に集約される
 
@@ -82,7 +98,11 @@ Claude Code の auto mode についても、公式は「承認の手間は減ら
 | 品質 | 既定 effort の引き下げ、thinking 履歴のバグ、冗長さの制限が重なり、約6週間品質が不安定になった。ポストモーテムが公開された | 2026-03〜04 | 「劣化したと感じたら、まずバージョンと effort を確かめる」 | [InfoQ](https://infoq.com/news/2026/05/anthropic-claude-code-postmortem) |
 | 料金 | Fable は Pro では最初から従量課金、Max では週上限の50%まで。usage credits は日本では購入から6か月で失効する | 2026-09 | 料金は1ページに集約し、確認日を付ける | [Fable](https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan); [credits](https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans) |
 
+> 【2026-11-03 注記】「effort が正規の制御手段になった」の行の「`think hard` 系は認識されない」は一部誤り。think・think hard などはキーワードとして扱われず、普通の文として渡る（effort の設定の範囲で軽く後押しするだけで、effort は上がらない）。ultrathink はそのターンだけ深く考えるよう頼む言葉で、v2.1.311（2026-10-26）以降の対話のターミナルでは、5.5世代と Fable 5.1 を Anthropic の API で使うとき、そのターンを xhigh で動かす（VS Code は v2.1.316 以降）。research/23 の #9、research/22 の #20。
+
 表の各行に共通するのは、名前が短期間で揺れていることである。routines は cloud scheduled tasks に、extra usage は usage credits に、workflow というトリガー語は ultracode に変わった。`/simplify` は一度 `/code-review` に改名された後、別機能として再び載っている ([CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))。npm の公開記録で数えると、2026年1月の v2.0.77 から10月末の v2.1.312 までに約235版が出ている ([npm registry](https://registry.npmjs.org/@anthropic-ai/claude-code))。
+
+> 【2026-11-03 注記】「約235版」は誤り。npm の公開記録では、v2.0.77（2026-01-06）から v2.1.312（2026-10-27）までは271版である（CHANGELOG の見出しでは254）。research/23 の #10・§3.6、research/22 の #2。
 
 ここから設計上の結論が出る。静的な辞書の「仕様」部分は数か月で古くなる。変わりにくいのは「原理」の部分だけである。だから両者をページの中でもメタデータの上でも分けておく必要がある。
 
@@ -190,6 +210,8 @@ kyopro-atlas と同じく、索引・地図・ロードマップの大半は fro
 | 迎合（sycophancy） | L2 | 推奨 | RLHF に由来する性質。独立したレビュアーが効く | 公B |
 | 採点器を騙す（reward hacking） | L3 | 推奨 | テストの改ざんの背景。改ざんできない検証が必要な理由 | 公B |
 
+> 【2026-11-03 注記】「compaction（要約圧縮）で何が残り、何が消えるか」の行の「CLAUDE.md は再注入される」は一部だけ正しい。プロジェクト直下の CLAUDE.md は圧縮の後にディスクから入れ直されるが、サブフォルダの CLAUDE.md と `paths:` 付きの rules は、引き金のファイルを読むか書くまで戻らない。残るものの完全な一覧は、公式の Explore the context window の「What survives compaction」にある。research/23 の #6・§3.4。
+
 ### 分野02 製品の地図と面の選び方（11ページ）
 
 2026年9月16日以降、アプリは Chat と Cowork が一つの会話にまとまった。軽い質問から多段の作業まで、Claude がツールを選んで進める ([統合の記事](https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude))。そのため「どのアプリを使うか」より、「どこで実行され、何に触れられるか」で選ぶ説明のほうが長持ちする。
@@ -228,6 +250,8 @@ kyopro-atlas と同じく、索引・地図・ロードマップの大半は fro
 | 旧モデルの退役と既定モデルの変化 | L2 | 任意 | 退役の日付。既定が変わったときの気づき方 | 公D |
 | Haiku を使いどころで使う | L3 | 任意 | 大量処理、subagent、分類 | 公D |
 
+> 【2026-11-03 注記】「『考えて』と書くことの現在（ultrathink）」の行の「think hard は認識されない」は一部誤り。think hard などは普通の文として渡り、effort を上げるキーワードとしては効かない（§1 の「2026年の変化」の表の後の注記）。research/23 の #9。
+
 ### 分野04 頼み方（プロンプト）（22ページ）
 
 公式の基本原則（文脈のない新人として扱う、理由を添える、例を示す、XML で区切る、長い資料は先頭に置く）は、アプリにも Claude Code にもそのまま使える ([Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices))。Claude Code の Best practices には「Instead of / Try」の対比表がある。たとえば "fix the login bug" を「セッションのタイムアウト後にログインが失敗する、src/auth/ のトークン更新を見て、再現する失敗テストを書いてから直せ」に書き換える例である ([Best practices](https://code.claude.com/docs/en/best-practices))。この分野は全ページを Before/After で書く。
@@ -256,6 +280,10 @@ kyopro-atlas と同じく、索引・地図・ロードマップの大半は fro
 | 推論を見せてほしいとき | L3 | 任意 | 推論を全文書かせる指示は拒否されうる。要約や短い根拠を頼む | 公D |
 | Before/After プロンプト集 | L2 | 必須 | 30例程度。面別のタブで示す | 公D・新 |
 | 用途別プロンプトの型 | L2 | 推奨 | 調査・要約・レビュー・計画・バグ報告などの雛形 | 教・新 |
+
+> 【2026-11-03 注記】「具体性の4点」の行の「熟練者との差は長さではなく具体性」は、Anthropic の約40万セッションの研究の結論ではない（研究はプロンプトの長さを測っていない。§1 の訂正）。対象・状況・完了・手本を書くという助言は、公式の Best practices にある。research/25 の P9・§3.1。
+
+> 【2026-11-03 注記】「強調語（IMPORTANT・必ず）の現在」の行の「1行だけにする」は、改稿前の Best practices の勧めである（§1 の対立点の表の後の注記）。research/23 の §3.7。
 
 ### 分野05 文脈を整える（コンテキスト管理）（18ページ）
 
@@ -311,6 +339,8 @@ kyopro-atlas と同じく、索引・地図・ロードマップの大半は fro
 | チームで使う（共有 Project・組織の skills） | L3 | 任意 | 閲覧と編集の権限。配布 | 公D |
 | アプリでの調べもの・文章作成のレシピ | L2 | 推奨 | 分野12への入口 | 新 |
 
+> 【2026-11-03 注記】「指示の置き場所」の行の Styles は、2026-06-01 に skills への移行が告知された（自分で作った styles は skills に移され、既定の Concise・Explanatory・Formal はなくなり、Learning は skill として残る）。2026-11-03 時点で公式の記事は取り下げられ、個人設定の記事にも Styles はない。UI にメニューがまだ出るかは確かめられていない。research/26 の #1〜#3・§3.1。
+
 ### 分野07 Claude Code の基本操作（18ページ）
 
 インストールや設定の基本は、読者層に合わせて薄くする。公式ドキュメントと日本語のチートシートへリンクし ([チートシート](https://support.claude.com/ja/articles/14553413-claude-code-チートシート))、本文は「知らないと損をする操作」と「判断」に絞る。既定の権限モードが auto に変わったので、権限の説明は版によって変わることを必ず書いておく ([Permission modes](https://code.claude.com/docs/en/permission-modes))。
@@ -335,6 +365,10 @@ kyopro-atlas と同じく、索引・地図・ロードマップの大半は fro
 | Claude Code を非エンジニアが使う | L2 | 推奨 | Desktop の Code タブ。作業用フォルダ。手動モード | 日 |
 | 終わったら知らせてもらう | L3 | 任意 | Notification hook。通知が要るかどうかは好みが分かれる | 英・日 |
 | 主要コマンド早見表 | L2 | 推奨 | 自動生成。旧名との対応も載せる | 公D・CL |
+
+> 【2026-11-03 注記】「IDE（VS Code・JetBrains）で使う」の行の「詳細は未調査」は、research/26 の #8（§3.4）で確かめた（公式の文書による。動作は試していない）。
+
+> 【2026-11-03 注記】「output style」の行の要点が Explanatory と Learning だけを挙げるのは不足。組み込みは Default のほかに Proactive・Concise・Explanatory・Learning の4種である（Concise は v2.1.237 以降）。research/23 の #2。
 
 ### 分野08 文脈と指示を仕組みにする（Claude Code の拡張）（26ページ）
 
@@ -391,6 +425,8 @@ kyopro-atlas と同じく、索引・地図・ロードマップの大半は fro
 | /insights と /usage で振り返る | L3 | 推奨 | 摩擦の起きた点と内訳 | 公D |
 | 生成コードを自分のものにする | L3 | 推奨 | 説明できないコードを出荷しない | 英・教 |
 | 無人実行の結果を確かめる | L5 | 推奨 | 監督の少なさに比例して確かめる。最終決定は人とブランチ保護に | 公D・教 |
+
+> 【2026-11-03 注記】「書いた本人ではない者にレビューさせる」の行の「Writer/Reviewer」は、改稿前の Best practices（2026-10-26 ごろまで）の語で、現行の版にはない（research/23 の §3.1）。現行の版は、書いていない者のレビュー（`/code-review` の新しい subagent）を、確かめ方の4段階の一つとして示す（research/25 の §3.4）。
 
 ### 分野10 仕組みで縛る（hooks・権限・sandbox）（13ページ）
 
@@ -457,6 +493,10 @@ prompt injection は「バグ」ではなく、LLM がデータと命令を区�
 | 自作ループ（Ralph など）の現在 | L4 | 任意 | 考え方は残り、組み込み機能に置き換わった | 英 |
 | 自動化の選び方（routine・headless・SDK） | L5 | 推奨 | 比較ページ | 教・公D |
 
+> 【2026-11-03 注記】「agent teams（実験的）」の行の「トークンは約7倍」は一部誤り。公式の Manage costs は、teammate が plan mode で動くときに通常のセッションの約7倍と書く。Agent teams のページは倍率を書かず、トークンは動いている teammate の数に応じて増えるとだけ書く。research/23 の #7。
+
+> 【2026-11-03 注記】「fan-out（/batch と `-p` ループ）」の行の「fan-out」は、改稿前の Best practices の語で、現行の版にはない（research/23 の §3.1）。この行の要点は、使う前に現行の文書で確かめる。
+
 ### 分野13 API・SDK の概念（14ページ）
 
 ここはコードの書き方を教える分野ではない。アプリや Claude Code の挙動を「仕組みから」理解するための概念を扱う。アプリの機能には API に対応物がある。project knowledge の cache は prompt caching に、自動の context 管理は compaction に、Memory は memory tool に、アプリの Skills は Agent Skills に対応する ([Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching); [Compaction](https://platform.claude.com/docs/en/build-with-claude/compaction))。この対応表は、パワーユーザーにとって最も価値の高いページになる。
@@ -482,6 +522,8 @@ prompt injection は「バグ」ではなく、LLM がデータと命令を区�
 
 有料プランには二層の上限がある。5時間ごとの session limit と週ごとの weekly limit で、claude.ai・Claude Code・Desktop が同じ枠を使う ([How do usage and length limits work?](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work))。公式の節約策は多い。ただ、実践者の観察では一番効くのは手戻りを減らすことで、トークンの約半分が訂正に消えたという報告もある ([Matsuoka](https://hyperdev.matsuoka.com/p/the-tired-toddler-problem))。この分野では「小手先の節約」より前に「計画と検証」を置く。
 
+> 【2026-11-03 注記】「有料プランには二層の上限がある」は 2026-10-29 より後に変わった。2026-10-30 に旧 Max 20x が Ultra に改名され、確認済みの Ultra の口座には5時間の上限がなく、週の上限だけになった（ほかの有料プランは二層のまま。面をまたいで同じ枠を使う点は変わらない）。呼び方は、Help Center が five-hour limit、Claude Code が v2.1.312 から 5-hour limit（それまでは session limit）である（research/22 の #33）。
+
 | ページ候補 | Lv | 優先 | 扱う要点 | 根拠 |
 |---|---|---|---|---|
 | 利用上限の仕組み（5時間・週・共有） | L1 | 必須 | 面をまたいで共有される。/clear では上限は戻らない | 公D |
@@ -495,9 +537,19 @@ prompt injection は「バグ」ではなく、LLM がデータと命令を区�
 | API 料金の読み方 | L4 | 任意 | 入力と出力、cache、batch。日本語は token が多めになる | 公D |
 | 円での支払い・消費税・インボイス | L1 | 任意 | 為替、2026-04 からの消費税、登録番号、クレジットカードのみ | 日 |
 
+> 【2026-11-03 注記】「並列・ループ・workflows のコスト」の行の「agent teams は約7倍」は一部誤り。約7倍は teammate が plan mode で動くときの値である（分野12 の表の後の注記）。research/23 の #7。
+
+> 【2026-11-03 注記】「プランの選び方」の行のプランの一覧は 2026-10-29 より後に変わった。2026-10-30 に旧 Max 20x が Ultra（月 $200）に改名され、Max は月 $100 の1段になった（research/22 の #32）。
+
 ### 分野15 日本語で使う（12ページ）
 
-日本語の論点は出力の品質に集中している。クラスメソッドは、Opus 5.5 が英語のツール出力やサブエージェントの報告を読んだ後に英語へ戻り、CLAUDE.md や memory の指示が一時的にしか効かないことを観察した。そこで UserPromptSubmit・Stop・MessageDisplay の hook で日本語を強制する解決策を作った ([DevelopersIO](https://dev.classmethod.jp/articles/claude-code-hooks-prevent-english-reply/))。言語設定の `language` は、コメントやコミットメッセージには効かない ([Issoh](https://www.issoh.co.jp/tech/details/18753/))。日本語と英語でプロンプトの精度を比べた実測記事は見つからなかった。そのため「日本語で大丈夫か」には「測定はないが、言語より構造が効く」と正直に書く。
+日本語の論点は出力の品質に集中している。クラスメソッドは、Opus 5.5 が英語のツール出力やサブエージェントの報告を読んだ後に英語へ戻り、CLAUDE.md や memory の指示が一時的にしか効かないことを観察した。そこで UserPromptSubmit・Stop・MessageDisplay・PreToolUse の hook で日本語を保つ仕組みを作った（MessageDisplay は表示を差し替えるだけで止められないので、次のツールの呼び出しを PreToolUse で止めて言い直させる） ([DevelopersIO](https://dev.classmethod.jp/articles/claude-code-hooks-prevent-english-reply/))。言語設定の `language` は、コメントやコミットメッセージには効かない ([Issoh](https://www.issoh.co.jp/tech/details/18753/))。日本語と英語でプロンプトの精度を比べた実測記事は見つからなかった。そのため「日本語で大丈夫か」には「測定はないが、言語より構造が効く」と正直に書く。
+
+> 【2026-11-03 訂正】クラスメソッドの仕組みの説明に PreToolUse の hook が抜けていたので足し、「強制する解決策」を「保つ仕組み」に直した。公式の文書では、MessageDisplay は表示だけを差し替える hook で、メッセージを止めることも Claude が見る内容を変えることもできない。記事も、英語が一度画面に出るのは防げないと書いている。research/27 の #9・#10。
+
+> 【2026-11-03 注記】`language` がコメントやコミットメッセージに効かないという点は、一次資料で確かめられなかった（公式の文書に、効くかどうかの記述がない。出典の記事は取得できなかった）。research/27 の #4。
+
+> 【2026-11-03 注記】「日本語と英語でプロンプトの精度を比べた実測」がないというのは一部誤り。公式の多言語の評価がある（人が訳した MMLU で、英語を100%とした日本語は Claude Sonnet 4.5 で96.8%、Haiku 4.5 で93.5%）。ただし旧い世代のモデルの知識問題で、指示の守り方やエージェントの作業を比べたものではない。research/27 の #12。
 
 | ページ候補 | Lv | 優先 | 扱う要点 | 根拠 |
 |---|---|---|---|---|
@@ -513,6 +565,10 @@ prompt injection は「バグ」ではなく、LLM がデータと命令を区�
 | 文字コード（Shift_JIS の CSV など） | L2 | 推奨 | 集計が空欄になる例。UTF-8 にしてから渡す | 日 |
 | Windows・WSL・IME で困ったら | L2 | 任意 | sandbox は WSL2 で。日本語環境のトラブル（要調査） | 公D・新 |
 | 日本語の資料を読ませる・書かせる | L2 | 推奨 | 縦書きや PDF、敬語、社内用語集 | 新 |
+
+> 【2026-11-03 注記】この表の2つの行に、上の段落と同じ点がある。「日本語で指示して大丈夫か」の行の「測定データはない」は一部誤りで、公式の多言語の評価がある（research/27 の #12）。「コミットメッセージ・コメントの言語」の行の「language は効かない」は、一次資料で確かめられなかった（research/27 の #4）。
+
+> 【2026-11-03 注記】「Windows・WSL・IME で困ったら」の行の「日本語環境のトラブル（要調査）」について、体系的な資料はないが、Claude Code の CHANGELOG に個別の修正の記録が多い（例：2.1.296 と 2.1.299 から、Shift-JIS など UTF-8 でないファイルの編集と書き込みを拒む）。research/27 の #19。
 
 ### 分野16 用途別レシピ（14ページ）
 
@@ -539,6 +595,8 @@ prompt injection は「バグ」ではなく、LLM がデータと命令を区�
 
 日本の導入事例には、情報システム部門の制約に合わせた構成が多い。MDM での配布、管理者権限のない端末、LiteLLM ゲートウェイ、Bedrock 経由などである ([@IT メルカリ](https://atmarkit.itmedia.co.jp/ait/spv/2608/04/news002.html); [DevelopersIO](https://dev.classmethod.jp/articles/claude-code-bedrock-governance-tips/))。一方で、マネージャー層でマージまでの時間が93.5%増えた例もある。導入時の人の負荷も、組織の論点として扱う ([CodeKnights](https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer))。
 
+> 【2026-11-03 注記】93.5% は元の資料と一致するが、条件が書かれていない。元は利用企業の EM のレビュー（[Findy Tools](https://findy-tools.io/products/claudecode/1065/825)、2026-01-21）で、3名ほどのパイロットを含む導入1か月の自社計測（自己申告）である。マネージャー層の PR は16件から56件に増え、そのマージまでの時間が93.5%延びた。全体の PR 数は64.5%増え、メンバー層のマージまでの時間は33%縮んだ。筆者は、増えた PR のレビューと動作確認に時間がかかったためと推定している。research/25 の P7。
+
 | ページ候補 | Lv | 優先 | 扱う要点 | 根拠 |
 |---|---|---|---|---|
 | チームで設定を共有する | L4 | 推奨 | CLAUDE.md、`.claude/settings.json`、`.mcp.json`、plugins。個人用と共有用を分ける | 公D・日 |
@@ -553,7 +611,9 @@ prompt injection は「バグ」ではなく、LLM がデータと命令を区�
 
 ### 分野18 症状辞典（20ページ）
 
-症状ページは「症状の確認 → 六つの原因のどれか → 即効の対処 → 構造的な対処 → 関連する原理」の順に書く。逆引きで最も多く引かれる受け皿になる。英語圏の分析でも、熟練度の差が最も出るのは「うまくいかなくなった後の立て直し」の場面だった ([Creeta](https://news.creeta.com/en/claude-code-expertise-domain-over-coding-2026/))。
+症状ページは「症状の確認 → 六つの原因のどれか → 即効の対処 → 構造的な対処 → 関連する原理」の順に書く。逆引きで最も多く引かれる受け皿になる。Anthropic の約40万セッションの研究でも、その課題の領域の知識がある人ほど、誤りや誤解から立て直しやすかった。行き詰まったセッションで確かな成功まで行った割合は初心者4%・熟練者15%、何も書けずに諦めた割合は初心者19%・ほかの段階5〜7%である。ただし著者は、熟練者が行き詰まるのは難しい問題のことが多いので、差の一部はその違いによると注意している ([Anthropic, 2026-06-16](https://www.anthropic.com/research/claude-code-expertise))。
+
+> 【2026-11-03 訂正】熟練度の差が「最も出る」のは立て直しの場面だとした文を、一次資料（Anthropic、2026-06-16）で確かめた内容に直し、出典を二次要約から一次資料に替えた。一次資料は立て直しやすさの差と諦める割合を示すが、差が「最も出る」とは書いていない（二次要約の解釈）。research/25 の P9・§3.1。
 
 | ページ候補 | Lv | 優先 | 扱う要点 | 根拠 |
 |---|---|---|---|---|
@@ -701,13 +761,19 @@ prompt injection は「バグ」ではなく、LLM がデータと命令を区�
 
 扱いを軽くするのは五つの領域である。**インストールと OS 別の設定**は、公式ドキュメントと日本語チートシートへのリンクで済ませる。**全コマンド・全設定キー・全33種の hook イベントの網羅**は、公式リファレンスが週ごとに更新されるので、早見表は自動生成の索引にとどめる ([Hooks](https://code.claude.com/docs/en/hooks); [Commands](https://code.claude.com/docs/en/commands))。**research preview や実験的な機能の操作手順**（Mods、agent teams、Duet、Claude Design など）は、成熟度バッジを付けた概念紹介にとどめる。**第三者のプラグインやツール**（Superpowers、cc-sdd、Serena、ccusage など）は「考え方の例」として名前を出すだけにし、推薦リストにはしない。**API のパラメータやコード例**は、概念と対応関係だけを書く。軽く扱う部分でも「なぜ」は省かない。たとえば「MCP を全部入れない」理由はコンテキストのコストであり、基礎ページへのリンク一本で示せる。
 
-書かないものは三つの基準で決める。一つ目は**根拠の弱い数値**である。「◯倍速くなった」という自己申告の生産性、逆コンパイルから推測された日本語の思考キーワード（「熟考」で31,999トークン、など。[Gist](https://gist.github.com/oikon48/980b89462904aa1980c5d188b30d1f54)）、2025年末のコミュニティ推定である「最先端モデルが従える指示は150〜200個」などがこれに当たる。こうした数値は本文の主張には使わず、使う場合は「経験則」と明記する。企業事例の数値は、自己申告であることを添えて使う。二つ目は**安全装置を外す近道を勧めること**で、`--dangerously-skip-permissions` を普段使いすること、sandbox の外での再試行を常に許すこと、アカウントを共有することなどがこれに当たる。三つ目は**特定の個人の構成を標準として示すこと**で、Boris Cherny の並列5〜10本や Opus 常用は、反対意見と並べて紹介する。
+書かないものは三つの基準で決める。一つ目は**根拠の弱い数値**である。「◯倍速くなった」という自己申告の生産性、逆コンパイルから推測された日本語の思考キーワード（「熟考」で31,999トークン、など。ある個人の Gist、2025-07）、2025年末のコミュニティ推定である「最先端モデルが従える指示は150〜200個」などがこれに当たる。こうした数値は本文の主張には使わず、使う場合は「経験則」と明記する。企業事例の数値は、自己申告であることを添えて使う。二つ目は**安全装置を外す近道を勧めること**で、`--dangerously-skip-permissions` を普段使いすること、sandbox の外での再試行を常に許すこと、アカウントを共有することなどがこれに当たる。三つ目は**特定の個人の構成を標準として示すこと**で、Boris Cherny の並列5〜10本や Opus 常用は、反対意見と並べて紹介する。
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
+
+> 【2026-11-03 注記】「150〜200個」の出どころは、HumanLayer の記事（2025-11-25）が論文（arXiv 2507.11538）を引いて書いた目安で、記事自身がこの問題は厳密には調べられていないと断っている。原文の言い方は「おおむね一貫して従える」である。research/25 の H1・§3.2。
 
 これとは別に、**AI Fluency の 4D をそのまま章の構成に使う**ことも避ける。4D は CC BY-NC-ND なので、改変した派生フレームワークとして再配布せず、参照と引用にとどめる ([Ringling LibGuide](https://ringling.libguides.com/ai/framework))。
 
 ### 古くなった助言は台帳にして「どの原理の回避策だったか」を残す
 
-教材の中に「古くなった助言」ページを独立して置くことを強く勧める。公式自身が「The old advice / Why it's gone」の表を持っている ([Best practices](https://code.claude.com/docs/en/best-practices))。日本語圏でも、2025年の記事の記法や前提が大量に流通したまま残っている ([adalocamp](https://zenn.dev/adalocamp/articles/claude-code-advanced-tips); [acntechjp](https://zenn.dev/acntechjp/articles/5bf01d6b530b8d))。
+教材の中に「古くなった助言」ページを独立して置くことを強く勧める。公式自身が「The old advice / Why it's gone」の表を持っている ([Best practices](https://code.claude.com/docs/en/best-practices))。日本語圏でも、2025年の記事の記法や前提が大量に流通したまま残っている（例：2025-05 と 2025-07 の Zenn の記事）。
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
 
 台帳の各行には、次の項目を持たせる。「古い助言」「今どうするか」「変わった時期と版」「どの原理を補う回避策だったか」「自分の設定や記事で見つける方法」「出典」「確認日」である。各ページの front matter の `outdated_advice` からこの台帳に逆リンクを張り、「この助言に関係するページ」を自動で一覧にする。
 
@@ -746,6 +812,10 @@ prompt injection は「バグ」ではなく、LLM がデータと命令を区�
 | Ralph プラグインや自作 bash ループで回し続ける | /goal、/loop、dynamic workflows | 2026-05〜06 | 置換 | [paddo.dev](https://paddo.dev/blog/ralph-wiggum-autonomous-loops/) |
 | tmux で自作のエージェント組織を作る | agent view、agent teams（実験的） | 2026-02 | 置換 | [gihyo.jp](https://gihyo.jp/article/2026/02/get-started-claude-code-07) |
 | Opus は高いので避ける | Opus 5.5 は $4/$20 で、多くのプランの既定 | 2026-09 | 条件付き | [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview) |
+
+> 【2026-11-03 注記】「think → think hard → ultrathink の段階」の行の「2026-01〜03 に変遷」のうち、2026年1月の変化は CHANGELOG で確かめられなかった。CHANGELOG で確かめられるのは、v2.1.68（2026-03-04）で ultrathink が「次のターンを high に」として戻ったことと、v2.1.311（2026-10-26）以降の対話のターミナル（VS Code は v2.1.316 以降）で、5.5世代と Fable 5.1 を Anthropic の API で使うとき、ultrathink のターンを xhigh で動かすようになったことである。research/23 の #9・§3.5、research/22 の #20。
+
+> 【2026-11-03 注記】「IMPORTANT や YOU MUST で強調すれば守られる」の行の「強調は1行だけにし」は、改稿前の Best practices（2026-10-26 ごろまで）の勧めである。現行の版は、強調を足しても守られないときは、ファイルを短くするか hook にする、とする。research/23 の §3.7。
 
 この台帳には「かつてはなぜ正しかったか」も書いておく。それが公平であり、読者が次に何かが撤回されたときにも自分で判断できるようになるからである。たとえば `think hard` は、思考予算をキーワードでしか変えられなかった時代の回避策だった。IMPORTANT の多用は、指示に従う精度が低かった世代の回避策だった。こうした回避策は、正式な制御手段（effort、hooks、auto mode）が整うと役目を終える。この規則性を台帳の冒頭に書いておけば、台帳そのものが「変化への備え方」の教材になる。
 
@@ -858,6 +928,8 @@ sources:
 | 教材自体のライセンスと引用 | CC BY など／公式文書の引用の範囲 | 引用は短くし、出典を示す。AI Fluency は改変せず参照だけにする |
 | 鮮度の点検を誰がするか | 作者が手で／Claude CLI の定期作業と人の承認／外部からの PR | 定期作業と人の承認。外部からの「古い」報告は issue のテンプレートで受ける |
 
+> 【2026-11-03 注記】「コンテストや学校の規則」の行の「AtCoder の規則は2026-10-14版に改定されたばかり」は、一次資料で確かめられなかった（一次資料は AI の利用を断るドメインにあり、開いていない。版の名前は、コミュニティの索引の記事名などの二次の記録で一致する）。research/24 の F4・§2.4。
+
 ### kyopro-atlas の形式との対応（確認済み）
 
 手本の kyopro-atlas は、ページの front matter の規則を `schema/page.schema.json`（JSON Schema）に置き、`tools/` の独立スクリプト（`make_skeleton.py`・`gen_site.py`・`check_pages.py` など）が catalog → 骨格 → 索引・逆引き・知識マップの順に生成と検査をしている。必須のキーは `id`・`title`・`type`・`field`・`order`・`kind`・`prerequisites`・`summary`・`stage`・`updated` で、`type`・`field`・`level`・`kind` は列挙で固定されている。スクリプトの多くは AtCoder 固有（問題の台帳、difficulty、コード片のコンパイル）なので、新しいリポジトリでは流用せず作り直す前提になる。そのため、本報告のメタデータ案を足すこと自体に互換性の問題はない。対応は次のとおり。
@@ -877,16 +949,30 @@ sources:
 
 公式情報のうち、本文を取得できていないものが八つある。Styles の現行の仕様、チャット共有の仕様、拒否や利用ポリシーへの向き合い方（断られたときの頼み直し方を含む）、IDE 拡張の固有機能、Desktop のローカル MCP の設定、Office アドインの個別機能、Claude Code の「What survives compaction」の完全な一覧 ([Explore the context window](https://code.claude.com/docs/en/context-window.md))、knowledge cutoff 専用の Help Center 記事である。教材を書く前に、これらを一次情報で補う必要がある。
 
+> 【2026-11-03 注記】この八つは、工程2で公式の文書から確かめた。「What survives compaction」の一覧は research/23 の #6（§3.4）、ほかの七つは research/26 の #2・#4・#5・#8・#9・#11・#13（§3.1〜3.7）で確かめた。Styles は 2026-06 に skills への移行が告知され、公式の記事は取り下げられている（UI にメニューがまだ出るかは未確認）。
+
 資料の間で食い違う点もあった。ultrathink は、二次情報には「廃止された」という説明と「復活した」という説明が混在している。公式文書は「単一ターンの深い推論要求として現在も有効」としている ([Model config](https://code.claude.com/docs/en/model-config))。auto mode の承認率は、公式の engineering ブログでは93% ([auto mode](https://anthropic.com/engineering/claude-code-auto-mode))、二次報道では97% ([GIGAZINE](https://gigazine.net/gsc_news/en/20260810-claude-code-auto-mode/)) だった。auto mode の既定化の時期も、有料プランが 2026-08-14、対話セッション全体が v2.1.283（09-25）と、二段階で説明されている。本報告では公式の値を使ったが、教材ではどちらの段階を指すかを書き分ける必要がある。
+
+> 【2026-11-03 注記】「二次報道では97%」は一部誤り。97% も公式の値である（Claude の blog、2026-08-07。Claude Code の権限の確認の97%が承認される）。93% は別の公式の記事（engineering、2026-03-25。手動の承認の確認の93%が承認される）の値で、時期とデータが違う。どちらにも、測った期間と母集団の説明はない。research/23 の F2-c・§3.3。
 
 実践知と研究のうち、確認が要るものもある。Anthropic の約40万セッションの研究は、一次ページを取得できず二次要約に頼った。HumanLayer の CLAUDE.md 論も原文は未取得である。データそのものが存在しないものもある。Opus 5.5 世代で過剰設計・迎合・テスト改ざんがどの程度残っているかの定量的なデータ、5.x 世代の tokenizer での日本語と英語のトークン比、日本語と英語の指示で精度を比べた実測は、どれも見つからなかった。
 
+> 【2026-11-03 注記】約40万セッションの研究と HumanLayer の記事は、research/25 の P9・H1（§3.1・§3.2）で原文を読んで確かめた。HumanLayer の記事の要約は原文とおおむね一致した。研究の二次要約は数値では一次資料と合うが、要約者の解釈（「長さではなく具体性」など）が研究の結論として引かれていた（§1 の訂正）。
+
+> 【2026-11-03 注記】「日本語と英語の指示で精度を比べた実測」がないというのは一部誤り。公式の多言語の評価がある（旧い世代のモデルの知識問題。分野15 の段落の後の注記）。research/27 の #12。
+
 日本語の環境に固有のトラブル（Windows、WSL、IME、文字コード）、claude.ai の Research と Artifacts を深く使う事例、CLAUDE.md の変更の効果を測った記事も見つかっていない。分野15と分野06の該当ページは、作者が自分で確かめた結果を載せる「検証ノート」形式にするか、確認日を付けて控えめに書くことを推奨する。
 
+> 【2026-11-03 注記】日本語の環境に固有のトラブルについては、体系的な資料はないが、Claude Code の CHANGELOG に個別の修正の記録が多い（分野15 の表の後の注記）。research/27 の #19。
+
 最後に用語の問題がある。公式の Claude Code 文書には日本語訳がある ([Claude Code docs llms.txt](https://code.claude.com/docs/llms.txt))。その用語と本教材の用語索引を揃えるため、公式日本語訳での主要な訳語を一度洗い出しておく価値がある。
+
+> 【2026-11-03 注記】公式の日本語版の範囲と主な訳語は、research/27 の #1（§3.1）で確かめた。Claude Code の文書228ページはすべて日本語版があり（変更履歴だけ英語）、公式同士で表記が割れる語もある（plan モード／プランモード など）。
 
 ## 結論
 
 この調査から分かったのは、Claude を使いこなす知識には変わりにくい核があるということである。核は小さく、「何を見せるか」「完了をどう確かめるか」「どこまで仕組みで縛るか」の三つに集約できる。2026年に起きた変化の多くは、この三つを満たすための回避策が、正式な仕組みに置き換わった結果だった。`think hard` は effort に、IMPORTANT の連打は hooks に、YOLO モードは auto mode と sandbox に、自作ループは /goal に置き換わった。したがって辞典の価値は、機能を網羅することではなく、変化を吸収できる構造にある。原理のページは長く持つものとして書く。古くなりやすい数値と名称は facts.yml とバッジに隔離する。撤回された助言は「どの原理の回避策だったか」と一緒に台帳に残す。こうすれば、次に何かが撤回されたときにも、読者は自分で意味を読み取れる。これは、更新できない書籍や、Tips を並べた記事にはできない差別化である。
 
 もう一つの示唆は、学習の順序を「機能を覚える順」から「任せる幅を広げる順」に変えるべきだということである。上の段に進むほど、確かめる仕組みと封じ込めを前提として求める。そうすれば、2026年に表面化した新しい問題に教材として向き合える。それは、承認は減ったがレビューが詰まり、並列化で人が疲れるという、人間側のボトルネックである。この読者に本当に足りないのは新しい機能の知識ではない。症状から原因へ戻る診断の手順と、「どこまで任せてよいか」を自分で決める基準である。逆引きと症状辞典を初版の中心に置き、そこから原理へリンクでたどれるようにすることが、この教材を既存の書籍や記事と分ける最短の道になる。
+
+> 【2026-11-03 注記】「並列化で人が疲れる」の根拠の一つにした企業の社内アンケートは、並列作業と疲労感を別々の設問で聞いていて、両者の因果は示していない（§1 の訂正）。research/25 の P7。

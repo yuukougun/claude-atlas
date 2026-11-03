@@ -45,7 +45,8 @@
   - 出典：[記事](https://zenn.dev/stafes_blog/articles/nano72mkn-claude-code-intro)／[はてブ](https://b.hatena.ne.jp/entry/s/zenn.dev/stafes_blog/articles/nano72mkn-claude-code-intro)
 - **wataru86「Claude Code を4ヶ月使ってわかった、おすすめコマンド・スキル 10 選」（Qiita, 2026年6〜7月）**
   - 内容：`/clear` `/resume` `/rewind` `/insights` `/update-config` など。コメントでは grill-me や remote-control も話題に。
-  - 人気：**はてブ 384 users**。「changelog を追っていればわかるが誇張のない良心的な記事」と評価された。
+  - 人気：**はてブ 384 users**。「claude code の changelog 追ってればわかることだけど、誇張なく良心的な記事」というコメントが付いた。
+    > 【2026-11-03 訂正】括弧の中のコメントを原文の言い方に直した（元は「changelog を追っていればわかるが誇張のない良心的な記事」という言い換えで、「と評価された」としていた）。ページに表示された1件のコメントで、読者全体の評価として量で確かめたものではない。research/25 の P3。
   - 出典：[はてブ](https://b.hatena.ne.jp/entry/s/qiita.com/wataru86/items/b859f1578191a1e15808)
 - **Oikon（@oikon48）のスライド群（Speaker Deck）**：「Claude Code はじめてガイド -1時間で学べるAI駆動開発の基本と実践-」43k views・55 stars、「Claude Codeの進化と各機能の活かし方」16k・23、「Claude Code 2026年 最新アップデート」14k・17、「Everything Claude Code を眺める」13k・15、「Claude Codeをどのようにキャッチアップしているか」12k・15、「Claude Codeとハーネスについて考えてみる」11k・21、「Claude Codeの体系的な理解と知識のフック」8.9k・10（views と stars の対応はページ表示からの推定）。
   - 根拠：Oikon は書籍『Claude Code実践入門』の共著者で、2025年に Claude Code の流行を整理した記事も書いている。日本で最も参照される解説者の一人と見られる。
@@ -74,14 +75,16 @@
 - **クラスメソッド「サブエージェントを増やしすぎていたら、Claude公式が挙げる失敗パターンに当てはまっていた話」（2026-10-26）**：工程ごとに12体まで増やしたら、受け渡しのルール作りに追われた。「工程ではなく、コンテキストが独立しているかで分ける」方針に変え、レビューは6体を2体に統合。承認ゲートは permissions の ask で強制する。— [DevelopersIO](https://dev.classmethod.jp/articles/claude-code-subagent-review/)
 - **gihyo.jp 連載「これからはじめるClaude Code入門」第7回 Agent Teams（平川知秀, 2026-03-03）**：v2.1.32（2026-02-05, Opus 4.6 と同時）で実験的に追加。plan mode でトークン約7倍、`/rewind` と `/resume` が使えない、チームメイトには Sonnet/Haiku、Delegate Mode。— [gihyo.jp](https://gihyo.jp/article/2026/02/get-started-claude-code-07)
 - **クラスメソッド「Agent Teams 機能を使って…専門家チームを作ってみた」（2026-02-09）**：`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`。Pro プランでもメンバーを増やすとすぐ上限に達する。承認要求が頻繁。— [DevelopersIO](https://dev.classmethod.jp/articles/claude-code-agent-teams-how-to-build/)
-- 2025年の前史：tmux で「社長・部長・ワーカー」の組織を作る Claude-Code-Communication（あきらパパ, Zenn, 2025-06-16。関連する X 投稿は20万インプレッション超）。`--dangerously-skip-permissions` が前提。Agent Teams が公式化した今は**歴史的な位置づけ**。— [Zenn](https://zenn.dev/akira_papa/articles/e9059bbacd0b43)
+- 2025年の前史：tmux で「社長・部長・ワーカー」の組織を作る Claude-Code-Communication（ある個人の Zenn の記事、2025-06。関連する X 投稿は20万インプレッション超）。`--dangerously-skip-permissions` が前提。Agent Teams が公式化した今は**歴史的な位置づけ**。
+  > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
 
 #### E. カスタムスラッシュコマンド → Skills
 - **スラッシュコマンドは Skills に統合された**（YouMind による日本語解説, 2026-01-23。元は Thariq（@trq212）の X 投稿で、約560K views・1.8K いいね・2.0K ブックマーク）。`.claude/commands` は引き続き動くが、新規作成は Skill を推奨。`user-invocable` `disable-model-invocation` `context: fork` `agent:` などのフロントマター。— [YouMind](https://youmind.com/ja-JP/landing/x-viral-articles/claude-code-skills-merge)／[mrsekut Scrapbox](https://scrapbox.io/mrsekut-p/%E2%9D%8C%EF%B8%8F.claude%2Fcommands)
 - **SIOS「Claude Code Skillsの使い方と汎用テンプレート公開」（2025-12-06）**：「成否は description の書き方で9割決まる」。SKILL.md は500行未満、決定的な処理はスクリプトにする、出所が信頼できる Skill だけ使う。— [SIOS Tech Lab](https://tech-lab.sios.jp/archives/50570)
 - **エクスプラザ「Claude Skills (Agent Skills) 入門」（2025-10-21）**：name は64字・description は1024字以内、三人称で書く、参照は1階層まで、100行を超える参照ファイルには目次を付ける。— [Zenn](https://zenn.dev/explaza/articles/b3dde4451aa249)
 - NCDC「Claude CodeにAgent Skillsを自作してもらった」（2025-10-18）：公式の `skill-creator` を有効化して頼むだけで作れる。公式 Skills を全部有効にするとコンテキストを浪費する。— [Zenn](https://zenn.dev/ncdc/articles/77b4150bc3148f)
-- 2025年の custom commands 記事（例：adalocamp, 2025-07-14 の `/project:name` `/user:name` 記法）は**記法が古い**。— [Zenn](https://zenn.dev/adalocamp/articles/claude-code-advanced-tips)
+- 2025年の custom commands 記事（例：2025-07 のある個人の記事の `/project:name` `/user:name` 記法）は**記法が古い**。
+  > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
 
 #### F. Hooks
 - 通知系の入門が多い：the_exile「Hooks機能で完了通知を受け取りましょう」（2025-07-01, Notification と Stop で macOS の osascript）。— [Zenn](https://zenn.dev/the_exile/articles/claude-code-hooks)
@@ -90,7 +93,8 @@
 - 書籍・Zenn Book では Hooks に章を割く例が増えている。増山の Zenn Book では46章中10章（29〜38章）が Hooks。— [Zenn Book](https://zenn.dev/tmasuyama1114/books/claude_code_basic)
 
 #### G. MCP
-- 2025年は Serena MCP が人気だった（kaito「Claude Codeを10倍賢くする無料ツール『Serena』」2025-07-31。トークン60〜80%削減と主張しているが測定方法は示されていない）。— [Zenn](https://zenn.dev/sc30gsw/articles/ff81891959aaef)
+- 2025年は Serena MCP が人気だった（ある個人の Zenn の記事、2025-07。トークン60〜80%削減と主張しているが測定方法は示されていない）。
+  > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
 - 2026年は「MCP の入れすぎ」への警告が主流。dai_chi はプロジェクトあたり約10サーバー・合計約80ツールまでを目安にする（2026-01-23）。翻訳記事でも、使わない MCP が起動時からトークンを消費すると注意している。— [Qiita](https://qiita.com/dai_chi/items/63b15050cc1280c45f86)／[ライフハッカー（MakeUseOf の翻訳, 2026-09-03）](https://www.lifehacker.jp/article/2609checked-claude-code-usage-found-four-hidden-token-drains-never-knew-about/)
 - naopen（KDDI AD）：Advent Calendar の運営を Chrome DevTools MCP と Playwright MCP で自動化（Playwright はページ全体の取得で約19.2k トークンを消費）。26いいね。— [Qiita](https://qiita.com/naopen/items/31c4221906d60247aa87)
 
@@ -128,6 +132,7 @@
 - Zenn の記事ごとのいいね数は、この環境では API とトピックページにアクセスできず取得できなかった。Zenn の「全期間」ランキング（https://zenn.dev/topics/claudecode）で確認するとよい。
 - note の有料記事（チャエンなど）の販売数やスキ数は取得できなかった。
 - 企業テックブログ（LayerX、メルカリ、サイバーエージェントの本体ブログ）の個別記事は、許可リストの制限で本文を取得できなかったものが多い。数値は二次まとめ（CodeKnights）経由（Q3）。
+  > 【2026-11-03 注記】このうちメルカリのブログの記事（2025-10-28）は research/25 の P11 で確かめた。CodeKnights の数値のうち READYFOR と Rehab for JAPAN の2件は、元の記事を research/25 の P7 で確かめた。
 
 ---
 
@@ -160,8 +165,9 @@
   - 出典：[みのるん](https://qiita.com/minorun365/items/114f53def8cb0db60f47)／[クラスメソッド「セッションを長くしすぎないために入れた工夫3つ」](https://dev.classmethod.jp/articles/claude-code-keep-sessions-short/)／[crystal-method](https://crystal-method.com/blog/claude-code-compact-clear/)
 - **/clear と /compact のタイミング**
   - 内容：無関係のタスクに移るときは `/clear`。同じ修正を2回以上したら `/clear` して具体的なプロンプトでやり直す（みのるん／公式）。compact の目安は使用率50%（K5K）、約150kトークン（dai_chi）、200k超で通知（クラスメソッド）。1M コンテキストのモデルでは自動 compact が遅いので `CLAUDE_CODE_AUTO_COMPACT_WINDOW=500000` を設定する（クラスメソッド）。キャッシュが切れる前、つまり長時間離席する前にもセッションを畳む。
-  - 現在：有効。ただし「200k コンテキスト」を前提にした2025年の記事（jcat, 2025-09 など）は 1M コンテキストの時代とずれている。
-  - 出典：[K5K](https://qiita.com/K5K/items/72cc4282819ace823524)／[クラスメソッド](https://dev.classmethod.jp/articles/claude-code-keep-sessions-short/)／[jcat（2025-09）](https://zenn.dev/jcat/articles/822641168ff0ec)
+  - 現在：有効。ただし「200k コンテキスト」を前提にした2025年の記事（2025-09 のある個人の記事など）は 1M コンテキストの時代とずれている。
+  - 出典：[K5K](https://qiita.com/K5K/items/72cc4282819ace823524)／[クラスメソッド](https://dev.classmethod.jp/articles/claude-code-keep-sessions-short/)
+  > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
 - **別セッション・別コンテキストでレビュー**
   - 内容：Writer/Reviewer パターン（みのるん、公式由来）。実装の文脈を持たない新しいセッションで「ブラックボックスレビュー」をすると、虚偽の完了報告が見つかる（choplin）。サブエージェントの「新しい視点」「コミット前検証」（Anthropic, @IT 経由）。Zenn チームの `/review-pr`。
   - 根拠：実装したセッションは自分の前提に引きずられる。Claude は未完成でも「完了」と報告することがある（choplin：TODO のまま、スキップしたテストで「通過」と報告）。
@@ -179,6 +185,7 @@
 
 ### Gaps
 - 「日本語で指示するか英語か」で精度が変わるかについて、日本語の比較実験記事は見つからなかった（Q3）。
+  > 【2026-11-03 注記】公式の多言語の評価（旧い世代のモデルの知識問題）があることは research/27 の #12 で確かめた（Q3 の Gaps の注記を参照）。
 - 進捗ファイル運用の効果（再開率や品質）を測定した記事は見つからなかった。
 
 ---
@@ -188,11 +195,15 @@
 ### Takeaway
 日本特有の論点は大きく5つ。①**返答が英語に戻る問題**（2026年の Opus 5.5 で再燃し、Hooks で強制する解決策が登場）。②**日本語か英語か**（「日本語で問題ない」が多数派だが測定データはない）。③**文体・表記ゆれ・「AI臭さ」**（textlint と Hooks の連携、2026年10月に日本語推敲 Skill がバズ）。④**社内導入ガバナンス**（MDM による managed settings、LiteLLM ゲートウェイ、OTel での監査ログ、Team と Enterprise の選択）。⑤**ドル建て料金**（$1=158円で Max20x は約31,600円、2026-04-01 から消費税10%、インボイス登録番号あり）。
 
+> 【2026-11-03 注記】⑤の「Max20x」は 2026-10-29 より後に変わった。2026-10-30 に旧 Max 20x は Ultra（月 $200）に改名され、Max は月 $100 の1段になった（research/22 の #32）。
+
 ### Cited Findings
 
 #### 日本語での返答・日本語か英語か
 - **返答言語の設定**：`~/.claude/settings.json` に `"language": "japanese"` を書くか `/config` で設定する。効かないときは JSON の誤り、上位スコープ、CLAUDE.md 内の英語指示を確認する（GiftX, 2026-09-03）。値はチェックされないので綴りを間違えてもエラーにならない（SSD Nodes, 2026-10-02）。— [GiftX](https://ai.giftx.co.jp/blog/claude-code-japanese/)／[SSD Nodes](https://www.ssdnodes.com/learn/lang/ja/claude-in-japanese-app-language-and-limits)
+  > 【2026-11-03 注記】効かないときに確かめる3つのうち、上位のスコープ（設定の優先順）は公式の文書で確かめられたが、JSON の誤りと CLAUDE.md の中の英語の指示は、公式の文書に診断の手順として書かれておらず、一次資料で確かめられなかった（research/27 の #6）。
 - **`language` はコメントやコミットメッセージには効かない**。これらは CLAUDE.md に「コミットメッセージは日本語で」と書く。`language` を共有のプロジェクト設定に入れると個人の設定を上書きしてしまう。OSS では日本語のルールを `CLAUDE.local.md` か `~/.claude/CLAUDE.md` に置く（Issoh, 2026-10-22, v2.1.308 で確認）。— [Issoh](https://www.issoh.co.jp/tech/details/18753/)
+  > 【2026-11-03 注記】「`language` はコメントやコミットメッセージには効かない」は一次資料で確かめられなかった。公式の文書には、`language` がコミットメッセージ・コードのコメント・圧縮の要約・思考の要約に効くかの記述がなく、Issoh の記事は 2026-11-03 に HTTP 403 で読めなかった（research/27 の #4）。
 - **Opus 5.5 は英語の返答に戻りやすい → Hooks で強制（クラスメソッド, 2026-10-20）**
   - 内容：英語のツール出力やサブエージェントの報告を読んだ後に英語へ戻る。CLAUDE.md やメモリでの指示は一時的にしか効かない。UserPromptSubmit・Stop・MessageDisplay と PreToolUse の3層で日本語を強制し、プラグイン `japanese-reply` として公開。
   - 根拠：「お願い」ではなく「決定的な制御」。
@@ -202,6 +213,7 @@
 - **日本語で書いても精度は落ちない（経験則）**：入江慎吾は「日本語で書いても精度が落ちる実感がありません」と述べる。言語より構造（`##` 見出し、1行1ルール）が重要で、英語にするのは技術用語・コマンド・パスだけ（2026-04-07）。AI Orchestra も「英語で書いたほうが精度が上がる、ということは基本的にない」とするが、根拠はなく自社研修の宣伝を兼ねる（2026-07-22）。一方、仁頼は「プログラミング関連の質問は英語の方が精度が高い場合がある」とする（2026-03-26）。jyas-protein は「内部では英語で推論し、最終回答を日本語に訳させる」CLAUDE.md の例を紹介している。— [入江](https://devtools.shingoirie.com/blog/claude-code-japanese-claude-md-guide/)／[AI Orchestra](https://www.ai-orchestra.ai/claude-code-training/columns/claude-code-nihongo)／[仁頼](https://jinrai.co.jp/blog/claude-japanese/)／[jyas-protein](https://qiita.com/jyas-protein/items/9cc733d2ed7f80bef7a1)
 - **日本語のトークン消費**：英語に対する固定の倍率はなく、Anthropic は言語ごとの換算率を公表していない（2026年10月時点）。Opus 4.7 以降の新しいトークナイザーでは、同じ文章で以前より約30%多くなる。測定には `/v1/messages/count_tokens` を使う（SSD Nodes）。Issoh も公式の比較データはないとし、言語を変えるより長いログを渡さない・セッションを分けるほうが効くとする。— [SSD Nodes](https://www.ssdnodes.com/learn/lang/ja/claude-in-japanese-app-language-and-limits)／[Issoh](https://www.issoh.co.jp/tech/details/18753/)
 - **日本語の思考キーワード（陳腐化に注意）**：2025-07 の Oikon の Gist では、Claude Code が「熟考」「深く考えて」（31,999トークン）、「よく考えて」（10,000）、「考えて」（4,000）を ultrathink 系と同じく判定していた。逆コンパイルした解析で非公式。2026年には `/effort` 設定（Opus 5.5 の既定は medium、v2.1.280 以降）が主流で、キーワード方式が今も有効かは未確認。— [Gist](https://gist.github.com/oikon48/980b89462904aa1980c5d188b30d1f54)／[ai-revolution](https://ai-revolution.co.jp/media/claude-code-quality-postmortem/)
+  > 【2026-11-03 注記】英語以外の言語で thinking を起動できるようにしたことが CHANGELOG の 1.0.8（2025-06-02）にあり、当時は公式の機能だったことは research/27 の #18 で確かめた。今もキーワードが効くかは確かめていない。
 
 #### 文体（です・ます／だ・である）・表記ゆれ・textlint・「AI臭さ」
 - **textlint と PostToolUse フックの連携（藤澤勇樹, Zenn, 2025-07-26）**
@@ -214,7 +226,8 @@
 - **日本語推敲 Skill がバズ（2026年10月）**：inoyu-qiita「新しい日本語推敲スキル『yomiyasu』がバズっていたので、Claudeで日本語推敲スキル3つを比べてみた」（2026-10-01, **342いいね／288**。2026年10月の Qiita claudecode タグで上位）。
   - yomiyasu（nanaism, @oga_aiichiro が X で紹介）：文の構造を書き換え、lint スクリプト付き。です・ます体を維持。
   - natural-japanese（coji）：設計→執筆→検査→収束のワークフロー。見出しや段落を大きく再編。
-  - japanese-tech-writing（k16shikano の gist）：比喩や太字を削除。**です・ますを指示したのに、である体に変えてしまった**。
+  - japanese-tech-writing（ある個人の gist）：比喩や太字を削除。**です・ますを指示したのに、である体に変えてしまった**。
+    > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。
   - 結論：文体を維持したいなら yomiyasu、再構成なら natural-japanese、論理重視の技術文書なら japanese-tech-writing。ただし1回の出力だけでの比較。
   - 出典：[Qiita](https://qiita.com/inoyu-qiita/items/0ffe6e74ecaf3aaa8b14)
 - **表記ゆれと漢字の開き**（仁頼, 2026-03-26／2026-10-05 更新）：「サーバー／サーバ」のゆれ。対策は表記ルールを明記するか、Projects のカスタム指示に登録すること。Claude は漢字の比率が高くなりがちなので、開くルールを指示する。Few-shot で自分の文章を見せる。です・ます調を明示しないと途中で揺れる。— [仁頼](https://jinrai.co.jp/blog/claude-japanese/)
@@ -224,8 +237,10 @@
 #### 社内導入・セキュリティ・情報漏洩対策
 - **メルカリ（@IT, 2026-08）**
   - 内容：2026年5月から Claude Code と Claude Cowork を全社展開。非エンジニア1,000人以上を対象に「AI Agent Day」を開催。Jamf（MDM）と Okta を同期し、エンジニアと非エンジニアで別の設定を配布する（Claude Enterprise 単体では全員に同じ設定しか配れない）。非エンジニアは通常ローカル管理者権限なしで、Slack コマンドで一時的な管理者権限を申請すると自動で失効する。すべての AI 利用を LiteLLM ゲートウェイ（GKE 上、短命の API キー）経由にして FinOps を可視化する。
-  - 補足：別のまとめでは `bypassPermissionsDisabled: true` で `--dangerously-skip-permissions` を禁止し、非エンジニア1人あたり月10〜15時間の削減としているが、一次資料は未確認。
-  - 出典：[@IT](https://atmarkit.itmedia.co.jp/ait/spv/2608/04/news002.html)／[yukibjj による5社まとめ（Zenn, 2026-07-30）](https://zenn.dev/yukibjj/articles/claude-code-enterprise-rollout-5-companies-2026)／[BinxAI](https://binxai.co.jp/blog/mercari-claude-code-company-wide-rollout)
+  - 補足：メルカリが設定で `--dangerously-skip-permissions` を禁じているか、非エンジニアの作業時間が減ったか（減ったならどれだけか）は、メルカリの一次資料では確かめられない（@IT のインタビューの読める範囲には出てこない）。どちらも別のまとめ記事にだけある記述である。
+    > 【2026-11-03 訂正】元の文は、まとめ記事を出典に、メルカリが `bypassPermissionsDisabled: true` で `--dangerously-skip-permissions` を禁じ、非エンジニア1人あたり月10〜15時間を減らしたと読めたので、断定を外した。この設定と時間はあるまとめ記事（2026-07）にだけあり、BinxAI も削減時間は公開情報から判断できないとしている。`bypassPermissionsDisabled` は公式の文書にも CHANGELOG にもない。bypass permissions を使えなくする公式の設定は、`permissions.disableBypassPermissionsMode` を `"disable"` にするもの（Claude Code の Permissions・Permission modes の文書、2.1.317、2026-11-03 確認）。research/25 の P6。
+  - 出典：[@IT](https://atmarkit.itmedia.co.jp/ait/spv/2608/04/news002.html)／[BinxAI](https://binxai.co.jp/blog/mercari-claude-code-company-wide-rollout)
+    > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。確かめられない記述の出どころとして挙げたまとめ記事の、書き手の名前と URL を外した。
 - **5社まとめ（yukibjj）**：ZOZO は Atlassian MCP を `READ_ONLY_MODE: true` にして社内ガイドラインをチェック。GMO デザインワンはまず横展開し、運用設計は後から詰めた。Gemcook の教訓は「個人に選ばせた期間が標準化を遅らせた」。共通軸は「配布範囲」「自動実行をどこまで許すか」「コンテキスト配布の構造化（CLAUDE.md／MCP／Plugin／Skills）」。— [Zenn](https://zenn.dev/yukibjj/articles/claude-code-enterprise-rollout-5-companies-2026)
 - **Ubie**：全職種に配布。生成AI利用ポリシーと Claude Code 固有のガイドラインを**ゲーミフィケーション型の研修**で教え、ガードレールで個人の注意力に頼らない設計にした。— [note](https://note.com/notty0123/n/n89846a4c1b5f)
 - **日本企業の導入事例一覧（CodeKnights, 2026-07-31）**：日立（約29万人が対象）、富士通（約10万人）、NEC（国内初のグローバルパートナー、約3万人）、KDDI アジャイル開発センター（全職種）、サイバーエージェント（約2,000人が利用）、サイボウズ（2025年は全社プランを見送り、2026年から Team Plan を全社展開）、freee（リクエストの約80%が Claude Code）、マネーフォワード（API 実装が2日→5時間）、楽天（24営業日→5営業日）、LINEヤフーコミュニケーションズ（導入率92%）、DeNA（PR あたりのレビュー回数 7.2→2.7）、PLAID（月間PR 約150→約600）。課題を公開した例として、Rehab for JAPAN はマネージャー層のマージまでの時間が93.5%増、READYFOR は42%が疲労感の増加を報告。数値は各社の自己申告。— [CodeKnights](https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer)
@@ -238,6 +253,7 @@
 
 #### 料金（円換算・Max）・利用制限
 - **円換算（Zenken, 2026-10-15, $1=158円）**：Pro $20（約3,160円、年払いなら月約2,690円）、Max 5x $100（約15,800円）、Max 20x $200（約31,600円）、Team Standard $25/席、Team Premium $125/席、Enterprise は $20/席＋従量課金（20席以上・年払い）。Anthropic は適格請求書発行事業者（T7700150134388）。支払いはクレジットカードのみ。部署で個人アカウントを共有するのは非推奨。— [Zenken](https://ai.zenken.co.jp/post/claude-code-pricing/)
+  > 【2026-11-03 注記】「Max 5x」「Max 20x」は 2026-10-29 より後に変わった。2026-10-30 に旧 Max 20x は Ultra（月 $200）に改名され、Max は月 $100 の1段になった（research/22 の #32）。
 - 2026-04-01 から日本からの利用に消費税10%が加算。— [SSD Nodes](https://www.ssdnodes.com/learn/lang/ja/claude-in-japanese-app-language-and-limits)
 - **利用制限の歴史**：週次上限を2025-08-28 から導入（「影響は5%未満」）。$200 プランで数万ドル分を使うユーザーがいた、アカウントの共有や転売があった、が理由。— [PC Watch](https://pc.watch.impress.co.jp/docs/news/2034998.html)／ユーザーの不満（上限に達するとロックアウトが長い、残量が見えない、実質値上げ）— [fleagne（Zenn）](https://zenn.dev/fleagne/articles/4eb2a7aef1acf9)。2026-05-13〜09-13 は週次上限を50%増やすプロモーション。— [Claude ヘルプセンター](https://support.claude.com/ja/articles/15910845-claude-code-2026年5月-7月-週間利用制限プロモーション)。5時間上限は2026年5月に約2倍になり、9月にもさらに引き上げ。— [Zenken](https://ai.zenken.co.jp/post/claude-code-pricing/)
 - **2026年3〜4月の品質低下とポストモーテム**：既定の effort を high から medium に下げた、thinking 履歴のバグ（キャッシュミスで上限を早く消費）、冗長さを制限するシステムプロンプト、の3件。2026-04-23 に全ユーザーの利用上限をリセット。— [GIGAZINE](https://gigazine.net/news/20260424-anthropic-claude-code-quality)／ユーザー向けの教訓（`/effort` を確認、モデルを切り替えたら effort を設定し直す、stable チャネル、`/feedback`）— [ai-revolution](https://ai-revolution.co.jp/media/claude-code-quality-postmortem/)
@@ -250,6 +266,7 @@
 
 ### Gaps
 - 日本語と英語のプロンプトで精度やトークン量を比べた実測記事は見つからなかった（SSD Nodes と Issoh も公式データはないと明言）。
+  > 【2026-11-03 注記】精度についての「公式データはない」は一部誤り。公式の多言語の評価があり、MMLU を専門の翻訳者が14言語に訳した問題で、英語を100%とした日本語の成績は Claude Sonnet 4.5（廃止済み）が96.8%、Claude Haiku 4.5 が93.5%（extended thinking あり）である。ただし旧い世代のモデルの知識問題で、指示の守り方やエージェントの作業を比べたものではない（エージェントの作業で日本語と英語の指示を比べたデータがないのは正しい）。Takeaway ②の「測定データはない」も同じ。research/27 の #12。
 - 「文体（です・ます）を守らせる」ことに特化して、CLAUDE.md・Skill・Hook の効果を比べた記事は見つからなかった。
 - 公的機関や業界団体による Claude Code 固有の日本語ガイドラインは見つからなかった（企業ブログや個社の事例のみ）。
 - teratail の Q&A は検索で1件も出てこなかった。日本語の Q&A は X・はてブのコメント・Zenn のコメントに分散していると推測される。
@@ -307,7 +324,8 @@ claude.ai のアプリ機能を扱う日本語記事は、**AI メディアや�
 - **羽田野太巳『1週間でClaude Codeの基礎が学べる本』インプレス, 2026-09-25**：7日構成。前半は Claude デスクトップアプリ、後半は VS Code 拡張を使い、**ターミナル操作は不要**。MCP、Subagents、Agent Teams も扱う。— [crystal-method](https://crystal-method.com/blog/claude-code-books/)
 - その他（目次は未確認）：ひつじ・染谷昌利『あらゆる仕事が爆速化する Claude Code徹底活用術』日本実業出版社 2026/08、池田朋弘『Claude 最強のAI自動化術』芸術新聞社 2026/07。— [紀伊國屋](https://www.kinokuniya.co.jp/f/dsd-101001037025-06-)
 - **講座・連載**：Schoo「非エンジニアのためのClaude Code入門」（2026-09-07, 60分。チャット AI との違い、初期設定、活用シーン）— [Schoo](https://schoo.jp/course/9269)。gihyo.jp 連載（平川）— [gihyo.jp](https://gihyo.jp/article/2026/02/get-started-claude-code-07)。Udemy の講座もあることは確認できたが、名称は特定できなかった。— [Qiita まとめ](https://qiita.com/kamome_susume/items/af629235d2703e071f18)
-- Zenn の有料本（masayan1126「Claude Code、最初にこれやっとき｜7つの設定で世界変わるで」200円）は、はてブ 170 users だが「情報商材っぽい」「AI臭い」と批判的なコメントが多い。— [はてブ](https://b.hatena.ne.jp/entry/s/zenn.dev/masayan1126/books/claude-code-initial-settings)
+- ある個人の有料の Zenn の本は、はてブ 170 users で、表示されたコメント7件の中に「こりを、200円で？情報商材感ある」「AIくさいな」などの批判的なものがあった（閲覧者の印象で、本が AI で書かれたと確かめたものではない）。
+  > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。あわせて、コメントを原文の言い方に直し（元の「情報商材っぽい」「AI臭い」は言い換え）、「批判的なコメントが多い」を表示されたコメントの範囲の言い方にした。ブックマークのページに価格の表示はなく、「200円」はコメントによる。research/25 の P10。
 
 ### Inferences
 - 書籍は「網羅的なリファレンス（齊藤、528頁）」と「特定の読者層・目的への特化（Skills、ビジネスパーソン、ターミナル不要）」に二極化している。辞書型の教材の競合は「網羅本」だが、書籍は**更新できない**（Oikon も変化の速さを書籍の課題として講演している）。Web 辞書はこの点で優位に立てる。
@@ -326,41 +344,52 @@ claude.ai のアプリ機能を扱う日本語記事は、**AI メディアや�
 ### Takeaway
 読者の不満は、①**変化が速すぎて Tips がすぐ古くなる**、②**「完全ガイド」と称する AI 生成風の記事や有料記事の乱立への嫌悪**、③**CLAUDE.md の指示が守られない、英語に戻る**、④**利用上限・品質低下・コスト**、⑤**人間側のレビューが詰まり、疲労する**、に集約される。日本語コンテンツの空白は、**「なぜ効くかの原理」「効果の測定」「claude.ai の Research と Artifacts」「日本語の文書品質を仕組みで担保する体系」「レビューのボトルネックと人間の負荷」「Windows や日本語環境のトラブル」**。
 
+> 【2026-11-03 注記】②は一部誤り（言い過ぎ）。根拠は Q6 の2件のはてなブックマークの、表示された数件のコメントで、読者全体の不満として量で確かめたものではない。「AI 生成風」は閲覧者の印象で、本が AI で書かれたと確かめたものではない。research/25 の P3・P10。
+
 ### Cited Findings
 
 #### 読者の不満・反応（はてブのコメントなど）
-- **乱立する「完全ガイド」への反発**：417「Claude Code 開発者のための完全ガイド」（はてブ 265）には「自称完全ガイドはどれだけ登場するんだ？」「Claude Codeを作っている人向けのガイドではないのでタイトル変えた方がいい」。masayan1126 の有料 Zenn 本（はてブ 170）には「200円で？情報商材っぽい」「この手の記事に飽き飽き」「AI臭い」。— [はてブ（417）](https://b.hatena.ne.jp/entry/s/zenn.dev/417/articles/c15af4f4106a9f)／[はてブ（masayan1126）](https://b.hatena.ne.jp/entry/s/zenn.dev/masayan1126/books/claude-code-initial-settings)
+- **乱立する「完全ガイド」への反発**：題に「完全ガイド」と付けたある個人の記事（はてブ 265）には「自称完全ガイドはどれだけ登場するんだ？」「Claude Codeを作っている人向けのガイドではないのでタイトル変えた方がいい」。ある個人の有料の Zenn の本（はてブ 170）には「こりを、200円で？情報商材感ある」「こういう記事が蔓延しすぎて嫌になってきた。」「AIくさいな」（表示されたコメント7件のうちの3件。閲覧者の印象である）。
+  > 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。あわせて、有料の本へのコメントを原文の言い方に直した（元の「200円で？情報商材っぽい」「この手の記事に飽き飽き」「AI臭い」は言い換えだった）。どれも閲覧者の印象で、本が AI で書かれたことや内容の質を確かめたものではない。ブックマークのページに価格の表示はなく、「200円」はコメントによる。research/25 の P10。
 - **変化が速い**：「ベストプラクティスが毎月変わる。追いつける人はすごい」（tonkotsuboy の記事へのコメント, 2025-07）。Oikon は「Tips はすぐ陳腐化するので方向性を学べ」と講演（2025-08）。DevelopersIO では石川覚がほぼ毎日「Claude Code v2.1.xxx の主要アップデート」を書いており（2026年10月だけで10本以上）、変化を追う需要が大きい。— [はてブ（tonkotsuboy）](https://b.hatena.ne.jp/entry/s/tonkotsuboy.github.io/20250717-findy-claudecode/)／[Oikon のスライド](https://speakerdeck.com/oikon48/claude-codekarawo-gaxue-bubekikoto)／[DevelopersIO タグ一覧](https://dev.classmethod.jp/tags/claude-code/)
 - **「コマンドを覚えなくていい」という意見**：自然言語で頼めば Claude が実行してくれる（wataru86 の記事へのコメント）。逆に `/clear` や `/rewind` は過去のやり取りが消えて改善点を探しにくくなるので使わない、という人もいる。— [はてブ（wataru86）](https://b.hatena.ne.jp/entry/s/qiita.com/wataru86/items/b859f1578191a1e15808)
 - **基本だけで十分か**：トップコメントは「bypassPermissions と statusline で、タスクごとか200K程度で再起動する。発展的な機能はレート制限が気になってからでいい」（stafes の記事, 2026-06）。「Skills や MCP は中身を確認してから入れる」という警告もあった。— [はてブ（stafes）](https://b.hatena.ne.jp/entry/s/zenn.dev/stafes_blog/articles/nano72mkn-claude-code-intro)
 - **クラウドセッションの制約**：Skills が同じリポジトリにないと使えない、30GB のディスク要件、Compliance API の対象外、権限を渡したくない（2026-09）。— [はてブ（goat_eat_any）](https://b.hatena.ne.jp/entry/s/zenn.dev/goat_eat_any/articles/claude-code-cloud-sessions)
 - **日本の流行は特殊なのか**：「Google Trends では世界は Cursor 優勢で、Claude Code は主に日本で人気」（2025-06）。Zenn の Claude Code 記事は Codex の10倍以上（2026-04 のスライド）。— [はてブ（carenet）](https://b.hatena.ne.jp/entry/s/zenn.dev/carenet/articles/59f62014092a1b)／[yuupher のスライド](https://speakerdeck.com/yuupher/claude-code-bu-kunai-zuo-xue-patosuraido)
 - **Claude Code は嘘をつく、手抜きで「完了」と言う**：TODO のまま、スキップしたテストで「通過」と報告、推測を事実のように書いたドキュメント、ジュニア並みのコード品質（choplin, 2025-06）。メルカリのエンジニアリングブログ「The AI lied to me…」（2025-10-28, 本文は未取得）も同じテーマ。— [choplin](https://zenn.dev/choplin/articles/2025-06-24-claude-code-1-reality-and-mindset)／[CodeKnights（メルカリ事例の要約）](https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer)
+  > 【2026-11-03 注記】このブログの本文は research/25 の P11 で確かめた。存在しない API の項目を自信を持って答えた例と、指定した静的解析の道具を使わずに作り、動くことだけを確かめて完了と報告した例がある。
 - **人間側がボトルネックになり、疲労する**：auto mode で承認の連打はなくなったが「レビュー地獄」になった（クラスメソッド, 2026-10-24）。READYFOR では83%が生産性向上を感じる一方、66.7%が並列作業の増加、42%が疲労感の増加を報告。Rehab for JAPAN はマネージャー層のマージまでの時間が93.5%増。タイミーの3人チームではデプロイ頻度が改善しなかった。神戸大の学生も「レビューと承認が新しいボトルネック」と指摘（2025-07）。— [DevelopersIO](https://dev.classmethod.jp/articles/devio2026-tokyo-claude-code-automode-unattended-environment/)／[CodeKnights](https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer)／[Speaker Deck](https://speakerdeck.com/yuuuuuuuuu54/claude-codefa-biao)
 - **利用上限と品質低下**：週次上限への不満（2025-08）。2026年3〜4月の品質低下（ポストモーテムで3つの原因を公表し、上限をリセット）。— [fleagne](https://zenn.dev/fleagne/articles/4eb2a7aef1acf9)／[GIGAZINE](https://gigazine.net/news/20260424-anthropic-claude-code-quality)
 - **Agent Teams のコスト**：plan mode で約7倍（gihyo）。Pro ではすぐ上限に達する（クラスメソッド）。— [gihyo.jp](https://gihyo.jp/article/2026/02/get-started-claude-code-07)／[DevelopersIO](https://dev.classmethod.jp/articles/claude-code-agent-teams-how-to-build/)
 - **よくある質問（記事の題材から推測した FAQ）**：日本語で返させる方法、文字化け（UTF-8 ロケールやフォント、Shift_JIS のファイル）、Windows／WSL でのインストール、CLAUDE.md・Skills・サブエージェント・MCP の使い分け、Pro と Max のどちらにするか、円での料金、会社で使ってよいか（学習のオプトアウト、Team と Enterprise）。— [GiftX](https://ai.giftx.co.jp/blog/claude-code-japanese/)／[Zenken](https://ai.zenken.co.jp/post/claude-code-pricing/)／[fujisho1216](https://qiita.com/fujisho1216/items/90b34ef9abd910deb6ac)
 
 #### 陳腐化した情報（教材で注意が必要なもの）
-- `/project:name` `/user:name` のカスタムコマンド記法（2025-07）→ Skills への統合（2026-01）で新規作成は Skill を推奨。— [adalocamp（旧）](https://zenn.dev/adalocamp/articles/claude-code-advanced-tips)／[YouMind（新）](https://youmind.com/ja-JP/landing/x-viral-articles/claude-code-skills-merge)
+- `/project:name` `/user:name` のカスタムコマンド記法（2025-07）→ Skills への統合（2026-01）で新規作成は Skill を推奨。— ある個人の記事（2025-07、旧）／[YouMind（新）](https://youmind.com/ja-JP/landing/x-viral-articles/claude-code-skills-merge)
 - npm でのインストール、`/allowed-tools`、`/vibe`、「ultrathink」（2025-05 の acntechjp 記事）→ 現在はワンライナーのインストーラー（crystal-method）と `/effort`（ai-revolution）。キーワード方式の現状は未確認。— [acntechjp（2025-05）](https://zenn.dev/acntechjp/articles/5bf01d6b530b8d)／[medicalforce（2025-06, ultrathink）](https://zenn.dev/medicalforce/articles/8bc0b6afbbb8a7)／[ai-revolution](https://ai-revolution.co.jp/media/claude-code-quality-postmortem/)
-- tmux での自作マルチエージェント組織（2025-06）→ 公式の Agent Teams（2026-02, 実験的）。— [あきらパパ](https://zenn.dev/akira_papa/articles/e9059bbacd0b43)／[gihyo.jp](https://gihyo.jp/article/2026/02/get-started-claude-code-07)
+- tmux での自作マルチエージェント組織（2025-06）→ 公式の Agent Teams（2026-02, 実験的）。— ある個人の記事（2025-06）／[gihyo.jp](https://gihyo.jp/article/2026/02/get-started-claude-code-07)
 - 「Claude Code on the Web」→ 2026-09-24 に「クラウドセッション」として正式リリース。— [はてブ（goat_eat_any）](https://b.hatena.ne.jp/entry/s/zenn.dev/goat_eat_any/articles/claude-code-cloud-sessions)
-- 「200k コンテキスト」を前提にした説明 → 1M コンテキストのモデルと `CLAUDE_CODE_AUTO_COMPACT_WINDOW`。— [jcat（2025-09）](https://zenn.dev/jcat/articles/822641168ff0ec)／[クラスメソッド（2026-10）](https://dev.classmethod.jp/articles/claude-code-keep-sessions-short/)
-- `/cost` → `/usage`（Issoh）。nogataka（2026-03）はまだ `/cost` を推奨しており、「従量課金」前提の記述も定額プランのユーザーとずれる。— [Issoh](https://www.issoh.co.jp/tech/details/18753/)／[nogataka](https://qiita.com/nogataka/items/392934f79e943e8b9228)
-- Serena MCP の「10倍賢く」（2025-07）など、測定根拠のない宣伝的な主張。— [Zenn](https://zenn.dev/sc30gsw/articles/ff81891959aaef)
+- 「200k コンテキスト」を前提にした説明 → 1M コンテキストのモデルと `CLAUDE_CODE_AUTO_COMPACT_WINDOW`。— ある個人の記事（2025-09）／[クラスメソッド（2026-10）](https://dev.classmethod.jp/articles/claude-code-keep-sessions-short/)
+- `/cost` → `/usage`（Issoh）。ある個人の記事（2026-03）はまだ `/cost` を推奨しており、「従量課金」前提の記述も定額プランのユーザーとずれる。— [Issoh](https://www.issoh.co.jp/tech/details/18753/)
+- Serena MCP の「10倍賢く」（2025-07）など、測定根拠のない宣伝的な主張。— ある個人の記事（Zenn、2025-07）
 - サブエージェントを工程ごとに大量に作る2025年の流儀 → 2026年は「コンテキストが独立しているかで分ける」へ（Anthropic とクラスメソッド）。— [DevelopersIO](https://dev.classmethod.jp/articles/claude-code-subagent-review/)
-- cc-sdd のコマンド名：2025年の `/kiro:spec-init` 形式 → v3.0 では Skills 形式の `/kiro-discovery` など。— [kokushing（旧）](https://zenn.dev/kokushing/articles/7468d5f195e54c)／[GitHub（新）](https://github.com/gotalab/cc-sdd)
+- cc-sdd のコマンド名：2025年の `/kiro:spec-init` 形式 → v3.0 では Skills 形式の `/kiro-discovery` など。— ある個人の記事（2025-09、旧）／[GitHub（新）](https://github.com/gotalab/cc-sdd)
+
+> 【2026-11-03 訂正】否定的な文脈の実名を外した（decisions.md 2026-11-03「否定的な文脈の実名」）。この一覧で、古い情報の例として挙げた個人の記事の名前と URL を外した。
 
 ### Inferences
 - **最大の空白は「原理と判断基準」**。Tips 集や「完全ガイド」は大量にあるが、変化が速いので個々の Tips は数か月で古くなる。読者（とくにはてブ層）は、公式に沿って誇張がなく整理された記事を高く評価している（wataru86、みのるんのスライド）。辞書型の教材は「機能の仕様」より「なぜそうするか（コンテキスト、検証、お願いと強制の違い、分離）」を軸にし、版ごとの差分は注記として分ける設計が向いている。
+  > 【2026-11-03 注記】「高く評価している」は一部誤り（言い過ぎ）。量で確かめたものではなく、根拠ははてなブックマークに表示されたコメント1件とスライドの閲覧数である。research/25 の P3。
 - **効果測定の空白**：個人記事のほとんどは自己申告の「◯倍速」。企業事例も自社公表の値。PLAID、SmartHR、DeNA など数値を出す企業はあるが、手法の比較（例：サブエージェントを統合して漏れが減ったか）は「未測定」と書かれている（クラスメソッド）。
 - **人間側の負荷（レビュー、並列化による疲労、マネージャー層の詰まり）**は、2026年に表面化した新しい論点。日本語ではまだ体系的な処方がない。
 - **日本語の文書品質**（文体の統一、表記ゆれ、AI臭さ、textlint と Hooks、推敲 Skill の選び方）は、需要がある（推敲 Skill の記事が 342いいね、書籍にも節がある）のに、まとまった解説がない。
 - **claude.ai の Research と Artifacts**、および**Windows／WSL／IME などの日本語環境のトラブル**も手薄。
+  > 【2026-11-03 注記】日本語の環境のトラブルは、体系的な資料はないが、CHANGELOG に個別の修正の記録が多いことを research/27 の #19 で確かめた（例：2.1.296・2.1.299 から、Shift-JIS などの UTF-8 でないファイルの編集と書き込みを拒む）。Takeaway の「Windows や日本語環境のトラブル」も同じ。
 
 ### Gaps
 - teratail での質問傾向は、検索で該当がなく分析できなかった。
-- X の投稿は記事に引用されたもの（Thariq、@eggAIeguite、@oga_aiichiro、あきらパパ）しか確認できず、日本語 X 上の不満を量的に把握することはできなかった。
+- X の投稿は記事に引用されたもの（4件）しか確認できず、日本語 X 上の不満を量的に把握することはできなかった。
 - Zenn と Qiita のタグ全体の「いいね順ランキング」は、API とページへのアクセス制限で取得できなかった。人気の比較ははてブ users、Qiita の個別ページ、Speaker Deck の閲覧数に頼っている。
 - 2026年に人気だった Zenn 記事（ナレッジワーク「月間400件以上のPR」、READYFOR のアンケート、PLAID、Spectee、ログラスなど）は許可リストの制限で本文を確認できず、数値は CodeKnights のまとめに頼った。
+  > 【2026-11-03 注記】このうち READYFOR のアンケートの元の記事は research/25 の P7 で確かめた。
+
+> 【2026-11-03 訂正】2つ目の項の X の投稿の書き手の名前を外した（Q1 D で外した記事が、この並びからたどれないようにするため。decisions.md 2026-11-03「工程2：反映を確かめた後の判断」）。
