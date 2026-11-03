@@ -7,7 +7,7 @@
 | # | 工程 | 状態 | 成果物 |
 | --- | --- | --- | --- |
 | 0 | 形式と運用を決める（工程1の前に入れた） | 完了（2026-11-03） | [format-and-operations.md](format-and-operations.md)（v1.1）・[decisions.md](decisions.md)・[questions-for-kyopro-atlas.md](questions-for-kyopro-atlas.md)・[research/20-kyopro-atlas-retrospective.md](research/20-kyopro-atlas-retrospective.md) |
-| 1 | 質問 | 進行中（2026-11-03〜） | decisions.md |
+| 1 | 質問 | 完了（2026-11-03） | [decisions.md](decisions.md)・[research/21-step1-findings.md](research/21-step1-findings.md) |
 | 2 | 調査の補完 | 未着手 | |
 | 3 | 設計 | 未着手 | |
 | 4 | 設計の見直し | 未着手 | |
@@ -26,7 +26,7 @@
 
 ## 次にやること
 
-1. 工程1の残りの質問を終え、工程2（調査の補完）に進むかをユーザーに確かめる
+1. 工程2（調査の補完）は、ユーザーが進めると言ってから始める。始めるときは、research/21-step1-findings.md §2 の事実の疑いと requirements §10 を材料にする
 2. 土台作り（工程6）の始めに GitHub のリポジトリを作る。最初の push の前に、調査資料の中の実在の人物・団体についての疑わしい記述を、直すか注記を付ける（decisions 2026-11-03）
 
 ## ユーザーにお願いしていること
