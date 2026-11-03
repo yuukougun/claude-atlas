@@ -108,7 +108,7 @@ open_issues:                        # ほかの分野への提案、決めきれ
 1. そのページが最初に要る段階にする。根拠を `level_evidence` に書く
 2. `ledger`・`guide`・`hub` は level を書かない
 3. 前提に、自分より上の段のページを置かない
-4. 比例則：任せる・仕組みにする・回すのページのうち、任せる幅を広げる内容（自律・並列・無人・権限の緩和）のものは、`verify`・`eval`・`enforce`・`safety` のページを前提か関連に持つ（症状のページは routes の先も数える。設計書 §3.1 の4の推奨の読みで、工程5で確かめる）
+4. 比例則：任せる・仕組みにする・回すのページのうち、任せる幅を広げる内容（自律・並列・無人・権限の緩和）のものは、`verify`・`eval`・`enforce`・`safety` のページを前提か関連に持つ（症状のページは routes の先も数える。設計書 §3.1 の4。工程5で決めた）
 5. 「使う」のページは少なく短くする
 
 ### 4.4 前提と関連
@@ -138,8 +138,8 @@ open_issues:                        # ほかの分野への提案、決めきれ
 ### 4.6 優先度と第一波
 
 1. `priority` は 00 §3 の表を基本にする。新しいページは担当が決め、理由を `notes` に書く
-2. `wave: 1` は核の分野の総論と、その分野のほかのページの多くが前提にするページに付ける。入口（start）と症状辞典（symptoms）は全ページに付ける（推奨の案で、工程5で確かめる。設計書 §5.3。核の分野は site.yml の first_wave_core_fields：start・symptoms・changes・eval・judgment・japanese。核でない分野には付けない）
-3. **第一波の数え方**（design-review DR-02・DR-03。範囲は工程5でユーザーに確かめる。いまの値は仮）：第一波は閉包である。核（`wave: 1` のページ）と、核の症状のページの `routes` の先と、名指しの正本を種にし、そこから `prerequisites` でたどれるページをすべて入れる（routes の先の前提と、正本の前提も含む）。数え方は site.yml の `first_wave` に書く
+2. `wave: 1` は核の分野の総論と、その分野のほかのページの多くが前提にするページに付ける。入口（start）と症状辞典（symptoms）は全ページに付ける（工程5で決めた。設計書 §5.3。核の分野は site.yml の first_wave_core_fields：start・symptoms・changes・eval・judgment・japanese。核でない分野には付けない）
+3. **第一波の数え方**（design-review DR-02・DR-03。範囲は工程5で決めた。decisions 2026-11-04）：第一波は閉包である。核（`wave: 1` のページ）と、核の症状のページの `routes` の先と、名指しの正本を種にし、そこから `prerequisites` でたどれるページをすべて入れる（routes の先の前提と、正本の前提も含む）。数え方は site.yml の `first_wave` に書く
    - `routes`：routes の先をどこまで種に入れるか。`none`（入れない）・`first`（各 cause の to のうち、最初の必須の先。必須の先がない cause からは入れず、その先は第一波では「準備中」になる）・`all`（優先度を問わず全部）
    - `named`：名指しで入れる正本のページの id
    - `tools/check_catalog.py --stats` が、第一波の数と内訳（wave: 1・前提でたどって届くもの・routes から・named から）、routes を none・first・all にしたときの数、必須の先がない cause の数を出す。内訳は、この順に足したときに新しく増えるページの数（routes から＝routes の先と、その前提でたどって新しく届くページ）

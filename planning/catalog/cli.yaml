@@ -135,8 +135,8 @@ pages:
 
   - id: when-to-plan
     chapter: 権限モードと計画
-    title: "plan モードの使いどころ"
-    aliases: ["plan mode", "プランモード", "計画モード", "/plan", "計画させてから実装する"]
+    title: "plan mode の使いどころ"
+    aliases: [plan モード, "plan mode", "プランモード", "計画モード", "/plan", "計画させてから実装する"]
     type: feature
     level: 整える
     level_evidence: "任せる前の段階で、計画を読んで直してから実装させる習慣として要る（00 は L2）。任せる段階のページの前提になる"
@@ -146,7 +146,7 @@ pages:
     prevents: [見えていない]
     pitfalls: []
     scenes: [開発]
-    summary: "plan モードで編集を止めたまま調べさせ、出てきた計画を読んで直してから実装に入る。誤解は計画の段階で見つけるほど安く直せるので、方針や範囲に迷いがある作業で使う。"
+    summary: "plan mode で編集を止めたまま調べさせ、出てきた計画を読んで直してから実装に入る。誤解は計画の段階で見つけるほど安く直せるので、方針や範囲に迷いがある作業で使う。"
     signs:
       - {type: goal, text: "いきなり実装させず、先に方針を確かめたい"}
       - {type: symptom, text: "大きな変更を、実装が済んでから方針ごと作り直すことが多い"}
@@ -161,7 +161,7 @@ pages:
       - {title: "計画を承認した後", anchor: after-approval}
     templates: []
     materials: ["00 §3 分野07", "01 C-2", "11 第2節 分野07 p34#135（出典は要再確認）", "11 第4節 #13", "research/23 §3.4（plan モードで書いた計画は圧縮の後にディスクから入れ直す）", "research/26 §3.4（VS Code の計画のレビュー）"]
-    notes: "「diff を一文で説明できる変更なら計画を省いてよい」は現行の Best practices で見つかっていない（11 第4節 #13）。要約とサインの根拠にせず、本文で使うなら現行の文書で確かめる。題名は公式の日本語版の多数派（plan モード、79%）に合わせた。プランモード（Help Center）との統一は用語集で決める（research/27、open_issues）。sign「実装が終わってから、前提の誤解に気づくことが多い」は prompting の let-claude-ask の「作らせてから、前提の食い違いに気づく」と同じ場面で、症状のページ not-what-i-meant の困りごとにも近いので、plan モードが直接の答えになる場面（方針や範囲に迷いのある大きな変更の手戻り）に書き分けた（2026-11-04 工程4：DR-19 a）"
+    notes: "「diff を一文で説明できる変更なら計画を省いてよい」は現行の Best practices で見つかっていない（11 第4節 #13）。要約とサインの根拠にせず、本文で使うなら現行の文書で確かめる。題名は公式の日本語版の多数派（plan モード、79%）に合わせた。プランモード（Help Center）との統一は用語集で決める（research/27、open_issues）。sign「実装が終わってから、前提の誤解に気づくことが多い」は prompting の let-claude-ask の「作らせてから、前提の食い違いに気づく」と同じ場面で、症状のページ not-what-i-meant の困りごとにも近いので、plan モードが直接の答えになる場面（方針や範囲に迷いのある大きな変更の手戻り）に書き分けた（2026-11-04 工程4：DR-19 a）（2026-11-04 工程5：割れている3語は英語のまま書く。decisions 2026-11-04）"
 
   # ── 巻き戻しとセッション ──
   - id: checkpoints-and-rewind
@@ -366,7 +366,7 @@ pages:
     prevents: [縛っていない]
     pitfalls: []
     scenes: [開発, チーム]
-    summary: "設定を、誰に効かせたいかでユーザー・プロジェクト・手元だけ・管理の層に書き分け、効かないときは /status で読み込まれた層を確かめて直せる。同じキーは優先順の高い層が勝つが、許可ルールは層をまたいで合わさる。"
+    summary: "設定を、誰に効かせたいかでユーザー・プロジェクト・手元だけ・管理の層に書き分け、効かないときは /status で読み込まれた層を確かめて直せる。同じキーは優先順の高い層が勝つが、権限ルールは層をまたいで合わさる。"
     signs:
       - {type: symptom, text: "settings.json に書いた設定が効いていない"}
       - {type: goal, text: "自分だけの設定と、チームで共有する設定を分けたい"}
@@ -381,7 +381,7 @@ pages:
       - {title: "効いているかを確かめる", anchor: verify}
     templates: []
     materials: ["00 §3 分野07", "01 B-1", "research/28 #25〜#27・#31（-p では壊れた設定が黙って飛ばされる）", "research/22 #13（server-managed settings）", "decisions 2026-11-03「工程2で確かめた事実」（settings の schema）"]
-    notes: "題名の「（最小限）」は作り手の言葉なので外し、aliases に残した。公式の文書が案内する SchemaStore のスキーマは古い版のもので、新しいキーを書いた正しい設定を誤りとして落とす（decisions 2026-11-03）。補完のために $schema を勧めるなら、この注意を添える。チームでの共有は team の share-team-settings、組織の強制は enforce の managed-settings-enforcement が持つ。language の設定を層の例にするときは、japanese の keep-replies-in-japanese（節 language-setting）と commit-and-comment-language（節 override：共有の設定の言語は個人の設定を上書きする）と書き方をそろえる（japanese の担当の提案）。要約の「許可の一覧」を、M1 の仮の表記の許可ルールにした（2026-11-04 統合：M1・japanese#9）。summary の1文目を「どれが勝つかが決まる」から、読者ができること（誰に効かせたいかで層を選んで書き、効かないときに読み込まれた層を確かめて直す）に書き直した（R3-22・DR-17）。節 verify には、効かないときの典型（project の allow と env はワークスペースを信頼するまで効かない、defaultMode の一部の値は project と local では効かない、-p は壊れた設定を黙って飛ばす。01 B-1・research/28 #31）と、/status の Setting sources・claude doctor の見方を置く（調査資料の要約なので、書く前に一次資料で確かめる）。sign「設定を書いたのに効いていない」は、症状のページ instructions-ignored の「CLAUDE.md に書いたのに守られない」と紛れるので、ファイルの名前で場面を狭めた（2026-11-04 工程4：DR-19 a・w）"
+    notes: "題名の「（最小限）」は作り手の言葉なので外し、aliases に残した。公式の文書が案内する SchemaStore のスキーマは古い版のもので、新しいキーを書いた正しい設定を誤りとして落とす（decisions 2026-11-03）。補完のために $schema を勧めるなら、この注意を添える。チームでの共有は team の share-team-settings、組織の強制は enforce の managed-settings-enforcement が持つ。language の設定を層の例にするときは、japanese の keep-replies-in-japanese（節 language-setting）と commit-and-comment-language（節 override：共有の設定の言語は個人の設定を上書きする）と書き方をそろえる（japanese の担当の提案）。要約の「許可の一覧」を、M1 の仮の表記の許可ルールにした（2026-11-04 統合：M1・japanese#9）。summary の1文目を「どれが勝つかが決まる」から、読者ができること（誰に効かせたいかで層を選んで書き、効かないときに読み込まれた層を確かめて直す）に書き直した（R3-22・DR-17）。節 verify には、効かないときの典型（project の allow と env はワークスペースを信頼するまで効かない、defaultMode の一部の値は project と local では効かない、-p は壊れた設定を黙って飛ばす。01 B-1・research/28 #31）と、/status の Setting sources・claude doctor の見方を置く（調査資料の要約なので、書く前に一次資料で確かめる）。sign「設定を書いたのに効いていない」は、症状のページ instructions-ignored の「CLAUDE.md に書いたのに守られない」と紛れるので、ファイルの名前で場面を狭めた（2026-11-04 工程4：DR-19 a・w）（2026-11-04 工程5：割れている3語は英語のまま書く。decisions 2026-11-04）"
 
   - id: init-and-first-claude-md
     chapter: 設定と最初の準備

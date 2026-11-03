@@ -93,7 +93,7 @@ pages:
     type: symptom
     level: 整える
     level_evidence: "作業を頼んで最後まで進めさせたくなる段階で出会う（00 の L2）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code, app]
     principle: [見せる]
@@ -117,7 +117,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 返答と品質の困りごと（提案だけで止まる）", "research/22 #11（判定が返らないまま止まる表示の不具合。v2.1.314〜317 で修正）", "research/23 §3.2（既定の effort はモデル×面で違う）"]
-    notes: "00 の「Sonnet の low・medium の癖」はモデルの世代の話なので summary・signs に書かず、本文で確認日付きにする。止まる権利（permission-to-stop）を外す方向の助言にしない（止まるべきところで止まるのは正しい）。auto モードの分類器・フック・権限ルールに操作を止められて止まったときは、refused-or-blocked の節 what-stopped で何に止められたかを見分けるので、ここでは related の what-auto-mode-stops#when-blocked と lock-side-effects から案内する（2026-11-04 統合：enforce#7）。工程4：前提の suggest-or-do と effort-levels は対処なので routes に移し、前提は「確かめる手段がないと終わったように見えた所で止まる」を説明する basics の agent-loop にした。routes は、見えていない → 提案か実行か・完了の定義（止まって報告する条件）、合っていない → effort・モデルの癖・権限モード（2026-11-04 工程4：DR-19 x・t）"
+    notes: "00 の「Sonnet の low・medium の癖」はモデルの世代の話なので summary・signs に書かず、本文で確認日付きにする。止まる権利（permission-to-stop）を外す方向の助言にしない（止まるべきところで止まるのは正しい）。auto モードの分類器・フック・権限ルールに操作を止められて止まったときは、refused-or-blocked の節 what-stopped で何に止められたかを見分けるので、ここでは related の what-auto-mode-stops#when-blocked と lock-side-effects から案内する（2026-11-04 統合：enforce#7）。工程4：前提の suggest-or-do と effort-levels は対処なので routes に移し、前提は「確かめる手段がないと終わったように見えた所で止まる」を説明する basics の agent-loop にした。routes は、見えていない → 提案か実行か・完了の定義（止まって報告する条件）、合っていない → effort・モデルの癖・権限モード（2026-11-04 工程4：DR-19 x・t）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: refused-or-blocked
     chapter: 返答と品質
@@ -126,7 +126,7 @@ pages:
     type: symptom
     level: 使う
     level_evidence: "対話で頼むだけの段階から、正当な依頼が断られることがある。auto モード・フック・権限ルールに操作を止められる場合は Claude Code に作業させる段から出会うが、最初に出会うのは対話の段（工程3は、巻き戻しや新しい会話〔整える〕で進め直すことから整えるにしていた）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [app, claude-code, api]
     principle: [見せる]
@@ -153,7 +153,7 @@ pages:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
       - {title: "面ごとの表示（本体は when-requests-are-refused の節 by-surface）", anchor: by-surface}
     materials: ["research/26 #5・#6・#7・§3.3（公式の案内：面ごとの表示、会話全体の判定、巻き戻しと新しい会話、推論の全文を求めない、誤判定の報告、検証の制度。§3.3 (b) の5「モデルを変える」は、§4.3 の1 と decisions のとおり手段として書かない）", "decisions 2026-11-03「断られたときの頼み直し」と「書き方の方針（安全・面・表現）」3"]
-    notes: "新規：research/26 §3.3 が症状のページ「断られた・止められた」を提案し、decisions 2026-11-03 が書き方を決めている。registry にない。優先度は推奨（初版の必須の外で、需要を見て足す）。対処の本体は safety の when-requests-are-refused で、ここは切り分け（何に止められたか・会話の中の引き金・指示の中の推論の要求・自動の切り替えが起きたか）に絞る。手段の手順・面ごとの表示の文・分類器と自動の切り替えの仕組みは when-requests-are-refused が一か所で持ち、ここでは繰り返さない。推論の全文を求める指示が止められる点は prompting の asking-for-reasoning#refusal を指す。公式が案内する手段だけを書く（本当の目的と文脈を足す〔偽らない〕・巻き戻しや新しい会話で引き金になった内容を外す〔推論の全文を求める指示が引き金なら、その指示を外す〕・誤判定を報告する・専門の仕事には検証の制度を案内する）。アプリの自動のモデルの切り替えは、表示の違い（途中で別のモデルの返事になる）から切り替えが起きたと読む手がかりとして触れ、「モデルを変える」を通すための手段として書かない（decisions 2026-11-03「断られたときの頼み直し」、research/26 §4.3 の1）。そのため related に choosing-a-model を、tracks に model-selection を置かない（切り替えの設定は refusals で追う。current-models は、切り替わった先のモデルの位置づけを読むために残した）。言い換え・分割・偽の文脈は書かない。表示の文と分類の名前は数値ファイルに置く（volatility 高）（2026-11-04 統合：prompting#1・M5）。工程4：(1) 診断の最初に、利用ポリシーの判定で断られたのか、auto モードの分類器・フック・権限ルールに操作を止められたのかを見分ける節 what-stopped を足した（R3-20・DR-19 t）。利用ポリシーの枝は、見えていない（本当の目的と文脈が伝わっていない → when-requests-are-refused#official-steps・give-reasons）と散らかっている（会話の中の引き金 → 巻き戻し・新しい会話・推論の全文の要求を外す）へ、止められた枝は合っていない（縛りや権限モードが作業に合っていない。requirements §3.2 の⑤「止まりすぎ」→ what-auto-mode-stops#when-blocked・lock-side-effects・permission-rules）へ振り分ける。(2) 節 by-surface は1行にして when-requests-are-refused#by-surface を指す（表示の文は変わりやすく、二か所に持つと点検で食い違う。DR-19 m・R3-12）。(3) 別名は利用ポリシーの言い方を先に並べた。「拒否された」「分類器に止められた」はこのページを主にした（fix-aliases）。「分類器に止められた」で着いた auto モードの読者は節 what-stopped から合っていないの枝へ進む。(4) level は、対話で頼む段階から断られることがあるので、出会う段階の使うにした。前提の when-requests-are-refused と rewind-dont-correct は対処なので routes に移した（2026-11-04 工程4：DR-19 x・t・m）"
+    notes: "新規：research/26 §3.3 が症状のページ「断られた・止められた」を提案し、decisions 2026-11-03 が書き方を決めている。registry にない。優先度は推奨（初版の必須の外で、需要を見て足す）。対処の本体は safety の when-requests-are-refused で、ここは切り分け（何に止められたか・会話の中の引き金・指示の中の推論の要求・自動の切り替えが起きたか）に絞る。手段の手順・面ごとの表示の文・分類器と自動の切り替えの仕組みは when-requests-are-refused が一か所で持ち、ここでは繰り返さない。推論の全文を求める指示が止められる点は prompting の asking-for-reasoning#refusal を指す。公式が案内する手段だけを書く（本当の目的と文脈を足す〔偽らない〕・巻き戻しや新しい会話で引き金になった内容を外す〔推論の全文を求める指示が引き金なら、その指示を外す〕・誤判定を報告する・専門の仕事には検証の制度を案内する）。アプリの自動のモデルの切り替えは、表示の違い（途中で別のモデルの返事になる）から切り替えが起きたと読む手がかりとして触れ、「モデルを変える」を通すための手段として書かない（decisions 2026-11-03「断られたときの頼み直し」、research/26 §4.3 の1）。そのため related に choosing-a-model を、tracks に model-selection を置かない（切り替えの設定は refusals で追う。current-models は、切り替わった先のモデルの位置づけを読むために残した）。言い換え・分割・偽の文脈は書かない。表示の文と分類の名前は数値ファイルに置く（volatility 高）（2026-11-04 統合：prompting#1・M5）。工程4：(1) 診断の最初に、利用ポリシーの判定で断られたのか、auto モードの分類器・フック・権限ルールに操作を止められたのかを見分ける節 what-stopped を足した（R3-20・DR-19 t）。利用ポリシーの枝は、見えていない（本当の目的と文脈が伝わっていない → when-requests-are-refused#official-steps・give-reasons）と散らかっている（会話の中の引き金 → 巻き戻し・新しい会話・推論の全文の要求を外す）へ、止められた枝は合っていない（縛りや権限モードが作業に合っていない。requirements §3.2 の⑤「止まりすぎ」→ what-auto-mode-stops#when-blocked・lock-side-effects・permission-rules）へ振り分ける。(2) 節 by-surface は1行にして when-requests-are-refused#by-surface を指す（表示の文は変わりやすく、二か所に持つと点検で食い違う。DR-19 m・R3-12）。(3) 別名は利用ポリシーの言い方を先に並べた。「拒否された」「分類器に止められた」はこのページを主にした（fix-aliases）。「分類器に止められた」で着いた auto モードの読者は節 what-stopped から合っていないの枝へ進む。(4) level は、対話で頼む段階から断られることがあるので、出会う段階の使うにした。前提の when-requests-are-refused と rewind-dont-correct は対処なので routes に移した（2026-11-04 工程4：DR-19 x・t・m）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: caves-when-pushed
     chapter: 返答と品質
@@ -163,7 +163,7 @@ pages:
     type: symptom
     level: 整える
     level_evidence: "結果を確かめて直す段階で、こちらの指摘や反論への返り方として出会う（00 の L2）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [app, claude-code, api]
     principle: [確かめる, 握る]
@@ -186,7 +186,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 返答と品質の困りごと", "05 §1-8", "11 第2節 分野18 p12#75（【注記】説得率の数値は未確認。research/24 B-44）・p12#90", "11 第1節 新分野案X p56#2", "11 第2節 分野01 p12#72・p12#73・p12#74", "11 第1節 分野17 p56#21", "research/24 B-44・§2.3（イの根拠の強さは強）"]
-    notes: "迎合の研究の数値（説得率など）は summary・signs の根拠にしない（11 第2節の注記、research/24 B-44）。研究の多くは旧世代や他社のモデルの結果で、現行の Claude の傾向として書かない（requirements §6.2）。逆向きの症状は insists-on-mistakes。工程4：前提は basics の sycophancy だけにし、judgment の ask-without-sycophancy と agreement-is-not-evidence は対処なので routes に移した（agreement-is-not-evidence と sycophancy は推移的な前提だった）。routes は、確かめていない → 迎合させない聞き方・独立したレビュー、同意を根拠にする → 同意は根拠に数えない・team の separate-roles#against-sycophancy（curb-sycophancy-and-overtrust をまとめた先。DR-19 q）。related の curb-sycophancy-and-overtrust は外した。別名 sycophancy は basics の sycophancy を主にして外した（2026-11-04 工程4：DR-19 x・d・e・q）"
+    notes: "迎合の研究の数値（説得率など）は summary・signs の根拠にしない（11 第2節の注記、research/24 B-44）。研究の多くは旧世代や他社のモデルの結果で、現行の Claude の傾向として書かない（requirements §6.2）。逆向きの症状は insists-on-mistakes。工程4：前提は basics の sycophancy だけにし、judgment の ask-without-sycophancy と agreement-is-not-evidence は対処なので routes に移した（agreement-is-not-evidence と sycophancy は推移的な前提だった）。routes は、確かめていない → 迎合させない聞き方・独立したレビュー、同意を根拠にする → 同意は根拠に数えない・team の separate-roles#against-sycophancy（curb-sycophancy-and-overtrust をまとめた先。DR-19 q）。related の curb-sycophancy-and-overtrust は外した。別名 sycophancy は basics の sycophancy を主にして外した（2026-11-04 工程4：DR-19 x・d・e・q）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: insists-on-mistakes
     chapter: 返答と品質
@@ -195,7 +195,7 @@ pages:
     type: symptom
     level: 整える
     level_evidence: "結果を確かめて指摘し始めた段階で出会う。迎合（caves-when-pushed）と同じ段にそろえた"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code, app]
     principle: [確かめる]
@@ -219,7 +219,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p34#181（根拠：弱、他社のモデルの例）・p34#234（実物を見せる）", "10 第18章"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。根拠の事例は他社のモデルのもので弱いので、本文では「実物を見せる」という実践を中心にし、特定のモデルの傾向として書かない。製品名を否定的な文脈で名指ししない。工程4：前提は、会話に残った誤った主張が次の答えを引きずることを説明する basics の context-rot にし、evidence-not-reports と rewind-dont-correct は routes に移した。routes は、見えていない → 実物を見せる（読ませるファイルを直接指す・git の履歴）、散らかっている → 巻き戻し・新しい会話、確かめていない → 説明と事実が食い違ったら事実を正とする（2026-11-04 工程4：DR-19 x）"
+    notes: "requirements §4.4 で足した5つの症状の1つ。根拠の事例は他社のモデルのもので弱いので、本文では「実物を見せる」という実践を中心にし、特定のモデルの傾向として書かない。製品名を否定的な文脈で名指ししない。工程4：前提は、会話に残った誤った主張が次の答えを引きずることを説明する basics の context-rot にし、evidence-not-reports と rewind-dont-correct は routes に移した。routes は、見えていない → 実物を見せる（読ませるファイルを直接指す・git の履歴）、散らかっている → 巻き戻し・新しい会話、確かめていない → 説明と事実が食い違ったら事実を正とする（2026-11-04 工程4：DR-19 x）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   # ── 事実と出典 ──
   - id: plausible-falsehoods
@@ -359,7 +359,7 @@ pages:
     type: symptom
     level: 使う
     level_evidence: "アプリに資料を添付して尋ねる最初の段階で出会う（00 の L1）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [app, api]
     principle: [見せる]
@@ -382,7 +382,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 返答と品質の困りごと", "05 §2-5（ページ数による読み方の違い。値は数値ファイルへ）"]
-    notes: "00 の「100ページの壁」は変わりやすい値なので、summary・signs・題名に書かない。工程4：前提は、長い入力の真ん中が使われにくいこと（節 lost-in-the-middle）を含む basics の context-rot にし、app の how-attachments-are-read は routes に移した。related の lost-in-the-middle（basics が context-rot にまとめた。DR-19 p）は、context-rot を前提に置いたので外した。routes は、見えていない → 添付がどこまで読まれるか（節 verify：ページ番号と引用で確かめる）・長い資料の渡し方、散らかっている → 資料を先・質問を最後にして引用を先に抜かせる・プロジェクトのナレッジの絞り方（2026-11-04 工程4：DR-19 x・p）"
+    notes: "00 の「100ページの壁」は変わりやすい値なので、summary・signs・題名に書かない。工程4：前提は、長い入力の真ん中が使われにくいこと（節 lost-in-the-middle）を含む basics の context-rot にし、app の how-attachments-are-read は routes に移した。related の lost-in-the-middle（basics が context-rot にまとめた。DR-19 p）は、context-rot を前提に置いたので外した。routes は、見えていない → 添付がどこまで読まれるか（節 verify：ページ番号と引用で確かめる）・長い資料の渡し方、散らかっている → 資料を先・質問を最後にして引用を先に抜かせる・プロジェクトのナレッジの絞り方（2026-11-04 工程4：DR-19 x・p）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: summary-overstates-source
     chapter: 事実と出典
@@ -391,7 +391,7 @@ pages:
     type: symptom
     level: 整える
     level_evidence: "資料を要約させて使い、原文と照らして確かめる段階で出会う。basics の summary-overgeneralization と同じ段"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [app, claude-code, api]
     principle: [確かめる]
@@ -414,7 +414,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["11 第1節 分野01 p12#112（「分野18 に症状『要約が原文より断定的になる』も置く」）・p12#152", "11 第2節 分野09 p34#26（都合のよい部分集合を強調する要約）", "10 第7章（要約より原文を読む）"]
-    notes: "registry の C0 が 11 から足した候補（requirements §4.4 の5つの外）。なぜの本体は basics の summary-overgeneralization で、ここは見つけ方と確かめ方の振り分け。研究の割合の数値は summary・signs に使わない。工程4：前提は basics の summary-overgeneralization だけにし、checking-citations は routes に移した。routes は、見えていない → 答えの前に原文の該当箇所を引用させる、確かめていない → 要約を原文と照らす（fact-checking#summaries）・引用と出典の確かめ方・仕様は原文を自分で読む。別名「過度な一般化」は basics の summary-overgeneralization を主にして外し、「要約の言い過ぎ」はこのページを主に残した（fix-aliases）（2026-11-04 工程4：DR-19 x・d）"
+    notes: "registry の C0 が 11 から足した候補（requirements §4.4 の5つの外）。なぜの本体は basics の summary-overgeneralization で、ここは見つけ方と確かめ方の振り分け。研究の割合の数値は summary・signs に使わない。工程4：前提は basics の summary-overgeneralization だけにし、checking-citations は routes に移した。routes は、見えていない → 答えの前に原文の該当箇所を引用させる、確かめていない → 要約を原文と照らす（fact-checking#summaries）・引用と出典の確かめ方・仕様は原文を自分で読む。別名「過度な一般化」は basics の summary-overgeneralization を主にして外し、「要約の言い過ぎ」はこのページを主に残した（fix-aliases）（2026-11-04 工程4：DR-19 x・d）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   # ── 会話と文脈 ──
   - id: forgets-in-long-chats
@@ -662,7 +662,7 @@ pages:
     type: symptom
     level: 整える
     level_evidence: "日本語の文章を書かせて直す段階で出会う（00 の L2）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [app, claude-code, api]
     principle: [縛る, 見せる]
@@ -686,7 +686,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §4 返答と品質の困りごと（です・ますとだ・であるが混ざる・「サーバー」と「サーバ」）", "00 §2（原因④の典型的な症状に文体の揺れ）", "00 §3 分野15", "research/27 §3.4（文体・表記を仕組みで揃える方法。公式の textlint の例はない）"]
-    notes: "新規：00 §4 の2項目（原因④）の受け皿になる症状のページがなく、requirements §1 の核「日本語の出力品質」（decisions 2026-11-03 で第一波に足した）の症状側の入口になる。対処の本体は japanese の align-japanese-output（手段の選び分け）・consistent-politeness・consistent-notation・textlint-hook。文章が AI っぽい（原因①）は not-what-i-meant で受ける。優先度は推奨。文体を Styles で切り替える旧い勧めは、文体をそろえる手段に挙げず、台帳の styles-for-tone への逆リンクにした（research/26 #1）（2026-11-04 統合：M3）。工程4：前提は「例示で足りるか lint で縛るか」を読むのに要る basics の request-vs-lock だけにし、japanese の3ページは routes に移した（align-japanese-output は consistent-politeness と consistent-notation からたどれる推移的な前提だった）。routes は、見えていない → 文体と表記の指定（consistent-politeness・consistent-notation）・手本、散らかっている → 渡した資料や頼む文の文体が出力に映る（output-shape#mirror）・手本の文章で上書きする、縛っていない → textlint のフック・確かめて差し戻す層。level_evidence の「japanese の consistent-politeness と同じ段」は、対処のページに合わせた言い方なので外した（2026-11-04 工程4：DR-19 x・e）"
+    notes: "新規：00 §4 の2項目（原因④）の受け皿になる症状のページがなく、requirements §1 の核「日本語の出力品質」（decisions 2026-11-03 で第一波に足した）の症状側の入口になる。対処の本体は japanese の align-japanese-output（手段の選び分け）・consistent-politeness・consistent-notation・textlint-hook。文章が AI っぽい（原因①）は not-what-i-meant で受ける。優先度は推奨。文体を Styles で切り替える旧い勧めは、文体をそろえる手段に挙げず、台帳の styles-for-tone への逆リンクにした（research/26 #1）（2026-11-04 統合：M3）。工程4：前提は「例示で足りるか lint で縛るか」を読むのに要る basics の request-vs-lock だけにし、japanese の3ページは routes に移した（align-japanese-output は consistent-politeness と consistent-notation からたどれる推移的な前提だった）。routes は、見えていない → 文体と表記の指定（consistent-politeness・consistent-notation）・手本、散らかっている → 渡した資料や頼む文の文体が出力に映る（output-shape#mirror）・手本の文章で上書きする、縛っていない → textlint のフック・確かめて差し戻す層。level_evidence の「japanese の consistent-politeness と同じ段」は、対処のページに合わせた言い方なので外した（2026-11-04 工程4：DR-19 x・e）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   # ── 完了と検証 ──
   - id: claims-done-but-isnt
@@ -764,7 +764,7 @@ pages:
     type: symptom
     level: 任せる
     level_evidence: "評価器やスコアを渡して実験を任せた段階で出会う（registry の見当は仕組みにする）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code, api]
     principle: [確かめる, 握る]
@@ -787,7 +787,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p34#18（リークのある CV を仕込んだ実験。根拠：中〜強、類推）", "10 第8章・第18章", "11 第2節 分野09 p34#26"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。事例はコンテストのデータ分析だが、業務の分析とテストに一般化して書く（【競】の例は scenes のコンテストで示す）。人の側では、評価の設計まで任せきる（ア）を問う。層ごとと最悪の場合で測り直す手は eval の measure-changes#by-stratum（registry の stratified-and-worst-case をまとめた先）を指す（2026-11-04 統合：eval#2）。工程4：(1) 題名を、Claude の側の言い方から読者が出会う言い方「手元の評価は良いのに本番で通用しない」にし、前の題名は aliases に移した（R1-07・DR-19 c）。summary も題名に合わせた。同じ型だった eval・delegate・contest のサイン（指標のずれ・選び続けた版・隠しテスト・長く回した・公式の採点と合わない）は、それぞれの担当が原因に固有の場面に書き換えていた。(2) 前提は、検証器が問題を定義することを説明する eval の verifier-defines-problem（概念）だけにし、check-the-metric と verifier-three-conditions は routes に移した（verifier-defines-problem は両方からたどれる推移的な前提だった）。routes は、確かめていない → 検証器の三条件・検証器そのものを確かめる・指標そのものを確かめる、預けすぎる → 評価の定義は人が握る。level_evidence の「eval のページにそろえた」は、対処のページに合わせた言い方なので外した（2026-11-04 工程4：DR-19 c・x・e）（2026-11-04 メイン：良かった版を選び続けた枝〔eval の selection-pressure〕と、長く回し続けた枝〔delegate の open-ended-loop-trap〕を related の先頭に置いた。V2・V3 の指摘）"
+    notes: "requirements §4.4 で足した5つの症状の1つ。事例はコンテストのデータ分析だが、業務の分析とテストに一般化して書く（【競】の例は scenes のコンテストで示す）。人の側では、評価の設計まで任せきる（ア）を問う。層ごとと最悪の場合で測り直す手は eval の measure-changes#by-stratum（registry の stratified-and-worst-case をまとめた先）を指す（2026-11-04 統合：eval#2）。工程4：(1) 題名を、Claude の側の言い方から読者が出会う言い方「手元の評価は良いのに本番で通用しない」にし、前の題名は aliases に移した（R1-07・DR-19 c）。summary も題名に合わせた。同じ型だった eval・delegate・contest のサイン（指標のずれ・選び続けた版・隠しテスト・長く回した・公式の採点と合わない）は、それぞれの担当が原因に固有の場面に書き換えていた。(2) 前提は、検証器が問題を定義することを説明する eval の verifier-defines-problem（概念）だけにし、check-the-metric と verifier-three-conditions は routes に移した（verifier-defines-problem は両方からたどれる推移的な前提だった）。routes は、確かめていない → 検証器の三条件・検証器そのものを確かめる・指標そのものを確かめる、預けすぎる → 評価の定義は人が握る。level_evidence の「eval のページにそろえた」は、対処のページに合わせた言い方なので外した（2026-11-04 工程4：DR-19 c・x・e）（2026-11-04 メイン：良かった版を選び続けた枝〔eval の selection-pressure〕と、長く回し続けた枝〔delegate の open-ended-loop-trap〕を related の先頭に置いた。V2・V3 の指摘）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   # ── 長い作業と方針 ──
   - id: stuck-in-a-check-loop
@@ -797,7 +797,7 @@ pages:
     type: symptom
     level: 任せる
     level_evidence: "実行と確認を繰り返す長い作業を任せた段階で出会う。/goal や無人の実行（仕組みにする）を使わなくても起きる（R1-02。工程3は前提の goal-until-done に合わせて仕組みにするにしていた）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code]
     principle: [見せる, 握る]
@@ -822,7 +822,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p12#13・p34#90・p56#80（性能改善の競技で、数時間後に実行と確認のループにはまった。根拠：強（単独の事例）／中、類推・時点依存）・p34#146（利用上限まで繰り返す）", "11 第1節 分野12 p12#48", "10 第11章・第14章・第23章"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。人が見張らずに回し続ける（ア）も問う。堂々巡り（going-in-circles）とは、会話の訂正ではなく、実行と確認を繰り返す長い作業のループの中で起きる点で分けた。事例の数値と大会名は summary・signs に使わない。Stop hook が終わらせないことで回り続けるループは enforce の stop-hooks#avoid-loops へ振り分ける（2026-11-04 統合：enforce#7）。工程4：level を仕組みにするから任せるにした。/goal や無人の実行を使わなくても、実行と確認を繰り返す長い作業を任せれば出会うため（R1-02・R3-1）。前提は、道具を使って確かめる輪を説明する basics の agent-loop にし、goal-until-done と open-ended-loop-trap（どちらも仕組みにする）は routes に移した。routes は、見えていない → 目標と上界を伝える・失敗の教訓・実験台帳で新しい情報を入れる、散らかっている → 新しい会話と引き継ぎ、合っていない（ループの組み方が課題に合っていない：開いた課題を閉じた条件なしに回す）→ /goal の止める条件の書き方・Stop フックのループを避ける・開いたループの罠、預けすぎる → やめどきを先に決める・進捗ログ・無人の実行の結果の確かめ方（2026-11-04 工程4：DR-19 x）"
+    notes: "requirements §4.4 で足した5つの症状の1つ。人が見張らずに回し続ける（ア）も問う。堂々巡り（going-in-circles）とは、会話の訂正ではなく、実行と確認を繰り返す長い作業のループの中で起きる点で分けた。事例の数値と大会名は summary・signs に使わない。Stop hook が終わらせないことで回り続けるループは enforce の stop-hooks#avoid-loops へ振り分ける（2026-11-04 統合：enforce#7）。工程4：level を仕組みにするから任せるにした。/goal や無人の実行を使わなくても、実行と確認を繰り返す長い作業を任せれば出会うため（R1-02・R3-1）。前提は、道具を使って確かめる輪を説明する basics の agent-loop にし、goal-until-done と open-ended-loop-trap（どちらも仕組みにする）は routes に移した。routes は、見えていない → 目標と上界を伝える・失敗の教訓・実験台帳で新しい情報を入れる、散らかっている → 新しい会話と引き継ぎ、合っていない（ループの組み方が課題に合っていない：開いた課題を閉じた条件なしに回す）→ /goal の止める条件の書き方・Stop フックのループを避ける・開いたループの罠、預けすぎる → やめどきを先に決める・進捗ログ・無人の実行の結果の確かめ方（2026-11-04 工程4：DR-19 x）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: wont-rethink-approach
     chapter: 長い作業と方針
@@ -832,7 +832,7 @@ pages:
     type: symptom
     level: 任せる
     level_evidence: "計画させてから長い作業を任せ、途中で舵取りする段階で出会う（11 の提案の L3）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code, app]
     principle: [握る, 確かめる]
@@ -857,7 +857,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p56#29・p56#30（根拠：中（章）／個別：弱〜中、版依存）", "11 第1節 新分野案X p56#35（撤退の判断は本番の条件で再検証するまで採らない）", "10 第20章", "research/24 §2.3（ウの根拠：人の現象は強、AI との組み合わせは推論）"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。要点は「AI の撤退の勧めにも続行の勧めにも、そのまま従わない」。人の側では、費やした分だけやめられない（ウ）と、判断を AI に預ける（ア）を問う。ウが AI と組み合わさって強まる点は推論なので、本文でそう書く（requirements §3.2 の注記）。「使い込むほど強まる」とは書かない（11 第4節 #62）。長く回し続けても方針は直らない点は delegate の open-ended-loop-trap、止める条件の書き方は goal-until-done を related から案内する（2026-11-04 統合：delegate#5）。工程4：前提の decide-when-to-quit（判断）と share-targets-and-bounds（頼み方）は対処なので routes に移した（診断を読むのに要る概念のページはない）。工程4の見直しで受け皿のなかった散らかっている（会話が長くなると撤退を勧めてくる。review-R3 §4）に、新しい会話と引き継ぎを振り分けた。確かめていない → AI の「やめよう」「続けよう」を再検証する（decide-when-to-quit#ai-advice-on-quitting）・上界を測る・目標と上界を伝える、やめられない → やめどきを先に決める、預けすぎる → 任せないもの（撤退の判断）・判断を預けすぎる（2026-11-04 工程4：DR-19 x）"
+    notes: "requirements §4.4 で足した5つの症状の1つ。要点は「AI の撤退の勧めにも続行の勧めにも、そのまま従わない」。人の側では、費やした分だけやめられない（ウ）と、判断を AI に預ける（ア）を問う。ウが AI と組み合わさって強まる点は推論なので、本文でそう書く（requirements §3.2 の注記）。「使い込むほど強まる」とは書かない（11 第4節 #62）。長く回し続けても方針は直らない点は delegate の open-ended-loop-trap、止める条件の書き方は goal-until-done を related から案内する（2026-11-04 統合：delegate#5）。工程4：前提の decide-when-to-quit（判断）と share-targets-and-bounds（頼み方）は対処なので routes に移した（診断を読むのに要る概念のページはない）。工程4の見直しで受け皿のなかった散らかっている（会話が長くなると撤退を勧めてくる。review-R3 §4）に、新しい会話と引き継ぎを振り分けた。確かめていない → AI の「やめよう」「続けよう」を再検証する（decide-when-to-quit#ai-advice-on-quitting）・上界を測る・目標と上界を伝える、やめられない → やめどきを先に決める、預けすぎる → 任せないもの（撤退の判断）・判断を預けすぎる（2026-11-04 工程4：DR-19 x）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: blames-the-tools
     chapter: 長い作業と方針
@@ -866,7 +866,7 @@ pages:
     type: symptom
     level: 任せる
     level_evidence: "長い作業を任せ、途中の報告を読む段階で出会う"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code]
     principle: [確かめる, 見せる]
@@ -890,7 +890,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p34#147（長時間の運用で道具への不満が劣化の前兆だった。根拠：中、版依存）", "10 第14章", "research/22 #18（検索が時間切れで途中までしか返さなかった不具合。本当に道具の側の問題だった例）"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。最初に、本当に壊れているか（sandbox の制限・時間切れ・権限）を人が実行して確かめる。壊れていなければ長い作業の劣化の兆しとして、引き継ぎを書いて新しく始める。本当に道具の側の問題だった例（検索の打ち切り、起動に失敗しても成功の終了コードで終わる）は、routes の verify の evidence-not-reports の節 tool-output にある（診断の節から案内する）（2026-11-04 統合：symptoms#13）。工程4：前提は basics の agent-loop と context-rot（長い作業の劣化）にし、handoff-documents と evidence-not-reports は routes に移した（agent-loop は evidence-not-reports からたどれる推移的な前提だった）。工程4の見直しで受け皿のなかった見えていない（Claude から環境の制限が見えていない。review-R3 §4）に、サンドボックスの範囲と --safe-mode で設定を外して比べる手を振り分けた。散らかっている → 引き継ぎを書いて新しく始める、確かめていない → 道具の出力も確かめる・無人の実行の結果の確かめ方（2026-11-04 工程4：DR-19 x・e）"
+    notes: "requirements §4.4 で足した5つの症状の1つ。最初に、本当に壊れているか（sandbox の制限・時間切れ・権限）を人が実行して確かめる。壊れていなければ長い作業の劣化の兆しとして、引き継ぎを書いて新しく始める。本当に道具の側の問題だった例（検索の打ち切り、起動に失敗しても成功の終了コードで終わる）は、routes の verify の evidence-not-reports の節 tool-output にある（診断の節から案内する）（2026-11-04 統合：symptoms#13）。工程4：前提は basics の agent-loop と context-rot（長い作業の劣化）にし、handoff-documents と evidence-not-reports は routes に移した（agent-loop は evidence-not-reports からたどれる推移的な前提だった）。工程4の見直しで受け皿のなかった見えていない（Claude から環境の制限が見えていない。review-R3 §4）に、サンドボックスの範囲と --safe-mode で設定を外して比べる手を振り分けた。散らかっている → 引き継ぎを書いて新しく始める、確かめていない → 道具の出力も確かめる・無人の実行の結果の確かめ方（2026-11-04 工程4：DR-19 x・e）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: parallel-fatigue
     chapter: 長い作業と方針
@@ -900,7 +900,7 @@ pages:
     type: symptom
     level: 回す
     level_evidence: "複数のセッションを並べて動かし始める段階（design §3.1 の表の回す：並列・無人・定期）で出会う"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code]
     principle: [握る, 確かめる]
@@ -925,7 +925,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §4 費用・選び方・任せ方（並列にしたら疲れた）", "00 §3 分野12・分野17（並列の上限・レビューのボトルネック）", "10 第16章（並列の上限は人のレビューの帯域で決める）", "research/21 P7（並列の疲労の数値は出典が不確か。使わない）"]
-    notes: "新規：00 §4 の「並列にしたら疲れた」（原因⑤）の受け皿になる症状のページがない。人の側の落とし穴（ア・エ）と judgment・eval の核をつなぐ。並列の疲労の数値（00 §1・分野17）は出典が不確か（research/21 P7）なので使わない。優先度は推奨。工程4：前提の humans-set-the-parallel-limit（並列の上限は人が決める）は対処なので routes に移した（診断を読むのに要る概念のページはない）。routes は、確かめていない → 人が必ず読む差分・レビューのボトルネック・リスク段階別の承認、合っていない → 並列の方式の選び方・背景のセッションに向く作業、預けすぎる → 並列の上限は人が決める、体感を信じる → 体感と実測（2026-11-04 工程4：DR-19 x）"
+    notes: "新規：00 §4 の「並列にしたら疲れた」（原因⑤）の受け皿になる症状のページがない。人の側の落とし穴（ア・エ）と judgment・eval の核をつなぐ。並列の疲労の数値（00 §1・分野17）は出典が不確か（research/21 P7）なので使わない。優先度は推奨。工程4：前提の humans-set-the-parallel-limit（並列の上限は人が決める）は対処なので routes に移した（診断を読むのに要る概念のページはない）。routes は、確かめていない → 人が必ず読む差分・レビューのボトルネック・リスク段階別の承認、合っていない → 並列の方式の選び方・背景のセッションに向く作業、預けすぎる → 並列の上限は人が決める、体感を信じる → 体感と実測（2026-11-04 工程4：DR-19 x）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   # ── 安全と承認 ──
   - id: deleted-something-important
@@ -1005,7 +1005,7 @@ pages:
     type: symptom
     level: 整える
     level_evidence: "Web 検索・connector・ファイルを読ませる段階で出会う（00 の L2）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [app, claude-code, api]
     principle: [縛る, 握る]
@@ -1028,7 +1028,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §3.2（原因⑥の典型的な症状：悪意ある入力に従う）", "00 §2（原因⑥）", "00 §4 安全の困りごと（Web ページやメールを読ませるのが不安）", "05 §4-1・§4-2・§4-3"]
-    notes: "新規：requirements §3.2 の原因⑥の典型的な症状「悪意ある入力に従う」に当たる症状のページがない。攻撃の手口は型と仕組みまで書き、無害な再現だけにする。回避の手順と、AI を禁じる課題の隠し指示を外す方法は書かない（decisions「書き方の方針（安全・面・表現）」1）。優先度は推奨。工程4：前提は basics の data-vs-instructions だけにし、prompt-injection-in-practice は routes に移した（data-vs-instructions は prompt-injection-in-practice からたどれる推移的な前提だった）。routes は、縛っていない → 権限ルール・auto モードの限界、境界がない → 三つを同時に持たせない・インジェクションの経路・資料に仕込まれた指示。level_evidence の「safety の prompt-injection-in-practice と同じ段」は、対処のページに合わせた言い方なので外した（2026-11-04 工程4：DR-19 x・e）"
+    notes: "新規：requirements §3.2 の原因⑥の典型的な症状「悪意ある入力に従う」に当たる症状のページがない。攻撃の手口は型と仕組みまで書き、無害な再現だけにする。回避の手順と、AI を禁じる課題の隠し指示を外す方法は書かない（decisions「書き方の方針（安全・面・表現）」1）。優先度は推奨。工程4：前提は basics の data-vs-instructions だけにし、prompt-injection-in-practice は routes に移した（data-vs-instructions は prompt-injection-in-practice からたどれる推移的な前提だった）。routes は、縛っていない → 権限ルール・auto モードの限界、境界がない → 三つを同時に持たせない・インジェクションの経路・資料に仕込まれた指示。level_evidence の「safety の prompt-injection-in-practice と同じ段」は、対処のページに合わせた言い方なので外した（2026-11-04 工程4：DR-19 x・e）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: wrong-amount-of-approvals
     chapter: 安全と承認
@@ -1037,7 +1037,7 @@ pages:
     type: symptom
     level: 整える
     level_evidence: "Claude Code やアプリに作業させる段階で、確認の多さ（読まずに押す）や少なさ（確認なしで実行される）として出会う。auto モードを既定にする面があるので、少なさにもこの段で出会う（research/23 F2。工程3は 00 の L3 に合わせて任せるにしていた）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code, app]
     principle: [縛る, 握る]
@@ -1061,7 +1061,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 安全の困りごと（確認ボタンを読まずに押している）", "05 §1-10", "research/23 F2-a・F2-b・F2-c（auto mode の既定化の時期と面、公式の数値は二つの記事にある）", "decisions 2026-11-03「安全の既定の勧め方」"]
-    notes: "安全の既定は、公式の既定（auto mode）を基準にしてその限界を書き、比例則に沿って段階ごとに示す（decisions 2026-11-03）。承認率などの数値は summary・signs に使わず、出典の記事と日付を付けて数値ファイルに置く。人の側では、読まずに承認する（ア）を問う。summary の用語は公式の日本語版の表記（権限ルール・サンドボックス。enforce の題名と同じ）にそろえた（2026-11-04 統合：M1）。工程4：level を任せるから整えるにした。Claude Code やアプリに作業させる段で、確認の多さ（読まずに押す）や少なさ（auto モードを既定にする面がある）として出会うため（工程3は 00 の L3 と、前提の what-auto-mode-stops に合わせていた）。前提の3ページ（権限モードの選び方・auto モード・承認疲れ）は対処なので routes に移した（診断を読むのに要る概念のページはない。permission-modes-overview は推移的な前提だった）。routes は、合っていない → 権限モードの選び方・権限ルール（安全なコマンドは毎回確かめさせない）・アプリの権限モード、境界がない → サンドボックス・auto モードが止めるものと止めないもの、預けすぎる → 承認疲れ・段階ごとの安全の既定。別名「承認疲れ」は safety の approval-fatigue を主にして外した（2026-11-04 工程4：DR-19 x・d・e）"
+    notes: "安全の既定は、公式の既定（auto mode）を基準にしてその限界を書き、比例則に沿って段階ごとに示す（decisions 2026-11-03）。承認率などの数値は summary・signs に使わず、出典の記事と日付を付けて数値ファイルに置く。人の側では、読まずに承認する（ア）を問う。summary の用語は公式の日本語版の表記（権限ルール・サンドボックス。enforce の題名と同じ）にそろえた（2026-11-04 統合：M1）。工程4：level を任せるから整えるにした。Claude Code やアプリに作業させる段で、確認の多さ（読まずに押す）や少なさ（auto モードを既定にする面がある）として出会うため（工程3は 00 の L3 と、前提の what-auto-mode-stops に合わせていた）。前提の3ページ（権限モードの選び方・auto モード・承認疲れ）は対処なので routes に移した（診断を読むのに要る概念のページはない。permission-modes-overview は推移的な前提だった）。routes は、合っていない → 権限モードの選び方・権限ルール（安全なコマンドは毎回確かめさせない）・アプリの権限モード、境界がない → サンドボックス・auto モードが止めるものと止めないもの、預けすぎる → 承認疲れ・段階ごとの安全の既定。別名「承認疲れ」は safety の approval-fatigue を主にして外した（2026-11-04 工程4：DR-19 x・d・e）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   # ── 上限と速さ ──
   - id: hits-limits-quickly
@@ -1104,7 +1104,7 @@ pages:
     type: symptom
     level: 使う
     level_evidence: "対話で使うだけで、考え込む時間や長い会話の重さとして最初に出会う（requirements §3.2 の原因⑤）。拡張を足して重くなる形には整える段から出会う（工程3は前提の effort-levels に合わせて整えるにしていた）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [app, claude-code, api]
     principle: [見せる]
@@ -1127,7 +1127,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §3.2（原因⑤の典型的な症状：遅い）", "00 §2（原因⑤）", "00 §4 指示と仕組みの困りごと（入れた拡張が多すぎて重い）", "research/23 §3.2（既定の effort はモデル×面）", "research/22 #20・#21（ultrathink のターンと subagent の effort）"]
-    notes: "新規：requirements §3.2 の原因⑤の典型的な症状「遅い」に当たる症状のページがなく、00 §4 の「入れた拡張が多すぎて重い」（原因②⑤）の受け皿もない。速さの数値と既定の effort は数値ファイルから出す。優先度は推奨。工程4：level を整えるから使うにした。対話で使うだけで、考え込む時間や長い会話の重さとして出会うため。前提は、長い会話ほど遅くなる理由を説明する basics の rereads-whole-history にし、effort-levels と choosing-a-model は routes に移した。思考の仕組み（how-thinking-works）は整えるの段なので、使うのこのページの前提にせず related の先頭に置いた。routes は、散らかっている → 新しい会話・常駐するもののコスト・拡張の剪定（2026-11-04 メインが並べ替えた。level の根拠の長い会話の重さを先にする）、合っていない → effort・モデルの選び方・fast mode と advisor（2026-11-04 工程4：DR-19 x）"
+    notes: "新規：requirements §3.2 の原因⑤の典型的な症状「遅い」に当たる症状のページがなく、00 §4 の「入れた拡張が多すぎて重い」（原因②⑤）の受け皿もない。速さの数値と既定の effort は数値ファイルから出す。優先度は推奨。工程4：level を整えるから使うにした。対話で使うだけで、考え込む時間や長い会話の重さとして出会うため。前提は、長い会話ほど遅くなる理由を説明する basics の rereads-whole-history にし、effort-levels と choosing-a-model は routes に移した。思考の仕組み（how-thinking-works）は整えるの段なので、使うのこのページの前提にせず related の先頭に置いた。routes は、散らかっている → 新しい会話・常駐するもののコスト・拡張の剪定（2026-11-04 メインが並べ替えた。level の根拠の長い会話の重さを先にする）、合っていない → effort・モデルの選び方・fast mode と advisor（2026-11-04 工程4：DR-19 x）（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: seems-less-capable
     chapter: 上限と速さ

@@ -514,7 +514,7 @@ pages:
     prevents: [確かめていない, 縛っていない]
     pitfalls: []
     scenes: [開発, データ分析, コンテスト]
-    summary: "テストや採点のスクリプト、検証用のデータを Claude が書き換えられないようにし、触れてよいファイルを絞れる。拒否ルールだけでは子プロセスを止められないので、サンドボックスと組み合わせる。"
+    summary: "テストや採点のスクリプト、検証用のデータを Claude が書き換えられないようにし、触れてよいファイルを絞れる。deny ルールだけでは子プロセスを止められないので、サンドボックスと組み合わせる。"
     signs:
       - {type: goal, text: "テストや採点のスクリプトを、Claude に書き換えさせたくない"}
       - {type: situation, text: "スコアを上げる改善を、長い時間 Claude に任せる"}
@@ -535,7 +535,7 @@ pages:
       - "11 第4節 #19〜#21（雛形 A-4 の fail-open・部分一致、hold-out の読み取り、deny の構文）"
       - "research/23 #4・#5"
       - "research/28 #11・#12・#41"
-    notes: "verify の protect-tests（なぜテストが書き換えられるか・見つけ方）と重なる。こちらは止める設定（権限ルール・サンドボックス・ファイルの権限）の手順を受け持ち、protect-tests からリンクしてもらう（open_issues）。Edit の deny は Python などのスクリプトが自分で開くファイルを止めないので、検証器を守るにはサンドボックスの denyWrite か OS のファイルの権限が要る（research/23 #5）。Write のパスのルールは当たらないので Edit で書き、NotebookEdit は Read の deny では止まらないので Edit の deny を足す（research/23 #4、research/28 #11）。雛形 A-4 は直してから使う（requirements §10.3）。前提の permission-rules は sandboxing からたどって届く（推移的な前提）ので、related の2番目に移した。goal「テストや採点のスクリプトを、Claude に書き換えさせたくない」は verify の protect-tests と同じ文にそろえてある（DR-15）（2026-11-04 工程4：DR-19 e）"
+    notes: "verify の protect-tests（なぜテストが書き換えられるか・見つけ方）と重なる。こちらは止める設定（権限ルール・サンドボックス・ファイルの権限）の手順を受け持ち、protect-tests からリンクしてもらう（open_issues）。Edit の deny は Python などのスクリプトが自分で開くファイルを止めないので、検証器を守るにはサンドボックスの denyWrite か OS のファイルの権限が要る（research/23 #5）。Write のパスのルールは当たらないので Edit で書き、NotebookEdit は Read の deny では止まらないので Edit の deny を足す（research/23 #4、research/28 #11）。雛形 A-4 は直してから使う（requirements §10.3）。前提の permission-rules は sandboxing からたどって届く（推移的な前提）ので、related の2番目に移した。goal「テストや採点のスクリプトを、Claude に書き換えさせたくない」は verify の protect-tests と同じ文にそろえてある（DR-15）（2026-11-04 工程4：DR-19 e）（2026-11-04 工程5：割れている3語は英語のまま書く。decisions 2026-11-04）"
 
   - id: lock-side-effects
     chapter: 縛りの運用

@@ -11,8 +11,8 @@
 | 2 | 調査の補完 | 完了（2026-11-04） | [batches/step2/](batches/step2/README.md)・research/22〜28（担当の報告）・調査資料と requirements.md への訂正と注記 |
 | 3 | 設計 | 完了（2026-11-04） | [design.md](design.md)・[catalog/](catalog/README.md)・schema/site.yml・[batches/step3/](batches/step3/README.md) |
 | 4 | 設計の見直し | 完了（2026-11-04） | [design-review.md](design-review.md)・設計書の第2版・[batches/step4/](batches/step4/README.md) |
-| 5 | 決定の提示 | 進行中（2026-11-04） | design.md §12 |
-| 6 | 土台作り | 未着手 | |
+| 5 | 決定の提示 | 完了（2026-11-04） | design.md §12・decisions.md「2026-11-04 工程5（決定の提示）の回答」 |
+| 6 | 土台作り | 進行中（2026-11-04〜） | |
 | 7 | 試作 | 未着手 | |
 | 8 | 本制作 | 未着手 | |
 | 9 | 仕組み作り | 未着手 | |
@@ -39,8 +39,9 @@
 
 ## 次にやること
 
-1. 工程5（決定の提示）：設計書 §12 の一覧をユーザーに示し、確かめる5点（第一波の範囲・比例則の読み・事例の記録の skill・文書にない回避方法の報告・割れている3語）の答えと承認を得る。答えを decisions.md に記録し、設計書・目次・site.yml の仮の値を直す
-2. 承認を得るまで土台作り（工程6）に入らない。土台作りの始めに、planning/ の公開するファイル（工程3以降の batches の報告・catalog を含む）から否定的な文脈の実名を探してから、GitHub のリポジトリを作る（調査資料の人物・団体の記述は工程2で直した。decisions 2026-11-03「実名を外す範囲」）
+1. 工程6a（土台作り）の始め：planning/ の公開するファイル（工程3以降の batches の報告・catalog を含む）から否定的な文脈の実名を探し、見つかれば外す（decisions 2026-11-03「実名を外す範囲」）
+2. GitHub に公開のリポジトリ yuukougun/claude-atlas を作り、push する（decisions 2026-11-04「決定の一覧の承認」）
+3. 土台作りのバッチを組む（design §10.1 の6a〜6c：CI とサイト、道具の層、テンプレート、textlint と prh、手引きとチェックリスト、CLAUDE.md、hooks と permissions、Issue のテンプレート、data の初版、骨格）
 
 ## ユーザーにお願いしていること
 

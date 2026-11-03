@@ -48,7 +48,7 @@ stages: [stub, draft, reviewed, done]
 
 # 比例則（design.md §3.1 の4）：この段階のページのうち任せる幅を広げる内容のものは、
 # 次の分野のページを前提か関連に持つ（check_catalog が警告する）
-# （推奨の読みで、工程5で確かめる。design §3.1 の4。症状のページは routes の先も数える）
+# （工程5で決めた読み。design §3.1 の4。症状のページは routes の先も数える）
 proportional_rule:
   levels: [任せる, 仕組みにする, 回す]
   guard_fields: [verify, eval, enforce, safety]
@@ -56,7 +56,7 @@ proportional_rule:
 # 第一波の核を持つ分野（D10 と decisions 2026-11-03「第一波に足すもの」）
 first_wave_core_fields: [start, symptoms, changes, eval, judgment, japanese]
 
-# 第一波の数え方（design-review DR-02・DR-03、catalog/README §4.6 の3）。工程5でユーザーに確かめる（仮）。
+# 第一波の数え方（design-review DR-02・DR-03、catalog/README §4.6 の3）。工程5で決めた（decisions 2026-11-04「第一波の範囲」）。
 # 第一波は閉包：核（wave: 1 のページ）と、核の症状のページの routes の先と、named のページを種にし、そこから
 # prerequisites でたどって届くページをすべて入れる（check_catalog が数え、--stats に内訳と、routes を none・first・all に
 # したときの数と、必須の先がない cause の数を出す）

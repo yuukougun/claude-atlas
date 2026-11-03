@@ -384,7 +384,7 @@ pages:
     type: concept
     level: 整える
     level_evidence: "資料を要約させて使う段階で、要約を確かめずに根拠にする誤りを防ぐのに要る"
-    priority: 推奨
+    priority: 必須
     surfaces: [app, claude-code, api]
     principle: [確かめる]
     prevents: [確かめていない]
@@ -398,7 +398,7 @@ pages:
     materials:
       - "requirements §4.2 basics（主な変更：要約は原文より強く言いがち）"
       - "11 第1節 分野01 p12#112（10の LLM による科学論文の要約の研究。強〜中）・p12#152（【競】上位解法の前提を要約が落とす）"
-    notes: "研究の対象のモデルと世代を書き、現行の Claude の傾向としては書かない（requirements §6.2）。症状の側は symptoms の summary-overstates-source で、そちらがこのページを前提にできる。"
+    notes: "研究の対象のモデルと世代を書き、現行の Claude の傾向としては書かない（requirements §6.2）。症状の側は symptoms の summary-overstates-source で、そちらがこのページを前提にできる。（2026-11-04 工程5：第一波に入る推奨のページを必須に上げた。decisions 2026-11-04「第一波の範囲」）"
 
   - id: sycophancy
     chapter: 答えの確かさ
@@ -493,7 +493,7 @@ pages:
     surfaces: [claude-code, app, api]
     principle: [縛る]
     prevents: [縛っていない]
-    summary: "プロンプト・CLAUDE.md・スキルのような指示は Claude が読んで判断するお願いで、フック・拒否ルール・管理設定は毎回必ず効く鍵だと分かる。例外を許さない規則を鍵に移す判断の土台になる。"
+    summary: "プロンプト・CLAUDE.md・スキルのような指示は Claude が読んで判断するお願いで、フック・deny ルール・管理設定は毎回必ず効く鍵だと分かる。例外を許さない規則を鍵に移す判断の土台になる。"
     signs:
       - {type: goal, text: "「必ず」と書いた規則でも破られる理由を知りたい"}
       - {type: goal, text: "どの規則を仕組みで強制すべきか見分けたい"}
@@ -510,7 +510,7 @@ pages:
       - "11 第1節 分野01 p56#11（規範は保証にならない：迎合と同じ構図）"
       - "research/27 #8・§3.2（CLAUDE.md は強制される設定ではなく文脈。prompt 型・agent 型の hook は決定的ではない）"
       - "research/23 §3.1（Best practices の改稿。現行の版で書く）"
-    notes: "背骨の「縛る」の理論面（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。判断と対応表の本体は enforce の when-to-lock と request-lock-table に任せる。独自の用語「お願いと鍵」を見出しにし、公式の用語（非決定論的な指示・決定論的な制御）を併記する（D14）。prompt 型・agent 型の hook は別のモデルが判断するので鍵にならないことも書く（research/27 §3.2）。拒否ルールの表記は仮（M1。工程5で確かめる）。（2026-11-04 統合：M1）sign の「「必ず」と書いても破られる」は、症状の instructions-ignored（CLAUDE.md に書いたのに守られない）の言い換えで、prompting の emphasis-words の「IMPORTANT や「必ず」を付けても守られない」とも重なる（R1-06 の「強調しても守られない」の束）。困りごとは emphasis-words に寄せ、ここは理由を知りたい goal にした。（2026-11-04 工程4：DR-19 a）"
+    notes: "背骨の「縛る」の理論面（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。判断と対応表の本体は enforce の when-to-lock と request-lock-table に任せる。独自の用語「お願いと鍵」を見出しにし、公式の用語（非決定論的な指示・決定論的な制御）を併記する（D14）。prompt 型・agent 型の hook は別のモデルが判断するので鍵にならないことも書く（research/27 §3.2）。拒否ルールの表記は仮（M1。工程5で確かめる）。（2026-11-04 統合：M1）sign の「「必ず」と書いても破られる」は、症状の instructions-ignored（CLAUDE.md に書いたのに守られない）の言い換えで、prompting の emphasis-words の「IMPORTANT や「必ず」を付けても守られない」とも重なる（R1-06 の「強調しても守られない」の束）。困りごとは emphasis-words に寄せ、ここは理由を知りたい goal にした。（2026-11-04 工程4：DR-19 a）（2026-11-04 工程5：割れている3語は英語のまま書く。decisions 2026-11-04）"
 
   - id: data-vs-instructions
     chapter: 指示と仕組み

@@ -185,7 +185,7 @@ pages:
     prevents: [散らかっている, 縛っていない]
     pitfalls: []
     scenes: [開発]
-    summary: "圧縮のあとも守らせたい決めごとを、圧縮の後に読み直される CLAUDE.md や計画のファイルに書き、例外を許さないものは拒否ルールやフックに移す。会話の中だけで伝えた約束は要約に溶けうる。"
+    summary: "圧縮のあとも守らせたい決めごとを、圧縮の後に読み直される CLAUDE.md や計画のファイルに書き、例外を許さないものはdeny ルールやフックに移す。会話の中だけで伝えた約束は要約に溶けうる。"
     signs:
       - {type: goal, text: "圧縮のあとも守らせたい約束を、どこに書けばよいか知りたい"}
       - {type: goal, text: "長いセッションで、最初に決めた約束を最後まで守らせたい"}
@@ -203,7 +203,7 @@ pages:
       - {name: "会話で伝えた禁止を deny ルールに移す例", kind: settings, safety: true}
     visual: {kind: static, text: "約束の種類（続く規則・この作業の決めごと・例外を許さない禁止）と置き場所（直下の CLAUDE.md・計画や handoff のファイル・deny と hook）を結んだ対応の図"}
     materials: ["00 §3 分野05", "05 1-6", "11 第2節 分野05 p34#109", "01 C-1（会話で伝えた禁止は圧縮で失われうる）", "research/23 #6・§3.4", "research/22 #17", "research/27 §3.2（直下の CLAUDE.md は圧縮の後にディスクから読み直される）"]
-    notes: "basics の what-survives-compaction（仕組みと公式の表）、enforce の when-to-lock の節 spoken-rules-fade（会話で言った禁止を鍵に移す。enforce は spoken-prohibitions-fade をここにまとめた）、symptoms の forgot-after-compaction（診断と振り分け）と重なる。このページは「どこに置くか」の判断だけを持ち、表の本体は basics に任せる。11 3-2 #5 の「skill の一覧は圧縮の後に戻らない」は誤りで、v2.1.304 以降は今の skills から作り直して入れ直す（research/23 #6）。題名は registry の「圧縮のあとに残る約束、消える約束」から、判断が分かる形に変えた（旧題は aliases）。このページは残したい約束の移し方（CLAUDE.md・rules・フック）に絞る。what-comes-back の節は置き場所を決めるのに要る要点だけにし、残るもの・消えるものの一覧は basics の what-survives-compaction に一本化して繰り返さない（節の題も一覧と読まれない形にした。anchor は変えない）。summary と節の題の用語は公式の日本語版の多数派（拒否ルール〔仮〕・フック・スキル）に揃えた（2026-11-04 統合：basics#2・M1）。symptom の「最初に伝えた禁止事項を、途中から守らなくなった」は症状の forgets-in-long-chats（最初に伝えた前提を途中から忘れる）と forgot-after-compaction（会話で禁止したことを圧縮の後にやられた）の言い換えで、圧縮でない人もここに着く（R3 付表A の15、R1-04）ので、goal の形にした。goal の「圧縮されても守ってほしいことを、どこに書けばよいか知りたい」は、basics の what-survives-compaction にあった同じ問いの文（圧縮のあとも守らせたい約束を、どこに書けばよいか知りたい）にした。basics は同じ工程でその goal を「何が残り、何が消えるのか」の問いに替えたので、置き場所の問いはこのページだけが持つ（DR-15）（2026-11-04 工程4：DR-19 a）"
+    notes: "basics の what-survives-compaction（仕組みと公式の表）、enforce の when-to-lock の節 spoken-rules-fade（会話で言った禁止を鍵に移す。enforce は spoken-prohibitions-fade をここにまとめた）、symptoms の forgot-after-compaction（診断と振り分け）と重なる。このページは「どこに置くか」の判断だけを持ち、表の本体は basics に任せる。11 3-2 #5 の「skill の一覧は圧縮の後に戻らない」は誤りで、v2.1.304 以降は今の skills から作り直して入れ直す（research/23 #6）。題名は registry の「圧縮のあとに残る約束、消える約束」から、判断が分かる形に変えた（旧題は aliases）。このページは残したい約束の移し方（CLAUDE.md・rules・フック）に絞る。what-comes-back の節は置き場所を決めるのに要る要点だけにし、残るもの・消えるものの一覧は basics の what-survives-compaction に一本化して繰り返さない（節の題も一覧と読まれない形にした。anchor は変えない）。summary と節の題の用語は公式の日本語版の多数派（拒否ルール〔仮〕・フック・スキル）に揃えた（2026-11-04 統合：basics#2・M1）。symptom の「最初に伝えた禁止事項を、途中から守らなくなった」は症状の forgets-in-long-chats（最初に伝えた前提を途中から忘れる）と forgot-after-compaction（会話で禁止したことを圧縮の後にやられた）の言い換えで、圧縮でない人もここに着く（R3 付表A の15、R1-04）ので、goal の形にした。goal の「圧縮されても守ってほしいことを、どこに書けばよいか知りたい」は、basics の what-survives-compaction にあった同じ問いの文（圧縮のあとも守らせたい約束を、どこに書けばよいか知りたい）にした。basics は同じ工程でその goal を「何が残り、何が消えるのか」の問いに替えたので、置き場所の問いはこのページだけが持つ（DR-15）（2026-11-04 工程4：DR-19 a）（2026-11-04 工程5：割れている3語は英語のまま書く。decisions 2026-11-04）"
 
   # ── 書き出す ──
   - id: handoff-documents
