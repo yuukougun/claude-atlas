@@ -234,6 +234,7 @@ verified_with: {claude_code: 2.1.317, models: [claude-opus-5-5]}
 | 学校・組織・大会の規則の類型と確認表（一般） | `safety` | `team`・`contest` からリンク |
 | 大会の規則の早見と、練習と本番の使い分け | `contest` | `safety` の確認表を前提にする |
 | CLAUDE.md・rules・skills・subagents・MCP・plugins（文脈と指示の置き場所） | `extend` | `cli`・`enforce` からリンク |
+| 出力スタイルの機能（切り替えの操作） | `cli` | 置き場所の比べ方（CLAUDE.md・rules・スキル・出力スタイル）は `extend` |
 | /goal・/loop・並列・worktree・workflows・無人実行・定期実行 | `delegate` | `cli` からリンク |
 | 基本操作（起動・権限モード・rewind・plan mode） | `cli` | `context`・`delegate` からリンク |
 | 会話の長さ・圧縮・/clear の判断（なぜ・いつ）と、/clear・/compact の操作 | `context` | `cli` は早見の表（必ず知る操作・コマンドの早見）から指す（/clear・/compact だけの操作のページは作らない） |
@@ -468,7 +469,7 @@ kyopro-atlas の道具は、分野や段階の名前がコードに直書きさ�
 | 層 | 中身 |
 | --- | --- |
 | 読む層（`tools/lib/`） | front matter・catalog・data・schema/site.yml を読み、ページのモデルを作る |
-| 作る層（`tools/gen/`） | 生成物の種類ごとに1つ（nav・入口・一覧・逆引き・索引・知識マップ・ロードマップ・台帳・比較表・参考・数値・llms.txt） |
+| 作る層（`tools/gen/`） | 生成物の種類ごとに1つ（nav・入口・一覧・逆引き・索引・知識マップ・ロードマップ・台帳・比較表・参考・数値・llms.txt・症状の原因別の表〔失敗の二つの軸のページの節。症状のページの prevents・pitfalls から〕） |
 | 検査の層（`tools/checks/`） | 検査1つを関数1つにして登録する。試験も検査ごとに書く |
 | 入口の CLI | `make_skeleton.py`・`gen_site.py`（`--check`）・`check_pages.py`・`check_catalog.py`・`check_templates.py`（`--live`）・`render_pages.py`・`check_svg.py`・`check_noai.py`・`textlint_targets.py` |
 
@@ -503,7 +504,7 @@ kyopro-atlas の道具は、分野や段階の名前がコードに直書きさ�
 | --- | --- | --- |
 | サイトのビルド | `mkdocs build --strict`（validation は warn を strict で失敗に） | 毎回 |
 | front matter | JSON Schema とキーの台帳（語彙は site.yml） | 毎回 |
-| 参照 | 存在しない id・循環・レベルの逆転・必須の前提は必須・比例則・stub へのリンク | 毎回 |
+| 参照 | 存在しない id・循環・レベルの逆転・必須の前提は必須・比例則・stub へのリンク・推移的に届く前提（警告）・症状のページの sign と同じ文のほかのページの sign（警告） | 毎回 |
 | 生成物の鮮度 | `gen_site.py --check`（数値の目印・参考の節・手書きのページの生成部分を含む） | 毎回 |
 | 数値と出典 | 目印の外の数値ファイルの値、存在しない facts・sources の id、AI の利用の指定の未確認 | 毎回 |
 | 確認日 | 確認日の期限切れ（警告。日によって結果が変わるので失敗にしない）、版に依存する記述の確認日 | 毎回（警告） |
@@ -564,7 +565,7 @@ kyopro-atlas の道具は、分野や段階の名前がコードに直書きさ�
 1. 前回確認した版より後の、Claude Code の CHANGELOG、Help Center と Claude Platform のリリースノート、Anthropic のニュースを読む（プランの改名のように、リリースノートに載らず Help Center と料金のページにだけ出る変更もある。research/22）
 2. 出てくる語を、ページの `tracks`・`aliases` と数値ファイルの id に照らし、影響のあるページと数値の一覧を出す
 3. GitHub の Issue にする
-4. 直す：日付・数値・名称の更新は、メインの判断と別の担当の検証と機械の検査で行う。**教材の推奨・安全の既定・古くなった助言の台帳の状態が変わる更新は、作者が承認する**（decisions 2026-11-03）
+4. 直す：日付・数値・名称の更新は、メインの判断と別の担当の検証と機械の検査で行う。**教材の推奨・安全の既定・古くなった助言の台帳の状態が変わる更新は、作者が承認する**（decisions 2026-11-03）。安全の既定の正本は safety の安全の早見表の節（`default-safety-settings#by-stage`）で、点検の skill の手順にこの節を名指しする
 5. `verified` と数値の確認日を更新する
 6. リンクの切れと転送も確かめる
 7. 定期の実行は任意にする（requirements §7）
@@ -752,3 +753,4 @@ hooks がワークフローの担当でも動くかは文書に書かれてい�
 - 2026-11-04：第1版（工程3）
 - 2026-11-04：目次の検査の道具（check_catalog.py）に合わせ、level を持たないものを型で決めると明記し（§3.1）、summary に使わない語を schema/site.yml に合わせた（§5.3）。site.yml に図と雛形の kind の語彙と、入口の分野を足した
 - 2026-11-04：目次の担当の提案を受けて直した。境界の表（§4.2）に、/clear・/compact の操作、圧縮の仕組み、資料の渡し方、進捗のファイル、断られたときの頼み直し、安全の既定の行を足した。横断のページ（§7）に用語集を足した。用語の仮の決定（§6.2）、生成のページの印を front matter に持たないこと（§8.4）、数値ファイルに持つ表の候補（§9.1）、方針の文を第一波の前に見せること（§10.8）を書いた
+- 2026-11-04：統合の担当の報告を受けて直した。境界の表（§4.2）に出力スタイルの行を足し、作る層（§8.3）に症状の原因別の表を、検査（§8.6）に推移的な前提と逆引きの重複の警告を足した。安全の既定の正本を点検の手順（§9.4）に名指しした
