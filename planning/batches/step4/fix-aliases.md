@@ -26,14 +26,14 @@
 | 自動圧縮 | compact-and-auto-compact（context） | 題名にこの語を含む | what-survives-compaction（basics） |
 | /context | inspect-context（context） | 題名にこの語を含む | usage-context-statusline（cli） |
 | Research | using-research（app） | 機能のページ | search-research-thinking（app） |
-| /deep-research | using-research（app） | 機能のページ | dynamic-workflows（delegate） |
+| /deep-research | using-research（app） | 機能のページ。例外：別の機能の同じ名前なので両方に残し、用語索引で面の印を付けて並べる（2026-11-04 F2・F3 の報告） | dynamic-workflows（delegate） |
 | Skills | skills-in-the-app（app） | 機能のページ | how-skills-load（extend） |
 | Agent Skills | skills-in-the-app（app） | 機能のページ | how-skills-load（extend） |
 | Plugins | plugins-in-the-app（app） | 機能のページ | plugins-and-marketplaces（extend） |
 | permission modes | permission-modes-overview（cli） | Claude Code の公式の文書の名前（2026-11-04 F4 の報告で替えた） | permission-modes-in-the-app（app） |
 | Scheduled tasks | tasks-and-schedules-in-the-app（app） | 機能のページ | loop-and-scheduling（delegate） |
 | 組織の指示 | shared-projects-and-org-skills（app） | 機能のページ | where-to-put-instructions（app） |
-| 音声入力 | voice-and-mobile（app） | 機能のページ | images-and-voice（prompting） |
+| 音声入力 | voice-and-mobile（app） | 機能のページ。例外：別の機能の同じ名前なので両方に残し、用語索引で面の印を付けて並べる（2026-11-04 F2・F3 の報告） | images-and-voice（prompting） |
 | voice mode | voice-and-mobile（app） | 機能のページ | images-and-voice（prompting） |
 | Esc を2回 | checkpoints-and-rewind（cli） | 機能のページ | rewind-dont-correct（context） |
 | /cost | usage-context-statusline（cli） | 機能のページ | insights-and-usage-review（eval）、what-uses-up-limits（cost） |

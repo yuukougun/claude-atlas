@@ -188,7 +188,7 @@
 | k | 理解の線引きは how-much-understanding-to-keep に置き、own-generated-code は説明させて確かめる手順に絞る | R3-10 |
 | l | CLAUDE.md の削り方は claude-md-length に置き、init-and-first-claude-md は /init の操作と流れにする | R3-11 |
 | m | 消された直後・漏れた直後の初動は症状のページが持つ（design §4.1 の例外）。対処のページの同じ節は外して症状のページを指す。面ごとの表示は when-requests-are-refused に寄せる | R3-12 |
-| n | id の改名：1m-context → large-context-window、opusplan → split-models-by-role（分野の名前で始まる id を避けた）、agent-teams-experimental → agent-teams（メインが道具で行った） | R3-14 |
+| n | id の改名：1m-context → large-context-window、opusplan → split-models-by-role（分野の名前で始まる id を避けた）、agent-teams-experimental → agent-teams、enterprise-vs-team-plans → choosing-an-org-plan（4つ目は F6 の報告を受けて足した。メインが道具で行った） | R3-14・R3-15 |
 | o | 題名と要約の変わりやすい値を外す（cloud-schedules の旧名、enterprise-vs-team-plans のプラン名、thinking-keywords の要約） | R3-15 |
 | p | lost-in-the-middle を context-rot の節に、ai-amplifies-organizations を paved-roads か review-bottlenecks の節にまとめる | R3-16 |
 | q | 独自の判断を notes に1行で書けないページを節にまとめる（completion-notifications・add-tests・curb-sycophancy-and-overtrust・does-double-check-work を見る） | R3-17 |
@@ -242,3 +242,7 @@ R2 は、指示で禁じた git の操作のうち、読むだけの `git status
 | 11 | 事例の記録の skill を設計書に書いた | そのままにする（工程5で確かめる。U3） |
 | 12 | routes を「症状のページは必須」としたこと | そのままにする。検査は、症状の担当が routes を書き終えるまで警告にする |
 | 13 | 比例則と routes（T3 の報告 §4 の1） | 症状のページでは、routes の先も比例則の守りのページに数える。症状のページは原因ごとに守りのページへ振り分けるので、routes の先が「次に読む」の中心になる（道具・catalog/README §4.3 の4・設計書 §3.1 の4） |
+| 14 | 目次の notes の「見せ方」の時期（V2 の §4 の1） | 一覧は試作の始めにメインが目次の外のファイル（planning/shows.md）に作る。目次の notes の見せ方はその材料（design §6.10） |
+| 15 | 漏れた直後の初動を持つ secrets-exposed が推奨（V2 の §4 の2） | 必須に上げる。害の大きい場面の初動は、第一波の範囲（U1）の選び方によらず初版に入れる |
+| 16 | 新しい症状のページの版の確かめ方の先が推奨（V2 の §4 の3・F7 の報告 §6 の3） | 上げない。第一波では、台帳の節 find-in-your-setup（必須）が同じ枝を受ける |
+| 17 | 症状の routes がないときの検査の重さ（V2 の指摘13） | 骨格の後は front matter の検査（土台作りで作る）で誤りにする。目次の検査は警告のままにする（いまは0件） |

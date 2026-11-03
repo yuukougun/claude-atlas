@@ -2,7 +2,7 @@
 
 全ページの一覧を置く。上位の規則は設計書（[../design.md](../design.md)）の §2〜§5。語彙は [../../schema/site.yml](../../schema/site.yml)。この文書はその詳細である。
 
-catalog は骨格（工程6c）で各ページの front matter の元になる。骨格の後は front matter が正になり、catalog は凍結して執筆の指示（materials・templates・visual）としてだけ使う。
+catalog は骨格（工程6c）で各ページの front matter の元になる（wave と routes も写す）。骨格の後は front matter が正になり、catalog は凍結して執筆の指示（materials・templates・visual・notes の見せ方）としてだけ使う。
 
 - 版：2026-11-04 第1版（同日、統合の後に §4.5 の4に重なりの規則を足した。工程4で、症状のページの routes〔§3・§4.4 の6〕と第一波の数え方〔§4.6 の3〕を足し、§4.6 の2を設計書 §5.3 に合わせ、§6 に検査を足した）
 

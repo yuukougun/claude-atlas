@@ -625,7 +625,7 @@ pages:
     chapter: 定期と無人の実行
     title: "自動 PR レビュー（Code Review・/ultrareview）"
     nav_title: "自動 PR レビュー"
-    aliases: ["AI による PR レビュー", "自動レビュー", "/security-review"]
+    aliases: ["AI による PR レビュー", "自動レビュー"]
     type: feature
     level: 仕組みにする
     level_evidence: "レビューの手順を常設の仕組みにする段階"

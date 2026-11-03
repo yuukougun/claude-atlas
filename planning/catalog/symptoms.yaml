@@ -309,8 +309,8 @@ pages:
       - {type: symptom, text: "古い書き方のコードや設定を出してくる"}
     prerequisites: [knowledge-cutoff]
     routes:
-      - {cause: 見えていない, to: [search-research-thinking, ask-claude-code]}
-    related: [using-research, connectors-in-the-app, choose-what-to-read, old-advice-doesnt-work, dating-information, plausible-falsehoods, uses-nonexistent-apis, six-causes]
+      - {cause: 見えていない, to: [choose-what-to-read, search-research-thinking, ask-claude-code]}
+    related: [using-research, connectors-in-the-app, old-advice-doesnt-work, dating-information, plausible-falsehoods, uses-nonexistent-apis, six-causes]
     tracks: [web-search, research]
     outdated_advice: []
     volatility: 中
@@ -780,7 +780,7 @@ pages:
     routes:
       - {cause: 確かめていない, to: [verifier-three-conditions, test-the-verifier, check-the-metric]}
       - {cause: 預けすぎる, to: ["what-not-to-delegate#what-humans-hold"]}
-    related: [lockbox-and-holdout, suspect-too-good-results, "measure-changes#by-stratum", reward-hacking, over-reliance, audit-ml-pipelines, data-analysis, evaluators-by-format, rewrote-tests-to-pass, claims-done-but-isnt, stuck-in-a-check-loop, six-causes]
+    related: [lockbox-and-holdout, suspect-too-good-results, "measure-changes#by-stratum", reward-hacking, over-reliance, audit-ml-pipelines, data-analysis, evaluators-by-format, rewrote-tests-to-pass, claims-done-but-isnt, stuck-in-a-check-loop, six-causes, selection-pressure, open-ended-loop-trap]
     tracks: []
     outdated_advice: []
     volatility: 中
@@ -898,8 +898,8 @@ pages:
     nav_title: 並列にしたら疲れた
     aliases: [並列疲れ, レビュー待ちがたまる, 並列にしても速くならない]
     type: symptom
-    level: 仕組みにする
-    level_evidence: "worktree や背景のセッションで並列に任せる段階で出会う（並列の方式を選ぶ delegate の choosing-parallel-modes が仕組みにするの段）"
+    level: 回す
+    level_evidence: "複数のセッションを並べて動かし始める段階（design §3.1 の表の回す：並列・無人・定期）で出会う"
     priority: 推奨
     wave: 1
     surfaces: [claude-code]
@@ -970,7 +970,7 @@ pages:
     type: symptom
     level: 使う
     level_evidence: "会話に API キーを貼ってしまう形で、対話で使う段階から出会う。.env を読まれる・コミットされる形は、ファイルを読み書きする作業を任せた段階で出会う（工程3は safety の protecting-secrets〔00 の L3〕に合わせて任せるにしていた）"
-    priority: 推奨
+    priority: 必須
     wave: 1
     surfaces: [claude-code, app]
     principle: [縛る, 握る]
@@ -995,7 +995,7 @@ pages:
       - {title: "まず鍵を無効にする", anchor: first-response}
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §3.2（原因⑥の典型的な症状：秘密の流出）", "00 §2（原因⑥）", "05 §4-6", "00 §3 分野11（秘密情報を守る。会話の記録は平文で残る）", "research/23 #5（Read・Edit の deny は任意の子プロセスに効かない。すべてを止めるのは sandbox）"]
-    notes: "新規：requirements §3.2 の原因⑥の典型的な症状「秘密の流出」に当たる症状のページがない。対処の本体は safety の protecting-secrets と enforce・sandbox。読み取りを止める雛形は safety に置き、動作確認を通るまで載せない（safety: true の扱い）。攻撃の手口は型と仕組みまで（decisions「書き方の方針（安全・面・表現）」1）。優先度は推奨。工程4：(1) 漏れた直後の初動（節 first-response）はこのページが一か所で持つ（design §4.1 の2の例外。DR-19 m・R3-12）。safety の protecting-secrets は節 if-leaked を外し、related の先頭でこの節を指す（fix-F6 の2）。safety から移したサイン「会話に API キーを貼ってしまった」を受け、節 first-response に、貼った鍵も無効化から始めることと、会話は手元の記録にも平文で残ること（where-your-data-goes の節 local-transcripts）を持たせる。summary の「出された」は、貼った場合も含むよう「出た」にした。(2) level を任せるから使うにした。会話に鍵を貼る形は対話の段から出会うため。前提は、送った会話と手元の記録が残ることを説明する safety の where-your-data-goes（概念・使う・必須）にし、protecting-secrets と permission-rules は routes に移した（permission-rules は protecting-secrets からたどれる推移的な前提だった）。routes は、縛っていない → 秘密を読ませない設定（権限ルールとサンドボックスの二重）・権限ルール、境界がない → サンドボックス・三つを同時に持たせない（2026-11-04 工程4：DR-19 x・m・e）"
+    notes: "新規：requirements §3.2 の原因⑥の典型的な症状「秘密の流出」に当たる症状のページがない。対処の本体は safety の protecting-secrets と enforce・sandbox。読み取りを止める雛形は safety に置き、動作確認を通るまで載せない（safety: true の扱い）。攻撃の手口は型と仕組みまで（decisions「書き方の方針（安全・面・表現）」1）。優先度は推奨。工程4：(1) 漏れた直後の初動（節 first-response）はこのページが一か所で持つ（design §4.1 の2の例外。DR-19 m・R3-12）。safety の protecting-secrets は節 if-leaked を外し、related の先頭でこの節を指す（fix-F6 の2）。safety から移したサイン「会話に API キーを貼ってしまった」を受け、節 first-response に、貼った鍵も無効化から始めることと、会話は手元の記録にも平文で残ること（where-your-data-goes の節 local-transcripts）を持たせる。summary の「出された」は、貼った場合も含むよう「出た」にした。(2) level を任せるから使うにした。会話に鍵を貼る形は対話の段から出会うため。前提は、送った会話と手元の記録が残ることを説明する safety の where-your-data-goes（概念・使う・必須）にし、protecting-secrets と permission-rules は routes に移した（permission-rules は protecting-secrets からたどれる推移的な前提だった）。routes は、縛っていない → 秘密を読ませない設定（権限ルールとサンドボックスの二重）・権限ルール、境界がない → サンドボックス・三つを同時に持たせない（2026-11-04 工程4：DR-19 x・m・e）（2026-11-04 メイン：必須に上げた。漏れた直後の初動はこのページが持つ〔design §4.1 の2〕ので、第一波の範囲の選び方によらず初版に入れる。design-review §6 の15）"
 
   - id: followed-injected-instructions
     chapter: 安全と承認
@@ -1118,7 +1118,7 @@ pages:
       - {type: symptom, text: "入れた拡張が多すぎて重い"}
     prerequisites: [rereads-whole-history]
     routes:
-      - {cause: 散らかっている, to: [always-on-costs, pruning-extensions, when-to-start-fresh]}
+      - {cause: 散らかっている, to: [when-to-start-fresh, always-on-costs, pruning-extensions]}
       - {cause: 合っていない, to: [effort-levels, choosing-a-model, fast-mode-and-advisor]}
     related: [how-thinking-works, split-models-by-role, inspect-context, research-in-subagents, thinking-keywords, current-models, when-ai-is-unavailable, hits-limits-quickly, seems-less-capable, six-causes]
     tracks: [effort, fast-mode, model-selection, mcp, plugins]

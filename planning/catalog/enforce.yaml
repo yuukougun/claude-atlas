@@ -312,7 +312,7 @@ pages:
   - id: hooks-basics
     chapter: フック
     title: フックの考え方とイベント
-    aliases: [hooks, Hooks, フックイベント, hook events]
+    aliases: [hooks, フックイベント, hook events]
     type: feature
     level: 仕組みにする
     level_evidence: "規則を、毎回必ず走る仕組みとして常設する段階で最初に要る（00 でも L4）"

@@ -36,4 +36,4 @@
 | 担当 | 見るもの | 報告 | 状態 |
 | --- | --- | --- | --- |
 | V1 | 設計書の第2版（design.md）と catalog/README・schema/site.yml を、design-review の DR-01〜DR-20 と §6 に照らす | `verify-V1.md` | 完了（24件：直す3・直したほうがよい9・軽い12。メインが直した） |
-| V2 | 目次（planning/catalog/）の直しを、DR-19 の各行・fix-aliases.md・担当の報告に照らす。検査の道具を流す | `verify-V2.md` | 実行中 |
+| V2 | 目次（planning/catalog/）の直しを、DR-19 の各行・fix-aliases.md・担当の報告に照らす。検査の道具を流す | `verify-V2.md` | 完了（14件：直す1・直したほうがよい2・軽い11。メインが直した） |

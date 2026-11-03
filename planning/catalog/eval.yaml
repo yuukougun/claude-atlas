@@ -77,7 +77,7 @@ pages:
     templates: []
     visual: {kind: static, text: "予想・終わった後の体感・実測を並べた図。研究の値には、道具とモデルの世代と標本の大きさを添える"}
     materials: ["00 §3 分野09", "05 5-4", "11 第2節 分野09 p12#79・p56#90", "research/24 F1・§2.3（エの行）・B-55", "requirements §3.2（人の側の落とし穴エ）"]
-    notes: "priority を推奨から必須に、level を任せるから整えるに、type を concept から judgment に変えた。理由：人の側の五つの落とし穴のエ（体感を信じる）を受け持つページで、judgment の総論とア・イ・ウ・オのページ（必須、主に整える）とそろえるため。models の suspected-degradation と symptoms の seems-less-capable（どちらも必須・整える）の前提に置ける。根拠の強さは research/24 F1 のエの行（強。ただし METR は熟練の開発者16人・2025年前半の道具で、追試は確かめていない。学習のずれの研究は GPT-4 と高校の数学）。「AI は遅い」の結論には使わない（00 §3 分野09）。「前より賢くなくなった気がする」は症状のページ seems-less-capable（題名「急に賢くなくなった気がする」）の言い換えなので外し、体感をどこまで信じるかを問う goal にした（劣化を測って確かめる手順の本体は models の suspected-degradation。DR-19 j）（R1-04）（2026-11-04 工程4：DR-19 a）"
+    notes: "priority を推奨から必須に、level を任せるから整えるに、type を concept から judgment に変えた。理由：人の側の五つの落とし穴のエ（体感を信じる）を受け持つページで、judgment の総論とア・イ・ウ・オのページ（必須、主に整える）とそろえるため。symptoms の seems-less-capable から routes で振り分けられる（judgment の型なので、症状のページの前提には置かない）。根拠の強さは research/24 F1 のエの行（強。ただし METR は熟練の開発者16人・2025年前半の道具で、追試は確かめていない。学習のずれの研究は GPT-4 と高校の数学）。「AI は遅い」の結論には使わない（00 §3 分野09）。「前より賢くなくなった気がする」は症状のページ seems-less-capable（題名「急に賢くなくなった気がする」）の言い換えなので外し、体感をどこまで信じるかを問う goal にした（劣化を測って確かめる手順の本体は models の suspected-degradation。DR-19 j）（R1-04）（2026-11-04 工程4：DR-19 a）"
 
   - id: measure-changes
     chapter: 変化を測る
