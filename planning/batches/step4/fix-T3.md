@@ -33,7 +33,7 @@
 | wave（既存に足した） | 警告 | 入口の分野（site.yml の entry_fields）のページと症状のページに wave: 1 がない | メインの指示3に合わせて足した |
 | 設定（既存に足した） | 警告 | site.yml の first_wave がない・マッピングでない・routes の値が none・first・all でない・named が文字列のリストでない・知らない項目。named の id がページを指していない、named の anchor がない。規則が名指しする concept・guide・hub が site.yml の types にない | 足した |
 
-- **routes の先に当てない規則**：レベルの逆転・必須の前提・比例則は、前提（比例則は前提と関連）だけを見る。routes は数えない（試験で確かめた。§2）
+- **routes の先に当てない規則**：レベルの逆転・必須の前提は、前提だけを見る。routes は数えない（試験で確かめた。§2）。比例則は、この報告の後のメインの判断で、症状のページに限って routes の先も守りのページに数えるように直した（§6）
 - 検査は39（エラー11・警告28）。-h の一覧に全部出る
 
 出力の例（試験用の目次に誤りを入れたもの）：
@@ -78,7 +78,7 @@ first_wave:
 3. **重なりはページの id で比べる**（routes の `hooks-basics#exit-codes` と related の `hooks-basics` は重なり）。1つの cause の to の中の重複は書いたとおりの文字で比べる（ページとその節は別。related と同じ扱い）。別の cause に同じページがあるのはよい
 4. **routes と原因を足した**：DR-02 の「原因ごとに中心の対処」と、設計書 §6.3 の診断の節（原因ごとの対処へのリンク）・§8.3 の症状の原因別の表が、prevents・pitfalls と routes の対応を前提にするため。routes と prevents の両方がある症状のページだけを見る（prevents が空なら「症状の prevents」だけ、routes がなければ「症状の routes」だけが出る）。語彙にない cause は見ない。site.yml の prevents か pitfalls が読めなければ、この検査をしない
 5. **入ってくる道に routes を数えた**：routes の先には診断の節から道がある。数えないと、F7 が related から routes へ移したときに、症状のページからしか指されていない対処のページに当たらない警告が出る
-6. **比例則に routes を数えない**（指示のとおり。設計書第2版 §3.1 の4も「関連に持ち」で routes を挙げない）。この結果は §4 の1
+6. **比例則に routes を数えない**（指示のとおり。設計書第2版 §3.1 の4も「関連に持ち」で routes を挙げない）。この結果は §4 の1。→ メインの判断で、症状のページは routes の先も数えるように直した（§6）
 7. **症状の前提**：分野のファイルにある前提のページだけを見る（ファイルのまだない分野の候補は registry の type が見当なので見ない）。前提の type が語彙にないときは、そのページのエラーに任せる。関わる分野は症状のページの分野だけ（直すのは症状のページ）
 8. **first の必須**：ページなら page の priority、分野のファイルにまだない候補・処理されていない候補なら registry の priority（見当）。存在しない id や merged・dropped の候補は必須に数えない。site.yml の priorities が読めないときは、最初の先を取る
 9. **routes の種は核の症状のページだけ**（メインの指示2の閉包）。routes の先から入った症状のページの routes はたどらない。症状でないページの routes（エラー）もたどらない。いまの目次では症状のページはすべて wave: 1 なので、結果は変わらない
@@ -108,7 +108,7 @@ Ran 167 tests in 6.201s
 OK
 ```
 
-試験は167（T2 の128に39を足した）で、すべて通る（Python 3.10.12・PyYAML 5.4.1）。`test_every_check_has_a_test` は新しい6検査も見ている。
+試験は167（T2 の128に39を足した）で、すべて通る（Python 3.10.12・PyYAML 5.4.1）。§6 の直しの後は168で、すべて通る。`test_every_check_has_a_test` は新しい6検査も見ている。
 
 ### 2.1 足した試験（見つかる場合と見つからない場合）
 
@@ -120,7 +120,7 @@ OK
 | 形・必須・知らない項目 | test_route_shapes・test_route_without_cause_or_to・test_unknown_key_in_routes | 試験用の目次（エラーなし） |
 | 未処理の候補 | test_route_to_unprocessed_candidate | 試験用の目次 |
 | 入ってくる道 | test_routes_count_as_incoming（routes からも外すと出る） | 同（routes だけから入るページは出ない） |
-| 当てない規則 | test_rules_for_prerequisites_do_not_apply_to_routes（同じページを前提に置くと出る）・test_routes_do_not_count_for_the_proportional_rule | 同（routes に上の段・推奨の先を置いても出ない） |
+| 当てない規則 | test_rules_for_prerequisites_do_not_apply_to_routes（同じページを前提に置くと出る） | 同（routes に上の段・推奨の先を置いても出ない）。比例則の試験は §6 |
 | 症状の前提 | test_prerequisite_that_is_not_a_concept | test_concept_guide_and_hub_are_fine（guide・hub・症状でないページ・type が語彙にない前提） |
 | 症状の routes | test_symptom_page_without_routes（キーなし・空） | test_routes_are_not_asked_of_other_pages |
 | routes と原因 | test_cause_that_the_page_does_not_diagnose・test_cause_without_routes（prevents・pitfalls） | test_pitfalls_can_be_routed_and_empty_prevents_is_left_to_its_check（prevents が空・語彙なし） |
@@ -167,7 +167,7 @@ $ python3 tools/check_catalog.py -q --stats（抜き書き）
 
 ## 4. 確かめていないこと
 
-1. **比例則と routes の食い違い**：比例則は routes を数えないので、F7 が守りのページ（verify・eval・enforce・safety）を related から routes へ移すと、level が任せる・仕組みにする・回すの症状のページ（いま11）に比例則の警告が出うる。routes の先を related に重ねると「routes の重なり」の警告になるので、どちらかが残る。メインが決めること：(a) 比例則に routes を数える（`check_proportional` の `page_refs(p)` を `[*page_refs(p), *route_refs(p)]` にする1行）、(b) 症状のページを比例則から外す（任せる幅を広げる内容のページではない）、(c) このままにして notes に理由を書く
+1. **比例則と routes の食い違い**（→ メインが (a) に近い形に決め、症状のページに限って直した。§6）：比例則は routes を数えないので、F7 が守りのページ（verify・eval・enforce・safety）を related から routes へ移すと、level が任せる・仕組みにする・回すの症状のページ（いま11）に比例則の警告が出うる。routes の先を related に重ねると「routes の重なり」の警告になるので、どちらかが残る。メインが決めること：(a) 比例則に routes を数える（`check_proportional` の `page_refs(p)` を `[*page_refs(p), *route_refs(p)]` にする1行）、(b) 症状のページを比例則から外す（任せる幅を広げる内容のページではない）、(c) このままにして notes に理由を書く
 2. **routes を書いた後の警告の量**：F7 がまだ routes を書いていないので、routes と原因・routes の重なり・routes の数・必須の先がない cause がどれだけ出るかは分からない。第一波の数（first・all）も F7 の後でないと出ない
 3. **設計書との食い違い**（D1 の第2版。直すのはメインか D1）
    - §2.3 は第一波を「routes の各原因の先頭」と書くが、メインの指示1で first は「最初の必須の先」にした
@@ -183,3 +183,16 @@ $ python3 tools/check_catalog.py -q --stats（抜き書き）
 1. **first の意味**：各 cause の to のうち、最初の必須（site.yml の priorities の最初）の先にした。必須の先がない cause からは入れない。`--stats` に、必須の先がない cause の数と一覧（ページごとの cause）と、そのうち first で先がどれも第一波に入らないものの数を出す（§1.3・§1.4 の12）。all は優先度を問わず全部のまま
 2. **閉包**：種を wave: 1・核の症状のページの routes の先・named にし、前提でたどれるページをすべて入れる（routes の先の前提、named の前提も含む）。指示を受ける前の版は、routes の先から入った症状のページの routes もたどっていたので、核の症状のページの routes だけを種にする形に直した（§1.4 の9。いまの目次では数は変わらない）
 3. **README**：冒頭の「骨格（工程8a）」を「骨格（工程6c）」にした（README の工程の呼び名で第2版と違ったのはここだけ。工程2・工程3の呼び名は第2版と同じ）。§4.6 の2は指示の文にし、核の分野の一覧と「核でない分野には付けない」を括弧に残した。あわせて、wave の検査に「入口の分野のページと症状のページに wave: 1 がない」を足した（§1.4 の13。いまの目次では0件。F7 が足す新しい症状のページの付け忘れを捕まえる）
+
+## 6. 追加の直し
+
+§4 の1（比例則と routes の食い違い）へのメインの判断（2026-11-04）：症状のページでは、routes の先も比例則の守りのページとして数える（守りの分野のページが prerequisites・related・routes のどれかにあればよい）。理由は、症状のページは原因ごとに守りのページへ振り分けるので、routes の先が「次に読む」の中心になるため。直したのは `tools/check_catalog.py` と試験だけ。
+
+- **道具**（`check_proportional`）：type が symptom のページは、prerequisites・related に加えて routes の to の先の分野も見る。まだファイルのない分野の候補は、前提・関連と同じく registry の分野で数える。症状のページへの警告の文は「前提にも関連にも routes にも持たない」にした。ほかのページの routes（それ自体がエラー）は数えない。-h の説明も直した
+- **試験**（168。T3 の最初の報告の167に1を足した）
+  - 見つかる：test_routes_of_symptom_pages_count_for_the_proportional_rule の後半（routes の先も守りの分野でないと出る。文も確かめる）、test_routes_of_other_pages_do_not_count（症状でないページの routes の先は数えず、比例則と routes のエラーが出る）
+  - 見つからない：test_routes_of_symptom_pages_count_for_the_proportional_rule の前半（前提から verify を外しても、routes の enforce で満たす）と最後（routes の先が eval の候補でも満たす）
+  - T1 の test_delegating_page_without_guard は、試験用の目次の done-but-not-done の routes の先（hooks-basics。enforce）が守りに数えられるようになったので、routes の先も守りでないページにした（ねらいは同じ）。§2.1 の表の「当てない規則」の行の比例則の試験（test_routes_do_not_count_for_the_proportional_rule）は、この試験に置き換えた
+  - 道具を壊した写しで、3通りとも試験が落ちることを確かめた（症状のページでも routes を数えない・症状でないページの routes も数える・routes の先のまだない分野の候補を数えない）
+- **いまの目次**：比例則の警告は3件のまま（agents-md・feature-to-api-mapping・prompt-caching-in-practice。どれも症状のページでない）。ほかの数は §3 と同じ（F7 はまだ routes を書いていない）
+- **直していないもの（メインへ）**：catalog/README §4.4 の6の3つ目の箇条（この報告の §1.5 で私が書いたもの）に「比例則（§4.3 の4）の前提・関連にも数えない」とあり、いまの道具と食い違う。指示が道具と試験だけだったので直していない。直すなら「症状のページでは、routes の先も比例則（§4.3 の4）の守りのページに数える」に置き換える。設計書第2版 §3.1 の4（「関連に持ち」「前提にも関連にも持たないと、検査が警告する」）も、症状のページの routes を書いていない（D1 かメイン）

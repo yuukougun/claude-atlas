@@ -1409,9 +1409,12 @@ def check_transitive_prerequisites(cat: Catalog) -> Iterator[Finding]:
 @check("比例則", WARNING)
 def check_proportional(cat: Catalog) -> Iterator[Finding]:
     """site.yml の proportional_rule の levels（任せる・仕組みにする・回す）のページが、guard_fields（verify・eval・enforce・
-    safety）の分野のページを前提にも関連にも持たない（guard_fields の分野のページは除く。まだない分野の候補は registry
-    の分野で数える。routes の先は数えない）。任せる幅を広げる内容のページだけが対象なので、そうでないページは notes に
-    理由を書いて残してよい"""
+    safety）の分野のページを前提にも関連にも持たない（症状のページは routes の先も数える。guard_fields の分野のページは
+    除く。まだない分野の候補は registry の分野で数える）。任せる幅を広げる内容のページだけが対象なので、そうでない
+    ページは notes に理由を書いて残してよい
+
+    症状のページは原因ごとに守りのページへ振り分けるので、routes の先も守りのページに数える（2026-11-04 メインの判断）。
+    ほかのページの routes（エラー）は数えない。"""
     v = cat.vocab
     levels, guards = set(v.proportional_levels), set(v.guard_fields)
     if not levels or not guards:
@@ -1420,9 +1423,12 @@ def check_proportional(cat: Catalog) -> Iterator[Finding]:
         lv = p.text("level")
         if lv not in levels or p.field in guards:
             continue
-        targets = {cat.resolve(ref.target).field for _, ref in page_refs(p) if ref.target}
+        symptom = p.text("type") == SYMPTOM_TYPE
+        refs = [*page_refs(p), *(route_refs(p) if symptom else ())]
+        targets = {cat.resolve(ref.target).field for _, ref in refs if ref.target}
         if not targets & guards:
-            yield at(p, f"level が {lv} だが、{joined(v.guard_fields)} の分野のページを前提にも関連にも持たない"
+            where = "前提にも関連にも routes にも" if symptom else "前提にも関連にも"
+            yield at(p, f"level が {lv} だが、{joined(v.guard_fields)} の分野のページを{where}持たない"
                         "（任せる幅を広げる内容なら足す）")
 
 

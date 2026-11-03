@@ -615,7 +615,9 @@ class TestTransitivePrerequisites(CatalogCase):
 class TestProportional(CatalogCase):
     @covers("比例則")
     def test_delegating_page_without_guard(self):
-        self.edit_page("symptoms.yaml", "done-but-not-done", prerequisites=["request-vs-lock"])
+        # 症状のページは routes の先も守りのページに数えるので、routes の先も守りの分野でないページにする
+        self.edit_page("symptoms.yaml", "done-but-not-done", prerequisites=["request-vs-lock"],
+                       routes=make_routes(("確かめていない", ["outdated-advice-ledger"])))
         self.assertFound(("比例則", "done-but-not-done"))
 
     @covers("比例則")
@@ -894,13 +896,26 @@ class TestRoutes(CatalogCase):
                          ("症状の前提", "instructions-ignored"), ("routes の重なり", "instructions-ignored"))
 
     @covers("比例則")
-    def test_routes_do_not_count_for_the_proportional_rule(self):
-        # done-but-not-done（任せる）の routes には enforce の hooks-basics があるが、比例則は前提と関連だけを見る
+    def test_routes_of_symptom_pages_count_for_the_proportional_rule(self):
+        # 症状のページは、守りの分野のページが prerequisites・related・routes のどれかにあればよい（2026-11-04 メインの判断）。
+        # done-but-not-done（任せる）の前提から verify の completion-check を外しても、routes の hooks-basics（enforce）で満たす
         self.edit_page("symptoms.yaml", "done-but-not-done", prerequisites=["request-vs-lock"])
-        self.assertFound(("比例則", "done-but-not-done"))
-        self.edit_page("symptoms.yaml", "done-but-not-done",
-                       related=["instructions-ignored#diagnosis", "parallel-sessions", "fact-check"])
-        self.assertFound()   # verify の fact-check を関連に置けば満たす
+        self.assertFound()
+        self.edit_page("symptoms.yaml", "done-but-not-done", routes=make_routes(("確かめていない", ["outdated-advice-ledger"])))
+        issues = self.assertFound(("比例則", "done-but-not-done"))
+        self.assertEqual(issues[0].message, "level が 任せる だが、verify・eval・enforce・safety の分野のページを前提にも関連にも"
+                                            " routes にも持たない（任せる幅を広げる内容なら足す）")
+        # まだファイルのない分野の候補は registry の分野で数える（verifier-basics は eval の候補）
+        self.edit_page("symptoms.yaml", "done-but-not-done", routes=make_routes(("確かめていない", ["verifier-basics"])))
+        self.assertFound()
+
+    @covers("比例則")
+    def test_routes_of_other_pages_do_not_count(self):
+        # routes は症状のページだけが持つ。ほかのページの routes（エラー）の先は守りのページに数えない
+        self.edit_page("delegate.yaml", "parallel-sessions", prerequisites=[], related=[],
+                       routes=make_routes(("縛っていない", ["hooks-basics"])))
+        issues = self.assertFound(("routes", "parallel-sessions"), ("比例則", "parallel-sessions"))
+        self.assertIn("前提にも関連にも持たない", only(issues, "比例則")[0].message)
 
 
 class TestRouteWarnings(CatalogCase):
