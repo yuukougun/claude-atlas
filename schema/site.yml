@@ -48,6 +48,7 @@ stages: [stub, draft, reviewed, done]
 
 # 比例則（design.md §3.1 の4）：この段階のページのうち任せる幅を広げる内容のものは、
 # 次の分野のページを前提か関連に持つ（check_catalog が警告する）
+# （推奨の読みで、工程5で確かめる。design §3.1 の4。症状のページは routes の先も数える）
 proportional_rule:
   levels: [任せる, 仕組みにする, 回す]
   guard_fields: [verify, eval, enforce, safety]
