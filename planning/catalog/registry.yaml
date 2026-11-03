@@ -1,0 +1,465 @@
+# claude-atlas 目次の全候補の一覧（registry）
+# 形式：planning/catalog/README.md §2。語彙：schema/site.yml。作った担当：C0（工程3、2026-11-04）
+# 材料：research/00 §3・§5、research/11 第1節（第2節は新しいページを作るものだけ。該当なし）、
+#       requirements §4.2〜§4.4、research/22 §3.4。分野の割り振りは design §2.1・§4.2 と requirements §4.2〜§4.3
+# 各項目の type・level・新しい候補の priority は見当（分野の担当が決め直す）。level は 00 の L1〜L5 を読み替えた
+# 1行1候補。origin の「;」は出どころの区切り（同じ候補が複数の材料に出たものは1項目にまとめた）
+
+pages:
+  # ── start（8：必須 8・推奨 0・任意 0）──
+  - {id: how-to-use, field: start, title: "この辞典の引き方", type: guide, priority: 必須, origin: "00 §3 分野00", wave_core: true}
+  - {id: four-principles, field: start, title: "四つの原理と比例則（見せる・確かめる・縛る・握る）", type: guide, priority: 必須, origin: "00 §3 分野00「三つの原理（見せる・確かめる・縛る）」; requirements §3.1・§4.2（握るを足して四つに）", wave_core: true}
+  - {id: six-causes, field: start, title: "六つの失敗原因（Claude 側）と診断の手順", type: guide, priority: 必須, origin: "00 §3 分野00「六つの失敗原因と診断の手順」", wave_core: true}
+  - {id: human-pitfalls-intro, field: start, title: "人の側の五つの落とし穴（入口）", type: guide, priority: 必須, origin: "requirements §4.2 start・§3.2", wave_core: true}
+  - {id: product-map, field: start, title: "全体地図：Claude の面と層", type: hub, priority: 必須, origin: "00 §3 分野00", wave_core: false}
+  - {id: roadmap, field: start, title: "ロードマップ（委任の段階別）", type: hub, priority: 必須, origin: "00 §3 分野00", wave_core: false}
+  - {id: reverse-index, field: start, title: "逆引き辞典（症状・やりたいこと）", type: hub, priority: 必須, origin: "00 §3 分野00", wave_core: false}
+  - {id: glossary, field: start, title: "用語索引と旧名の対応", type: hub, priority: 必須, origin: "00 §3 分野00", wave_core: false}
+  # ── basics（20：必須 14・推奨 6・任意 0）──
+  - {id: tokens, field: basics, title: "トークンとは（日本語の場合）", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野01", wave_core: false}
+  - {id: attention-budget, field: basics, title: "コンテキストウィンドウと注意の予算", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野01", wave_core: false}
+  - {id: rereads-whole-history, field: basics, title: "毎ターン全履歴を読み直す", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野01", wave_core: false}
+  - {id: context-rot, field: basics, title: "context rot と紛らわしい情報", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: lost-in-the-middle, field: basics, title: "中ほどの情報は使われにくい（lost in the middle）", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: why-hallucinations, field: basics, title: "ハルシネーションはなぜ起きるか", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野01", wave_core: false}
+  - {id: knowledge-cutoff, field: basics, title: "知識カットオフと「今」を知らない問題", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野01", wave_core: false}
+  - {id: nondeterminism, field: basics, title: "同じ質問でも答えが変わる（非決定性）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: how-thinking-works, field: basics, title: "推論（thinking）と effort の仕組み", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: unfaithful-reasoning, field: basics, title: "表示された推論は内部の計算と一致しない", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: agent-loop, field: basics, title: "エージェントループと tool use", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: where-instructions-sit, field: basics, title: "system prompt・user message・CLAUDE.md の位置", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野01", wave_core: false}
+  - {id: why-prompt-caching, field: basics, title: "prompt caching（先頭が変わらないことの価値）", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野01", wave_core: false}
+  - {id: what-survives-compaction, field: basics, title: "compaction（要約圧縮）で何が残り、何が消えるか", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野01", wave_core: false}
+  - {id: subagent-isolation, field: basics, title: "subagent は別室の部下", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野01", wave_core: false}
+  - {id: request-vs-lock, field: basics, title: "お願いと鍵（決定論的か、非決定論的か）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: data-vs-instructions, field: basics, title: "データと命令を区別できない（prompt injection の原理）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: sycophancy, field: basics, title: "迎合（sycophancy）", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野01", wave_core: false}
+  - {id: reward-hacking, field: basics, title: "採点器を騙す（reward hacking）", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野01", wave_core: false}
+  - {id: summary-overgeneralization, field: basics, title: "要約は原文より強く言いがち（過度な一般化）", type: concept, priority: 推奨, level: 整える, origin: "requirements §4.2 basics; 11 第1節 分野01 p12#112・p12#152", wave_core: false}
+  # ── surfaces（11：必須 3・推奨 5・任意 3）──
+  - {id: choosing-a-surface, field: surfaces, title: "アプリ・Claude Code・API の選び方", type: comparison, priority: 必須, level: 使う, origin: "00 §3 分野02", wave_core: false}
+  - {id: unified-claude, field: surfaces, title: "統合された Claude（チャットとタスク）", type: feature, priority: 必須, level: 使う, origin: "00 §3 分野02", wave_core: false}
+  - {id: where-it-runs, field: surfaces, title: "実行場所の違い（クラウド／自分の PC／リモート操作）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野02", wave_core: false}
+  - {id: claude-code-surfaces, field: surfaces, title: "Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）", type: comparison, priority: 推奨, level: 整える, origin: "00 §3 分野02", wave_core: false}
+  - {id: claude-code-vs-cowork, field: surfaces, title: "Claude Code と Cowork の使い分け", type: comparison, priority: 推奨, level: 整える, origin: "00 §3 分野02", wave_core: false}
+  - {id: browser-control, field: surfaces, title: "Claude in Chrome とブラウザ操作", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野02", wave_core: false}
+  - {id: office-and-workspace, field: surfaces, title: "Office アドインと Google Workspace", type: feature, priority: 任意, level: 整える, origin: "00 §3 分野02「Office アドイン と Google Workspace」", wave_core: false}
+  - {id: screen-control, field: surfaces, title: "Computer use（画面操作）", type: feature, priority: 任意, level: 任せる, origin: "00 §3 分野02", wave_core: false}
+  - {id: peripheral-products, field: surfaces, title: "周辺製品の一覧（Claude Design・Science・Duet・Tag）", type: hub, priority: 任意, origin: "00 §3 分野02「Claude Design・Science・Duet・Tag」", wave_core: false}
+  - {id: agent-sdk-and-managed-agents, field: surfaces, title: "Agent SDK と Managed Agents の位置づけ", type: concept, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野02", wave_core: false}
+  - {id: what-each-surface-cannot-do, field: surfaces, title: "面ごとにできないこと一覧", type: comparison, priority: 推奨, level: 整える, origin: "00 §3 分野02", wave_core: false}
+  # ── models（14：必須 6・推奨 5・任意 3）──
+  - {id: current-models, field: models, title: "現行モデルの一覧と位置づけ", type: comparison, priority: 必須, level: 使う, origin: "00 §3 分野03", wave_core: false}
+  - {id: choosing-a-model, field: models, title: "モデルの選び方（三段階）", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野03", wave_core: false}
+  - {id: effort-levels, field: models, title: "effort の段階と使い分け", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野03", wave_core: false}
+  - {id: thinking-keywords, field: models, title: "「考えて」と書くことの現在（ultrathink）", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野03", wave_core: false}
+  - {id: fable-and-mythos, field: models, title: "Fable と Mythos", type: comparison, priority: 推奨, level: 整える, origin: "00 §3 分野03", wave_core: false}
+  - {id: opusplan, field: models, title: "計画は Opus、実装は Sonnet（opusplan など）", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野03", wave_core: false}
+  - {id: fast-mode-and-advisor, field: models, title: "fast mode と advisor", type: feature, priority: 任意, level: 任せる, origin: "00 §3 分野03", wave_core: false}
+  - {id: model-quirks, field: models, title: "モデル別の癖と、プロンプトの合わせ方", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野03", wave_core: false}
+  - {id: after-switching-models, field: models, title: "新しいモデルに替えたら見直すこと", type: recipe, priority: 必須, level: 任せる, origin: "00 §3 分野03", wave_core: false}
+  - {id: 1m-context, field: models, title: "1M コンテキストとの付き合い方", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野03", wave_core: false}
+  - {id: suspected-degradation, field: models, title: "「劣化した」と感じたら（版と effort を確認する）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野03", wave_core: false}
+  - {id: model-retirements, field: models, title: "旧モデルの退役と既定モデルの変化", type: concept, priority: 任意, level: 整える, origin: "00 §3 分野03", wave_core: false}
+  - {id: when-to-use-haiku, field: models, title: "Haiku を使いどころで使う", type: concept, priority: 任意, level: 任せる, origin: "00 §3 分野03", wave_core: false}
+  - {id: harness-over-model, field: models, title: "モデルの差よりハーネスの差", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.2 models; 11 第1節 分野03 p34#178", wave_core: false}
+  # ── prompting（24：必須 13・推奨 10・任意 1）──
+  - {id: brief-a-new-colleague, field: prompting, title: "新人の同僚に頼むつもりで", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野04", wave_core: false}
+  - {id: four-specifics, field: prompting, title: "具体性の4点（対象・状況・完了・手本）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: give-reasons, field: prompting, title: "理由を添える", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野04", wave_core: false}
+  - {id: show-examples, field: prompting, title: "例を見せる（3〜5個）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: xml-tags, field: prompting, title: "XML タグで区切る", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: long-context-first, field: prompting, title: "長い資料は先、質問は最後", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: say-what-you-want, field: prompting, title: "否定形ではなく、望む形で書く", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: suggest-or-do, field: prompting, title: "提案してほしいのか、実行してほしいのか", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: state-the-scope, field: prompting, title: "範囲を伝える（やらないこと）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: ask-for-outcomes, field: prompting, title: "細かく指図せず、成果で頼む", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野04", wave_core: false}
+  - {id: let-claude-ask, field: prompting, title: "質問させる・インタビューさせる", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: ask-for-options, field: prompting, title: "選択肢と推奨案を出させる", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: images-and-voice, field: prompting, title: "画像・スクリーンショット・音声で渡す", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: emphasis-words, field: prompting, title: "強調語（IMPORTANT・必ず）の現在", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: output-shape, field: prompting, title: "出力の形と分量を指定する", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: allow-i-dont-know, field: prompting, title: "「分からない」と言ってよいと伝える", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野04", wave_core: false}
+  - {id: refine-in-conversation, field: prompting, title: "頼み方は一回で決めない（会話で詰める）", type: concept, priority: 推奨, level: 使う, origin: "00 §3 分野04", wave_core: false}
+  - {id: does-double-check-work, field: prompting, title: "「念のため確認して」は効くか", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野04", wave_core: false}
+  - {id: requesting-prose, field: prompting, title: "文章を頼むとき（AI 臭さを避ける）", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: asking-for-reasoning, field: prompting, title: "推論を見せてほしいとき", type: concept, priority: 任意, level: 任せる, origin: "00 §3 分野04", wave_core: false}
+  - {id: before-after-prompts, field: prompting, title: "Before/After プロンプト集", type: recipe, priority: 必須, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: prompt-patterns, field: prompting, title: "用途別プロンプトの型", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野04", wave_core: false}
+  - {id: permission-to-stop, field: prompting, title: "止まって報告する権利を渡す", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.2 prompting; 11 第1節 分野04 p34#125・p56#124・p34#130", wave_core: false}
+  - {id: share-targets-and-bounds, field: prompting, title: "目標値・上界を伝える", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.2 prompting; 11 第1節 分野04 p34#56・p34#133・p34#140", wave_core: false}
+  # ── context（19：必須 12・推奨 5・任意 2）──
+  - {id: tidy-the-desk, field: context, title: "机を整える：新鮮さ・巻き戻し・書き出し・委任", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野05", wave_core: false}
+  - {id: when-to-start-fresh, field: context, title: "新しい会話を始めるタイミング", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野05", wave_core: false}
+  - {id: rewind-dont-correct, field: context, title: "違うと返すより、巻き戻す・編集する", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野05", wave_core: false}
+  - {id: compact-and-auto-compact, field: context, title: "/compact と自動圧縮", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: handoff-documents, field: context, title: "handoff 文書と document-and-clear", type: recipe, priority: 必須, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: progress-files, field: context, title: "進捗ファイル（PLAN・TODO・KNOWLEDGE）", type: recipe, priority: 推奨, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: keep-failure-lessons, field: context, title: "失敗の教訓は捨てずに書き残す", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: choose-what-to-read, field: context, title: "@参照と、何を読ませるかの絞り込み", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野05", wave_core: false}
+  - {id: inspect-context, field: context, title: "/context で中身を見る", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: side-questions-btw, field: context, title: "本筋を汚さずに聞く（/btw）", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: research-in-subagents, field: context, title: "調査は subagent に任せて要約だけ受け取る", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: always-on-costs, field: context, title: "常駐するもののコスト（CLAUDE.md・MCP・skills）", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: handing-long-documents, field: context, title: "長い資料を渡すとき", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野05", wave_core: false}
+  - {id: sessions-as-branches, field: context, title: "セッションに名前を付けて再開・分岐する", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: breaks-and-cache-expiry, field: context, title: "休憩と cache 切れ", type: concept, priority: 任意, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: promises-after-compaction, field: context, title: "圧縮のあとに残る約束、消える約束", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野05", wave_core: false}
+  - {id: managing-context-in-the-app, field: context, title: "アプリでの文脈管理（Projects・Memory・新しいチャット）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野05", wave_core: false}
+  - {id: compaction-settings, field: context, title: "1M 時代の圧縮設定", type: feature, priority: 任意, level: 仕組みにする, origin: "00 §3 分野05", wave_core: false}
+  - {id: build-on-results, field: context, title: "やり直させるより、結果を踏まえて直させる", type: concept, priority: 推奨, level: 整える, origin: "requirements §4.2 context; 11 第1節 分野05 p34#43", wave_core: false}
+  # ── app（22：必須 11・推奨 8・任意 3）──
+  - {id: where-to-put-instructions, field: app, title: "アプリの指示の置き場所（Instructions・Project・Memory・Skills）", type: comparison, priority: 必須, level: 整える, origin: "00 §3 分野06「指示の置き場所（Instructions・Project・Memory・Skills・Styles）」", wave_core: false}
+  - {id: using-projects, field: app, title: "Projects の使いどころ", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: too-much-project-knowledge, field: app, title: "Project の knowledge が多すぎるとき", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: how-memory-works, field: app, title: "Memory の仕組みと範囲", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: memory-faq, field: app, title: "Memory の困りごと FAQ", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: searching-past-chats, field: app, title: "過去チャットの検索", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: incognito-chats, field: app, title: "Incognito（記録しない会話）", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: search-research-thinking, field: app, title: "web search・Research・thinking の使い分け", type: comparison, priority: 必須, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: using-research, field: app, title: "Research を使いこなす", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: artifacts-overview, field: app, title: "Artifacts（Docs・Slides・Design・Dashboards）", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: artifacts-as-apps, field: app, title: "Artifacts を小さなアプリにする", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野06", wave_core: false}
+  - {id: files-and-code-execution, field: app, title: "ファイル作成とコード実行", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: how-attachments-are-read, field: app, title: "添付ファイルはどこまで読まれるか", type: feature, priority: 必須, level: 使う, origin: "00 §3 分野06", wave_core: false}
+  - {id: connectors-in-the-app, field: app, title: "Connectors（MCP）をアプリで使う", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: skills-in-the-app, field: app, title: "アプリの Skills", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野06", wave_core: false}
+  - {id: plugins-in-the-app, field: app, title: "アプリの Plugins", type: feature, priority: 任意, level: 任せる, origin: "00 §3 分野06", wave_core: false}
+  - {id: tasks-and-schedules-in-the-app, field: app, title: "タスクと定期実行（旧 Cowork）", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野06", wave_core: false}
+  - {id: permission-modes-in-the-app, field: app, title: "アプリの権限モード（Auto と Manual）と安全", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野06「権限モード（Auto と Manual）と安全」", wave_core: false}
+  - {id: long-chat-limits, field: app, title: "長い会話の自動 context 管理と長さの上限", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  - {id: voice-and-mobile, field: app, title: "音声・Quick entry・モバイル", type: feature, priority: 任意, level: 使う, origin: "00 §3 分野06", wave_core: false}
+  - {id: shared-projects-and-org-skills, field: app, title: "アプリをチームで使う（共有 Project・組織の skills）", type: feature, priority: 任意, level: 任せる, origin: "00 §3 分野06「チームで使う（共有 Project・組織の skills）」", wave_core: false}
+  - {id: research-and-writing-in-the-app, field: app, title: "アプリでの調べもの・文章作成のレシピ", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野06", wave_core: false}
+  # ── cli（19：必須 7・推奨 8・任意 4）──
+  - {id: input-symbols, field: cli, title: "入力の4記号（/ ! @ と Esc）", type: feature, priority: 必須, level: 使う, origin: "00 §3 分野07", wave_core: false}
+  - {id: must-know-operations, field: cli, title: "知らないと損をする操作20", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: permission-modes-overview, field: cli, title: "権限モードの全体像", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: when-to-plan, field: cli, title: "plan mode の使いどころ", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: checkpoints-and-rewind, field: cli, title: "checkpoint と rewind（git との違い）", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: resume-and-branch, field: cli, title: "セッションの再開・分岐・命名", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: usage-context-statusline, field: cli, title: "/usage・/context・status line", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: settings-layers, field: cli, title: "設定ファイルの階層（最小限）", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野07", wave_core: false}
+  - {id: init-and-first-claude-md, field: cli, title: "/init と最初の CLAUDE.md", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: working-with-git, field: cli, title: "git との付き合い方", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: using-ides, field: cli, title: "IDE（VS Code・JetBrains）で使う", type: feature, priority: 任意, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: cloud-sessions-and-teleport, field: cli, title: "クラウドセッションと teleport", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野07", wave_core: false}
+  - {id: control-from-phone, field: cli, title: "スマホから操作する（Remote Control）", type: feature, priority: 任意, level: 任せる, origin: "00 §3 分野07", wave_core: false}
+  - {id: ask-claude-code, field: cli, title: "Claude Code 自身に聞く", type: feature, priority: 推奨, level: 使う, origin: "00 §3 分野07", wave_core: false}
+  - {id: output-style-modes, field: cli, title: "output style（応答のスタイルを切り替える）", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野07「output style（説明多め・簡潔・学習用）」", wave_core: false}
+  - {id: for-non-engineers, field: cli, title: "Claude Code を非エンジニアが使う", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野07", wave_core: false}
+  - {id: completion-notifications, field: cli, title: "終わったら知らせてもらう", type: feature, priority: 任意, level: 任せる, origin: "00 §3 分野07", wave_core: false}
+  - {id: command-cheatsheet, field: cli, title: "主要コマンド早見表", type: ledger, priority: 推奨, origin: "00 §3 分野07", wave_core: false}
+  - {id: recover-lost-work, field: cli, title: "セッション記録から失った作業を取り戻す", type: recipe, priority: 任意, level: 任せる, origin: "requirements §4.2 cli; 11 第1節 分野07 p34#167", wave_core: false}
+  # ── extend（26：必須 17・推奨 8・任意 1）──
+  - {id: extensions-at-a-glance, field: extend, title: "拡張機能の全体図と使い分け早見表", type: comparison, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: when-to-add-what, field: extend, title: "足すタイミング表（トリガー → 機能）", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: what-to-put-in-claude-md, field: extend, title: "CLAUDE.md に書くこと", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: what-to-leave-out-of-claude-md, field: extend, title: "CLAUDE.md に書かないこと", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: claude-md-length, field: extend, title: "CLAUDE.md の長さと剪定", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: claude-md-loading-order, field: extend, title: "CLAUDE.md の階層と読み込み順", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: path-scoped-rules, field: extend, title: ".claude/rules と paths で必要なときだけ読ませる", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: using-auto-memory, field: extend, title: "auto memory", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: agents-md, field: extend, title: "AGENTS.md と他ツールとの共有", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: how-skills-load, field: extend, title: "Skills の考え方（手順を必要なときだけ読む）", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: writing-skills, field: extend, title: "Skill の作り方", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野08", wave_core: false}
+  - {id: skill-descriptions, field: extend, title: "Skill の description の書き方", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野08", wave_core: false}
+  - {id: manual-only-skills, field: extend, title: "副作用のある skill を勝手に動かさない", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野08", wave_core: false}
+  - {id: commands-became-skills, field: extend, title: "カスタムコマンドは skills へ", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: writing-subagents, field: extend, title: "Subagent の作り方と使いどころ", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野08", wave_core: false}
+  - {id: what-subagents-dont-inherit, field: extend, title: "Subagent に引き継がれないもの", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野08", wave_core: false}
+  - {id: connecting-mcp, field: extend, title: "MCP をつなぐ", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: mcp-or-cli, field: extend, title: "MCP か CLI か", type: comparison, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: choosing-mcp-servers, field: extend, title: "よく使われる MCP と選び方", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: code-intelligence-plugins, field: extend, title: "code intelligence plugin（LSP）", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野08", wave_core: false}
+  - {id: plugins-and-marketplaces, field: extend, title: "Plugins と marketplace", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野08", wave_core: false}
+  - {id: mods, field: extend, title: "Mods（深い挙動の変更）", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野08", wave_core: false}
+  - {id: pruning-extensions, field: extend, title: "拡張の棚卸しと剪定", type: recipe, priority: 必須, level: 仕組みにする, origin: "00 §3 分野08", wave_core: false}
+  - {id: skill-vs-subagent, field: extend, title: "Skill と Subagent の違い", type: comparison, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: hook-vs-skill, field: extend, title: "Hook と Skill の違い", type: comparison, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  - {id: claude-md-vs-rules-skills-styles, field: extend, title: "CLAUDE.md・rules・skills・output style の違い", type: comparison, priority: 必須, level: 任せる, origin: "00 §3 分野08", wave_core: false}
+  # ── verify（17：必須 6・推奨 10・任意 1）──
+  - {id: verification-ladder, field: verify, title: "検証の階段", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野09", wave_core: false}
+  - {id: define-done, field: verify, title: "「完了」を定義して渡す", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野09", wave_core: false}
+  - {id: evidence-not-reports, field: verify, title: "報告ではなく証拠を求める", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野09", wave_core: false}
+  - {id: tests-first, field: verify, title: "テストを先に書かせる", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野09", wave_core: false}
+  - {id: visual-checks, field: verify, title: "画面で確かめる（ブラウザ・スクリーンショット・/verify）", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野09", wave_core: false}
+  - {id: independent-review, field: verify, title: "書いた本人ではない者にレビューさせる", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野09", wave_core: false}
+  - {id: instructing-reviewers, field: verify, title: "レビュアーへの指示の書き方", type: concept, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野09", wave_core: false}
+  - {id: protect-tests, field: verify, title: "テストを守る（改ざんを防ぐ）", type: concept, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野09", wave_core: false}
+  - {id: fact-checking, field: verify, title: "事実を確かめる（引用・照合・best-of-N）", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野09", wave_core: false}
+  - {id: checking-citations, field: verify, title: "引用や出典の確かめ方", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野09", wave_core: false}
+  - {id: diffs-humans-must-read, field: verify, title: "人間が読むべき差分の箇所", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野09", wave_core: false}
+  - {id: own-generated-code, field: verify, title: "生成コードを自分のものにする", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野09", wave_core: false}
+  - {id: checking-unattended-runs, field: verify, title: "無人実行の結果を確かめる", type: concept, priority: 推奨, level: 回す, origin: "00 §3 分野09", wave_core: false}
+  - {id: looks-are-not-quality, field: verify, title: "見た目は品質の証拠ではない", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.3 verify; 11 第1節 分野09 概念「見た目は品質の証拠ではない」p34#229", wave_core: false}
+  - {id: pitfalls-of-ai-written-tests, field: verify, title: "AI に書かせたテストの落とし穴", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.3 verify; 11 第1節 分野09 p34#59・p34#61・p34#62・p34#63", wave_core: false}
+  - {id: second-opinion-from-another-model, field: verify, title: "別のモデルに第二の意見を求める（一致は証拠にならない）", type: concept, priority: 任意, level: 任せる, origin: "requirements §4.3 verify; 11 第1節 分野09 p34#174・p34#175・p34#177・p34#179・p34#191", wave_core: false}
+  - {id: suspect-too-good-results, field: verify, title: "良すぎる結果を疑う", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.3 verify; 11 第1節 分野09 p34#98・p56#128・p34#233・p34#19", wave_core: false}
+  # ── eval（13：必須 4・推奨 8・任意 1）──
+  - {id: verifier-defines-problem, field: eval, title: "検証器が問題を定義する（Claude は置かれたループを何でも加速する）", type: concept, priority: 必須, level: 任せる, origin: "requirements §4.3 eval（総論）; 11 第1節 分野09 総論に追加「検証器が問題を定義する」p34#1・p34#5; requirements §3.1「握る」", wave_core: true}
+  - {id: verifier-three-conditions, field: eval, title: "検証器の三条件（正しい・書き換えられない・本番を代表する）", type: concept, priority: 必須, level: 任せる, origin: "requirements §4.3 eval; 11 第1節 分野09 p34#2・p12#49・p34#14・p34#6・p34#16・p34#15", wave_core: true}
+  - {id: test-the-verifier, field: eval, title: "検証器そのものを確かめる（red/green・手で計算したケース）", type: recipe, priority: 必須, level: 仕組みにする, origin: "requirements §4.3 eval; 11 第1節 分野09 p34#7・p56#141・p34#27・p34#30、小項目「採点の正本は一か所に」p34#32", wave_core: true}
+  - {id: check-the-metric, field: eval, title: "評価指標そのものを確かめる", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.3 eval; 11 第1節 分野09 p12#109・p12#110", wave_core: false}
+  - {id: differential-testing, field: eval, title: "答えの分かる遅い解と比べる（差分テスト・オラクル）", type: recipe, priority: 推奨, level: 任せる, origin: "requirements §4.3 eval; 11 第1節 分野09 新「参照実装との差分テスト（オラクル）」p34#58・p56#136・p34#65・p34#66・p34#79", wave_core: false}
+  - {id: selection-pressure, field: eval, title: "選択圧：良かった版を選び続ける罠", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.3 eval; 11 第1節 分野09 p34#33・p34#34・p34#35（注記あり）・p34#36・p34#54", wave_core: false}
+  - {id: lockbox-and-holdout, field: eval, title: "ロックボックスと hold-out（人だけが持つ検証用データ）", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.3 eval; 11 第1節 分野09 p34#53・p34#218・p34#221・p34#222・p34#232", wave_core: false}
+  - {id: experiment-log, field: eval, title: "実験台帳（仮説を先に書く・提案者・分母・評価器の版）", type: recipe, priority: 必須, level: 仕組みにする, origin: "requirements §4.3 eval; 11 第1節 分野09 p34#51・p56#143・p34#29・p34#46", wave_core: true}
+  - {id: stratified-and-worst-case, field: eval, title: "平均ではなく層別と最悪ケースで見る", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.3 eval; 11 第1節 分野09 小項目 p34#52", wave_core: false}
+  - {id: measure-the-upper-bound, field: eval, title: "上界を測って「限界です」を反証する", type: concept, priority: 任意, level: 仕組みにする, origin: "requirements §4.3 eval; 11 第1節 分野09 p34#55（補完自身が推論と明記）", wave_core: false}
+  - {id: measure-changes, field: eval, title: "変更が効いたかを測る（小さな eval）", type: recipe, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野09; requirements §4.3 eval（00 分野09 から移す）", wave_core: true}
+  - {id: felt-vs-measured, field: eval, title: "体感と実測", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野09; requirements §4.3 eval（00 分野09 から移す）; requirements §3.2 人の側の落とし穴エ", wave_core: true}
+  - {id: insights-and-usage-review, field: eval, title: "/insights と /usage で振り返る", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野09; requirements §4.3 eval（00 分野09 から移す）", wave_core: false}
+  # ── enforce（15：必須 8・推奨 6・任意 1）──
+  - {id: when-to-lock, field: enforce, title: "お願いを鍵に移す判断", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野10", wave_core: false}
+  - {id: hooks-basics, field: enforce, title: "Hooks の考え方とイベント", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野10", wave_core: false}
+  - {id: block-with-exit-2, field: enforce, title: "exit 2 でブロックし、理由を返す", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野10", wave_core: false}
+  - {id: hook-recipes, field: enforce, title: "代表的な hook のレシピ", type: recipe, priority: 必須, level: 仕組みにする, origin: "00 §3 分野10", wave_core: false}
+  - {id: stop-hooks, field: enforce, title: "Stop hook で「終わらせない」", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野10", wave_core: false}
+  - {id: writing-safe-hooks, field: enforce, title: "hook を安全に書く", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野10", wave_core: false}
+  - {id: permission-rules, field: enforce, title: "権限ルール（allow・ask・deny）", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野10", wave_core: false}
+  - {id: what-auto-mode-stops, field: enforce, title: "auto mode は何を止め、何を止めないか", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野10", wave_core: false}
+  - {id: sandboxing, field: enforce, title: "sandbox で封じ込める", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野10", wave_core: false}
+  - {id: protected-paths, field: enforce, title: "消せない場所・触れない場所（protected paths）", type: feature, priority: 推奨, level: 任せる, origin: "00 §3 分野10", wave_core: false}
+  - {id: managed-settings-enforcement, field: enforce, title: "managed settings と組織の強制", type: feature, priority: 任意, level: 仕組みにする, origin: "00 §3 分野10", wave_core: false}
+  - {id: spoken-prohibitions-fade, field: enforce, title: "会話で言った禁止事項は圧縮で消える", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野10", wave_core: false}
+  - {id: request-lock-table, field: enforce, title: "お願いと鍵の対応表", type: comparison, priority: 必須, level: 任せる, origin: "00 §3 分野10", wave_core: false}
+  - {id: freeze-eval-assets, field: enforce, title: "評価資産を凍結し、触れる範囲を絞る", type: recipe, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 enforce; 11 第1節 分野10 p34#12", wave_core: false}
+  - {id: move-judgment-into-scripts, field: enforce, title: "判断を決定論的なスクリプトに移す", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 enforce; 11 第1節 分野10 概念 p34#68", wave_core: false}
+  # ── safety（17：必須 8・推奨 8・任意 1）──
+  - {id: prompt-injection-in-practice, field: safety, title: "prompt injection の実際", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野11", wave_core: false}
+  - {id: lethal-trifecta, field: safety, title: "三つを同時に持たせない（lethal trifecta と Rule of Two）", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野11", wave_core: false}
+  - {id: before-opening-unknown-repos, field: safety, title: "知らないリポジトリを開く前に", type: recipe, priority: 必須, level: 任せる, origin: "00 §3 分野11", wave_core: false}
+  - {id: vetting-extensions, field: safety, title: "MCP・plugins・skills を入れる前の確認", type: recipe, priority: 必須, level: 任せる, origin: "00 §3 分野11", wave_core: false}
+  - {id: protecting-secrets, field: safety, title: "秘密情報（.env・API キー）を守る", type: recipe, priority: 必須, level: 任せる, origin: "00 §3 分野11", wave_core: false}
+  - {id: destructive-commands, field: safety, title: "消されたくないもの（破壊的コマンド）", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野11", wave_core: false}
+  - {id: where-bypass-is-ok, field: safety, title: "bypassPermissions はどこで使ってよいか", type: concept, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野11", wave_core: false}
+  - {id: approval-fatigue, field: safety, title: "承認疲れ", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野11", wave_core: false}
+  - {id: where-your-data-goes, field: safety, title: "送ったデータの行方（学習・保持期間）", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野11", wave_core: false}
+  - {id: what-feedback-sends, field: safety, title: "/feedback・transcript 共有で送られるもの", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野11", wave_core: false}
+  - {id: browser-agent-cautions, field: safety, title: "Chrome・computer use・ブラウザでの注意", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野11", wave_core: false}
+  - {id: shared-artifacts-and-files, field: safety, title: "公開された artifact とファイルの扱い", type: concept, priority: 任意, level: 整える, origin: "00 §3 分野11", wave_core: false}
+  - {id: checking-ai-rules, field: safety, title: "学校・組織・コンテストの規則（類型と確認表）", type: concept, priority: 推奨, level: 使う, origin: "00 §3 分野11「学校・組織・コンテストの規則」; design §4.2（規則の類型と確認表は safety）; 11 第1節 分野11 解説節「なぜ規則が割れるか」p12#23・p12#29・p34#199", wave_core: false}
+  - {id: default-safety-settings, field: safety, title: "安全の早見表（面ごとの既定値）", type: comparison, priority: 必須, level: 整える, origin: "00 §3 分野11", wave_core: false}
+  - {id: disclosure-and-provenance, field: safety, title: "AI 利用の開示と出所の記録", type: concept, priority: 推奨, level: 整える, origin: "requirements §4.4 safety; 11 第1節 分野11 p12#36・p12#38・p12#39", wave_core: false}
+  - {id: instructions-hidden-in-materials, field: safety, title: "課題資料・問題文に仕込まれた指示", type: concept, priority: 推奨, level: 整える, origin: "requirements §4.4 safety; 11 第1節 分野11 新項目 p34#203", wave_core: false}
+  - {id: entrusted-data, field: safety, title: "預かったデータ・規約付きのデータを AI に渡してよいか", type: concept, priority: 推奨, level: 整える, origin: "requirements §4.4 safety; 11 第1節 分野11 p34#208", wave_core: false}
+  # ── delegate（23：必須 7・推奨 12・任意 4）──
+  - {id: five-questions-before-delegating, field: delegate, title: "委任の段階と、任せる前の五つの問い", type: concept, priority: 必須, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: goal-until-done, field: delegate, title: "/goal（完了するまで続けさせる）", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: loop-and-scheduling, field: delegate, title: "/loop と定期実行の三方式", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: cloud-schedules, field: delegate, title: "クラウドの定期タスク（旧 routines）", type: feature, priority: 推奨, level: 回す, origin: "00 §3 分野12", wave_core: false}
+  - {id: headless-basics, field: delegate, title: "headless（`claude -p`）の基本", type: feature, priority: 必須, level: 回す, origin: "00 §3 分野12", wave_core: false}
+  - {id: bare-mode, field: delegate, title: "`--bare` と再現性", type: feature, priority: 推奨, level: 回す, origin: "00 §3 分野12", wave_core: false}
+  - {id: github-actions-with-claude, field: delegate, title: "GitHub Actions と @claude", type: feature, priority: 推奨, level: 回す, origin: "00 §3 分野12", wave_core: false}
+  - {id: automated-pr-review, field: delegate, title: "自動 PR レビュー（Code Review・/ultrareview）", type: feature, priority: 任意, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: choosing-parallel-modes, field: delegate, title: "並列の五方式の選び方", type: comparison, priority: 必須, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: parallel-with-worktrees, field: delegate, title: "git worktree で並列にする", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: agent-view-and-background, field: delegate, title: "agent view と背景セッション", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: agent-teams-experimental, field: delegate, title: "agent teams（実験的）", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野12", wave_core: false}
+  - {id: dynamic-workflows, field: delegate, title: "dynamic workflows（ultracode）", type: feature, priority: 推奨, level: 回す, origin: "00 §3 分野12", wave_core: false}
+  - {id: batch-and-p-loops, field: delegate, title: "多数のファイルに同じ作業を流す（/batch と `-p` のループ）", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野12「fan-out（/batch と `-p` ループ）」", wave_core: false}
+  - {id: humans-set-the-parallel-limit, field: delegate, title: "並列の上限は人間が決める", type: concept, priority: 必須, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: homemade-loops, field: delegate, title: "自作ループ（Ralph など）の現在", type: concept, priority: 任意, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
+  - {id: choosing-automation, field: delegate, title: "自動化の選び方（定期タスク・headless・SDK）", type: comparison, priority: 推奨, level: 回す, origin: "00 §3 分野12「自動化の選び方（routine・headless・SDK）」", wave_core: false}
+  - {id: what-not-to-delegate, field: delegate, title: "任せないもの（評価・採否・撤退・中核の理解）", type: concept, priority: 必須, level: 任せる, origin: "requirements §4.4 delegate; 11 第1節 分野12 p12#91・p12#22・p12#18 ほか", wave_core: false}
+  - {id: is-the-task-ai-suited, field: delegate, title: "そのタスクは AI に向いているか（五つの軸）", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.4 delegate; 11 第1節 分野12 p12#63", wave_core: false}
+  - {id: open-ended-loop-trap, field: delegate, title: "開いた改善ループの罠", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 delegate; 11 第1節 分野12 p34#142・p34#149", wave_core: false}
+  - {id: pairing-and-delegating, field: delegate, title: "伴走と委託", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.4 delegate; 11 第1節 分野12 概念 p34#143", wave_core: false}
+  - {id: progress-logs-for-long-jobs, field: delegate, title: "長時間ジョブの進捗ログを設計する", type: recipe, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 delegate; 11 第1節 分野12 p34#168・p34#172", wave_core: false}
+  - {id: compare-hypotheses-in-parallel, field: delegate, title: "仮説ごとに並べて、同じ物差しで比べる", type: recipe, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 delegate; 11 第1節 分野12 p34#193", wave_core: false}
+  # ── judgment（11：必須 5・推奨 5・任意 1）──
+  - {id: human-pitfalls, field: judgment, title: "人の側の五つの落とし穴（総論）", type: judgment, priority: 必須, level: 整える, origin: "requirements §4.3 judgment（総論）・§3.2; 11 第1節 新分野案X 総論「AI に頼って負ける五つの仕組み」p12#65・p56#1・p12#85・p12#87・p56#120", wave_core: true}
+  - {id: over-reliance, field: judgment, title: "判断を預けすぎる（過度依存）", type: judgment, priority: 必須, level: 整える, origin: "requirements §4.3 judgment; 11 第1節 新分野案X「過度依存」p12#66〜p12#70; 11 第2節 分野00 p12#86", wave_core: true}
+  - {id: ask-without-sycophancy, field: judgment, title: "迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）", type: judgment, priority: 推奨, level: 整える, origin: "requirements §4.3 judgment; 11 第1節 新分野案X「迎合させない聞き方」p56#2・p56#4・p56#16・p56#134 ほか", wave_core: false}
+  - {id: agreement-is-not-evidence, field: judgment, title: "同意は根拠に数えない（AI レビュアーの一致を含む）", type: judgment, priority: 必須, level: 整える, origin: "requirements §4.3 judgment; 11 第1節 分野17 p56#21・分野09 p34#175; 11 第2節 分野18 p12#90", wave_core: true}
+  - {id: decide-when-to-quit, field: judgment, title: "やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）", type: judgment, priority: 必須, level: 任せる, origin: "requirements §4.3 judgment; 11 第1節 新分野案X「やめどきを先に決める」p12#77・p56#25・p12#78・p56#22 ほか", wave_core: true}
+  - {id: ai-ideas-are-everyones, field: judgment, title: "AI の案は「みんなの案」（均質化）", type: judgment, priority: 必須, level: 整える, origin: "requirements §4.3 judgment; 11 第1節 新分野案X「AI の案は『みんなの案』」p12#82・p12#83・p12#84 ほか", wave_core: true}
+  - {id: think-before-asking, field: judgment, title: "頼む前に自分で考える（AI には問い・反論・道具を頼む）", type: judgment, priority: 推奨, level: 整える, origin: "requirements §4.3 judgment; 11 第1節 新分野案X「AI に頼む前に自分で考える」p12#120・p12#132〜p12#137 ほか", wave_core: false}
+  - {id: learning-with-ai, field: judgment, title: "AI で新しい技術を学ぶ（生成させた後に理解を確かめる）", type: judgment, priority: 推奨, level: 整える, origin: "requirements §4.3 judgment; 11 第1節 新分野案X「AI で新しい技術を学ぶ（技能形成）」p12#144〜p12#150・p56#38 ほか", wave_core: false}
+  - {id: how-much-understanding-to-keep, field: judgment, title: "どこまで理解を手放してよいか（中核と周辺）", type: judgment, priority: 推奨, level: 任せる, origin: "requirements §4.3 judgment; 11 第1節 新分野案X p56#45", wave_core: false}
+  - {id: retros-without-ai-verdicts, field: judgment, title: "振り返りで AI に評価させない（集計係にとどめる）", type: judgment, priority: 任意, level: 任せる, origin: "requirements §4.3 judgment; 11 第1節 新分野案X p56#88・p56#89・p56#92・p56#97・p56#100", wave_core: false}
+  - {id: postmortems, field: judgment, title: "失敗を仕組みに戻す（ポストモーテム）", type: judgment, priority: 推奨, level: 仕組みにする, origin: "requirements §4.3 judgment; 11 第1節 新分野案X p56#93・p56#94・p56#98・p56#99", wave_core: false}
+  # ── api（14：必須 2・推奨 7・任意 5）──
+  - {id: feature-to-api-mapping, field: api, title: "アプリの機能と API の概念の対応表", type: comparison, priority: 必須, level: 任せる, origin: "00 §3 分野13", wave_core: false}
+  - {id: stateless-messages-api, field: api, title: "Messages API と会話の正体", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野13", wave_core: false}
+  - {id: tool-use-loop, field: api, title: "tool use のループ", type: concept, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野13", wave_core: false}
+  - {id: structured-outputs-basics, field: api, title: "structured outputs（形式を保証する）", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野13", wave_core: false}
+  - {id: prompt-caching-in-practice, field: api, title: "prompt caching の実務", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野13", wave_core: false}
+  - {id: batch-api-basics, field: api, title: "Batch API", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野13", wave_core: false}
+  - {id: citations-basics, field: api, title: "citations と根拠の返却", type: feature, priority: 任意, level: 仕組みにする, origin: "00 §3 分野13", wave_core: false}
+  - {id: files-pdfs-and-images, field: api, title: "ファイル・PDF・画像の扱い", type: feature, priority: 任意, level: 仕組みにする, origin: "00 §3 分野13", wave_core: false}
+  - {id: long-running-agent-context, field: api, title: "長時間エージェントの context 管理", type: concept, priority: 推奨, level: 回す, origin: "00 §3 分野13", wave_core: false}
+  - {id: agent-sdk-basics, field: api, title: "Agent SDK（Claude Code をライブラリとして使う）", type: feature, priority: 推奨, level: 回す, origin: "00 §3 分野13", wave_core: false}
+  - {id: managed-agents-basics, field: api, title: "Managed Agents", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野13", wave_core: false}
+  - {id: sdk-comparison, field: api, title: "Client SDK・Agent SDK・Managed Agents・CLI の比較", type: comparison, priority: 必須, level: 仕組みにする, origin: "00 §3 分野13", wave_core: false}
+  - {id: designing-agent-tools, field: api, title: "エージェント用のツールを設計する原則", type: concept, priority: 任意, level: 回す, origin: "00 §3 分野13", wave_core: false}
+  - {id: prompt-evals-intro, field: api, title: "プロンプトの評価（eval）入門", type: concept, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野13", wave_core: false}
+  # ── cost（12：必須 5・推奨 5・任意 2）──
+  - {id: how-usage-limits-work, field: cost, title: "利用上限の仕組み（面をまたいで共有する枠）", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野14「利用上限の仕組み（5時間・週・共有）」", wave_core: false}
+  - {id: what-uses-up-limits, field: cost, title: "上限を早く使う七つの要因", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野14", wave_core: false}
+  - {id: saving-priorities, field: cost, title: "節約の優先順位（手戻りを減らすのが先）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野14", wave_core: false}
+  - {id: choosing-a-plan, field: cost, title: "プランの選び方（確認日付き）", type: comparison, priority: 推奨, level: 使う, origin: "00 §3 分野14", wave_core: false}
+  - {id: before-using-fable, field: cost, title: "Fable を使う前に", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野14", wave_core: false}
+  - {id: usage-credits-basics, field: cost, title: "usage credits（超過分の従量課金）", type: feature, priority: 推奨, level: 整える, origin: "00 §3 分野14", wave_core: false}
+  - {id: claude-code-costs, field: cost, title: "Claude Code のコストを見る（/usage・status line）", type: feature, priority: 必須, level: 任せる, origin: "00 §3 分野14", wave_core: false}
+  - {id: parallel-and-loop-costs, field: cost, title: "並列・ループ・workflows のコスト", type: concept, priority: 必須, level: 仕組みにする, origin: "00 §3 分野14", wave_core: false}
+  - {id: reading-api-pricing, field: cost, title: "API 料金の読み方", type: concept, priority: 任意, level: 仕組みにする, origin: "00 §3 分野14", wave_core: false}
+  - {id: paying-in-yen, field: cost, title: "円での支払い・消費税・インボイス", type: concept, priority: 任意, level: 使う, origin: "00 §3 分野14", wave_core: false}
+  - {id: check-billing-path, field: cost, title: "課金経路を確かめる（API キーとサブスクリプション）", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.4 cost; 11 第1節 分野14 p34#173; research/22 #37（Help Center で確かめた）", wave_core: false}
+  - {id: when-ai-is-unavailable, field: cost, title: "AI が使えないときの備え（障害・上限）", type: concept, priority: 推奨, level: 任せる, origin: "requirements §4.4 cost; 11 第1節 分野14 p56#73・p56#79", wave_core: false}
+  # ── japanese（12：必須 3・推奨 7・任意 2）──
+  - {id: can-i-prompt-in-japanese, field: japanese, title: "日本語で指示して大丈夫か", type: concept, priority: 必須, level: 使う, origin: "00 §3 分野15", wave_core: false}
+  - {id: keep-replies-in-japanese, field: japanese, title: "日本語で返し続けさせる", type: concept, priority: 必須, level: 任せる, origin: "00 §3 分野15", wave_core: true}
+  - {id: commit-and-comment-language, field: japanese, title: "コミットメッセージ・コメントの言語", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野15", wave_core: false}
+  - {id: consistent-politeness, field: japanese, title: "です・ます／だ・であるを揃える", type: recipe, priority: 必須, level: 整える, origin: "00 §3 分野15", wave_core: true}
+  - {id: consistent-notation, field: japanese, title: "表記ゆれと漢字の開き", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野15", wave_core: true}
+  - {id: less-ai-sounding-japanese, field: japanese, title: "日本語の「AI 臭さ」を減らす", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野15「「AI臭さ」を減らす」", wave_core: false}
+  - {id: textlint-hook, field: japanese, title: "textlint を hook で回す", type: recipe, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野15", wave_core: true}
+  - {id: proofreading-skills-for-japanese, field: japanese, title: "日本語推敲 skill の選び方", type: comparison, priority: 任意, level: 任せる, origin: "00 §3 分野15", wave_core: false}
+  - {id: more-tokens-in-japanese, field: japanese, title: "日本語はトークンが多めになる", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野15", wave_core: false}
+  - {id: character-encodings, field: japanese, title: "文字コード（Shift_JIS の CSV など）", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野15", wave_core: false}
+  - {id: windows-wsl-ime, field: japanese, title: "Windows・WSL・IME で困ったら", type: recipe, priority: 任意, level: 整える, origin: "00 §3 分野15", wave_core: false}
+  - {id: documents-in-japanese, field: japanese, title: "日本語の資料を読ませる・書かせる", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野15", wave_core: false}
+  # ── recipes（22：必須 4・推奨 11・任意 7）──
+  - {id: explore-a-codebase, field: recipes, title: "知らないコードベースを読む", type: recipe, priority: 必須, level: 整える, origin: "00 §3 分野16", wave_core: false}
+  - {id: fix-a-bug, field: recipes, title: "バグを直す", type: recipe, priority: 必須, level: 整える, origin: "00 §3 分野16", wave_core: false}
+  - {id: refactor-and-migrate, field: recipes, title: "リファクタリングと大規模な移行", type: recipe, priority: 推奨, level: 任せる, origin: "00 §3 分野16", wave_core: false}
+  - {id: add-tests, field: recipes, title: "テストを足す", type: recipe, priority: 推奨, level: 任せる, origin: "00 §3 分野16", wave_core: false}
+  - {id: create-and-review-prs, field: recipes, title: "PR を作り、レビューを受ける", type: recipe, priority: 推奨, level: 任せる, origin: "00 §3 分野16", wave_core: false}
+  - {id: spec-first, field: recipes, title: "仕様を先に固める（spec・インタビュー・モック先行）", type: recipe, priority: 必須, level: 任せる, origin: "00 §3 分野16", wave_core: false}
+  - {id: write-docs, field: recipes, title: "ドキュメント・技術文書を書く", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野16", wave_core: false}
+  - {id: data-analysis, field: recipes, title: "データ分析（SQL を書かずに）", type: recipe, priority: 推奨, level: 任せる, origin: "00 §3 分野16", wave_core: false}
+  - {id: research-and-reports, field: recipes, title: "調べものとレポート", type: recipe, priority: 必須, level: 整える, origin: "00 §3 分野16", wave_core: false}
+  - {id: make-slides, field: recipes, title: "資料・スライドを作る", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野16", wave_core: false}
+  - {id: office-paperwork, field: recipes, title: "事務作業の半自動化（経費・報告）", type: recipe, priority: 推奨, level: 任せる, origin: "00 §3 分野16", wave_core: false}
+  - {id: notes-and-pkm, field: recipes, title: "ノート・PKM（Obsidian など）", type: recipe, priority: 任意, level: 任せる, origin: "00 §3 分野16", wave_core: false}
+  - {id: frontend-design, field: recipes, title: "フロントエンドのデザイン", type: recipe, priority: 任意, level: 任せる, origin: "00 §3 分野16", wave_core: false}
+  - {id: chores-monorepo, field: recipes, title: "雑務をまとめたモノレポ", type: recipe, priority: 任意, level: 仕組みにする, origin: "00 §3 分野16", wave_core: false}
+  - {id: read-specs-yourself, field: recipes, title: "仕様を自分で読み、AI に誤読を指摘させる", type: recipe, priority: 推奨, level: 整える, origin: "requirements §4.4 recipes; 11 第1節 分野16 p12#104・p12#116・p12#117 ほか", wave_core: false}
+  - {id: build-observation-tools, field: recipes, title: "観察の道具を作らせる（可視化・集計・ログ）", type: recipe, priority: 推奨, level: 任せる, origin: "requirements §4.4 recipes; 11 第1節 分野16 p12#142", wave_core: false}
+  - {id: build-test-harness, field: recipes, title: "検証環境・テスト基盤を作らせる", type: recipe, priority: 推奨, level: 任せる, origin: "requirements §4.4 recipes; 11 第1節 分野16 p34#25・p34#122", wave_core: false}
+  - {id: property-based-tests, field: recipes, title: "プロパティテストを書かせる", type: recipe, priority: 任意, level: 任せる, origin: "requirements §4.4 recipes; 11 第1節 分野16 p34#64", wave_core: false}
+  - {id: shrink-failing-inputs, field: recipes, title: "失敗する入力を縮めるスクリプトを書かせる", type: recipe, priority: 任意, level: 任せる, origin: "requirements §4.4 recipes; 11 第1節 分野16 p34#67・p34#78", wave_core: false}
+  - {id: bisect-regressions, field: recipes, title: "退行の原因を git bisect で探させる", type: recipe, priority: 任意, level: 任せる, origin: "requirements §4.4 recipes; 11 第1節 分野16 p34#73", wave_core: false}
+  - {id: performance-tuning, field: recipes, title: "性能改善を頼む（プロファイルが先・出力の一致と実測）", type: recipe, priority: 推奨, level: 任せる, origin: "requirements §4.4 recipes; 11 第1節 分野16 p34#83〜p34#89（p34#84 に注記あり）・p34#95〜p34#97 ほか", wave_core: false}
+  - {id: audit-ml-pipelines, field: recipes, title: "機械学習のパイプラインを点検させる", type: recipe, priority: 任意, level: 任せる, origin: "11 第1節 分野16 p56#140（11 が任意と書く）", wave_core: false}
+  # ── team（16：必須 1・推奨 8・任意 7）──
+  - {id: share-team-settings, field: team, title: "チームで設定を共有する", type: recipe, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
+  - {id: enterprise-vs-team-plans, field: team, title: "Team と Enterprise の違い（概念）", type: comparison, priority: 任意, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
+  - {id: org-managed-settings-and-mcp, field: team, title: "managed settings と MCP の組織管理", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野17", wave_core: false}
+  - {id: audit-logs-and-telemetry, field: team, title: "監査ログと可視化（OpenTelemetry など）", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野17", wave_core: false}
+  - {id: paved-roads, field: team, title: "禁止ではなく安全な道を作る", type: concept, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
+  - {id: ai-usage-guidelines, field: team, title: "社内ガイドラインに書くこと", type: recipe, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
+  - {id: review-bottlenecks, field: team, title: "レビューのボトルネックと疲労", type: concept, priority: 必須, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
+  - {id: via-cloud-providers, field: team, title: "Bedrock・Vertex・Foundry 経由で使う", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野17", wave_core: false}
+  - {id: rolling-out-to-teams, field: team, title: "チームに広める（/team-onboarding など）", type: recipe, priority: 任意, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
+  - {id: separate-roles, field: team, title: "役割を分ける（書く人・承認する人・疑う人）", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 team; 11 第1節 分野17 p56#63", wave_core: false}
+  - {id: risk-tiered-approval, field: team, title: "リスク段階別の承認（AI の承認を人の承認に数えない）", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 team; 11 第1節 分野17 p56#58（2026-11-03 訂正済みの行）・p56#66", wave_core: false}
+  - {id: ideate-independently, field: team, title: "案出しは独立に、突き合わせは AI に", type: recipe, priority: 任意, level: 仕組みにする, origin: "requirements §4.4 team; 11 第1節 分野17 p56#69", wave_core: false}
+  - {id: record-decisions, field: team, title: "決定を文書に残す（ADR と週次アップデート）", type: recipe, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 team; 11 第1節 分野17 p56#70", wave_core: false}
+  - {id: curb-sycophancy-and-overtrust, field: team, title: "チームで迎合と過信を防ぐ", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 team; 11 第1節 分野17 p56#50", wave_core: false}
+  - {id: grow-review-checklists, field: team, title: "レビューの観点を育てる", type: recipe, priority: 推奨, level: 仕組みにする, origin: "requirements §4.4 team; 11 第1節 分野17 p56#57", wave_core: false}
+  - {id: ai-amplifies-organizations, field: team, title: "AI は組織の強みも機能不全も増幅する", type: concept, priority: 任意, level: 仕組みにする, origin: "11 第1節 分野17 新ページ p56#59（分野00「全体地図」の前提にする案もある）", wave_core: false}
+  # ── contest（12：必須 2・推奨 6・任意 4）──
+  - {id: ai-in-contests-today, field: contest, title: "AI はコンテストでどこまで来たか（確認日付き）", type: concept, priority: 推奨, level: 使う, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「AI はコンテストでどこまで来たか」p12#2〜p12#12 ほか", wave_core: false}
+  - {id: competition-rules, field: contest, title: "大会の規則の早見（禁止・部門分け・開示）", type: concept, priority: 必須, level: 使う, origin: "requirements §4.3 contest「規則はなぜ割れるか：禁止・部門分け・開示の三類型と、規則の確認表」; design §4.2; 11 第1節 分野11 p12#23・p12#29", wave_core: false}
+  - {id: formats-and-ai-fit, field: contest, title: "形式と AI の効き方（検証器・典型度・テキスト・環境・期間）", type: concept, priority: 推奨, level: 整える, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「形式と AI の効き方」p12#17・p34#94", wave_core: false}
+  - {id: format-cheatsheet, field: contest, title: "形式別の早見表", type: comparison, priority: 推奨, level: 整える, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「形式別の早見表」p12#53〜p12#62", wave_core: false}
+  - {id: practice-vs-contest-day, field: contest, title: "練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）", type: concept, priority: 必須, level: 整える, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「練習と本番の使い分け」p12#103・p56#48・p56#119; design §4.2", wave_core: false}
+  - {id: insight-patterns, field: contest, title: "考察の型（観察 → 仮説 → 小さな実験）", type: concept, priority: 任意, level: 整える, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「考察の型」p12#121〜p12#126 ほか", wave_core: false}
+  - {id: evaluators-by-format, field: contest, title: "形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）", type: concept, priority: 推奨, level: 仕組みにする, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「形式別の評価器」p34#20・p34#21・p34#22 ほか", wave_core: false}
+  - {id: running-contest-experiments, field: contest, title: "実験の回し方（ケース数・集計・パラメータ・勝率に必要な試合数）", type: recipe, priority: 推奨, level: 仕組みにする, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「実験の回し方」p34#41・p34#42・p34#45・p34#48・p34#49", wave_core: false}
+  - {id: search-code-checklist, field: contest, title: "探索コードと高速化の点検表", type: recipe, priority: 任意, level: 任せる, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「探索コードと高速化の点検表」p34#75・p34#77・p34#92 ほか", wave_core: false}
+  - {id: competition-day-operations, field: contest, title: "本番の運用（開始直後に検証器・終盤は凍結・AI なしでも提出できる状態）", type: recipe, priority: 推奨, level: 任せる, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「本番の運用」p56#72・p56#82・p56#83・p56#85 ほか", wave_core: false}
+  - {id: long-team-competitions, field: contest, title: "チーム戦の運用（長期・対戦型）", type: recipe, priority: 任意, level: 仕組みにする, origin: "requirements §4.3 contest; 11 第1節 新分野案Y p12#62・p56#87", wave_core: false}
+  - {id: reading-top-solutions, field: contest, title: "振り返りと上位解法の読み方", type: recipe, priority: 任意, level: 整える, origin: "requirements §4.3 contest; 11 第1節 新分野案Y「振り返りと上位解法の読み方」p12#151・p56#101", wave_core: false}
+  # ── symptoms（26：必須 16・推奨 10・任意 0）──
+  - {id: not-what-i-meant, field: symptoms, title: "意図と違うものが出てくる", type: symptom, priority: 必須, level: 使う, origin: "00 §3 分野18", wave_core: true}
+  - {id: forgets-in-long-chats, field: symptoms, title: "長い会話で前提を忘れる・雑になる", type: symptom, priority: 必須, level: 使う, origin: "00 §3 分野18", wave_core: true}
+  - {id: going-in-circles, field: symptoms, title: "同じ失敗を繰り返す（堂々巡り）", type: symptom, priority: 必須, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: claims-done-but-isnt, field: symptoms, title: "「完了」と言うが終わっていない", type: symptom, priority: 必須, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: rewrote-tests-to-pass, field: symptoms, title: "テストを書き換えて通した", type: symptom, priority: 必須, level: 任せる, origin: "00 §3 分野18", wave_core: true}
+  - {id: instructions-ignored, field: symptoms, title: "CLAUDE.md や指示が守られない", type: symptom, priority: 必須, level: 任せる, origin: "00 §3 分野18", wave_core: true}
+  - {id: does-more-than-asked, field: symptoms, title: "頼んでいないことまでやる（過剰設計）", type: symptom, priority: 必須, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: keeps-stopping, field: symptoms, title: "確認ばかりで進まない・途中で止まる", type: symptom, priority: 推奨, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: uses-nonexistent-apis, field: symptoms, title: "存在しない関数やパッケージを使う", type: symptom, priority: 必須, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: plausible-falsehoods, field: symptoms, title: "もっともらしい嘘・出典の誤り", type: symptom, priority: 必須, level: 使う, origin: "00 §3 分野18", wave_core: true}
+  - {id: caves-when-pushed, field: symptoms, title: "すぐ同意して意見を変える（迎合）", type: symptom, priority: 推奨, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: doesnt-know-latest, field: symptoms, title: "最新の情報を知らない", type: symptom, priority: 必須, level: 使う, origin: "00 §3 分野18", wave_core: true}
+  - {id: skipped-later-pages, field: symptoms, title: "添付した資料の後半を読んでいない", type: symptom, priority: 推奨, level: 使う, origin: "00 §3 分野18", wave_core: true}
+  - {id: forgot-after-compaction, field: symptoms, title: "圧縮の後に約束を忘れた", type: symptom, priority: 必須, level: 任せる, origin: "00 §3 分野18", wave_core: true}
+  - {id: replies-in-english, field: symptoms, title: "英語で返ってくる", type: symptom, priority: 必須, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: hits-limits-quickly, field: symptoms, title: "すぐ上限に当たる", type: symptom, priority: 必須, level: 使う, origin: "00 §3 分野18", wave_core: true}
+  - {id: seems-less-capable, field: symptoms, title: "急に賢くなくなった気がする", type: symptom, priority: 必須, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: wrong-amount-of-approvals, field: symptoms, title: "承認の確認が多すぎる・少なすぎる", type: symptom, priority: 推奨, level: 任せる, origin: "00 §3 分野18", wave_core: true}
+  - {id: deleted-something-important, field: symptoms, title: "消してはいけないものを消された", type: symptom, priority: 必須, level: 任せる, origin: "00 §3 分野18", wave_core: true}
+  - {id: repeating-the-same-explanation, field: symptoms, title: "毎回同じ説明をしている", type: symptom, priority: 必須, level: 整える, origin: "00 §3 分野18", wave_core: true}
+  - {id: misses-broken-evaluation, field: symptoms, title: "評価のおかしさに自分からは気づかない", type: symptom, priority: 推奨, level: 仕組みにする, origin: "requirements §4.2・§4.4 symptoms; 11 第1節 分野18 p34#18", wave_core: true}
+  - {id: stuck-in-a-check-loop, field: symptoms, title: "同じ確認のループにはまる", type: symptom, priority: 推奨, level: 仕組みにする, origin: "requirements §4.2・§4.4 symptoms; 11 第1節 分野18 p12#13・p34#90・p56#80・p34#146", wave_core: true}
+  - {id: blames-the-tools, field: symptoms, title: "環境や道具が壊れたと言い出す", type: symptom, priority: 推奨, level: 任せる, origin: "requirements §4.2・§4.4 symptoms; 11 第1節 分野18 p34#147", wave_core: true}
+  - {id: insists-on-mistakes, field: symptoms, title: "誤りを認めずに言い張る", type: symptom, priority: 推奨, level: 整える, origin: "requirements §4.2・§4.4 symptoms; 11 第1節 分野18 p34#181・p34#234", wave_core: true}
+  - {id: wont-rethink-approach, field: symptoms, title: "直し続けて方針を疑わない（またはすぐ撤退を勧める）", type: symptom, priority: 推奨, level: 任せる, origin: "requirements §4.2・§4.4 symptoms; 11 第1節 分野18 p56#29・p56#30", wave_core: true}
+  - {id: summary-overstates-source, field: symptoms, title: "要約が原文より断定的になる", type: symptom, priority: 推奨, level: 整える, origin: "11 第1節 分野01 p12#112（「分野18 に症状『要約が原文より断定的になる』も置く」）", wave_core: true}
+  # ── changes（5：必須 2・推奨 3・任意 0）──
+  - {id: outdated-advice-ledger, field: changes, title: "古くなった助言の台帳", type: ledger, priority: 必須, origin: "00 §3 分野19「古くなった助言台帳」", wave_core: true}
+  - {id: old-and-new-names, field: changes, title: "旧名と新名の対応表", type: ledger, priority: 必須, origin: "00 §3 分野19", wave_core: true}
+  - {id: change-timeline-2026, field: changes, title: "2026年の主な変更年表", type: ledger, priority: 推奨, origin: "00 §3 分野19", wave_core: false}
+  - {id: dating-information, field: changes, title: "いつの情報かを見分ける", type: concept, priority: 推奨, level: 使う, origin: "00 §3 分野19", wave_core: false}
+  - {id: checking-for-updates, field: changes, title: "最新を自分で確かめる方法", type: recipe, priority: 推奨, level: 整える, origin: "00 §3 分野19", wave_core: false}
+
+ledger:  # 古くなった助言の台帳の項目（00 §5 の31項目と research/22 §3.4 の足す候補4項目）
+  - {id: hash-to-memorize, title: "`#` で始めると CLAUDE.md に記憶される", origin: "00 §5"}
+  - {id: commands-directory, title: "`.claude/commands/` にカスタムコマンドを作る、`/project:name` 記法", origin: "00 §5"}
+  - {id: agents-command, title: "`/agents` で subagent を作る", origin: "00 §5"}
+  - {id: think-hard-keywords, title: "think → think hard → ultrathink の段階、日本語の「熟考」", origin: "00 §5; research/22 §3.4（今どうするかに足す内容あり）"}
+  - {id: important-caps, title: "IMPORTANT や YOU MUST で強調すれば守られる", origin: "00 §5"}
+  - {id: yolo-skip-permissions, title: "`--dangerously-skip-permissions` で YOLO 運用", origin: "00 §5; research/22 §3.4（今どうするかに足す内容あり）"}
+  - {id: approve-everything-first, title: "最初は毎回承認を求められる", origin: "00 §5"}
+  - {id: save-context-for-200k, title: "200k を前提にコンテキストを最優先で節約する", origin: "00 §5; research/22 §3.4（今どうするかに足す内容あり）"}
+  - {id: architecture-in-claude-md, title: "アーキテクチャやファイル構成を CLAUDE.md に書く", origin: "00 §5"}
+  - {id: keep-going-dont-be-lazy, title: "「keep going」「don't be lazy」と書く", origin: "00 §5"}
+  - {id: add-double-check, title: "「最後に double-check して」と書き足す", origin: "00 §5"}
+  - {id: tell-it-to-use-subagents, title: "「subagent を使え」と書き足す", origin: "00 §5"}
+  - {id: subagent-per-step, title: "工程ごとに subagent を大量に作る", origin: "00 §5"}
+  - {id: prefill-for-json, title: "prefill で JSON の形を強制する", origin: "00 §5"}
+  - {id: budget-tokens, title: "`budget_tokens` で思考量を指定する", origin: "00 §5"}
+  - {id: thinking-tags, title: "`<thinking>` タグに推論を書かせる", origin: "00 §5"}
+  - {id: console-prompt-generator, title: "Console の prompt generator / improver を使う", origin: "00 §5"}
+  - {id: interactive-tutorial, title: "公式インタラクティブチュートリアルが最新の作法", origin: "00 §5"}
+  - {id: cowork-separate-app, title: "Cowork は別アプリ、Web search はトグルで入れる", origin: "00 §5"}
+  - {id: memory-daily-summary, title: "Memory は会話の後に日次で要約される", origin: "00 §5"}
+  - {id: code-on-the-web-remote, title: "Claude Code on the Web と `--remote` を使う", origin: "00 §5"}
+  - {id: routines-name, title: "routines で定期実行を作る", origin: "00 §5"}
+  - {id: slash-cost-and-stats, title: "`/cost`・`/stats` で使用量を見る", origin: "00 §5"}
+  - {id: fork-to-branch, title: "`/fork` で会話を分岐する", origin: "00 §5"}
+  - {id: removed-commands, title: "`/vim`・`/tag`・`/pr-comments`・ultraplan・TaskOutput ツールを使う", origin: "00 §5"}
+  - {id: mcp-sse-transport, title: "MCP を SSE transport でつなぐ", origin: "00 §5"}
+  - {id: action-beta-direct-prompt, title: "GitHub Action を `@beta` と `direct_prompt` で書く", origin: "00 §5"}
+  - {id: workflow-keyword-extra-usage, title: "「workflow」と書いて workflows を起動し、超過分は extra usage で払う", origin: "00 §5"}
+  - {id: ralph-loops, title: "Ralph プラグインや自作 bash ループで回し続ける", origin: "00 §5"}
+  - {id: tmux-agent-orgs, title: "tmux で自作のエージェント組織を作る", origin: "00 §5"}
+  - {id: avoid-opus-as-expensive, title: "Opus は高いので避ける", origin: "00 §5"}
+  - {id: max-5x-or-20x, title: "Max は 5x と 20x から選ぶ", origin: "research/22 §3.4 足す候補（Ultra への改名）"}
+  - {id: wait-out-5-hour-limit, title: "有料プランは5時間の上限に当たったら待つしかない", origin: "research/22 §3.4 足す候補"}
+  - {id: customize-tabs, title: "Customize の Skills・Connectors・Plugins の各タブで管理する", origin: "research/22 §3.4 足す候補"}
+  - {id: lower-temperature, title: "temperature（や top_p・top_k）を下げて出力を安定させる", origin: "research/22 §3.4 足す候補"}
+
+notes:
+  - "候補数：pages は378（requirements §4.2 の目安の合計は377）。目安と違うのは symptoms だけで、目安25に対して26。11 第1節 分野01 の「要約は原文より強く言いがち」の行が「分野18 に症状『要約が原文より断定的になる』も置く」と書くので summary-overstates-source を足した（requirements §4.2 の「新しい症状を5つ」には入っていない）。ほかの22分野は目安と同じ数。"
+  - "team は目安どおり16だが、requirements §4.4 の6つのほかに足したのは、11 第1節 分野17 の新ページ「AI は増幅器」（ai-amplifies-organizations。11 は分野00「全体地図」の前提にする案も挙げる）。11 の新「チームで使う意味（個人＋AI とチーム＋AI）」は、根拠の行（p56#52）に【2026-11-03 注記】（P&G の実験の人数の食い違い。research/24 B-43）が付き、ほかに根拠の行がないので作らなかった。team の担当が、注記を踏まえて新規に足すかを決める。"
+  - "start：00 の「三つの原理」は requirements §3.1・§4.2 に合わせて「四つの原理」に改め、1項目にした（four-principles）。requirements §4.2 が足す「人の側の五つの落とし穴」の入口は human-pitfalls-intro として別に立てたが、judgment の総論 human-pitfalls と中身が重なる。入口を短い案内にするか、six-causes と合わせて「失敗の二つの軸と診断の入口」の1ページにするかは、start と judgment の担当が決める。"
+  - "start の型と level：design §3.1 の規則2（start は level を持たない）に合わせ、00 で L1 だった start の候補は guide か hub にして level を省いた。roadmap・reverse-index・glossary は design §2.2 の生成のページ（型を持たない）で、型は仮に hub にした。cli の command-cheatsheet と、changes の old-and-new-names・change-timeline-2026 も生成になりうる（仮に ledger）。design §2.1 の start の中身にある「知識マップ」と「方針」は、材料に候補がないので registry に入れていない（start の担当が新規で足す）。"
+  - "verify と eval：requirements §4.3 に従い、00 分野09 の「変更が効いたかを測る」「体感と実測」「/insights と /usage で振り返る」を eval に移し、§4.3 の「verify に足すページ」4つを verify に置いた（verify 17・eval 13）。11 第1節 分野09 の小項目「採点の正本は一か所に」は test-the-verifier に、分野11 の解説節「なぜ規則が割れるか」は safety の checking-ai-rules と contest の competition-rules に含め、独立の候補にしていない。requirements §4.2 の recipes の「主な変更」に差分テストがあるが、§4.3 が eval の候補にしているので eval の differential-testing にだけ置いた。"
+  - "api の prompt-evals-intro（00 分野13「プロンプトの評価（eval）入門」）は、requirements §4.2 の api の数（14）に合わせて api に残した。design §4.2 では評価の指標は eval が持つので、eval の measure-changes と重なる。移すかは api と eval の担当が決める。"
+  - "contest の competition-rules は requirements §4.3 の「規則はなぜ割れるか：禁止・部門分け・開示の三類型と、規則の確認表」から作った。design §4.2 では一般の類型と確認表は safety（checking-ai-rules）が持ち、contest は大会の規則の早見と練習と本番の使い分けを持つので、題名を「大会の規則の早見」にした。境界は safety と contest の担当が決める。"
+  - "wave_core：start 4・symptoms 26（全部）・changes 2（台帳と旧名の対応表）・eval 6・judgment 5・japanese 4 の計47に付けた。迷ったのは eval の measure-changes（00 では推奨）と felt-vs-measured。felt-vs-measured は人の側の落とし穴エ（体感を信じる）のページなので、judgment で落とし穴ア・イ・ウ・オに当たる over-reliance・agreement-is-not-evidence・decide-when-to-quit・ai-ideas-are-everyones とそろえて付けた。japanese の can-i-prompt-in-japanese（00 で必須）と less-ai-sounding-japanese は核に入れていない。contest は decisions 2026-11-03（第一波の後にする）により付けていない。"
+  - "注記を受けて題名を変えた候補（origin に 00 の題名を残した）：app の where-to-put-instructions から Styles を外した（00 §3 分野06 の注記。research/26 #1〜#3）。delegate の batch-and-p-loops は fan-out の語を使わない（改稿前の Best practices の語。00 §3 分野12 の注記、research/23 §3.1）。cost の how-usage-limits-work から「5時間・週」を外した（確認済みの Ultra の口座は週の上限だけ。00 §3 分野14 の注記、research/22 #33）。cli の output-style-modes は組み込みの種類を題名に並べない（00 §3 分野07 の注記、research/23 #2）。delegate の choosing-automation は旧名 routine を「定期タスク」にした（00 §5 の台帳）。"
+  - "decisions 2026-11-03「読者の前提」（非エンジニア向けの説明は省く）と食い違う候補：cli の for-non-engineers（00 分野07「Claude Code を非エンジニアが使う」）。材料にあるので registry には入れた。cli の担当が dropped にするか、Desktop の Code タブの使い方などへ組み替えるかを決める。"
+  - "作らなかった候補：11 第1節 分野17 の節「教える側」（decisions 2026-11-03 で教える側を読者に足さない）、同「AI が最初の相談相手になると同僚とのやりとりが減る」（11 は既存の「チームに広める」に足す案を先に書く。rolling-out-to-teams の材料）、分野12 のデータ点「ハーネスの価値」（ページの案ではない）、新分野案X の「能力の凸凹（jagged frontier）」を分野01 に置く案（置き場所の別案で、出典は解説ブログ経由。11 第4節 #55）。11 第2節は既存のページに足す内容だけで、新しいページの案はなかった。"
+  - "00 の中で重なる候補は、00 が別の分野に別のページとして置いているので、まとめずに残した。merged にするかは分野の担当が決める：basics の tokens と japanese の more-tokens-in-japanese、prompting の requesting-prose と japanese の less-ai-sounding-japanese、context の sessions-as-branches と cli の resume-and-branch、basics の what-survives-compaction・context の promises-after-compaction・enforce の spoken-prohibitions-fade・symptoms の forgot-after-compaction、cli の usage-context-statusline と cost の claude-code-costs、enforce の managed-settings-enforcement と team の org-managed-settings-and-mcp、surfaces の agent-sdk-and-managed-agents と api の sdk-comparison・agent-sdk-basics・managed-agents-basics、models の suspected-degradation と symptoms の seems-less-capable、app の research-and-writing-in-the-app と recipes の research-and-reports、start の glossary と changes の old-and-new-names。"
+  - "新しい候補とほかの候補の重なり：enforce の freeze-eval-assets と verify の protect-tests、safety の instructions-hidden-in-materials と prompt-injection-in-practice、prompting の permission-to-stop と allow-i-dont-know、basics の summary-overgeneralization と symptoms の summary-overstates-source。11 が置き場所の別案を挙げるもの：delegate の pairing-and-delegating（分野00）、enforce の move-judgment-into-scripts（分野08）、models の harness-over-model（分野02）、context の build-on-results（分野04）。"
+  - "設計書と catalog/README の例の id のうち、instructions-ignored・request-vs-lock・hooks-basics・verifier-defines-problem・important-caps はそのまま使った。例の permissions-deny に当たる候補は enforce の permission-rules（権限ルール（allow・ask・deny））。例の instructions-ignored の level は「整える」だが、00 の L3 に従い「任せる」にした。ページの id は catalog/README §5 の機能の id（tracks）と同じ綴りにしていない（例：機能 ultrathink に対してページは thinking-keywords）。"
+  - "ledger：00 §5 の31項目と research/22 §3.4 の「足す候補」4項目の計35。題名は 00 §5 の「古い助言」の欄を基本にし、名前だけの行（routines・/cost など）には短い動詞を足した。research/22 §3.4 で「今どうするか」に足す内容がある3行（think-hard-keywords・yolo-skip-permissions・save-context-for-200k）は origin に書いた。research/22 §3.4 が「台帳ではなく数値ファイルと aliases で持つ」とした4つ（Opus 4.8 の fast mode の削除、アプリの Haiku 4.5、Recently denied から Recently blocked、session limit から 5-hour limit）は入れていない。research/26 の Styles から skills への移行も台帳に入りうるが、00 §3 分野06 の注記にある主張なので作っていない（changes の担当が research/26 を読んで決める）。"
+  - "訂正・注記のある行から作った候補で、requirements §4.3・§4.4 に挙がるので残したもの：team の risk-tiered-approval（11 第1節 分野17 p56#58 に【2026-11-03 訂正】。summary と signs は訂正後の内容、research/25 P4 で書く）、contest の ai-in-contests-today・format-cheatsheet・practice-vs-contest-day（11 第1節 新分野案Y の表の後に、AWTF・ICPC・大会の規則の行への注記と訂正がある）。根拠の行の一部にだけ訂正・注記があるもの：delegate の what-not-to-delegate（事例の行 p12#96・p12#97 に訂正、p12#100 に注記。候補の根拠は p12#91）、eval の selection-pressure（p34#35 に注記。根拠は p34#33）、recipes の performance-tuning（p34#84 に注記。根拠は p34#83）。どれも、注記の付いた行を summary・signs・題名の根拠にしない（catalog/README §4.5）。"
+  - "新しい候補の priority と level は C0 の見当で、根拠は書いていない（分野の担当が notes に理由を書いて決める）。eval と judgment は、症状や基礎のページの前提に置かれても段階が逆転しにくいように、総論と落とし穴のページを「整える」か「任せる」にした。11 が推論と明記した measure-the-upper-bound は、decisions 2026-11-03 の書き方の方針3（推論は必須ページの中心にしない）に合わせて任意にした。"
