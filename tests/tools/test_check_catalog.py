@@ -462,6 +462,31 @@ class TestGraph(unittest.TestCase):
                 for u, v in zip(cycle, cycle[1:] + cycle[:1]):
                     self.assertIn(v, graph[u], (graph, cycle))
 
+    def test_reached_from_on_random_graphs(self):
+        """推移的な前提の検査がたどる部分。循環のあるグラフでも止まり、届く id と最短の道が総当たりと合う。
+        avoid は通らない。グラフのキーにない id（ファイルのまだない分野の候補）には届くが、その先はたどらない。"""
+        rnd = random.Random(20261105)
+        for _ in range(300):
+            nodes = [f"p{i}" for i in range(rnd.randint(1, 9))]
+            pool = nodes + ["leaf-1", "leaf-2"]
+            graph = {u: [v for v in pool if rnd.random() < 0.3] for u in nodes}
+            for start in nodes:
+                avoid = rnd.choice([None, *[v for v in nodes if v != start]])
+                dist = {start: 0}        # 総当たり（すべての辺で緩和を繰り返す）
+                for _ in pool:
+                    for u in list(dist):
+                        for v in graph.get(u, ()):
+                            if v != avoid and dist.get(v, len(pool) + 1) > dist[u] + 1:
+                                dist[v] = dist[u] + 1
+                parent = cc.reached_from(graph, start, avoid)
+                self.assertEqual(set(parent), set(dist), (graph, start, avoid))
+                for v in parent:
+                    path = cc.path_to(parent, v)
+                    self.assertEqual((path[0], path[-1], len(path) - 1), (start, v, dist[v]), (graph, path))
+                    self.assertNotIn(avoid, path)
+                    for a, b in zip(path, path[1:]):
+                        self.assertIn(b, graph[a], (graph, path))
+
 
 class TestOverlap(CatalogCase):
     @covers("前提と関連の重複")
@@ -510,6 +535,67 @@ class TestPriority(CatalogCase):
         self.edit_page("symptoms.yaml", "instructions-ignored", prerequisites=["request-vs-lock", "fact-check"])
         issues = self.assertFound(("必須の前提", "instructions-ignored"))
         self.assertEqual(issues[0].fields, frozenset({"symptoms", "verify"}))
+
+
+class TestTransitivePrerequisites(CatalogCase):
+    @covers("推移的な前提")
+    def test_reached_through_another_prerequisite(self):
+        self.edit_page("delegate.yaml", "parallel-sessions", prerequisites=["fact-check", "completion-check"])
+        issues = self.assertFound(("推移的な前提", "parallel-sessions"))
+        self.assertEqual(issues[0].severity, cc.WARNING)
+        self.assertEqual(issues[0].message, "前提「completion-check」は、ほかの前提「fact-check」からたどって届く: "
+                                            "fact-check → completion-check（推移的に届く前提は書かない。要るなら related に移す）")
+        self.assertEqual(issues[0].fields, frozenset({"delegate"}))   # 直すのは、このページの prerequisites
+        self.assertRegex(cc.format_issue(issues[0]), LINE_RE)
+
+    @covers("推移的な前提")
+    def test_path_over_pages_from_two_prerequisites(self):
+        self.edit_page("verify.yaml", "completion-check", prerequisites=["request-vs-lock"])
+        self.edit_page("delegate.yaml", "parallel-sessions",
+                       prerequisites=["fact-check", "done-but-not-done", "request-vs-lock"])
+        issues = self.assertFound(("推移的な前提", "parallel-sessions"))
+        self.assertEqual(len(issues), 1)   # fact-check と done-but-not-done は互いに届かない
+        self.assertIn("前提「request-vs-lock」は、ほかの前提「fact-check」「done-but-not-done」からたどって届く: "
+                      "fact-check → completion-check → request-vs-lock、"
+                      "done-but-not-done → completion-check → request-vs-lock（", issues[0].message)
+
+    @covers("推移的な前提")
+    def test_anchor_is_compared_by_page_id(self):
+        self.edit_page("verify.yaml", "fact-check", prerequisites=["completion-check#criteria"])
+        self.edit_page("delegate.yaml", "parallel-sessions", prerequisites=["fact-check", "completion-check#criteria"])
+        issues = self.assertFound(("参照の書き方", "fact-check"), ("参照の書き方", "parallel-sessions"),
+                                  ("推移的な前提", "parallel-sessions"))
+        self.assertIn("前提「completion-check」は、ほかの前提「fact-check」から", only(issues, "推移的な前提")[0].message)
+
+    @covers("推移的な前提")
+    def test_prerequisites_that_do_not_reach_each_other(self):
+        # hooks-basics と permissions-deny は同じ request-vs-lock を前提にするが、互いには届かない。
+        # related は見ない（fact-check から届く completion-check を related に置くのはよい）
+        self.edit_page("delegate.yaml", "parallel-sessions", prerequisites=["hooks-basics", "permissions-deny", "fact-check"],
+                       related=["completion-check"])
+        self.assertFound()
+
+    @covers("推移的な前提")
+    def test_cycle_does_not_stop_the_check(self):
+        self.edit_page("basics.yaml", "request-vs-lock", prerequisites=["instructions-ignored"])
+        self.edit_page("enforce.yaml", "hooks-basics", prerequisites=["request-vs-lock", "instructions-ignored"])
+        issues = self.assertFound(("循環", "request-vs-lock"), ("推移的な前提", "hooks-basics"))
+        self.assertEqual(len(only(issues, "推移的な前提")), 2)   # 循環の中の2ページは、互いに届く
+
+    @covers("推移的な前提")
+    def test_path_through_the_page_itself_is_not_counted(self):
+        # request-vs-lock → instructions-ignored → request-vs-lock の循環。instructions-ignored から completion-check へは
+        # request-vs-lock 自身を通らないと届かないので、推移的な前提にしない（循環のエラーだけが出る）
+        self.edit_page("basics.yaml", "request-vs-lock", prerequisites=["instructions-ignored", "completion-check"])
+        self.assertFound(("循環", "request-vs-lock"))
+
+    @covers("推移的な前提")
+    def test_candidate_without_field_file(self):
+        # eval のファイルはまだないが、completion-check の前提に verifier-basics と書いてあるので届く
+        self.edit_page("verify.yaml", "completion-check", prerequisites=["verifier-basics"], related=["fact-check"])
+        self.edit_page("symptoms.yaml", "done-but-not-done", prerequisites=["completion-check", "verifier-basics"])
+        issues = self.assertFound(("推移的な前提", "done-but-not-done"))
+        self.assertIn("completion-check → verifier-basics", issues[0].message)
 
 
 class TestProportional(CatalogCase):
@@ -605,6 +691,73 @@ class TestSymptomAndFeature(CatalogCase):
         self.assertFound(("機能の tracks", "hooks-basics"))
 
 
+class TestReverseIndexOverlap(CatalogCase):
+    """試験用の目次の症状のページの signs：instructions-ignored「CLAUDE.md に書いたのに守られない」「長い会話の途中から
+    規則を無視し始める」、done-but-not-done「完了と言うのにテストが通らない」「直したと言うのに同じ不具合が出る」。"""
+
+    def add_signs(self, name: str, pid: str, *signs: tuple[str, str]) -> None:
+        have = self.page(name, pid).get("signs") or []
+        self.edit_page(name, pid, signs=have + [{"type": t, "text": x} for t, x in signs])
+
+    @covers("逆引きの重複")
+    def test_symptom_sentence_on_another_page(self):
+        self.add_signs("enforce.yaml", "hooks-basics", ("symptom", "CLAUDE.md に書いたのに守られない"))
+        issues = self.assertFound(("逆引きの重複", "hooks-basics"))
+        i = issues[0]
+        self.assertEqual(i.severity, cc.WARNING)
+        self.assertEqual(i.message, "signs の「CLAUDE.md に書いたのに守られない」が、症状のページ instructions-ignored の sign"
+                                    "「CLAUDE.md に書いたのに守られない」と同じ（逆引きで同じ困りごとが二か所に出る。対処のページには、"
+                                    "より狭い場面の困りごとか、やりたいことの形で置く）")
+        self.assertEqual(i.fields, frozenset({"enforce", "symptoms"}))   # どちらの分野の --field にも出る
+        self.assertNotIn(i, cc.select(issues, "verify"))
+        self.assertRegex(cc.format_issue(i), LINE_RE)
+
+    @covers("逆引きの重複")
+    def test_spaces_and_symbols_are_ignored(self):
+        self.add_signs("verify.yaml", "completion-check", ("goal", "（完了）と言うのに、テストが 通らない！"))
+        issues = self.assertFound(("逆引きの重複", "completion-check"))   # signs の type は問わない
+        self.assertIn("「（完了）と言うのに、テストが 通らない！」が、症状のページ done-but-not-done の sign"
+                      "「完了と言うのにテストが通らない」と、空白と記号を除くと同じ", issues[0].message)
+
+    def test_sign_key(self):
+        base = cc.sign_key("完了と言うのにテストが通らない")
+        self.assertEqual(base, "完了と言うのにテストが通らない")
+        for ch in "「」『』、。・,.!?！？（）() 　\t\n":     # 指示の例の記号と、半角・全角の空白
+            self.assertEqual(cc.sign_key(f"{ch}完了と{ch}言うのにテストが通らない{ch}"), base, repr(ch))
+        self.assertEqual(cc.sign_key("ＣＬＡＵＤＥ．ｍｄ が効かない"), cc.sign_key("CLAUDE.md が効かない"))   # 全角と半角
+        self.assertEqual(cc.sign_key("人々のコード"), "人々のコード")   # 踊り字と長音は文字として残す
+        self.assertNotEqual(cc.sign_key("完了と言うのにテストが落ちる"), base)
+
+    @covers("逆引きの重複")
+    def test_narrower_sentences_and_non_symptom_pages_are_fine(self):
+        # 対処のページには、より狭い場面の困りごとや goal を置く（README §4.5 の4 の例）。症状のページでない
+        # ページどうしで同じ文をそろえるのはよい（逆引きで1項目に並ぶ）
+        self.add_signs("enforce.yaml", "hooks-basics", ("symptom", "CLAUDE.md に書いた禁止が破られる"),
+                       ("goal", "危ないコマンドを確実に止めたい"))
+        self.add_signs("enforce.yaml", "permissions-deny", ("goal", "危ないコマンドを確実に止めたい"))
+        self.assertFound()
+
+    @covers("逆引きの重複")
+    def test_same_symptom_page_is_not_compared(self):
+        self.add_signs("symptoms.yaml", "instructions-ignored", ("symptom", "CLAUDE.md に書いたのに、守られない"))
+        self.assertFound()
+
+    @covers("逆引きの重複")
+    def test_two_symptom_pages_and_another_page(self):
+        sentence = "CLAUDE.md に書いたのに守られない"
+        self.add_signs("symptoms.yaml", "done-but-not-done", ("symptom", sentence))
+        self.add_signs("enforce.yaml", "hooks-basics", ("goal", sentence))
+        issues = self.assertFound(("逆引きの重複", "instructions-ignored"), ("逆引きの重複", "done-but-not-done"),
+                                  ("逆引きの重複", "hooks-basics"))
+        self.assertEqual(len(issues), 3)
+        for i in issues:
+            hint = "症状のページどうしで重なっている" if i.page != "hooks-basics" else "逆引きで同じ困りごとが二か所に出る"
+            self.assertIn(hint, i.message)
+        hooks = next(i for i in issues if i.page == "hooks-basics")   # 1つの文に、当たった症状のページをすべて出す
+        self.assertIn(f"症状のページ instructions-ignored の sign「{sentence}」、done-but-not-done の sign「{sentence}」と同じ",
+                      hooks.message)
+
+
 class TestTracks(CatalogCase):
     @covers("tracks の id")
     def test_unknown_track(self):
@@ -678,7 +831,8 @@ class TestRegistry(CatalogCase):
 class TestCounts(CatalogCase):
     @covers("前提と関連の数")
     def test_prerequisites(self):
-        pre = ["completion-check", "fact-check", "request-vs-lock", "hooks-basics", "permissions-deny"]
+        # 互いに前提をたどって届かない5ページ（届くものがあると「推移的な前提」の警告も出る）
+        pre = ["fact-check", "done-but-not-done", "hooks-basics", "permissions-deny", "instructions-ignored"]
         self.edit_page("delegate.yaml", "parallel-sessions", prerequisites=pre[:4], related=[])
         self.assertFound()
         self.edit_page("delegate.yaml", "parallel-sessions", prerequisites=pre)

@@ -40,6 +40,7 @@ import argparse
 import collections
 import re
 import sys
+import unicodedata
 from dataclasses import dataclass, field as dc_field
 from pathlib import Path
 from typing import Callable, Iterable, Iterator
@@ -1170,6 +1171,33 @@ def cycle_through(graph: dict[str, list[str]], start: str, members: set[str]) ->
     return [start]
 
 
+def prerequisite_targets(p: Page) -> list[str]:
+    """前提の指す先のページの id（id#anchor はページの id にする。空と重複を除き、書いた順）。"""
+    return list(dict.fromkeys(r.target for r in p.refs("prerequisites") if r.target))
+
+
+def reached_from(graph: dict[str, list[str]], start: str, avoid: str | None = None) -> dict[str, str | None]:
+    """start から前提をたどって届く id → その道でひとつ手前の id（start 自身は None）。幅優先なので最短の道になる。
+    avoid は通らず、届いたことにもしない。一度見た id は二度たどらないので、循環があっても止まる。"""
+    parent: dict[str, str | None] = {start: None}
+    queue = collections.deque([start])
+    while queue:
+        u = queue.popleft()
+        for v in graph.get(u, ()):
+            if v != avoid and v not in parent:
+                parent[v] = u
+                queue.append(v)
+    return parent
+
+
+def path_to(parent: dict[str, str | None], end: str) -> list[str]:
+    """reached_from の結果から、start から end までの道。"""
+    path = [end]
+    while parent[path[-1]] is not None:
+        path.append(parent[path[-1]])
+    return path[::-1]
+
+
 @check("循環", ERROR)
 def check_cycles(cat: Catalog) -> Iterator[Finding]:
     """前提（prerequisites）が循環している（自分自身を前提にするものも）"""
@@ -1271,6 +1299,28 @@ def check_required_prerequisites(cat: Catalog) -> Iterator[Finding]:
                 yield at(p, f"前提「{r.page.id}」の priority が {q}（{top}のページの前提は{top}にする）", r.page.field)
 
 
+@check("推移的な前提", WARNING)
+def check_transitive_prerequisites(cat: Catalog) -> Iterator[Finding]:
+    """prerequisites に、同じページのほかの前提から前提をたどって届くものがある（README §4.4 の1「推移的に届くものは
+    書かない」）。どの前提から届くかを道筋で出す。id#anchor はページの id で比べ、そのページ自身を通る道は数えない
+
+    たどるのは分野のファイルにあるページの prerequisites だけ。ファイルのまだない分野の候補などは、ほかのページの
+    前提に書いてあれば届いたことにするが、その先はたどらない。前提が循環していても止まる（循環そのものは「循環」の
+    エラーが出す。自分を通る道を数えないのは、循環のせいでほかの前提がすべて届くように見えるのを避けるため）。"""
+    graph = {pid: prerequisite_targets(p) for pid, p in cat.by_id.items()}
+    for p in cat.pages:
+        pre = [t for t in prerequisite_targets(p) if t != p.id]
+        if len(pre) < 2:
+            continue
+        reach = {y: reached_from(graph, y, avoid=p.id) for y in pre}
+        for x in pre:
+            via = [y for y in pre if y != x and x in reach[y]]
+            if via:
+                paths = "、".join(" → ".join(path_to(reach[y], x)) for y in via)
+                yield at(p, f"前提「{x}」は、ほかの前提「{'」「'.join(via)}」からたどって届く: {paths}"
+                            "（推移的に届く前提は書かない。要るなら related に移す）")
+
+
 @check("比例則", WARNING)
 def check_proportional(cat: Catalog) -> Iterator[Finding]:
     """site.yml の proportional_rule の levels（任せる・仕組みにする・回す）のページが、guard_fields（verify・eval・enforce・
@@ -1350,6 +1400,44 @@ def check_symptom_signs(cat: Catalog) -> Iterator[Finding]:
         n = sum(1 for s in p.parts("signs") if s.get("type") == SYMPTOM_SIGN)
         if n < MIN_SYMPTOM_SIGNS:
             yield at(p, f"signs のうち type が {SYMPTOM_SIGN} のものが {n} つ（{MIN_SYMPTOM_SIGNS} つ以上にする）")
+
+
+def sign_key(text: str) -> str:
+    """signs の文を比べる形：NFKC で全角と半角をそろえ、空白と記号を除く。記号は Unicode の分類が句読点（P）・記号（S）・
+    区切り（Z）・制御など（C）の文字（「」『』、。・,.!?！？（）() など）。長音「ー」や「々」は文字なので残す。"""
+    return "".join(ch for ch in unicodedata.normalize("NFKC", text) if unicodedata.category(ch)[0] not in "PSZC")
+
+
+@check("逆引きの重複", WARNING)
+def check_reverse_index_overlap(cat: Catalog) -> Iterator[Finding]:
+    """症状（symptom）のページの signs の文と、空白と記号を除いて同じ文が、ほかのページの signs にある（README §4.5 の4。
+    逆引きで同じ困りごとが二か所に出る）。ほかのページの側に、どの症状のページのどの文と同じかを出す
+
+    signs の type は問わない。症状のページでないページどうしの同じ文は指摘しない（逆引きで並べるために、そろえて
+    よい）。症状のページどうしで同じ文があれば、両方のページに出す。"""
+    owners: dict[str, list[tuple[Page, str]]] = collections.defaultdict(list)   # 比べる形 → (症状のページ, 文)
+    for s in cat.pages:
+        if s.text("type") != SYMPTOM_TYPE:
+            continue
+        for sign in s.parts("signs"):
+            text = as_text(sign.get("text"))
+            key = sign_key(text)
+            if key and all(q is not s for q, _ in owners[key]):
+                owners[key].append((s, text))
+    for p in cat.pages:
+        for sign in p.parts("signs"):
+            text = as_text(sign.get("text"))
+            key = sign_key(text)
+            hits = [(s, t) for s, t in owners.get(key, ()) if s is not p] if key else []
+            if not hits:
+                continue
+            relation = "と同じ" if all(t == text for _, t in hits) else "と、空白と記号を除くと同じ"
+            if p.text("type") == SYMPTOM_TYPE:
+                hint = "症状のページどうしで重なっている。どちらの症状のページで受けるかを決める"
+            else:
+                hint = "逆引きで同じ困りごとが二か所に出る。対処のページには、より狭い場面の困りごとか、やりたいことの形で置く"
+            hit_text = "、".join(f"{s.label} の sign「{t}」" for s, t in hits)
+            yield at(p, f"signs の「{text}」が、症状のページ {hit_text}{relation}（{hint}）", *(s.field for s, _ in hits))
 
 
 @check("症状の prevents", WARNING)
