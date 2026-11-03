@@ -94,7 +94,7 @@ pages:
       - {type: symptom, text: "直したと言われたのに、条件を変えると同じバグが出る"}
       - {type: symptom, text: "修正を頼むたびに、的外れな場所が書き換えられる"}
     prerequisites: [define-done, evidence-not-reports]
-    related: [shrink-failing-inputs, bisect-regressions, build-observation-tools, going-in-circles, claims-done-but-isnt, rewrote-tests-to-pass, rewind-dont-correct, tests-first, protect-tests, differential-testing, wont-rethink-approach, uses-nonexistent-apis, "vetting-extensions#dependencies", agent-teams-experimental, before-after-prompts]
+    related: [shrink-failing-inputs, bisect-regressions, build-observation-tools, going-in-circles, claims-done-but-isnt, rewrote-tests-to-pass, rewind-dont-correct, tests-first, protect-tests, differential-testing, wont-rethink-approach, uses-nonexistent-apis, "vetting-extensions#dependencies", agent-teams, before-after-prompts]
     tracks: [checkpoints]
     outdated_advice: [add-double-check]
     volatility: 中

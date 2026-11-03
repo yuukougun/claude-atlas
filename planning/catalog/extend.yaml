@@ -429,7 +429,7 @@ pages:
       - {type: symptom, text: "工程ごとに担当を作ったら、受け渡しの調整に追われている"}
       - {type: symptom, text: "昔の記事の手順で作ろうとしたら、作成の画面が出てこない"}
     prerequisites: [subagent-isolation]
-    related: [what-subagents-dont-inherit, skill-vs-subagent, research-in-subagents, independent-review, instructing-reviewers, permission-rules, "hook-recipes#subagent-only", hooks-basics, choosing-parallel-modes, agent-teams-experimental, what-not-to-delegate, parallel-and-loop-costs, opusplan, "effort-levels#subagents-and-org-limits", skill-descriptions, "agreement-is-not-evidence#reviewer-agreement"]
+    related: [what-subagents-dont-inherit, skill-vs-subagent, research-in-subagents, independent-review, instructing-reviewers, permission-rules, "hook-recipes#subagent-only", hooks-basics, choosing-parallel-modes, agent-teams, what-not-to-delegate, parallel-and-loop-costs, split-models-by-role, "effort-levels#subagents-and-org-limits", skill-descriptions, "agreement-is-not-evidence#reviewer-agreement"]
     tracks: [subagents]
     outdated_advice: [agents-command, subagent-per-step, tell-it-to-use-subagents, subagents-to-save-context]
     volatility: 中

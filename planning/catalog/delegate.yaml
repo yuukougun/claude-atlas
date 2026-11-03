@@ -259,7 +259,7 @@ pages:
       - {type: goal, text: "複数の作業を同時に進めたい"}
       - {type: symptom, text: "並列の方法が多すぎて、どれを使えばいいか分からない"}
     prerequisites: [humans-set-the-parallel-limit, subagent-isolation]
-    related: [parallel-with-worktrees, agent-view-and-background, agent-teams-experimental, dynamic-workflows, batch-and-p-loops, compare-hypotheses-in-parallel, writing-subagents, skill-vs-subagent, research-in-subagents, independent-review, sandboxing, parallel-and-loop-costs, cloud-sessions-and-teleport]
+    related: [parallel-with-worktrees, agent-view-and-background, agent-teams, dynamic-workflows, batch-and-p-loops, compare-hypotheses-in-parallel, writing-subagents, skill-vs-subagent, research-in-subagents, independent-review, sandboxing, parallel-and-loop-costs, cloud-sessions-and-teleport]
     tracks: [subagents, agent-view, agent-teams, workflows, worktrees, code-projects]
     outdated_advice: [subagent-per-step, subagents-to-save-context]
     volatility: 中
@@ -373,7 +373,7 @@ pages:
       - {type: goal, text: "コードベース全体の監査や大規模な移行を、一度に進めたい"}
       - {type: symptom, text: "ワークフローで動かしたら、思ったより利用枠を使った"}
     prerequisites: [choosing-parallel-modes, permission-rules]
-    related: [parallel-and-loop-costs, sandboxing, hooks-basics, independent-review, checking-unattended-runs, batch-and-p-loops, agent-teams-experimental, research-in-subagents, humans-set-the-parallel-limit, refactor-and-migrate, effort-levels]
+    related: [parallel-and-loop-costs, sandboxing, hooks-basics, independent-review, checking-unattended-runs, batch-and-p-loops, agent-teams, research-in-subagents, humans-set-the-parallel-limit, refactor-and-migrate, effort-levels]
     tracks: [workflows, effort]
     outdated_advice: [workflow-keyword-extra-usage]
     volatility: 中
@@ -414,7 +414,7 @@ pages:
     materials: ["00 §3 分野12「fan-out（/batch と -p ループ）」（注記：fan-out は改稿前の語）", "research/23 §3.1", "01 E-2（/batch）", "01 KQ2 2-1（改稿前の版の要約。現行の文書で確かめ直す）", "11 第2節 分野12 p34#153", "03 W9（/batch で壊れたときの切り分け）"]
     notes: "fan-out の語は改稿前の Best practices のもので、今の版にない（00 §3 分野12 の注記、research/23 §3.1）。/batch と -p のループの書き方は、今の文書で確かめてから書く。ループの雛形は許可の旗を含むので safety: true。Claude Code の /batch（作業を worktree のサブエージェントに分けて流す）と、API の Message Batches API（急がない大量の要求を非同期に一括で処理する。api の batch-api-basics）は名前が似て取り違えやすいので、節 not-the-batch-api で違いに触れ、related で api へ送る（2026-11-04 統合：api#1）"
 
-  - id: agent-teams-experimental
+  - id: agent-teams
     chapter: 並べる
     title: "エージェントチーム（複数の Claude に分担させる）"
     nav_title: "エージェントチーム"
@@ -438,7 +438,7 @@ pages:
     outdated_advice: [tmux-agent-orgs]
     volatility: 高
     materials: ["00 §3 分野12「agent teams（実験的）」（注記：約7倍は plan mode のときの値）", "research/23 #7", "01 E-4", "11 第2節 分野12 p34#189（人数の目安）・p34#196（仮説を反証させ合う構成）", "research/22 #10（teammate の権限モードの不具合の修正）・#21（teammate の effort）"]
-    notes: "題名から成熟度（registry の「実験的」）を外した（成熟度は数値ファイルのバッジで示す）。実験的な機能なので、概念と判断だけの短いページにする（design §4.1 の7）。トークンの倍率は条件（plan mode の teammate）付きで数値ファイルに置き、本文に書かない（research/23 #7）。teammate の権限モードと effort が、リードから受け継がれるかを確かめる点を書く（research/22 #10・#21）。題名と要約を公式の日本語版の多数派（エージェントチーム・チームメイト。research/27 §3.1）にし、英語名を aliases に置いた（2026-11-04 統合：M1）"
+    notes: "題名から成熟度（registry の「実験的」）を外した（成熟度は数値ファイルのバッジで示す）。実験的な機能なので、概念と判断だけの短いページにする（design §4.1 の7）。トークンの倍率は条件（plan mode の teammate）付きで数値ファイルに置き、本文に書かない（research/23 #7）。teammate の権限モードと effort が、リードから受け継がれるかを確かめる点を書く（research/22 #10・#21）。題名と要約を公式の日本語版の多数派（エージェントチーム・チームメイト。research/27 §3.1）にし、英語名を aliases に置いた（2026-11-04 統合：M1）（2026-11-04 メイン：id を agent-teams-experimental から改めた。成熟度は変わる値なので id に入れない。design-review DR-19 n）"
 
   # ── 定期と無人の実行 ──
   - id: choosing-automation
@@ -651,11 +651,11 @@ dropped: []
 open_issues:
   - "提案（changes・C1）：outdated-advice-ledger の related にある homemade-loops は、delegate で goal-until-done にまとめた。goal-until-done#from-homemade-loops に替えてほしい（台帳の行 ralph-loops は goal-until-done の outdated_advice から逆リンクされる）"
   - "提案（start・C1）：roadmap は「委任の段階」（読者の段階）を使う。delegate の five-questions-before-delegating は作業ごとの「任せ方の段階」（対話・計画の承認・停止条件つきの反復・隔離した無人実行）を持つので、題名を「任せ方の段階と、無人で走らせる前の五つの問い」にした。glossary の節 definitions で二つの語を分けてほしい"
-  - "提案（cli・C4）：permission-modes-overview の related に headless-basics（-p の権限モードの既定と、承認の要る呼び出しの扱い）と agent-teams-experimental（teammate の権限モードがリードから受け継がれるか）を足してほしい"
+  - "提案（cli・C4）：permission-modes-overview の related に headless-basics（-p の権限モードの既定と、承認の要る呼び出しの扱い）と agent-teams（teammate の権限モードがリードから受け継がれるか）を足してほしい"
   - "提案（api・C5）：sdk-comparison の related に choosing-automation を足してほしい（自分の作業の自動化と、製品への組み込みの境目）"
   - "提案（symptoms・C12）：stuck-in-a-check-loop・wont-rethink-approach の related に open-ended-loop-trap と goal-until-done を、keeps-stopping と claims-done-but-isnt の related に goal-until-done を足してほしい"
   - "確かめること（執筆の前）：無人で走らせる前の五つの問いが、2026-10-27 ごろに書き直された今の Best practices にあるか（research/23 §3.1）。fan-out・/batch・-p のループの今の書き方も同じ"
-  - "取り込み済み（2026-11-04 に確かめた）：start の four-principles・roadmap、judgment の decide-when-to-quit・how-much-understanding-to-keep、safety と enforce の what-auto-mode-stops・where-bypass-is-ok・default-safety-settings・sandboxing、extend の writing-subagents、recipes の spec-first・refactor-and-migrate、contest の format-cheatsheet、verify の checking-unattended-runs・verification-ladder、eval の verifier-defines-problem・selection-pressure・experiment-log、cli の cloud-sessions-and-teleport・completion-notifications、app の tasks-and-schedules-in-the-app、cost の parallel-and-loop-costs・check-billing-path は、delegate のページをすでに指している。cost の parallel-and-loop-costs の related に agent-teams-experimental を足すかは cost の担当に任せる（dynamic-workflows は parallel-and-loop-costs を前提にせず related に置いた。循環を避けるため）"
+  - "取り込み済み（2026-11-04 に確かめた）：start の four-principles・roadmap、judgment の decide-when-to-quit・how-much-understanding-to-keep、safety と enforce の what-auto-mode-stops・where-bypass-is-ok・default-safety-settings・sandboxing、extend の writing-subagents、recipes の spec-first・refactor-and-migrate、contest の format-cheatsheet、verify の checking-unattended-runs・verification-ladder、eval の verifier-defines-problem・selection-pressure・experiment-log、cli の cloud-sessions-and-teleport・completion-notifications、app の tasks-and-schedules-in-the-app、cost の parallel-and-loop-costs・check-billing-path は、delegate のページをすでに指している。cost の parallel-and-loop-costs の related に agent-teams を足すかは cost の担当に任せる（dynamic-workflows は parallel-and-loop-costs を前提にせず related に置いた。循環を避けるため）"
 new_features:
   - {id: code-projects, title: "Claude Code の Projects（並列の threads）", note: "並列の方式の一つ（research/01 E-2 の④、public beta）。アプリの projects とは別の機能"}
   - {id: batch-command, title: "/batch（作業を worktree の subagent に分けて流す）", note: "組み込みのコマンド（research/01 4-1、v2.1.63）。API の batch-api とは別"}

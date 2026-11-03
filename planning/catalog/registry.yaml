@@ -54,11 +54,11 @@ pages:
   - {id: effort-levels, field: models, title: "effort の段階と使い分け", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野03", wave_core: false}
   - {id: thinking-keywords, field: models, title: "「考えて」と書くことの現在（ultrathink）", type: feature, priority: 必須, level: 整える, origin: "00 §3 分野03", wave_core: false}
   - {id: fable-and-mythos, field: models, title: "Fable と Mythos", type: comparison, priority: 推奨, level: 整える, origin: "00 §3 分野03", wave_core: false}
-  - {id: opusplan, field: models, title: "計画は Opus、実装は Sonnet（opusplan など）", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野03", wave_core: false}
+  - {id: split-models-by-role, field: models, title: "計画は Opus、実装は Sonnet（opusplan など）", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野03", wave_core: false}
   - {id: fast-mode-and-advisor, field: models, title: "fast mode と advisor", type: feature, priority: 任意, level: 任せる, origin: "00 §3 分野03", wave_core: false}
   - {id: model-quirks, field: models, title: "モデル別の癖と、プロンプトの合わせ方", type: concept, priority: 推奨, level: 任せる, origin: "00 §3 分野03", wave_core: false}
   - {id: after-switching-models, field: models, title: "新しいモデルに替えたら見直すこと", type: recipe, priority: 必須, level: 任せる, origin: "00 §3 分野03", wave_core: false}
-  - {id: 1m-context, field: models, title: "1M コンテキストとの付き合い方", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野03", wave_core: false}
+  - {id: large-context-window, field: models, title: "1M コンテキストとの付き合い方", type: concept, priority: 推奨, level: 整える, origin: "00 §3 分野03", wave_core: false}
   - {id: suspected-degradation, field: models, title: "「劣化した」と感じたら（版と effort を確認する）", type: concept, priority: 必須, level: 整える, origin: "00 §3 分野03", wave_core: false}
   - {id: model-retirements, field: models, title: "旧モデルの退役と既定モデルの変化", type: concept, priority: 任意, level: 整える, origin: "00 §3 分野03", wave_core: false}
   - {id: when-to-use-haiku, field: models, title: "Haiku を使いどころで使う", type: concept, priority: 任意, level: 任せる, origin: "00 §3 分野03", wave_core: false}
@@ -256,7 +256,7 @@ pages:
   - {id: choosing-parallel-modes, field: delegate, title: "並列の五方式の選び方", type: comparison, priority: 必須, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
   - {id: parallel-with-worktrees, field: delegate, title: "git worktree で並列にする", type: feature, priority: 必須, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
   - {id: agent-view-and-background, field: delegate, title: "agent view と背景セッション", type: feature, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}
-  - {id: agent-teams-experimental, field: delegate, title: "agent teams（実験的）", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野12", wave_core: false}
+  - {id: agent-teams, field: delegate, title: "agent teams（実験的）", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野12", wave_core: false}
   - {id: dynamic-workflows, field: delegate, title: "dynamic workflows（ultracode）", type: feature, priority: 推奨, level: 回す, origin: "00 §3 分野12", wave_core: false}
   - {id: batch-and-p-loops, field: delegate, title: "多数のファイルに同じ作業を流す（/batch と `-p` のループ）", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野12「fan-out（/batch と `-p` ループ）」", wave_core: false}
   - {id: humans-set-the-parallel-limit, field: delegate, title: "並列の上限は人間が決める", type: concept, priority: 必須, level: 仕組みにする, origin: "00 §3 分野12", wave_core: false}

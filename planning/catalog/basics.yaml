@@ -49,7 +49,7 @@ pages:
       - {type: goal, text: "コンテキストが広くなったのなら、資料を全部入れてよいのか知りたい"}
       - {type: symptom, text: "資料をたくさん渡したのに、大事な点を拾ってくれない"}
     prerequisites: [tokens]
-    related: [context-rot, lost-in-the-middle, rereads-whole-history, subagent-isolation, 1m-context, tidy-the-desk, always-on-costs, inspect-context, "four-principles#show"]
+    related: [context-rot, lost-in-the-middle, rereads-whole-history, subagent-isolation, large-context-window, tidy-the-desk, always-on-costs, inspect-context, "four-principles#show"]
     tracks: [context-window]
     outdated_advice: [save-context-for-200k]
     volatility: 低
@@ -103,7 +103,7 @@ pages:
       - {type: goal, text: "長い会話で答えの質が落ちていく理由を知りたい"}
       - {type: symptom, text: "失敗したやり方を何度も蒸し返してくる"}
     prerequisites: [attention-budget]
-    related: [lost-in-the-middle, forgets-in-long-chats, going-in-circles, when-to-start-fresh, rewind-dont-correct, tidy-the-desk, handoff-documents, 1m-context]
+    related: [lost-in-the-middle, forgets-in-long-chats, going-in-circles, when-to-start-fresh, rewind-dont-correct, tidy-the-desk, handoff-documents, large-context-window]
     outdated_advice: [save-context-for-200k]
     volatility: 低
     visual: {kind: static, text: "似ているが違う書類が混ざるほど、正しい一枚を取り違える図。数値は傾向として、研究のモデルと世代を添える"}

@@ -19,7 +19,7 @@ pages:
       - {type: goal, text: "モデルの選択肢が多くて、それぞれ何が違うのか知りたい"}
       - {type: situation, text: "新しいモデルの名前を聞いたが、今使っているものとの関係が分からない"}
     prerequisites: []
-    related: [choosing-a-model, effort-levels, before-using-top-model, opusplan, model-quirks, 1m-context, after-switching-models, knowledge-cutoff, term-index, change-timeline-2026]
+    related: [choosing-a-model, effort-levels, before-using-top-model, split-models-by-role, model-quirks, large-context-window, after-switching-models, knowledge-cutoff, term-index, change-timeline-2026]
     tracks: [model-selection]
     outdated_advice: []
     volatility: 高
@@ -56,7 +56,7 @@ pages:
       - {type: goal, text: "一番賢いモデルを常に使うべきか知りたい"}
       - {type: symptom, text: "モデルを替えたのに、良くなったのかどうか分からない"}
     prerequisites: [current-models]
-    related: [effort-levels, before-using-top-model, harness-over-model, opusplan, fast-mode-and-advisor, measure-changes, felt-vs-measured, choosing-a-plan]
+    related: [effort-levels, before-using-top-model, harness-over-model, split-models-by-role, fast-mode-and-advisor, measure-changes, felt-vs-measured, choosing-a-plan]
     tracks: [model-selection, effort]
     outdated_advice: [avoid-opus-as-expensive]
     volatility: 高
@@ -134,7 +134,7 @@ pages:
       - {type: symptom, text: "簡単な作業なのに返答が遅く、使用量も多い"}
       - {type: situation, text: "アプリと Claude Code と API で、同じモデルなのに振る舞いが違う気がする"}
     prerequisites: [how-thinking-works]
-    related: [choosing-a-model, thinking-keywords, suspected-degradation, too-slow, after-switching-models, opusplan, fast-mode-and-advisor, what-uses-up-limits, search-research-thinking, measure-changes]
+    related: [choosing-a-model, thinking-keywords, suspected-degradation, too-slow, after-switching-models, split-models-by-role, fast-mode-and-advisor, what-uses-up-limits, search-research-thinking, measure-changes]
     tracks: [effort, adaptive-thinking]
     outdated_advice: [budget-tokens]
     volatility: 高
@@ -196,7 +196,7 @@ pages:
       - "research/27 #18（日本語の思考のキーワードは当時は公式の機能。今の扱いは未確認）"
     notes: "00 と 01 の「think hard は認識されない」は【2026-11-03 注記】で一部誤りとされたので根拠にせず、summary と signs は research/23 #9 で確かめた内容（effort を上げるキーワードではなく、普通の文として渡る）で書いた。ultrathink が上げる段・効く版・効く面は数値ファイルに置く。"
 
-  - id: 1m-context
+  - id: large-context-window
     chapter: effort・思考・コンテキスト
     title: 広いコンテキストウィンドウとの付き合い方
     nav_title: null
@@ -230,7 +230,7 @@ pages:
       - "02 §2-3（アプリの窓と自動の文脈管理）・§3-1（1M の料金とトークナイザー）"
       - "04 Q2（自動の圧縮の窓の設定の実践）"
       - "research/22 §3.4（idle compaction）"
-    notes: "題名から数値（1M）を外し、aliases に置いた（変わりやすい値を題名に書かない）。id は公式の機能名（1M context）から作った registry のまま。会話の長さと圧縮の判断の本体は context の分野にあり、ここはモデルの窓が広くなって何が変わったかに絞る。改稿前の Best practices の「埋まるほど性能が落ちる」（research/23 #1）は根拠にしない。現行の Best practices の「やめてよいこと」にある「コンテキストを守るために subagent を使う」（research/23 §3.7）を台帳の subagents-to-save-context として outdated_advice に入れ、節 what-to-stop で扱う。並列・うるさい出力を離す・独立のレビューには今も向くが追加のトークンがかかる点は、cost の parallel-and-loop-costs が持つ（2026-11-04 統合：M3）。"
+    notes: "題名から数値（1M）を外し、aliases に置いた（変わりやすい値を題名に書かない）。id は公式の機能名（1M context）から作った registry のまま。会話の長さと圧縮の判断の本体は context の分野にあり、ここはモデルの窓が広くなって何が変わったかに絞る。改稿前の Best practices の「埋まるほど性能が落ちる」（research/23 #1）は根拠にしない。現行の Best practices の「やめてよいこと」にある「コンテキストを守るために subagent を使う」（research/23 §3.7）を台帳の subagents-to-save-context として outdated_advice に入れ、節 what-to-stop で扱う。並列・うるさい出力を離す・独立のレビューには今も向くが追加のトークンがかかる点は、cost の parallel-and-loop-costs が持つ（2026-11-04 統合：M3）。（2026-11-04 メイン：id を 1m-context から改めた。窓の大きさは変わる値なので id に入れない。design-review DR-19 n）"
 
   - id: suspected-degradation
     chapter: 替えたとき・劣化を疑うとき
@@ -344,7 +344,7 @@ pages:
       - "00 §5 台帳（budget_tokens・prefill・IMPORTANT の強調）と research/22 §3.4（temperature の行）"
     notes: "registry の model-retirements（旧モデルの退役と既定モデルの変化）を節 retirements-and-default-changes にまとめた。退役や既定の変化は「替えたら見直す」の引き金の一つで、日付は数値ファイルと changes の change-timeline-2026 に置くため。00 の「/doctor prompt-audit」は調査資料のほかに裏付けがないので、書く前に一次資料で確かめる。節 checklist の見直しの項目に、強い言い方を和らげること（emphasis-words）と、確認を命じる一文を外すこと（does-double-check-work。台帳の add-double-check）を入れる（prompting#4）。「外すものは一つずつ外し、効果を測る」がこのページの要点で、recipe は確かめるページを前提に持つ（design §2.2）ので、eval の measure-changes（任せる・必須）を related から前提に移した（eval#3）（2026-11-04 統合：prompting#4・eval#3）。"
 
-  - id: opusplan
+  - id: split-models-by-role
     chapter: 役割で使い分ける
     title: 計画・実装・サブエージェントでモデルを分ける（opusplan など）
     nav_title: 役割でモデルを分ける
@@ -381,7 +381,7 @@ pages:
       - "03 $2（モデルの使い分けの実践。非公式のまとめを含む）"
       - "research/22 #21（別のモデルで動くサブエージェントは、そのモデルの保存した effort か既定で動く）"
       - "00 §5 台帳（Opus は高いので避ける）"
-    notes: "registry の when-to-use-haiku（Haiku を使いどころで使う）を節 lighter-models にまとめた。軽いモデルの使いどころは、サブエージェントや大量の分類にモデルを割り当てる判断の一部であるため（系統の位置づけは current-models）。題名は registry の「計画は Opus、実装は Sonnet（opusplan など）」から、組み合わせが変わりうるモデルの名前を外した形に改め、旧い言い方は aliases に残した。表記は公式の日本語版の多数派のサブエージェントにし、subagent を aliases に置いた。"
+    notes: "registry の when-to-use-haiku（Haiku を使いどころで使う）を節 lighter-models にまとめた。軽いモデルの使いどころは、サブエージェントや大量の分類にモデルを割り当てる判断の一部であるため（系統の位置づけは current-models）。題名は registry の「計画は Opus、実装は Sonnet（opusplan など）」から、組み合わせが変わりうるモデルの名前を外した形に改め、旧い言い方は aliases に残した。表記は公式の日本語版の多数派のサブエージェントにし、subagent を aliases に置いた。（2026-11-04 メイン：id を opusplan から改めた。モデルの系統の名前を id に入れない。分野の名前で始まる id を避けて split- を付けた。design-review DR-19 n）"
 
   - id: fast-mode-and-advisor
     chapter: 役割で使い分ける
@@ -401,7 +401,7 @@ pages:
       - {type: goal, text: "料金が上がってもよいので、返答を速くしたい"}
       - {type: goal, text: "難しい判断のところだけ、より賢いモデルに相談させたい"}
     prerequisites: [effort-levels]
-    related: [too-slow, opusplan, choosing-a-model, reading-api-pricing, independent-review]
+    related: [too-slow, split-models-by-role, choosing-a-model, reading-api-pricing, independent-review]
     tracks: [fast-mode, advisor]
     outdated_advice: []
     volatility: 高
@@ -420,7 +420,7 @@ pages:
 merged:
   - {id: fable-and-mythos, into: current-models, reason: "Fable と Mythos は同じモデルで安全装置の強さと提供の範囲が違うだけで、Mythos は検証の制度を通した組織に限られ、読者が選び分ける組ではない（catalog/README §4.2 の4）。系統の位置づけの一部として current-models の節 fable-and-mythos にする。透かしは2モデルに限らない（research/25 P5b）"}
   - {id: model-retirements, into: after-switching-models, reason: "退役と既定の変化は「モデルが替わったら見直す」の引き金の一つで、独自の判断は気づき方と移行の手順なので after-switching-models の節 retirements-and-default-changes にする。日付は数値ファイルと changes の change-timeline-2026 に置く"}
-  - {id: when-to-use-haiku, into: opusplan, reason: "軽いモデルを使う判断は、サブエージェント・大量の処理・分類にどのモデルを割り当てるかの判断の一部なので、opusplan の節 lighter-models にする。系統ごとの得意な仕事は current-models の表に置く"}
+  - {id: when-to-use-haiku, into: split-models-by-role, reason: "軽いモデルを使う判断は、サブエージェント・大量の処理・分類にどのモデルを割り当てるかの判断の一部なので、opusplan の節 lighter-models にする。系統ごとの得意な仕事は current-models の表に置く"}
 dropped: []
 new_features:
   - {id: advisor, title: "advisor（Claude Code の /advisor と API の Advisor tool）", note: "fast-mode-and-advisor が追う。成熟度は beta（02 §5-8、2026-10-29 の調査）。一次資料で確かめてから facts.yml に入れる"}
@@ -428,4 +428,4 @@ open_issues:
   - "提案（changes・データ）：台帳の budget-tokens と avoid-opus-as-expensive の行の「今どうするか」から、それぞれ effort-levels と choosing-a-model へリンクしてほしい（think-hard-keywords から thinking-keywords へは outdated-advice-ledger の related で結ばれている）"
   - "提案（数値ファイル）：data/facts.yml に、既定の effort の「モデル × 面」の表（research/23 §3.2。Claude API・Claude Code・アプリ）、ultrathink が上げる段と効く版と面、fast mode の対象と料金と削除の日付、退役の予定を、出典と確認日つきで持つ。公式同士の食い違いは両方の出典を残す（design §6.7）"
   - "迷った点：harness-over-model は 11 が分野02 に置く案も挙げる。モデルを替えるかの判断の直前に読まれるので models に置いた"
-  - "取り込み済み（2026-11-04 に確かめた）：basics の how-thinking-works は effort-levels・thinking-keywords・choosing-a-model を、context の compact-and-auto-compact・tidy-the-desk は 1m-context を、extend の writing-subagents は effort-levels#subagents-and-org-limits と opusplan を、changes の checking-for-updates は suspected-degradation・after-switching-models を、prompting の emphasis-words・does-double-check-work は after-switching-models を、prompting の suggest-or-do・state-the-scope・output-shape・does-double-check-work は model-quirks を、eval の felt-vs-measured は suspected-degradation を指している。symptoms の seems-less-capable は suspected-degradation を、keeps-stopping・does-more-than-asked は model-quirks と effort-levels を指している"
+  - "取り込み済み（2026-11-04 に確かめた）：basics の how-thinking-works は effort-levels・thinking-keywords・choosing-a-model を、context の compact-and-auto-compact・tidy-the-desk は large-context-window を、extend の writing-subagents は effort-levels#subagents-and-org-limits と split-models-by-role を、changes の checking-for-updates は suspected-degradation・after-switching-models を、prompting の emphasis-words・does-double-check-work は after-switching-models を、prompting の suggest-or-do・state-the-scope・output-shape・does-double-check-work は model-quirks を、eval の felt-vs-measured は suspected-degradation を指している。symptoms の seems-less-capable は suspected-degradation を、keeps-stopping・does-more-than-asked は model-quirks と effort-levels を指している"

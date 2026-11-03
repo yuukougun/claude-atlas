@@ -29,7 +29,7 @@ pages:
       - {type: situation, text: "コンテキストが大きくなった今も、片付ける意味があるのか迷っている"}
       - {type: situation, text: "claude.ai で一つの長い会話を使い続けている"}
     prerequisites: [rereads-whole-history, context-rot]
-    related: [when-to-start-fresh, rewind-dont-correct, compact-and-auto-compact, handoff-documents, research-in-subagents, inspect-context, always-on-costs, long-chat-limits, using-projects, how-memory-works, where-to-put-instructions, attention-budget, 1m-context, saving-priorities, four-principles]
+    related: [when-to-start-fresh, rewind-dont-correct, compact-and-auto-compact, handoff-documents, research-in-subagents, inspect-context, always-on-costs, long-chat-limits, using-projects, how-memory-works, where-to-put-instructions, attention-budget, large-context-window, saving-priorities, four-principles]
     tracks: [clear, compaction, context-window]
     outdated_advice: [save-context-for-200k, subagents-to-save-context]
     volatility: 中
@@ -156,7 +156,7 @@ pages:
       - {type: symptom, text: "席を外して戻ったら、会話が要約されていた"}
       - {type: situation, text: "自動圧縮のタイミングを変えるべきか迷っている"}
     prerequisites: [what-survives-compaction]
-    related: [promises-after-compaction, handoff-documents, when-to-start-fresh, "checkpoints-and-rewind#summarize", inspect-context, forgot-after-compaction, "when-to-lock#spoken-rules-fade", long-chat-limits, 1m-context, why-prompt-caching, what-uses-up-limits, keep-replies-in-japanese]
+    related: [promises-after-compaction, handoff-documents, when-to-start-fresh, "checkpoints-and-rewind#summarize", inspect-context, forgot-after-compaction, "when-to-lock#spoken-rules-fade", long-chat-limits, large-context-window, why-prompt-caching, what-uses-up-limits, keep-replies-in-japanese]
     tracks: [compaction, context-window]
     outdated_advice: [save-context-for-200k]
     volatility: 中

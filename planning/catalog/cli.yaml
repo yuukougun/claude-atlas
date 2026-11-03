@@ -119,7 +119,7 @@ pages:
       - {type: goal, text: "確認を減らしたいが、どのモードにすればよいか分からない"}
       - {type: situation, text: "確認なしで進むのが既定になってから、何が勝手に実行されるのか不安"}
     prerequisites: [agent-loop]
-    related: [what-auto-mode-stops, permission-rules, sandboxing, where-bypass-is-ok, default-safety-settings, approval-fatigue, protected-paths, destructive-commands, when-to-plan, settings-layers, wrong-amount-of-approvals, permission-modes-in-the-app, "headless-basics#permissions", agent-teams-experimental]
+    related: [what-auto-mode-stops, permission-rules, sandboxing, where-bypass-is-ok, default-safety-settings, approval-fatigue, protected-paths, destructive-commands, when-to-plan, settings-layers, wrong-amount-of-approvals, permission-modes-in-the-app, "headless-basics#permissions", agent-teams]
     tracks: [permission-modes, auto-mode]
     outdated_advice: [approve-everything-first, yolo-skip-permissions]
     volatility: 中
@@ -131,7 +131,7 @@ pages:
       - {name: "既定の権限モードを決める settings の例", kind: settings, safety: true}
     visual: {kind: static, text: "モードを、確認なしで進む範囲の広さの順に並べ、どの段で sandbox と deny を足すかを添えた図"}
     materials: ["00 §3 分野07", "01 C-1・C-2", "05 1-10", "research/23 F2-a・F2-b・§3.3", "research/22 #8・#10", "research/26 §3.4（VS Code の最初の権限モード）"]
-    notes: "既定のモードの変遷（Pro・Max・Team は 2026-08-14、ターミナルと VS Code の対話は v2.1.283〜284、-p は Manual）は数値ファイルに置く（research/23 F2）。auto モードが何を止めるかは enforce の what-auto-mode-stops、bypassPermissions の使いどころは safety の where-bypass-is-ok、アプリの権限モードは app の permission-modes-in-the-app が持つ。level は整えるにしたので比例則の検査の対象外だが、緩める内容を含むので enforce と safety のページを related に置いた。-p の権限モードの既定と承認の要る呼び出しの扱いは delegate の headless-basics（節 permissions）、teammate がリードの権限モードを受け継ぐかは delegate の agent-teams-experimental を指す（delegate の担当の提案）（2026-11-04 統合：delegate#3）"
+    notes: "既定のモードの変遷（Pro・Max・Team は 2026-08-14、ターミナルと VS Code の対話は v2.1.283〜284、-p は Manual）は数値ファイルに置く（research/23 F2）。auto モードが何を止めるかは enforce の what-auto-mode-stops、bypassPermissions の使いどころは safety の where-bypass-is-ok、アプリの権限モードは app の permission-modes-in-the-app が持つ。level は整えるにしたので比例則の検査の対象外だが、緩める内容を含むので enforce と safety のページを related に置いた。-p の権限モードの既定と承認の要る呼び出しの扱いは delegate の headless-basics（節 permissions）、teammate がリードの権限モードを受け継ぐかは delegate の agent-teams を指す（delegate の担当の提案）（2026-11-04 統合：delegate#3）"
 
   - id: when-to-plan
     chapter: 権限モードと計画
@@ -151,7 +151,7 @@ pages:
       - {type: goal, text: "いきなり実装させず、先に方針を確かめたい"}
       - {type: symptom, text: "実装が終わってから、前提の誤解に気づくことが多い"}
     prerequisites: [permission-modes-overview]
-    related: [spec-first, let-claude-ask, define-done, opusplan, not-what-i-meant, does-more-than-asked, handoff-documents, using-ides, cloud-sessions-and-teleport]
+    related: [spec-first, let-claude-ask, define-done, split-models-by-role, not-what-i-meant, does-more-than-asked, handoff-documents, using-ides, cloud-sessions-and-teleport]
     tracks: [plan-mode]
     outdated_advice: []
     volatility: 中

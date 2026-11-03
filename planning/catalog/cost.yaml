@@ -59,7 +59,7 @@ pages:
       - {type: goal, text: "何が使用量を食っているのか知りたい"}
       - {type: symptom, text: "長いセッションを続けると、消費が急に増える"}
     prerequisites: [how-usage-limits-work, rereads-whole-history]
-    related: [saving-priorities, hits-limits-quickly, "usage-context-statusline#instruments", insights-and-usage-review, always-on-costs, effort-levels, "1m-context#cost-of-long-context", before-using-top-model, parallel-and-loop-costs]
+    related: [saving-priorities, hits-limits-quickly, "usage-context-statusline#instruments", insights-and-usage-review, always-on-costs, effort-levels, "large-context-window#cost-of-long-context", before-using-top-model, parallel-and-loop-costs]
     tracks: [usage, usage-limits]
     outdated_advice: [slash-cost-and-stats]
     volatility: 中
@@ -96,7 +96,7 @@ pages:
       - {type: goal, text: "上限に当たらないように、使い方を節約したい"}
       - {type: situation, text: "節約のコツをいろいろ試したが、あまり変わらない"}
     prerequisites: [what-uses-up-limits]
-    related: [define-done, when-to-plan, when-to-start-fresh, always-on-costs, pruning-extensions, hook-recipes, verification-ladder, effort-levels, opusplan]
+    related: [define-done, when-to-plan, when-to-start-fresh, always-on-costs, pruning-extensions, hook-recipes, verification-ladder, effort-levels, split-models-by-role]
     tracks: []
     outdated_advice: []
     volatility: 中
@@ -349,7 +349,7 @@ pages:
       - {type: symptom, text: "夜通しループを回したら、上限や請求が一気に増えた"}
       - {type: situation, text: "agent teams や workflows を試したいが、どれだけ使うか分からない"}
     prerequisites: [what-uses-up-limits]
-    related: [humans-set-the-parallel-limit, choosing-parallel-modes, goal-until-done, loop-and-scheduling, dynamic-workflows, agent-teams-experimental, research-in-subagents, checking-unattended-runs, decide-when-to-quit, open-ended-loop-trap, usage-credits-basics]
+    related: [humans-set-the-parallel-limit, choosing-parallel-modes, goal-until-done, loop-and-scheduling, dynamic-workflows, agent-teams, research-in-subagents, checking-unattended-runs, decide-when-to-quit, open-ended-loop-trap, usage-credits-basics]
     tracks: [workflows, agent-teams, loop, goal, subagents]
     outdated_advice: [ralph-loops, workflow-keyword-extra-usage, subagents-to-save-context]
     volatility: 高
@@ -417,4 +417,4 @@ new_features:
 open_issues:
   - "提案（start・changes）：プランの改名（旧 Max 20x → Ultra）と上限の呼び方（session limit → 5-hour limit）を、start の term-index の旧名の対応（changes の old-and-new-names をまとめた先）と changes の change-timeline-2026 に、数値ファイルから入れてほしい（research/22 §3.4 が「台帳ではなく数値ファイルと aliases で持つ」とした項目）"
   - "提案（数値ファイル）：data/facts.yml に、プランの表（名前・料金・枠の種類と倍率・上位のモデルの扱い・API credits）、上位のモデルの枠（料金のページと記事の書き方の食い違いを両方の出典つきで）、usage credits の日本での失効の期間、API の料金（入力・出力・キャッシュ・バッチ・fast mode・ツール）、agent teams の倍率とその条件を、出典と確認日つきで持つ"
-  - "取り込み済み（2026-11-04 に確かめた）：delegate の headless-basics・bare-mode・humans-set-the-parallel-limit・dynamic-workflows・goal-until-done、contest の competition-day-operations、team の enterprise-vs-team-plans・audit-logs-and-telemetry、safety の protecting-secrets は cost のページを指している。team の提案で choosing-a-plan の related に enterprise-vs-team-plans を、delegate の提案で parallel-and-loop-costs の related に agent-teams-experimental を、safety の提案で check-billing-path と protecting-secrets の相互の related を入れた。check-billing-path からは headless-basics#billing-path と bare-mode#authentication を指す。api の提案で、キャッシュとバッチの料金の倍率と Managed Agents の時間の料金を reading-api-pricing に置き、check-billing-path から agent-sdk-basics#billing を指した。japanese が more-tokens-in-japanese を can-i-prompt-in-japanese にまとめたので、reading-api-pricing からは can-i-prompt-in-japanese#tokens を指す。cli の usage-context-statusline と context の inspect-context は、まとめた claude-code-costs の代わりに what-uses-up-limits#find-what-uses-it を指した（cli の提案の境界：/usage の内訳の読み方と節約の判断は cost、道具の一覧と設定は cli）。symptoms の hits-limits-quickly は how-usage-limits-work・what-uses-up-limits・saving-priorities などを指している"
+  - "取り込み済み（2026-11-04 に確かめた）：delegate の headless-basics・bare-mode・humans-set-the-parallel-limit・dynamic-workflows・goal-until-done、contest の competition-day-operations、team の enterprise-vs-team-plans・audit-logs-and-telemetry、safety の protecting-secrets は cost のページを指している。team の提案で choosing-a-plan の related に enterprise-vs-team-plans を、delegate の提案で parallel-and-loop-costs の related に agent-teams を、safety の提案で check-billing-path と protecting-secrets の相互の related を入れた。check-billing-path からは headless-basics#billing-path と bare-mode#authentication を指す。api の提案で、キャッシュとバッチの料金の倍率と Managed Agents の時間の料金を reading-api-pricing に置き、check-billing-path から agent-sdk-basics#billing を指した。japanese が more-tokens-in-japanese を can-i-prompt-in-japanese にまとめたので、reading-api-pricing からは can-i-prompt-in-japanese#tokens を指す。cli の usage-context-statusline と context の inspect-context は、まとめた claude-code-costs の代わりに what-uses-up-limits#find-what-uses-it を指した（cli の提案の境界：/usage の内訳の読み方と節約の判断は cost、道具の一覧と設定は cli）。symptoms の hits-limits-quickly は how-usage-limits-work・what-uses-up-limits・saving-priorities などを指している"

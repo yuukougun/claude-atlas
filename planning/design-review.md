@@ -187,7 +187,7 @@
 | k | 理解の線引きは how-much-understanding-to-keep に置き、own-generated-code は説明させて確かめる手順に絞る | R3-10 |
 | l | CLAUDE.md の削り方は claude-md-length に置き、init-and-first-claude-md は /init の操作と流れにする | R3-11 |
 | m | 消された直後・漏れた直後の初動は症状のページが持つ（design §4.1 の例外）。対処のページの同じ節は外して症状のページを指す。面ごとの表示は when-requests-are-refused に寄せる | R3-12 |
-| n | id の改名：1m-context → large-context-window、opusplan → models-by-role、agent-teams-experimental → agent-teams（メインが道具で行う） | R3-14 |
+| n | id の改名：1m-context → large-context-window、opusplan → split-models-by-role（分野の名前で始まる id を避けた）、agent-teams-experimental → agent-teams（メインが道具で行った） | R3-14 |
 | o | 題名と要約の変わりやすい値を外す（cloud-schedules の旧名、enterprise-vs-team-plans のプラン名、thinking-keywords の要約） | R3-15 |
 | p | lost-in-the-middle を context-rot の節に、ai-amplifies-organizations を paved-roads か review-bottlenecks の節にまとめる | R3-16 |
 | q | 独自の判断を notes に1行で書けないページを節にまとめる（completion-notifications・add-tests・curb-sycophancy-and-overtrust・does-double-check-work を見る） | R3-17 |
