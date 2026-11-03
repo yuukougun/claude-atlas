@@ -86,10 +86,9 @@ pages:
     prevents: [境界がない]
     pitfalls: []
     scenes: [コンテスト]
-    summary: "大会の AI の規則が禁止・部門分け・許可と開示に割れる理由と、主な大会の類型・版・確認日・一次資料の所在が分かり、出る前に何を確かめるかを決められる。"
+    summary: "主な大会の AI の規則を、類型（禁止・部門分け・許可と開示）・版・確認日・一次資料の所在で引ける。版が未確認の大会は、出る前に一次資料で今の規則を読む。"
     signs:
       - {type: situation, text: "出る大会で、AI をどこまで使ってよいか確かめたい"}
-      - {type: situation, text: "規約に AI のことが書かれていない大会に出る"}
       - {type: symptom, text: "大会の AI のルールが前と変わっていて、どれが最新か分からない"}
     prerequisites: [checking-ai-rules]
     related: [practice-vs-contest-day, format-cheatsheet, disclosure-and-provenance, instructions-hidden-in-materials, entrusted-data, dating-information, competition-day-operations, ai-in-contests-today]
@@ -97,13 +96,11 @@ pages:
     outdated_advice: []
     volatility: 高
     sections:
-      - {title: "規則が割れる理由", anchor: why-rules-differ}
       - {title: "類型ごとの大会（確認日付き）", anchor: rules-by-type}
-      - {title: "文言がないことは許可ではない", anchor: silence-is-not-permission}
       - {title: "版が確かめられないとき", anchor: unverified-versions}
-    visual: {kind: static, text: "規則の三類型の図：個人の考える力を測る大会は禁止へ、成果物を測る大会は許可と開示へ、両方を測る大会は部門分けへ"}
+    visual: {kind: static, text: "主な大会を規則の三類型（禁止・部門分け・許可と開示）の上に置いた図（大会名・部門・確認日付き。類型が分かれる理由の図は checking-ai-rules に任せる）"}
     materials: ["requirements §4.3 contest・§6.5（【2026-11-03 注記】を含む）", "decisions 2026-11-03「大会の規則の版」・書き方の方針（第三者・根拠・コンテスト）の4と5", "design §6.13・§4.2", "10 第1章 ルールの地図（注記つき）", "11 第1節 分野11 p12#23・p12#29・p34#199・p12#36・p12#39", "11 第3節 C-1〜C-12（注記つき）", "11 第4節 #1〜#8（注記つき）", "research/24 A-1〜A-5・B-2・B-3・B-6・B-8・§2.4・P-4", "research/22 #45・#46"]
-    notes: "優先度：大会で AI を使う前に必ず通る確認で、requirements §6.3 の「日付と版のない『この大会では AI が使える／使えない』という断定」を避ける受け皿なので必須（registry の見当）。規則の表は数値ファイルから作り、類型・版・確認日・一次資料へのリンクだけを持つ。条文の要約は載せない（方針 A4、design §6.13）。主催者の公式 X など AI の利用を断るドメインの外の一次資料で確かめたのは、長期 AHC の2部門制（AHC074 から、告知の範囲は今後数回）、長期 AHC の規則の案の試験コンテストの日程（2026-10-15〜18）、ISUCON2026 のレギュレーションの所在（許可）、Universal Cup の録画の義務、高専プロコンの公式ページ（行動規範の熟読を求める）、IEEEXtreme 20.0 の規則の AI の節の所在（research/24 A-1・A-4・B-6・B-8、research/22 #45・#46）。ABC・ARC・AGC の20261014版、短期 AHC の20260818版、長期 AHC の20261026版と各部門の範囲、Codeforces の規則、「過去問の練習には適用されない」は「未確認」とし、規則のページへのリンクだけを置く（decisions「大会の規則の版」）。atcoder.jp・codeforces.com へのリンクは張ってよいが、中身を AI で読まない。AtCoder の規則の細部は kyopro-atlas の atcoder-system#ai-rules へリンクする（方針 A5）。一般の類型と確認表（10 付録A-2）は safety の checking-ai-rules が持ち、ここは大会の早見に絞る（design §4.2）。前提の checking-ai-rules は、safety の担当が必須に上げた（registry の見当は推奨）ので、必須の前提の規則も満たす。"
+    notes: "優先度：大会で AI を使う前に必ず通る確認で、requirements §6.3 の「日付と版のない『この大会では AI が使える／使えない』という断定」を避ける受け皿なので必須（registry の見当）。規則の表は数値ファイルから作り、類型・版・確認日・一次資料へのリンクだけを持つ。条文の要約は載せない（方針 A4、design §6.13）。主催者の公式 X など AI の利用を断るドメインの外の一次資料で確かめたのは、長期 AHC の2部門制（AHC074 から、告知の範囲は今後数回）、長期 AHC の規則の案の試験コンテストの日程（2026-10-15〜18）、ISUCON2026 のレギュレーションの所在（許可）、Universal Cup の録画の義務、高専プロコンの公式ページ（行動規範の熟読を求める）、IEEEXtreme 20.0 の規則の AI の節の所在（research/24 A-1・A-4・B-6・B-8、research/22 #45・#46）。ABC・ARC・AGC の20261014版、短期 AHC の20260818版、長期 AHC の20261026版と各部門の範囲、Codeforces の規則、「過去問の練習には適用されない」は「未確認」とし、規則のページへのリンクだけを置く（decisions「大会の規則の版」）。atcoder.jp・codeforces.com へのリンクは張ってよいが、中身を AI で読まない。AtCoder の規則の細部は kyopro-atlas の atcoder-system#ai-rules へリンクする（方針 A5）。一般の類型と確認表（10 付録A-2）は safety の checking-ai-rules が持ち、ここは大会の早見に絞る（design §4.2）。前提の checking-ai-rules は、safety の担当が必須に上げた（registry の見当は推奨）ので、必須の前提の規則も満たす。R3-18 に合わせて、checking-ai-rules と重なる2節「規則が割れる理由」（why-rules-differ）と「文言がないことは許可ではない」（silence-is-not-permission）を外し、本文の冒頭で前提の checking-ai-rules（節 why-rules-differ・when-unclear）を指す。2つの anchor を指す参照はどの分野にもなかった（2026-11-04 に確かめた）。summary から「割れる理由」を外し、1文目を引けるものにした。図の案も、三類型の理由の図から、主な大会を三類型の上に置く図に替えた。sign「規約に AI のことが書かれていない大会に出る」は、答え（文言がないときの考え方）が checking-ai-rules#when-unclear に移ったので外し、checking-ai-rules に移す案をメインへ送った（2026-11-04 工程4：DR-19 r）"
 
   - id: practice-vs-contest-day
     chapter: 規則と練習
@@ -142,7 +139,7 @@ pages:
     chapter: 評価と実験
     title: "形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）"
     nav_title: "形式別の評価器"
-    aliases: ["ローカルテスタ", "ローカル評価", "評価環境"]
+    aliases: ["ローカルテスタ", "ローカル評価"]
     type: concept
     level: 任せる
     level_evidence: "大会で実装を AI に任せ始める前の、最初の成果物として要る。eval の verifier-three-conditions（任せる）と同じ段"
@@ -155,7 +152,7 @@ pages:
     summary: "形式ごとに検証器が何に当たるか（テスタ・ベンチマーカー・CV・flag の検証・対戦場など）と、公式や本番とのずれをどう確かめるかが分かる。"
     signs:
       - {type: goal, text: "AHC のローカルテスタを AI に作らせたい"}
-      - {type: symptom, text: "手元のスコアは上がったのに、本番の順位が上がらない"}
+      - {type: symptom, text: "手元の評価器のスコアが、公式の採点と合わない"}
       - {type: goal, text: "対戦型の大会で、ボットの強さを手元で比べたい"}
     prerequisites: [verifier-three-conditions]
     related: [test-the-verifier, verifier-defines-problem, differential-testing, lockbox-and-holdout, check-the-metric, build-test-harness, build-observation-tools, running-contest-experiments, competition-day-operations, format-cheatsheet, freeze-eval-assets, protect-tests, misses-broken-evaluation, suspect-too-good-results]
@@ -172,7 +169,7 @@ pages:
       - {title: "ハッカソン：機械の評価器がないとき", anchor: no-mechanical-evaluator}
       - {title: "対戦型：対戦場と基準のボット", anchor: arena}
     materials: ["requirements §4.3 contest", "10 第2章 実践（人が最初にやる仕事は検証器づくり）・第8章", "11 第1節 新分野案Y「形式別の評価器」p34#20・p34#21・p34#22・p34#17・p34#31・p34#24・p34#217・p56#86・p34#206", "11 第2節 分野09 p34#26（基準のボットの均質化は仮説）", "11 第1節 分野16 p34#23（性能改善の計装）"]
-    notes: "優先度：推奨（registry の見当）。一般の原理（検証器が問題を定義する・三条件・red/green）は eval が持ち、ここは形式ごとの当てはめに絞る（design §4.2）。七つの形式を同じ厚さで扱うため（decisions「コンテストの分野」）、機械の評価器がないハッカソンも節にする。第三者のツール（テスタの実行ツール、対戦のリーグのツール）は例として名前を出すだけにする（D13）。同じモデルに書かせた基準のボットは戦略が似通う、は仮説（11 第2節 p34#26）。誤答で提出が止まる大会の例は版に依存するので、規則のページの確認に回す。level：registry の見当は仕組みにするだったが、AI に任せる前の最初の成果物なので任せるにした（competition-day-operations と search-code-checklist の前提にするため）。評価器の red/green の雛形（10 付録A-13）は eval の test-the-verifier に置かれる（11 第5節）ので、ここは関連でつなぐ。"
+    notes: "優先度：推奨（registry の見当）。一般の原理（検証器が問題を定義する・三条件・red/green）は eval が持ち、ここは形式ごとの当てはめに絞る（design §4.2）。七つの形式を同じ厚さで扱うため（decisions「コンテストの分野」）、機械の評価器がないハッカソンも節にする。第三者のツール（テスタの実行ツール、対戦のリーグのツール）は例として名前を出すだけにする（D13）。同じモデルに書かせた基準のボットは戦略が似通う、は仮説（11 第2節 p34#26）。誤答で提出が止まる大会の例は版に依存するので、規則のページの確認に回す。level：registry の見当は仕組みにするだったが、AI に任せる前の最初の成果物なので任せるにした（competition-day-operations と search-code-checklist の前提にするため）。評価器の red/green の雛形（10 付録A-13）は eval の test-the-verifier に置かれる（11 第5節）ので、ここは関連でつなぐ。第三者のツールの名前を出すときは、成熟度と確認日を添える（DR-17）。sign「手元のスコアは上がったのに、本番の順位が上がらない」は、症状のページ misses-broken-evaluation（手元のスコアは上がるのに本番で通用しない）の言い換えで、同じ型の sign が6ページにあった（R1-07）ので、このページが直接の答えになる場面（手元の評価器と公式の採点のずれ。節 tester・cv・benchmarker）に狭めた。別名「評価環境」は主の recipes の build-test-harness にだけ残し、ここから外した（2026-11-04 工程4：DR-19 a・d）"
 
   - id: running-contest-experiments
     chapter: 評価と実験
@@ -193,8 +190,8 @@ pages:
       - {type: symptom, text: "改善したはずの版が、ケースを増やすと負ける"}
       - {type: goal, text: "勝率が本当に上がったのか、何試合やれば言えるか知りたい"}
       - {type: goal, text: "AI にパラメータの探索を回させたい"}
-    prerequisites: [experiment-log, selection-pressure, evaluators-by-format]
-    related: ["measure-changes#by-stratum", lockbox-and-holdout, open-ended-loop-trap, compare-hypotheses-in-parallel, parallel-and-loop-costs, decide-when-to-quit, suspect-too-good-results, progress-logs-for-long-jobs]
+    prerequisites: [experiment-log, evaluators-by-format]
+    related: [selection-pressure, "measure-changes#by-stratum", lockbox-and-holdout, open-ended-loop-trap, compare-hypotheses-in-parallel, parallel-and-loop-costs, decide-when-to-quit, suspect-too-good-results, progress-logs-for-long-jobs]
     tracks: []
     outdated_advice: []
     volatility: 低
@@ -205,7 +202,7 @@ pages:
       - {title: "パラメータは入力の性質ごとに", anchor: parameters-by-input}
       - {title: "効かなかった実験も残す", anchor: keep-all-runs}
     materials: ["requirements §4.3 contest", "10 第9章", "11 第1節 新分野案Y「実験の回し方」p34#41・p34#42・p34#45・p34#48・p34#49", "11 第4節 #53（試合数の概算。検算済み）", "research/24 B-53"]
-    notes: "優先度：推奨（registry の見当）。一般の実験の規律（台帳・選択圧・ロックボックス・層別と最悪のケース）は eval が持ち、ここは大会での数え方（ケース数・相対スコアの集計・試合数・入力の性質ごとのパラメータ）に絞る。試合数の概算は、引き分けのない独立な試合を前提にした値として前提を添える（research/24 B-53）。ケース数の例（数千ケースなど）は上位者の経験則として書く。前提の selection-pressure と、関連の measure-changes#by-stratum（層別と最悪のケース。eval が stratified-and-worst-case をまとめた先）は eval の担当の提案による。比例則：前提の experiment-log・selection-pressure（eval）で満たす。"
+    notes: "優先度：推奨（registry の見当）。一般の実験の規律（台帳・選択圧・ロックボックス・層別と最悪のケース）は eval が持ち、ここは大会での数え方（ケース数・相対スコアの集計・試合数・入力の性質ごとのパラメータ）に絞る。試合数の概算は、引き分けのない独立な試合を前提にした値として前提を添える（research/24 B-53）。ケース数の例（数千ケースなど）は上位者の経験則として書く。前提の selection-pressure と、関連の measure-changes#by-stratum（層別と最悪のケース。eval が stratified-and-worst-case をまとめた先）は eval の担当の提案による。比例則：前提の experiment-log・selection-pressure（eval）で満たす。selection-pressure は前提の experiment-log からたどって届く（推移的な前提）ので、前提から外して related の先頭に移した。比例則は前提の experiment-log（eval）で引き続き満たす（2026-11-04 工程4：DR-19 e）"
 
   - id: search-code-checklist
     chapter: 評価と実験
@@ -291,12 +288,12 @@ pages:
     prevents: []
     pitfalls: [やめられない, 同意を根拠にする]
     scenes: [コンテスト, チーム]
-    summary: "数か月のチーム戦や対戦型の大会で、評価の定義・撤退・合意を人が持ち、役割を分け、旧版との対戦で採否を決めて終盤に凍結する進め方が分かる。"
+    summary: "数か月のチーム戦や対戦型の大会で、評価の定義・撤退・合意を人が持ち、役割を分け、旧版とほかのチームとの対戦で採否を決めて終盤に凍結する進め方が分かる。"
     signs:
       - {type: situation, text: "数か月かけるチーム戦の大会に、AI を使って出る"}
-      - {type: symptom, text: "手元で強くなったボットが、ほかのチームに勝てない"}
+      - {type: symptom, text: "旧版に勝ち越したボットを採ったのに、ほかのチームには負ける"}
     prerequisites: [separate-roles, competition-day-operations]
-    related: [decide-when-to-quit, "evaluators-by-format#arena", lockbox-and-holdout, freeze-eval-assets, risk-tiered-approval, record-decisions, ideate-independently, curb-sycophancy-and-overtrust, compare-hypotheses-in-parallel, parallel-with-worktrees, ai-ideas-are-everyones, competition-rules]
+    related: [decide-when-to-quit, "evaluators-by-format#arena", lockbox-and-holdout, freeze-eval-assets, risk-tiered-approval, record-decisions, ideate-independently, compare-hypotheses-in-parallel, parallel-with-worktrees, ai-ideas-are-everyones, competition-rules]
     tracks: []
     outdated_advice: []
     volatility: 中
@@ -307,7 +304,7 @@ pages:
       - {title: "要項と行動規範を確かめて記録する", anchor: rules-and-conduct}
       - {title: "凍結とリハーサル", anchor: freeze-and-rehearse}
     materials: ["requirements §4.3 contest（対戦型と長期チーム戦は類推）・§10.4（データが存在しない論点）", "10 第2章 表の最後の行・第22章・第23章", "11 第1節 新分野案Y p12#62・p56#87・p12#58", "11 第1節 分野17 p56#63・p56#66", "11 第4節 #8", "research/24 B-8"]
-    notes: "優先度：任意（registry の見当）。対戦型と数か月のチーム戦での AI の活用には直接の研究がなく、隣接分野からの類推と本文で書く（requirements §4.3・§10.4）。チームの運用の一般論（役割・承認・決定の記録・案出し）は team が持ち、ここは大会への当てはめ（評価担当・実装担当・批評担当、旧版との対戦、終盤の凍結とリハーサル）に絞る。高専プロコンは公式ページに生成 AI の記述がなく行動規範の熟読を求める例（research/24 B-8）。行動規範の本文は確かめていないので、読者に確かめさせる。リハーサルの回数や凍結の時期の数値は例（research/24 A-15）。"
+    notes: "優先度：任意（registry の見当）。対戦型と数か月のチーム戦での AI の活用には直接の研究がなく、隣接分野からの類推と本文で書く（requirements §4.3・§10.4）。チームの運用の一般論（役割・承認・決定の記録・案出し）は team が持ち、ここは大会への当てはめ（評価担当・実装担当・批評担当、旧版との対戦、終盤の凍結とリハーサル）に絞る。高専プロコンは公式ページに生成 AI の記述がなく行動規範の熟読を求める例（research/24 B-8）。行動規範の本文は確かめていないので、読者に確かめさせる。リハーサルの回数や凍結の時期の数値は例（research/24 A-15）。sign「手元で強くなったボットが、ほかのチームに勝てない」は、症状のページ misses-broken-evaluation（手元のスコアは上がるのに本番で通用しない）と同じ型（R1-07）なので、このページが直接の答えになる場面（旧版との対戦だけで採否を決めた。節 adoption）に狭めた。summary の「旧版との対戦で採否を決めて」も、節 adoption に合わせて「旧版とほかのチームとの対戦で」にした。related の curb-sycophancy-and-overtrust は、team が前提の separate-roles（節 against-sycophancy）にまとめた（DR-19 q）ので外した。前提と related に同じページを置かないので、まとめた先は related に足していない（2026-11-04 工程4：DR-19 a・q）"
 
 merged:
   - {id: formats-and-ai-fit, into: format-cheatsheet, reason: "中身は、五つの軸（検証器・典型度・テキストで完結するか・環境の制約・期間）と、形式ごとの当てはめである。軸の一般の判断は 11 が delegate の is-the-task-ai-suited に置き（11 第1節 分野12 p12#63）、形式ごとの当てはめは早見表の列そのものなので、早見表の導入の節 why-formats-differ にまとめた。成績の数値（問題ごとのばらつき）は ai-in-contests-today の囲みに置く。コンテストの分野は固有の論点だけにする（D5）。"}
@@ -322,6 +319,7 @@ notes:
   - "大会の規則と成績は、類型・版・確認日・出典の種類・リンクだけを数値ファイルに置き、確かめられない版は「未確認」（方針 A4、decisions「大会の規則の版」）。対戦型と長期チーム戦は類推と書く（requirements §4.3）。"
   - "materials と notes に実在の個人の名前を書いていない。事例は 11 の元ID と research/24・25 の項目の番号で指した。失敗例を名指ししない（方針 A1）。"
   - "kyopro-atlas へのリンク（方針 A5）は catalog の id では指せないので、各ページの notes に書いた（atcoder-system#ai-rules・practice-method・contest-strategy・stress-testing など、2026-11-04 に kyopro-atlas の docs を読んで見当を付けた）。"
+  - "2026-11-04 工程4（F4）：DR-19 の a（症状のページ misses-broken-evaluation と同じ型の sign を狭い場面に。R1-07）・d（別名「評価環境」）・e（推移的な前提）・r（competition-rules から checking-ai-rules と重なる2節を外した）・q（team がまとめた curb-sycophancy-and-overtrust への参照を外した）を反映した。DR-17（R2-19）の「コンテストの分野」の決定のうち、作者の参加の記録を事例に使わないこと、大会の規則の版を作者に確かめてもらわないこと（確かめられない版は「未確認」）を、この分野の全ページに当てる。ページの数・id・priority・level は変えていない。扱いの一覧は planning/batches/step4/fix-F4.md"
 
 open_issues:
   - "確認（safety・C7）：competition-rules は design §4.2 のとおり safety の checking-ai-rules を前提にした。checking-ai-rules は C7 が必須に上げたので、必須の前提の規則も満たす。C7 の提案のうち practice-vs-contest-day の前提への checking-ai-rules は、competition-rules を通して推移的に届くので書いていない（catalog/README §4.4-1。直接の前提だけを書く）。10 付録A-2（大会の規則の確認表）は 11 第5節のとおり checking-ai-rules の折りたたみ例で、competition-rules からはリンクする。"
