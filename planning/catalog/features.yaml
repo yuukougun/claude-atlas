@@ -1,0 +1,139 @@
+# 機能の id の一覧（目次の tracks で指す）。catalog/README §1・§5
+# - 版：2026-11-04 第1版。README §5 の表に、目次の担当の new_features の提案（12分野・39件、重なり3件）を足した
+# - 題名と note は仮のもの。土台作りで一次資料から確かめ、data/facts.yml の features に移す（版の下限・成熟度・使える面とプランなどの属性はそこに持つ）
+# - by は提案した分野（README §5 の表にあった id には付けない）
+
+features:
+  Claude Code の文脈と指示:
+    - {id: claude-md, title: CLAUDE.md}
+    - {id: rules, title: "rules（.claude/rules/）"}
+    - {id: auto-memory, title: 自動メモリ（auto memory）}
+    - {id: skills, title: スキル（skills）}
+    - {id: subagents, title: サブエージェント（subagents）}
+    - {id: agent-teams, title: エージェントチーム（agent teams）}
+    - {id: output-styles, title: 出力スタイル（output styles）}
+    - {id: mcp, title: MCP}
+    - {id: plugins, title: プラグイン（plugins）}
+    - {id: marketplaces, title: マーケットプレイス（plugin marketplaces）}
+    - {id: statusline, title: ステータスライン（status line）}
+    - {id: mods, title: Mods（プラグインの hooks module）, by: extend, note: "成熟度と版の下限を plugins と別に持つ"}
+    - {id: code-intelligence, title: code intelligence プラグイン（LSP）, by: extend, note: "読み込みの時期とコンテキストのコストが plugins と違う"}
+
+  Claude Code の縛り:
+    - {id: hooks, title: フック（hooks）}
+    - {id: permissions, title: 権限（permissions）}
+    - {id: permission-modes, title: 権限モード}
+    - {id: auto-mode, title: auto モード}
+    - {id: sandbox, title: サンドボックス}
+    - {id: managed-settings, title: 管理設定（managed settings）}
+    - {id: settings, title: 設定（settings.json）}
+
+  Claude Code の操作:
+    - {id: plan-mode, title: plan モード}
+    - {id: checkpoints, title: チェックポイント}
+    - {id: compaction, title: 圧縮（/compact と自動圧縮）}
+    - {id: clear, title: /clear}
+    - {id: context-window, title: コンテキストウィンドウ}
+    - {id: model-selection, title: モデルの選択（/model）}
+    - {id: effort, title: effort}
+    - {id: ultrathink, title: ultrathink}
+    - {id: fast-mode, title: fast mode}
+    - {id: usage, title: /usage}
+    - {id: insights, title: /insights}
+    - {id: ask-user-question, title: AskUserQuestion（質問の道具）}
+    - {id: interactive-mode, title: 対話モードの操作（入力の記号・キーボードショートカット）, by: cli}
+    - {id: sessions, title: セッションの保存・再開・分岐, by: cli}
+    - {id: btw, title: /btw, by: context}
+    - {id: voice-dictation, title: 音声入力（/voice）, by: prompting, note: "アプリの音声モード（voice）とは別の機能"}
+    - {id: safe-mode, title: --safe-mode, by: "cli・delegate", note: "自分の設定と拡張を読まずに起動する。認証は変えない（--bare と違う）"}
+    - {id: language-setting, title: language の設定（返答の言語）, by: "japanese・symptoms"}
+    - {id: advisor, title: advisor（/advisor と API の Advisor tool）, by: models}
+    - {id: feedback, title: /feedback とトランスクリプトの共有, by: safety}
+    - {id: verify-skill, title: /verify, by: verify}
+    - {id: code-review, title: /code-review, by: verify, note: "管理された Code Review（managed-code-review）と /ultrareview は別の項目"}
+
+  Claude Code の任せ方:
+    - {id: goal, title: /goal}
+    - {id: loop, title: /loop}
+    - {id: scheduled-tasks, title: 予定のタスク（scheduled tasks）}
+    - {id: workflows, title: ワークフロー（workflows）}
+    - {id: worktrees, title: worktree}
+    - {id: agent-view, title: agent view}
+    - {id: cloud-sessions, title: クラウドのセッション}
+    - {id: remote-control, title: Remote Control}
+    - {id: headless, title: 非対話モード（claude -p）}
+    - {id: github-actions, title: GitHub Actions}
+    - {id: cross-session-messaging, title: セッションの間のメッセージ}
+    - {id: code-projects, title: Claude Code の Projects（並列の threads）, by: delegate, note: "アプリの projects とは別の機能"}
+    - {id: batch-command, title: /batch, by: delegate, note: "API の batch-api とは別"}
+    - {id: bare-mode, title: --bare, by: delegate}
+    - {id: auto-continue, title: 利用上限での自動の継続（autoContinueAtUsageLimit）, by: "delegate・cost"}
+    - {id: monitor-tool, title: Monitor, by: delegate}
+    - {id: managed-code-review, title: Code Review（管理された自動の PR レビュー）, by: delegate}
+    - {id: ultrareview, title: /ultrareview, by: delegate}
+
+  Claude Code の面:
+    - {id: ide-extensions, title: IDE の拡張}
+    - {id: desktop-code, title: Desktop アプリの Claude Code}
+    - {id: claude-in-chrome, title: Claude in Chrome}
+
+  アプリ:
+    - {id: projects, title: プロジェクト}
+    - {id: project-instructions, title: プロジェクトの指示}
+    - {id: app-memory, title: メモリ（アプリ）}
+    - {id: chat-search, title: 過去の会話の検索}
+    - {id: incognito, title: シークレットチャット}
+    - {id: styles, title: スタイル（Styles）}
+    - {id: personal-instructions, title: Claude への指示（全会話の指示）}
+    - {id: artifacts, title: アーティファクト}
+    - {id: file-creation, title: ファイルの作成と編集}
+    - {id: code-execution, title: コードの実行}
+    - {id: web-search, title: Web 検索}
+    - {id: research, title: リサーチ}
+    - {id: connectors, title: コネクタ}
+    - {id: app-skills, title: スキル（アプリ）}
+    - {id: office-add-ins, title: Office のアドイン}
+    - {id: claude-in-slack, title: Claude in Slack, note: "名前が変わっている可能性がある。土台作りで確かめる"}
+    - {id: voice, title: 音声モード}
+    - {id: app-tasks, title: アプリのタスクと定期タスク（Cowork）, by: app, note: "Claude Code の scheduled-tasks とは別"}
+    - {id: app-permission-modes, title: アプリの権限モード, by: app, note: "Claude Code の permission-modes・auto-mode とは設定の場所と既定が違う"}
+    - {id: app-plugins, title: アプリのプラグイン, by: app}
+    - {id: file-uploads, title: ファイルのアップロード, by: app}
+    - {id: app-context-management, title: アプリの長い会話のコンテキスト管理, by: app, note: "context-window とは分けて持つ（2026-11-04 メインの判断。働く条件がアプリに固有）"}
+    - {id: chat-sharing, title: 会話の共有, by: safety}
+
+  API・SDK:
+    - {id: messages-api, title: Messages API}
+    - {id: prompt-caching, title: プロンプトキャッシング}
+    - {id: structured-outputs, title: structured outputs}
+    - {id: tool-use, title: tool use}
+    - {id: batch-api, title: Message Batches API}
+    - {id: files-api, title: Files API}
+    - {id: adaptive-thinking, title: adaptive thinking}
+    - {id: citations, title: citations}
+    - {id: server-tools, title: サーバーの道具（server tools）}
+    - {id: computer-use, title: computer use}
+    - {id: mcp-connector, title: MCP connector}
+    - {id: agent-sdk, title: Agent SDK}
+    - {id: managed-agents, title: Managed Agents}
+    - {id: token-counting, title: token counting}
+    - {id: message-threads, title: message threads, by: api}
+    - {id: api-compaction, title: compaction（API）, by: api, note: "Claude Code の compaction とは別"}
+    - {id: context-editing, title: context editing, by: api}
+    - {id: memory-tool, title: memory tool, by: api}
+
+  面をまたぐもの:
+    - {id: refusals, title: 拒否と分類器による停止, by: symptoms, note: "アプリ・Claude Code・API で表示と扱いが違う"}
+
+  プランと上限:
+    - {id: plans, title: プラン}
+    - {id: usage-limits, title: 利用上限}
+    - {id: usage-credits, title: usage credits}
+    - {id: api-credits, title: プランに付く API credits, by: cost}
+    - {id: wrap-up-allowance, title: Wrap-Up Allowance, by: cost}
+
+  組織と提供の経路:
+    - {id: team-onboarding, title: /team-onboarding, by: team}
+    - {id: otel-telemetry, title: OpenTelemetry による利用の記録, by: team}
+    - {id: usage-analytics-api, title: Usage and Cost Analytics API, by: team}
+    - {id: cloud-providers, title: クラウドの事業者を経由した利用（Bedrock・Vertex AI など）, by: team}
