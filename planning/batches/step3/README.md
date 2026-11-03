@@ -39,12 +39,14 @@
 
 | 担当 | 受け持ちの分野 | 報告 | 状態 |
 | --- | --- | --- | --- |
-| I1 | start・changes・basics・judgment | `integrate-I1.md` | 実行中 |
-| I2 | surfaces・models・cost・api・app | `integrate-I2.md` | 実行中 |
-| I3 | prompting・japanese・context | `integrate-I3.md` | 実行中 |
-| I4 | cli・extend・contest | `integrate-I4.md` | 実行中 |
-| I5 | verify・eval・enforce | `integrate-I5.md` | 実行中 |
-| I6 | safety・delegate・team | `integrate-I6.md` | 実行中 |
-| I7 | symptoms・recipes | `integrate-I7.md` | 実行中 |
+| I1 | start・changes・basics・judgment | `integrate-I1.md` | 完了（25ページを直した。メインへ3） |
+| I2 | surfaces・models・cost・api・app | `integrate-I2.md` | 完了（25ページ。メインへ4） |
+| I3 | prompting・japanese・context | `integrate-I3.md` | 完了（21ページ。メインへ2） |
+| I4 | cli・extend・contest | `integrate-I4.md` | 完了（メインへ3） |
+| I5 | verify・eval・enforce | `integrate-I5.md` | 完了（メインへ2） |
+| I6 | safety・delegate・team | `integrate-I6.md` | 完了（31ページ。メインへ6） |
+| I7 | symptoms・recipes | `integrate-I7.md` | 完了（symptoms 20・recipes 5ページ。メインへ3） |
 
 メインが扱うもの（open-issues.md の「メイン」の印）：設計書への反映（境界の表・横断のページ・数値ファイルの表・生成のページ）、用語の仮の決定を工程5で確かめること、作者に確かめてもらう候補の一覧、kyopro-atlas の書き方との食い違いの報告。
+
+3段目の結果：検査はエラー0・警告4（比例則。どれも notes に理由がある）。症状のページの sign と同じ文（記号と空白を除いて同じ）が対処のページにあるものは0件になった。題名は M1 の表で揃えた。メインへの事項は計23件で、対応は工程4の design-review.md に書く。

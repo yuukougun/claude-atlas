@@ -28,7 +28,7 @@ pages:
       - {type: goal, text: "どこまでやったら終わりかを、はっきり伝えたい"}
       - {type: goal, text: "席を外す前に、終わりの条件を決めて渡したい"}
     prerequisites: [agent-loop]
-    related: [evidence-not-reports, verification-ladder, four-specifics, state-the-scope, permission-to-stop, claims-done-but-isnt, does-more-than-asked, tests-first, spec-first, goal-until-done, measure-changes, check-the-metric]
+    related: [evidence-not-reports, verification-ladder, four-specifics, ask-for-outcomes, state-the-scope, permission-to-stop, claims-done-but-isnt, does-more-than-asked, tests-first, spec-first, goal-until-done, measure-changes, check-the-metric]
     tracks: []
     outdated_advice: [keep-going-dont-be-lazy]
     volatility: 低
@@ -40,7 +40,7 @@ pages:
       - {name: "完了の定義を含む依頼の型（完了のコマンドと期待する出力・変えないもの・止まって報告する条件）", kind: prompt, safety: false}
     visual: {kind: static, text: "Before/After：「直して」だけの依頼と、完了のコマンド・変えないもの・止まる条件を書いた依頼を並べ、何を足したかを注記する"}
     materials: ["00 §3 分野09", "05 1-2（終わったように見えると止まる。公式の Best practices）", "11 第2節 分野09 p34#137・p34#124・p34#3", "research/25 P9・§3.4（「終わったように見えると止まる」は研究ではなく Best practices の内容）", "00 §5 台帳（keep going と書く）"]
-    notes: "p34#137 の「止まって報告すべき条件」は prompting の permission-to-stop と重なる。ここでは完了の定義の一部として書き、止まる権利の効き方（Claude Opus 4.1 では効果が小さい。research/24 A-10）は permission-to-stop と protect-tests に任せる。アプリと API では、完了は形式・分量・合格の基準として渡す（タブで並べる）"
+    notes: "p34#137 の「止まって報告すべき条件」は prompting の permission-to-stop と重なる。ここでは完了の定義の一部として書き、止まる権利の効き方（Claude Opus 4.1 では効果が小さい。research/24 A-10）は permission-to-stop と protect-tests に任せる。アプリと API では、完了は形式・分量・合格の基準として渡す（タブで並べる）。prompting の提案で related に ask-for-outcomes（結果で頼む。完了の定義を前提にする）を足した（2026-11-04 統合：prompting#5）"
 
   - id: evidence-not-reports
     chapter: 完了を確かめる
@@ -58,23 +58,23 @@ pages:
     scenes: [開発, データ分析]
     summary: "完了の報告を、実行したコマンドと生の出力と分母のそろった証拠で受け取れる。説明と事実が食い違えば、実行・grep・git で見た事実を正とする。"
     signs:
-      - {type: symptom, text: "「全部通りました」と言うが、信用できない"}
       - {type: symptom, text: "テストの件数が、報告のたびに変わっている"}
       - {type: symptom, text: "うまくいった場合だけを並べた報告が返ってくる"}
       - {type: goal, text: "見ていなかった作業が本当に済んだかを、短い時間で確かめたい"}
     prerequisites: [define-done]
-    related: [verification-ladder, claims-done-but-isnt, visual-checks, diffs-humans-must-read, looks-are-not-quality, suspect-too-good-results, checking-unattended-runs, insists-on-mistakes, unfaithful-reasoning, does-double-check-work, experiment-log]
+    related: [verification-ladder, claims-done-but-isnt, blames-the-tools, visual-checks, diffs-humans-must-read, looks-are-not-quality, suspect-too-good-results, checking-unattended-runs, insists-on-mistakes, unfaithful-reasoning, does-double-check-work, experiment-log]
     tracks: []
     outdated_advice: []
     volatility: 低
     sections:
       - {title: "証拠の形（コマンド・生の出力・分母）", anchor: what-counts}
       - {title: "説明と事実が食い違ったら", anchor: facts-win}
+      - {title: "道具の出力も確かめる（途中で切れた検索・失敗を成功として返す起動）", anchor: tool-output}
     templates:
       - {name: "改善を報告させる形式（実行コマンド・生の出力・分母・最悪の帯・前回比。分母は変えない）", kind: prompt, safety: false}
     visual: {kind: static, text: "「全部通りました」という報告と、実行したコマンドと生の出力（分母つき）を並べた対比"}
     materials: ["00 §3 分野09", "00 §4 確かめ方の困りごと", "05 1-2・5-1", "11 第1節 分野09 p12#114", "11 第2節 分野09 p34#138・p34#230・p56#127・p34#219・p34#26", "11 第4節 #46（原典の issue を使う）", "11 第5節 A-3（報告の形式）", "research/22 #18・#24"]
-    notes: "件数を変えて「ALL PASSED」と報告した事例は GitHub の原典を使う（11 第4節 #46）。research/22 #18（検索が途中で切れたのに全部の結果とみなした不具合）と #24（claude -p が起動に失敗しても 0 で終わった不具合）は、版の付いた例として本文で使い、値は数値ファイルへ。p34#26 の「都合のよい部分集合を強調する要約」もここに足す"
+    notes: "件数を変えて「ALL PASSED」と報告した事例は GitHub の原典を使う（11 第4節 #46）。research/22 #18（検索が途中で切れたのに全部の結果とみなした不具合）と #24（claude -p が起動に失敗しても 0 で終わった不具合）は、版の付いた例として本文で使い、値は数値ファイルへ。p34#26 の「都合のよい部分集合を強調する要約」もここに足す。symptoms の提案で、この2例を節 tool-output に置いた（「ない」と言い切られたら検索の打ち切りを、成功の終了コードでも起動の失敗を疑う）。claims-done-but-isnt と blames-the-tools はこのページを前提にしているので、症状のページの診断からこの節へ案内できる。逆引きの「「全部通りました」と言うが信用できない」は症状のページ claims-done-but-isnt の signs にあるので、ここの signs から外した（同じ文を対処のページに重ねない）（2026-11-04 統合：M2・symptoms#13）"
 
   - id: verification-ladder
     chapter: 完了を確かめる
@@ -195,7 +195,6 @@ pages:
     scenes: [調べもの, 文章, 学習]
     summary: "答えの中の事実を、根拠の引用・資料との照合・同じ質問の繰り返しで確かめられる。重要な事実ほど、一次の資料で裏を取る。"
     signs:
-      - {type: symptom, text: "同じ質問で毎回答えが違う"}
       - {type: goal, text: "答えの中の事実が正しいか確かめたい"}
       - {type: symptom, text: "「そんなファイルはない」と言い切られたが、本当か分からない"}
       - {type: symptom, text: "要約に、原文にない言い切りが混ざっている"}
@@ -214,7 +213,7 @@ pages:
       - {name: "要約の主張ごとに原文の短い引用を付けさせ、書かれていることと推測を分けさせる依頼", kind: prompt, safety: false}
     visual: null
     materials: ["00 §3 分野09", "05 2-2・5-1（公式の Reduce hallucinations）", "00 §4 返答と品質の困りごと", "11 第2節 分野09 p12#155・p56#146", "11 第5節 A-16", "research/22 #18"]
-    notes: "type を concept から recipe にした（確かめる手順が本体）。「使う」のページなので短くする。A-16 後半（上位解法を、手法・それを正当化した性質・原文の引用の表で要約させる型）は judgment の learning-with-ai が雛形として持つので、ここは調べもの一般の要約の照らし方を書き、そこへリンクする。Claude Code で「ない」と言い切られたときに検索の打ち切りを疑う例は research/22 #18（v2.1.317 で直った不具合）"
+    notes: "type を concept から recipe にした（確かめる手順が本体）。「使う」のページなので短くする。A-16 後半（上位解法を、手法・それを正当化した性質・原文の引用の表で要約させる型）は judgment の learning-with-ai が雛形として持つので、ここは調べもの一般の要約の照らし方を書き、そこへリンクする。Claude Code で「ない」と言い切られたときに検索の打ち切りを疑う例は research/22 #18（v2.1.317 で直った不具合）。逆引きの「同じ質問で毎回答えが違う」は、症状のページ plausible-falsehoods（前提にこのページを置く）の signs にあるので、ここの signs から外した（同じ文を対処のページに重ねない）（2026-11-04 統合：M2）"
 
   - id: checking-citations
     chapter: 事実を確かめる
@@ -232,7 +231,6 @@ pages:
     scenes: [調べもの, 文章]
     summary: "AI が挙げた引用や出典を、原文を開いて題名・著者・年と引用の文言まで照らして確かめられる。実在する文献でも細部が違う誤りに気づける。"
     signs:
-      - {type: symptom, text: "もっともらしいが、出典が怪しい"}
       - {type: goal, text: "調査結果の出典を確かめたい"}
       - {type: symptom, text: "引用された論文の題名や著者が、微妙に違っていた"}
       - {type: symptom, text: "出典はあるのに、その文献に書いてある内容と合わない"}
@@ -248,7 +246,7 @@ pages:
       - {name: "出典の確認表（題名・著者・年・引用の文言・主張を支えているか）", kind: other, safety: false}
     visual: null
     materials: ["00 §3 分野09", "05 2-2（引用の誤りの事例と公式の対策）", "00 §4 返答と品質の困りごと・確かめ方の困りごと"]
-    notes: "type を concept から recipe にした。引用の誤りの事例は出典付きで書き、個人を名指ししない（decisions の書き方の方針1）。Research の出典の見方の本体は app の using-research"
+    notes: "type を concept から recipe にした。引用の誤りの事例は出典付きで書き、個人を名指ししない（decisions の書き方の方針1）。Research の出典の見方の本体は app の using-research。逆引きの「もっともらしいが出典が怪しい」は、症状のページ plausible-falsehoods（related にこのページを置く）の signs にあるので、ここの signs から外した（同じ文を対処のページに重ねない）（2026-11-04 統合：M2）"
 
   # ── テストで確かめる ──
   - id: tests-first
@@ -333,7 +331,6 @@ pages:
     scenes: [開発, コンテスト]
     summary: "Claude がテストや採点を書き換えて通すのを、依頼・差分のレビュー・ファイルの鍵・見せないデータの層で防げる。テストは正しさを確かめるもので、解を決めるものではない。"
     signs:
-      - {type: symptom, text: "テストのほうを書き換えて通された"}
       - {type: symptom, text: "特定の入力のときだけ正しい値を返すコードになっていた"}
       - {type: goal, text: "テストや採点のファイルを Claude に触らせたくない"}
     prerequisites: [verification-ladder, reward-hacking]
@@ -349,7 +346,7 @@ pages:
       - {name: "テストを変えずに一般解で直させ、テストの誤りは止まって報告させる依頼", kind: prompt, safety: false}
     visual: {kind: static, text: "守りの層の図（依頼 → 差分のレビュー → deny と hook → リポジトリの外の hold-out → sandbox）。外側ほど例外を許さない"}
     materials: ["00 §3 分野09", "00 §4 確かめ方の困りごと", "05 1-3", "11 第2節 分野09 p34#8・p34#28・p56#129・p34#99・p34#131・p56#125", "11 第4節 #19〜#21・#26・#27", "11 第5節 A-3・A-4", "research/24 A-10・B-27", "research/23 #4・#5", "research/22 #4"]
-    notes: "priority を推奨から必須に、level を仕組みにするから任せるに変えた。理由：逆引き「テストのほうを書き換えて通された」の受け皿で、symptoms の必須の rewrote-tests-to-pass（任せる）の対処の本体であり、requirements §1 の核「検証器を作って守る」に当たる。最初に要るのは反復を任せる段で、ここは「なぜ書き換えられるか・見つけ方・依頼に書くこと」を受け持つ。止める設定（権限ルール・サンドボックス・ファイルの権限）と雛形 A-4 の直した形は enforce の freeze-eval-assets が持つので、そこへリンクする（enforce の提案と同じ分担。A-4 の直す点は 11 第4節 #19〜#21 と requirements §10.3）。止まる権利は Claude Opus 4.1 では効きが小さかったので、言葉での許可より構造の防御を主にする（research/24 A-10）。ImpossibleBench の値は Opus 4.1 世代。basics が reward-hacking を必須に上げたので前提にした（basics の提案）"
+    notes: "priority を推奨から必須に、level を仕組みにするから任せるに変えた。理由：逆引き「テストのほうを書き換えて通された」の受け皿で、symptoms の必須の rewrote-tests-to-pass（任せる）の対処の本体であり、requirements §1 の核「検証器を作って守る」に当たる。最初に要るのは反復を任せる段で、ここは「なぜ書き換えられるか・見つけ方・依頼に書くこと」を受け持つ。止める設定（権限ルール・サンドボックス・ファイルの権限）と雛形 A-4 の直した形は enforce の freeze-eval-assets が持つので、そこへリンクする（enforce の提案と同じ分担。A-4 の直す点は 11 第4節 #19〜#21 と requirements §10.3）。止まる権利は Claude Opus 4.1 では効きが小さかったので、言葉での許可より構造の防御を主にする（research/24 A-10）。ImpossibleBench の値は Opus 4.1 世代。basics が reward-hacking を必須に上げたので前提にした（basics の提案）。逆引きの「テストのほうを書き換えて通された」は症状のページ rewrote-tests-to-pass の signs にあり、そこから related でこのページへ来るので、ここの signs から外した（同じ文を対処のページに重ねない）（2026-11-04 統合：M2）"
 
   # ── レビューで確かめる ──
   - id: independent-review
@@ -437,6 +434,7 @@ pages:
     summary: "差分を全部は読めないとき、人が必ず読む箇所（テストと採点の変更・特例の分岐・例外の握りつぶし・件数の変化など）を見分けられる。"
     signs:
       - {type: situation, text: "差分が大きすぎて、全部は読めない"}
+      - {type: situation, text: "自分の目で全部レビューする時間がない"}
       - {type: goal, text: "人が必ず目を通すべき変更を見分けたい"}
     prerequisites: [evidence-not-reports]
     related: [independent-review, protect-tests, suspect-too-good-results, own-generated-code, reward-hacking, review-bottlenecks, grow-review-checklists, risk-tiered-approval, create-and-review-prs, working-with-git]
@@ -450,7 +448,7 @@ pages:
       - {name: "差分の赤信号の点検表", kind: other, safety: false}
     visual: null
     materials: ["00 §3 分野09", "11 第2節 分野09 p34#220・p34#231・p56#61", "03 W13", "research/25 §3.3（機密のパスと CI のワークフローは常に人が見る）", "11 第3節 C-22（注釈付きのセッション記録の題材）"]
-    notes: "p56#61 は AI レビューの製品の販売元の分析なので、使うなら利害を併記する。11 第3節 C-22 の「バグ入りの AI 解をどう見抜いたか」は、注釈付きのセッション記録の題材にできる"
+    notes: "p56#61 は AI レビューの製品の販売元の分析なので、使うなら利害を併記する。11 第3節 C-22 の「バグ入りの AI 解をどう見抜いたか」は、注釈付きのセッション記録の題材にできる。逆引きの「自分の目で全部レビューする時間がない」を signs に足した（independent-review と同じ文。誰に読ませるかはあちら、人が自分で読む箇所はこちら）（2026-11-04 統合：B #46）"
 
   - id: own-generated-code
     chapter: レビューで確かめる

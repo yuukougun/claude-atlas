@@ -27,7 +27,7 @@ pages:
       - {type: goal, text: "ある処理が入口からどこを通って動くのかを追いたい"}
       - {type: symptom, text: "コードの説明がもっともらしいが、本当にそう動くのか分からない"}
     prerequisites: [choose-what-to-read, fact-checking]
-    related: [read-specs-yourself, research-in-subagents, code-intelligence-plugins, own-generated-code, how-much-understanding-to-keep, learning-with-ai, before-opening-unknown-repos, what-to-put-in-claude-md, init-and-first-claude-md, uses-nonexistent-apis, fix-a-bug]
+    related: [read-specs-yourself, research-in-subagents, code-intelligence-plugins, own-generated-code, how-much-understanding-to-keep, learning-with-ai, before-opening-unknown-repos, "vetting-extensions#dependencies", what-to-put-in-claude-md, init-and-first-claude-md, uses-nonexistent-apis, fix-a-bug]
     tracks: [subagents, plugins]
     outdated_advice: [architecture-in-claude-md]
     volatility: 中
@@ -40,7 +40,7 @@ pages:
       - {name: "全体像から特定の処理の流れへ絞る質問の型（答えにファイルと行を添えさせる）", kind: prompt, safety: false}
     visual: {kind: static, text: "広い質問 → 絞る → コードで確かめる → 書き残す、の漏斗と輪"}
     materials: ["00 §3 分野16", "01 KQ3（Common workflows：新しいコードベースの理解・関連コードを探す）", "11 第1節 分野09 p56#40（理解が追いつかないままコードが増える。分野16 にも関わる）", "research/23 §3.1（01 KQ2 の 2-1 は改稿前の Best practices の要約。アーキテクチャを CLAUDE.md に書かないのは現行の版の勧め）", "00 §5（architecture-in-claude-md）"]
-    notes: "summary は Common workflows（01 KQ3）の要点で書いた。01 KQ2 の 2-1 の「シニアエンジニアに聞くように」は改稿前の Best practices の要約（【2026-11-03 注記】、research/23 §3.1）なので根拠にしていない。地図や用語集は CLAUDE.md ではなく別のファイルに置く（台帳の architecture-in-claude-md）。他人のリポジトリを開く前の確認は safety の before-opening-unknown-repos に任せ、節 unknown-repos からリンクする。"
+    notes: "summary は Common workflows（01 KQ3）の要点で書いた。01 KQ2 の 2-1 の「シニアエンジニアに聞くように」は改稿前の Best practices の要約（【2026-11-03 注記】、research/23 §3.1）なので根拠にしていない。地図や用語集は CLAUDE.md ではなく別のファイルに置く（台帳の architecture-in-claude-md）。他人のリポジトリを開く前の確認は safety の before-opening-unknown-repos に任せ、節 unknown-repos からリンクする。読み進める途中で依存のパッケージを入れるときの確かめ方は、safety の vetting-extensions#dependencies（safety の担当が足した節）に任せる（2026-11-04 統合：recipes#7）"
 
   - id: read-specs-yourself
     chapter: 読んで理解する
@@ -94,7 +94,7 @@ pages:
       - {type: symptom, text: "直したと言われたのに、条件を変えると同じバグが出る"}
       - {type: symptom, text: "修正を頼むたびに、的外れな場所が書き換えられる"}
     prerequisites: [define-done, evidence-not-reports]
-    related: [shrink-failing-inputs, bisect-regressions, build-observation-tools, going-in-circles, claims-done-but-isnt, rewrote-tests-to-pass, rewind-dont-correct, tests-first, protect-tests, differential-testing, wont-rethink-approach, uses-nonexistent-apis, agent-teams-experimental, before-after-prompts]
+    related: [shrink-failing-inputs, bisect-regressions, build-observation-tools, going-in-circles, claims-done-but-isnt, rewrote-tests-to-pass, rewind-dont-correct, tests-first, protect-tests, differential-testing, wont-rethink-approach, uses-nonexistent-apis, "vetting-extensions#dependencies", agent-teams-experimental, before-after-prompts]
     tracks: [checkpoints]
     outdated_advice: [add-double-check]
     volatility: 中
@@ -107,7 +107,7 @@ pages:
       - {name: "説明 → 仮説 → 反証 → 最小の修正の順に進める依頼（10 付録A-10。Before/After の折りたたみ）", kind: prompt, safety: false}
     visual: {kind: static, text: "再現 → 縮小 → 仮説と反証 → 最小の修正 → 退行の確認、の流れ"}
     materials: ["00 §3 分野16", "01 KQ3（Common workflows：バグ修正）", "11 第2節 分野16 p34#60・p34#69・p34#70・p34#80・p34#81・p56#126・p56#138", "11 第2節 分野12 p34#196（仮説を互いに反証させる構成。版依存）", "11 第5節 A-10", "10 第10章", "00 §5（add-double-check）"]
-    notes: "p34#69 の数値は未確認（論文の存在だけ確認。11 第2節）、p34#70 は小規模の研究なので、本文で使うならモデルと世代と標本の大きさを添える。症状を抑えるだけの修正の具体例（特定の seed の分岐・例外の握りつぶし・閾値合わせ）は p34#81 による。"
+    notes: "p34#69 の数値は未確認（論文の存在だけ確認。11 第2節）、p34#70 は小規模の研究なので、本文で使うならモデルと世代と標本の大きさを添える。症状を抑えるだけの修正の具体例（特定の seed の分岐・例外の握りつぶし・閾値合わせ）は p34#81 による。直すために依存のパッケージを足させるときの確かめ方は、safety の vetting-extensions#dependencies（safety の担当が足した節）に任せる（2026-11-04 統合：recipes#7）"
 
   - id: shrink-failing-inputs
     chapter: 直す
@@ -189,12 +189,12 @@ pages:
       - {title: "新しいセッションで実装する", anchor: implement-fresh}
       - {title: "決まった仕様の実装を停止条件つきで回す", anchor: goal-with-stop-conditions, level: 仕組みにする}
     templates:
-      - {name: "インタビューで仕様を詰めて SPEC.md に書かせる依頼（10 付録A-6 を直して載せる：ツール名を書かずに「インタビューして」と頼む形にし、評価環境の例に汎用の機能の例を並べる。版依存（低〜中）なので確認日と版を付ける）", kind: prompt, safety: false}
+      - {name: "インタビューで仕様を詰めて SPEC.md に書かせる依頼（10 付録A-6 を直して載せる：ツール名を書かずに「インタビューして」と頼む形にし、評価環境の例に汎用の機能の例を並べる。版依存（低〜中）なので確認日と版を付ける。prompting の let-claude-ask と同じ雛形で、snippets の1か所から取り込む）", kind: prompt, safety: false}
       - {name: "SPEC.md の項目の例（目的・範囲外・関わるファイルとインターフェース・決定事項と要確認事項・確かめ方）", kind: other, safety: false}
       - {name: "/goal の停止条件（10 付録A-14 を直して載せる：判定役は会話しか読まないので、テストと評価のファイルを変えていないことを git status の出力で会話に示させる。仕様と矛盾するテストを見つけたら止めて報告させ、上限のターン数を書く。版依存なので確認日と版を付ける。delegate の goal-until-done と同じ雛形）", kind: prompt, safety: false}
     visual: {kind: static, text: "インタビュー → SPEC.md → 新しいセッションで実装 → 確かめ方で受け入れる、の流れ"}
     materials: ["00 §3 分野16", "11 第2節 分野04 p12#119・p34#134・p56#131（質問させる・インタビューさせる／仕様を先に固める）", "11 第2節 分野12 p56#115・p56#142（停止条件つきの自律反復は仕様の決まった実装に限る）", "11 第5節 A-6・A-14", "11 第4節 #23", "research/26 #16・#17（質問の数の上限。現行の Best practices はツール名を出さない）", "10 第5章・第13章・第14章"]
-    notes: "01 KQ2 の 2-1 の「AskUserQuestion ツールで詳しくインタビューして」は【2026-11-03 注記】付き（文言が古い）なので、summary と signs の根拠にしていない。summary は 00 §3 分野16 の要点（作業の型を比べる・実装は新しいセッションで）と research/26 #17 の現行の文言で書いた。質問の数の上限は数値ファイルに置く。/goal の節は、自律反復を仕様の決まった実装に限る（requirements §6.3、11 p56#115）。"
+    notes: "01 KQ2 の 2-1 の「AskUserQuestion ツールで詳しくインタビューして」は【2026-11-03 注記】付き（文言が古い）なので、summary と signs の根拠にしていない。summary は 00 §3 分野16 の要点（作業の型を比べる・実装は新しいセッションで）と research/26 #17 の現行の文言で書いた。質問の数の上限は数値ファイルに置く。/goal の節は、自律反復を仕様の決まった実装に限る（requirements §6.3、11 p56#115）。雛形 A-6 は prompting の let-claude-ask と、A-14 は refactor-and-migrate・delegate の goal-until-done と同じものを、snippets の1か所から取り込む（design §6.9）（2026-11-04 統合：recipes#1・recipes#4）"
 
   - id: refactor-and-migrate
     chapter: 作る・変える
@@ -452,9 +452,9 @@ pages:
       - {title: "生データで裏を取る", anchor: check-raw-data}
       - {title: "観察と解釈を分ける", anchor: observation-vs-interpretation}
     templates:
-      - {name: "観察と解釈を分け、仮説は反証できる形で出させる依頼（10 付録A-8）", kind: prompt, safety: false}
+      - {name: "観察と解釈を分け、仮説は反証できる形で出させる依頼（10 付録A-8。prompting の prompt-patterns と同じ雛形で、snippets の1か所から取り込む）", kind: prompt, safety: false}
     materials: ["00 §3 分野16（題名の「SQL を書かずに」は外した）", "11 第1節 分野16 既存「データ分析」に節「観察と解釈を分ける」p56#135", "11 第2節 分野16 p34#76（【競】機械学習のリーク。数値は 11 第4節 #45 で未確認）", "11 第5節 A-8"]
-    notes: "題名を「データ分析（SQL を書かずに）」から改めた。decisions 2026-11-03「読者の前提」により、SQL を書かない人向けの説明は省き、再実行できる集計・生データでの裏取り・観察と解釈の分離に絞る。預かったデータや社内のデータを渡す前の判断は safety の entrusted-data に任せる。"
+    notes: "題名を「データ分析（SQL を書かずに）」から改めた。decisions 2026-11-03「読者の前提」により、SQL を書かない人向けの説明は省き、再実行できる集計・生データでの裏取り・観察と解釈の分離に絞る。預かったデータや社内のデータを渡す前の判断は safety の entrusted-data に任せる。雛形 A-8 は prompting の prompt-patterns と同じものを、snippets の1か所から取り込む（design §6.9）（2026-11-04 統合：recipes#4）"
 
   - id: audit-ml-pipelines
     chapter: データと分析
@@ -582,7 +582,7 @@ pages:
     signs:
       - {type: goal, text: "毎週の報告書づくりを楽にしたい"}
       - {type: goal, text: "領収書や明細から経費の一覧を作らせたい"}
-      - {type: goal, text: "コードを書かない仕事にも Claude Code を使いたい"}
+      - {type: situation, text: "コードを書かない仕事に Claude Code を使いたい"}
     prerequisites: [where-your-data-goes, entrusted-data, default-safety-settings]
     related: [notes-and-pkm, data-analysis, permission-modes-overview, writing-skills, how-skills-load, progress-files, tasks-and-schedules-in-the-app, connectors-in-the-app, "peripheral-products#office-add-ins", character-encodings, protecting-secrets, what-to-put-in-claude-md]
     tracks: [skills, app-skills]
@@ -596,7 +596,7 @@ pages:
     templates:
       - {name: "雑務のリポジトリの構成例（業務ごとのディレクトリと、その業務の手順と注意を書いた README）", kind: other, safety: false}
     materials: ["00 §3 分野16（事務作業の半自動化・雑務をまとめたモノレポ）", "00 §3 分野07「Claude Code を非エンジニアが使う」（作業用フォルダ・手動モード。cli が採らず、要点の受け皿をこのページにした）", "00 §4 費用・選び方・任せ方（コードを書かない仕事に Claude Code を使いたい）", "research/26 §3.6（Office アドイン）"]
-    notes: "chores-monorepo をまとめた（節 chores-repo）。読者は開発の経験がある人なので、非エンジニア向けの導入の説明は省き、流れ・情報の渡し方・手順の育て方に絞る（decisions 2026-11-03「読者の前提」）。cli が for-non-engineers を採らなかったので、00 §4 のサイン「コードを書かない仕事に Claude Code を使いたい」と、00 分野07 の要点（作業用のフォルダで始める）をここで受けた。権限のモードの勧めは手で決めず、safety の default-safety-settings（段階ごとの既定。decisions 2026-11-03「安全の既定の勧め方」）に従って書く。"
+    notes: "chores-monorepo をまとめた（節 chores-repo）。読者は開発の経験がある人なので、非エンジニア向けの導入の説明は省き、流れ・情報の渡し方・手順の育て方に絞る（decisions 2026-11-03「読者の前提」）。cli が for-non-engineers を採らなかったので、00 §4 のサイン「コードを書かない仕事に Claude Code を使いたい」と、00 分野07 の要点（作業用のフォルダで始める）をここで受けた。権限のモードの勧めは手で決めず、safety の default-safety-settings（段階ごとの既定。decisions 2026-11-03「安全の既定の勧め方」）に従って書く。逆引きのサインは、catalog-C12.md §7 の表（72）の種類と文のとおり situation にし、文を表の文にそろえた（2026-11-04 統合：B 72・cli#1）"
 
   - id: notes-and-pkm
     chapter: 事務とノート

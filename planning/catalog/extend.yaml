@@ -25,7 +25,7 @@ pages:
     scenes: [開発]
     summary: "同じ注意や手順の繰り返しから、どの拡張をいつ足すかが分かる。最初から作り込まず、繰り返しが見えてから仕組みに移すほうがよい理由も分かる。"
     signs:
-      - {type: symptom, text: "同じ注意を何度も繰り返している"}
+      - {type: situation, text: "同じ注意を何度も繰り返している"}
       - {type: goal, text: "設定や拡張を何から足せばよいか知りたい"}
       - {type: situation, text: "便利な拡張の記事を見て、全部入れたくなっている"}
     prerequisites: [request-vs-lock]
@@ -34,7 +34,7 @@ pages:
     volatility: 中
     visual: {kind: static, text: "繰り返しの種類（同じ訂正・同じ手順書・うるさい副作業・毎回必ず起きてほしいこと・別のリポジトリでも同じ設定）と、移す先の機能を結ぶ図"}
     materials: ["00 §3 分野08（冒頭の段落：公式の Build your setup over time）", "00 §4 指示と仕組みの困りごと", "01 0-4（段階的に足すトリガーの表）", "03 Q2 C1（何も書かないところから始める）", "03 Q4 T1", "04 Q1 C", "11 第2節 分野08（p34#119）"]
-    notes: "トリガーの回数（同じ訂正を2回、など）は公式の表の値なので、本文では数値ファイルを経由する。題名・要約・サインには回数を書かない。"
+    notes: "トリガーの回数（同じ訂正を2回、など）は公式の表の値なので、本文では数値ファイルを経由する。題名・要約・サインには回数を書かない。サイン「同じ注意を何度も繰り返している」の種類を、同じ文を持つ enforce の when-to-lock にそろえて situation にした（読者の置かれた状況で、Claude の側の症状ではない。症状の「毎回同じ背景を説明している」は symptoms の repeating-the-same-explanation が持ち、ここを related で指す）（2026-11-04 統合：M2）"
 
   - id: extensions-at-a-glance
     chapter: 全体と使い分け
@@ -95,7 +95,7 @@ pages:
       - {name: "チームの AI の使い方を「任せてよい・止まって相談する・禁止」に分けて冒頭に置く例（禁止は deny と hook と組にする）", kind: claude-md, safety: false}
       - {name: "コンテスト用の CLAUDE.md の例（ビルドと評価のコマンド・制限時間・規則の確認先）", kind: claude-md, safety: false}
     materials: ["00 §3 分野08（書くこと・書かないことの2行）", "00 §4 指示と仕組みの困りごと", "01 A-1（含める／除外の表。改稿前の Best practices の要約の可能性がある：01 冒頭の注記、research/23 F6）", "03 Q2 C2・C3・C5", "04 Q1 B", "05 1-5", "11 第2節 分野08（p34#118・p34#136）", "11 第3節 C-13", "11 第5節 A-3", "research/25 §3.2", "research/27 #8"]
-    notes: "registry の what-to-leave-out-of-claude-md をまとめた（同じ判断の表と裏で、00 §4 の逆引きも一つの行から両方を指す）。旧の題名は aliases に、中身は節 what-to-leave-out に置く。01 A-1 の含める／除外の表は、執筆の前に現行の Best practices で確かめる。A-3 の雛形は「禁止」がお願いにすぎないと注記し、enforce の deny と hook の雛形へ案内する（11 第3節 C-13）。コンテストの例は規則の中身を書かず、確認先へのリンクだけにする（decisions 2026-11-03「大会の規則の版」）。"
+    notes: "registry の what-to-leave-out-of-claude-md をまとめた（同じ判断の表と裏で、00 §4 の逆引きも一つの行から両方を指す）。旧の題名は aliases に、中身は節 what-to-leave-out に置く。01 A-1 の含める／除外の表は、執筆の前に現行の Best practices で確かめる。A-3 の雛形は「禁止」がお願いにすぎないと注記し、enforce の deny と hook の雛形へ案内する（11 第3節 C-13）。コンテストの例は規則の中身を書かず、確認先へのリンクだけにする（decisions 2026-11-03「大会の規則の版」）。/init の操作と叩き台の扱い、/init の是非の両論（03 Q2 C6）は cli の init-and-first-claude-md が持ち、ここは related で指すだけにする（2026-11-04 統合：extend#5）"
 
   - id: claude-md-length
     chapter: CLAUDE.md・rules・自動メモリ
@@ -112,7 +112,7 @@ pages:
     scenes: [開発, チーム]
     summary: "CLAUDE.md を短く保ち、行ごとに残すかどうかを判断できる。消したら誤りが出るかで選び、強調しても守られない行はファイルを短くするか鍵に移す。"
     signs:
-      - {type: symptom, text: "CLAUDE.md が長くなってきた"}
+      - {type: situation, text: "CLAUDE.md が長くなってきた"}
       - {type: symptom, text: "強調を書き足しても、規則が守られない"}
       - {type: goal, text: "CLAUDE.md から何を削ればよいか知りたい"}
     prerequisites: [what-to-put-in-claude-md, always-on-costs]
@@ -126,7 +126,7 @@ pages:
     templates:
       - {name: "各行に「消したら誤りが出るか」を問わせる剪定のプロンプト", kind: prompt, safety: false}
     materials: ["00 §3 分野08", "00 §4 指示と仕組みの困りごと", "01 A-1（行数の目安・削るときの問い・/doctor・prompt-audit。強調の行には research/23 §3.7 の注記）", "03 Q2 C1・C8・C9", "04 Q1 B", "05 1-5", "11 第2節 分野08（p34#107・p34#117・p56#64）", "11 第4節 #15", "research/23 §3.1・§3.7", "research/24 A-15", "research/25 §3.2"]
-    notes: "行数の目安は数値ファイルに置く（公式の Memory のページの値。research/24 A-15）。従える指示の数の目安（150〜200）は出どころが弱いので、主張の根拠にしない（research/25 §3.2）。強調の扱いは現行の Best practices（守られない行は短くするか hook に）に合わせ、改稿前の「1行だけ強調」は使わない（research/23 §3.7）。実践者の幅（短い例と長い例）の数値は自己申告と添え、二次要約の値はそう書く（11 第4節 #15）。足した・削った行が効いたかは体感で決めず、小さく測る（pitfalls の体感を信じる。eval の measure-changes・felt-vs-measured。00 §4 確かめ方の困りごと）。"
+    notes: "行数の目安は数値ファイルに置く（公式の Memory のページの値。research/24 A-15）。従える指示の数の目安（150〜200）は出どころが弱いので、主張の根拠にしない（research/25 §3.2）。強調の扱いは現行の Best practices（守られない行は短くするか hook に）に合わせ、改稿前の「1行だけ強調」は使わない（research/23 §3.7）。実践者の幅（短い例と長い例）の数値は自己申告と添え、二次要約の値はそう書く（11 第4節 #15）。足した・削った行が効いたかは体感で決めず、小さく測る（pitfalls の体感を信じる。eval の measure-changes・felt-vs-measured。00 §4 確かめ方の困りごと）。サイン「CLAUDE.md が長くなってきた」の種類を、逆引きの表（catalog-C12 §7 #30）に合わせて situation にした。同じサインを path-scoped-rules にも置いた（2026-11-04 統合：B#30）"
 
   - id: claude-md-loading-order
     chapter: CLAUDE.md・rules・自動メモリ
@@ -178,6 +178,7 @@ pages:
       - {type: goal, text: "特定のディレクトリだけのルールを書きたい"}
       - {type: symptom, text: "一部のフォルダ用の規約が、関係のない作業にも毎回読み込まれている"}
       - {type: symptom, text: "圧縮の後、フォルダごとの規約が効かなくなった"}
+      - {type: situation, text: "CLAUDE.md が長くなってきた"}
     prerequisites: [what-to-put-in-claude-md]
     related: [claude-md-loading-order, claude-md-length, what-survives-compaction, promises-after-compaction, claude-md-vs-rules-skills-styles, how-skills-load, when-to-lock, always-on-costs, forgot-after-compaction]
     tracks: [rules]
@@ -187,12 +188,12 @@ pages:
     templates:
       - {name: "paths を付けた rules のファイルの例", kind: claude-md, safety: false}
     materials: ["00 §3 分野08", "00 §4 指示と仕組みの困りごと", "01 A-2", "01 2-4", "03 Q2 C4", "04 Q1 B", "research/23 #6・§3.4（paths 付きの rules は引き金のファイルを読むか書くまで戻らない）"]
-    notes: "圧縮の後も効かせたい規則は、paths を外すか直下の CLAUDE.md に移す、と書く（research/23 §3.4）。00 §3 分野01 の「CLAUDE.md は再注入される」は一部だけ正しい（00 の注記）ので使わない。"
+    notes: "圧縮の後も効かせたい規則は、paths を外すか直下の CLAUDE.md に移す、と書く（research/23 §3.4）。00 §3 分野01 の「CLAUDE.md は再注入される」は一部だけ正しい（00 の注記）ので使わない。逆引きの「CLAUDE.md が長くなってきた」を claude-md-length と並べて置いた（フォルダごとの規約を外に出すのが、長くなった CLAUDE.md への直接の答えの一つ）（2026-11-04 統合：B#30）"
 
   - id: using-auto-memory
     chapter: CLAUDE.md・rules・自動メモリ
-    title: "自動メモリ（auto memory）"
-    aliases: ["MEMORY.md", "/memory", "Claude が書き溜める記録"]
+    title: "自動メモリ"
+    aliases: ["auto memory", "MEMORY.md", "/memory", "Claude が書き溜める記録"]
     type: feature
     level: 任せる
     level_evidence: "訂正や好みを Claude が自分で書き溜め、後の作業に効き始める段階で要る。00 では L3"
@@ -216,7 +217,7 @@ pages:
     templates:
       - {name: "自動メモリの中身を一覧させ、誤りと古い記録を挙げさせるプロンプト", kind: prompt, safety: false}
     materials: ["00 §3 分野08", "01 A-3", "11 第2節 分野08（p34#114）", "research/23 #6・§3.4（起動時に読む量は Memory のページの値で、圧縮の表の値ではない）", "research/27 #8"]
-    notes: "アプリ（claude.ai）の Memory とは別の機能。違いを冒頭で一言書き、アプリの側は app の how-memory-works へ案内する。起動時に読む量の値は数値ファイルに置く。汚染の例は単独の経験談（11 第2節 p34#114、根拠：中）なので、根拠の強さを添える。Claude が書いた記録をそのまま正としない点を、人の側の落とし穴（預けすぎる）として書き、人が見直した記録を正にする（eval の experiment-log）。"
+    notes: "アプリ（claude.ai）の Memory とは別の機能。違いを冒頭で一言書き、アプリの側は app の how-memory-works へ案内する。起動時に読む量の値は数値ファイルに置く。汚染の例は単独の経験談（11 第2節 p34#114、根拠：中）なので、根拠の強さを添える。Claude が書いた記録をそのまま正としない点を、人の側の落とし穴（預けすぎる）として書き、人が見直した記録を正にする（eval の experiment-log）。題名を「自動メモリ（auto memory）」から「自動メモリ」にし、英語名は aliases に移した（ほかの題名と同じく、英語名は題名に並べない。アプリの側は app の「アプリのメモリ」）（2026-11-04 統合：M1）"
 
   - id: agents-md
     chapter: CLAUDE.md・rules・自動メモリ
@@ -240,7 +241,7 @@ pages:
     tracks: [claude-md]
     volatility: 中
     materials: ["00 §3 分野08", "00 §4 指示と仕組みの困りごと", "01 A-4・A-5", "03 Q2 C7"]
-    notes: "比例則：対象外（指示の共有で、任せる幅を広げない）。CLAUDE.local.md を置くと AGENTS.md を読まなくなる点と、読み方を選ぶ設定は、版つきで書く（01 A-4）。"
+    notes: "比例則：対象外（指示の共有で、任せる幅を広げない）。CLAUDE.local.md を置くと AGENTS.md を読まなくなる点と、読み方を選ぶ設定は、版つきで書く（01 A-4）。比例則の警告は残す：中身は指示ファイルの読み方と共有で、自律・並列・無人・権限の緩和を含まないので、verify・eval・enforce・safety のページは置かない。level は前提の claude-md-loading-order と同じ任せるが合う（ほかのツールと併用して同じ指示を保ちたくなるのは、CLAUDE.md を常駐させて任せ始めた後）（2026-11-04 統合：M9）"
 
   - id: claude-md-vs-rules-skills-styles
     chapter: CLAUDE.md・rules・自動メモリ
@@ -283,18 +284,17 @@ pages:
     scenes: [開発, 文章]
     summary: "スキルが説明文だけを常駐させ、本文と補助ファイルを必要なときにだけ読む仕組みが分かる。長い手順を常駐の指示から外せる理由と、入れすぎたときに残るコストも分かる。"
     signs:
-      - {type: symptom, text: "同じ手順書を何度も貼っている"}
       - {type: goal, text: "長い手順を、必要なときだけ読ませたい"}
       - {type: symptom, text: "手順を書き足すたびに CLAUDE.md が長くなる"}
     prerequisites: [attention-budget]
-    related: [writing-skills, skill-descriptions, skill-vs-subagent, hook-vs-skill, claude-md-vs-rules-skills-styles, always-on-costs, what-survives-compaction, skills-in-the-app, pruning-extensions, when-to-add-what, repeating-the-same-explanation]
+    related: [writing-skills, skill-descriptions, skill-vs-subagent, hook-vs-skill, claude-md-vs-rules-skills-styles, always-on-costs, what-survives-compaction, skills-in-the-app, pruning-extensions, when-to-add-what, repeating-the-same-explanation, vetting-extensions]
     tracks: [skills]
     volatility: 中
     sections:
       - {title: "圧縮の後に戻るもの", anchor: after-compaction}
     visual: {kind: static, text: "段階的な読み込みの図（説明文は常駐・本文は呼び出したとき・補助ファイルは要るとき・スクリプトは読まずに実行）"}
     materials: ["00 §3 分野08", "00 §4 指示と仕組みの困りごと", "01 D-2（progressive disclosure・オープン標準・圧縮のときの本文の再添付）", "03 Q4 T2", "02 §1-10（アプリのスキル・API では code execution の道具を通して使う）", "research/23 #6・§3.4（説明文は v2.1.304 以降、圧縮の後に作り直して入れ直す。呼び出した本文は上限付きで戻る）", "research/22 §3.7（Agent Skills の標準の移管。題と要約だけ）"]
-    notes: "圧縮の後、スキルの説明文は v2.1.304 以降、今のスキルから作り直して入れ直される（research/23 #6）。11 第3節 3-2 #5 の「戻らない」は誤り（注記あり）なので使わない。Agent Skills の標準の移管（research/22 §3.7）は題と要約しか見ていないので、使うなら一次資料で確かめる。claude.ai のスキルは Claude Code にも同期される（research/22 #29）ので、面のタブで触れて app の skills-in-the-app を指す（app の担当の提案）。比例則：対象外（仕組みの説明で、任せる幅を広げない）。"
+    notes: "圧縮の後、スキルの説明文は v2.1.304 以降、今のスキルから作り直して入れ直される（research/23 #6）。11 第3節 3-2 #5 の「戻らない」は誤り（注記あり）なので使わない。Agent Skills の標準の移管（research/22 §3.7）は題と要約しか見ていないので、使うなら一次資料で確かめる。claude.ai のスキルは Claude Code にも同期される（research/22 #29）ので、面のタブで触れて app の skills-in-the-app を指す（app の担当の提案）。比例則：対象外（仕組みの説明で、任せる幅を広げない）。それでも、補助のスクリプトは中身を文脈に読まずに実行される点を書くので、入れる前の確認（safety の vetting-extensions）を related の末尾に置いた。level は任せるが合う（同じ手順を仕組みに移すかを判断する段で要り、作るのは writing-skills の仕組みにする）。サイン「同じ手順書を何度も貼っている」は症状の項目（逆引きの表 #33）で、symptoms の repeating-the-same-explanation が持ち、そこからこのページを指すので、ここからは外した（2026-11-04 統合：M2・M9）"
 
   - id: writing-skills
     chapter: スキル
@@ -315,7 +315,7 @@ pages:
       - {type: goal, text: "自分用のスラッシュコマンドを作りたい"}
       - {type: situation, text: "昔の記事のとおり、コマンド用のフォルダに Markdown を置いている"}
     prerequisites: [how-skills-load]
-    related: [skill-descriptions, manual-only-skills, hook-vs-skill, skill-vs-subagent, permission-rules, vetting-extensions, measure-changes, felt-vs-measured, move-judgment-into-scripts, plugins-and-marketplaces, skills-in-the-app, share-team-settings, less-ai-sounding-japanese, pruning-extensions, writing-subagents]
+    related: [skill-descriptions, manual-only-skills, hook-vs-skill, skill-vs-subagent, permission-rules, vetting-extensions, measure-changes, felt-vs-measured, move-judgment-into-scripts, plugins-and-marketplaces, skills-in-the-app, share-team-settings, "less-ai-sounding-japanese#proofreading-skill", pruning-extensions, writing-subagents]
     tracks: [skills]
     outdated_advice: [commands-directory]
     volatility: 中
@@ -328,7 +328,7 @@ pages:
       - {name: "本文・補助の資料・scripts に分けたスキルのフォルダの構成", kind: skill, safety: false}
       - {name: "うまくいった会話から、再利用できるスキルを作らせるプロンプト", kind: prompt, safety: false}
     materials: ["00 §3 分野08（スキルの作り方・カスタムコマンドは skills への2行）", "01 D-2（frontmatter・置き換えと動的な注入・補助ファイル・バンドルスキル・claude.ai との互換）", "01 4-2（カスタムコマンドは skills に統合）", "03 Q4 T1・T2", "04 Q1 E・J", "research/22 #29", "research/23 §3.4（呼び出したスキルの本文は上限付きで戻るので、大事な指示は上に置く）"]
-    notes: "registry の commands-became-skills をまとめた（同じ機能の旧名で、古い記法は台帳の commands-directory が持つ。旧名は aliases に、移るかどうかの判断は節 from-commands に置く）。allowed-tools は道具の確認を省く設定なので、permissions との関係を書く（enforce の permission-rules）。claude.ai へアップロードするときに使えるキーが限られる点は、アプリのタブで書く（01 D-2）。スキルの有り無しを比べて確かめる方法（01 D-2）は、節 evaluate から eval の measure-changes へ案内する。作ったスキルが効いている気がする、で止めない（pitfalls の体感を信じる）。"
+    notes: "registry の commands-became-skills をまとめた（同じ機能の旧名で、古い記法は台帳の commands-directory が持つ。旧名は aliases に、移るかどうかの判断は節 from-commands に置く）。allowed-tools は道具の確認を省く設定なので、permissions との関係を書く（enforce の permission-rules）。claude.ai へアップロードするときに使えるキーが限られる点は、アプリのタブで書く（01 D-2）。スキルの有り無しを比べて確かめる方法（01 D-2）は、節 evaluate から eval の measure-changes へ案内する。作ったスキルが効いている気がする、で止めない（pitfalls の体感を信じる）。日本語の推敲をスキルにする例は japanese の less-ai-sounding-japanese の節 proofreading-skill を指す（japanese がまとめた proofreading-skills-for-japanese の行き先。japanese の担当の提案）（2026-11-04 統合：japanese#1）"
 
   - id: skill-descriptions
     chapter: スキル
@@ -345,7 +345,7 @@ pages:
     scenes: [開発]
     summary: "スキルが使われない・余計に使われるときに、説明文を直して起動を合わせられる。いつ使うかを先頭に具体的に書き、ほかのスキルと重ならないようにする。"
     signs:
-      - {type: symptom, text: "作った skill が使われない"}
+      - {type: goal, text: "作ったスキルを、使ってほしい場面で確実に使わせたい"}
       - {type: symptom, text: "関係のない場面で、別の手順が勝手に読み込まれる"}
     prerequisites: [writing-skills]
     related: [how-skills-load, manual-only-skills, measure-changes, pruning-extensions, writing-subagents]
@@ -354,7 +354,7 @@ pages:
     templates:
       - {name: "description の Before/After（いつ使うかを先頭に書く）", kind: skill, safety: false}
     materials: ["00 §3 分野08", "00 §4 指示と仕組みの困りごと", "01 D-2（description と when_to_use の切り詰め）", "01 2-5（説明文が曖昧・重複すると、誤って読む・読まない）", "02 §1-10（アプリでも説明文で使うかが決まる。使われないときはオンか確かめ、名前を挙げる）", "04 Q1 E"]
-    notes: "「成否の9割を決める」は実践者の経験則なので、数として使わない。説明文の上限の字数は数値ファイルに置く。確実に使わせたいときは名前で呼ぶ（01 2-5）。サブエージェントの description も同じ考え方なので、writing-subagents から指す。"
+    notes: "「成否の9割を決める」は実践者の経験則なので、数として使わない。説明文の上限の字数は数値ファイルに置く。確実に使わせたいときは名前で呼ぶ（01 2-5）。サブエージェントの description も同じ考え方なので、writing-subagents から指す。サイン「作った skill が使われない」は症状の項目（逆引きの表 #34）で、symptoms の instructions-ignored が持ち、そこからこのページを指すので、ここからは外した。代わりに、やりたいことの形のサインを置いた（2026-11-04 統合：M2）"
 
   - id: manual-only-skills
     chapter: スキル
@@ -400,13 +400,13 @@ pages:
       - {type: symptom, text: "手順として書いたのに、ときどき飛ばされる"}
       - {type: goal, text: "手順として読ませるか、自動で必ず走らせるかを決めたい"}
     prerequisites: [request-vs-lock, how-skills-load]
-    related: [hooks-basics, when-to-lock, request-lock-table, hook-recipes, writing-skills, manual-only-skills, extensions-at-a-glance, textlint-hook, less-ai-sounding-japanese]
+    related: [hooks-basics, when-to-lock, request-lock-table, hook-recipes, writing-skills, manual-only-skills, extensions-at-a-glance, textlint-hook, "less-ai-sounding-japanese#lint-vs-judgment"]
     tracks: [hooks, skills]
     volatility: 中
     templates:
       - {name: "同じ「編集の後に整形する」を、スキルとフックで書いた対比", kind: hook, safety: false}
     materials: ["00 §3 分野08", "01 0-4", "01 2-5（ガードレールはフックに置く）", "01 F-1", "03 Q4 T2・T4", "04 Q1 C"]
-    notes: "比較の表は数値ファイルの機能の属性から生成する。フックの書き方の本体は enforce（hooks-basics・hook-recipes）。スキルやサブエージェントの frontmatter にもフックを書ける点（01 F-1）は、組み合わせ方として書く。日本語の推敲を textlint の hook でするか skill でするかを例に使える（japanese）。"
+    notes: "比較の表は数値ファイルの機能の属性から生成する。フックの書き方の本体は enforce（hooks-basics・hook-recipes）。スキルやサブエージェントの frontmatter にもフックを書ける点（01 F-1）は、組み合わせ方として書く。日本語の推敲を textlint の hook でするか skill でするかを例に使える（japanese）。その例の行き先は、lint に任せる所と判断の要る所を分ける japanese の less-ai-sounding-japanese の節 lint-vs-judgment にした（推敲をスキルにする節 proofreading-skill は writing-skills から指す。japanese の担当の提案）（2026-11-04 統合：japanese#1）"
 
   # ── サブエージェント ──
   - id: writing-subagents
@@ -431,7 +431,7 @@ pages:
     prerequisites: [subagent-isolation]
     related: [what-subagents-dont-inherit, skill-vs-subagent, research-in-subagents, independent-review, instructing-reviewers, permission-rules, "hook-recipes#subagent-only", hooks-basics, choosing-parallel-modes, agent-teams-experimental, what-not-to-delegate, parallel-and-loop-costs, opusplan, "effort-levels#subagents-and-org-limits", skill-descriptions, "agreement-is-not-evidence#reviewer-agreement"]
     tracks: [subagents]
-    outdated_advice: [agents-command, subagent-per-step, tell-it-to-use-subagents]
+    outdated_advice: [agents-command, subagent-per-step, tell-it-to-use-subagents, subagents-to-save-context]
     volatility: 中
     sections:
       - {title: "定義の書き方（ファイルを書くか、Claude に作らせる）", anchor: define}
@@ -442,7 +442,7 @@ pages:
       - {name: "テストを走らせて失敗だけを報告する担当", kind: subagent, safety: false}
       - {name: "役割を伝えて、サブエージェントの定義を書かせるプロンプト", kind: prompt, safety: false}
     materials: ["00 §3 分野08", "01 E-1（定義・frontmatter・起動・/agents のウィザードの削除）", "01 4-2", "03 Q4 T3", "04 Q1 D", "05 1-13", "11 第2節 分野09（p56#18・p56#130）", "11 第5節 A-5", "research/23 §3.1・§3.7（コンテキストを守るための subagent は古い助言の表へ）", "research/22 #21（別のモデルの subagent の effort）", "research/28 #1・#2・#14"]
-    notes: "/agents のウィザードは削除された（01 E-1・4-2、台帳 agents-command）。作り方は Claude に頼むか、.claude/agents/ にファイルを直接書く、と書く。現行の Best practices は「コンテキストを守るために subagent を使う」を古い助言の表に入れた（research/23 §3.7）ので、向くのは並列の作業・うるさい出力を本筋から離すこと・独立のレビューで、どれも追加のトークンがかかる、と書く（01 KQ2 の注記のある④⑤は使わない）。disallowedTools に指定子を付けても Bash 全体が外れるので、特定のコマンドを止めるのは permissions か hook（research/28 #14）。permissions の deny はメインの会話も止めるので、担当にだけ禁じるならフックの入力の agent_id を見る（research/28 #1、enforce の hook-recipes#subagent-only。enforce の担当の提案）。並列の方式の選び方は delegate へ。"
+    notes: "/agents のウィザードは削除された（01 E-1・4-2、台帳 agents-command）。作り方は Claude に頼むか、.claude/agents/ にファイルを直接書く、と書く。現行の Best practices は「コンテキストを守るために subagent を使う」を古い助言の表に入れた（research/23 §3.7）ので、向くのは並列の作業・うるさい出力を本筋から離すこと・独立のレビューで、どれも追加のトークンがかかる、と書く（01 KQ2 の注記のある④⑤は使わない）。disallowedTools に指定子を付けても Bash 全体が外れるので、特定のコマンドを止めるのは permissions か hook（research/28 #14）。permissions の deny はメインの会話も止めるので、担当にだけ禁じるならフックの入力の agent_id を見る（research/28 #1、enforce の hook-recipes#subagent-only。enforce の担当の提案）。並列の方式の選び方は delegate へ。台帳に足された subagents-to-save-context（コンテキストを守るために subagent に調べさせる）を outdated_advice で指した。既存の tell-it-to-use-subagents（「subagent を使え」と書き足す）とは出典と中身が違うので、両方を指す（2026-11-04 統合：extend#3・M3）"
 
   - id: what-subagents-dont-inherit
     chapter: サブエージェント
@@ -487,7 +487,7 @@ pages:
     scenes: [開発]
     summary: "手順を今の会話で読ませるか、別の文脈の担当に任せるかを選べる。スキルは知識と手順を足し、サブエージェントは作業を本筋から隔てて要約だけを返す。"
     signs:
-      - {type: symptom, text: "skill と subagent のどちらにすべきか分からない"}
+      - {type: goal, text: "skill と subagent のどちらにすべきか"}
       - {type: goal, text: "手順を自分の会話で使うか、別の担当に任せるかを決めたい"}
     prerequisites: [how-skills-load, subagent-isolation]
     related: [writing-skills, writing-subagents, extensions-at-a-glance, research-in-subagents, choosing-parallel-modes, what-subagents-dont-inherit, independent-review]
@@ -496,7 +496,7 @@ pages:
     templates:
       - {name: "context: fork でサブエージェントとして動かすスキル", kind: skill, safety: false}
     materials: ["00 §3 分野08", "00 §4 指示と仕組みの困りごと", "01 0-4", "01 D-2（context: fork・agent）", "01 E-1（skills の項目でスキルを読ませる）", "04 Q1 C", "05 1-13"]
-    notes: "比較の表は数値ファイルの機能の属性から生成する。並列で動かす方式（agent teams・workflows など）の選び方は delegate の choosing-parallel-modes。"
+    notes: "比較の表は数値ファイルの機能の属性から生成する。並列で動かす方式（agent teams・workflows など）の選び方は delegate の choosing-parallel-modes。サイン「skill と subagent のどちらにすべきか分からない」（symptom）を、逆引きの表（catalog-C12 §7 #39、goal の問い）の種類と文にそろえた（2026-11-04 統合：B#39）"
 
   # ── MCP ──
   - id: connecting-mcp
@@ -601,7 +601,7 @@ pages:
     signs:
       - {type: situation, text: "別のリポジトリにも同じ設定を作ろうとしている"}
       - {type: goal, text: "作った手順や設定を、チームに配りたい"}
-      - {type: situation, text: "チームで同じ設定を使いたい"}
+      - {type: goal, text: "チームで同じ設定を使いたい"}
     prerequisites: [extensions-at-a-glance]
     related: [vetting-extensions, share-team-settings, code-intelligence-plugins, mods, pruning-extensions, plugins-in-the-app, writing-skills, connecting-mcp, org-managed-settings-and-mcp, always-on-costs, rolling-out-to-teams]
     tracks: [plugins, marketplaces]
@@ -614,7 +614,7 @@ pages:
       - {name: "プロジェクトでプラグインを有効にする .claude/settings.json の例", kind: settings, safety: false}
     visual: {kind: static, text: "プラグインが束ねるもの（スキル・サブエージェント・フック・MCP・LSP・出力スタイル）と、マーケットプレイスの関係の図"}
     materials: ["00 §3 分野08", "00 §4 指示と仕組みの困りごと", "01 H-1（配布の単位・インストールのスコープ・コストと安全・公式のマーケットプレイス）", "research/22 #38（アプリの Plugins のページ）", "02 §1-10（アプリのプラグインはアカウントに保存され Claude Code に同期される。Customize の画面の記述は research/22 #38 の注記）", "research/27 §3.2（プラグインはクラウドのセッションで読まれない）", "05 4-4"]
-    notes: "アプリの操作（Plugins のページ・組織の配布）は app の plugins-in-the-app。ここではアプリのタブで要点だけを書き、詳しくは app を指す。アプリで入れたプラグインは Claude Code に同期される（版の下限は数値ファイル。02 §1-10）ので、同期されたものも常駐のコストと入れる前の確認の対象になる、と書く（app の担当の提案）。"
+    notes: "アプリの操作（Plugins のページ・組織の配布）は app の plugins-in-the-app。ここではアプリのタブで要点だけを書き、詳しくは app を指す。アプリで入れたプラグインは Claude Code に同期される（版の下限は数値ファイル。02 §1-10）ので、同期されたものも常駐のコストと入れる前の確認の対象になる、と書く（app の担当の提案）。サイン「チームで同じ設定を使いたい」の種類を、逆引きの表（catalog-C12 §7 #43）と team の share-team-settings に合わせて goal にした。設定ファイルの共有の本体は share-team-settings で、ここは別のリポジトリにも配るときの答え（2026-11-04 統合：B#43）"
 
   - id: code-intelligence-plugins
     chapter: プラグイン
@@ -681,7 +681,6 @@ pages:
     scenes: [開発, チーム]
     summary: "入れた CLAUDE.md・スキル・MCP・プラグインを定期的に見直し、使っていないものを外せる。常駐のコストを測ってから切り、共有するものは複数の人が使うものに絞る。"
     signs:
-      - {type: symptom, text: "入れた拡張が多すぎて重い"}
       - {type: symptom, text: "使っていないはずの設定が、毎回トークンを使っている"}
       - {type: situation, text: "設定を作り込んで、しばらくたった"}
     prerequisites: [extensions-at-a-glance, always-on-costs]
@@ -695,7 +694,7 @@ pages:
       - {name: "棚卸しの手順のチェックリスト", kind: other, safety: false}
       - {name: "ほかの人が作ったスキルを名前だけにする skillOverrides の設定", kind: settings, safety: false}
     materials: ["00 §3 分野08", "00 §4 指示と仕組みの困りごと", "01 D-2（/skill-doctor・skillOverrides）", "01 H-1（Context cost の推定・Not used recently）", "03 Q4 T1・T2・T5", "04 Q1 G", "11 第2節 分野08（p56#65）"]
-    notes: "00 §3 の「40個を超えたら見直す」は出どころを確かめてから数値ファイルに置く（題名・要約・サインには書かない）。共有を複数の人が使うものに絞る基準は、公式の「別のリポジトリでも使うなら plugin」と同じ型（11 第2節 p56#65）。切る・残すは「役に立っている気がする」でなく、使われた記録と常駐のコストで決める（pitfalls の体感を信じる）。"
+    notes: "00 §3 の「40個を超えたら見直す」は出どころを確かめてから数値ファイルに置く（題名・要約・サインには書かない）。共有を複数の人が使うものに絞る基準は、公式の「別のリポジトリでも使うなら plugin」と同じ型（11 第2節 p56#65）。切る・残すは「役に立っている気がする」でなく、使われた記録と常駐のコストで決める（pitfalls の体感を信じる）。サイン「入れた拡張が多すぎて重い」は症状の項目（逆引きの表 #42）で、symptoms の too-slow が持ち、そこからこのページを指すので、ここからは外した（2026-11-04 統合：M2）"
 
 merged:
   - id: what-to-leave-out-of-claude-md
@@ -731,7 +730,8 @@ open_issues:
 
 notes:
   - "level は 00 §3 の L3（任せる）と L4（仕組みにする）に従った。変えたのは mods だけ（L5 回す → 仕組みにする。理由は level_evidence）。「使う」「整える」のページはない（読者は CLAUDE.md の基本操作を cli の init-and-first-claude-md で知っている前提）。"
-  - "比例則：任せる幅を広げる内容のページ（MCP・プラグイン・mod・スキル・サブエージェント）には、safety の vetting-extensions・lethal-trifecta、enforce の permission-rules・hooks-basics、verify の independent-review を related に置いた。前提にしなかったのは、相手の分野がこちらのページを前提に置いたときに循環するのを避けるため。対象外のページ（agents-md・how-skills-load）は notes に理由を書いた。"
+  - "比例則：任せる幅を広げる内容のページ（MCP・プラグイン・mod・スキル・サブエージェント）には、safety の vetting-extensions・lethal-trifecta、enforce の permission-rules・hooks-basics、verify の independent-review を related に置いた。前提にしなかったのは、相手の分野がこちらのページを前提に置いたときに循環するのを避けるため。対象外のページ（agents-md・how-skills-load）は notes に理由を書いた。2026-11-04 の統合（M9）で見直し、agents-md は警告を残し、how-skills-load は補助のスクリプトを読まずに実行する点から safety の vetting-extensions を related に置いた。"
+  - "2026-11-04 統合（I4）：ほかの分野の提案と逆引きの行を反映した。題名の表記は M1 にそろっていたので、変えたのは using-auto-memory（英語名を aliases へ）だけ。症状の項目と同じ文のサイン3つ（#33・#34・#42）を対処のページから外した（M2）。ページの数・id・anchor・priority・level は変えていない。扱いの一覧は planning/batches/step3/integrate-I4.md"
   - "前提は basics（request-vs-lock・where-instructions-sit・attention-budget・what-survives-compaction・subagent-isolation・agent-loop）、context の always-on-costs（相手が extend のページを前提にしていないと確かめた）、自分の分野のページに限った。ほかの分野のページは related で指す。"
   - "機能の属性（強制力・読み込みの時期・コンテキストのコスト・圧縮で残るか・成熟度）はページに持たない。comparison の5ページ（extensions-at-a-glance・claude-md-vs-rules-skills-styles・hook-vs-skill・skill-vs-subagent・mcp-or-cli）の表は数値ファイルから生成し、手書きは判断例だけにする。comparison にも tracks を書いたのは、表に並べる機能を道具に渡すため。"
   - "工程2の事実に合わせたもの：圧縮の後にスキルの説明文は v2.1.304 以降入れ直される（research/23 #6）、組み込みの出力スタイルは4種（research/23 #2）、/agents のウィザードは削除された（01 E-1・4-2）、コンテキストを守るための subagent と IMPORTANT の強調は現行の Best practices で古い助言の表に入った（research/23 §3.1・§3.7）。どれも、注記のある古い記述を summary・signs の根拠にしていない。"

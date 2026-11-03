@@ -9,9 +9,9 @@ pages:
   # ── 指示と記憶 ──
   - id: where-to-put-instructions
     chapter: 指示と記憶
-    title: "アプリの指示の置き場所（指示・プロジェクト・メモリ・スキル）"
+    title: "アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）"
     nav_title: "指示の置き場所"
-    aliases: [Instructions for Claude, Claude への指示, Project instructions, プロジェクトの指示, 組織の指示, カスタム指示, Styles]
+    aliases: [Instructions for Claude, 全会話の指示, Project instructions, プロジェクトの指示, 組織の指示, カスタム指示, Styles]
     type: comparison
     level: 整える
     level_evidence: "同じ前提を何度も書いていると気づき、指示の置き場所を整え始める段階で最初に要る"
@@ -20,14 +20,14 @@ pages:
     principle: [見せる]
     prevents: [見えていない, 散らかっている]
     scenes: [文章, 開発]
-    summary: "全会話の指示・プロジェクトの指示・メモリ・スキルを、効く範囲と読まれる時期で比べ、繰り返す前提や形式の指定をどこに置くかを決める。"
+    summary: "Claude への指示・プロジェクトの指示・メモリ・スキルを、効く範囲と読まれる時期で比べ、繰り返す前提や形式の指定をどこに置くかを決められる。"
     signs:
-      - {type: symptom, text: "毎回同じ背景を説明している"}
       - {type: goal, text: "返答の口調や形式をいつも揃えたい"}
       - {type: symptom, text: "設定した指示が、関係のない会話にまで効いてしまう"}
-    prerequisites: [attention-budget]
+    prerequisites: [attention-budget, where-instructions-sit]
     related: [using-projects, how-memory-works, skills-in-the-app, shared-projects-and-org-skills, repeating-the-same-explanation, claude-md-vs-rules-skills-styles, output-style-modes, keep-replies-in-japanese, "tidy-the-desk#in-the-app", always-on-costs]
     tracks: [personal-instructions, project-instructions, app-memory, app-skills, styles]
+    outdated_advice: [styles-for-tone]
     volatility: 中
     sections:
       - {title: "置き場所ごとの効く範囲と読まれる時期", anchor: comparison}
@@ -35,10 +35,10 @@ pages:
       - {title: "組織の指示があるとき", anchor: org-instructions}
       - {title: "Claude Code の置き場所との対応", anchor: claude-code}
     templates:
-      - {name: "全会話の指示に書く短い方針の例（言語・文体・前提）", kind: prompt, safety: false}
+      - {name: "Claude への指示に書く短い方針の例（言語・文体・前提）", kind: prompt, safety: false}
     visual: {kind: static, text: "効く範囲の入れ子（アカウント全体・プロジェクト・一つの会話）に指示・メモリ・スキルを置き、毎回読まれるか必要なときだけ読まれるかを色で分けた図"}
     materials: ["00 §3 分野06「指示の置き場所」の行とその注記", "02 §1-3（公式の使い分け：全体は Instructions、案件は project instructions、形式と届け方は skills）", "research/26 #1〜#3・§3.1（Styles の skills への移行、Instructions の場所）", "research/27 #15〜#17・§3.1・§3.2 の claude.ai（訳語、組織の指示、返答の言語を固定する設定はない）", "00 §4 返答と品質の困りごと「毎回同じ背景を説明している」"]
-    notes: "registry の題名から Styles を外したまま（00 §3 分野06 の注記）。Styles は aliases と節 styles にだけ置く。2026-06 の移行の告知の後の公式の使い分け（research/26 §3.1）で書き、画面に Styles のメニューが残るかは確かめていない（research/26 §5）と添える。Claude Code の output style とは別の機能で、cli の output-style-modes を関連に置いて取り違えを防ぐ。全会話の指示の画面の名前は確かめていない（research/27 §5）ので、題名は設定の項目名の「指示」にした"
+    notes: "registry の題名から Styles を外したまま（00 §3 分野06 の注記）。Styles は aliases と節 styles にだけ置く。2026-06 の移行の告知の後の公式の使い分け（research/26 §3.1）で書き、画面に Styles のメニューが残るかは確かめていない（research/26 §5）と添える。Claude Code の出力スタイル（output style）とは別の機能で、cli の output-style-modes を関連に置いて取り違えを防ぐ。題名と要約の全会話の指示（Instructions for Claude）を、メインの決めた表記の「Claude への指示」にした（画面の名前は確かめていない。research/27 §5。「全会話の指示」は aliases に移した）。basics の where-instructions-sit（整える・必須。指示がシステムプロンプトとユーザーメッセージのどこに入るか）を前提に足した。Styles の移行の説明は台帳の styles-for-tone に一本化し、このページと skills-in-the-app の outdated_advice から指す。japanese の文体と表記のページのアプリのタブも、同じ書き方に揃えられる。症状の文「毎回同じ背景を説明している」は symptoms の repeating-the-same-explanation の signs にあり、そのページがこのページを前提にして振り分けるので、ここから外した（2026-11-04 統合：M1・basics#6・app#3・japanese#5・M3・M2）"
 
   - id: using-projects
     chapter: 指示と記憶
@@ -110,7 +110,6 @@ pages:
     summary: "アプリのメモリが何を、いつ、どの範囲で覚えるかが分かり、確かめ方と直し方を選べる。過去チャットの検索との違いも分かる。"
     signs:
       - {type: goal, text: "前の会話で話したことを覚えていてほしい"}
-      - {type: symptom, text: "別のプロジェクトの記憶が混ざる"}
       - {type: goal, text: "前の会話の内容を探して使わせたい"}
       - {type: goal, text: "何を覚えられているかを確かめたい"}
     prerequisites: []
@@ -125,7 +124,7 @@ pages:
       - {title: "見る・直す・止める", anchor: manage}
     visual: {kind: static, text: "アカウントのメモリ・プロジェクトのメモリ・シークレットチャットの範囲と、どの会話からどれが読めるかを示す図"}
     materials: ["00 §3 分野06", "02 §1-4（保存の方式・カテゴリ・機微な話題・管理・プロジェクトのメモリ・chat search）", "02 §1-0（2026-07-10 と 08-25 の変更）", "05 §2-4（メモリの仕様と対処）", "04 Q4（日本語のメモリの解説記事：チャットの検索との使い分け、Pause と Reset）", "00 §5 台帳「Memory は会話の後に日次で要約される」"]
-    notes: "registry の searching-past-chats（過去チャットの検索）をまとめた（節 chat-search）。2026年に二度大きく変わった（02 §1-0）ので volatility を高にした。プランごとの既定は数値ファイルに置く。Claude Code の CLAUDE.md と自動メモリ（extend の using-auto-memory）とは別の機能なので、関連に置いて違いを書き、用語集で分ける"
+    notes: "registry の searching-past-chats（過去チャットの検索）をまとめた（節 chat-search）。2026年に二度大きく変わった（02 §1-0）ので volatility を高にした。プランごとの既定は数値ファイルに置く。Claude Code の CLAUDE.md と自動メモリ（extend の using-auto-memory）とは別の機能なので、関連に置いて違いを書き、用語集で分ける。症状の文「別のプロジェクトの記憶が混ざる」は symptoms の unexpected-memories の signs にあり、そこが面をまたいで切り分けてからこのページと memory-faq へ振り分けるので、ここから外した（2026-11-04 統合：M2・symptoms#11）"
 
   - id: memory-faq
     chapter: 指示と記憶
@@ -141,8 +140,6 @@ pages:
     prevents: [散らかっている, 境界がない]
     summary: "会話を消したのに覚えている、別のプロジェクトの話が混ざる、といったメモリの困りごとの原因と直し方が分かる。止め方の違いも選べる。"
     signs:
-      - {type: symptom, text: "会話を消したのに覚えている"}
-      - {type: symptom, text: "別のプロジェクトの記憶が混ざる"}
       - {type: symptom, text: "間違った思い込みを覚えられてしまった"}
       - {type: goal, text: "しばらく記憶を使わせずに話したい"}
     prerequisites: [how-memory-works]
@@ -155,7 +152,7 @@ pages:
       - {title: "止め方の違い（Pause・Reset・会話ごとのオフ・シークレットチャット）", anchor: turning-off}
       - {title: "覚えた内容を棚卸しする", anchor: review}
     materials: ["00 §3 分野06", "02 §1-4（会話を消しても memory は残る、Pause と Reset、会話ごとにオフにする）", "05 §2-4", "00 §4 会話と文脈の困りごと（別のプロジェクトの記憶が混ざる・会話を消したのに覚えている）", "11 第2節 分野08 auto memory（p34#114：誤った結論が自動の記憶に入り、後の実験を汚した。棚卸しする。単独の経験談）"]
-    notes: "症状の診断（どの記憶の仕組みが持ち込んだかの切り分け）は symptoms の unexpected-memories が持ち、ここはアプリのメモリの操作の答えを持つ（symptoms の担当もそう分けている）。棚卸しの節の根拠（11 p34#114）は Claude Code の自動メモリでの単独の経験談で、アプリのメモリを調べたものではない。本文では類推と根拠の強さ（弱）を添える。how-memory-works とまとめる案もある（open_issues）"
+    notes: "症状の診断（どの記憶の仕組みが持ち込んだかの切り分け）は symptoms の unexpected-memories が持ち、ここはアプリのメモリの操作の答えを持つ（symptoms の担当もそう分けている）。棚卸しの節の根拠（11 p34#114）は Claude Code の自動メモリでの単独の経験談で、アプリのメモリを調べたものではない。本文では類推と根拠の強さ（弱）を添える。how-memory-works とまとめる案もある（open_issues）。symptoms の担当の分担（このページはアプリのメモリの操作の本体：消し方・Pause と Reset・会話ごとのオフ。unexpected-memories は面をまたいだ切り分け）に合わせて分けたままにし、症状の文「会話を消したのに覚えている」「別のプロジェクトの記憶が混ざる」は unexpected-memories の signs に任せて、ここから外した。節 deleted-chats・mixed-projects はその振り分けの受け皿として残す（2026-11-04 統合：symptoms#11・app#6・M2）"
 
   - id: incognito-chats
     chapter: 指示と記憶
@@ -197,7 +194,6 @@ pages:
     scenes: [調べもの, データ分析]
     summary: "添付した PDF や文書のどこまでが図も含めて読まれるかが分かり、大きな資料の分け方と、読まれたかの確かめ方を選べる。API で渡すときの違いも分かる。"
     signs:
-      - {type: symptom, text: "長い PDF の後半の図について答えられない"}
       - {type: symptom, text: "Word の資料に入れた図を読んでくれない"}
       - {type: goal, text: "大きな資料を漏れなく読ませたい"}
     prerequisites: []
@@ -211,7 +207,7 @@ pages:
       - {title: "API で渡すとき（Files API・PDF・画像）", anchor: api, level: 仕組みにする}
     visual: {kind: static, text: "PDF のページ数で、図も読む範囲・文字だけを読む範囲・受け付けない範囲が分かれる帯の図（境目の値は数値ファイルから）"}
     materials: ["00 §3 分野06", "05 §2-5（Upload files：PDF の視覚要素の範囲、PDF 以外は文字だけ、大きさと数の上限）", "02 §1-7（大きな PDF は実行環境の中で処理する）", "02 §5-6（Files API・PDF・Vision）", "00 §3 分野13「ファイル・PDF・画像の扱い」", "00 §4 返答と品質の困りごと（長い PDF の後半の図について答えられない）"]
-    notes: "api の files-pdfs-and-images をまとめ、面のタブ（アプリ／API）にした（D9）。Claude Code での読み込みは context の choose-what-to-read の受け持ちで、ここにはタブを置かない。症状の入口は symptoms の skipped-later-pages。境目のページ数とファイルの上限は数値ファイル（file-uploads）に置き、summary・signs・題名に書かない"
+    notes: "api の files-pdfs-and-images をまとめ、面のタブ（アプリ／API）にした（D9）。Claude Code での読み込みは context の choose-what-to-read の受け持ちで、ここにはタブを置かない。症状の入口は symptoms の skipped-later-pages。境目のページ数とファイルの上限は数値ファイル（file-uploads）に置き、summary・signs・題名に書かない。症状の文「長い PDF の後半の図について答えられない」は skipped-later-pages の signs にあり、そこがこのページを前提にして振り分けるので、ここから外した（2026-11-04 統合：M2）"
 
   - id: long-chat-limits
     chapter: 資料と長い会話
@@ -414,7 +410,7 @@ pages:
       - {title: "Desktop のローカル MCP", anchor: desktop-local-mcp, level: 任せる}
       - {title: "信頼してよいか", anchor: trust}
     materials: ["00 §3 分野06", "02 §1-11（種類、On demand の勧め、ツール単位の許可、custom connector は検証されていない）", "02 §1-1（ローカルのコネクタと MCP は Desktop だけ）", "research/26 #9・§3.5（desktop extensions と claude_desktop_config.json、つながりの確かめ方、Claude Code との関係）", "research/22 #38（一つの Plugins のページへの切り替え）"]
-    notes: "Desktop の新しい設定画面で claude_desktop_config.json を開く入口の名前は確かめていない（research/26 §5）。Claude Code の MCP の本体は extend の connecting-mcp。Desktop の Code タブが Desktop の設定も読むこと（research/26 §3.5）は、extend の connecting-mcp のアプリのタブが書く（extend の担当がそう分けた）。比例則の対象の段ではないが、外のデータを読ませる入口なので safety の lethal-trifecta・vetting-extensions を関連に置いた"
+    notes: "Desktop の新しい設定画面で claude_desktop_config.json を開く入口の名前は確かめていない（research/26 §5）。Claude Code の MCP の本体は extend の connecting-mcp。Desktop の Code タブが Desktop の設定も読むこと（research/26 §3.5）は、extend の connecting-mcp のアプリのタブが書く（extend の担当がそう分けた）。比例則の対象の段ではないが、外のデータを読ませる入口なので safety の lethal-trifecta・vetting-extensions を関連に置いた。extend の担当の境界の案に合わせ、ここにはアプリに固有の操作（コネクタの追加・On demand・ツール単位の許可・Desktop のローカル MCP の設定）だけを書き、MCP の仕組みは extend の connecting-mcp に任せる（2026-11-04 統合：extend#8）"
 
   - id: skills-in-the-app
     chapter: つなぐ・足す
@@ -436,7 +432,7 @@ pages:
     prerequisites: [how-skills-load]
     related: [where-to-put-instructions, skill-descriptions, writing-skills, plugins-in-the-app, shared-projects-and-org-skills, vetting-extensions, files-and-code-execution]
     tracks: [app-skills, styles]
-    outdated_advice: [customize-tabs]
+    outdated_advice: [customize-tabs, styles-for-tone]
     volatility: 高
     sections:
       - {title: "組み込みのスキルと自作のスキル", anchor: built-in-and-custom}
@@ -446,7 +442,7 @@ pages:
     templates:
       - {name: "アプリに入れるスキルの最小の例", kind: skill, safety: false}
     materials: ["00 §3 分野06", "02 §1-10（Skills：組み込みのスキル、description の書き方、使われないときの確かめ方、組織での共有、code execution が要る）", "research/26 #1〜#3・§3.1（Styles から skills への移行、移された style の有効化と呼び方）", "research/22 #38（Plugins のページ）・#29（claude.ai から同期した skills）", "research/27 §3.2（スキルで口調や形式を加える）"]
-    notes: "Styles の移行は 2026-06 の告知で、2026-11-03 時点で記事は取り下げられ、画面にメニューが残るかは確かめていない（research/26 §3.1・§5）。summary は移行の後の公式の使い分け（形式や届け方はスキル）だけに拠った。skill の考え方の本体は extend の how-skills-load、作り方は writing-skills・skill-descriptions。Plugins のページへの切り替えが 2026-11-30 まで続くので volatility を高にした。比例則の守りは safety の vetting-extensions（他人のスキルを入れる前の確認）"
+    notes: "Styles の移行は 2026-06 の告知で、2026-11-03 時点で記事は取り下げられ、画面にメニューが残るかは確かめていない（research/26 §3.1・§5）。summary は移行の後の公式の使い分け（形式や届け方はスキル）だけに拠った。skill の考え方の本体は extend の how-skills-load、作り方は writing-skills・skill-descriptions。Plugins のページへの切り替えが 2026-11-30 まで続くので volatility を高にした。比例則の守りは safety の vetting-extensions（他人のスキルを入れる前の確認）。台帳の styles-for-tone（Styles で応答の調子と形式を切り替える）を outdated_advice に入れ、節 migrated-styles の移行の説明はその「今どうするか」に揃える。extend の担当の境界の案に合わせ、ここにはアプリに固有の操作（アップロード・有効化・組織での配布・Plugins のページ）だけを書き、読み込みの仕組みは前提の how-skills-load に任せる（2026-11-04 統合：M3・app#3・japanese#5・extend#8）"
 
   - id: plugins-in-the-app
     chapter: つなぐ・足す
@@ -473,7 +469,7 @@ pages:
       - {title: "プラグインに入るもの・動く場所", anchor: contents}
       - {title: "Claude Code との同期", anchor: sync}
     materials: ["00 §3 分野06", "02 §1-10（Plugins：中身、hooks とローカル MCP は Cowork と Claude Code だけ、Claude Code への同期、入手のしかた）", "research/22 #38（一つの Plugins のページへの切り替え）"]
-    notes: "プラグインの考え方の本体は extend の plugins-and-marketplaces。比例則の守りは safety の vetting-extensions"
+    notes: "プラグインの考え方の本体は extend の plugins-and-marketplaces。比例則の守りは safety の vetting-extensions。extend の担当の境界の案に合わせ、ここにはアプリに固有の操作（Plugins のページでの入手と管理・Claude Code との同期・アプリで動かない部品）だけを書く（2026-11-04 統合：extend#8）"
 
   # ── 任せる ──
   - id: permission-modes-in-the-app

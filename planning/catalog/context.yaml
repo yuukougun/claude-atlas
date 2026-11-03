@@ -25,14 +25,13 @@ pages:
     scenes: [開発, 文章, 調べもの]
     summary: "会話を新しくする・巻き戻す・ファイルに書き出す・別の文脈に任せるの四つで、文脈を目の前の作業に絞る方法が分かる。溢れを防ぐ節約ではなく、答えの質と費用のための整頓である。"
     signs:
-      - {type: symptom, text: "会話が長くなると答えの質が落ちる気がする"}
       - {type: goal, text: "コンテキストの整え方を一通り知りたい"}
       - {type: situation, text: "コンテキストが大きくなった今も、片付ける意味があるのか迷っている"}
       - {type: situation, text: "claude.ai で一つの長い会話を使い続けている"}
     prerequisites: [rereads-whole-history, context-rot]
     related: [when-to-start-fresh, rewind-dont-correct, compact-and-auto-compact, handoff-documents, research-in-subagents, inspect-context, always-on-costs, long-chat-limits, using-projects, how-memory-works, where-to-put-instructions, attention-budget, 1m-context, saving-priorities, four-principles]
     tracks: [clear, compaction, context-window]
-    outdated_advice: [save-context-for-200k]
+    outdated_advice: [save-context-for-200k, subagents-to-save-context]
     volatility: 中
     sections:
       - {title: "四つの動作", anchor: four-actions}
@@ -42,7 +41,7 @@ pages:
     templates: []
     visual: {kind: static, text: "広い机の図。今の作業に要るものだけを机に置き、終わった資料はファイルに書き出し、脇道は別室（subagent）に出し、失敗は巻き戻す。四つの動作を矢印で示し、面ごとの手段（新しいチャット・/clear・メッセージの編集・/rewind など）を添える"}
     materials: ["00 §1（もうやめてよい古い助言の表、コンテキストの意味の変化）", "00 §3 分野05（冒頭の段落と表。アプリでの文脈管理の行を含む）", "03 Q3 Takeaway・Inferences（四つの動詞で整理する）", "05 1-11・1-13", "02 1-7（アプリの長い会話の自動 context 管理）", "11 第2節 分野05 p34#104・p34#113", "11 第3節 C-25", "research/23 #1・F6・§3.1・§3.7"]
-    notes: "managing-context-in-the-app をまとめた。アプリの手段（新しいチャット・メッセージの編集・Projects・Memory）は四つの動作のタブと「アプリでの整え方」の節に置き、アプリに固有の仕組みは app のページへ案内する（D9）。「コンテキストは埋まるほど性能が落ちる」は改稿の前の版の要約（01 KQ1・0-3・2-1、10 第12章。注記付き）なので、要約とサインの根拠にしない。現行の版の勧め（/clear は質と費用のため）で書く。標語「会話は使い捨て、学びはファイルへ、失敗は禁止事項の形で」（11 p34#113）は見出しの候補"
+    notes: "managing-context-in-the-app をまとめた。アプリの手段（新しいチャット・メッセージの編集・Projects・Memory）は四つの動作のタブと「アプリでの整え方」の節に置き、アプリに固有の仕組みは app のページへ案内する（D9）。「コンテキストは埋まるほど性能が落ちる」は改稿の前の版の要約（01 KQ1・0-3・2-1、10 第12章。注記付き）なので、要約とサインの根拠にしない。現行の版の勧め（/clear は質と費用のため）で書く。標語「会話は使い捨て、学びはファイルへ、失敗は禁止事項の形で」（11 p34#113）は見出しの候補。四つの動作の「委任」は、コンテキストを守るためではなく、うるさい出力の隔離・並列・独立のレビューのためと書き、台帳 subagents-to-save-context を指す（research/23 §3.7）。sign の「会話が長くなると答えの質が落ちる気がする」は、症状の forgets-in-long-chats にある同じ項目（00 §4）なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M3・extend#3・M2）"
 
   # ── 新しくする・巻き戻す ──
   - id: when-to-start-fresh
@@ -171,7 +170,7 @@ pages:
       - {name: "残す焦点を指示した /compact と、CLAUDE.md に書く圧縮の方針の例", kind: prompt, safety: false}
     visual: {kind: mermaid, text: "続けて /compact するか、書き出して /clear するかを、残したいもの（決めごと・試した経緯・ファイルの位置とエラーの文）と次の作業の近さで選ぶ分かれ道の図"}
     materials: ["00 §3 分野05（/compact と自動圧縮・休憩と cache 切れ・1M 時代の圧縮設定）", "00 §1 の対立点の表（長い作業の続け方）", "01 K-1（注記を含む）・K-2・C-5（途中から要約）", "03 Q3 X4・X5（注記を含む）", "04 Q2（compact の目安、離席の前に畳む）", "05 1-6", "research/22 #14・#15・#17", "research/23 #6・§3.4"]
-    notes: "compaction-settings（設定の節）と breaks-and-cache-expiry（idle compaction の節）をまとめた。実践者の圧縮の目安（使用率の半分、約150k トークン、自動圧縮の窓を 500000 にする など。04 Q2）は幅があり、自動圧縮の発動の割合（95%・80%）はベンダーの記事で確かめていない（03 X5）ので、要約とサインに使わない。idle compaction の条件（会話の大きさ・放置の時間）と入った版は数値ファイルに置く（research/22 #15）。CLAUDE.md の Compact instructions は Manage costs の文書にある（05 1-6）。アプリの長い会話の自動 context 管理は app の long-chat-limits へ案内する（タブ）。圧縮の要約が英語で書かれるという報告は根拠が弱い（research/27 §3.3）ので、本文で触れるなら弱と書く"
+    notes: "compaction-settings（設定の節）と breaks-and-cache-expiry（idle compaction の節）をまとめた。実践者の圧縮の目安（使用率の半分、約150k トークン、自動圧縮の窓を 500000 にする など。04 Q2）は幅があり、自動圧縮の発動の割合（95%・80%）はベンダーの記事で確かめていない（03 X5）ので、要約とサインに使わない。idle compaction の条件（会話の大きさ・放置の時間）と入った版は数値ファイルに置く（research/22 #15）。CLAUDE.md の Compact instructions は Manage costs の文書にある（05 1-6）。アプリの長い会話の自動 context 管理は app の long-chat-limits へ案内する（タブ）。圧縮の要約が英語で書かれるという報告は根拠が弱い（research/27 §3.3）ので、本文で触れるなら弱と書く。何が残り何が消えるかの一覧は basics の what-survives-compaction に一本化し、auto-compact の節では繰り返さない（2026-11-04 統合：basics#2）"
 
   - id: promises-after-compaction
     chapter: 圧縮
@@ -186,7 +185,7 @@ pages:
     prevents: [散らかっている, 縛っていない]
     pitfalls: []
     scenes: [開発]
-    summary: "圧縮のあとも守らせたい決めごとを、圧縮の後に読み直される CLAUDE.md や計画のファイルに書き、例外を許さないものは deny や hook に移す。会話の中だけで伝えた約束は要約に溶けうる。"
+    summary: "圧縮のあとも守らせたい決めごとを、圧縮の後に読み直される CLAUDE.md や計画のファイルに書き、例外を許さないものは拒否ルールやフックに移す。会話の中だけで伝えた約束は要約に溶けうる。"
     signs:
       - {type: goal, text: "圧縮されても守ってほしいことを、どこに書けばよいか知りたい"}
       - {type: symptom, text: "最初に伝えた禁止事項を、途中から守らなくなった"}
@@ -196,15 +195,15 @@ pages:
     outdated_advice: []
     volatility: 中
     sections:
-      - {title: "圧縮の後に戻るもの・戻らないもの", anchor: what-comes-back}
+      - {title: "読み直される場所と、要約に溶ける約束", anchor: what-comes-back}
       - {title: "約束の種類ごとの置き場所", anchor: where-to-put}
-      - {title: "paths 付きの rules と skill の本文の注意", anchor: caveats}
+      - {title: "paths 付きの rules とスキルの本文の注意", anchor: caveats}
     templates:
       - {name: "圧縮を越えて残す約束を書く CLAUDE.md の例", kind: claude-md, safety: false}
       - {name: "会話で伝えた禁止を deny ルールに移す例", kind: settings, safety: true}
     visual: {kind: static, text: "約束の種類（続く規則・この作業の決めごと・例外を許さない禁止）と置き場所（直下の CLAUDE.md・計画や handoff のファイル・deny と hook）を結んだ対応の図"}
     materials: ["00 §3 分野05", "05 1-6", "11 第2節 分野05 p34#109", "01 C-1（会話で伝えた禁止は圧縮で失われうる）", "research/23 #6・§3.4", "research/22 #17", "research/27 §3.2（直下の CLAUDE.md は圧縮の後にディスクから読み直される）"]
-    notes: "basics の what-survives-compaction（仕組みと公式の表）、enforce の when-to-lock の節 spoken-rules-fade（会話で言った禁止を鍵に移す。enforce は spoken-prohibitions-fade をここにまとめた）、symptoms の forgot-after-compaction（診断と振り分け）と重なる。このページは「どこに置くか」の判断だけを持ち、表の本体は basics に任せる。11 3-2 #5 の「skill の一覧は圧縮の後に戻らない」は誤りで、v2.1.304 以降は今の skills から作り直して入れ直す（research/23 #6）。題名は registry の「圧縮のあとに残る約束、消える約束」から、判断が分かる形に変えた（旧題は aliases）"
+    notes: "basics の what-survives-compaction（仕組みと公式の表）、enforce の when-to-lock の節 spoken-rules-fade（会話で言った禁止を鍵に移す。enforce は spoken-prohibitions-fade をここにまとめた）、symptoms の forgot-after-compaction（診断と振り分け）と重なる。このページは「どこに置くか」の判断だけを持ち、表の本体は basics に任せる。11 3-2 #5 の「skill の一覧は圧縮の後に戻らない」は誤りで、v2.1.304 以降は今の skills から作り直して入れ直す（research/23 #6）。題名は registry の「圧縮のあとに残る約束、消える約束」から、判断が分かる形に変えた（旧題は aliases）。このページは残したい約束の移し方（CLAUDE.md・rules・フック）に絞る。what-comes-back の節は置き場所を決めるのに要る要点だけにし、残るもの・消えるものの一覧は basics の what-survives-compaction に一本化して繰り返さない（節の題も一覧と読まれない形にした。anchor は変えない）。summary と節の題の用語は公式の日本語版の多数派（拒否ルール〔仮〕・フック・スキル）に揃えた（2026-11-04 統合：basics#2・M1）"
 
   # ── 書き出す ──
   - id: handoff-documents
@@ -258,6 +257,7 @@ pages:
     summary: "計画・やること・決めたこと・分かったことをファイルに分けて持たせ、どのセッションからでも続きを始められるようにする。変えてよい欄を限ると、状態を壊されにくい。"
     signs:
       - {type: goal, text: "何日もかかる作業の状態を、会話の外に持ちたい"}
+      - {type: goal, text: "長い作業を明日も続けたい"}
       - {type: symptom, text: "新しいセッションのたびに、前回どこまで進んだかを説明し直している"}
     prerequisites: [handoff-documents]
     related: [keep-failure-lessons, progress-logs-for-long-jobs, long-running-agent-context, experiment-log, record-decisions, spec-first, resume-and-branch, promises-after-compaction, repeating-the-same-explanation]
@@ -271,7 +271,7 @@ pages:
     templates:
       - {name: "進捗ファイルの雛形（計画・やること・決めたこと・分かったこと）", kind: other, safety: false}
     materials: ["00 §3 分野05", "03 Q3 X4", "04 Q1 A（4つのファイルの運用）・Q2（作業ログ・進捗ファイル・引き継ぎ）", "05 1-6（structured note-taking）", "11 第2節 分野05 p12#118・p34#115・p34#44"]
-    notes: "題名から特定の実践者の4つのファイルの名前を外した（特定の個人の構成を標準として示さない。design §6.11）。名前は aliases と本文の例に置く。delegate の progress-logs-for-long-jobs と重なる。こちらは人と Claude が対話で再開するための状態、あちらは無人の長時間ジョブを観察して判断するための記録として分ける（open_issues）。「状態は JSON で持ち、変えてよい欄を限る」（11 p34#115）は版依存なので、出典の日付を添える"
+    notes: "題名から特定の実践者の4つのファイルの名前を外した（特定の個人の構成を標準として示さない。design §6.11）。名前は aliases と本文の例に置く。delegate の progress-logs-for-long-jobs と重なる。こちらは人と Claude が対話で再開するための状態、あちらは無人の長時間ジョブを観察して判断するための記録として分ける（open_issues）。「状態は JSON で持ち、変えてよい欄を限る」（11 p34#115）は版依存なので、出典の日付を添える。逆引きの「長い作業を明日も続けたい」（00 §4）を handoff-documents と同じ文で置き、二つの続け方（一度の引き継ぎ・進捗の外部記憶）が並ぶようにした（2026-11-04 統合：逆引き #21）"
 
   - id: keep-failure-lessons
     chapter: 書き出す
@@ -333,12 +333,12 @@ pages:
     templates: []
     visual: {kind: static, text: "/context の内訳を、会話・読み込み・常駐の三つに色分けし、それぞれに効く片付け方（/clear と /compact・出力を絞る・常駐を減らす）を添えた図"}
     materials: ["00 §3 分野05", "03 Q3 X7（起動直後に /context all）", "01 K-1", "11 第2節 分野07 p34#157", "21 §2.4（公式の Explore the context window）"]
-    notes: "cli の usage-context-statusline（見る道具の一覧と status line の設定）を前提にし、このページは /context の読み方と片付け方の判断を持つ。公式の「Explore the context window」は埋まり方を対話で見せるページなので、本文からリンクする（動く図を自作するかは open_issues）"
+    notes: "cli の usage-context-statusline（見る道具の一覧と status line の設定）を前提にし、このページは /context の読み方と片付け方の判断を持つ。公式の「Explore the context window」は埋まり方を対話で見せるページなので、本文からリンクする。動く図は basics の rereads-whole-history の visual が持ち、自作するか公式の図にリンクするかは執筆のときに公式の図と比べて決める（メインの決定 M8。目次の visual は変えない）（2026-11-04 統合：context#4）"
 
   - id: always-on-costs
     chapter: 見る・絞る
-    title: "常駐するもののコスト（CLAUDE.md・MCP・skills）"
-    aliases: ["listing tax", "常駐するコンテキスト", "起動時に読み込まれるもの", "MCP を入れすぎると重い"]
+    title: "常駐するもののコスト（CLAUDE.md・MCP・スキル）"
+    aliases: ["常駐するもののコスト（CLAUDE.md・MCP・skills）", "listing tax", "常駐するコンテキスト", "起動時に読み込まれるもの", "MCP を入れすぎると重い"]
     type: concept
     level: 任せる
     level_evidence: "CLAUDE.md・MCP・skills を足していく段階（任せる〜仕組みにする）で、常駐の費用が問題になる（00 は L3）"
@@ -348,12 +348,11 @@ pages:
     prevents: [散らかっている, 合っていない]
     pitfalls: []
     scenes: [開発]
-    summary: "CLAUDE.md の全文・skill の説明・MCP のツールの一覧など、毎回のリクエストに乗るものの費用が分かり、必要なときだけ読ませる形に移せる。溢れの心配より、焦点と費用のために常駐を小さく保つ。"
+    summary: "CLAUDE.md の全文・スキルの説明・MCP のツールの一覧など、毎回のリクエストに乗るものの費用が分かり、必要なときだけ読ませる形に移せる。溢れの心配より、焦点と費用のために常駐を小さく保つ。"
     signs:
-      - {type: symptom, text: "入れた拡張が多すぎて重い"}
       - {type: goal, text: "MCP や skill をどこまで入れてよいか知りたい"}
     prerequisites: [rereads-whole-history]
-    related: [inspect-context, pruning-extensions, extensions-at-a-glance, claude-md-length, path-scoped-rules, how-skills-load, connecting-mcp, mcp-or-cli, vetting-extensions, why-prompt-caching, what-uses-up-limits, choose-what-to-read]
+    related: [inspect-context, pruning-extensions, too-slow, extensions-at-a-glance, claude-md-length, path-scoped-rules, how-skills-load, connecting-mcp, mcp-or-cli, vetting-extensions, why-prompt-caching, what-uses-up-limits, choose-what-to-read]
     tracks: [claude-md, skills, mcp, context-window]
     outdated_advice: []
     volatility: 中
@@ -362,7 +361,7 @@ pages:
       - {title: "減らす順", anchor: reduce}
     templates: []
     materials: ["00 §3 分野05", "01 0-4（拡張ごとのコンテキストのコスト）", "03 Q4 Takeaway（MCP は入れすぎると圧迫する）", "research/23 §3.1（Large codebases：関係のない指示や読み込みが窓を埋めると、トークンを使い性能も落ちる）"]
-    notes: "extend の pruning-extensions（棚卸しの手順）と extensions-at-a-glance（属性の比較の表）が手順と属性を持つ。このページは「なぜ常駐を小さくするか」の判断を持つ。理由は溢れではなく、毎回送られる量の費用と、関係のない指示が焦点をぼかすこと（research/23 §3.1 の Large codebases の記述）"
+    notes: "extend の pruning-extensions（棚卸しの手順）と extensions-at-a-glance（属性の比較の表）が手順と属性を持つ。このページは「なぜ常駐を小さくするか」の判断を持つ。理由は溢れではなく、毎回送られる量の費用と、関係のない指示が焦点をぼかすこと（research/23 §3.1 の Large codebases の記述）。extend の claude-md-length と pruning-extensions がこのページを前提にしているので、このページの前提に extend のページを足すときは循環に気をつける。題名と summary の skills は公式の日本語版の多数派（スキル）にし、旧題を aliases に置いた。sign の「入れた拡張が多すぎて重い」は症状の too-slow と同じ文なので外し、too-slow を related に置いた（症状からの入口。逆引きで振り分けを飛ばさないため）（2026-11-04 統合：extend#6・M1・symptoms#8・M2）"
 
   - id: choose-what-to-read
     chapter: 見る・絞る
@@ -379,7 +378,6 @@ pages:
     scenes: [開発, データ分析]
     summary: "読むべきファイルを @ で直接指し、テストやログの長い出力は要点の数行に絞ってから会話に入れる。探させる手間と、関係のない読み込みが答えをぼかすことの両方を減らせる。"
     signs:
-      - {type: symptom, text: "大量のログやテスト出力で会話が埋まる"}
       - {type: goal, text: "読ませるファイルを自分で指定したい"}
       - {type: situation, text: "大きなコードベースで作業している"}
     prerequisites: [context-rot]
@@ -393,7 +391,7 @@ pages:
       - {title: "@ 参照の注意", anchor: caveats}
     templates: []
     materials: ["00 §3 分野05", "03 Q3 X8", "01 N-1（@ 参照は PreToolUse hook が走らない）・KQ3（@参照）", "11 第2節 分野05 p34#123", "research/23 §3.1（Large codebases）"]
-    notes: "@ で読める大きさの上限などは数値ファイルに置く。@ 参照はツールの呼び出しを伴わず PreToolUse hook が走らないので、読ませたくないパスは Read の deny で守る（01 N-1。safety の protecting-secrets へ）"
+    notes: "@ で読める大きさの上限などは数値ファイルに置く。@ 参照はツールの呼び出しを伴わず PreToolUse hook が走らないので、読ませたくないパスは Read の deny で守る（01 N-1。safety の protecting-secrets へ）。sign の「大量のログやテスト出力で会話が埋まる」は、症状の forgets-in-long-chats にある同じ項目（00 §4）なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M2）"
 
   - id: handing-long-documents
     chapter: 見る・絞る
@@ -408,7 +406,7 @@ pages:
     prevents: [見えていない, 散らかっている]
     pitfalls: []
     scenes: [調べもの, 文章, データ分析]
-    summary: "長い資料は、先に関係する箇所を引用として抜き出させてから答えさせ、必要なら分けたりテキストに直したりして渡す。面ごとの読み込みの限界を知っておくと、読まれていない部分に気づける。"
+    summary: "長い資料は、分けたり、テキストや Markdown に直したりして、形と量を整えてから渡す。面ごとの読み込みの限界を知っておくと、読まれていない部分に気づける。"
     signs:
       - {type: goal, text: "長い PDF や仕様書をもとに答えさせたい"}
       - {type: symptom, text: "資料に書いてあることを無視した答えが返る"}
@@ -423,13 +421,13 @@ pages:
       - {title: "面ごとの読み込みの限界", anchor: limits}
     templates: []
     materials: ["00 §3 分野05", "00 §3 分野06（添付ファイルはどこまで読まれるか）", "00 §1（長い資料を先頭に置く）", "03 Q6 N3（元資料を Markdown にしてから渡す）", "05 2-1（中ほどの情報は使われにくい）"]
-    notes: "prompting の long-context-first（並べる順）、app の how-attachments-are-read（読み込みの仕様）、symptoms の skipped-later-pages（症状）と分け、このページは資料をどう用意して渡すかの判断を持つ。面ごとのページ数などの限界は数値ファイルから"
+    notes: "prompting の long-context-first（並べる順）、app の how-attachments-are-read（読み込みの仕様）、symptoms の skipped-later-pages（症状）と分け、このページは資料をどう用意して渡すかの判断を持つ。面ごとのページ数などの限界は数値ファイルから。依頼の中の並べ方・答えの前に引用を抜かせること・原文か要約かは prompting の long-context-first が持つので、summary は資料の形と量（分ける・Markdown にする。添付の読まれ方は limits の節と app の how-attachments-are-read）にし、quotes-first の節は要点と long-context-first への案内だけにする（2026-11-04 統合：prompting#2）"
 
   # ── 脇道を分ける ──
   - id: research-in-subagents
     chapter: 脇道を分ける
-    title: "出力の多い調査は subagent に任せて要約だけ受け取る"
-    nav_title: "調査を subagent に任せる"
+    title: "出力の多い調査はサブエージェントに任せて要約だけ受け取る"
+    nav_title: "調査をサブエージェントに任せる"
     aliases: ["調査は subagent に任せて要約だけ受け取る", "サブエージェントに調べさせる", "Explore subagent"]
     type: concept
     level: 任せる
@@ -447,7 +445,7 @@ pages:
     prerequisites: [subagent-isolation]
     related: [writing-subagents, skill-vs-subagent, what-subagents-dont-inherit, independent-review, choose-what-to-read, side-questions-btw, parallel-and-loop-costs, explore-a-codebase, tidy-the-desk]
     tracks: [subagents]
-    outdated_advice: [tell-it-to-use-subagents, subagent-per-step]
+    outdated_advice: [subagents-to-save-context, tell-it-to-use-subagents, subagent-per-step]
     volatility: 中
     sections:
       - {title: "任せてよい調査、本筋で読むべきもの", anchor: when}
@@ -456,7 +454,7 @@ pages:
     templates:
       - {name: "調査を任せる依頼と、戻させる要約の形", kind: prompt, safety: false}
     materials: ["00 §3 分野05", "03 Q3 X6（注記を含む）", "05 1-11・1-13", "01 2-2（サブエージェントは要約を返す）", "research/23 §3.7"]
-    notes: "題名を registry の「調査は subagent に任せて要約だけ受け取る」から条件付きに変えた（旧題は aliases）。現行の Best practices は「コンテキストを守るために subagent を使う」をもうやめてよい助言に入れた（research/23 §3.7、03 X6 の注記）。このページは、うるさい出力を本筋から離すことと独立の調査を理由にし、コンテキストの節約を理由にしない。subagent が役立つのは並列・ノイズの多い出力の隔離・独立のレビューで、同じ作業を渡しても答えはよくならない（05 1-13）"
+    notes: "題名を registry の「調査は subagent に任せて要約だけ受け取る」から条件付きに変えた（旧題は aliases）。現行の Best practices は「コンテキストを守るために subagent を使う」をもうやめてよい助言に入れた（research/23 §3.7、03 X6 の注記）。このページは、うるさい出力を本筋から離すことと独立の調査を理由にし、コンテキストの節約を理由にしない。subagent が役立つのは並列・ノイズの多い出力の隔離・独立のレビューで、同じ作業を渡しても答えはよくならない（05 1-13）。台帳に足された subagents-to-save-context（コンテキストを守るために subagent に調べさせる）を outdated_advice の先頭に置いた。tell-it-to-use-subagents（頼み方の手引きが出どころ）とは出典と理由が違う。題名と nav_title は公式の日本語版の多数派（サブエージェント）にした（英語名は aliases にある）（2026-11-04 統合：M3・extend#3・M1）"
 
   - id: side-questions-btw
     chapter: 脇道を分ける
@@ -481,10 +479,10 @@ pages:
     outdated_advice: []
     volatility: 中
     sections:
-      - {title: "/btw・新しい会話・subagent の使い分け", anchor: which}
+      - {title: "/btw・新しい会話・サブエージェントの使い分け", anchor: which}
     templates: []
     materials: ["00 §3 分野05", "01 D-1・K-1", "03 Q3 X7", "05 1-11"]
-    notes: "level を registry の見当（任せる）から整えるに下げた（理由は level_evidence）"
+    notes: "level を registry の見当（任せる）から整えるに下げた（理由は level_evidence）。節の題の subagent を公式の日本語版の多数派（サブエージェント）にした（2026-11-04 統合：M1）"
 
 merged:
   - id: managing-context-in-the-app

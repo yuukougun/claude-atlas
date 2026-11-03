@@ -3,6 +3,7 @@
 # 境界（design §4.2、D4）：検証器を作って守る・実験を回す・評価の指標は eval。完了・事実・レビューの確かめ方は verify（verify.yaml）
 # 第一波の核（D10「評価と実験の核」）：総論 verifier-defines-problem と、eval のほかのページの多くが前提にする
 #   felt-vs-measured・measure-changes・verifier-three-conditions の4ページに wave: 1 を付けた（理由は各ページの notes と報告 catalog-C8.md）
+#   2026-11-04 メインの判断で test-the-verifier・experiment-log にも wave: 1 を付けた（計6。統合では変えない）
 # 前提の流れ：verify の verification-ladder → 総論 → 三条件 → 検証器の確かめ方。体感と実測 → 小さな eval → 選択圧 → 実験台帳・ロックボックス
 # 用語：verifier を「検証器」にそろえた（評価器・採点器は aliases と本文の言い換え）
 field: eval
@@ -93,20 +94,21 @@ pages:
     prevents: [確かめていない]
     pitfalls: [体感を信じる]
     scenes: [開発, 文章]
-    summary: "CLAUDE.md・プロンプト・skill の変更が効いたかを、失敗したタスクを前後で何度か走らせて比べる小さな eval で確かめられる。一度の試行では判断しない。"
+    summary: "CLAUDE.md・プロンプト・スキルの変更が効いたかを、失敗したタスクを前後で何度か走らせて比べる小さな eval で確かめられる。一度の試行では判断しない。"
     signs:
       - {type: goal, text: "CLAUDE.md を変えて良くなったか知りたい"}
       - {type: goal, text: "プロンプトや手順書を直した効果を比べたい"}
       - {type: symptom, text: "一度試して良かった変更が、次には効かなかった"}
       - {type: symptom, text: "平均は良くなったのに、一部のケースで悪くなっていた"}
     prerequisites: [felt-vs-measured, nondeterminism, define-done]
-    related: [model-based-grading, experiment-log, selection-pressure, after-switching-models, claude-md-length, pruning-extensions, before-after-prompts, prompt-patterns, "keep-replies-in-japanese#measure", check-the-metric, test-the-verifier, insights-and-usage-review, headless-basics, batch-api-basics, measure-the-upper-bound, verifier-defines-problem]
-    tracks: []
+    related: [model-based-grading, experiment-log, selection-pressure, after-switching-models, claude-md-length, "writing-skills#evaluate", pruning-extensions, before-after-prompts, prompt-patterns, "keep-replies-in-japanese#measure", check-the-metric, test-the-verifier, insights-and-usage-review, headless-basics, batch-api-basics, measure-the-upper-bound, verifier-defines-problem]
+    tracks: [plugin-eval]
     outdated_advice: [console-prompt-generator]
     volatility: 低
     sections:
       - {title: "成功の基準を先に決める（task・trial・grader・transcript・outcome）", anchor: terms}
       - {title: "小さな eval の手順", anchor: small-eval}
+      - {title: "スキルの有り無しを新しいセッションで比べる（skill-creator・claude plugin eval）", anchor: compare-skills, level: 仕組みにする}
       - {title: "採点の種類（コード・モデル・人）", anchor: graders}
       - {title: "試行の数と差の大きさ", anchor: how-many-runs}
       - {title: "合計ではなく、層別と最悪ケースで見る", anchor: by-stratum, level: 仕組みにする}
@@ -114,8 +116,8 @@ pages:
     templates:
       - {name: "小さな eval の記録表（タスク・変更の前後・試行ごとの合否と失敗の様子）", kind: other, safety: false}
     visual: {kind: static, text: "同じタスクを変更の前後で数回ずつ走らせた結果の表。少なくとも1回の成功（pass@k）と、毎回の成功（pass^k）の違いを示す"}
-    materials: ["00 §3 分野09", "00 §3 分野13（プロンプトの評価（eval）入門：api の prompt-evals-intro をまとめた）", "00 §4 確かめ方の困りごと", "02 4-0（成功の基準を先に決める）", "05 3-14・5-2・5-3", "11 第1節 分野09 p12#88・p56#71・p56#96", "11 第2節 分野09 p34#38・p34#39・p34#40・p34#166・p34#4", "11 第1節 分野09 小項目 p34#52（層別と最悪ケース）", "research/24 A-12・B-51・B-53"]
-    notes: "priority を推奨から必須に、level を仕組みにするから任せるに変えた。理由：逆引き「CLAUDE.md を変えて良くなったか知りたい」の受け皿で、eval のほかのページの多くが前提にする（registry の wave_core）。models の after-switching-models（必須・任せる）の前提にも置ける。registry の stratified-and-worst-case をまとめ、節 by-stratum にした（merged）。「失敗したタスクを数個〜二十個ほど、前後で数回ずつ」は 05 の推論の提案なので、本文では目安として書く。小さな集合では大きな差しか見分けられないこと（p34#39、research/24 B-53 で検算）と、実行環境だけで結果が動くこと（research/24 B-51。Claude のモデルで測った）を添える。p34#4 は採点・仕様・課題を直し scaffold も替えた例（research/24 A-12）。api の prompt-evals-intro（プロンプトの評価入門）は api の担当がここにまとめた：成功の基準を先に決めること（公式のプロンプトの手引きの前提）、task・trial・grader・transcript・outcome の語と pass@k・pass^k の違いを節 terms と graders に入れ、API で多数の試行を回す手段は api の batch-api-basics にリンクする。例には、CLAUDE.md の変更のほかに、プロンプトや指示を変えたときの小さな eval（prompting の提案）と、英語への回帰を数える検証ノート（japanese の keep-replies-in-japanese#measure。japanese の提案）を使う"
+    materials: ["00 §3 分野09", "00 §3 分野13（プロンプトの評価（eval）入門：api の prompt-evals-intro をまとめた）", "00 §4 確かめ方の困りごと", "02 4-0（成功の基準を先に決める）", "05 3-14・5-2・5-3", "11 第1節 分野09 p12#88・p56#71・p56#96", "11 第2節 分野09 p34#38・p34#39・p34#40・p34#166・p34#4", "11 第1節 分野09 小項目 p34#52（層別と最悪ケース）", "research/24 A-12・B-51・B-53", "01 D-2（スキルの有り無しを新しいセッションで比べる公式の方法：skill-creator のプラグイン・claude plugin eval）"]
+    notes: "priority を推奨から必須に、level を仕組みにするから任せるに変えた。理由：逆引き「CLAUDE.md を変えて良くなったか知りたい」の受け皿で、eval のほかのページの多くが前提にする（registry の wave_core）。models の after-switching-models（必須・任せる）の前提にも置ける。registry の stratified-and-worst-case をまとめ、節 by-stratum にした（merged）。「失敗したタスクを数個〜二十個ほど、前後で数回ずつ」は 05 の推論の提案なので、本文では目安として書く。小さな集合では大きな差しか見分けられないこと（p34#39、research/24 B-53 で検算）と、実行環境だけで結果が動くこと（research/24 B-51。Claude のモデルで測った）を添える。p34#4 は採点・仕様・課題を直し scaffold も替えた例（research/24 A-12）。api の prompt-evals-intro（プロンプトの評価入門）は api の担当がここにまとめた：成功の基準を先に決めること（公式のプロンプトの手引きの前提）、task・trial・grader・transcript・outcome の語と pass@k・pass^k の違いを節 terms と graders に入れ、API で多数の試行を回す手段は api の batch-api-basics にリンクする。例には、CLAUDE.md の変更のほかに、プロンプトや指示を変えたときの小さな eval（prompting の提案）と、英語への回帰を数える検証ノート（japanese の keep-replies-in-japanese#measure。japanese の提案）を使う。extend の確認を受け、スキルの有り無しを新しいセッションで比べる公式の方法（skill-creator のプラグイン・claude plugin eval。01 D-2）を節 compare-skills の例にした（extend の writing-skills は節 evaluate からこのページへ案内する）。道具の名前・使える面・版は変わりうるので、tracks の plugin-eval（new_features）で追い、本文では数値ファイル経由で書く。summary の skill をスキルにした（M1）（2026-11-04 統合：M1・extend#4）"
 
   - id: insights-and-usage-review
     chapter: 変化を測る
@@ -218,7 +220,7 @@ pages:
       - {name: "検証器の red/green テストを書かせる依頼（新しいテストは提案用の場所に書かせ、人が見てから凍結する場所へ移す。A-13）", kind: prompt, safety: false}
     visual: {kind: static, text: "検証器に当てる確認の表（何もしない解・ランダムな解・明らかに強い解・手で計算したケース・わざと壊した検証器）と、それぞれの期待"}
     materials: ["11 第1節 分野09 p34#7・p56#141・p34#27・p34#30・p34#32（小項目「採点の正本は一か所に」）", "11 第5節 A-13", "11 第2節 分野09 p34#4", "research/24 A-12", "10 第8章"]
-    notes: "registry では wave_core だが、eval のほかのページの前提にならない（葉のレシピ）ので wave を付けていない。必須なので初版には入る（報告 §3）。11 の小項目「採点の正本は一か所に」は節 single-scorer に入れた（registry の notes どおり）。「多数の試行で0%なら、たいてい壊れた課題」は research/24 A-12 で原文どおりと確かめた経験則で、値は本文で出典付きで書く。先後を入れ替えた勝率の確認は対戦型に固有なので、折りたたみか contest の evaluators-by-format へ（2026-11-04 メインの判断で wave: 1 を付けた。検証器を自分で確かめることは「仕組みにする」の段の上がる条件で、実験台帳とともに評価と実験の核の中心にあたるため）"
+    notes: "registry では wave_core。eval のほかのページの前提にならない葉のレシピなので C8 は wave を付けなかった（報告 catalog-C8.md §3）が、2026-11-04 メインの判断で wave: 1 を付けた（検証器を自分で確かめることは「仕組みにする」の段の上がる条件で、実験台帳とともに評価と実験の核の中心にあたるため）。11 の小項目「採点の正本は一か所に」は節 single-scorer に入れた（registry の notes どおり）。「多数の試行で0%なら、たいてい壊れた課題」は research/24 A-12 で原文どおりと確かめた経験則で、値は本文で出典付きで書く。先後を入れ替えた勝率の確認は対戦型に固有なので、折りたたみか contest の evaluators-by-format へ（2026-11-04 統合：eval#1。wave は変えず、notes の食い違いだけを直した）"
 
   - id: check-the-metric
     chapter: 検証器を作る
@@ -383,7 +385,7 @@ pages:
       - {name: "実験台帳の1件分（A-15。閾値と回数は例と明記する）", kind: other, safety: false}
     visual: null
     materials: ["11 第1節 分野09 p34#51・p56#143・p34#29・p34#46", "11 第5節 A-15", "research/24 A-15", "10 第9章", "11 第2節 分野09 p34#57"]
-    notes: "題名の「評価器の版」を「検証器の版」にした（eval の用語をそろえた）。registry では wave_core だが、eval のほかのページの前提にならない（葉のレシピ）ので wave を付けていない。必須なので初版には入る（報告 §3）。A-15 の撤退基準の値と再試行の回数は出典のない例（research/24 A-15）。撤退基準の本体は judgment の decide-when-to-quit で、雛形 A-15 を分け合う。作業を続けるための進捗ファイル（context の progress-files）と、採否の記録である台帳の違いを書く。提案者ごとの当たりの率を比べる案（p56#71）は先行例のない独自の提案なので、書くなら印を付ける（2026-11-04 メインの判断で wave: 1 を付けた。検証器を自分で確かめることは「仕組みにする」の段の上がる条件で、実験台帳とともに評価と実験の核の中心にあたるため）"
+    notes: "題名の「評価器の版」を「検証器の版」にした（eval の用語をそろえた）。registry では wave_core。eval のほかのページの前提にならない葉のレシピなので C8 は wave を付けなかった（報告 catalog-C8.md §3）が、2026-11-04 メインの判断で wave: 1 を付けた（検証器を自分で確かめることは「仕組みにする」の段の上がる条件で、実験台帳とともに評価と実験の核の中心にあたるため）。A-15 の撤退基準の値と再試行の回数は出典のない例（research/24 A-15）。撤退基準の本体は judgment の decide-when-to-quit で、雛形 A-15 を分け合う。作業を続けるための進捗ファイル（context の progress-files）と、採否の記録である台帳の違いを書く。提案者ごとの当たりの率を比べる案（p56#71）は先行例のない独自の提案なので、書くなら印を付ける（2026-11-04 統合：eval#1。wave は変えず、notes の食い違いだけを直した）"
 
   - id: lockbox-and-holdout
     chapter: 実験を回す
@@ -456,4 +458,5 @@ open_issues:
   - "提案（models）：suspected-degradation（必須・整える）は felt-vs-measured を、after-switching-models（必須・任せる）は measure-changes を、related でなく前提にも置ける（段と優先度が合う）。今の related のままでもよい"
   - "受けた提案：api が prompt-evals-intro を measure-changes にまとめたので、成功の基準を先に決めること・eval の語・batch-api-basics への関連・旧い題名の別名を measure-changes に入れた。prompting と japanese の提案で、measure-changes の例にプロンプトの変更と英語への回帰の測り方（keep-replies-in-japanese#measure）を足した。basics の reward-hacking の必須化を受けて verifier-three-conditions の前提にした。recipes の test-the-verifier → add-tests の related を足した。contest の提案で A-9 後半の雛形を search-code-checklist に任せた。recipes・contest の前提になる verifier-three-conditions は任せるのままにした。delegate・judgment・enforce・recipes・contest は、こちらの提案（selection-pressure・experiment-log・verifier-three-conditions を前提にする、など）をすでに取り込んでいる"
 
-new_features: []
+new_features:
+  - {id: plugin-eval, title: "claude plugin eval（スキルとプラグインの評価）", note: "measure-changes の節 compare-skills が指す（2026-11-04 統合で追加）。スキルの有り無しを新しいセッションで比べる公式の方法として、skill-creator のプラグインと並べて案内されている（01 D-2）。成熟度・版の下限・使える面は土台作りで確かめる"}

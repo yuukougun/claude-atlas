@@ -1,6 +1,7 @@
 # changes（古くなった助言と変更の記録）の目次。形式は planning/catalog/README.md §3、規則は §4、語彙は schema/site.yml。
 # 担当：C1（工程3、2026-11-04）。
-# 台帳の行は registry の ledger（35項目）。台帳と年表の表は data から生成し、手書きは導入だけ（design §7・§9.1）。
+# 台帳の行は registry の ledger（37項目。2026-11-04 の統合で2項目が足された）。台帳と年表の表は data から生成し、手書きは導入だけ（design §7・§9.1）。
+# 2026-11-04 統合：I1（提案の扱いは planning/batches/step3/integrate-I1.md）。
 field: changes
 chapters: [台帳と年表, 古い情報を見分ける]
 pages:
@@ -15,28 +16,30 @@ pages:
     surfaces: [app, claude-code, api]
     summary: "撤回・置換された助言を、今どうするか・変わった時期と版・どの原理の回避策だったかと並べて引ける。回避策が正式な仕組みに置き換わる規則から、次に古くなるものの見当もつく。"
     signs:
-      - {type: symptom, text: "古い記事や本のやり方が今は通じない"}
       - {type: symptom, text: "前は効いた書き方や設定が効かなくなった"}
       - {type: goal, text: "ネットで見た小技が今も使えるか確かめたい"}
+      - {type: goal, text: "「think hard」は効くのか"}
     prerequisites: []
-    related: [dating-information, checking-for-updates, change-timeline-2026, glossary, four-principles, thinking-keywords, emphasis-words, writing-skills, goal-until-done]
+    related: [dating-information, checking-for-updates, change-timeline-2026, glossary, four-principles, thinking-keywords, effort-levels, choosing-a-model, emphasis-words, writing-skills, "goal-until-done#from-homemade-loops"]
     volatility: 高
     sections:
       - {title: "台帳の読み方（状態と、どの原理の回避策だったか）", anchor: how-to-read}
       - {title: "回避策は正式な仕組みに置き換わる", anchor: workarounds}
       - {title: "台帳", anchor: ledger}
       - {title: "自分の設定や記事で見つける", anchor: find-in-your-setup}
-    visual: {kind: static, text: "回避策から正式な仕組みへの置き換わり：think hard → effort、IMPORTANT の連打 → hooks、確認を飛ばす起動 → auto mode と sandbox、自作のループ → /goal、.claude/commands/ → skills"}
+    visual: {kind: static, text: "回避策から正式な仕組みへの置き換わり：think hard → effort、IMPORTANT の連打 → フック、確認を飛ばす起動 → auto モードとサンドボックス、自作のループ → /goal、.claude/commands/ → スキル"}
     materials:
       - "00 §5「古くなった助言は台帳にして『どの原理の回避策だったか』を残す」（31項目の表、行の項目、状態の三つ、表の後の【2026-11-03 注記】2つ、かつてなぜ正しかったか）"
       - "00 §2 の五つ目の経路（古い助言を原理で解釈する）"
       - "research/22 §3.4（影響のある3行と、足す候補4項目。台帳ではなく数値ファイルと aliases で持つもの）"
-      - "research/23 §3.1・§3.7（Best practices の改稿と「What you can stop doing」の7行。撤回の表の時期）・§3.5（ultrathink の経緯）・#9"
+      - "research/23 §3.1・§3.7（Best practices の改稿と「What you can stop doing」の7行。撤回の表の時期）・§3.5（ultrathink の経緯）・#9・§4.2（台帳の行の「今どうするか」と時期の直し）"
       - "research/26 §3.1（Styles の skills への移行）"
+      - "research/27 #18（日本語の「熟考」：CHANGELOG 1.0.8 の当時は公式の機能だった）"
       - "01 KQ4 4-2（廃止・削除・改名・非推奨）"
       - "design §9.1（data/outdated-advice.yml の項目）・§9.4 の4（状態が変わる更新は作者が承認）"
-      - "registry の ledger（35項目）"
-    notes: "台帳の行は registry の ledger（35項目）で、表は data/outdated-advice.yml から生成する（design §7・§9.1）。手書きは導入（読み方と、回避策が正式な仕組みに置き換わる規則）だけで、規則の詳しい説明は dating-information に置いてリンクする。台帳の状態（撤回・置換・条件付き）が変わる更新は作者が承認する（decisions 2026-11-03「鮮度の更新の承認」）。00 §5 の行のうち注記の付いた「強調は1行だけにし」（改稿前の Best practices の勧め）と「2026-01〜03 に変遷」（1月の変化は確かめられない）は使わず、research/23 §3.5・§3.7 で書く。否定的な文脈なので、助言を広めた個人や記事を名指ししない（design §6.12）。Claude Code の版は月に二十数版出る（research/23 §3.6）ので、点検の期限を短くした（volatility 高）。"
+      - "registry の ledger（37項目。2026-11-04 の統合で styles-for-tone・subagents-to-save-context を足した）"
+      - "planning/batches/step3/open-issues.md の changes#3（台帳の行の「変わった時期」の材料。design §9.1）"
+    notes: "台帳の行は registry の ledger（37項目）で、表は data/outdated-advice.yml から生成する（design §7・§9.1）。手書きは導入（読み方と、回避策が正式な仕組みに置き換わる規則）だけで、規則の詳しい説明は dating-information に置いてリンクする。台帳の状態（撤回・置換・条件付き）が変わる更新は作者が承認する（decisions 2026-11-03「鮮度の更新の承認」）。00 §5 の行のうち注記の付いた「強調は1行だけにし」（改稿前の Best practices の勧め）と「2026-01〜03 に変遷」（1月の変化は確かめられない）は使わず、research/23 §3.5・§3.7 で書く。否定的な文脈なので、助言を広めた個人や記事を名指ししない（design §6.12）。Claude Code の版は月に二十数版出る（research/23 §3.6）ので、点検の期限を短くした（volatility 高）。症状の項目「古い記事のやり方が通じない」は症状の doesnt-know-latest に置き、そこからこのページへ進む（M2）。行の材料（data/outdated-advice.yml を作るとき）：(1) important-caps の今どうするかは「強調せず平易に書く。守られないなら、ファイルを短くするかフック・拒否ルールへ」、時期は「2026-10-27 ごろ（Best practices の改稿で撤回の表に入った）」（research/23 §4.2）。architecture-in-claude-md・keep-going-dont-be-lazy・save-context-for-200k の時期も同じ改稿。(2) think-hard-keywords の時期は ultrathink の復活と xhigh の版で書き（research/23 §4.2）、日本語の「熟考」には当時は公式の機能だった一次資料（CHANGELOG 1.0.8。research/27 #18）を足す。(3) research/22 §3.4 の3行（think-hard-keywords・yolo-skip-permissions・save-context-for-200k）の足す内容を入れる。save-context-for-200k には idle compaction を足す。(4) budget-tokens の今どうするかから effort-levels へ、avoid-opus-as-expensive から choosing-a-model へ、ralph-loops から goal-until-done#from-homemade-loops へリンクする。(5) 足した2行：styles-for-tone は「いつも揃えるなら全会話の指示（Claude への指示）、場面ごとならスキル。移された style は名前から作られるスラッシュコマンドで呼ぶ」、時期は 2026-06-01 の移行の告知、状態は置換（research/26 §3.1）。subagents-to-save-context は「うるさい出力の切り離し・並列の作業・独立したレビューに限る。どれもトークンが余分にかかる」、時期は Best practices の改稿、状態は条件付き（research/23 §3.1・§3.7）。tell-it-to-use-subagents（Opus 5 世代の頼み方の手引きが出どころ）とは出典と理由が違うので行を分ける。同じ表の「よい答えのために subagent に任せる」は tell-it-to-use-subagents の今どうするかに入れられる。（2026-11-04 統合：models#1・prompting#9・context#5・app#3・extend#3・japanese#6・delegate#1・M2・M3）"
 
   - id: change-timeline-2026
     chapter: 台帳と年表
@@ -64,7 +67,7 @@ pages:
       - "research/22 §3.1・§3.2（10-29 より後の版と、教材に効く変更）"
       - "research/23 §3.3（auto mode の既定化の段階）・§3.5（ultrathink の経緯）・§3.6（版の数え方）"
       - "research/26 §3.1（Styles の移行）・research/22 #32（Ultra への改名）"
-    notes: "年ごとのページにする（2027 年の変更は次の年のページ。過ぎた年の表は変わらない記録になる）。行は数値ファイルの日付と版、台帳の「変わった時期」から生成し、手書きは冒頭の流れの説明だけ（design §7）。版の数は npm の公開記録で期間を明記して数える（decisions 2026-11-03「工程2で確かめた事実」、research/23 §3.6）。00 §1 の「約235版」は誤り（注記）で使わない。旧名と新名の対応は start の glossary に置き、改名の時期はこの年表に置く。"
+    notes: "年ごとのページにする（2027 年の変更は次の年のページ。過ぎた年の表は変わらない記録になる）。行は数値ファイルの日付と版、台帳の「変わった時期」から生成し、手書きは冒頭の流れの説明だけ（design §7）。版の数は npm の公開記録で期間を明記して数える（decisions 2026-11-03「工程2で確かめた事実」、research/23 §3.6）。00 §1 の「約235版」は誤り（注記）で使わない。旧名と新名の対応は start の glossary に置き、改名の時期はこの年表に置く。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、台帳ではなく数値ファイルの名称の項目に持ち（research/22 §3.4・design §9.1）、そこから年表の行と用語索引の旧名を作る。（2026-11-04 統合：cost#1）"
 
   # ── 古い情報を見分ける ──
   - id: dating-information
@@ -112,6 +115,7 @@ pages:
     signs:
       - {type: goal, text: "新しい版で何が変わったかを自分で追いたい"}
       - {type: symptom, text: "記事の手順どおりにしても手元では動かない"}
+      - {type: symptom, text: "公式の文書にある機能やコマンドが、手元では見つからない"}
     prerequisites: []
     related: [dating-information, outdated-advice-ledger, change-timeline-2026, ask-claude-code, suspected-degradation, after-switching-models]
     volatility: 中
@@ -123,7 +127,7 @@ pages:
       - "research/22 §3.1（版と日付。CHANGELOG のない版と欠番）・§3.2 の7（変更の在り処：リリースノートに載らない Help Center の変更、docs に遅れて入る CHANGELOG の変更、stable の遅れ）・#3（stable と latest）"
       - "research/23 §3.1（Wayback の写しで文書の改稿を見分ける）・§3.6（版の数え方）"
       - "design §9.4（この辞典の点検の手順。読者が自分で使える形に写す）"
-    notes: "この辞典の鮮度の点検（design §9.4）と同じ手順を、読者が自分の環境で使える形にする。/doctor prompt-audit と /release-notes の今の名前と動きは、書く前に一次資料で確かめる（00 と 01 の材料で、工程2では確かめていない）。"
+    notes: "この辞典の鮮度の点検（design §9.4）と同じ手順を、読者が自分の環境で使える形にする。/doctor prompt-audit と /release-notes の今の名前と動きは、書く前に一次資料で確かめる（00 と 01 の材料で、工程2では確かめていない）。手元の版の確かめ方として、stable の通り道は latest より遅れて届き、大きな退行のある版を飛ばすことを書く。公式の文書や Claude Code に聞いた答え（ask-claude-code）にある機能が、手元の版にまだないことがある（research/22 #3）。遅れの日数は数値ファイルに置く。（2026-11-04 統合：cli#6）"
 
 merged:
   - id: old-and-new-names

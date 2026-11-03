@@ -73,12 +73,12 @@ pages:
     prevents: [見えていない, 縛っていない]
     pitfalls: []
     scenes: [チーム, 開発]
-    summary: "CLAUDE.md・共有の設定・MCP の設定・plugins をリポジトリに入れ、チームで同じ前提と縛りで Claude Code を使える。個人の好みと秘密は共有のファイルに入れない。"
+    summary: "CLAUDE.md・共有の設定・MCP の設定・プラグインをリポジトリに入れ、チームで同じ前提と縛りで Claude Code を使える。個人の好みと秘密は共有のファイルに入れない。"
     signs:
       - {type: goal, text: "チームで同じ設定を使いたい"}
       - {type: symptom, text: "人によって Claude Code の振る舞いが違う"}
     prerequisites: [settings-layers, permission-rules]
-    related: [what-to-put-in-claude-md, agents-md, connecting-mcp, plugins-and-marketplaces, protected-paths, protecting-secrets, vetting-extensions, before-opening-unknown-repos, managed-settings-enforcement, org-managed-settings-and-mcp, rolling-out-to-teams]
+    related: [what-to-put-in-claude-md, "claude-md-length#team", agents-md, connecting-mcp, plugins-and-marketplaces, protected-paths, protecting-secrets, vetting-extensions, before-opening-unknown-repos, managed-settings-enforcement, org-managed-settings-and-mcp, rolling-out-to-teams]
     tracks: [settings, claude-md, mcp, plugins, permissions]
     volatility: 中
     sections:
@@ -87,7 +87,7 @@ pages:
     templates:
       - {name: "共有の .claude/settings.json と個人の settings.local.json の分け方", kind: settings, safety: true}
     materials: ["00 §3 分野17「チームで設定を共有する」", "01 B-1（設定の階層と落とし穴：project の allow と env は信頼の後に効く）", "01 G-1（MCP のスコープ）", "research/28 #20（.claude/ は保護されたパス）", "04 Q3 社内導入（チーム運用の事例）", "00 §4 指示と仕組みの困りごと「チームで同じ設定を使いたい」"]
-    notes: "共有の設定に許可（allow）を入れると、リポジトリを開いた全員に効く。知らないリポジトリの設定を信頼する側の注意は safety の before-opening-unknown-repos へ送る。権限を含む雛形なので safety: true"
+    notes: "共有の設定に許可（allow）を入れると、リポジトリを開いた全員に効く。知らないリポジトリの設定を信頼する側の注意は safety の before-opening-unknown-repos へ送る。権限を含む雛形なので safety: true。CLAUDE.md をチームの合意文書として運用すること（変更は PR で別の人が承認・定期の見直し・個人の好みは個人用へ）は extend の claude-md-length の節 team が持つので、繰り返さずに指す。要約の plugins を、公式の日本語版の多数派の「プラグイン」にした（2026-11-04 統合：extend#10・M1）"
 
   - id: rolling-out-to-teams
     chapter: 導入と決まり
@@ -267,12 +267,12 @@ pages:
       - {type: symptom, text: "同じ種類の見落としが、レビューをすり抜ける"}
       - {type: goal, text: "見落としから、レビューの観点を増やしていきたい"}
     prerequisites: [instructing-reviewers]
-    related: [independent-review, automated-pr-review, risk-tiered-approval, review-bottlenecks, postmortems, keep-failure-lessons, writing-skills]
+    related: [independent-review, automated-pr-review, "create-and-review-prs#pr-description", risk-tiered-approval, review-bottlenecks, postmortems, keep-failure-lessons, writing-skills]
     volatility: 低
     templates:
       - {name: "修正の PR から見落とした理由を抜き出す依頼文", kind: prompt, safety: false}
     materials: ["11 第1節 分野17 p56#57（企業ブログ。分野09「レビュアーへの指示の書き方」に置く案もある）"]
-    notes: "優先度は推奨にした（C0 の見当のまま）：根拠は中（企業ブログ）。11 は verify の instructing-reviewers に置く案も挙げるが、チームでレビューの観点を育てる手順なので team に置き、instructing-reviewers を前提にした"
+    notes: "優先度は推奨にした（C0 の見当のまま）：根拠は中（企業ブログ）。11 は verify の instructing-reviewers に置く案も挙げるが、チームでレビューの観点を育てる手順なので team に置き、instructing-reviewers を前提にした。recipes の提案で、create-and-review-prs の節 pr-description（PR の説明の雛形 A-17）を related に置いた（2026-11-04 統合：recipes#8）"
 
   - id: ideate-independently
     chapter: レビューと判断
@@ -297,7 +297,7 @@ pages:
     templates:
       - {name: "メモの間の矛盾と、誰も検討していない観点を挙げさせる依頼文", kind: prompt, safety: false}
     materials: ["11 第1節 分野17 p56#69（類推：創造性・均質化の研究）", "research/24 §2.3（オ：均質化は中）"]
-    notes: "優先度は任意にした（C0 の見当のまま）：根拠は類推で、チームの案出しの場面に限られる。比例則の警告が出ても残す：任せる幅を広げる内容ではない（案出しの手順）"
+    notes: "優先度は任意にした（C0 の見当のまま）：根拠は類推で、チームの案出しの場面に限られる。比例則の警告が出ても残す（2026-11-04 メインの決定 M9 で見直した）：最初の案出しから AI を外し、突き合わせの後の点検だけを AI に頼む手順で、AI に任せる幅をむしろ絞る。自律・並列・無人・権限の緩和を含まないので、verify・eval・enforce・safety のページを関連に足す理由がない（無理に足すと関係の薄いリンクになる）。level も見直したが仕組みにするのままにする：個人の案が似通う仕組みと判断は judgment の ai-ideas-are-everyones（整える）が持ち、このページはチームの案出しの手順を決めて共有する段階で最初に要る（2026-11-04 統合：M9）"
 
   - id: record-decisions
     chapter: レビューと判断
@@ -352,9 +352,9 @@ pages:
 
   - id: org-managed-settings-and-mcp
     chapter: 管理と契約
-    title: "組織に設定と MCP サーバーを配る（managed settings）"
+    title: "組織に設定と MCP サーバーを配る（管理設定）"
     nav_title: "組織に設定を配る"
-    aliases: ["managed-settings.json", "server-managed settings", "managedMcpServers", "MDM で配る"]
+    aliases: ["managed settings", "managed-settings.json", "server-managed settings", "managedMcpServers", "MDM で配る"]
     type: feature
     level: 仕組みにする
     level_evidence: "組織に設定を配って常設化する段階（registry の見当の回すから改めた）"
@@ -379,7 +379,7 @@ pages:
     templates:
       - {name: "組織で許す MCP サーバーの一覧の例", kind: settings, safety: true}
     materials: ["00 §3 分野17「managed settings と MCP の組織管理」", "01 B-1（Managed の優先）・G-1（managedMcpServers）", "research/22 #13（server-managed settings の適用の変更）・#22（組織の effort の上限）・#38（アプリの Plugins のページ。Skills を切った組織では Desktop の plugins も止まる）", "04 Q3 社内導入（MDM でグループごとに別の設定を配る事例、Bedrock 経由の統制）", "research/25 §3.4（bypass permissions を止める公式の設定）"]
-    notes: "level を registry の見当（回す）から仕組みにするに改めた：組織に設定を配って常設化するのは design §3.1 の仕組みにするで、回す（並列・無人・定期・プログラム）ではない。enforce の managed-settings-enforcement との境界：こちらは配る経路・グループごとの設定・MCP の許可の決め方、enforce は設定のキーと強制の仕組み（open_issues に提案を書いた）"
+    notes: "level を registry の見当（回す）から仕組みにするに改めた：組織に設定を配って常設化するのは design §3.1 の仕組みにするで、回す（並列・無人・定期・プログラム）ではない。enforce の managed-settings-enforcement との境界：こちらは配る経路・グループごとの設定・MCP の許可の決め方、enforce は設定のキーと強制の仕組み（open_issues に提案を書いた）。境界は enforce の担当と合意し、enforce は節「配る経路」を外して org-managed-settings-and-mcp#delivery を指している（enforce#4）。bypass を使えなくする設定名は permissions.disableBypassPermissionsMode で、雛形と本文に古い名前（bypassPermissionsDisabled）を使わない（research/25 P6）。題名の managed settings を、公式の日本語版の多数派の「管理設定」にし、英語名を aliases に置いた（2026-11-04 統合：enforce#4・M1）"
 
   - id: audit-logs-and-telemetry
     chapter: 管理と契約

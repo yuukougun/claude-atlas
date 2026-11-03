@@ -18,7 +18,7 @@ pages:
     surfaces: [app, claude-code, api]
     principle: [見せる]
     prevents: []
-    summary: "プロジェクトの cache・長い会話の自動の要約・メモリ・スキルなどが、API のどの概念に当たるかが分かる。アプリや Claude Code の挙動を仕組みから説明できる。"
+    summary: "プロジェクトのキャッシュ・長い会話の自動の要約・メモリ・スキルなどが、API のどの概念に当たるかが分かる。アプリや Claude Code の挙動を仕組みから説明できる。"
     signs:
       - {type: goal, text: "アプリの挙動を仕組みから理解したい"}
       - {type: goal, text: "アプリでしていることを、自分のプログラムで再現したい"}
@@ -31,7 +31,7 @@ pages:
       - {title: "対応から分かること", anchor: insights}
     visual: {kind: static, text: "上の段にアプリと Claude Code の機能、下の段に対応する API の概念を並べ、線でつないだ二層の図"}
     materials: ["00 §3 分野13 冒頭（project knowledge の cache と prompt caching、自動の context 管理と compaction、Memory と memory tool、アプリの Skills と Agent Skills の対応。公式の出典つき）と表", "02 §5 Takeaway・Inferences", "02 §5-2（アプリ側の対応物）", "02 §5-7", "02 §5-8", "02 §5-9"]
-    notes: "対応表は、アプリと Claude Code の機能を行に、API の概念を列にする（Claude Code の /compact・自動メモリ・スキル・-p も API の概念に当たる）。02 の Inferences が挙げる対応のうち、定期タスクと Managed Agents の対応は推測なので、本文では公式の記述（Managed Agents は定期の実行に向く。02 §5-9）の範囲で書く。比例則の対象外（任せる幅を広げる内容ではない。対応関係の表）"
+    notes: "対応表は、アプリと Claude Code の機能を行に、API の概念を列にする（Claude Code の /compact・自動メモリ・スキル・-p も API の概念に当たる）。02 の Inferences が挙げる対応のうち、定期タスクと Managed Agents の対応は推測なので、本文では公式の記述（Managed Agents は定期の実行に向く。02 §5-9）の範囲で書く。比例則の対象外（任せる幅を広げる内容ではない。対応関係の表）。M9 で見直した：level は 00 の L3（任せる）のままにした。読者が最初にこの表を要するのは、長い作業を任せてキャッシュや自動の要約・圧縮の挙動に出会い、理由を知りたくなる段階で、プログラムを書かずに読める（仕組みにするではない）。任せる幅を広げる内容ではないので守りのページは足さず、比例則の警告は残す。要約の cache を、プロンプトキャッシングに合わせてキャッシュにした（2026-11-04 統合：M1・M9）"
 
   - id: stateless-messages-api
     chapter: アプリと API の対応
@@ -45,10 +45,10 @@ pages:
     principle: [見せる]
     prevents: [散らかっている]
     scenes: [開発]
-    summary: "API は会話を覚えず、モデルは毎回それまでの全体を読み直していることが分かる。長い会話が重く高くなる理由と、送る量を減らす仕組みの限界も分かる。"
+    summary: "Messages API の基本の形は状態を持たず、呼び出し側が system と messages で毎回それまでの全体を渡すことが分かる。message threads で送る量を減らしても、モデルが読む量は変わらないことも分かる。"
     signs:
       - {type: symptom, text: "API で呼ぶと、前の発言を覚えていない"}
-      - {type: goal, text: "長い会話がなぜ重く高くなるのかを知りたい"}
+      - {type: goal, text: "API で会話を続けるには、毎回何を送ればよいか知りたい"}
     prerequisites: [rereads-whole-history]
     related: [feature-to-api-mapping, prompt-caching-in-practice, long-running-agent-context, where-instructions-sit, attention-budget, where-your-data-goes, what-uses-up-limits]
     tracks: [messages-api, message-threads]
@@ -59,7 +59,7 @@ pages:
       - {title: "message threads（送る量だけを減らす）", anchor: message-threads}
     visual: {kind: static, text: "毎回それまでの全履歴を渡してモデルが読み直す流れと、message threads では送る量だけが減り、モデルが読む量は変わらないことを並べた図"}
     materials: ["00 §3 分野13", "02 §5-1", "research/22 #40（message threads：送るのは差分にできるが、モデルが読む量・料金・rate limit は変わらない。ZDR と HIPAA の対象外）", "requirements §6.6（毎回読み直す受験者）"]
-    notes: "比喩と「なぜ」の本体は basics の rereads-whole-history（前提）。ここは API の形（状態を持たない、system と messages、message threads）だけを書く（basics の担当の提案のうち、API に固有の操作に絞る案を採った）。message threads のデータの扱いを safety の where-your-data-goes へつなぐ。比例則の対象外（任せる幅を広げる内容ではない）"
+    notes: "比喩と「なぜ」の本体は basics の rereads-whole-history（前提）。ここは API の形（状態を持たない、system と messages、message threads）だけを書く（basics の担当の提案のうち、API に固有の操作に絞る案を採った）。message threads のデータの扱いを safety の where-your-data-goes へつなぐ。比例則の対象外（任せる幅を広げる内容ではない）。basics の提案に合わせ、要約と signs から「なぜ長い会話が重く高くなるか」（rereads-whole-history の要約と sign と同じ問い）を外し、API の形（呼び出し側が渡す・message threads で減るのは送る量だけ）に絞った（2026-11-04 統合：basics#3）"
 
   # ── API の主な機能 ──
   - id: tool-use-loop
@@ -157,7 +157,7 @@ pages:
     principle: [見せる]
     prevents: [合っていない]
     scenes: [開発]
-    summary: "毎回同じ先頭部分を cache して、API の費用と待ち時間を抑えられる。区切りをどこに置くか、何を変えると cache が無効になるかが分かる。"
+    summary: "毎回同じ先頭部分をキャッシュして、API の費用と待ち時間を抑えられる。区切りをどこに置くか、何を変えるとキャッシュが無効になるかが分かる。"
     signs:
       - {type: goal, text: "長いシステムプロンプトや資料を毎回送る費用を抑えたい"}
       - {type: symptom, text: "キャッシュを指定したのに効いていない"}
@@ -166,12 +166,12 @@ pages:
     tracks: [prompt-caching]
     volatility: 中
     sections:
-      - {title: "どこまでが cache されるか（tools・system・messages の順）", anchor: prefix}
-      - {title: "cache を無効にする変更", anchor: invalidation}
+      - {title: "どこまでがキャッシュされるか（tools・system・messages の順）", anchor: prefix}
+      - {title: "キャッシュを無効にする変更", anchor: invalidation}
       - {title: "区切りの置き方", anchor: breakpoints}
     visual: {kind: static, text: "tools・system・messages の順に積んだ積み木と、変えた段から後ろが崩れる（cache が無効になる）ことを示す図"}
     materials: ["00 §3 分野13", "02 §5-2（先頭の一致、自動と明示の区切り、寿命、最小の長さ、無効にする操作、公式の勧め）", "requirements §6.6（積み木の比喩）"]
-    notes: "「先頭が変わらないことの価値」と積み木の比喩の本体は basics の why-prompt-caching（前提）。料金の倍率と cache の寿命は cost と数値ファイルに置く（design §4.2）。effort を変えると cache が無効になる（02 §5-2）ので models の effort-levels を関連に置いた。比例則の対象外（任せる幅を広げる内容ではない）"
+    notes: "「先頭が変わらないことの価値」と積み木の比喩の本体は basics の why-prompt-caching（前提）。料金の倍率と cache の寿命は cost と数値ファイルに置く（design §4.2）。effort を変えると cache が無効になる（02 §5-2）ので models の effort-levels を関連に置いた。比例則の対象外（任せる幅を広げる内容ではない）。M9 で見直した：level は仕組みにするのまま（API で同じ前置きを繰り返し送る仕組みを作る段階で初めて要る。アプリと Claude Code の利用者は basics の why-prompt-caching で足りる）。費用と待ち時間の整え方で、自律・並列・無人・権限の緩和のどれも広げないので、守りのページは足さず、比例則の警告は残す。要約と節の題名の cache を、題名のプロンプトキャッシングに合わせてキャッシュにした（2026-11-04 統合：M1・M9）"
 
   - id: batch-api-basics
     chapter: API の主な機能
@@ -191,13 +191,13 @@ pages:
       - {type: goal, text: "急がない大量の処理を安く流したい"}
       - {type: goal, text: "評価用の大量のプロンプトをまとめて実行したい"}
     prerequisites: [stateless-messages-api]
-    related: [checking-unattended-runs, measure-changes, reading-api-pricing, prompt-caching-in-practice, choosing-automation]
+    related: [checking-unattended-runs, measure-changes, reading-api-pricing, prompt-caching-in-practice, choosing-automation, batch-and-p-loops]
     tracks: [batch-api]
     volatility: 中
     sections:
       - {title: "向く仕事・向かない仕事", anchor: fit}
     materials: ["00 §3 分野13", "02 §5-3（割引、処理の時間と期限、上限、用途：大規模な評価・モデレーション・大量の生成）"]
-    notes: "割引の率・処理の期限・上限は数値ファイルと cost の受け持ち。Claude Code の /batch（delegate の batch-and-p-loops）とは別のものなので、本文で名前の取り違えに注意を促す。比例則の守りは verify の checking-unattended-runs と eval の measure-changes"
+    notes: "割引の率・処理の期限・上限は数値ファイルと cost の受け持ち。Claude Code の /batch（delegate の batch-and-p-loops）とは別のものなので、本文で名前の取り違えに注意を促す。取り違えた読者が移れるよう、batch-and-p-loops を related に置いた（delegate の側にも、同じ注意を頼んでいる）。比例則の守りは verify の checking-unattended-runs と eval の measure-changes（2026-11-04 統合：api#1）"
 
   # ── エージェントを組む ──
   - id: sdk-comparison

@@ -107,7 +107,7 @@ pages:
       - {type: goal, text: "長い作業を任せたい"}
       - {type: situation, text: "初めて Claude Code を無人で走らせる"}
     prerequisites: [what-not-to-delegate, verification-ladder, permission-rules]
-    related: [goal-until-done, pairing-and-delegating, is-the-task-ai-suited, humans-set-the-parallel-limit, headless-basics, sandboxing, what-auto-mode-stops, where-bypass-is-ok, default-safety-settings, destructive-commands, protecting-secrets, checking-unattended-runs, parallel-and-loop-costs, decide-when-to-quit, open-ended-loop-trap, roadmap]
+    related: [goal-until-done, pairing-and-delegating, is-the-task-ai-suited, humans-set-the-parallel-limit, headless-basics, "default-safety-settings#by-stage", sandboxing, what-auto-mode-stops, where-bypass-is-ok, destructive-commands, protecting-secrets, checking-unattended-runs, parallel-and-loop-costs, decide-when-to-quit, open-ended-loop-trap, roadmap]
     tracks: [headless, auto-mode]
     outdated_advice: [yolo-skip-permissions]
     volatility: 中
@@ -120,7 +120,7 @@ pages:
       - {name: "無人で走らせる前の五つの問い（確認表）", kind: other, safety: false}
     visual: {kind: static, text: "任せ方の段階（対話→計画の承認→停止条件つきの反復→隔離した無人実行）と、段ごとに強める確かめ方と封じ込め"}
     materials: ["00 §3 分野12（冒頭の段落と表の1行目）", "05 §1-2（無人で走らせる前の5問）", "11 第2節 分野12 p12#44・p12#51・p12#99・p34#141・p34#151・p56#104", "research/23 §3.1（Best practices の改稿）", "decisions 2026-11-03「安全の既定の勧め方」", "research/22 #26（上限での自動の継続）"]
-    notes: "題名を registry の「委任の段階と、任せる前の五つの問い」から改めた：start の roadmap が使う「委任の段階」（読者の段階）と、作業ごとの任せ方の段階を取り違えないため。五つの問いは公式の Best practices による。Best practices は 2026-10-26〜27 ごろに書き直されたので、問いが今の版にあるかを執筆の前に確かめる（research/23 §3.1）。任せ方の段階は補完調査の整理（実践（章:中））で、読者の段階（任せる〜回す）に対応させて書く"
+    notes: "題名を registry の「委任の段階と、任せる前の五つの問い」から改めた：start の roadmap が使う「委任の段階」（読者の段階）と、作業ごとの任せ方の段階を取り違えないため。五つの問いは公式の Best practices による。Best practices は 2026-10-26〜27 ごろに書き直されたので、問いが今の版にあるかを執筆の前に確かめる（research/23 §3.1）。任せ方の段階は補完調査の整理（実践（章:中））で、読者の段階（任せる〜回す）に対応させて書く。節 proportional-guards の封じ込めの既定（サンドボックス・秘密の読み取りの禁止・使い捨ての環境・契約のある面）は safety の default-safety-settings#by-stage を正本にして繰り返さず、ここは作業ごとの任せ方の段と確かめ方の対応を持つ（2026-11-04 統合：safety#10・M6）"
 
   - id: open-ended-loop-trap
     chapter: 任せる前の判断
@@ -169,9 +169,10 @@ pages:
     signs:
       - {type: goal, text: "テストが通るまで止まらずに続けてほしい"}
       - {type: goal, text: "条件を満たすまで、自分で作業を続けさせたい"}
+      - {type: goal, text: "席を外している間も進めてほしい"}
       - {type: symptom, text: "条件に入れた「テストを変えない」が守られたか判定されない"}
     prerequisites: [five-questions-before-delegating, evidence-not-reports]
-    related: [verification-ladder, stop-hooks, protect-tests, what-auto-mode-stops, spec-first, open-ended-loop-trap, progress-logs-for-long-jobs, loop-and-scheduling, batch-and-p-loops, permission-to-stop, parallel-and-loop-costs, when-ai-is-unavailable, claims-done-but-isnt, keeps-stopping, stuck-in-a-check-loop]
+    related: [verification-ladder, stop-hooks, protect-tests, what-auto-mode-stops, sandboxing, "spec-first#goal-with-stop-conditions", "refactor-and-migrate#goal-stop-conditions", open-ended-loop-trap, progress-logs-for-long-jobs, completion-notifications, loop-and-scheduling, batch-and-p-loops, permission-to-stop, parallel-and-loop-costs, when-ai-is-unavailable, claims-done-but-isnt, keeps-stopping, stuck-in-a-check-loop]
     tracks: [goal]
     outdated_advice: [keep-going-dont-be-lazy, ralph-loops]
     volatility: 中
@@ -184,8 +185,8 @@ pages:
     templates:
       - {name: "停止条件つきの /goal の条件文（git status などの証拠を会話に出させる）", kind: prompt, safety: false}
     visual: {kind: mermaid, text: "ターンごとに判定役が会話だけを読み、続けるか止めるかを決める流れ"}
-    materials: ["00 §3 分野12「/goal」", "01 O-1", "requirements §10.3（A-14：判定役は会話しか読まない）", "11 第4節 #23・第5節 A-14", "11 第2節 分野12 p34#152・p56#115・p56#142", "11 第1節 分野12 p34#37（長く回せば良くなるとは限らない）", "03 W11（自作ループから組み込みの機能へ）", "00 §5 台帳（Ralph の行）", "research/22 #26（上限での自動の継続。/goal にも効く）・#36（応答の途中で上限に達したときの区切りまでの継続。導入の時期は確かめられない）", "research/22 #32・#33（プランごとの上限の層。本文はプランに中立に書き、差は数値ファイルへ）", "01 M-1（/goal のチェックインも使用量を使う）"]
-    notes: "registry の homemade-loops（自作ループ（Ralph など）の現在）をまとめ、節 from-homemade-loops にした。反復の条件は仕様の決まった実装の作業に限り、戦略を改善させる使い方は書かない（requirements §6.3）。雛形 A-14 は、変えてはいけないものを判定できるよう git status の出力を会話に出させる形に直してから載せる（requirements §10.3、11 第4節 #23）。条件の文字数や判定のモデルなどの値は数値ファイルから"
+    materials: ["00 §3 分野12「/goal」", "01 O-1", "requirements §10.3（A-14：判定役は会話しか読まない）", "11 第4節 #23・第5節 A-14", "11 第2節 分野12 p34#152・p56#115・p56#142", "11 第1節 分野12 p34#37（長く回せば良くなるとは限らない）", "03 W11（自作ループから組み込みの機能へ）", "00 §5 台帳（Ralph の行）", "research/22 #26（上限での自動の継続。/goal にも効く）・#36（応答の途中で上限に達したときの区切りまでの継続。導入の時期は確かめられない）", "research/22 #32・#33（プランごとの上限の層。本文はプランに中立に書き、差は数値ファイルへ）", "01 M-1（/goal のチェックインも使用量を使う）", "11 第1節 分野18 p56#80（ベンチの確認のループにはまった事例。ターンの上限を条件に入れる実例。単独の事例・時点依存）"]
+    notes: "registry の homemade-loops（自作ループ（Ralph など）の現在）をまとめ、節 from-homemade-loops にした。反復の条件は仕様の決まった実装の作業に限り、戦略を改善させる使い方は書かない（requirements §6.3）。雛形 A-14 は、変えてはいけないものを判定できるよう git status の出力を会話に出させる形に直してから載せる（requirements §10.3、11 第4節 #23）。条件の文字数や判定のモデルなどの値は数値ファイルから。停止条件の雛形（A-14 を直したもの）は snippets の1か所に置き、recipes の spec-first（節 goal-with-stop-conditions）と refactor-and-migrate（節 goal-stop-conditions）も同じものを取り込む（design §6.9。recipes#1）。無人で続けさせる比例則の守りとして enforce の sandboxing を related に置いた（safety#3）。席を外す使い方の操作の入口として cli の completion-notifications を指す（cli#7）。逆引きの「席を外している間も進めてほしい」（00 §4）を置いた（B#66。five-questions-before-delegating にもある）（2026-11-04 統合：safety#3・recipes#1・symptoms#10・cli#7・B#66）"
 
   - id: progress-logs-for-long-jobs
     chapter: 続けさせる
@@ -210,7 +211,7 @@ pages:
     templates:
       - {name: "定期的に要約の指標を書き出す進捗ログの形", kind: other, safety: false}
     materials: ["11 第1節 分野12 p34#168・p34#172", "01 4-1（Monitor の道具、v2.1.98）", "research/22 #5（Monitor と Bash の hooks）"]
-    notes: "優先度は推奨にした（C0 の見当のまま）：長時間の作業を任せる読者に限られ、根拠は中。context の progress-files（作業の続きのための PLAN・TODO）とは別で、実行中の指標を見るためのログを扱う"
+    notes: "優先度は推奨にした（C0 の見当のまま）：長時間の作業を任せる読者に限られ、根拠は中。context の progress-files との境界を、context の担当と同じ言い方にそろえる：progress-files は人と Claude が対話で再開するための状態（計画・やること・決めたこと）、このページは無人の長時間ジョブを観察して判断するための記録（実行中の要約の指標）。progress-files は related でこのページを指し、こちらは状態をファイルに書く考え方の土台として前提に置いたまま（2026-11-04 統合：context#8）"
 
   # ── 並べる ──
   - id: humans-set-the-parallel-limit
@@ -228,18 +229,17 @@ pages:
     scenes: [開発]
     summary: "並列の本数を決めるのはマシンや予算ではなく、結果をレビューする人の帯域だと分かる。レビューの要る本流は少なく、調査や使い捨ての試作は多めに並べる。"
     signs:
-      - {type: symptom, text: "並列にしたら疲れた"}
       - {type: symptom, text: "並べたセッションの結果を確かめきれない"}
       - {type: goal, text: "何本まで並べてよいか決めたい"}
     prerequisites: [five-questions-before-delegating]
-    related: [review-bottlenecks, choosing-parallel-modes, pairing-and-delegating, independent-review, diffs-humans-must-read, approval-fatigue, felt-vs-measured, parallel-and-loop-costs, parallel-with-worktrees, agent-view-and-background, compare-hypotheses-in-parallel]
+    related: [parallel-fatigue, review-bottlenecks, choosing-parallel-modes, pairing-and-delegating, independent-review, diffs-humans-must-read, approval-fatigue, felt-vs-measured, parallel-and-loop-costs, parallel-with-worktrees, agent-view-and-background, compare-hypotheses-in-parallel]
     volatility: 低
     sections:
       - {title: "本流と偵察で本数を分ける", anchor: mainline-vs-scouting}
       - {title: "疲れの兆し", anchor: signs-of-fatigue}
     visual: {kind: static, text: "並べる本数と人のレビューの帯域（本流は少なく、調査・偵察・使い捨ては多く）"}
     materials: ["00 §3 分野12「並列の上限は人間が決める」", "11 第2節 分野12 p34#176・p34#184・p34#185・p34#187・p34#192", "research/25 P7a（疲労の調査は12名の自己申告で、並列との因果は示されていない）", "research/25 §3.4（1本で動かす実践の原文）", "03 W9（反対・慎重論）", "research/21 §2.4（制作の同時16〜20体と、教材の勧めの見え方）"]
-    notes: "疲労の数値は小さな社内調査の自己申告として、標本の大きさを添える（research/25 P7a）。個人の並列の本数を標準として示さず、反対意見と並べる（requirements §6.3）。制作で多数の担当を同時に動かすことと勧めの関係は、並べてよいのはレビューの要らない調査・偵察だという区別で説明できる（推論）"
+    notes: "疲労の数値は小さな社内調査の自己申告として、標本の大きさを添える（research/25 P7a）。個人の並列の本数を標準として示さず、反対意見と並べる（requirements §6.3）。制作で多数の担当を同時に動かすことと勧めの関係は、並べてよいのはレビューの要らない調査・偵察だという区別で説明できる（推論）。症状の入口の symptoms の parallel-fatigue（このページを前提にする）を related の先頭に置き、同じ文のサイン「並列にしたら疲れた」（00 §4 の症状の項目）は外した（症状の文を対処のページに重ねない。M2）（2026-11-04 統合：symptoms#10・M2）"
 
   - id: choosing-parallel-modes
     chapter: 並べる
@@ -261,7 +261,7 @@ pages:
     prerequisites: [humans-set-the-parallel-limit, subagent-isolation]
     related: [parallel-with-worktrees, agent-view-and-background, agent-teams-experimental, dynamic-workflows, batch-and-p-loops, compare-hypotheses-in-parallel, writing-subagents, skill-vs-subagent, research-in-subagents, independent-review, sandboxing, parallel-and-loop-costs, cloud-sessions-and-teleport]
     tracks: [subagents, agent-view, agent-teams, workflows, worktrees, code-projects]
-    outdated_advice: [subagent-per-step]
+    outdated_advice: [subagent-per-step, subagents-to-save-context]
     volatility: 中
     sections:
       - {title: "誰が調整するか", anchor: who-coordinates}
@@ -269,7 +269,7 @@ pages:
       - {title: "一部は捨てる前提で回す", anchor: expect-to-discard}
     visual: {kind: static, text: "誰が調整するか × 同じファイルを触るか で並列の方式を置いた図"}
     materials: ["00 §3 分野12「並列の五方式の選び方」", "01 E-2", "11 第2節 分野12 p34#186・p34#194（個人の構成。標準にしない）", "11 第4節 #15", "03 W9"]
-    notes: "題名から方式の数（registry の「五方式」）を外した。方式は増減しうるので、数と成熟度は数値ファイルの機能の項目と比較表に持つ。Claude Code の Projects（並列の threads）は機能の id がないので new_features に足した。開発者個人の本数と「1〜2割は捨てる」は自己申告として、反対意見と並べる"
+    notes: "題名から方式の数（registry の「五方式」）を外した。方式は増減しうるので、数と成熟度は数値ファイルの機能の項目と比較表に持つ。Claude Code の Projects（並列の threads）は機能の id がないので new_features に足した。開発者個人の本数と「1〜2割は捨てる」は自己申告として、反対意見と並べる。台帳の subagents-to-save-context（コンテキストを守るために subagent に調べさせる）を outdated_advice に入れた：今の Best practices は、サブエージェントを並列の作業・うるさい出力の切り離し・独立のレビューに使い、どれも追加のトークンがかかるとする（research/23 §3.7）ので、方式を選ぶ理由からコンテキストの節約を外す（2026-11-04 統合：M3）"
 
   - id: parallel-with-worktrees
     chapter: 並べる
@@ -356,7 +356,7 @@ pages:
 
   - id: dynamic-workflows
     chapter: 並べる
-    title: "dynamic workflows（スクリプトで多数の subagent を動かす）"
+    title: "dynamic workflows（スクリプトで多数のサブエージェントを動かす）"
     nav_title: "dynamic workflows"
     aliases: ["ultracode", "workflows", "/workflows", "ワークフロー", "/deep-research"]
     type: feature
@@ -368,7 +368,7 @@ pages:
     prevents: [合っていない, 確かめていない]
     pitfalls: []
     scenes: [開発, 調べもの]
-    summary: "Claude が書いたスクリプトで多数の subagent を動かし、コードベース全体の監査や大量のファイルの移行を背景で進められる。費用が大きくなりやすいので、小さな範囲で試してから広げる。"
+    summary: "Claude が書いたスクリプトで多数のサブエージェントを動かし、コードベース全体の監査や大量のファイルの移行を背景で進められる。費用が大きくなりやすいので、小さな範囲で試してから広げる。"
     signs:
       - {type: goal, text: "コードベース全体の監査や大規模な移行を、一度に進めたい"}
       - {type: symptom, text: "ワークフローで動かしたら、思ったより利用枠を使った"}
@@ -383,7 +383,7 @@ pages:
     templates:
       - {name: "範囲を絞って試す依頼の例", kind: prompt, safety: false}
     materials: ["00 §3 分野12「dynamic workflows」", "01 E-5", "03 W11", "00 §5 台帳（workflow の語と extra usage）", "research/28 #3（ワークフローの担当にも permissions と sandbox が効く）", "research/28 #4（担当で hooks が走るかは文書にない）", "11 第2節 分野14 p34#162（約15倍は2025年の Research の値で、別のもの）"]
-    notes: "題名の括弧を registry の「ultracode」から機能の説明に替えた。起動の語は改名の経緯があるので aliases に置き、今の語は数値ファイルから書く。担当の規模の目安・上限・警告のしきい値も数値ファイルから。ワークフローの担当で設定の hooks が走るかは文書にない（research/28 #4）ので、hooks だけに頼る縛りは確かめるまで書かず、permissions と sandbox（文書で効くと分かる。research/28 #3）を勧める"
+    notes: "題名の括弧を registry の「ultracode」から機能の説明に替えた。起動の語は改名の経緯があるので aliases に置き、今の語は数値ファイルから書く。担当の規模の目安・上限・警告のしきい値も数値ファイルから。ワークフローの担当で設定の hooks が走るかは文書にない（research/28 #4）ので、hooks だけに頼る縛りは確かめるまで書かず、permissions と sandbox（文書で効くと分かる。research/28 #3）を勧める。題名と要約の subagent を、公式の日本語版の多数派の「サブエージェント」にした（2026-11-04 統合：M1）"
 
   - id: batch-and-p-loops
     chapter: 並べる
@@ -404,19 +404,21 @@ pages:
       - {type: goal, text: "数百のファイルに同じ変更を入れたい"}
       - {type: symptom, text: "一括で流したら、壊れた結果がどれか分からなくなった"}
     prerequisites: [headless-basics, parallel-with-worktrees]
-    related: [dynamic-workflows, goal-until-done, permission-rules, sandboxing, checking-unattended-runs, bare-mode, refactor-and-migrate, parallel-and-loop-costs]
+    related: [dynamic-workflows, goal-until-done, permission-rules, sandboxing, checking-unattended-runs, bare-mode, refactor-and-migrate, parallel-and-loop-costs, batch-api-basics]
     tracks: [headless, worktrees, batch-command]
     volatility: 中
+    sections:
+      - {title: "API の Message Batches API とは別のもの", anchor: not-the-batch-api}
     templates:
       - {name: "数件で試してから全件に流すシェルのループ", kind: other, safety: true}
     materials: ["00 §3 分野12「fan-out（/batch と -p ループ）」（注記：fan-out は改稿前の語）", "research/23 §3.1", "01 E-2（/batch）", "01 KQ2 2-1（改稿前の版の要約。現行の文書で確かめ直す）", "11 第2節 分野12 p34#153", "03 W9（/batch で壊れたときの切り分け）"]
-    notes: "fan-out の語は改稿前の Best practices のもので、今の版にない（00 §3 分野12 の注記、research/23 §3.1）。/batch と -p のループの書き方は、今の文書で確かめてから書く。ループの雛形は許可の旗を含むので safety: true"
+    notes: "fan-out の語は改稿前の Best practices のもので、今の版にない（00 §3 分野12 の注記、research/23 §3.1）。/batch と -p のループの書き方は、今の文書で確かめてから書く。ループの雛形は許可の旗を含むので safety: true。Claude Code の /batch（作業を worktree のサブエージェントに分けて流す）と、API の Message Batches API（急がない大量の要求を非同期に一括で処理する。api の batch-api-basics）は名前が似て取り違えやすいので、節 not-the-batch-api で違いに触れ、related で api へ送る（2026-11-04 統合：api#1）"
 
   - id: agent-teams-experimental
     chapter: 並べる
-    title: "agent teams（複数の Claude に分担させる）"
-    nav_title: "agent teams"
-    aliases: ["エージェントチーム", "teammate"]
+    title: "エージェントチーム（複数の Claude に分担させる）"
+    nav_title: "エージェントチーム"
+    aliases: ["agent teams", "teammate"]
     type: feature
     level: 回す
     level_evidence: "複数のエージェントを互いに連絡させて動かす（回す）"
@@ -426,7 +428,7 @@ pages:
     prevents: [合っていない]
     pitfalls: []
     scenes: [開発]
-    summary: "リードの Claude に teammate への割り当てと調整を任せ、互いに連絡しながら並行して進めさせられる。teammate の数だけトークンを使い、同じファイルを触ると衝突するので、小さく焦点を絞って試す。"
+    summary: "リードの Claude にチームメイトへの割り当てと調整を任せ、互いに連絡しながら並行して進めさせられる。チームメイトの数だけトークンを使い、同じファイルを触ると衝突するので、小さく焦点を絞って試す。"
     signs:
       - {type: goal, text: "複数の Claude に分担させ、互いにやりとりさせたい"}
       - {type: symptom, text: "複数の Claude に分担させたら、同じファイルを取り合った"}
@@ -436,12 +438,12 @@ pages:
     outdated_advice: [tmux-agent-orgs]
     volatility: 高
     materials: ["00 §3 分野12「agent teams（実験的）」（注記：約7倍は plan mode のときの値）", "research/23 #7", "01 E-4", "11 第2節 分野12 p34#189（人数の目安）・p34#196（仮説を反証させ合う構成）", "research/22 #10（teammate の権限モードの不具合の修正）・#21（teammate の effort）"]
-    notes: "題名から成熟度（registry の「実験的」）を外した（成熟度は数値ファイルのバッジで示す）。実験的な機能なので、概念と判断だけの短いページにする（design §4.1 の7）。トークンの倍率は条件（plan mode の teammate）付きで数値ファイルに置き、本文に書かない（research/23 #7）。teammate の権限モードと effort が、リードから受け継がれるかを確かめる点を書く（research/22 #10・#21）"
+    notes: "題名から成熟度（registry の「実験的」）を外した（成熟度は数値ファイルのバッジで示す）。実験的な機能なので、概念と判断だけの短いページにする（design §4.1 の7）。トークンの倍率は条件（plan mode の teammate）付きで数値ファイルに置き、本文に書かない（research/23 #7）。teammate の権限モードと effort が、リードから受け継がれるかを確かめる点を書く（research/22 #10・#21）。題名と要約を公式の日本語版の多数派（エージェントチーム・チームメイト。research/27 §3.1）にし、英語名を aliases に置いた（2026-11-04 統合：M1）"
 
   # ── 定期と無人の実行 ──
   - id: choosing-automation
     chapter: 定期と無人の実行
-    title: "自動化の選び方（定期タスク・headless・SDK）"
+    title: "自動化の選び方（定期タスク・非対話モード・SDK）"
     aliases: ["自動化の比較", "cron で動かす"]
     type: comparison
     level: 回す
@@ -463,7 +465,7 @@ pages:
     volatility: 中
     visual: {kind: static, text: "どこで動くか（手元・クラウド）× 何がきっかけか（時刻・イベント・スクリプト）の表"}
     materials: ["00 §3 分野12「自動化の選び方（routine・headless・SDK）」", "01 KQ3（スケジュール実行の使い分け）", "01 O-2・O-3・J-1・J-2・J-3", "research/26 §3.8・§3.11（面ごとの認証と課金、API credits の使い道）", "research/22 #32〜#35（Max・Ultra・Team の API credits）"]
-    notes: "自分の作業を自動で回すための比較にする。自分の製品に Claude を組み込む比較は api の sdk-comparison が持つので、そちらへ送る。プランごとの差（API credits など）は数値ファイルの表に置き、本文はプランに中立に書く"
+    notes: "自分の作業を自動で回すための比較にする。自分の製品に Claude を組み込む比較は api の sdk-comparison が持つので、そちらへ送る。プランごとの差（API credits など）は数値ファイルの表に置き、本文はプランに中立に書く。題名の headless を、公式の日本語版の多数派の「非対話モード」にした（headless-basics と同じ）。api の提案どおり、related の managed-agents-basics（sdk-comparison にまとめられた）はもう外れている（2026-11-04 統合：M1・api#1）"
 
   - id: loop-and-scheduling
     chapter: 定期と無人の実行
@@ -513,7 +515,7 @@ pages:
       - {type: goal, text: "PC を閉じていても、決まった時刻に作業を走らせたい"}
       - {type: goal, text: "PR が開いたら、自動で Claude に作業させたい"}
     prerequisites: [loop-and-scheduling, lethal-trifecta]
-    related: [checking-unattended-runs, prompt-injection-in-practice, vetting-extensions, choosing-automation, github-actions-with-claude, cloud-sessions-and-teleport, where-it-runs, connectors-in-the-app, tasks-and-schedules-in-the-app, parallel-and-loop-costs]
+    related: [checking-unattended-runs, where-bypass-is-ok, prompt-injection-in-practice, vetting-extensions, choosing-automation, github-actions-with-claude, cloud-sessions-and-teleport, where-it-runs, connectors-in-the-app, tasks-and-schedules-in-the-app, parallel-and-loop-costs]
     tracks: [scheduled-tasks, cloud-sessions]
     outdated_advice: [routines-name]
     volatility: 高
@@ -521,12 +523,12 @@ pages:
       - {title: "きっかけ（時刻・API・GitHub のイベント）", anchor: triggers}
       - {title: "接続先と権限を最小にする", anchor: least-privilege}
     materials: ["00 §3 分野12「クラウドの定期タスク（旧 routines）」", "01 O-3", "00 §5 台帳（routines）", "research/22 #27（/schedule で頼んでいない connector が付いたときの警告）", "research/22 #11（予定のタスクの失敗の記録の修正）", "research/26 §3.8（クラウドのセッションは OAuth を使う）"]
-    notes: "research preview（01 O-3）。外の内容を読む作業に connector を付けると三つがそろいやすい（safety の lethal-trifecta）ので前提にした。対象のプランと最小の間隔は数値ファイルから"
+    notes: "research preview（01 O-3）。外の内容を読む作業に connector を付けると三つがそろいやすい（safety の lethal-trifecta）ので前提にした。対象のプランと最小の間隔は数値ファイルから。無人の実行は使い捨ての環境で動かす既定（decisions 2026-11-03「安全の既定の勧め方」）の本体として safety の where-bypass-is-ok を related に置いた（2026-11-04 統合：safety#3）"
 
   - id: headless-basics
     chapter: 定期と無人の実行
-    title: "headless（claude -p）の基本"
-    aliases: ["非対話モード", "non-interactive mode", "print モード"]
+    title: "非対話モード（claude -p）の基本"
+    aliases: ["headless", "ヘッドレス", "non-interactive mode", "print モード"]
     type: feature
     level: 回す
     level_evidence: "スクリプト・CI からプログラムで動かす（回す）"
@@ -556,7 +558,7 @@ pages:
     templates:
       - {name: "許可を絞った claude -p の実行例（許す道具・上限・出力形式）", kind: other, safety: true}
     materials: ["00 §3 分野12「headless（claude -p）の基本」", "01 J-1", "research/23 F2-b（-p の権限モードの既定と経緯）", "research/23 §3.3（auto mode の連続のブロックと -p）", "research/22 #24（起動の失敗と終了コード）・#25（入れ子の実行）・#11（-p の出力が止まった理由を言わないことがあった）", "research/26 §3.8（ANTHROPIC_API_KEY があると -p は確認なしにその鍵を使う）", "research/22 #37", "05 §4-5（-p では trust dialog が出ない）", "00 §4 費用・選び方・任せ方「スクリプトや CI から使いたい」"]
-    notes: "-p の権限モードの既定と承認の扱いは 2026 年に何度か変わった（research/23 F2-b）。既定の値は本文に書かず数値ファイルから。終了コードだけで成功を決めない例は版の下限付きで書く（research/22 #24）。--bare を付けない -p は知らないフォルダでも設定の hooks と .mcp.json のサーバーを動かす（01 J-1）ので、safety の before-opening-unknown-repos と bare-mode へ送る"
+    notes: "-p の権限モードの既定と承認の扱いは 2026 年に何度か変わった（research/23 F2-b）。既定の値は本文に書かず数値ファイルから。終了コードだけで成功を決めない例は版の下限付きで書く（research/22 #24）。--bare を付けない -p は知らないフォルダでも設定の hooks と .mcp.json のサーバーを動かす（01 J-1）ので、safety の before-opening-unknown-repos と bare-mode へ送る。題名を公式の日本語版の多数派の「非対話モード」（research/27 §3.1）にし、元の headless を aliases に置いた（2026-11-04 統合：M1）"
 
   - id: bare-mode
     chapter: 定期と無人の実行
@@ -571,7 +573,7 @@ pages:
     prevents: [散らかっている, 境界がない]
     pitfalls: []
     scenes: [開発]
-    summary: "--bare で CLAUDE.md・hooks・MCP などの自動の読み込みを止め、どのマシンでも同じ条件で claude -p を動かせる。手元の設定や、知らないリポジトリの hooks が自動の実行に混ざるのを防ぐ。"
+    summary: "--bare で CLAUDE.md・フック・MCP などの自動の読み込みを止め、どのマシンでも同じ条件で claude -p を動かせる。手元の設定や、知らないリポジトリのフックが自動の実行に混ざるのを防ぐ。"
     signs:
       - {type: symptom, text: "手元と CI で、同じ指示なのに結果が違う"}
       - {type: symptom, text: "自動の実行に、自分の CLAUDE.md や hooks が混ざる"}
@@ -585,7 +587,7 @@ pages:
     templates:
       - {name: "自分の設定を混ぜない claude -p の起動例", kind: other, safety: true}
     materials: ["00 §3 分野12「--bare と再現性」", "01 J-1（--bare、--bare なしの -p と未信頼のフォルダ）", "research/26 #14・§3.8（--bare は API キーか apiKeyHelper が要る）", "research/28 #28（--safe-mode）", "research/22 #6（--setting-sources の漏れの修正）", "research/28 §3.4（作者の設定を切り離す手順）"]
-    notes: "--bare は OAuth の認証情報を読まず、API キーか apiKeyHelper が要る（research/26 #14）。サブスクリプションで使う読者には、認証を変えずに拡張を読まない --safe-mode（research/28 #28）と --setting-sources を並べる（--safe-mode は new_features に足した）。-p の既定にする予定は変わりやすいので数値ファイルから"
+    notes: "--bare は OAuth の認証情報を読まず、API キーか apiKeyHelper が要る（research/26 #14）。サブスクリプションで使う読者には、認証を変えずに拡張を読まない --safe-mode（research/28 #28）と --setting-sources を並べる（--safe-mode は new_features に足した）。-p の既定にする予定は変わりやすいので数値ファイルから。要約の hooks を、公式の日本語版の多数派の「フック」にした（サインは読者の言葉のまま）（2026-11-04 統合：M1）"
 
   - id: github-actions-with-claude
     chapter: 定期と無人の実行
@@ -606,7 +608,7 @@ pages:
       - {type: goal, text: "CI の中で Claude Code を動かしたい"}
       - {type: symptom, text: "古い記事の書き方で、Claude の GitHub Action が動かない"}
     prerequisites: [headless-basics, protecting-secrets]
-    related: [lethal-trifecta, prompt-injection-in-practice, permission-rules, automated-pr-review, risk-tiered-approval, create-and-review-prs, checking-unattended-runs, check-billing-path, bare-mode, choosing-automation, what-to-put-in-claude-md]
+    related: [lethal-trifecta, prompt-injection-in-practice, where-bypass-is-ok, permission-rules, automated-pr-review, risk-tiered-approval, create-and-review-prs, checking-unattended-runs, check-billing-path, bare-mode, choosing-automation, what-to-put-in-claude-md]
     tracks: [github-actions]
     outdated_advice: [action-beta-direct-prompt]
     volatility: 中
@@ -617,7 +619,7 @@ pages:
     templates:
       - {name: "最小権限の workflow（@claude に応える）", kind: other, safety: true}
     materials: ["00 §3 分野12「GitHub Actions と @claude」", "01 J-2", "00 §5 台帳（@beta と direct_prompt）", "research/26 §3.8（GitHub Actions は CLI の認証の環境変数を読む）", "research/26 §3.11（Action から起動したものは API credits の対象外）"]
-    notes: "外の人が書ける issue・PR の本文は信頼できない入力なので、safety の lethal-trifecta と prompt-injection-in-practice を related に置いた。課金の経路の差（プランの token か API キーか）は数値ファイルと cost の check-billing-path へ送る"
+    notes: "外の人が書ける issue・PR の本文は信頼できない入力なので、safety の lethal-trifecta と prompt-injection-in-practice を related に置いた。課金の経路の差（プランの token か API キーか）は数値ファイルと cost の check-billing-path へ送る。CI の中の無人の実行をどの環境で動かすかの本体として safety の where-bypass-is-ok を related に置いた（比例則。decisions 2026-11-03「安全の既定の勧め方」）（2026-11-04 統合：safety#3）"
 
   - id: automated-pr-review
     chapter: 定期と無人の実行

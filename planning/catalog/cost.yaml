@@ -20,7 +20,7 @@ pages:
       - {type: symptom, text: "アプリをたくさん使った日は、Claude Code でも早く上限に当たる"}
       - {type: goal, text: "上限がいつ戻るのか知りたい"}
     prerequisites: []
-    related: [what-uses-up-limits, saving-priorities, choosing-a-plan, usage-credits-basics, before-using-fable, hits-limits-quickly, "usage-context-statusline#statusline", when-ai-is-unavailable]
+    related: [what-uses-up-limits, saving-priorities, when-to-start-fresh, choosing-a-plan, usage-credits-basics, before-using-fable, hits-limits-quickly, "usage-context-statusline#statusline", when-ai-is-unavailable]
     tracks: [usage-limits, plans, auto-continue, wrap-up-allowance]
     outdated_advice: [wait-out-5-hour-limit]
     volatility: 高
@@ -38,7 +38,7 @@ pages:
       - "research/22 #26（上限での自動の継続。3回で止まる）・#36（Wrap-Up Allowance。導入の時期は未確認）"
       - "research/26 §3.13（Ultra プランと確認の仕組み）"
       - "04 Q3（利用制限の歴史とユーザーの不満。二次情報）"
-    notes: "registry の題名で外した「5時間・週」は外したまま（確認済みの Ultra の口座は週の上限だけ。research/22 #33）。プランごとの枠の種類と倍率は節 limit-types で数値ファイルから道具が書く。aliases の five-hour limit・weekly limit は公式の名前、session limit は Claude Code の旧い呼び方として置いた。公式の日本語版では「利用制限」の語も使われるので、用語集で表記を決める。"
+    notes: "registry の題名で外した「5時間・週」は外したまま（確認済みの Ultra の口座は週の上限だけ。research/22 #33）。プランごとの枠の種類と倍率は節 limit-types で数値ファイルから道具が書く。aliases の five-hour limit・weekly limit は公式の名前、session limit は Claude Code の旧い呼び方として置いた。公式の日本語版では「利用制限」の語も使われるので、用語集で表記を決める。「/clear すれば上限は戻るのか」（00 §4）の答えはこのページが持ち（sign と要約）、context の when-to-start-fresh から指される。/clear が上限を戻さなくても、関係のない作業の間で区切る価値は残るので、when-to-start-fresh を related に置いた（2026-11-04 統合：context#9）。"
 
   - id: what-uses-up-limits
     chapter: 上限と節約
@@ -129,6 +129,7 @@ pages:
     pitfalls: []
     summary: "個人向けのプランを、使う面・Claude Code の量・上位のモデルの扱い・上限の形で比べて選べる。料金と倍率は確認日つきの表で確かめる。"
     signs:
+      - {type: goal, text: "どのプランにすべきか迷う"}
       - {type: goal, text: "今のプランから上げるべきか迷う"}
       - {type: situation, text: "プランの名前が変わり、どれが前のどれに当たるか分からない"}
       - {type: goal, text: "Claude Code をよく使うので、合うプランを知りたい"}
@@ -149,7 +150,7 @@ pages:
       - "research/22 #32（2026-10-30 に旧 Max 20x が Ultra に改名、Max は1段）・#34・#35・#44（Ultra の週の上限が旧 20x と同じかは一次資料にない）"
       - "research/26 #19・#20・§3.13"
       - "04 Q3（円換算。二次情報）"
-    notes: "2026-10-30 の改名（旧 Max 20x が Ultra になり、Max は1段）は、節 plan-table の表（数値ファイルから生成）と、台帳の max-5x-or-20x、旧名からの引き方は start の glossary（changes の old-and-new-names をまとめた先）、改名の時期は changes の change-timeline-2026 で扱う。プランの名前と料金は題名・summary・signs・aliases に書かない。旧 20x と Ultra で使える量が同じかは一次資料にないので、本文で断定しない（research/22 #44）。組織のプランは team の enterprise-vs-team-plans。"
+    notes: "2026-10-30 の改名（旧 Max 20x が Ultra になり、Max は1段）は、節 plan-table の表（数値ファイルから生成）と、台帳の max-5x-or-20x、旧名からの引き方は start の glossary（changes の old-and-new-names をまとめた先）、改名の時期は changes の change-timeline-2026 で扱う。プランの名前と料金は題名・summary・signs・aliases に書かない。旧 20x と Ultra で使える量が同じかは一次資料にないので、本文で断定しない（research/22 #44）。組織のプランは team の enterprise-vs-team-plans。逆引きの「Pro と Max のどちらにすべきか」（00 §4）は、プランの名前を使わない「どのプランにすべきか迷う」の形で signs に入れた（2026-11-04 統合：B #60・symptoms#15）。"
 
   - id: before-using-fable
     chapter: プランと支払い
@@ -166,7 +167,7 @@ pages:
     pitfalls: []
     summary: "最上位のモデルは、プランの枠との関係がほかのモデルと違い、使用量の減りも速いことが分かる。使う前に、どの枠や支払いから引かれるかと、本当に要る仕事かを確かめる。"
     signs:
-      - {type: goal, text: "最上位のモデルを試してみたい"}
+      - {type: goal, text: "いちばん高性能なモデルを使ってみたい"}
       - {type: symptom, text: "上位のモデルを少し使っただけで、残りの枠が大きく減った"}
     prerequisites: [how-usage-limits-work, choosing-a-model]
     related: [usage-credits-basics, choosing-a-plan, "current-models#fable-and-mythos", what-uses-up-limits, harness-over-model]
@@ -183,7 +184,7 @@ pages:
       - "02 §2-4（Usage credits と Fable の扱い）・§2-2（Fable の消費は速い。倍率は非公開）"
       - "research/22 #34（Ultra を足す。Claude Code で使える版）"
       - "research/26 #22（料金のページの「週上限の半分まで」と、Max・Ultra の記事の「別の週上限」の書き方の違い）"
-    notes: "料金のページと Max・Ultra の記事で、上位のモデルの枠の書き方が違う（research/26 #22）。数値ファイルに両方の出典を残し「食い違いあり」とする（design §6.7）。モデルを選ぶ判断の本体は models の choosing-a-model、ここは費用と枠に絞る。"
+    notes: "料金のページと Max・Ultra の記事で、上位のモデルの枠の書き方が違う（research/26 #22）。数値ファイルに両方の出典を残し「食い違いあり」とする（design §6.7）。モデルを選ぶ判断の本体は models の choosing-a-model、ここは費用と枠に絞る。逆引きの「Fable を使ってみたい」（00 §4）は、同じ意味の goal（最上位のモデルを試してみたい）を、モデルの名前を使わないメインの決めた形「いちばん高性能なモデルを使ってみたい」に言い換えた（2026-11-04 統合：B #61・symptoms#15）。"
 
   - id: usage-credits-basics
     chapter: プランと支払い
@@ -350,7 +351,7 @@ pages:
     prerequisites: [what-uses-up-limits]
     related: [humans-set-the-parallel-limit, choosing-parallel-modes, goal-until-done, loop-and-scheduling, dynamic-workflows, agent-teams-experimental, research-in-subagents, checking-unattended-runs, decide-when-to-quit, open-ended-loop-trap, usage-credits-basics]
     tracks: [workflows, agent-teams, loop, goal, subagents]
-    outdated_advice: [ralph-loops, workflow-keyword-extra-usage]
+    outdated_advice: [ralph-loops, workflow-keyword-extra-usage, subagents-to-save-context]
     volatility: 高
     sections:
       - {title: "費用が膨らむ掛け算", anchor: multiplication}
@@ -366,7 +367,7 @@ pages:
       - "10 第16章（数十のエージェントの構成の費用は論評の推定）"
       - "11 第2節 分野14 p12#50（【競】実例の費用。時点依存。欧州の CTF の値は一つのプレプリントによる：11 第4節 #7）・p34#162（2025年の Research 機能の値。Claude Code の subagent に直接当てはまらない：11 第4節 #14）・p34#190（論評の推定）"
       - "research/22 #26（上限での自動の継続は3回で止まる）"
-    notes: "倍率は条件つきで数値ファイルに置く（research/23 #7）。実例の金額は時点依存・自己申告・一研究の値と明記し、summary と signs に書かない。"
+    notes: "倍率は条件つきで数値ファイルに置く（research/23 #7）。実例の金額は時点依存・自己申告・一研究の値と明記し、summary と signs に書かない。台帳の subagents-to-save-context（コンテキストを守るために subagent に調べさせる）を outdated_advice に入れた。現行の Best practices は、subagent は並列・うるさい出力を離す・独立のレビューに今も向くが、どれも追加のトークンがかかるとする（research/23 §3.7）ので、本数の掛け算の例として書く（2026-11-04 統合：M3）。"
 
   - id: when-ai-is-unavailable
     chapter: 任せて回すとき

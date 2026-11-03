@@ -23,7 +23,6 @@ pages:
     scenes: [開発, 文章, 調べもの]
     summary: "Claude は会話の外の事情を知らないものとして頼むと、依頼に何を書き足せばよいかが分かる。文脈を知らない同僚が読んで迷う依頼は、Claude も迷う。"
     signs:
-      - {type: symptom, text: "「いい感じに」と頼むと平凡なものが返ってくる"}
       - {type: symptom, text: "自分には当たり前の前提が伝わっていない"}
       - {type: goal, text: "頼み方の基本を一つだけ押さえたい"}
     prerequisites: []
@@ -35,7 +34,7 @@ pages:
       - {title: "期待以上を望むなら、そう書く", anchor: ask-for-more}
     visual: {kind: static, text: "同じ依頼文を、文脈を知らない同僚と Claude が読み、どちらも見えている範囲だけで判断する図"}
     materials: ["00 §3 分野04", "02 §4-1", "02 §4-5", "03 Q5 P1（訂正つき：research/25 P9）", "00 §4 返答と品質の困りごと"]
-    notes: "役割の一文は API の system prompt の勧め（02 §4-5）。アプリと Claude Code では指示の置き場所（app の where-to-put-instructions、extend の CLAUDE.md のページ）につなぐ"
+    notes: "役割の一文は API の system prompt の勧め（02 §4-5）。アプリと Claude Code では指示の置き場所（app の where-to-put-instructions、extend の CLAUDE.md のページ）につなぐ。sign の『「いい感じに」と頼むと平凡なものが返ってくる』は、症状の not-what-i-meant にある同じ項目（00 §4）なので外した（逆引きで症状のページの振り分けを飛ばさないため）（2026-11-04 統合：M2）"
 
   - id: give-reasons
     chapter: 頼み方の原則
@@ -76,7 +75,6 @@ pages:
     scenes: [開発, 文章, データ分析]
     summary: "依頼に対象・状況・完了の形・倣う手本の4点を書くと、Claude が推測で埋める所が減り、意図とのずれが減る。欠けている点が、次に書き足すものになる。"
     signs:
-      - {type: symptom, text: "頼んだものと違うものが出てくる"}
       - {type: symptom, text: "直してと頼んだのに、見当違いの場所を直された"}
       - {type: goal, text: "一回で意図どおりに動いてほしい"}
     prerequisites: [brief-a-new-colleague]
@@ -90,7 +88,7 @@ pages:
       - {title: "誤読されやすい所（仕様の解釈・境界の条件）", anchor: misreadings}
     visual: {kind: static, text: "4点のどれかが欠けたとき、Claude が推測で埋める所を色で示した依頼文の図"}
     materials: ["00 §3 分野04（行の注記：research/25 P9）", "00 §1（研究の段落の訂正）", "03 Q5 Takeaway・P1（訂正）", "research/25 P9・§3.1", "11 第2節 分野04 p12#105・p34#74・p12#106", "00 §4 返答と品質の困りごと"]
-    notes: "「熟練者との差は長さではなく具体性」は Anthropic の研究の結論ではない（research/25 P9）ので、summary・signs の根拠にせず、長さとの対比も書かない。4点は公式の Best practices を根拠にし、Before/After は Best practices の「Instead of / Try」から取る。研究を引くなら、熟練度が Claude の判定で暫定の結果であることを添える。誤読の類型の研究（11 第2節）は根拠の強さを添えて misreadings の節に置く"
+    notes: "「熟練者との差は長さではなく具体性」は Anthropic の研究の結論ではない（research/25 P9）ので、summary・signs の根拠にせず、長さとの対比も書かない。4点は公式の Best practices を根拠にし、Before/After は Best practices の「Instead of / Try」から取る。研究を引くなら、熟練度が Claude の判定で暫定の結果であることを添える。誤読の類型の研究（11 第2節）は根拠の強さを添えて misreadings の節に置く。sign の「頼んだものと違うものが出てくる」は症状の not-what-i-meant と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M2）"
 
   - id: show-examples
     chapter: 頼み方の原則
@@ -162,7 +160,7 @@ pages:
       - {type: symptom, text: "強く書いた指示を、関係のない場面にまで当てはめる"}
       - {type: goal, text: "絶対に守らせたい規則がある"}
     prerequisites: [request-vs-lock]
-    related: [instructions-ignored, when-to-lock, say-what-you-want, claude-md-length, give-reasons, request-lock-table, after-switching-models, outdated-advice-ledger]
+    related: [instructions-ignored, when-to-lock, say-what-you-want, claude-md-length, give-reasons, request-lock-table, after-switching-models, model-quirks, outdated-advice-ledger]
     tracks: [claude-md]
     outdated_advice: [important-caps, keep-going-dont-be-lazy]
     volatility: 中
@@ -172,7 +170,7 @@ pages:
       - {title: "「手を抜くな」「続けて」と書く代わりに", anchor: keep-going}
       - {title: "かつて強調が効いた理由", anchor: history}
     materials: ["00 §3 分野04（行の注記：research/23 §3.7）", "00 §1 対立点の表「強調語」（注記）", "00 §5 台帳の IMPORTANT の行（注記）と keep going の行", "research/23 §3.1・§3.7・§4.2", "02 §4-11", "03 Q2 C9"]
-    notes: "「強調は1行だけにする」は改稿前の Best practices の勧め（research/23 §3.7）なので、summary・signs の根拠にせず、現行の版の「守られないなら、ファイルを短くするか hook にする」を軸にする。強調の効き目は実践者の間で割れるので、公式の立場・実践者の幅・この教材の推奨の三段で書く（design §6.6）。台帳の時期は「Best practices の改稿（2026-10-27 ごろ）」（research/23 §4.2）"
+    notes: "「強調は1行だけにする」は改稿前の Best practices の勧め（research/23 §3.7）なので、summary・signs の根拠にせず、現行の版の「守られないなら、ファイルを短くするか hook にする」を軸にする。強調の効き目は実践者の間で割れるので、公式の立場・実践者の幅・この教材の推奨の三段で書く（design §6.6）。台帳の時期は「Best practices の改稿（2026-10-27 ごろ）」（research/23 §4.2）。強い言い方が過剰に効くというモデルごとの癖は models の model-quirks を関連で指す（2026-11-04 統合：prompting#4）"
 
   # ── 何をどこまで頼むか ──
   - id: suggest-or-do
@@ -189,7 +187,6 @@ pages:
     scenes: [開発]
     summary: "「提案して」と「変えて」で Claude の動きは変わる。提案だけか、実行までか、懸念があれば止まって相談してほしいのかを、動詞ではっきり示す。"
     signs:
-      - {type: symptom, text: "提案だけで止まり、実行してくれない"}
       - {type: symptom, text: "相談のつもりだったのに、ファイルを書き換えられた"}
       - {type: goal, text: "大事な方針の変更では、手を止めて相談してほしい"}
     prerequisites: [four-specifics]
@@ -200,7 +197,7 @@ pages:
       - {title: "既定の振る舞いを決める（すぐ実行するか、指示を待つか）", anchor: default}
       - {title: "懸念があれば止まって相談させる", anchor: stop-and-discuss}
     materials: ["00 §3 分野04", "02 §4-11", "02 §4-13", "11 第2節 分野04 p56#12・p56#123", "00 §4 返答と品質の困りごと"]
-    notes: "モデルごとの既定の癖（止まりすぎ・やりすぎ）は models の model-quirks が持つ。懸念を一文で述べて続けさせる書き方と、方針や評価に関わる変更では手を止めて議論させる書き方を対にして示す（11 第2節。最新のモデルの手引きに同じ記述があるかは未確認）"
+    notes: "モデルごとの既定の癖（止まりすぎ・やりすぎ）は models の model-quirks が持つ。懸念を一文で述べて続けさせる書き方と、方針や評価に関わる変更では手を止めて議論させる書き方を対にして示す（11 第2節。最新のモデルの手引きに同じ記述があるかは未確認）。sign の「提案だけで止まり、実行してくれない」は症状の keeps-stopping と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M2）"
 
   - id: state-the-scope
     chapter: 何をどこまで頼むか
@@ -216,18 +213,17 @@ pages:
     scenes: [開発]
     summary: "依頼に、やること・やらないこと・触ってよい範囲を書くと、頼んでいない機能や変更が増えにくくなる。例外を許さない範囲は、言葉ではなく権限やフックで縛る。"
     signs:
-      - {type: symptom, text: "頼んでいない機能やファイルが増える"}
       - {type: symptom, text: "小さな修正のつもりが、大きな書き換えになった"}
       - {type: goal, text: "触ってよいファイルを限りたい"}
     prerequisites: [four-specifics, request-vs-lock]
-    related: [does-more-than-asked, say-what-you-want, suggest-or-do, permission-rules, protected-paths, model-quirks]
+    related: [does-more-than-asked, say-what-you-want, suggest-or-do, permission-rules, protected-paths, "when-to-lock#spoken-rules-fade", model-quirks]
     volatility: 低
     sections:
       - {title: "やらないことを書く", anchor: anti-goals}
       - {title: "いまの作業に要る最小限を求める", anchor: minimum}
       - {title: "例外を許さない範囲は仕組みで縛る（二層）", anchor: two-layers}
     materials: ["00 §3 分野04", "02 §4-12", "02 §4-13", "03 Q5 P7", "requirements §6.7（禁止事項を CLAUDE.md に書くか）", "00 §4 返答と品質の困りごと"]
-    notes: "requirements §6.7 の4行目の統合方針を two-layers の節に置く。会話で言った禁止が圧縮で消えうることは、enforce の会話で言った禁止事項のページにリンクする"
+    notes: "requirements §6.7 の4行目の統合方針を two-layers の節に置く。会話で言った禁止が圧縮で消えうることは、enforce の when-to-lock の節 spoken-rules-fade（enforce が spoken-prohibitions-fade をまとめた先）にリンクする。sign の「頼んでいない機能やファイルが増える」は症状の does-more-than-asked と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：enforce#2・M2）"
 
   - id: ask-for-outcomes
     chapter: 何をどこまで頼むか
@@ -296,20 +292,19 @@ pages:
     scenes: [文章, 開発, データ分析]
     summary: "書式・長さ・要約の有無は望む形で指定し、頼む文の書き方も出力の形に合わせる。機械が読む出力で形を必ず守らせたいなら、形式を保証する仕組みを使う。"
     signs:
-      - {type: symptom, text: "回答が長すぎる・短すぎる"}
       - {type: symptom, text: "箇条書きと見出しばかりの返事になる"}
       - {type: goal, text: "決まった形式で必ず返させたい"}
     prerequisites: [say-what-you-want]
-    related: [show-examples, structured-outputs-basics, model-quirks, xml-tags, requesting-prose, less-ai-sounding-japanese, output-style-modes]
+    related: [show-examples, structured-outputs-basics, model-quirks, xml-tags, requesting-prose, less-ai-sounding-japanese, output-style-modes, "where-to-put-instructions#styles"]
     tracks: [structured-outputs]
-    outdated_advice: [prefill-for-json]
+    outdated_advice: [prefill-for-json, styles-for-tone]
     volatility: 中
     sections:
       - {title: "頼む文の書き方が出力に映る", anchor: mirror}
       - {title: "長さと要約の有無", anchor: length}
       - {title: "必ず守らせたい形式は仕組みで", anchor: guaranteed}
-    materials: ["00 §3 分野04", "02 §4-10", "02 §4-8", "02 §4-13", "00 §5 台帳の prefill の行", "00 §4 返答と品質の困りごと"]
-    notes: "モデルごとの冗長さの癖は models の model-quirks に置く。形式の保証（structured outputs）の使い方の本体は api の structured-outputs-basics"
+    materials: ["00 §3 分野04", "02 §4-10", "02 §4-8", "02 §4-13", "00 §5 台帳の prefill の行", "00 §4 返答と品質の困りごと", "research/26 §3.1（Styles のスキルへの移行）"]
+    notes: "モデルごとの冗長さの癖は models の model-quirks に置く。形式の保証（structured outputs）の使い方の本体は api の structured-outputs-basics。アプリで形式と長さをいつも揃えたいときの置き場所は、Styles の移行の後の公式の使い分け（いつもなら Claude への指示、場面ごとならスキル。research/26 §3.1）で書き、台帳 styles-for-tone と app の where-to-put-instructions#styles を指す。sign の「回答が長すぎる・短すぎる」は症状の not-what-i-meant と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M3・M2）"
 
   # ── 資料と入力の渡し方 ──
   - id: long-context-first
@@ -585,8 +580,8 @@ pages:
     sections:
       - {title: "全文を求める指示が断られる理由", anchor: refusal}
       - {title: "短い根拠と思考の要約で読む", anchor: alternatives}
-    materials: ["00 §3 分野04", "02 §4-7", "00 §5 台帳の <thinking> の行", "research/26 §3.3 (b)2", "05 §2-3", "00 §4 返答と品質の困りごと"]
-    notes: "registry の優先度（任意）を推奨に上げた：推論の全文を求める指示は面を問わず拒否の引き金になり（research/26 §3.3）、symptoms の refused-or-blocked と safety の when-requests-are-refused からの振り分け先になるため。level も任せるから整えるに下げた（level_evidence）。推論の全文を求めて止められたときも課金される分類がある（research/26 §3.3 (d)）ことを refusal の節で触れる（分類の名前と課金の扱いは数値ファイル）"
+    materials: ["00 §3 分野04", "02 §4-7", "00 §5 台帳の <thinking> の行", "research/26 §3.3 (b)2・(d)", "research/26 #7（推論の抜き出しの分類は、止まっても課金される。2026-09 時点）", "05 §2-3", "00 §4 返答と品質の困りごと"]
+    notes: "registry の優先度（任意）を推奨に上げた：推論の全文を求める指示は面を問わず拒否の引き金になり（research/26 §3.3）、symptoms の refused-or-blocked と safety の when-requests-are-refused からの振り分け先になるため。level も任せるから整えるに下げた（level_evidence）。推論の全文を求めて止められたときも課金される分類がある（research/26 §3.3 (d)）ことを refusal の節で触れる（分類の名前と課金の扱いは数値ファイル）。課金の注意の出どころとして research/26 #7 を materials に足した（2026-11-04 統合：symptoms#6）"
 
   # ── 型と例文 ──
   - id: before-after-prompts

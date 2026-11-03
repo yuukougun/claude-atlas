@@ -33,7 +33,7 @@ pages:
       - {type: symptom, text: "回答が長すぎる・短すぎる"}
       - {type: symptom, text: "文章が AI っぽい"}
     prerequisites: [brief-a-new-colleague]
-    related: [four-specifics, show-examples, let-claude-ask, say-what-you-want, output-shape, suggest-or-do, refine-in-conversation, rewind-dont-correct, build-on-results, requesting-prose, less-ai-sounding-japanese, images-and-voice, model-quirks, six-causes, does-more-than-asked, repeating-the-same-explanation, inconsistent-japanese-style]
+    related: [four-specifics, show-examples, let-claude-ask, spec-first, say-what-you-want, output-shape, suggest-or-do, refine-in-conversation, rewind-dont-correct, build-on-results, requesting-prose, less-ai-sounding-japanese, images-and-voice, model-quirks, six-causes, does-more-than-asked, repeating-the-same-explanation, inconsistent-japanese-style]
     tracks: []
     outdated_advice: []
     volatility: 中
@@ -41,7 +41,7 @@ pages:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     visual: {kind: static, text: "同じ依頼の Before/After（対象・状況・完了・手本を足すと何が変わるか）"}
     materials: ["00 §3 分野18", "00 §4 返答と品質の困りごと", "00 §3 分野04", "11 第2節 分野04 p12#105・p34#74・p12#106", "research/25 P9・§3.1（具体性の4要素は研究の結果ではなく、公式の Best practices の Write a specific prompt に近い）"]
-    notes: "「具体性の4点」を研究の結果として書かない（research/25 P9）。文章が AI っぽい（00 §4 の原因①）はこのページで受け、文体や表記の揺れ（原因④）は inconsistent-japanese-style で受ける"
+    notes: "「具体性の4点」を研究の結果として書かない（research/25 P9）。文章が AI っぽい（00 §4 の原因①）はこのページで受け、文体や表記の揺れ（原因④）は inconsistent-japanese-style で受ける。大きな機能を作らせて意図と違うものが出たときは、インタビューで仕様を先に固める recipes の spec-first（任せる）へ振り分ける（2026-11-04 統合：recipes#7）"
 
   - id: does-more-than-asked
     chapter: 返答と品質
@@ -64,14 +64,14 @@ pages:
       - {type: symptom, text: "小さな修正を頼んだのに周りまで書き換えられる"}
       - {type: symptom, text: "使わない抽象化や設定項目を勝手に足される"}
     prerequisites: [state-the-scope]
-    related: [suggest-or-do, ask-for-outcomes, effort-levels, model-quirks, when-to-plan, diffs-humans-must-read, own-generated-code, independent-review, rewind-dont-correct, output-shape, not-what-i-meant, keeps-stopping, six-causes]
+    related: [suggest-or-do, ask-for-outcomes, effort-levels, model-quirks, when-to-plan, spec-first, diffs-humans-must-read, own-generated-code, independent-review, rewind-dont-correct, output-shape, not-what-i-meant, keeps-stopping, six-causes]
     tracks: [effort, plan-mode]
     outdated_advice: [keep-going-dont-be-lazy]
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 返答と品質の困りごと", "05 §1-4", "11 第2節 分野04 p12#105・p34#74（頼まれていない処理の追加）", "11 第2節 分野09 p56#8", "11 第1節 新分野案Y p12#61（デッドコードと保守性）", "00 §5 台帳（keep going は過剰作業の原因になる）"]
-    notes: "研究の数値（不具合の類型の割合など）は summary・signs に使わない。モデルの世代ごとの癖は本文で確認日付きにし、数値ファイルに置く（decisions「書き方の方針」7）"
+    notes: "研究の数値（不具合の類型の割合など）は summary・signs に使わない。モデルの世代ごとの癖は本文で確認日付きにし、数値ファイルに置く（decisions「書き方の方針」7）。範囲外を先に書いて合意する進め方は recipes の spec-first（任せる）へ振り分ける（2026-11-04 統合：recipes#7）"
 
   - id: keeps-stopping
     chapter: 返答と品質
@@ -94,14 +94,14 @@ pages:
       - {type: symptom, text: "長い作業を途中でやめて報告してくる"}
       - {type: symptom, text: "理由を言わずに止まっている"}
     prerequisites: [suggest-or-do, effort-levels]
-    related: [define-done, ask-for-outcomes, model-quirks, permission-modes-overview, goal-until-done, permission-to-stop, wrong-amount-of-approvals, does-more-than-asked, refused-or-blocked, lock-side-effects, six-causes]
+    related: [define-done, ask-for-outcomes, model-quirks, permission-modes-overview, "what-auto-mode-stops#when-blocked", goal-until-done, permission-to-stop, wrong-amount-of-approvals, does-more-than-asked, refused-or-blocked, lock-side-effects, six-causes]
     tracks: [effort, permission-modes, goal]
     outdated_advice: [keep-going-dont-be-lazy]
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 返答と品質の困りごと（提案だけで止まる）", "research/22 #11（判定が返らないまま止まる表示の不具合。v2.1.314〜317 で修正）", "research/23 §3.2（既定の effort はモデル×面で違う）"]
-    notes: "00 の「Sonnet の low・medium の癖」はモデルの世代の話なので summary・signs に書かず、本文で確認日付きにする。止まる権利（permission-to-stop）を外す方向の助言にしない（止まるべきところで止まるのは正しい）"
+    notes: "00 の「Sonnet の low・medium の癖」はモデルの世代の話なので summary・signs に書かず、本文で確認日付きにする。止まる権利（permission-to-stop）を外す方向の助言にしない（止まるべきところで止まるのは正しい）。auto モードの分類器に操作を止められて止まったときの見直しは enforce の what-auto-mode-stops#when-blocked、縛りの止めすぎは lock-side-effects へ振り分ける（どちらも任せる以上なので related）（2026-11-04 統合：enforce#7）"
 
   - id: refused-or-blocked
     chapter: 返答と品質
@@ -117,21 +117,21 @@ pages:
     prevents: [見えていない, 散らかっている, 合っていない]
     pitfalls: []
     scenes: [開発, 調べもの]
-    summary: "正当な依頼が断られた・止められたときに、会話の中の引き金・依頼の文脈・モデルのどれが効いているかを切り分け、公式が案内する手段で進め直す。"
+    summary: "正当な依頼が断られた・止められたときに、面ごとの表示から何が起きたかを読み、会話の中の引き金と依頼の文脈のどちらが効いているかを切り分けて、公式が案内する手段で進め直す。"
     signs:
       - {type: symptom, text: "正当な依頼なのに断られる"}
       - {type: symptom, text: "「新しい会話を始めて」と言われて続けられない"}
       - {type: symptom, text: "途中で別のモデルの返事に切り替わった"}
     prerequisites: [when-requests-are-refused, rewind-dont-correct]
-    related: [give-reasons, asking-for-reasoning, what-feedback-sends, checkpoints-and-rewind, choosing-a-model, current-models, keeps-stopping, followed-injected-instructions, when-to-start-fresh, isolate-with-safe-mode, six-causes]
-    tracks: [model-selection, checkpoints, refusals]
+    related: [give-reasons, "asking-for-reasoning#refusal", what-feedback-sends, checkpoints-and-rewind, current-models, keeps-stopping, followed-injected-instructions, when-to-start-fresh, isolate-with-safe-mode, six-causes]
+    tracks: [checkpoints, refusals]
     outdated_advice: []
     volatility: 高
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
       - {title: "面ごとの表示の違い", anchor: by-surface}
-    materials: ["research/26 #5・#6・#7・§3.3（公式の案内：面ごとの表示、会話全体の判定、巻き戻しと新しい会話、推論の全文を求めない、誤判定の報告、検証の制度、モデルを変える）", "decisions 2026-11-03「断られたときの頼み直し」と「書き方の方針（安全・面・表現）」3"]
-    notes: "新規：research/26 §3.3 が症状のページ「断られた・止められた」を提案し、decisions 2026-11-03 が書き方を決めている。registry にない。優先度は推奨（初版の必須の外で、需要を見て足す）。対処の本体は safety の when-requests-are-refused（safety の担当が新しく足したページ）で、ここは面ごとの表示と、会話の中の引き金・指示の中の推論の要求・モデルの切り分けに絞る。公式が案内する手段だけを書く（本当の目的と文脈を足す・巻き戻しや新しい会話・推論の全文を求める指示を外す・誤判定の報告・検証の制度・モデルを変える）。言い換え・分割・偽の文脈は書かない。表示の文と分類の名前は数値ファイルに置く（volatility 高）"
+    materials: ["research/26 #5・#6・#7・§3.3（公式の案内：面ごとの表示、会話全体の判定、巻き戻しと新しい会話、推論の全文を求めない、誤判定の報告、検証の制度。§3.3 (b) の5「モデルを変える」は、§4.3 の1 と decisions のとおり手段として書かない）", "decisions 2026-11-03「断られたときの頼み直し」と「書き方の方針（安全・面・表現）」3"]
+    notes: "新規：research/26 §3.3 が症状のページ「断られた・止められた」を提案し、decisions 2026-11-03 が書き方を決めている。registry にない。優先度は推奨（初版の必須の外で、需要を見て足す）。対処の本体は safety の when-requests-are-refused（safety の担当が新しく足したページ）で、ここは面ごとの表示の文と、会話の中の引き金・指示の中の推論の要求・自動の切り替えが起きたかの切り分けに絞り、手段の手順と、分類器と自動の切り替えの仕組みの本体は when-requests-are-refused に任せて繰り返さない（safety の notes の分担と同じ。節 by-surface は表示の文の違いを書く）。推論の全文を求める指示が止められる点は prompting の asking-for-reasoning#refusal を指す。公式が案内する手段だけを書く（本当の目的と文脈を足す〔偽らない〕・巻き戻しや新しい会話で引き金になった内容を外す〔推論の全文を求める指示が引き金なら、その指示を外す〕・誤判定を報告する・専門の仕事には検証の制度を案内する）。アプリの自動のモデルの切り替えは、表示の違い（途中で別のモデルの返事になる）から切り替えが起きたと読む手がかりとして触れ、「モデルを変える」を通すための手段として書かない（decisions 2026-11-03「断られたときの頼み直し」、research/26 §4.3 の1）。そのため related に choosing-a-model を、tracks に model-selection を置かない（切り替えの設定は refusals で追う。current-models は、切り替わった先のモデルの位置づけを読むために残した）。言い換え・分割・偽の文脈は書かない。表示の文と分類の名前は数値ファイルに置く（volatility 高）（2026-11-04 統合：prompting#1・M5）"
 
   - id: caves-when-pushed
     chapter: 返答と品質
@@ -243,14 +243,14 @@ pages:
       - {type: symptom, text: "インストールできないパッケージ名を書かれる"}
       - {type: symptom, text: "実行する環境で使えないライブラリを足される"}
     prerequisites: [why-hallucinations, choose-what-to-read]
-    related: [knowledge-cutoff, code-intelligence-plugins, tests-first, evidence-not-reports, fact-checking, connecting-mcp, vetting-extensions, read-specs-yourself, doesnt-know-latest, plausible-falsehoods, six-causes]
+    related: [knowledge-cutoff, code-intelligence-plugins, tests-first, evidence-not-reports, fact-checking, connecting-mcp, "vetting-extensions#dependencies", read-specs-yourself, doesnt-know-latest, plausible-falsehoods, six-causes]
     tracks: [plugins]
     outdated_advice: []
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "05 §1-7（存在しないパッケージと、後から登録されたパッケージの危険）", "11 第2節 分野18 p12#113（実行環境の制約を無視する型）", "11 第1節 分野16 p34#89（存在しない intrinsic）", "11 第2節 分野04 p12#105"]
-    notes: "存在しない名前のパッケージを入れる危険（後から攻撃者が登録しうる）があるので、原因⑥も問う。研究の割合の数値は summary・signs に使わない。依存を入れる前の確かめ方は safety に本体がない（open_issues）"
+    notes: "存在しない名前のパッケージを入れる危険（後から攻撃者が登録しうる）があるので、原因⑥も問う。研究の割合の数値は summary・signs に使わない。依存を入れる前の確かめ方は safety に本体がなかった（open_issues）が、safety の担当が vetting-extensions に節 dependencies を足したので、導入前の確かめ方はそこへ振り分ける（2026-11-04 統合：symptoms#5・recipes#7）"
 
   - id: doesnt-know-latest
     chapter: 事実と出典
@@ -347,7 +347,7 @@ pages:
     aliases: [会話が長いと精度が落ちる, 前提を忘れる, context rot]
     type: symptom
     level: 使う
-    level_evidence: "対話を続けるだけで最初に出会う（00 の L1）。context rot の説明（整える）は related に置いた"
+    level_evidence: "対話を続けるだけで最初に出会う（00 の L1）。context rot の説明（basics の context-rot）は、前提の when-to-start-fresh が前提にしているので related の先頭に置いた"
     priority: 必須
     wave: 1
     surfaces: [app, claude-code, api]
@@ -361,15 +361,15 @@ pages:
       - {type: symptom, text: "最初に伝えた前提を途中から忘れる"}
       - {type: symptom, text: "大量のログやテスト出力で会話が埋まっていく"}
     prerequisites: [rereads-whole-history, when-to-start-fresh]
-    related: [context-rot, attention-budget, tidy-the-desk, handoff-documents, long-chat-limits, research-in-subagents, inspect-context, hook-recipes, lost-in-the-middle, 1m-context, compact-and-auto-compact, going-in-circles, forgot-after-compaction, unexpected-memories, seems-less-capable, skipped-later-pages, six-causes]
+    related: [context-rot, attention-budget, tidy-the-desk, rewind-dont-correct, handoff-documents, long-chat-limits, "choose-what-to-read#trim-output", research-in-subagents, inspect-context, "hook-recipes#filter-test-output", lost-in-the-middle, 1m-context, compact-and-auto-compact, going-in-circles, forgot-after-compaction, unexpected-memories, seems-less-capable, skipped-later-pages, six-causes]
     tracks: [context-window, compaction, clear]
-    outdated_advice: [save-context-for-200k]
+    outdated_advice: [save-context-for-200k, subagents-to-save-context]
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     visual: {kind: static, text: "机の上に無関係な紙が積もっていく図（必要なものが埋もれる）"}
     materials: ["00 §3 分野18", "00 §4 会話と文脈の困りごと", "05 §1-11・§2-1", "research/23 #1・§3.1（現行の Best practices は「埋まるほど性能が落ちる」を前提にしない。関係のない作業の間の /clear は質とコストのために勧める）"]
-    notes: "「コンテキストはすぐ埋まり、埋まるほど性能が落ちる」は改稿前の Best practices の前提で、現行の版にない（research/23 #1）。summary・signs の根拠にせず、無関係な情報が混ざること（context rot）と、圧縮で初めの指示が失われうることで書く。00 §4 の「大量のログやテスト出力で会話が埋まる」（原因②）はこのページで受ける"
+    notes: "「コンテキストはすぐ埋まり、埋まるほど性能が落ちる」は改稿前の Best practices の前提で、現行の版にない（research/23 #1）。summary・signs の根拠にせず、無関係な情報が混ざること（context rot）と、圧縮で初めの指示が失われうることで書く。00 §4 の「大量のログやテスト出力で会話が埋まる」（原因②）はこのページで受け、安い順に、出力を要点に絞ってから入れる（context の choose-what-to-read#trim-output。整えるなので related）、出力の多い調査を任せる（research-in-subagents）、テストの出力を hook で絞る（enforce の hook-recipes#filter-test-output）へ振り分ける。委任（research-in-subagents）は出力の多い調査を本筋から離すために勧め、コンテキストの節約を理由にしない（台帳の subagents-to-save-context、research/23 §3.7）。訂正を重ねずに巻き戻す手（context の rewind-dont-correct。整えるなので related）も振り分け先にした。basics の context-rot は使うの段になったが、前提の when-to-start-fresh がすでに前提にしているので、直接の前提に重ねなかった（catalog/README §4.4 の1）（2026-11-04 統合：basics#6・context#2・M3・I3 からの依頼）"
 
   - id: going-in-circles
     chapter: 会話と文脈
@@ -392,14 +392,14 @@ pages:
       - {type: symptom, text: "直してと言うたびに同じ間違いが戻ってくる"}
       - {type: symptom, text: "訂正しても別の形で同じ誤りが出る"}
     prerequisites: [rewind-dont-correct, when-to-start-fresh, context-rot]
-    related: [checkpoints-and-rewind, tidy-the-desk, keep-failure-lessons, build-on-results, fix-a-bug, let-claude-ask, define-done, stuck-in-a-check-loop, wont-rethink-approach, insists-on-mistakes, forgets-in-long-chats, six-causes]
+    related: [checkpoints-and-rewind, tidy-the-desk, keep-failure-lessons, handoff-documents, build-on-results, "fix-a-bug#when-stuck", let-claude-ask, define-done, decide-when-to-quit, stuck-in-a-check-loop, wont-rethink-approach, insists-on-mistakes, forgets-in-long-chats, six-causes]
     tracks: [checkpoints, clear]
     outdated_advice: []
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §2（訂正が2回失敗したら /clear して書き直す）", "00 §4 会話と文脈の困りごと", "05 §1-1", "11 第2節 分野18 p34#72（処理の流れを説明させて原因に着いた日本語の例）", "11 第2節 分野05 p34#71・p56#84", "11 第2節 分野16 p34#69・p34#70（幻覚ループ。数値は未確認）", "research/25 §3.1（現行の Best practices の勧め）"]
-    notes: "訂正の回数の目安は公式の版に依存するので、本文で確認日付きにする。人の側では、費やした時間の分だけ同じ道を続けてしまう（ウ）も問う。ループが長い無人の作業になったものは stuck-in-a-check-loop、方針の誤りは wont-rethink-approach へ振り分ける"
+    notes: "訂正の回数の目安は公式の版に依存するので、本文で確認日付きにする。人の側では、費やした時間の分だけ同じ道を続けてしまう（ウ）も問う。ループが長い無人の作業になったものは stuck-in-a-check-loop、方針の誤りは wont-rethink-approach へ振り分ける。学んだことを書いて新しく始める手は context の handoff-documents、続けるかやめるかを先に決めた基準で判断するのは judgment の decide-when-to-quit（どちらも任せるなので前提にせず related に置いた）、バグの修正で行き詰まったときの巻き戻しと頼み直しは recipes の fix-a-bug#when-stuck へ振り分ける（2026-11-04 統合：context#2・judgment#3・recipes#7）"
 
   - id: forgot-after-compaction
     chapter: 会話と文脈
@@ -421,14 +421,14 @@ pages:
       - {type: symptom, text: "会話で禁止したことを圧縮の後にやられた"}
       - {type: symptom, text: "自動圧縮の後から作業の進め方が変わった"}
     prerequisites: [what-survives-compaction, promises-after-compaction]
-    related: [compact-and-auto-compact, handoff-documents, progress-files, what-to-put-in-claude-md, when-to-lock, permission-rules, hook-recipes, instructions-ignored, replies-in-english, forgets-in-long-chats, six-causes]
+    related: ["compact-and-auto-compact#idle-compaction", handoff-documents, progress-files, what-to-put-in-claude-md, "path-scoped-rules#after-compaction", "when-to-lock#spoken-rules-fade", permission-rules, hook-recipes, instructions-ignored, replies-in-english, forgets-in-long-chats, six-causes]
     tracks: [compaction, claude-md, permissions, hooks]
     outdated_advice: []
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 会話と文脈の困りごと", "05 §1-6", "research/23 #6・§3.4（圧縮の後に残るものの一覧。skill の一覧は作り直して入る）", "research/22 #17（圧縮まわりの不具合の修正。版の下限）", "11 第2節 分野18 p34#110（圧縮で手順が飛んだ日本語の例）"]
-    notes: "registry の notes の重なり（basics の what-survives-compaction・context の promises-after-compaction・enforce の spoken-prohibitions-fade）は、なぜ・残し方・縛り方の本体として前提と関連に置き、ここは症状からの振り分けに絞る。11 3-2 #5 の「skill の一覧は戻らない」は誤り（research/23 #6）なので使わない"
+    notes: "registry の notes の重なり（basics の what-survives-compaction・context の promises-after-compaction・enforce の spoken-prohibitions-fade）は、なぜ・残し方・縛り方の本体として前提と関連に置き、ここは症状からの振り分けに絞る。11 3-2 #5 の「skill の一覧は戻らない」は誤り（research/23 #6）なので使わない。enforce の spoken-prohibitions-fade は when-to-lock にまとめられたので、会話だけで伝えた禁止が薄れる理由と縛り方は when-to-lock#spoken-rules-fade を指す。paths 付きの rules は引き金のファイルを読むまで戻らない点は extend の path-scoped-rules#after-compaction、席を外した間に起きる圧縮は context の compact-and-auto-compact#idle-compaction へ振り分ける（2026-11-04 統合：context#2・enforce#2・enforce#7・extend#9）"
 
   - id: unexpected-memories
     chapter: 会話と文脈
@@ -482,7 +482,7 @@ pages:
       - {type: symptom, text: "作った skill が使われない"}
       - {type: symptom, text: "CLAUDE.md を書き足すほど守られなくなった"}
     prerequisites: [request-vs-lock, where-instructions-sit, when-to-lock]
-    related: [claude-md-length, what-to-put-in-claude-md, path-scoped-rules, claude-md-loading-order, emphasis-words, inspect-context, skill-descriptions, request-lock-table, hooks-basics, block-with-exit-2, hook-recipes, permission-rules, where-to-put-instructions, forgot-after-compaction, replies-in-english, repeating-the-same-explanation, inconsistent-japanese-style, isolate-with-safe-mode, lock-side-effects, six-causes]
+    related: [claude-md-length, what-to-put-in-claude-md, path-scoped-rules, claude-md-loading-order, emphasis-words, inspect-context, skill-descriptions, hook-vs-skill, request-lock-table, hooks-basics, hook-recipes, permission-rules, where-to-put-instructions, forgot-after-compaction, replies-in-english, repeating-the-same-explanation, inconsistent-japanese-style, isolate-with-safe-mode, lock-side-effects, six-causes]
     tracks: [claude-md, rules, skills, hooks, permissions]
     outdated_advice: [important-caps]
     volatility: 中
@@ -490,7 +490,7 @@ pages:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     visual: {kind: static, text: "お願いと鍵の二層の図（CLAUDE.md は理由と相談の基準、例外のない禁止は deny と hook）"}
     materials: ["00 §3 分野18", "00 §4 指示と仕組みの困りごと（守られない・skill が使われない）", "05 §1-5", "research/23 §3.1・§3.7（強調を足しても守られないときは、ファイルを短くするか hook にする。「強調は1行だけ」は改稿前の勧め）", "research/27 §3.2（CLAUDE.md は指示で、届かない subagent がある）", "requirements §6.7（禁止事項は二層）"]
-    notes: "00 §4 の「作った skill が使われない」（原因①）はこのページで受け、description の書き方（extend の skill-descriptions）へ振り分ける。「強調は1行だけ」は改稿前の Best practices の勧めなので、summary・signs の根拠にしない（00 §5 の注記、research/23 §3.7）"
+    notes: "00 §4 の「作った skill が使われない」（原因①）はこのページで受け、description の書き方（extend の skill-descriptions）へ振り分ける。「強調は1行だけ」は改稿前の Best practices の勧めなので、summary・signs の根拠にしない（00 §5 の注記、research/23 §3.7）。手順をスキルのままにするか、フックで必ず走らせるかの選び分けは extend の hook-vs-skill へ振り分ける。related が上限の20件になるので、block-with-exit-2 を外した（related の hooks-basics と hook-recipes から届く）（2026-11-04 統合：extend#9）"
 
   - id: repeating-the-same-explanation
     chapter: 指示と仕組み
@@ -506,7 +506,7 @@ pages:
     prevents: [見えていない]
     pitfalls: []
     scenes: [開発, 文章, チーム]
-    summary: "毎回同じ背景や手順を説明している状態から、どの説明をどの置き場所（指示・Project・CLAUDE.md・skill）に移すかを決める。"
+    summary: "毎回同じ背景や手順を説明している状態から、どの説明をどの置き場所（指示・プロジェクト・CLAUDE.md・スキル）に移すかを決める。"
     signs:
       - {type: symptom, text: "毎回同じ背景を説明している"}
       - {type: symptom, text: "同じ手順書を何度も貼っている"}
@@ -514,12 +514,12 @@ pages:
     prerequisites: [where-to-put-instructions]
     related: [when-to-add-what, using-projects, init-and-first-claude-md, what-to-put-in-claude-md, how-skills-load, writing-skills, how-memory-works, path-scoped-rules, share-team-settings, instructions-ignored, unexpected-memories, not-what-i-meant, six-causes]
     tracks: [claude-md, skills, projects, project-instructions, personal-instructions, app-memory]
-    outdated_advice: [hash-to-memorize, commands-directory]
+    outdated_advice: [hash-to-memorize, commands-directory, styles-for-tone]
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18（足すタイミング表への入口）", "00 §4 返答と品質の困りごと（毎回同じ背景）・指示と仕組みの困りごと（同じ手順書を貼っている）", "00 §3 分野06・分野08", "research/26 #1〜#3（アプリの指示の置き場所から Styles を外す）"]
-    notes: "アプリの置き場所に Styles を挙げない（research/26 #1〜#3、registry の notes）"
+    notes: "アプリの置き場所に Styles を挙げない（research/26 #1〜#3、registry の notes）。Styles で調子と形式を切り替える旧い勧めは台帳の styles-for-tone への逆リンクにした。summary の置き場所の名前は公式の日本語版の表記（プロジェクト・スキル）にそろえた（2026-11-04 統合：M1・M3）"
 
   # ── 日本語の出力 ──
   - id: replies-in-english
@@ -541,15 +541,15 @@ pages:
       - {type: symptom, text: "返事が英語になる"}
       - {type: symptom, text: "途中から英語に切り替わって戻らない"}
       - {type: symptom, text: "ツールの結果を読んだ後の一言だけ英語になる"}
-    prerequisites: [align-japanese-output, can-i-prompt-in-japanese]
-    related: [keep-replies-in-japanese, commit-and-comment-language, stop-hooks, hook-recipes, output-style-modes, settings-layers, cloud-sessions-and-teleport, model-quirks, what-subagents-dont-inherit, forgot-after-compaction, instructions-ignored, inconsistent-japanese-style, request-vs-lock, isolate-with-safe-mode, six-causes]
+    prerequisites: [keep-replies-in-japanese, can-i-prompt-in-japanese]
+    related: [align-japanese-output, commit-and-comment-language, stop-hooks, hook-recipes, output-style-modes, settings-layers, cloud-sessions-and-teleport, model-quirks, what-subagents-dont-inherit, forgot-after-compaction, instructions-ignored, inconsistent-japanese-style, request-vs-lock, isolate-with-safe-mode, six-causes]
     tracks: [language-setting, settings, output-styles, claude-md, hooks]
     outdated_advice: []
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18・分野15", "00 §4 返答と品質の困りごと", "research/27 §3.2（日本語の出力を揃える公式の仕組みと効く範囲）・§3.3（英語への回帰の一次の記録。根拠の強さ：中）・§4 P13（診断の確認欄の順）・#3・#6・#7", "decisions 2026-11-03「工程2で確かめた事実」（英語への回帰）"]
-    notes: "診断の順は research/27 P13 の案（language の設定と層 → リポジトリの設定 → output style → モデル → 英語のツール出力・subagent の直後か → クラウドのセッションか → Stop hook）を、六つの原因の順にそろえて書く。issue の件数と利用者の数えた割合は自己申告の値で、summary・signs に使わず、本文で確認日と根拠の強さ（中）を付ける。対処の本体は japanese の align-japanese-output（手段の選び分け。japanese の担当が新しく足したページ）と keep-replies-in-japanese（registry では任せるなので前提に置けず related に置いた）"
+    notes: "診断の順は research/27 P13 の案（language の設定と層 → リポジトリの設定 → output style → モデル → 英語のツール出力・subagent の直後か → クラウドのセッションか → Stop hook）を、六つの原因の順にそろえて書く。issue の件数と利用者の数えた割合は自己申告の値で、summary・signs に使わず、本文で確認日と根拠の強さ（中）を付ける。対処の本体は japanese の keep-replies-in-japanese（language の設定・指示・Stop hook の手順。japanese の担当が整えるの段にした）と align-japanese-output（お願いと鍵の手段の選び分け。japanese の担当が新しく足したページ）。keep-replies-in-japanese を前提にし、それが前提にする align-japanese-output は直接の前提に重ねず related の先頭に置いた（catalog/README §4.4 の1）（2026-11-04 統合：japanese#2・symptoms#2）"
 
   - id: inconsistent-japanese-style
     chapter: 日本語の出力
@@ -573,12 +573,12 @@ pages:
     prerequisites: [align-japanese-output, consistent-politeness, consistent-notation]
     related: [textlint-hook, show-examples, less-ai-sounding-japanese, documents-in-japanese, requesting-prose, hook-recipes, replies-in-english, not-what-i-meant, instructions-ignored, six-causes]
     tracks: [hooks, skills]
-    outdated_advice: []
+    outdated_advice: [styles-for-tone]
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §4 返答と品質の困りごと（です・ますとだ・であるが混ざる・「サーバー」と「サーバ」）", "00 §2（原因④の典型的な症状に文体の揺れ）", "00 §3 分野15", "research/27 §3.4（文体・表記を仕組みで揃える方法。公式の textlint の例はない）"]
-    notes: "新規：00 §4 の2項目（原因④）の受け皿になる症状のページがなく、requirements §1 の核「日本語の出力品質」（decisions 2026-11-03 で第一波に足した）の症状側の入口になる。対処の本体は japanese の align-japanese-output（手段の選び分け）・consistent-politeness・consistent-notation・textlint-hook。文章が AI っぽい（原因①）は not-what-i-meant で受ける。優先度は推奨"
+    notes: "新規：00 §4 の2項目（原因④）の受け皿になる症状のページがなく、requirements §1 の核「日本語の出力品質」（decisions 2026-11-03 で第一波に足した）の症状側の入口になる。対処の本体は japanese の align-japanese-output（手段の選び分け）・consistent-politeness・consistent-notation・textlint-hook。文章が AI っぽい（原因①）は not-what-i-meant で受ける。優先度は推奨。文体を Styles で切り替える旧い勧めは、文体をそろえる手段に挙げず、台帳の styles-for-tone への逆リンクにした（research/26 #1）（2026-11-04 統合：M3）"
 
   # ── 完了と検証 ──
   - id: claims-done-but-isnt
@@ -603,7 +603,7 @@ pages:
       - {type: symptom, text: "計画したはずの確認を実際にはやっていない"}
       - {type: symptom, text: "「ほかに該当する箇所はない」と言い切られたが残っていた"}
     prerequisites: [define-done, evidence-not-reports]
-    related: [verification-ladder, agent-loop, independent-review, tests-first, visual-checks, goal-until-done, stop-hooks, checking-unattended-runs, does-double-check-work, rewrote-tests-to-pass, misses-broken-evaluation, blames-the-tools, six-causes]
+    related: [verification-ladder, agent-loop, independent-review, tests-first, "fix-a-bug#no-symptom-patches", visual-checks, goal-until-done, stop-hooks, checking-unattended-runs, does-double-check-work, rewrote-tests-to-pass, misses-broken-evaluation, blames-the-tools, six-causes]
     tracks: [goal, hooks]
     outdated_advice: [add-double-check]
     volatility: 中
@@ -611,7 +611,7 @@ pages:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     visual: {kind: static, text: "報告と証拠の対比（「通った」という文と、分母つきの実行結果）"}
     materials: ["00 §3 分野18", "00 §4 確かめ方の困りごと", "05 §1-2", "11 第2節 分野18 p34#224（計画した確認を実行しない型）・p34#225（分母を変えた報告。原典は GitHub の issue。11 第4節 #46）・p34#154", "11 第2節 分野09 p34#26（都合のよい部分集合だけの報告）", "research/22 #18（検索の打ち切りを全部と取り違える不具合。v2.1.317 で修正）・#24（起動に失敗しても 0 で終わる不具合。v2.1.314 で修正）", "research/25 P9・P11（事例は名指ししない）"]
-    notes: "「Claude は終わったように見えると止まる」は研究の結果ではなく公式の Best practices の内容（research/25 P9）なので、研究として書かない。事例の企業の記事は名指ししない。人の側では、報告を確かめずに受け取る（ア）も問う"
+    notes: "「Claude は終わったように見えると止まる」は研究の結果ではなく公式の Best practices の内容（research/25 P9）なので、研究として書かない。事例の企業の記事は名指ししない。人の側では、報告を確かめずに受け取る（ア）も問う。「直った」が症状を隠しただけのときは recipes の fix-a-bug#no-symptom-patches へ振り分ける。検索の打ち切りを全部と取り違えた例と、起動に失敗しても成功の終了コードで終わった例は、前提の verify の evidence-not-reports の節 tool-output にある（診断の節から案内する）（2026-11-04 統合：recipes#7・symptoms#13）"
 
   - id: rewrote-tests-to-pass
     chapter: 完了と検証
@@ -633,14 +633,14 @@ pages:
       - {type: symptom, text: "特定の入力だけ通るように分岐を足された"}
       - {type: symptom, text: "例外を握りつぶしたり型を緩めたりしてエラーを消された"}
     prerequisites: [verifier-three-conditions, when-to-lock]
-    related: [protect-tests, reward-hacking, freeze-eval-assets, permission-rules, block-with-exit-2, hook-recipes, pitfalls-of-ai-written-tests, independent-review, diffs-humans-must-read, test-the-verifier, suspect-too-good-results, verification-ladder, claims-done-but-isnt, misses-broken-evaluation, six-causes]
+    related: [protect-tests, reward-hacking, "fix-a-bug#no-symptom-patches", freeze-eval-assets, permission-rules, block-with-exit-2, hook-recipes, pitfalls-of-ai-written-tests, independent-review, diffs-humans-must-read, test-the-verifier, suspect-too-good-results, verification-ladder, claims-done-but-isnt, misses-broken-evaluation, six-causes]
     tracks: [permissions, hooks]
     outdated_advice: []
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 確かめ方の困りごと", "05 §1-3", "11 第2節 分野18 p34#223・p34#228（品質指標のゲーム化）", "11 第2節 分野09 p34#8・p56#125・p34#81・p56#126（症状だけを抑える修正の禁止）", "11 第2節 分野01 p34#9（【未確認】最新の Claude はほぼ不正をしないという監査は ImpossibleBench と食い違う。11 第4節 #27）・p34#227（旧世代の記録）", "11 第1節 分野09 p34#16（公開ケースへの特例化）", "research/24 A-10（止まる権利の効果は Claude では小さいと論文が書く）"]
-    notes: "研究の割合の数値と、世代の違うモデルの記録は summary・signs に使わない（本文では世代と根拠の強さを書く）。「止まって報告する権利を渡せば防げる」は Claude では効果が小さいと報告されている（research/24 A-10）ので、対処の中心は書き換えられない状態にすること（鍵）に置く"
+    notes: "研究の割合の数値と、世代の違うモデルの記録は summary・signs に使わない（本文では世代と根拠の強さを書く）。「止まって報告する権利を渡せば防げる」は Claude では効果が小さいと報告されている（research/24 A-10）ので、対処の中心は書き換えられない状態にすること（鍵）に置く。特例の分岐や例外の握りつぶしを一般解の代わりに認めない頼み方は recipes の fix-a-bug#no-symptom-patches へ振り分ける。basics の reward-hacking は必須に上がったが、前提の verifier-three-conditions がすでに前提にしているので、直接の前提に重ねず related に置いた（catalog/README §4.4 の1）（2026-11-04 統合：basics#5・recipes#7）"
 
   - id: misses-broken-evaluation
     chapter: 完了と検証
@@ -662,14 +662,14 @@ pages:
       - {type: symptom, text: "手元のスコアは上がるのに本番で通用しない"}
       - {type: symptom, text: "おかしな評価のまま実験を続けている"}
     prerequisites: [verifier-defines-problem, check-the-metric, verifier-three-conditions]
-    related: [test-the-verifier, lockbox-and-holdout, suspect-too-good-results, measure-changes, reward-hacking, what-not-to-delegate, over-reliance, audit-ml-pipelines, data-analysis, evaluators-by-format, rewrote-tests-to-pass, claims-done-but-isnt, stuck-in-a-check-loop, six-causes]
+    related: [test-the-verifier, lockbox-and-holdout, suspect-too-good-results, "measure-changes#by-stratum", reward-hacking, what-not-to-delegate, over-reliance, audit-ml-pipelines, data-analysis, evaluators-by-format, rewrote-tests-to-pass, claims-done-but-isnt, stuck-in-a-check-loop, six-causes]
     tracks: []
     outdated_advice: []
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p34#18（リークのある CV を仕込んだ実験。根拠：中〜強、類推）", "10 第8章・第18章", "11 第2節 分野09 p34#26"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。事例はコンテストのデータ分析だが、業務の分析とテストに一般化して書く（【競】の例は scenes のコンテストで示す）。level を registry の見当から変えた理由は level_evidence。人の側では、評価の設計まで任せきる（ア）を問う"
+    notes: "requirements §4.4 で足した5つの症状の1つ。事例はコンテストのデータ分析だが、業務の分析とテストに一般化して書く（【競】の例は scenes のコンテストで示す）。level を registry の見当から変えた理由は level_evidence。人の側では、評価の設計まで任せきる（ア）を問う。層ごとと最悪の場合で測り直す手は eval の measure-changes#by-stratum（registry の stratified-and-worst-case をまとめた先）を指す（2026-11-04 統合：eval#2）"
 
   # ── 長い作業と方針 ──
   - id: stuck-in-a-check-loop
@@ -692,14 +692,14 @@ pages:
       - {type: symptom, text: "同じ修正と確認を利用上限まで繰り返す"}
       - {type: symptom, text: "何時間も回したのに途中から進んでいない"}
     prerequisites: [goal-until-done, open-ended-loop-trap]
-    related: [progress-logs-for-long-jobs, performance-tuning, share-targets-and-bounds, permission-to-stop, checking-unattended-runs, keep-failure-lessons, when-to-start-fresh, parallel-and-loop-costs, decide-when-to-quit, going-in-circles, wont-rethink-approach, blames-the-tools, misses-broken-evaluation, hits-limits-quickly, six-causes]
+    related: [progress-logs-for-long-jobs, performance-tuning, share-targets-and-bounds, permission-to-stop, "stop-hooks#avoid-loops", checking-unattended-runs, keep-failure-lessons, when-to-start-fresh, parallel-and-loop-costs, decide-when-to-quit, going-in-circles, wont-rethink-approach, blames-the-tools, misses-broken-evaluation, hits-limits-quickly, six-causes]
     tracks: [goal, loop]
     outdated_advice: [ralph-loops]
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p12#13・p34#90・p56#80（性能改善の競技で、数時間後に実行と確認のループにはまった。根拠：強（単独の事例）／中、類推・時点依存）・p34#146（利用上限まで繰り返す）", "11 第1節 分野12 p12#48", "10 第11章・第14章・第23章"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。人が見張らずに回し続ける（ア）も問う。堂々巡り（going-in-circles）とは、会話の訂正ではなく無人のループの中で起きる点で分けた。事例の数値と大会名は summary・signs に使わない"
+    notes: "requirements §4.4 で足した5つの症状の1つ。人が見張らずに回し続ける（ア）も問う。堂々巡り（going-in-circles）とは、会話の訂正ではなく無人のループの中で起きる点で分けた。事例の数値と大会名は summary・signs に使わない。Stop hook が終わらせないことで回り続けるループは enforce の stop-hooks#avoid-loops へ振り分ける（2026-11-04 統合：enforce#7）"
 
   - id: wont-rethink-approach
     chapter: 長い作業と方針
@@ -722,14 +722,14 @@ pages:
       - {type: symptom, text: "少し試しただけで「これ以上は無理です」と言われる"}
       - {type: symptom, text: "会話が長くなると撤退を勧めてくる"}
     prerequisites: [decide-when-to-quit, share-targets-and-bounds]
-    related: [measure-the-upper-bound, experiment-log, compare-hypotheses-in-parallel, ask-for-options, when-to-plan, spec-first, felt-vs-measured, agreement-is-not-evidence, human-pitfalls, going-in-circles, stuck-in-a-check-loop, insists-on-mistakes, six-causes]
+    related: [measure-the-upper-bound, experiment-log, compare-hypotheses-in-parallel, ask-for-options, when-to-plan, spec-first, open-ended-loop-trap, goal-until-done, felt-vs-measured, agreement-is-not-evidence, human-pitfalls, going-in-circles, stuck-in-a-check-loop, insists-on-mistakes, six-causes]
     tracks: [plan-mode]
     outdated_advice: []
     volatility: 中
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p56#29・p56#30（根拠：中（章）／個別：弱〜中、版依存）", "11 第1節 新分野案X p56#35（撤退の判断は本番の条件で再検証するまで採らない）", "10 第20章", "research/24 §2.3（ウの根拠：人の現象は強、AI との組み合わせは推論）"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。要点は「AI の撤退の勧めにも続行の勧めにも、そのまま従わない」。人の側では、費やした分だけやめられない（ウ）と、判断を AI に預ける（ア）を問う。ウが AI と組み合わさって強まる点は推論なので、本文でそう書く（requirements §3.2 の注記）。「使い込むほど強まる」とは書かない（11 第4節 #62）"
+    notes: "requirements §4.4 で足した5つの症状の1つ。要点は「AI の撤退の勧めにも続行の勧めにも、そのまま従わない」。人の側では、費やした分だけやめられない（ウ）と、判断を AI に預ける（ア）を問う。ウが AI と組み合わさって強まる点は推論なので、本文でそう書く（requirements §3.2 の注記）。「使い込むほど強まる」とは書かない（11 第4節 #62）。長く回し続けても方針は直らない点は delegate の open-ended-loop-trap、止める条件の書き方は goal-until-done へ振り分ける（どちらも仕組みにするなので related）（2026-11-04 統合：delegate#5）"
 
   - id: blames-the-tools
     chapter: 長い作業と方針
@@ -758,7 +758,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["requirements §4.4 symptoms", "11 第1節 分野18 p34#147（長時間の運用で道具への不満が劣化の前兆だった。根拠：中、版依存）", "10 第14章", "research/22 #18（検索が時間切れで途中までしか返さなかった不具合。本当に道具の側の問題だった例）"]
-    notes: "requirements §4.4 で足した5つの症状の1つ。最初に、本当に壊れているか（sandbox の制限・時間切れ・権限）を人が実行して確かめる。壊れていなければ長い作業の劣化の兆しとして、引き継ぎを書いて新しく始める"
+    notes: "requirements §4.4 で足した5つの症状の1つ。最初に、本当に壊れているか（sandbox の制限・時間切れ・権限）を人が実行して確かめる。壊れていなければ長い作業の劣化の兆しとして、引き継ぎを書いて新しく始める。本当に道具の側の問題だった例（検索の打ち切り、起動に失敗しても成功の終了コードで終わる）は、前提の verify の evidence-not-reports の節 tool-output にある（診断の節から案内する）（2026-11-04 統合：symptoms#13）"
 
   - id: parallel-fatigue
     chapter: 長い作業と方針
@@ -811,7 +811,7 @@ pages:
       - {type: symptom, text: "git の履歴やブランチを巻き戻された"}
       - {type: symptom, text: "データベースのデータを消された"}
     prerequisites: [checkpoints-and-rewind, destructive-commands, permission-rules]
-    related: [working-with-git, recover-lost-work, protected-paths, sandboxing, what-auto-mode-stops, block-with-exit-2, hook-recipes, where-bypass-is-ok, default-safety-settings, postmortems, wrong-amount-of-approvals, secrets-exposed, six-causes]
+    related: [working-with-git, recover-lost-work, protected-paths, sandboxing, what-auto-mode-stops, block-with-exit-2, hook-recipes, where-bypass-is-ok, default-safety-settings, postmortems, notes-and-pkm, wrong-amount-of-approvals, secrets-exposed, six-causes]
     tracks: [checkpoints, permissions, permission-modes, sandbox, hooks]
     outdated_advice: [yolo-skip-permissions]
     volatility: 中
@@ -819,7 +819,7 @@ pages:
       - {title: "まず戻す（復旧の手順）", anchor: recover}
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18（復旧の手順・再発防止）", "00 §4 安全の困りごと", "05 §1-9", "00 §3 分野11（消されたくないもの。checkpoint の限界）", "research/22 §3.4（作業ディレクトリの外への書き込みを止める設定は、シェルを止めない）", "research/23 #5（deny は任意の子プロセスに効かない）"]
-    notes: "復旧を先に、原因の切り分けを後に置く（読者が引くのは消された直後）。安全装置を外す近道を勧めない。雛形は safety と enforce のページに置き、ここには載せない"
+    notes: "復旧を先に、原因の切り分けを後に置く（読者が引くのは消された直後）。安全装置を外す近道を勧めない。雛形は safety と enforce のページに置き、ここには載せない。ノートの保管庫など、コードでないフォルダで一括の書き換えを任せる場面の予防（先に戻せる状態にする）は recipes の notes-and-pkm へ振り分ける（2026-11-04 統合：recipes#7）"
 
   - id: secrets-exposed
     chapter: 安全と承認
@@ -896,7 +896,7 @@ pages:
     prevents: [合っていない, 境界がない]
     pitfalls: [預けすぎる]
     scenes: [開発]
-    summary: "承認の確認が多すぎて読まずに押す、または少なすぎて怖いときに、権限モード・許可のルール・sandbox のどれを調整するかを、任せる段階に合わせて決める。"
+    summary: "承認の確認が多すぎて読まずに押す、または少なすぎて怖いときに、権限モード・権限ルール・サンドボックスのどれを調整するかを、任せる段階に合わせて決める。"
     signs:
       - {type: symptom, text: "確認ボタンを読まずに押している"}
       - {type: symptom, text: "許可を求められる回数が多すぎて作業にならない"}
@@ -909,7 +909,7 @@ pages:
     sections:
       - {title: "原因を安く確かめる順", anchor: diagnosis}
     materials: ["00 §3 分野18", "00 §4 安全の困りごと（確認ボタンを読まずに押している）", "05 §1-10", "research/23 F2-a・F2-b・F2-c（auto mode の既定化の時期と面、公式の数値は二つの記事にある）", "decisions 2026-11-03「安全の既定の勧め方」"]
-    notes: "安全の既定は、公式の既定（auto mode）を基準にしてその限界を書き、比例則に沿って段階ごとに示す（decisions 2026-11-03）。承認率などの数値は summary・signs に使わず、出典の記事と日付を付けて数値ファイルに置く。人の側では、読まずに承認する（ア）を問う"
+    notes: "安全の既定は、公式の既定（auto mode）を基準にしてその限界を書き、比例則に沿って段階ごとに示す（decisions 2026-11-03）。承認率などの数値は summary・signs に使わず、出典の記事と日付を付けて数値ファイルに置く。人の側では、読まずに承認する（ア）を問う。summary の用語は公式の日本語版の表記（権限ルール・サンドボックス。enforce の題名と同じ）にそろえた（2026-11-04 統合：M1）"
 
   # ── 上限と速さ ──
   - id: hits-limits-quickly

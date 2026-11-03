@@ -1,3 +1,4 @@
+# 2026-11-04 統合：I1（提案の扱いは planning/batches/step3/integrate-I1.md）。
 field: judgment
 chapters: [総論, 落とし穴ごとの対策, 理解を手放さない, 振り返りと再発防止]
 pages:
@@ -287,7 +288,7 @@ pages:
       - {name: "生成の後に、役割について自分に質問を出させる（答えるまで正解を言わせず、先に進ませない）", kind: prompt, safety: false}
       - {name: "上位解法を、手法・その手法を正当化した問題の性質・原文の引用の三列で要約させる", kind: prompt, safety: false}
     materials: ["10 第7章（注記つき）", "10 第21章 根拠", "11 第1節 新分野案X「AI で新しい技術を学ぶ」p12#144〜p12#150・p56#38・p56#39・p12#80・p12#81・p56#105・p56#107・p12#153", "11 第1節 新分野案Y「振り返りと上位解法の読み方」p12#151・p56#101", "11 第5節 A-16", "research/24 A-13・§2.3 エ（高校生の実験の自己評価は本文の節）・§3 の8", "11 第4節 #31・#56"]
-    notes: "優先度：registry の見当（推奨）から必須に上げ、wave 1 にした。D10 の「判断と理解の核」の理解の側の中心で、根拠に無作為化実験がある（Anthropic の研究は52人・GPT-4o ベースのアシスタント・課題の直後のクイズ、高校生の実験は約1,000人・GPT-4。research/24 A-13・§2.3 エ）。contest の practice-vs-contest-day（必須）と judgment の how-much-understanding-to-keep の前提になる。理解が残る型・残らない型は各 n=2〜7 の傾向で、因果は主張されていない（research/24 A-13）。数値を出すときは n と、Claude 固有の結果ではないことを添える。「エージェントでは影響がさらに大きくなりうる」は著者の推測と書く。Learning の output style は設計の意図として紹介し、学習効果は示さない。contest の reading-top-solutions をまとめた（節 summaries-of-solutions。上位解法を読む技術そのものは方針 A5 により kyopro-atlas の practice-method などへリンクする。AI の使い方を書き残す点は retros-without-ai-verdicts の節 record-ai-usage）。A-16 の前半は verify の own-generated-code にも置く案がある（11 第5節）。own-generated-code は出荷の基準、ここは学ぶ手順として書き分ける。"
+    notes: "優先度：registry の見当（推奨）から必須に上げ、wave 1 にした。D10 の「判断と理解の核」の理解の側の中心で、根拠に無作為化実験がある（Anthropic の研究は52人・GPT-4o ベースのアシスタント・課題の直後のクイズ、高校生の実験は約1,000人・GPT-4。research/24 A-13・§2.3 エ）。contest の practice-vs-contest-day（必須）と judgment の how-much-understanding-to-keep の前提になる。理解が残る型・残らない型は各 n=2〜7 の傾向で、因果は主張されていない（research/24 A-13）。数値を出すときは n と、Claude 固有の結果ではないことを添える。「エージェントでは影響がさらに大きくなりうる」は著者の推測と書く。Learning の output style は設計の意図として紹介し、学習効果は示さない。contest の reading-top-solutions をまとめた（節 summaries-of-solutions。上位解法を読む技術そのものは方針 A5 により kyopro-atlas の practice-method などへリンクする。AI の使い方を書き残す点は retros-without-ai-verdicts の節 record-ai-usage）。A-16 の前半（生成の後に理解を確かめる）は、11 第5節が verify の own-generated-code に置く案だったが、verify の担当が雛形をこのページに任せた。own-generated-code は出荷の基準（説明できないものは採らない）、ここは学ぶ手順として書き分け、雛形はここだけに置く。（2026-11-04 統合：verify#3・judgment#1）"
 
   - id: how-much-understanding-to-keep
     chapter: 理解を手放さない
@@ -370,7 +371,7 @@ pages:
     prevents: [縛っていない]
     pitfalls: []
     scenes: [開発, チーム]
-    summary: "AI と組んだ作業の失敗を、誰の誤りかではなくどの仕組みの隙間が許したかで書き、再発防止を CLAUDE.md・hook・レビューの観点のどこに入れるかを決められる。"
+    summary: "AI と組んだ作業の失敗を、誰の誤りかではなくどの仕組みの隙間が許したかで書き、再発防止を CLAUDE.md・フック・レビューの観点のどこに入れるかを決められる。"
     signs:
       - {type: situation, text: "AI に任せた作業で事故が起きたので、再発を防ぎたい"}
       - {type: symptom, text: "同じ種類の失敗を、注意しても何度も繰り返す"}
@@ -387,7 +388,7 @@ pages:
     templates:
       - {name: "ポストモーテムの項目（要約・影響・人と AI の操作の時間線・根本原因・うまくいったこと・アクション項目・再発防止の置き場所）", kind: other, safety: false}
     materials: ["10 第24章 実践②③（注記つき）", "11 第1節 新分野案X「失敗を仕組みに戻す」p56#93・p56#94・p56#98・p56#99", "11 第1節 新分野案X p56#100（プレモーテムは人が書き終えた後に別枠で）", "requirements §6.3（プレモーテムを効果が実証された手法として紹介しない）", "research/24 A-15"]
-    notes: "優先度：定評ある実務の型（中〜弱）で、再発防止を縛る仕組みへつなぐ背骨のページなので推奨（registry の見当）。プレモーテムの「原因特定能力が30%向上」は、挙げた理由の数を測ったもので質は測っていない（11 p56#94）。効果が実証された手法として紹介しない（requirements §6.3）。プレモーテムの時期（本番の1か月前など）は例（research/24 A-15）。セッションの記録の保存場所は版に依存するので、cli の recover-lost-work へリンクし、確認日を付ける。"
+    notes: "優先度：定評ある実務の型（中〜弱）で、再発防止を縛る仕組みへつなぐ背骨のページなので推奨（registry の見当）。プレモーテムの「原因特定能力が30%向上」は、挙げた理由の数を測ったもので質は測っていない（11 p56#94）。効果が実証された手法として紹介しない（requirements §6.3）。プレモーテムの時期（本番の1か月前など）は例（research/24 A-15）。セッションの記録の保存場所は版に依存するので、cli の recover-lost-work へリンクし、確認日を付ける。（2026-11-04 統合：M1）"
 
 merged: []
 dropped: []

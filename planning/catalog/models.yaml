@@ -35,7 +35,7 @@ pages:
       - "research/22 #23（アプリのモデルの選択肢から Haiku 4.5 を外した）・#41（退役の予定）"
       - "research/25 P5（Fable 5 の提供停止の経緯は Anthropic の説明による。透かしは2モデルに限らず、2026-08-02 より後に出たモデルの出力が対象）"
       - "research/26 #12（knowledge cutoff は reliable と training を分けて持つ）"
-    notes: "registry の fable-and-mythos（Fable と Mythos）を節 fable-and-mythos にまとめた。Mythos は検証の制度を通した組織だけに提供され、読者が選び分ける組ではないため（比較のページは混同されやすい組だけ）。透かしは Fable と Mythos に限らない（research/25 P5b）ので、二つの違いとして書かない。モデルの名前・世代・料金・既定は表と数値ファイルに置き、題名・summary・signs に書かない。"
+    notes: "registry の fable-and-mythos（Fable と Mythos）を節 fable-and-mythos にまとめた。Mythos は検証の制度を通した組織だけに提供され、読者が選び分ける組ではないため（比較のページは混同されやすい組だけ）。透かしは Fable と Mythos に限らない（research/25 P5b）ので、二つの違いとして書かない。モデルの名前・世代・料金・既定は表と数値ファイルに置き、題名・summary・signs に書かない。symptoms の refused-or-blocked から指される。分類器が止めた依頼をアプリと Claude Code が別のモデルで答え直す自動の切り替えに触れるときは、仕組みとして説明し、断られた依頼を通す手段としてモデルを替えることは書かない（本体は safety の when-requests-are-refused）（2026-11-04 統合：M5）。"
 
   - id: choosing-a-model
     chapter: モデルを選ぶ
@@ -134,7 +134,7 @@ pages:
       - {type: symptom, text: "簡単な作業なのに返答が遅く、使用量も多い"}
       - {type: situation, text: "アプリと Claude Code と API で、同じモデルなのに振る舞いが違う気がする"}
     prerequisites: [how-thinking-works]
-    related: [choosing-a-model, thinking-keywords, suspected-degradation, after-switching-models, opusplan, fast-mode-and-advisor, what-uses-up-limits, search-research-thinking, measure-changes]
+    related: [choosing-a-model, thinking-keywords, suspected-degradation, too-slow, after-switching-models, opusplan, fast-mode-and-advisor, what-uses-up-limits, search-research-thinking, measure-changes]
     tracks: [effort, adaptive-thinking]
     outdated_advice: [budget-tokens]
     volatility: 高
@@ -156,7 +156,7 @@ pages:
       - "10 第15章（最高の推論量は過剰に考えることがある。待ち時間もコスト）"
       - "11 第2節 分野03 p34#158・p34#163（逸話）・p34#164（推論）"
       - "research/27 §3.1（effort と努力レベルの表記）"
-    notes: "既定の effort が面で違うこと（research/23 #8：同じモデルでも API と Claude Code・アプリで既定が違う）は、節 defaults-by-surface で数値ファイルの「モデル × 面」の表から道具が書く（design §6.7）。summary・signs には値を書かない。表記は公式の日本語版の多数派の effort にし、Help Center の訳の「努力レベル」を aliases に置いた。"
+    notes: "既定の effort が面で違うこと（research/23 #8：同じモデルでも API と Claude Code・アプリで既定が違う）は、節 defaults-by-surface で数値ファイルの「モデル × 面」の表から道具が書く（design §6.7）。summary・signs には値を書かない。表記は公式の日本語版の多数派の effort にし、Help Center の訳の「努力レベル」を aliases に置いた。新しい症状のページ too-slow（返事が遅い）を related に置いた（2026-11-04 統合：symptoms#8）。"
 
   - id: thinking-keywords
     chapter: effort・思考・コンテキスト
@@ -216,7 +216,7 @@ pages:
     prerequisites: [attention-budget]
     related: [when-to-start-fresh, compact-and-auto-compact, context-rot, always-on-costs, what-uses-up-limits, current-models]
     tracks: [context-window, compaction]
-    outdated_advice: [save-context-for-200k]
+    outdated_advice: [save-context-for-200k, subagents-to-save-context]
     volatility: 高
     sections:
       - {title: "やめてよいこと", anchor: what-to-stop}
@@ -230,7 +230,7 @@ pages:
       - "02 §2-3（アプリの窓と自動の文脈管理）・§3-1（1M の料金とトークナイザー）"
       - "04 Q2（自動の圧縮の窓の設定の実践）"
       - "research/22 §3.4（idle compaction）"
-    notes: "題名から数値（1M）を外し、aliases に置いた（変わりやすい値を題名に書かない）。id は公式の機能名（1M context）から作った registry のまま。会話の長さと圧縮の判断の本体は context の分野にあり、ここはモデルの窓が広くなって何が変わったかに絞る。改稿前の Best practices の「埋まるほど性能が落ちる」（research/23 #1）は根拠にしない。"
+    notes: "題名から数値（1M）を外し、aliases に置いた（変わりやすい値を題名に書かない）。id は公式の機能名（1M context）から作った registry のまま。会話の長さと圧縮の判断の本体は context の分野にあり、ここはモデルの窓が広くなって何が変わったかに絞る。改稿前の Best practices の「埋まるほど性能が落ちる」（research/23 #1）は根拠にしない。現行の Best practices の「やめてよいこと」にある「コンテキストを守るために subagent を使う」（research/23 §3.7）を台帳の subagents-to-save-context として outdated_advice に入れ、節 what-to-stop で扱う。並列・うるさい出力を離す・独立のレビューには今も向くが追加のトークンがかかる点は、cost の parallel-and-loop-costs が持つ（2026-11-04 統合：M3）。"
 
   - id: suspected-degradation
     chapter: 替えたとき・劣化を疑うとき
@@ -249,9 +249,8 @@ pages:
     signs:
       - {type: goal, text: "性能が落ちたのが製品の変更か自分の設定かを切り分けたい"}
       - {type: situation, text: "更新の後から、結果が変わった気がする"}
-      - {type: symptom, text: "同じ頼み方なのに、前より雑な返事が増えた"}
-    prerequisites: [effort-levels]
-    related: [seems-less-capable, felt-vs-measured, measure-changes, after-switching-models, forgets-in-long-chats, nondeterminism, checking-for-updates, change-timeline-2026]
+    prerequisites: [effort-levels, felt-vs-measured]
+    related: [seems-less-capable, measure-changes, after-switching-models, forgets-in-long-chats, nondeterminism, checking-for-updates, change-timeline-2026]
     tracks: [effort, model-selection]
     outdated_advice: []
     volatility: 中
@@ -267,7 +266,7 @@ pages:
       - "03 F7（ポストモーテムの要約とユーザー側の教訓。二次情報経由なので数値は一次資料で確かめる）"
       - "04 Q3（2026年3〜4月の品質低下とポストモーテム、ユーザー向けの教訓。二次情報）"
       - "research/22 #1・#3（版と stable の通り道）"
-    notes: "症状の振り分けは symptoms の seems-less-capable が持ち、ここは「合っていない」（版・effort・モデル）の対処の本体にする。体感と実測の本体は eval の felt-vs-measured（level が上なので前提ではなく related）。"
+    notes: "症状の振り分けは symptoms の seems-less-capable が持ち、ここは「合っていない」（版・effort・モデル）の対処の本体にする。そのため症状の sign（雑な返事が増えた）は外し、症状の文は seems-less-capable の signs に任せた（symptoms#1。逆引きで症状のページの振り分けを飛ばさないため。M2）。体感と実測の本体は eval の felt-vs-measured。eval の担当が 整える・必須にしたので、related から前提に移した（「体感だけで結論を出さない」はこのページの要点で、その根拠を前提で読ませる）（2026-11-04 統合：eval#3・symptoms#1）。"
 
   - id: model-quirks
     chapter: 替えたとき・劣化を疑うとき
@@ -285,10 +284,9 @@ pages:
     summary: "止まりすぎ・やりすぎ・冗長さなど、モデルごとに出やすい傾向を公式の指針から知り、自分の環境で観察してプロンプトを合わせられる。傾向は版で変わるので、暗記せず記録する。"
     signs:
       - {type: symptom, text: "モデルを替えたら、確認ばかりで止まるようになった"}
-      - {type: symptom, text: "返答が長すぎる・短すぎる"}
       - {type: goal, text: "使うモデルに合わせてプロンプトを直したい"}
     prerequisites: [choosing-a-model]
-    related: [after-switching-models, keeps-stopping, does-more-than-asked, output-shape, permission-to-stop, suggest-or-do, felt-vs-measured, current-models]
+    related: [after-switching-models, keeps-stopping, does-more-than-asked, output-shape, permission-to-stop, suggest-or-do, does-double-check-work, emphasis-words, felt-vs-measured, current-models]
     tracks: []
     outdated_advice: [add-double-check, tell-it-to-use-subagents, keep-going-dont-be-lazy]
     volatility: 高
@@ -304,7 +302,7 @@ pages:
       - "10 第16章（モデルの「性格」は暗記ではなく観察の対象）"
       - "requirements §6.3（モデルの「性格」を固定的な事実として教えない）"
       - "decisions 2026-11-03 書き方の方針（第三者・根拠・コンテスト）7"
-    notes: "モデルごとの指針の文と値は確認日つきで数値ファイルに置き（方針7）、本文は症状と対処と観察の仕方を書く。調査資料にあるほかの会社のモデルの否定的な傾向の例は、第三者を否定的な文脈で名指ししないため使わない（design §6.12）。"
+    notes: "モデルごとの指針の文と値は確認日つきで数値ファイルに置き（方針7）、本文は症状と対処と観察の仕方を書く。調査資料にあるほかの会社のモデルの否定的な傾向の例は、第三者を否定的な文脈で名指ししないため使わない（design §6.12）。prompting の担当の提案で、モデルごとの癖（冗長さ・止まりすぎ・やりすぎ・自分で検証するので確認を重ねると過剰になる）はこのページに置き、prompting の頼み方のページから指される。逆に指す先として does-double-check-work と emphasis-words を related に足した。症状の文「回答が長すぎる・短すぎる」は symptoms の not-what-i-meant の signs にあるので、ここから外した（M2）（2026-11-04 統合：prompting#4）。"
 
   - id: after-switching-models
     chapter: 替えたとき・劣化を疑うとき
@@ -324,10 +322,10 @@ pages:
       - {type: situation, text: "既定のモデルが新しくなったと知った"}
       - {type: symptom, text: "モデルを替えてから、API がエラーを返すようになった"}
       - {type: goal, text: "旧いモデルが使えなくなる前に、移行を済ませたい"}
-    prerequisites: [choosing-a-model, effort-levels]
-    related: [model-quirks, measure-changes, harness-over-model, emphasis-words, does-double-check-work, structured-outputs-basics, claude-md-length, outdated-advice-ledger, change-timeline-2026]
+    prerequisites: [choosing-a-model, effort-levels, measure-changes]
+    related: [model-quirks, harness-over-model, emphasis-words, does-double-check-work, structured-outputs-basics, claude-md-length, outdated-advice-ledger, change-timeline-2026]
     tracks: [model-selection, effort, adaptive-thinking]
-    outdated_advice: [budget-tokens, prefill-for-json, lower-temperature, important-caps]
+    outdated_advice: [budget-tokens, prefill-for-json, lower-temperature, important-caps, add-double-check]
     volatility: 高
     sections:
       - {title: "見直す順", anchor: checklist}
@@ -344,7 +342,7 @@ pages:
       - "11 第2節 分野03 p34#159（旧モデルの設定を流用せず、自分の評価で effort を振る）・p34#144（ハーネスの部品を一つずつ外して効果を測る）"
       - "research/22 #23・#41（退役と選択肢からの削除）・#42（API の版で temperature などが 400 になる）"
       - "00 §5 台帳（budget_tokens・prefill・IMPORTANT の強調）と research/22 §3.4（temperature の行）"
-    notes: "registry の model-retirements（旧モデルの退役と既定モデルの変化）を節 retirements-and-default-changes にまとめた。退役や既定の変化は「替えたら見直す」の引き金の一つで、日付は数値ファイルと changes の change-timeline-2026 に置くため。00 の「/doctor prompt-audit」は調査資料のほかに裏付けがないので、書く前に一次資料で確かめる。"
+    notes: "registry の model-retirements（旧モデルの退役と既定モデルの変化）を節 retirements-and-default-changes にまとめた。退役や既定の変化は「替えたら見直す」の引き金の一つで、日付は数値ファイルと changes の change-timeline-2026 に置くため。00 の「/doctor prompt-audit」は調査資料のほかに裏付けがないので、書く前に一次資料で確かめる。節 checklist の見直しの項目に、強い言い方を和らげること（emphasis-words）と、確認を命じる一文を外すこと（does-double-check-work。台帳の add-double-check）を入れる（prompting#4）。「外すものは一つずつ外し、効果を測る」がこのページの要点で、recipe は確かめるページを前提に持つ（design §2.2）ので、eval の measure-changes（任せる・必須）を related から前提に移した（eval#3）（2026-11-04 統合：prompting#4・eval#3）。"
 
   - id: opusplan
     chapter: 役割で使い分ける
@@ -403,7 +401,7 @@ pages:
       - {type: goal, text: "料金が上がってもよいので、返答を速くしたい"}
       - {type: goal, text: "難しい判断のところだけ、より賢いモデルに相談させたい"}
     prerequisites: [effort-levels]
-    related: [opusplan, choosing-a-model, reading-api-pricing, independent-review]
+    related: [too-slow, opusplan, choosing-a-model, reading-api-pricing, independent-review]
     tracks: [fast-mode, advisor]
     outdated_advice: []
     volatility: 高
@@ -417,7 +415,7 @@ pages:
       - "01 L-2（/fast と /advisor）"
       - "02 §5-8（Advisor tool（beta）・Fast mode の速さと料金）・§3-5（executor が advisor にエスカレーションする形）"
       - "research/22 #19（旧い世代の fast mode の非推奨と削除の予定。11-30 に確かめ直す）"
-    notes: "fast mode の対象のモデル・料金・非推奨と削除の日付は数値ファイルに置く。advisor の機能の id は catalog/README §5 にないので new_features に足した。"
+    notes: "fast mode の対象のモデル・料金・非推奨と削除の日付は数値ファイルに置く。advisor の機能の id は catalog/README §5 にないので new_features に足した。症状のページ too-slow から速さの手段として引かれるので、related の先頭に置いた（2026-11-04 統合：symptoms#8）。"
 
 merged:
   - {id: fable-and-mythos, into: current-models, reason: "Fable と Mythos は同じモデルで安全装置の強さと提供の範囲が違うだけで、Mythos は検証の制度を通した組織に限られ、読者が選び分ける組ではない（catalog/README §4.2 の4）。系統の位置づけの一部として current-models の節 fable-and-mythos にする。透かしは2モデルに限らない（research/25 P5b）"}

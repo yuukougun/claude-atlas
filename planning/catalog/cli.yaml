@@ -22,7 +22,7 @@ pages:
     prevents: [見えていない]
     pitfalls: []
     scenes: [開発]
-    summary: "/ でコマンドと skill を呼び、! で自分でシェルを実行して結果を会話に入れ、@ でファイルを直接指し、Esc で作業を止めて方向を直す。ずれに気づいたら早く止めるほど手戻りが小さい。"
+    summary: "/ でコマンドとスキルを呼び、! で自分でシェルを実行して結果を会話に入れ、@ でファイルを直接指し、Esc で作業を止めて方向を直す。ずれに気づいたら早く止めるほど手戻りが小さい。"
     signs:
       - {type: goal, text: "Claude Code の入力欄でできることを最初に知りたい"}
       - {type: symptom, text: "間違った方向に進み始めたのに、止め方が分からない"}
@@ -32,13 +32,13 @@ pages:
     outdated_advice: [hash-to-memorize]
     volatility: 中
     sections:
-      - {title: "/ コマンドと skill を呼ぶ", anchor: slash}
+      - {title: "/ でコマンドとスキルを呼ぶ", anchor: slash}
       - {title: "! シェルを自分で走らせる", anchor: bang}
       - {title: "@ ファイルを直接指す", anchor: at}
       - {title: "Esc で止める・割り込む", anchor: esc}
     templates: []
     materials: ["00 §3 分野07", "01 0-1（Esc で中断、実行中の入力で割り込み）・N-1・D-1", "04 Q1 A（まず覚えるコマンドと記号）"]
-    notes: "題名から「4」を外した（# の記憶は v2.0.70 で削除され、記号の数は版で変わる。台帳 hash-to-memorize）。旧題は aliases"
+    notes: "題名から「4」を外した（# の記憶は v2.0.70 で削除され、記号の数は版で変わる。台帳 hash-to-memorize）。旧題は aliases。要約と節の見出しの skill をスキルにした（2026-11-04 統合：M1）"
 
   - id: must-know-operations
     chapter: 入力と基本の操作
@@ -119,7 +119,7 @@ pages:
       - {type: goal, text: "確認を減らしたいが、どのモードにすればよいか分からない"}
       - {type: situation, text: "確認なしで進むのが既定になってから、何が勝手に実行されるのか不安"}
     prerequisites: [agent-loop]
-    related: [what-auto-mode-stops, permission-rules, sandboxing, where-bypass-is-ok, default-safety-settings, approval-fatigue, protected-paths, destructive-commands, when-to-plan, settings-layers, wrong-amount-of-approvals, permission-modes-in-the-app]
+    related: [what-auto-mode-stops, permission-rules, sandboxing, where-bypass-is-ok, default-safety-settings, approval-fatigue, protected-paths, destructive-commands, when-to-plan, settings-layers, wrong-amount-of-approvals, permission-modes-in-the-app, "headless-basics#permissions", agent-teams-experimental]
     tracks: [permission-modes, auto-mode]
     outdated_advice: [approve-everything-first, yolo-skip-permissions]
     volatility: 中
@@ -131,7 +131,7 @@ pages:
       - {name: "既定の権限モードを決める settings の例", kind: settings, safety: true}
     visual: {kind: static, text: "モードを、確認なしで進む範囲の広さの順に並べ、どの段で sandbox と deny を足すかを添えた図"}
     materials: ["00 §3 分野07", "01 C-1・C-2", "05 1-10", "research/23 F2-a・F2-b・§3.3", "research/22 #8・#10", "research/26 §3.4（VS Code の最初の権限モード）"]
-    notes: "既定のモードの変遷（Pro・Max・Team は 2026-08-14、ターミナルと VS Code の対話は v2.1.283〜284、-p は Manual）は数値ファイルに置く（research/23 F2）。auto モードが何を止めるかは enforce の what-auto-mode-stops、bypassPermissions の使いどころは safety の where-bypass-is-ok、アプリの権限モードは app の permission-modes-in-the-app が持つ。level は整えるにしたので比例則の検査の対象外だが、緩める内容を含むので enforce と safety のページを related に置いた"
+    notes: "既定のモードの変遷（Pro・Max・Team は 2026-08-14、ターミナルと VS Code の対話は v2.1.283〜284、-p は Manual）は数値ファイルに置く（research/23 F2）。auto モードが何を止めるかは enforce の what-auto-mode-stops、bypassPermissions の使いどころは safety の where-bypass-is-ok、アプリの権限モードは app の permission-modes-in-the-app が持つ。level は整えるにしたので比例則の検査の対象外だが、緩める内容を含むので enforce と safety のページを related に置いた。-p の権限モードの既定と承認の要る呼び出しの扱いは delegate の headless-basics（節 permissions）、teammate がリードの権限モードを受け継ぐかは delegate の agent-teams-experimental を指す（delegate の担当の提案）（2026-11-04 統合：delegate#3）"
 
   - id: when-to-plan
     chapter: 権限モードと計画
@@ -242,6 +242,7 @@ pages:
     signs:
       - {type: goal, text: "昨日のセッションの続きから再開したい"}
       - {type: goal, text: "今の会話を残したまま、別の案を試したい"}
+      - {type: goal, text: "長い作業を明日も続けたい"}
     prerequisites: [when-to-start-fresh]
     related: [recover-lost-work, handoff-documents, checkpoints-and-rewind, working-with-git, parallel-with-worktrees, agent-view-and-background, cloud-sessions-and-teleport]
     tracks: [sessions]
@@ -254,7 +255,7 @@ pages:
     templates: []
     visual: {kind: mermaid, text: "名前を付けたセッションが分岐し、別案を試した枝と本筋の枝に分かれ、片方へ戻る様子を git のブランチになぞらえた図"}
     materials: ["00 §3 分野05（セッションに名前を付けて再開・分岐する）", "00 §3 分野07（セッションの再開・分岐・命名）", "01 N-2", "03 Q3 X7（/branch で別案を試す）", "05 1-11（/clear のときに名前を付ける）", "11 第2節 分野05 p34#120・p34#195", "research/22 #7"]
-    notes: "context の sessions-as-branches をまとめた。題名は sessions-as-branches の題名を取った（読者の言葉で、操作と判断の両方が分かる。旧題は aliases）。/fork は v2.1.77 で /branch に改名され、今の /fork は別の機能（台帳 fork-to-branch）。並列にセッションを走らせる使い方は delegate の agent-view-and-background・parallel-with-worktrees が持つ"
+    notes: "context の sessions-as-branches をまとめた。題名は sessions-as-branches の題名を取った（読者の言葉で、操作と判断の両方が分かる。旧題は aliases）。/fork は v2.1.77 で /branch に改名され、今の /fork は別の機能（台帳 fork-to-branch）。並列にセッションを走らせる使い方は delegate の agent-view-and-background・parallel-with-worktrees が持つ。逆引きの「長い作業を明日も続けたい」は、context の handoff-documents・progress-files と並べてこのページにも置いた。翌日の再開の操作はここ、何を書き残すかは context が持つ（2026-11-04 統合：B#21）"
 
   - id: recover-lost-work
     chapter: 巻き戻しとセッション
@@ -269,7 +270,7 @@ pages:
     prevents: []
     pitfalls: []
     scenes: [開発]
-    summary: "見失った成果や消えた変更を、セッションの一覧・保存された transcript・チェックポイント・git の記録の順に探して取り戻す。transcript には秘密も平文で残るので、扱いに気をつける。"
+    summary: "見失った成果や消えた変更を、セッションの一覧・保存されたトランスクリプト・チェックポイント・git の記録の順に探して取り戻す。トランスクリプトには秘密も平文で残るので、扱いに気をつける。"
     signs:
       - {type: symptom, text: "前日の作業の成果が、どのセッションにあったか分からない"}
       - {type: symptom, text: "圧縮や異常終了の後に、途中の内容が見当たらない"}
@@ -281,18 +282,18 @@ pages:
     volatility: 中
     sections:
       - {title: "探す順", anchor: order}
-      - {title: "transcript の場所と読み方", anchor: transcripts}
+      - {title: "トランスクリプトの場所と読み方", anchor: transcripts}
       - {title: "残る期間と、残しておく工夫", anchor: retention}
     templates: []
     visual: {kind: mermaid, text: "探す順の流れ図（セッションの一覧と名前 → transcript の検索 → チェックポイント → git の reflog と worktree）"}
     materials: ["requirements §4.2（cli の主な変更）", "11 第1節 分野07 p34#167", "01 N-2（~/.claude/projects/ に JSONL で保存、/export）・C-5（保持の期間）・I-3（Ctrl+O のトランスクリプト）", "03 Q6 N3（過去のトランスクリプトを検索させる）", "05 4-6（手元のセッション記録は平文で残り、既定の期間で消える）"]
-    notes: "priority を registry の見当（任意）から推奨に上げた：失った作業の復旧は困ったときに引かれ、公式の機能（再開・transcript・チェックポイント）だけで書ける。根拠の経験談は1件（11 は中）なので必須にはしない。transcript を秘密の側から扱うのは safety の protecting-secrets と what-feedback-sends。保持の期間（cleanupPeriodDays）は数値ファイルに置く"
+    notes: "priority を registry の見当（任意）から推奨に上げた：失った作業の復旧は困ったときに引かれ、公式の機能（再開・transcript・チェックポイント）だけで書ける。根拠の経験談は1件（11 は中）なので必須にはしない。transcript を秘密の側から扱うのは safety の protecting-secrets と what-feedback-sends。保持の期間（cleanupPeriodDays）は数値ファイルに置く。要約と節の見出しの transcript を、公式の日本語版の表記（トランスクリプト。research/27 §3.1）にした（2026-11-04 統合：M1）"
 
   # ── 見る・切り分ける ──
   - id: usage-context-statusline
     chapter: 見る・切り分ける
-    title: "/usage・/context・status line で状態を見る"
-    nav_title: "/usage・/context・status line"
+    title: "/usage・/context・ステータスラインで状態を見る"
+    nav_title: "/usage・/context・ステータスライン"
     aliases: ["/usage", "/context", "status line", "ステータスライン", "/statusline", "/cost", "/stats", "使用量を見る"]
     type: feature
     level: 整える
@@ -303,7 +304,7 @@ pages:
     prevents: [合っていない]
     pitfalls: []
     scenes: [開発, コンテスト]
-    summary: "上限の使い方は /usage、文脈の内訳は /context で見て、遅い・高い・言うことを聞かない理由を推測せずに測る。status line に出しておけば、長い作業の途中でも気づける。"
+    summary: "上限の使い方は /usage、文脈の内訳は /context で見て、遅い・高い・言うことを聞かない理由を推測せずに測る。ステータスラインに出しておけば、長い作業の途中でも気づける。"
     signs:
       - {type: goal, text: "上限やコンテキストの使用量を、いつも見えるようにしたい"}
       - {type: symptom, text: "気づいたら上限に当たって、作業が止まっていた"}
@@ -314,12 +315,12 @@ pages:
     volatility: 中
     sections:
       - {title: "三つの道具で見えるもの", anchor: instruments}
-      - {title: "status line に出すもの", anchor: statusline}
+      - {title: "ステータスラインに出すもの", anchor: statusline}
       - {title: "いつ見るか", anchor: when}
     templates:
       - {name: "文脈と上限の使用率を出す status line の設定", kind: settings, safety: false}
     materials: ["00 §3 分野07", "01 I-2（注記を含む）・M-1", "11 第2節 分野07 p34#157・p34#165・p34#171", "research/22 #33（5-hour limit の呼び方）"]
-    notes: "「status line でコンテキストの使用量を常に監視する」は改稿の前の Best practices の勧めで、現行の版にない（01 I-2 の注記）。公式の勧めとしては書かず、実践の例（11 p34#171、実践で章の評価は中）として書く。/usage の内訳と費用の判断は cost の what-uses-up-limits（節 find-what-uses-it。cost は claude-code-costs をここにまとめた）、/context の読み方と片付け方は context の inspect-context が持つ。status line に渡る項目の名前は数値ファイルに置く"
+    notes: "「status line でコンテキストの使用量を常に監視する」は改稿の前の Best practices の勧めで、現行の版にない（01 I-2 の注記）。公式の勧めとしては書かず、実践の例（11 p34#171、実践で章の評価は中）として書く。/usage の内訳と費用の判断は cost の what-uses-up-limits（節 find-what-uses-it。cost は claude-code-costs をここにまとめた）、/context の読み方と片付け方は context の inspect-context が持つ。status line に渡る項目の名前は数値ファイルに置く。題名・要約・節の見出しの status line を、features.yaml の statusline の表記（ステータスライン）に合わせた。公式の日本語版の本文の多数派は research/27 で数えていないので、用語集で確かめる（2026-11-04 統合：M1）"
 
   - id: isolate-with-safe-mode
     chapter: 見る・切り分ける
@@ -334,7 +335,7 @@ pages:
     prevents: [散らかっている, 合っていない]
     pitfalls: []
     scenes: [開発]
-    summary: "CLAUDE.md・skills・plugins・hooks・MCP などを読まずに起動し、同じ依頼で挙動を比べて、不調が自分の設定から来るかを切り分ける。権限と管理の設定は効いたままで、安全の設定を外す道具ではない。"
+    summary: "CLAUDE.md・スキル・プラグイン・フック・MCP などを読まずに起動し、同じ依頼で挙動を比べて、不調が自分の設定から来るかを切り分ける。権限と管理の設定は効いたままで、安全の設定を外す道具ではない。"
     signs:
       - {type: goal, text: "おかしな挙動が、自分の設定や拡張のせいか確かめたい"}
       - {type: situation, text: "拡張を入れてから急に挙動が変わった"}
@@ -349,7 +350,7 @@ pages:
     templates:
       - {name: "--safe-mode と通常の起動で同じ依頼を比べる手順", kind: other, safety: false}
     materials: ["research/28 #28（--safe-mode）", "research/28 #25〜#27・#31（--setting-sources・CLAUDE_CONFIG_DIR・壊れた設定）", "research/26 §3.3 (b)（断られたときの切り分けに --safe-mode）"]
-    notes: "新規：registry にない。不調の原因が自分の設定（CLAUDE.md・skills・hooks・MCP・出力スタイル）か、モデルや版かを切り分ける操作は、症状のページの診断から引かれる（instructions-ignored・seems-less-capable・replies-in-english など）。起動の仕方なので cli に置いた（design §4.2 の基本操作）。v2.1.169 以降（research/28 #28）。公式の「Debug your configuration」の手順（新しい CLAUDE_CONFIG_DIR と --setting-sources での起動）も本文で並べる（research/28 #27）。優先度は推奨：診断の手間を大きく減らすが、症状のページから related で引く補助なので必須にしない"
+    notes: "新規：registry にない。不調の原因が自分の設定（CLAUDE.md・skills・hooks・MCP・出力スタイル）か、モデルや版かを切り分ける操作は、症状のページの診断から引かれる（instructions-ignored・seems-less-capable・replies-in-english など）。起動の仕方なので cli に置いた（design §4.2 の基本操作）。v2.1.169 以降（research/28 #28）。公式の「Debug your configuration」の手順（新しい CLAUDE_CONFIG_DIR と --setting-sources での起動）も本文で並べる（research/28 #27）。優先度は推奨：診断の手間を大きく減らすが、症状のページから related で引く補助なので必須にしない。断られたときに使うのは、設定に入った引き金（推論の全文を求める指示など。research/26 §3.3 (b) の2）を見つけて外すためで、判定を避けるためではないと書く（decisions 2026-11-03「断られたときの頼み直し」）。要約の skills・plugins・hooks をスキル・プラグイン・フックにした（2026-11-04 統合：M1・M5）"
 
   # ── 設定と最初の準備 ──
   - id: settings-layers
@@ -365,12 +366,12 @@ pages:
     prevents: [縛っていない]
     pitfalls: []
     scenes: [開発, チーム]
-    summary: "設定をユーザー・プロジェクト・手元だけ・管理の層のどこに書くかで、誰に効き、どれが勝つかが決まる。読み込まれた設定は /status で確かめ、許可の一覧は層をまたいで合わさることを知っておく。"
+    summary: "設定をユーザー・プロジェクト・手元だけ・管理の層のどこに書くかで、誰に効き、どれが勝つかが決まる。読み込まれた設定は /status で確かめ、許可ルールは層をまたいで合わさることを知っておく。"
     signs:
       - {type: symptom, text: "設定を書いたのに効いていない"}
       - {type: goal, text: "自分だけの設定と、チームで共有する設定を分けたい"}
     prerequisites: []
-    related: [permission-rules, share-team-settings, managed-settings-enforcement, permission-modes-overview, isolate-with-safe-mode, output-style-modes, claude-md-loading-order, protecting-secrets]
+    related: [permission-rules, share-team-settings, managed-settings-enforcement, permission-modes-overview, isolate-with-safe-mode, output-style-modes, claude-md-loading-order, protecting-secrets, "keep-replies-in-japanese#language-setting", "commit-and-comment-language#override"]
     tracks: [settings, managed-settings]
     outdated_advice: []
     volatility: 中
@@ -380,7 +381,7 @@ pages:
       - {title: "効いているかを確かめる", anchor: verify}
     templates: []
     materials: ["00 §3 分野07", "01 B-1", "research/28 #25〜#27・#31（-p では壊れた設定が黙って飛ばされる）", "research/22 #13（server-managed settings）", "decisions 2026-11-03「工程2で確かめた事実」（settings の schema）"]
-    notes: "題名の「（最小限）」は作り手の言葉なので外し、aliases に残した。公式の文書が案内する SchemaStore のスキーマは古い版のもので、新しいキーを書いた正しい設定を誤りとして落とす（decisions 2026-11-03）。補完のために $schema を勧めるなら、この注意を添える。チームでの共有は team の share-team-settings、組織の強制は enforce の managed-settings-enforcement が持つ"
+    notes: "題名の「（最小限）」は作り手の言葉なので外し、aliases に残した。公式の文書が案内する SchemaStore のスキーマは古い版のもので、新しいキーを書いた正しい設定を誤りとして落とす（decisions 2026-11-03）。補完のために $schema を勧めるなら、この注意を添える。チームでの共有は team の share-team-settings、組織の強制は enforce の managed-settings-enforcement が持つ。language の設定を層の例にするときは、japanese の keep-replies-in-japanese（節 language-setting）と commit-and-comment-language（節 override：共有の設定の言語は個人の設定を上書きする）と書き方をそろえる（japanese の担当の提案）。要約の「許可の一覧」を、M1 の仮の表記の許可ルールにした（2026-11-04 統合：M1・japanese#9）"
 
   - id: init-and-first-claude-md
     chapter: 設定と最初の準備
@@ -399,7 +400,7 @@ pages:
     signs:
       - {type: goal, text: "最初の CLAUDE.md を手早く作りたい"}
       - {type: situation, text: "/init が作った CLAUDE.md を、そのまま使ってよいか迷っている"}
-    prerequisites: []
+    prerequisites: [where-instructions-sit]
     related: [what-to-put-in-claude-md, claude-md-length, when-to-add-what, repeating-the-same-explanation, agents-md, output-style-modes]
     tracks: [claude-md]
     outdated_advice: [architecture-in-claude-md, hash-to-memorize]
@@ -409,8 +410,8 @@ pages:
       - {title: "手で書く流儀との違い", anchor: by-hand}
     templates:
       - {name: "/init の叩き台を削った後の CLAUDE.md の例", kind: claude-md, safety: false}
-    materials: ["00 §3 分野07", "00 §1 の対立点の表（/init で CLAUDE.md を作るか）", "research/25 H1・§3.2（原文は /init や自動生成を避け、1行ずつ考えて書くよう勧める）", "01 2-1（注記を含む）"]
-    notes: "/init の扱いは実践者の間で割れる（叩き台に使う／1行ずつ手で書く）ので、公式の立場・実践者の幅・この教材の推奨の三段で書く（design §6.6）。CLAUDE.md の中身の判断は extend の what-to-put-in-claude-md ほかが持つ。「CLAUDE.md を /init で作り育てる」の文は 01 2-1（改稿の前の版の要約）にあるので、現行の文書で確かめてから書く"
+    materials: ["00 §3 分野07", "00 §1 の対立点の表（/init で CLAUDE.md を作るか）", "03 Q2 C6（/init による自動生成の是非の両論）", "research/25 H1・§3.2（原文は /init や自動生成を避け、1行ずつ考えて書くよう勧める）", "01 2-1（注記を含む）"]
+    notes: "/init の扱いは実践者の間で割れる（叩き台に使う／1行ずつ手で書く）ので、公式の立場・実践者の幅・この教材の推奨の三段で書く（design §6.6）。CLAUDE.md の中身の判断は extend の what-to-put-in-claude-md ほかが持つ。「CLAUDE.md を /init で作り育てる」の文は 01 2-1（改稿の前の版の要約）にあるので、現行の文書で確かめてから書く。/init の是非の両論（03 Q2 C6）はこのページに置き、extend の what-to-put-in-claude-md は related で指すだけにする（extend の担当の提案）。前提に basics の where-instructions-sit を置いた：CLAUDE.md がどこに入り、どれだけ効くか（強制ではなく文脈）を知ってから叩き台を削る（basics の担当の提案。どちらも整える）（2026-11-04 統合：basics#6・extend#5）"
 
   - id: output-style-modes
     chapter: 設定と最初の準備
@@ -431,19 +432,19 @@ pages:
       - {type: goal, text: "説明を増やしたり簡潔にしたりを、毎回言わずに切り替えたい"}
       - {type: goal, text: "コードを学びながら進めたいので、一部を自分で書きたい"}
     prerequisites: []
-    related: [claude-md-vs-rules-skills-styles, init-and-first-claude-md, learning-with-ai, how-much-understanding-to-keep, keeps-stopping, does-more-than-asked, keep-replies-in-japanese]
+    related: [claude-md-vs-rules-skills-styles, init-and-first-claude-md, learning-with-ai, how-much-understanding-to-keep, keeps-stopping, does-more-than-asked, "keep-replies-in-japanese#instructions", what-subagents-dont-inherit]
     tracks: [output-styles]
     outdated_advice: []
     volatility: 中
     sections:
       - {title: "組み込みのスタイル", anchor: built-in}
       - {title: "自作のスタイル", anchor: custom}
-      - {title: "CLAUDE.md・skill との分担", anchor: vs-claude-md}
+      - {title: "CLAUDE.md・スキルとの分担", anchor: vs-claude-md}
       - {title: "日本語の応答との関係", anchor: japanese}
     templates:
       - {name: "自作の出力スタイルの例", kind: other, safety: false}
     materials: ["00 §3 分野07（注記を含む）", "01 I-1", "research/23 #2", "research/27 §3.2（出力スタイルは指示で保証しない。fork でない subagent には効かない）", "research/26 §3.1（アプリの Styles とは別の機能）", "11 第2節 分野07 p12#154・p56#49（Learning の TODO(human)）"]
-    notes: "組み込みの種類と入った版（Proactive・Concise・Explanatory・Learning。Concise は v2.1.237 以降）は数値ファイルに置き、題名に並べない（registry の注記、research/23 #2）。題名は公式の日本語版の多数派（出力スタイル、84%）に合わせた。level を registry の見当（任せる）から整えるに下げた（理由は level_evidence）。アプリの Styles（2026-06 に skills への移行が告知）とは別の機能なので、用語集で分ける（research/26 §3.1）。Learning の学習の効果は実証されていないので、設計の意図として書く（11 p12#154）"
+    notes: "組み込みの種類と入った版（Proactive・Concise・Explanatory・Learning。Concise は v2.1.237 以降）は数値ファイルに置き、題名に並べない（registry の注記、research/23 #2）。題名は公式の日本語版の多数派（出力スタイル、84%）に合わせた。level を registry の見当（任せる）から整えるに下げた（理由は level_evidence）。アプリの Styles（2026-06 に skills への移行が告知）とは別の機能なので、用語集で分ける（research/26 §3.1）。Learning の学習の効果は実証されていないので、設計の意図として書く（11 p12#154）。出力スタイルは指示で、必ず起きることは保証せず、fork でないサブエージェントには届かない（research/27 §3.2）。この点は japanese の keep-replies-in-japanese（節 instructions・reach）と extend の what-subagents-dont-inherit と同じ書き方にそろえる（japanese の担当の提案）。置き場所は cli のままにした：組み込みのスタイルの切り替えの操作が中心で、整えるの段で要る（extend のページは任せる以上の段で、比較の claude-md-vs-rules-skills-styles から節 vs-claude-md を指す）。節の見出しの skill をスキルにした（2026-11-04 統合：M1・japanese#9・extend#2）"
 
   # ── ほかの面と離席 ──
   - id: using-ides
@@ -545,7 +546,7 @@ pages:
     prevents: []
     pitfalls: []
     scenes: [開発]
-    summary: "作業の終わりや承認待ちを hook などで通知させ、画面に張りつかずに任せる。知らせが多すぎると作業が細切れになるので、確認するタイミングを自分で決める流儀もある。"
+    summary: "作業の終わりや承認待ちをフックなどで通知させ、画面に張りつかずに任せる。知らせが多すぎると作業が細切れになるので、確認するタイミングを自分で決める流儀もある。"
     signs:
       - {type: goal, text: "任せている間に別の作業をしたいので、終わったら知らせてほしい"}
       - {type: symptom, text: "承認待ちで止まっていたことに、後から気づく"}
@@ -558,7 +559,7 @@ pages:
     templates:
       - {name: "作業の終わりと入力待ちを通知する hook の例", kind: hook, safety: false}
     materials: ["00 §3 分野07", "03 Q4 T4（通知の好みは正反対に分かれる）", "04 Q1 F（Hooks で完了通知を受け取る入門記事）", "01 KQ3 Gaps（通知は hooks の Notification イベントと端末の設定）"]
-    notes: "通知が要るかは実践者で正反対に分かれる（03 Q4 T4）ので、両方の流儀を並べる。hook の書き方の本体は enforce の hooks-basics と hook-recipes が持つ"
+    notes: "通知が要るかは実践者で正反対に分かれる（03 Q4 T4）ので、両方の流儀を並べる。hook の書き方の本体は enforce の hooks-basics と hook-recipes が持つ。要約の hook をフックにした（2026-11-04 統合：M1）"
 
   # ── 早見表 ──
   - id: command-cheatsheet
@@ -612,3 +613,4 @@ notes:
   - "ページ19（必須7・推奨9・任意3。使う2・整える10・任せる6・level なし1。feature 15・concept 2・recipe 1・ledger 1）。registry の19候補のうち18を採り、1つを採らず、新しく1つ（isolate-with-safe-mode）を足した。context の sessions-as-branches をこの分野の resume-and-branch にまとめた"
   - "題名を変えた候補：input-symbols・must-know-operations（数を外した）、checkpoints-and-rewind・when-to-plan・output-style-modes（公式の日本語版の訳語）、usage-context-statusline・settings-layers・resume-and-branch（理由は各ページの notes）。type を変えた候補：ask-claude-code（feature → concept）。level を変えた候補：output-style-modes（任せる → 整える）。priority を変えた候補：recover-lost-work（任意 → 推奨）"
   - "比例則：任せるのページ6つのうち、任せる幅を広げるのは cloud-sessions-and-teleport・control-from-phone・completion-notifications・settings-layers。どれにも verify・eval・enforce・safety のページを related に置いた。recover-lost-work と isolate-with-safe-mode は広げる内容ではないが、近い safety・eval のページを related に置いた"
+  - "2026-11-04 統合（I4）：ほかの分野の提案と逆引きの行を反映し、題名・要約・節の見出しの表記を M1 にそろえた（skill・hook・plugins → スキル・フック・プラグイン、transcript → トランスクリプト、status line → ステータスライン、許可の一覧 → 許可ルール）。ページの数・id・anchor・priority・level は変えていない。扱いの一覧は planning/batches/step3/integrate-I4.md"

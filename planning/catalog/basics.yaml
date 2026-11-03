@@ -2,6 +2,7 @@
 # 担当：C1（工程3、2026-11-04）。
 # ほかの分野の「なぜ」の本体（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。原理は変わりにくいので volatility は低を基本にし、
 # 機能の動きに依るページだけ中にした。ほかの分野が前提にしやすいよう、ページは「なぜ」1つの単位にし、必須のページの前提は必須にした。
+# 2026-11-04 統合：I1（提案の扱いは planning/batches/step3/integrate-I1.md）。
 field: basics
 chapters: [コンテキストと注意, エージェントと思考, 答えの確かさ, 指示と仕組み]
 pages:
@@ -21,7 +22,7 @@ pages:
     signs:
       - {type: goal, text: "上限や費用で言う「トークン」が何を数えているのか知りたい"}
     prerequisites: []
-    related: [can-i-prompt-in-japanese, attention-budget, rereads-whole-history, how-usage-limits-work, what-uses-up-limits, inspect-context]
+    related: ["can-i-prompt-in-japanese#tokens", attention-budget, rereads-whole-history, how-usage-limits-work, what-uses-up-limits, inspect-context]
     tracks: [token-counting, context-window]
     volatility: 低
     visual: {kind: static, text: "同じ一文を英語と日本語でトークンに区切って色分けした列。倍率はトークナイザーで変わると添える"}
@@ -30,7 +31,7 @@ pages:
       - "05 §3-1（トークンとトークン化）と Inferences（語のかけら）・Gaps と注記"
       - "research/27 #13（公式は言語ごとの倍率を出していない。Opus 4.7 以降の新しいトークナイザー。token counting で数える）"
       - "02 §5（token counting など API の概念）"
-    notes: "日本語のトークン数の違いと対処の本体は japanese の more-tokens-in-japanese に任せ、ここは単位の考え方にした（design §4.2：日本語に固有の論点は japanese。registry の notes の重なりの組）。そのため題名から「（日本語の場合）」を外した。例は日本語で出す。倍率の数値は数値ファイルに置き、本文と summary に書かない（05 §3-1 の比率は旧い tokenizer の移植版によるもので、現行のモデルの値ではない）。"
+    notes: "ここはトークンの仕組みと、日本語ではトークンの量が変わるという考え方までにし、英語に替えて節約するかの判断と数え方は japanese の can-i-prompt-in-japanese#tokens に任せた（japanese が more-tokens-in-japanese をそこへまとめた。design §4.2：日本語に固有の論点は japanese。registry の notes の重なりの組）。そのため題名から「（日本語の場合）」を外した。例は日本語で出す。倍率の数値は数値ファイルに置き、本文と summary に書かない（05 §3-1 の比率は旧い tokenizer の移植版によるもので、現行のモデルの値ではない）。（2026-11-04 統合：basics#1・japanese#1・japanese#3）"
 
   - id: attention-budget
     chapter: コンテキストと注意
@@ -71,7 +72,7 @@ pages:
     surfaces: [app, claude-code, api]
     principle: [見せる]
     prevents: [散らかっている, 合っていない]
-    summary: "Claude は毎回、会話の最初からすべてを読み直して返事をするので、長い会話ほど遅く重く、上限も早く使うことが分かる。同じ前置きが続くと cache で安くなる理由にもつながる。"
+    summary: "Claude は毎回、会話の最初からすべてを読み直して返事をするので、長い会話ほど遅く重く、上限も早く使うことが分かる。同じ前置きが続くとキャッシュで安くなる理由にもつながる。"
     signs:
       - {type: symptom, text: "会話が長くなると返事が遅くなり、上限の減りも早くなる"}
       - {type: goal, text: "長い会話がなぜ重くなるのか知りたい"}
@@ -84,7 +85,7 @@ pages:
       - "05 §3-1（Manage costs：Claude Code は毎回の request で会話全体を送る）と Inferences（読み直す受験者）"
       - "research/22 #40（message threads は送る量を減らすが、モデルが毎回全体を読むことと料金は変わらない。比喩は保てる）"
       - "requirements §2（動く図の例：コンテキストの埋まり方）・§6.6（比喩の一覧）"
-    notes: "api の stateless-messages-api（Messages API と会話の正体）と同じ仕組みなので、面ごとに分けずタブで並べる案を open_issues に書いた。動く図はコンテキストの埋まり方の図で、requirements §2 が動く図の例に挙げるもの（公式の対話型の図へのリンクで足りるなら static にする）。"
+    notes: "api の stateless-messages-api（Messages API と会話の正体）と同じ仕組みで、api の担当はそのページを API に固有の操作（messages の配列・message threads）に絞り、このページを前提にした（面ごとに分けない：D9）。動く図はコンテキストの埋まり方の図で、requirements §2 が動く図の例に挙げるもの。自作するか公式の対話型の図（Explore the context window）にリンクするかは、執筆のときに公式の図と比べて決める（リンクで足りるなら static にする）。（2026-11-04 統合：basics#3・context#4・M1・M8）"
 
   - id: context-rot
     chapter: コンテキストと注意
@@ -99,7 +100,7 @@ pages:
     prevents: [散らかっている]
     summary: "入力が長くなるほど、また似ているが違う情報が混ざるほど、答えの質が下がりやすいことが分かる。失敗した試みが会話に残ると紛らわしい情報になるので、片付けや巻き戻しが効く。"
     signs:
-      - {type: symptom, text: "会話が長くなると精度が落ちる"}
+      - {type: goal, text: "長い会話で答えの質が落ちていく理由を知りたい"}
       - {type: symptom, text: "失敗したやり方を何度も蒸し返してくる"}
     prerequisites: [attention-budget]
     related: [lost-in-the-middle, forgets-in-long-chats, going-in-circles, when-to-start-fresh, rewind-dont-correct, tidy-the-desk, handoff-documents, 1m-context]
@@ -111,7 +112,7 @@ pages:
       - "05 §3-3（Chroma の18モデルの実験。distractor、needle と質問の類似度）と Inferences（似ているが違う書類）"
       - "11 第2節 分野01「context rot と紛らわしい情報」p34#106（足すものなし）"
       - "research/23 #1（改稿前の Best practices の前提を根拠にしない）"
-    notes: "level を registry の見当（整える）から使うに下げた（level_evidence）。症状の forgets-in-long-chats（使う）が前提にしても段階が逆転しない。研究は旧い世代のモデル（Claude 4 など）の結果なので、どのモデルの結果かを書き、現行の Claude の傾向としては書かない（requirements §6.2）。用語 context rot は研究の名前なので題名に残した。"
+    notes: "level を registry の見当（整える）から使うに下げた（level_evidence）。症状の forgets-in-long-chats（使う）が前提にしても段階が逆転しない。研究は旧い世代のモデル（Claude 4 など）の結果なので、どのモデルの結果かを書き、現行の Claude の傾向としては書かない（requirements §6.2）。用語 context rot は研究の名前なので題名に残した。症状の項目「会話が長くなると精度が落ちる」は症状の forgets-in-long-chats にあるので、ここには同じ文を置かず、理由を知りたい読者の goal にした（M2）。（2026-11-04 統合：M2）"
 
   - id: lost-in-the-middle
     chapter: コンテキストと注意
@@ -135,7 +136,7 @@ pages:
     materials:
       - "00 §3 分野01「中ほどの情報は使われにくい（lost in the middle）」"
       - "05 §3-4（Liu らの研究と、Chroma の実験で位置の差が目立たなかった注意）・Gaps（掲載誌は未確認）"
-    notes: "研究は 2023 年のモデルの結果で、2025 年の実験では位置の差が目立たなかった（05 §3-4）。傾向として、条件で変わることを中心に書く。prompting の long-context-first の根拠は公式の試験（00 §1）なので、そちらの前提にはせず関連にとどめる案を open_issues に書いた。"
+    notes: "研究は 2023 年のモデルの結果で、2025 年の実験では位置の差が目立たなかった（05 §3-4）。傾向として、条件で変わることを中心に書く。prompting の long-context-first の根拠は公式の試験（00 §1）なので、prompting の担当はこのページを前提にせず関連に置いた。（2026-11-04 統合：basics#7）"
 
   - id: why-prompt-caching
     chapter: コンテキストと注意
@@ -143,25 +144,26 @@ pages:
     nav_title: プロンプトキャッシングの仕組み
     aliases: [prompt caching, cache, キャッシュが切れる, 先頭部分の一致]
     type: concept
-    level: 任せる
-    level_evidence: "長いセッションを続けて任せる段階で、途中でモデルや設定を変えると費用と上限の減りが増える理由として要る"
+    level: 整える
+    level_evidence: "資料の置き方や会話の進め方を整える段階で要る。アプリでは、よく使う資料をプロジェクトに置くと使用量が抑えられる理由になる（app の using-projects も整える）。Claude Code と API では、途中で effort・モデル・道具を変えると費用と上限の減りが増える理由になる（how-thinking-works と cost の what-uses-up-limits も整える）"
     priority: 推奨
-    surfaces: [claude-code, api]
+    surfaces: [app, claude-code, api]
     principle: [見せる]
     prevents: [合っていない]
-    summary: "会話の先頭（ツールの定義・システムプロンプト・前の発言）が変わらなければ読み直しが安く済み、途中で変えるとそこから後の cache が外れることが分かる。セッションの途中で何を変えないかを決める土台になる。"
+    summary: "会話の先頭（ツールの定義・システムプロンプト・前の発言）が変わらなければ読み直しが安く済み、途中で変えるとそこから後のキャッシュが外れることが分かる。途中で何を変えないかと、よく使う資料をどこに置くかを決める土台になる。"
     signs:
       - {type: goal, text: "セッションの途中でモデルや設定を変えると費用が増える理由を知りたい"}
     prerequisites: [rereads-whole-history]
-    related: [prompt-caching-in-practice, compact-and-auto-compact, always-on-costs, what-uses-up-limits, how-thinking-works]
+    related: [prompt-caching-in-practice, using-projects, compact-and-auto-compact, always-on-costs, what-uses-up-limits, how-thinking-works]
     tracks: [prompt-caching]
     volatility: 中
-    visual: {kind: static, text: "積み木：tools → system → messages の順に積み、上の段を変えると下の段の cache がすべて外れる"}
+    visual: {kind: static, text: "積み木：tools → system → messages の順に積み、上の段を変えると下の段のキャッシュがすべて外れる"}
     materials:
       - "00 §3 分野01「prompt caching（先頭が変わらないことの価値）」"
       - "05 §3-11（先頭部分の完全な一致、cache が無効になる操作、/usage の Prompt cache の行）と Inferences（付箋・積み木）"
       - "05 §3-8（effort を変えると prompt cache が無効になる）"
-    notes: "題名は公式の日本語版の多数派（プロンプトキャッシング。research/27 §3.1）に合わせ、英語名を aliases に置いた。料金の倍率と cache の寿命は数値ファイルに置く。費用の仕組みの説明で、任せる幅を広げる内容ではないので、比例則の警告は残す。"
+      - "02 §1-2・§5（アプリの対応物：プロジェクトの資料はキャッシュされ、繰り返し使うときの消費が少ない。使わない時間が続くと切れる。Help Center の Usage limit best practices）"
+    notes: "題名は公式の日本語版の多数派（プロンプトキャッシング。research/27 §3.1）に合わせ、英語名を aliases に置いた。料金の倍率と cache の寿命は数値ファイルに置く。費用の仕組みの説明で、任せる幅を広げる内容ではない。M9 で段階を見直し、任せるから整えるに下げ、面にアプリを足した。最初に要るのは長い作業を任せる段階ではなく、資料の置き方や effort・モデルの使い方を整える段階で、アプリでもプロジェクトに置いた資料はキャッシュされる（02 §1-2・§5）。段の規則は保たれる（前提の rereads-whole-history は使う、このページを前提にする api の prompt-caching-in-practice は仕組みにする）。優先度は推奨のまま。下げたので比例則の対象の段から外れた。アプリの手段はタブで並べ、面ごとの機能の対応表は api の feature-to-api-mapping に任せる。（2026-11-04 統合：M9・M1）"
 
   - id: what-survives-compaction
     chapter: コンテキストと注意
@@ -179,7 +181,7 @@ pages:
     signs:
       - {type: goal, text: "圧縮のあとも守らせたい約束を、どこに書けばよいか知りたい"}
     prerequisites: [rereads-whole-history, where-instructions-sit]
-    related: [compact-and-auto-compact, promises-after-compaction, forgot-after-compaction, when-to-lock, handoff-documents, path-scoped-rules, long-chat-limits]
+    related: [compact-and-auto-compact, promises-after-compaction, forgot-after-compaction, "when-to-lock#spoken-rules-fade", handoff-documents, path-scoped-rules, long-chat-limits]
     tracks: [compaction, claude-md, rules, auto-memory, skills]
     volatility: 中
     sections:
@@ -194,7 +196,7 @@ pages:
       - "11 第3節 3-2 #5 と、表の後の注記（skill の説明文は v2.1.304 以降に作り直して入れ直す。auto memory の200行・25KB は Memory のページの値）"
       - "05 §3-12（compaction の定義、/compact の重さ）と Inferences（議事録だけ残して録音を消す）"
       - "research/22 #14・#17（圧縮の不具合の修正と、hook の出力の上限）"
-    notes: "00 の「CLAUDE.md は再注入される」は一部だけ正しい（注記）ので使わず、research/23 §3.4 の公式の表で書く。表の項目と数（読み直すファイルの数やトークンの上限など）は版で変わるので数値ファイルに置く。仕組みの本体はこのページで、context の promises-after-compaction・symptoms の forgot-after-compaction との分け方を open_issues に書いた（enforce の spoken-prohibitions-fade は enforce の担当が when-to-lock にまとめた）。アプリの長い会話の自動の文脈管理は app の long-chat-limits に任せる。比例則：enforce の when-to-lock を関連に持つ。"
+    notes: "00 の「CLAUDE.md は再注入される」は一部だけ正しい（注記）ので使わず、research/23 §3.4 の公式の表で書く。11 第3節 3-2 #5 の「skill の一覧は圧縮の後に戻らない」も使わない（v2.1.304 以降は今の skills から作り直して入れ直す）。表の項目と数（読み直すファイルの数やトークンの上限など）は版で変わるので数値ファイルに置く。残るもの・消えるものの一覧はこのページに一本化した。context の promises-after-compaction（約束の移し方）と compact-and-auto-compact（操作）、symptoms の forgot-after-compaction（振り分け）は、このページを前提にして一覧を繰り返さない。enforce の spoken-prohibitions-fade は when-to-lock にまとめられたので、口で言った禁止が薄れる話は when-to-lock#spoken-rules-fade を指す。アプリの長い会話の自動の文脈管理は app の long-chat-limits に任せる。比例則：enforce の when-to-lock を関連に持つ。（2026-11-04 統合：basics#2・context#3・enforce#2）"
 
   - id: subagent-isolation
     chapter: コンテキストと注意
@@ -213,7 +215,7 @@ pages:
     prerequisites: [attention-budget]
     related: [research-in-subagents, writing-subagents, what-subagents-dont-inherit, skill-vs-subagent, independent-review, choosing-parallel-modes, agent-loop]
     tracks: [subagents]
-    outdated_advice: [tell-it-to-use-subagents, subagent-per-step]
+    outdated_advice: [subagents-to-save-context, tell-it-to-use-subagents, subagent-per-step]
     volatility: 低
     visual: {kind: static, text: "調査を別室の部下に頼み、報告書1枚だけを受け取る。部下も給料（トークン）を取る"}
     materials:
@@ -222,7 +224,7 @@ pages:
       - "research/23 §3.7（現行の Best practices は「コンテキストを守るために subagent を使う」をもうやめてよい助言に入れた）"
       - "research/27 §3.2（CLAUDE.md・output style がサブエージェントに届く範囲）"
       - "research/22 §3.7（API でエージェントを作るとき subagent を減らす場合がある、という公式ブログ。題と要約だけなので根拠にしない）"
-    notes: "題名は公式の日本語版の多数派（サブエージェント。research/27 §3.1）に合わせた。「コンテキストを守るために使う」を主な理由として書かない（research/23 §3.7。台帳に足す案を changes の open_issues に書いた）。比例則：verify の independent-review を関連に持つ。"
+    notes: "題名は公式の日本語版の多数派（サブエージェント。research/27 §3.1）に合わせた。「コンテキストを守るために使う」を主な理由として書かない（research/23 §3.7。台帳の subagents-to-save-context で逆リンクする）。比例則：verify の independent-review を関連に持つ。（2026-11-04 統合：context#5・extend#3・M3）"
 
   # ── エージェントと思考 ──
   - id: agent-loop
@@ -253,7 +255,7 @@ pages:
       - "11 第2節 分野01「エージェントループと tool use」p12#15（ALE-Bench：フィードバック付きの逐次改善）"
       - "11 第4節 #32・research/24 B-32（ALE-Bench の数値の確認。150回との比較は6問だけ）"
       - "research/22 #18（検索の打ち切りを全部の結果とみなした不具合：見えていないことに気づかない例）"
-    notes: "ALE-Bench の数値は研究のモデルと世代を書き、独立した150回との比較は6問だけだったこと（11 第4節 #32）を添える。api の tool-use-loop は API での組み立てで、このページを前提にする案を open_issues に書いた。コンテストの例は一般化した論点として置く（design §4.1 の6）ので scenes にコンテストを付けた。"
+    notes: "ALE-Bench の数値は研究のモデルと世代を書き、独立した150回との比較は6問だけだったこと（11 第4節 #32）を添える。api の tool-use-loop（API での組み立て）は、このページを前提にした。コンテストの例は一般化した論点として置く（design §4.1 の6）ので scenes にコンテストを付けた。（2026-11-04 統合：basics#4）"
 
   - id: how-thinking-works
     chapter: エージェントと思考
@@ -297,6 +299,7 @@ pages:
     summary: "画面に出る思考や「こう計算した」という説明は、実際の内部の処理とずれることがあると分かる。説明のもっともらしさではなく、結果を独立に確かめる理由になる。"
     signs:
       - {type: goal, text: "表示された思考の過程を根拠にしてよいか知りたい"}
+      - {type: goal, text: "推論の過程を全部見せてほしい"}
       - {type: symptom, text: "説明された理由と、実際の結果が食い違う"}
     prerequisites: [how-thinking-works]
     related: [asking-for-reasoning, evidence-not-reports, independent-review, sycophancy]
@@ -306,7 +309,7 @@ pages:
       - "00 §3 分野01「表示された推論は内部の計算と一致しない」"
       - "05 §3-5（Tracing thoughts：出力の前に先を計画している例。「ただの次単語予測」の説明の限界）"
       - "00 §5 の台帳の「<thinking> タグに推論を書かせる」（撤回）"
-    notes: "題名を「一致しない」から「一致するとは限らない」に和らげた（研究は一致しない例を示したもので、いつも一致しないとは言っていない）。表記は how-thinking-works に合わせて「思考」にした。研究は旧い世代の Claude を調べた解釈可能性の研究なので、世代を書く。"
+    notes: "題名を「一致しない」から「一致するとは限らない」に和らげた（研究は一致しない例を示したもので、いつも一致しないとは言っていない）。表記は how-thinking-works に合わせて「思考」にした。研究は旧い世代の Claude を調べた解釈可能性の研究なので、世代を書く。逆引きの「推論の過程を全部見せてほしい」の行き先の一つで（見せ方の手段は prompting の asking-for-reasoning）、ここは、見せても内部の処理と一致するとは限らないことを答える。（2026-11-04 統合：M2 の逆引き #11）"
 
   # ── 答えの確かさ ──
   - id: why-hallucinations
@@ -351,7 +354,7 @@ pages:
     scenes: [調べもの, 開発]
     summary: "モデルの知識はある時点で止まり、今日の日付も知らないので、最近の出来事や新しい版について誤ることが分かる。日付と検索結果と最新の資料を渡す理由になる。"
     signs:
-      - {type: symptom, text: "最近の出来事や新しい版について間違える"}
+      - {type: goal, text: "Claude が最近の出来事や今日の日付を知らない理由を知りたい"}
       - {type: symptom, text: "古い版の書き方を、今の方法として勧めてくる"}
     prerequisites: []
     related: [doesnt-know-latest, why-hallucinations, search-research-thinking, uses-nonexistent-apis, dating-information, current-models]
@@ -362,7 +365,7 @@ pages:
       - "05 §3-6（reliable knowledge cutoff と training data cutoff）と注記"
       - "research/26 #12・#13・§3.7（Help Center の記事は training data cutoff に当たる。reliable は別に持つ）"
       - "02 §6（限界に関する公式の案内・検索を使う場面）"
-    notes: "カットオフの日付はモデルごとに数値ファイルに置き、reliable と training を分けて持つ（research/26 §3.7）。本文と summary に日付を書かない。モデルが替わるたびに日付が変わるので volatility は中にした。"
+    notes: "カットオフの日付はモデルごとに数値ファイルに置き、reliable と training を分けて持つ（research/26 §3.7）。本文と summary に日付を書かない。モデルが替わるたびに日付が変わるので volatility は中にした。症状の項目「最近の出来事や新しい版について間違える」は症状の doesnt-know-latest にあるので、ここには同じ文を置かず、理由を知りたい読者の goal にした（M2）。（2026-11-04 統合：M2）"
 
   - id: nondeterminism
     chapter: 答えの確かさ
@@ -378,7 +381,7 @@ pages:
     prevents: [確かめていない]
     summary: "同じ頼み方でも答えが毎回少し変わるので、一回の結果で良し悪しを決められないことが分かる。答えのばらつきは不確かさの合図になり、何回か試して比べる理由になる。"
     signs:
-      - {type: symptom, text: "同じ質問で毎回答えが違う"}
+      - {type: goal, text: "同じ頼み方でも答えが毎回変わる理由を知りたい"}
       - {type: goal, text: "一回うまくいった頼み方を信じてよいか判断したい"}
     prerequisites: []
     related: [fact-checking, measure-changes, felt-vs-measured, why-hallucinations, refine-in-conversation]
@@ -391,7 +394,7 @@ pages:
       - "research/22 §3.4・#42（temperature を下げる助言の撤回）"
       - "11 第2節 分野09「変更が効いたかを測る」p34#38（実行環境だけでベンチマークの結果が動く。未確認：11 第4節 #51）"
       - "11 第1節 新分野案Y「形式と AI の効き方」（問題ごとのばらつきは非決定性とは別の論点）"
-    notes: "temperature を下げて安定させる助言は撤回された（台帳の lower-temperature。research/22 §3.4）。05 §3-7 の推論のばらつきの原因（GPU の計算の組み合わせ）は二次情報で、原典を確かめていないので根拠の中心にしない。p34#38 の数値は未確認（11 第4節 #51）。"
+    notes: "temperature を下げて安定させる助言は撤回された（台帳の lower-temperature。research/22 §3.4）。05 §3-7 の推論のばらつきの原因（GPU の計算の組み合わせ）は二次情報で、原典を確かめていないので根拠の中心にしない。p34#38 の数値は未確認（11 第4節 #51）。症状の項目「同じ質問で毎回答えが違う」は症状の plausible-falsehoods にあるので、ここには同じ文を置かず、理由を知りたい読者の goal にした（M2）。台帳の lower-temperature は prompting では付けず、このページで指す（prompting#10 のとおり）。（2026-11-04 統合：M2）"
 
   - id: summary-overgeneralization
     chapter: 答えの確かさ
@@ -431,7 +434,6 @@ pages:
     pitfalls: [同意を根拠にする]
     summary: "利用者の考えに合う応答が好まれる形で訓練されるので、Claude も同意しやすく、押されると意見を変えやすいことが分かる。規範や頼み方だけでは直りにくく、聞き方と独立したレビューで補う理由になる。"
     signs:
-      - {type: symptom, text: "こちらの誤った指摘にも、すぐ同意する"}
       - {type: goal, text: "Claude が賛成しがちな理由を知りたい"}
     prerequisites: []
     related: [agreement-is-not-evidence, ask-without-sycophancy, caves-when-pushed, insists-on-mistakes, independent-review, curb-sycophancy-and-overtrust, human-pitfalls]
@@ -442,7 +444,7 @@ pages:
       - "11 第2節 分野01「迎合」p12#71〜p12#74・p56#5・p56#6・p56#91（根拠の強さと旧世代の注意つき）"
       - "11 第2節 分野18 p12#90（「反対しなかったことは計画が正しい証拠にならない」）"
       - "research/24 §2.3 のイ・B-44・B-55（迎合の研究の一次資料の確認）"
-    notes: "registry の推奨から必須に上げた。judgment の agreement-is-not-evidence（必須・第一波の核）や symptoms の caves-when-pushed が前提にしやすく、必須のページの前提は必須にする規則に合わせるため。研究の多くは旧い世代や他社のモデルの結果なので、どのモデルの結果かを書く（p56#5 は旧世代の Haiku：11 第4節 #41）。p56#6 の SycEval は research/24 B-44 で確かめた範囲だけを使う。人の側の受け取り方（同意を根拠にする）は judgment に任せ、ここはモデルの側の性質にする。"
+    notes: "registry の推奨から必須に上げた。judgment の agreement-is-not-evidence（必須・第一波の核）や symptoms の caves-when-pushed が前提にしやすく、必須のページの前提は必須にする規則に合わせるため。研究の多くは旧い世代や他社のモデルの結果なので、どのモデルの結果かを書く（p56#5 は旧世代の Haiku：11 第4節 #41）。p56#6 の SycEval は research/24 B-44 で確かめた範囲だけを使う。人の側の受け取り方（同意を根拠にする）は judgment に任せ、ここはモデルの側の性質にする。症状の項目「こちらの誤った指摘にもすぐ同意する」は症状の caves-when-pushed にあるので、ここから外した（M2。caves-when-pushed はこのページを前提にしている）。（2026-11-04 統合：M2）"
 
   - id: reward-hacking
     chapter: 答えの確かさ
@@ -511,7 +513,7 @@ pages:
     surfaces: [claude-code, app, api]
     principle: [縛る]
     prevents: [縛っていない]
-    summary: "プロンプト・CLAUDE.md・skill のような指示は Claude が読んで判断するお願いで、hook・拒否ルール・管理設定は毎回必ず効く鍵だと分かる。例外を許さない規則を鍵に移す判断の土台になる。"
+    summary: "プロンプト・CLAUDE.md・スキルのような指示は Claude が読んで判断するお願いで、フック・拒否ルール・管理設定は毎回必ず効く鍵だと分かる。例外を許さない規則を鍵に移す判断の土台になる。"
     signs:
       - {type: symptom, text: "「必ず」と書いても破られる"}
       - {type: goal, text: "どの規則を仕組みで強制すべきか見分けたい"}
@@ -519,7 +521,7 @@ pages:
     related: [when-to-lock, request-lock-table, hook-vs-skill, instructions-ignored, where-instructions-sit, data-vs-instructions, emphasis-words, hooks-basics, permission-rules, "four-principles#lock"]
     outdated_advice: [important-caps]
     volatility: 低
-    visual: {kind: static, text: "お願いと鍵の二層：上の層（プロンプト・CLAUDE.md・skill）は判断され、下の層（hook・拒否ルール・管理設定・sandbox）は毎回必ず効く"}
+    visual: {kind: static, text: "お願いと鍵の二層：上の層（プロンプト・CLAUDE.md・スキル）は判断され、下の層（フック・拒否ルール・管理設定・サンドボックス）は毎回必ず効く"}
     materials:
       - "00 §3 分野01「お願いと鍵（決定論的か、非決定論的か）」"
       - "00 §1「公式は失敗を四つに分け、『お願い』と『鍵』を区別する」"
@@ -528,7 +530,7 @@ pages:
       - "11 第1節 分野01 p56#11（規範は保証にならない：迎合と同じ構図）"
       - "research/27 #8・§3.2（CLAUDE.md は強制される設定ではなく文脈。prompt 型・agent 型の hook は決定的ではない）"
       - "research/23 §3.1（Best practices の改稿。現行の版で書く）"
-    notes: "背骨の「縛る」の理論面（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。判断と対応表の本体は enforce の when-to-lock と request-lock-table に任せる。独自の用語「お願いと鍵」を見出しにし、公式の用語（非決定論的な指示・決定論的な制御）を併記する（D14）。prompt 型・agent 型の hook は別のモデルが判断するので鍵にならないことも書く（research/27 §3.2）。"
+    notes: "背骨の「縛る」の理論面（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。判断と対応表の本体は enforce の when-to-lock と request-lock-table に任せる。独自の用語「お願いと鍵」を見出しにし、公式の用語（非決定論的な指示・決定論的な制御）を併記する（D14）。prompt 型・agent 型の hook は別のモデルが判断するので鍵にならないことも書く（research/27 §3.2）。拒否ルールの表記は仮（M1。工程5で確かめる）。（2026-11-04 統合：M1）"
 
   - id: data-vs-instructions
     chapter: 指示と仕組み
