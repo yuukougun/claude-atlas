@@ -27,7 +27,7 @@
 | F4 | cli・extend・contest | a・d・e・h（R1-17）・l・m（recover-lost-work）・q（completion-notifications）・r・w（settings-layers） | `fix-F4.md` | 完了 |
 | F5 | verify・eval・enforce | a・d・e・h（R1-13 の hook-recipes・R1-14 の sandboxing・R1-15）・k（own-generated-code） | `fix-F5.md` | 完了 |
 | F6 | safety・delegate・team | a・d・e（付表B）・f・h（R1-14・R1-16）・m（protecting-secrets・when-requests-are-refused）・o（cloud-schedules・enterprise-vs-team-plans）・p（ai-amplifies-organizations）・q（curb-sycophancy-and-overtrust）・s | `fix-F6.md` | 完了 |
-| F7 | symptoms・recipes | x（routes。T3 の後に始める）・b・c・d・e・h（R1-13）・i（unexpected-memories）・j・m・q（add-tests）・t | `fix-F7.md` | 実行中 |
+| F7 | symptoms・recipes | x（routes。T3 の後に始める）・b・c・d・e・h（R1-13）・i（unexpected-memories）・j・m・q（add-tests）・t | `fix-F7.md` | 完了 |
 
 ## 3段目：反映を確かめる（2段目の後）
 
@@ -35,5 +35,5 @@
 
 | 担当 | 見るもの | 報告 | 状態 |
 | --- | --- | --- | --- |
-| V1 | 設計書の第2版（design.md）と catalog/README・schema/site.yml を、design-review の DR-01〜DR-20 と §6 に照らす | `verify-V1.md` | 未着手 |
-| V2 | 目次（planning/catalog/）の直しを、DR-19 の各行・fix-aliases.md・担当の報告に照らす。検査の道具を流す | `verify-V2.md` | 未着手 |
+| V1 | 設計書の第2版（design.md）と catalog/README・schema/site.yml を、design-review の DR-01〜DR-20 と §6 に照らす | `verify-V1.md` | 完了（24件：直す3・直したほうがよい9・軽い12。メインが直した） |
+| V2 | 目次（planning/catalog/）の直しを、DR-19 の各行・fix-aliases.md・担当の報告に照らす。検査の道具を流す | `verify-V2.md` | 実行中 |
