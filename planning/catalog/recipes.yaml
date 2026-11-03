@@ -59,7 +59,7 @@ pages:
     summary: "与えられた仕様は原文を自分で読んで要約を書き、AI には原文と突き合わせて誤読や落とした条件を指摘させる。理解は、採点や検証の処理を書いて公式の値と照らして確かめる。"
     signs:
       - {type: goal, text: "要件定義書や API の仕様の読み違いを防ぎたい"}
-      - {type: symptom, text: "AI の要約だけ読んで進めたら、大事な条件を落としていた"}
+      - {type: symptom, text: "AI に要約させた仕様で実装したら、仕様の条件を取り違えていた"}
       - {type: situation, text: "長い問題文や規約を読んでから取りかかる"}
     prerequisites: [summary-overgeneralization, fact-checking]
     related: [think-before-asking, spec-first, explore-a-codebase, research-and-reports, tests-first, handing-long-documents, ai-ideas-are-everyones, practice-vs-contest-day, documents-in-japanese, checking-citations]
@@ -73,7 +73,7 @@ pages:
       - {name: "採点や評価の処理を書かせ、公式の値と小さな例で一致させる依頼の型", kind: prompt, safety: false}
     visual: {kind: static, text: "原文 → 自分の要約 → AI が原文と突き合わせて指摘 → 採点の処理で確かめる、の流れ"}
     materials: ["11 第1節 分野16 新「仕様を自分で読み、AI に誤読を指摘させる」p12#104・p12#116・p12#117", "11 第1節 分野16 p12#107・p12#108・p12#111（競技の例。本文に人名を出さない）", "10 第5章", "requirements §6.7（原文を見せるか、要約して渡すか）"]
-    notes: "priority は C0 の見当のまま推奨：要件・API の仕様・契約など一般の業務に通じるが、根拠は実践（章:中）。問題文とテスターを細部まで読む競技の技術そのものは kyopro-atlas に任せ（decisions 2026-11-03 書き方の方針（第三者・根拠・コンテスト）5）、AI への渡し方と確かめ方に絞る。p12#111 は体験記で版依存なので、例にするなら確認日を付ける。発想の段階で自分の要約を先に作る助言は「類推・弱」として添える（requirements §6.7）。"
+    notes: "priority は C0 の見当のまま推奨：要件・API の仕様・契約など一般の業務に通じるが、根拠は実践（章:中）。問題文とテスターを細部まで読む競技の技術そのものは kyopro-atlas に任せ（decisions 2026-11-03 書き方の方針（第三者・根拠・コンテスト）5）、AI への渡し方と確かめ方に絞る。p12#111 は体験記で版依存なので、例にするなら確認日を付ける。発想の段階で自分の要約を先に作る助言は「類推・弱」として添える（requirements §6.7）。工程4：sign の「AI の要約だけ読んで進めたら、大事な条件を落としていた」は、症状の summary-overstates-source（条件や但し書きが要約から落ちる）の言い換えなので、このページが直接答える狭い場面（要約させた仕様で実装した）にした。summary-overstates-source は、確かめていないの routes でこのページを指す（2026-11-04 工程4：DR-19 a）"
 
   # ── 直す ──
   - id: fix-a-bug
@@ -93,8 +93,8 @@ pages:
       - {type: goal, text: "エラーの原因を突き止めて直させたい"}
       - {type: symptom, text: "直したと言われたのに、条件を変えると同じバグが出る"}
       - {type: symptom, text: "修正を頼むたびに、的外れな場所が書き換えられる"}
-    prerequisites: [define-done, evidence-not-reports]
-    related: [shrink-failing-inputs, bisect-regressions, build-observation-tools, going-in-circles, claims-done-but-isnt, rewrote-tests-to-pass, rewind-dont-correct, tests-first, protect-tests, differential-testing, wont-rethink-approach, uses-nonexistent-apis, "vetting-extensions#dependencies", agent-teams, before-after-prompts]
+    prerequisites: [evidence-not-reports]
+    related: [define-done, shrink-failing-inputs, bisect-regressions, build-observation-tools, going-in-circles, claims-done-but-isnt, rewrote-tests-to-pass, rewind-dont-correct, tests-first, protect-tests, differential-testing, wont-rethink-approach, uses-nonexistent-apis, "vetting-extensions#dependencies", agent-teams, before-after-prompts]
     tracks: [checkpoints]
     outdated_advice: [add-double-check]
     volatility: 中
@@ -107,7 +107,7 @@ pages:
       - {name: "説明 → 仮説 → 反証 → 最小の修正の順に進める依頼（10 付録A-10。Before/After の折りたたみ）", kind: prompt, safety: false}
     visual: {kind: static, text: "再現 → 縮小 → 仮説と反証 → 最小の修正 → 退行の確認、の流れ"}
     materials: ["00 §3 分野16", "01 KQ3（Common workflows：バグ修正）", "11 第2節 分野16 p34#60・p34#69・p34#70・p34#80・p34#81・p56#126・p56#138", "11 第2節 分野12 p34#196（仮説を互いに反証させる構成。版依存）", "11 第5節 A-10", "10 第10章", "00 §5（add-double-check）"]
-    notes: "p34#69 の数値は未確認（論文の存在だけ確認。11 第2節）、p34#70 は小規模の研究なので、本文で使うならモデルと世代と標本の大きさを添える。症状を抑えるだけの修正の具体例（特定の seed の分岐・例外の握りつぶし・閾値合わせ）は p34#81 による。直すために依存のパッケージを足させるときの確かめ方は、safety の vetting-extensions#dependencies（safety の担当が足した節）に任せる（2026-11-04 統合：recipes#7）"
+    notes: "p34#69 の数値は未確認（論文の存在だけ確認。11 第2節）、p34#70 は小規模の研究なので、本文で使うならモデルと世代と標本の大きさを添える。症状を抑えるだけの修正の具体例（特定の seed の分岐・例外の握りつぶし・閾値合わせ）は p34#81 による。直すために依存のパッケージを足させるときの確かめ方は、safety の vetting-extensions#dependencies（safety の担当が足した節）に任せる（2026-11-04 統合：recipes#7）。前提の define-done は、もう一つの前提の evidence-not-reports からたどれる推移的な前提なので related の先頭に移した。節 reproduce-and-define-done・no-symptom-patches・when-stuck は、症状のページ（going-in-circles・claims-done-but-isnt・rewrote-tests-to-pass）の routes と related から指される（2026-11-04 工程4：DR-19 e）"
 
   - id: shrink-failing-inputs
     chapter: 直す
@@ -176,7 +176,7 @@ pages:
     summary: "大きな機能は実装の前に Claude にインタビューさせて仕様を書かせ、範囲外と確かめ方まで決める。画面はモックで先に合意し、実装は仕様を渡した新しいセッションで行う。"
     signs:
       - {type: goal, text: "大きな機能を作る前に、要件の抜けをなくしたい"}
-      - {type: symptom, text: "作らせ終えてから、思っていたものと違うと気づく"}
+      - {type: goal, text: "作り始める前に、画面の見た目と動きをモックで合意したい"}
       - {type: goal, text: "何を作るのかを、質問に答えながら詰めていきたい"}
     prerequisites: [let-claude-ask, define-done, when-to-plan]
     related: [read-specs-yourself, frontend-design, handoff-documents, state-the-scope, ask-for-outcomes, tests-first, goal-until-done, not-what-i-meant, does-more-than-asked, progress-files, record-decisions, refactor-and-migrate]
@@ -194,7 +194,7 @@ pages:
       - {name: "/goal の停止条件（10 付録A-14 を直して載せる：判定役は会話しか読まないので、テストと評価のファイルを変えていないことを git status の出力で会話に示させる。仕様と矛盾するテストを見つけたら止めて報告させ、上限のターン数を書く。版依存なので確認日と版を付ける。delegate の goal-until-done と同じ雛形）", kind: prompt, safety: false}
     visual: {kind: static, text: "インタビュー → SPEC.md → 新しいセッションで実装 → 確かめ方で受け入れる、の流れ"}
     materials: ["00 §3 分野16", "11 第2節 分野04 p12#119・p34#134・p56#131（質問させる・インタビューさせる／仕様を先に固める）", "11 第2節 分野12 p56#115・p56#142（停止条件つきの自律反復は仕様の決まった実装に限る）", "11 第5節 A-6・A-14", "11 第4節 #23", "research/26 #16・#17（質問の数の上限。現行の Best practices はツール名を出さない）", "10 第5章・第13章・第14章"]
-    notes: "01 KQ2 の 2-1 の「AskUserQuestion ツールで詳しくインタビューして」は【2026-11-03 注記】付き（文言が古い）なので、summary と signs の根拠にしていない。summary は 00 §3 分野16 の要点（作業の型を比べる・実装は新しいセッションで）と research/26 #17 の現行の文言で書いた。質問の数の上限は数値ファイルに置く。/goal の節は、自律反復を仕様の決まった実装に限る（requirements §6.3、11 p56#115）。雛形 A-6 は prompting の let-claude-ask と、A-14 は refactor-and-migrate・delegate の goal-until-done と同じものを、snippets の1か所から取り込む（design §6.9）（2026-11-04 統合：recipes#1・recipes#4）"
+    notes: "01 KQ2 の 2-1 の「AskUserQuestion ツールで詳しくインタビューして」は【2026-11-03 注記】付き（文言が古い）なので、summary と signs の根拠にしていない。summary は 00 §3 分野16 の要点（作業の型を比べる・実装は新しいセッションで）と research/26 #17 の現行の文言で書いた。質問の数の上限は数値ファイルに置く。/goal の節は、自律反復を仕様の決まった実装に限る（requirements §6.3、11 p56#115）。雛形 A-6 は prompting の let-claude-ask と、A-14 は refactor-and-migrate・delegate の goal-until-done と同じものを、snippets の1か所から取り込む（design §6.9）（2026-11-04 統合：recipes#1・recipes#4）。工程4：sign の「作らせ終えてから、思っていたものと違うと気づく」は、症状の not-what-i-meant（頼んだものと違うものが出てくる）が振り分ける困りごとの言い換えなので、このページが直接答える goal（節 mock-first：モックで先に合意する）にした。not-what-i-meant と does-more-than-asked からは、このページへ related と routes で道がある（2026-11-04 工程4：DR-19 a。fix-F3 の5）"
 
   - id: refactor-and-migrate
     chapter: 作る・変える
@@ -213,8 +213,8 @@ pages:
       - {type: goal, text: "古いライブラリや API からの移行を、たくさんのファイルにわたって進めたい"}
       - {type: goal, text: "動きを変えずにコードを整理したい"}
       - {type: symptom, text: "大きな変更を一度に頼んだら、どこで壊れたのか分からなくなった"}
-    prerequisites: [working-with-git, verification-ladder, differential-testing]
-    related: [protect-tests, freeze-eval-assets, rewrote-tests-to-pass, add-tests, goal-until-done, dynamic-workflows, batch-and-p-loops, parallel-with-worktrees, checkpoints-and-rewind, progress-files, diffs-humans-must-read, create-and-review-prs, performance-tuning, spec-first]
+    prerequisites: [working-with-git, differential-testing]
+    related: [verification-ladder, protect-tests, freeze-eval-assets, rewrote-tests-to-pass, pitfalls-of-ai-written-tests, goal-until-done, dynamic-workflows, batch-and-p-loops, parallel-with-worktrees, checkpoints-and-rewind, progress-files, diffs-humans-must-read, create-and-review-prs, performance-tuning, spec-first]
     tracks: [goal, workflows, worktrees]
     outdated_advice: [keep-going-dont-be-lazy, ralph-loops]
     volatility: 中
@@ -228,7 +228,7 @@ pages:
       - {name: "/goal の停止条件（10 付録A-14 を直して載せる：判定役は会話しか読まないので、テストと評価のファイルを変えていないことを git status の出力で会話に示させる。仕様と矛盾するテストを見つけたら止めて報告させ、上限のターン数を書く。版依存なので確認日と版を付ける。spec-first・delegate の goal-until-done と同じ雛形）", kind: prompt, safety: false}
     visual: {kind: static, text: "小さな単位ごとに 変更 → テスト → コミットを繰り返し、変更前後の出力を比べる図"}
     materials: ["00 §3 分野16", "01 KQ3（Common workflows：リファクタリング。大規模な移行は公式のブログへ）", "11 第2節 分野12 p34#153（まず少数で試してから全件に流す）・p56#142", "11 第5節 A-14", "11 第4節 #23", "00 §5（keep-going-dont-be-lazy・ralph-loops）", "research/23 §3.1（現行の Best practices に fan-out の語はない）"]
-    notes: "多数のファイルへの一括の適用の操作は delegate の batch-and-p-loops（/batch と -p のループ）に任せ、ここは移行の進め方と確かめ方に絞る。旧い語の fan-out は使わない（research/23 §3.1）。"
+    notes: "多数のファイルへの一括の適用の操作は delegate の batch-and-p-loops（/batch と -p のループ）に任せ、ここは移行の進め方と確かめ方に絞る。旧い語の fan-out は使わない（research/23 §3.1）。前提の verification-ladder は、もう一つの前提の differential-testing からたどれる推移的な前提なので related の先頭に移した。related の add-tests は、まとめた先の verify の pitfalls-of-ai-written-tests に替えた（2026-11-04 工程4：DR-19 e・q）"
 
   - id: performance-tuning
     chapter: 作る・変える
@@ -249,8 +249,8 @@ pages:
       - {type: goal, text: "遅い処理を Claude に速くしてもらいたい"}
       - {type: symptom, text: "桁違いに速くなったと報告されたが、本当か怪しい"}
       - {type: symptom, text: "速くしてと頼んだら、遅くない所ばかり書き換えられた"}
-    prerequisites: [evidence-not-reports, suspect-too-good-results, differential-testing]
-    related: [build-observation-tools, bisect-regressions, refactor-and-migrate, "measure-changes#by-stratum", felt-vs-measured, measure-the-upper-bound, freeze-eval-assets, rewrote-tests-to-pass, uses-nonexistent-apis, search-code-checklist, experiment-log]
+    prerequisites: [suspect-too-good-results, differential-testing]
+    related: [evidence-not-reports, build-observation-tools, bisect-regressions, refactor-and-migrate, "measure-changes#by-stratum", felt-vs-measured, measure-the-upper-bound, freeze-eval-assets, rewrote-tests-to-pass, uses-nonexistent-apis, search-code-checklist, experiment-log]
     volatility: 低
     sections:
       - {title: "プロファイルを先に取る", anchor: profile-first}
@@ -261,7 +261,7 @@ pages:
       - {name: "計測つきの高速化の依頼（10 付録A-11 を直して載せる：乱数生成器の差し替えや exp の近似など出力が変わる候補は別のコミットに分け、その受け入れ条件を、出力の一致から、決めた入力の集合で平均と最悪の帯が劣化しないことに切り替える）", kind: prompt, safety: false}
     visual: {kind: static, text: "プロファイル → 対象の指定 → 出力の一致 → 複数回の実測、の関門を順に通る図"}
     materials: ["11 第1節 分野16 新「性能改善を頼む」p34#83・p34#85〜p34#89・p34#95〜p34#97・p34#100・p56#139", "11 第1節 分野16 p34#84（【2026-11-03 注記】古い版の数値。使うなら research/24 A-11 の v3 の値）", "11 第1節 分野16 p34#23（【競】計装。類推）", "11 第4節 #22・#24・#29", "11 第5節 A-11", "research/24 A-9・A-11・§3 の6", "10 第11章"]
-    notes: "summary と signs は p34#83（注記なし）と p34#95〜p34#97 の実践で書いた。p34#84 は【2026-11-03 注記】付き（論文の古い版の数値）なので根拠にしない。偽の高速化の例（p34#85・p34#86）は Claude 以外のモデルの結果で、「モデルを問わず起きる」の根拠にだけ使い、Claude の傾向として書かない（research/24 A-9）。研究の数値は数値ファイルに版と確認日つきで置く。priority は推奨のまま：根拠が強く（p34#83）、00 に性能改善のレシピがない（11 第5節は推奨〜任意とする）。コンテストに固有の点検表は contest の search-code-checklist に任せる。"
+    notes: "summary と signs は p34#83（注記なし）と p34#95〜p34#97 の実践で書いた。p34#84 は【2026-11-03 注記】付き（論文の古い版の数値）なので根拠にしない。偽の高速化の例（p34#85・p34#86）は Claude 以外のモデルの結果で、「モデルを問わず起きる」の根拠にだけ使い、Claude の傾向として書かない（research/24 A-9）。研究の数値は数値ファイルに版と確認日つきで置く。priority は推奨のまま：根拠が強く（p34#83）、00 に性能改善のレシピがない（11 第5節は推奨〜任意とする）。コンテストに固有の点検表は contest の search-code-checklist に任せる。前提の evidence-not-reports は、ほかの前提の suspect-too-good-results と differential-testing からたどれる推移的な前提なので related の先頭に移した（2026-11-04 工程4：DR-19 e）"
 
   - id: frontend-design
     chapter: 作る・変える
@@ -320,29 +320,6 @@ pages:
     notes: "A-17 の「自分の言葉で3行」の3は根拠のない数（11 第4節 #65）なので、例として書く。「AI の承認を人の承認に数えない」は、11 の訂正の付いた行（p56#58）ではなく、research/25 §3.3 の原文の確認で書いた。自動の PR レビュー（Code Review・/ultrareview）の使い方は delegate の automated-pr-review に任せる。"
 
   # ── 確かめる道具を作らせる ──
-  - id: add-tests
-    chapter: 確かめる道具を作らせる
-    title: "テストを足す"
-    aliases: [テストを書かせる, テストの追加, カバレッジを上げる, 単体テスト]
-    type: recipe
-    level: 任せる
-    level_evidence: "テストを書く作業を任せ、足したテストが役に立つかを確かめて受け取る段階（00 §3 分野16 の L3）"
-    priority: 推奨
-    surfaces: [claude-code]
-    principle: [確かめる]
-    prevents: [確かめていない]
-    scenes: [開発]
-    summary: "テストのないコードに、既存のテストの書き方に合わせてテストを足させる。足したテストが誤りを捕まえるかは、わざと壊したコードで落ちることを見せさせて確かめる。"
-    signs:
-      - {type: goal, text: "テストのない古いコードにテストを足したい"}
-      - {type: symptom, text: "AI が書いたテストは全部通るが、何も確かめていない気がする"}
-    prerequisites: [pitfalls-of-ai-written-tests, evidence-not-reports]
-    related: [property-based-tests, build-test-harness, test-the-verifier, tests-first, protect-tests, rewrote-tests-to-pass, refactor-and-migrate, fix-a-bug]
-    volatility: 低
-    templates:
-      - {name: "既存のテストに合わせて足させ、わざと壊したコードで落ちることを出力つきで見せさせる依頼の型", kind: prompt, safety: false}
-    materials: ["00 §3 分野16", "01 KQ3（Common workflows：テスト）", "10 付録A-13（わざとバグを入れたコピーで落ちることを確かめる）"]
-
   - id: property-based-tests
     chapter: 確かめる道具を作らせる
     title: "プロパティテストを書かせる"
@@ -359,13 +336,13 @@ pages:
     signs:
       - {type: goal, text: "例を並べたテストでは見つからない境界の誤りを探したい"}
       - {type: goal, text: "いろいろな入力を自動で作って、たくさん試すテストを書かせたい"}
-    prerequisites: [add-tests]
+    prerequisites: [pitfalls-of-ai-written-tests]
     related: [shrink-failing-inputs, differential-testing, test-the-verifier, build-test-harness, suspect-too-good-results]
     volatility: 低
     templates:
       - {name: "成り立つべき性質を先に言葉で挙げさせてからテストにし、失敗は再現の手順つきで報告させる依頼の型", kind: prompt, safety: false}
     materials: ["11 第1節 分野16 新「プロパティテストを書かせる」p34#64"]
-    notes: "priority は任意のまま：根拠は1研究（強〜中・版依存）で、使う言語とライブラリに依存する。研究の数値を使うなら、モデルと版と抜き取りの方法を添えて数値ファイルに置く。Hypothesis は例として名前を出すだけにする（D13）。"
+    notes: "priority は任意のまま：根拠は1研究（強〜中・版依存）で、使う言語とライブラリに依存する。研究の数値を使うなら、モデルと版と抜き取りの方法を添えて数値ファイルに置く。Hypothesis は例として名前を出すだけにする（D13）。前提の add-tests は verify の pitfalls-of-ai-written-tests にまとめたので、前提をまとめた先に替えた（例を並べたテストの弱さが、このレシピを使う理由になる）（2026-11-04 工程4：DR-19 q）"
 
   - id: build-test-harness
     chapter: 確かめる道具を作らせる
@@ -384,7 +361,7 @@ pages:
       - {type: goal, text: "テストデータの生成器や、たくさんのケースを一度に回す仕組みを作らせたい"}
       - {type: situation, text: "変更が良くなったかを、毎回同じ物差しで測る環境がない"}
     prerequisites: [verifier-three-conditions]
-    related: [verifier-defines-problem, test-the-verifier, freeze-eval-assets, lockbox-and-holdout, differential-testing, measure-changes, experiment-log, evaluators-by-format, misses-broken-evaluation, build-observation-tools, add-tests]
+    related: [verifier-defines-problem, test-the-verifier, freeze-eval-assets, lockbox-and-holdout, differential-testing, measure-changes, experiment-log, evaluators-by-format, misses-broken-evaluation, build-observation-tools, pitfalls-of-ai-written-tests]
     volatility: 低
     sections:
       - {title: "何を作らせるか", anchor: what-to-build}
@@ -395,7 +372,7 @@ pages:
       - {name: "検証環境を作らせる依頼の型（作った環境を既知の答えで確かめる手順まで書かせる）", kind: prompt, safety: false}
     visual: {kind: static, text: "解・評価・記録を分けたリポジトリの構成図（書き換えてよい所と、読むだけの所）"}
     materials: ["11 第1節 分野16 新「検証環境・テスト基盤を作らせる」p34#25・p34#122（類推）", "10 第8章", "10 付録A-9・A-13（作り方の例）"]
-    notes: "priority は推奨のまま：eval の核（検証器が問題を定義する）を実務に落とす手順で、根拠は実践（章:強）。評価資産を deny と hook で守る雛形（10 付録A-4）は直す点が多く（requirements §10.3）、設定の例を enforce の freeze-eval-assets が、考え方を verify の protect-tests が持つので、ここではリンクだけにする。"
+    notes: "priority は推奨のまま：eval の核（検証器が問題を定義する）を実務に落とす手順で、根拠は実践（章:強）。評価資産を deny と hook で守る雛形（10 付録A-4）は直す点が多く（requirements §10.3）、設定の例を enforce の freeze-eval-assets が、考え方を verify の protect-tests が持つので、ここではリンクだけにする。related の add-tests は、まとめた先の verify の pitfalls-of-ai-written-tests に替えた（2026-11-04 工程4：DR-19 q）"
 
   - id: build-observation-tools
     chapter: 確かめる道具を作らせる
@@ -470,7 +447,7 @@ pages:
     scenes: [データ分析, 開発, コンテスト]
     summary: "機械学習のパイプラインを、検証用のデータの漏れと再現性の観点で Claude に点検させる。答えは該当するコードの行の引用つきで出させ、検証の成績が良すぎるときはまず漏れを疑う。"
     signs:
-      - {type: symptom, text: "検証の成績が良すぎて、本番でも同じ成績が出るか不安"}
+      - {type: symptom, text: "機械学習の検証の成績が良すぎて、データの漏れがないか不安"}
       - {type: goal, text: "前処理や分割の順番に漏れがないかを点検させたい"}
     prerequisites: [data-analysis, suspect-too-good-results]
     related: [lockbox-and-holdout, check-the-metric, "measure-changes#by-stratum", checking-citations, evaluators-by-format]
@@ -478,7 +455,7 @@ pages:
     templates:
       - {name: "パイプラインの漏れの点検の依頼（10 付録A-12。各項目に該当するコードの行を引用させる）", kind: prompt, safety: false}
     materials: ["11 第1節 分野16 新「機械学習のパイプラインを点検させる」p56#140", "11 第5節 A-12（初版では省いてよい）", "11 第2節 分野16 p34#76（数値は未確認。11 第4節 #45）"]
-    notes: "11 が任意と書き、11 第5節も A-12 を初版では省いてよいとするので任意。リークの割合の数値（p34#76）は未確認（11 第4節 #45）なので使わない。"
+    notes: "11 が任意と書き、11 第5節も A-12 を初版では省いてよいとするので任意。リークの割合の数値（p34#76）は未確認（11 第4節 #45）なので使わない。工程4：sign の「検証の成績が良すぎて、本番でも同じ成績が出るか不安」は、症状の misses-broken-evaluation（題名を「手元の評価は良いのに本番で通用しない」にした。DR-19 c）の言い換えなので、このページが直接答える狭い場面（機械学習の検証でデータの漏れを疑う）にした（2026-11-04 工程4：DR-19 a）"
 
   # ── 調べものと文書 ──
   - id: research-and-reports
@@ -529,14 +506,14 @@ pages:
     signs:
       - {type: goal, text: "コードに合った README や設計書を書かせたい"}
       - {type: symptom, text: "書かせた文書が、コードの実際の動きと合っていない"}
-      - {type: symptom, text: "文書ごとに文体や用語がばらばらになる"}
+      - {type: goal, text: "プロジェクトの文書の文体と用語を、既存の文書にそろえたい"}
     prerequisites: [show-examples, consistent-politeness, fact-checking]
     related: [requesting-prose, less-ai-sounding-japanese, consistent-notation, textlint-hook, documents-in-japanese, artifacts-overview, commit-and-comment-language, research-and-reports, make-slides, record-decisions, explore-a-codebase, notes-and-pkm]
     volatility: 低
     templates:
       - {name: "既存の文書を手本に渡し、書いた文書とコードの食い違いを挙げさせる依頼の型", kind: prompt, safety: false}
     materials: ["00 §3 分野16", "01 KQ3（Common workflows：ドキュメント）", "00 §3 分野15（文体と表記）"]
-    notes: "日本語の文体・表記・AI 臭さは japanese のページに任せ、ここは技術文書の進め方（手本・コードとの照合・検査）に絞る。"
+    notes: "日本語の文体・表記・AI 臭さは japanese のページに任せ、ここは技術文書の進め方（手本・コードとの照合・検査）に絞る。工程4：sign の「文書ごとに文体や用語がばらばらになる」は、症状の inconsistent-japanese-style（文体や表記が揃わない）の言い換えなので、このページが直接答える goal（既存の文書を手本にしてそろえる）にした（2026-11-04 工程4：DR-19 a）"
 
   - id: make-slides
     chapter: 調べものと文書
@@ -569,7 +546,7 @@ pages:
     chapter: 事務とノート
     title: "事務作業の半自動化（経費・報告）"
     nav_title: "事務作業の半自動化"
-    aliases: [経費精算, 週報を書かせる, 報告書の下書き, 雑務の自動化, 雑務をまとめたリポジトリ]
+    aliases: [経費の一覧づくり, 週報を書かせる, 報告書の下書き, 雑務の自動化, 雑務をまとめたリポジトリ]
     type: recipe
     level: 任せる
     level_evidence: "下書きを任せ、人が確かめて出す流れを作る段階（00 §3 分野16 の L3）。手順の常設化とリポジトリにする節は、仕組みにするの段"
@@ -583,8 +560,8 @@ pages:
       - {type: goal, text: "毎週の報告書づくりを楽にしたい"}
       - {type: goal, text: "領収書や明細から経費の一覧を作らせたい"}
       - {type: situation, text: "コードを書かない仕事に Claude Code を使いたい"}
-    prerequisites: [where-your-data-goes, entrusted-data, default-safety-settings]
-    related: [notes-and-pkm, data-analysis, permission-modes-overview, writing-skills, how-skills-load, progress-files, tasks-and-schedules-in-the-app, connectors-in-the-app, "peripheral-products#office-add-ins", character-encodings, protecting-secrets, what-to-put-in-claude-md]
+    prerequisites: [entrusted-data, default-safety-settings]
+    related: [where-your-data-goes, notes-and-pkm, data-analysis, permission-modes-overview, writing-skills, how-skills-load, progress-files, tasks-and-schedules-in-the-app, connectors-in-the-app, "peripheral-products#office-add-ins", character-encodings, protecting-secrets, what-to-put-in-claude-md]
     tracks: [skills, app-skills]
     volatility: 中
     sections:
@@ -596,7 +573,7 @@ pages:
     templates:
       - {name: "雑務のリポジトリの構成例（業務ごとのディレクトリと、その業務の手順と注意を書いた README）", kind: other, safety: false}
     materials: ["00 §3 分野16（事務作業の半自動化・雑務をまとめたモノレポ）", "00 §3 分野07「Claude Code を非エンジニアが使う」（作業用フォルダ・手動モード。cli が採らず、要点の受け皿をこのページにした）", "00 §4 費用・選び方・任せ方（コードを書かない仕事に Claude Code を使いたい）", "research/26 §3.6（Office アドイン）"]
-    notes: "chores-monorepo をまとめた（節 chores-repo）。読者は開発の経験がある人なので、非エンジニア向けの導入の説明は省き、流れ・情報の渡し方・手順の育て方に絞る（decisions 2026-11-03「読者の前提」）。cli が for-non-engineers を採らなかったので、00 §4 のサイン「コードを書かない仕事に Claude Code を使いたい」と、00 分野07 の要点（作業用のフォルダで始める）をここで受けた。権限のモードの勧めは手で決めず、safety の default-safety-settings（段階ごとの既定。decisions 2026-11-03「安全の既定の勧め方」）に従って書く。逆引きのサインは、catalog-C12.md §7 の表（72）の種類と文のとおり situation にし、文を表の文にそろえた（2026-11-04 統合：B 72・cli#1）"
+    notes: "chores-monorepo をまとめた（節 chores-repo）。読者は開発の経験がある人なので、非エンジニア向けの導入の説明は省き、流れ・情報の渡し方・手順の育て方に絞る（decisions 2026-11-03「読者の前提」）。cli が for-non-engineers を採らなかったので、00 §4 のサイン「コードを書かない仕事に Claude Code を使いたい」と、00 分野07 の要点（作業用のフォルダで始める）をここで受けた。権限のモードの勧めは手で決めず、safety の default-safety-settings（段階ごとの既定。decisions 2026-11-03「安全の既定の勧め方」）に従って書く。逆引きのサインは、catalog-C12.md §7 の表（72）の種類と文のとおり situation にし、文を表の文にそろえた（2026-11-04 統合：B 72・cli#1）。工程4：前提の where-your-data-goes は、ほかの前提の entrusted-data と default-safety-settings からたどれる推移的な前提なので related の先頭に移した。別名「経費精算」は cost の paying-in-yen（Claude の料金を経費にする）を主にして外し、このページが扱う意味（経費の事務を Claude にさせる）の言い方「経費の一覧づくり」にした（fix-aliases。fix-F2 の6）（2026-11-04 工程4：DR-19 e・d）"
 
   - id: notes-and-pkm
     chapter: 事務とノート
@@ -614,34 +591,38 @@ pages:
     signs:
       - {type: goal, text: "たまったメモやノートを AI に整理させたい"}
       - {type: situation, text: "Markdown のメモが大量にたまって、どこに何を書いたか分からない"}
-    prerequisites: [working-with-git, checkpoints-and-rewind, destructive-commands]
-    related: [protected-paths, deleted-something-important, choose-what-to-read, connecting-mcp, write-docs, office-paperwork, research-and-reports]
+    prerequisites: [working-with-git, destructive-commands]
+    related: [checkpoints-and-rewind, protected-paths, deleted-something-important, choose-what-to-read, connecting-mcp, write-docs, office-paperwork, research-and-reports]
     tracks: [checkpoints]
     volatility: 中
     templates:
       - {name: "保管庫で動かすときの CLAUDE.md の例（ノートの置き方と名前の付け方の決まり。消させない仕組みはお願いでは足りないので、enforce と safety のページの設定に任せる）", kind: claude-md, safety: false}
     materials: ["00 §3 分野16", "01 KQ3（Common workflows：ノート・非コードフォルダ）"]
-    notes: "Obsidian は例として名前を出すだけにする（D13）。消されたときの対処は symptoms の deleted-something-important、消させない仕組みは safety と enforce のページに任せる。"
+    notes: "Obsidian は例として名前を出すだけにする（D13）。消されたときの対処は symptoms の deleted-something-important、消させない仕組みは safety と enforce のページに任せる。前提の checkpoints-and-rewind は、ほかの前提の working-with-git と destructive-commands からたどれる推移的な前提なので related の先頭に移した。消された直後の初動は、症状のページ deleted-something-important の節 recover が一か所で持つ（design §4.1 の2の例外）（2026-11-04 工程4：DR-19 e・m）"
 
 merged:
   - id: chores-monorepo
     into: office-paperwork
     reason: "業務ごとのディレクトリと README に文脈をためる型は、事務作業を人 → AI → 人で回す流れを仕組みにする段の形で、独自の判断が office-paperwork と重なる。office-paperwork の節 chores-repo（level：仕組みにする）にする。題名の語は aliases に残した。"
+  - id: add-tests
+    into: pitfalls-of-ai-written-tests
+    reason: "独自の判断を notes に1行で書けなかった（R3-17・DR-19 q）。要点の「足したテストは、わざと壊したコードで落ちることで受け取る」は verify の pitfalls-of-ai-written-tests の節 test-strength（と eval の test-the-verifier の節 broken-copy）と同じで、「既存のテストの書き方と境界値に合わせて足させる」は依頼の書き方（00 §3 分野16・01 KQ3）で、判断ではない。テストを足す作業の落とし穴（今の挙動を正解として固める・壊しても落ちない）の本体もまとめ先にある。まとめ先には、テストのないコードに足させる手順の節を足し、題名（テストを足す）・別名（テストを書かせる・テストの追加・カバレッジを上げる・単体テスト）・goal の sign（テストのない古いコードにテストを足したい）・雛形（既存のテストに合わせて足させ、わざと壊したコードで落ちることを出力つきで見せさせる依頼の型）・材料（01 KQ3・10 付録A-13）を移す（verify の担当かメインが移す。fix-F7 の「メインへ」）。symptom の sign（AI が書いたテストは全部通るが、何も確かめていない気がする）は、まとめ先の「テストは全部通るのに、バグが残っている」と同じ困りごとなので移さない（2026-11-04 工程4：DR-19 q）"
 
 dropped: []
 
 open_issues:
   - "提案（delegate・C9）：goal-until-done に載せる /goal の停止条件の雛形（10 付録A-14 を直したもの）を、recipes の spec-first と refactor-and-migrate も使う。snippets は1か所に置き（design §6.9）、3ページで同じものを取り込みたい。直す点：判定役は会話しか読まないので、テストと評価のファイルを変えていないことを git status の出力で会話に示させる（11 第4節 #23）。"
-  - "提案（eval・C8）：test-the-verifier の related に add-tests（わざと壊したコードで落ちるかを見る）を足してほしい。performance-tuning の A-11 の直し（出力が変わる候補は、決めた入力の集合で平均と最悪の帯が劣化しないことで受け入れる）は measure-changes#by-stratum を指した。bisect-regressions と build-test-harness は verifier-three-conditions を前提にしたので、verifier-three-conditions を任せるより上の段にしないでほしい（contest の提案と同じ）。eval の提案（build-test-harness の前提に verifier-three-conditions、shrink-failing-inputs・property-based-tests・bisect-regressions・refactor-and-migrate に differential-testing、data-analysis に check-the-metric と lockbox-and-holdout）は受けた（shrink-failing-inputs と refactor-and-migrate では前提に置いた）。"
+  - "提案（eval・C8）：test-the-verifier の related に add-tests（わざと壊したコードで落ちるかを見る）を足してほしい。performance-tuning の A-11 の直し（出力が変わる候補は、決めた入力の集合で平均と最悪の帯が劣化しないことで受け入れる）は measure-changes#by-stratum を指した。bisect-regressions と build-test-harness は verifier-three-conditions を前提にしたので、verifier-three-conditions を任せるより上の段にしないでほしい（contest の提案と同じ）。eval の提案（build-test-harness の前提に verifier-three-conditions、shrink-failing-inputs・property-based-tests・bisect-regressions・refactor-and-migrate に differential-testing、data-analysis に check-the-metric と lockbox-and-holdout）は受けた（shrink-failing-inputs と refactor-and-migrate では前提に置いた）。（2026-11-04 工程4：add-tests は verify の pitfalls-of-ai-written-tests にまとめた〔DR-19 q〕。eval の test-the-verifier と verify の tests-first・pitfalls-of-ai-written-tests の related にある add-tests は、まとめた先を指すように直す〔メインが道具で直す〕）"
   - "提案（verify・C8）：suspect-too-good-results の related に audit-ml-pipelines を、visual-checks と looks-are-not-quality の related に frontend-design と make-slides を、fact-checking の related に read-specs-yourself を足してほしい（ほかのレシピへの参照は verify.yaml にもう入っている）。verify の提案（add-tests の前提に pitfalls-of-ai-written-tests、fix-a-bug・spec-first に tests-first、performance-tuning・data-analysis に suspect-too-good-results）は受けた（performance-tuning では前提に置いた）。"
   - "提案（prompting・C3）：同じ雛形が両方の分野にある。A-6（インタビューで仕様を詰める）は let-claude-ask と spec-first に、A-8（観察と提案を分ける）は prompt-patterns と data-analysis にある。snippets は1か所に置いて両方のページで取り込む（design §6.9）。A-10（デバッグ）は fix-a-bug だけに置いた。prompting の提案（spec-first・write-docs の related に let-claude-ask・requesting-prose）は受けた（spec-first では let-claude-ask を前提に置いた）。"
   - "提案（enforce・C7）：move-judgment-into-scripts の related に bisect-regressions（判定をスクリプトの終了コードにする実例）を、freeze-eval-assets の related に build-test-harness を足してほしい。"
   - "提案（safety・C7）：entrusted-data の related に office-paperwork を、where-your-data-goes の related に data-analysis と office-paperwork を足してほしい。"
-  - "提案（symptoms・C12）：振り分け先に recipes の節が使える。claims-done-but-isnt と rewrote-tests-to-pass → fix-a-bug#no-symptom-patches、not-what-i-meant と does-more-than-asked → spec-first、deleted-something-important → notes-and-pkm、going-in-circles は fix-a-bug#when-stuck を指すとより近い（going-in-circles・summary-overstates-source・misses-broken-evaluation などからの参照はもう入っている）。依存のパッケージを入れる前の確かめ方（存在しない名前・後から登録された名前の危険）は、safety への提案のとおり vetting-extensions の節に置くのがよい。recipes の add-tests はテストの書き方の進め方で、依存の確認とは別なので置かない。safety に節ができたら、explore-a-codebase と fix-a-bug からそこへリンクする。"
+  - "提案（symptoms・C12）：振り分け先に recipes の節が使える。claims-done-but-isnt と rewrote-tests-to-pass → fix-a-bug#no-symptom-patches、not-what-i-meant と does-more-than-asked → spec-first、deleted-something-important → notes-and-pkm、going-in-circles は fix-a-bug#when-stuck を指すとより近い（going-in-circles・summary-overstates-source・misses-broken-evaluation などからの参照はもう入っている）。依存のパッケージを入れる前の確かめ方（存在しない名前・後から登録された名前の危険）は、safety への提案のとおり vetting-extensions の節に置くのがよい。recipes の add-tests はテストの書き方の進め方で、依存の確認とは別なので置かない。safety に節ができたら、explore-a-codebase と fix-a-bug からそこへリンクする。（2026-11-04 工程4：症状のページは routes を持つようになり、ここに挙げた節は routes か related で指されている〔fix-a-bug#no-symptom-patches・#when-stuck・#reproduce-and-define-done、spec-first、notes-and-pkm〕。add-tests は pitfalls-of-ai-written-tests にまとめた）"
   - "提案（team・C9）：grow-review-checklists の related に create-and-review-prs（PR の説明の雛形 A-17）を。"
   - "提案（japanese・C3）：documents-in-japanese の related に write-docs と research-and-reports を、character-encodings の related に office-paperwork を足してほしい（consistent-politeness → write-docs と character-encodings → data-analysis はもう入っている）。"
-  - "決めきれなかった点：audit-ml-pipelines（任意）は、読者に機械学習の層が少なければ data-analysis の節にしてよい（11 第5節は A-12 を初版で省いてよいとする）。工程4の批判的な読みで判断してほしい。"
+  - "決めきれなかった点：audit-ml-pipelines（任意）は、読者に機械学習の層が少なければ data-analysis の節にしてよい（11 第5節は A-12 を初版で省いてよいとする）。工程4の批判的な読みで判断してほしい。（2026-11-04 工程4：見直しの報告に指摘がなく、DR-19 のまとめる名指し〔i・p・q〕にもないので、任意のまま残した）"
 
 notes:
   - "レシピの構成は design §6.3（要点 → 前提（確かめる・縛る）→ 手順 → 確かめ方 → 失敗したとき）に沿う。どのページも、前提か関連に verify・eval・enforce・safety のページを持たせた（比例則）。sections は手順の要の節だけを挙げた。"
   - "補完調査の雛形（10 付録A）は、requirements §10.3 と 11 第5節の不具合を直してから載せる前提で templates に書いた：A-6（spec-first。ツール名を書かない形にし、汎用の例を並べる）、A-8（data-analysis）、A-10（fix-a-bug）、A-11（performance-tuning。出力が変わる候補を分け、受け入れ条件を切り替える）、A-12（audit-ml-pipelines）、A-14（spec-first・refactor-and-migrate。git status の出力を会話に示させる）、A-16 の後半（research-and-reports）、A-17（create-and-review-prs。3行は例）。A-4（評価資産を守る hook）は enforce の freeze-eval-assets（設定）と verify の protect-tests（考え方）が持つのでリンクだけにした。A-6 は prompting の let-claude-ask と、A-8 は prompting の prompt-patterns と同じ雛形なので、snippets は1か所にする（open_issues）。安全とデータの雛形（safety: true）はこの分野に置いていない。"
+  - "工程4（F7、2026-11-04）：推移的な前提5本を related に移し（DR-19 e。fix-a-bug・refactor-and-migrate・performance-tuning・office-paperwork・notes-and-pkm）、add-tests を verify の pitfalls-of-ai-written-tests にまとめた（DR-19 q）。症状のページが振り分ける困りごとの言い換えだった sign 4つを、goal か狭い場面に書き換えた（DR-19 a。spec-first・read-specs-yourself・audit-ml-pipelines・write-docs）。重なった別名「経費精算」は cost の paying-in-yen を主にして外した（DR-19 d）。症状のページの routes が、fix-a-bug・spec-first・read-specs-yourself の節を振り分け先に使う"

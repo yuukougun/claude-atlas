@@ -79,7 +79,7 @@ pages:
   - id: keep-replies-in-japanese
     chapter: 返答とコミットの言語
     title: "日本語で返し続けさせる"
-    aliases: ["英語に戻る", "英語への回帰", "返答の言語を固定する", "language 設定"]
+    aliases: ["英語への回帰", "返答の言語を固定する", "language 設定"]
     type: recipe
     level: 整える
     level_evidence: "Claude Code が英語のツール出力を読む普段の作業で出会い、言語の設定と指示で直そうとする整える段階で要る。Stop フックで確かめる節は仕組みにする"

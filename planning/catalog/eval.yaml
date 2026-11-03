@@ -205,7 +205,7 @@ pages:
       - {type: symptom, text: "どの方法を試しても点が出ず、何かがおかしい"}
       - {type: goal, text: "評価の仕組みが正しく採点しているか確かめてから使いたい"}
     prerequisites: [verifier-three-conditions]
-    related: [differential-testing, model-based-grading, freeze-eval-assets, misses-broken-evaluation, build-test-harness, evaluators-by-format, add-tests, tests-first, pitfalls-of-ai-written-tests]
+    related: [differential-testing, model-based-grading, freeze-eval-assets, misses-broken-evaluation, build-test-harness, evaluators-by-format, tests-first, pitfalls-of-ai-written-tests]
     tracks: []
     outdated_advice: []
     volatility: 低

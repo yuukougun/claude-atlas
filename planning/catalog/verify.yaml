@@ -268,7 +268,7 @@ pages:
       - {type: symptom, text: "実装に合わせてテストまで書かれ、何を確かめたのか分からない"}
       - {type: symptom, text: "テストと実装がかみ合わず、直しの往復が続く"}
     prerequisites: [define-done]
-    related: [pitfalls-of-ai-written-tests, protect-tests, add-tests, spec-first, fix-a-bug, verification-ladder, test-the-verifier]
+    related: [pitfalls-of-ai-written-tests, protect-tests, spec-first, fix-a-bug, verification-ladder, test-the-verifier]
     tracks: []
     outdated_advice: []
     volatility: 低
@@ -285,7 +285,7 @@ pages:
     chapter: テストで確かめる
     title: "AI に書かせたテストの落とし穴"
     nav_title: null
-    aliases: [生成されたテストの質, テストの強さ, カバレッジの罠, ミューテーションテスト]
+    aliases: [生成されたテストの質, テストの強さ, カバレッジの罠, ミューテーションテスト, テストを足す, テストを書かせる, テストの追加, カバレッジを上げる, 単体テスト]
     type: concept
     level: 任せる
     level_evidence: "テストを書く作業ごと任せる段で、テストの質を確かめる必要が出る"
@@ -300,8 +300,9 @@ pages:
       - {type: symptom, text: "テストは全部通るのに、バグが残っている"}
       - {type: symptom, text: "カバレッジは高いのに、コードを壊しても落ちないテストばかりだ"}
       - {type: goal, text: "Claude に書かせたテストが役に立っているか確かめたい"}
+      - {type: goal, text: "テストのない古いコードにテストを足したい"}
     prerequisites: [define-done]
-    related: [tests-first, protect-tests, differential-testing, add-tests, property-based-tests, test-the-verifier, looks-are-not-quality, diffs-humans-must-read]
+    related: [tests-first, protect-tests, differential-testing, property-based-tests, test-the-verifier, looks-are-not-quality, diffs-humans-must-read]
     tracks: []
     outdated_advice: []
     volatility: 低
@@ -309,10 +310,12 @@ pages:
       - {title: "今の挙動を正解として固める", anchor: pinning-bugs}
       - {title: "通るだけのテスト", anchor: weak-tests}
       - {title: "テストの強さを確かめる", anchor: test-strength}
-    templates: []
+      - {title: "テストのないコードに足させる", anchor: add-to-untested}
+    templates:
+      - {name: "既存のテストに合わせて足させ、わざと壊したコードで落ちることを出力つきで見せさせる依頼の型", kind: prompt, safety: false}
     visual: null
-    materials: ["11 第1節 分野09 p34#59・p34#61・p34#62・p34#63", "10 第10章（テストの質）", "03 W7（注意点）", "11 第4節 #52", "10 第18章（品質の指標のゲーム化）"]
-    notes: "根拠の行のうち p34#61（バグを正当化するテストの割合）と p34#63（プロパティテストの失敗の割合）は未確認、p34#62 は単一の例（11 第4節 #52）。数値は summary・signs に使わず、本文で使うなら原典で確かめて一研究の値と書く。プロパティテストの頼み方の本体は recipes の property-based-tests"
+    materials: ["11 第1節 分野09 p34#59・p34#61・p34#62・p34#63", "10 第10章（テストの質）", "03 W7（注意点）", "11 第4節 #52", "10 第18章（品質の指標のゲーム化）", "00 §3 分野16", "01 KQ3", "10 付録A-13"]
+    notes: "根拠の行のうち p34#61（バグを正当化するテストの割合）と p34#63（プロパティテストの失敗の割合）は未確認、p34#62 は単一の例（11 第4節 #52）。数値は summary・signs に使わず、本文で使うなら原典で確かめて一研究の値と書く。プロパティテストの頼み方の本体は recipes の property-based-tests（2026-11-04 メイン：recipes の add-tests をまとめた〔DR-19 q。F7〕。節 add-to-untested・別名・goal の sign・雛形・材料を受けた。手順は、既存のテストの書き方と境界値に合わせて足させ、わざと壊したコードで落ちることを出力つきで見せさせる）"
 
   - id: protect-tests
     chapter: テストで確かめる

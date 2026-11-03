@@ -176,7 +176,7 @@ pages:
   - id: suggest-or-do
     chapter: 何をどこまで頼むか
     title: "提案してほしいのか、実行してほしいのか"
-    aliases: ["提案だけで止まる", "動詞をはっきりさせる", "default_to_action"]
+    aliases: ["動詞をはっきりさせる", "default_to_action"]
     type: concept
     level: 整える
     level_evidence: "Claude Code に作業を頼み始める整える段階で、提案で止まる・勝手に変えるの両方に出会う"
