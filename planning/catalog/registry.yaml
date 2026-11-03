@@ -346,7 +346,7 @@ pages:
   - {id: audit-ml-pipelines, field: recipes, title: "機械学習のパイプラインを点検させる", type: recipe, priority: 任意, level: 任せる, origin: "11 第1節 分野16 p56#140（11 が任意と書く）", wave_core: false}
   # ── team（16：必須 1・推奨 8・任意 7）──
   - {id: share-team-settings, field: team, title: "チームで設定を共有する", type: recipe, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
-  - {id: enterprise-vs-team-plans, field: team, title: "Team と Enterprise の違い（概念）", type: comparison, priority: 任意, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
+  - {id: choosing-an-org-plan, field: team, title: "Team と Enterprise の違い（概念）", type: comparison, priority: 任意, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}
   - {id: org-managed-settings-and-mcp, field: team, title: "managed settings と MCP の組織管理", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野17", wave_core: false}
   - {id: audit-logs-and-telemetry, field: team, title: "監査ログと可視化（OpenTelemetry など）", type: feature, priority: 任意, level: 回す, origin: "00 §3 分野17", wave_core: false}
   - {id: paved-roads, field: team, title: "禁止ではなく安全な道を作る", type: concept, priority: 推奨, level: 仕組みにする, origin: "00 §3 分野17", wave_core: false}

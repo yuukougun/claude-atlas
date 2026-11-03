@@ -287,7 +287,7 @@ pages:
     notes: "優先度は推奨にした（C0 の見当のまま）：根拠は中で、handoff 文書のチーム版。レビューを頼む点は「何に照らして、何は除外して」の形で書く（p56#70）。level を仕組みにするから任せるに改めた：記録が要るのは、決めたことと AI に任せたことが分かれ始めたとき（R3-7）（2026-11-04 工程4：DR-19 f）"
 
   # ── 管理と契約 ──
-  - id: enterprise-vs-team-plans
+  - id: choosing-an-org-plan
     chapter: 管理と契約
     title: "組織で使うプランの選び方"
     aliases: ["Team と Enterprise の違い", "Team プラン", "Enterprise プラン", "組織のプラン"]
@@ -309,7 +309,7 @@ pages:
     tracks: [plans]
     volatility: 高
     materials: ["00 §3 分野17「Team と Enterprise の違い（概念）」", "02 1-18（Team と Enterprise の機能、2026年に足された管理機能）", "research/26 §3.12（商用の規約の側は学習に使わない）", "research/22 #35（Team の API credits）", "04 Q3 社内導入（セキュリティガイドの見立て。数値は自己申告）"]
-    notes: "題名から「（概念）」を外した。席の数・料金・機能の有無は数値ファイルの表から生成し、本文に書かない。個人のプランの選び方は cost の choosing-a-plan が持つ。題名からプラン名を外して「組織で使うプランの選び方」にした：プランの名前は変わった例がある変わりやすい値で（decisions 工程2、2026-10-30 の改名）、名前は aliases（旧題を含む）と生成の表に置く（R3-15）。id にもプラン名が入るが、id は変えない。level を仕組みにするから使うに改めた：組織のプランは使い始める前の契約で選ぶ（R3-7。前提の where-your-data-goes も使う）（2026-11-04 工程4：DR-19 o・f）"
+    notes: "題名から「（概念）」を外した。席の数・料金・機能の有無は数値ファイルの表から生成し、本文に書かない。個人のプランの選び方は cost の choosing-a-plan が持つ。題名からプラン名を外して「組織で使うプランの選び方」にした：プランの名前は変わった例がある変わりやすい値で（decisions 工程2、2026-10-30 の改名）、名前は aliases（旧題を含む）と生成の表に置く（R3-15）。id にもプラン名が入るが、id は変えない。level を仕組みにするから使うに改めた：組織のプランは使い始める前の契約で選ぶ（R3-7。前提の where-your-data-goes も使う）（2026-11-04 工程4：DR-19 o・f）（2026-11-04 メイン：id を choosing-an-org-plan から改めた。プランの名前は変わる値なので id に入れない。F6 の報告のメインへ8）"
 
   - id: org-managed-settings-and-mcp
     chapter: 管理と契約
@@ -330,7 +330,7 @@ pages:
       - {type: goal, text: "社員が使える MCP サーバーを、組織で決めたい"}
       - {type: goal, text: "部署ごとに違う設定を配りたい"}
     prerequisites: [managed-settings-enforcement, share-team-settings]
-    related: [vetting-extensions, choosing-mcp-servers, connectors-in-the-app, paved-roads, audit-logs-and-telemetry, via-cloud-providers, enterprise-vs-team-plans, shared-projects-and-org-skills]
+    related: [vetting-extensions, choosing-mcp-servers, connectors-in-the-app, paved-roads, audit-logs-and-telemetry, via-cloud-providers, choosing-an-org-plan, shared-projects-and-org-skills]
     tracks: [managed-settings, mcp]
     volatility: 中
     sections:
@@ -361,7 +361,7 @@ pages:
       - {type: goal, text: "社内で Claude がどう使われているか、記録して見たい"}
       - {type: situation, text: "監査のために、AI の利用の記録を求められた"}
     prerequisites: [org-managed-settings-and-mcp]
-    related: [where-your-data-goes, disclosure-and-provenance, enterprise-vs-team-plans, "what-uses-up-limits#find-what-uses-it", insights-and-usage-review, via-cloud-providers, managed-settings-enforcement]
+    related: [where-your-data-goes, disclosure-and-provenance, choosing-an-org-plan, "what-uses-up-limits#find-what-uses-it", insights-and-usage-review, via-cloud-providers, managed-settings-enforcement]
     tracks: [otel-telemetry, usage-analytics-api, plans]
     volatility: 中
     sections:
@@ -389,7 +389,7 @@ pages:
       - {type: situation, text: "会社の AWS や Google Cloud の契約の中で Claude を使う"}
       - {type: symptom, text: "Bedrock 経由だと、使えない機能がある"}
     prerequisites: [check-billing-path]
-    related: [org-managed-settings-and-mcp, enterprise-vs-team-plans, audit-logs-and-telemetry, what-each-surface-cannot-do, where-your-data-goes, managed-settings-enforcement, github-actions-with-claude]
+    related: [org-managed-settings-and-mcp, choosing-an-org-plan, audit-logs-and-telemetry, what-each-surface-cannot-do, where-your-data-goes, managed-settings-enforcement, github-actions-with-claude]
     tracks: [cloud-providers, managed-settings]
     volatility: 中
     materials: ["00 §3 分野17「Bedrock・Vertex・Foundry 経由で使う」", "04 Q3 社内導入（Bedrock 経由の統制：管理コンソールが使えない）", "research/23 #9（ultrathink のターンの引き上げは Bedrock などでは効かない）", "research/26 §3.8（認証の優先の順）・§3.11（プランの API credits は Bedrock などには使えない）", "research/22 #15（idle compaction の対象の広がり）"]
@@ -402,7 +402,7 @@ open_issues:
   - "確認（工程4）：ai-amplifies-organizations を paved-roads（節 amplifier）に、curb-sycophancy-and-overtrust を separate-roles（節 against-sycophancy）にまとめた（DR-19 p・q）。ほかの分野からの参照（start の four-principles、basics の sycophancy、judgment・contest・symptoms の数ページ）は、メインが道具で paved-roads#amplifier・separate-roles#against-sycophancy に直す"
   - "確認（工程4）：「チームで導入する」（design §1.2）の初版の受け皿を ai-usage-guidelines（必須に上げた）にし、サイン「チームで Claude を導入する」を rolling-out-to-teams と同じ文にそろえた（DR-19 f・R1-11）"
   - "決定（11 の新「チームで使う意味（個人＋AI と チーム＋AI）」は足さない）：根拠の行 p56#52 は1件だけで、【2026-11-03 注記】（P&G の実験の人数 791 人と、SSRN の要旨の 776 人の食い違い）が付く。さらに research/24 B-43 は、行の中心の「上位10%の解が約3倍」が要旨になく確かめていないとする。catalog/README §4.5 の5により summary と signs の根拠にできず、研究の紹介だけのページになる（design §4.1 の5）。チームで AI を使う意味の判断は、curb-sycophancy-and-overtrust（人どうしの批評）・ideate-independently（独立の案出し）・separate-roles（役割）が持つ。研究は、論文の本文で人数と数値を確かめてから、これらのページの根拠の候補にする"
-  - "提案（cost・C2）：choosing-a-plan の related に enterprise-vs-team-plans を足してほしい（個人のプランと組織のプランの境目）"
+  - "提案（cost・C2）：choosing-a-plan の related に choosing-an-org-plan を足してほしい（個人のプランと組織のプランの境目）"
   - "取り込み済み（2026-11-04 に確かめた）：verify の independent-review・instructing-reviewers・diffs-humans-must-read、eval の experiment-log、context の progress-files、cli の settings-layers・cloud-sessions-and-teleport、app の shared-projects-and-org-skills、enforce の managed-settings-enforcement は org-managed-settings-and-mcp#delivery を指し、境界（enforce は設定のキーと強制、team は配る経路・グループごとの設定・MCP の許可）が合っている。safety の approval-fatigue・checking-ai-rules、judgment の agreement-is-not-evidence・ai-ideas-are-everyones・think-before-asking・retros-without-ai-verdicts・postmortems、extend の plugins-and-marketplaces・what-to-put-in-claude-md、recipes の create-and-review-prs、contest の long-team-competitions（separate-roles を前提）、start の four-principles（ai-amplifies-organizations）は、team のページをすでに指している"
 new_features:
   - {id: team-onboarding, title: "/team-onboarding（利用履歴からチーム向けの立ち上げの手引きを作る）", note: "research/01 D-1・4-1（追加の時期は不明）"}

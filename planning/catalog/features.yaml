@@ -1,5 +1,5 @@
 # 機能の id の一覧（目次の tracks で指す）。catalog/README §1・§5
-# - 版：2026-11-04 第1版。README §5 の表に、目次の担当の new_features の提案（12分野・39件、重なり3件）を足した。統合の後に plugin-eval を足した
+# - 版：2026-11-04 第1版。README §5 の表に、目次の担当の new_features の提案（12分野・39件、重なり3件）を足した。統合の後に plugin-eval を、工程4で security-review と api-rate-limits を足した
 # - 題名と note は仮のもの。土台作りで一次資料から確かめ、data/facts.yml の features に移す（版の下限・成熟度・使える面とプランなどの属性はそこに持つ）
 # - by は提案した分野（README §5 の表にあった id には付けない）
 
@@ -52,6 +52,7 @@ features:
     - {id: feedback, title: /feedback とトランスクリプトの共有, by: safety}
     - {id: verify-skill, title: /verify, by: verify}
     - {id: code-review, title: /code-review, by: verify, note: "管理された Code Review（managed-code-review）と /ultrareview は別の項目"}
+    - {id: security-review, title: /security-review, by: verify, note: "変更のセキュリティのレビュー。挙動・使える面・版は土台作りで確かめる（工程4で足した）"}
 
   Claude Code の任せ方:
     - {id: goal, title: /goal}
@@ -122,6 +123,7 @@ features:
     - {id: api-compaction, title: compaction（API）, by: api, note: "Claude Code の compaction とは別"}
     - {id: context-editing, title: context editing, by: api}
     - {id: memory-tool, title: memory tool, by: api}
+    - {id: api-rate-limits, title: API の rate limits とエラー, by: api, note: "調査資料にない。書く前に一次資料で確かめる（工程4で足した）"}
 
   面をまたぐもの:
     - {id: refusals, title: 拒否と分類器による停止, by: symptoms, note: "アプリ・Claude Code・API で表示と扱いが違う。アプリの自動のモデルの切り替えの設定（フラグが立ったときにモデルを切り替える設定）と、Claude Code の対応する設定も、この項目で追う（2026-11-04 メインの判断。別の id に分けない）"}

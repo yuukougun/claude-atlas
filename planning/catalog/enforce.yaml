@@ -290,7 +290,7 @@ pages:
       - {type: situation, text: "チームの全員に、同じ禁止を必ず守らせたい"}
       - {type: goal, text: "--dangerously-skip-permissions を組織で使えなくしたい"}
     prerequisites: [permission-rules, settings-layers]
-    related: [org-managed-settings-and-mcp#delivery, share-team-settings, where-bypass-is-ok, what-auto-mode-stops, permission-modes-overview, ai-usage-guidelines, paved-roads, audit-logs-and-telemetry, enterprise-vs-team-plans]
+    related: [org-managed-settings-and-mcp#delivery, share-team-settings, where-bypass-is-ok, what-auto-mode-stops, permission-modes-overview, ai-usage-guidelines, paved-roads, audit-logs-and-telemetry, choosing-an-org-plan]
     tracks: [managed-settings, settings, permission-modes]
     volatility: 中
     sections:

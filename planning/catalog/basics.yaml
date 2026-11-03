@@ -242,7 +242,7 @@ pages:
     chapter: エージェントと思考
     title: 思考（thinking）と effort の仕組み
     nav_title: 思考と effort の仕組み
-    aliases: [thinking, extended thinking, adaptive thinking, effort, 考える量]
+    aliases: [thinking, extended thinking, adaptive thinking, effort, 考える量, 拡張思考]
     type: concept
     level: 整える
     level_evidence: "答えの質・速さ・費用の釣り合いを整える段階で、effort が何を変えるかが要る（models の effort-levels も整える）"
@@ -263,7 +263,7 @@ pages:
       - "research/23 §3.2（既定の effort は面ごとに違う）・§3.5（ultrathink の経緯）・#9（think hard は普通の文として渡る）"
       - "11 第3節 3-2 #11（thinking を切れるかは未確認）・#14（think hard の言い方）"
       - "research/22 #20・#21（ultrathink のターンを xhigh に、別のモデルの subagent の effort）"
-    notes: "題名は design §2.1 の分野名（モデル・effort・思考）と公式の訳語（拡張思考。research/27 §3.1）に合わせて「思考」にした。effort の選び方と既定値は models の effort-levels と thinking-keywords に任せ、ここは仕組みにする。四つの原理のどれにも主には当たらず、Claude 側の原因の「合っていない」（effort の選び違い）に当たるので、principle は付けず prevents で示した。05 §3-8 の「Claude Code では 5.5 世代は思考をオフにできない」は一般化しすぎの可能性があり未確認（11 第3節 3-2 #11）なので書かない。既定の effort は面ごとに違う（research/23 §3.2）ので、値は数値ファイルの「モデル × 面」の表に置く。別名の「拡張思考」は、models の effort-levels（機能のページ）を用語索引の主にしたので外した。英語の extended thinking と thinking は、このページが主のまま残る（同じ語の日本語と英語で主が分かれる点は工程4の報告 fix-F1 のメインへ）。（2026-11-04 工程4：DR-19 d）"
+    notes: "題名は design §2.1 の分野名（モデル・effort・思考）と公式の訳語（拡張思考。research/27 §3.1）に合わせて「思考」にした。effort の選び方と既定値は models の effort-levels と thinking-keywords に任せ、ここは仕組みにする。四つの原理のどれにも主には当たらず、Claude 側の原因の「合っていない」（effort の選び違い）に当たるので、principle は付けず prevents で示した。05 §3-8 の「Claude Code では 5.5 世代は思考をオフにできない」は一般化しすぎの可能性があり未確認（11 第3節 3-2 #11）なので書かない。既定の effort は面ごとに違う（research/23 §3.2）ので、値は数値ファイルの「モデル × 面」の表に置く。別名の「拡張思考」は、models の effort-levels（機能のページ）を用語索引の主にしたので外した。英語の extended thinking と thinking は、このページが主のまま残る（同じ語の日本語と英語で主が分かれる点は工程4の報告 fix-F1 のメインへ）。（2026-11-04 工程4：DR-19 d）（2026-11-04 メイン：重なった別名の主を替えた。fix-aliases.md）"
 
   - id: unfaithful-reasoning
     chapter: エージェントと思考
@@ -380,7 +380,7 @@ pages:
     chapter: 答えの確かさ
     title: 要約は原文より強く言いがち（過度な一般化）
     nav_title: 要約は原文より強く言いがち
-    aliases: [過度な一般化, overgeneralization, 要約の言い過ぎ]
+    aliases: [過度な一般化, overgeneralization]
     type: concept
     level: 整える
     level_evidence: "資料を要約させて使う段階で、要約を確かめずに根拠にする誤りを防ぐのに要る"
