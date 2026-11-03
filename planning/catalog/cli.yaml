@@ -577,7 +577,7 @@ pages:
       - {type: goal, text: "コマンドの名前から、使い方のページを引きたい"}
       - {type: situation, text: "古い記事に出てくるコマンドが、手元で動かない"}
     prerequisites: []
-    related: [input-symbols, must-know-operations, ask-claude-code, init-and-first-claude-md, "glossary#old-names", outdated-advice-ledger]
+    related: [input-symbols, must-know-operations, ask-claude-code, init-and-first-claude-md, "term-index#old-names", outdated-advice-ledger]
     tracks: []
     outdated_advice: [slash-cost-and-stats, fork-to-branch, removed-commands, commands-directory, agents-command]
     volatility: 高
@@ -597,12 +597,12 @@ open_issues:
   - "提案（symptoms）：instructions-ignored・seems-less-capable・replies-in-english・blames-the-tools の診断に、新しいページ isolate-with-safe-mode（--safe-mode で自分の設定を外して同じ依頼を比べる）を related で足す。wrong-amount-of-approvals から permission-modes-overview を、deleted-something-important から checkpoints-and-rewind と recover-lost-work を指す"
   - "確認（cost）：cost は claude-code-costs を what-uses-up-limits にまとめ、操作の本体を usage-context-statusline に置いた（cost.yaml の merged）。境界はこの分野の考えと同じ（/usage の内訳の読み方と節約の判断は cost、道具の一覧と status line の設定は cli）。usage-context-statusline と inspect-context からは what-uses-up-limits#find-what-uses-it を指した"
   - "提案（設計書 §4.2）：「基本操作（起動・権限モード・/clear・/compact・rewind・plan mode）→ cli」の行に、/clear と /compact は判断と操作を context のページ（when-to-start-fresh・compact-and-auto-compact）に置き、cli は must-know-operations と command-cheatsheet から指す、と書き足す。registry に cli の /clear・/compact の候補がなく、操作だけのページは薄くなるため"
-  - "提案（start の glossary）：plan モード（Claude Code の日本語版の79%）とプランモード（Help Center）の表記を用語集で決める（research/27 §3.1）。cli の題名は plan モードにした。出力スタイル・チェックポイント・圧縮・自動圧縮・権限モードは、公式の日本語版の多数派に合わせた"
+  - "提案（start の用語集〔2026-11-04 に id を glossary にした〕）：plan モード（Claude Code の日本語版の79%）とプランモード（Help Center）の表記を用語集で決める（research/27 §3.1）。cli の題名は plan モードにした。出力スタイル・チェックポイント・圧縮・自動圧縮・権限モードは、公式の日本語版の多数派に合わせた"
   - "提案（changes の checking-for-updates）：stable の通り道は latest より1週間ほど遅れ、大きな退行のある版を飛ばす（research/22 #3）。文書や Claude Code の答え（ask-claude-code）にある機能が手元の版にないことがあるので、版の確かめ方として書く"
   - "提案（delegate）：cloud-sessions-and-teleport・control-from-phone・completion-notifications・resume-and-branch は、並列と無人の使い方を choosing-parallel-modes・agent-view-and-background・cloud-schedules・parallel-with-worktrees に任せ、related で指している。delegate の側からも、操作の入口としてこれらを指す"
   - "提案（enforce と safety）：permission-modes-overview は level を整えるにした（Shift+Tab と既定の auto モードに使い始めてすぐ出会う）。緩める判断の本体（what-auto-mode-stops・where-bypass-is-ok・sandboxing）は任せる以上なので前提にせず、related で指している。enforce と safety の側からは、モードの一覧の入口としてこのページを前提か related に置く"
   - "確認（extend）：extend は what-to-leave-out-of-claude-md を what-to-put-in-claude-md にまとめ、そこと claude-md-length#prune から init-and-first-claude-md を、claude-md-vs-rules-skills-styles#vs-claude-md から output-style-modes を指している。この分野からは what-to-put-in-claude-md・claude-md-length・claude-md-vs-rules-skills-styles を指し返した"
-  - "確認（changes）：changes は old-and-new-names を start の glossary にまとめた。command-cheatsheet からは glossary#old-names を指した"
+  - "確認（changes）：changes は old-and-new-names を start の term-index にまとめた。command-cheatsheet からは term-index#old-names を指した"
 
 new_features:
   - {id: interactive-mode, title: "対話モードの操作（入力の記号・キーボードショートカット）", note: "公式の Interactive mode の文書。# の記憶は v2.0.70 で削除、/vim は v2.1.92 で削除され /config の Editor mode へ（01 N-1・4-2）。キーの割り当ては端末で違う。input-symbols と must-know-operations が tracks で指す"}

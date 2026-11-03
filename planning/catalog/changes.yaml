@@ -20,7 +20,7 @@ pages:
       - {type: goal, text: "ネットで見た小技が今も使えるか確かめたい"}
       - {type: goal, text: "「think hard」は効くのか"}
     prerequisites: []
-    related: [dating-information, checking-for-updates, change-timeline-2026, glossary, four-principles, thinking-keywords, effort-levels, choosing-a-model, emphasis-words, writing-skills, "goal-until-done#from-homemade-loops"]
+    related: [dating-information, checking-for-updates, change-timeline-2026, term-index, four-principles, thinking-keywords, effort-levels, choosing-a-model, emphasis-words, writing-skills, "goal-until-done#from-homemade-loops"]
     volatility: 高
     sections:
       - {title: "台帳の読み方（状態と、どの原理の回避策だったか）", anchor: how-to-read}
@@ -54,7 +54,7 @@ pages:
       - {type: goal, text: "いつ何が変わったかを時系列で知りたい"}
       - {type: situation, text: "しばらく使っていない間の変化に追いつきたい"}
     prerequisites: []
-    related: [outdated-advice-ledger, glossary, checking-for-updates, dating-information]
+    related: [outdated-advice-ledger, term-index, checking-for-updates, dating-information]
     volatility: 高
     sections:
       - {title: "この年の変化の流れ", anchor: trends}
@@ -67,7 +67,7 @@ pages:
       - "research/22 §3.1・§3.2（10-29 より後の版と、教材に効く変更）"
       - "research/23 §3.3（auto mode の既定化の段階）・§3.5（ultrathink の経緯）・§3.6（版の数え方）"
       - "research/26 §3.1（Styles の移行）・research/22 #32（Ultra への改名）"
-    notes: "年ごとのページにする（2027 年の変更は次の年のページ。過ぎた年の表は変わらない記録になる）。行は数値ファイルの日付と版、台帳の「変わった時期」から生成し、手書きは冒頭の流れの説明だけ（design §7）。版の数は npm の公開記録で期間を明記して数える（decisions 2026-11-03「工程2で確かめた事実」、research/23 §3.6）。00 §1 の「約235版」は誤り（注記）で使わない。旧名と新名の対応は start の glossary に置き、改名の時期はこの年表に置く。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、台帳ではなく数値ファイルの名称の項目に持ち（research/22 §3.4・design §9.1）、そこから年表の行と用語索引の旧名を作る。（2026-11-04 統合：cost#1）"
+    notes: "年ごとのページにする（2027 年の変更は次の年のページ。過ぎた年の表は変わらない記録になる）。行は数値ファイルの日付と版、台帳の「変わった時期」から生成し、手書きは冒頭の流れの説明だけ（design §7）。版の数は npm の公開記録で期間を明記して数える（decisions 2026-11-03「工程2で確かめた事実」、research/23 §3.6）。00 §1 の「約235版」は誤り（注記）で使わない。旧名と新名の対応は start の term-index に置き、改名の時期はこの年表に置く。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、台帳ではなく数値ファイルの名称の項目に持ち（research/22 §3.4・design §9.1）、そこから年表の行と用語索引の旧名を作る。（2026-11-04 統合：cost#1）"
 
   # ── 古い情報を見分ける ──
   - id: dating-information
@@ -85,7 +85,7 @@ pages:
       - {type: goal, text: "読んでいる記事や本の情報が今も正しいか見分けたい"}
       - {type: symptom, text: "記事によって書いてあることが食い違う"}
     prerequisites: []
-    related: [outdated-advice-ledger, checking-for-updates, change-timeline-2026, knowledge-cutoff, "how-to-use#freshness", glossary]
+    related: [outdated-advice-ledger, checking-for-updates, change-timeline-2026, knowledge-cutoff, "how-to-use#freshness", term-index]
     volatility: 低
     sections:
       - {title: "古くなる速さの三つの層", anchor: layers}
@@ -131,13 +131,13 @@ pages:
 
 merged:
   - id: old-and-new-names
-    into: glossary
-    reason: "start の glossary（用語索引と旧名の対応）と中身が重なる（registry の notes の重なりの組）。design §7 も旧名の対応を用語索引（生成：title・aliases）に置き、changes には台帳と年表だけを置く。旧名からの引き方は glossary に、改名の時期と版は change-timeline-2026 に置き、同じ改名を三か所に持たない。"
+    into: term-index
+    reason: "start の term-index（用語索引と旧名の対応）と中身が重なる（registry の notes の重なりの組）。design §7 も旧名の対応を用語索引（生成：title・aliases）に置き、changes には台帳と年表だけを置く。旧名からの引き方は term-index に、改名の時期と版は change-timeline-2026 に置き、同じ改名を三か所に持たない。"
 
 dropped: []
 
 open_issues:
   - "提案（registry の ledger）：台帳に2項目を足す。(1)「Styles で応答の調子と形式を切り替える」→ 今は Instructions for Claude（いつも）か skill（場面ごと）。2026-06-01 に skills への移行が告知され、2026-11-03 には公式の記事が取り下げられている。UI にメニューが残るかは未確認（research/26 §3.1）。状態は置換。(2)「コンテキストを守るために subagent を使う」→ 溢れることはまれになり、並列の作業・うるさい出力の切り離し・独立したレビューのために使う。どれも追加のトークンがかかる（現行の Best practices の「What you can stop doing」の行。research/23 §3.1・§3.7）。状態は条件付き。同じ表の「よい答えのために subagent に任せる」は tell-it-to-use-subagents の「今どうするか」に入れられる。"
-  - "提案（全分野）：old-and-new-names を start の glossary にまとめた。旧名と新名の対応表を前提や関連に書いたページは glossary を指す。改名の時期と版は change-timeline-2026 に置く。"
+  - "提案（全分野）：old-and-new-names を start の term-index にまとめた。旧名と新名の対応表を前提や関連に書いたページは term-index を指す。改名の時期と版は change-timeline-2026 に置く。"
   - "提案（土台作り・data/outdated-advice.yml）：台帳の行の「変わった時期」は、00 §5 の値のうち注記のあるもの（think-hard-keywords の「2026-01〜03 に変遷」、important-caps の「強調は1行だけにし」）を research/23 §3.5・§3.7 の内容で入れる。「2026（公式の撤回表）」とした行（important-caps・architecture-in-claude-md・keep-going-dont-be-lazy）と save-context-for-200k は「2026-10-27 ごろ（Best practices の改稿）」にできる（research/23 §3.7）。research/22 §3.4 の3行（think-hard-keywords・yolo-skip-permissions・save-context-for-200k）の足す内容も入れる。"
   - "提案（check_catalog.py・全分野）：台帳の35行のうち、どのページの outdated_advice からも指されない行がないかを、全分野の目次がそろった後に確かめる（台帳の逆リンクが空の行は、行の置き場所か、指すべきページが抜けている）。検査に足す案。"

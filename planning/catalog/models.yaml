@@ -19,7 +19,7 @@ pages:
       - {type: goal, text: "モデルの選択肢が多くて、それぞれ何が違うのか知りたい"}
       - {type: situation, text: "新しいモデルの名前を聞いたが、今使っているものとの関係が分からない"}
     prerequisites: []
-    related: [choosing-a-model, effort-levels, before-using-fable, opusplan, model-quirks, 1m-context, after-switching-models, knowledge-cutoff, glossary, change-timeline-2026]
+    related: [choosing-a-model, effort-levels, before-using-top-model, opusplan, model-quirks, 1m-context, after-switching-models, knowledge-cutoff, term-index, change-timeline-2026]
     tracks: [model-selection]
     outdated_advice: []
     volatility: 高
@@ -56,7 +56,7 @@ pages:
       - {type: goal, text: "一番賢いモデルを常に使うべきか知りたい"}
       - {type: symptom, text: "モデルを替えたのに、良くなったのかどうか分からない"}
     prerequisites: [current-models]
-    related: [effort-levels, before-using-fable, harness-over-model, opusplan, fast-mode-and-advisor, measure-changes, felt-vs-measured, choosing-a-plan]
+    related: [effort-levels, before-using-top-model, harness-over-model, opusplan, fast-mode-and-advisor, measure-changes, felt-vs-measured, choosing-a-plan]
     tracks: [model-selection, effort]
     outdated_advice: [avoid-opus-as-expensive]
     volatility: 高

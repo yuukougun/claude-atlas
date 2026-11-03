@@ -650,7 +650,7 @@ merged:
 dropped: []
 open_issues:
   - "提案（changes・C1）：outdated-advice-ledger の related にある homemade-loops は、delegate で goal-until-done にまとめた。goal-until-done#from-homemade-loops に替えてほしい（台帳の行 ralph-loops は goal-until-done の outdated_advice から逆リンクされる）"
-  - "提案（start・C1）：roadmap は「委任の段階」（読者の段階）を使う。delegate の five-questions-before-delegating は作業ごとの「任せ方の段階」（対話・計画の承認・停止条件つきの反復・隔離した無人実行）を持つので、題名を「任せ方の段階と、無人で走らせる前の五つの問い」にした。terminology の節 definitions で二つの語を分けてほしい"
+  - "提案（start・C1）：roadmap は「委任の段階」（読者の段階）を使う。delegate の five-questions-before-delegating は作業ごとの「任せ方の段階」（対話・計画の承認・停止条件つきの反復・隔離した無人実行）を持つので、題名を「任せ方の段階と、無人で走らせる前の五つの問い」にした。glossary の節 definitions で二つの語を分けてほしい"
   - "提案（cli・C4）：permission-modes-overview の related に headless-basics（-p の権限モードの既定と、承認の要る呼び出しの扱い）と agent-teams-experimental（teammate の権限モードがリードから受け継がれるか）を足してほしい"
   - "提案（api・C5）：sdk-comparison の related に choosing-automation を足してほしい（自分の作業の自動化と、製品への組み込みの境目）"
   - "提案（symptoms・C12）：stuck-in-a-check-loop・wont-rethink-approach の related に open-ended-loop-trap と goal-until-done を、keeps-stopping と claims-done-but-isnt の related に goal-until-done を足してほしい"

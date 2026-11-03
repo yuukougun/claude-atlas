@@ -1,5 +1,5 @@
 # 機能の id の一覧（目次の tracks で指す）。catalog/README §1・§5
-# - 版：2026-11-04 第1版。README §5 の表に、目次の担当の new_features の提案（12分野・39件、重なり3件）を足した
+# - 版：2026-11-04 第1版。README §5 の表に、目次の担当の new_features の提案（12分野・39件、重なり3件）を足した。統合の後に plugin-eval を足した
 # - 題名と note は仮のもの。土台作りで一次資料から確かめ、data/facts.yml の features に移す（版の下限・成熟度・使える面とプランなどの属性はそこに持つ）
 # - by は提案した分野（README §5 の表にあった id には付けない）
 
@@ -18,6 +18,7 @@ features:
     - {id: statusline, title: ステータスライン（status line）}
     - {id: mods, title: Mods（プラグインの hooks module）, by: extend, note: "成熟度と版の下限を plugins と別に持つ"}
     - {id: code-intelligence, title: code intelligence プラグイン（LSP）, by: extend, note: "読み込みの時期とコンテキストのコストが plugins と違う"}
+    - {id: plugin-eval, title: claude plugin eval（スキルとプラグインの評価）, by: eval, note: "スキルの有り無しを新しいセッションで比べる公式の方法。成熟度・版の下限・使える面は土台作りで確かめる"}
 
   Claude Code の縛り:
     - {id: hooks, title: フック（hooks）}
@@ -123,7 +124,7 @@ features:
     - {id: memory-tool, title: memory tool, by: api}
 
   面をまたぐもの:
-    - {id: refusals, title: 拒否と分類器による停止, by: symptoms, note: "アプリ・Claude Code・API で表示と扱いが違う"}
+    - {id: refusals, title: 拒否と分類器による停止, by: symptoms, note: "アプリ・Claude Code・API で表示と扱いが違う。アプリの自動のモデルの切り替えの設定（フラグが立ったときにモデルを切り替える設定）と、Claude Code の対応する設定も、この項目で追う（2026-11-04 メインの判断。別の id に分けない）"}
 
   プランと上限:
     - {id: plans, title: プラン}

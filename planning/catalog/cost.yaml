@@ -20,7 +20,7 @@ pages:
       - {type: symptom, text: "アプリをたくさん使った日は、Claude Code でも早く上限に当たる"}
       - {type: goal, text: "上限がいつ戻るのか知りたい"}
     prerequisites: []
-    related: [what-uses-up-limits, saving-priorities, when-to-start-fresh, choosing-a-plan, usage-credits-basics, before-using-fable, hits-limits-quickly, "usage-context-statusline#statusline", when-ai-is-unavailable]
+    related: [what-uses-up-limits, saving-priorities, when-to-start-fresh, choosing-a-plan, usage-credits-basics, before-using-top-model, hits-limits-quickly, "usage-context-statusline#statusline", when-ai-is-unavailable]
     tracks: [usage-limits, plans, auto-continue, wrap-up-allowance]
     outdated_advice: [wait-out-5-hour-limit]
     volatility: 高
@@ -59,7 +59,7 @@ pages:
       - {type: goal, text: "何が使用量を食っているのか知りたい"}
       - {type: symptom, text: "長いセッションを続けると、消費が急に増える"}
     prerequisites: [how-usage-limits-work, rereads-whole-history]
-    related: [saving-priorities, hits-limits-quickly, "usage-context-statusline#instruments", insights-and-usage-review, always-on-costs, effort-levels, "1m-context#cost-of-long-context", before-using-fable, parallel-and-loop-costs]
+    related: [saving-priorities, hits-limits-quickly, "usage-context-statusline#instruments", insights-and-usage-review, always-on-costs, effort-levels, "1m-context#cost-of-long-context", before-using-top-model, parallel-and-loop-costs]
     tracks: [usage, usage-limits]
     outdated_advice: [slash-cost-and-stats]
     volatility: 中
@@ -134,7 +134,7 @@ pages:
       - {type: situation, text: "プランの名前が変わり、どれが前のどれに当たるか分からない"}
       - {type: goal, text: "Claude Code をよく使うので、合うプランを知りたい"}
     prerequisites: [how-usage-limits-work]
-    related: [before-using-fable, usage-credits-basics, paying-in-yen, check-billing-path, choosing-a-model, enterprise-vs-team-plans, glossary, change-timeline-2026]
+    related: [before-using-top-model, usage-credits-basics, paying-in-yen, check-billing-path, choosing-a-model, enterprise-vs-team-plans, term-index, change-timeline-2026]
     tracks: [plans, usage-limits]
     outdated_advice: [max-5x-or-20x]
     volatility: 高
@@ -150,13 +150,13 @@ pages:
       - "research/22 #32（2026-10-30 に旧 Max 20x が Ultra に改名、Max は1段）・#34・#35・#44（Ultra の週の上限が旧 20x と同じかは一次資料にない）"
       - "research/26 #19・#20・§3.13"
       - "04 Q3（円換算。二次情報）"
-    notes: "2026-10-30 の改名（旧 Max 20x が Ultra になり、Max は1段）は、節 plan-table の表（数値ファイルから生成）と、台帳の max-5x-or-20x、旧名からの引き方は start の glossary（changes の old-and-new-names をまとめた先）、改名の時期は changes の change-timeline-2026 で扱う。プランの名前と料金は題名・summary・signs・aliases に書かない。旧 20x と Ultra で使える量が同じかは一次資料にないので、本文で断定しない（research/22 #44）。組織のプランは team の enterprise-vs-team-plans。逆引きの「Pro と Max のどちらにすべきか」（00 §4）は、プランの名前を使わない「どのプランにすべきか迷う」の形で signs に入れた（2026-11-04 統合：B #60・symptoms#15）。"
+    notes: "2026-10-30 の改名（旧 Max 20x が Ultra になり、Max は1段）は、節 plan-table の表（数値ファイルから生成）と、台帳の max-5x-or-20x、旧名からの引き方は start の term-index（changes の old-and-new-names をまとめた先）、改名の時期は changes の change-timeline-2026 で扱う。プランの名前と料金は題名・summary・signs・aliases に書かない。旧 20x と Ultra で使える量が同じかは一次資料にないので、本文で断定しない（research/22 #44）。組織のプランは team の enterprise-vs-team-plans。逆引きの「Pro と Max のどちらにすべきか」（00 §4）は、プランの名前を使わない「どのプランにすべきか迷う」の形で signs に入れた（2026-11-04 統合：B #60・symptoms#15）。"
 
-  - id: before-using-fable
+  - id: before-using-top-model
     chapter: プランと支払い
-    title: Fable を使う前に
+    title: 最上位のモデルを使う前に
     nav_title: null
-    aliases: [最上位のモデルの料金, Fable の上限, Fable の使用量]
+    aliases: [Fable を使う前に, 最上位のモデルの料金, Fable の上限, Fable の使用量]
     type: concept
     level: 整える
     level_evidence: "既定と effort で足りない仕事に出会い、上位のモデルを試す段階"
@@ -184,7 +184,7 @@ pages:
       - "02 §2-4（Usage credits と Fable の扱い）・§2-2（Fable の消費は速い。倍率は非公開）"
       - "research/22 #34（Ultra を足す。Claude Code で使える版）"
       - "research/26 #22（料金のページの「週上限の半分まで」と、Max・Ultra の記事の「別の週上限」の書き方の違い）"
-    notes: "料金のページと Max・Ultra の記事で、上位のモデルの枠の書き方が違う（research/26 #22）。数値ファイルに両方の出典を残し「食い違いあり」とする（design §6.7）。モデルを選ぶ判断の本体は models の choosing-a-model、ここは費用と枠に絞る。逆引きの「Fable を使ってみたい」（00 §4）は、同じ意味の goal（最上位のモデルを試してみたい）を、モデルの名前を使わないメインの決めた形「いちばん高性能なモデルを使ってみたい」に言い換えた（2026-11-04 統合：B #61・symptoms#15）。"
+    notes: "料金のページと Max・Ultra の記事で、上位のモデルの枠の書き方が違う（research/26 #22）。数値ファイルに両方の出典を残し「食い違いあり」とする（design §6.7）。モデルを選ぶ判断の本体は models の choosing-a-model、ここは費用と枠に絞る。逆引きの「Fable を使ってみたい」（00 §4）は、同じ意味の goal（最上位のモデルを試してみたい）を、モデルの名前を使わないメインの決めた形「いちばん高性能なモデルを使ってみたい」に言い換えた（2026-11-04 統合：B #61・symptoms#15）。（2026-11-04 メイン：題名と id からモデルの系統の名前を外した。最上位のモデルは入れ替わり、名前が URL と題名に残ると古くなる。Fable の名前は aliases に置き、逆引きは「いちばん高性能なモデルを使ってみたい」で引く。I2 の報告のメインへ2）"
 
   - id: usage-credits-basics
     chapter: プランと支払い
@@ -205,7 +205,7 @@ pages:
       - {type: symptom, text: "上限を超えた分の請求が、思ったより多かった"}
       - {type: situation, text: "プランに付く API credits と usage credits の違いが分からない"}
     prerequisites: [how-usage-limits-work]
-    related: ["check-billing-path#monthly-api-credits", choosing-a-plan, before-using-fable, paying-in-yen, parallel-and-loop-costs, when-ai-is-unavailable]
+    related: ["check-billing-path#monthly-api-credits", choosing-a-plan, before-using-top-model, paying-in-yen, parallel-and-loop-costs, when-ai-is-unavailable]
     tracks: [usage-credits]
     outdated_advice: [workflow-keyword-extra-usage]
     volatility: 高
@@ -415,6 +415,6 @@ new_features:
   - {id: auto-continue, title: "上限での自動の継続（autoContinueAtUsageLimit）", note: "how-usage-limits-work と when-ai-is-unavailable が追う。既定で有効になった版と、3回で止まる決まりは research/22 #26"}
   - {id: wrap-up-allowance, title: "Wrap-Up Allowance（上限に達した応答を区切りまで続ける）", note: "how-usage-limits-work が追う。段階的に展開中で、導入の時期は一次資料で確かめられていない（research/22 #36）"}
 open_issues:
-  - "提案（start・changes）：プランの改名（旧 Max 20x → Ultra）と上限の呼び方（session limit → 5-hour limit）を、start の glossary の旧名の対応（changes の old-and-new-names をまとめた先）と changes の change-timeline-2026 に、数値ファイルから入れてほしい（research/22 §3.4 が「台帳ではなく数値ファイルと aliases で持つ」とした項目）"
+  - "提案（start・changes）：プランの改名（旧 Max 20x → Ultra）と上限の呼び方（session limit → 5-hour limit）を、start の term-index の旧名の対応（changes の old-and-new-names をまとめた先）と changes の change-timeline-2026 に、数値ファイルから入れてほしい（research/22 §3.4 が「台帳ではなく数値ファイルと aliases で持つ」とした項目）"
   - "提案（数値ファイル）：data/facts.yml に、プランの表（名前・料金・枠の種類と倍率・上位のモデルの扱い・API credits）、上位のモデルの枠（料金のページと記事の書き方の食い違いを両方の出典つきで）、usage credits の日本での失効の期間、API の料金（入力・出力・キャッシュ・バッチ・fast mode・ツール）、agent teams の倍率とその条件を、出典と確認日つきで持つ"
   - "取り込み済み（2026-11-04 に確かめた）：delegate の headless-basics・bare-mode・humans-set-the-parallel-limit・dynamic-workflows・goal-until-done、contest の competition-day-operations、team の enterprise-vs-team-plans・audit-logs-and-telemetry、safety の protecting-secrets は cost のページを指している。team の提案で choosing-a-plan の related に enterprise-vs-team-plans を、delegate の提案で parallel-and-loop-costs の related に agent-teams-experimental を、safety の提案で check-billing-path と protecting-secrets の相互の related を入れた。check-billing-path からは headless-basics#billing-path と bare-mode#authentication を指す。api の提案で、キャッシュとバッチの料金の倍率と Managed Agents の時間の料金を reading-api-pricing に置き、check-billing-path から agent-sdk-basics#billing を指した。japanese が more-tokens-in-japanese を can-i-prompt-in-japanese にまとめたので、reading-api-pricing からは can-i-prompt-in-japanese#tokens を指す。cli の usage-context-statusline と context の inspect-context は、まとめた claude-code-costs の代わりに what-uses-up-limits#find-what-uses-it を指した（cli の提案の境界：/usage の内訳の読み方と節約の判断は cost、道具の一覧と設定は cli）。symptoms の hits-limits-quickly は how-usage-limits-work・what-uses-up-limits・saving-priorities などを指している"

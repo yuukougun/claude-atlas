@@ -20,7 +20,7 @@ pages:
       - {type: goal, text: "自分の AI にこの辞典を読ませたい"}
       - {type: situation, text: "辞典の内容に誤りや古い情報を見つけた"}
     prerequisites: []
-    related: [reverse-index, glossary, terminology, roadmap, knowledge-map, four-principles, six-causes, product-map, ai-and-sources, outdated-advice-ledger, dating-information]
+    related: [reverse-index, term-index, glossary, roadmap, knowledge-map, four-principles, six-causes, product-map, ai-and-sources, outdated-advice-ledger, dating-information]
     volatility: 低
     sections:
       - {title: "引き方（困りごと・やりたいこと・名前から）", anchor: lookup}
@@ -79,7 +79,7 @@ pages:
       - "11 第4節 #59・#60（p12#1 の見出しは証拠より強い。AI のループを禁じる大会では限定が要る）"
       - "research/24 B-32（ALE-Bench の細部を一次資料で確かめた）"
       - "10 第4章・第5部（握るの根拠。requirements §3.1 の説明）"
-    notes: "00 の「三つの原理」に、requirements §3.1 の「握る」を足して四つにした（registry の notes）。原理のページそのものなので principle は付けない。各原理の「なぜ」は basics へ、手段は各分野へリンクする（design §4.2 の背骨の行）。Anthropic の AI Fluency（4D）は参考文献に挙げるだけにし、構成に使わない（requirements §3.1。ライセンスの一次の表示は未確認：research/21 F5）。11 第2節の p12#1 は見出しが証拠より強い（11 第4節 #59・#60）ので、例に使うなら research/24 B-32 で確かめた ALE-Bench の数値だけにし、研究のモデルと世代を書く。team の ai-amplifies-organizations は比例則の組織版として関連に置いた（11 第1節 分野17 p56#59 は全体地図の前提にする案も挙げるが採らない）。段階ごとに足す安全の既定の正本は safety の default-safety-settings#by-stage（design §4.2）で、比例則の節は既定の中身を繰り返さずにそこを指す。安全の既定が変わる更新は作者が承認する（design §9.4）。related は20件までなので、用語集（terminology）は外した（how-to-use と glossary から入れる）。（2026-11-04 統合：safety#10・M6）"
+    notes: "00 の「三つの原理」に、requirements §3.1 の「握る」を足して四つにした（registry の notes）。原理のページそのものなので principle は付けない。各原理の「なぜ」は basics へ、手段は各分野へリンクする（design §4.2 の背骨の行）。Anthropic の AI Fluency（4D）は参考文献に挙げるだけにし、構成に使わない（requirements §3.1。ライセンスの一次の表示は未確認：research/21 F5）。11 第2節の p12#1 は見出しが証拠より強い（11 第4節 #59・#60）ので、例に使うなら research/24 B-32 で確かめた ALE-Bench の数値だけにし、研究のモデルと世代を書く。team の ai-amplifies-organizations は比例則の組織版として関連に置いた（11 第1節 分野17 p56#59 は全体地図の前提にする案も挙げるが採らない）。段階ごとに足す安全の既定の正本は safety の default-safety-settings#by-stage（design §4.2）で、比例則の節は既定の中身を繰り返さずにそこを指す。安全の既定が変わる更新は作者が承認する（design §9.4）。related は20件までなので、用語集（glossary）は外した（how-to-use と term-index から入れる）。（2026-11-04 統合：safety#10・M6）"
 
   - id: six-causes
     chapter: 背骨
@@ -128,7 +128,7 @@ pages:
     summary: "困りごと・やりたいこと・置かれた状況の言葉から、引くページと疑う原因へ進める。表は各ページのサインから作り、どれから疑うかの注記を手で添える。"
     signs: []
     prerequisites: []
-    related: [six-causes, how-to-use, glossary, outdated-advice-ledger]
+    related: [six-causes, how-to-use, term-index, outdated-advice-ledger]
     volatility: 低
     sections:
       - {title: "引き方", anchor: how-to-read}
@@ -143,7 +143,7 @@ pages:
       - "kyopro-atlas の docs/guide/reverse-index-signs.md（手本。構成をまねない）"
     notes: "表の本体は各ページの signs から生成し（design §2.2・§7）、手書きは導入と、同じ言葉が複数のページに当たるときの注記だけ。registry の題名に「状況」を足した（signs の三種。design §7）。第一波の症状辞典へ読者が入る道なので wave: 1 にした（D10 の「入口」）。表は signs から作るので、症状の全ページ（どれも困りごとの sign を2つ以上持つ）へここから道ができる。症状の項目の文は症状のページにだけ置き、対処のページに同じ文を重ねない（同じ文が二か所に出ると、症状のページの振り分けを飛ばす読み方になる）。対処のページには「理由を知りたい」などの goal を置く。（2026-11-04 統合：symptoms#9・M2）"
 
-  - id: glossary
+  - id: term-index
     chapter: 辞書として引く
     title: 用語索引と旧名の対応
     aliases: [用語索引, 索引, 旧名, 旧名と新名の対応表, 英語名から引く, 公式の訳語から引く, 名前から引く]
@@ -155,7 +155,7 @@ pages:
       - {type: symptom, text: "古い記事に出てくる機能の名前が、今の画面や文書に見当たらない"}
       - {type: goal, text: "英語の機能名から日本語の説明を探したい"}
     prerequisites: []
-    related: [terminology, reverse-index, outdated-advice-ledger, change-timeline-2026, how-to-use]
+    related: [glossary, reverse-index, outdated-advice-ledger, change-timeline-2026, how-to-use]
     volatility: 低
     sections:
       - {title: "引き方", anchor: how-to-read}
@@ -170,9 +170,9 @@ pages:
       - "research/27 §3.1（公式の日本語版の訳語）"
       - "11 第3節 3-2 #4（default＝Manual を用語索引に載せる）"
       - "kyopro-atlas の docs/guide/term-index.md（手本。構成をまねない）"
-    notes: "changes の old-and-new-names（旧名と新名の対応表）をまとめた（changes.yaml の merged。題名を aliases に入れた）。旧名は各ページの aliases から引き、変わった時期と版は changes の change-timeline-2026 と台帳に置く（同じ改名を三か所に持たない）。旧名を「旧名」と示す印と変わった時期は、数値ファイルの名称の項目（今の名前・旧名・変わった時期）を aliases と照らして生成する（design §7・§9.1）。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、research/22 §3.4 が台帳ではなく数値ファイルと aliases で持つとした項目で、この名称の項目から入れる。第一波の核の old-and-new-names を受けるので wave: 1。語の意味と表記の正規形は terminology（用語集）に分けた。本体は生成（design §7）。（2026-11-04 統合：start#5・cost#1・changes#2）"
+    notes: "changes の old-and-new-names（旧名と新名の対応表）をまとめた（changes.yaml の merged。題名を aliases に入れた）。旧名は各ページの aliases から引き、変わった時期と版は changes の change-timeline-2026 と台帳に置く（同じ改名を三か所に持たない）。旧名を「旧名」と示す印と変わった時期は、数値ファイルの名称の項目（今の名前・旧名・変わった時期）を aliases と照らして生成する（design §7・§9.1）。プランの改名（旧 Max 20x から Ultra）と上限の呼び方の変更（session limit から 5-hour limit）は、research/22 §3.4 が台帳ではなく数値ファイルと aliases で持つとした項目で、この名称の項目から入れる。第一波の核の old-and-new-names を受けるので wave: 1。語の意味と表記の正規形は glossary（用語集）に分けた。本体は生成（design §7）。（2026-11-04 統合：start#5・cost#1・changes#2）（2026-11-04 メイン：用語集と用語索引の id を入れ替えた。用語集を glossary、用語索引を term-index にした。英語の glossary はふつう用語集を指し、kyopro-atlas の docs/guide/glossary.md・term-index.md とも揃う。id は URL になるので骨格の前に決めた。I1 の報告のメインへ3）"
 
-  - id: terminology
+  - id: glossary
     chapter: 辞書として引く
     title: 用語集（独自の用語と公式の訳語）
     nav_title: 用語集
@@ -185,7 +185,7 @@ pages:
       - {type: goal, text: "この辞典の言葉が、公式の文書のどの言葉に当たるか知りたい"}
       - {type: goal, text: "アプリと Claude Code で名前が同じ機能が、同じものか知りたい"}
     prerequisites: []
-    related: [glossary, how-to-use, four-principles, six-causes, request-vs-lock, roadmap, "five-questions-before-delegating#autonomy-stages", how-memory-works, using-auto-memory, "skills-in-the-app#migrated-styles", output-style-modes]
+    related: [term-index, how-to-use, four-principles, six-causes, request-vs-lock, roadmap, "five-questions-before-delegating#autonomy-stages", how-memory-works, using-auto-memory, "skills-in-the-app#migrated-styles", output-style-modes]
     volatility: 中
     sections:
       - {title: "訳語の決め方", anchor: translation-policy}
@@ -202,7 +202,7 @@ pages:
       - "planning/catalog/features.yaml の note（面ごとに似た名前の機能の組）"
       - "00 §6 の末尾（略語のツールチップ、公式の訳語の併記）"
       - "kyopro-atlas の docs/guide/glossary.md（手本。構成をまねない）"
-    notes: "新規：design §6.2 は用語集のページを正として prh.yml を作るとするが、registry に候補がなかった（design §7 の表には 2026-11-04 に行が足された）。生成の用語索引（glossary）とは別の手書きのページにした（kyopro-atlas と同じ分け方）。prh の元になるので、土台作り（工程6）で本文より先に書く必要があり、必須・wave: 1 にした。2026-11-04 の統合で決めたことと、このページで決める点（design §6.2）：(1) 目次の題名と要約は、公式の日本語版の本文の多数派（research/27 §3.1 の案）で全分野をそろえた。表は planning/batches/step3/brief-integrate.md の M1 で、訳語の表はそれを元に書く。(2) 公式で割れている3語は仮に plan モード（別名にプランモード）・effort（別名に努力レベル）・許可ルール・確認ルール・拒否ルール（別名に allow ルール・deny ルールなど）とした。どれも工程5でユーザーに確かめる（節 split-terms）。(3) アプリのメモリと Claude Code のメモリ・自動メモリを分ける（アプリのものは「アプリのメモリ」）。(4) アプリの Styles（スタイル。スキルへ移行中：research/26 §3.1）と Claude Code の出力スタイルを分ける。(5) 読者の段階（委任の段階。roadmap）と、作業ごとの任せ方の段階（delegate の five-questions-before-delegating#autonomy-stages）を分ける（節 definitions）。(6) API の機能名の訳語は、Platform の日本語版を確かめてから決める。それまで英語のまま書き、プロンプトキャッシングだけは Claude Code の日本語版の多数派に合わせる。(7) 旧名はこのページに手で書かず、数値ファイルの名称の項目から用語索引（glossary#old-names）に生成する（design §9.1）。節 same-names-across-surfaces は (3)(4) のほか、アプリのプロジェクトと Claude Code の Projects、音声モードと /voice、アプリのタスクと scheduled tasks、アプリのスキル・プラグイン・権限モードと Claude Code のもの、Message Batches API と /batch、API の compaction と Claude Code の圧縮を、features.yaml の note に沿って書き分ける。アプリの全会話の指示（Claude への指示）とプロジェクトの指示の画面の名前は確かめていない（research/27 §5）。（2026-11-04 統合：start#4・start#6・basics#9・app#5・cli#5・delegate#2・M1・M7）"
+    notes: "新規：design §6.2 は用語集のページを正として prh.yml を作るとするが、registry に候補がなかった（design §7 の表には 2026-11-04 に行が足された）。生成の用語索引（term-index）とは別の手書きのページにした（kyopro-atlas と同じ分け方）。prh の元になるので、土台作り（工程6）で本文より先に書く必要があり、必須・wave: 1 にした。2026-11-04 の統合で決めたことと、このページで決める点（design §6.2）：(1) 目次の題名と要約は、公式の日本語版の本文の多数派（research/27 §3.1 の案）で全分野をそろえた。表は planning/batches/step3/brief-integrate.md の M1 で、訳語の表はそれを元に書く。(2) 公式で割れている3語は仮に plan モード（別名にプランモード）・effort（別名に努力レベル）・許可ルール・確認ルール・拒否ルール（別名に allow ルール・deny ルールなど）とした。どれも工程5でユーザーに確かめる（節 split-terms）。(3) アプリのメモリと Claude Code のメモリ・自動メモリを分ける（アプリのものは「アプリのメモリ」）。(4) アプリの Styles（スタイル。スキルへ移行中：research/26 §3.1）と Claude Code の出力スタイルを分ける。(5) 読者の段階（委任の段階。roadmap）と、作業ごとの任せ方の段階（delegate の five-questions-before-delegating#autonomy-stages）を分ける（節 definitions）。(6) API の機能名の訳語は、Platform の日本語版を確かめてから決める。それまで英語のまま書き、プロンプトキャッシングだけは Claude Code の日本語版の多数派に合わせる。(7) 旧名はこのページに手で書かず、数値ファイルの名称の項目から用語索引（term-index#old-names）に生成する（design §9.1）。節 same-names-across-surfaces は (3)(4) のほか、アプリのプロジェクトと Claude Code の Projects、音声モードと /voice、アプリのタスクと scheduled tasks、アプリのスキル・プラグイン・権限モードと Claude Code のもの、Message Batches API と /batch、API の compaction と Claude Code の圧縮を、features.yaml の note に沿って書き分ける。アプリの全会話の指示（Claude への指示）とプロジェクトの指示の画面の名前は確かめていない（research/27 §5）。（2026-11-04 統合：start#4・start#6・basics#9・app#5・cli#5・delegate#2・M1・M7）（2026-11-04 メイン：用語集と用語索引の id を入れ替えた。用語集を glossary、用語索引を term-index にした。英語の glossary はふつう用語集を指し、kyopro-atlas の docs/guide/glossary.md・term-index.md とも揃う。id は URL になるので骨格の前に決めた。I1 の報告のメインへ3）（2026-11-04 メイン：用語集で決める点に足す。fast mode〔auto モード・plan モードに倣うなら fast モード〕、workflows、Web 検索、usage credits、アプリの Auto と Manual、Quick entry、status line〔ステータスライン〕、transcript〔トランスクリプト〕、クラウドセッション／クラウドのセッションの揺れ、code intelligence、agent view、背景セッション〔background sessions〕、dynamic workflows、定期タスク〔scheduled tasks〕、旧 routines、チームメイト。どれも research/27 で公式の日本語版の多数派を数えていない。I2・I4・I6 の報告のメインへ）"
 
   # ── 地図と道順 ──
   - id: product-map
@@ -243,7 +243,7 @@ pages:
       - {type: goal, text: "何から順に読めばよいか知りたい"}
       - {type: situation, text: "毎日使っているが、使いこなせている気がしない"}
     prerequisites: []
-    related: [four-principles, five-questions-before-delegating, what-not-to-delegate, "default-safety-settings#by-stage", how-much-understanding-to-keep, human-pitfalls, verification-ladder, when-to-lock, knowledge-map, "how-to-use#levels", "terminology#definitions"]
+    related: [four-principles, five-questions-before-delegating, what-not-to-delegate, "default-safety-settings#by-stage", how-much-understanding-to-keep, human-pitfalls, verification-ladder, when-to-lock, knowledge-map, "how-to-use#levels", "glossary#definitions"]
     volatility: 低
     sections:
       - {title: "どの段階でも人が握るもの", anchor: always-hold}
@@ -258,7 +258,7 @@ pages:
       - "11 第2節 分野00「ロードマップ」p56#102（ゲートつきで広げる・地力の並走）・p56#103（段階的な自律を直接検証した研究はない）"
       - "11 第3節 3-3 の末尾の段落（L1〜L5 も仮説だと明記する）"
       - "10 第25章（ゲートつきで任せる範囲を広げる。requirements §3.3 の最後の項）"
-    notes: "段階ごとのページの列は level と prerequisites から生成し（design §7）、手書きは冒頭の「どの段階でも人が握るもの」と、上がる条件と、段階が仮説であること（11 第2節 p56#103）。p56#102 の「地力の並走」は根拠が中なので、段の節目に添える程度にする。カリキュラムとしては作らない（requirements §3.3）。「どの段階でも人が握るもの」の節は、段階ごとに足す安全の既定の中身を繰り返さず、正本の safety の default-safety-settings#by-stage を指す（design §4.2）。ここの段階は読者の「委任の段階」で、delegate の five-questions-before-delegating が持つ作業ごとの「任せ方の段階」とは別のものなので、語の区別は terminology#definitions に置いて指す。（2026-11-04 統合：safety#10・delegate#2・M6）"
+    notes: "段階ごとのページの列は level と prerequisites から生成し（design §7）、手書きは冒頭の「どの段階でも人が握るもの」と、上がる条件と、段階が仮説であること（11 第2節 p56#103）。p56#102 の「地力の並走」は根拠が中なので、段の節目に添える程度にする。カリキュラムとしては作らない（requirements §3.3）。「どの段階でも人が握るもの」の節は、段階ごとに足す安全の既定の中身を繰り返さず、正本の safety の default-safety-settings#by-stage を指す（design §4.2）。ここの段階は読者の「委任の段階」で、delegate の five-questions-before-delegating が持つ作業ごとの「任せ方の段階」とは別のものなので、語の区別は glossary#definitions に置いて指す。（2026-11-04 統合：safety#10・delegate#2・M6）"
 
   - id: knowledge-map
     chapter: 地図と道順
@@ -291,7 +291,7 @@ pages:
       - {type: goal, text: "この辞典の文章を誰がどう書いて確かめているか知りたい"}
       - {type: goal, text: "この辞典の文章や雛形を自分の資料に使いたい"}
     prerequisites: []
-    related: [how-to-use, "how-to-use#freshness", "how-to-use#stage", "how-to-use#report", terminology]
+    related: [how-to-use, "how-to-use#freshness", "how-to-use#stage", "how-to-use#report", glossary]
     volatility: 低
     sections:
       - {title: "AI で書いていることと確かめ方", anchor: ai-writing}
@@ -321,9 +321,9 @@ dropped: []
 open_issues:
   - "提案（judgment）：human-pitfalls-intro を six-causes（失敗の二つの軸と診断の入口）にまとめた。人の側の五つの本体と根拠の強さの区別（research/24 F1・§2.3）は human-pitfalls に置き、human-pitfalls の関連に six-causes を置く案。前提や関連に human-pitfalls-intro を書いた分野は、six-causes か human-pitfalls に替える。"
   - "提案（symptoms）：症状のページは six-causes を前提か関連に持つと、診断の順（安く確かめられる順）とその理由を各ページで繰り返さずに済む。six-causes の anchor は claude-side・diagnosis・human-side・why-two-axes・to-symptoms。"
-  - "提案（設計書 §2.2・catalog/README §3）：本体を生成するページ（start の reverse-index・glossary・roadmap・knowledge-map、changes の outdated-advice-ledger・change-timeline-2026）を目次でどう示すかを決める。今は type を hub と ledger にし、notes に生成と書いた。印のキー（例：generated）を足すなら README §3 と check_catalog.py に入れる。"
-  - "提案（設計書 §7）：用語集（terminology）を start に新規で足した。design §7 の表に「用語集」の行（手書き。prh.yml の元。design §6.2）を足す。"
-  - "提案（土台作り）：用語索引（glossary）で旧名を「旧名」と示すには、aliases のどれが旧名かを生成の道具が知る手段が要る（例：data/facts.yml の名称の項目に旧名と変わった時期を持ち、aliases と照らす）。"
-  - "提案（全分野・工程4）：題名の用語の表記を、design §13 O・research/27 §4 P11 の (a)（公式の日本語版の本文の多数派）にそろえる。basics ではサブエージェント・圧縮・プロンプトキャッシング・システムプロンプトにし、英語名を aliases に置いた。registry の題名には英語の表記（subagent・compaction・prompt caching・Hooks・Skill）が多く、分野の間でそろっていない。用語集（terminology）で決め、工程4で全分野の題名をそろえる。"
+  - "提案（設計書 §2.2・catalog/README §3）：本体を生成するページ（start の reverse-index・term-index・roadmap・knowledge-map、changes の outdated-advice-ledger・change-timeline-2026）を目次でどう示すかを決める。今は type を hub と ledger にし、notes に生成と書いた。印のキー（例：generated）を足すなら README §3 と check_catalog.py に入れる。"
+  - "提案（設計書 §7）：用語集（glossary）を start に新規で足した。design §7 の表に「用語集」の行（手書き。prh.yml の元。design §6.2）を足す。"
+  - "提案（土台作り）：用語索引（term-index）で旧名を「旧名」と示すには、aliases のどれが旧名かを生成の道具が知る手段が要る（例：data/facts.yml の名称の項目に旧名と変わった時期を持ち、aliases と照らす）。"
+  - "提案（全分野・工程4）：題名の用語の表記を、design §13 O・research/27 §4 P11 の (a)（公式の日本語版の本文の多数派）にそろえる。basics ではサブエージェント・圧縮・プロンプトキャッシング・システムプロンプトにし、英語名を aliases に置いた。registry の題名には英語の表記（subagent・compaction・prompt caching・Hooks・Skill）が多く、分野の間でそろっていない。用語集（glossary）で決め、工程4で全分野の題名をそろえる。"
   - "提案（メイン）：ai-and-sources（出典と AI 利用の方針）は作者の承認が要る（design §10.8）。第一波の最初のバッチより前に、作者に見せる文の一覧に入れる。"
   - "迷った点：start の全ページに wave: 1 を付けた。D10 の第一波の「入口」を分野00（入口と地図）の全体と読み、symptoms の全ページを核にした registry の扱いとそろえた。第一波を絞るなら、生成のページ（roadmap・knowledge-map）の手書きの導入を後にできる。"
