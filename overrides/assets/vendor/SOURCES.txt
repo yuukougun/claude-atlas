@@ -13,3 +13,24 @@ mermaid-11.17.2/  (MIT。2026-11-04 取得)
   版の系列：Material for MkDocs 9.8.0 は、window.mermaid がないときに unpkg.com から mermaid@11 を読む。
   その系列の最新（2026-11-04 の npm のレジストリで 11.17.2。latest は 12.3.0）を写した。
   Zensical 0.0.74 は mermaid@12 を読むが、試験ビルドでもこの写しを使う。
+
+cytoscape-3.34.4/  (MIT。2026-11-04 取得。工程6a の2段目 V。知識マップ〔assets/js/map.js〕が、地図のあるページでだけ読む)
+  https://registry.npmjs.org/cytoscape/-/cytoscape-3.34.4.tgz
+  sha512-msY99tMY8iWTg+sIPGfSqDcPNOt4xcj+v/K/7qUFaCUxxlqnMkUYLBjRUzn9W5CU/R2hrmtJa5+UtovrEM2ctg==
+  写したもの：package/dist/cytoscape.min.js、package/LICENSE
+  cytoscape.min.js の sha256：081591ab735b2b6a3b31a3c60f8f3a3e2fee8c92939e0c7820ad1208571b6cd8
+  版：2026-11-04 の npm のレジストリの latest（2026-10-15 公開）。kyopro-atlas は 3.34.3 を写していた
+
+cytoscape-dagre-4.0.1/  (MIT。2026-11-04 取得。同上)
+  https://registry.npmjs.org/cytoscape-dagre/-/cytoscape-dagre-4.0.1.tgz
+  sha512-hyNdh8Vp1nwzBcjHnM4c71G81bFhPmQYLXD2HM9AZIvl+8TrMzWEOPW45hF/XOBQiEguPcDQzi6VrXR1XBcXOA==
+  写したもの：package/dist/cytoscape-dagre.min.js、package/LICENSE
+  cytoscape-dagre.min.js の sha256：ec671a41d2bfcac580352e2997797793949e3489cecaf347fc48670d4bd456b0
+  （kyopro-atlas の同じ版の写しと同じ中身）
+  cytoscape-dagre.min.js は dagre を内蔵している（@dagrejs/dagre 3.0.0 と、それが内蔵する @dagrejs/graphlib 4.0.1。
+  版の文字列で確かめた）。dagre を別に読み込む必要はない。内蔵分のライセンスは次の2つの tarball の LICENSE を写したもの：
+  LICENSE.dagre     https://registry.npmjs.org/@dagrejs/dagre/-/dagre-3.0.0.tgz
+                    sha512-ZzhnTy1rfuoew9Ez3EIw4L2znPGnYYhfn8vc9c4oB8iw6QAsszbiU0vRhlxWPFnmmNSFAkrYeF1PhM5m4lAN0Q==
+  LICENSE.graphlib  https://registry.npmjs.org/@dagrejs/graphlib/-/graphlib-4.0.1.tgz
+                    sha512-IvcV6FduIIAmLwnH+yun+QtV36SC7mERqa86aClNqmMN09WhmPPYU8ckHrZBozErf+UvHPWOTJYaGYiIcs0DgA==
+  版を上げるときは、ディレクトリ名と assets/js/map.js の LIBS の版の文字列を一緒に直す

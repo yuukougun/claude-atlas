@@ -1,0 +1,14 @@
+{
+"about":"試験用。作る層（tools/gen/pages_out.py の pages_json）の出力の形をまねた",
+"levels":["使う","整える","任せる","仕組みにする","回す"],
+"pages":[
+{"id":"how-to-use","url":"start/how-to-use/","title":"この辞典の引き方","stage":"draft","expires":null,"expires_by":null},
+{"id":"knowledge-map","url":"start/knowledge-map/","title":"知識マップ","stage":"draft","expires":null,"expires_by":null},
+{"id":"reverse-index","url":"start/reverse-index/","title":"逆引き辞典","stage":"draft","expires":null,"expires_by":null},
+{"id":"glossary","url":"start/glossary/","title":"用語集","stage":"draft","expires":null,"expires_by":null},
+{"id":"context-window","url":"basics/context-window/","title":"コンテキストウィンドウ","stage":"done","verified":"2026-11-04","expires":"2999-12-31","expires_by":"page"},
+{"id":"what-to-put-in-claude-md","url":"extend/what-to-put-in-claude-md/","title":"CLAUDE.md に何を書くか（推測できないことだけ）","stage":"reviewed","verified":"2026-11-03","expires":"2000-01-31","expires_by":"feature:claude-md"},
+{"id":"when-to-lock","url":"enforce/when-to-lock/","title":"縛るときの判断 & 鍵の選び方","stage":"draft","expires":null,"expires_by":null},
+{"id":"instructions-ignored","url":"symptoms/instructions-ignored/","title":"CLAUDE.md や指示が守られない","stage":"draft","expires":"2999-01-01","expires_by":"fact:example"}
+]
+}

@@ -1,0 +1,19 @@
+{
+"about":"試験用。作る層（tools/gen/pages_out.py の graph_json）の出力の形をまねた",
+"fields":[{"id":"start","title":"入口と地図"},{"id":"basics","title":"基礎：なぜそうなるか"},{"id":"extend","title":"文脈と指示を仕組みにする"},{"id":"enforce","title":"仕組みで縛る"},{"id":"symptoms","title":"症状辞典"}],
+"levels":["使う","整える","任せる","仕組みにする","回す"],
+"nodes":[
+{"id":"glossary","title":"用語集","nav_title":null,"url":"start/glossary/","field":"start","chapter":"辞書として引く","type":"hub","level":null,"stage":"draft","summary":"この辞典の用語と表記の決まりが分かる。","prerequisites":[],"routes":[],"related":[]},
+{"id":"context-window","title":"コンテキストウィンドウ","nav_title":null,"url":"basics/context-window/","field":"basics","chapter":null,"type":"concept","level":"使う","stage":"done","summary":"毎回すべてを読み直す仕組みが分かる。","prerequisites":[],"routes":[],"related":[]},
+{"id":"what-to-put-in-claude-md","title":"CLAUDE.md に何を書くか（推測できないことだけ）","nav_title":"CLAUDE.md の書き方","url":"extend/what-to-put-in-claude-md/","field":"extend","chapter":null,"type":"feature","level":"整える","stage":"reviewed","summary":"CLAUDE.md に書くものと書かないものが分かる。","prerequisites":["context-window"],"routes":[],"related":[]},
+{"id":"when-to-lock","title":"縛るときの判断 & 鍵の選び方","nav_title":null,"url":"enforce/when-to-lock/","field":"enforce","chapter":null,"type":"judgment","level":"仕組みにする","stage":"draft","summary":"お願いを鍵に移すときを決める。","prerequisites":["what-to-put-in-claude-md"],"routes":[],"related":["glossary"]},
+{"id":"instructions-ignored","title":"CLAUDE.md や指示が守られない","nav_title":null,"url":"symptoms/instructions-ignored/","field":"symptoms","chapter":null,"type":"symptom","level":"整える","stage":"draft","summary":"規則が破られる原因を切り分ける。","prerequisites":["context-window"],"routes":[{"cause":"散らかっている","to":["what-to-put-in-claude-md"]},{"cause":"縛っていない","to":["when-to-lock"]}],"related":["when-to-lock","context-window"]}
+],
+"edges":[
+{"from":"context-window","to":"what-to-put-in-claude-md","kind":"prerequisite"},
+{"from":"what-to-put-in-claude-md","to":"when-to-lock","kind":"prerequisite"},
+{"from":"context-window","to":"instructions-ignored","kind":"prerequisite"},
+{"from":"instructions-ignored","to":"what-to-put-in-claude-md","kind":"route","cause":"散らかっている"},
+{"from":"instructions-ignored","to":"when-to-lock","kind":"route","cause":"縛っていない"}
+]
+}

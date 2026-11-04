@@ -1,0 +1,502 @@
+/*
+ * claude-atlas の見た目（planning/design.md §8.5）。class の接頭辞は ca-。overrides/main.html の styles のブロックで読む。
+ * kyopro-atlas の overrides/assets/css/kp.css を写して直した（読者の進捗を記録する部品は持ち込まない。D17）。
+ *
+ * - 色は Material の CSS 変数か、下で定義する --ca-* だけを使い、ライトとダークの切り替えに追従させる
+ * - 外のサイトから読まない（フォント・画像の url() を書かない。design §8.5）
+ * - 幅の狭い画面（スマホ、390px）では flex-wrap で折り返し、横にはみ出さないようにする。指で押す所は 44px 以上
+ *
+ * 色の決め方（2026-11-04。dataviz の方法と validate_palette.js で確かめた）：
+ * - レベル（委任の段階）は順序のある5段なので、1つの色相の明るさの段（ordinal）にした。Material の背景
+ *   （ライト #fff・ダーク slate の hsl(225 15% 14%) ≒ #1e2129）に対して、明るさが単調で、隣の段の差が
+ *   OKLCH L 0.06 以上、背景に近い端の段も 2:1 以上（ライト 2.11・ダーク 2.43）。ダークでは向きを返す（低い段ほど背景に近い）。
+ *   段の中の字は、ライトの1〜2段とダークの3〜5段が黒、ほかは白（APCA で読みやすい方。WCAG では最低 4.42）
+ * - 知識マップの辺は、前提を実線の灰、振り分け（routes）を破線の橙（dataviz の分類の色の2番目。背景に 3:1 以上）にし、
+ *   凡例を添える（線の形でも分かる）
+ * - 下書きの帯（琥珀）と期限切れの注意書き（赤）の字は、それぞれの淡い背景に対して 4.5:1 以上（ライト 5.81・5.72、
+ *   ダーク 7.20・5.70）。どちらも色だけに頼らず、ラベルの字（「下書き・未検証」「確認の期限切れ」）を出す
+ */
+
+/* ---------- 色の定義 ---------- */
+:root {
+  --ca-lv-1: #86b6ef;
+  --ca-lv-1-fg: #0b0b0b;
+  --ca-lv-2: #5598e7;
+  --ca-lv-2-fg: #0b0b0b;
+  --ca-lv-3: #2a78d6;
+  --ca-lv-3-fg: #ffffff;
+  --ca-lv-4: #1c5cab;
+  --ca-lv-4-fg: #ffffff;
+  --ca-lv-5: #104281;
+  --ca-lv-5-fg: #ffffff;
+  --ca-lv-none: var(--md-default-fg-color--lighter);
+  --ca-lv-none-fg: var(--md-default-fg-color);
+  --ca-draft-color: #8a5300;
+  --ca-draft-bg: #fff4e0;
+  --ca-expiry-color: #b3261e;
+  --ca-expiry-bg: #fdecea;
+  --ca-route-color: #eb6834; /* 知識マップの振り分け（routes）の辺。dataviz の分類の色の2番目（背景に 3.20:1） */
+}
+[data-md-color-scheme="slate"] {
+  --ca-lv-1: #1c5cab;
+  --ca-lv-1-fg: #ffffff;
+  --ca-lv-2: #2a78d6;
+  --ca-lv-2-fg: #ffffff;
+  --ca-lv-3: #5598e7;
+  --ca-lv-3-fg: #0b0b0b;
+  --ca-lv-4: #86b6ef;
+  --ca-lv-4-fg: #0b0b0b;
+  --ca-lv-5: #b7d3f6;
+  --ca-lv-5-fg: #0b0b0b;
+  --ca-draft-color: #ffb74d;
+  --ca-draft-bg: rgba(255, 183, 77, 0.12);
+  --ca-expiry-color: #ff8a80;
+  --ca-expiry-bg: rgba(255, 138, 128, 0.12);
+  --ca-route-color: #d95926; /* 背景に 4.14:1 */
+}
+.ca-lv-0 { --ca-c: var(--ca-lv-none); --ca-cf: var(--ca-lv-none-fg); }
+.ca-lv-1 { --ca-c: var(--ca-lv-1); --ca-cf: var(--ca-lv-1-fg); }
+.ca-lv-2 { --ca-c: var(--ca-lv-2); --ca-cf: var(--ca-lv-2-fg); }
+.ca-lv-3 { --ca-c: var(--ca-lv-3); --ca-cf: var(--ca-lv-3-fg); }
+.ca-lv-4 { --ca-c: var(--ca-lv-4); --ca-cf: var(--ca-lv-4-fg); }
+.ca-lv-5 { --ca-c: var(--ca-lv-5); --ca-cf: var(--ca-lv-5-fg); }
+
+/* ---------- ページ上部：下書きの帯・期限切れの注意書き・バッジ ---------- */
+.md-typeset .ca-page-head { margin: 0 0 1em; }
+.md-typeset .ca-draft,
+.md-typeset .ca-expiry {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 0.8em;
+  align-items: baseline;
+  margin: 0 0 0.6em;
+  padding: 0.45em 0.8em;
+  border-left: 0.25rem solid var(--ca-draft-color);
+  border-radius: 0.2rem;
+  background: var(--ca-draft-bg);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+.md-typeset .ca-expiry {
+  border-left-color: var(--ca-expiry-color);
+  background: var(--ca-expiry-bg);
+}
+.md-typeset .ca-expiry[hidden] { display: none; }
+.md-typeset .ca-draft__label,
+.md-typeset .ca-expiry__label {
+  flex: none;
+  font-weight: 700;
+  color: var(--ca-draft-color);
+}
+.md-typeset .ca-expiry__label { color: var(--ca-expiry-color); }
+.md-typeset .ca-expiry__text { flex: 1 1 14em; min-width: 0; }
+
+.md-typeset dl.ca-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35em 1em;
+  margin: 0;
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+.md-typeset .ca-badges__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3em;
+  min-width: 0;
+}
+.md-typeset .ca-badges dt {
+  margin: 0;
+  font-weight: 400;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .ca-badges dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+  min-width: 0;
+  margin: 0;
+}
+.md-typeset .ca-badge {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0 0.65em;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 1em;
+  color: var(--md-default-fg-color);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.md-typeset a.ca-badge:hover,
+.md-typeset a.ca-badge:focus-visible { border-color: var(--md-accent-fg-color); }
+.md-typeset .ca-badge--level {
+  border-color: var(--ca-c);
+  background: var(--ca-c);
+  color: var(--ca-cf);
+  font-weight: 700;
+}
+.md-typeset a.ca-badge--level:hover,
+.md-typeset a.ca-badge--level:focus-visible { color: var(--ca-cf); box-shadow: 0 0 0 2px var(--md-accent-fg-color); }
+.md-typeset .ca-badge--type,
+.md-typeset .ca-badge--surface { background: var(--md-default-fg-color--lightest); border-color: transparent; }
+.md-typeset .ca-badge--unverified {
+  border-color: var(--ca-draft-color);
+  color: var(--ca-draft-color);
+  font-weight: 700;
+}
+
+/* ---------- ページ下部：前提・次に読む・関連（作る層が本文の目印 gen:begin page-links の間に書く） ---------- */
+/* 作る層の出力（tools/gen/pagebits.py）：<div class="ca-page-links" markdown> の中に、欄ごとに太字の見出しの段落
+   （**前提** など）と箇条書きが交互に並ぶ。未公開のページは「題名（準備中）」の平文（design §8.4）。
+   見出しを左の列、箇条書きを右の列に並べ、項目は折り返して横に並べる */
+.md-typeset .ca-page-links {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.4em 1em;
+  align-items: baseline;
+  margin: 2.5em 0 0;
+  padding-top: 1em;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  font-size: 0.75rem;
+}
+.md-typeset .ca-page-links > p {
+  grid-column: 1;
+  margin: 0;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .ca-page-links > ul {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 2;
+  gap: 0.2em 1.2em;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.md-typeset .ca-page-links > ul > li {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.md-typeset .ca-map-link {
+  margin: 1.5em 0 0;
+  font-size: 0.75rem;
+}
+
+/* ---------- ページの最後の行：段階・更新日と誤りの報告 ---------- */
+.md-typeset .ca-page-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4em 1.5em;
+  margin: 1.5em 0 0;
+  padding-top: 0.6em;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+.md-typeset .ca-map-link + .ca-page-info { margin-top: 0.6em; }
+.md-typeset dl.ca-page-info__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 1.2em;
+  margin: 0;
+}
+.md-typeset .ca-page-info__meta > div {
+  display: flex;
+  gap: 0.4em;
+}
+.md-typeset .ca-page-info__meta dt {
+  margin: 0;
+  font-weight: 400;
+}
+.md-typeset .ca-page-info__meta dd {
+  margin: 0;
+  color: var(--md-default-fg-color);
+}
+.md-typeset .ca-stage { font-weight: 700; }
+.md-typeset .ca-stage--draft { color: var(--ca-draft-color); }
+.md-typeset a.ca-page-info__report {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.md-typeset .ca-page-info__icon { display: inline-flex; }
+.md-typeset .ca-page-info__icon svg {
+  width: 1.1em;
+  height: 1.1em;
+  fill: currentcolor;
+}
+
+/* ---------- 冒頭の要点（!!! abstract "要点"） ---------- */
+.md-typeset .admonition.abstract { overflow-wrap: break-word; }
+
+/* ---------- 知識マップ（map.js。作る層が知識マップのページに置く div.ca-graph） ---------- */
+.md-typeset .ca-graph,
+.md-typeset #ca-map { margin: 1em 0; }
+.md-typeset .ca-graph [hidden],
+.md-typeset #ca-map [hidden] { display: none !important; } /* display を指定した要素でも hidden を効かせる */
+.md-typeset .ca-map__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4em 0.8em;
+  margin-bottom: 0.4em;
+  font-size: 0.75rem;
+}
+.md-typeset .ca-map__seg { display: inline-flex; }
+.md-typeset .ca-map__toolbar button {
+  min-height: 2.2em;
+  padding: 0 0.8em;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font: inherit;
+  cursor: pointer;
+}
+.md-typeset .ca-map__toolbar button + button { margin-left: -1px; }
+.md-typeset .ca-map__seg button:first-child { border-radius: 0.2rem 0 0 0.2rem; }
+.md-typeset .ca-map__seg button:last-child { border-radius: 0 0.2rem 0.2rem 0; }
+.md-typeset .ca-map__toolbar > button { border-radius: 0.2rem; }
+.md-typeset .ca-map__toolbar button[aria-pressed="true"] {
+  border-color: var(--md-primary-fg-color);
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
+.md-typeset .ca-map__toolbar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.md-typeset .ca-map__toolbar select,
+.md-typeset .ca-map__toolbar input {
+  min-height: 2.2em;
+  max-width: 100%;
+  padding: 0 0.3em;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font: inherit;
+}
+.md-typeset .ca-map__toolbar input { width: 11em; }
+.md-typeset .ca-map__status { margin: 0.3em 0; font-size: 0.75rem; }
+.md-typeset .ca-map__status button {
+  margin-left: 0.5em;
+  padding: 0 0.6em;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--md-typeset-a-color);
+  font: inherit;
+  cursor: pointer;
+}
+.md-typeset .ca-map__stage { position: relative; }
+.md-typeset .ca-map__canvas {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 340px;
+  max-height: 760px;
+  overflow: hidden;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+  background: var(--md-default-bg-color);
+  touch-action: none; /* 地図の中は Cytoscape.js がピンチとパンを受ける。外を触ればページはスクロールできる */
+}
+/* 点の説明は地図の中に重ねる。点が地図の下半分なら上（--top）、上半分なら下に出し、点を隠さない */
+.md-typeset .ca-map__stage > .ca-map__info {
+  position: absolute;
+  z-index: 2;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  box-sizing: border-box;
+  max-width: 24rem;
+  max-height: 60%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  margin: 0;
+  padding: 0.4em 2.6em 0.4em 0.8em;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-left: 0.2rem solid var(--md-default-fg-color--light);
+  border-radius: 0.2rem;
+  background: var(--md-default-bg-color);
+  box-shadow: var(--md-shadow-z2);
+  font-size: 0.75rem;
+}
+.md-typeset .ca-map__stage > .ca-map__info--top { top: 0.5rem; bottom: auto; }
+.md-typeset .ca-map__stage > .ca-map__info--pinned { border-left-color: var(--md-accent-fg-color); }
+.md-typeset .ca-map__info p { margin: 0.2em 0; }
+.md-typeset .ca-map__info .ca-map__close {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  border: 0;
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.md-typeset .ca-map__info .ca-map__close:hover,
+.md-typeset .ca-map__info .ca-map__close:focus-visible { color: var(--md-accent-fg-color); }
+.md-typeset .ca-map__acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4em 1em;
+}
+.md-typeset .ca-map__acts button,
+.md-typeset .ca-map__alts button {
+  min-height: 2em;
+  padding: 0 0.6em;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--md-typeset-a-color);
+  font: inherit;
+  cursor: pointer;
+}
+.md-typeset .ca-map__acts button:hover,
+.md-typeset .ca-map__acts button:focus-visible,
+.md-typeset .ca-map__alts button:hover,
+.md-typeset .ca-map__alts button:focus-visible { border-color: var(--md-accent-fg-color); }
+.md-typeset .ca-map__hint { color: var(--md-default-fg-color--light); font-size: 0.9em; }
+.md-typeset .ca-map__alts { margin-left: 0.5em; }
+.md-typeset .ca-map__alts button { margin: 0.2em 0 0 0.4em; }
+.md-typeset ul.ca-map__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 1.2em;
+  margin: 0.5em 0;
+  padding: 0;
+  list-style: none;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+}
+.md-typeset ul.ca-map__legend li { margin: 0; }
+.md-typeset .ca-sw {
+  display: inline-block;
+  width: 1.4em;
+  height: 0.9em;
+  margin-right: 0.3em;
+  border: 2px solid var(--ca-c, var(--md-default-fg-color--light));
+  border-radius: 0.25em;
+  vertical-align: -0.1em;
+}
+.md-typeset .ca-sw--ext { border-style: dashed; }
+.md-typeset .ca-sw--edge,
+.md-typeset .ca-sw--route,
+.md-typeset .ca-sw--rel { width: 1.6em; height: 0; border-width: 2px 0 0; border-radius: 0; }
+.md-typeset .ca-sw--edge { border-color: var(--md-default-fg-color--light); }
+.md-typeset .ca-sw--route { border-style: dashed; border-color: var(--ca-route-color); }
+.md-typeset .ca-sw--rel { border-style: dotted; border-color: var(--md-default-fg-color--light); }
+.md-typeset .ca-mini {
+  display: inline-block;
+  padding: 0 0.45em;
+  border-radius: 0.6em;
+  background: var(--ca-c);
+  color: var(--ca-cf);
+  font-size: 0.85em;
+  line-height: 1.5;
+  vertical-align: 0.05em;
+}
+
+/* ---------- 語で行を絞り込む欄（filter.js） ---------- */
+/* 欄はページの題の下（要点の前）に出る。語を入れている間は、当たった行（項目）と、それを含む表・箇条書き・見出しだけを残す */
+.md-typeset .ca-filter { margin: 0 0 1em; }
+.md-typeset .ca-filter__box {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4em;
+}
+.md-typeset .ca-filter__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  min-height: 2.2rem;
+  margin: 0;
+  padding: 0 0.6em;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.8rem; /* 16px 以上にして、iOS でフォーカスしたときに拡大されないようにする */
+}
+.md-typeset .ca-filter__input::placeholder { color: var(--md-default-fg-color--light); opacity: 1; }
+.md-typeset .ca-filter__input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; } /* 消すボタンは自前の × */
+.md-typeset .ca-filter__input:focus {
+  border-color: var(--md-accent-fg-color);
+  outline: 1px solid var(--md-accent-fg-color);
+}
+.md-typeset .ca-filter__clear {
+  flex: none;
+  min-width: 2.2rem;
+  padding: 0;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.md-typeset .ca-filter__clear[hidden] { display: none; }
+.md-typeset .ca-filter__clear:hover,
+.md-typeset .ca-filter__clear:focus-visible { border-color: var(--md-accent-fg-color); color: var(--md-accent-fg-color); }
+.md-typeset .ca-filter__status {
+  margin: 0.3em 0 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+.md-typeset .ca-filter-off { display: none !important; }
+/* 絞っている間は、欄の後ろの本文のうち残す印（ca-filter-keep）のない要素を隠す。ページ下部（前提・関連・最後の行など）は残す */
+.md-typeset.ca-filtering > .ca-filter ~ :not(.ca-filter-keep):not(.ca-page-links):not(.ca-map-link):not(.ca-page-info):not(.md-source-file) {
+  display: none !important;
+}
+
+/* ---------- 指で操作する端末では、押すところを 44px 以上にする ---------- */
+@media (pointer: coarse) {
+  .md-typeset .ca-map__toolbar button,
+  .md-typeset .ca-map__toolbar select,
+  .md-typeset .ca-map__toolbar input,
+  .md-typeset .ca-map__acts button,
+  .md-typeset .ca-map__alts button { min-height: 44px; }
+  .md-typeset .ca-map__info .ca-map__close { width: 44px; height: 44px; }
+  .md-typeset .ca-map__acts a { display: inline-flex; align-items: center; min-height: 44px; }
+  .md-typeset .ca-filter__input { min-height: 44px; }
+  .md-typeset .ca-filter__clear { min-width: 44px; min-height: 44px; }
+}
+
+/* ---------- 表の横のはみ出し（kyopro-atlas の #55 を写した） ---------- */
+/* 狭い画面では、Material が表の見出しのセルに付ける min-width（5rem）を 4em に下げ、セルの余白を詰める */
+@media screen and (max-width: 44.984375em) {
+  .md-typeset table:not([class]) th { min-width: 4em; }
+  .md-typeset table:not([class]) th,
+  .md-typeset table:not([class]) td { padding: 0.75em 0.6em; }
+}
+/* 横にはみ出す表は、まだ送れる側の端に影を出し、続きがあると分かるようにする。影は枠に固定し（scroll）、それを隠す覆いは
+   中身と一緒に動かす（local）。端まで送ると覆いが影に重なって影が消え、はみ出さないときは初めから重なっている */
+:root { --ca-scroll-shadow: rgba(0, 0, 0, 0.22); }
+[data-md-color-scheme="slate"] { --ca-scroll-shadow: rgba(0, 0, 0, 0.8); } /* 暗い背景では濃くしないと見えない */
+.md-typeset .md-typeset__scrollwrap {
+  background:
+    linear-gradient(to right, var(--md-default-bg-color) 50%, transparent) left / 2em 100% no-repeat local,
+    linear-gradient(to left, var(--md-default-bg-color) 50%, transparent) right / 2em 100% no-repeat local,
+    linear-gradient(to right, var(--ca-scroll-shadow), transparent) left / 0.9em 100% no-repeat scroll,
+    linear-gradient(to left, var(--ca-scroll-shadow), transparent) right / 0.9em 100% no-repeat scroll;
+}
+.md-typeset .md-typeset__table table:not([class]) { background-color: transparent; }

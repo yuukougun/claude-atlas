@@ -1,23 +1,339 @@
 {% extends "base.html" %}
 
 {#-
-  claude-atlas のテンプレートの上書き（planning/design.md §8.5）。工程6a の1段目で作った骨組み。
+  claude-atlas のテンプレートの上書き（planning/design.md §8.5）。工程6a の1段目（B1）が骨組みを作り、2段目（V）が部品を足した。
 
   - 冒頭：全ページの上の帯（announce）に、Anthropic の公式の教材でないことを書く。文は decisions 2026-11-04
     「決定の一覧の承認」の最小の文のまま。それより多い方針の文は、作者の承認の後に足す（design §6.1 の8）。
     帯を閉じるボタン（announce.dismiss）は付けない
   - フッター：mkdocs.yml の copyright に、同じく最小の文を書く
   - ほかの上書き：partials/source.html（GitHub の API を読まない）、assets/js/mermaid-local.js（Mermaid の写しを読む）
-  - 2段目の担当が足すもの（design §8.5）：下の content のブロックの印の所に、ページ上部のバッジ・下書きの帯・
-    期限切れの注意書きと、ページ下部の前提・次に読む・関連、段階と更新日、「このページの誤りを報告する」
-  - Zensical（MiniJinja）でも読めるよう、Python のメソッドの呼び出しは使わない。MkDocs の Jinja は自動で
-    エスケープしないので、front matter の文字列は | e を通す
+  - CSS と JS（assets/css/ca.css・assets/js/expiry.js・filter.js・map.js）は、下の styles と scripts のブロックで読む
+    （mkdocs.yml の extra_css・extra_javascript に書かなくても、どのページにも入る）。どれも外のサイトから読まない
+
+  front matter に id を持つページ（page.meta.id）にだけ、次を出す。
+  - ページ上部（題の h1 の直後。本文に h1 を書いたページでは本文の前）：
+    下書きの帯（stage が draft。文は DR-10 の「下書き・未検証」）、期限切れの注意書き（隠しておき、expiry.js が
+    期限の日〔data-ca-expires。作る層が数えた extra.ca.expires の値〕とブラウザの今日を比べて、過ぎていれば出す。
+    design §8.5・DR-11。extra.ca.expires がなければ、expiry.js が pages.json から引く）、
+    バッジの列（レベル・型・面・原理・成熟度・強制力・変わりやすさ・確認日と版。design §6.4・§8.5。段階は reviewed・done のとき）
+  - ページ下部（本文の後）：「知識マップでこのページの前後を見る」（地図のページが nav にあり、このページと公開している
+    ページの間に前提か routes の辺があるとき）、段階と更新日。前提・次に読む・関連と、症状のページの振り分けの表は、
+    作る層が本文の目印の間に書く（brief-build2 §2）
+  サイトのトップのほかのどのページにも、最後の行に「このページの誤りを報告する」（GitHub の新しい Issue。題名・URL・
+  確認日・更新日を入れる。design §8.5・§9.5）。トップは決定にある最小の文だけにするので出さない（brief-build §3）。
+
+  語彙の表示名などは、テンプレートに直書きせず config.extra.ca から読む（作る層が schema/site.yml と tools/gen/config.yml
+  の labels から nav.yml に書く。INHERIT で mkdocs.yml の extra と深く合わさる）。ないものは出さない（レベルの色は段の番号で
+  決めるので、levels がないと色が付かない）。types・surfaces・stages は ca.labels の下に置いてもよい：
+    levels: [<低い順のレベル>]              レベルの色の段（ca-lv-1 から）
+    types: {<型の id>: <短い印>}           型のバッジ
+    surfaces: {<面の id>: <表示名>}         面のバッジ
+    stages: {<段階の id>: <表示名>}         段階のバッジ（reviewed・done）と、最後の行の段階
+    lists: {<front matter のキー（level・type・surfaces・principle）>: <一覧のページ（docs/ の中のパス。lists/by-level.md）>}
+                                           バッジを一覧の節（#<値を小文字にして空白を - にしたもの>）へのリンクにする
+    pages_json: <サイト用のデータ pages.json の置き場所（サイトのルートから）>   expiry.js に渡す（なければ assets/data/pages.json）
+    expires: {<ページの id>: <期限の日 YYYY-MM-DD>}   ページの上部の data-ca-expires（値のないページは空。design §9.2）
+    badges: {<ページの id>: {maturity: <成熟度>, enforcement: <強制力>}}   機能の属性のバッジ（作る層が tracks の機能の
+                                           確認済みの値から選ぶ。data/facts.yml の features。design §6.4・§8.5）
+    report_template: <Issue のテンプレートのファイル名>   誤りの報告を、テンプレートの欄（page-title・page-url・
+                                                       page-verified・page-updated）に入れて開く。なければ題と本文だけ
+  名指しのページ（id で nav.pages から引く。nav にないときはリンクにしない）：
+    how-to-use（この辞典の引き方。節 stage・freshness の題を、帯と注意書きのリンクの文にする）、knowledge-map（知識マップ）
+
+  Zensical（MiniJinja）でも読めるよう、Python のメソッドの呼び出しは使わない。MkDocs の Jinja は自動でエスケープしないので、
+  front matter の文字列は | e を通す。置き換えた後の HTML は | safe で出す（自動でエスケープする環境で二重にしないため）。
+  見つからない値に属性で続けて触れると MkDocs の Jinja は止まるので、入れ子の値は「or {}」と mapping の確かめで受ける。
 -#}
 
 {% block announce %}この辞典は Anthropic の公式の教材ではない。{% endblock %}
 
-{% block content %}
-  {#- ページ上部（2段目）：バッジ・下書きの帯・期限切れの注意書き -#}
+{% block styles %}
   {{ super() }}
-  {#- ページ下部（2段目）：前提・次に読む・関連、段階と更新日、誤りの報告 -#}
+  <link rel="stylesheet" href="{{ 'assets/css/ca.css' | url }}">
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {#- expiry.js：期限切れの注意書き。filter.js：照合の規則（window.CAMatch）と絞り込みの欄（map.js も照合の規則を使うので先）。
+      map.js：知識マップ（Cytoscape.js と dagre の写しは、地図のあるページでだけ読む） -#}
+  <script src="{{ 'assets/js/expiry.js' | url }}"></script>
+  <script src="{{ 'assets/js/filter.js' | url }}"></script>
+  <script src="{{ 'assets/js/map.js' | url }}"></script>
+{% endblock %}
+
+{% block content %}
+{%- set m = page.meta if (page and page.meta) else {} -%}
+{%- set ca = config.extra.ca if (config.extra and config.extra.ca is mapping) else {} -%}
+{%- set CA_LABELS = ca.labels if (ca.labels is mapping) else {} -%}
+{%- set CA_LEVELS = ca.levels or [] -%}
+{%- set CA_TYPES = ca.types or CA_LABELS.types or {} -%}
+{%- set CA_SURFACES = ca.surfaces or CA_LABELS.surfaces or {} -%}
+{%- set CA_STAGES = ca.stages or CA_LABELS.stages or {} -%}
+{%- set CA_LISTS = ca.lists if (ca.lists is mapping) else {} -%}
+{%- set CA_EXPIRES = ca.expires if (ca.expires is mapping) else none -%}
+{%- set CA_BADGES = ca.badges if (ca.badges is mapping) else {} -%}
+{%- set vw = m.verified_with if (m.verified_with is mapping) else {} -%}
+{%- set upd = (m.updated | string) if m.updated else "" -%}
+{%- set ver = (m.verified | string) if m.verified else "" -%}
+{%- set chk = (m.checked | string) if m.checked else "" -%}
+
+{#- nav を1回だけ見て、名指しのページと、このページと公開しているページの間の辺（前提・routes）があるかを集める。
+    ほかのページの meta は nav.pages から引く（全ページの front matter は描画の前に読まれている）。
+    routes の先は id#anchor でもよいので、",a,b#x," の形の文字列で "," ~ id ~ "," か "," ~ id ~ "#" を探す -#}
+{%- set ns = namespace(howto=none, map=none, edge=false, my_to=",") -%}
+{%- for r in (m.routes or []) if r is mapping -%}
+  {%- set ns.my_to = ns.my_to ~ ((r.to or []) | join(",")) ~ "," -%}
+{%- endfor -%}
+{%- if m.id -%}
+  {%- for p in nav.pages -%}
+    {%- set pm = p.meta or {} -%}
+    {%- if pm.id -%}
+      {%- if pm.id == "how-to-use" -%}{%- set ns.howto = p -%}{%- endif -%}
+      {%- if pm.id == "knowledge-map" -%}{%- set ns.map = p -%}{%- endif -%}
+      {%- if pm.id != m.id and not ns.edge -%}
+        {#- このページから出る辺：前提か routes の先が、nav にあるページ -#}
+        {%- if pm.id in (m.prerequisites or []) or ("," ~ pm.id ~ ",") in ns.my_to or ("," ~ pm.id ~ "#") in ns.my_to -%}
+          {%- set ns.edge = true -%}
+        {%- endif -%}
+        {#- このページに入る辺：nav にあるページの前提か routes の先が、このページ -#}
+        {%- if m.id in (pm.prerequisites or []) -%}{%- set ns.edge = true -%}{%- endif -%}
+        {%- for r in (pm.routes or []) if r is mapping -%}
+          {%- set to_str = "," ~ ((r.to or []) | join(",")) ~ "," -%}
+          {%- if ("," ~ m.id ~ ",") in to_str or ("," ~ m.id ~ "#") in to_str -%}{%- set ns.edge = true -%}{%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{#- 名指しのページの節（how-to-use の sections の anchor から、リンクの URL と題） -#}
+{%- set help = namespace(stage_url="", stage_title="", fresh_url="", fresh_title="") -%}
+{%- if ns.howto -%}
+  {%- for s in (ns.howto.meta.sections or []) if s is mapping -%}
+    {%- if s.anchor == "stage" -%}
+      {%- set help.stage_url = (ns.howto.url | url) ~ "#stage" -%}
+      {%- set help.stage_title = s.title or "" -%}
+    {%- elif s.anchor == "freshness" -%}
+      {%- set help.fresh_url = (ns.howto.url | url) ~ "#freshness" -%}
+      {%- set help.fresh_title = s.title or "" -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{#- レベルの色の段（levels の何番目か。1 から。なければ 0 で、色を付けない） -#}
+{%- set lv = namespace(rank=0) -%}
+{%- for l in CA_LEVELS -%}
+  {%- if l == m.level -%}{%- set lv.rank = loop.index -%}{%- endif -%}
+{%- endfor -%}
+
+{#- ページ上部：下書きの帯・期限切れの注意書き・バッジの列 -#}
+{%- set head -%}
+{%- if m.id %}
+<div class="ca-page-head" data-ca-page="{{ m.id | e }}" data-ca-pages-json="{{ (ca.pages_json or 'assets/data/pages.json') | url | e }}"
+  {%- if CA_EXPIRES is not none %} data-ca-expires="{{ ((CA_EXPIRES[m.id] | string) if CA_EXPIRES[m.id] else '') | e }}"{% endif %}>
+  {%- if m.stage == "draft" %}
+  <p class="ca-draft" role="note">
+    <span class="ca-draft__label">下書き・未検証</span>
+    {%- if help.stage_url and help.stage_title %}
+    <a class="ca-draft__help" href="{{ help.stage_url | e }}">{{ help.stage_title | e }}</a>
+    {%- endif %}
+  </p>
+  {%- endif %}
+  <p class="ca-expiry" role="note" data-ca-expiry hidden>
+    <span class="ca-expiry__label">確認の期限切れ</span>
+    <span class="ca-expiry__text">このページの確認の期限（<time data-ca-expiry-date></time>）を過ぎている。</span>
+    {%- if help.fresh_url and help.fresh_title %}
+    <a class="ca-expiry__help" href="{{ help.fresh_url | e }}">{{ help.fresh_title | e }}</a>
+    {%- endif %}
+  </p>
+  <dl class="ca-badges">
+    {%- if m.level %}
+    {%- set lv_url = ((CA_LISTS.level | replace(".md", "/") | url) ~ "#" ~ (m.level | lower | replace(" ", "-"))) if CA_LISTS.level else "" %}
+    <div class="ca-badges__item">
+      <dt>レベル</dt>
+      <dd>
+        {%- if lv_url -%}
+        <a class="ca-badge ca-badge--level ca-lv-{{ lv.rank }}" href="{{ lv_url | e }}">{{ m.level | e }}</a>
+        {%- else -%}
+        <span class="ca-badge ca-badge--level ca-lv-{{ lv.rank }}">{{ m.level | e }}</span>
+        {%- endif -%}
+      </dd>
+    </div>
+    {%- endif %}
+    {%- if m.type and CA_TYPES[m.type] %}
+    {%- set t_url = ((CA_LISTS.type | replace(".md", "/") | url) ~ "#" ~ (m.type | lower | replace(" ", "-"))) if CA_LISTS.type else "" %}
+    <div class="ca-badges__item">
+      <dt>型</dt>
+      <dd>
+        {%- if t_url -%}
+        <a class="ca-badge ca-badge--type" href="{{ t_url | e }}">{{ CA_TYPES[m.type] | e }}</a>
+        {%- else -%}
+        <span class="ca-badge ca-badge--type">{{ CA_TYPES[m.type] | e }}</span>
+        {%- endif -%}
+      </dd>
+    </div>
+    {%- endif %}
+    {%- set surf = namespace(items=[]) -%}
+    {%- for s in (m.surfaces or []) -%}
+      {%- if CA_SURFACES[s] -%}{%- set surf.items = surf.items + [s] -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if surf.items %}
+    <div class="ca-badges__item">
+      <dt>面</dt>
+      <dd>
+        {%- for s in surf.items -%}
+        {%- set s_url = ((CA_LISTS.surfaces | replace(".md", "/") | url) ~ "#" ~ (s | lower | replace(" ", "-"))) if CA_LISTS.surfaces else "" -%}
+        {%- if s_url -%}
+        <a class="ca-badge ca-badge--surface" href="{{ s_url | e }}">{{ CA_SURFACES[s] | e }}</a>
+        {%- else -%}
+        <span class="ca-badge ca-badge--surface">{{ CA_SURFACES[s] | e }}</span>
+        {%- endif -%}
+        {%- endfor -%}
+      </dd>
+    </div>
+    {%- endif %}
+    {%- if m.principle %}
+    <div class="ca-badges__item">
+      <dt>原理</dt>
+      <dd>
+        {%- for x in m.principle -%}
+        {%- if CA_LISTS.principle -%}
+        <a class="ca-badge ca-badge--principle" href="{{ ((CA_LISTS.principle | replace('.md', '/') | url) ~ '#' ~ (x | lower | replace(' ', '-'))) | e }}">{{ x | e }}</a>
+        {%- else -%}
+        <span class="ca-badge ca-badge--principle">{{ x | e }}</span>
+        {%- endif -%}
+        {%- endfor -%}
+      </dd>
+    </div>
+    {%- endif %}
+    {%- set fb = CA_BADGES[m.id] if (CA_BADGES[m.id] is mapping) else {} -%}
+    {%- if fb.maturity %}
+    <div class="ca-badges__item">
+      <dt>成熟度</dt>
+      <dd><span class="ca-badge ca-badge--maturity">{{ fb.maturity | e }}</span></dd>
+    </div>
+    {%- endif %}
+    {%- if fb.enforcement %}
+    <div class="ca-badges__item">
+      <dt>強制力</dt>
+      <dd><span class="ca-badge ca-badge--enforcement">{{ fb.enforcement | e }}</span></dd>
+    </div>
+    {%- endif %}
+    {%- if m.volatility %}
+    <div class="ca-badges__item">
+      <dt>変わりやすさ</dt>
+      <dd><span class="ca-badge ca-badge--volatility">{{ m.volatility | e }}</span></dd>
+    </div>
+    {%- endif %}
+    {%- if m.stage %}
+    {#- 確認日と版：verified がなければ「未検証」（draft。design §8.5）。版は Claude Code の版と系列、アプリ。
+        モデルと点検の日（checked）は title に添える -#}
+    {%- set vtip = namespace(parts=[]) -%}
+    {%- if vw.models -%}
+      {%- set models = vw.models if (vw.models is not string) else [vw.models] -%}
+      {%- set vtip.parts = vtip.parts + ["モデル：" ~ (models | join("、"))] -%}
+    {%- endif -%}
+    {%- if chk -%}{%- set vtip.parts = vtip.parts + ["点検：" ~ chk] -%}{%- endif %}
+    <div class="ca-badges__item">
+      <dt>確認日</dt>
+      <dd>
+        {%- if ver -%}
+        <span class="ca-badge ca-badge--verified"{% if vtip.parts %} title="{{ vtip.parts | join('。') | e }}"{% endif %}><time datetime="{{ ver | e }}">{{ ver | e }}</time>
+          {%- if vw.claude_code %}・Claude Code {{ vw.claude_code | e }}{% if vw.channel %}（{{ vw.channel | e }}）{% endif %}{% endif %}
+          {%- if vw.app %}・アプリ {{ vw.app | e }}{% endif -%}
+        </span>
+        {%- else -%}
+        <span class="ca-badge ca-badge--unverified">未検証</span>
+        {%- endif -%}
+      </dd>
+    </div>
+    {%- endif %}
+    {%- if m.stage and m.stage != "draft" and CA_STAGES[m.stage] %}
+    <div class="ca-badges__item">
+      <dt>段階</dt>
+      <dd><span class="ca-badge ca-badge--stage ca-stage--{{ m.stage | e }}">{{ CA_STAGES[m.stage] | e }}</span></dd>
+    </div>
+    {%- endif %}
+  </dl>
+</div>
+{%- endif %}
+{%- endset -%}
+
+{#- 本文。見出し（h1）は、nav に短い名前（nav_title）を書いたページでも front matter の title（正式な題名）にする
+    （MkDocs も Zensical も page.title に nav の名前を使い、partials/content.html が <h1>{{ page.title }}</h1> を出す。
+    page.title は Material では生のまま、Zensical ではエスケープして出るので、両方の形を置き換える。kyopro-atlas の #91）。
+    ページ上部は、その h1 の直後に入れる。本文に h1 を書いたページでは見つからないので、本文の前に置く -#}
+{%- set body_ns = namespace(html=super()) -%}
+{%- if m.id -%}
+  {%- set h1_new = "<h1>" ~ ((m.title or "") | e) ~ "</h1>" -%}
+  {%- if m.title and page.title -%}
+    {%- set body_ns.html = body_ns.html | replace("<h1>" ~ page.title ~ "</h1>", h1_new) | replace("<h1>" ~ (page.title | e) ~ "</h1>", h1_new) -%}
+  {%- endif -%}
+  {%- if m.title and h1_new in body_ns.html -%}
+    {%- set body_ns.html = body_ns.html | replace(h1_new, h1_new ~ head) -%}
+  {%- else -%}
+    {%- set body_ns.html = head ~ body_ns.html -%}
+  {%- endif -%}
+{%- endif %}
+{{ body_ns.html | safe }}
+
+{#- ページ下部：知識マップへのリンク、段階と更新日、誤りの報告 -#}
+{%- set show_map = m.id and ns.map and ns.edge -%}
+{%- set stage_name = (CA_STAGES[m.stage] or "") if m.stage else "" -%}
+{%- set info_ns = namespace(repo=config.repo_url or "") -%}
+{%- if info_ns.repo[-1:] == "/" -%}{%- set info_ns.repo = info_ns.repo[:-1] -%}{%- endif -%}
+{#- サイトのトップ：MkDocs は page.is_homepage、Zensical 0.0.74 は is_homepage を持たないので、URL が空のページとしても見る -#}
+{%- set is_top = page and (page.is_homepage or not page.url) -%}
+{%- set show_report = info_ns.repo[:19] == "https://github.com/" and not is_top -%}
+{%- if show_map %}
+<p class="ca-map-link"><a href="{{ ns.map.url | url }}?focus={{ m.id | urlencode }}">知識マップでこのページの前後を見る</a></p>
+{%- endif %}
+{%- if (m.id and (stage_name or upd)) or show_report %}
+<div class="ca-page-info">
+  {%- if m.id and (stage_name or upd) %}
+  <dl class="ca-page-info__meta">
+    {%- if stage_name %}
+    <div>
+      <dt>段階</dt>
+      <dd>
+        {%- if help.stage_url -%}
+        <a class="ca-stage ca-stage--{{ m.stage | e }}" href="{{ help.stage_url | e }}">{{ stage_name | e }}</a>
+        {%- else -%}
+        <span class="ca-stage ca-stage--{{ m.stage | e }}">{{ stage_name | e }}</span>
+        {%- endif -%}
+      </dd>
+    </div>
+    {%- endif %}
+    {%- if upd %}
+    <div>
+      <dt>更新日</dt>
+      <dd><time datetime="{{ upd | e }}">{{ upd | e }}</time></dd>
+    </div>
+    {%- endif %}
+  </dl>
+  {%- endif %}
+  {%- if show_report %}
+  {#- 誤りの報告：GitHub の新しい Issue を、題名・URL・確認日・更新日を入れて開く（design §9.5）。テンプレートの名前
+      （ca.report_template）があれば、その欄（id：page-title・page-url・page-verified・page-updated）に入れ、
+      なければ本文に書く。labels などの引数は、権限のない人が開くと 404 になるので付けない。題名は front matter の title -#}
+  {%- set rtitle = m.title or (page.title if page else "") or config.site_name -%}
+  {%- set rurl = (page.canonical_url if page else "") or ((config.site_url or "") ~ ((page.url if page else "") or "")) -%}
+  {%- set rver = ver or ("未検証" if m.stage == "draft" else "") -%}
+  {%- set rq = namespace(s="?title=" ~ (("誤りの報告：" ~ rtitle) | urlencode)) -%}
+  {%- if ca.report_template -%}
+    {%- set rq.s = rq.s ~ "&template=" ~ (ca.report_template | urlencode) ~ "&page-title=" ~ (rtitle | urlencode) ~ "&page-url=" ~ (rurl | urlencode) -%}
+    {%- if rver -%}{%- set rq.s = rq.s ~ "&page-verified=" ~ (rver | urlencode) -%}{%- endif -%}
+    {%- if upd -%}{%- set rq.s = rq.s ~ "&page-updated=" ~ (upd | urlencode) -%}{%- endif -%}
+  {%- else -%}
+    {%- set rbody = "ページ：" ~ rtitle ~ "\nURL：" ~ rurl ~ (("\n確認日：" ~ rver) if rver else "") ~ (("\n更新日：" ~ upd) if upd else "") ~ "\n\n" -%}
+    {%- set rq.s = rq.s ~ "&body=" ~ (rbody | urlencode) -%}
+  {%- endif %}
+  <a class="ca-page-info__report" href="{{ (info_ns.repo ~ '/issues/new' ~ rq.s) | e }}" target="_blank" rel="noopener" title="GitHub の新しい Issue を開く（ページの題名と URL が入る。GitHub のアカウントが要る）">
+    <span class="ca-page-info__icon" aria-hidden="true">{% include ".icons/octicons/report-16.svg" %}</span>
+    <span>このページの誤りを報告する</span>
+  </a>
+  {%- endif %}
+</div>
+{%- endif %}
 {% endblock %}

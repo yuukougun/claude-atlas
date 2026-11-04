@@ -1,0 +1,58 @@
+# 試験用。作る層（tools/gen/pages_out.py の nav_yml）の出力の形をまねた
+nav:
+  - index.md
+  - 入口と地図:
+      - この辞典の引き方: start/how-to-use.md
+      - 知識マップ: start/knowledge-map.md
+      - 逆引き辞典: start/reverse-index.md
+      - 用語集: start/glossary.md
+  - 基礎：なぜそうなるか:
+      - コンテキストウィンドウ: basics/context-window.md
+  - 文脈と指示を仕組みにする:
+      - CLAUDE.md の書き方: extend/what-to-put-in-claude-md.md
+  - 仕組みで縛る:
+      - 縛るときの判断 & 鍵の選び方: enforce/when-to-lock.md
+  - 症状辞典:
+      - CLAUDE.md や指示が守られない: symptoms/instructions-ignored.md
+  - 一覧:
+      - レベル別の一覧: lists/by-level.md
+      - 面別の一覧: lists/by-surface.md
+extra:
+  ca:
+    fields:
+      start: 入口と地図
+      basics: 基礎：なぜそうなるか
+      extend: 文脈と指示を仕組みにする
+      enforce: 仕組みで縛る
+      symptoms: 症状辞典
+    types:
+      concept: 考え方
+      feature: 機能
+      symptom: 症状
+      judgment: 判断
+      guide: 案内
+      hub: 案内
+    stages:
+      stub: 準備中
+      draft: 下書き
+      reviewed: 検証済み
+      done: 完成
+    surfaces:
+      app: アプリ
+      claude-code: Claude Code
+      api: API
+    levels: [使う, 整える, 任せる, 仕組みにする, 回す]
+    published_stages: [draft, reviewed, done]
+    pages_json: assets/data/pages.json
+    graph_json: assets/data/graph.json
+    lists:
+      level: lists/by-level.md
+      surfaces: lists/by-surface.md
+    expires:
+      context-window: "2999-12-31"
+      what-to-put-in-claude-md: "2000-01-31"
+      instructions-ignored: "2999-01-01"
+    badges:
+      what-to-put-in-claude-md: {maturity: GA, enforcement: お願い}
+      instructions-ignored: {maturity: GA}
+    report_template: page-error.yml

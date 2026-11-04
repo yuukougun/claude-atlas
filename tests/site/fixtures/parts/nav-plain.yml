@@ -1,0 +1,13 @@
+# 試験用。extra のない nav（作る層が extra.ca を書く前の形）
+nav:
+  - index.md
+  - start/how-to-use.md
+  - start/knowledge-map.md
+  - start/reverse-index.md
+  - start/glossary.md
+  - basics/context-window.md
+  - CLAUDE.md の書き方: extend/what-to-put-in-claude-md.md
+  - enforce/when-to-lock.md
+  - symptoms/instructions-ignored.md
+  - lists/by-level.md
+  - lists/by-surface.md
