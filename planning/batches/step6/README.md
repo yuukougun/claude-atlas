@@ -12,7 +12,7 @@
 | 担当 | 書くもの | 報告 | 状態 |
 | --- | --- | --- | --- |
 | B1 | サイトと CI：`pyproject.toml`・`uv.lock`・`.python-version`・`mkdocs.yml`・`nav.yml`（仮）・`docs/index.md`・`overrides/`（テンプレートの骨組みと、冒頭とフッターの文）・`.github/workflows/`・`README.md`・`LICENSE`・`LICENSE-docs` | `build-B1.md` | 完了（ビルド・試験29件。Pages を有効にし、空のサイトを公開した） |
-| B2 | 読む層と data：`tools/lib/`・`schema/page.schema.json` を作る道具・`schema/` の data の schema・`data/` の空の雛形・`tests/tools/` の読む層の試験 | `build-B2.md` | 実行中 |
+| B2 | 読む層と data：`tools/lib/`・`schema/page.schema.json` を作る道具・`schema/` の data の schema・`data/` の空の雛形・`tests/tools/` の読む層の試験 | `build-B2.md` | 完了（読む層・make_schema・data の雛形。試験は全体285件） |
 | B3 | 書き方の検査：`package.json`・`package-lock.json`・`.textlintrc.json`・`prh.yml`・`tools/textlint_targets.py` と試験 | `build-B3.md` | 完了（prh 54規則・試験31件） |
 | B4 | 縛り：`CLAUDE.md`・`.claude/settings.json`・`.claude/hooks/`・`.claude/README.md`・hooks の試験 | `build-B4.md` | 完了（H1〜H4・試験47件。H2 がこのセッションに効くことを確かめた） |
 | B5 | 手引きとチェックリスト：`planning/guides/`（共通の手引きと型ごとの手引きの第1版）・`planning/checklists/`（検証の4つの観点） | `build-B5.md` | 完了（手引き11・チェックリスト5・試験14件） |
