@@ -1,0 +1,366 @@
+# 表記の揺れを直す規則（textlint-rule-prh が読む。設定は .textlintrc.json）。
+#
+# 正は用語集のページ（start の glossary。design §6.2・§7）で、このファイルは用語集の表から作る。
+# - 用語集の表の1行（正規形・本文で使ってよい別の書き方・直す表記）が、ここの規則の1つ（expected・patterns）になる。
+#   規則を足すときは用語集の表にも行を足し、表から行を消したら規則も消す
+# - 初めの版（2026-11-04、工程6a）：用語集の本文がまだないので、design §6.2、research/27 §3.1 の表（公式の日本語版の
+#   本文の多数派）、planning/batches/step3/brief-integrate.md の M1、decisions 2026-11-04（割れている3語）から作った。
+#   用語集を書くときは、この版の規則を表に写してから、表を正にする
+# - 機械で直してよい表記だけを置く。誤検出しやすいものは入れない（入れなかったものと理由は末尾）
+#
+# 書き方
+# - 正規表現は '/…/' の形で、YAML の単引用符で囲む。prh は gmu の旗を付ける（u なので、\# \: \@ のような
+#   不要なエスケープは誤りになる）。textlint-rule-prh は Str の節ごとに当てるので、前後の照合はその節の中だけを見る
+# - 正規表現の規則には specs（規則の試験）を付ける。読み込むときに prh が確かめ、外れると textlint が止まる
+# - 英語の名前を和文の語（サブエージェントなど）に直す規則は、語の前後を次の形にそろえる
+#     前：(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])
+#     後：(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?
+#   識別子・パス・コマンド・URL の一部（前後が英数字・_・-・.・/ など）と、かっこやかぎかっこにじかに接した英語
+#   （「サブエージェント（subagent）」のように初出に英語を添える書き方。research/27 §4 P11）は直さない。
+#   和文の字に挟まれた空白は一緒に取る（「の subagent に」→「のサブエージェントに」）。正規形が英字で始まるか
+#   終わるときは、その側の空白を取らない
+# - 和文の語を英語の名前（plan mode など）に直す規則は空白を足さない。半角と全角の間の空白は
+#   ja-space-between-half-and-full-width が指摘し、textlint --fix で続けて直る
+# - prh: の文は、指摘に添えて出る（理由と、用語集の節）
+#
+# 外し方
+# - ページ冒頭の別名の行（aliases を並べた行。揺れた表記と英語の名前をわざと含む）は
+#   <!-- textlint-disable -->〜<!-- textlint-enable --> で囲む
+# - 表記の揺れをわざと例に出す箇所（用語集の表など）は <!-- textlint-disable prh -->〜<!-- textlint-enable prh --> で囲む
+# - 公式の英語のページの題名（Hooks reference など）は、リンクにするか日本語版の題名で書く（リンクの文字は prh が見ない）。
+#   原文をそのまま引くときは引用（> の段落。prh が見ない）にする
+#
+# 用語集とこのファイルはメインが更新する。執筆者は報告に「提案」として書く（design §10.2）
+version: 1
+
+rules:
+  # ---- 公式で表記が割れている3語：英語のまま書き、日本語の訳は別名に入れる（decisions 2026-11-04「表記が割れている3語」） ----
+  - expected: plan mode
+    pattern: '/[Pp]lan ?モード|プラン ?モード|Plan [Mm]ode|plan Mode/'
+    prh: 公式で割れている語は英語のまま書く（用語集 split-terms。decisions 2026-11-04）
+    specs:
+      - {from: plan モードで計画させる, to: plan modeで計画させる}
+      - {from: プランモード（Shift+Tab）, to: plan mode（Shift+Tab）}
+      - {from: Plan Mode の使いどころ, to: plan mode の使いどころ}
+      - {from: plan mode のまま, to: plan mode のまま}
+      - {from: 料金プランのモード, to: 料金プランのモード}
+  - expected: effort
+    pattern: 努力レベル
+    prh: 公式で割れている語は英語のまま書く（用語集 split-terms。decisions 2026-11-04）。effort レベルはそのまま使ってよい
+  - expected: allow ルール
+    pattern: 許可ルール
+    prh: 公式で割れている語は英語のまま書く（用語集 split-terms。decisions 2026-11-04）
+  - expected: ask ルール
+    pattern: 確認ルール
+    prh: 公式で割れている語は英語のまま書く（用語集 split-terms。decisions 2026-11-04）
+  - expected: deny ルール
+    pattern: 拒否ルール
+    prh: 公式で割れている語は英語のまま書く（用語集 split-terms。decisions 2026-11-04）
+
+  # ---- 公式の日本語版の本文の多数派（research/27 §3.1、M1）：英語の名前を和文の中で使ったときと、少数の表記 ----
+  - expected: サブエージェント
+    patterns:
+      - '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Ss]ub-?agents?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+      - サブ・エージェント
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: Claude Code の subagent に調べさせる, to: Claude Code のサブエージェントに調べさせる}
+      - {from: sub-agents を並べる, to: サブエージェントを並べる}
+      - {from: サブエージェント（subagent）, to: サブエージェント（subagent）}
+      - {from: SubagentStop で止める, to: SubagentStop で止める}
+      - {from: subagent_type を渡す, to: subagent_type を渡す}
+      - {from: 「subagent」という名前, to: 「subagent」という名前}
+  # hook event は「フックイベント」。イベントの名前（PreToolUse など）と matcher は英語のまま（M1）
+  - expected: フックイベント
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Hh]ook [Ee]vents?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: hook event の一覧, to: フックイベントの一覧}
+  # Mods の「hooks module」は名前なので直さない
+  - expected: フック
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Hh]ooks?(?! module)(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）。イベントの名前と matcher は英語のまま
+    specs:
+      - {from: PreToolUse の hook で止める, to: PreToolUse のフックで止める}
+      - {from: Hooks の入門, to: フックの入門}
+      - {from: プラグインの hooks module, to: プラグインの hooks module}
+      - {from: .claude/hooks/ に置く, to: .claude/hooks/ に置く}
+      - {from: webhook を呼ぶ, to: webhook を呼ぶ}
+      - {from: hookify で作る, to: hookify で作る}
+      - {from: hooks.json を読む, to: hooks.json を読む}
+  # Agent Skills（標準の名前）と Skills API（API の名前。M1 で英語のまま）は直さない。単数の大文字の Skill は道具の名前なので直さない
+  - expected: スキル
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])(?<!Agent )(?:skills?|Skills)(?! API)(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: skill を作る, to: スキルを作る}
+      - {from: アプリの Skills を使う, to: アプリのスキルを使う}
+      - {from: Agent Skills の標準, to: Agent Skills の標準}
+      - {from: skill-creator で作る, to: skill-creator で作る}
+      - {from: /skills で一覧を見る, to: /skills で一覧を見る}
+      - {from: SKILL.md を書く, to: SKILL.md を書く}
+      - {from: Skills API に上げる, to: Skills API に上げる}
+  # 英語の名前が2つ続くと、別々に直したときに和文の間に空白が残るので、続いた形を1つの規則にする（同じ位置なら長いほうが勝つ）
+  - expected: プラグインマーケットプレイス
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Pp]lugin [Mm]arketplaces?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: プラグインとマーケットプレイス（公式の日本語版の多数派）を続けた形（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: plugin marketplace を作る, to: プラグインマーケットプレイスを作る}
+      - {from: /plugin marketplace add で足す, to: /plugin marketplace add で足す}
+  # claude plugin（コマンド）は直さない
+  - expected: プラグイン
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])(?<!claude )[Pp]lugins?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: plugin で配る, to: プラグインで配る}
+      - {from: claude plugin validate を流す, to: claude plugin validate を流す}
+      - {from: /plugin で入れる, to: /plugin で入れる}
+      - {from: plugin.json を書く, to: plugin.json を書く}
+  - expected: マーケットプレイス
+    patterns:
+      - '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])(?<!plugin )[Mm]arketplaces?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+      - マーケットプレース
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: marketplace を足す, to: マーケットプレイスを足す}
+      - {from: /plugin marketplace add で足す, to: /plugin marketplace add で足す}
+      - {from: マーケットプレースから入れる, to: マーケットプレイスから入れる}
+  # permission mode・permission prompt・permission rule は、下の「権限」より長く一致するので先に効く（prh は同じ位置なら長いほうを取る）
+  - expected: 権限モード
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Pp]ermission [Mm]odes?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: permission mode を選ぶ, to: 権限モードを選ぶ}
+      - {from: Permission Modes の文書, to: 権限モードの文書}
+  - expected: 権限プロンプト
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Pp]ermission [Pp]rompts?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: permission prompt が出る, to: 権限プロンプトが出る}
+  - expected: 権限ルール
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Pp]ermission [Rr]ules?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 目次の題名「権限ルール（allow・ask・deny）」の表記（用語集 translation-policy）
+    specs:
+      - {from: permission rules の書き方, to: 権限ルールの書き方}
+  - expected: 権限
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Pp]ermissions?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）。設定のキーはコードの書式で書く
+    specs:
+      - {from: permissions の deny ルール, to: 権限の deny ルール}
+      - {from: bypassPermissions で動かす, to: bypassPermissions で動かす}
+      - {from: permissions.deny に足す, to: permissions.deny に足す}
+      - {from: --permission-mode を渡す, to: --permission-mode を渡す}
+  - expected: サンドボックス
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Ss]andbox(?:es)?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: sandbox で閉じ込める, to: サンドボックスで閉じ込める}
+      - {from: /sandbox で切り替える, to: /sandbox で切り替える}
+      - {from: sandbox-runtime を使う, to: sandbox-runtime を使う}
+      - {from: sandbox.enabled を true にする, to: sandbox.enabled を true にする}
+  # アプリの権限モードの Auto は英語の名前のまま（直さない。用語集 same-names-across-surfaces で書き分ける）
+  - expected: auto モード
+    patterns:
+      - '/(?<![-\w./\\:@#$%"（(「『])auto mode(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+      - '/オート ?モード/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: auto mode で動かす, to: auto モードで動かす}
+      - {from: オートモードの分類器, to: auto モードの分類器}
+      - {from: auto モード（auto mode）, to: auto モード（auto mode）}
+      - {from: Auto と Manual, to: Auto と Manual}
+  - expected: acceptEdits モード
+    pattern: 編集を受け入れるモード
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+  - expected: コンテキストウィンドウ
+    patterns:
+      - '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Cc]ontext [Ww]indows?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+      - '/コンテキスト[・ ]ウィンドウ/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: context window が埋まる, to: コンテキストウィンドウが埋まる}
+      - {from: コンテキスト・ウィンドウ, to: コンテキストウィンドウ}
+  - expected: コンテキスト
+    pattern: コンテクスト
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+  - expected: ウィンドウ
+    pattern: ウインドウ
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+  - expected: 出力スタイル
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Oo]utput [Ss]tyles?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）。アプリの Styles とは別のもの
+    specs:
+      - {from: output style を切り替える, to: 出力スタイルを切り替える}
+      - {from: explanatory-output-style を入れる, to: explanatory-output-style を入れる}
+  # API の memory tool は英語のまま（M1）なので、英語の memory 単独は直さない
+  - expected: 自動メモリ
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Aa]uto [Mm]emory(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: auto memory に残る, to: 自動メモリに残る}
+      - {from: API の memory tool, to: API の memory tool}
+  - expected: メモリ
+    pattern: メモリー
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+  - expected: エージェントチーム
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Aa]gent [Tt]eams?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: agent teams で並べる, to: エージェントチームで並べる}
+  - expected: チームメイト
+    patterns:
+      - '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Tt]eammates?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+      - チームメート
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: teammate に任せる, to: チームメイトに任せる}
+      - {from: チームメートに任せる, to: チームメイトに任せる}
+  - expected: 拡張思考
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Ee]xtended [Tt]hinking(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: extended thinking を使う, to: 拡張思考を使う}
+      - {from: 拡張思考（extended thinking）, to: 拡張思考（extended thinking）}
+  - expected: プロンプトキャッシング
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Pp]rompt [Cc]aching(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）。API の機能名で例外として訳す語（M1）
+    specs:
+      - {from: prompt caching で安くする, to: プロンプトキャッシングで安くする}
+  - expected: 管理設定
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Mm]anaged [Ss]ettings(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: managed settings で配る, to: 管理設定で配る}
+      - {from: managed-settings.json に書く, to: managed-settings.json に書く}
+  - expected: チェックポイント
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Cc]heckpoints?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: checkpoint に戻す, to: チェックポイントに戻す}
+      - {from: checkpointing の文書, to: checkpointing の文書}
+  - expected: worktree
+    pattern: ワークツリー
+    prh: 公式の日本語版の多数派は英語のまま（用語集 translation-policy。research/27 §3.1）
+  - expected: 非対話モード
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Nn]on-interactive [Mm]ode(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: non-interactive mode で流す, to: 非対話モードで流す}
+  - expected: システムプロンプト
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Ss]ystem [Pp]rompts?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: system prompt に足す, to: システムプロンプトに足す}
+      - {from: --system-prompt で渡す, to: --system-prompt で渡す}
+  - expected: システムリマインダー
+    patterns:
+      - '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Ss]ystem [Rr]eminders?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+      - '/システムリマインダ(?!ー)/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: system reminder として届く, to: システムリマインダーとして届く}
+      - {from: システムリマインダとして届く, to: システムリマインダーとして届く}
+      - {from: システムリマインダー, to: システムリマインダー}
+  - expected: フロントマター
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Ff]ront[- ]?matter(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: skill の frontmatter に書く, to: skill のフロントマターに書く}
+      - {from: front matter の description, to: フロントマターの description}
+  - expected: Claude への指示
+    pattern: '/(?<![-\w./\\:@#$%"（(「『])Instructions for Claude(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: M1 の表記（画面の名前は確かめていない。用語集 same-names-across-surfaces）
+    specs:
+      - {from: Instructions for Claude に書く, to: Claude への指示に書く}
+  - expected: プロジェクトの指示
+    patterns:
+      - '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Pp]roject [Ii]nstructions(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+      - プロジェクト指示
+    prh: M1 の表記（画面の名前は確かめていない。用語集 same-names-across-surfaces）
+    specs:
+      - {from: Project instructions に書く, to: プロジェクトの指示に書く}
+      - {from: プロジェクト指示に書く, to: プロジェクトの指示に書く}
+  - expected: 組織の指示
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Oo]rganization [Ii]nstructions(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: Organization instructions で配る, to: 組織の指示で配る}
+  - expected: シークレットチャット
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Ii]ncognito [Cc]hats?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+    specs:
+      - {from: incognito chat で話す, to: シークレットチャットで話す}
+  - expected: 音声モード
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Vv]oice [Mm]ode(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）。/voice はコマンドの名前のまま
+    specs:
+      - {from: voice mode で話す, to: 音声モードで話す}
+  # API の MCP connector は英語のまま（M1）なので、英語の connector は直さない
+  - expected: コネクタ
+    pattern: コネクター
+    prh: 公式の日本語版の多数派（用語集 translation-policy。research/27 §3.1）
+
+  # ---- 製品とファイルの名前は原文のまま（design §6.2） ----
+  - expected: Claude Code
+    pattern: '/(?<![-\w./\\:@#$%"])[Cc]laude ?[Cc]ode(?![-\w])/'
+    prh: 製品の名前は原文のまま書く（design §6.2）
+    specs:
+      - {from: claude code を入れる, to: Claude Code を入れる}
+      - {from: ClaudeCode の設定, to: Claude Code の設定}
+      - {from: anthropics/claude-code の issue, to: anthropics/claude-code の issue}
+      - {from: '@anthropic-ai/claude-code を入れる', to: '@anthropic-ai/claude-code を入れる'}
+  - expected: CLAUDE.md
+    pattern: '/(?<![-\w./\\:@#$%"])[Cc]laude\.md(?![-\w])/'
+    prh: ファイルの名前は原文のまま書く（design §6.2）
+    specs:
+      - {from: Claude.md に書く, to: CLAUDE.md に書く}
+      - {from: CLAUDE.local.md に書く, to: CLAUDE.local.md に書く}
+      - {from: ~/.claude/claude.md, to: ~/.claude/claude.md}
+
+  # ---- ひらがなで書く語（手本の kyopro-atlas から写した汎用の規則。planning/ の文書もこの書き方。用語集の表記の規則に足す） ----
+  - expected: すべて
+    pattern: 全て
+  - expected: でき$1
+    pattern: '/出来(る|な|た|て|れ|ず)/'
+    specs:
+      - {from: 出来る, to: できる}
+      - {from: 出来なかった, to: できなかった}
+      - {from: 出来事, to: 出来事}
+      - {from: 出来高, to: 出来高}
+      - {from: 出来栄え, to: 出来栄え}
+  - expected: あらかじめ
+    pattern: 予め
+  - expected: ほとんど
+    pattern: 殆ど
+  - expected: または
+    pattern: 又は
+  - expected: および
+    pattern: 及び
+  - expected: かつ
+    pattern: 且つ
+  # 「但し書き」は直さない（目次の sign にある。claude-atlas の文書の書き方）
+  - expected: ただし
+    pattern: '/但し(?!書き)/'
+    specs:
+      - {from: 但し、例外がある, to: ただし、例外がある}
+      - {from: 条件や但し書きが落ちる, to: 条件や但し書きが落ちる}
+  - expected: すなわち
+    pattern: 即ち
+  - expected: ごとに
+    pattern: 毎に
+
+# ---- 入れなかったもの（誤検出しやすい・まだ決めていない。用語集で決めたら足す） ----
+# - compaction → 圧縮：API の機能名 compaction は英語のまま（M1）。Claude Code の圧縮は初出に「圧縮（compaction）」と添えてよい
+# - memory → メモリ：API の memory tool は英語のまま。auto memory と「メモリー」だけ直す
+# - Projects → プロジェクト：Claude Code の Projects（並列の threads）とアプリのプロジェクトを書き分ける（用語集 same-names-across-surfaces）
+# - Research → リサーチ：research preview（成熟度の語）とぶつかる
+# - connector → コネクタ：API の MCP connector は英語のまま。「コネクター」だけ直す
+# - classifier → 分類器：「auto mode classifier」のように英語が続くと、直した後に和文の間に空白が残る
+# - session・turn・transcript：識別子（SessionStart・session_id など）が多く、和文の中で英語で書く揺れも少ない
+# - Auto モード：アプリの権限モード Auto と、Claude Code の auto モードを用語集で書き分けるまで入れない
+# - エフォート → effort、計画モード → plan mode、アウトプットスタイル → 出力スタイル、ヘッドレスモード → 非対話モード：
+#   公式の資料に出てこない表記（research/27 で数えていない）。本文に出たら足す
+# - 「努力」（単独）→ effort：ふつうの語とぶつかる。「努力レベル」だけ直す
+# - 「Claudeの指示」（ヘルプセンター）→「Claude への指示」：空白を足すと「Claude の指示」になり、ふつうの句と見分けられない
+# - サーバー／サーバ・ユーザー／ユーザなどの長音：公式の日本語版の多数派を数えていない（メモリとシステムリマインダーだけ数えた）
+# - 手本の数学・C++・競技の語と「人名の連結は ASCII のハイフン」：分野の語なので写さない

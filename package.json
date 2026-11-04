@@ -1,0 +1,20 @@
+{
+  "name": "claude-atlas",
+  "private": true,
+  "description": "書き方の検査（textlint と prh）。docs/ の手書きの Markdown のうち、骨格（stub）でないページを検査する。対象は tools/textlint_targets.py が決める（design §6.2・§8.6）",
+  "scripts": {
+    "lint:text": "uv run python tools/textlint_targets.py --run",
+    "lint:text:fix": "uv run python tools/textlint_targets.py --run -- --fix"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "textlint": "15.8.0",
+    "textlint-filter-rule-comments": "1.3.0",
+    "textlint-rule-ja-space-around-code": "3.0.4",
+    "textlint-rule-ja-space-between-half-and-full-width": "3.0.4",
+    "textlint-rule-preset-ja-technical-writing": "12.0.2",
+    "textlint-rule-prh": "6.1.1"
+  }
+}
