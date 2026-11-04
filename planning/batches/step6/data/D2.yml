@@ -1,0 +1,879 @@
+# 工程6b の下書き（担当 D2）：features のうち「アプリ」「API・SDK」「面をまたぐもの」「プランと上限」「組織と提供の経路」の52項目と、
+# その出典（sources）とドメイン（domains）。2026-11-04。報告は planning/batches/step6/data-D2.md
+# - 形は data/facts.yml（features・names・facts）と data/sources.yml（domains・sources）と data/outdated-advice.yml（advice）。
+#   メインがまとめる（sources の重なりは URL で見る）
+# - 読み込みの時期（load_timing）とコンテキストのコスト（context_cost）は書かない（語彙は D1 が決める。当てはまる候補は報告の §3.4）
+# - 成熟度：Claude Platform の文書は featureMetadata.status の stable を GA、beta を beta とした。ヘルプセンターと claude.com の文書は
+#   本文の表記（beta・research preview・generally available）に従い、表記がなくプランで提供と書かれているものを GA とした。
+#   プランと上限の項目と、拒否の項目は語彙に当てはまらないので書かない
+# - 強制力（enforcement）は、指示として読まれるもの（お願い）と、仕組みが形や動作を縛るもの（鍵）だけに書いた
+
+features:
+  # ---- アプリ ----
+  - id: projects
+    title: プロジェクト（Projects）
+    page: using-projects
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2024-06-25
+      note: Pro と Team に公開（Claude Apps のリリースノートの写し）。今は Free でも5件まで作れる
+    match_terms: [Projects, project knowledge, RAG, Use account memory, Share project]
+    sources: [hc-projects-manage, hc-projects-what, claude-apps-release-notes-archive, claude-pricing]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      全プラン（Free は5件まで）。有料のプランでは、ナレッジが文脈の上限に近づくと RAG に切り替わる。Team と Enterprise は組織の中で共有できる。プロジェクトごとにメモリを持つ。Claude Code から順に展開している新しい版（beta。1つの会話を並列の threads に分ける）は D1 の code-projects で追う
+
+  - id: project-instructions
+    title: プロジェクトの指示（project instructions）
+    page: using-projects
+    surfaces: [app]
+    maturity: GA
+    enforcement: お願い
+    match_terms: [project instructions, Set project instructions]
+    sources: [hc-projects-manage, hc-personalization, hc-projects-what]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      プロジェクトの中の全部の会話に使われる指示。公式は Claude が使う指示と書き、強制の仕組みではない（お願い）。食い違い：個人設定の記事（Understanding Claude's personalization features）の使い分けの節は「paid plans only」と書くが、同じ記事とプロジェクトの記事は Free でもプロジェクトを5件まで作れると書き、指示の設定に制限を書かない
+
+  - id: app-memory
+    title: メモリ（アプリ。memory）
+    page: how-memory-works
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-09-11
+      note: Team に公開（Help Center のリリースノート）。Enterprise は 2025-09-18、Max と Pro は 2025-10-23 から、Free は 2026-03-02。2026-07-10 に毎日の要約から項目ごとの記録（topics）に変わった
+    match_terms: [memory, Generate memory from chats, Use account memory, Include sensitive topics in memory, Pause memory, Reset memory, memory summary, Topics]
+    sources: [hc-memory, hc-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Free・Pro・Max・Ultra は既定で有効。Team と Enterprise は owner が使えるかを決め、各メンバーは自分で有効にするまで無効。プロジェクトはそれぞれのメモリを持つ。Cowork とは、Cowork がクラウドで動くときだけ共有する。会話ごとに「+」の Memory で切れる。ほかの AI からの取り込みと書き出しは experimental。新しいメモリの体験と旧い体験（毎日の要約）で記事の節が分かれている
+
+  - id: chat-search
+    title: 過去の会話の検索（search past chats）
+    page: how-memory-works
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-08-11
+      note: Max・Team・Enterprise に公開（Help Center のリリースノート）
+    match_terms: [Search and reference chats, search past chats, past chat citations]
+    sources: [hc-memory, hc-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      有料のプラン（Pro・Max・Ultra・Team・Enterprise）の web・Desktop・Mobile。RAG の道具の呼び出しとして会話に表示される。プロジェクトの外の会話と、各プロジェクトの中の会話が範囲。customer-managed encryption keys を使う Enterprise では使えない
+
+  - id: incognito
+    title: シークレットチャット（incognito chats）
+    page: incognito-chats
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-09-11
+      note: Free・Pro・Max・Team に公開（Help Center のリリースノート）
+    match_terms: [incognito chats, incognito chat, ghost icon]
+    sources: [hc-incognito, hc-memory, hc-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      全プラン。プロジェクトの外だけ。履歴とメモリに残らず学習にも使われないが、30日（Enterprise は組織の保持期間）保持される。新しい Claude の体験では前の体験で開き、ファイルの作成とコードの実行ができない。記事の FAQ に custom styles の語が残る（Styles の移行の前の記述）
+
+  - id: styles
+    title: スタイル（Styles。スキルへ移行）
+    page: skills-in-the-app
+    surfaces: [app]
+    enforcement: お願い
+    since:
+      date: 2024-11-26
+      note: Styles の導入（Claude Apps のリリースノートの写し）
+    match_terms: [Styles, custom styles, Learning style, Concise, Explanatory, Formal]
+    sources: [hc-styles-to-skills, claude-apps-release-notes-archive, hc-incognito]
+    checked: 2026-11-04
+    status: 未確認
+    note: >-
+      2026-06-01 の記事（Internet Archive の写しで読んだ）で、custom styles はスキルへ自動で移し（既定は無効）、既定の Concise・Explanatory・Formal はなくなり、Learning はスキルとして残り、移行が終わると styles のメニューはなくなると告知された。記事は 2026-11-04 に 404。移行が終わったか（画面にメニューが残るか）は一次資料で確かめられない（未確認の理由）。撤去の途中で成熟度の語彙に当てはまらないので書かない
+
+  - id: personal-instructions
+    title: Claude への指示（Instructions for Claude）
+    page: where-to-put-instructions
+    surfaces: [app]
+    maturity: GA
+    enforcement: お願い
+    since:
+      date: 2024-12-20
+      note: Custom instructions の公開（Claude Apps のリリースノートの写し）。今の設定の画面では Instructions
+    match_terms: [Instructions for Claude, Instructions, custom instructions, personal preferences, Global instructions]
+    sources: [hc-personalization, hc-cowork-and-chat, hc-skills-what, claude-apps-release-notes-archive]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Settings > Your Claude の Instructions（古い画面では Account の Instructions for Claude）。全部の会話に使われる。Cowork の Global instructions は新しい Claude の体験でここにまとまった。公式は応答で Claude が考慮する指示と書き、強制の仕組みではない（お願い）
+
+  - id: artifacts
+    title: アーティファクト（artifacts）
+    page: artifacts-overview
+    surfaces: [app, claude-code]
+    maturity: GA
+    since:
+      date: 2024-06-20
+      note: experimental な機能として全プランに公開（Claude Apps のリリースノートの写し）。2026-09-16 から今の形（それより前に会話で作ったものは legacy artifacts）
+    match_terms: [artifacts, Artifacts tab, legacy artifacts, live artifacts, Claude Docs, Claude Slides, Claude Design, Claude Dashboards, Claude Motion, AI-powered artifacts, Artifacts that use Claude, /design]
+    sources: [hc-artifacts, hc-cowork-and-chat, hc-release-notes, claude-apps-release-notes-archive, claude-pricing]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      全プランと、Claude Code を含むプランの Claude Code。Cloud code execution and file creation（新しい設定の画面では Create and edit files）を有効にしておく。Dashboards の雛形は beta（Pro 以上）、Motion は beta（Team と Enterprise）。食い違い：Docs・Slides・Design について、アーティファクトの記事と料金のページは beta と書かず、Cowork とチャットの統合の記事は beta と書き、リリースノート（2026-09-16）は Enterprise で beta と書く
+
+  - id: file-creation
+    title: ファイルの作成と編集（create and edit files）
+    page: files-and-code-execution
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-09-09
+      note: Excel・PowerPoint・文書・PDF の作成と編集を公開（Help Center のリリースノート）。Pro とモバイルは 2025-09-29
+    match_terms: [Create and edit files, Code execution and file creation, Cloud code execution and file creation, Allow network egress]
+    sources: [hc-files, hc-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      全プラン（web・Desktop・Mobile）。個人のプランは既定で有効、Team と新しい Enterprise の組織も既定で有効で owner が切れる。ネットワークの出口（network egress）の既定はプランで違う。設定の名前は新しい画面で Create and edit files。コードの実行と同じ設定（code-execution）
+
+  - id: code-execution
+    title: コードの実行（code execution。アプリ）
+    page: files-and-code-execution
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2024-10-24
+      note: 分析ツール（Analysis tool）として公開（Claude Apps のリリースノートの写し）。今は Code execution and file creation の一部
+    match_terms: [code execution, Code execution and file creation, Analysis tool, sandbox, network egress]
+    sources: [hc-files, claude-apps-release-notes-archive]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      アプリの隔離された環境（sandbox）でコードを動かす。プロンプトインジェクションでデータを外へ送らされる危険があり、Team と Enterprise はネットワークの出口を既定で絞る。スキル・アーティファクト・自動のコンテキスト管理はこの設定を有効にしておく要がある。API の code execution tool は server-tools で追う
+
+  - id: web-search
+    title: Web 検索（web search。アプリ）
+    page: search-research-thinking
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-03-20
+      note: 米国の有料のプランに feature preview として公開。2025-05-27 に全プランへ（公式ブログ）
+    match_terms: [web search, Web search, web fetch, image results]
+    sources: [hc-web-search, claude-blog-web-search, hc-cowork-and-chat]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      全プラン（Team と Enterprise は owner が組織で有効にしてから）。有効にすると web fetch（渡した URL の本文を読む）も使える。新しい Claude の体験には切り替えがなく、要るときに Claude が検索する。Help Center の日本語版の訳語はウェブ検索。API の web search tool は server-tools で追う
+
+  - id: research
+    title: リサーチ（Research）
+    page: using-research
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-04-15
+      note: Max・Team・Enterprise に early beta で公開（米国・日本・ブラジル）。2025-06-03 に Pro にも（公式ブログ）
+    match_terms: [Research, research, /deep-research]
+    sources: [hc-research, claude-blog-research, claude-blog-integrations, hc-cowork-and-chat]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      有料のプラン（Pro・Max・Ultra・Team・Enterprise）の web・Desktop・Mobile。web 検索を有効にしておく要がある。モバイルで始めるとコネクタを使わない。使うモデルは会話で選んだモデルによらない（モデルは facts の値）。新しい Claude の体験では /deep-research か「+」から選ぶ。Help Center の日本語版の訳語は調査機能
+
+  - id: connectors
+    title: コネクタ（connectors）
+    page: connectors-in-the-app
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-05-01
+      note: Integrations の名前で Max・Team・Enterprise に beta で公開。2025-06-03 に Pro にも（公式ブログ）
+    match_terms: [connectors, Connectors Directory, custom connectors, remote MCP, desktop extensions, Tool access, Integrations, Enterprise-managed auth, Interactive]
+    sources: [hc-connectors, claude-blog-integrations]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      web のコネクタは全プラン（Claude・Cowork・Desktop・Mobile）。remote MCP の custom connectors は Free で1件まで。Team と Enterprise は owner が組織で有効にし、各人が認証する。道具ごとに Always allow・Needs approval・Blocked を選べる。多くつなぐと文脈を使うので Tool access（Auto・On demand）で読み込み方を選ぶ。モバイルからの追加は beta。Claude Code では D1 の mcp、API では mcp-connector が当たる
+
+  - id: app-skills
+    title: スキル（アプリ。skills）
+    page: skills-in-the-app
+    surfaces: [app]
+    maturity: GA
+    enforcement: お願い
+    since:
+      date: 2025-10-16
+      note: Agent Skills の公開（Platform のリリースノート）。Help Center のリリースノートは 2025 年10月に導入と書く
+    match_terms: [skills, Customize > Skills, Anthropic skills, custom skills, organization provisioned skills, Skills Directory, Agent Skills, syncClaudeAiSkills, skill scanning]
+    sources: [hc-skills-what, hc-skills-use, api-docs-agent-skills, hc-release-notes, api-release-notes, claude-pricing, hc-plugins-page]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Code execution and file creation を有効にしておく要がある。名前と説明を先に見て、関わるときだけ本体を読む（progressive disclosure）。Claude の設定で有効にしたスキルは Claude Code（v2.1.273 以上、同じアカウントでログイン）にも片方向で読み込まれる。Customize は 2026-10-29 から Plugins に変わる途中。食い違い：Help Center（2026-10-30 更新）と料金のページは Free でも使えると書き、Help Center は Customize > Skills で管理し、Team と Enterprise は組織で配り、共有と公開ができ、Claude Code へ同期すると書く。Platform の Agent Skills の文書は、claude.ai の custom skills を Settings > Features から上げ、Pro 以上で、各人だけ（組織で配れない）で、面をまたいで同期しないと書く。また Help Center は API のスキルを beta と書くが、Platform では 2026-08-19 に beta を外れた（stable）
+
+  - id: office-add-ins
+    title: Claude for Microsoft 365 のアドイン（Excel・PowerPoint・Word・Outlook）
+    page: peripheral-products
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-11-24
+      note: Claude for Excel を Max・Team・Enterprise に beta で公開（Help Center のリリースノートの最も古い項目）。PowerPoint は 2026-02-05
+    match_terms: [Claude for Microsoft 365, Claude for M365, Claude for Excel, Claude for PowerPoint, Claude for Word, Claude for Outlook, add-in, Let Claude work across files, LLM gateway]
+    sources: [claude-docs-m365-overview, claude-docs-m365-excel, claude-docs-m365-powerpoint, claude-docs-m365-word, claude-docs-m365-outlook, claude-docs-m365-across-apps, hc-release-notes, claude-pricing]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Microsoft 365 の中で動く（面の語彙ではアプリに入れた）。Excel・PowerPoint・Word は generally available、Outlook は beta。Amazon Bedrock・Google Cloud・Foundry・LLM gateway からも使える（アプリをまたぐ機能は除く）。Google Workspace の Claude はこの項目で追わない。食い違い：M365 の文書は対象を Pro・Max・Team・Enterprise と書き、料金のページは Ultra も含める（Ultra への改名の前の書き方が残る）
+
+  - id: claude-in-slack
+    title: Claude Tag（旧 Claude in Slack）
+    page: peripheral-products
+    surfaces: [app]
+    maturity: beta
+    since:
+      date: 2026-06-23
+      note: Claude Tag を Team と Enterprise に公開（Help Center のリリースノート）。Claude in Slack は 2026-08-03 に Claude Tag へ切り替わった
+    match_terms: [Claude Tag, Claude in Slack, "@Claude", Slack connector, Claude Tag in Slack]
+    sources: [hc-claude-tag, claude-docs-claude-tag, claude-docs-slack, hc-release-notes, claude-pricing]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Slack の中で動く（面の語彙ではアプリに入れた）。Team と Enterprise の beta。チャンネルでの作業は組織の名義で組織に課金し、DM は各人のアカウント。前の個人ごとの Claude in Slack のアプリの文書も残る。claude.ai から Slack を検索する Slack connector は Team と Enterprise。id は旧名のままにした（名前の変更は names で持つ。報告に提案）
+
+  - id: voice
+    title: 音声モード（voice mode）
+    page: voice-and-mobile
+    surfaces: [app]
+    maturity: beta
+    match_terms: [voice mode, hands-free mode, push-to-talk, Spoken language, dictation]
+    sources: [hc-voice-mode, claude-pricing]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      全プラン（Free〜Enterprise）の Mobile・Desktop・web で beta。英語以外の言語も beta。Cowork と Claude Code では音声モードはなく音声入力（dictation）だけ。Claude Code の /voice は D1 の voice-dictation。始まった時期は確かめていない
+
+  - id: app-tasks
+    title: アプリのタスクと定期タスク（Claude Cowork）
+    page: tasks-and-schedules-in-the-app
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2026-01-12
+      note: Cowork を Max に research preview で公開（macOS の Desktop）。定期タスクは 2026-02-25、generally available は 2026-04-09、web とモバイルは 2026-07-07、全部の会話への統合は 2026-09-16 から（Help Center のリリースノート）
+    match_terms: [Claude Cowork, Cowork, scheduled tasks, /schedule, Scheduled, Dispatch, Cowork in the cloud, new Claude experience, Chat and Cowork unified]
+    sources: [hc-cowork-start, hc-cowork-surfaces, hc-cowork-schedule, hc-cowork-and-chat, hc-release-notes, claude-pricing]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      有料のプラン。Desktop（Linux は beta）は全有料プラン、web とモバイルは Pro・Max・Ultra・Team（Team は beta）と、owner が有効にした Enterprise。タスクはクラウドで動き、PC を閉じても続く。手元のファイル・ブラウザ・computer use は Desktop が開いている間だけ。2026-10-06 から Pro・Max・Ultra の新しいタスクはクラウドで動く。定期タスクは全有料プラン。新しい Claude の体験は Pro・Max・Ultra に順に展開中（Team は beta）。Claude Code の scheduled-tasks とは別
+
+  - id: app-permission-modes
+    title: アプリの権限モード（Auto・Manual・Skip）
+    page: permission-modes-in-the-app
+    surfaces: [app]
+    maturity: GA
+    enforcement: 鍵
+    match_terms: [Manually approve, Automatically approve, Skip all approvals, Ask before acting, Act without asking, Always allow, Needs approval, Blocked]
+    sources: [hc-cowork-start, hc-cowork-and-chat, hc-cowork-safety]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Cowork の3つの段：Manually approve（Manual。旧 Ask before acting）は動作の前に許可を求め、Automatically approve（Auto）は Claude が動作ごとに安全を審査して危ないものを止め、Skip all approvals（Skip。旧 Act without asking）は何も確かめない。新しい Claude の体験では Auto（Pro・Max・Ultra・Team の既定）と Manual（Enterprise の既定）。どの段でもファイルを完全に消す前には確認する。Team と Enterprise では管理者が Auto を出すかと新しいタスクの既定を決める。強制力：Manual の許可と削除の確認は仕組みの鍵。Auto の審査は Claude が動作ごとに行う判断で、Skip は確かめない。始まった時期は確かめていない。Claude Code の permission-modes・auto-mode とは別
+
+  - id: app-plugins
+    title: プラグイン（アプリ。plugins）
+    page: plugins-in-the-app
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2026-02-24
+      note: Cowork のプラグインと管理の設定を公開（Help Center のリリースノート）
+    match_terms: [plugins, Customize > Plugins, Plugin Create, plugin marketplace, syncClaudeAiPlugins, skill and plugin scanning]
+    sources: [hc-plugins, hc-plugins-page, claude-docs-plugins, hc-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      全有料プラン。web のチャット・Desktop の Chat・Cowork で使え、スキルとコマンドはどこでも動くが、hooks・サブエージェント・ローカルの MCP サーバーは Cowork と Claude Code だけ。アカウントに残り、Claude Code（v2.1.273 以上）へ片方向で同期する。2026-10-29 から Customize が Plugins に変わり、Skills・Connectors・Plugins のタブが1つの Plugins のページになる（Free〜Team は 2026-11-09 に generally available、Enterprise は 2026-11-30）。Claude Code の plugins とは別
+
+  - id: file-uploads
+    title: ファイルのアップロード（アプリ）
+    page: how-attachments-are-read
+    surfaces: [app]
+    maturity: GA
+    match_terms: [Upload files, Add files or photos, project files, Uploaded file is too large, PDF]
+    sources: [hc-upload-files, hc-files]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      受け付ける形式・大きさ・数・ページ数の上限は facts に置く値。PDF は100ページまで図も読み、101〜1000ページは文字だけ。XLSX はコードの実行を有効にしておく要がある。食い違い：アップロードの記事は会話へのアップロードを1ファイル 500MB まで（プロジェクトのファイルは 30MB まで）と書き、ファイルの作成の記事はアップロードとダウンロードを1ファイル 30MB までと書く。始まった時期は確かめていない
+
+  - id: app-context-management
+    title: アプリの自動のコンテキスト管理（automatic context management）
+    page: long-chat-limits
+    surfaces: [app]
+    maturity: GA
+    since:
+      date: 2025-11-24
+      note: Context window compaction（Help Center のリリースノート）
+    match_terms: [automatic context management, Context window compaction, organizing its thoughts, length limits, context window]
+    sources: [hc-context-window, hc-usage-limits, hc-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      コードの実行が有効なとき、会話がコンテキストの上限に近づくと前の発言を要約して続ける。全履歴は残り、参照できる。要約が起きる長い会話は利用上限を多く使う。とても大きい最初の発言などでは長さの上限に当たる。表記の差：コンテキストウィンドウの記事は「有料のプランで」と書き、利用上限の記事はプランを書かない。Claude Code の compaction・API の api-compaction とは別
+
+  - id: chat-sharing
+    title: 会話の共有（特定の人への共有と公開リンク）
+    page: shared-artifacts-and-files
+    surfaces: [app]
+    maturity: GA
+    match_terms: [Share, shared chats, public links, People with access, Update shared chat, General access]
+    sources: [hc-share-chats, hc-share-people, hc-share-public, hc-files, hc-connectors]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      特定の人への共有は全プラン（claude.ai の web だけ。モバイルからはまだ共有できない）、公開リンクは Free・Pro・Max・Ultra。Team と Enterprise は組織の中だけ。共有は写し（snapshot）で、後の発言は更新するまで見えない。添付ファイルと MCP の生データは入らない。個人のプランではコードの実行で作ったファイルを含む会話を公開できない。表記の差：「Share and unshare chats」は公開リンクを作る流れを主に書き、「Share a chat with specific people」は招待を既定の共有のしかたと書く。始まった時期は確かめていない
+
+  # ---- API・SDK ----
+  - id: messages-api
+    title: Messages API
+    page: stateless-messages-api
+    surfaces: [api]
+    maturity: GA
+    match_terms: [Messages API, /v1/messages, anthropic-version, stop_reason]
+    sources: [api-docs-messages]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は stable（Claude API・Claude Platform on AWS・Google Cloud・Amazon Bedrock・Microsoft Foundry）。状態を持たず、呼び出し側が毎回それまでの会話の全体を送る。送る量を減らす message threads は message-threads で追う。始まった時期は Platform のリリースノート（2024-05 から）より前で、確かめていない
+
+  - id: prompt-caching
+    title: プロンプトキャッシング（prompt caching）
+    page: prompt-caching-in-practice
+    surfaces: [api]
+    maturity: GA
+    since:
+      date: 2024-08-14
+      note: beta で公開。2024-12-17 に beta ヘッダーなしで使えるようになった。自動のキャッシュ（automatic caching）は 2026-02-19（Platform のリリースノート）
+    match_terms: [prompt caching, cache_control, cache_creation_input_tokens, cache_read_input_tokens, automatic caching, 1-hour cache duration, cache diagnostics]
+    sources: [api-docs-prompt-caching, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      全プラットフォームで stable（featureMetadata の supportedPlatforms）。変わらない先頭の部分を使い回して処理の時間と費用を減らす。既定の寿命は5分（使うたびに延びる）、1時間の寿命もある。料金と最小の長さはモデルで違う値で facts に置く
+
+  - id: structured-outputs
+    title: structured outputs
+    page: structured-outputs-basics
+    surfaces: [api]
+    maturity: GA
+    enforcement: 鍵
+    since:
+      date: 2025-11-14
+      note: beta で公開（structured-outputs-2025-11-13）。2026-01-29 に Claude API で beta を外れ、output_format は output_config.format に移った（Platform のリリースノート）
+    match_terms: [structured outputs, output_config, output_format, json_schema, strict tool use, "strict: true", structured-outputs-2025-11-13]
+    sources: [api-docs-structured-outputs, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は stable（全プラットフォーム）。制約つきのデコード（constrained decoding）で、応答を与えた JSON schema に合う形にする（鍵）。道具の名前と入力を schema に合わせる strict tool use も同じ仕組み。モデルによっては道具の強制（tool_choice の any・tool）が使えず、公式はこちらを勧める
+
+  - id: tool-use
+    title: tool use
+    page: tool-use-loop
+    surfaces: [api]
+    maturity: GA
+    since:
+      date: 2024-05-30
+      note: Claude API・Amazon Bedrock・Vertex AI で beta を外れた（Platform のリリースノート）
+    match_terms: [tool use, function calling, tool_use, tool_result, tool_choice, client tools, server tools, parallel tool use, tool runner]
+    sources: [api-docs-tool-use, api-docs-define-tools, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Define tools の文書の featureMetadata は stable。呼び出し側が動かす client tools と、Anthropic が動かす server tools（server-tools で追う）がある。道具の強制（tool_choice の any・tool）は新しいモデルの一部で 400 になる（モデルごとの可否は facts）
+
+  - id: batch-api
+    title: Message Batches API
+    page: batch-api-basics
+    surfaces: [api]
+    maturity: GA
+    since:
+      date: 2024-10-08
+      note: beta で公開。2024-12-17 に beta ヘッダーなしで使えるようになった（Platform のリリースノート）
+    match_terms: [Message Batches API, batch processing, /v1/messages/batches, custom_id]
+    sources: [api-docs-batch, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は stable（Claude API・Claude Platform on AWS・Google Cloud の Anthropic の管理）。多くの要求をまとめて非同期で処理し、料金は標準の半分（値は facts）。ZDR の対象外（29日の保持）
+
+  - id: files-api
+    title: Files API
+    page: how-attachments-are-read
+    surfaces: [api]
+    maturity: GA
+    since:
+      date: 2025-05-22
+      note: beta で公開（files-api-2025-04-14）。2026-08-19 に Claude API で beta を外れた（Platform のリリースノート）
+    match_terms: [Files API, /v1/files, file_id, files-api-2025-04-14, expires_in_seconds]
+    sources: [api-docs-files, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は stable（Claude API・Claude Platform on AWS・Google Cloud の Anthropic の管理・Foundry の Anthropic 上のもの）。一度上げたファイルを後の要求から file_id で指し、スキルとコードの実行が作ったファイルもここから取る。ZDR の対象外。アプリのアップロードは file-uploads
+
+  - id: adaptive-thinking
+    title: adaptive thinking
+    page: how-thinking-works
+    surfaces: [claude-code, api]
+    maturity: GA
+    since:
+      date: 2026-02-05
+      note: Claude Opus 4.6 で推奨の形として導入（Platform のリリースノート）
+    match_terms: [adaptive thinking, adaptive reasoning, "type: adaptive", extended thinking, budget_tokens, between_tools, CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING]
+    sources: [api-docs-adaptive-thinking, api-docs-thinking, api-release-notes, cc-docs-model-config]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Thinking の文書の featureMetadata は stable。Claude が要求ごとに考えるか、どれだけ考えるかを決め、深さは effort で変える。手で予算を決める extended thinking（budget_tokens）は legacy。新しいモデルの多くは adaptive だけで、thinking を切れないものがある（モデルごとの違いは facts）。Claude Code の文書は adaptive reasoning と呼ぶ。effort と ultrathink は D1 の項目
+
+  - id: citations
+    title: citations
+    page: citations-basics
+    surfaces: [api]
+    maturity: GA
+    since:
+      date: 2025-01-23
+      note: Platform のリリースノート
+    match_terms: [citations, "citations: {enabled: true}", cited_text, search results, search_result]
+    sources: [api-docs-citations, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は stable（Claude API・Claude Platform on AWS・Amazon Bedrock・Google Cloud の Google の管理・Foundry）。渡した文書の中の根拠の箇所を返させる。自分の検索の結果を引かせる search results（2025-08-08 に beta を外れた）も同じ形で引用される
+
+  - id: server-tools
+    title: サーバーの道具（server tools）
+    page: tool-use-loop
+    surfaces: [api]
+    maturity: GA
+    since:
+      date: 2025-05-07
+      note: web search tool の公開。code execution tool は 2025-05-22、web fetch tool は 2025-09-10 に beta で公開し、2026-02-17 に3つとも beta ヘッダーなしになった（Platform のリリースノート）
+    match_terms: [server tools, server_tool_use, pause_turn, web search tool, web_search, web fetch tool, web_fetch, code execution tool, code_execution, tool search tool, allowed_domains, dynamic filtering]
+    sources: [api-docs-server-tools, api-docs-web-search-tool, api-docs-web-fetch-tool, api-docs-code-execution-tool, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Anthropic が動かす道具の共通の仕組み（server_tool_use のブロック・pause_turn・ドメインの制限）。web search・web fetch・code execution の文書の featureMetadata は stable。使えるプラットフォームと版は道具で違う（Google の管理と Azure 上の Foundry は基本の版だけ、など）。料金は facts
+
+  - id: computer-use
+    title: computer use
+    page: browser-control
+    surfaces: [app, claude-code, api]
+    maturity: beta
+    since:
+      date: 2024-10-22
+      note: Claude Sonnet 3.5 の更新とともに API に computer use の道具を公開（Platform のリリースノート）。Cowork と Claude Code の computer use は 2026-03-23 に research preview で公開（Help Center のリリースノート）
+    match_terms: [computer use, computer use tool, computer_toolset_20260801, computer_20251124, computer-use-2025-11-24, browser use tool, browser_toolset_20260801]
+    sources: [api-docs-computer-use, api-release-notes, hc-computer-use, cc-docs-computer-use, hc-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      成熟度は面で違う：API の computer_toolset_20260801 は 2026-08-19 に Claude API で beta を外れた（前の版は beta ヘッダー）。Cowork と Desktop の Claude Code は Pro・Max・Ultra の beta（Help Center）。Claude Code の CLI は macOS の research preview で、Team と Enterprise では使えない（Claude Code の文書）。主のページ（browser-control）が扱う Cowork と Desktop の表記の beta にした。面で id を分けるかはメインの判断（報告に提案）
+
+  - id: mcp-connector
+    title: MCP connector
+    page: feature-to-api-mapping
+    surfaces: [api]
+    maturity: beta
+    since:
+      date: 2025-05-22
+      note: beta で公開（Platform のリリースノート）
+    match_terms: [MCP connector, mcp_servers, mcp_toolset, mcp-client-2026-09-15, mcp-client-2025-11-20, remote MCP servers]
+    sources: [api-docs-mcp-connector, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は beta（Claude API・Claude Platform on AWS・Google Cloud の Anthropic の管理・Foundry）。Messages API から remote MCP サーバーの道具を呼ぶ（自前の MCP クライアントが要らない）。ZDR の対象外。アプリの connectors と Claude Code の mcp とは別の項目
+
+  - id: agent-sdk
+    title: Agent SDK（Claude Agent SDK）
+    page: agent-sdk-basics
+    surfaces: [claude-code, api]
+    maturity: GA
+    match_terms: [Agent SDK, Claude Agent SDK, claude-agent-sdk, "@anthropic-ai/claude-agent-sdk", Claude Code SDK, claude-code-sdk]
+    sources: [cc-docs-agent-sdk-overview, cc-docs-agent-sdk-migration, hc-agent-sdk-plan, hc-api-credits]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Claude Code の道具・エージェントのループ・文脈の管理を Python と TypeScript のライブラリとして使う（Claude Code の本体を動かす）。Claude Code SDK から改名された（時期は文書にない）。Platform の文書の URL は Claude Code の文書へ転送される。文書に beta などの表記はない。claude.ai のプランでログインするとプランの上限から引かれ、API キーで動かすと API の課金（Max・Ultra・Team の月の API credits も使える）。第三者が自分の製品で claude.ai のログインを出すことは、承認がない限り認めていない
+
+  - id: managed-agents
+    title: Managed Agents（Claude Managed Agents）
+    page: sdk-comparison
+    surfaces: [api]
+    maturity: beta
+    since:
+      date: 2026-04-08
+      note: beta で公開（managed-agents-2026-04-01。Platform のリリースノート）
+    match_terms: [Managed Agents, Claude Managed Agents, managed-agents-2026-04-01, agent_toolset_20260401, memory stores, scheduled deployments, self-hosted sandboxes, Dreams, outcomes]
+    sources: [api-docs-managed-agents, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は beta（Claude API・Claude Platform on AWS・Google Cloud の Anthropic の管理）。Anthropic が動かすエージェントの仕組み（クラウドの sandbox・組み込みの道具・イベントのストリーム）。ZDR の対象外。Dreams は research preview。Platform のリリースノートに機能の追加が多い（変わりやすい）
+
+  - id: token-counting
+    title: token counting
+    page: tokens
+    surfaces: [api]
+    maturity: GA
+    since:
+      date: 2024-11-01
+      note: 公開。2024-12-17 に beta ヘッダーなしで使えるようになった（Platform のリリースノート）
+    match_terms: [token counting, Token Counting API, count_tokens, /v1/messages/count_tokens, tokenizer]
+    sources: [api-docs-token-counting, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は stable（全プラットフォーム）。送る前に入力のトークン数を数える。Claude Opus 4.7 から tokenizer が変わり、同じ文でもトークンが増えた（比率は facts）
+
+  - id: message-threads
+    title: message threads
+    page: stateless-messages-api
+    surfaces: [api]
+    maturity: beta
+    since:
+      date: 2026-11-02
+      note: beta で公開（message-threads-2026-08-12。Platform のリリースノート）
+    match_terms: [message threads, message-threads-2026-08-12]
+    sources: [api-docs-message-threads, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は beta（Claude API・Claude Platform on AWS・Google Cloud の Anthropic の管理・Foundry）。会話をサーバーに短い間だけ残し、後の要求は新しい発言だけを送る。API は呼び出しの前に会話を組み立て直すので、モデルが読む量は変わらず、料金と rate limits も変わらない。最初のトークンまでの時間が短くなる。スレッドの寿命は facts の値。ZDR の対象外
+
+  - id: api-compaction
+    title: compaction（API）
+    page: long-running-agent-context
+    surfaces: [api]
+    maturity: beta
+    since:
+      date: 2026-02-05
+      note: 閾値での compaction（compact-2026-01-12）を Opus 4.6 で beta で公開。求めに応じた compaction（compact-2026-09-04）は 2026-09-14。SDK の tool_runner の client-side compaction は 2025-11-24（Platform のリリースノート）
+    match_terms: [compaction, compaction on demand, compaction at a token threshold, compact-2026-09-04, compact-2026-01-12, compact_20260112, compaction block, compaction_control]
+    sources: [api-docs-compaction, api-docs-compaction-threshold, api-docs-compaction-on-demand, api-docs-context-editing, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      古い発言を、サーバーで Claude が書く要約に置き換え、長い会話やエージェントの作業を文脈に収める。求めに応じたもの（on demand）と、入力のトークンが閾値に達したもの（threshold）があり、どちらも beta。公式は使えるところでは on demand を勧める。Claude Code の compaction とアプリの app-context-management とは別
+
+  - id: context-editing
+    title: context editing
+    page: long-running-agent-context
+    surfaces: [api]
+    maturity: beta
+    since:
+      date: 2025-09-29
+      note: 古い道具の結果を消す戦略で beta で公開。thinking のブロックを消す clear_thinking_20251015 は 2025-10-28（Platform のリリースノート）
+    match_terms: [context editing, context_management, context-management-2025-06-27, clear_tool_uses_20250919, clear_thinking_20251015, clear_at_least]
+    sources: [api-docs-context-editing, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は beta（Claude API・Claude Platform on AWS・Amazon Bedrock・Google Cloud の Google の管理・Foundry）。会話が伸びるにつれ、古い道具の結果や thinking のブロックを規則で消す。要約する api-compaction とは別
+
+  - id: memory-tool
+    title: memory tool
+    page: long-running-agent-context
+    surfaces: [api]
+    maturity: GA
+    since:
+      date: 2025-09-29
+      note: beta で公開。2026-02-17 に beta ヘッダーなしで使えるようになった（Platform のリリースノート）
+    match_terms: [memory tool, memory_20250818, /memories, memory tool helpers]
+    sources: [api-docs-memory-tool, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      featureMetadata は stable（全プラットフォーム）。会話をまたいで、情報をメモリのファイルのディレクトリ（/memories）に残して読む。道具は呼び出し側（client）で動き、保存先は実装する側が決める。作業を始める前にディレクトリを見る。Managed Agents の memory stores とアプリの app-memory とは別
+
+  - id: api-rate-limits
+    title: API の rate limits とエラー
+    page: rate-limits-and-errors
+    surfaces: [api]
+    maturity: GA
+    match_terms: [rate limits, usage tier, Start tier, Build tier, Scale tier, spend limits, rate_limit_error, overloaded_error, retry-after, anthropic-ratelimit, Rate Limits API]
+    sources: [api-docs-rate-limits, api-docs-errors, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      組織ごとの上限で、使用の段（usage tier）で決まる。2026-06-26 に段が Start・Build・Scale にまとまり（その上に Custom、始めに Evaluation の段もある）、Sonnet と Haiku の上限が Opus と同じになった。月の支出の上限（spend limits）もある。429 は rate_limit_error、529 は overloaded_error。retry-after と anthropic-ratelimit-* のヘッダーで待ち時間と残りが分かる。値は facts に置く。Rate limits の文書に featureMetadata はなく、成熟度はふつうに提供の扱い（GA）とした
+
+  # ---- 面をまたぐもの ----
+  - id: refusals
+    title: 拒否と分類器による停止（自動のモデルの切り替えを含む）
+    page: when-requests-are-refused
+    surfaces: [app, claude-code, api]
+    match_terms: [refusal, stop_reason, stop_details, fallbacks, server-side-fallback-2026-07-01, Switch models when a message is flagged, switchModelsOnFlag, automatic model switching, automatic model fallback, Usage Policy refusal, Output blocked by content filtering policy, Cyber Verification Program, safeguards flagged]
+    sources: [hc-switched-models, hc-output-blocked, api-docs-refusals, cc-docs-model-config, cc-docs-errors, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      アプリと Claude Code：Opus 5・Opus 5.5 などは要求と読み込んだ内容（メモリ・コネクタ・検索の結果・ファイル）を分類器で見て、旗が立つと能力の低いモデルで答え直すか止める。自動の切り替えは既定で有効で、アプリは Settings > Capabilities、Claude Code は /config の Switch models when a message is flagged（設定のキー switchModelsOnFlag）で切れる。分類ごとの切り替えは Claude Code v2.1.219 以上。API：拒否は stop_reason が refusal の普通の応答（エラーではない）で、stop_details.category が分野を示す。自動の切り替えは既定でなく fallbacks を設定して使う（server-side は beta）。課金の扱いは分野で違い、2026 年に何度か変わった（値は facts）。成熟度は当てはまらないので書かない
+
+  # ---- プランと上限 ----
+  - id: plans
+    title: プラン
+    page: choosing-a-plan
+    surfaces: [app, claude-code]
+    match_terms: [Free, Pro, Max, Ultra, Team, Enterprise, Max 20x, Max 5x, Standard seat, Premium seat, plans and pricing]
+    sources: [claude-pricing, hc-pro-plan, hc-max-plan, hc-ultra-plan, hc-team-plan, hc-enterprise-plan, claude-blog-research, hc-context-window]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      個人は Free・Pro・Max・Ultra、組織は Team（Standard と Premium の席）と Enterprise（自分で買う形と営業を通す形。使った分は API の料金で払う）。Max 20x は Ultra に改名され、契約は料金そのままで移った（2026-10-30。リサーチの公式ブログの編集の注。名前の変更は names で持つ）。料金・倍率・席の数は facts に置く値。食い違い：Team の記事は含むものに「200k context window」と書くが、コンテキストウィンドウの記事は有料のプランの新しいモデルで 1M まで（モデルで違う）と書く
+
+  - id: usage-limits
+    title: 利用上限（usage limits）
+    page: how-usage-limits-work
+    surfaces: [app, claude-code]
+    match_terms: [usage limits, five-hour limit, session limit, weekly limit, Current session, Settings > Usage, limit reset, Reset for free, length limits]
+    sources: [hc-usage-limits, hc-pro-plan, hc-max-plan, hc-ultra-plan, hc-team-plan, hc-limit-reset, hc-claude-code-plan, claude-pricing]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      アプリ・Claude Code・Desktop の使用が同じ上限に数えられる。有料のプランは5時間ごとの上限と週の上限を持ち、Max と Ultra は Fable に別の週の上限がある。確認済みの Ultra の口座には5時間の上限がない。週の上限は口座ごとに決まった時刻に戻る。使用量に基づく Enterprise にはプランの上限がない。値と倍率は facts に置く
+
+  - id: usage-credits
+    title: usage credits
+    page: usage-credits-basics
+    surfaces: [app, claude-code]
+    since:
+      date: 2025-08-20
+      note: Team と Enterprise に Extra usage の名前で公開（Help Center のリリースノート）。個人のプランへの公開の時期は確かめていない
+    match_terms: [usage credits, Extra usage, Now using credits, monthly spend limit, auto-reload, Add funds]
+    sources: [hc-usage-credits, hc-usage-limits, hc-release-notes, hc-api-credits]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Pro・Max・Ultra（Team と席の Enterprise は別の記事）で、上限に達した後も API の標準の料金の従量で続けられる。Settings > Usage で有効にし、前払いと月の上限と自動の補充を決める。Claude と Claude Code の両方に効く。月の API credits とは別物。日本などでは 2026-09-10 以降に買ったものは6か月で失効する。モバイルのストアで契約しても web でだけ有効にできる。旧名の Extra usage が API credits の記事に残る
+
+  - id: api-credits
+    title: プランに付く API credits（monthly API credits）
+    page: check-billing-path
+    surfaces: [app, api]
+    since:
+      date: 2026-10-07
+      note: Max と Team に公開（Help Center のリリースノート）。今の記事は Ultra も含める
+    match_terms: [monthly API credits, API credits, Link organization, Supplemental Credit Terms]
+    sources: [hc-api-credits, hc-release-notes, hc-agent-sdk-plan, claude-pricing]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Max・Ultra・Team（割引の Team を含む）に付く月の Claude Platform のクレジット。Free・Pro・Enterprise は対象外。claude.ai で Console の組織を1つ結んで受け取る。Claude API（Messages・Message Batches）・Playground・Managed Agents・Agent SDK（API キーで動かす claude -p を含む）に使え、対話の Claude Code・プランの extra usage・Bedrock などには使えない。繰り越さない。額は facts に置く値
+
+  - id: wrap-up-allowance
+    title: Wrap-Up Allowance
+    page: how-usage-limits-work
+    surfaces: [claude-code]
+    since:
+      claude_code: 2.1.277
+      note: 資格の条件の版（v2.1.277 以上）。導入の日付は記事にない
+    match_terms: [Wrap-Up Allowance, wrap-up allowance, "Usage limit reached · wrapping up", wrapping up]
+    sources: [hc-wrap-up-allowance, hc-claude-code-plan]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Claude Code の応答の途中で5時間の上限に達したとき、区切りまで少しだけ続ける（量に上限がある）。Pro は週に1回まで、Max・確認前の Ultra・Team の Premium の席は5時間の上限に当たるたび。使った分は週の上限に数える。API キーと Bedrock・Vertex AI などでは効かず、アプリのチャットにもない。段階的に展開中で、口座と組織に公表しない最低の期間がある。成熟度の表記はない
+
+  # ---- 組織と提供の経路 ----
+  - id: team-onboarding
+    title: /team-onboarding
+    page: rolling-out-to-teams
+    surfaces: [claude-code]
+    maturity: GA
+    since:
+      claude_code: 2.1.101
+      date: 2026-04
+      note: What's new の Week 15（2026-04-06〜10）
+    match_terms: [/team-onboarding, team onboarding guide]
+    sources: [cc-docs-commands, cc-docs-whats-new-2026-w15]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      過去30日の Claude Code の使い方（セッション・コマンド・MCP サーバー）から、仲間が最初の発言に貼れる手引き（Markdown）を作る。claude.ai の Team と Enterprise では、仲間が Claude Code で開ける共有のリンクも返す。文書に beta などの表記はない
+
+  - id: otel-telemetry
+    title: OpenTelemetry による利用の記録
+    page: audit-logs-and-telemetry
+    surfaces: [app, claude-code, api]
+    maturity: GA
+    match_terms: [OpenTelemetry, OTel, CLAUDE_CODE_ENABLE_TELEMETRY, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER, OTEL_TRACES_EXPORTER, CLAUDE_CODE_ENHANCED_TELEMETRY_BETA, OTEL_LOG_USER_PROMPTS, OTEL_LOG_TOOL_DETAILS]
+    sources: [cc-docs-monitoring-usage, hc-cowork-otel, api-docs-opentelemetry, hc-release-notes, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Claude Code は環境変数で metrics と events（logs）を出す（traces は beta）。プロンプトの本文と道具の細部は既定で記録せず、OTEL_LOG_USER_PROMPTS などで入れる。Cowork は Team と Enterprise で、クラウドとローカルのセッションの出来事（プロンプト・道具・ファイル・承認）を流せる（2026-04-09 から）。API と Managed Agents の OpenTelemetry は 2026-10-14 から beta。成熟度は Claude Code の metrics と events に合わせた
+
+  - id: usage-analytics-api
+    title: Usage and Cost Analytics API
+    page: audit-logs-and-telemetry
+    surfaces: [api]
+    maturity: beta
+    since:
+      date: 2026-10-29
+      note: beta で公開（analytics-usage-cost-2026-08-24。Platform のリリースノート）
+    match_terms: [Usage and Cost Analytics API, analytics-usage-cost-2026-08-24, /v1/organizations/analytics/usage, /v1/organizations/analytics/cost, Usage and Cost API, Claude Enterprise Analytics API, Claude Code Analytics API, Admin API]
+    sources: [api-docs-usage-cost-analytics, api-release-notes]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      Console と Claude Enterprise の組織のトークンの使用量と費用を、モデル・ワークスペース・API キー・人などで分けて返す。Console は Admin API の鍵、Enterprise は read:analytics の鍵を使う。前の Usage and Cost API と、Enterprise Analytics API の usage_report などの端点は 2026-10-29 に legacy になった。Claude Code Analytics API（2025-09-10）と Enterprise の Analytics API は別
+
+  - id: cloud-providers
+    title: クラウドの事業者を経由した利用（Amazon Bedrock・Google Cloud・Microsoft Foundry など）
+    page: via-cloud-providers
+    surfaces: [claude-code, api]
+    maturity: GA
+    match_terms: [Amazon Bedrock, Claude in Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, Vertex AI, Claude Models on Google Cloud, Microsoft Foundry, Azure AI Foundry, CLAUDE_CODE_USE_BEDROCK, CLAUDE_CODE_USE_VERTEX, CLAUDE_CODE_USE_FOUNDRY, CLAUDE_CODE_USE_MANTLE, LLM gateway, Claude apps gateway]
+    sources: [cc-docs-third-party-integrations, cc-docs-amazon-bedrock, cc-docs-google-vertex-ai, cc-docs-microsoft-foundry, api-docs-bedrock, api-docs-platform-on-aws, api-docs-google-cloud, api-docs-foundry, hc-api-credits, hc-wrap-up-allowance]
+    checked: 2026-11-04
+    status: 確認済み
+    note: >-
+      API の経路：Amazon Bedrock（Opus 4.7 以降は Claude in Amazon Bedrock の Messages API。前のモデルは別の文書）・Claude Platform on AWS（Anthropic が運用し AWS で払う）・Claude Models on Google Cloud（Anthropic の管理と Google の管理）・Claude in Microsoft Foundry。Claude Code の文書は Google Cloud's Agent Platform（旧 Vertex AI）と書く。使える機能は経路で違う（表は facts）。プランの月の API credits・Wrap-Up Allowance・claude.ai のスキルとプラグインの同期は効かない。Claude Desktop と M365 のアドインも経由して使える。文書に preview などの表記はない
+
+names: []
+facts: []
+advice: []
+
+domains:
+  - {domain: support.claude.com, checked: 2026-11-04, noai: false, url: "https://support.claude.com/en/", note: "meta robots は all"}
+  - {domain: platform.claude.com, checked: 2026-11-04, noai: false, url: "https://platform.claude.com/docs/en/home"}
+  - {domain: claude.com, checked: 2026-11-04, noai: false, url: "https://claude.com/pricing", note: "claude.com/docs と claude.com/resources も同じドメイン"}
+  - {domain: code.claude.com, checked: 2026-11-04, noai: false, url: "https://code.claude.com/docs/en/overview"}
+  - {domain: web.archive.org, checked: 2026-11-04, noai: false, url: "https://web.archive.org/", note: "すでにある写しを読んだだけ（新しい写しは作っていない）"}
+
+sources:
+  # ---- ヘルプセンター（support.claude.com） ----
+  - {id: hc-release-notes, url: "https://support.claude.com/en/articles/12138966-release-notes", title: Release notes, kind: リリースノート, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30, note: "Claude のアプリのリリースノート。2025-08 から。最新の項目は 2026-10-21"}
+  - {id: hc-projects-manage, url: "https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects", title: "How can I create and manage projects?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-projects-what, url: "https://support.claude.com/en/articles/9517075-what-are-projects", title: "What are projects?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-personalization, url: "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features", title: "Understanding Claude's personalization features", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-23}
+  - {id: hc-memory, url: "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context", title: "Use Claude’s chat search and memory to build on previous context", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-11-02}
+  - {id: hc-incognito, url: "https://support.claude.com/en/articles/12260368-use-incognito-chats", title: Use incognito chats, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-styles-to-skills, url: "https://web.archive.org/web/20260710101210/https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills", title: Styles are moving to skills, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-06-01, note: "元の URL https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills は 2026-11-04 に 404。Internet Archive にすでにあった写し（2026-07-10）で読んだ"}
+  - {id: hc-artifacts, url: "https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them", title: "What are artifacts and how do I use them?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-files, url: "https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude", title: Create and edit files with Claude, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-web-search, url: "https://support.claude.com/en/articles/10684626-enable-and-use-web-search", title: Enable and use web search, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-07}
+  - {id: hc-research, url: "https://support.claude.com/en/articles/11088861-use-research-on-claude", title: Use research on Claude, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-connectors, url: "https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities", title: "Use connectors to extend Claude's capabilities", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-skills-what, url: "https://support.claude.com/en/articles/12512176-what-are-skills", title: "What are skills?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-skills-use, url: "https://support.claude.com/en/articles/12512180-use-skills-in-claude", title: Use skills in Claude, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-claude-tag, url: "https://support.claude.com/en/articles/15594475-what-is-claude-tag", title: "What is Claude Tag?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-09-24}
+  - {id: hc-voice-mode, url: "https://support.claude.com/en/articles/11101966-use-voice-mode", title: Use voice mode, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-cowork-and-chat, url: "https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude", title: Claude Cowork and chat are one Claude, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-cowork-surfaces, url: "https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile", title: "Use Claude Cowork on web, desktop, and mobile", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-cowork-start, url: "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork", title: Get started with Claude Cowork, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-cowork-safety, url: "https://support.claude.com/en/articles/13364135-use-claude-cowork-safely", title: Use Claude Cowork safely, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-cowork-schedule, url: "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork", title: Schedule recurring tasks in Claude Cowork, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-cowork-otel, url: "https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry", title: Monitor Claude Cowork activity with OpenTelemetry, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-computer-use, url: "https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork", title: Let Claude use your computer in Cowork, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-plugins, url: "https://support.claude.com/en/articles/13837440-use-plugins-in-claude", title: Use plugins in Claude, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-plugins-page, url: "https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page", title: "Manage plugins, skills, and connectors from one Plugins page", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-upload-files, url: "https://support.claude.com/en/articles/8241126-upload-files-to-claude", title: Upload files to Claude, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-07-23}
+  - {id: hc-context-window, url: "https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans", title: "How large is the context window on paid Claude plans?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-usage-limits, url: "https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work", title: "How do usage and length limits work?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-limit-reset, url: "https://support.claude.com/en/articles/17007452-what-is-a-limit-reset", title: "What is a limit reset?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-09-22}
+  - {id: hc-share-chats, url: "https://support.claude.com/en/articles/10593882-share-and-unshare-chats", title: Share and unshare chats, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-share-people, url: "https://support.claude.com/en/articles/16762496-share-a-chat-with-specific-people", title: Share a chat with specific people, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-share-public, url: "https://support.claude.com/en/articles/16762437-public-links-for-shared-chats", title: Public links for shared chats, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-switched-models, url: "https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5-or-opus-5-5", title: Why Claude switched models in your conversation with Opus 5 or Opus 5.5, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-09-24}
+  - {id: hc-output-blocked, url: "https://support.claude.com/en/articles/9205721-why-am-i-receiving-an-output-blocked-by-content-filtering-policy-error", title: "Why am I receiving an 'Output blocked by content filtering policy' error?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-03-16}
+  - {id: hc-pro-plan, url: "https://support.claude.com/en/articles/8325606-what-is-the-pro-plan", title: "What is the Pro plan?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-max-plan, url: "https://support.claude.com/en/articles/11049741-what-is-the-max-plan", title: "What is the Max plan?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-ultra-plan, url: "https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan", title: "What is the Ultra plan?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-team-plan, url: "https://support.claude.com/en/articles/9266767-what-is-the-team-plan", title: "What is the Team plan?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-enterprise-plan, url: "https://support.claude.com/en/articles/9797531-what-is-the-enterprise-plan", title: "What is the Enterprise plan?", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-09-01}
+  - {id: hc-usage-credits, url: "https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans", title: Manage usage credits for paid Claude plans, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-api-credits, url: "https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-ultra-and-team-plans", title: "Monthly API credits for Max, Ultra, and Team plans", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-wrap-up-allowance, url: "https://support.claude.com/en/articles/17040437-claude-code-wrap-up-allowance", title: Claude Code Wrap-Up Allowance, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, note: "更新日の機械で読める表記がない（画面は Updated this week）"}
+  - {id: hc-claude-code-plan, url: "https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan", title: "Use Claude Code with your Pro, Max, or Ultra plan", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  - {id: hc-agent-sdk-plan, url: "https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan", title: Use the Claude Agent SDK with your Claude plan, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-30}
+  # ---- Claude Apps の旧いリリースノート（写し） ----
+  - {id: claude-apps-release-notes-archive, url: "https://web.archive.org/web/20250628195643/https://docs.anthropic.com/en/release-notes/claude-apps", title: "Release Notes: Claude Apps", kind: リリースノート, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2025-05-22, note: "元の URL https://docs.anthropic.com/en/release-notes/claude-apps は今 Help Center のリリースノートへ転送され、2025-07 より前の項目は読めない。Internet Archive にすでにあった写し（2025-06-28）で読んだ"}
+  # ---- claude.com（料金・Claude.ai の文書・公式ブログ） ----
+  - {id: claude-pricing, url: "https://claude.com/pricing", title: "Plans & pricing", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-docs-m365-overview, url: "https://claude.com/docs/office-agents/overview", title: Claude for M365 overview, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-docs-m365-excel, url: "https://claude.com/docs/office-agents/excel", title: Use Claude for Excel, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-docs-m365-powerpoint, url: "https://claude.com/docs/office-agents/powerpoint", title: Use Claude for PowerPoint, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-docs-m365-word, url: "https://claude.com/docs/office-agents/word", title: Use Claude for Word, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-docs-m365-outlook, url: "https://claude.com/docs/office-agents/outlook", title: Use Claude for Outlook, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-docs-m365-across-apps, url: "https://claude.com/docs/office-agents/work-across-apps", title: Work across M365 apps, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-10-31, note: "Help Center の記事 13892150（Work across Excel and PowerPoint）はここへ転送される"}
+  - {id: claude-docs-claude-tag, url: "https://claude.com/docs/claude-tag/overview", title: Work with Claude Tag, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-docs-slack, url: "https://claude.com/docs/connectors/slack", title: Slack integration, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-docs-plugins, url: "https://claude.com/docs/plugins/overview", title: Plugins, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: claude-blog-web-search, url: "https://claude.com/resources/articles/web-search", title: Claude web search now available globally on all plans, kind: 公式ブログ, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2025-03-20, note: "https://www.anthropic.com/news/web-search はここへ転送される。2025-05-27 の更新の注がある"}
+  - {id: claude-blog-research, url: "https://claude.com/resources/articles/research", title: Claude takes research to new places, kind: 公式ブログ, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2025-04-15, note: "https://www.anthropic.com/news/research はここへ転送される。2026-10-30 より前の Max の記述は今の Max と Ultra を含むという編集の注がある"}
+  - {id: claude-blog-integrations, url: "https://claude.com/resources/articles/integrations", title: Claude can now connect to your world, kind: 公式ブログ, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2025-05-01, note: "https://www.anthropic.com/news/integrations はここへ転送される。2025-06-03 の更新の注がある"}
+  # ---- Claude Platform の文書（platform.claude.com） ----
+  - {id: api-release-notes, url: "https://platform.claude.com/docs/en/release-notes/overview", title: Claude Platform release notes, kind: リリースノート, publisher: Anthropic, lang: en, checked: 2026-11-04, published: 2026-11-03}
+  - {id: api-docs-messages, url: "https://platform.claude.com/docs/en/build-with-claude/working-with-messages", title: Using the Messages API, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-prompt-caching, url: "https://platform.claude.com/docs/en/build-with-claude/prompt-caching", title: Prompt caching, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-structured-outputs, url: "https://platform.claude.com/docs/en/build-with-claude/structured-outputs", title: Structured outputs, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-tool-use, url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview", title: Tool use with Claude, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-define-tools, url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools", title: Define tools, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-batch, url: "https://platform.claude.com/docs/en/build-with-claude/batch-processing", title: Batch processing, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-files, url: "https://platform.claude.com/docs/en/build-with-claude/files", title: Files API, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-thinking, url: "https://platform.claude.com/docs/en/build-with-claude/thinking", title: Thinking, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-adaptive-thinking, url: "https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost", title: Steering thinking, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, note: "Features overview の Adaptive thinking の行が指すページ。…/build-with-claude/adaptive-thinking はここへ転送される"}
+  - {id: api-docs-citations, url: "https://platform.claude.com/docs/en/build-with-claude/citations", title: Citations, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-server-tools, url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools", title: Server tools, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-web-search-tool, url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool", title: Web search tool, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-web-fetch-tool, url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool", title: Web fetch tool, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-code-execution-tool, url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool", title: Code execution tool, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-computer-use, url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool", title: Computer use tool, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-mcp-connector, url: "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector", title: MCP connector, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-agent-skills, url: "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview", title: Agent Skills, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-managed-agents, url: "https://platform.claude.com/docs/en/managed-agents/overview", title: Claude Managed Agents overview, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-token-counting, url: "https://platform.claude.com/docs/en/build-with-claude/token-counting", title: Token counting, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-message-threads, url: "https://platform.claude.com/docs/en/build-with-claude/message-threads", title: Message threads, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-compaction, url: "https://platform.claude.com/docs/en/build-with-claude/compaction", title: Compaction overview, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-compaction-threshold, url: "https://platform.claude.com/docs/en/build-with-claude/compaction-threshold", title: Compaction at a token threshold, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-compaction-on-demand, url: "https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand", title: Compaction on demand, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-context-editing, url: "https://platform.claude.com/docs/en/build-with-claude/context-editing", title: Context editing, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-memory-tool, url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool", title: Memory tool, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-rate-limits, url: "https://platform.claude.com/docs/en/api/rate-limits", title: Rate limits, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-errors, url: "https://platform.claude.com/docs/en/api/errors", title: Claude API errors, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-refusals, url: "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback", title: Refusals and fallback, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-usage-cost-analytics, url: "https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api", title: Usage and Cost Analytics API, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-opentelemetry, url: "https://platform.claude.com/docs/en/manage-claude/opentelemetry", title: OpenTelemetry tracing for the Claude API, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-bedrock, url: "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock", title: "Claude in Amazon Bedrock (Opus 4.7 and later)", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-platform-on-aws, url: "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws", title: Claude Platform on AWS, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-google-cloud, url: "https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview", title: Claude Models on Google Cloud, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: api-docs-foundry, url: "https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry", title: Claude in Microsoft Foundry, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  # ---- Claude Code の文書（code.claude.com） ----
+  - {id: cc-docs-agent-sdk-overview, url: "https://code.claude.com/docs/en/agent-sdk/overview", title: Agent SDK overview, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04, note: "https://platform.claude.com/docs/en/agent-sdk/overview は https://code.claude.com/docs/en/agent-sdk へ転送される"}
+  - {id: cc-docs-agent-sdk-migration, url: "https://code.claude.com/docs/en/agent-sdk/migration-guide", title: Migrate to Claude Agent SDK, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-commands, url: "https://code.claude.com/docs/en/commands", title: Commands, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-whats-new-2026-w15, url: "https://code.claude.com/docs/en/whats-new/2026-w15", title: "Week 15 · April 6–10, 2026", kind: リリースノート, publisher: Anthropic, lang: en, checked: 2026-11-04, note: "Claude Code の週ごとの新機能のまとめ（v2.1.92〜v2.1.101）"}
+  - {id: cc-docs-model-config, url: "https://code.claude.com/docs/en/model-config", title: Model configuration, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-errors, url: "https://code.claude.com/docs/en/errors", title: Error reference, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-computer-use, url: "https://code.claude.com/docs/en/computer-use", title: Let Claude use your computer from the CLI, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-monitoring-usage, url: "https://code.claude.com/docs/en/monitoring-usage", title: Monitoring, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-third-party-integrations, url: "https://code.claude.com/docs/en/third-party-integrations", title: Enterprise deployment overview, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-amazon-bedrock, url: "https://code.claude.com/docs/en/amazon-bedrock", title: Claude Code on Amazon Bedrock, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-google-vertex-ai, url: "https://code.claude.com/docs/en/google-vertex-ai", title: "Claude Code on Google Cloud's Agent Platform", kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
+  - {id: cc-docs-microsoft-foundry, url: "https://code.claude.com/docs/en/microsoft-foundry", title: Claude Code on Microsoft Foundry, kind: 公式文書, publisher: Anthropic, lang: en, checked: 2026-11-04}
