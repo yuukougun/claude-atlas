@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/yuukougun/claude-atlas/main/schema/sources.schema.json",
+  "$comment": "tools/make_schema.py が schema/keys.yml（キーの台帳）と schema/site.yml（語彙）から作る。手で直さない（直すのは keys.yml か site.yml。直したら作り直す）",
+  "title": "出典（data/sources.yml と data/sources.d/<id>.yml）",
+  "description": "当てるファイル：data/sources.yml・data/sources.d/<id>.yml。design §9.1・§6.8。sources.d/<id>.yml は執筆者がページごとに足すもの（同じ形）。道具が1つにまとめて、id と URL の重なり・domains の確かめを検査の層が見る",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "domains": {
+      "description": "AI の利用を断る指定を確かめたドメイン（design §6.8。noai が true のドメインは permissions の deny にも入れる。§10.5 の H1）",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["domain", "checked", "noai"],
+        "properties": {
+          "domain": {
+            "description": "ホスト名。その下のサブドメインにも当てる（いちばん長く一致するもの）",
+            "type": "string",
+            "pattern": "^([a-z0-9]([a-z0-9-]*[a-z0-9])?\\.)+[a-z]{2,}$",
+            "x-message": "ドメイン（code.claude.com の形。英小文字）にする"
+          },
+          "checked": {
+            "description": "tools/check_noai.py で確かめた日",
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+            "format": "date",
+            "x-message": "日付（2026-11-04 の形）にする"
+          },
+          "noai": {
+            "description": "noai・noimageai の指定があるか（null は確かめられなかった）",
+            "type": ["boolean", "null"],
+            "x-message": "true か false にする"
+          },
+          "url": {
+            "description": "確かめた URL",
+            "type": "string",
+            "pattern": "^https?://[^\\s]+$",
+            "x-message": "URL（https://… の形）にする"
+          },
+          "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+        }
+      }
+    },
+    "sources": {
+      "description": "出典。URL のドメインは domains で確かめ済みにする（検査の層）",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "url", "title", "kind", "publisher", "lang", "checked"],
+        "properties": {
+          "id": {
+            "description": "ページの sources で指す",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "url": {
+            "description": "転送されるなら転送先（research/28）",
+            "type": "string",
+            "pattern": "^https?://[^\\s]+$",
+            "x-message": "URL（https://… の形）にする"
+          },
+          "title": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"},
+          "kind": {"description": "種類。語彙は site.yml の source_kinds", "type": "string", "minLength": 1},
+          "publisher": {
+            "description": "発行者",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "lang": {
+            "description": "言語",
+            "type": "string",
+            "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$",
+            "x-message": "言語（ja・en の形）にする"
+          },
+          "checked": {
+            "description": "確認日（出典を読んだ日）",
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+            "format": "date",
+            "x-message": "日付（2026-11-04 の形）にする"
+          },
+          "published": {
+            "description": "発行・更新の日（記事・リリースノート）",
+            "type": ["string", "integer"],
+            "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+            "format": "partial-date",
+            "minimum": 1000,
+            "maximum": 9999,
+            "x-message": "日付（2026・2026-11・2026-11-04 の形）にする"
+          },
+          "archive": {
+            "description": "写しの URL（Internet Archive。公式のページの改稿を見分ける手がかり。research/23）",
+            "type": "string",
+            "pattern": "^https?://[^\\s]+$",
+            "x-message": "URL（https://… の形）にする"
+          },
+          "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+        }
+      }
+    }
+  }
+}

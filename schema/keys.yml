@@ -1,0 +1,426 @@
+# キーの台帳（planning/design.md §3.3）の、道具が読む形。page は front matter のキー、ほかは data/ のファイルの形
+# （design §9.1・§6.8・DR-11・DR-18）。tools/make_schema.py が、これと schema/site.yml（語彙）から schema/*.schema.json を作る。
+# - 版：2026-11-04 第1版（工程6a。担当 B2）
+# - 人が読む台帳は design §3.3 の表。キーを足す・変えるときは、両方を直して `uv run python tools/make_schema.py` を流す
+#   （作った schema も commit する。`--check` が、作り直して差分がないことと、design §3.3 の表とのキーの食い違いを見る）
+# - 語彙は書かない（design §3.2）。format の {vocab: <site.yml のキー>} で指し、値は site.yml から読む
+# - schema にするのは、機械で決まる形の規則（型・書式・語彙・必須）だけ。参照の解決・循環・レベルの逆転・型ごとの
+#   推奨（症状のページの signs など）は検査の層（tools/checks/）が見る。note に書いておく
+#
+# 1つのキーの書き方:
+#   required   all（全）・optional（任意。既定）・{types: [型, …]}（その型のページで必須）・{types_except: …}（その型の
+#              ほかで必須）・{stages: […]}・{stages_except: …}・{with: キー}（同じマッピングにそのキーがあるとき）・
+#              {without: キー}。types・stages には site.yml のキー（types_without_level など）も書ける
+#   forbidden  required と同じ条件の形。その条件のときは書かない（null も書かない）
+#   format     名前（text・texts・id・ids・page_ref・page_refs・date・partial_date・order・wave・boolean・url・domain・
+#              version・lang・regex・scalar・value・table。意味は tools/lib/ledger.py の FORMATS）か、
+#              {vocab: <site.yml のキー か そのリスト>}・{vocab_list: …}・{object: {キー: 書き方}}・{list: {キー: 書き方}}
+#   nullable   null も許す　non_empty  required の条件のとき空のリストにしない　min_items・min_keys  最少の数
+#   writer・shows  台帳の「書く人」「写る先」　note  台帳の「書式・検査」のうち検査の層が見るもの
+#   catalog    true なら、骨格（工程6c）で目次（planning/catalog/<field>.yaml の pages の項目）から写す
+
+id_base: https://raw.githubusercontent.com/yuukougun/claude-atlas/main/schema/
+
+sections:
+  page:
+    output: page.schema.json
+    file: docs/<field>/<id>.md
+    title: claude-atlas のページの front matter
+    description: キーの台帳は planning/design.md §3.3。参照の解決・循環・レベルの逆転・比例則・ファイル名との一致・本文との照合は検査の層が見る
+    keys:
+      id:
+        required: all
+        format: id
+        writer: 目次（メイン）
+        shows: URL・すべての生成物
+        catalog: true
+        note: 一意で、ファイル名と同じ（検査の層）。骨格の後は変えない
+      title:
+        required: all
+        format: text
+        writer: 目次
+        shows: 見出し・一覧・索引・llms.txt
+        catalog: true
+        note: 平文
+      nav_title:
+        format: text
+        nullable: true
+        writer: 目次
+        shows: ナビゲーションだけ（ページの見出しには使わない）
+        catalog: true
+        note: 平文。題名が長いときだけ
+      aliases:
+        format: texts
+        writer: 目次（執筆者は提案）
+        shows: 用語索引・検索・冒頭の別名の行
+        catalog: true
+        note: 平文。本文の冒頭にあるか、ほかのページの題名・別名と重ならないか（検査の層）
+      type:
+        required: all
+        format: {vocab: types}
+        writer: 目次
+        shows: ナビゲーション・一覧
+        catalog: true
+      field:
+        required: all
+        format: {vocab: fields}
+        writer: 目次
+        shows: ナビゲーション・一覧
+        note: 骨格で、目次の分野のファイルの field から写す。ページのフォルダと同じ（検査の層）
+      chapter:
+        format: text
+        nullable: true
+        writer: 目次
+        shows: ナビゲーション・一覧
+        catalog: true
+        note: 目次の分野のファイルの chapters にあるか（検査の層）
+      order:
+        required: all
+        format: order
+        writer: 目次
+        shows: ナビゲーション・一覧
+        note: 分野の中の並び順。骨格で、目次の pages の並びから付ける
+      level:
+        required: {types_except: types_without_level}
+        forbidden: {types: types_without_level}
+        format: {vocab: levels}
+        writer: 目次
+        shows: バッジ・ロードマップ
+        catalog: true
+        note: 前提の逆転（検査の層）
+      priority:
+        required: all
+        format: {vocab: priorities}
+        writer: 目次
+        shows: 初版の範囲（表示しない）
+        catalog: true
+        note: 必須の前提は必須（検査の層）
+      surfaces:
+        format: {vocab_list: surfaces}
+        writer: 目次（執筆者は提案）
+        shows: バッジ・一覧・逆引き
+        catalog: true
+        note: 型による（catalog/README §4.7。型ごとの規則は検査の層）
+      principle:
+        format: {vocab_list: principles}
+        writer: 目次（執筆者は提案）
+        shows: バッジ・一覧・逆引き
+        catalog: true
+        note: 型による。主に関わる原理を1〜2個
+      prevents:
+        format: {vocab_list: prevents}
+        writer: 目次（執筆者は提案）
+        shows: バッジ・一覧・逆引き
+        catalog: true
+        note: 型による（症状のページは1つ以上。検査の層）
+      pitfalls:
+        format: {vocab_list: pitfalls}
+        writer: 目次（執筆者は提案）
+        shows: バッジ・一覧・逆引き
+        catalog: true
+        note: 型による
+      scenes:
+        format: {vocab_list: scenes}
+        writer: 目次（執筆者は提案）
+        shows: バッジ・一覧・逆引き
+        catalog: true
+        note: 型による
+      summary:
+        required: all
+        format: text
+        writer: 目次（執筆者は提案）
+        shows: 一覧・索引・llms.txt・知識マップ
+        catalog: true
+        note: 平文、1〜2文・site.yml の summary_max_chars 字以内、summary_banned_words を使わない、変わりやすい値を書かない（検査の層）
+      signs:
+        format:
+          list:
+            type: {required: all, format: {vocab: sign_types}}
+            text: {required: all, format: text, note: 平文。読者の言葉}
+        writer: 目次（執筆者は提案）
+        shows: 逆引き辞典
+        catalog: true
+        note: 型による（症状のページは type が symptom のサインを2つ以上。検査の層）
+      wave:
+        format: wave
+        writer: 目次（骨格で写す）
+        shows: 第一波の一覧（道具が routes と前提でたどって出す）・公開の区切り
+        catalog: true
+        note: 第一波の核のページだけ（site.yml の first_wave_core_fields の分野。検査の層）
+      prerequisites:
+        required: all
+        format: ids
+        writer: 目次（執筆者は提案）
+        shows: 知識マップ・ページ下部
+        catalog: true
+        note: ページの id（節は書かない）。直接の前提だけ。解決・循環・逆転・比例則（検査の層）。symptom の前提は design §3.1 の2
+      related:
+        format: page_refs
+        writer: 目次（執筆者は提案）
+        shows: 知識マップ・ページ下部
+        catalog: true
+        note: id か id#anchor。解決（anchor も）。routes にない近いページだけ（検査の層）
+      routes:
+        required: {types: [symptom]}
+        forbidden: {types_except: [symptom]}
+        non_empty: true
+        format:
+          list:
+            cause: {required: all, format: {vocab: [prevents, pitfalls]}, note: そのページの prevents か pitfalls の値（検査の層）}
+            to: {required: all, format: page_refs, non_empty: true, note: 原因ごとに中心の対処を1〜3件、近い順}
+        writer: 目次（執筆者は提案）
+        shows: 診断の節の振り分け（目印）・知識マップ・症状の原因別の表・第一波の数え方
+        catalog: true
+        note: 解決を検査する。段階と優先度の規則は当てない（design §3.1 の3）
+      tracks:
+        required: {types: [feature]}
+        non_empty: true
+        format: ids
+        writer: 目次（執筆者は提案）
+        shows: 機能のバッジ・点検
+        catalog: true
+        note: data/facts.yml の features にある id（検査の層）
+      outdated_advice:
+        format: ids
+        writer: 目次（執筆者は提案。2026-11-04 のメインの決定。執筆者が書くのは sections・stage・updated・sources だけ。design §10.2）
+        shows: 台帳の逆リンク
+        catalog: true
+        note: data/outdated-advice.yml にある id（検査の層）
+      sources:
+        required: {types_except: [guide, hub]}
+        format: ids
+        writer: 執筆者（新しい出典は data/sources.d/<id>.yml に足す。design §6.8）
+        shows: 参考の節（生成）
+        note: data の sources にある id、AI の利用の指定を確かめ済みのドメイン（検査の層）。骨格では空のリスト
+      volatility:
+        required: all
+        format: {vocab: volatility_days}
+        writer: 目次
+        shows: 点検の期限
+        catalog: true
+      sections:
+        format:
+          list:
+            title: {required: all, format: text, note: 平文}
+            anchor: {required: all, format: id, note: 一度決めたら変えない}
+            level: {format: {vocab: levels}, note: 省くとページと同じ。使うときはページの level 以上（検査の層）}
+        writer: 執筆者（anchor は一度決めたら変えない）
+        shows: 目次・節へのリンク
+        catalog: true
+        note: 本文の見出しに {#anchor} であるか（検査の層）
+      stage:
+        required: all
+        format: {vocab: stages}
+        writer: 執筆者（draft）・検証役（reviewed）・メイン（done）
+        shows: ページの最後の行・下書きの帯・一覧
+        note: 移り方は design §10.2。骨格では stub
+      updated:
+        required: all
+        format: date
+        writer: 中身を変えた担当
+        shows: ページの最後の行
+        note: 読者に見える中身を変えたときだけ進める
+      verified:
+        required: {stages: [reviewed, done]}
+        forbidden: {stages: [stub, draft]}
+        format: date
+        writer: 検証役か点検の道具（執筆者は書かない）
+        shows: バッジ・期限の日（design §9.2）
+        note: 出典を読み直して確かめた日。draft は持たない（バッジは「未検証」。design §8.5）
+      verified_with:
+        required: {stages: [reviewed, done]}
+        forbidden: {stages: [stub, draft]}
+        format:
+          object:
+            claude_code: {format: version, note: 確かめた Claude Code の版}
+            channel: {format: {vocab: channels}, note: 確かめた版の系列（latest か stable）}
+            models: {format: ids, note: 確かめたモデル（claude-opus-5-5 の形）}
+            app: {format: text, note: 確かめたアプリと時期（平文）}
+        min_keys: 1
+        writer: 検証役か点検の道具（執筆者は書かない）
+        shows: バッジ（確認日と版）
+        note: 数値の確認日は目印の中に持つ（DR-10）
+      checked:
+        format: date
+        writer: 点検の担当か道具
+        shows: 期限の日（design §9.2）
+        note: 点検で影響がないと確かめた日（出典は読み直していない）
+
+  facts:
+    output: facts.schema.json
+    file: data/facts.yml
+    title: 数値ファイル（data/facts.yml）
+    description: 変わりやすい値（facts）・機能の属性（features）・名称と旧名（names）。design §9.1・§6.7・DR-11・DR-18。本文には目印の間に道具が書く（design §8.4）
+    keys:
+      facts:
+        format:
+          list:
+            id: {required: all, format: id, note: 本文の目印 <!-- fact:begin <id> --> で指す}
+            title: {required: all, format: text, note: 何の値か（一覧と検査の表示に使う）}
+            value:
+              required: {without: table}
+              forbidden: {with: table}
+              format: value
+              note: 1つの値か、そのリスト。面やモデルで違う値は table に持つ
+            table: {format: table, note: 面やモデルで違う値の表（モデル × 面の既定の effort など。research/23 §3.2）}
+            unit: {format: text, note: 単位（照合の型にも使う）}
+            sentence: {format: text, note: "決まった文の型。{value}・{unit}・{checked} を道具が埋める（design §6.7）"}
+            match:
+              format:
+                object:
+                  units: {format: texts, note: 値の後に来る単位の語}
+                  before: {format: texts, note: 値の前に来る語}
+                  after: {format: texts, note: 値の後に来る語}
+                  pattern: {format: regex, note: 照らす正規表現}
+              min_keys: 1
+              note: 照合の型。持つ項目だけ、目印の外に手で書いた同じ値を検査の層が警告する（design §6.7）
+            sources: {required: all, format: ids, non_empty: true, note: data の sources にある id}
+            checked: {required: all, format: date, note: 確認日（出典で確かめた日）}
+            volatility: {format: {vocab: volatility_days}, note: 省くと site.yml の default_fact_volatility（design §9.2）}
+            versions:
+              format:
+                object:
+                  claude_code: {format: version, note: 値が関わる Claude Code の版}
+                  note: {format: text}
+              min_keys: 1
+              note: 関わる版
+            status: {required: all, format: {vocab: fact_statuses}, note: 一次資料で確かめたか}
+            conflict:
+              format:
+                list:
+                  value: {required: all, format: scalar}
+                  sources: {required: all, format: ids, non_empty: true}
+                  note: {format: text}
+              min_items: 1
+              note: 公式同士が本当に食い違うときの、もう一方の値と出典（面ごとの違いは table に持つ。design §6.7）
+            note: {format: text}
+        note: 変わりやすい値
+      features:
+        format:
+          list:
+            id: {required: all, format: id, note: ページの tracks で指す（catalog/README §5 の id）}
+            title: {required: all, format: text}
+            page: {required: all, format: id, note: 主のページ（用語索引。design §7・DR-15）のページの id}
+            surfaces: {format: {vocab_list: surfaces}, note: 使える面}
+            maturity: {format: {vocab: maturities}, note: 成熟度（requirements §5.2）}
+            enforcement: {format: {vocab: enforcements}, note: 強制力（お願いか鍵か。D14）}
+            load_timing: {format: {vocab: load_timings}, note: 読み込みの時期}
+            context_cost: {format: {vocab: context_costs}, note: コンテキストのコスト}
+            survives_compaction: {format: boolean, nullable: true, note: 圧縮で残るか（null は確かめていない）}
+            since:
+              format:
+                object:
+                  claude_code: {format: version}
+                  date: {format: partial_date}
+                  note: {format: text}
+              min_keys: 1
+              note: 入った版と時期（雛形が要る最低の版を道具が書く。design §8.7）
+            match_terms: {format: texts, note: CHANGELOG とリリースノートで照らす英語の語（design §9.4）}
+            sources: {required: all, format: ids, non_empty: true}
+            checked: {required: all, format: date}
+            volatility: {format: {vocab: volatility_days}, note: 省くと site.yml の default_fact_volatility}
+            status: {required: all, format: {vocab: fact_statuses}}
+            note: {format: text}
+        note: 機能の属性（ページの front matter に持たない。design §3.3 の注）
+      names:
+        format:
+          list:
+            id: {required: all, format: id}
+            current: {required: all, format: text, note: 今の名前}
+            old: {required: all, format: texts, non_empty: true, note: 旧名}
+            changed:
+              required: all
+              format:
+                object:
+                  date: {required: all, format: partial_date}
+                  until: {format: partial_date, note: 移り変わりに幅があるときの終わり}
+                  approx: {format: boolean, note: 「ごろ」}
+                  version: {format: version, note: 変わった Claude Code の版}
+                  note: {format: text}
+              note: 変わった時期と版
+            feature: {format: id, note: data の features の id（機能の名前のとき）}
+            sources: {required: all, format: ids, non_empty: true}
+            checked: {required: all, format: date}
+            status: {required: all, format: {vocab: fact_statuses}}
+            note: {format: text}
+        note: 名前と画面の変更の事実の正本（用語索引の旧名・変更の記録・台帳の時期に使う。design §9.1・DR-18）
+
+  sources:
+    output: sources.schema.json
+    file: [data/sources.yml, data/sources.d/<id>.yml]
+    title: 出典（data/sources.yml と data/sources.d/<id>.yml）
+    description: design §9.1・§6.8。sources.d/<id>.yml は執筆者がページごとに足すもの（同じ形）。道具が1つにまとめて、id と URL の重なり・domains の確かめを検査の層が見る
+    keys:
+      domains:
+        format:
+          list:
+            domain: {required: all, format: domain, note: ホスト名。その下のサブドメインにも当てる（いちばん長く一致するもの）}
+            checked: {required: all, format: date, note: tools/check_noai.py で確かめた日}
+            noai: {required: all, format: boolean, nullable: true, note: noai・noimageai の指定があるか（null は確かめられなかった）}
+            url: {format: url, note: 確かめた URL}
+            note: {format: text}
+        note: AI の利用を断る指定を確かめたドメイン（design §6.8。noai が true のドメインは permissions の deny にも入れる。§10.5 の H1）
+      sources:
+        format:
+          list:
+            id: {required: all, format: id, note: ページの sources で指す}
+            url: {required: all, format: url, note: 転送されるなら転送先（research/28）}
+            title: {required: all, format: text}
+            kind: {required: all, format: {vocab: source_kinds}, note: 種類}
+            publisher: {required: all, format: text, note: 発行者}
+            lang: {required: all, format: lang, note: 言語}
+            checked: {required: all, format: date, note: 確認日（出典を読んだ日）}
+            published: {format: partial_date, note: 発行・更新の日（記事・リリースノート）}
+            archive: {format: url, note: 写しの URL（Internet Archive。公式のページの改稿を見分ける手がかり。research/23）}
+            note: {format: text}
+        note: 出典。URL のドメインは domains で確かめ済みにする（検査の層）
+
+  outdated-advice:
+    output: outdated-advice.schema.json
+    file: data/outdated-advice.yml
+    title: 古くなった助言の台帳（data/outdated-advice.yml）
+    description: design §9.1・DR-18。行は消さない（古い記事の手順が通じない読者の入口になるため）
+    keys:
+      advice:
+        format:
+          list:
+            id: {required: all, format: id, note: 目次の registry の ledger の id。ページの outdated_advice で指す}
+            title: {required: all, format: text, note: 古い助言（平文）}
+            now: {required: all, format: text, note: 今どうするか}
+            changed:
+              required: {without: name}
+              forbidden: {with: name}
+              format:
+                object:
+                  date: {required: all, format: partial_date}
+                  until: {format: partial_date, note: 移り変わりに幅があるときの終わり}
+                  approx: {format: boolean, note: 「ごろ」}
+                  version: {format: version, note: 変わった Claude Code の版}
+                  note: {format: text}
+              note: 変わった時期と版（名前と画面の変更の行は持たず、name の時期を使う）
+            name: {format: id, note: 名前と画面の変更の行は data/facts.yml の names の id を指し、時期をそこから引く（DR-18）}
+            status: {required: all, format: {vocab: advice_statuses}}
+            principle: {required: all, format: {vocab_list: principles}, non_empty: true, note: どの原理の回避策だったか}
+            why_then: {format: text, note: かつてなぜ正しかったか}
+            how_to_find: {format: text, note: 自分の設定や記事で見つける方法}
+            sources: {required: all, format: ids, non_empty: true}
+            checked: {required: all, format: date}
+            note: {format: text}
+        note: 台帳の行
+
+  inspection:
+    output: inspection.schema.json
+    file: data/inspection.yml
+    title: 鮮度の点検の記録（data/inspection.yml）
+    description: 前回の点検の版と日付（design §9.1・§9.4 の1と5・DR-11）。点検の skill が、点検の終わりに書き換える
+    keys:
+      last:
+        required: all
+        format:
+          object:
+            date: {required: all, format: date, nullable: true, note: 前回の点検の日（まだなら null）}
+            claude_code: {required: all, format: version, nullable: true, note: CHANGELOG を読んだ最後の版}
+            release_notes: {required: all, format: date, nullable: true, note: Help Center と Claude Platform のリリースノートを読んだ最後の日}
+            news: {required: all, format: date, nullable: true, note: Anthropic のニュースを読んだ最後の日}
+            note: {format: text}
+        note: 前回の点検

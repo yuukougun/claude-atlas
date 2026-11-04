@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/yuukougun/claude-atlas/main/schema/outdated-advice.schema.json",
+  "$comment": "tools/make_schema.py が schema/keys.yml（キーの台帳）と schema/site.yml（語彙）から作る。手で直さない（直すのは keys.yml か site.yml。直したら作り直す）",
+  "title": "古くなった助言の台帳（data/outdated-advice.yml）",
+  "description": "当てるファイル：data/outdated-advice.yml。design §9.1・DR-18。行は消さない（古い記事の手順が通じない読者の入口になるため）",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "advice": {
+      "description": "台帳の行",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "now", "status", "principle", "sources", "checked"],
+        "properties": {
+          "id": {
+            "description": "目次の registry の ledger の id。ページの outdated_advice で指す",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "title": {
+            "description": "古い助言（平文）",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "now": {
+            "description": "今どうするか",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "changed": {
+            "description": "変わった時期と版（名前と画面の変更の行は持たず、name の時期を使う）",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["date"],
+            "properties": {
+              "date": {
+                "type": ["string", "integer"],
+                "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                "format": "partial-date",
+                "minimum": 1000,
+                "maximum": 9999,
+                "x-message": "日付（2026・2026-11・2026-11-04 の形）にする"
+              },
+              "until": {
+                "description": "移り変わりに幅があるときの終わり",
+                "type": ["string", "integer"],
+                "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                "format": "partial-date",
+                "minimum": 1000,
+                "maximum": 9999,
+                "x-message": "日付（2026・2026-11・2026-11-04 の形）にする"
+              },
+              "approx": {"description": "「ごろ」", "type": "boolean", "x-message": "true か false にする"},
+              "version": {
+                "description": "変わった Claude Code の版",
+                "type": "string",
+                "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+                "x-message": "版（2.1.317 の形の文字列）にする"
+              },
+              "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+            }
+          },
+          "name": {
+            "description": "名前と画面の変更の行は data/facts.yml の names の id を指し、時期をそこから引く（DR-18）",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "status": {"description": "語彙は site.yml の advice_statuses", "type": "string", "minLength": 1},
+          "principle": {
+            "description": "どの原理の回避策だったか。語彙は site.yml の principles",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"enum": ["見せる", "確かめる", "縛る", "握る"]},
+            "minItems": 1
+          },
+          "why_then": {
+            "description": "かつてなぜ正しかったか",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "how_to_find": {
+            "description": "自分の設定や記事で見つける方法",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "sources": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "x-message": "id（英小文字・数字・ハイフン）にする"
+            },
+            "minItems": 1
+          },
+          "checked": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+            "format": "date",
+            "x-message": "日付（2026-11-04 の形）にする"
+          },
+          "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+        },
+        "allOf": [
+          {
+            "if": {"not": {"required": ["name"]}},
+            "then": {"required": ["changed"], "x-message": "changed がない（name がないときは書く）"}
+          },
+          {
+            "if": {"required": ["name"]},
+            "then": {
+              "properties": {
+                "changed": {"not": {}, "x-message": "name があるときは changed を書かない（null も書かない）"}
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

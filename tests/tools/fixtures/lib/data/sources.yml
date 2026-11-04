@@ -1,0 +1,21 @@
+# 試験用の出典（ドメインは example.* だけ）
+domains:
+  - {domain: example.com, checked: 2026-11-01, noai: false, url: "https://example.com/docs/limit"}
+  - {domain: example.org, checked: 2026-11-01, noai: true, note: 試験用の断るドメイン}
+sources:
+  - id: sample-doc
+    url: https://example.com/docs/limit
+    title: 試験用の文書
+    kind: 公式文書
+    publisher: 試験用の発行者
+    lang: ja
+    checked: 2026-10-15
+    archive: https://web.archive.org/web/2026/https://example.com/docs/limit
+  - id: sample-blog
+    url: https://blog.example.com/post
+    title: 試験用の記事
+    kind: 公式ブログ
+    publisher: 試験用の発行者
+    lang: en
+    checked: 2026-10-10
+    published: 2026-09

@@ -1,0 +1,430 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/yuukougun/claude-atlas/main/schema/facts.schema.json",
+  "$comment": "tools/make_schema.py が schema/keys.yml（キーの台帳）と schema/site.yml（語彙）から作る。手で直さない（直すのは keys.yml か site.yml。直したら作り直す）",
+  "title": "数値ファイル（data/facts.yml）",
+  "description": "当てるファイル：data/facts.yml。変わりやすい値（facts）・機能の属性（features）・名称と旧名（names）。design §9.1・§6.7・DR-11・DR-18。本文には目印の間に道具が書く（design §8.4）",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "facts": {
+      "description": "変わりやすい値",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "sources", "checked", "status"],
+        "properties": {
+          "id": {
+            "description": "本文の目印 <!-- fact:begin <id> --> で指す",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "title": {
+            "description": "何の値か（一覧と検査の表示に使う）",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "value": {
+            "description": "1つの値か、そのリスト。面やモデルで違う値は table に持つ",
+            "$ref": "#/definitions/value"
+          },
+          "table": {
+            "description": "面やモデルで違う値の表（モデル × 面の既定の effort など。research/23 §3.2）",
+            "$ref": "#/definitions/table"
+          },
+          "unit": {
+            "description": "単位（照合の型にも使う）",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "sentence": {
+            "description": "決まった文の型。{value}・{unit}・{checked} を道具が埋める（design §6.7）",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "match": {
+            "description": "照合の型。持つ項目だけ、目印の外に手で書いた同じ値を検査の層が警告する（design §6.7）",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "units": {
+                "description": "値の後に来る単位の語",
+                "type": "array",
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+              },
+              "before": {
+                "description": "値の前に来る語",
+                "type": "array",
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+              },
+              "after": {
+                "description": "値の後に来る語",
+                "type": "array",
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+              },
+              "pattern": {
+                "description": "照らす正規表現",
+                "type": "string",
+                "minLength": 1,
+                "format": "regex",
+                "x-message": "正規表現（Python の re の書き方）にする"
+              }
+            },
+            "minProperties": 1
+          },
+          "sources": {
+            "description": "data の sources にある id",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "x-message": "id（英小文字・数字・ハイフン）にする"
+            },
+            "minItems": 1
+          },
+          "checked": {
+            "description": "確認日（出典で確かめた日）",
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+            "format": "date",
+            "x-message": "日付（2026-11-04 の形）にする"
+          },
+          "volatility": {
+            "description": "省くと site.yml の default_fact_volatility（design §9.2）。語彙は site.yml の volatility_days",
+            "enum": ["低", "中", "高"]
+          },
+          "versions": {
+            "description": "関わる版",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claude_code": {
+                "description": "値が関わる Claude Code の版",
+                "type": "string",
+                "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+                "x-message": "版（2.1.317 の形の文字列）にする"
+              },
+              "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+            },
+            "minProperties": 1
+          },
+          "status": {
+            "description": "一次資料で確かめたか。語彙は site.yml の fact_statuses",
+            "type": "string",
+            "minLength": 1
+          },
+          "conflict": {
+            "description": "公式同士が本当に食い違うときの、もう一方の値と出典（面ごとの違いは table に持つ。design §6.7）",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["value", "sources"],
+              "properties": {
+                "value": {
+                  "type": ["string", "number", "boolean", "null"],
+                  "x-message": "文字列・数・真偽・null のどれかにする"
+                },
+                "sources": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+                    "x-message": "id（英小文字・数字・ハイフン）にする"
+                  },
+                  "minItems": 1
+                },
+                "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+              }
+            },
+            "minItems": 1
+          },
+          "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+        },
+        "allOf": [
+          {
+            "if": {"not": {"required": ["table"]}},
+            "then": {"required": ["value"], "x-message": "value がない（table がないときは書く）"}
+          },
+          {
+            "if": {"required": ["table"]},
+            "then": {
+              "properties": {
+                "value": {"not": {}, "x-message": "table があるときは value を書かない（null も書かない）"}
+              }
+            }
+          }
+        ]
+      }
+    },
+    "features": {
+      "description": "機能の属性（ページの front matter に持たない。design §3.3 の注）",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "page", "sources", "checked", "status"],
+        "properties": {
+          "id": {
+            "description": "ページの tracks で指す（catalog/README §5 の id）",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "title": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"},
+          "page": {
+            "description": "主のページ（用語索引。design §7・DR-15）のページの id",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "surfaces": {
+            "description": "使える面。語彙は site.yml の surfaces",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"enum": ["app", "claude-code", "api"]}
+          },
+          "maturity": {
+            "description": "成熟度（requirements §5.2）。語彙は site.yml の maturities",
+            "type": "string",
+            "minLength": 1
+          },
+          "enforcement": {
+            "description": "強制力（お願いか鍵か。D14）。語彙は site.yml の enforcements",
+            "type": "string",
+            "minLength": 1
+          },
+          "load_timing": {
+            "description": "読み込みの時期。語彙は site.yml の load_timings",
+            "type": "string",
+            "minLength": 1
+          },
+          "context_cost": {
+            "description": "コンテキストのコスト。語彙は site.yml の context_costs",
+            "type": "string",
+            "minLength": 1
+          },
+          "survives_compaction": {
+            "description": "圧縮で残るか（null は確かめていない）",
+            "type": ["boolean", "null"],
+            "x-message": "true か false にする"
+          },
+          "since": {
+            "description": "入った版と時期（雛形が要る最低の版を道具が書く。design §8.7）",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claude_code": {
+                "type": "string",
+                "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+                "x-message": "版（2.1.317 の形の文字列）にする"
+              },
+              "date": {
+                "type": ["string", "integer"],
+                "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                "format": "partial-date",
+                "minimum": 1000,
+                "maximum": 9999,
+                "x-message": "日付（2026・2026-11・2026-11-04 の形）にする"
+              },
+              "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+            },
+            "minProperties": 1
+          },
+          "match_terms": {
+            "description": "CHANGELOG とリリースノートで照らす英語の語（design §9.4）",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+          },
+          "sources": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "x-message": "id（英小文字・数字・ハイフン）にする"
+            },
+            "minItems": 1
+          },
+          "checked": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+            "format": "date",
+            "x-message": "日付（2026-11-04 の形）にする"
+          },
+          "volatility": {
+            "description": "省くと site.yml の default_fact_volatility。語彙は site.yml の volatility_days",
+            "enum": ["低", "中", "高"]
+          },
+          "status": {"description": "語彙は site.yml の fact_statuses", "type": "string", "minLength": 1},
+          "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+        }
+      }
+    },
+    "names": {
+      "description": "名前と画面の変更の事実の正本（用語索引の旧名・変更の記録・台帳の時期に使う。design §9.1・DR-18）",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "current", "old", "changed", "sources", "checked", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "current": {
+            "description": "今の名前",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "old": {
+            "description": "旧名",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"},
+            "minItems": 1
+          },
+          "changed": {
+            "description": "変わった時期と版",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["date"],
+            "properties": {
+              "date": {
+                "type": ["string", "integer"],
+                "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                "format": "partial-date",
+                "minimum": 1000,
+                "maximum": 9999,
+                "x-message": "日付（2026・2026-11・2026-11-04 の形）にする"
+              },
+              "until": {
+                "description": "移り変わりに幅があるときの終わり",
+                "type": ["string", "integer"],
+                "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                "format": "partial-date",
+                "minimum": 1000,
+                "maximum": 9999,
+                "x-message": "日付（2026・2026-11・2026-11-04 の形）にする"
+              },
+              "approx": {"description": "「ごろ」", "type": "boolean", "x-message": "true か false にする"},
+              "version": {
+                "description": "変わった Claude Code の版",
+                "type": "string",
+                "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+                "x-message": "版（2.1.317 の形の文字列）にする"
+              },
+              "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+            }
+          },
+          "feature": {
+            "description": "data の features の id（機能の名前のとき）",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "sources": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "x-message": "id（英小文字・数字・ハイフン）にする"
+            },
+            "minItems": 1
+          },
+          "checked": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+            "format": "date",
+            "x-message": "日付（2026-11-04 の形）にする"
+          },
+          "status": {"description": "語彙は site.yml の fact_statuses", "type": "string", "minLength": 1},
+          "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+        }
+      }
+    }
+  },
+  "definitions": {
+    "value": {
+      "description": "数値ファイルの1つの値：文字列・数・真偽か、そのリスト",
+      "type": ["string", "number", "boolean", "array"],
+      "minItems": 1,
+      "items": {"type": ["string", "number", "boolean"], "x-message": "リストの値は文字列・数・真偽にする"},
+      "x-message": "値は文字列・数・真偽か、そのリストにする"
+    },
+    "cell": {
+      "description": "表の1つの値：文字列・数・真偽・null（値を書いた文書がない）か、{value, note, sources}",
+      "type": ["string", "number", "boolean", "null", "object"],
+      "additionalProperties": false,
+      "required": ["value"],
+      "properties": {
+        "value": {"type": ["string", "number", "boolean", "null"], "x-message": "文字列・数・真偽・null のどれかにする"},
+        "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"},
+        "sources": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          }
+        }
+      },
+      "x-message": "表の値は、値か {value, note, sources} にする"
+    },
+    "table": {
+      "description": "面やモデルで違う値の表。rows は行が何か（表の左上の見出し）、columns は列の id か {id, title}、cells は行ごとの値（row に行の名前、列の id をキーに値）。列の id と cells のキーの対応は検査の層が見る",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rows", "columns", "cells"],
+      "properties": {
+        "rows": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"},
+        "columns": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": ["string", "object"],
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "required": ["id"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+                "x-message": "id（英小文字・数字・ハイフン）にする"
+              },
+              "title": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+            },
+            "x-message": "列は id か {id, title} にする"
+          }
+        },
+        "cells": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["row"],
+            "properties": {"row": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}},
+            "additionalProperties": {"$ref": "#/definitions/cell"},
+            "x-message": "行は {row: 行の名前, <列の id>: 値, …} にする"
+          }
+        }
+      }
+    }
+  }
+}

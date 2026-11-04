@@ -1,0 +1,392 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/yuukougun/claude-atlas/main/schema/page.schema.json",
+  "$comment": "tools/make_schema.py が schema/keys.yml（キーの台帳）と schema/site.yml（語彙）から作る。手で直さない（直すのは keys.yml か site.yml。直したら作り直す）",
+  "title": "claude-atlas のページの front matter",
+  "description": "当てるファイル：docs/<field>/<id>.md。キーの台帳は planning/design.md §3.3。参照の解決・循環・レベルの逆転・比例則・ファイル名との一致・本文との照合は検査の層が見る",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "title", "type", "field", "order", "priority", "summary", "prerequisites", "volatility", "stage", "updated"
+  ],
+  "properties": {
+    "id": {
+      "description": "書く人：目次（メイン）。写る先：URL・すべての生成物。一意で、ファイル名と同じ（検査の層）。骨格の後は変えない。骨格で目次から写す",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "x-message": "id（英小文字・数字・ハイフン）にする"
+    },
+    "title": {
+      "description": "書く人：目次。写る先：見出し・一覧・索引・llms.txt。平文。骨格で目次から写す",
+      "type": "string",
+      "minLength": 1,
+      "x-message": "空でない文字列（平文）にする"
+    },
+    "nav_title": {
+      "description": "書く人：目次。写る先：ナビゲーションだけ（ページの見出しには使わない）。平文。題名が長いときだけ。骨格で目次から写す",
+      "type": ["string", "null"],
+      "minLength": 1,
+      "x-message": "空でない文字列（平文）にする"
+    },
+    "aliases": {
+      "description": "書く人：目次（執筆者は提案）。写る先：用語索引・検索・冒頭の別名の行。平文。本文の冒頭にあるか、ほかのページの題名・別名と重ならないか（検査の層）。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+    },
+    "type": {
+      "description": "書く人：目次。写る先：ナビゲーション・一覧。語彙は site.yml の types。骨格で目次から写す",
+      "enum": ["concept", "feature", "symptom", "comparison", "recipe", "judgment", "ledger", "guide", "hub"]
+    },
+    "field": {
+      "description": "書く人：目次。写る先：ナビゲーション・一覧。骨格で、目次の分野のファイルの field から写す。ページのフォルダと同じ（検査の層）。語彙は site.yml の fields",
+      "enum": [
+        "start", "basics", "surfaces", "models", "prompting", "context", "app", "cli", "extend", "verify", "eval",
+        "enforce", "safety", "delegate", "judgment", "api", "cost", "japanese", "recipes", "team", "contest", "symptoms",
+        "changes"
+      ]
+    },
+    "chapter": {
+      "description": "書く人：目次。写る先：ナビゲーション・一覧。目次の分野のファイルの chapters にあるか（検査の層）。骨格で目次から写す",
+      "type": ["string", "null"],
+      "minLength": 1,
+      "x-message": "空でない文字列（平文）にする"
+    },
+    "order": {
+      "description": "書く人：目次。写る先：ナビゲーション・一覧。分野の中の並び順。骨格で、目次の pages の並びから付ける",
+      "type": "integer",
+      "minimum": 0,
+      "x-message": "0 以上の整数にする"
+    },
+    "level": {
+      "description": "書く人：目次。写る先：バッジ・ロードマップ。前提の逆転（検査の層）。語彙は site.yml の levels。骨格で目次から写す",
+      "enum": ["使う", "整える", "任せる", "仕組みにする", "回す"]
+    },
+    "priority": {
+      "description": "書く人：目次。写る先：初版の範囲（表示しない）。必須の前提は必須（検査の層）。語彙は site.yml の priorities。骨格で目次から写す",
+      "enum": ["必須", "推奨", "任意"]
+    },
+    "surfaces": {
+      "description": "書く人：目次（執筆者は提案）。写る先：バッジ・一覧・逆引き。型による（catalog/README §4.7。型ごとの規則は検査の層）。語彙は site.yml の surfaces。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["app", "claude-code", "api"]}
+    },
+    "principle": {
+      "description": "書く人：目次（執筆者は提案）。写る先：バッジ・一覧・逆引き。型による。主に関わる原理を1〜2個。語彙は site.yml の principles。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["見せる", "確かめる", "縛る", "握る"]}
+    },
+    "prevents": {
+      "description": "書く人：目次（執筆者は提案）。写る先：バッジ・一覧・逆引き。型による（症状のページは1つ以上。検査の層）。語彙は site.yml の prevents。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": ["見えていない", "散らかっている", "確かめていない", "縛っていない", "合っていない", "境界がない"]
+      }
+    },
+    "pitfalls": {
+      "description": "書く人：目次（執筆者は提案）。写る先：バッジ・一覧・逆引き。型による。語彙は site.yml の pitfalls。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["預けすぎる", "同意を根拠にする", "やめられない", "体感を信じる", "みんなの案になる"]}
+    },
+    "scenes": {
+      "description": "書く人：目次（執筆者は提案）。写る先：バッジ・一覧・逆引き。型による。語彙は site.yml の scenes。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["開発", "文章", "調べもの", "データ分析", "学習", "コンテスト", "チーム"]}
+    },
+    "summary": {
+      "description": "書く人：目次（執筆者は提案）。写る先：一覧・索引・llms.txt・知識マップ。平文、1〜2文・site.yml の summary_max_chars 字以内、summary_banned_words を使わない、変わりやすい値を書かない（検査の層）。骨格で目次から写す",
+      "type": "string",
+      "minLength": 1,
+      "x-message": "空でない文字列（平文）にする"
+    },
+    "signs": {
+      "description": "書く人：目次（執筆者は提案）。写る先：逆引き辞典。型による（症状のページは type が symptom のサインを2つ以上。検査の層）。骨格で目次から写す",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "text"],
+        "properties": {
+          "type": {"description": "語彙は site.yml の sign_types", "enum": ["symptom", "goal", "situation"]},
+          "text": {
+            "description": "平文。読者の言葉",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          }
+        }
+      }
+    },
+    "wave": {
+      "description": "書く人：目次（骨格で写す）。写る先：第一波の一覧（道具が routes と前提でたどって出す）・公開の区切り。第一波の核のページだけ（site.yml の first_wave_core_fields の分野。検査の層）。骨格で目次から写す",
+      "const": 1,
+      "x-message": "1 にする（第一波の核でなければ書かない）"
+    },
+    "prerequisites": {
+      "description": "書く人：目次（執筆者は提案）。写る先：知識マップ・ページ下部。ページの id（節は書かない）。直接の前提だけ。解決・循環・逆転・比例則（検査の層）。symptom の前提は design §3.1 の2。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "x-message": "id（英小文字・数字・ハイフン）にする"
+      }
+    },
+    "related": {
+      "description": "書く人：目次（執筆者は提案）。写る先：知識マップ・ページ下部。id か id#anchor。解決（anchor も）。routes にない近いページだけ（検査の層）。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*(#[a-z0-9]+(-[a-z0-9]+)*)?$",
+        "x-message": "ページの id か id#anchor にする"
+      }
+    },
+    "routes": {
+      "description": "書く人：目次（執筆者は提案）。写る先：診断の節の振り分け（目印）・知識マップ・症状の原因別の表・第一波の数え方。解決を検査する。段階と優先度の規則は当てない（design §3.1 の3）。骨格で目次から写す",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["cause", "to"],
+        "properties": {
+          "cause": {
+            "description": "そのページの prevents か pitfalls の値（検査の層）。語彙は site.yml の prevents・pitfalls",
+            "enum": [
+              "見えていない", "散らかっている", "確かめていない", "縛っていない", "合っていない", "境界がない",
+              "預けすぎる", "同意を根拠にする", "やめられない", "体感を信じる", "みんなの案になる"
+            ]
+          },
+          "to": {
+            "description": "原因ごとに中心の対処を1〜3件、近い順",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*(#[a-z0-9]+(-[a-z0-9]+)*)?$",
+              "x-message": "ページの id か id#anchor にする"
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "tracks": {
+      "description": "書く人：目次（執筆者は提案）。写る先：機能のバッジ・点検。data/facts.yml の features にある id（検査の層）。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "x-message": "id（英小文字・数字・ハイフン）にする"
+      }
+    },
+    "outdated_advice": {
+      "description": "書く人：目次（執筆者は提案。2026-11-04 のメインの決定。執筆者が書くのは sections・stage・updated・sources だけ。design §10.2）。写る先：台帳の逆リンク。data/outdated-advice.yml にある id（検査の層）。骨格で目次から写す",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "x-message": "id（英小文字・数字・ハイフン）にする"
+      }
+    },
+    "sources": {
+      "description": "書く人：執筆者（新しい出典は data/sources.d/<id>.yml に足す。design §6.8）。写る先：参考の節（生成）。data の sources にある id、AI の利用の指定を確かめ済みのドメイン（検査の層）。骨格では空のリスト",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "x-message": "id（英小文字・数字・ハイフン）にする"
+      }
+    },
+    "volatility": {
+      "description": "書く人：目次。写る先：点検の期限。語彙は site.yml の volatility_days。骨格で目次から写す",
+      "enum": ["低", "中", "高"]
+    },
+    "sections": {
+      "description": "書く人：執筆者（anchor は一度決めたら変えない）。写る先：目次・節へのリンク。本文の見出しに {#anchor} であるか（検査の層）。骨格で目次から写す",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "anchor"],
+        "properties": {
+          "title": {
+            "description": "平文",
+            "type": "string",
+            "minLength": 1,
+            "x-message": "空でない文字列（平文）にする"
+          },
+          "anchor": {
+            "description": "一度決めたら変えない",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          },
+          "level": {
+            "description": "省くとページと同じ。使うときはページの level 以上（検査の層）。語彙は site.yml の levels",
+            "enum": ["使う", "整える", "任せる", "仕組みにする", "回す"]
+          }
+        }
+      }
+    },
+    "stage": {
+      "description": "書く人：執筆者（draft）・検証役（reviewed）・メイン（done）。写る先：ページの最後の行・下書きの帯・一覧。移り方は design §10.2。骨格では stub。語彙は site.yml の stages",
+      "enum": ["stub", "draft", "reviewed", "done"]
+    },
+    "updated": {
+      "description": "書く人：中身を変えた担当。写る先：ページの最後の行。読者に見える中身を変えたときだけ進める",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+      "format": "date",
+      "x-message": "日付（2026-11-04 の形）にする"
+    },
+    "verified": {
+      "description": "書く人：検証役か点検の道具（執筆者は書かない）。写る先：バッジ・期限の日（design §9.2）。出典を読み直して確かめた日。draft は持たない（バッジは「未検証」。design §8.5）",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+      "format": "date",
+      "x-message": "日付（2026-11-04 の形）にする"
+    },
+    "verified_with": {
+      "description": "書く人：検証役か点検の道具（執筆者は書かない）。写る先：バッジ（確認日と版）。数値の確認日は目印の中に持つ（DR-10）",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "claude_code": {
+          "description": "確かめた Claude Code の版",
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "x-message": "版（2.1.317 の形の文字列）にする"
+        },
+        "channel": {
+          "description": "確かめた版の系列（latest か stable）。語彙は site.yml の channels",
+          "type": "string",
+          "minLength": 1
+        },
+        "models": {
+          "description": "確かめたモデル（claude-opus-5-5 の形）",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
+          }
+        },
+        "app": {
+          "description": "確かめたアプリと時期（平文）",
+          "type": "string",
+          "minLength": 1,
+          "x-message": "空でない文字列（平文）にする"
+        }
+      },
+      "minProperties": 1
+    },
+    "checked": {
+      "description": "書く人：点検の担当か道具。写る先：期限の日（design §9.2）。点検で影響がないと確かめた日（出典は読み直していない）",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+      "format": "date",
+      "x-message": "日付（2026-11-04 の形）にする"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": ["type"],
+        "properties": {"type": {"enum": ["concept", "feature", "symptom", "comparison", "recipe", "judgment"]}}
+      },
+      "then": {
+        "required": ["level"],
+        "x-message": "level がない（type が ledger・guide・hub（site.yml の types_without_level）のほかのページは書く）"
+      }
+    },
+    {
+      "if": {"required": ["type"], "properties": {"type": {"enum": ["ledger", "guide", "hub"]}}},
+      "then": {
+        "properties": {
+          "level": {
+            "not": {},
+            "x-message": "type が ledger・guide・hub（site.yml の types_without_level）のページは level を書かない（null も書かない）"
+          }
+        }
+      }
+    },
+    {
+      "if": {"required": ["type"], "properties": {"type": {"enum": ["symptom"]}}},
+      "then": {
+        "required": ["routes"],
+        "x-message": "routes がない（type が symptom のページは書く）",
+        "properties": {"routes": {"minItems": 1, "x-message": "routes を空にしない（type が symptom のページ）"}}
+      }
+    },
+    {
+      "if": {
+        "required": ["type"],
+        "properties": {
+          "type": {"enum": ["concept", "feature", "comparison", "recipe", "judgment", "ledger", "guide", "hub"]}
+        }
+      },
+      "then": {
+        "properties": {
+          "routes": {"not": {}, "x-message": "type が symptom のほかのページは routes を書かない（null も書かない）"}
+        }
+      }
+    },
+    {
+      "if": {"required": ["type"], "properties": {"type": {"enum": ["feature"]}}},
+      "then": {
+        "required": ["tracks"],
+        "x-message": "tracks がない（type が feature のページは書く）",
+        "properties": {"tracks": {"minItems": 1, "x-message": "tracks を空にしない（type が feature のページ）"}}
+      }
+    },
+    {
+      "if": {
+        "required": ["type"],
+        "properties": {
+          "type": {"enum": ["concept", "feature", "symptom", "comparison", "recipe", "judgment", "ledger"]}
+        }
+      },
+      "then": {"required": ["sources"], "x-message": "sources がない（type が guide・hub のほかのページは書く）"}
+    },
+    {
+      "if": {"required": ["stage"], "properties": {"stage": {"enum": ["reviewed", "done"]}}},
+      "then": {"required": ["verified"], "x-message": "verified がない（stage が reviewed・done のページは書く）"}
+    },
+    {
+      "if": {"required": ["stage"], "properties": {"stage": {"enum": ["stub", "draft"]}}},
+      "then": {
+        "properties": {
+          "verified": {"not": {}, "x-message": "stage が stub・draft のページは verified を書かない（null も書かない）"}
+        }
+      }
+    },
+    {
+      "if": {"required": ["stage"], "properties": {"stage": {"enum": ["reviewed", "done"]}}},
+      "then": {
+        "required": ["verified_with"],
+        "x-message": "verified_with がない（stage が reviewed・done のページは書く）"
+      }
+    },
+    {
+      "if": {"required": ["stage"], "properties": {"stage": {"enum": ["stub", "draft"]}}},
+      "then": {
+        "properties": {
+          "verified_with": {
+            "not": {},
+            "x-message": "stage が stub・draft のページは verified_with を書かない（null も書かない）"
+          }
+        }
+      }
+    }
+  ]
+}

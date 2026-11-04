@@ -1,0 +1,8 @@
+# 鮮度の点検の記録（design §9.1・§9.4 の1と5・DR-11）。形は schema/inspection.schema.json。
+# 点検は、ここにある版と日付より後の CHANGELOG・リリースノート・ニュースを読む。点検の skill が、終わったときに書き換える。
+
+last:
+  date: null            # 前回の点検の日（YYYY-MM-DD）
+  claude_code: null     # CHANGELOG を読んだ最後の Claude Code の版（x.y.z）
+  release_notes: null   # Help Center と Claude Platform のリリースノートを読んだ最後の日
+  news: null            # Anthropic のニュースを読んだ最後の日

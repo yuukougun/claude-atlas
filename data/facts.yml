@@ -1,0 +1,43 @@
+# 数値ファイル（design §9.1・§6.7・DR-11・DR-18）。形は schema/facts.schema.json（schema/keys.yml の facts の節から作る）。
+# - facts：変わりやすい値（数値・既定値・料金・上限など）。本文には手で書かず、<!-- fact:begin <id> --> 〜 <!-- fact:end -->
+#   の間に道具が値・決まった文・確認日を書く（design §8.4）。面やモデルで違う値は table に持つ（research/23 §3.2）
+# - features：機能の属性（成熟度・強制力・読み込みの時期・コンテキストのコスト・圧縮で残るか・入った版・主のページ）。
+#   ページは tracks で id を指し、バッジと比較表は道具が作る（design §3.3 の注）。id の元は planning/catalog/features.yaml
+# - names：名称と旧名（名前と画面の変更の事実の正本。台帳の行は id を指して時期をここから引く。DR-18）
+# - 値は一次資料で確かめてから入れ、sources（data/sources.yml の id）と checked（確認日）を付ける。確かめられない値は
+#   status: 未確認 にする（大会の規則などは、未確認の値を下書きでも出さない。design §6.13）
+# - 初版は工程6b（担当が作り、別の担当が出典と照らす）
+#
+# 書き方の例（値はすべて置き場所の印。実際の値ではない）:
+#   facts:
+#     - id: <id>
+#       title: <何の値か>
+#       value: <値>                      # 面やモデルで違うなら value の代わりに table
+#       unit: <単位>
+#       sentence: "<決まった文。{value}・{unit}・{checked} を道具が埋める>"
+#       match: {after: [<値の後に来る語>]}   # 照合の型（目印の外の手書きを見つける。持つ項目だけ照らす）
+#       sources: [<sources の id>]
+#       checked: <確認日 YYYY-MM-DD>
+#       volatility: 高                    # 省くと site.yml の default_fact_volatility
+#       status: 確認済み
+#     - id: <id>
+#       title: <何の値か>
+#       table:
+#         rows: <行が何か>
+#         columns: [api, claude-code, app]
+#         cells:
+#           - {row: <行の名前>, api: <値>, claude-code: <値>, app: {value: null, note: <値を書いた文書がない、など>}}
+#       sources: [<sources の id>]
+#       checked: <確認日>
+#       status: 確認済み
+#   features:
+#     - {id: <tracks の id>, title: <機能の名前>, page: <主のページの id>, maturity: <成熟度>, enforcement: <お願い・鍵>,
+#        since: {claude_code: <x.y.z>}, match_terms: [<CHANGELOG で照らす英語の語>], sources: [<id>], checked: <確認日>,
+#        status: 確認済み}
+#   names:
+#     - {id: <id>, current: <今の名前>, old: [<旧名>], changed: {date: <YYYY-MM か YYYY-MM-DD>}, sources: [<id>],
+#        checked: <確認日>, status: 確認済み}
+
+facts: []
+features: []
+names: []

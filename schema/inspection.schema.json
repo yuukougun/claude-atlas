@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/yuukougun/claude-atlas/main/schema/inspection.schema.json",
+  "$comment": "tools/make_schema.py が schema/keys.yml（キーの台帳）と schema/site.yml（語彙）から作る。手で直さない（直すのは keys.yml か site.yml。直したら作り直す）",
+  "title": "鮮度の点検の記録（data/inspection.yml）",
+  "description": "当てるファイル：data/inspection.yml。前回の点検の版と日付（design §9.1・§9.4 の1と5・DR-11）。点検の skill が、点検の終わりに書き換える",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["last"],
+  "properties": {
+    "last": {
+      "description": "前回の点検",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "claude_code", "release_notes", "news"],
+      "properties": {
+        "date": {
+          "description": "前回の点検の日（まだなら null）",
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+          "format": "date",
+          "x-message": "日付（2026-11-04 の形）にする"
+        },
+        "claude_code": {
+          "description": "CHANGELOG を読んだ最後の版",
+          "type": ["string", "null"],
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "x-message": "版（2.1.317 の形の文字列）にする"
+        },
+        "release_notes": {
+          "description": "Help Center と Claude Platform のリリースノートを読んだ最後の日",
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+          "format": "date",
+          "x-message": "日付（2026-11-04 の形）にする"
+        },
+        "news": {
+          "description": "Anthropic のニュースを読んだ最後の日",
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+          "format": "date",
+          "x-message": "日付（2026-11-04 の形）にする"
+        },
+        "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+      }
+    }
+  }
+}

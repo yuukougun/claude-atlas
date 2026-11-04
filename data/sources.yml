@@ -1,0 +1,26 @@
+# 出典（design §9.1・§6.8）。形は schema/sources.schema.json（schema/keys.yml の sources の節から作る）。
+# - domains：AI の利用を断る指定を確かめたドメイン。新しいドメインは、資料にする前に `python3 tools/check_noai.py <URL>` で
+#   確かめて足す。noai が true のドメインは資料にせず（リンクだけはよい）、.claude/settings.json の permissions の deny
+#   にも入れる（design §10.5 の H1。検査の層が照らす）。atcoder.jp と codeforces.com は開かない
+# - sources：ページの sources が id で指す出典。URL は転送先を書く（research/28）。写しの URL（Internet Archive）は、
+#   公式のページの改稿を見分ける手がかりになる（research/23）
+# - 執筆者は、このファイルではなく data/sources.d/<ページの id>.yml に同じ形で足す（道具が1つにまとめ、id と URL の
+#   重なりを検査の層が見る）
+# - 初版は工程6b
+#
+# 書き方の例（値はすべて置き場所の印）:
+#   domains:
+#     - {domain: <ホスト名>, checked: <確かめた日 YYYY-MM-DD>, noai: false, url: <確かめた URL>}
+#   sources:
+#     - id: <id>
+#       url: <URL（転送先）>
+#       title: <題名>
+#       kind: <種類（公式文書・公式ブログ・CHANGELOG・リリースノート・実践者・研究・報道）>
+#       publisher: <発行者>
+#       lang: <ja・en など>
+#       checked: <確認日>
+#       published: <発行・更新の日。任意>
+#       archive: <写しの URL。任意>
+
+domains: []
+sources: []

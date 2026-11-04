@@ -1,0 +1,23 @@
+# 古くなった助言の台帳（design §9.1・DR-18。research/00 §5）。形は schema/outdated-advice.schema.json
+# （schema/keys.yml の outdated-advice の節から作る）。
+# - id は目次の registry の ledger の id（planning/catalog/registry.yaml）。ページは outdated_advice で指し、台帳のページ
+#   （changes の outdated-advice-ledger）と逆リンクは道具が作る
+# - 行は消さない（古い記事の手順が通じない読者の入口になるため。例：改名されて、今は別の機能になったコマンド）
+# - 名前と画面の変更の行は changed を持たず、name で data/facts.yml の names の id を指す（時期はそこから引く。DR-18）
+# - 状態（撤回・置換・条件付き）が変わる更新は、作者が承認する（design §9.4 の4）
+# - 初版は工程6b
+#
+# 書き方の例（値はすべて置き場所の印）:
+#   advice:
+#     - id: <registry の ledger の id>
+#       title: <古い助言>
+#       now: <今どうするか>
+#       changed: {date: <YYYY か YYYY-MM か YYYY-MM-DD>, version: <x.y.z。任意>, approx: true}   # 名前の変更なら name
+#       status: <撤回・置換・条件付き>
+#       principle: [<どの原理の回避策だったか>]
+#       why_then: <かつてなぜ正しかったか>
+#       how_to_find: <自分の設定や記事で見つける方法>
+#       sources: [<sources の id>]
+#       checked: <確認日>
+
+advice: []
