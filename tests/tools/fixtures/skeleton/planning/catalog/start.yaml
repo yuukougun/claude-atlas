@@ -1,0 +1,38 @@
+# 骨格の道具の試験用（値は作りもの）
+field: start
+chapters: [使い方, 地図]
+pages:
+  - id: how-to-use
+    chapter: 使い方
+    title: この辞典の引き方
+    nav_title: null
+    aliases: [使い方]
+    type: guide
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code, api]
+    summary: "困りごと・やりたいこと・名前から目的のページへ着く道が分かる。"
+    signs:
+      - {type: situation, text: "この辞典を初めて開いた"}
+    prerequisites: []
+    related: [request-vs-lock, knowledge-map]
+    volatility: 低
+    sections:
+      - {title: "引き方（困りごと・名前から）", anchor: lookup}
+      - {title: "段階と下書きの帯", anchor: stage}
+    materials: ["試験"]
+    notes: null
+
+  - id: knowledge-map
+    chapter: 地図
+    title: 知識マップ
+    type: hub
+    priority: 推奨
+    wave: 1
+    summary: "ページの前提と振り分けを図でたどれる。"
+    signs:
+      - {type: goal, text: "どこから読めばよいか知りたい"}
+    prerequisites: [how-to-use]
+    volatility: 低
+    visual: {kind: dynamic, text: "前提の図"}
+    materials: ["試験"]

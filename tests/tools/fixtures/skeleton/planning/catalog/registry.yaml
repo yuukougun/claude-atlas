@@ -1,0 +1,14 @@
+# 骨格の道具の試験用の registry（値は作りもの）。骨格の道具は読まないが、目次の読む層が置き場所として求める。
+pages:
+  - {id: how-to-use, field: start, title: この辞典の引き方, type: guide, priority: 必須}
+  - {id: knowledge-map, field: start, title: 知識マップ, type: hub, priority: 推奨}
+  - {id: request-vs-lock, field: basics, title: お願いと鍵, type: concept, priority: 必須}
+  - {id: hooks-basics, field: enforce, title: フック（hooks）の基本, type: feature, priority: 必須}
+  - {id: hook-vs-skill, field: enforce, title: フックとスキルの使い分け, type: comparison, priority: 推奨}
+  - {id: hook-recipes, field: enforce, title: フックの雛形集, type: recipe, priority: 推奨}
+  - {id: agreement-is-not-evidence, field: judgment, title: 同意は根拠にならない, type: judgment, priority: 必須}
+  - {id: instructions-ignored, field: symptoms, title: CLAUDE.md や指示が守られない, type: symptom, priority: 必須}
+  - {id: blocked-by-a-rule, field: symptoms, title: 断られた・止められた, type: symptom, priority: 必須}
+  - {id: outdated-advice-ledger, field: changes, title: 古くなった助言の台帳, type: ledger, priority: 必須}
+ledger:
+  - {id: important-caps, title: "IMPORTANT と書けば守られる"}

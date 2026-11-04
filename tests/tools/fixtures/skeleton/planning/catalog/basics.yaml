@@ -1,0 +1,32 @@
+# 骨格の道具の試験用（値は作りもの）。aliases に、YAML で文字列でない値に読まれかねない語を置く
+field: basics
+chapters: [原理]
+pages:
+  - id: request-vs-lock
+    chapter: 原理
+    title: お願いと鍵
+    aliases: ["yes", "null", "2026-11-04", "1.0", "a: b", "#タグ", "CLAUDE.md, rules", "[角かっこ]"]
+    type: concept
+    level: 使う
+    level_evidence: "試験"
+    priority: 必須
+    surfaces: [claude-code, app]
+    principle: [縛る]
+    prevents: [縛っていない]
+    pitfalls: []
+    scenes: [開発]
+    summary: "指示（お願い）と仕組み（鍵）の違いが分かる。"
+    signs:
+      - {type: goal, text: "指示と仕組みの違いを知りたい"}
+    prerequisites: []
+    related: [instructions-ignored]
+    tracks: []
+    outdated_advice: [important-caps]
+    volatility: 低
+    sections:
+      - {title: "二つの層", anchor: two-layers}
+      - {title: "仕組みに移す目安", anchor: when-to-lock, level: 整える}
+    templates:
+      - {name: "例", kind: claude-md, safety: false}
+    materials: ["試験"]
+    notes: "試験用の注"

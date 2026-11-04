@@ -1,0 +1,2 @@
+# 骨格の道具の試験用の空の data（形は schema/inspection.schema.json）
+last: {date: null, claude_code: null, release_notes: null, news: null}

@@ -1,0 +1,18 @@
+# 骨格の道具の試験用（値は作りもの）
+field: changes
+chapters: [台帳]
+pages:
+  - id: outdated-advice-ledger
+    chapter: 台帳
+    title: 古くなった助言の台帳
+    type: ledger
+    priority: 必須
+    wave: 1
+    summary: "古くなった助言と、今どうするかを引ける。"
+    signs:
+      - {type: situation, text: "古い記事の手順が通じない"}
+    prerequisites: []
+    related: [request-vs-lock]
+    volatility: 中
+    sections:
+      - {title: "台帳", anchor: ledger}

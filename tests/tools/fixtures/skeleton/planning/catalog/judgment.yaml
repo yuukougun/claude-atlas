@@ -1,0 +1,20 @@
+# 骨格の道具の試験用（値は作りもの）
+field: judgment
+chapters: [落とし穴]
+pages:
+  - id: agreement-is-not-evidence
+    chapter: 落とし穴
+    title: 同意は根拠にならない
+    type: judgment
+    level: 整える
+    priority: 必須
+    wave: 1
+    surfaces: [app, claude-code]
+    principle: [握る]
+    pitfalls: [同意を根拠にする]
+    summary: "AI が同意したことを、正しさの根拠にしない判断を守る。"
+    signs:
+      - {type: situation, text: "AI に賛成されて安心した"}
+    prerequisites: []
+    related: [blocked-by-a-rule]
+    volatility: 低

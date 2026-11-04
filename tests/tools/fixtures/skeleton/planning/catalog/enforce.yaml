@@ -1,0 +1,60 @@
+# 骨格の道具の試験用（値は作りもの）
+field: enforce
+chapters: [フック, 使い分け]
+pages:
+  - id: hooks-basics
+    chapter: フック
+    title: フック（hooks）の基本
+    type: feature
+    level: 仕組みにする
+    priority: 必須
+    surfaces: [claude-code]
+    principle: [縛る]
+    prevents: [縛っていない]
+    summary: "決まった時点で必ず動く処理を足し、指示では防げない操作を止める。"
+    signs:
+      - {type: goal, text: "決まった操作を必ず止めたい"}
+    prerequisites: [request-vs-lock]
+    related: [hook-vs-skill]
+    tracks: [hooks]
+    volatility: 中
+    sections:
+      - {title: "終了コード", anchor: exit-codes}
+    templates:
+      - {name: "危ない操作を止める", kind: hook, safety: true}
+    materials: ["試験"]
+
+  - id: hook-vs-skill
+    chapter: 使い分け
+    title: フックとスキルの使い分け
+    type: comparison
+    level: 仕組みにする
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [縛る, 見せる]
+    summary: "必ず動かすならフック、必要なときに読ませるならスキルを選ぶ。"
+    signs:
+      - {type: goal, text: "フックとスキルのどちらにするか決めたい"}
+    prerequisites: [hooks-basics]
+    tracks: [hooks, skills]
+    volatility: 中
+    sections: []
+
+  - id: hook-recipes
+    chapter: フック
+    title: フックの雛形集
+    type: recipe
+    level: 仕組みにする
+    priority: 推奨
+    surfaces: [claude-code]
+    principle: [縛る]
+    prevents: [縛っていない]
+    summary: "よく使うフックを、確かめ方と一緒に組み立てる。"
+    signs:
+      - {type: goal, text: "よく使うフックをすぐ使いたい"}
+    prerequisites: [hooks-basics]
+    related: ["instructions-ignored#diagnosis"]
+    volatility: 中
+    sections:
+      - {title: "手順", anchor: steps}
+      - {title: "確かめ方", anchor: check}
