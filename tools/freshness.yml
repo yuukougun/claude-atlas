@@ -1,0 +1,33 @@
+# 鮮度の点検の道具（tools/freshness.py の match）の設定（design §9.4 の手順2）。
+# 変更の記録（CHANGELOG・リリースノート・ニュース）の語を、照合の先（features の match_terms と id・ページの tracks と aliases・
+# facts の id・names の旧名と今の名前）に照らすとき、当たりすぎる一般の語を外す。直すのはメイン（点検のたびに見直してよい）。
+# 語は、英語の大文字小文字・複数形・「-」「_」「空白」の違いを吸収して比べる（ここに書く形はどれでもよい）。
+
+# 照らす先から外す語（一般の語で、どの版の記録にも出る。外しても、その機能の別の語・id・ページの tracks で当たる）
+exclude:
+  - goal
+  - fork
+  - mod
+  - mods
+  - research
+  - recent
+  - concise
+  - formal
+  - explanatory
+  - monitor
+  - monitors
+  - outcomes
+  - dreams
+  - ide
+  - compact
+  - rewind
+  - cron
+  - classifier
+  - tokenizer
+  - workflow
+  - insights
+  - projects
+  - integrations
+
+# 英数字だけの語の最短の長さ（-p・-w のような短いフラグが、どの文にも当たるのを避ける）。日本語の語は2字から
+min_length: 3

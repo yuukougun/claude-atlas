@@ -318,27 +318,29 @@ extra:
       how-thinking-works: "2027-02-02"
       knowledge-cutoff: "2027-02-02"
       where-instructions-sit: "2027-02-02"
-      effort-levels: "2027-02-02"
+      effort-levels: "2026-12-03"
       suspected-degradation: "2027-02-02"
-      when-to-start-fresh: "2027-02-02"
+      long-context-first: "2027-01-27"
+      when-to-start-fresh: "2027-02-01"
       rewind-dont-correct: "2027-02-02"
       promises-after-compaction: "2027-02-02"
       handoff-documents: "2027-02-02"
       inspect-context: "2027-02-02"
       always-on-costs: "2027-02-02"
-      choose-what-to-read: "2027-02-02"
+      choose-what-to-read: "2027-01-27"
       where-to-put-instructions: "2026-12-04"
-      how-memory-works: "2027-02-02"
+      how-memory-works: "2026-12-04"
       how-attachments-are-read: "2027-02-02"
-      search-research-thinking: "2027-02-02"
+      search-research-thinking: "2027-01-27"
       input-symbols: "2027-02-02"
-      permission-modes-overview: "2027-02-02"
+      permission-modes-overview: "2026-12-04"
       checkpoints-and-rewind: "2027-02-02"
       what-to-put-in-claude-md: "2027-02-02"
       claude-md-length: "2027-02-02"
       claude-md-vs-rules-skills-styles: "2027-02-02"
       writing-skills: "2027-02-02"
       connecting-mcp: "2027-02-02"
+      evidence-not-reports: "2027-11-05"
       verification-ladder: "2027-02-02"
       fact-checking: "2027-02-02"
       protect-tests: "2027-02-02"
@@ -346,11 +348,11 @@ extra:
       measure-changes: "2027-02-02"
       when-to-lock: "2027-02-02"
       permission-rules: "2027-02-02"
-      what-auto-mode-stops: "2027-02-02"
+      what-auto-mode-stops: "2027-01-27"
       sandboxing: "2027-02-02"
-      hooks-basics: "2027-02-02"
+      hooks-basics: "2026-12-05"
       block-with-exit-2: "2027-02-02"
-      default-safety-settings: "2027-02-02"
+      default-safety-settings: "2026-12-04"
       where-your-data-goes: "2027-02-02"
       prompt-injection-in-practice: "2027-02-02"
       vetting-extensions: "2027-02-02"
@@ -378,7 +380,7 @@ extra:
       skipped-later-pages: "2027-02-02"
       summary-overstates-source: "2027-02-02"
       forgets-in-long-chats: "2027-02-02"
-      going-in-circles: "2027-02-02"
+      going-in-circles: "2027-02-01"
       forgot-after-compaction: "2027-02-02"
       unexpected-memories: "2027-02-02"
       instructions-ignored: "2027-02-02"
@@ -400,52 +402,52 @@ extra:
       seems-less-capable: "2027-02-02"
     badges:
       tokens: {maturity: GA}
-      attention-budget: {maturity: GA}
+      attention-budget: {maturity: GA, enforcement: なし}
       what-survives-compaction: {maturity: GA}
       subagent-isolation: {maturity: GA}
-      how-thinking-works: {maturity: GA}
+      how-thinking-works: {maturity: GA, enforcement: なし}
       knowledge-cutoff: {maturity: GA}
       where-instructions-sit: {maturity: GA, enforcement: お願い}
-      effort-levels: {maturity: GA}
-      suspected-degradation: {maturity: GA}
+      effort-levels: {maturity: GA, enforcement: なし}
+      suspected-degradation: {maturity: GA, enforcement: なし}
       when-to-start-fresh: {maturity: GA}
-      rewind-dont-correct: {maturity: GA}
+      rewind-dont-correct: {maturity: GA, enforcement: なし}
       promises-after-compaction: {maturity: GA}
       handoff-documents: {maturity: GA}
-      inspect-context: {maturity: GA}
+      inspect-context: {maturity: GA, enforcement: なし}
       always-on-costs: {maturity: GA, enforcement: お願い}
-      choose-what-to-read: {maturity: GA}
+      choose-what-to-read: {maturity: GA, enforcement: なし}
       where-to-put-instructions: {maturity: GA, enforcement: お願い}
       how-memory-works: {maturity: GA}
       how-attachments-are-read: {maturity: GA}
       search-research-thinking: {maturity: GA}
-      input-symbols: {maturity: GA}
+      input-symbols: {maturity: GA, enforcement: なし}
       permission-modes-overview: {maturity: GA, enforcement: 鍵}
-      checkpoints-and-rewind: {maturity: GA}
+      checkpoints-and-rewind: {maturity: GA, enforcement: なし}
       what-to-put-in-claude-md: {maturity: GA, enforcement: お願い}
       claude-md-length: {maturity: GA, enforcement: お願い}
       claude-md-vs-rules-skills-styles: {maturity: GA, enforcement: お願い}
       writing-skills: {maturity: GA, enforcement: お願い}
-      connecting-mcp: {maturity: GA}
-      verification-ladder: {maturity: GA}
+      connecting-mcp: {maturity: GA, enforcement: なし}
+      verification-ladder: {maturity: GA, enforcement: モデルの判定}
       fact-checking: {maturity: GA}
       protect-tests: {maturity: GA, enforcement: 鍵}
       independent-review: {maturity: GA}
       measure-changes: {maturity: GA}
       when-to-lock: {maturity: GA, enforcement: お願い}
       permission-rules: {maturity: GA, enforcement: 鍵}
-      what-auto-mode-stops: {maturity: GA}
+      what-auto-mode-stops: {maturity: GA, enforcement: モデルの判定}
       sandboxing: {maturity: GA, enforcement: 鍵}
       hooks-basics: {maturity: GA, enforcement: 鍵}
       block-with-exit-2: {maturity: GA, enforcement: 鍵}
       default-safety-settings: {maturity: GA, enforcement: 鍵}
       where-your-data-goes: {maturity: GA}
-      prompt-injection-in-practice: {maturity: GA}
-      vetting-extensions: {maturity: GA}
+      prompt-injection-in-practice: {maturity: GA, enforcement: なし}
+      vetting-extensions: {maturity: GA, enforcement: なし}
       protecting-secrets: {maturity: GA, enforcement: 鍵}
-      destructive-commands: {maturity: GA}
+      destructive-commands: {maturity: GA, enforcement: なし}
       five-questions-before-delegating: {maturity: GA}
-      goal-until-done: {maturity: GA}
+      goal-until-done: {maturity: GA, enforcement: モデルの判定}
       choosing-parallel-modes: {maturity: GA}
       learning-with-ai: {maturity: GA, enforcement: お願い}
       how-usage-limits-work: {maturity: GA}
@@ -455,33 +457,33 @@ extra:
       consistent-politeness: {maturity: GA, enforcement: お願い}
       consistent-notation: {maturity: GA, enforcement: お願い}
       textlint-hook: {maturity: GA, enforcement: 鍵}
-      fix-a-bug: {maturity: GA}
-      does-more-than-asked: {maturity: GA}
-      keeps-stopping: {maturity: GA}
-      refused-or-blocked: {maturity: GA}
+      fix-a-bug: {maturity: GA, enforcement: なし}
+      does-more-than-asked: {maturity: GA, enforcement: なし}
+      keeps-stopping: {maturity: GA, enforcement: なし}
+      refused-or-blocked: {maturity: GA, enforcement: なし}
       plausible-falsehoods: {maturity: GA}
       uses-nonexistent-apis: {maturity: GA}
       doesnt-know-latest: {maturity: GA}
       skipped-later-pages: {maturity: GA}
       summary-overstates-source: {maturity: GA}
-      forgets-in-long-chats: {maturity: GA}
-      going-in-circles: {maturity: GA}
+      forgets-in-long-chats: {maturity: GA, enforcement: なし}
+      going-in-circles: {maturity: GA, enforcement: なし}
       forgot-after-compaction: {maturity: GA}
       unexpected-memories: {maturity: GA}
       instructions-ignored: {maturity: GA, enforcement: お願い}
       repeating-the-same-explanation: {maturity: GA, enforcement: お願い}
       replies-in-english: {maturity: GA, enforcement: お願い}
       inconsistent-japanese-style: {maturity: GA, enforcement: 鍵}
-      claims-done-but-isnt: {maturity: GA}
+      claims-done-but-isnt: {maturity: GA, enforcement: モデルの判定}
       rewrote-tests-to-pass: {maturity: GA, enforcement: 鍵}
-      stuck-in-a-check-loop: {maturity: GA}
+      stuck-in-a-check-loop: {maturity: GA, enforcement: モデルの判定}
       wont-rethink-approach: {maturity: GA, enforcement: 鍵}
       blames-the-tools: {maturity: GA, enforcement: 鍵}
       parallel-fatigue: {maturity: GA}
-      deleted-something-important: {maturity: GA}
+      deleted-something-important: {maturity: GA, enforcement: なし}
       secrets-exposed: {maturity: GA, enforcement: 鍵}
       followed-injected-instructions: {maturity: GA}
       wrong-amount-of-approvals: {maturity: GA, enforcement: 鍵}
       hits-limits-quickly: {maturity: GA}
-      too-slow: {maturity: GA}
+      too-slow: {maturity: GA, enforcement: なし}
       seems-less-capable: {maturity: GA}

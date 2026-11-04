@@ -76,7 +76,22 @@ updated: 2026-11-05
 
 古いモデルでは、この 2 つの日付がずれることがあり、reliable のほうが前の日付になる。Help Center の一覧に並ぶ日付は training data cutoff に当たる。「どこまで当てにしてよいか」は reliable のほうで見るのが安全である。
 
-日付の値は、モデルが替わるたびに変わる。このページには書かない。各モデルの日付は公式の Models overview に載っていて、モデルの選び方は <!-- link:begin current-models#lineup -->現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）（準備中）<!-- link:end --> にある。
+日付の値は、モデルが替わるたびに変わる。各モデルの日付は次の表のとおりで、出典は公式の Models overview である。
+
+<!-- gen:begin fact-table model-knowledge-cutoffs -->
+<!-- textlint-disable -->
+
+| モデル | reliable knowledge cutoff | training data cutoff |
+| --- | --- | --- |
+| 現行のモデル | 2026年6月（現行のモデルは両方とも 2026年6月（モデルごとの値は models overview の表で確かめる）） | 2026年6月 |
+| Opus 4.6 | 2025年5月 | 2025年8月 |
+
+確認日 2026-11-04。出典：[Models overview](https://platform.claude.com/docs/en/models/overview)、[Claude Opus 4.6](https://platform.claude.com/docs/en/models/opus-4-6/overview)、[How up-to-date is Claude's training data?](https://support.claude.com/en/articles/8114494-how-up-to-date-is-claude-s-training-data)。
+
+<!-- textlint-enable -->
+<!-- gen:end fact-table model-knowledge-cutoffs -->
+
+モデルの選び方は <!-- link:begin current-models#lineup -->現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）（準備中）<!-- link:end --> にある。
 
 知識が止まっていることと、止まった時点より前のことを正しく覚えていることは別である。止まった時点の手前でも、情報が少なかった話題は怪しい。この性質の背景は、別のページが説明している。分からなくても答えるほうが得になる訓練の話は <!-- link:begin why-hallucinations#guess-pays -->[ハルシネーションはなぜ起きるか › 分からなくても答えるほうが得になる訓練](why-hallucinations.md#guess-pays)<!-- link:end --> にある。
 

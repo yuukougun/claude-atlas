@@ -98,7 +98,7 @@ updated: 2026-11-05
 
 ## 読み取りは既定で広い {#default-reads}
 
-サンドボックスの既定では、読み取りは機械全体に及ぶ。書き込みは作業ディレクトリと一時のディレクトリなどに絞られるが、読み取りは広い。拒否したディレクトリを除き、`~/.ssh` や `~/.aws/credentials` も読める。秘密の置き場は、自分で明示して塞ぐ。
+サンドボックスの既定では、読み取りは<!-- fact:begin sandbox-default-reads -->機械全体（denyRead で拒否したものを除く）（2026-11-05 時点）<!-- fact:end -->に及ぶ。書き込みは作業ディレクトリと一時のディレクトリなどに絞られるが、読み取りは広い。拒否したディレクトリを除き、`~/.ssh` や `~/.aws/credentials` も読める。秘密の置き場は、自分で明示して塞ぐ。
 
 塞ぐには、`sandbox.filesystem.denyRead` に置き場を書く。サンドボックスの外で動く Read の道具は、`denyRead` では止まらない。Read の道具には、権限ルールの deny を別に書く。この二重が、秘密を守る基本の形になる。組み方の全体は <!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](../safety/protecting-secrets.md#two-layers)<!-- link:end --> にある。
 
@@ -121,7 +121,7 @@ updated: 2026-11-05
 
 ## 起動できないときに通さない {#fail-if-unavailable}
 
-依存が欠けているか、対応しない環境だと、サンドボックスは既定で黙って無効のまま、コマンドを囲わずに動かす。囲っているつもりで囲えていない状態になる。サンドボックスに頼る設定には、`sandbox.failIfUnavailable` を true にして入れる。起動時に条件を満たさなければ、Claude Code が終了する。
+依存が欠けているか、対応しない環境だと、サンドボックスは黙って無効のままになる。既定の挙動を一言で言えば、<!-- fact:begin sandbox-fail-open-default -->既定は囲いなしで動く（fail-open）（2026-11-05 時点）<!-- fact:end -->。囲っているつもりで囲えていない状態になる。サンドボックスに頼る設定には、`sandbox.failIfUnavailable` を true にして入れる。起動時に条件を満たさなければ、Claude Code が終了する。
 
 起動した後に初期化へ失敗した場合は、各コマンドが「Sandbox is required」で拒否される。通してしまう方向には倒れない。
 

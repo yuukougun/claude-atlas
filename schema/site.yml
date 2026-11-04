@@ -74,7 +74,7 @@ default_fact_volatility: 高                       # 数値の volatility の既
 source_kinds: [公式文書, 公式ブログ, 公式の投稿, CHANGELOG, リリースノート, 実践者, 研究, 報道]   # 出典の種類（design §9.1）
 advice_statuses: [撤回, 置換, 条件付き]            # 古くなった助言の状態（design §9.1）
 maturities: [GA, beta, research preview, experimental]   # 機能の成熟度（6b で一次資料の表記を見て直す）
-enforcements: [お願い, 鍵]                         # 機能の強制力（D14）
+enforcements: [お願い, 鍵, モデルの判定, なし]                       # 機能の強制力（D14）
 channels: [latest, stable]                        # verified_with の channel（design §3.3）
 published_stages: [draft, reviewed, done]         # 公開する段階（design §8.4）
 load_timings: [セッション開始, セッション開始と切り替えたとき, セッション開始か、一致するファイルを扱うとき, セッション開始と使うとき, 編集の後と調べるとき, 起動したとき, イベントが起きたとき]   # 機能の読み込みの時期（公式の機能別のコンテキストのコストの表から。6b の担当 D1）

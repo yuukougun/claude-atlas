@@ -303,7 +303,7 @@ sections:
             page: {required: all, format: id, note: 主のページ（用語索引。design §7・DR-15）のページの id}
             surfaces: {format: {vocab_list: surfaces}, note: 使える面}
             maturity: {format: {vocab: maturities}, note: 成熟度（requirements §5.2）}
-            enforcement: {format: {vocab: enforcements}, note: 強制力（お願いか鍵か。D14）}
+            enforcement: {format: {vocab: enforcements}, note: 強制力（お願い・鍵・モデルの判定・なし。D14、decisions 2026-11-05「強制力の語彙」）}
             load_timing: {format: {vocab: load_timings}, note: 読み込みの時期}
             context_cost: {format: {vocab: context_costs}, note: コンテキストのコスト}
             survives_compaction: {format: boolean, nullable: true, note: 圧縮で残るか（null は確かめていない）}

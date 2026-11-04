@@ -42,7 +42,7 @@ updated: 2026-11-05
 !!! abstract "要点"
     - **何ができるか**：外部のサービスやツールを MCP でつなぎ、Claude に直接読ませられる。共有の範囲と資格情報を先に決めれば、つながらないときも切り分けられる。
     - **いつ引くか**：ブラウザからコピーして貼っているデータを、直接取りに行かせたいとき。社内のツールや外部のサービスを使いたいとき。チームで同じ接続を使いたいとき。つないだのにツールが出てこないとき。
-    - **強制力**：道具を足す仕組みで、何も止めない。サーバーは利用者の権限で動くので、止めるのは資格情報の権限・権限ルール・管理設定の側である。成熟度は <!-- gen:begin feature maturity -->GA<!-- gen:end feature maturity -->、読み込みの時期は <!-- gen:begin feature load_timing -->セッション開始<!-- gen:end feature load_timing -->である。
+    - **強制力**：<!-- gen:begin feature enforcement -->なし<!-- gen:end feature enforcement -->。道具を足す仕組みで、何も止めない。サーバーは利用者の権限で動くので、止めるのは資格情報の権限・権限ルール・管理設定の側である。成熟度は <!-- gen:begin feature maturity -->GA<!-- gen:end feature maturity -->、読み込みの時期は <!-- gen:begin feature load_timing -->セッション開始<!-- gen:end feature load_timing -->である。
     - **前提**：<!-- link:begin agent-loop -->[エージェントループと tool use](../basics/agent-loop.md)<!-- link:end -->
 
 <!-- textlint-disable -->
@@ -232,7 +232,7 @@ MCP をつなぐと、次の場面で想定とずれる。
 - **サンドボックスの外で動く**。Bash のコマンドを囲うサンドボックスは、MCP サーバーのプロセスには効かない。サーバーの権限は、資格情報とサーバー自身の作りで決まる。
 - **入れた後に中身が変わりうる**。承認したときの定義と、後から読まれる定義が同じとは限らない。ツールの説明に指示が隠れている場合もある。入れる前の確認と、入れた後の変化の見方は「<!-- link:begin vetting-extensions#changes-after-install -->[MCP・プラグイン・スキルを入れる前の確認 › 入れた後に変わる（rug pull）](../safety/vetting-extensions.md#changes-after-install)<!-- link:end -->」にある。この辞典は、脅威の型の説明を safety のページに任せる。
 - **`.mcp.json` だけでは、読み込まれるサーバーの全体は分からない**。ほかのスコープ、claude.ai のコネクタ、プラグインもサーバーを足す。全体は `/mcp` で見る。
-- **出力が大きいと扱いにくい**。ツールの出力が一定を超えると警告が出て、さらに大きいと上限で扱いきれなくなる。値は変わりうるので、公式の文書で確かめる。大量のデータは、サーバー側で絞るか、必要な範囲だけを取らせる。
+- **出力が大きいと扱いにくい**。ツールの出力が大きいと警告が出て、さらに大きいと上限で扱いきれなくなる。値は、<!-- fact:begin mcp-output-token-limits -->未確認<!-- fact:end -->。大量のデータは、サーバー側で絞るか、必要な範囲だけを取らせる。
 - **入れすぎると場所を取る**。サーバーを足すたびに、ツールの一覧が文脈に増える。判断を良くする分より増えるなら外す。選ぶ基準は「<!-- link:begin choosing-mcp-servers -->MCP サーバーの選び方（準備中）<!-- link:end -->」にある。
 
 ## 比べる相手 {#compare}

@@ -40,7 +40,7 @@ updated: 2026-11-05
     - **何ができるか**：effort で、考える深さとツールの使い方・待ち時間・使用量の釣り合いを変えられる。
     - **いつ引くか**：返答をもっと深く考えさせたいとき。簡単な作業を深く考えさせずに速く済ませたいとき。アプリと Claude Code と API で、同じモデルなのに振る舞いの違いを感じるとき。
     - **成熟度**：<!-- gen:begin feature maturity -->GA<!-- gen:end feature maturity -->。
-    - **何を止められるか**：何も止めない。考え方の傾向を変える設定であり、禁止や上限の仕組みではない。
+    - **強制力**：<!-- gen:begin feature enforcement -->なし<!-- gen:end feature enforcement -->。何も止めない。考え方の傾向を変える設定であり、禁止や上限の仕組みではない。
     - **前提**：<!-- link:begin how-thinking-works -->[思考（thinking）と effort の仕組み](../basics/how-thinking-works.md)<!-- link:end -->
 
 <!-- textlint-disable -->
@@ -89,7 +89,25 @@ Claude Code の段は、最初に当てはまったものが採られる。順�
 
 組織が既定のモデルの段を決めていれば、それが既定になる。ユーザー設定の一番上の `effortLevel` は、モデルごとに段を保存する新しいモデルには効かない。そのモデルには `modelSettings` で書く。環境変数を `auto` か `unset` にすると、Claude Code は段を送らず、API の既定が効く。
 
-各モデルの既定の値は、変わりやすいので、この節に手で書かない。公式の Models overview（API）、Model configuration（Claude Code）、各モデルの発表（アプリ）で確かめる。公式の Help Center は、アプリのメニューで各モデルの推奨の段に「Default」と表示するとだけ書き、値の一覧は載せていない。
+各モデルの既定の値は、変わりやすいので、下の表のとおり。公式の Models overview（API）、Model configuration（Claude Code）、各モデルの発表（アプリ）で確かめる。公式の Help Center は、アプリのメニューで各モデルの推奨の段に「Default」と表示するとだけ書き、値の一覧は載せていない。
+
+<!-- gen:begin fact-table effort-default-by-model-surface -->
+<!-- textlint-disable -->
+
+| モデル | API | Claude Code | アプリ |
+| --- | --- | --- | --- |
+| Fable 5.1 | high | high | medium（claude.ai と Cowork。Fable 5.1 の発表） |
+| Opus 5.5 | medium | medium | —（文書に面ごとの値はない。発表は「既定（medium）」とだけ書く） |
+| Sonnet 5.5 | high | medium | medium（Sonnet 5.5 の発表。Claude Code とアプリは medium、Claude Platform は high） |
+| Haiku 5.5 | medium | medium | —（値を書いた文書は見つけていない） |
+| Sonnet 5 | high | high | —（値を書いた文書は見つけていない） |
+| Opus 4.7 | high | xhigh | —（値を書いた文書は見つけていない） |
+| Fable 5・Opus 5・Opus 4.8・Opus 4.6・Sonnet 4.6 | high | high | —（値を書いた文書は見つけていない） |
+
+確認日 2026-11-03。出典：[Models overview](https://platform.claude.com/docs/en/models/overview)、[Effort](https://platform.claude.com/docs/en/build-with-claude/effort)、[Model configuration](https://code.claude.com/docs/en/model-config)、[Introducing Claude Sonnet 5.5](https://www.anthropic.com/claude-sonnet-5-5)、[Introducing Claude Fable 5.1 and Claude Mythos 5.1](https://www.anthropic.com/claude-fable-and-mythos-5-1)、[Introducing Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5)、[Change the model, effort, and thinking settings](https://support.claude.com/en/articles/8664678-change-the-model-effort-and-thinking-settings)。
+
+<!-- textlint-enable -->
+<!-- gen:end fact-table effort-default-by-model-surface -->
 
 !!! example "判断例：同じモデルなのに、返答の深さが違う"
     - **状況**：同じモデルで同じ依頼をしたのに、アプリでは浅く、API では深く考えているように見える。
@@ -132,7 +150,7 @@ Claude Code の段は、最初に当てはまったものが採られる。順�
 
     高い段では、考える分も含めて出力が長くなるので、`max_tokens` を大きく取る。新しいモデルに替えたときは、古い設定を持ち越さず、自分の評価で段を振って確かめる。
 
-Claude Code の設定の例を次に示す。モデルの名前は、自分が使うモデルに替える。モデルごとの保存には、新しい版の Claude Code が要る。版は公式の Settings で確かめる。
+Claude Code の設定の例を次に示す。モデルの名前は、自分が使うモデルに替える。モデルごとの保存には、<!-- fact:begin effort-model-settings-min-version -->Claude Code 2.1.251 以降（2026-11-05 時点）<!-- fact:end -->が要る。
 
 <!-- gen:begin snippet effort-levels/model-effort-settings -->
 <!-- textlint-disable -->
@@ -158,7 +176,7 @@ Claude Code の設定の例を次に示す。モデルの名前は、自分が�
 
 サブエージェントの段は、本体の段をそのまま引き継ぐとは限らない。サブエージェントの `effort` のフロントマターがあれば、それが動いている間は優先される。`CLAUDE_CODE_SUBAGENT_EFFORT` は、ほかに指定がないときにサブエージェントが動く段を決める環境変数である。
 
-本体と別のモデルで動くサブエージェントやチームメイトは、セッションの段を受け継がない。そのモデルに保存した段か、そのモデルの既定の段で動く。これは Claude Code の CHANGELOG による（2026-11-03 に確認）。サブエージェントの文書には、この記述がまだない。チームの文書には「リーダーの段を引き継ぐ」と読める記述があり、合わない場合がある。挙動を確かめるまで、別のモデルを割り当てたサブエージェントの段は、既定だと見ておく。
+本体と別のモデルで動くサブエージェントやチームメイトは、セッションの段を受け継がない。そのモデルに保存した段か、そのモデルの既定の段で動く。この挙動は <!-- fact:begin subagent-own-model-effort-min-version -->未確認<!-- fact:end --> で入った。これは Claude Code の CHANGELOG による（2026-11-03 に確認）。サブエージェントの文書には、この記述がまだない。チームの文書には「リーダーの段を引き継ぐ」と読める記述があり、合わない場合がある。挙動を確かめるまで、別のモデルを割り当てたサブエージェントの段は、既定だと見ておく。
 
 軽いモデルをサブエージェントに割り当てると、そのサブエージェントはそのモデルの既定の段で動く。軽くて速い作業で段をさらに `low` に固定したいときは、次の雛形のように `effort` を書く。モデルを分ける判断は <!-- link:begin split-models-by-role#patterns -->計画・実装・サブエージェントでモデルを分ける › 分ける形（計画と実装・本体とサブエージェント）（準備中）<!-- link:end --> にある。
 

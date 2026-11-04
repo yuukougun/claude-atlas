@@ -67,6 +67,22 @@ updated: 2026-11-05
 
 プランによって、この 2 種類の持ち方と倍率が違う。
 
+<!-- gen:begin fact-table usage-limit-types-by-plan -->
+<!-- textlint-disable -->
+
+| プラン | 5 時間の上限 | 週の上限 | 最上位のモデルの別の週の上限 |
+| --- | --- | --- | --- |
+| Pro | あり | あり（基準） | —（確かめていない） |
+| Max | あり（Pro の 5 倍） | Pro の 5 倍 | あり |
+| Ultra | 確認済みの口座にはない（確認前は一時的な上限） | Pro の 10 倍 | あり |
+| Team | —（束の材料に席ごとの値がない） | — | — |
+| Enterprise（使用量に基づく） | なし | なし | — |
+
+確認日 2026-11-04。出典：[What is the Ultra plan?](https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan)、[What is the Max plan?](https://support.claude.com/en/articles/11049741-what-is-the-max-plan)、[What is the Pro plan?](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan)、[What is the Team plan?](https://support.claude.com/en/articles/9266767-what-is-the-team-plan)、[What is the Enterprise plan?](https://support.claude.com/en/articles/9797531-what-is-the-enterprise-plan)、[Plans & pricing](https://claude.com/pricing)。
+
+<!-- textlint-enable -->
+<!-- gen:end fact-table usage-limit-types-by-plan -->
+
 - 個人向けの Pro と Max は、5 時間の上限と週の上限の 2 段を持つ。
 - <!-- name:begin max-20x-to-ultra -->Ultra<!-- name:end --> は、確認が済んだ口座には 5 時間の上限がなく、週の上限だけである（[What is the Ultra plan?](https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan)）。確認は口座と支払いの履歴などから自動で行われ、済むまでは一時的な上限がかかる。
 - Max と Ultra には、最上位のモデル向けに別の週の上限がある。引かれ方は <!-- link:begin before-using-top-model#which-limit -->最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）（準備中）<!-- link:end --> で確かめる。
@@ -103,10 +119,23 @@ updated: 2026-11-05
 任せる幅が広がる機能なので、守りを先に確かめる。
 
 - 続けた作業でも、許可の確認は出る。確認なしで進むことはない。
-- 続ける回数には上限があり、上限を超えると止まる。
+- 続ける回数の上限は、<!-- fact:begin auto-continue-max-times -->3 回まで（2026-11-05 時点）<!-- fact:end -->。上限を超えると止まる。
 - 背景のセッション、`-p`、API キーと事業者の認証では使えない。
 
-もう 1 つ、Claude Code には Wrap-Up Allowance がある。応答の途中で 5 時間の上限に達したとき、区切りまで少しだけ続ける仕組みで、画面に「Usage limit reached · wrapping up」と出る（[Claude Code Wrap-Up Allowance](https://support.claude.com/en/articles/17040437-claude-code-wrap-up-allowance)）。続けられる量には上限があり、回数はプランで違う。使った分は週の上限に数える。API キーや Bedrock・Vertex AI などでは効かず、アプリのチャットにもない。段階的に展開中で、口座や組織によってはまだ効かない。
+もう 1 つ、Claude Code には Wrap-Up Allowance がある（使うには <!-- fact:begin wrap-up-allowance-min-version -->Claude Code 2.1.277 以上（2026-11-04 時点）<!-- fact:end --> が要る）。応答の途中で 5 時間の上限に達したとき、区切りまで少しだけ続ける仕組みで、画面に「Usage limit reached · wrapping up」と出る（[Claude Code Wrap-Up Allowance](https://support.claude.com/en/articles/17040437-claude-code-wrap-up-allowance)）。続けられる量には上限があり、回数はプランで違う（下の表）。使った分は週の上限に数える。API キーや Bedrock・Vertex AI などでは効かず、アプリのチャットにもない。段階的に展開中で、口座や組織によってはまだ効かない。
+
+<!-- gen:begin fact-table wrap-up-allowance-frequency -->
+<!-- textlint-disable -->
+
+| プラン | 使える頻度 |
+| --- | --- |
+| Pro | 週に 1 回まで |
+| Max・確認前の Ultra・Team の Premium の席 | 5 時間の上限に当たるたび |
+
+確認日 2026-11-04。出典：[Claude Code Wrap-Up Allowance](https://support.claude.com/en/articles/17040437-claude-code-wrap-up-allowance)、[Use Claude Code with your Pro, Max, or Ultra plan](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan)。
+
+<!-- textlint-enable -->
+<!-- gen:end fact-table wrap-up-allowance-frequency -->
 
 !!! example "判断例：午前の作業の途中で 5 時間の上限に当たった"
     - **状況**：Claude Code で実装を進めていて、5 時間の上限に当たった。今日の夕方までに仕上げたい。

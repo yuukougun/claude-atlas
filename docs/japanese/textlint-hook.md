@@ -250,7 +250,7 @@ flowchart TD
 textlint のフックでは、失敗を次の 2 段で見えるようにする。
 
 - スクリプトの中で、textlint を起動できない、異常終了した、の 2 つを exit 2 に倒す（雛形の `except` と終了コードの分岐）。
-- 設定に `"onFailure": "block"` を付け、スクリプトが起動できない失敗や、想定外の終了コードで落ちた失敗も、exit 2 と同じ扱いにする。command か http のフックで使え、新しい版から入った。入った版は公式のフックの文書で確かめる。スクリプトが中で失敗しても 0 で終われば、`onFailure` があっても通る。
+- 設定に `"onFailure": "block"` を付け、スクリプトが起動できない失敗や、想定外の終了コードで落ちた失敗も、exit 2 と同じ扱いにする。command か http のフックで使え、<!-- fact:begin hook-on-failure-block-min-version -->Claude Code 2.1.295 以降（2026-11-05 時点）<!-- fact:end -->で入った。スクリプトが中で失敗しても 0 で終われば、`onFailure` があっても通る。
 
 どちらも、PostToolUse では「Claude に失敗が見える」にとどまる。道具の実行そのものは止まらない。判断をモデルが行う prompt 型と agent 型のフックは、別のモデルの判断なので、強制にならない。決まった検査には command 型を使う。
 

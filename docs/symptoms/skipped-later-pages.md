@@ -67,7 +67,7 @@ updated: 2026-11-05
 
 1. **見えていない**：その箇所が、そもそも Claude に渡る範囲の外にある。
     - 見るもの：資料の形式とページ数。図が根拠の箇所は、PDF のどのページにあるか。Word などの文書か、PDF か。
-    - 確かめ方：添付した資料の長さを数え、読み込みの範囲と照らす。PDF は先頭から一定のページまでは文字と図表の両方が読まれ、その先は文字だけになる。PDF 以外の文書は、文字だけが取り出され、埋め込みの画像は読まれない。範囲の外にある図について聞いていたなら、これが原因である。範囲の値は <!-- link:begin how-attachments-are-read#pdf-and-others -->[添付ファイルはどこまで読まれるか › PDF とそれ以外の文書](../app/how-attachments-are-read.md#pdf-and-others)<!-- link:end --> にあり、API で渡すときの違いは <!-- link:begin how-attachments-are-read#api -->[添付ファイルはどこまで読まれるか › API で渡すとき（Files API・PDF・画像）](../app/how-attachments-are-read.md#api)<!-- link:end --> にある。
+    - 確かめ方：添付した資料の長さを数え、読み込みの範囲と照らす。PDF の読まれ方は、<!-- fact:begin app-pdf-visual-pages -->100 ページまで（文字と視覚要素）（2026-11-04 時点）<!-- fact:end -->。<!-- fact:begin app-pdf-text-only-pages -->101〜1000 ページは文字だけが読まれ、1000 ページを超えると拒否される（2026-11-04 時点）<!-- fact:end -->。PDF 以外の文書は、文字だけが取り出され、埋め込みの画像は読まれない。範囲の外にある図について聞いていたなら、これが原因である。範囲の値は <!-- link:begin how-attachments-are-read#pdf-and-others -->[添付ファイルはどこまで読まれるか › PDF とそれ以外の文書](../app/how-attachments-are-read.md#pdf-and-others)<!-- link:end --> にあり、API で渡すときの違いは <!-- link:begin how-attachments-are-read#api -->[添付ファイルはどこまで読まれるか › API で渡すとき（Files API・PDF・画像）](../app/how-attachments-are-read.md#api)<!-- link:end --> にある。
     - 日本語の PDF では、文字として読めているかも別に確かめる。確かめ方は <!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end --> にある。
 2. **見えていない（範囲の中で読まれたかの確認）**：範囲の中にあるはずなのに、読まれたか分からない。
     - 見るもの：答えに、資料の言葉やページの記述が引かれているか。

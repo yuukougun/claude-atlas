@@ -35,7 +35,7 @@ updated: 2026-11-05
 !!! abstract "要点"
     - **何ができるか**：`/context` の内訳から、会話・読み込んだもの・常駐するもののどれが場所を取っているかを見分け、片付け方を選べる。
     - **いつ引くか**：何がコンテキストを占めているか知りたいとき。拡張を足した後に、起動直後の重さを確かめたいとき。
-    - **強制力**：なし。現在の使用量を見せるだけで、何も止めず、何も変えない。
+    - **強制力**：<!-- gen:begin feature enforcement -->なし<!-- gen:end feature enforcement -->。現在の使用量を見せるだけで、何も止めず、何も変えない。
     - **前提**：<!-- link:begin attention-budget -->[コンテキストウィンドウと注意の予算](../basics/attention-budget.md)<!-- link:end -->
 
 <!-- textlint-disable -->

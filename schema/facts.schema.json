@@ -198,8 +198,8 @@
             "enum": ["GA", "beta", "research preview", "experimental"]
           },
           "enforcement": {
-            "description": "強制力（お願いか鍵か。D14）。語彙は site.yml の enforcements",
-            "enum": ["お願い", "鍵"]
+            "description": "強制力（お願い・鍵・モデルの判定・なし。D14、decisions 2026-11-05「強制力の語彙」）。語彙は site.yml の enforcements",
+            "enum": ["お願い", "鍵", "モデルの判定", "なし"]
           },
           "load_timing": {
             "description": "読み込みの時期。語彙は site.yml の load_timings",

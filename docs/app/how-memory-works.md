@@ -62,7 +62,7 @@ updated: 2026-11-05
 
 機微な話題は、既定では保存されない。健康・人種・宗教・政治・性自認などがこれに当たる。設定の `Include sensitive topics in memory` でオプトインでき、その場合は保存のたびに通知が出る。政府発行の ID 番号・犯罪歴・金融口座番号・在留資格は、設定に関係なく保存されない。
 
-メモリが既定で有効かどうかは、プランで違う。組織向けのプランでは、管理者が使えるかを決め、各メンバーが自分で有効にするまでは無効である。ほかの AI からの取り込みと書き出しもあるが、experimental なので手順は扱わない。
+メモリが既定で有効かどうかは、プランで違う。既定は、<!-- fact:begin memory-default-by-plan -->Free・Pro・Max・Ultra は既定で有効。Team と Enterprise は owner が使えるかを決め、各メンバーは自分で有効にするまで無効（2026-11-04 時点）<!-- fact:end -->。組織向けのプランでは、管理者が使えるかを決め、各メンバーが自分で有効にするまでは無効である。ほかの AI からの取り込みと書き出しもあるが、experimental なので手順は扱わない。
 
 覚えさせたい事柄は、「覚えて」と頼むと確実に残せる。ただし、Claude が「覚えた」と返したことは申告である。実際に保存された項目は、設定の Topics（保存された項目の一覧）で確かめる（原理は「見せる・確かめる」）。
 
@@ -113,7 +113,7 @@ Cowork とは、Cowork がクラウドで動くときだけメモリを共有す
 
 過去チャットの検索は、メモリとは別の機能である。Claude が必要と判断したとき、過去の会話を検索して引く。会話の中では、道具の呼び出しとして表示される。
 
-使えるのは有料のプランで、web・Desktop・Mobile のどれからでも使える。検索の範囲は、プロジェクトの外の会話と、各プロジェクトの中の会話である。customer-managed encryption keys を使う Enterprise では使えない。オフにするには、設定の `Search and reference chats` を切る。
+使えるプランと面は、<!-- fact:begin chat-search-plans -->Pro・Max・Ultra・Team・Enterprise（web・Desktop・Mobile）。customer-managed encryption keys を使う Enterprise では使えない（2026-11-04 時点）<!-- fact:end -->。検索の範囲は、プロジェクトの外の会話と、各プロジェクトの中の会話である。オフにするには、設定の `Search and reference chats` を切る。
 
 | 比べる点 | メモリ | 過去チャットの検索 |
 | --- | --- | --- |

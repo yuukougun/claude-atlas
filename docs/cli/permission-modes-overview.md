@@ -89,13 +89,13 @@ flowchart LR
 
 ## 既定のモードと版 {#defaults}
 
-起動したときのモードは、版・使い方・設定で変わってきた。対話のセッションの既定は、版が進む中で Manual から auto モードへ移った。そのため、古い記事の「最初は毎回確認が出る」は、手元の環境と合わないことがある。変わった時期・版・範囲と、今の既定は、<!-- link:begin outdated-advice-ledger#approve-everything-first -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#approve-everything-first)<!-- link:end --> の行が持つ。
+起動したときのモードは、版・使い方・設定で変わってきた。対話のセッションの既定は、版が進む中で Manual から次へ移った。<!-- fact:begin permission-mode-default-interactive -->auto モード（Claude Code 2.1.283 以降の、ターミナルと VS Code の対話のセッション。どのプランと提供元でも）（2026-11-04 時点）<!-- fact:end -->。そのため、古い記事の「最初は毎回確認が出る」は、手元の環境と合わないことがある。変わった時期・版・範囲と、今の既定は、<!-- link:begin outdated-advice-ledger#approve-everything-first -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#approve-everything-first)<!-- link:end --> の行が持つ。
 
 手元の既定は、推測せずに次の順で確かめる。
 
 1. 起動した直後の、画面の下の表示を見る。今のモードを示す表示が出る
 2. 設定で `permissions.defaultMode` を決めているかを見る。決めていれば、そのモードで始まる。どの層の設定が読み込まれているかは <!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end --> の手順で確かめる
-3. 決めていなければ、版ごとの既定で始まる。対話の端末と VS Code の拡張、`claude -p` と Agent SDK で既定が違う
+3. 決めていなければ、版ごとの既定で始まる。対話の端末と VS Code の拡張、`claude -p` と Agent SDK で既定が違う。非対話の既定は<!-- fact:begin permission-mode-default-noninteractive -->Manual（Claude Code 2.1.302 以降。承認の要る呼び出しは、allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否）（2026-11-04 時点）<!-- fact:end -->
 
 `claude -p` と Agent SDK は、無人で動く。確認に答える人がいないので、承認の要る呼び出しは、allow ルール・フックなどで許していなければ拒否される。この扱いは版で変わってきた。詳しくは <!-- link:begin headless-basics#permissions -->非対話モード（claude -p）の基本 › 許可と権限モード（準備中）<!-- link:end --> にある。
 

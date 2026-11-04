@@ -63,7 +63,7 @@ updated: 2026-11-05
 最新の情報を知らないときの原因は、Claude に最新の情報が見えていないこと（6 つの原因のうち「見えていない」）である。確かめは、手間の小さい順に並べる。上から順に見て、当てはまった所で手を打つ。6 つの原因の全体と、ほかの症状への入口は <!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> にある。
 
 1. **質問が締め切りより後の事柄か**（何を見る：質問の対象が出た時期）
-    - 知識の締め切りには、確かな知識の日付と、学習データの日付の 2 種類がある。モデルによって一致しないことがある。日付は、モデルごとの公式の文書で確かめる（[Models overview](https://platform.claude.com/docs/en/models/overview)、[How up-to-date is Claude's training data?](https://support.claude.com/en/articles/8114494-how-up-to-date-is-claude-s-training-data)）。
+    - 知識の締め切りには、確かな知識の日付と、学習データの日付の 2 種類がある。モデルによって一致しないことがある。現行のモデルの学習データの日付は、<!-- fact:begin model-knowledge-cutoffs 現行のモデル training -->2026年6月（2026-11-04 時点）<!-- fact:end -->。モデルごとの日付は、公式の文書で確かめる（[Models overview](https://platform.claude.com/docs/en/models/overview)、[How up-to-date is Claude's training data?](https://support.claude.com/en/articles/8114494-how-up-to-date-is-claude-s-training-data)）。
     - 確かめ方：対象が出た時期を、使っているモデルの締め切りと比べる。Claude 自身に締め切りを尋ねても答えは出るが、自己申告なので目安にとどめる。
     - 当てはまったら：Claude が知りえない事柄である。2 番以降で、日付と資料を渡す。仕組みは <!-- link:begin knowledge-cutoff#why -->[知識カットオフと「今」を知らない問題 › なぜ知らないのか](../basics/knowledge-cutoff.md#why)<!-- link:end --> にある。
 2. **今日の日付と使っている版を渡したか**（何を見る：会話に日付と版があるか）
