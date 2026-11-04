@@ -22,15 +22,19 @@ FIXTURE = Path(__file__).resolve().parent / "fixtures" / "checks"
 sys.path.insert(0, str(REPO / "tools"))
 
 import check_page  # noqa: E402
+import textlint_targets as tt  # noqa: E402
 
 II = "docs/symptoms/instructions-ignored.md"
 HB = "stubs/enforce/hooks-basics.md"
 
 FAKE_TEXTLINT = """\
 #!/bin/sh
-# 受け取った引数を書き出し、決めた JSON を返す（FAKE_JSON が空なら、ファイルごとに指摘なしを返す）
-printf '%s\\n' "$@" > "$(dirname "$0")/args.txt"
-cat "$(dirname "$0")/result.json"
+# 受け取った引数と、最初のファイルの中身（そのとき渡された写し）を書き出し、決めた JSON を返す。
+# JSON の中の __FIRST__ は、最初のファイルのパス（写しのパス）に置き換える
+d="$(dirname "$0")"
+printf '%s\\n' "$@" > "$d/args.txt"
+cp "$3" "$d/seen.md"
+sed "s#__FIRST__#$3#" "$d/result.json"
 exit 1
 """
 
@@ -78,7 +82,10 @@ class TestRun(PageCase):
 
     def test_textlint_runs_on_that_page_file_only(self):
         self.run_cli("instructions-ignored")
-        self.assertEqual(self.lint_args(), ["-f", "json", II])
+        args = self.lint_args()
+        self.assertEqual(args[:2], ["-f", "json"])
+        self.assertEqual(len(args), 3)
+        self.assertTrue(args[2].endswith("/" + II))      # 目印のあるページは写し（下の試験）を渡す
 
     def test_textlint_findings_are_one_line_each(self):
         self.lint([{"line": 12, "column": 3, "ruleId": "prh", "severity": 2, "message": "表記が違う\n直す"},
@@ -132,8 +139,8 @@ class TestRun(PageCase):
     def test_several_pages_are_checked_in_one_run(self):
         self.run_cli("instructions-ignored", "request-vs-lock")
         self.assertEqual(self.lint_args()[:2], ["-f", "json"])
-        self.assertIn(II, self.lint_args())
-        self.assertIn("docs/basics/request-vs-lock.md", self.lint_args())
+        self.assertTrue(any(a.endswith("/" + II) for a in self.lint_args()))
+        self.assertTrue(any(a.endswith("/docs/basics/request-vs-lock.md") for a in self.lint_args()))
 
     def test_unknown_page_cannot_be_checked(self):
         code, out, err = self.run_cli("no-such-page")
@@ -146,6 +153,68 @@ class TestRun(PageCase):
         code, _, err = self.run_cli("instructions-ignored")
         self.assertEqual(code, 2)
         self.assertIn("textlint がない", err)
+
+
+class TestMask(PageCase):
+    """生成の目印の間は、textlint_targets.py --run と同じく、写しに textlint-disable を足して検査から外す。"""
+
+    def test_textlint_gets_a_copy_with_the_marker_spans_disabled(self):
+        self.run_cli("instructions-ignored")
+        seen = (self.bin / "seen.md").read_text(encoding="utf-8")
+        original = (self.root / II).read_text(encoding="utf-8")
+        self.assertEqual(seen, tt.mask_generated(original))
+        self.assertIn("<!-- textlint-disable -->", seen)
+        self.assertEqual(seen.count("\n"), original.count("\n"))     # 行番号は変わらない
+
+    def test_the_original_page_is_untouched_and_the_copy_is_removed(self):
+        before = (self.root / II).read_text(encoding="utf-8")
+        self.run_cli("instructions-ignored")
+        self.assertEqual((self.root / II).read_text(encoding="utf-8"), before)
+        self.assertEqual([p.name for p in self.root.iterdir() if p.name.startswith(".textlint-mask-")], [])
+
+    def test_the_copy_is_removed_even_when_textlint_output_is_unreadable(self):
+        (self.bin / "result.json").write_text("not json", encoding="utf-8")
+        code, _, err = self.run_cli("instructions-ignored")
+        self.assertEqual(code, 2)
+        self.assertEqual([p.name for p in self.root.iterdir() if p.name.startswith(".textlint-mask-")], [])
+
+    def test_findings_in_the_copy_are_reported_at_the_original_page(self):
+        result = [{"filePath": "__FIRST__", "messages": [{"line": 7, "column": 2, "ruleId": "r", "severity": 1, "message": "指摘"}]}]
+        (self.bin / "result.json").write_text(json.dumps(result), encoding="utf-8")
+        _, out, _ = self.run_cli("instructions-ignored")
+        self.assertEqual(out.splitlines()[0], f"警告 {II}:7:2 [textlint:r] 指摘")
+        self.assertNotIn(".textlint-mask-", out)
+
+    def test_a_page_without_markers_is_given_as_is(self):
+        plain = self.root / "docs" / "plain.md"
+        plain.write_text("# 題\n\n本文である。\n", encoding="utf-8")
+        (self.bin / "result.json").write_text(json.dumps(
+            [{"filePath": str(plain), "messages": [{"line": 3, "column": 1, "ruleId": "r", "severity": 2, "message": "誤り"}]}]), encoding="utf-8")
+        issues = check_page.run_textlint(self.root, [Path("docs/plain.md")])
+        self.assertEqual(self.lint_args(), ["-f", "json", plain.as_posix()])     # 写さない
+        self.assertEqual([(i.severity, i.where) for i in issues], [("エラー", "docs/plain.md:3:1")])
+
+
+REAL_TEXTLINT = REPO / "node_modules" / ".bin" / "textlint"
+
+
+@unittest.skipUnless(REAL_TEXTLINT.exists(), "textlint がない（npm ci を流すと動く）")
+class TestMaskWithRealTextlint(unittest.TestCase):
+    """本物の textlint で、目印の間の「四つ」は指摘されず、目印の外の「四つ」は指摘される。"""
+
+    def test_marker_spans_are_exempt_and_outside_is_not(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            (root / "docs").mkdir(parents=True)
+            for name in (".textlintrc.json", "prh.yml"):
+                shutil.copy(REPO / name, root / name)
+            (root / "node_modules").symlink_to(REPO / "node_modules", target_is_directory=True)
+            (root / "docs" / "x.md").write_text(
+                "# 題\n\n<!-- gen:begin foo -->\n## 四つの具体性\n<!-- gen:end foo -->\n\n"
+                "四つの点を書く。\n\n名は <!-- name:begin n1 -->四つ目<!-- name:end --> である。\n", encoding="utf-8")
+            issues = check_page.run_textlint(root, [Path("docs/x.md")])
+        arabic = [i for i in issues if "arabic-kanji-numbers" in i.text]
+        self.assertEqual([i.where for i in arabic], ["docs/x.md:7:1"])         # 目印の外の1件だけ（4 行目と 9 行目は外れる）
 
 
 class TestGen(PageCase):

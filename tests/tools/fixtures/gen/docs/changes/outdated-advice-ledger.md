@@ -21,5 +21,8 @@ updated: 2026-11-04
 
 ## 台帳 {#ledger}
 
+<!-- gen:begin ledger-index -->
+<!-- gen:end ledger-index -->
+
 <!-- gen:begin ledger -->
 <!-- gen:end ledger -->

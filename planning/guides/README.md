@@ -50,18 +50,18 @@
 
 元：design §10.2・§10.1
 
-- 見本のページは試作（工程7）で決める。見本は試作のページそのもの（`docs/<field>/<id>.md`）で、写しを作らない。決めたら、下の表に id を書く
+- 見本のページは試作（工程7）で決めた（2026-11-05）。見本は試作のページそのもの（`docs/<field>/<id>.md`）で、写しを作らない。決めたら、下の表に id を書く
 - 見本は書き方の水準を示すもので、構成をまねさせない（共通の手引き §22）
 
 | 型 | 見本のページ |
 | --- | --- |
-| concept（原理・仕組み） | （工程7で決める） |
-| concept（技法） | （工程7で決める） |
-| feature（雛形を含む） | （工程7で決める） |
-| symptom | （工程7で決める） |
-| comparison | （工程7で決める） |
-| recipe | （工程7で決める） |
-| judgment | （工程7で決める） |
-| ledger | （工程7で決める） |
-| guide | （工程7で決める） |
-| hub | （工程7で決める） |
+| concept（原理・仕組み） | request-vs-lock（basics）。仕組みの例は agent-loop（basics。v3 で書いた） |
+| concept（技法） | four-specifics（prompting） |
+| feature（雛形を含む） | writing-skills（extend） |
+| symptom | instructions-ignored（symptoms）。短めの例は caves-when-pushed（symptoms。v3） |
+| comparison | claude-md-vs-rules-skills-styles（extend） |
+| recipe | keep-replies-in-japanese（japanese）。v3 の例は experiment-log（eval） |
+| judgment | agreement-is-not-evidence（judgment） |
+| ledger | outdated-advice-ledger（changes） |
+| guide | how-to-use（start） |
+| hub | なし（本体を道具が作るページ。試作していない） |

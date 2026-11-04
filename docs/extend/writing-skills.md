@@ -195,7 +195,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 移した後は、`/` のメニューに出るかと、呼ぶ名前が変わっていないかを確かめる。サブフォルダに置いたコマンド（`.claude/commands/frontend/component.md` など）は、今も `/frontend:component` の形で呼ぶ。スキルの名前はフォルダ名か `name` で決まり、サブフォルダの区切りは入らない。呼び方が変わるので、たとえば `frontend-component` のように、名前を付け直す。
 
-昔の記事にある `/project:` や `/user:` を付けた呼び方は、今は使わず、`/<名前>` で呼ぶ。この古くなった助言の扱いは、「<!-- link:begin outdated-advice-ledger -->古くなった助言の台帳（準備中）<!-- link:end -->」にまとめてある。
+昔の記事にある `/project:` や `/user:` を付けた呼び方は、今は使わず、`/<名前>` で呼ぶ。この古くなった助言の扱いは、「<!-- link:begin outdated-advice-ledger#commands-directory -->古くなった助言の台帳（準備中）<!-- link:end -->」にまとめてある。
 
 ## 補助ファイルとスクリプトに分ける {#supporting-files}
 
@@ -331,7 +331,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 スキルの有無を切り替える手順は、Claude Code のものである。個人用かプロジェクトのスキルを切るには、設定の `skillOverrides` で `"off"` にする。`/skills` のメニューからも切り替えられ、その場合は `.claude/settings.local.json` に書かれる。手で書くときも、同じ `.claude/settings.local.json` に書く。実験のための切り替えを、チームで共有する `.claude/settings.json` に書くと、チームの全員でそのスキルが切れる。切ったスキルは Claude にも `/` のメニューにも出なくなるので、比べる実験の「無し」側に使える。
 
-<!-- gen:begin snippet writing-skills/skill-override-off -->
+<!-- gen:begin snippet writing-skills/local-settings -->
 <!-- textlint-disable -->
 
 ??? example "雛形：比べる実験でスキルを切る設定（.claude/settings.local.json の skillOverrides）"
@@ -347,7 +347,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
     動作を確かめていない雛形。要る最低の版：Claude Code 2.0.20。
 
 <!-- textlint-enable -->
-<!-- gen:end snippet writing-skills/skill-override-off -->
+<!-- gen:end snippet writing-skills/local-settings -->
 
 プラグインで配るスキルには `skillOverrides` が効かない。その場合は、プラグインを入れた場合と入れない場合を自動で比べる `claude plugin eval` を使う。
 

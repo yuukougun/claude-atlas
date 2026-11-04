@@ -2,6 +2,7 @@
 
   <!-- fact:begin <id> --><!-- fact:end -->                 値・決まった文・確認日（facts の value）
   <!-- fact:begin <id> <行> <列> --><!-- fact:end -->       面やモデルで違う値（facts の table）の1つのセル
+  <!-- name:begin <id> --><!-- name:end -->               名前の今の呼び方（data/facts.yml の names の current）
   <!-- gen:begin fact-table <id> -->                         facts の table の全体を表にする
   <!-- gen:begin feature <属性> -->（文の中）               ページの tracks の最初の機能の属性（強制力など）
   <!-- gen:begin feature <機能の id>/<属性> -->（文の中）    指定した機能の属性
@@ -96,6 +97,21 @@ def fact_text(gen, host: str, arg: str) -> str:
     if "{checked}" not in sentence and checked:
         sentence += "（{checked} " + gen.text("as_of", "時点") + "）"
     return _fill(sentence, {"value": value_text(gen, value), "unit": md_text(unit), "checked": checked})
+
+
+def name_text(gen, host: str, arg: str) -> str:
+    """name の目印の中身（文の中の1語）：names の今の名前。status が確認済みでなければ「未確認」。"""
+    nid = arg.split()[0]
+    data = gen.atlas.data
+    item = data.names.get(nid) if data is not None else None
+    if item is None:
+        gen.note(f"{host}: 名前「{nid}」が data/facts.yml の names にない（空にした）")
+        return ""
+    if len(arg.split()) > 1:
+        gen.note(f"{host}: name の目印は id だけを書く（{' '.join(arg.split()[1:])} は読まない）")
+    if not gen.is_confirmed(item):
+        return unchecked(gen)
+    return md_text(item.text("current"))
 
 
 def sources_line(gen, host: str, ids: list[str]) -> str:

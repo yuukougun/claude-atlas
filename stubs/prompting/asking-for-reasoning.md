@@ -1,7 +1,7 @@
 ---
 id: asking-for-reasoning
 title: 推論を見せてほしいとき
-aliases: [思考の過程を見たい, thinking の要約, 根拠を短く説明させる, <thinking> タグに書かせる]
+aliases: [思考の過程を見たい, thinking の要約, 根拠を短く説明させる, thinking タグに書かせる]
 type: concept
 field: prompting
 chapter: 正直さと確かめ方

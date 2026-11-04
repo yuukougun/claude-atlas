@@ -110,11 +110,57 @@ updated: 2026-11-04
 
 ## 台帳 {#ledger}
 
-この節に、古くなった助言の行を並べる。行は時期・状態・面のどの順にも並んでいないので、見つけた小技の言い回し（コマンド名・設定のキー・決まり文句）で探す。ページ内の検索か、ページの目次を使う。たとえば「think hard」や「よく考えて」は、[think → think hard → ultrathink の段階、日本語の「熟考」](#think-hard-keywords)の行にある。この行の時期は、ultrathink が戻った版の日である。think hard などの段階のキーワードが外れた日は、確かめられていない。
+この節は、はじめに一覧表で全行の状態・変わった時期・面を見比べられ、その後に各行が続く。見つけた小技の言い回し（コマンド名・設定のキー・決まり文句）で、表の「古い助言」の欄か、ページ内の検索で探し、行へ移る。たとえば「think hard」や「よく考えて」は、[think → think hard → ultrathink の段階、日本語の「熟考」](#think-hard-keywords)の行にある。この行の時期は、ultrathink が戻った版の日である。think hard などの段階のキーワードが外れた日は、確かめられていない。
 
 状態は、撤回（使えないか使わないほうがよい）・置換（別の仕組みや新しい名前が担う）・条件付き（今も効くが前提が変わった）のどれかである。詳しくは[台帳の読み方](#how-to-read)にある。「関わるページ」がある行は、そこから詳しいページへ進める。2026 年の変更を時期の順に見たいときは、<!-- link:begin change-timeline-2026 -->2026 年の主な変更の年表（準備中）<!-- link:end -->を使う。
 
 台帳に載るのは、この辞典が扱う範囲の古い助言の一部である。載っていない小技が、今も有効とは限らない。見つからないときは、[回避策の 2 つの問い](#workarounds)で見当をつけ、そこに書いた手順で確かめる。
+
+<!-- gen:begin ledger-index -->
+<!-- textlint-disable -->
+
+| 古い助言 | 状態 | 変わった時期 | 面 |
+| --- | --- | --- | --- |
+| [「#」で始めると CLAUDE.md に記憶される](#hash-to-memorize) | 撤回 | 2025-12-15・Claude Code 2.0.70 | Claude Code |
+| [.claude/commands/ にカスタムコマンドを作る、/project:name 記法](#commands-directory) | 置換 | 2026-01-09・Claude Code 2.1.3 | Claude Code |
+| [/agents でサブエージェントを作る](#agents-command) | 撤回 | 2026-07-01・Claude Code 2.1.198 | Claude Code |
+| [think → think hard → ultrathink の段階、日本語の「熟考」](#think-hard-keywords) | 置換 | 2026-03-04・Claude Code 2.1.68 | Claude Code |
+| [IMPORTANT や YOU MUST で強調すれば守られる](#important-caps) | 撤回 | 2026-10-27 ごろ | アプリ・Claude Code・API |
+| [--dangerously-skip-permissions で YOLO 運用](#yolo-skip-permissions) | 置換 | 2026-08-14〜2026-09-28 | Claude Code |
+| [最初は毎回承認を求められる](#approve-everything-first) | 撤回 | 2026-08-14〜2026-09-28・Claude Code 2.1.283 | Claude Code |
+| [200k を前提にコンテキストを最優先で節約する](#save-context-for-200k) | 条件付き | 2026-10-27 ごろ | Claude Code |
+| [アーキテクチャやファイル構成を CLAUDE.md に書く](#architecture-in-claude-md) | 撤回 | 2026-10-27 ごろ | Claude Code |
+| [「keep going」「don't be lazy」と書く](#keep-going-dont-be-lazy) | 撤回 | 2026-10-27 ごろ | アプリ・Claude Code・API |
+| [「最後に double-check して」と書き足す](#add-double-check) | 条件付き | 2026-07-24 | アプリ・Claude Code・API |
+| [「subagent を使え」と書き足す](#tell-it-to-use-subagents) | 条件付き | 2026-07-24〜2026-10-27 | Claude Code |
+| [工程ごとにサブエージェントを大量に作る](#subagent-per-step) | 撤回 | 2026-07-24〜2026-10-27 | Claude Code |
+| [prefill で JSON の形を強制する](#prefill-for-json) | 撤回 | 2026-02-05 | API |
+| [budget\_tokens で思考量を指定する](#budget-tokens) | 撤回 | 2026-02-05 | API |
+| [&lt;thinking&gt; タグに推論を書かせる](#thinking-tags) | 撤回 | 2026-06-09 | API |
+| [Console の prompt generator / improver を使う](#console-prompt-generator) | 撤回 | 2026-08-17 | API |
+| [公式インタラクティブチュートリアルが最新の作法](#interactive-tutorial) | 条件付き | 2026-02-05〜2026-04-20 | API |
+| [Cowork は別アプリ、Web search はトグルで入れる](#cowork-separate-app) | 撤回 | 2026-09-16 | アプリ |
+| [メモリは会話の後に日次で要約される](#memory-daily-summary) | 撤回 | 2026-07-10 | アプリ |
+| [Claude Code on the Web と --remote を使う](#code-on-the-web-remote) | 置換 | 2026-09-10〜2026-09-17 | アプリ・Claude Code |
+| [routines で定期実行を作る](#routines-name) | 置換 | 2026-10-20 ごろ | アプリ・Claude Code |
+| [/cost・/stats で使用量を見る](#slash-cost-and-stats) | 置換 | 2026-04-23・Claude Code 2.1.118 | Claude Code |
+| [/fork で会話を分岐する](#fork-to-branch) | 置換 | 2026-03-17・Claude Code 2.1.77 | Claude Code |
+| [/vim・/tag・/pr-comments・ultraplan・TaskOutput ツールを使う](#removed-commands) | 撤回 | 2026-04-02〜2026-09-18 | Claude Code |
+| [MCP を SSE transport でつなぐ](#mcp-sse-transport) | 撤回 | 2025-03-26 | Claude Code |
+| [GitHub Action を @beta と direct\_prompt で書く](#action-beta-direct-prompt) | 置換 | 2025-08-26 | Claude Code |
+| [「workflow」と書いて workflows を起動し、超過分は extra usage で払う](#workflow-keyword-extra-usage) | 置換 | 2026-06-02・Claude Code 2.1.160 | Claude Code |
+| [プラグインや自作の bash ループで回し続ける](#ralph-loops) | 置換 | 2026-05-11〜2026-05-28・Claude Code 2.1.139 | Claude Code |
+| [tmux で自作のエージェント組織を作る](#tmux-agent-orgs) | 置換 | 2026-02-05〜2026-05-11・Claude Code 2.1.32 | Claude Code |
+| [Opus は高いので避ける](#avoid-opus-as-expensive) | 条件付き | 2026-09-22・Claude Code 2.1.280 | アプリ・Claude Code・API |
+| [Max は 5x と 20x から選ぶ](#max-5x-or-20x) | 置換 | 2026-10-30 | アプリ・Claude Code |
+| [有料プランは 5 時間の上限に当たったら待つしかない](#wait-out-5-hour-limit) | 条件付き | 2026-10-30 | アプリ・Claude Code |
+| [Customize の「Skills」「Connectors」「Plugins」の各タブで管理する](#customize-tabs) | 置換 | 2026-10-29〜2026-11-30 | アプリ |
+| [temperature（や top\_p・top\_k）を下げて出力を安定させる](#lower-temperature) | 撤回 | 2026-10-21 | API |
+| [スタイル（Styles）で応答の調子と形式を切り替える](#styles-for-tone) | 置換 | 2026-06-01 | アプリ |
+| [コンテキストを守るためにサブエージェントに調べさせる](#subagents-to-save-context) | 条件付き | 2026-10-27 ごろ | Claude Code |
+
+<!-- textlint-enable -->
+<!-- gen:end ledger-index -->
 
 <!-- gen:begin ledger -->
 <!-- textlint-disable -->

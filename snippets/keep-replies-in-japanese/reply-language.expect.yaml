@@ -2,6 +2,7 @@
 title: 返答の言語の規則（CLAUDE.md）
 place: user                  # ~/.claude/CLAUDE.md。チームの決まりにするなら、プロジェクトの CLAUDE.md
 safety: false
+open: true
 features: [claude-md]
 conditions:
   - 新しいセッションで試す（CLAUDE.md はセッションの開始で読まれる）

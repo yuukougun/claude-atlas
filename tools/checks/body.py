@@ -91,7 +91,7 @@ def opening(p) -> tuple[int | None, int, int]:
 
 @check("目印", ERROR)
 def check_markers(ctx: Context) -> Iterator[Finding]:
-    """目印（<!-- gen:begin … -->・<!-- fact:begin … -->・<!-- link:begin … -->）の対が合わない：閉じていない、begin の
+    """目印（<!-- gen:begin … -->・<!-- fact:begin … -->・<!-- link:begin … -->・<!-- name:begin … -->）の対が合わない：閉じていない、begin の
     ない end、名前の違う end、名前のない begin と gen:end、同じ種類の入れ子（design §8.4）"""
     for pr in ctx.problems:
         if pr.kind == "目印":

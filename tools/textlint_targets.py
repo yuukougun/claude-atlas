@@ -44,8 +44,8 @@ ENTRY_FILE = "index.md"       # 分野の入口（docs/<field>/index.md。生成
 TEXTLINT = Path("node_modules/.bin/textlint")
 FRONT_MATTER_RE = re.compile(r"\A---[ \t]*\r?\n(.*?)^---[ \t]*\r?$", re.S | re.M)
 # 生成の目印（tools/lib/markdown.py と同じ）。begin の直後に disable、end の直前に enable を足す
-GEN_BEGIN_RE = re.compile(r"<!--\s*(?:link|gen|fact):begin\b[^>]*?-->")
-GEN_END_RE = re.compile(r"<!--\s*(?:link|gen|fact):end\b[^>]*?-->")
+GEN_BEGIN_RE = re.compile(r"<!--\s*(?:link|gen|fact|name):begin\b[^>]*?-->")
+GEN_END_RE = re.compile(r"<!--\s*(?:link|gen|fact|name):end\b[^>]*?-->")
 DISABLE = "<!-- textlint-disable -->"
 ENABLE = "<!-- textlint-enable -->"
 

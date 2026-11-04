@@ -181,6 +181,10 @@ class TestMaskGenerated(unittest.TestCase):
         self.assertTrue(tt.has_generated_marker(text))
         self.assertFalse(tt.has_generated_marker("普通の本文である。\n"))
 
+    def test_name_marker_is_wrapped_too(self):
+        out = tt.mask_generated("今の名前は <!-- name:begin n1 -->四つ目<!-- name:end --> である。\n")
+        self.assertIn("<!-- name:begin n1 --><!-- textlint-disable -->四つ目<!-- textlint-enable --><!-- name:end -->", out)
+
 
 class TestRunMasked(TargetsCase):
     """目印のあるページは、目印を足した写しで検査し、パスを元に戻す。"""

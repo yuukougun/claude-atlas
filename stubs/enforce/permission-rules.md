@@ -15,7 +15,7 @@ pitfalls: []
 scenes: [開発, チーム]
 summary: 許可・確認・拒否のルールで、Claude が使える道具とファイルを決められる。拒否は先に評価されるが、当たらないパスのルールと、効かない子プロセスがある。
 signs:
-  - {type: goal, text: '`.env` や migrations を絶対に触らせたくない'}
+  - {type: goal, text: '.env や migrations を絶対に触らせたくない'}
   - {type: goal, text: よく使う安全なコマンドは、毎回確認させたくない}
   - {type: symptom, text: 拒否のルールに書いたのに、下のフォルダにある同じ名前のファイルは読まれた}
 prerequisites: [permission-modes-overview]

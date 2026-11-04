@@ -157,7 +157,7 @@ pages:
       - {name: "個人用の CLAUDE.local.md と、ほかのチームの CLAUDE.md を外す claudeMdExcludes の例", kind: settings, safety: false}
     visual: {kind: static, text: "フォルダの木と、起動時に連結される CLAUDE.md・後から読まれるサブフォルダの CLAUDE.md の図"}
     materials: ["00 §3 分野08", "01 A-1（配置・連結・後からの読み込み・@import・claudeMdExcludes）", "04 Q1 B（@import でコンテキストは減らない）", "05 1-5", "research/23 #6・§3.4（サブフォルダの CLAUDE.md は圧縮の後、引き金のファイルを読むまで戻らない）", "research/27 §3.2（クラウドのセッションは個人の CLAUDE.md を読まない）"]
-    notes: null
+    notes: "AGENTS.md は、CLAUDE.md が作業ディレクトリかその上にあると読まれない（2026-11-05 工程7。#46）"
 
   - id: path-scoped-rules
     chapter: CLAUDE.md・rules・自動メモリ

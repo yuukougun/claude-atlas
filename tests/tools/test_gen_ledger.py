@@ -88,5 +88,27 @@ class TestLedger(GenCase):
         self.assertNotIn("始まり：", timeline)
 
 
+class TestRenameWithoutDate(GenCase):
+    """names の changed.date を省いた項目（改名の時期が分からない）。"""
+    NAME = ("  - id: sample-undated\n    current: 新しい学習所\n    old: [古い学習所]\n"
+            "    changed: {note: 改名の時期は不明}\n    sources: [sample-blog]\n    checked: 2026-11-05\n    status: 確認済み\n")
+
+    def setUp(self):
+        super().setUp()
+        text = self.read("data/facts.yml")
+        self.write("data/facts.yml", text.replace("\nnames:\n", "\nnames:\n" + self.NAME, 1))
+        self.generate()
+
+    def test_the_old_name_list_says_the_period_is_unknown(self):
+        old = block_content(self.read("docs/start/term-index.md"), "terms old")
+        self.assertIn("- 古い学習所 → 新しい学習所（不明）\n", old)
+        self.assertIn("- 古いフック → フック（2026-10 ごろ・Claude Code 2.1.300）", old)     # 時期のある名前はそのまま
+
+    def test_the_timeline_leaves_it_out(self):
+        timeline = block_content(self.read("docs/changes/change-timeline-2026.md"), "timeline")
+        self.assertNotIn("古い学習所", timeline)
+        self.assertIn("古いフック", timeline)
+
+
 if __name__ == "__main__":
     unittest.main()

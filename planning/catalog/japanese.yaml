@@ -105,7 +105,7 @@ pages:
       - {title: "Stop フックで最後の返事を確かめる", anchor: stop-hook, level: 仕組みにする}
       - {title: "届かない所（サブエージェント・圧縮の要約・クラウドのセッション）", anchor: reach}
       - {title: "アプリと API の場合", anchor: app-and-api}
-      - {title: "どこまで減ったかを測る（検証ノート）", anchor: measure}
+      - {title: "検証の方法", anchor: measure}
     templates:
       - {name: "最後の返事が英語なら書き直させる Stop フック", kind: hook, safety: false}
       - {name: "language の設定の例（個人の設定に置く）", kind: settings, safety: false}

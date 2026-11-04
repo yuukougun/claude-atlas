@@ -2,6 +2,7 @@
 title: language の設定（個人の設定に置く）
 place: user                  # ~/.claude/settings.json
 safety: false
+open: true
 features: [language-setting]
 conditions:
   - リポジトリの .claude/settings.json と .claude/settings.local.json に language がない

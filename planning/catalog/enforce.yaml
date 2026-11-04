@@ -127,7 +127,7 @@ pages:
     scenes: [開発, チーム]
     summary: "許可・確認・拒否のルールで、Claude が使える道具とファイルを決められる。拒否は先に評価されるが、当たらないパスのルールと、効かない子プロセスがある。"
     signs:
-      - {type: goal, text: "`.env` や migrations を絶対に触らせたくない"}
+      - {type: goal, text: ".env や migrations を絶対に触らせたくない"}
       - {type: goal, text: "よく使う安全なコマンドは、毎回確認させたくない"}
       - {type: symptom, text: "拒否のルールに書いたのに、下のフォルダにある同じ名前のファイルは読まれた"}
     prerequisites: [permission-modes-overview]
@@ -253,7 +253,7 @@ pages:
     scenes: [開発]
     summary: "どの権限モードでも確認なしには書かせない場所と、消させない場所を知り、足りない境界を設定で足せる。作業ディレクトリの外への書き込みを道具の側で止める設定もある。"
     signs:
-      - {type: symptom, text: "`.claude` や `.git` を書き換えるたびに確認が出る"}
+      - {type: symptom, text: ".claude や .git を書き換えるたびに確認が出る"}
       - {type: goal, text: "作業ディレクトリの外のファイルは書き換えさせたくない"}
     prerequisites: [permission-rules]
     related: [destructive-commands, permission-modes-overview, sandboxing, what-auto-mode-stops, deleted-something-important, before-opening-unknown-repos, freeze-eval-assets]
@@ -361,7 +361,7 @@ pages:
     summary: "PreToolUse のフックで操作を止め、理由と代わりの手段を Claude に返せる。exit 2 と JSON の返し方の違いと、止めた後に回り込ませない書き方が分かる。"
     signs:
       - {type: goal, text: "特定のコマンドを、理由を伝えて止めたい"}
-      - {type: goal, text: "`.env` や migrations を絶対に触らせたくない"}
+      - {type: goal, text: ".env や migrations を絶対に触らせたくない"}
       - {type: symptom, text: "フックで止めても、Claude が理由を分からずに同じ操作を繰り返す"}
     prerequisites: [hooks-basics]
     related: [writing-safe-hooks, hook-recipes, lock-side-effects, permission-rules, stop-hooks, protecting-secrets, destructive-commands]

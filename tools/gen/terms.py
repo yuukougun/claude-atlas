@@ -173,9 +173,8 @@ def old_names(ctx) -> str:
         if not gen.is_confirmed(n):
             continue
         line = f"- {md_text(old)} → {md_text(n.text('current'))}"
-        period = period_text(gen, n.raw.get("changed"))
-        if period:
-            line += f"（{period}）"
+        period = period_text(gen, n.raw.get("changed")) or gen.text("period_unknown", "不明")   # changed.date を省いた名前（時期が分からない）
+        line += f"（{period}）"
         feat = gen.feature(n.text("feature")) if n.text("feature") else None
         main = gen.atlas.by_id.get(feat.text("page")) if feat is not None else None
         if main is not None:

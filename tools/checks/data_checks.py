@@ -125,6 +125,21 @@ def check_fact_ids(ctx: Context) -> Iterator[Finding]:
                               severity=demote(ctx, p))
 
 
+@check("names の id", ERROR)
+def check_name_ids(ctx: Context) -> Iterator[Finding]:
+    """本文の name の目印（<!-- name:begin <id> -->）の id が data/facts.yml の names にない"""
+    data = ctx.data
+    if data is None:
+        return
+    names = data.names
+    for p in ctx.pages:
+        for m in getattr(p, "markers", []):
+            if m.kind == "name" and m.arg and m.arg.split()[0] not in names:
+                yield Finding(p.file, m.line, p.label, f"name の目印の「{m.arg.split()[0]}」が data/facts.yml の names にない"
+                                                       "（名前の提案のファイルに書いて、メインに足してもらう）",
+                              severity=demote(ctx, p))
+
+
 @check("tracks の id", ERROR)
 def check_track_ids(ctx: Context) -> Iterator[Finding]:
     """ページの tracks の id が data/facts.yml の features にない（骨格のページだけなら警告）"""

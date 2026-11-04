@@ -23,16 +23,17 @@ pages:
       - {type: goal, text: "公式の文書や講座とこの辞典を、どう使い分ければよいか知りたい"}
     prerequisites: []
     related: [reverse-index, term-index, glossary, roadmap, knowledge-map, four-principles, six-causes, product-map, ai-and-sources, outdated-advice-ledger, dating-information]
-    volatility: 低
+    volatility: 中
     sections:
       - {title: "引き方（困りごと・やりたいこと・名前から）", anchor: lookup}
       - {title: "冒頭の要点とバッジ", anchor: badges}
+      - {title: "信用してよいかの見方", anchor: trust}
       - {title: "レベル（委任の段階）", anchor: levels}
       - {title: "確認日と期限切れの注意書き", anchor: freshness}
       - {title: "根拠の強さの書き分け", anchor: evidence}
       - {title: "面のタブ", anchor: surface-tabs}
       - {title: "段階・下書きの帯・「準備中」の題名", anchor: stage}
-      - {title: "公式ドキュメント・公式の教材との役割分担", anchor: official-docs}
+      - {title: "公式の文書・公式の教材との役割分担", anchor: official-docs}
       - {title: "自分の AI に読ませる（llms.txt）", anchor: llms-txt}
       - {title: "誤りや古い情報の報告", anchor: report}
     visual: {kind: static, text: "ページの見取り図：冒頭の非公式の文・バッジの列・冒頭の要点・別名の行・本文・前提と次に読む（未公開のページは「題名（準備中）」）・段階と更新日・フッターの非公式の文とライセンスの位置"}

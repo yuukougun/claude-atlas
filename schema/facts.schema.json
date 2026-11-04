@@ -309,9 +309,9 @@
             "description": "変わった時期と版",
             "type": "object",
             "additionalProperties": false,
-            "required": ["date"],
             "properties": {
               "date": {
+                "description": "変わった日。改名の時期が分からないときは省く（年表に出さず、旧名の一覧には「不明」と出す）",
                 "type": ["string", "integer"],
                 "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
                 "format": "partial-date",

@@ -1,7 +1,7 @@
 ---
 id: xml-tags
 title: XML タグで区切る
-aliases: [XML tags, タグで構造化する, <document> で包む, 区切りを付ける]
+aliases: [XML tags, タグで構造化する, document タグで包む, 区切りを付ける]
 type: concept
 field: prompting
 chapter: 資料と入力の渡し方

@@ -387,6 +387,8 @@ features:
   enforcement: お願い
   load_timing: セッション開始か、一致するファイルを扱うとき
   context_cost: 常駐か、一致するファイルのときだけ
+  survives_compaction: null
+  conditional: [survives_compaction]
   since:
     claude_code: 2.0.64
     date: '2025-12-10'
@@ -3495,10 +3497,7 @@ names:
   old:
   - Anthropic Academy
   changed:
-    date: '2026-07-31'
-    until: '2026-11-04'
-    note: 改名の時期は不明。旧名は 2026-07-31 の第三者の記事（tutorialsdojo）が使い、新名は 2026-11-04 と 2026-11-05 に academy.claude.com の入口（題・見出し）で確かめた。この範囲は旧名の最後の用例と新名の最初の確認で、改名がこの間にあったとは限らない（それより前に改名済みで、記事が旧名のままだった可能性もある）
-    label: 日までは絞れない。旧名の最後の用例は 2026-07-31 の記事で、新名の確認は 2026-11-04
+    note: 改名の時期は不明。旧名は 2026-07-31 の第三者の記事（tutorialsdojo）が使い、新名は 2026-11-04 と 2026-11-05 に academy.claude.com の入口（題・見出し）で確かめた。改名がこの間にあったとは限らない（それより前に改名済みで、記事が旧名のままだった可能性もある）
   sources:
   - claude-academy
   - academy-claude-101-creating-with-artifacts

@@ -152,6 +152,17 @@ class TestMarkerEdgeCases(GenCase):
         self.assertIn("行「model-z」と列「api」のセルがない", out)
         self.assertIn("表でないので、行と列（a b）は読まない", out)
 
+    def test_name_marker(self):
+        self.add("<!-- name:begin sample-rename --><!-- name:end -->・<!-- name:begin sample-rename-unchecked -->x<!-- name:end -->・"
+                 "<!-- name:begin no-such -->y<!-- name:end -->・<!-- name:begin sample-rename extra --><!-- name:end -->")
+        out = self.generate()
+        text = self.read(PAGE)
+        self.assertIn("<!-- name:begin sample-rename -->フック<!-- name:end -->", text)                       # 今の名前
+        self.assertIn("<!-- name:begin sample-rename-unchecked -->未確認<!-- name:end -->", text)            # 確かめていない名前は書かない
+        self.assertIn("<!-- name:begin no-such --><!-- name:end -->", text)                                      # ない id は空にする
+        self.assertIn("名前「no-such」が data/facts.yml の names にない", out)
+        self.assertIn("name の目印は id だけを書く（extra は読まない）", out)
+
     def test_feature_and_snippet_errors(self):
         self.add("<!-- gen:begin feature nothing --><!-- gen:end feature nothing -->・"
                  "<!-- gen:begin feature no-such/maturity --><!-- gen:end feature no-such/maturity -->\n\n"

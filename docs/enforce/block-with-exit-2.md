@@ -17,7 +17,7 @@ scenes: [開発]
 summary: PreToolUse のフックで操作を止め、理由と代わりの手段を Claude に返せる。exit 2 と JSON の返し方の違いと、止めた後に回り込ませない書き方が分かる。
 signs:
   - {type: goal, text: 特定のコマンドを、理由を伝えて止めたい}
-  - {type: goal, text: '`.env` や migrations を絶対に触らせたくない'}
+  - {type: goal, text: .env や migrations を絶対に触らせたくない}
   - {type: symptom, text: フックで止めても、Claude が理由を分からずに同じ操作を繰り返す}
 prerequisites: [hooks-basics]
 related: [writing-safe-hooks, hook-recipes, lock-side-effects, permission-rules, stop-hooks, protecting-secrets, destructive-commands]
@@ -91,10 +91,10 @@ PreToolUse のフックが操作を止める方法は、終了コードの exit 
 複数のフックが同じ操作に別々の判定を返したときは、deny が最も強く、defer、ask、allow の順に弱くなる。
 
 !!! example "判断例：exit 2 と JSON のどちらで返すか"
-    - **状況**：migrations の既存ファイルを直そうとする操作を止めたい。止めた後は、新しいファイルの追加へ向けたい
-    - **迷う候補**：exit 2 で stderr に 1 文を書く／JSON の deny で `permissionDecisionReason` に書く
-    - **選んだもの**：JSON の deny
-    - **理由**：どちらでも理由は届く。JSON は判定と理由の欄が分かれ、`additionalContext` で状況も足せる。理由と代わりの手段を組み立てて返すなら、JSON のほうが扱いやすい。1 行の理由で足りる小さな規則なら、exit 2 のほうがスクリプトが短い
+    - **状況**：migrations の既存ファイルの変更を止め、追加へ向けたい。
+    - **迷う候補**：exit 2 で stderr に理由を書く／JSON の deny で理由の欄に書く。
+    - **選んだもの**：JSON の deny。
+    - **理由**：どちらでも理由は届く。JSON は判定と理由が別の欄で、`additionalContext` で状況も足せる。理由と代わりを組み立てて返すなら JSON が扱いやすい。1 行の理由で足りる小さな規則なら、exit 2 でもスクリプトは短く済む。
 
 ## 理由と代わりの手段の書き方 {#reason}
 
@@ -132,7 +132,7 @@ PreToolUse のフックが操作を止める方法は、終了コードの exit 
 | 守りたいこと | 先に使うもの | フックを足す場面 |
 | --- | --- | --- |
 | パスやコマンドを単に禁じたい | 権限ルールの deny | 理由と代わりを返したいとき |
-| 条件つきで止めたい（既存ファイルだけ、など） | フック | ― |
+| 条件付きで止めたい（既存ファイルだけ、など） | フック | ― |
 | 秘密を読ませたくない | 権限ルールとサンドボックスの二重 | 補助として。<!-- link:begin protecting-secrets#two-layers -->秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする（準備中）<!-- link:end --> を見る |
 
 `.env` のように「絶対に」触らせたくないものは、フックだけに頼らない。フックは Claude の道具の呼び出しを見て判定するので、書き方の違いで抜ける経路がありうる。権限ルールの落とし穴は <!-- link:begin permission-rules#path-rules -->権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール（準備中）<!-- link:end --> と <!-- link:begin permission-rules#child-processes -->権限ルール（allow・ask・deny） › 子プロセスには効かない（準備中）<!-- link:end --> にある。

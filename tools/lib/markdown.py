@@ -4,6 +4,7 @@
   <!-- gen:begin 名前 --> … <!-- gen:end 名前 -->        生成の部分（名前は references・snippet <id>/<名前> など）
   <!-- fact:begin <id> --> … <!-- fact:end -->          変わりやすい値（data/facts.yml の facts の id）
   <!-- link:begin <id>[#<anchor>] --> … <!-- link:end -->  まだ公開していないかもしれないページへのリンク
+  <!-- name:begin <id> --> … <!-- name:end -->          名前の今の呼び方（data/facts.yml の names の id）
 フェンスのコードと、行の中のコード（`…`）の中の目印は読まない（目印の書き方を説明するページのため）。
 対の合わないもの（閉じていない・begin のない end・名前の違う end・名前のない begin と gen:end）は Problem にする。
 種類が違う目印は入れ子にしてよい（gen の中の fact など）。同じ種類の入れ子は誤りにする。
@@ -23,8 +24,8 @@ HEADING_RE = re.compile(r"^[ ]{0,3}(?P<hashes>#{1,6})(?:[ \t]+(?P<text>.*?))?[ \
 CLOSING_HASHES_RE = re.compile(r"(?:^|[ \t]+)#+[ \t]*$")
 ATTR_ID_RE = re.compile(r"[ \t]*\{[^{}]*?#(?P<id>[A-Za-z0-9_:.-]+)[^{}]*\}[ \t]*$")
 CODE_SPAN_RE = re.compile(r"(`+)(?:(?!\1).)+?\1")
-MARKER_RE = re.compile(r"<!--[ \t]*(?P<kind>gen|fact|link):(?P<edge>begin|end)(?:[ \t]+(?P<arg>.*?))?[ \t]*-->")
-MARKER_KINDS = ("gen", "fact", "link")
+MARKER_RE = re.compile(r"<!--[ \t]*(?P<kind>gen|fact|link|name):(?P<edge>begin|end)(?:[ \t]+(?P<arg>.*?))?[ \t]*-->")
+MARKER_KINDS = ("gen", "fact", "link", "name")
 FRONT_MATTER_OPEN = "---"
 FRONT_MATTER_CLOSE = ("---", "...")
 
@@ -117,8 +118,8 @@ class Marker:
     書き換えるときに使う：body[start:inner_start] が begin、body[inner_start:inner_end] が中身、
     body[inner_end:stop] が end。閉じていなければ end の側は None。"""
 
-    kind: str                 # gen・fact・link
-    arg: str                  # gen は名前、fact は数値の id、link は id か id#anchor
+    kind: str                 # gen・fact・link・name
+    arg: str                  # gen は名前、fact は数値の id、link は id か id#anchor、name は names の id
     line: int                 # begin のファイルの行
     start: int
     inner_start: int

@@ -15,7 +15,7 @@ pitfalls: []
 scenes: [開発]
 summary: どの権限モードでも確認なしには書かせない場所と、消させない場所を知り、足りない境界を設定で足せる。作業ディレクトリの外への書き込みを道具の側で止める設定もある。
 signs:
-  - {type: symptom, text: '`.claude` や `.git` を書き換えるたびに確認が出る'}
+  - {type: symptom, text: '.claude や .git を書き換えるたびに確認が出る'}
   - {type: goal, text: 作業ディレクトリの外のファイルは書き換えさせたくない}
 prerequisites: [permission-rules]
 related: [destructive-commands, permission-modes-overview, sandboxing, what-auto-mode-stops, deleted-something-important, before-opening-unknown-repos, freeze-eval-assets]

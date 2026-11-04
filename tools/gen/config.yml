@@ -17,12 +17,14 @@ held_back:   # 工程7の試作の10ページ（2026-11-04。planning/batches/st
   - competition-rules
   - outdated-advice-ledger
   - how-to-use
+  - four-specifics
   # 使用量の測定に使う第一波の4ページ（2026-11-05。作者の承認の後、工程8で外す）
   - caves-when-pushed
   - agent-loop
   - block-with-exit-2
   - experiment-log
-  - four-specifics
+  # 方針のページ（作者の承認まで外す。design §6.1 の8）
+  - ai-and-sources
 
 # 語彙の値の役（どの型が症状のページか、など）。値は site.yml の語彙
 roles:
@@ -166,7 +168,7 @@ hosts:
   roadmap: [roadmap]
   knowledge-map: [graph]
   six-causes: [causes]
-  outdated-advice-ledger: [ledger]
+  outdated-advice-ledger: [ledger-index, ledger]
   change-timeline-2026: [timeline]
 
 # llms.txt（design §7。1ページ1行）。冒頭の文は decisions 2026-11-04「決定の一覧の承認」の最小の文のまま

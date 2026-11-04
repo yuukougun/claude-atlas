@@ -227,6 +227,8 @@ pages:
     related: [claims-done-but-isnt, define-done, verification-ladder, evidence-not-reports, reward-hacking, tool-use-loop, harness-over-model, subagent-isolation, goal-until-done]
     scenes: [開発, コンテスト]
     outdated_advice: [keep-going-dont-be-lazy, add-double-check]
+    sections:
+      - {title: "何に効くか（原理「確かめる」と原因「確かめていない」）", anchor: what-it-helps}
     volatility: 低
     visual: {kind: mermaid, text: "読む → 考える → 行動する → 確かめる → また考える の輪。確かめるの矢印が欠けると、終わったように見えたところで止まる"}
     materials:
@@ -490,7 +492,7 @@ pages:
     level: 整える
     level_evidence: "頼み方や指示を整える段階で、書いても守られないものがある理由として要る（japanese の consistent-politeness も整える）"
     priority: 必須
-    surfaces: [claude-code, app, api]
+    surfaces: [claude-code]
     principle: [縛る]
     prevents: [縛っていない]
     summary: "プロンプト・CLAUDE.md・スキルのような指示は Claude が読んで判断するお願いで、フック・deny ルール・管理設定は毎回必ず効く鍵だと分かる。例外を許さない規則を鍵に移す判断の土台になる。"
@@ -502,6 +504,9 @@ pages:
     outdated_advice: [important-caps]
     volatility: 低
     visual: {kind: static, text: "お願いと鍵の二層：上の層（プロンプト・CLAUDE.md・スキル）は判断され、下の層（フック・拒否ルール・管理設定・サンドボックス）は毎回必ず効く"}
+    templates:
+      - {name: "鍵：読ませない場所と編集させない場所を deny ルールで止める", kind: settings, safety: true}
+      - {name: "お願い：止める理由と代わりの手順を CLAUDE.md に書く", kind: claude-md, safety: false}
     materials:
       - "00 §3 分野01「お願いと鍵（決定論的か、非決定論的か）」"
       - "00 §1「公式は失敗を四つに分け、『お願い』と『鍵』を区別する」"
@@ -510,8 +515,7 @@ pages:
       - "11 第1節 分野01 p56#11（規範は保証にならない：迎合と同じ構図）"
       - "research/27 #8・§3.2（CLAUDE.md は強制される設定ではなく文脈。prompt 型・agent 型の hook は決定的ではない）"
       - "research/23 §3.1（Best practices の改稿。現行の版で書く）"
-    notes: "背骨の「縛る」の理論面（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。判断と対応表の本体は enforce の when-to-lock と request-lock-table に任せる。独自の用語「お願いと鍵」を見出しにし、公式の用語（非決定論的な指示・決定論的な制御）を併記する（D14）。prompt 型・agent 型の hook は別のモデルが判断するので鍵にならないことも書く（research/27 §3.2）。拒否ルールの表記は仮（M1。工程5で確かめる）。（2026-11-04 統合：M1）sign の「「必ず」と書いても破られる」は、症状の instructions-ignored（CLAUDE.md に書いたのに守られない）の言い換えで、prompting の emphasis-words の「IMPORTANT や「必ず」を付けても守られない」とも重なる（R1-06 の「強調しても守られない」の束）。困りごとは emphasis-words に寄せ、ここは理由を知りたい goal にした。（2026-11-04 工程4：DR-19 a）（2026-11-04 工程5：割れている3語は英語のまま書く。decisions 2026-11-04）"
-
+    notes: "背骨の「縛る」の理論面（design §4.2：背骨の入口は start、「なぜ」の本体は basics）。判断と対応表の本体は enforce の when-to-lock と request-lock-table に任せる。独自の用語「お願いと鍵」を見出しにし、公式の用語（非決定論的な指示・決定論的な制御）を併記する（D14）。prompt 型・agent 型の hook は別のモデルが判断するので鍵にならないことも書く（research/27 §3.2）。拒否ルールの表記は仮（M1。工程5で確かめる）。（2026-11-04 統合：M1）sign の「「必ず」と書いても破られる」は、症状の instructions-ignored（CLAUDE.md に書いたのに守られない）の言い換えで、prompting の emphasis-words の「IMPORTANT や「必ず」を付けても守られない」とも重なる（R1-06 の「強調しても守られない」の束）。困りごとは emphasis-words に寄せ、ここは理由を知りたい goal にした。（2026-11-04 工程4：DR-19 a）（2026-11-04 工程5：割れている3語は英語のまま書く。decisions 2026-11-04）（2026-11-05 工程7：surfaces を claude-code に絞った。アプリと API の鍵を調べて足したら surfaces を戻す。#44）"
   - id: data-vs-instructions
     chapter: 指示と仕組み
     title: データと命令を区別できない（prompt injection の原理）

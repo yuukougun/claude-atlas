@@ -2,6 +2,7 @@
 
   <!-- gen:begin 名前 --> … <!-- gen:end 名前 -->     生成の部分（名前は blocks.py の登録。--list-blocks で一覧）
   <!-- fact:begin <id> --> … <!-- fact:end -->       数値（data/facts.yml の facts。表の値は <id> <行> <列>）
+  <!-- name:begin <id> --> … <!-- name:end -->       名前の今の呼び方（data/facts.yml の names の id）
   <!-- link:begin <id>[#<anchor>] --> … <!-- link:end -->  ページへのリンク（未公開なら「題名（準備中）」）
 
 目印の読み方は読む層（lib.markdown.find_markers）のもの。目印の外は1字も変えない。ただし、ページ（docs/<field>/<id>.md）の
@@ -76,6 +77,9 @@ def render_marker(gen, base: dict, mk, body: str, where: str) -> str | None:
     if mk.kind == "fact":
         from .facts import fact_text            # 循環を避ける
         return fact_text(gen, base["host"], mk.arg) if mk.arg else None
+    if mk.kind == "name":
+        from .facts import name_text            # 循環を避ける
+        return name_text(gen, base["host"], mk.arg) if mk.arg else None
     blk, param = B.lookup(mk.arg)
     if blk is None:
         gen.note(f"{where}:{mk.line}: 知らない生成の部分「{mk.arg}」（--list-blocks で一覧。書かずに残した）")

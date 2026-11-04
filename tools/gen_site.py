@@ -56,7 +56,7 @@ def list_blocks() -> None:
         shown = f"{name} {b.param}" if b.param else name
         print(f"  {shown:40s} {b.kind:6s} {b.doc}")
     print("ほかの目印：<!-- fact:begin <数値の id> -->（表は <id> <行> <列>）と <!-- link:begin <id>[#<anchor>] -->。"
-          "どちらも <!-- fact:end --> と <!-- link:end --> で閉じる")
+          "どちらも <!-- fact:end --> と <!-- link:end --> で閉じる。名前の今の呼び方は <!-- name:begin <names の id> --><!-- name:end -->")
 
 
 def main(argv: list[str] | None = None) -> int:

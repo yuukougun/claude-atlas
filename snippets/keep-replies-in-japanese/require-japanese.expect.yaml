@@ -2,6 +2,7 @@
 title: Stop フックのスクリプト（最後の返事が英語なら書き直させる）
 place: project               # .claude/hooks/require-japanese.py。登録は hook-settings
 safety: false
+open: true
 features: [hooks]
 conditions:
   - python3 が使える（WSL・Linux を基準にする）

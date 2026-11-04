@@ -30,7 +30,7 @@ sections:
   - {title: Stop フックで最後の返事を確かめる, anchor: stop-hook, level: 仕組みにする}
   - {title: 届かない所（サブエージェント・圧縮の要約・クラウドのセッション）, anchor: reach}
   - {title: アプリと API の場合, anchor: app-and-api}
-  - {title: どこまで減ったかを測る（検証ノート）, anchor: measure}
+  - {title: 検証の方法, anchor: measure}
 stage: draft
 updated: 2026-11-04
 ---
@@ -65,7 +65,7 @@ Claude Code の返答が日本語から英語に戻るのは、1 ターン（依
 | 訂正した直後 | 日本語に戻るが、またすぐ英語になる（根拠：中） |
 | 圧縮の後 | 圧縮の要約が英語で書かれた、という報告がある（根拠：弱。単独の報告） |
 
-ある世代のモデルで増えた、という利用者の記録がある。ただし、モデルの切り替えと Claude Code の更新が同じ日に重なった例があり、原因は決められない（根拠：中）。モデルごとの癖は固定した事実として扱わない。自分が使うモデルで起きるかは、[どこまで減ったかを測る節](#measure)の手順で確かめる。
+ある世代のモデルで増えた、という利用者の記録がある。ただし、モデルの切り替えと Claude Code の更新が同じ日に重なった例があり、原因は決められない（根拠：中）。モデルごとの癖は固定した事実として扱わない。自分が使うモデルで起きるかは、[検証の方法の節](#measure)の手順で確かめる。
 
 場面が分かったら、設定・指示・Stop フックの順に重ねて対処する。原因の切り分けは、症状のページ「<!-- link:begin replies-in-english -->英語で返ってくる（準備中）<!-- link:end -->」が、安く確かめられる順に進める。このページは、切り分けた後の対処を書く。
 
@@ -78,7 +78,7 @@ Claude Code の返答が日本語から英語に戻るのは、1 ターン（依
 <!-- gen:begin snippet keep-replies-in-japanese/user-settings -->
 <!-- textlint-disable -->
 
-??? example "雛形：language の設定（個人の設定に置く）"
+???+ example "雛形：language の設定（個人の設定に置く）"
 
     ```json
     {
@@ -120,7 +120,7 @@ After：
 <!-- gen:begin snippet keep-replies-in-japanese/reply-language -->
 <!-- textlint-disable -->
 
-??? example "雛形：返答の言語の規則（CLAUDE.md）"
+???+ example "雛形：返答の言語の規則（CLAUDE.md）"
 
     ```markdown
     # 返答の言語
@@ -155,7 +155,7 @@ After で足したものは 5 つある。
 
 **毎ターン足しても止まらない**：UserPromptSubmit フックで、規則を毎ターン足す方法がある。ただし、足しても英語に戻ったという報告が複数ある（根拠：中）。これもお願いの層である。
 
-**確かめ方**：新しいセッションで `/context` を開き、Memory files に CLAUDE.md が出ることを見る。1 回の返答が日本語でも、効いた証拠にはならない。測り方は[どこまで減ったかを測る節](#measure)にある。
+**確かめ方**：新しいセッションで `/context` を開き、Memory files に CLAUDE.md が出ることを見る。1 回の返答が日本語でも、効いた証拠にはならない。測り方は[検証の方法の節](#measure)にある。
 
 CLAUDE.md の中に、日本語の規則と食い違う指示や古い指示があると、Claude はどちらかを任意に選ぶことがある。見つけたら消す。
 
@@ -178,7 +178,7 @@ Stop フックが届かないことを、先に知っておく。
 - **続けて止められる回数に上限がある**。上限を過ぎると、英語のままターンが終わる。下のスクリプトは、書き直しの返事を判定しない（`stop_hook_active` が true なら通す）。止め続けるループを避けるためで、書き直しも英語なら、2 回目は通って、英語のままターンが終わる。上限の扱いは、『<!-- link:begin stop-hooks#block-cap -->Stop フックで「終わらせない」 › 続けて止められる回数の上限（準備中）<!-- link:end -->』にある。
 - **英語で答えさせたい作業でも止まる**。翻訳のように英語の返事が正しい作業も止めるので、その間は `ALLOW_ENGLISH_REPLY=1` を付けて Claude Code を起動し直し、判定を切る。
 - **判定は文字の割合で、誤判定がある**。下のスクリプトは、英字が 40 字以上あり、英字とかな・漢字の合計に占めるかな・漢字の割合が 0.25 未満の返事を、英語とみなす。そのため、英字が 40 字に満たない短い英語の返事は通る。英語の返事でも、日本語の語が混ざって割合が 0.25 以上になれば通る。逆に、コードの外に英単語や識別子を並べた日本語の返事は、英語とみなされて止まる。閾値は最初の値で、測って直す。`MIN_JA_SHARE` を下げると止まりにくく、上げると止まりやすい。`MIN_LATIN` を上げると、短い返事を通しやすい。
-- **場所によっては Stop フックが動かない**。ユーザーの `~/.claude/settings.json` に登録したフックは、クラウドのセッションに届かない。サブエージェントの最終報告は、Stop フックでなく SubagentStop フックの担当である。ただし、新しい版の Claude Code では、報告が SubagentStop フックの入力に入らないことがある（下の「届かない所の節」に書く）。場所ごとの対処は、[届かない所の節](#reach)にある。
+- **場所によっては Stop フックが動かない**。ユーザーの `~/.claude/settings.json` に登録したフックは、クラウドのセッションに届かない。サブエージェントの最終報告は、Stop フックでなく SubagentStop フックの担当である。ただし、<!-- fact:begin subagent-handback-min-version -->Claude Code 2.1.271 以降（2026-11-05 時点）<!-- fact:end -->では、報告が SubagentStop フックの入力に入らないことがある（下の「届かない所の節」に書く）。場所ごとの対処は、[届かない所の節](#reach)にある。
 
 ツールの合間の一言には、フックを組み合わせて日本語を保つ実践例がある。MessageDisplay で英語の一言を見つけて印を残し、次の PreToolUse で印を見て、ツールの実行を止めて言い直させる。DevelopersIO の記事（2026-10-20）が、この組み合わせを 2026-10 の環境で確かめたと書く（根拠：弱。単独の実践者の記事）。記事は、英語が一度画面に出るのは防げないと書き、MessageDisplay が途中から動かないように見えた場面も挙げる。原因は確かめられていない。Stop と PreToolUse のフックを入れても、直後の一言がまた英語になったという報告もある（根拠：弱。単独の報告）。この教材は、判定と印の受け渡しが複雑で手元で確かめていないので、その雛形を載せない。
 
@@ -187,7 +187,7 @@ Stop フックを入れる作業は 3 つある。1 つ目は、スクリプト�
 <!-- gen:begin snippet keep-replies-in-japanese/require-japanese -->
 <!-- textlint-disable -->
 
-??? example "雛形：Stop フックのスクリプト（最後の返事が英語なら書き直させる）"
+???+ example "雛形：Stop フックのスクリプト（最後の返事が英語なら書き直させる）"
 
     ````python
     #!/usr/bin/env python3
@@ -241,7 +241,7 @@ Stop フックを入れる作業は 3 つある。1 つ目は、スクリプト�
 <!-- gen:begin snippet keep-replies-in-japanese/hook-settings -->
 <!-- textlint-disable -->
 
-??? example "雛形：Stop フックの登録（settings）"
+???+ example "雛形：Stop フックの登録（settings）"
 
     ```json
     {
@@ -278,13 +278,13 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
   | python3 .claude/hooks/require-japanese.py
 ```
 
-次に、新しいセッションで、フックを働かせるために、わざと英語の返事を引き出す。英語のファイルを読ませ、英語で要約するよう頼む。CLAUDE.md の雛形には、英語を頼まれたら依頼を優先する一文がある。それでも、このスクリプトは依頼を見ず、最後の返事だけを見るので、差し戻しは起きる。公式によれば、`decision` を `block` にした差し戻しはフックのエラーとして表示される。差し戻しが起きて、続きの返事が日本語になれば、フックは動いている。1 回の試行では判断せず、[どこまで減ったかを測る節](#measure)の手順で測る。
+次に、新しいセッションで、フックを働かせるために、わざと英語の返事を引き出す。英語のファイルを読ませ、英語で要約するよう頼む。CLAUDE.md の雛形には、英語を頼まれたら依頼を優先する一文がある。それでも、このスクリプトは依頼を見ず、最後の返事だけを見るので、差し戻しは起きる。公式によれば、`decision` を `block` にした差し戻しはフックのエラーとして表示される。差し戻しが起きて、続きの返事が日本語になれば、フックは動いている。1 回の試行では判断せず、[検証の方法の節](#measure)の手順で測る。
 
 常用するときは、登録を `~/.claude/settings.json` に移す。スクリプトは `~/.claude/hooks/` に置き、コマンドのパスを `$HOME/.claude/hooks/require-japanese.py` に直す。
 
 サブエージェントの最終報告には、同じ形の SubagentStop フックが使える（[Hooks reference](https://code.claude.com/docs/en/hooks#subagentstop)）。`decision` を `block` にして `reason` を返すと、サブエージェントは続けて作業し、理由を次の指示として受け取る。同じスクリプトを登録できるはずだが、この教材では試していない。
 
-ただし、新しい版の Claude Code では、サブエージェントが `SubagentHandback` という道具で報告を親に渡すことがある。このとき SubagentStop フックの `last_assistant_message` に入るのは、サブエージェントの結びの文だけで、渡された報告ではない。公式によれば、報告そのものは `SubagentHandback` に当てた PreToolUse か PostToolUse のフックが、`tool_input.message` として受け取る（[Hooks reference](https://code.claude.com/docs/en/hooks#subagentstop)）。報告の言語を確かめるフックは、どちらの形になるかで、見る場所を選ぶ必要がある。この教材は、どの版からこの形になるかを本文に書かず、手元の環境でも試していない。
+ただし、<!-- fact:begin subagent-handback-min-version -->Claude Code 2.1.271 以降（2026-11-05 時点）<!-- fact:end -->では、サブエージェントが `SubagentHandback` という道具で報告を親に渡すことがある。このとき SubagentStop フックの `last_assistant_message` に入るのは、サブエージェントの結びの文だけで、渡された報告ではない。公式によれば、報告そのものは `SubagentHandback` に当てた PreToolUse か PostToolUse のフックが、`tool_input.message` として受け取る（[Hooks reference](https://code.claude.com/docs/en/hooks#subagentstop)）。報告の言語を確かめるフックは、どちらの形になるかで、見る場所を選ぶ必要がある。手元の環境では試していない。
 
 ここまでの手順は WSL・Linux の CLI を基準にする。macOS・Windows・IDE の拡張・デスクトップアプリでの動作は未確認である。
 
@@ -296,7 +296,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 - サブエージェントの定義（`.claude/agents/` のファイル）の本文に、「報告は日本語で書く」と書く。
 - 依頼文に言語を書く。CLAUDE.md の例（[CLAUDE.md と出力スタイルの節](#instructions)）にも、同じ 1 行を入れてある。
-- 報告が英語でも、その後の親の返答は Stop フックが確かめる。サブエージェントの最終報告そのものを確かめるなら、SubagentStop フックの `last_assistant_message` を使う。ただし、`SubagentHandback` で報告を渡す版では、SubagentStop フックには結びの文しか入らない。報告は、`SubagentHandback` に当てた PreToolUse か PostToolUse のフックの `tool_input.message` にある。
+- 報告が英語でも、その後の親の返答は Stop フックが確かめる。サブエージェントの最終報告そのものを確かめるなら、SubagentStop フックの `last_assistant_message` を使う。ただし、`SubagentHandback` で報告を渡す<!-- fact:begin subagent-handback-min-version -->Claude Code 2.1.271 以降（2026-11-05 時点）<!-- fact:end -->では、SubagentStop フックには結びの文しか入らない。報告は、`SubagentHandback` に当てた PreToolUse か PostToolUse のフックの `tool_input.message` にある。
 
 報告を日本語にすれば、親が英語を読む場面が減る（推論・実践例なし）。引き継がれないものの一覧は、「<!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end -->」にある。
 
@@ -338,7 +338,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
     英語のツール結果を読んだ後に英語へ戻る現象は、公式の文書に書かれていない。API で自作のエージェントを動かす場合の頻度は、この教材では確かめていない。API にはフックがない。応答の言語を自分のコードで判定し、英語なら「日本語で書き直して」を会話に足して再送する、という Stop フックと同じ形が考えられる（推論・実践例なし）。
 
-## どこまで減ったかを測る（検証ノート） {#measure}
+## 検証の方法 {#measure}
 
 設定・指示・フックのどれが効いたかは、1 回の会話から判断できない。英語の返答が毎回出るわけではなく、その割合も人や環境で大きく違うからである（自己申告。根拠：弱）。次の手順で、自分の環境の英語の割合を測る。変更が効いたかを小さな eval で確かめる一般の手順は、「<!-- link:begin measure-changes -->変更が効いたかを測る（小さな eval）（準備中）<!-- link:end -->」にある。
 

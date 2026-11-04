@@ -63,7 +63,7 @@ pages:
 
   - id: four-specifics
     chapter: 頼み方の原則
-    title: "具体性の4点（対象・状況・完了・手本）"
+    title: "具体性の 4 点（対象・状況・完了・手本）"
     aliases: ["具体的なプロンプト", "Write a specific prompt", "対象のファイルと症状を書く"]
     type: concept
     level: 整える
@@ -73,7 +73,7 @@ pages:
     principle: [見せる, 確かめる]
     prevents: [見えていない]
     scenes: [開発, 文章, データ分析]
-    summary: "依頼に対象・状況・完了の形・倣う手本の4点を書くと、Claude が推測で埋める所が減り、意図とのずれが減る。欠けている点が、次に書き足すものになる。"
+    summary: "依頼に対象・状況・完了の形・倣う手本の 4 点を書くと、Claude が推測で埋める所が減り、意図とのずれが減る。欠けている点が、次に書き足すものになる。"
     signs:
       - {type: symptom, text: "直してと頼んだのに、見当違いの場所を直された"}
       - {type: goal, text: "一回で意図どおりに動いてほしい"}
@@ -85,7 +85,7 @@ pages:
       - {title: "状況：症状と再現の手順", anchor: situation}
       - {title: "完了：何が起きれば終わりか", anchor: done}
       - {title: "手本：倣う既存のコードや文章", anchor: model}
-      - {title: "誤読されやすい所（仕様の解釈・境界の条件）", anchor: misreadings}
+      - {title: "誤読されやすい所（仕様の解釈・境界の入力）", anchor: misreadings}
     visual: {kind: static, text: "4点のどれかが欠けたとき、Claude が推測で埋める所を色で示した依頼文の図"}
     materials: ["00 §3 分野04（行の注記：research/25 P9）", "00 §1（研究の段落の訂正）", "03 Q5 Takeaway・P1（訂正）", "research/25 P9・§3.1", "11 第2節 分野04 p12#105・p34#74・p12#106", "00 §4 返答と品質の困りごと"]
     notes: "「熟練者との差は長さではなく具体性」は Anthropic の研究の結論ではない（research/25 P9）ので、summary・signs の根拠にせず、長さとの対比も書かない。4点は公式の Best practices を根拠にし、Before/After は Best practices の「Instead of / Try」から取る。研究を引くなら、熟練度が Claude の判定で暫定の結果であることを添える。誤読の類型の研究（11 第2節）は根拠の強さを添えて misreadings の節に置く。sign の「頼んだものと違うものが出てくる」は症状の not-what-i-meant と同じ文なので外した（逆引きで振り分けを飛ばさないため）（2026-11-04 統合：M2）"
@@ -338,7 +338,7 @@ pages:
   - id: xml-tags
     chapter: 資料と入力の渡し方
     title: "XML タグで区切る"
-    aliases: ["XML tags", "タグで構造化する", "<document> で包む", "区切りを付ける"]
+    aliases: ["XML tags", "タグで構造化する", "document タグで包む", "区切りを付ける"]
     type: concept
     level: 整える
     level_evidence: "資料・指示・例が一つの依頼に混ざり始める整える段階で要る"
@@ -533,7 +533,7 @@ pages:
   - id: asking-for-reasoning
     chapter: 正直さと確かめ方
     title: "推論を見せてほしいとき"
-    aliases: ["思考の過程を見たい", "thinking の要約", "根拠を短く説明させる", "<thinking> タグに書かせる"]
+    aliases: ["思考の過程を見たい", "thinking の要約", "根拠を短く説明させる", "thinking タグに書かせる"]
     type: concept
     level: 整える
     level_evidence: "結果を確かめる整える段階で、なぜその答えになったかを知りたくなる"

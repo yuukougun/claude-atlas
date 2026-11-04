@@ -143,6 +143,10 @@ class Page(PageRecord):
     def markers_of(self, kind: str) -> list[Marker]:
         return [m for m in self.markers if m.kind == kind]
 
+    def name_ids(self) -> list[str]:
+        """本文の name の目印が指す names の id（重ねない。出てくる順）。"""
+        return list(dict.fromkeys(m.arg.split()[0] for m in self.markers_of("name") if m.arg))
+
     def fact_ids(self) -> list[str]:
         """本文の fact の目印が指す数値の id（重ねない。出てくる順）。"""
         return list(dict.fromkeys(m.arg.split()[0] for m in self.markers_of("fact") if m.arg))

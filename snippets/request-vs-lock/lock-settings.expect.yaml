@@ -3,5 +3,7 @@ place: project
 features: [permissions]
 safety: true
 expect:
-  - {do: "credentials/ の中のファイルを読ませる", result: 止められる}
-  - {do: "src/client/ の中のファイルを編集させる", result: 止められる}
+  - when: credentials/ の中のファイルを読ませる
+    then: 止められる
+  - when: src/client/ の中のファイルを編集させる
+    then: 止められる

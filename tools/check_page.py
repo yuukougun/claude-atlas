@@ -21,8 +21,10 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -119,7 +121,30 @@ def run_textlint(root: Path, files: list[Path]) -> list[Issue]:
     exe = root / tt.TEXTLINT
     if not exe.exists():
         raise CannotCheck(f"textlint がない（{tt.TEXTLINT.as_posix()}）。リポジトリの根で npm ci を流す")
-    done = run([str(exe), "-f", "json", *[f.as_posix() for f in files]], root)
+    # 生成の目印の間は、lint:text（textlint_targets.py --run）と同じく検査から外す（写しに textlint-disable を足して流す）
+    tmp = Path(tempfile.mkdtemp(prefix=".textlint-mask-", dir=root))
+    back: dict[str, str] = {}   # 写しの絶対パス → 元のページの相対パス
+    args = []
+    try:
+        for f in files:
+            src = f if f.is_absolute() else root / f
+            try:
+                text = src.read_text(encoding="utf-8")
+            except (OSError, UnicodeDecodeError):
+                args.append(src.as_posix())
+                continue
+            if not tt.has_generated_marker(text):
+                args.append(src.as_posix())
+                continue
+            rel_src = src.resolve().relative_to(root.resolve())
+            copy = tmp / rel_src
+            copy.parent.mkdir(parents=True, exist_ok=True)
+            copy.write_text(tt.mask_generated(text), encoding="utf-8")
+            back[copy.resolve().as_posix()] = rel_src.as_posix()
+            args.append(copy.as_posix())
+        done = run([str(exe), "-f", "json", *args], root)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
     try:
         results = json.loads(done.stdout)
     except json.JSONDecodeError:
@@ -127,10 +152,14 @@ def run_textlint(root: Path, files: list[Path]) -> list[Issue]:
         raise CannotCheck(f"textlint の出力が読めない（終了コード {done.returncode}）：{msg[0] if msg else ''}") from None
     issues = []
     for res in results:
-        try:
-            rel = Path(res["filePath"]).resolve().relative_to(root).as_posix()
-        except ValueError:
-            rel = res["filePath"]
+        fp = Path(res["filePath"]).resolve().as_posix()
+        if fp in back:
+            rel = back[fp]
+        else:
+            try:
+                rel = Path(res["filePath"]).resolve().relative_to(root.resolve()).as_posix()
+            except ValueError:
+                rel = res["filePath"]
         for m in res.get("messages", []):
             sev = "エラー" if m.get("severity") == 2 else "警告"
             issues.append(Issue(sev, f"{rel}:{m.get('line', 0)}:{m.get('column', 0)}", f"[textlint:{m.get('ruleId', '')}] {m.get('message', '')}"))

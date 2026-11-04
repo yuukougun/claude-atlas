@@ -357,6 +357,20 @@ class TestData(PagesCase):
         sev = {i.page: i.severity for i in issues}
         self.assertEqual(sev, {"request-vs-lock": ERROR, "hooks-basics": WARNING})
 
+    def test_a_rename_without_a_date_fits_the_data_shape(self):
+        self.replace("data/facts.yml", "changed: {date: 2026-10, approx: true}", "changed: {note: 改名の時期は不明}")
+        self.assertFound()
+
+    @covers("names の id")
+    def test_name_marker_ids(self):
+        self.append(RVL, "\n名は <!-- name:begin sample-rename --><!-- name:end --> と <!-- name:begin no-name --><!-- name:end --> である。\n")
+        self.append(HB, "\n<!-- name:begin no-name-2 --><!-- name:end -->\n")
+        issues = self.assertFound(("names の id", "request-vs-lock"), ("names の id", "hooks-basics"))
+        found = [(i.page, i.severity, i.message) for i in issues if i.check == "names の id"]
+        self.assertEqual({(p, s) for p, s, _ in found}, {("request-vs-lock", ERROR), ("hooks-basics", WARNING)})
+        self.assertEqual(len(found), 2)                                  # sample-rename は names にあるので指摘しない
+        self.assertTrue(any("no-name」" in m for _, _, m in found))
+
     @covers("tracks の id")
     def test_track_ids(self):
         self.replace(HB, "tracks: [sample-hooks]", "tracks: [no-feature]")

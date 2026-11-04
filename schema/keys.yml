@@ -333,7 +333,7 @@ sections:
               required: all
               format:
                 object:
-                  date: {required: all, format: partial_date}
+                  date: {format: partial_date, note: 変わった日。改名の時期が分からないときは省く（年表に出さず、旧名の一覧には「不明」と出す）}
                   until: {format: partial_date, note: 移り変わりに幅があるときの終わり}
                   approx: {format: boolean, note: 「ごろ」}
                   version: {format: version, note: 変わった Claude Code の版}

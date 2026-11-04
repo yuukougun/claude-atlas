@@ -16,7 +16,7 @@ signs:
 wave: 1
 prerequisites: []
 related: [reverse-index, term-index, glossary, roadmap, knowledge-map, four-principles, six-causes, product-map, ai-and-sources, outdated-advice-ledger, dating-information]
-volatility: 低
+volatility: 中
 sections:
   - {title: 引き方（困りごと・やりたいこと・名前から）, anchor: lookup}
   - {title: 冒頭の要点とバッジ, anchor: badges}
@@ -86,7 +86,7 @@ updated: 2026-11-05
 | アプリ・Claude Code・API の関係 | <!-- link:begin product-map -->全体地図：Claude の面と層（準備中）<!-- link:end --> |
 | 読んだ助言が今も通じるか | <!-- link:begin outdated-advice-ledger -->古くなった助言の台帳（準備中）<!-- link:end -->と<!-- link:begin dating-information -->いつの情報かを見分ける（準備中）<!-- link:end --> |
 
-ナビゲーションの大きな区分を分野と呼ぶ。症状のページだけを章（分野の中の区切り）ごとに並べた分野が、ナビゲーションの「症状辞典」である。逆引き辞典を通らずに、章から症状を探すときは、そこを開く。
+ナビゲーションの大きな区分を分野と呼ぶ。症状のページだけを章（分野の中の区切り）ごとに並べた分野が、ナビゲーションの<!-- link:begin field:symptoms -->症状辞典（準備中）<!-- link:end -->である。逆引き辞典を通らずに、章から症状を探すときは、そこを開く。
 
 サイトの検索欄は、題名・見出し・本文の語で当たる。ページ冒頭の別名の行は本文にあるので、旧名・別の呼び方・公式の日本語訳でも当たる。
 

@@ -209,6 +209,14 @@ class TestMarkdown(unittest.TestCase):
         self.assertEqual(text[ms[1].inner_end:ms[1].stop], "<!-- gen:end snippet hooks/block -->")
         self.assertEqual(ms[2].content(text), "フック")
 
+    def test_name_marker_is_read_and_checked_like_the_others(self):
+        text = "名は <!-- name:begin academy-claude-rename -->Claude Academy<!-- name:end --> である。\n"
+        ms, problems = self.markers(text)
+        self.assertEqual(problems, [])
+        self.assertEqual([(m.kind, m.arg, m.content(text)) for m in ms], [("name", "academy-claude-rename", "Claude Academy")])
+        _, problems = self.markers("<!-- name:begin -->x<!-- name:end -->\n<!-- name:begin a -->y\n")
+        self.assertEqual(len(problems), 2)       # 名前（id）がない・閉じていない
+
     def test_different_kinds_can_nest(self):
         ms, problems = self.markers("<!-- gen:begin table -->\n| <!-- fact:begin a -->1<!-- fact:end --> |\n"
                                     "<!-- gen:end table -->\n")

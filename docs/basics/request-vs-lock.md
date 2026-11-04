@@ -9,7 +9,7 @@ chapter: 指示と仕組み
 order: 180
 level: 整える
 priority: 必須
-surfaces: [claude-code, app, api]
+surfaces: [claude-code]
 principle: [縛る]
 prevents: [縛っていない]
 summary: プロンプト・CLAUDE.md・スキルのような指示は Claude が読んで判断するお願いで、フック・deny ルール・管理設定は効く範囲と条件の中で毎回必ず効く鍵だと分かる。例外がなく機械で判定できる規則を鍵に移す判断の土台になる。
@@ -155,9 +155,9 @@ updated: 2026-11-04
 
 ## 何に効くか {#effects}
 
-お願い（Claude が判断する指示）と鍵（判断によらず働く仕組み）の区別は、この教材の原理（見せる・確かめる・縛る・握る）のうち「縛る」と、Claude 側の原因（うまくいかない理由）のうち「縛っていない」に結び付く。
+お願い（Claude が判断する指示）と鍵（判断によらず働く仕組み）の区別は、この辞典の原理（見せる・確かめる・縛る・握る）のうち「縛る」と、Claude 側の原因（うまくいかない理由）のうち「縛っていない」に結び付く。
 
-原理の「縛る」は、守らせたいことを、Claude の判断の外にある仕組みで守らせることである。お願いと鍵の区別は、なぜ縛る必要があるかを説明する。お願いのままでは守られる保証がないので、例外のない規則は鍵に移す。原理の全体と比例則は、「4 つの原理と比例則」のページで見る。
+原理の「縛る」は、守らせたいことを、Claude の判断の外にある仕組みで守らせることである。お願いと鍵の区別は、なぜ縛る必要があるかを説明する。お願いのままでは守られる保証がないので、例外のない規則は鍵に移す。原理の全体と比例則は、<!-- link:begin four-principles -->四つの原理と比例則（見せる・確かめる・縛る・握る）（準備中）<!-- link:end -->で見る。
 
 原因の「縛っていない」は、絶対に起きてはならないことや、必ず行う手順を、お願いだけで守らせようとしている状態である。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) も、期待どおりに進まない典型的な場合としてこれを挙げ、プロンプトだけでは保証できないとする。
 
@@ -171,7 +171,7 @@ updated: 2026-11-04
 
 お願い（Claude が読んで判断する指示）と鍵（Claude の判断によらず働く仕組み）をめぐって、よく出会う誤解を 5 つ挙げる。
 
-- **「IMPORTANT や『必ず』を付ければ守られる」**：強調は文の書き方を変えるだけで、お願いのままである。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、強調を重ねるとかえって規則を当てはめすぎやすいとして、この助言をもうやめてよいものに挙げる。守られない行は、ファイルが長すぎて埋もれていないかを見る。例外のない規則なら鍵に移す。台帳の記録は<!-- link:begin outdated-advice-ledger -->古くなった助言の台帳（準備中）<!-- link:end -->、強調語の現在は<!-- link:begin emphasis-words -->強調語（IMPORTANT・必ず）の現在（準備中）<!-- link:end -->にある。
+- **「IMPORTANT や『必ず』を付ければ守られる」**：強調は文の書き方を変えるだけで、お願いのままである。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、強調を重ねるとかえって規則を当てはめすぎやすいとして、この助言をもうやめてよいものに挙げる。守られない行は、ファイルが長すぎて埋もれていないかを見る。例外のない規則なら鍵に移す。台帳の記録は<!-- link:begin outdated-advice-ledger#important-caps -->古くなった助言の台帳（準備中）<!-- link:end -->、強調語の現在は<!-- link:begin emphasis-words -->強調語（IMPORTANT・必ず）の現在（準備中）<!-- link:end -->にある。
 - **「CLAUDE.md は設定ファイルだから、書けば強制される」**：CLAUDE.md は強制される設定ではなく、文脈である。組織が配る CLAUDE.md も同じで、[How Claude remembers your project](https://code.claude.com/docs/en/memory) は、指針には CLAUDE.md を使い、強制には管理設定の deny ルールなどを使うよう勧める。強制されているかどうかは、deny ルールか、種類が `command` か `http` のフックに書いてあるかで見分ける。
 - **「フックにすれば必ず守られる」**：フックが走ることと、フックの目的が果たされることは別である。種類が `prompt` か `agent` のフックは、別のモデルが判断するので鍵ではない。種類は、設定の `type` で確かめる。種類が `command` か `http` のフックでも、文を足すだけのものは、足した文がお願いとして読まれる。毎ターン言語の指示をフックで足しても英語に戻ったという報告が、#96326 のコメントにある（根拠：弱）。鍵として働く動作は 3 つある。ハーネスが自分で処理を走らせる動作、ツールの呼び出しを止める動作、終わろうとした Claude を差し戻す動作である。対応するイベントは<!-- link:begin hooks-basics -->フックの考え方とイベント（準備中）<!-- link:end -->で選ぶ。
 - **「auto モードがあるから、危ない操作は止まる」**：auto モードの分類器は、別のモデルが行動ごとに判断する仕組みで、決まった規則ではない。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、「never」の規則は deny ルールかフックに置くよう勧める。

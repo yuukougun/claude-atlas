@@ -2,6 +2,7 @@
 title: Stop フックの登録（settings）
 place: local                 # .claude/settings.local.json。常用するときは ~/.claude/settings.json に移す
 safety: false
+open: true
 features: [hooks]
 conditions:
   - .claude/hooks/require-japanese.py を置いてある

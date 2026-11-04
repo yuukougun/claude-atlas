@@ -506,7 +506,7 @@ pages:
       - {title: "teleport で取り込む", anchor: teleport}
     templates: []
     materials: ["00 §3 分野07", "00 §5 台帳（Claude Code on the Web と --remote）", "01 P-1・B-1（クラウドのセッションは user と local の設定を読まない）", "research/22 #25（クラウドの中で動かした -p のセッション ID）"]
-    notes: "並列と無人の使い方は delegate（choosing-parallel-modes・agent-view-and-background・cloud-schedules）が持つ。実行場所の比べ方は surfaces の where-it-runs。使えるプランは数値ファイルに置く。goal「PC を閉じても作業を進めておいてほしい」は、比べるページ where-it-runs の「PC を閉じても作業を続けさせたい」と同じ問いで、「席を外している間も進めてほしい」の言い換えが8ページに散っていた（R1-06・R3-5）。受け皿は where-it-runs にし、ここは方式に固有の goal（手元で計画してクラウドに渡す。公式の勧める流れ）に書き分けた（2026-11-04 工程4：DR-19 a）"
+    notes: "並列と無人の使い方は delegate（choosing-parallel-modes・agent-view-and-background・cloud-schedules）が持つ。実行場所の比べ方は surfaces の where-it-runs。使えるプランは数値ファイルに置く。goal「PC を閉じても作業を進めておいてほしい」は、比べるページ where-it-runs の「PC を閉じても作業を続けさせたい」と同じ問いで、「席を外している間も進めてほしい」の言い換えが8ページに散っていた（R1-06・R3-5）。受け皿は where-it-runs にし、ここは方式に固有の goal（手元で計画してクラウドに渡す。公式の勧める流れ）に書き分けた（2026-11-04 工程4：DR-19 a）（2026-11-05 工程7：keep-replies-in-japanese のクラウドの節にある Projects の説明を、このページに寄せる。#35）"
 
   - id: control-from-phone
     chapter: ほかの面と離席
