@@ -17,11 +17,14 @@ const REPLY = '最後の返答は150字までの日本語で、報告のファ�
 
 const roleText = (p, role) => `あなたは claude-atlas（${ROOT}）の工程7（試作）の担当で、ページ ${p.id}（型 ${p.type}・分野 ${p.field}）の「${role}」を受け持つ。最初に共通の指示 ${BRIEF} を全部読み、その §4 の「${role}」のとおりに進める。報告の置き場所は ${ROOT}/planning/batches/step7/pages/${p.id}/ の下。`
 
+let probe = 'skipped'
+if (!args.skipProbe) {
 phase('確かめ')
-const probe = await agent(
+probe = await agent(
   'claude-atlas（' + ROOT + '）の縛りを確かめる担当。次の2つのコマンドを、この順に Bash で1回ずつ実行し、出力（止められたなら返ってきた理由の文）をそのまま返す。どちらも実行されても何も変わらない。(1) `cd ' + ROOT + ' && git status --short | head -3` (2) `cd ' + ROOT + ' && git checkout -- does-not-exist-hook-probe.txt`。止められても回り込まない。ほかのコマンドは実行しない。返答は300字まで。',
   { label: 'hooks の確かめ', model: 'sonnet', effort: 'low' })
 log('hooks の確かめ：' + String(probe).slice(0, 200))
+}
 
 const results = await pipeline(PAGES,
   (p) => agent(roleText(p, '執筆') + ' 書いたページは docs/' + p.field + '/' + p.id + '.md、報告は write.md。' + REPLY,
