@@ -1,0 +1,25 @@
+field: extend
+chapters: [指示]
+pages:
+  - id: feat-a
+    chapter: 指示
+    title: 規則を CLAUDE.md に置く（試験用）
+    type: feature
+    level: 整える
+    priority: 必須
+    summary: CLAUDE.md に規則を置いて毎回読ませられる。
+    materials: ["01 D-2（Skills の要点）"]
+  - id: feat-c
+    chapter: 指示
+    title: フックで止める（試験用）
+    type: feature
+    level: 任せる
+    priority: 推奨
+    summary: フックで規則を毎回必ず効かせられる。
+  - id: named-page
+    chapter: 指示
+    title: 名指しで第一波に入れるページ（試験用）
+    type: concept
+    level: 整える
+    priority: 任意
+    summary: first_wave の named から入るページ。

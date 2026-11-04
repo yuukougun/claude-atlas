@@ -1,0 +1,19 @@
+# 束の試験用の小さな語彙（本物の schema/site.yml の写しではなく、道具が読むキーだけ）
+fields:
+  - {id: start, title: 入口と地図}
+  - {id: basics, title: 基礎：なぜそうなるか}
+  - {id: extend, title: 文脈と指示を仕組みにする}
+  - {id: symptoms, title: 症状辞典}
+
+types: [concept, feature, symptom, guide]
+types_without_level: [guide]
+levels: [使う, 整える, 任せる, 仕組みにする, 回す]
+priorities: [必須, 推奨, 任意]
+stages: [stub, draft, reviewed, done]
+published_stages: [draft, reviewed, done]
+volatility_days: {低: 365, 中: 90, 高: 30}
+
+# 第一波：核（wave: 1）と、核の症状のページの routes の先（各 cause の to のうち最初の必須の先）と、named を種に前提でたどる
+first_wave:
+  routes: first
+  named: [named-page]

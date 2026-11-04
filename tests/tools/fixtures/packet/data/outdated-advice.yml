@@ -1,0 +1,16 @@
+advice:
+- id: old-tip
+  title: 昔の小技
+  now: 今は別の方法にする。
+  changed:
+    date: '2026-01-09'
+    version: 2.1.3
+  status: 置換
+  principle:
+  - 見せる
+  why_then: かつては効いた。
+  how_to_find: 記事で探す。
+  name: via-advice-name
+  sources:
+  - src-changelog
+  checked: '2026-11-04'

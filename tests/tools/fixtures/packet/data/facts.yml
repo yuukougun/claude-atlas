@@ -1,0 +1,45 @@
+# 束の試験用の data（値はすべて作りもの。ドメインは example.*）
+facts: []
+features:
+- id: claude-md
+  title: CLAUDE.md
+  page: concept-a
+  surfaces:
+  - claude-code
+  maturity: GA
+  enforcement: お願い
+  load_timing: セッション開始
+  context_cost: 常駐
+  survives_compaction: true
+  match_terms:
+  - CLAUDE.md
+  - /init
+  sources:
+  - src-memory
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 試験用の機能の注。
+names:
+- id: old-to-new
+  current: 新しい名
+  old:
+  - 古い名
+  changed:
+    date: '2026-10-30'
+  feature: claude-md
+  sources:
+  - src-blog
+  checked: '2026-11-04'
+  status: 確認済み
+  note: 機能に結び付く名前の注。
+- id: via-advice-name
+  current: 別の新しい名
+  old:
+  - 別の古い名
+  changed:
+    date: '2026-09-01'
+  sources:
+  - src-changelog
+  checked: '2026-11-04'
+  status: 確認済み

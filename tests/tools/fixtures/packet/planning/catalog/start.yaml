@@ -1,0 +1,11 @@
+field: start
+chapters: [使い方]
+pages:
+  - id: guide-a
+    chapter: 使い方
+    title: この辞典の引き方（試験用）
+    type: guide
+    priority: 必須
+    wave: 1
+    summary: 試験用の案内。目的のページへ着く道が分かる。
+    materials: ["00 §3 分野01「お願いと鍵（決定論的か、非決定論的か）」"]

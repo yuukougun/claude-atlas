@@ -1,0 +1,9 @@
+# 試験用：第一波のページごとの出典の id
+pages:
+- id: sym-a
+  sources:
+  - src-memory
+  - src-noai
+  - src-missing
+- id: concept-a
+  sources: []

@@ -1,0 +1,21 @@
+field: basics
+chapters: [指示と仕組み]
+pages:
+  - id: concept-a
+    chapter: 指示と仕組み
+    title: お願いと鍵（試験用）
+    type: concept
+    level: 整える
+    priority: 必須
+    wave: 1
+    summary: 指示は Claude が読んで判断するお願いで、フックは毎回効く鍵だと分かる。
+    materials: []
+    notes: null
+  - id: concept-b
+    chapter: 指示と仕組み
+    title: 位置の考え方（試験用）
+    type: concept
+    level: 整える
+    priority: 推奨
+    summary: 指示がコンテキストのどこに置かれるかが分かる。
+    materials: ["00 §1「公式は失敗を四つに分け、『お願い』と『鍵』を区別する」"]
