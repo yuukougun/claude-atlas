@@ -1216,7 +1216,25 @@ class Builder:
             out.append("- （なし）")
         out += ["", "### 関連（related。近い順）"]
         out += [self.link_line(r) for r in page.related] or ["- （なし）"]
+        out += self.anchor_lines(page)
         return out
+
+    def anchor_lines(self, page) -> list[str]:
+        """つながるページの sections の anchor（`<!-- link:begin id#anchor -->` で指せるもの）を、ページごとに1行で。"""
+        refs = list(page.prerequisites) + [r for route in page.routes for r in route.to] + list(page.related)
+        seen: set[str] = set()
+        lines: list[str] = []
+        for ref in refs:
+            target = self.atlas.resolve(ref)
+            if target is None or target.id in seen:
+                continue
+            seen.add(target.id)
+            anchors = [s for s in target.sections if s.get("anchor")]
+            if anchors:
+                lines.append(f"- {target.id}：" + "・".join(f"{target.id}#{s['anchor']}（{s.get('title', '')}）" for s in anchors))
+        if not lines:
+            return []
+        return ["", "### 指せる節（link の目印は `id#anchor`。つながるページの sections にあるものだけ指せる）"] + lines
 
     def sec_catalog(self, page, cat) -> list[str]:
         if cat is None:
@@ -1385,10 +1403,11 @@ class Builder:
         return out, truncated
 
     def sec_guides(self, page) -> list[str]:
-        out = ["## 7. 書き方", "", f"- 共通の手引き：{GUIDES_DIR}/common.md（全部読む）"]
+        out = ["## 7. 書き方", "", f"- 執筆カード：{GUIDES_DIR}/card.md（書く規則の要点はこれで足りる。全部読む）",
+               f"- 共通の手引き：{GUIDES_DIR}/common.md（迷ったときだけ、カードの（common §N）の節を引く。全部は読まない）"]
         if page.type:
             guide = f"{GUIDES_DIR}/{page.type}.md"
-            out.append(f"- 型の手引き：{guide}" + ("" if (self.root / guide).is_file() else "（まだない）"))
+            out.append(f"- 型の手引き：{guide}" + ("（迷ったときだけ引く）" if (self.root / guide).is_file() else "（まだない）"))
         else:
             out.append("- 型の手引き：（型が未設定）")
         out.append("- 報告の置き場所：指示に従う（担当への指示に書いてある）")
@@ -1422,8 +1441,10 @@ class Builder:
         head = "\n".join([
             f"# 材料の束：{page.id}（{page.title}）",
             "",
-            "道具 tools/make_packet.py が作った（手で直さない。作り直すと上書きされる）。書く担当は、この束と planning/guides/common.md・"
-            "型の手引きを読んで書く。束にないことが要るときだけ、ほかの資料を開く（decisions 2026-11-04「執筆の担当が開く一次資料」）。",
+            "**読むのはこの束と planning/guides/card.md だけ**。ほかのファイルを探して小分けに読まない（呼び出しの数がそのまま使用量になる）。",
+            "",
+            "道具 tools/make_packet.py が作った（手で直さない。作り直すと上書きされる）。束にないことが要るときだけ、ほかの資料を開く"
+            "（decisions 2026-11-04「執筆の担当が開く一次資料」、2026-11-05「使用量を抑える運用」）。",
             "",
             f"- 構成：1 ページ／2 つながるページ／3 目次の情報／4 data／5 出典の一覧／6 材料の抜き出し（1項目 {limit} 字まで）／7 書き方",
         ])

@@ -17,6 +17,9 @@ planning/guides/README.md §3 の直し方のうち、機械で確かめられ�
                 作る予定：の道具（と検査の名前）ができていたら、書き換えを求めて落ちる
   版            冒頭に「- 版：YYYY-MM-DD 第N版」の行がある
   末尾に足す形  見出しに「決めたこと」がなく、本文に「こちらを優先」がない（今有効な規則だけを置く）
+  執筆カード    card.md は共通の手引きと型の手引きの写しなので、型の手引きの一対一・README の一覧・「元：」の行の扱いから外す。
+                代わりに、各節の見出しに「（common §N）」か「型の手引き」で元を添えること、「common §N」の先の節が
+                共通の手引きにあること、200 行以内であることを見る
 """
 from __future__ import annotations
 
@@ -38,7 +41,9 @@ SITE_YML = REPO / "schema" / "site.yml"
 DECISIONS = PLANNING / "decisions.md"
 DESIGN_REVIEW = PLANNING / "design-review.md"
 RESEARCH = PLANNING / "research"
-NOT_TYPE_GUIDES = {"README.md", "common.md"}
+CARD = GUIDES / "card.md"
+CARD_MAX_LINES = 200
+NOT_TYPE_GUIDES = {"README.md", "common.md", "card.md"}
 
 # 節の番号で指す文書（指すときの語 → ファイル）
 SECTION_DOCS = {
@@ -46,6 +51,7 @@ SECTION_DOCS = {
     "requirements": PLANNING / "requirements.md",
     "catalog/README": PLANNING / "catalog" / "README.md",
     "共通の手引き": COMMON_GUIDE,
+    "common": COMMON_GUIDE,   # 執筆カードの（common §N）
     "共通の決まり": COMMON_CHECKLIST,
 }
 # 決定の方針の番号（design の「方針 A3」の読み方）：記号 → decisions.md の見出し
@@ -158,7 +164,7 @@ class Index(unittest.TestCase):
     def test_every_file_is_listed_in_index(self):
         index = read(INDEX)
         for path in files():
-            if path == INDEX:
+            if path in (INDEX, CARD):
                 continue
             target = os.path.relpath(path, GUIDES)
             self.assertIn(f"]({target})", index, f"{rel(path)} が planning/guides/README.md から指されていない")
@@ -203,6 +209,8 @@ class References(unittest.TestCase):
 class Sources(unittest.TestCase):
     def test_every_section_cites_source(self):
         for path in files():
+            if path == CARD:   # 元は見出しの（common §N）で示す。test_card_cites_the_common_guide が見る
+                continue
             sections: dict[str, bool] = {}   # 「## 」の節の題 → 「元：」の行があるか（コードの囲みの中の見出しは数えない）
             title = None
             for _, line in lines_outside_code(read(path)):
@@ -258,6 +266,21 @@ class CheckMarks(unittest.TestCase):
                 self.assertTrue(ready, f"{where}: 道具か検査がない：（検査：{body}）")
             else:
                 self.assertFalse(ready, f"{where}: 道具ができたので「検査：」に書き換える：（作る予定：{body}）")
+
+
+class Card(unittest.TestCase):
+    def test_card_is_short(self):
+        self.assertLessEqual(len(read(CARD).splitlines()), CARD_MAX_LINES, "執筆カードは 200 行以内にする")
+
+    def test_every_card_section_cites_its_source(self):
+        for n, line in lines_outside_code(read(CARD)):
+            if line.startswith("## "):
+                self.assertRegex(line, r"（(?:common §\d+|型の手引き)", f"planning/guides/card.md:{n}: 見出しに元（common §N）か（型の手引き）がない")
+
+    def test_card_has_every_type(self):
+        text = read(CARD)
+        for t in yaml.safe_load(read(SITE_YML))["types"]:
+            self.assertRegex(text, rf"(?m)^- \*\*{re.escape(t)}\*\*", f"card.md の型ごとの要点に {t} がない")
 
 
 class Form(unittest.TestCase):

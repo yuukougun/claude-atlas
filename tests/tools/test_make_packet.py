@@ -582,6 +582,10 @@ class ClipTests(unittest.TestCase):
 
 
 class PacketTests(FixtureCase):
+    def test_the_head_says_to_read_only_the_packet_and_the_card(self):
+        head = self.packet("sym-a").split("## 1. ")[0]
+        self.assertIn("読むのはこの束と planning/guides/card.md だけ", head)
+
     def test_all_seven_sections_come_in_order(self):
         text = self.packet("sym-a")
         heads = re.findall(r"^## (\d)\. ", outside_fences(text), re.M)
@@ -613,6 +617,14 @@ class PacketTests(FixtureCase):
         self.assertIn("- feat-c#lock（extend／feature）フックで止める（試験用） ― 節「止め方」：", sec)
         none = section(self.packet("lonely"), "2. つながるページ")
         self.assertEqual(none.count("- （なし）"), 3)
+
+    def test_linked_pages_list_the_anchors_that_can_be_pointed_at(self):
+        sec = section(self.packet("sym-a"), "2. つながるページ")
+        self.assertIn("### 指せる節（link の目印は `id#anchor`", sec)
+        self.assertIn("concept-b#lock（置き場所の節）", sec)
+        self.assertIn("feat-c#lock（止め方）", sec)
+        self.assertEqual(sec.count("- feat-c：") + sec.count("- concept-b："), 2)   # ページごとに1行
+        self.assertNotIn("### 指せる節", section(self.packet("lonely"), "2. つながるページ"))
 
     def test_catalog_section(self):
         sec = section(self.packet("sym-a"), "3. 目次の情報")
@@ -686,6 +698,7 @@ class PacketTests(FixtureCase):
 
     def test_guides_section_names_the_two_guides_and_the_report_place(self):
         sec = section(self.packet("sym-a"), "7. 書き方")
+        self.assertIn("planning/guides/card.md", sec)
         self.assertIn("planning/guides/common.md", sec)
         self.assertIn("planning/guides/symptom.md", sec)
         self.assertIn("報告の置き場所：指示に従う", sec)
