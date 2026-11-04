@@ -74,8 +74,10 @@ class GenCase(unittest.TestCase):
     def write_config(self, replace: dict[str, str] | None = None) -> None:
         text = CONFIG.read_text(encoding="utf-8")
         held = "[" + ", ".join(self.held_back) + "]"
-        self.assertIn("\nheld_back: []\n", text)
-        text = text.replace("\nheld_back: []\n", f"\nheld_back: {held}\n")
+        # 本物の設定の held_back（[] でも、試作のページの箇条書きでも）を、試験の値に置き換える
+        m = re.search(r"\nheld_back:[^\n]*\n(?:  - [^\n]*\n)*", text)
+        self.assertIsNotNone(m, "tools/gen/config.yml に held_back がない")
+        text = text[:m.start()] + f"\nheld_back: {held}\n" + text[m.end():]
         for old, new in (replace or {}).items():
             self.assertIn(old, text)
             text = text.replace(old, new)
