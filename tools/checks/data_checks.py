@@ -244,6 +244,9 @@ def known_noai(root) -> list[str] | None:
         tree = ast.parse(path.read_text(encoding="utf-8"))
     except (OSError, SyntaxError, UnicodeDecodeError):
         return None
+    # check_noai.py が .claude/settings.json の deny を自分で読む形（_deny_domains）なら、一覧は食い違わない（比べない）
+    if any(isinstance(node, ast.FunctionDef) and node.name == "_deny_domains" for node in tree.body):
+        return None
     for node in tree.body:
         if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "KNOWN_NOAI" for t in node.targets):
             try:
