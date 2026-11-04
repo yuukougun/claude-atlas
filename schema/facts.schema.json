@@ -203,13 +203,17 @@
           },
           "load_timing": {
             "description": "読み込みの時期。語彙は site.yml の load_timings",
-            "type": "string",
-            "minLength": 1
+            "enum": [
+              "セッション開始", "セッション開始と切り替えたとき", "セッション開始か、一致するファイルを扱うとき",
+              "セッション開始と使うとき", "編集の後と調べるとき", "起動したとき", "イベントが起きたとき"
+            ]
           },
           "context_cost": {
             "description": "コンテキストのコスト。語彙は site.yml の context_costs",
-            "type": "string",
-            "minLength": 1
+            "enum": [
+              "常駐", "常駐か、一致するファイルのときだけ", "使うまで小さい", "小さい", "分離",
+              "ゼロ（出力を返さない限り）", "ゼロ"
+            ]
           },
           "survives_compaction": {
             "description": "圧縮で残るか（null は確かめていない）",

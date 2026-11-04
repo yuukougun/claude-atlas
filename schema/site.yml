@@ -77,3 +77,5 @@ maturities: [GA, beta, research preview, experimental]   # 機能の成熟度（
 enforcements: [お願い, 鍵]                         # 機能の強制力（D14）
 channels: [latest, stable]                        # verified_with の channel（design §3.3）
 published_stages: [draft, reviewed, done]         # 公開する段階（design §8.4）
+load_timings: [セッション開始, セッション開始と切り替えたとき, セッション開始か、一致するファイルを扱うとき, セッション開始と使うとき, 編集の後と調べるとき, 起動したとき, イベントが起きたとき]   # 機能の読み込みの時期（公式の機能別のコンテキストのコストの表から。6b の担当 D1）
+context_costs: [常駐, 常駐か、一致するファイルのときだけ, 使うまで小さい, 小さい, 分離, ゼロ（出力を返さない限り）, ゼロ]   # 機能のコンテキストのコスト（同上）
