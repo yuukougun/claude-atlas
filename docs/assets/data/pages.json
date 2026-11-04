@@ -1,0 +1,9 @@
+{
+"about":"tools/gen_site.py が生成する（手で直さない）。公開するページだけ。expires は期限の日（design §9.2）で、今日と比べるのはブラウザ",
+"fields":[{"id":"start","title":"入口と地図"},{"id":"basics","title":"基礎：なぜそうなるか"},{"id":"surfaces","title":"製品の地図と面の選び方"},{"id":"models","title":"モデル・effort・思考"},{"id":"prompting","title":"頼み方"},{"id":"context","title":"文脈を整える"},{"id":"app","title":"アプリを使いこなす"},{"id":"cli","title":"Claude Code の基本操作"},{"id":"extend","title":"文脈と指示を仕組みにする"},{"id":"verify","title":"確かめる"},{"id":"eval","title":"評価と実験"},{"id":"enforce","title":"仕組みで縛る"},{"id":"safety","title":"安全とデータ"},{"id":"delegate","title":"任せて並べる"},{"id":"judgment","title":"判断と理解を守る"},{"id":"api","title":"API・SDK の概念"},{"id":"cost","title":"費用と利用上限"},{"id":"japanese","title":"日本語で使う"},{"id":"recipes","title":"用途別レシピ"},{"id":"team","title":"組織・チームで使う"},{"id":"contest","title":"コンテストで使う"},{"id":"symptoms","title":"症状辞典"},{"id":"changes","title":"古くなった助言と変更の記録"}],
+"types":[{"id":"concept","label":"考え方"},{"id":"feature","label":"機能"},{"id":"symptom","label":"症状"},{"id":"comparison","label":"比較"},{"id":"recipe","label":"手順"},{"id":"judgment","label":"判断"},{"id":"ledger","label":"台帳"},{"id":"guide","label":"案内"},{"id":"hub","label":"案内"}],
+"levels":["使う","整える","任せる","仕組みにする","回す"],
+"stages":[{"id":"stub","label":"準備中"},{"id":"draft","label":"下書き"},{"id":"reviewed","label":"検証済み"},{"id":"done","label":"完成"}],
+"surfaces":[{"id":"app","label":"アプリ"},{"id":"claude-code","label":"Claude Code"},{"id":"api","label":"API"}],
+"pages":[]
+}

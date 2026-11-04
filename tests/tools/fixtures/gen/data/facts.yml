@@ -1,0 +1,84 @@
+# 作る層の試験用の数値ファイル（値はすべて作りもの）
+facts:
+  - id: sample-limit
+    title: 試験用の上限
+    value: 100
+    unit: 回
+    sources: [sample-doc]
+    checked: 2026-10-15
+    volatility: 中
+    status: 確認済み
+  - id: sample-sentence
+    title: 試験用の決まった文
+    value: 5
+    unit: 時間
+    sentence: "{value} {unit}ごとに戻る（{checked} の確認）"
+    sources: [sample-doc]
+    checked: 2026-10-20
+    status: 確認済み
+  - id: sample-unchecked
+    title: 試験用の未確認の値
+    value: 42
+    sources: [sample-blog]
+    checked: 2026-10-01
+    status: 未確認
+  - id: sample-effort
+    title: 試験用の既定（面ごと）
+    table:
+      rows: モデル
+      columns: [api, claude-code, {id: app, title: アプリの面}]
+      cells:
+        - {row: model-a, api: high, claude-code: medium, app: {value: null, note: 値を書いた文書がない}}
+        - {row: model-b, api: medium, claude-code: medium, app: low}
+    sources: [sample-doc, sample-blog]
+    checked: 2026-10-10
+    status: 確認済み
+    conflict:
+      - {value: low, sources: [sample-blog], note: 試験用の食い違い}
+features:
+  - id: sample-hooks
+    title: フック
+    page: hooks-basics
+    surfaces: [claude-code]
+    maturity: GA
+    enforcement: 鍵
+    survives_compaction: true
+    since: {claude_code: 2.1.0, date: 2026-01}
+    sources: [sample-doc]
+    checked: 2026-10-12
+    volatility: 中
+    status: 確認済み
+  - id: sample-skills
+    title: スキル
+    page: skills-basics
+    surfaces: [claude-code, app]
+    maturity: GA
+    enforcement: お願い
+    survives_compaction: false
+    since: {claude_code: 2.1.50}
+    sources: [sample-doc]
+    checked: 2026-10-05
+    status: 確認済み
+  - id: sample-beta
+    title: 試験用の未確認の機能
+    page: hook-vs-skill
+    maturity: beta
+    sources: [sample-blog]
+    checked: 2026-09-01
+    status: 未確認
+names:
+  - id: sample-rename
+    current: フック
+    old: [古いフック, Old Hook]
+    changed: {date: 2026-10, approx: true, version: 2.1.300}
+    feature: sample-hooks
+    sources: [sample-blog]
+    checked: 2026-10-30
+    status: 確認済み
+  - id: sample-rename-unchecked
+    current: 新しい何か
+    old: [古い何か]
+    changed: {date: 2026-09}
+    sources: [sample-blog]
+    checked: 2026-10-30
+    status: 未確認

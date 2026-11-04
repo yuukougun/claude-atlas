@@ -1,0 +1,10 @@
+# 執筆者がページごとに足した出典（試験用）
+domains: []
+sources:
+  - id: sample-note
+    url: https://notes.example.com/hooks-tips
+    title: 試験用の実践者の記事
+    kind: 実践者
+    publisher: 試験の書き手
+    lang: ja
+    checked: 2026-10-20

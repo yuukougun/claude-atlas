@@ -1,0 +1,10 @@
+# claude-atlas
+
+> Claude 全般を使いこなすための、辞書として引く日本語の教材
+
+この辞典は Anthropic の公式の教材ではない。
+
+- 1行が1ページ：「- [題名](URL)（id・型・レベル・段階・確認日）：要約」
+- 型：concept・feature・symptom・comparison・recipe・judgment・ledger・guide・hub。レベル（低い順）：使う・整える・任せる・仕組みにする・回す。レベルを持たない型（ledger・guide・hub）は「—」
+- 段階：draft・reviewed・done（draft は下書き・未検証）。確認日のないページは「未検証」
+- ページ数：0

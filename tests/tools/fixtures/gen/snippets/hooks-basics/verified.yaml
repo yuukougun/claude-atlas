@@ -1,0 +1,10 @@
+block-rm:
+  result: pass
+  date: 2026-11-20
+  claude_code: 2.1.317
+  channel: latest
+  models: [claude-opus-5-5]
+  os: WSL2 Ubuntu 24.04
+pending-one:
+  result: fail
+  date: 2026-11-20

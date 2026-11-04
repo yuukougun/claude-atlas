@@ -1,0 +1,20 @@
+# 作る層の試験用の出典（URL は example.* だけ）
+domains:
+  - {domain: example.com, checked: 2026-10-01, noai: false}
+  - {domain: example.org, checked: 2026-10-01, noai: false}
+sources:
+  - id: sample-doc
+    url: https://docs.example.com/hooks
+    title: 試験用の公式の文書
+    kind: 公式文書
+    publisher: 試験の発行者
+    lang: ja
+    checked: 2026-10-15
+  - id: sample-blog
+    url: https://blog.example.org/post
+    title: Sample blog post [draft]
+    kind: 公式ブログ
+    publisher: Example
+    lang: en
+    checked: 2026-10-02
+    archive: https://web.example.org/2026/post

@@ -1,9 +1,57 @@
-# ナビゲーション（planning/design.md §8.2・§8.5）。mkdocs.yml が INHERIT で読む。
-#
-# - いまは手書きの仮のもの。工程6a の2段目から tools/gen_site.py が front matter から生成し、stage が draft 以上の
-#   ページだけを nav に載せ、未公開のページ（stub と、波の来ていない試作のページ。design §8.4）を
-#   exclude_docs に書いてビルドから外す（INHERIT で exclude_docs が効くことは、工程6a の1段目で確かめた。
-#   planning/batches/step6/build-B1.md）
-# - mkdocs.yml の同じキーはこのファイルより優先するので、nav と exclude_docs は mkdocs.yml に書かない
+# tools/gen_site.py が生成する。手で直さない（mkdocs.yml が INHERIT: nav.yml で読む。design §8.4・§8.5）。
+# 並び：トップ → 公開するページのある分野（site.yml の fields の順）ごとに、分野の入口・chapter のないページ・
+# chapter ごとのページ（front matter の order の順）→ 一覧。exclude_docs は docs/ にあって公開しないページ。
 nav:
   - index.md
+extra:
+  ca:
+    fields:
+      start: 入口と地図
+      basics: 基礎：なぜそうなるか
+      surfaces: 製品の地図と面の選び方
+      models: モデル・effort・思考
+      prompting: 頼み方
+      context: 文脈を整える
+      app: アプリを使いこなす
+      cli: Claude Code の基本操作
+      extend: 文脈と指示を仕組みにする
+      verify: 確かめる
+      eval: 評価と実験
+      enforce: 仕組みで縛る
+      safety: 安全とデータ
+      delegate: 任せて並べる
+      judgment: 判断と理解を守る
+      api: API・SDK の概念
+      cost: 費用と利用上限
+      japanese: 日本語で使う
+      recipes: 用途別レシピ
+      team: 組織・チームで使う
+      contest: コンテストで使う
+      symptoms: 症状辞典
+      changes: 古くなった助言と変更の記録
+    types:
+      concept: 考え方
+      feature: 機能
+      symptom: 症状
+      comparison: 比較
+      recipe: 手順
+      judgment: 判断
+      ledger: 台帳
+      guide: 案内
+      hub: 案内
+    stages:
+      stub: 準備中
+      draft: 下書き
+      reviewed: 検証済み
+      done: 完成
+    surfaces:
+      app: アプリ
+      claude-code: Claude Code
+      api: API
+    levels: [使う, 整える, 任せる, 仕組みにする, 回す]
+    published_stages: [draft, reviewed, done]
+    pages_json: assets/data/pages.json
+    graph_json: assets/data/graph.json
+    lists: {}
+    expires: {}
+    badges: {}

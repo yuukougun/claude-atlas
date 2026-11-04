@@ -1,0 +1,5 @@
+title: 危ない削除を止める
+place: project
+features: [sample-hooks, sample-skills]
+expect:
+  - {do: "rm -rf を頼む", result: 止められる}

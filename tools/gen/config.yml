@@ -1,0 +1,155 @@
+# 作る層（tools/gen/）の設定（planning/design.md §7・§8.3・§8.4、design-review DR-01・DR-15）。
+# - 版：2026-11-04 第1版（工程6a の2段目。担当 G）
+# - 語彙（分野・型・段階・面など）の正本は schema/site.yml。ここには、語彙の値を「どの役で使うか」・表示の言葉・
+#   どのページに何を生成するか（design §8.4）・逆引きの分け方（DR-15）だけを置く。道具のコードには語彙を書かない
+# - ここを変えたら `uv run python tools/gen_site.py` を流し、生成物を commit する（CI は --check で見る）
+# - ラベルのない値は、値そのものを表示に使い、gen_site.py が「注意」に出す
+
+# 公開から外す試作のページの id（design §8.4・§10.1 の7「波が来るまで」）。docs/ にあり stage が draft 以上でも、
+# nav に載せず exclude_docs に書き、生成物とリンクでは未公開（「題名（準備中）」）として扱う。メインが書き換える
+held_back: []
+
+# 語彙の値の役（どの型が症状のページか、など）。値は site.yml の語彙
+roles:
+  symptom_type: symptom          # routes を持ち、診断の節の振り分け（routes）と症状の原因別の表の元になる型
+  feature_type: feature
+  symptom_field: symptoms        # 症状辞典の分野（逆引きの困りごとの章の元）
+  fact_confirmed: 確認済み       # data の status（site.yml の fact_statuses）のうち、値を書いてよいもの。ほかは「未確認」とだけ書く
+
+# 表示の言葉（site.yml の語彙の値 → 読者に見せる言葉）。V のテンプレートも nav.yml の extra.ca から読む
+labels:
+  types: {concept: 考え方, feature: 機能, symptom: 症状, comparison: 比較, recipe: 手順, judgment: 判断, ledger: 台帳, guide: 案内, hub: 案内}
+  stages: {stub: 準備中, draft: 下書き, reviewed: 検証済み, done: 完成}
+  surfaces: {app: アプリ, claude-code: Claude Code, api: API}
+  sign_types: {symptom: 困りごと, goal: やりたいこと, situation: 状況}
+  cause_axes: {prevents: Claude 側, pitfalls: 人の側}   # site.yml のキー → 表示
+  langs: {ja: 日本語, en: 英語}
+  feature_keys:                  # data/facts.yml の features の属性 → 比較の表と要点の見出し
+    surfaces: 面
+    maturity: 成熟度
+    enforcement: 強制力
+    load_timing: 読み込みの時期
+    context_cost: コンテキストのコスト
+    survives_compaction: 圧縮で残るか
+    since: 入った版
+  boolean: {"true": はい, "false": いいえ, "null": 未確認}
+  survives_compaction: {"true": 残る, "false": 残らない, "null": 未確認}
+  unpublished: 準備中            # 未公開のページを指す所の「題名（準備中）」（design §8.4）
+  draft_mark: 下書き             # 一覧・入口で draft のページに添える印
+  unchecked: 未確認              # data の status が確認済みでない値の代わりに書く言葉（値は出さない）
+  unverified: 未検証             # llms.txt で確認日（verified）のないページ
+  draft_band: 下書き・未検証     # llms.txt の段階の説明（下書きの帯の文。DR-10）
+  feature_column: 機能           # 比較の表の1列目
+  sources: 出典
+  conflict: 食い違い
+  approx: ごろ                   # 時期の approx: true
+  as_of: 時点                    # 数値の決まった文の既定「{value} {unit}（{checked} 時点）」
+  none: なし                     # ページ下部の前提がないとき
+  empty: （まだない）            # 生成の部分に載せるものがないとき
+  more: ほか {n} ページ          # ページ下部の「次に読む」を切ったとき
+  other_group: そのほか          # 逆引きで、分けられない行の節
+  snippet_pending: 雛形「{name}」は、動作確認の後に載せる。   # brief-build2 §2・README の判断（雛形の扱い）
+
+# ページ下部（design §8.5。前提・次に読む・関連）。gen:begin page-links の目印の間に書く（目印がなければ末尾に足す）
+page_links:
+  prerequisites: 前提
+  next: 次に読む
+  related: 関連
+  next_max: 8                    # 次に読むの上限（超えた分は「ほか N ページ」）
+
+# 症状のページの振り分けの表（gen:begin routes）と、症状の原因別の表（gen:begin causes）の列
+routes:
+  cause: 原因
+  to: 対処のページ（近い順）
+  axis: 軸
+  symptoms: 症状のページ
+
+# 古くなった助言の台帳（gen:begin ledger）の行の項目
+ledger:
+  now: 今どうするか
+  changed: 変わった時期
+  status: 状態
+  principle: どの原理の回避策だったか
+  why_then: かつてなぜ正しかったか
+  how_to_find: 自分の設定や記事で見つける方法
+  pages: 関わるページ
+  sources: 出典
+
+# 参考の節（design §8.4。gen:begin references）。見出しも目印の間に書く
+references:
+  heading: 参考
+  anchor: references
+  checked: 確認日
+  archive: 写し
+
+# 雛形の写し（design §6.9・§8.7。gen:begin snippet <id>/<名前>）
+snippets:
+  dir: snippets
+  fold: '??? example "雛形：{name}"'
+  verified_with: 確かめた環境
+  min_version: 要る最低の版
+
+# 一覧（design §7。docs/lists/）。key は front matter のキー、vocab は site.yml のキー、labels は上の labels のキー
+lists:
+  index_title: 一覧
+  pages:
+    - {file: by-level.md, title: レベル別の一覧, key: level, vocab: levels}
+    - {file: by-surface.md, title: 面別の一覧, key: surfaces, vocab: surfaces, labels: surfaces}
+    - {file: by-principle.md, title: 原理別の一覧, key: principle, vocab: principles}
+    - {file: by-scene.md, title: 場面別の一覧, key: scenes, vocab: scenes}
+
+# 分野の入口に足す節（requirements §4.3：contest の入口に、scenes にコンテストを持つページの一覧）
+entrance:
+  extra:
+    - {field: contest, key: scenes, value: コンテスト, title: コンテストの場面を持つ、ほかの分野のページ}
+
+# 逆引き（design §7・DR-15）。gen:begin signs <sign の type>
+reverse:
+  group:                         # sign の type → 節の分け方（symptom_chapter：症状辞典の章、field：分野）
+    symptom: symptom_chapter
+    goal: field
+    situation: field
+  # 対処のページの困りごとは、振り分け先の症状のページの章に入れる。どの症状のページの routes にもないページは、
+  # この表で分野から症状辞典の章を選ぶ（DR-15「分野から章への対応表は作る層の設定に持つ」）
+  field_to_symptom_chapter:
+    start: 返答と品質
+    basics: 事実と出典
+    surfaces: 指示と仕組み
+    models: 返答と品質
+    prompting: 返答と品質
+    context: 会話と文脈
+    app: 返答と品質
+    cli: 会話と文脈
+    extend: 指示と仕組み
+    verify: 完了と検証
+    eval: 完了と検証
+    enforce: 指示と仕組み
+    safety: 安全と承認
+    delegate: 長い作業と方針
+    judgment: 長い作業と方針
+    api: 返答と品質
+    cost: 上限と速さ
+    japanese: 日本語の出力
+    recipes: 完了と検証
+    team: 長い作業と方針
+    contest: 完了と検証
+    changes: 事実と出典
+
+# 用語索引（design §7・DR-15）。gen:begin terms kana・terms latin・terms old
+terms:
+  other_heading: 漢字・記号で始まる語（最初の字の順。読みの順ではない）
+
+# 本体を生成するページ（design §8.4「どのページに何を生成するかは、作る層の設定に持つ」）。ページの id → そのページに
+# 置く生成の部分。目印がないときは gen_site.py が「注意」に出す（目印はページの手書きの部分に、執筆者かメインが置く）
+hosts:
+  reverse-index: [signs symptom, signs goal, signs situation]
+  term-index: [terms kana, terms latin, terms old]
+  roadmap: [roadmap]
+  knowledge-map: [graph]
+  six-causes: [causes]
+  outdated-advice-ledger: [ledger]
+  change-timeline-2026: [timeline]
+
+# llms.txt（design §7。1ページ1行）。冒頭の文は decisions 2026-11-04「決定の一覧の承認」の最小の文のまま
+llms:
+  notice: この辞典は Anthropic の公式の教材ではない。

@@ -1,0 +1,40 @@
+# 作る層の試験の置き場所の設定（値は試験用。本物の mkdocs.yml の markdown_extensions と同じ組で、テーマの上書きは読まない）
+INHERIT: nav.yml
+site_name: claude-atlas
+site_url: https://example.com/atlas/
+site_description: 試験用の教材の説明
+
+theme:
+  name: material
+  language: ja
+  font: false
+
+plugins:
+  - search
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn

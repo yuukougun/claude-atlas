@@ -1,0 +1,20 @@
+# 作る層の試験用の台帳（値はすべて作りもの）
+advice:
+  - id: sample-caps
+    title: 大文字で強調すれば守られる
+    now: 守らせたい規則はフックに移す
+    changed: {date: 2026-03, approx: true}
+    status: 置換
+    principle: [縛る]
+    why_then: 試験用の理由
+    how_to_find: 試験用の見つけ方
+    sources: [sample-doc]
+    checked: 2026-10-01
+  - id: sample-renamed
+    title: 古いフックで止める
+    now: フックで止める
+    name: sample-rename
+    status: 置換
+    principle: [縛る]
+    sources: [sample-blog]
+    checked: 2026-10-01

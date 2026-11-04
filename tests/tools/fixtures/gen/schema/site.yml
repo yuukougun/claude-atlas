@@ -1,0 +1,79 @@
+# claude-atlas の語彙（planning/design.md §2・§3）。
+# 道具（tools/）と目次（planning/catalog/）は、語彙をここから読む。コードに語彙を直書きしない。
+# 語彙を変えるときは、design.md を直し、変更履歴に理由を書く。
+
+fields:  # 並び順がナビゲーションの順
+  - {id: start, title: 入口と地図}
+  - {id: basics, title: 基礎：なぜそうなるか}
+  - {id: surfaces, title: 製品の地図と面の選び方}
+  - {id: models, title: モデル・effort・思考}
+  - {id: prompting, title: 頼み方}
+  - {id: context, title: 文脈を整える}
+  - {id: app, title: アプリを使いこなす}
+  - {id: cli, title: Claude Code の基本操作}
+  - {id: extend, title: 文脈と指示を仕組みにする}
+  - {id: verify, title: 確かめる}
+  - {id: eval, title: 評価と実験}
+  - {id: enforce, title: 仕組みで縛る}
+  - {id: safety, title: 安全とデータ}
+  - {id: delegate, title: 任せて並べる}
+  - {id: judgment, title: 判断と理解を守る}
+  - {id: api, title: API・SDK の概念}
+  - {id: cost, title: 費用と利用上限}
+  - {id: japanese, title: 日本語で使う}
+  - {id: recipes, title: 用途別レシピ}
+  - {id: team, title: 組織・チームで使う}
+  - {id: contest, title: コンテストで使う}
+  - {id: symptoms, title: 症状辞典}
+  - {id: changes, title: 古くなった助言と変更の記録}
+
+types: [concept, feature, symptom, comparison, recipe, judgment, ledger, guide, hub]
+types_without_level: [ledger, guide, hub]
+
+levels: [使う, 整える, 任せる, 仕組みにする, 回す]   # 委任の段階（低い順）
+priorities: [必須, 推奨, 任意]
+
+surfaces: [app, claude-code, api]
+principles: [見せる, 確かめる, 縛る, 握る]
+prevents: [見えていない, 散らかっている, 確かめていない, 縛っていない, 合っていない, 境界がない]   # Claude 側の六つの原因（安く確かめられる順）
+pitfalls: [預けすぎる, 同意を根拠にする, やめられない, 体感を信じる, みんなの案になる]   # 人の側の五つの落とし穴
+scenes: [開発, 文章, 調べもの, データ分析, 学習, コンテスト, チーム]
+sign_types: [symptom, goal, situation]
+visual_kinds: [static, mermaid, dynamic]
+template_kinds: [settings, hook, skill, subagent, claude-md, prompt, other]
+entry_fields: [start]   # 入口の分野。「入ってくる道のないページ」の検査から除く
+
+volatility_days: {低: 365, 中: 90, 高: 30}   # 点検の期限
+stages: [stub, draft, reviewed, done]
+
+# 比例則（design.md §3.1 の4）：この段階のページのうち任せる幅を広げる内容のものは、
+# 次の分野のページを前提か関連に持つ（check_catalog が警告する）
+# （工程5で決めた読み。design §3.1 の4。症状のページは routes の先も数える）
+proportional_rule:
+  levels: [任せる, 仕組みにする, 回す]
+  guard_fields: [verify, eval, enforce, safety]
+
+# 第一波の核を持つ分野（D10 と decisions 2026-11-03「第一波に足すもの」）
+first_wave_core_fields: [start, symptoms, changes, eval, judgment, japanese]
+
+# 第一波の数え方（design-review DR-02・DR-03、catalog/README §4.6 の3）。工程5で決めた（decisions 2026-11-04「第一波の範囲」）。
+# 第一波は閉包：核（wave: 1 のページ）と、核の症状のページの routes の先と、named のページを種にし、そこから
+# prerequisites でたどって届くページをすべて入れる（check_catalog が数え、--stats に内訳と、routes を none・first・all に
+# したときの数と、必須の先がない cause の数を出す）
+first_wave:
+  routes: first                   # routes の先を種に、none：入れない・first：各 cause の to のうち最初の必須の先・all：全部
+  named: [default-safety-settings]   # 名指しで入れる正本（安全の早見表）
+
+# summary に使わない語（design.md §5.3）
+summary_banned_words: [このページ, ここでは, 扱う, 紹介する, まとめる]
+summary_max_chars: 120
+
+# data の語彙（design §9.1・§3.3。2026-11-04 の土台作りで、担当 B2 の提案から足した）
+fact_statuses: [確認済み, 未確認]                 # 数値（facts・features・names）の状態
+default_fact_volatility: 高                       # 数値の volatility の既定（design §9.2「既定は高」）
+source_kinds: [公式文書, 公式ブログ, CHANGELOG, リリースノート, 実践者, 研究, 報道]   # 出典の種類（design §9.1）
+advice_statuses: [撤回, 置換, 条件付き]            # 古くなった助言の状態（design §9.1）
+maturities: [GA, beta, research preview, experimental]   # 機能の成熟度（6b で一次資料の表記を見て直す）
+enforcements: [お願い, 鍵]                         # 機能の強制力（D14）
+channels: [latest, stable]                        # verified_with の channel（design §3.3）
+published_stages: [draft, reviewed, done]         # 公開する段階（design §8.4）
