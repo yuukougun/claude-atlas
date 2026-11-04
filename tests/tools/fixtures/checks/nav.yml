@@ -1,0 +1,12 @@
+# 試験用のナビゲーション（公開から外した試作のページ completion-check は nav に載せず、exclude_docs で外す）
+nav:
+  - index.md
+  - 入口と地図:
+      - start/how-to-use.md
+  - basics/request-vs-lock.md
+  - symptoms/instructions-ignored.md
+exclude_docs: |
+  /verify/completion-check.md
+extra:
+  ca:
+    surfaces: {app: アプリ, claude-code: Claude Code, api: API}

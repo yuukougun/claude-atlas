@@ -1,0 +1,47 @@
+# 検査の組（planning/design.md §8.6・§8.8）。手元の `uv run python tools/check_all.py` と同じ組を流す。
+#
+# - ci.yml から呼ぶ形（workflow_call）にした。デプロイ（ci.yml の deploy）を、この検査の後に置けるようにするため
+#   （design §8.8「デプロイの job は必須の検査の後」。needs は別のワークフローの job を待てない）。手で流すときは
+#   Actions の画面から（workflow_dispatch）。ci.yml の tools の job をこれに置き換える案は planning/batches/step6/build-C.md
+# - 段は tools/check_all.py が決める：make_schema --check・gen_site --check・check_pages・check_catalog（骨格の後に外す）・
+#   check_templates・check_svg・textlint・mkdocs build --strict・試験（tests の tools・site・hooks〔python3 と uv run〕・
+#   guides）。段を足すときは check_all.py を直し、ここは直さない（手元と CI の組が食い違わないように）
+# - textlint の試験を Node がないときに黙って飛ばさないよう、REQUIRE_TEXTLINT=1 を付ける（build-B3.md の P1）
+# - 描画の検査（render_pages.py。check_all.py --render）は、Chrome と日本語のフォントを決める工程6a の3段目まで入れない
+name: check
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # Material 9.8 がビルドのたびに出す、保守の終わり（2027-05-05）の知らせを消す（ci.yml と同じ）
+  NO_MKDOCS_2_WARNING: "1"
+
+jobs:
+  all:
+    name: 検査の組（check_all.py）
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      # setup-uv は v10.3.3 のような版のタグしか出さないので、コミットの SHA で固定する（ci.yml と同じ）
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      # textlint は Node 22 以上（prh 6.1.0 の要件。build-B3.md §2.1）
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: 依存を入れる（uv.lock と package-lock.json のとおり）
+        run: |
+          uv sync --locked
+          npm ci
+      - name: 検査の組（tools/check_all.py）
+        env:
+          REQUIRE_TEXTLINT: "1"
+        run: uv run python tools/check_all.py

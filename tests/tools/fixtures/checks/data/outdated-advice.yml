@@ -1,0 +1,18 @@
+# 試験用の台帳
+advice:
+  - id: sample-caps
+    title: 試験用の古い助言
+    now: 試験用の今どうするか
+    changed: {date: 2026-10-27, approx: true}
+    status: 撤回
+    principle: [縛る]
+    sources: [sample-doc]
+    checked: 2026-10-28
+  - id: sample-renamed
+    title: 試験用の古い名前を使う
+    now: 新しい名前を使う
+    name: sample-rename
+    status: 置換
+    principle: [見せる]
+    sources: [sample-doc]
+    checked: 2026-10-30

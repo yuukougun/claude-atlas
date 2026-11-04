@@ -1,0 +1,11 @@
+# 試験用：ページごとに足した出典
+domains:
+  - {domain: example.net, checked: 2026-11-02, noai: false}
+sources:
+  - id: sample-note
+    url: https://example.net/note/
+    title: 試験用の実践者の記事
+    kind: 実践者
+    publisher: 試験用の書き手
+    lang: ja
+    checked: 2026-11-02

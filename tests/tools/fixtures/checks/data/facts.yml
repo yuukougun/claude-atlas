@@ -1,0 +1,44 @@
+# 試験用の数値ファイル（値はすべて作りもの）
+facts:
+  - id: sample-limit
+    title: 試験用の上限
+    value: 100
+    unit: 回
+    sentence: "{value} {unit}（{checked} 時点）"
+    match: {units: [回]}
+    sources: [sample-doc]
+    checked: 2026-10-15
+    volatility: 中
+    status: 確認済み
+  - id: sample-default-effort
+    title: 試験用の既定（面ごと）
+    table:
+      rows: モデル
+      columns: [api, claude-code]
+      cells:
+        - {row: sample-model-a, api: high, claude-code: medium}
+    sources: [sample-doc]
+    checked: 2026-10-10
+    status: 確認済み
+features:
+  - id: sample-hooks
+    title: 試験用の機能
+    page: hooks-basics
+    surfaces: [claude-code]
+    maturity: GA
+    enforcement: 鍵
+    since: {claude_code: 2.1.0, date: 2026-01}
+    match_terms: [hook, hooks]
+    sources: [sample-doc]
+    checked: 2026-10-12
+    volatility: 中
+    status: 確認済み
+names:
+  - id: sample-rename
+    current: 新しい名前
+    old: [古い名前]
+    changed: {date: 2026-10, approx: true}
+    feature: sample-hooks
+    sources: [sample-doc]
+    checked: 2026-10-30
+    status: 未確認

@@ -174,11 +174,19 @@ class SettingsTest(unittest.TestCase):
     def test_edit_rules_match_generated_and_spare_handwritten(self):
         pats = [rx for _, rx in HOOK.generated_patterns(self.deny)]
         generated = ["docs/llms.txt", "docs/lists/levels.md", "docs/lists/by-scene/contest.md",
-                     "docs/start/index.md", "docs/symptoms/index.md"]
+                     "docs/start/index.md", "docs/symptoms/index.md",
+                     # 2段目に足した生成物（brief-build2.md §2。tools/gen_site.py と tools/make_schema.py が書く）
+                     "nav.yml", "docs/assets/data/pages.json", "docs/assets/data/graph.json", "docs/assets/data/x/y.json",
+                     "schema/page.schema.json", "schema/facts.schema.json", "schema/outdated-advice.schema.json"]
         handwritten = ["docs/index.md", "docs/start/how-to-use.md", "docs/start/glossary.md",
                        "docs/symptoms/instructions-ignored.md", "docs/img/x/a.svg", "mkdocs.yml", "CLAUDE.md",
                        "README.md", "planning/design.md", "data/facts.yml", "snippets/x/a.json", "overrides/main.html",
-                       "tests/tools/fixtures/small/docs/lists/a.md", "docs/llms.txt.bak", "docs/lists"]
+                       "tests/tools/fixtures/small/docs/lists/a.md", "docs/llms.txt.bak", "docs/lists",
+                       # 生成物の隣の手書き（語彙・キーの台帳・テンプレートの部品・試験の置き場所の写し）
+                       "schema/site.yml", "schema/keys.yml", "schema/sub/page.schema.json", "schema/page.schema.json.bak",
+                       "nav.yml.bak", "docs/nav.yml", "tests/tools/fixtures/checks/nav.yml", "tests/tools/fixtures/gen/nav.yml",
+                       "overrides/assets/js/map.js", "overrides/assets/data/x.json", "docs/assets/datax.json",
+                       "tools/gen/config.yml", "tools/checks/template_keys.yml"]
         for g in generated:
             self.assertTrue(any(rx.match(g) for rx in pats), g)
         for h in handwritten:
@@ -297,7 +305,12 @@ class GeneratedFileTest(HookCase):
                   "docs/start/index.md"),
                  ("NotebookEdit", {"notebook_path": str(r / "docs/lists/a.ipynb"), "new_source": "x"},
                   "docs/lists/a.ipynb"),
-                 ("Write", {"file_path": "docs/llms.txt", "content": "x"}, "docs/llms.txt")]   # 相対は cwd から
+                 ("Write", {"file_path": "docs/llms.txt", "content": "x"}, "docs/llms.txt"),   # 相対は cwd から
+                 ("Write", {"file_path": str(r / "nav.yml"), "content": "x"}, "nav.yml"),
+                 ("Edit", {"file_path": str(r / "schema/page.schema.json"), "old_string": "a", "new_string": "b"},
+                  "schema/page.schema.json"),
+                 ("Write", {"file_path": str(r / "docs/assets/data/pages.json"), "content": "{}"},
+                  "docs/assets/data/pages.json")]
         for tool, tin, rel in cases:
             for agent in (False, True):
                 with self.subTest(tool=tool, rel=rel, agent=agent):
@@ -305,9 +318,10 @@ class GeneratedFileTest(HookCase):
 
     def test_allows_handwritten_and_outside(self):
         r = self.p.root
-        for path in [r / "docs/index.md", r / "docs/start/how-to-use.md", r / "nav.yml", r / "CLAUDE.md",
+        for path in [r / "docs/index.md", r / "docs/start/how-to-use.md", r / "CLAUDE.md",
                      r / "tests/tools/fixtures/small/docs/lists/a.md", Path("/tmp/elsewhere/docs/llms.txt"),
-                     r.parent / "docs/llms.txt"]:
+                     r.parent / "docs/llms.txt", r / "schema/site.yml", r / "schema/keys.yml",
+                     r / "tests/tools/fixtures/checks/nav.yml", r / "overrides/assets/js/map.js", Path("/tmp/nav.yml")]:
             with self.subTest(path=path):
                 self.assertAllow(self.p.call("Write", {"file_path": str(path), "content": "x"}))
                 self.assertAllow(self.p.call("Edit", {"file_path": str(path), "old_string": "a", "new_string": "b"}))
@@ -331,7 +345,11 @@ class GeneratedFileBashTest(HookCase):
                     "echo x >| docs/llms.txt",
                     "make 2>&1 &> docs/llms.txt",
                     f"echo x > {root}/docs/llms.txt",
-                    "echo x>docs/llms.txt"]:
+                    "echo x>docs/llms.txt",
+                    "echo x > nav.yml",
+                    "sed -i 's/a/b/' schema/page.schema.json",
+                    "uv run python tools/x.py | tee docs/assets/data/pages.json",
+                    "cd docs/assets/data && echo '{}' > graph.json"]:
             with self.subTest(cmd=cmd):
                 self.assertDeny(self.bash(cmd), "H2", "gen_site.py")
 
@@ -350,9 +368,62 @@ class GeneratedFileBashTest(HookCase):
                     "echo x >> state/now.md",
                     "wc -l < docs/llms.txt",
                     "echo x > docs/index.md",
+                    "uv run python tools/make_schema.py",
+                    "uv run python tools/gen_site.py --check",
+                    "uv run python tools/check_all.py",
+                    "cat nav.yml schema/page.schema.json docs/assets/data/pages.json",
+                    "diff nav.yml /tmp/nav.yml",
+                    "echo x > /tmp/nav.yml",
+                    "git diff nav.yml > /tmp/n.patch",
+                    "echo x > tests/tools/fixtures/checks/nav.yml",
                     MAIN_COMMIT]:
             with self.subTest(cmd=cmd):
                 self.assertAllow(self.bash(cmd))
+
+
+class CurrentWorkTest(HookCase):
+    """2段目で deny に生成物を足した後も、いまの作業を止めない（brief-build2.md の C）：メインの commit と push、作る層の
+    担当（G）が道具で生成物を書くこと、担当が自分の受け持ちのファイルを書くこと、依存と版の確かめの取得。"""
+    production = True
+
+    def test_main_commit_and_push(self):
+        for cmd in [MAIN_COMMIT, "git add -A && git commit -m x && git push", "git push origin main",
+                    "git add nav.yml schema/page.schema.json docs/assets/data/pages.json && git commit -m gen"]:
+            with self.subTest(cmd=cmd):
+                self.assertAllow(self.bash(cmd))
+
+    def test_generators_write_through_tools(self):
+        for cmd in ["uv run python tools/gen_site.py", "uv run python tools/gen_site.py --page how-to-use",
+                    "uv run python tools/make_schema.py", "uv run python tools/check_all.py --only gen_site",
+                    "uv run python -m unittest discover -s tests/tools"]:
+            for agent in (False, True):
+                with self.subTest(cmd=cmd, agent=agent):
+                    self.assertAllow(self.bash(cmd, agent=agent))
+
+    def test_agents_write_their_own_files(self):
+        r = self.p.root
+        for rel in ["tools/gen/build.py", "tools/gen/config.yml", "tests/tools/fixtures/gen/nav.yml",
+                    "tests/tools/test_gen_site.py", "overrides/assets/js/map.js", "overrides/partials/badges.html",
+                    "tests/site/test_site_parts.py", "tools/checks/body.py", "tools/check_all.py",
+                    ".github/workflows/check.yml", "planning/batches/step6/build-C.md", "docs/index.md"]:
+            for tool in ("Write", "Edit"):
+                tin = {"file_path": str(r / rel), "content": "x"} if tool == "Write" else \
+                      {"file_path": str(r / rel), "old_string": "a", "new_string": "b"}
+                with self.subTest(rel=rel, tool=tool):
+                    self.assertAllow(self.p.call(tool, tin, agent=True))
+
+    def test_fetching_dependencies_and_versions(self):
+        for url in ["https://pypi.org/pypi/mkdocs-material/json", "https://registry.npmjs.org/textlint",
+                    "https://github.com/actions/setup-node/releases", "https://api.github.com/repos/actions/setup-node/releases/latest",
+                    "https://code.claude.com/docs/ja/hooks"]:
+            with self.subTest(url=url):
+                self.assertAllow(self.p.call("WebFetch", {"url": url, "prompt": "版"}, agent=True))
+
+    def test_reading_generated_files(self):
+        r = self.p.root
+        for rel in ["nav.yml", "schema/page.schema.json", "docs/assets/data/graph.json"]:
+            with self.subTest(rel=rel):
+                self.assertAllow(self.p.call("Read", {"file_path": str(r / rel)}, agent=True))
 
 
 # ---------------------------------------------------------------------------------------------------------------

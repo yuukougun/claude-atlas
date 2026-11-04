@@ -1,0 +1,55 @@
+# 雛形の settings（snippets/ の *settings.json と、このリポジトリの .claude/settings.json）が使ってよいキーの一覧
+# （自前の許す一覧。planning/design.md §8.7・design-review.md の DR-07）。tools/check_templates.py が読む。
+# - 版：2026-11-04 第1版（工程6a 2段目。担当 C）
+# - 載せたのは、一次資料で確かめた記録のあるキーだけ：planning/research/28-tech-check.md（2026-11-03 に公式の文書
+#   code.claude.com で確かめた項目。# の番号）と、planning/batches/step6/build-B4.md §2（Claude Code 2.1.317 の実行
+#   ファイルの型の定義）。雛形がこの一覧にないキーを使うと誤りになる。キーを足すときは、公式の文書で確かめて、元と
+#   確かめた版を書く（記憶で足さない）
+# - SchemaStore のスキーマ（公式の文書が案内するもの）は新しいキーに遅れる（research/28 #45・#46）。写しを置くなら、
+#   使うキーを足した写しを schema/claude-code-settings.schema.json に置く（check_templates.py は、あれば当てる）
+settings:
+  top:                          # 最上位のキー
+    - $schema                   # SchemaStore のスキーマの URL（research/28 #45）
+    - permissions               # research/28 #13・#19
+    - hooks                     # research/28 #1・#2
+    - env                       # research/28 #30
+    - sandbox                   # research/28 #39・#40
+    - apiKeyHelper              # research/28 の §4 の8
+    - autoMemoryEnabled         # research/28 #26
+    - disableClaudeAiConnectors # research/28 #26
+  permissions:                  # permissions の下
+    - allow                     # research/28 #13
+    - ask                       # research/28 #13
+    - deny                      # research/28 #13
+    - additionalDirectories     # research/28 #19
+    - defaultMode               # design §8.7（research/28 #30）
+  sandbox:                      # sandbox の下
+    - enabled                   # research/28 #39
+    - failIfUnavailable         # research/28 #40
+    - filesystem                # research/28 #44
+    - credentials               # research/28 #26
+  hook_events:                  # hooks の下のイベント
+    - PreToolUse                # research/28 #2
+    - PostToolUse               # research/28 #2
+    - PostToolUseFailure        # research/28 #18
+    - PermissionRequest         # research/28 #5
+    - PermissionDenied          # research/28 #18
+    - Stop                      # research/28 #2・#17
+    - SubagentStop              # research/28 #2・#17
+    - SessionStart              # build-B4.md（このリポジトリの .claude/settings.json）
+    - TaskCompleted             # research/28 #17
+    - TeammateIdle              # research/28 #17
+    - PreModelSwitch            # research/28 #46
+    - PostModelSwitch           # research/28 #46
+  hook_entry:                   # イベントの下の1件
+    - matcher                   # research/28 #5（文字列。配列は無効）
+    - hooks
+  hook:                         # 1つの hook
+    - type                      # build-B4.md §2
+    - command                   # build-B4.md §2
+    - args                      # build-B4.md §2
+    - if                        # build-B4.md §2
+    - shell                     # build-B4.md §2
+    - timeout                   # research/28 #17（秒）
+    - onFailure                 # research/28 #17（continue か block。v2.1.295 から）
+  on_failure: [continue, block] # onFailure の値（research/28 #17）

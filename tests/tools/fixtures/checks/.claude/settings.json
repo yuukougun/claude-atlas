@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "deny": [
+      "WebFetch(domain:atcoder.jp)",
+      "WebFetch(domain:*.atcoder.jp)",
+      "WebFetch(domain:example.org)",
+      "WebFetch(domain:*.example.org)",
+      "Edit(/docs/llms.txt)"
+    ]
+  }
+}
