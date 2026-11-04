@@ -268,8 +268,7 @@
         },
         "channel": {
           "description": "確かめた版の系列（latest か stable）。語彙は site.yml の channels",
-          "type": "string",
-          "minLength": 1
+          "enum": ["latest", "stable"]
         },
         "models": {
           "description": "確かめたモデル（claude-opus-5-5 の形）",

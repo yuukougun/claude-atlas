@@ -151,6 +151,8 @@ requirements §4.2 の23分野を引き継ぎ、id を確定する。id は URL 
 
 ### 3.3 front matter とキーの台帳
 
+道具が読むキーの台帳は `schema/keys.yml` に置く（この節の表と同じ中身。キーを変えるときは両方を直し、`tools/make_schema.py` を流す）。
+
 ```yaml
 ---
 id: instructions-ignored
@@ -475,9 +477,11 @@ claude-atlas/
 │  ├─ facts.yml              # 変わりやすい値と機能の属性（§9.1）
 │  ├─ sources.yml            # 出典（§9.1）
 │  ├─ sources.d/<id>.yml     # ページごとに足した出典（道具がまとめる。§6.8）
-│  └─ outdated-advice.yml    # 古くなった助言の台帳（§9.1）
+│  ├─ outdated-advice.yml    # 古くなった助言の台帳（§9.1）
+│  └─ inspection.yml         # 前回の点検の版と日付（§9.4。DR-11）
 ├─ snippets/<id>/             # 雛形と、動作確認の期待・結果（§8.7）
-├─ schema/                    # page.schema.json・site.yml（語彙）・data の schema・settings のスキーマの写し（§8.7）
+├─ schema/                    # site.yml（語彙）・keys.yml（キーの台帳を道具が読む形）・page.schema.json と data の schema（keys.yml と site.yml から tools/make_schema.py が作る）・settings のスキーマの写し（§8.7）
+├─ stubs/<field>/<id>.md      # 骨格のページ（公開しない。draft にするときに docs/ へ移す。§8.5）
 ├─ tools/ ・ tests/           # 独立スクリプト（§8.3）と試験
 ├─ .claude/
 │  ├─ settings.json          # 制作の規則の一部を縛る hooks と permissions（§10.5）
@@ -588,6 +592,8 @@ kyopro-atlas の道具は、分野や段階の名前がコードに直書きさ�
 
 - 前回の点検の版と日付も data/ に持つ（追跡する。§9.4）
 - **名称と台帳の分担**：名前と画面の変更の事実（旧名・今の名前・変わった時期）は、数値ファイルの名称の表を正にする。台帳の行は名称の id を指して時期をそこから引く（二か所に持たない）。台帳の行は消さない。古い記事の手順が通じない読者の入口になるため（例：`/fork` は改名され、今の `/fork` は別の機能）
+
+data の形の細部（2026-11-04 の土台作りで決めた。担当 B2）：AI の利用の指定は sources のドメインごとに持つ。面やモデルで違う値は facts の table に持つ。名称と旧名は facts.yml の names に持つ。前回の点検は data/inspection.yml に持つ。
 
 数値ファイルに持つ表の候補（目次の担当の提案。形は土台作りで決める。提案の全文は `planning/batches/step3/open-issues.md`）：
 
@@ -845,3 +851,4 @@ hooks がワークフローの担当でも動くかは文書に書かれてい�
 - 2026-11-04：最後の確かめ（verify-V3.md）を受けて、§10.7 の概算を §12 にそろえ、§3.3 の例に wave を足し、別名の規則で nav_title も題名に数えるとした（§5.3）
 - 2026-11-04：工程5の回答（decisions 2026-11-04）を反映した。第一波・比例則の読み・事例の記録の skill・文書にない回避方法・割れている3語を、決まったこととして書き直した（§2.3・§3.1・§5.3・§6.2・§6.11・§8.2・§9.5・§10.1・§10.8・§12・§13）
 - 2026-11-04：土台作り（6a）の1段目の報告を受けて、stub を docs/ の外（stubs/）に置く形に決め（§8.5）、outdated_advice は執筆者が書かないキーにした（§3.3。§10.2・§12 の8と食い違っていた。B5 の報告）
+- 2026-11-04：読む層と data の担当 B2 の報告を受けて、キーの台帳を道具が読む形（schema/keys.yml）と、data の形の細部（§9.1）、構成の図の stubs/・inspection.yml（§8.2）を書いた

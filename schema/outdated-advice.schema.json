@@ -72,7 +72,7 @@
             "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
             "x-message": "id（英小文字・数字・ハイフン）にする"
           },
-          "status": {"description": "語彙は site.yml の advice_statuses", "type": "string", "minLength": 1},
+          "status": {"description": "語彙は site.yml の advice_statuses", "enum": ["撤回", "置換", "条件付き"]},
           "principle": {
             "description": "どの原理の回避策だったか。語彙は site.yml の principles",
             "type": "array",

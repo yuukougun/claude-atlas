@@ -235,7 +235,15 @@ class TestBuild(LedgerCase):
         self.assertEqual([n for b in self.built().values() for n in b.notes], [])
 
     def test_missing_vocab_is_noted_and_left_as_text(self):
-        built = {b.section.name: b for b in build_all(load_ledger(REPO), load_site(REPO))}
+        # 本物の keys.yml と、channels を除いた site.yml で作る（本物の site.yml の語彙の有無に頼らない）
+        import shutil, tempfile
+        with tempfile.TemporaryDirectory() as d:
+            tmp = Path(d)
+            (tmp / "schema").mkdir()
+            shutil.copy(REPO / "schema" / "keys.yml", tmp / "schema" / "keys.yml")
+            lines = (REPO / "schema" / "site.yml").read_text(encoding="utf-8").splitlines(keepends=True)
+            (tmp / "schema" / "site.yml").write_text("".join(l for l in lines if not l.startswith("channels:")), encoding="utf-8")
+            built = {b.section.name: b for b in build_all(load_ledger(tmp), load_site(tmp))}
         notes = [n for b in built.values() for n in b.notes]
         self.assertTrue(any("channels" in n for n in notes))
         channel = built["page"].schema["properties"]["verified_with"]["properties"]["channel"]

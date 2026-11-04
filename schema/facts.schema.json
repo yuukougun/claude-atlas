@@ -119,8 +119,7 @@
           },
           "status": {
             "description": "一次資料で確かめたか。語彙は site.yml の fact_statuses",
-            "type": "string",
-            "minLength": 1
+            "enum": ["確認済み", "未確認"]
           },
           "conflict": {
             "description": "公式同士が本当に食い違うときの、もう一方の値と出典（面ごとの違いは table に持つ。design §6.7）",
@@ -196,13 +195,11 @@
           },
           "maturity": {
             "description": "成熟度（requirements §5.2）。語彙は site.yml の maturities",
-            "type": "string",
-            "minLength": 1
+            "enum": ["GA", "beta", "research preview", "experimental"]
           },
           "enforcement": {
             "description": "強制力（お願いか鍵か。D14）。語彙は site.yml の enforcements",
-            "type": "string",
-            "minLength": 1
+            "enum": ["お願い", "鍵"]
           },
           "load_timing": {
             "description": "読み込みの時期。語彙は site.yml の load_timings",
@@ -267,7 +264,7 @@
             "description": "省くと site.yml の default_fact_volatility。語彙は site.yml の volatility_days",
             "enum": ["低", "中", "高"]
           },
-          "status": {"description": "語彙は site.yml の fact_statuses", "type": "string", "minLength": 1},
+          "status": {"description": "語彙は site.yml の fact_statuses", "enum": ["確認済み", "未確認"]},
           "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
         }
       }
@@ -353,7 +350,7 @@
             "format": "date",
             "x-message": "日付（2026-11-04 の形）にする"
           },
-          "status": {"description": "語彙は site.yml の fact_statuses", "type": "string", "minLength": 1},
+          "status": {"description": "語彙は site.yml の fact_statuses", "enum": ["確認済み", "未確認"]},
           "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
         }
       }
