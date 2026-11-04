@@ -4,15 +4,19 @@
 nav:
   - index.md
 exclude_docs: |
+  /basics/agent-loop.md
   /basics/request-vs-lock.md
   /changes/outdated-advice-ledger.md
   /contest/competition-rules.md
+  /enforce/block-with-exit-2.md
+  /eval/experiment-log.md
   /extend/claude-md-vs-rules-skills-styles.md
   /extend/writing-skills.md
   /japanese/keep-replies-in-japanese.md
   /judgment/agreement-is-not-evidence.md
   /prompting/four-specifics.md
   /start/how-to-use.md
+  /symptoms/caves-when-pushed.md
   /symptoms/instructions-ignored.md
 extra:
   ca:

@@ -70,7 +70,7 @@ def make_catalog_site(root: Path, draft: str) -> list[str]:
             path.write_text(text, encoding="utf-8")
     # 本物の作る層の設定を写し、held_back を空にする（試作のページを外す本物の設定に、試験が左右されないように）
     cfg = (REPO / "tools" / "gen" / "config.yml").read_text(encoding="utf-8")
-    cfg = re.sub(r"\nheld_back:[^\n]*\n(?:  - [^\n]*\n)*", "\nheld_back: []\n", cfg, count=1)
+    cfg = re.sub(r"\nheld_back:[^\n]*\n(?:  (?:- |#)[^\n]*\n)*", "\nheld_back: []\n", cfg, count=1)
     (root / "tools" / "gen").mkdir(parents=True, exist_ok=True)
     (root / "tools" / "gen" / "config.yml").write_text(cfg, encoding="utf-8")
     return placed

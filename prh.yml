@@ -238,6 +238,19 @@ rules:
     specs:
       - {from: checkpoint に戻す, to: チェックポイントに戻す}
       - {from: checkpointing の文書, to: checkpointing の文書}
+  - expected: ハーネス
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Hh]arness(?:es)?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: モデルのまわりでツールを動かす層の呼び名（用語集 definitions。工程7で足した）。識別子・URL の一部（harness-over-model など）は直さない
+    specs:
+      - {from: Claude Code の harness が実行する, to: Claude Code のハーネスが実行する}
+      - {from: harness-over-model を読む, to: harness-over-model を読む}
+      - {from: harness-design-long-running, to: harness-design-long-running}
+  - expected: 補助ファイル
+    pattern: '/(?:(?<=[ぁ-んァ-ヶー一-龠々]) )?(?<![-\w./\\:@#$%"（(「『])[Ss]upporting [Ff]iles?(?![-\w./\\:@#$%"）)」』])(?: (?=[ぁ-んァ-ヶー一-龠々]))?/'
+    prh: スキルのフォルダに置く資料やスクリプトの呼び名（用語集 definitions。公式の supporting files に当たる。工程7で足した）
+    specs:
+      - {from: supporting files に分ける, to: 補助ファイルに分ける}
+      - {from: supporting-files の節, to: supporting-files の節}
   - expected: worktree
     pattern: ワークツリー
     prh: 公式の日本語版の多数派は英語のまま（用語集 translation-policy。research/27 §3.1）

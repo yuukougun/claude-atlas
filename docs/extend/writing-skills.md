@@ -1,7 +1,7 @@
 ---
 id: writing-skills
 title: スキルの作り方
-aliases: [SKILL.md, カスタムコマンド, カスタムスラッシュコマンド, .claude/commands, skill-creator]
+aliases: [SKILL.md, カスタムコマンド, カスタムスラッシュコマンド, .claude/commands, skill-creator, .claude/skills]
 type: feature
 field: extend
 chapter: スキル
@@ -18,8 +18,9 @@ signs:
   - {type: goal, text: 繰り返す作業の手順を、名前で呼べるようにしたい}
   - {type: goal, text: 自分用のスラッシュコマンドを作りたい}
   - {type: situation, text: 昔の記事のとおり、コマンド用のフォルダに Markdown を置いている}
+  - {type: goal, text: 作ったスキルが効いているかを、体感ではなく確かめたい}
 prerequisites: [how-skills-load]
-related: [skill-descriptions, manual-only-skills, hook-vs-skill, skill-vs-subagent, permission-rules, vetting-extensions, measure-changes, felt-vs-measured, move-judgment-into-scripts, plugins-and-marketplaces, skills-in-the-app, share-team-settings, less-ai-sounding-japanese#proofreading-skill, pruning-extensions, writing-subagents]
+related: [skill-descriptions, manual-only-skills, hook-vs-skill, skill-vs-subagent, permission-rules, vetting-extensions, measure-changes, felt-vs-measured, move-judgment-into-scripts, plugins-and-marketplaces, skills-in-the-app, share-team-settings, less-ai-sounding-japanese#proofreading-skill, pruning-extensions, writing-subagents, claude-md-vs-rules-skills-styles, when-to-add-what]
 tracks: [skills]
 outdated_advice: [commands-directory]
 sources: [cc-docs-skills, api-docs-skill-best-practices]
@@ -42,7 +43,7 @@ updated: 2026-11-04
     - **前提**：<!-- link:begin how-skills-load -->スキルの考え方（手順を必要なときだけ読む）（準備中）<!-- link:end -->
 
 <!-- textlint-disable -->
-別名：SKILL.md・カスタムコマンド・カスタムスラッシュコマンド・.claude/commands・skill-creator
+別名：SKILL.md・カスタムコマンド・カスタムスラッシュコマンド・.claude/commands・skill-creator・.claude/skills
 <!-- textlint-enable -->
 
 スキルの作り方は、繰り返す手順を `SKILL.md` に書き、`/名前` と Claude の判断のどちらでも呼べるようにする方法である。本文は短く保ち、詳しい資料とスクリプトは別のファイルに分ける。作った後は、体感で済ませず、スキルの有無を比べて確かめる。
@@ -200,7 +201,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 `SKILL.md` の本文は、呼ばれると会話に入り、以後のやり取りでも残り続ける。本文の 1 行ごとが、以後のやり取りで毎回かかるコストになる。そこで、本文は手順の骨格と案内だけにして、詳しい内容は同じフォルダの別のファイルに分ける。公式の文書は、本文を短く保つ行数の目安を挙げている（値は、[公式の文書の補助ファイルの節](https://code.claude.com/docs/en/skills#add-supporting-files)で確かめる）。それを超えそうになったら分ける。
 
-分けて置くものは 3 種類ある。この辞典では、本文とスクリプトを除く、資料のファイルを補助ファイルと呼ぶ。公式の文書の supporting files は、スクリプトも含む呼び名である。
+分けて置くものは 3 種類ある。この辞典では、本文とスクリプトを除く、資料のファイルを補助ファイルと呼ぶ。公式の文書の「supporting files」は、スクリプトも含む呼び名である。
 
 - **本文（`SKILL.md`）**：手順の骨格と、補助ファイルを読む条件を書く。「書式を確かめるときは `format.md` を読む」のように、ファイルの中身と読む場面を添える。
 - **補助ファイル**：長い仕様・書式の詳細・見本を置く。Claude が読むまでは、場所を取らない。
@@ -414,6 +415,8 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 - 日本語の「AI 臭さ」を減らす › 推敲をスキルにする（文体を保つか、構成から直すか）（準備中）
 - 拡張の棚卸しと剪定（準備中）
 - サブエージェントの作り方と使いどころ（準備中）
+- CLAUDE.md・rules・スキル・出力スタイルの違い（準備中）
+- 拡張を足すタイミング（準備中）
 
 </div>
 

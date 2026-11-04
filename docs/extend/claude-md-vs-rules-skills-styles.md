@@ -18,7 +18,7 @@ signs:
   - {type: goal, text: 常に守らせたい規則と、ときどき使う手順の置き場所を分けたい}
   - {type: goal, text: 応答の口調や形式を変えたいが、どこに書けばよいか分からない}
 prerequisites: [path-scoped-rules, how-skills-load]
-related: [output-style-modes#vs-claude-md, what-to-put-in-claude-md, where-to-put-instructions, extensions-at-a-glance, request-lock-table, using-auto-memory, hook-vs-skill, when-to-add-what, keep-replies-in-japanese]
+related: [output-style-modes#vs-claude-md, what-to-put-in-claude-md, where-to-put-instructions, extensions-at-a-glance, request-lock-table, using-auto-memory, hook-vs-skill, when-to-add-what, keep-replies-in-japanese, what-subagents-dont-inherit, skills-in-the-app#migrated-styles, hooks-basics, cloud-sessions-and-teleport]
 tracks: [claude-md, rules, skills, output-styles]
 sources: [cc-docs-memory, cc-docs-features-overview, cc-docs-context-window, cc-docs-skills, cc-docs-output-styles, cc-docs-sub-agents, cc-docs-settings, cc-docs-cloud-environments, claude-blog-steering-code-skills-hooks, hc-styles-to-skills, cc-docs-permissions, cc-docs-debug-your-config]
 sections:
@@ -300,6 +300,10 @@ CLAUDE.md・rules・スキル・出力スタイルと混同されやすい機能
 - フックとスキルの違い（準備中）
 - 拡張を足すタイミング（準備中）
 - 日本語で返し続けさせる（準備中）
+- サブエージェントに引き継がれないもの（準備中）
+- アプリでスキルを使う › 移された Styles（準備中）
+- フックの考え方とイベント（準備中）
+- クラウドセッションと teleport（準備中）
 
 </div>
 

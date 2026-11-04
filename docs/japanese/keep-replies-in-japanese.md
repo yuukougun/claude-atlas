@@ -19,7 +19,7 @@ signs:
   - {type: goal, text: 最後の返事が英語のときは、自動で日本語に直させたい}
 wave: 1
 prerequisites: [align-japanese-output]
-related: [replies-in-english, where-to-put-instructions, stop-hooks, output-style-modes, settings-layers, what-subagents-dont-inherit, what-survives-compaction, cloud-sessions-and-teleport, agent-loop, where-instructions-sit, hook-recipes, commit-and-comment-language, measure-changes]
+related: [replies-in-english, where-to-put-instructions, stop-hooks, output-style-modes, settings-layers, what-subagents-dont-inherit, what-survives-compaction, cloud-sessions-and-teleport, agent-loop, where-instructions-sit, hook-recipes, commit-and-comment-language, measure-changes, request-vs-lock]
 tracks: [language-setting, claude-md, output-styles, hooks, subagents, cloud-sessions]
 sources: [cc-docs-settings-reference, cc-docs-settings, cc-docs-memory, cc-docs-output-styles, cc-docs-cli-reference, cc-docs-hooks, cc-docs-sub-agents, cc-docs-context-window, cc-docs-cloud-environments, cc-docs-claude-projects, cc-docs-sessions, hc-preferred-language, api-docs-multilingual-support, classmethod-code-hooks-prevent-english-reply, cc-issue-96326, cc-issue-99800, cc-issue-101940]
 volatility: 高
@@ -178,7 +178,7 @@ Stop フックが届かないことを、先に知っておく。
 - **続けて止められる回数に上限がある**。上限を過ぎると、英語のままターンが終わる。下のスクリプトは、書き直しの返事を判定しない（`stop_hook_active` が true なら通す）。止め続けるループを避けるためで、書き直しも英語なら、2 回目は通って、英語のままターンが終わる。上限の扱いは、『<!-- link:begin stop-hooks#block-cap -->Stop フックで「終わらせない」 › 続けて止められる回数の上限（準備中）<!-- link:end -->』にある。
 - **英語で答えさせたい作業でも止まる**。翻訳のように英語の返事が正しい作業も止めるので、その間は `ALLOW_ENGLISH_REPLY=1` を付けて Claude Code を起動し直し、判定を切る。
 - **判定は文字の割合で、誤判定がある**。下のスクリプトは、英字が 40 字以上あり、英字とかな・漢字の合計に占めるかな・漢字の割合が 0.25 未満の返事を、英語とみなす。そのため、英字が 40 字に満たない短い英語の返事は通る。英語の返事でも、日本語の語が混ざって割合が 0.25 以上になれば通る。逆に、コードの外に英単語や識別子を並べた日本語の返事は、英語とみなされて止まる。閾値は最初の値で、測って直す。`MIN_JA_SHARE` を下げると止まりにくく、上げると止まりやすい。`MIN_LATIN` を上げると、短い返事を通しやすい。
-- **場所によっては Stop フックが動かない**。ユーザーの `~/.claude/settings.json` に登録したフックは、クラウドのセッションに届かない。サブエージェントの最終報告は、SubagentStop フックの担当である。場所ごとの対処は、[届かない所の節](#reach)にある。
+- **場所によっては Stop フックが動かない**。ユーザーの `~/.claude/settings.json` に登録したフックは、クラウドのセッションに届かない。サブエージェントの最終報告は、Stop フックでなく SubagentStop フックの担当である。ただし、新しい版の Claude Code では、報告が SubagentStop フックの入力に入らないことがある（下の「届かない所の節」に書く）。場所ごとの対処は、[届かない所の節](#reach)にある。
 
 ツールの合間の一言には、フックを組み合わせて日本語を保つ実践例がある。MessageDisplay で英語の一言を見つけて印を残し、次の PreToolUse で印を見て、ツールの実行を止めて言い直させる。DevelopersIO の記事（2026-10-20）が、この組み合わせを 2026-10 の環境で確かめたと書く（根拠：弱。単独の実践者の記事）。記事は、英語が一度画面に出るのは防げないと書き、MessageDisplay が途中から動かないように見えた場面も挙げる。原因は確かめられていない。Stop と PreToolUse のフックを入れても、直後の一言がまた英語になったという報告もある（根拠：弱。単独の報告）。この教材は、判定と印の受け渡しが複雑で手元で確かめていないので、その雛形を載せない。
 
@@ -284,6 +284,8 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 サブエージェントの最終報告には、同じ形の SubagentStop フックが使える（[Hooks reference](https://code.claude.com/docs/en/hooks#subagentstop)）。`decision` を `block` にして `reason` を返すと、サブエージェントは続けて作業し、理由を次の指示として受け取る。同じスクリプトを登録できるはずだが、この教材では試していない。
 
+ただし、新しい版の Claude Code では、サブエージェントが `SubagentHandback` という道具で報告を親に渡すことがある。このとき SubagentStop フックの `last_assistant_message` に入るのは、サブエージェントの結びの文だけで、渡された報告ではない。公式によれば、報告そのものは `SubagentHandback` に当てた PreToolUse か PostToolUse のフックが、`tool_input.message` として受け取る（[Hooks reference](https://code.claude.com/docs/en/hooks#subagentstop)）。報告の言語を確かめるフックは、どちらの形になるかで、見る場所を選ぶ必要がある。この教材は、どの版からこの形になるかを本文に書かず、手元の環境でも試していない。
+
 ここまでの手順は WSL・Linux の CLI を基準にする。macOS・Windows・IDE の拡張・デスクトップアプリでの動作は未確認である。
 
 ## 届かない所（サブエージェント・圧縮の要約・クラウドのセッション） {#reach}
@@ -294,7 +296,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 - サブエージェントの定義（`.claude/agents/` のファイル）の本文に、「報告は日本語で書く」と書く。
 - 依頼文に言語を書く。CLAUDE.md の例（[CLAUDE.md と出力スタイルの節](#instructions)）にも、同じ 1 行を入れてある。
-- 報告が英語でも、その後の親の返答は Stop フックが確かめる。サブエージェントの最終報告そのものを確かめるなら、SubagentStop フックを使う。
+- 報告が英語でも、その後の親の返答は Stop フックが確かめる。サブエージェントの最終報告そのものを確かめるなら、SubagentStop フックの `last_assistant_message` を使う。ただし、`SubagentHandback` で報告を渡す版では、SubagentStop フックには結びの文しか入らない。報告は、`SubagentHandback` に当てた PreToolUse か PostToolUse のフックの `tool_input.message` にある。
 
 報告を日本語にすれば、親が英語を読む場面が減る（推論・実践例なし）。引き継がれないものの一覧は、「<!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end -->」にある。
 
@@ -414,6 +416,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 - システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置（準備中）
 - 代表的なフックのレシピ（準備中）
 - 変更が効いたかを測る（小さな eval）（準備中）
+- お願いと鍵（決定論的か、非決定論的か）（準備中）
 
 </div>
 

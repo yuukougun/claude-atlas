@@ -12,7 +12,7 @@ priority: 必須
 surfaces: [claude-code, app, api]
 principle: [縛る]
 prevents: [縛っていない]
-summary: プロンプト・CLAUDE.md・スキルのような指示は Claude が読んで判断するお願いで、フック・deny ルール・管理設定は毎回必ず効く鍵だと分かる。例外を許さない規則を鍵に移す判断の土台になる。
+summary: プロンプト・CLAUDE.md・スキルのような指示は Claude が読んで判断するお願いで、フック・deny ルール・管理設定は効く範囲と条件の中で毎回必ず効く鍵だと分かる。例外がなく機械で判定できる規則を鍵に移す判断の土台になる。
 signs:
   - {type: goal, text: 「必ず」と書いた規則でも破られる理由を知りたい}
   - {type: goal, text: どの規則を仕組みで強制すべきか見分けたい}

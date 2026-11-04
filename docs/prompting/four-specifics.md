@@ -12,7 +12,7 @@ surfaces: [app, claude-code, api]
 principle: [見せる, 確かめる]
 prevents: [見えていない]
 scenes: [開発, 文章, データ分析]
-summary: 依頼に対象・状況・完了の形・倣う手本の4点を書くと、Claude が推測で埋める所が減り、意図とのずれが減る。欠けている点が、次に書き足すものになる。
+summary: 依頼に対象・状況・完了の形・倣う手本の 4 点を書くと、Claude が推測で埋める所が減り、意図とのずれが減る。欠けている点が、次に書き足すものになる。
 signs:
   - {type: symptom, text: 直してと頼んだのに、見当違いの場所を直された}
   - {type: goal, text: 一回で意図どおりに動いてほしい}
@@ -27,7 +27,7 @@ sections:
   - {title: 状況：症状と再現の手順, anchor: situation}
   - {title: 完了：何が起きれば終わりか, anchor: done}
   - {title: 手本：倣う既存のコードや文章, anchor: model}
-  - {title: 誤読されやすい所（仕様の解釈・境界の条件）, anchor: misreadings}
+  - {title: 誤読されやすい所（仕様の解釈・境界の入力）, anchor: misreadings}
   - {title: なぜ 4 点が効くか, anchor: why}
   - {title: 効かない場面とやりすぎ, anchor: limits}
   - {title: 4 点を書く雛形, anchor: templates}
@@ -176,7 +176,7 @@ Claude はリポジトリを読んで、規約や既存の部品の作りを見�
 
 例の選び方と、手本に合わせすぎる危険は <!-- link:begin show-examples -->例を見せる（準備中）<!-- link:end --> が扱う。
 
-## 誤読されやすい所（仕様の解釈・境界の条件） {#misreadings}
+## 誤読されやすい所（仕様の解釈・境界の入力） {#misreadings}
 
 具体性の 4 点（対象・状況・完了・手本）をそろえても、依頼の文そのものが複数に読めるときや、境界の入力（空・0・上限など）を依頼が語らないときは、Claude が別の意味に取る余地が残る。この節は、その 2 つを依頼に書き込む方法を述べる。
 
