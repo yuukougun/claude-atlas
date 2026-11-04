@@ -17,7 +17,7 @@
 元：design §6.7・§8.4
 
 - **見るもの**：本文の数値・既定値・成熟度・名前の変更・版・大会の規則と成績、summary・signs・題名
-- **確かめ方**：目印の外に手で書いた値がないかを読んで探す（作る予定：check_pages.py「目印の外の数値」）。この検査は照合の型を持つ項目しか見ないので、検査の外も読む。目印の id が数値ファイルにあるか（作る予定：check_pages.py「facts の id」）。目印の中身が数値ファイルと一致するか（作る予定：gen_site.py --check）。数値の提案のファイルの各項目を、出典で照らす（値・条件・確認日・面とモデルの違い・食い違い）
+- **確かめ方**：目印の外に手で書いた値がないかを読んで探す（検査：check_pages.py「目印の外の数値」）。この検査は照合の型を持つ項目しか見ないので、検査の外も読む。目印の id が数値ファイルにあるか（検査：check_pages.py「facts の id」）。目印の中身が数値ファイルと一致するか（検査：gen_site.py --check）。数値の提案のファイルの各項目を、出典で照らす（値・条件・確認日・面とモデルの違い・食い違い）
 - **よくある失敗**：段落の中に「既定では N」と手で書く。目印の決まった文を、目印の外で言い換えて値を繰り返す。research preview の機能の名前やモデルの世代の名前を手で書く
 
 ## F3 根拠の強さ
@@ -33,7 +33,7 @@
 元：design §6.5・§8.5・§9.2
 
 - **見るもの**：機能の挙動・画面・コマンドの出力など、版で変わる記述
-- **確かめ方**：今の版（制作の環境の `claude --version` と、npm の latest・stable）で確かめられるか。版の番号・入った版・最低の版が手で書かれていないか（目印か、道具が書く所か）。Claude Code の記述が WSL・Linux の CLI を基準にし、ほかの OS と IDE の拡張を「未確認」としているか。制作の環境で試せないアプリの機能に、「未確認」か、作者に頼んだ結果の印があるか（作る予定：check_pages.py「確認日」）
+- **確かめ方**：今の版（制作の環境の `claude --version` と、npm の latest・stable）で確かめられるか。版の番号・入った版・最低の版が手で書かれていないか（目印か、道具が書く所か）。Claude Code の記述が WSL・Linux の CLI を基準にし、ほかの OS と IDE の拡張を「未確認」としているか。制作の環境で試せないアプリの機能に、「未確認」か、作者に頼んだ結果の印があるか（検査：check_pages.py「確認日」）
 - `verified_with` に書く版と系列（latest・stable）を決めて、報告に書く（共通の決まり §4）
 
 ## F5 出典の文と長く一致する箇所
@@ -49,7 +49,7 @@
 元：design §6.8・§9.1・§10.5
 
 - **見るもの**：`sources` の id と、`data/sources.d/<id>.yml` の `sources`・`domains`（形は `schema/sources.schema.json`）
-- **確かめ方**：id があるか（作る予定：check_pages.py「sources の id」）。URL が転送先のものか（開いて確かめる）。題名・発行者・種類・言語・確認日が出典と合うか。出典のドメインの、AI の利用の指定の確認が `domains` に記録されているか（検査：check_noai.py）（作る予定：check_pages.py「AI の利用の指定」）。同じ URL が重なっていないか（作る予定：check_pages.py「出典の URL の重なり」）。断るドメインの出典がないか、あれば deny にあるか（作る予定：check_pages.py「断るドメインと deny」）
+- **確かめ方**：id があるか（検査：check_pages.py「sources の id」）。URL が転送先のものか（開いて確かめる）。題名・発行者・種類・言語・確認日が出典と合うか。出典のドメインの、AI の利用の指定の確認が `domains` に記録されているか（検査：check_noai.py）（検査：check_pages.py「AI の利用の指定」）。同じ URL が重なっていないか（検査：check_pages.py「出典の URL の重なり」）。断るドメインの出典がないか、あれば deny にあるか（検査：check_pages.py「断るドメインと deny」）
 - **よくある失敗**：転送の前の URL を記録する（claude.com/blog と anthropic.com/engineering の記事は別の道へ転送される）。記憶で書いた URL
 
 ## F7 実在の人物・団体・第三者
@@ -86,4 +86,4 @@
 元：design §3.3・§6.4
 
 - **見るもの**：front matter、要点、別名の行、報告の提案
-- **確かめ方**：執筆者が変えたキーが sections・stage・updated・sources だけか（作る予定：check_pages.py「執筆者のキー」）。要点が summary・signs・prerequisites と食い違わないか。別名の行に aliases がすべてあるか（作る予定：check_pages.py「別名の行」）。front matter の直しの提案が、決まった形（id・key・before・after・reason）か
+- **確かめ方**：執筆者が変えたキーが sections・stage・updated・sources だけか（作る予定：check_pages.py「執筆者のキー」）。要点が summary・signs・prerequisites と食い違わないか。別名の行に aliases がすべてあるか（検査：check_pages.py「別名の行」）。front matter の直しの提案が、決まった形（id・key・before・after・reason）か

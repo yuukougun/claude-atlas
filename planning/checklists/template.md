@@ -9,13 +9,13 @@
 
 元：design §6.9・§8.7
 
-- **確かめ方**：`snippets/<id>/<名前>.<拡張子>` と `<名前>.expect.yaml` がそろっているか。種類が `schema/site.yml` の `template_kinds` にあるか。本文が目印で写していて、写しが snippets/ と一致するか（作る予定：gen_site.py --check）。取り込みの記法（`--8<--`）や、手で写した雛形がないか
+- **確かめ方**：`snippets/<id>/<名前>.<拡張子>` と `<名前>.expect.yaml` がそろっているか。種類が `schema/site.yml` の `template_kinds` にあるか。本文が目印で写していて、写しが snippets/ と一致するか（検査：gen_site.py --check）。取り込みの記法（`--8<--`）や、手で写した雛形がないか
 
 ## T2 静的な検査
 
 元：design §8.7・§8.6
 
-- **確かめ方**：JSON・YAML の形、settings のスキーマの写し（schema/ にある。写した日と相当の版を見る）と、雛形が使うキーの許す一覧で見る（作る予定：check_templates.py）。スキルとサブエージェントの front matter の必須の項目を見る。スキルとサブエージェントは、手元で `claude plugin validate --strict` も流す
+- **確かめ方**：JSON・YAML の形、settings のスキーマの写し（schema/ にある。写した日と相当の版を見る）と、雛形が使うキーの許す一覧で見る（検査：check_templates.py）。スキルとサブエージェントの front matter の必須の項目を見る。スキルとサブエージェントは、手元で `claude plugin validate --strict` も流す
 - **よくある失敗**：スキーマの写しが古く、新しいキーを書いた正しい設定を誤りとして落とす（公式の文書が案内する SchemaStore のスキーマは、新しいキーに遅れる）。許す一覧にないキーを使う
 
 ## T3 期待の形
