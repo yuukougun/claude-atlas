@@ -1,0 +1,48 @@
+# 外部リンクを週1回確かめる（planning/design.md §8.6・§9.4 の6）。
+#
+# - 外部のサイトの一時的な不調で毎回落ちないよう、検査とデプロイ（ci.yml）から分けている
+# - 対象：ページ（docs/）、data/ の YAML（出典の URL など。Markdown でないファイルからは URL を拾い出す）、README.md
+# - AI の利用を断るサイト（atcoder.jp・codeforces.com と、そのサブドメイン）は開かない（design §6.8・§10.5 の H1）。
+#   data/sources.yml で断る指定が見つかったドメインも、ここの --exclude に足す
+#   （検査の層ができたら、sources で断るドメインがここにもあるかを確かめる）。大文字の URL にも当てるため (?i) を付ける
+# - サイト自身の URL は除く（内部のリンクは mkdocs build --strict が確かめる）
+# - 転送も報告する（出典は転送先の URL を持つ。design §6.8）：lychee 0.24 は --verbose のときに転送を出す。
+#   結果はこの実行の Summary に出る
+# - 骨格の段階では外部リンクが1つもないことがあるので、0件でも失敗にしない
+name: links
+
+on:
+  schedule:
+    - cron: "37 18 * * 0" # 毎週月曜 3:37（日本時間）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    name: 外部リンク（lychee）
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          lycheeVersion: v0.24.2
+          failIfEmpty: false
+          args: >-
+            --verbose
+            --no-progress
+            --scheme https --scheme http
+            --exclude '(?i)^https?://([a-z0-9-]+\.)*atcoder\.jp([:/?#]|$)'
+            --exclude '(?i)^https?://([a-z0-9-]+\.)*codeforces\.com([:/?#]|$)'
+            --exclude '^https?://yuukougun\.github\.io/claude-atlas([/?#]|$)'
+            --accept '100..=103,200..=299,429'
+            --max-concurrency 16
+            --skip-missing
+            --
+            'docs/**/*.md'
+            'data/**/*.yml'
+            README.md

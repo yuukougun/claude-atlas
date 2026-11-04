@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{#-
+  claude-atlas のテンプレートの上書き（planning/design.md §8.5）。工程6a の1段目で作った骨組み。
+
+  - 冒頭：全ページの上の帯（announce）に、Anthropic の公式の教材でないことを書く。文は decisions 2026-11-04
+    「決定の一覧の承認」の最小の文のまま。それより多い方針の文は、作者の承認の後に足す（design §6.1 の8）。
+    帯を閉じるボタン（announce.dismiss）は付けない
+  - フッター：mkdocs.yml の copyright に、同じく最小の文を書く
+  - ほかの上書き：partials/source.html（GitHub の API を読まない）、assets/js/mermaid-local.js（Mermaid の写しを読む）
+  - 2段目の担当が足すもの（design §8.5）：下の content のブロックの印の所に、ページ上部のバッジ・下書きの帯・
+    期限切れの注意書きと、ページ下部の前提・次に読む・関連、段階と更新日、「このページの誤りを報告する」
+  - Zensical（MiniJinja）でも読めるよう、Python のメソッドの呼び出しは使わない。MkDocs の Jinja は自動で
+    エスケープしないので、front matter の文字列は | e を通す
+-#}
+
+{% block announce %}この辞典は Anthropic の公式の教材ではない。{% endblock %}
+
+{% block content %}
+  {#- ページ上部（2段目）：バッジ・下書きの帯・期限切れの注意書き -#}
+  {{ super() }}
+  {#- ページ下部（2段目）：前提・次に読む・関連、段階と更新日、誤りの報告 -#}
+{% endblock %}

@@ -1,0 +1,15 @@
+同梱しているライブラリの出所（planning/design.md §8.5「外から読まない」）
+
+取得した tarball の sha512 が npm の公式レジストリの dist.integrity と一致することを確かめてから、
+下のファイルを手を加えずに写した。版を上げるときはディレクトリ名ごと替え、
+overrides/assets/js/mermaid-local.js の中の版の文字列も直す。
+
+mermaid-11.17.2/  (MIT。2026-11-04 取得)
+  https://registry.npmjs.org/mermaid/-/mermaid-11.17.2.tgz
+  sha512-V6K3C8EBdEsPFZXSKMJe6ppQOENxuHARr9GvHX4hh47lAbhMRD9qf4oEK7LoaRQxULMa80/qt5gHO73aCleBBg==
+  写したもの：package/dist/mermaid.min.js、package/LICENSE
+  mermaid.min.js の sha256：581ed7d74bd9048d0e3a91363927d72ef22942d7722546b27f7cc29e35390eb8
+  mermaid.min.js が内蔵するライブラリのライセンスの表示は、mermaid.min.js の末尾の注釈にある。
+  版の系列：Material for MkDocs 9.8.0 は、window.mermaid がないときに unpkg.com から mermaid@11 を読む。
+  その系列の最新（2026-11-04 の npm のレジストリで 11.17.2。latest は 12.3.0）を写した。
+  Zensical 0.0.74 は mermaid@12 を読むが、試験ビルドでもこの写しを使う。

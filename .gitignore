@@ -5,8 +5,8 @@
 state/
 notes/
 
-# ビルドの出力と依存
-site/
+# ビルドの出力と依存（site/ は先頭の / でリポジトリの直下だけに当てる。tests/site/ を外さないため）
+/site/
 .venv/
 node_modules/
 .cache/

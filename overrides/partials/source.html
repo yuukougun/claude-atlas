@@ -1,0 +1,16 @@
+{#-
+  ヘッダーのリポジトリへのリンク（planning/design.md §8.5「外から読まない」）。
+  Material for MkDocs 9.8.0 の partials/source.html（MIT License。Copyright (c) 2016-2025 Martin Donath）を写し、
+  data-md-component="source" だけを外した。これがあると、テーマが読者のブラウザから GitHub の API
+  （api.github.com）へ、星とフォークの数と最新の版を問い合わせる。リンクとアイコンと名前はそのまま出す。
+  Zensical 0.0.74 の同じ名前の部品も同じ形なので、試験ビルドでもこの上書きが効く
+-#}
+<a href="{{ config.repo_url }}" title="{{ lang.t('source') }}" class="md-source">
+  <div class="md-source__icon md-icon">
+    {% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </div>
+  <div class="md-source__repository">
+    {{ config.repo_name }}
+  </div>
+</a>

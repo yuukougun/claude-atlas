@@ -1,0 +1,9 @@
+# ナビゲーション（planning/design.md §8.2・§8.5）。mkdocs.yml が INHERIT で読む。
+#
+# - いまは手書きの仮のもの。工程6a の2段目から tools/gen_site.py が front matter から生成し、stage が draft 以上の
+#   ページだけを nav に載せ、未公開のページ（stub と、波の来ていない試作のページ。design §8.4）を
+#   exclude_docs に書いてビルドから外す（INHERIT で exclude_docs が効くことは、工程6a の1段目で確かめた。
+#   planning/batches/step6/build-B1.md）
+# - mkdocs.yml の同じキーはこのファイルより優先するので、nav と exclude_docs は mkdocs.yml に書かない
+nav:
+  - index.md

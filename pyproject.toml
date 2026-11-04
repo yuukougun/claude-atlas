@@ -1,0 +1,32 @@
+# サイトの生成と独立スクリプト（tools/）の Python の依存（planning/design.md §8.1）。
+# - 全依存の版は uv.lock で固定する。入れるときは `uv sync --locked`（CI も同じ）
+# - 版を上げるときは `uv lock --upgrade-package <名前>` で意図して行い、描画の差分を見る
+# - 道具は `uv run`（Python 3.12。.python-version）で動かす
+# - hooks（.claude/hooks/）は標準のライブラリだけの python3 で動かすので、hooks のための依存はここに足さない
+
+[project]
+name = "claude-atlas"
+version = "0.0.0"
+description = "Claude 全般を使いこなすための、辞書として引く日本語の教材"
+requires-python = "==3.12.*"
+dependencies = [
+  # サイトの生成。Material 9.8 系と MkDocs 1.6.1 に固定する（design §8.1。2026-11-04 に PyPI で最新を確かめた）。
+  # Material 9.8.0 は Python 3.11 以上で、依存を mkdocs>=1.6,<2 に限る（MkDocs 2.0 は Material と組み合わせない）。
+  # Material の保守は 2027-05-05 まで。Zensical の試験ビルドは下の zensical の組と .github/workflows/zensical.yml
+  "mkdocs==1.6.1",
+  "mkdocs-material==9.8.0",
+  # pymdownx.betterem は入れない（12.0 の書き直しの後、日本語の強調が壊れる。kyopro-atlas の research/10 §3.1.1）
+  "pymdown-extensions==12.3",
+  # 道具：front matter・catalog・data・schema/site.yml の読み込み（design §8.3）と、
+  # schema/page.schema.json などの JSON Schema の検査（design §3.3・§8.6）
+  "pyyaml>=6.0.2",
+  "jsonschema>=4.23",
+]
+
+[dependency-groups]
+# Zensical の試験ビルド（design §8.1）。版は固定し、意図して上げる。既定の `uv sync` では入らない。
+# 手元でも CI と同じく `uv run --group zensical zensical build --strict` で試す（上の依存と同じ lock の版で作るため）
+zensical = ["zensical==0.0.74"]
+
+[tool.uv]
+package = false

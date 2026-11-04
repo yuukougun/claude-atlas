@@ -1,0 +1,113 @@
+# claude-atlas のサイトの設定（planning/design.md §8.1・§8.5・§8.6・§8.8）
+#
+# - ナビゲーションは nav.yml にあり、ここから INHERIT で読む。同じキーはここが優先するので、
+#   nav と exclude_docs（未公開のページをビルドから外す。design §8.5）はここに書かない。
+#   nav.yml は、いまは手書きの仮のもので、工程6a の2段目から tools/gen_site.py が生成する
+# - プラグインは search だけ。MkDocs の hooks・macros・自作のプラグインは使わない（design §8.1。Zensical へ移るため）
+# - ビルドは `uv run mkdocs build --strict`。validation の警告で失敗にする（design §8.6）。
+#   ビルドから外したページへのリンクは --strict でも止まらないので、tools/check_pages.py で止める（design §8.4）
+# - 外のサイトから読まない（design §8.5）：theme.font は false、Mermaid は overrides/assets/vendor/ の写しを読む、
+#   ヘッダーのリポジトリのリンクは GitHub の API を読まない（overrides/partials/source.html）
+# - 数式（KaTeX・pymdownx.arithmatex）と、取り込みの記法（pymdownx.snippets。design §6.9）は入れない
+# - pymdownx.betterem は入れない（日本語の強調が壊れる。kyopro-atlas の research/10 §3.1.1）
+
+INHERIT: nav.yml
+
+site_name: claude-atlas
+site_description: Claude 全般を使いこなすための、辞書として引く日本語の教材
+site_url: https://yuukougun.github.io/claude-atlas/
+repo_url: https://github.com/yuukougun/claude-atlas
+repo_name: yuukougun/claude-atlas
+edit_uri: edit/main/docs/
+# フッターの文は decisions 2026-11-04「決定の一覧の承認」の最小の文のまま（design §8.5）。
+# それより多い方針の文は、作者の承認の後に足す（design §6.1 の8）
+copyright: '© 2026 yuukougun｜本文と図：<a href="https://github.com/yuukougun/claude-atlas/blob/main/LICENSE-docs">CC BY 4.0</a>｜コードと雛形：<a href="https://github.com/yuukougun/claude-atlas/blob/main/LICENSE">MIT</a>｜Anthropic の公式の教材ではない'
+
+theme:
+  name: material
+  language: ja
+  custom_dir: overrides
+  font: false # Google Fonts を読まない（端末のフォント）
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link # 面のタブ（アプリ／Claude Code／API。design §6.5）を、ページの中で一緒に切り替える
+    - content.tooltips
+    - toc.follow
+    # navigation.tracking は入れない（instant navigation で前のページの見出しが URL に残る。kyopro-atlas の research/10 §3.1.8）
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: ライトモードに切り替え
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: ダークモードに切り替え
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: システムの設定に従う
+
+plugins:
+  - search:
+      lang: ja
+      # 空白・句読点に加えて、カタカナ・ひらがな・漢字・英数字の境目でも区切る
+      # （kyopro-atlas の research/10 §2.4 の設定 C。Zensical は separator だけを使い、lang と pipeline は無視する）
+      separator: '[\s　\-、。，．・：；！？「」『』（）()\[\]/:]+|(?<=[゠-ヿ])(?=[^゠-ヿ])|(?<=[^゠-ヿ])(?=[゠-ヿ])|(?<=[぀-ゟ])(?=[^぀-ゟ])|(?<=[^぀-ゟ])(?=[぀-ゟ])|(?<=[A-Za-z0-9])(?=[一-鿿])|(?<=[一-鿿])(?=[A-Za-z0-9])'
+      pipeline: [stemmer, stopWordFilter]
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      # 日本語の見出しのアンカーを残す（既定の slugify は ASCII でない文字を落とす）。
+      # sections に載せる節の見出しは {#anchor} で明示する（design §3.3）
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+extra_javascript:
+  # Mermaid の図があるページで、写し（assets/vendor/）を初めて要るときに読む。テーマが unpkg.com から読むのを防ぐ
+  - assets/js/mermaid-local.js

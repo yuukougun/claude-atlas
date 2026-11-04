@@ -1,0 +1,31 @@
+claude-atlas の本文と図のライセンス
+
+Copyright (c) 2026 yuukougun
+
+claude-atlas（https://yuukougun.github.io/claude-atlas/）の本文と図は、
+クリエイティブ・コモンズ 表示 4.0 国際 パブリック・ライセンス（CC BY 4.0）で提供する。
+
+対象
+  - docs/ のページの本文（Markdown。生成した一覧・索引と llms.txt を含む）と、docs/img/ の図
+
+対象でないもの
+  - コードと雛形と、そのほかのファイル：MIT License（LICENSE）。ページに載るコードと雛形
+    （snippets/ の写しを含む）、tools/・tests/ のプログラム、overrides/ のテンプレート・CSS・JavaScript、
+    設定のファイル、data/・schema/・planning/ など
+  - 同梱している外部のもの：それぞれのライセンスに従う。overrides/assets/vendor/ の Mermaid は
+    MIT License で、ライセンスの文書は同じディレクトリに置いている
+  - ページやファイルに出る他者のもの（参考に挙げた資料の題名、引用した文など）。
+    この告知と LICENSE のどちらの対象でもない
+
+使うときは、出典（claude-atlas、作者 yuukougun、ページの題名と URL）と CC BY 4.0 へのリンクを示し、
+手を加えたときはその旨を書く。
+
+コモンズ証（要約）：https://creativecommons.org/licenses/by/4.0/deed.ja
+リーガル・コード（法的な全文）：https://creativecommons.org/licenses/by/4.0/legalcode.ja
+
+The text and figures of claude-atlas (pages and figures under docs/) are licensed under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+The code, the templates (snippets) and the other files are licensed under the MIT License
+(see LICENSE), except bundled third-party files (overrides/assets/vendor/), which keep their
+own licenses.

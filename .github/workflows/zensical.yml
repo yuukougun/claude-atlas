@@ -1,0 +1,51 @@
+# Zensical の試験ビルド（planning/design.md §8.1・§8.6）。公開はしない。
+#
+# - 同じ mkdocs.yml（と INHERIT の nav.yml）が Zensical でも作れるかを見張る。Material の保守は 2027-05-05 まで
+# - 失敗しても検査とデプロイ（ci.yml）は止めず、この実行に警告を出すだけにする
+# - Zensical の版は pyproject.toml の dependency-groups の zensical で固定し（いまは 0.0.74）、意図して上げる
+#   （`uv lock --upgrade-package zensical`）。上の依存と同じ uv.lock の版（pymdown-extensions など）で作る
+# - 評価（土台作りの終わりと、初版の公開の前。design §8.1 の基準）のときは、手元でも同じコマンドで試す。
+#   手元で流すと site/ を Zensical の出力で上書きするので、そのあと `uv run mkdocs build --strict` で作り直す
+# - Zensical の --strict は、ビルドから外したページ（exclude_docs）へのリンクも止める（MkDocs は止めない。
+#   planning/batches/step6/build-B1.md）
+name: zensical
+
+on:
+  push:
+    paths:
+      - "docs/**"
+      - "overrides/**"
+      - "mkdocs.yml"
+      - "nav.yml"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/zensical.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zensical-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Zensical でビルドする
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      # setup-uv は v10.3.3 のような版のタグしか出さないので、コミットの SHA で固定する
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - name: 依存を入れる（uv.lock のとおり。zensical の組を足す）
+        run: uv sync --locked --group zensical
+      - name: 試験ビルド（警告でも失敗にする。失敗しても止めない）
+        id: build
+        continue-on-error: true
+        run: uv run --group zensical zensical build --strict
+      - name: 失敗を警告として残す
+        if: steps.build.outcome == 'failure'
+        run: echo "::warning title=Zensical::Zensical の試験ビルドが失敗した。デプロイには影響しない。上の手順のログを見る"
