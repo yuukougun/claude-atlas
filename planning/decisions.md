@@ -161,3 +161,10 @@ requirements §11 の最初の質問と、そこから派生した点への回�
 | robots.txt で Anthropic のクローラを禁じるドメイン | robots.txt で Anthropic のクローラ（ClaudeBot・Claude-Web・anthropic-ai・Claude-User・Claude-SearchBot）にサイト全体を禁じるドメインは、AI の利用を断るドメインと同じに扱う（資料にしない。H1 の deny に足す）。Anthropic Academy（skilljar）も同じ規則で外す。ほかの AI のクローラだけを禁じるドメイン（zenn.dev の Bytespider など）と、一部のパスだけを禁じるドメイン（github.com）は使ってよい | ユーザーの選択（推奨の案）。2026-11-04 の時点で当たるのは10ドメイン（anthropic.skilljar.com・anthropic-partners.skilljar.com・chessprogramming.org・israynotarray.com・posfie.com・techcrunch.com・threadreaderapp.com・www.bleepingcomputer.com・www.oreilly.com・www.theregister.com。照らす担当 E2 の指摘で media.defcon.org を足して11）。tools/check_noai.py は robots.txt を既定で見て、この形を「断る」と判定する。補足：Disallow: / があっても、ルート以外のパスを Allow で開けているもの（pmc.ncbi.nlm.nih.gov の /articles/ など）はサイト全体の禁止に当たらない。当たるサイトの写し（第三者の写しのサイトや Internet Archive）を通して読むことも同じ扱い |
 | 役割ごとのモデル | 本文の執筆・指摘を受けた直し・形式寄りの検証（分かりやすさ・図と描画）は Sonnet 5.5 の max effort で行う。メイン（判断・まとめ・commit）と、事実と出典の検証は Opus のまま。試作（工程7）で、Sonnet の書いたページの事実の誤りと使用量を測り、事実の検証も Sonnet に寄せるかを試作の終わりにユーザーに相談する | ユーザーの考え（「本文の執筆など、使用量を大きく消費するが能力があまり必要ない部分は sonnet の max effort でもいい」）を受けた。design §10.2 と DR-13（役割ごとのモデルと effort は試作で測って決める）の初めの案 |
 | robots.txt の * の組 | robots.txt の「*」（名前で書かれていないクローラ全部）の組でサイト全体を禁じるだけのドメイン（reddit.com・x.com など）は、資料にしてよい。外すのは、Anthropic のクローラを名前で書いて禁じるドメインだけ | ユーザーの選択（推奨の案）。メインが一度「* も当たる」と読んで reddit.com とその写しを外したが、確かめる担当 E3 が、x.com にも当たり大会の規則の公式 X（2026-11-03 の決定）と食い違うと指摘した。robots.txt はクローラの巡回の決まりで、* はふつう AI に限らない巡回の制限なので、名前で AI のクローラを禁じる意思表示と分けた。外した直しは戻した |
+
+## 2026-11-04 工程7（試作）の始め
+
+| 項目 | 決定 | 補足 |
+| --- | --- | --- |
+| 作者のプラン | 2026-11-04 から Max プラン（それまでは Ultra。旧 Max 20x）。上限の窓（5時間）の中で使える量が小さくなる | ユーザーの知らせ。試作の最初の流しで、執筆の担当10人が本文を書く前に5時間の上限で止まった。並べる担当の数と、1ページの使用量を試作で測り、本制作の期間の見込みを工程7の終わりに示す（design §10.3・§10.7） |
+| hooks がワークフローの担当に効くか | 効く。ワークフローの担当の読むだけの git は通り、書き込みの git は H3 が止めた（2026-11-04 の試作のワークフローの最初の段） | design §10.1 の6a の終わりの条件の残り。代わり（HEAD の比較）は要らない |
