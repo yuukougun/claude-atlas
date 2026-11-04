@@ -145,7 +145,7 @@ updated: 2026-11-05
 - **会話を片付ければ、使った分が戻る**：戻らない。`/clear` で減らせるのは、次のターン以降に送り直す量だけである。すでに減った枠は戻らない。
 - **窓が広くなったので、長さを気にしなくてよい**：溢れる心配は減っても、関係のない文脈が答えの質と費用を下げる点は変わらない（<!-- link:begin large-context-window#cost-of-long-context -->広いコンテキストウィンドウとの付き合い方 › 長い文脈の費用（準備中）<!-- link:end -->）。
 - **モデルを下げれば、いちばん節約できる**：下げて効く場面もある。ただ、長い文脈の送り直しと並列の増殖のほうが大きい場面が多い（根拠：中。公式文書からの読みで、版に依存する）。内訳で確かめてから決める。
-- **「think hard」と書き足せば、考える深さが増える**：2026-10 の公式文書では、この言い回しはただの文字列になった。深さは effort で決める（<!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end -->）。
+- **「think hard」と書き足せば、考える深さが増える**：2026-10 の公式文書では、この言い回しは effort を上げる言葉として働かず、普通の文として渡る（<!-- link:begin thinking-keywords#plain-text-phrases -->[「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し](../models/thinking-keywords.md#plain-text-phrases)<!-- link:end -->）。深さは effort で決める（<!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end -->）。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->

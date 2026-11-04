@@ -219,7 +219,7 @@ JSON の版。
 <!-- textlint-enable -->
 <!-- gen:end snippet block-with-exit-2/block-migrations-json -->
 
-フックの登録は、プロジェクトの `.claude/settings.json` に次のように書く（スクリプトは `.claude/hooks/` に置く）。exit 2 の版を使うなら、command のファイル名を `block-migrations-exit2.py` に替える。matcher を Edit と Write に絞り、ほかの道具を巻き込まない（<!-- link:begin writing-safe-hooks#matcher -->[フックを安全に書く › matcher で止めすぎない](writing-safe-hooks.md#matcher)<!-- link:end -->）。
+フックの登録は、プロジェクトの `.claude/settings.json` に次のように書く（スクリプトは `.claude/hooks/` に置く）。exit 2 の版を使うなら、command のファイル名を `block-migrations-exit2.py` に替える。matcher を Edit と Write に絞り、ほかの道具を巻き込まない（<!-- link:begin writing-safe-hooks#matcher -->[フックを安全に書く › matcher で止めすぎない](writing-safe-hooks.md#matcher)<!-- link:end -->）。この例は雛形なので、守りとして常設するときは、失敗したときに止める設定など、<!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end --> の書き方に直す。
 
 <!-- gen:begin snippet block-with-exit-2/register-hook -->
 <!-- textlint-disable -->

@@ -16,7 +16,7 @@
 | 7 | 試作 | 完了（2026-11-05） | 試作の15ページ、手引き・執筆カード・見本の確定、作者への頼み（decisions「工程7の終わりの頼みへの回答」） |
 | 8 | 本制作 | 完了（2026-11-05。第一波136・残りの必須54がすべて draft 以上） | planning/batches/step8/ |
 | 9 | 仕組み作り | 完了（2026-11-05） | 鮮度の点検の skill（.claude/skills/freshness-check/）・tools/freshness.py・tools/check_links.py・Issue のテンプレート（.github/ISSUE_TEMPLATE/）。planning/batches/step9/ |
-| 10 | 全体の検証 | 未着手 | |
+| 10 | 全体の検証 | 完了（2026-11-05） | planning/batches/step10/record.md（リンク573件の切れ0、描画223ページで0件、読者の課題20項目で着けない0、ページどうしの食い違い6組を直した、トップのページを書いた） |
 | 11 | 公開と鮮度の運用 | 未着手 | |
 
 ## 工程3・4：設計と見直し（完了 2026-11-04）

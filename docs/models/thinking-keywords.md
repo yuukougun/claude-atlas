@@ -136,7 +136,7 @@ ultrathink を付けても、深さが上がったと確かめられない場面
 
 かつては、考える量を言葉で頼むのが公式のやり方だった。effort の段を選ぶ手段がまだなかったからである。古い版の CHANGELOG には、think・think harder・ultrathink で考える量を頼めると書かれている。その後、英語以外の言語でも思考を起動できるようになった。日本語の「熟考」のような語は、この流れで段階を表す語として使われた。ただし、どの語がどの段に当たったかは、一次資料で確かめていない。
 
-effort で段を選べるようになると、段階のキーワードは外れた。外れた時期は、一次資料に版の記述がなく、確かめられていない。ultrathink は後に、次のターンの effort を上げる言葉として入れ直され、いまの動きに至っている。特定の月に廃止されたという記述も見かけるが、CHANGELOG では確かめられなかった。
+effort で段を選べるようになると、段階のキーワードは外れた。外れた時期は、一次資料に版の記述がなく、確かめられていない。上の表の版は、ultrathink が最初に入った版である。ultrathink は後に外れ、次のターンの effort を上げる言葉として戻り、いまの動きに至っている（戻った版は <!-- link:begin outdated-advice-ledger#think-hard-keywords -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#think-hard-keywords)<!-- link:end --> にある）。特定の月に廃止されたという記述も見かけるが、CHANGELOG では確かめられなかった。
 
 この移り変わりは、台帳にある「言葉で回避していた弱点が、正式な仕組みに置き換わる」規則の例である。規則は <!-- link:begin outdated-advice-ledger#workarounds -->[古くなった助言の台帳 › 回避策は正式な仕組みに置き換わる](../changes/outdated-advice-ledger.md#workarounds)<!-- link:end --> で読める。このページの助言の行は <!-- link:begin outdated-advice-ledger#think-hard-keywords -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#think-hard-keywords)<!-- link:end --> にある。今どうするかを一言で言うと、考える深さは effort で決め、その依頼だけなら ultrathink を使う。
 

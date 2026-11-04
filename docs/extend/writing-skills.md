@@ -293,7 +293,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 **失敗したときの出し方**：スクリプトは、失敗したときに足りないものをメッセージに出して止まるようにする。原因の推測を Claude に任せない。雛形の `collect-changes.sh` は、起点のタグが決まらないとき、標準エラーに理由を出して終了コード 1 で止まる。
 
-圧縮の後、スキルは<!-- gen:begin feature survives_compaction -->残る<!-- gen:end feature survives_compaction -->。ただし残るのは、呼んだスキルの本文の先頭から一定の量までで、古く呼んだものは落ちることがある（量は、[公式の文書のスキルの本文の扱い](https://code.claude.com/docs/en/skills#skill-content-lifecycle)で確かめる）。そのため、大事な指示は本文の上に置く。圧縮の後にスキルが守られなくなったら、呼び直す。
+圧縮の後、スキルは<!-- gen:begin feature survives_compaction -->残る<!-- gen:end feature survives_compaction -->。ただし残るのは、呼んだスキルの本文の、1 つあたり<!-- fact:begin skill-reattach-tokens-each -->先頭から 5000 トークンまで（2026-11-04 時点）<!-- fact:end -->、全体で<!-- fact:begin skill-reattach-tokens-total -->合計 25000 トークンまで（2026-11-04 時点）<!-- fact:end -->で、古く呼んだものは落ちる。仕組みは「<!-- link:begin how-skills-load#after-compaction -->[スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの](how-skills-load.md#after-compaction)<!-- link:end -->」にある。そのため、大事な指示は本文の上に置く。圧縮の後にスキルが守られなくなったら、呼び直す。
 
 スクリプトを動かすたびに確認を求められると、作業の流れが止まる。確認を省く前に、スクリプトの中身を自分で読む。リポジトリに入っている他人のスキルは、`allowed-tools` とスクリプトを読んでから使う。確認の手順は「<!-- link:begin vetting-extensions -->[MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)<!-- link:end -->」にある。
 
@@ -369,7 +369,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 - **指針が一度きりの手順として読まれる**：作業全体に当てはめたい指針は、「テストを走らせる」ではなく「編集のたびにテストを走らせる」のように、作業全体に当てはまる形で書く。
 - **呼ばれない、呼ばれすぎる**：説明が依頼の言葉に合っていないか、ほかのスキルと重なっている。呼ばれないときは、依頼で使う言葉を含む形に説明を直す。呼ばれすぎるときは、説明を具体的にするか、人だけが呼ぶ設定にする。説明の直し方は「<!-- link:begin skill-descriptions -->[スキルの description の書き方](skill-descriptions.md)<!-- link:end -->」にある。
 - **副作用のある手順を勝手に動かす**：デプロイや送信のような手順は、`disable-model-invocation: true` を付けて、Claude が自分の判断では動かさないようにする。付け方は「<!-- link:begin manual-only-skills -->副作用のあるスキルを勝手に動かさない（準備中）<!-- link:end -->」にある。
-- **一覧に載るコストが積もる**：入れたスキルの名前と説明は、使わなくても毎回のやり取りに載る。数が増えると、一覧の長さの上限を超えないよう説明が削られ、呼ばれにくくなる（上限の値と変え方は、[公式の文書の説明が切られる節](https://code.claude.com/docs/en/skills#skill-descriptions-are-cut-short)にある）。`/skill-doctor` で費用と使われ方を見て、使っていないものを外す。外し方は「<!-- link:begin pruning-extensions -->[拡張の棚卸しと剪定](pruning-extensions.md)<!-- link:end -->」にある。
+- **一覧に載るコストが積もる**：入れたスキルの名前と説明は、使わなくても毎回のやり取りに載る。数が増えると、一覧の長さの上限を超えないよう説明が削られ、呼ばれにくくなる（上限の値は「<!-- link:begin how-skills-load#residual-cost -->[スキルの考え方（手順を必要なときだけ読む） › 入れすぎたときに残るコスト](how-skills-load.md#residual-cost)<!-- link:end -->」、変え方は[公式の文書の説明が切られる節](https://code.claude.com/docs/en/skills#skill-descriptions-are-cut-short)にある）。`/skill-doctor` で費用と使われ方を見て、使っていないものを外す。外し方は「<!-- link:begin pruning-extensions -->[拡張の棚卸しと剪定](pruning-extensions.md)<!-- link:end -->」にある。
 - **同じ名前のスキルが複数ある**：管理設定、個人用、プロジェクトの順に優先される。個人用とプロジェクトに同じ名前のスキルがあれば、個人用が動く。`.claude/commands/` のファイルと同じ名前なら、スキルが動く。詳しい表は、[公式の文書の同名の扱い](https://code.claude.com/docs/en/skills#resolve-skills-that-share-a-name)にある。
 - **組み込みのコマンドや同梱のスキルと同じ名前にしたとき**：その名前では、自作のスキルが動く。置き換わるのは名前だけで、元のコマンドの別名で呼ぶと、元のコマンドが動く。組み込みのコマンドについては、ローカルのターミナルのセッションでの挙動で、ほかの環境は確かめていない。
 - **`verify` か `simplify` という名前**：この名前のスキルがあり、Claude が呼べる設定になっていると、Claude はコミットの直前にそれを実行する。文書とテストだけの変更は除く。名前だけでコミットのたびに動くので、意図して付ける。条件は、[公式の文書のコミット前の確認](https://code.claude.com/docs/en/skills#run-your-checks-before-each-commit)にある。

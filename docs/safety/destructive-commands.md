@@ -49,7 +49,7 @@ updated: 2026-11-05
 
 **対象の取り違え**：消す範囲が、書いた人の意図より広くなる。
 
-- 2025 年 12 月に引用された例がある。`rm -rf tests/ patches/ plan/ ~/` の末尾の `~/` が、ホームディレクトリのほぼ全体を指した（[A quote from Claude](https://simonwillison.net/2025/Dec/9/claude)。二次の引用のため、根拠：弱）。
+- 2025 年 12 月に引用された例がある。`rm -rf tests/ patches/ plan/ ~/` の末尾の `~/` が、ホームディレクトリのほぼ全体を指した（[A quote from Claude](https://simonwillison.net/2025/Dec/9/claude/)。二次の引用のため、根拠：弱）。
 - Claude Code の issue #10077 は、`--dangerously-skip-permissions` を使っていないのに、`rm -rf` 系の操作でホーム配下のユーザーファイルが消えたと報告する。正確なコマンドはログに残っておらず、issue は「対応しない」として閉じられた（[Issue #10077](https://github.com/anthropics/claude-code/issues/10077)。単独の報告のため、根拠：弱）。
 - issue #75859 は、ある Bash 呼び出しで `HOME` を一時ディレクトリに変え、別の呼び出しで `rm -rf "$HOME"` を実行した例を報告する。報告は、Bash の呼び出しの間でシェルの環境変数が引き継がれないため、本物のホームに展開されたと説明する（[Issue #75859](https://github.com/anthropics/claude-code/issues/75859)。単独の報告のため、根拠：弱）。
 - Anthropic は、曖昧な「clean up」の指示からのブランチの一括削除や、名前が似ているだけのリソースの削除を、auto モードが止める対象の例に挙げる（[How we built Claude Code auto mode](https://www.anthropic.com/research/claude-code-auto-mode)）。

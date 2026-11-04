@@ -53,7 +53,7 @@ updated: 2026-11-05
 
 「お願い」では縛れない境界を、設定の鍵にする場面で使う。このページが防ぐのは、原因の「縛っていない」と「境界がない」である。
 
-- `.env` や migrations を絶対に触らせたくない。CLAUDE.md に「触らない」と書くのは依頼にとどまる。公式は、権限ルールはモデルではなく Claude Code が強制し、指示は Claude が試みることを変えても許すことは変えない、と書く。deny ルールは bypassPermissions を含むどのモードでも止める
+- `.env` や migrations を絶対に触らせたくない。CLAUDE.md に「触らない」と書くのはお願いにとどまる。公式は、権限ルールはモデルではなく Claude Code が強制し、指示は Claude が試みることを変えても許すことは変えない、と書く。deny ルールは bypassPermissions を含むどのモードでも止める
 - よく使う安全なコマンドを毎回確認させたくない。allow ルールで、決まったコマンドだけ確認を省ける
 - 会話で言った禁止は、圧縮で消えうる。設定に書いたルールは圧縮の影響を受けない。理由は <!-- link:begin when-to-lock#spoken-rules-fade -->[お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](when-to-lock.md#spoken-rules-fade)<!-- link:end --> にある
 

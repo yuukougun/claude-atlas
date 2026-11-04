@@ -151,7 +151,7 @@ updated: 2026-11-05
 - [What are projects?](https://support.claude.com/en/articles/9517075-what-are-projects)：Anthropic・英語・確認日 2026-11-04
 - [Understanding Claude's personalization features](https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features)：Anthropic・英語・確認日 2026-11-04
 - [Usage limit best practices](https://support.claude.com/en/articles/9797557-usage-limit-best-practices)：Anthropic・英語・確認日 2026-11-04
-- [Claude Projects の解説記事（仁頼のブログ）](https://jinrai.co.jp/blog/claude-projects-guide/)：仁頼・確認日 2026-11-05
+- [Claude Projects の解説記事（仁頼のブログ）](https://jinrai.co.jp/blog/2026/04/03/claude-projects-guide/)：仁頼・確認日 2026-11-05
 
 <!-- textlint-enable -->
 <!-- gen:end references -->

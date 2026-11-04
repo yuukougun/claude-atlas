@@ -21,7 +21,7 @@ signs:
 prerequisites: [when-to-lock, agent-loop]
 related: [block-with-exit-2, hook-recipes, writing-safe-hooks, stop-hooks, hook-vs-skill, request-lock-table, extensions-at-a-glance, settings-layers, writing-subagents, textlint-hook]
 tracks: [hooks]
-sources: [cc-docs-hooks, cc-docs-hooks-guide, cc-docs-features-overview, cc-docs-sub-agents, cc-docs-changelog, claude-blog-steering-code-skills-hooks]
+sources: [cc-docs-settings, cc-docs-hooks, cc-docs-hooks-guide, cc-docs-features-overview, cc-docs-sub-agents, cc-docs-changelog, claude-blog-steering-code-skills-hooks]
 volatility: 中
 sections:
   - {title: 使いどころ, anchor: when}
@@ -224,7 +224,7 @@ flowchart LR
 
 **信頼の確認の前は走らない。** 対話のセッションでは、フォルダの信頼のダイアログを受け入れるまで、どの設定ファイルのフックも走らない。自分のユーザー設定のフックも同じである。`-p` と Agent SDK はダイアログを出さず、信頼したものとして `.claude/settings.json` のフックを走らせる。権限ルールの deny と ask は、信頼と関係なく効く。リポジトリを開くと他人のフックが走ることになるので、<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](writing-safe-hooks.md#runs-as-you)<!-- link:end --> を先に読む。
 
-**クラウドのセッションでは、ユーザーの設定が届かない。** クラウドのセッションは、ユーザーの `~/.claude/settings.json` と `.claude/settings.local.json` を読まない。リポジトリの `.claude/settings.json` は読まれる。確実に縛りたいフックは、リポジトリの設定に置く。
+**クラウドのセッションでは、ユーザーの設定が届かない。** クラウドのセッションは、ユーザーの `~/.claude/settings.json` と `.claude/settings.local.json` を読まない。リポジトリの `.claude/settings.json` は、リポジトリを 1 つだけ選んだセッションで読まれる（[Settings files and precedence](https://code.claude.com/docs/en/settings#settings-in-cloud-sessions)）。確実に縛りたいフックは、リポジトリの設定に置く。
 
 ## 決定的なフックと、モデルが判断するフック {#deterministic}
 
@@ -319,6 +319,7 @@ flowchart LR
 
 ## 参考 {#references}
 
+- [Settings files and precedence](https://code.claude.com/docs/en/settings)：Anthropic・英語・確認日 2026-11-04
 - [Hooks reference](https://code.claude.com/docs/en/hooks)：Anthropic・英語・確認日 2026-11-04
 - [Automate actions with hooks](https://code.claude.com/docs/en/hooks-guide)：Anthropic・英語・確認日 2026-11-04
 - [Extend Claude Code](https://code.claude.com/docs/en/features-overview)：Anthropic・英語・確認日 2026-11-04

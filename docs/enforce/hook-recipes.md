@@ -64,7 +64,7 @@ updated: 2026-11-05
 
 ## フックを登録する {#register}
 
-このページのレシピは、どれも同じ手順で入れる。スクリプトを `.claude/hooks/` に置き、`.claude/settings.json` に登録する。次の設定は、このページの 5 つのスクリプトと、通知の 2 つをまとめて登録する例である。要るものだけを残して使う。
+このページのレシピは、どれも同じ手順で入れる。スクリプトを `.claude/hooks/` に置き、`.claude/settings.json` に登録する。次の設定は、このページの 5 つのスクリプトと、通知の 2 つをまとめて登録する例である。要るものだけを残して使う。止める用途で使うときは、<!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end --> の書き方（失敗したときに止める設定など）に直す。
 
 <!-- gen:begin snippet hook-recipes/register-hooks -->
 <!-- textlint-disable -->
