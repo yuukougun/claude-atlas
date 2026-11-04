@@ -1,0 +1,7 @@
+title: PreToolUse のフックを登録する設定
+kind: settings
+place: project
+safety: true
+expect:
+  - /hooks の一覧に、PreToolUse の Edit|Write に付いたフックが出る
+  - フックのスクリプトが無い、または動かないときは、操作は止められずに通る

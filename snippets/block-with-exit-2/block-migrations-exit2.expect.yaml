@@ -1,0 +1,8 @@
+title: migrations の既存ファイルを exit 2 で止めるフック
+kind: hook
+place: project
+safety: true
+expect:
+  - migrations の下にある既存のファイルを Edit か Write で直そうとすると、操作が止められる
+  - Claude への返答に、止められた理由と「新しい migration を追加する」という代わりの手段が出る
+  - migrations の下に新しいファイルを作る操作は止められない

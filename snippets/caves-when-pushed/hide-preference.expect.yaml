@@ -1,0 +1,7 @@
+title: 好みを伏せて二つの案を比べさせる依頼
+kind: prompt
+place: 依頼の本文（アプリ・Claude Code・API のどれでも）
+safety: false
+expect:
+  - 欄を埋めた依頼で、返答がどちらの案にも弱点を挙げる
+  - 返答が、基準ごとの優劣を付けたうえで結論を書く
