@@ -11,11 +11,24 @@
 
 | 担当 | 書くもの | 報告 | 状態 |
 | --- | --- | --- | --- |
-| B1 | サイトと CI：`pyproject.toml`・`uv.lock`・`.python-version`・`mkdocs.yml`・`nav.yml`（仮）・`docs/index.md`・`overrides/`（テンプレートの骨組みと、冒頭とフッターの文）・`.github/workflows/`・`README.md`・`LICENSE`・`LICENSE-docs` | `build-B1.md` | 実行中 |
+| B1 | サイトと CI：`pyproject.toml`・`uv.lock`・`.python-version`・`mkdocs.yml`・`nav.yml`（仮）・`docs/index.md`・`overrides/`（テンプレートの骨組みと、冒頭とフッターの文）・`.github/workflows/`・`README.md`・`LICENSE`・`LICENSE-docs` | `build-B1.md` | 完了（ビルド・試験29件。Pages を有効にし、空のサイトを公開した） |
 | B2 | 読む層と data：`tools/lib/`・`schema/page.schema.json` を作る道具・`schema/` の data の schema・`data/` の空の雛形・`tests/tools/` の読む層の試験 | `build-B2.md` | 実行中 |
-| B3 | 書き方の検査：`package.json`・`package-lock.json`・`.textlintrc.json`・`prh.yml`・`tools/textlint_targets.py` と試験 | `build-B3.md` | 実行中 |
-| B4 | 縛り：`CLAUDE.md`・`.claude/settings.json`・`.claude/hooks/`・`.claude/README.md`・hooks の試験 | `build-B4.md` | 実行中 |
-| B5 | 手引きとチェックリスト：`planning/guides/`（共通の手引きと型ごとの手引きの第1版）・`planning/checklists/`（検証の4つの観点） | `build-B5.md` | 実行中 |
+| B3 | 書き方の検査：`package.json`・`package-lock.json`・`.textlintrc.json`・`prh.yml`・`tools/textlint_targets.py` と試験 | `build-B3.md` | 完了（prh 54規則・試験31件） |
+| B4 | 縛り：`CLAUDE.md`・`.claude/settings.json`・`.claude/hooks/`・`.claude/README.md`・hooks の試験 | `build-B4.md` | 完了（H1〜H4・試験47件。H2 がこのセッションに効くことを確かめた） |
+| B5 | 手引きとチェックリスト：`planning/guides/`（共通の手引きと型ごとの手引きの第1版）・`planning/checklists/`（検証の4つの観点） | `build-B5.md` | 完了（手引き11・チェックリスト5・試験14件） |
+
+### 1段目の報告への判断（2026-11-04 メイン）
+
+| 点 | 判断 |
+| --- | --- |
+| stub の置き場所（B1 の提案7） | docs/ の外の `stubs/<field>/<id>.md` に置き、draft にするときに docs/ へ移す（design §8.5）。試作のページは exclude_docs で外し、nav にも載せない（B1 の提案3） |
+| outdated_advice を執筆者が書くか（B5 の1） | 書かない。目次が書き、執筆者は提案する（design §3.3 を §10.2・§12 に合わせた） |
+| まだ形のない目印（B5 の2） | 2段目の作る層とともに決める（症状の振り分けの表・比較表・機能の属性・雛形の折りたたみ） |
+| 安全とデータの雛形の扱い（B5 の3） | 執筆者は本文に雛形の目印を置く。道具は、動作確認を通った雛形だけを目印の間に写し、通っていないものは「動作確認の後に載せる」と書く。骨格の後の safety の印は `snippets/<id>/<名前>.expect.yaml` に持つ |
+| 台帳の行を指す形（B5 の4） | 台帳のページは行ごとに anchor（台帳の id）を持ち、ほかのページは `outdated-advice-ledger#<台帳の id>` で指す |
+| 検証ノートの試し方（B5 の5） | 試作の始めに作る見せ方の一覧（planning/shows.md）と工程7の指示で決める |
+| H3 で許す git（B4） | 読むだけのサブコマンドを広く許す形（B4 の一覧）でよい。DR-08 の「status・diff・log・show」は例 |
+| lychee を手元で動かすこと（B1） | 取得が自動モードで止められたので、回り込まない。外部リンクの検査は CI（週1回）で動かして確かめる |
 
 ## 6a 2段目（1段目の後）
 
