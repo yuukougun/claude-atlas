@@ -57,7 +57,8 @@ features:
   - /init
   - /memory
   - AGENTS.md
-  - '@path import'
+  - '@-imports'
+  - CLAUDE.md imports
   sources:
   - cc-docs-memory
   - cc-docs-features-overview
@@ -66,7 +67,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 公式は CLAUDE.md を強制する設定ではなく文脈として扱うと書く（Claude treats them as context, not enforced configuration）。読み込みは作業ディレクトリから上の階層の分がセッション開始で、サブディレクトリの CLAUDE.md は Claude がそのディレクトリのファイルを読み書きしたときに読み込まれる。圧縮で残るのはプロジェクトの根の CLAUDE.md （ディスクから入れ直す）で、入れ子の CLAUDE.md は要約に消え、必要になったときに読み直される。入った版は CHANGELOG の 最も古い版より前なので書かない
+  note: 公式は CLAUDE.md を強制する設定ではなく文脈として扱うと書く（Claude treats them as context, not enforced configuration）。読み込みは作業ディレクトリから上の階層の分がセッション開始で、サブディレクトリの CLAUDE.md は Claude がそのディレクトリのファイルを読み書きしたときに読み込まれる。圧縮で残るのはプロジェクトの根の CLAUDE.md（ディスクから入れ直す）で、入れ子の CLAUDE.md は要約に消え、必要になったときに読み直される。入った版は CHANGELOG の最も古い版より前なので書かない
 - id: rules
   title: rules（.claude/rules/）
   page: path-scoped-rules
@@ -76,7 +77,6 @@ features:
   enforcement: お願い
   load_timing: セッション開始か、一致するファイルを扱うとき
   context_cost: 常駐か、一致するファイルのときだけ
-  survives_compaction: true
   since:
     claude_code: 2.0.64
     date: '2025-12-10'
@@ -95,7 +95,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: paths のない rules は .claude/CLAUDE.md と同じ扱いでセッション開始に読み込まれ、圧縮の後もディスクから入れ直される。 paths のある rules は一致するファイルを扱うときだけ読み込まれ、圧縮では要約に消えて、一致するファイルを再び扱うと 読み直される（公式は、圧縮を越えて残すなら paths を外すか根の CLAUDE.md に移すよう勧める）。読み込みの時期は 公式の比較のタブ（CLAUDE.md とルールとスキル）の「すべてのセッション、または一致するファイルが開かれたとき」から。 コンテキストのコストは公式の表に行がないので memory のページの記述から決めた。強制力は CLAUDE.md と同じ扱いの指示 であることから
+  note: paths のない rules は .claude/CLAUDE.md と同じ扱いでセッション開始に読み込まれ、圧縮の後もディスクから入れ直される。paths のある rules は一致するファイルを扱うときだけ読み込まれ、圧縮では要約に消えて、一致するファイルを再び扱うと読み直される（公式は、圧縮を越えて残すなら paths を外すか根の CLAUDE.md に移すよう勧める）。圧縮で残るかの属性は、paths のない rules と paths のある rules で答えが違い、真偽で言い切れないので書かない（公式の What survives compaction の表は、前者を「ディスクから入れ直す」、後者を「必要なときに読み直す」と分けて書く）。読み込みの時期は公式の比較のタブ（CLAUDE.md とルールとスキル）の「すべてのセッション、または一致するファイルが開かれたとき」から。コンテキストのコストは公式の表に行がないので memory のページの記述から決めた。強制力は CLAUDE.md と同じ扱いの指示であることから
 - id: auto-memory
   title: 自動メモリ（auto memory）
   page: using-auto-memory
@@ -124,7 +124,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: セッション開始に読み込むのは MEMORY.md の頭の部分だけで（行数と大きさの上限は facts に置く）、話題ごとのファイルは Claude が必要なときに読む。公式は CLAUDE.md と同じく強制する設定ではなく文脈と書く。圧縮の後はディスクから入れ直す。 ローカルのセッションでは既定で有効
+  note: セッション開始に読み込むのは MEMORY.md の頭の部分だけで（行数と大きさの上限は facts に置く）、話題ごとのファイルは Claude が必要なときに読む。公式は CLAUDE.md と同じく強制する設定ではなく文脈と書く。圧縮の後はディスクから入れ直す。ローカルのセッションでは既定で有効
 - id: skills
   title: スキル（skills）
   page: writing-skills
@@ -159,7 +159,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: '名前と説明はセッション開始から毎回入り、本体は呼ばれたときに入る。disable-model-invocation: true のスキルは呼ぶまで 何も入らない。公式は「CLAUDE.md やスキルの指示はお願いで、保証ではない」と書く。圧縮の後、説明は今のスキルから 作り直して入れ直し（2.1.304 以降）、呼んだスキルの本体は上限つきで入れ直す（古いものから外れる）。カスタムコマンド （.claude/commands/）はスキルにまとめられた'
+  note: '名前と説明はセッション開始から毎回入り、本体は呼ばれたときに入る。disable-model-invocation: true のスキルは呼ぶまで何も入らない。公式は「CLAUDE.md やスキルの指示はお願いで、保証ではない」と書く。圧縮の後、説明は今のスキルから作り直して入れ直し（2.1.304 以降）、呼んだスキルの本体は上限つきで入れ直す（古いものから外れる）。カスタムコマンド（.claude/commands/）はスキルにまとめられた'
 - id: subagents
   title: サブエージェント（subagents）
   page: writing-subagents
@@ -190,7 +190,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 起動したときに自分のシステムプロンプト・指定したスキル・CLAUDE.md と git status（組み込みの Explore と Plan は どちらも持たない）で新しい文脈を作る。fork は親の会話を引き継ぐ。メインの会話が圧縮されてもサブエージェントの記録は 影響を受けない。強制力は、定義の指示（お願い）と道具の制限（tools・disallowedTools）が混ざるので書かない
+  note: 起動したときに自分のシステムプロンプト・指定したスキル・CLAUDE.md と git status（組み込みの Explore と Plan はどちらも持たない）で新しい文脈を作る。fork は親の会話を引き継ぐ。メインの会話が圧縮されてもサブエージェントの記録は影響を受けない。強制力は、定義の指示（お願い）と道具の制限（tools・disallowedTools）が混ざるので書かない
 - id: agent-teams
   title: エージェントチーム（agent teams）
   page: agent-teams
@@ -217,7 +217,7 @@ features:
   - cc-docs-changelog
   checked: '2026-11-04'
   status: 確認済み
-  note: 公式の文書は「experimental で既定では無効」と書き、CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 で有効にする。2.1.32 の CHANGELOG は「research preview」として入れたと書く（呼び方が違う。今の文書の experimental にした）。チームメイトは それぞれ自分のコンテキストウィンドウを持ち、起動したときに CLAUDE.md・MCP サーバー・スキルを読み込む。トークンの 使用量はチームメイトの数に応じて増える
+  note: 公式の文書は「experimental で既定では無効」と書き、CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 で有効にする。2.1.32 の CHANGELOG は「research preview」として入れたと書く（呼び方が違う。今の文書の experimental にした）。チームメイトはそれぞれ自分のコンテキストウィンドウを持ち、起動したときに CLAUDE.md・MCP サーバー・スキルを読み込む。トークンの使用量はチームメイトの数に応じて増える
 - id: output-styles
   title: 出力スタイル（output styles）
   page: output-style-modes
@@ -248,7 +248,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 公式は「Claude が従う指示で、何も強制しない」と書く。Default のスタイルでは何も読み込まない。圧縮の後もシステム プロンプトとともにそのまま効く。2.0.30 でいったん非推奨になり、2.0.32 で非推奨を取り消した（CHANGELOG）
+  note: 公式は「Claude が従う指示で、何も強制しない」と書く。Default のスタイルでは何も読み込まない。圧縮の後もシステムプロンプトとともにそのまま効く。2.0.30 でいったん非推奨になり、2.0.32 で非推奨を取り消した（CHANGELOG）
 - id: mcp
   title: MCP
   page: connecting-mcp
@@ -273,7 +273,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: セッション開始に入るのはツールの名前とサーバーの指示だけで、JSON のスキーマは使うときまで遅らせる（ツール検索が 既定で有効。Microsoft Foundry の Azure の配置などでは使えない）。圧縮で残るかは公式の圧縮の表に行がないので書かない。 入った版は CHANGELOG の最も古い版のころからあるので書かない。アプリのコネクタ（connectors）と API の MCP connector は 別の項目
+  note: セッション開始に入るのはツールの名前とサーバーの指示だけで、JSON のスキーマは使うときまで遅らせる（ツール検索が既定で有効。Microsoft Foundry の Azure の配置などでは使えない）。圧縮で残るかは公式の圧縮の表に行がないので書かない。入った版は CHANGELOG の最も古い版のころからあるので書かない。アプリのコネクタ（connectors）と API の MCP connector は別の項目
 - id: plugins
   title: プラグイン（plugins）
   page: plugins-and-marketplaces
@@ -303,7 +303,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: プラグインはスキル・エージェント・フック・MCP サーバーなどを束ねる層で、時期とコストは中身による。有効にした プラグインのスキル・エージェント・コマンドの名前と説明が毎回入り、本体は使うときに入る（公式の Measure plugin cost）。 フックはモデルの文脈のコストを持たない
+  note: プラグインはスキル・エージェント・フック・MCP サーバーなどを束ねる層で、時期とコストは中身による。有効にしたプラグインのスキル・エージェント・コマンドの名前と説明が毎回入り、本体は使うときに入る（公式の Measure plugin cost）。フックはモデルの文脈のコストを持たない
 - id: marketplaces
   title: マーケットプレイス（plugin marketplaces）
   page: plugins-and-marketplaces
@@ -378,7 +378,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: プラグインに入れる JavaScript か TypeScript の関数で、Claude Code の中で動き、ツールの呼び出しを止める・書き換える・ 代わりに答えることができる（公式は組織の方針を自作の mod で強制する方法も書く）ので鍵にした。既定で有効で、成熟度の 表記はない。端末は 2.1.287 以降、Desktop アプリは 2.1.286 以降。--safe-mode・disableAllHooks で止まる（組み込みの mod は止まらない）。文脈のコストは公式に記述がないので書かない
+  note: プラグインに入れる JavaScript か TypeScript の関数で、Claude Code の中で動き、ツールの呼び出しを止める・書き換える・代わりに答えることができる（公式は組織の方針を自作の mod で強制する方法も書く）ので鍵にした。既定で有効で、成熟度の表記はない。端末は 2.1.287 以降、Desktop アプリは 2.1.286 以降。--safe-mode・disableAllHooks で止まる（組み込みの mod は止まらない）。文脈のコストは公式に記述がないので書かない
 - id: code-intelligence
   title: code intelligence プラグイン（LSP）
   page: code-intelligence-plugins
@@ -405,7 +405,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 編集の後に型の誤りと警告を、シンボルを調べたときに定義・参照・型の情報を返す。公式は、シンボルの検索が広いファイルの 読み込みを置き換えるので、全体の文脈の使用は減りうると書く。LSP の道具は言語のプラグインを入れるまで働かない。 2.0.74 で LSP の道具が入った
+  note: 編集の後に型の誤りと警告を、シンボルを調べたときに定義・参照・型の情報を返す。公式は、シンボルの検索が広いファイルの読み込みを置き換えるので、全体の文脈の使用は減りうると書く。LSP の道具は言語のプラグインを入れるまで働かない。2.0.74 で LSP の道具が入った
 - id: plugin-eval
   title: claude plugin eval（スキルとプラグインの評価）
   page: measure-changes
@@ -428,7 +428,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: シェルのコマンドで、プラグインの有り無し（no-plugin baseline）を比べて採点する。git がある環境では git 2.31 以降が 要る。実行と judge の採点はどれも実際のモデルの呼び出しで、プランの使用量か API の請求に数える。マニフェストの experimental.evals のキーは形が変わりうる（機能そのものに成熟度の表記はない）。主のページは feature の型のページが ないので、tracks に持つ唯一のページ（eval の recipe）にした
+  note: シェルのコマンドで、プラグインの有り無し（no-plugin baseline）を比べて採点する。git がある環境では git 2.31 以降が要る。実行と judge の採点はどれも実際のモデルの呼び出しで、プランの使用量か API の請求に数える。マニフェストの experimental.evals のキーは形が変わりうる（機能そのものに成熟度の表記はない）。主のページは feature の型のページがないので、tracks に持つ唯一のページ（eval の recipe）にした
 - id: hooks
   title: フック（hooks）
   page: hooks-basics
@@ -464,7 +464,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 公式は「例外なく守らせる規則はフックに置く。CLAUDE.md やスキルの指示はお願いで、PreToolUse のフックで止めるのが 強制」と書く。鍵に数えるのはコマンドなどの決定論のフックで、prompt と agent の型は別のモデルが判断する（agent の型は experimental）。フックは会話の外で動くので圧縮の後も働く。フックが前に足した文脈は要約に入り、compact の SessionStart フックで圧縮の後に文脈を入れ直せる
+  note: 公式は「例外なく守らせる規則はフックに置く。CLAUDE.md やスキルの指示はお願いで、PreToolUse のフックで止めるのが強制」と書く。鍵に数えるのはコマンドなどの決定論のフックで、prompt と agent の型は別のモデルが判断する（agent の型は experimental）。フックは会話の外で動くので圧縮の後も働く。フックが前に足した文脈は要約に入り、compact の SessionStart フックで圧縮の後に文脈を入れ直せる
 - id: permissions
   title: 権限（permissions）
   page: permission-rules
@@ -490,7 +490,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 公式は「権限ルールはモデルではなく Claude Code が強制する。プロンプトや CLAUDE.md の指示は Claude が試みることを 変えるが、許すことは変えない」と書く。deny はどのモードでも（bypassPermissions でも）止める。会話で言った境界は 圧縮で消えうるので、確かな保証には deny ルールを足すよう公式が勧める（設定にあるルールは圧縮の影響を受けない）。 入った版は古いので書かない
+  note: 公式は「権限ルールはモデルではなく Claude Code が強制する。プロンプトや CLAUDE.md の指示は Claude が試みることを変えるが、許すことは変えない」と書く。deny はどのモードでも（bypassPermissions でも）止める。会話で言った境界は圧縮で消えうるので、確かな保証には deny ルールを足すよう公式が勧める（設定にあるルールは圧縮の影響を受けない）。入った版は古いので書かない
 - id: permission-modes
   title: 権限モード
   page: permission-modes-overview
@@ -515,7 +515,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: どの操作を確認なしに通すかを Claude Code が決める基準（Manual は設定の値で default）。その上に権限ルールを重ねる。 auto モードの分類器の判断は別の項目（auto-mode）で、鍵に数えない。2.1.283 以降は、どのプランと事業者でも、対話の 端末と VS Code のセッションの既定の開始モードが auto（-p と Agent SDK は Manual）。入った版は古いので書かない
+  note: どの操作を確認なしに通すかを Claude Code が決める基準（Manual は設定の値で default）。その上に権限ルールを重ねる。auto モードの分類器の判断は別の項目（auto-mode）で、鍵に数えない。2.1.283 以降は、どのプランと事業者でも、対話の端末と VS Code のセッションの既定の開始モードが auto（-p と Agent SDK は Manual）。入った版は古いので書かない
 - id: auto-mode
   title: auto モード
   page: what-auto-mode-stops
@@ -540,7 +540,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 別の分類器のモデルが操作を実行の前に見て、範囲を超えるものや知らない基盤に向かうものを止める。deny と明示の ask の ルールは分類器より先に効く。公式は「確認を減らすが安全を保証しない」と書き、分類器の判断は決定論ではないので強制力は 書かない。会話で言った境界は記録から読み直すので、圧縮でその発言が消えると効かなくなりうる（確かな保証は deny ルール）。今の文書に成熟度の表記はなく、2.1.283 以降は対話の端末と VS Code の既定の開始モード。CHANGELOG に追加の 行がない（権限の auto モードの行は 2.1.86 から出てくる）ので入った版は書かない
+  note: 別の分類器のモデルが操作を実行の前に見て、範囲を超えるものや知らない基盤に向かうものを止める。deny と明示の ask のルールは分類器より先に効く。公式は「確認を減らすが安全を保証しない」と書き、分類器の判断は決定論ではないので強制力は書かない。会話で言った境界は記録から読み直すので、圧縮でその発言が消えると効かなくなりうる（確かな保証は deny ルール）。今の文書に成熟度の表記はなく、2.1.283 以降は対話の端末と VS Code の既定の開始モード。CHANGELOG に追加の行がない（権限の auto モードの行は 2.1.86 から出てくる）ので入った版は書かない
 - id: sandbox
   title: サンドボックス
   page: sandboxing
@@ -568,7 +568,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: OS が強制する境界で、Bash・PowerShell・Monitor のコマンドとそこから起きたプロセスに効く。Claude のファイルの道具・ MCP サーバー・フックはサンドボックスの外で動く。既定は無効。macOS・Linux・WSL2 で動き、Windows のネイティブでは サンドボックスなしで動く。会話の外の仕組みなので圧縮の影響を受けない
+  note: OS が強制する境界で、Bash・PowerShell・Monitor のコマンドとそこから起きたプロセスに効く。Claude のファイルの道具・MCP サーバー・フックはサンドボックスの外で動く。既定は無効。macOS・Linux・WSL2 で動き、Windows のネイティブではサンドボックスなしで動く。会話の外の仕組みなので圧縮の影響を受けない
 - id: managed-settings
   title: 管理設定（managed settings）
   page: managed-settings-enforcement
@@ -591,7 +591,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 組織が配る設定で、ほかのどの階層（ユーザー・プロジェクト・ローカル・--settings）も上書きできない（下の階層の、より 厳しい値だけが効く例外がある）。ただし model と autoCompactWindow の管理の値は既定にとどまり、セッションでは --model などで替えられる。サーバーで管理する設定は Team と Enterprise のプラン。入った版は書かない
+  note: 組織が配る設定で、ほかのどの階層（ユーザー・プロジェクト・ローカル・--settings）も上書きできない（下の階層の、より厳しい値だけが効く例外がある）。ただし model と autoCompactWindow の管理の値は既定にとどまり、セッションでは --model などで替えられる。サーバーで管理する設定は Team と Enterprise のプラン。入った版は書かない
 - id: settings
   title: 設定（settings.json）
   page: settings-layers
@@ -611,7 +611,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 設定の入れ物なので、強制力と読み込みの時期は中のキーによる（権限ルールや管理設定は別の項目）。リストのキーは 階層をまたいで足し合わされ、ほかのキーは優先の高い階層の値が使われる。入った版は古いので書かない
+  note: 設定の入れ物なので、強制力と読み込みの時期は中のキーによる（権限ルールや管理設定は別の項目）。リストのキーは階層をまたいで足し合わされ、ほかのキーは優先の高い階層の値が使われる。入った版は古いので書かない
 - id: plan-mode
   title: plan mode
   page: when-to-plan
@@ -624,7 +624,6 @@ features:
   - plan mode
   - /plan
   - --permission-mode plan
-  - opusplan
   - useAutoModeDuringPlan
   - showClearContextOnPlanAccept
   - plansDirectory
@@ -634,7 +633,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 題名は工程5の決定（表記が割れている語は英語のまま）で plan mode にした（features.yaml の仮の題名は plan モード）。 計画を承認するまで Claude Code が編集を止めるので鍵にした（bypass permissions が使える対話の端末のセッションは 例外）。圧縮の後、plan mode で書いた計画はディスクから入れ直される。入った版は古いので書かない
+  note: 題名は工程5の決定（表記が割れている語は英語のまま）で plan mode にした（features.yaml の仮の題名は plan モード）。計画を承認するまで Claude Code が編集を止めるので鍵にした（bypass permissions が使える対話の端末のセッションは例外）。圧縮の後、plan mode で書いた計画はディスクから入れ直される。入った版は古いので書かない
 - id: checkpoints
   title: チェックポイント
   page: checkpoints-and-rewind
@@ -659,7 +658,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 送ったプロンプトごとに、Claude のファイル編集の道具が変えたファイルを記録する。Bash だけが変えたファイル・外での 変更・ほとんどのサブエージェントの編集は戻らない（git で戻す）。2.0.0 で /rewind が入った
+  note: 送ったプロンプトごとに、Claude のファイル編集の道具が変えたファイルを記録する。Bash だけが変えたファイル・外での変更・ほとんどのサブエージェントの編集は戻らない（git で戻す）。2.0.0 で /rewind が入った
 - id: compaction
   title: 圧縮（/compact と自動圧縮）
   page: compact-and-auto-compact
@@ -704,7 +703,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 空の文脈で新しい会話を始める（前の会話は /resume で戻れる）。公式は無関係な作業に移るときに使うよう勧める。主の ページは feature の型のページがないので、/clear の使いどころを扱う concept のページにした（別名に「/clear のタイミング」 がある）
+  note: 空の文脈で新しい会話を始める（前の会話は /resume で戻れる）。公式は無関係な作業に移るときに使うよう勧める。主のページは feature の型のページがないので、/clear の使いどころを扱う concept のページにした（別名に「/clear のタイミング」がある）
 - id: context-window
   title: コンテキストウィンドウ
   page: attention-budget
@@ -727,7 +726,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: どの面にもある概念で、大きさはモデルと面で違う（値は facts に置く）。主のページは、別名に context window を持ち 用語そのものを説明する basics の concept のページにした（/context の見方は inspect-context）
+  note: どの面にもある概念で、大きさはモデルと面で違う（値は facts に置く）。主のページは、別名に context window を持ち用語そのものを説明する basics の concept のページにした（/context の見方は inspect-context）
 - id: model-selection
   title: モデルの選択（/model）
   page: choosing-a-model
@@ -748,7 +747,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: /model はモデルを切り替え、新しいセッションの既定として保存する（ピッカーで s を押すとそのセッションだけ）。 組織は availableModels で選べるモデルを絞れる。主のページは feature の型のページがないので、別名に「モデル選択」を 持つ models の concept のページにした
+  note: /model はモデルを切り替え、新しいセッションの既定として保存する（ピッカーで s を押すとそのセッションだけ）。組織は availableModels で選べるモデルを絞れる。主のページは feature の型のページがないので、別名に「モデル選択」を持つ models の concept のページにした
 - id: effort
   title: effort
   page: effort-levels
@@ -757,6 +756,9 @@ features:
   - claude-code
   - api
   maturity: GA
+  since:
+    date: '2025-11-24'
+    note: API の effort のパラメーターが Claude Opus 4.5 で beta として公開された日（Platform のリリースノート）。Claude Code の CHANGELOG に導入の行はない
   match_terms:
   - effort
   - effort level
@@ -774,7 +776,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: Claude Code は /effort・/model・--effort などで、API は effort のパラメーター（Platform の文書の状態は stable）で、 アプリは送信ボタンの横のモデルのメニューで選ぶ。選べる段はモデルで違い、既定も面とモデルで違う（facts の表に置く）。 入った版は書かない（Claude Code の CHANGELOG では effort の行が 2.1.42 から出てくる）
+  note: Claude Code は /effort・/model・--effort などで、API は effort のパラメーター（Platform の文書の状態は stable）で、アプリは送信ボタンの横のモデルのメニューで選ぶ。選べる段はモデルで違い、既定も面とモデルで違う（facts の表に置く）。Claude Code の入った版は書かない（CHANGELOG では effort の行が 2.1.42 から出てくるが、導入の行ではない）。since の日付は API の公開日
 - id: ultrathink
   title: ultrathink
   page: thinking-keywords
@@ -792,7 +794,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: プロンプトに ultrathink と書くと、セッションの effort を変えずにそのターンだけ深く考えるよう文脈に指示を足す。端末で 打つと、そのターンを xhigh に上げられる場合がある（2.1.311 以降。虹色に表示される）。think・think hard などのほかの 語はキーワードとして扱わず、ふつうの文として渡す
+  note: プロンプトに ultrathink と書くと、セッションの effort を変えずにそのターンだけ深く考えるよう文脈に指示を足す。端末で打つと、そのターンを xhigh に上げられる場合がある（2.1.311 以降。虹色に表示される）。think・think hard などのほかの語はキーワードとして扱わず、ふつうの文として渡す
 - id: fast-mode
   title: fast mode
   page: fast-mode-and-advisor
@@ -808,7 +810,7 @@ features:
   - /fast
   - fastMode
   - fastModePerSessionOptIn
-  - 'speed: fast'
+  - 'speed: "fast"'
   - fast-mode-2026-02-01
   sources:
   - cc-docs-fast-mode
@@ -818,7 +820,7 @@ features:
   - cc-docs-changelog
   checked: '2026-11-04'
   status: 確認済み
-  note: 成熟度はモデルで違う：Opus 5.5 の fast mode は提供済み（2.1.304 で /fast の題の「research preview」の表記を外した）、 Opus 5 と Opus 4.8 は research preview（API では beta のヘッダーが要る）。別のモデルではなく、速さを優先する API の 設定。Claude Code では Claude のサブスクリプションと Anthropic Console で使え、Bedrock などの事業者では使えない。 Team と Enterprise では Owner が有効にする
+  note: 成熟度はモデルで違う：Opus 5.5 の fast mode は提供済み（2.1.304 で /fast の題の「research preview」の表記を外した）、Opus 5 と Opus 4.8 は research preview（API では beta のヘッダーが要る）。別のモデルではなく、速さを優先する API の設定。Claude Code では Claude のサブスクリプションと Anthropic Console で使え、Bedrock などの事業者では使えない。Team と Enterprise では Owner が有効にする
 - id: usage
   title: /usage
   page: usage-context-statusline
@@ -841,7 +843,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: セッションの費用・プランの利用上限・利用の統計を見せる。/cost と /stats は別名。Pro・Max・Ultra・Team・Enterprise では 何がプランの上限に数えられたかの内訳も出す。2.0.0 で「プランの上限を見る /usage」が入った
+  note: セッションの費用・プランの利用上限・利用の統計を見せる。/cost と /stats は別名。Pro・Max・Ultra・Team・Enterprise では何がプランの上限に数えられたかの内訳も出す。2.0.0 で「プランの上限を見る /usage」が入った
 - id: insights
   title: /insights
   page: insights-and-usage-review
@@ -857,13 +859,17 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: この機械の最近のセッションを分析して HTML の報告を作る（使い方・うまくいかない所・試す機能）。どのプランと事業者でも 使え、分析のトークンは使用量に数える。ほかの機械と claude.ai のセッションは含まない。クラウドのセッションでは使えない。 入った版は CHANGELOG に追加の行がない（最初の行は 2.1.101 の修正）ので書かない
+  note: この機械の最近のセッションを分析して HTML の報告を作る（使い方・うまくいかない所・試す機能）。どのプランと事業者でも使え、分析のトークンは使用量に数える。ほかの機械と claude.ai のセッションは含まない。クラウドのセッションでは使えない。入った版は CHANGELOG に追加の行がない（最初の行は 2.1.101 の修正）ので書かない
 - id: ask-user-question
   title: AskUserQuestion（質問の道具）
   page: let-claude-ask
   surfaces:
   - claude-code
   maturity: GA
+  since:
+    claude_code: 2.0.21
+    date: '2025-10-18'
+    note: 道具の名前を書かない追加の行（CHANGELOG の「Added an interactive question tool」。同じ版に plan mode で質問を増やす変更がある）
   match_terms:
   - AskUserQuestion
   - askUserQuestionTimeout
@@ -872,7 +878,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 要件を集めたり曖昧さを解いたりするために、選択肢の質問をする組み込みの道具。既定では答えるまで質問が開いたまま （askUserQuestionTimeout で閉じるまでの時間を決められる）。主のページは feature の型のページがないので、別名に AskUserQuestion を持つ prompting の concept のページにした。入った版は書かない
+  note: 要件を集めたり曖昧さを解いたりするために、選択肢の質問をする組み込みの道具。既定では答えるまで質問が開いたまま（askUserQuestionTimeout で閉じるまでの時間を決められる）。主のページは feature の型のページがないので、別名に AskUserQuestion を持つ prompting の concept のページにした
 - id: interactive-mode
   title: 対話モードの操作（入力の記号・キーボードショートカット）
   page: input-symbols
@@ -885,9 +891,13 @@ features:
   - keybindings
   - /keybindings
   - Shift+Tab
-  - Esc
+  - Esc Esc
+  - double-Esc
+  - Esc key
+  - press Esc
   - Ctrl+G
-  - '! prefix'
+  - bash mode
+  - shell mode
   - '@-mention'
   - vim mode
   sources:
@@ -896,13 +906,17 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 入力の記号（/・!・@）・Esc・キーボードショートカット・Vim のモード・背景の Bash などの操作。主のページは、この機能 だけを tracks に持ち第一波にある input-symbols にした（キーボードショートカットは must-know-operations が扱う）。 キーの割り当ては端末と面で違う
+  note: 入力の記号（/・!・@）・Esc・キーボードショートカット・Vim のモード・背景の Bash などの操作。主のページは、この機能だけを tracks に持ち第一波にある input-symbols にした（キーボードショートカットは must-know-operations が扱う）。キーの割り当ては端末と面で違う
 - id: sessions
   title: セッションの保存・再開・分岐
   page: resume-and-branch
   surfaces:
   - claude-code
   maturity: GA
+  since:
+    claude_code: 0.2.93
+    date: '2025-04-30'
+    note: --continue と --resume が入った版（CHANGELOG の「Resume conversations from where you left off」）。/resume は 1.0.27 で入った
   match_terms:
   - --continue
   - --resume
@@ -920,7 +934,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 会話に名前を付け、--continue・--resume・/resume で再開し、/branch で分岐する（/fork は背景のセッションに写す）。 記録は ~/.claude/projects/ の下に置かれ、既定の保存期間を過ぎると消える（期間は facts に置く）。入った版は古いので 書かない
+  note: 会話に名前を付け、--continue・--resume・/resume で再開し、/branch で分岐する（/fork は背景のセッションに写す）。記録は ~/.claude/projects/ の下に置かれ、既定の保存期間を過ぎると消える（期間は facts に置く）
 - id: btw
   title: /btw
   page: side-questions-btw
@@ -937,7 +951,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 今の会話について、会話の履歴に足さずに横から質問する。道具は使えず、すでに文脈にあるものだけから答える。プロンプトの キャッシュが温かいうちは安い。コンテキストのコストのゼロは、メインの会話の文脈に足さない意味（答えのトークンは 使用量に数える）。入った版は CHANGELOG に追加の行がない（最初の行は 2.1.79 の修正）ので書かない
+  note: 今の会話について、会話の履歴に足さずに横から質問する。道具は使えず、すでに文脈にあるものだけから答える。プロンプトのキャッシュが温かいうちは安い。コンテキストのコストのゼロは、メインの会話の文脈に足さない意味（答えのトークンは使用量に数える）。入った版は CHANGELOG に追加の行がない（最初の行は 2.1.79 の修正）ので書かない
 - id: voice-dictation
   title: 音声入力（/voice）
   page: images-and-voice
@@ -946,6 +960,9 @@ features:
   maturity: GA
   match_terms:
   - voice dictation
+  - voice mode
+  - dictation
+  - Voice STT
   - /voice
   - voiceEnabled
   - push-to-talk
@@ -956,7 +973,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 話した言葉を入力欄に書き起こす。音声の書き起こしは claude.ai のアカウントで認証したときだけ使え、API キーや Bedrock などでは使えない。アプリの音声モード（voice）とは別の機能。主のページは feature の型のページがないので、 別名に /voice を持つ prompting の concept のページにした。入った版は書かない
+  note: 話した言葉を入力欄に書き起こす。音声の書き起こしは claude.ai のアカウントで認証したときだけ使え、API キーや Bedrock などでは使えない。アプリの音声モード（voice）とは別の機能で、照合の語（voice mode・push-to-talk・dictation）は voice と重なる（点検では面で振り分ける）。主のページは feature の型のページがないので、別名に /voice を持つ prompting の concept のページにした。入った版は書かない
 - id: safe-mode
   title: --safe-mode
   page: isolate-with-safe-mode
@@ -977,7 +994,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: CLAUDE.md・スキル・プラグイン・フック・MCP サーバー・出力スタイル・ステータスライン・LSP・自動メモリなどの自分の 設定と拡張を読まずに起動する（壊れた設定の切り分け用）。認証・モデルの選択・組み込みの道具・権限はふつうに働き、 この点が --bare と違う。管理設定の方針は効く。ユーザーが入れた mod も止まる（組み込みの mod は止まらない）
+  note: CLAUDE.md・スキル・プラグイン・フック・MCP サーバー・出力スタイル・ステータスライン・LSP・自動メモリなどの自分の設定と拡張を読まずに起動する（壊れた設定の切り分け用）。認証・モデルの選択・組み込みの道具・権限はふつうに働き、この点が --bare と違う。管理設定の方針は効く。ユーザーが入れた mod も止まる（組み込みの mod は止まらない）
 - id: language-setting
   title: language の設定（返答の言語）
   page: keep-replies-in-japanese
@@ -990,7 +1007,7 @@ features:
     date: '2026-01-07'
   match_terms:
   - language setting
-  - '"language"'
+  - '`language` setting'
   - 'language: "japanese"'
   sources:
   - cc-docs-settings-reference
@@ -999,7 +1016,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 公式は、値をそのまま「いつもその言語で答える」指示として Claude に渡し、Claude Code は値を確かめないと書く（だから お願い）。主のページは feature の型のページがないので、別名に「language 設定」と節「言語の設定」を持つ japanese の recipe のページにした
+  note: 公式は、値をそのまま「いつもその言語で答える」指示として Claude に渡し、Claude Code は値を確かめないと書く（だからお願い）。主のページは feature の型のページがないので、別名に「language 設定」と節「言語の設定」を持つ japanese の recipe のページにした
 - id: advisor
   title: advisor（/advisor と API の Advisor tool）
   page: fast-mode-and-advisor
@@ -1007,6 +1024,9 @@ features:
   - claude-code
   - api
   maturity: experimental
+  since:
+    date: '2026-04-09'
+    note: API の Advisor tool が beta として公開された日（Platform のリリースノート）。Claude Code の CHANGELOG に追加の行はない
   match_terms:
   - advisor
   - /advisor
@@ -1021,7 +1041,7 @@ features:
   - cc-changelog
   checked: '2026-11-04'
   status: 確認済み
-  note: 成熟度は面で違う：Claude Code の文書は experimental、API の Advisor tool は beta（beta のヘッダーが要る）。 ここは Claude Code の表記にした。Anthropic のサーバーで動くサーバーの道具で、Bedrock・Claude Platform on AWS・ Google Cloud の Agent Platform・Microsoft Foundry では使えない。入った版は CHANGELOG に追加の行がないので書かない （2.1.117 の行が最初）
+  note: 成熟度は面で違う：Claude Code の文書は experimental、API の Advisor tool は beta（beta のヘッダーが要る）。ここは Claude Code の表記にした。Anthropic のサーバーで動くサーバーの道具で、Bedrock・Claude Platform on AWS・Google Cloud の Agent Platform・Microsoft Foundry では使えない。Claude Code の入った版は、CHANGELOG に追加の行がないので書かない（2.1.117 の行が最初）。since の日付は API の公開日
 - id: feedback
   title: /feedback とトランスクリプトの共有
   page: what-feedback-sends
@@ -1042,7 +1062,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: /feedback（と同じ経路の /bug・/share）は、コードを含む会話の履歴の写しを Anthropic に送る。送る前に履歴の範囲を 選び、同意の画面で確かめる。評価のアンケートは評価だけを記録し、その後の「記録を見てよいか」で Yes を選んだときだけ 記録を送る。保存の期間は facts に置く
+  note: /feedback（と同じ経路の /bug・/share）は、コードを含む会話の履歴の写しを Anthropic に送る。送る前に履歴の範囲を選び、同意の画面で確かめる。評価のアンケートは評価だけを記録し、その後の「記録を見てよいか」で Yes を選んだときだけ記録を送る。保存の期間は facts に置く
 - id: verify-skill
   title: /verify
   page: visual-checks
@@ -1061,7 +1081,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: バンドルのスキルで、アプリを作って動かし、結果を見て変更を確かめる（テストや型の検査に頼らない）。自分で呼んだときだけ 動く（2.1.215 から Claude は自分では動かさない）。手順を .claude/skills/verify/SKILL.md に記録できる。入った版は 書かない
+  note: バンドルのスキルで、アプリを作って動かし、結果を見て変更を確かめる（テストや型の検査に頼らない）。自分で呼んだときだけ動く（2.1.215 から Claude は自分では動かさない）。手順を .claude/skills/verify/SKILL.md に記録できる。入った版は書かない
 - id: code-review
   title: /code-review
   page: independent-review
@@ -1087,7 +1107,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 今の差分か、渡した PR・ブランチ・パスの正しさの誤りを、選んだ effort でレビューするバンドルのスキル。--fix で直しを 当て、--comment で PR に行ごとのコメントを付ける。ultra を付けるとクラウドの ultrareview になる（別の項目）。主の ページは feature の型のページがないので、別名に /code-review を持つ verify の concept のページにした
+  note: 今の差分か、渡した PR・ブランチ・パスの正しさの誤りを、選んだ effort でレビューするバンドルのスキル。--fix で直しを当て、--comment で PR に行ごとのコメントを付ける。ultra を付けるとクラウドの ultrareview になる（別の項目）。主のページは feature の型のページがないので、別名に /code-review を持つ verify の concept のページにした
 - id: security-review
   title: /security-review
   page: independent-review
@@ -1103,7 +1123,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 今のブランチと origin の既定のブランチとの差分を、注入・認証・データの露出などの脆弱性の点で見る組み込みの コマンド。origin のリモートが要る。セキュリティの別の道具（security-guidance・Claude Security のプラグイン）とは別。 主のページは feature の型のページがないので、別名に /security-review と節「セキュリティのレビューを頼む」を持つ verify の concept のページにした。入った版は書かない
+  note: 今のブランチと origin の既定のブランチとの差分を、注入・認証・データの露出などの脆弱性の点で見る組み込みのコマンド。origin のリモートが要る。セキュリティの別の道具（security-guidance・Claude Security のプラグイン）とは別。主のページは feature の型のページがないので、別名に /security-review と節「セキュリティのレビューを頼む」を持つ verify の concept のページにした。入った版は書かない
 - id: goal
   title: /goal
   page: goal-until-done
@@ -1124,7 +1144,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 完了の条件を決めると、各ターンの後にモデルが条件を満たしたかを判定し、満たすまで次のターンを続ける。判定は モデルなので強制力は書かない。対話・-p・Remote Control で動く
+  note: 完了の条件を決めると、各ターンの後にモデルが条件を満たしたかを判定し、満たすまで次のターンを続ける。判定はモデルなので強制力は書かない。対話・-p・Remote Control で動く
 - id: loop
   title: /loop
   page: loop-and-scheduling
@@ -1147,7 +1167,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 開いているセッションの中で、プロンプトを間隔をおいて繰り返す（間隔を省くと Claude が決める）バンドルのスキル。 セッションを閉じると止まり、--resume で一部が戻る。クラウドで動く予定のタスクとは別（scheduled-tasks）
+  note: 開いているセッションの中で、プロンプトを間隔をおいて繰り返す（間隔を省くと Claude が決める）バンドルのスキル。セッションを閉じると止まり、--resume で一部が戻る。クラウドで動く予定のタスクとは別（scheduled-tasks）
 - id: scheduled-tasks
   title: 予定のタスク（scheduled tasks）
   page: cloud-schedules
@@ -1159,7 +1179,6 @@ features:
   - scheduled task
   - /schedule
   - routines
-  - routine
   - /routines
   - claude.ai/code/routines
   - experimental-cc-routine-2026-04-01
@@ -1170,7 +1189,7 @@ features:
   - cc-docs-feature-availability
   checked: '2026-11-04'
   status: 確認済み
-  note: クラウドの予定のタスク（旧名 routines）は Anthropic のクラウドで動き、予定・API・GitHub のイベントで起動する。 公式は research preview と書く。Desktop の予定のタスクは自分の機械で動く。Claude のサブスクリプション（Pro・Max・ Ultra・Team・Enterprise）が要る。旧名からの改名は names の範囲（D3）。主のページはクラウドの定期タスクのページにした （/loop は loop）。入った版は書かない
+  note: クラウドの予定のタスク（旧名 routines）は Anthropic のクラウドで動き、予定・API・GitHub のイベントで起動する。公式は research preview と書く。Desktop の予定のタスクは自分の機械で動く。Claude のサブスクリプション（Pro・Max・Ultra・Team・Enterprise）が要る。旧名からの改名は names の routines-to-scheduled-tasks。主のページはクラウドの定期タスクのページにした（/loop は loop）。入った版は書かない
 - id: workflows
   title: ワークフロー（workflows）
   page: dynamic-workflows
@@ -1199,7 +1218,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: Claude が書くスクリプトが多数のサブエージェントを背景で動かし、一つの結果を返す。スクリプトは会話と分かれた環境で 動き、途中の結果は Claude の文脈ではなくスクリプトの変数に残る。すべての有料プランと API などで使え、Pro では /config で有効にする。2.1.160 で起動の語が workflow から ultracode に替わった
+  note: Claude が書くスクリプトが多数のサブエージェントを背景で動かし、一つの結果を返す。スクリプトは会話と分かれた環境で動き、途中の結果は Claude の文脈ではなくスクリプトの変数に残る。すべての有料プランと API などで使え、Pro では /config で有効にする。2.1.160 で起動の語が workflow から ultracode に替わった
 - id: worktrees
   title: worktree
   page: parallel-with-worktrees
@@ -1226,7 +1245,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: '並列のセッションを別々の git worktree に分けて、変更がぶつからないようにする。2.1.49 で --worktree（-w）が入り、 2.1.50 でエージェントの定義の isolation: worktree が入った'
+  note: '並列のセッションを別々の git worktree に分けて、変更がぶつからないようにする。2.1.49 で --worktree（-w）が入り、2.1.50 でエージェントの定義の isolation: worktree が入った'
 - id: agent-view
   title: agent view
   page: agent-view-and-background
@@ -1250,7 +1269,7 @@ features:
   - cc-docs-changelog
   checked: '2026-11-04'
   status: 確認済み
-  note: 背景で動くセッションを一つの画面で出し、状態を見る（claude agents で開く）。公式は research preview と書き、画面と キーは変わりうる。2.1.139 で research preview として入った
+  note: 背景で動くセッションを一つの画面で出し、状態を見る（claude agents で開く）。公式は research preview と書き、画面とキーは変わりうる。2.1.139 で research preview として入った
 - id: cloud-sessions
   title: クラウドのセッション
   page: cloud-sessions-and-teleport
@@ -1272,7 +1291,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: Anthropic のクラウドでセッションを動かし、ブラウザ・スマホ・Desktop・端末から使う。--cloud と --teleport で 手元との間で移せる。Pro・Max・Ultra・Team のプランと、Enterprise の該当する席で使え、Claude のサブスクリプションの 認証が要る。入った版は書かない（2.0.24 の CHANGELOG に Web から CLI への teleport の行がある）
+  note: Anthropic のクラウドでセッションを動かし、ブラウザ・スマホ・Desktop・端末から使う。--cloud と --teleport で手元との間で移せる。Pro・Max・Ultra・Team のプランと、Enterprise の該当する席で使え、Claude のサブスクリプションの認証が要る。入った版は書かない（2.0.24 の CHANGELOG に Web から CLI への teleport の行がある）
 - id: remote-control
   title: Remote Control
   page: control-from-phone
@@ -1291,7 +1310,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 手元のセッションをスマホ・タブレット・ブラウザ（claude.ai/code と Claude のモバイルアプリ）から続ける。実行は手元の 機械に残る。API キーでは使えず、Team と Enterprise では Owner が有効にする。Trusted Devices の部分は beta。入った版は CHANGELOG に追加の行がないので書かない
+  note: 手元のセッションをスマホ・タブレット・ブラウザ（claude.ai/code と Claude のモバイルアプリ）から続ける。実行は手元の機械に残る。API キーでは使えず、Team と Enterprise では Owner が有効にする。Trusted Devices の部分は beta。入った版は CHANGELOG に追加の行がないので書かない
 - id: headless
   title: 非対話モード（claude -p）
   page: headless-basics
@@ -1312,7 +1331,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: claude -p でプロンプトを一つ渡して結果を受け取る（スクリプトと CI 向け）。公式は Agent SDK の CLI として説明する。 2.1.302 以降、モードを指定しない -p と Agent SDK の実行は Manual で始まり、承認の要る呼び出しは allow ルール・フック などで許さない限り拒まれる。入った版は古いので書かない
+  note: claude -p でプロンプトを一つ渡して結果を受け取る（スクリプトと CI 向け）。公式は Agent SDK の CLI として説明する。2.1.302 以降、モードを指定しない -p と Agent SDK の実行は Manual で始まり、承認の要る呼び出しは allow ルール・フックなどで許さない限り拒まれる。入った版は古いので書かない
 - id: github-actions
   title: GitHub Actions
   page: github-actions-with-claude
@@ -1330,7 +1349,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: GitHub Actions のワークフローで Claude Code を動かし、@claude のメンションに答えたり issue から PR を作ったりする。 beta の版（@beta）から v1 への移行の手順が公式にある。Claude Platform on AWS では使えない。入った版は書かない
+  note: GitHub Actions のワークフローで Claude Code を動かし、@claude のメンションに答えたり issue から PR を作ったりする。beta の版（@beta）から v1 への移行の手順が公式にある。Claude Platform on AWS では使えない。入った版は書かない
 - id: cross-session-messaging
   title: セッションの間のメッセージ
   page: agent-view-and-background
@@ -1356,7 +1375,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 一つのセッションの Claude が、自分のほかのセッションにメッセージを届ける（会話の履歴やファイルは送らない）。要件を 満たすと何もせずに有効。Claude のサブスクリプションではほかの機械とクラウドのセッションにも届き、ほかの認証では 同じ機械の中だけ
+  note: 一つのセッションの Claude が、自分のほかのセッションにメッセージを届ける（会話の履歴やファイルは送らない）。要件を満たすと何もせずに有効。Claude のサブスクリプションではほかの機械とクラウドのセッションにも届き、ほかの認証では同じ機械の中だけ
 - id: code-projects
   title: Claude Code の Projects（並列の threads）
   page: choosing-parallel-modes
@@ -1364,10 +1383,12 @@ features:
   - claude-code
   maturity: beta
   match_terms:
-  - Projects
-  - project
-  - threads
-  - thread
+  - claude-projects
+  - project conversation
+  - project threads
+  - cloud threads
+  - Overview pane
+  - claude.ai/code/projects
   sources:
   - cc-docs-claude-projects
   - cc-docs-agents
@@ -1393,7 +1414,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 大きな変更を独立の単位に分けて計画を見せ、承認の後に単位ごとに背景のサブエージェントを worktree で動かすバンドルの スキル（単位の数の幅は facts に置く）。API の Message Batches API とは別
+  note: 大きな変更を独立の単位に分けて計画を見せ、承認の後に単位ごとに背景のサブエージェントを worktree で動かすバンドルのスキル（単位の数の幅は facts に置く）。API の Message Batches API とは別
 - id: bare-mode
   title: --bare
   page: bare-mode
@@ -1415,7 +1436,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: スクリプトの -p の呼び出し向けに、フック・スキル・カスタムコマンド・サブエージェント・入れたプラグイン・MCP サーバー・自動メモリ・CLAUDE.md の自動の探索を飛ばして速く起動し、どの機械でも同じ結果にする。サブスクリプションの ログインを使わないので ANTHROPIC_API_KEY などが要る（--safe-mode と違い、認証も変わる）
+  note: スクリプトの -p の呼び出し向けに、フック・スキル・カスタムコマンド・サブエージェント・入れたプラグイン・MCP サーバー・自動メモリ・CLAUDE.md の自動の探索を飛ばして速く起動し、どの機械でも同じ結果にする。サブスクリプションのログインを使わないので ANTHROPIC_API_KEY などが要る（--safe-mode と違い、認証も変わる）
 - id: auto-continue
   title: 利用上限での自動の継続（autoContinueAtUsageLimit）
   page: how-usage-limits-work
@@ -1439,7 +1460,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: claude.ai の利用上限で止まった作業を、開いたセッションで待ち、上限が戻った後に自分で続ける。claude.ai の サブスクリプションで入った対話のセッションでは既定で有効。背景のセッション・-p・API キーと事業者では使えない。 続ける回数には上限がある（値は facts に置く）。主のページは feature の型のページがないので、tracks に持ち節 「上限に当たったとき」を持つ cost の concept のページにした
+  note: claude.ai の利用上限で止まった作業を、開いたセッションで待ち、上限が戻った後に自分で続ける。claude.ai のサブスクリプションで入った対話のセッションでは既定で有効。背景のセッション・-p・API キーと事業者では使えない。続ける回数には上限がある（値は facts に置く）。主のページは feature の型のページがないので、tracks に持ち節「上限に当たったとき」を持つ cost の concept のページにした
 - id: monitor-tool
   title: Monitor
   page: progress-logs-for-long-jobs
@@ -1453,7 +1474,7 @@ features:
   - Monitor
   - Monitor tool
   - monitors
-  - experimental.monitors
+  - plugin monitors
   sources:
   - cc-docs-tools-reference
   - cc-docs-sandboxing
@@ -1462,7 +1483,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: 背景でコマンドを動かし（または WebSocket を開き）、出力の行ごとに Claude に返して途中で反応させる道具。Bash と同じ 権限ルールが効き、サンドボックスも効く。見張りには期限がある（値は facts に置く）。どのページも tracks に持たないので、 材料に Monitor を挙げる delegate の recipe を主のページにした（tracks に足す提案は報告の §4）
+  note: 背景でコマンドを動かし（または WebSocket を開き）、出力の行ごとに Claude に返して途中で反応させる道具。Bash と同じ権限ルールが効き、サンドボックスも効く。見張りには期限がある（値は facts に置く）。主のページの progress-logs-for-long-jobs は、材料に Monitor を挙げる delegate の recipe で、ページの front matter の tracks に monitor-tool を持つ
 - id: managed-code-review
   title: Code Review（管理された自動の PR レビュー）
   page: automated-pr-review
@@ -1481,7 +1502,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: GitHub の PR を Claude が見て、指摘を確かめてから行ごとにコメントする。Team と Enterprise のプラン。Zero Data Retention や HIPAA の構成、顧客管理の暗号鍵（CMEK）の組織では使えない。費用はプランの枠とは別に usage credits から 組織に請求される。入った版は書かない
+  note: GitHub の PR を Claude が見て、指摘を確かめてから行ごとにコメントする。Team と Enterprise のプラン。Zero Data Retention や HIPAA の構成、顧客管理の暗号鍵（CMEK）の組織では使えない。費用はプランの枠とは別に usage credits から組織に請求される。入った版は書かない
 - id: ultrareview
   title: /ultrareview
   page: automated-pr-review
@@ -1504,7 +1525,7 @@ features:
   - cc-docs-changelog
   checked: '2026-11-04'
   status: 確認済み
-  note: クラウドで複数のエージェントが深くレビューし、誤りを確かめてから返す。公式は research preview と書く。今の呼び方は /code-review ultra で、/ultrareview は別名（名前の移り変わりは names の範囲）。claude.ai のアカウントでの認証が要る。 無料の回数の後は usage credits が要る（回数は facts に置く）
+  note: クラウドで複数のエージェントが深くレビューし、誤りを確かめてから返す。公式は research preview と書く。今の呼び方は /code-review ultra で、/ultrareview は別名（名前の移り変わりは names の範囲）。claude.ai のアカウントでの認証が要る。無料の回数の後は usage credits が要る（回数は facts に置く）
 - id: ide-extensions
   title: IDE の拡張
   page: using-ides
@@ -1514,6 +1535,8 @@ features:
   match_terms:
   - VS Code
   - VS Code extension
+  - VSCode
+  - '[VSCode]'
   - JetBrains
   - JetBrains plugin
   - /ide
@@ -1525,7 +1548,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: VS Code の拡張と JetBrains の IDE のプラグイン。どちらもすべての事業者で使える。JetBrains のプラグインは名前と設定の 画面に [Beta] が付く（VS Code の文書には成熟度の表記がない）。入った版は書かない
+  note: VS Code の拡張と JetBrains の IDE のプラグイン。どちらもすべての事業者で使える。JetBrains のプラグインは名前と設定の画面に [Beta] が付く（VS Code の文書には成熟度の表記がない）。入った版は書かない
 - id: desktop-code
   title: Desktop アプリの Claude Code
   page: claude-code-surfaces
@@ -1538,6 +1561,9 @@ features:
   match_terms:
   - Claude Code Desktop
   - Desktop app
+  - Claude Desktop
+  - Claude Code for Desktop
+  - desktop app
   - Code tab
   - /desktop
   - /app
@@ -1549,7 +1575,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: Claude の Desktop アプリの Code タブで動く Claude Code。Claude のサブスクリプションが要る（Claude Desktop on 3P は 別の経路）。Linux の Desktop アプリは beta。主のページは feature の型のページがないので、Desktop の Code タブを別名に 持つ surfaces の comparison のページにした
+  note: Claude の Desktop アプリの Code タブで動く Claude Code。Claude のサブスクリプションが要る（Claude Desktop on 3P は別の経路）。Linux の Desktop アプリは beta。主のページは feature の型のページがないので、Desktop の Code タブを別名に持つ surfaces の comparison のページにした
 - id: claude-in-chrome
   title: Claude in Chrome
   page: browser-control
@@ -1575,7 +1601,7 @@ features:
   checked: '2026-11-04'
   volatility: 中
   status: 確認済み
-  note: Chrome の拡張で、Chrome のサイドパネル・Cowork・Claude Code から使える（Help Center）。有料のプラン。2.0.72 の CHANGELOG は (Beta) と書いたが、今の Claude Code の文書と Help Center の Get started には成熟度の表記がないので GA に した
+  note: Chrome の拡張で、Chrome のサイドパネル・Cowork・Claude Code から使える（Help Center）。有料のプラン。Claude Code の CHANGELOG は 2.0.72 で (Beta) として入れ、2.1.198（2026-07-01）の「Claude in Chrome is now generally available」で GA とした。今の Claude Code の文書と Help Center の Get started には成熟度の表記がない
 - id: projects
   title: プロジェクト（Projects）
   page: using-projects
@@ -1597,8 +1623,9 @@ features:
   - claude-apps-release-notes-archive
   - claude-pricing
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
-  note: 全プラン（Free は5件まで）。有料のプランでは、ナレッジが文脈の上限に近づくと RAG に切り替わる。Team と Enterprise は組織の中で共有できる。プロジェクトごとにメモリを持つ。Claude Code から順に展開している新しい版（beta。1つの会話を並列の threads に分ける）は D1 の code-projects で追う
+  note: 全プラン（Free は5件まで）。有料のプランでは、ナレッジが文脈の上限に近づくと RAG に切り替わる。Team と Enterprise は組織の中で共有できる。プロジェクトごとにメモリを持つ。Claude Code から順に展開している新しい版（beta。1つの会話を並列の threads に分ける）は code-projects（別の項目）で追う
 - id: project-instructions
   title: プロジェクトの指示（project instructions）
   page: using-projects
@@ -1614,6 +1641,7 @@ features:
   - hc-personalization
   - hc-projects-what
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: プロジェクトの中の全部の会話に使われる指示。公式は Claude が使う指示と書き、強制の仕組みではない（お願い）。食い違い：個人設定の記事（Understanding Claude's personalization features）の使い分けの節は「paid plans only」と書くが、同じ記事とプロジェクトの記事は Free でもプロジェクトを5件まで作れると書き、指示の設定に制限を書かない
 - id: app-memory
@@ -1626,18 +1654,19 @@ features:
     date: '2025-09-11'
     note: Team に公開（Help Center のリリースノート）。Enterprise は 2025-09-18、Max と Pro は 2025-10-23 から、Free は 2026-03-02。2026-07-10 に毎日の要約から項目ごとの記録（topics）に変わった
   match_terms:
-  - memory
   - Generate memory from chats
   - Use account memory
   - Include sensitive topics in memory
   - Pause memory
   - Reset memory
   - memory summary
-  - Topics
+  - Settings > Memory
+  - Memory from chat history
   sources:
   - hc-memory
   - hc-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: Free・Pro・Max・Ultra は既定で有効。Team と Enterprise は owner が使えるかを決め、各メンバーは自分で有効にするまで無効。プロジェクトはそれぞれのメモリを持つ。Cowork とは、Cowork がクラウドで動くときだけ共有する。会話ごとに「+」の Memory で切れる。ほかの AI からの取り込みと書き出しは experimental。新しいメモリの体験と旧い体験（毎日の要約）で記事の節が分かれている
 - id: chat-search
@@ -1653,10 +1682,14 @@ features:
   - Search and reference chats
   - search past chats
   - past chat citations
+  - chat search
+  - past chats
+  - search past conversations
   sources:
   - hc-memory
   - hc-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 有料のプラン（Pro・Max・Ultra・Team・Enterprise）の web・Desktop・Mobile。RAG の道具の呼び出しとして会話に表示される。プロジェクトの外の会話と、各プロジェクトの中の会話が範囲。customer-managed encryption keys を使う Enterprise では使えない
 - id: incognito
@@ -1677,6 +1710,7 @@ features:
   - hc-memory
   - hc-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 全プラン。プロジェクトの外だけ。履歴とメモリに残らず学習にも使われないが、30日（Enterprise は組織の保持期間）保持される。新しい Claude の体験では前の体験で開き、ファイルの作成とコードの実行ができない。記事の FAQ に custom styles の語が残る（Styles の移行の前の記述）
 - id: styles
@@ -1714,7 +1748,6 @@ features:
     note: Custom instructions の公開（Claude Apps のリリースノートの写し）。今の設定の画面では Instructions
   match_terms:
   - Instructions for Claude
-  - Instructions
   - custom instructions
   - personal preferences
   - Global instructions
@@ -1724,6 +1757,7 @@ features:
   - hc-skills-what
   - claude-apps-release-notes-archive
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: Settings > Your Claude の Instructions（古い画面では Account の Instructions for Claude）。全部の会話に使われる。Cowork の Global instructions は新しい Claude の体験でここにまとまった。公式は応答で Claude が考慮する指示と書き、強制の仕組みではない（お願い）
 - id: artifacts
@@ -1756,6 +1790,7 @@ features:
   - claude-apps-release-notes-archive
   - claude-pricing
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 全プランと、Claude Code を含むプランの Claude Code。Cloud code execution and file creation（新しい設定の画面では Create and edit files）を有効にしておく。Dashboards の雛形は beta（Pro 以上）、Motion は beta（Team と Enterprise）。食い違い：Docs・Slides・Design について、アーティファクトの記事と料金のページは beta と書かず、Cowork とチャットの統合の記事は beta と書き、リリースノート（2026-09-16）は Enterprise で beta と書く
 - id: file-creation
@@ -1776,6 +1811,7 @@ features:
   - hc-files
   - hc-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 全プラン（web・Desktop・Mobile）。個人のプランは既定で有効、Team と新しい Enterprise の組織も既定で有効で owner が切れる。ネットワークの出口（network egress）の既定はプランで違う。設定の名前は新しい画面で Create and edit files。コードの実行と同じ設定（code-execution）
 - id: code-execution
@@ -1791,12 +1827,13 @@ features:
   - code execution
   - Code execution and file creation
   - Analysis tool
-  - sandbox
+  - sandboxed environment
   - network egress
   sources:
   - hc-files
   - claude-apps-release-notes-archive
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: アプリの隔離された環境（sandbox）でコードを動かす。プロンプトインジェクションでデータを外へ送らされる危険があり、Team と Enterprise はネットワークの出口を既定で絞る。スキル・アーティファクト・自動のコンテキスト管理はこの設定を有効にしておく要がある。API の code execution tool は server-tools で追う
 - id: web-search
@@ -1818,6 +1855,7 @@ features:
   - claude-blog-web-search
   - hc-cowork-and-chat
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 全プラン（Team と Enterprise は owner が組織で有効にしてから）。有効にすると web fetch（渡した URL の本文を読む）も使える。新しい Claude の体験には切り替えがなく、要るときに Claude が検索する。Help Center の日本語版の訳語はウェブ検索。API の web search tool は server-tools で追う
 - id: research
@@ -1839,6 +1877,7 @@ features:
   - claude-blog-integrations
   - hc-cowork-and-chat
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 有料のプラン（Pro・Max・Ultra・Team・Enterprise）の web・Desktop・Mobile。web 検索を有効にしておく要がある。モバイルで始めるとコネクタを使わない。使うモデルは会話で選んだモデルによらない（モデルは facts の値）。新しい Claude の体験では /deep-research か「+」から選ぶ。Help Center の日本語版の訳語は調査機能
 - id: connectors
@@ -1859,13 +1898,14 @@ features:
   - Tool access
   - Integrations
   - Enterprise-managed auth
-  - Interactive
+  - interactive connectors
   sources:
   - hc-connectors
   - claude-blog-integrations
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
-  note: web のコネクタは全プラン（Claude・Cowork・Desktop・Mobile）。remote MCP の custom connectors は Free で1件まで。Team と Enterprise は owner が組織で有効にし、各人が認証する。道具ごとに Always allow・Needs approval・Blocked を選べる。多くつなぐと文脈を使うので Tool access（Auto・On demand）で読み込み方を選ぶ。モバイルからの追加は beta。Claude Code では D1 の mcp、API では mcp-connector が当たる
+  note: web のコネクタは全プラン（Claude・Cowork・Desktop・Mobile）。remote MCP の custom connectors は Free で1件まで。Team と Enterprise は owner が組織で有効にし、各人が認証する。道具ごとに Always allow・Needs approval・Blocked を選べる。多くつなぐと文脈を使うので Tool access（Auto・On demand）で読み込み方を選ぶ。モバイルからの追加は beta。Claude Code では mcp、API では mcp-connector（どちらも別の項目）が当たる
 - id: app-skills
   title: スキル（アプリ。skills）
   page: skills-in-the-app
@@ -1894,9 +1934,11 @@ features:
   - api-release-notes
   - claude-pricing
   - hc-plugins-page
+  - cc-changelog
+  - cc-docs-changelog
   checked: '2026-11-04'
   status: 確認済み
-  note: Code execution and file creation を有効にしておく要がある。名前と説明を先に見て、関わるときだけ本体を読む（progressive disclosure）。Claude の設定で有効にしたスキルは Claude Code（v2.1.273 以上、同じアカウントでログイン）にも片方向で読み込まれる。Customize は 2026-10-29 から Plugins に変わる途中。食い違い：Help Center（2026-10-30 更新）と料金のページは Free でも使えると書き、Help Center は Customize > Skills で管理し、Team と Enterprise は組織で配り、共有と公開ができ、Claude Code へ同期すると書く。Platform の Agent Skills の文書は、claude.ai の custom skills を Settings > Features から上げ、Pro 以上で、各人だけ（組織で配れない）で、面をまたいで同期しないと書く。また Help Center は API のスキルを beta と書くが、Platform では 2026-08-19 に beta を外れた（stable）
+  note: Code execution and file creation を有効にしておく要がある。名前と説明を先に見て、関わるときだけ本体を読む（progressive disclosure）。Claude の設定で有効にしたスキルは、同じアカウントでログインした Claude Code にも片方向で読み込まれる（必要な版は、Help Center が v2.1.273 以上と書き、CHANGELOG は 2.1.275〔2026-09-17〕で同期を追加と書く。2.1.273 の行は、同期したスキルの修正と、サインインでプラグインへのアクセスを求める変更。公式同士の食い違い）。Customize は 2026-10-29 から Plugins に変わる途中。食い違い：Help Center（2026-10-30 更新）と料金のページは Free でも使えると書き、Help Center は Customize > Skills で管理し、Team と Enterprise は組織で配り、共有と公開ができ、Claude Code へ同期すると書く。Platform の Agent Skills の文書は、claude.ai の custom skills を Settings > Features から上げ、Pro 以上で、各人だけ（組織で配れない）で、面をまたいで同期しないと書く。また Help Center は API のスキルを beta と書くが、Platform では 2026-08-19 に beta を外れた（stable）
 - id: office-add-ins
   title: Claude for Microsoft 365 のアドイン（Excel・PowerPoint・Word・Outlook）
   page: peripheral-products
@@ -1926,6 +1968,7 @@ features:
   - hc-release-notes
   - claude-pricing
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: Microsoft 365 の中で動く（面の語彙ではアプリに入れた）。Excel・PowerPoint・Word は generally available、Outlook は beta。Amazon Bedrock・Google Cloud・Foundry・LLM gateway からも使える（アプリをまたぐ機能は除く）。Google Workspace の Claude はこの項目で追わない。食い違い：M365 の文書は対象を Pro・Max・Team・Enterprise と書き、料金のページは Ultra も含める（Ultra への改名の前の書き方が残る）
 - id: claude-in-slack
@@ -1969,7 +2012,7 @@ features:
   - claude-pricing
   checked: '2026-11-04'
   status: 確認済み
-  note: 全プラン（Free〜Enterprise）の Mobile・Desktop・web で beta。英語以外の言語も beta。Cowork と Claude Code では音声モードはなく音声入力（dictation）だけ。Claude Code の /voice は D1 の voice-dictation。始まった時期は確かめていない
+  note: 全プラン（Free〜Enterprise）の Mobile・Desktop・web で beta。英語以外の言語も beta。Cowork と Claude Code では音声モードはなく音声入力（dictation）だけ。Claude Code の /voice は voice-dictation（別の項目）で、照合の語（voice mode・push-to-talk・dictation）は voice-dictation と重なる（点検では面で振り分ける）。始まった時期は確かめていない
 - id: app-tasks
   title: アプリのタスクと定期タスク（Claude Cowork）
   page: tasks-and-schedules-in-the-app
@@ -1983,8 +2026,8 @@ features:
   - Claude Cowork
   - Cowork
   - scheduled tasks
+  - Scheduled tasks in Cowork
   - /schedule
-  - Scheduled
   - Dispatch
   - Cowork in the cloud
   - new Claude experience
@@ -2014,12 +2057,13 @@ features:
   - Act without asking
   - Always allow
   - Needs approval
-  - Blocked
+  - Connector tool permission
   sources:
   - hc-cowork-start
   - hc-cowork-and-chat
   - hc-cowork-safety
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: Cowork の3つの段：Manually approve（Manual。旧 Ask before acting）は動作の前に許可を求め、Automatically approve（Auto）は Claude が動作ごとに安全を審査して危ないものを止め、Skip all approvals（Skip。旧 Act without asking）は何も確かめない。新しい Claude の体験では Auto（Pro・Max・Ultra・Team の既定）と Manual（Enterprise の既定）。どの段でもファイルを完全に消す前には確認する。Team と Enterprise では管理者が Auto を出すかと新しいタスクの既定を決める。強制力：Manual の許可と削除の確認は仕組みの鍵。Auto の審査は Claude が動作ごとに行う判断で、Skip は確かめない。始まった時期は確かめていない。Claude Code の permission-modes・auto-mode とは別
 - id: app-plugins
@@ -2043,9 +2087,11 @@ features:
   - hc-plugins-page
   - claude-docs-plugins
   - hc-release-notes
+  - cc-changelog
+  - cc-docs-changelog
   checked: '2026-11-04'
   status: 確認済み
-  note: 全有料プラン。web のチャット・Desktop の Chat・Cowork で使え、スキルとコマンドはどこでも動くが、hooks・サブエージェント・ローカルの MCP サーバーは Cowork と Claude Code だけ。アカウントに残り、Claude Code（v2.1.273 以上）へ片方向で同期する。2026-10-29 から Customize が Plugins に変わり、Skills・Connectors・Plugins のタブが1つの Plugins のページになる（Free〜Team は 2026-11-09 に generally available、Enterprise は 2026-11-30）。Claude Code の plugins とは別
+  note: 全有料プラン。web のチャット・Desktop の Chat・Cowork で使え、スキルとコマンドはどこでも動くが、hooks・サブエージェント・ローカルの MCP サーバーは Cowork と Claude Code だけ。アカウントに残り、Claude Code へ片方向で同期する（必要な版は、Help Center が v2.1.273 以上と書き、CHANGELOG は 2.1.275〔2026-09-17〕で同期を追加と書く。公式同士の食い違い）。2026-10-29 から Customize が Plugins に変わり、Skills・Connectors・Plugins のタブが1つの Plugins のページになる（Free〜Team は 2026-11-09 に generally available、Enterprise は 2026-11-30）。Claude Code の plugins とは別
 - id: file-uploads
   title: ファイルのアップロード（アプリ）
   page: how-attachments-are-read
@@ -2062,6 +2108,7 @@ features:
   - hc-upload-files
   - hc-files
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 受け付ける形式・大きさ・数・ページ数の上限は facts に置く値。PDF は100ページまで図も読み、101〜1000ページは文字だけ。XLSX はコードの実行を有効にしておく要がある。食い違い：アップロードの記事は会話へのアップロードを1ファイル 500MB まで（プロジェクトのファイルは 30MB まで）と書き、ファイルの作成の記事はアップロードとダウンロードを1ファイル 30MB までと書く。始まった時期は確かめていない
 - id: app-context-management
@@ -2084,6 +2131,7 @@ features:
   - hc-usage-limits
   - hc-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: コードの実行が有効なとき、会話がコンテキストの上限に近づくと前の発言を要約して続ける。全履歴は残り、参照できる。要約が起きる長い会話は利用上限を多く使う。とても大きい最初の発言などでは長さの上限に当たる。表記の差：コンテキストウィンドウの記事は「有料のプランで」と書き、利用上限の記事はプランを書かない。Claude Code の compaction・API の api-compaction とは別
 - id: chat-sharing
@@ -2093,7 +2141,6 @@ features:
   - app
   maturity: GA
   match_terms:
-  - Share
   - shared chats
   - public links
   - People with access
@@ -2106,6 +2153,7 @@ features:
   - hc-files
   - hc-connectors
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 特定の人への共有は全プラン（claude.ai の web だけ。モバイルからはまだ共有できない）、公開リンクは Free・Pro・Max・Ultra。Team と Enterprise は組織の中だけ。共有は写し（snapshot）で、後の発言は更新するまで見えない。添付ファイルと MCP の生データは入らない。個人のプランではコードの実行で作ったファイルを含む会話を公開できない。表記の差：「Share and unshare chats」は公開リンクを作る流れを主に書き、「Share a chat with specific people」は招待を既定の共有のしかたと書く。始まった時期は確かめていない
 - id: messages-api
@@ -2122,6 +2170,7 @@ features:
   sources:
   - api-docs-messages
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: featureMetadata は stable（Claude API・Claude Platform on AWS・Google Cloud・Amazon Bedrock・Microsoft Foundry）。状態を持たず、呼び出し側が毎回それまでの会話の全体を送る。送る量を減らす message threads は message-threads で追う。始まった時期は Platform のリリースノート（2024-05 から）より前で、確かめていない
 - id: prompt-caching
@@ -2145,6 +2194,7 @@ features:
   - api-docs-prompt-caching
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 全プラットフォームで stable（featureMetadata の supportedPlatforms）。変わらない先頭の部分を使い回して処理の時間と費用を減らす。既定の寿命は5分（使うたびに延びる）、1時間の寿命もある。料金と最小の長さはモデルで違う値で facts に置く
 - id: structured-outputs
@@ -2169,6 +2219,7 @@ features:
   - api-docs-structured-outputs
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: featureMetadata は stable（全プラットフォーム）。制約つきのデコード（constrained decoding）で、応答を与えた JSON schema に合う形にする（鍵）。道具の名前と入力を schema に合わせる strict tool use も同じ仕組み。モデルによっては道具の強制（tool_choice の any・tool）が使えず、公式はこちらを勧める
 - id: tool-use
@@ -2195,6 +2246,7 @@ features:
   - api-docs-define-tools
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: Define tools の文書の featureMetadata は stable。呼び出し側が動かす client tools と、Anthropic が動かす server tools（server-tools で追う）がある。道具の強制（tool_choice の any・tool）は新しいモデルの一部で 400 になる（モデルごとの可否は facts）
 - id: batch-api
@@ -2215,6 +2267,7 @@ features:
   - api-docs-batch
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: featureMetadata は stable（Claude API・Claude Platform on AWS・Google Cloud の Anthropic の管理）。多くの要求をまとめて非同期で処理し、料金は標準の半分（値は facts）。ZDR の対象外（29日の保持）
 - id: files-api
@@ -2236,6 +2289,7 @@ features:
   - api-docs-files
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: featureMetadata は stable（Claude API・Claude Platform on AWS・Google Cloud の Anthropic の管理・Foundry の Anthropic 上のもの）。一度上げたファイルを後の要求から file_id で指し、スキルとコードの実行が作ったファイルもここから取る。ZDR の対象外。アプリのアップロードは file-uploads
 - id: adaptive-thinking
@@ -2262,8 +2316,9 @@ features:
   - api-release-notes
   - cc-docs-model-config
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
-  note: Thinking の文書の featureMetadata は stable。Claude が要求ごとに考えるか、どれだけ考えるかを決め、深さは effort で変える。手で予算を決める extended thinking（budget_tokens）は legacy。新しいモデルの多くは adaptive だけで、thinking を切れないものがある（モデルごとの違いは facts）。Claude Code の文書は adaptive reasoning と呼ぶ。effort と ultrathink は D1 の項目
+  note: Thinking の文書の featureMetadata は stable。Claude が要求ごとに考えるか、どれだけ考えるかを決め、深さは effort で変える。手で予算を決める extended thinking（budget_tokens）は legacy。新しいモデルの多くは adaptive だけで、thinking を切れないものがある（モデルごとの違いは facts）。Claude Code の文書は adaptive reasoning と呼ぶ。effort と ultrathink は別の項目（effort・ultrathink）
 - id: citations
   title: citations
   page: citations-basics
@@ -2275,7 +2330,7 @@ features:
     note: Platform のリリースノート
   match_terms:
   - citations
-  - 'citations: {enabled: true}'
+  - '"citations": {"enabled": true}'
   - cited_text
   - search results
   - search_result
@@ -2283,6 +2338,7 @@ features:
   - api-docs-citations
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: featureMetadata は stable（Claude API・Claude Platform on AWS・Amazon Bedrock・Google Cloud の Google の管理・Foundry）。渡した文書の中の根拠の箇所を返させる。自分の検索の結果を引かせる search results（2025-08-08 に beta を外れた）も同じ形で引用される
 - id: server-tools
@@ -2314,6 +2370,7 @@ features:
   - api-docs-code-execution-tool
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: Anthropic が動かす道具の共通の仕組み（server_tool_use のブロック・pause_turn・ドメインの制限）。web search・web fetch・code execution の文書の featureMetadata は stable。使えるプラットフォームと版は道具で違う（Google の管理と Azure 上の Foundry は基本の版だけ、など）。料金は facts
 - id: computer-use
@@ -2340,10 +2397,11 @@ features:
   - api-release-notes
   - hc-computer-use
   - cc-docs-computer-use
+  - cc-docs-desktop
   - hc-release-notes
   checked: '2026-11-04'
   status: 確認済み
-  note: 成熟度は面で違う：API の computer_toolset_20260801 は 2026-08-19 に Claude API で beta を外れた（前の版は beta ヘッダー）。Cowork と Desktop の Claude Code は Pro・Max・Ultra の beta（Help Center）。Claude Code の CLI は macOS の research preview で、Team と Enterprise では使えない（Claude Code の文書）。主のページ（browser-control）が扱う Cowork と Desktop の表記の beta にした。面で id を分けるかはメインの判断（報告に提案）
+  note: 成熟度は面と出典で違う。API の computer_toolset_20260801 は 2026-08-19 に Claude API で beta を外れた（Platform のリリースノート。前の版は beta ヘッダー）。Cowork と Desktop の Claude Code は Pro・Max・Ultra で、Help Center は beta と書く一方（hc-computer-use）、Claude Code の文書は research preview と書く（Desktop は cc-docs-desktop、CLI は cc-docs-computer-use）。公式同士の食い違いで、両方の出典を残した。Claude Code の CLI は macOS の research preview で、Team と Enterprise では使えない（Claude Code の文書）。主のページ（browser-control）が扱う Cowork と Desktop は、Help Center の表記の beta にした。面で id を分けるかは目次の判断（分けるなら、API の行は API の分野のページが主になる）
 - id: mcp-connector
   title: MCP connector
   page: feature-to-api-mapping
@@ -2373,6 +2431,9 @@ features:
   - claude-code
   - api
   maturity: GA
+  since:
+    date: '2025-06-16'
+    note: Claude Code SDK として公開された日（CHANGELOG 1.0.23 の「Released Python SDK」「Released TypeScript SDK」）。SDK は Claude Code とは別のパッケージなので、Claude Code の版は書かない
   match_terms:
   - Agent SDK
   - Claude Agent SDK
@@ -2385,9 +2446,12 @@ features:
   - cc-docs-agent-sdk-migration
   - hc-agent-sdk-plan
   - hc-api-credits
+  - cc-changelog
+  - cc-docs-changelog
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
-  note: Claude Code の道具・エージェントのループ・文脈の管理を Python と TypeScript のライブラリとして使う（Claude Code の本体を動かす）。Claude Code SDK から改名された（時期は文書にない）。Platform の文書の URL は Claude Code の文書へ転送される。文書に beta などの表記はない。claude.ai のプランでログインするとプランの上限から引かれ、API キーで動かすと API の課金（Max・Ultra・Team の月の API credits も使える）。第三者が自分の製品で claude.ai のログインを出すことは、承認がない限り認めていない
+  note: Claude Code の道具・エージェントのループ・文脈の管理を Python と TypeScript のライブラリとして使う（Claude Code の本体を動かす）。Claude Code SDK から改名された（時期は names の code-sdk-to-agent-sdk）。Platform の文書の URL は Claude Code の文書へ転送される。文書に beta などの表記はない。claude.ai のプランでログインするとプランの上限から引かれ、API キーで動かすと API の課金（Max・Ultra・Team の月の API credits も使える）。第三者が自分の製品で claude.ai のログインを出すことは、承認がない限り認めていない
 - id: managed-agents
   title: Managed Agents（Claude Managed Agents）
   page: sdk-comparison
@@ -2432,6 +2496,7 @@ features:
   - api-docs-token-counting
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: featureMetadata は stable（全プラットフォーム）。送る前に入力のトークン数を数える。Claude Opus 4.7 から tokenizer が変わり、同じ文でもトークンが増えた（比率は facts）
 - id: message-threads
@@ -2519,6 +2584,7 @@ features:
   - api-docs-memory-tool
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: featureMetadata は stable（全プラットフォーム）。会話をまたいで、情報をメモリのファイルのディレクトリ（/memories）に残して読む。道具は呼び出し側（client）で動き、保存先は実装する側が決める。作業を始める前にディレクトリを見る。Managed Agents の memory stores とアプリの app-memory とは別
 - id: api-rate-limits
@@ -2544,6 +2610,7 @@ features:
   - api-docs-errors
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 組織ごとの上限で、使用の段（usage tier）で決まる。2026-06-26 に段が Start・Build・Scale にまとまり（その上に Custom、始めに Evaluation の段もある）、Sonnet と Haiku の上限が Opus と同じになった。月の支出の上限（spend limits）もある。429 は rate_limit_error、529 は overloaded_error。retry-after と anthropic-ratelimit-* のヘッダーで待ち時間と残りが分かる。値は facts に置く。Rate limits の文書に featureMetadata はなく、成熟度はふつうに提供の扱い（GA）とした
 - id: refusals
@@ -2584,12 +2651,13 @@ features:
   - app
   - claude-code
   match_terms:
-  - Free
-  - Pro
-  - Max
   - Ultra
-  - Team
-  - Enterprise
+  - Free plan
+  - Pro plan
+  - Max plan
+  - Team plan
+  - Enterprise plan
+  - Ultra plan
   - Max 20x
   - Max 5x
   - Standard seat
@@ -2615,6 +2683,7 @@ features:
   - claude-code
   match_terms:
   - usage limits
+  - usage limit
   - five-hour limit
   - session limit
   - weekly limit
@@ -2647,6 +2716,8 @@ features:
   match_terms:
   - usage credits
   - Extra usage
+  - /usage-credits
+  - /extra-usage
   - Now using credits
   - monthly spend limit
   - auto-reload
@@ -2686,9 +2757,6 @@ features:
   page: how-usage-limits-work
   surfaces:
   - claude-code
-  since:
-    claude_code: 2.1.277
-    note: 資格の条件の版（v2.1.277 以上）。導入の日付は記事にない
   match_terms:
   - Wrap-Up Allowance
   - wrap-up allowance
@@ -2699,7 +2767,7 @@ features:
   - hc-claude-code-plan
   checked: '2026-11-04'
   status: 確認済み
-  note: Claude Code の応答の途中で5時間の上限に達したとき、区切りまで少しだけ続ける（量に上限がある）。Pro は週に1回まで、Max・確認前の Ultra・Team の Premium の席は5時間の上限に当たるたび。使った分は週の上限に数える。API キーと Bedrock・Vertex AI などでは効かず、アプリのチャットにもない。段階的に展開中で、口座と組織に公表しない最低の期間がある。成熟度の表記はない
+  note: Claude Code の応答の途中で5時間の上限に達したとき、区切りまで少しだけ続ける（量に上限がある）。Pro は週に1回まで、Max・確認前の Ultra・Team の Premium の席は5時間の上限に当たるたび。使った分は週の上限に数える。API キーと Bedrock・Vertex AI などでは効かず、アプリのチャットにもない。段階的に展開中で、口座と組織に公表しない最低の期間がある。Help Center が資格の条件に書く Claude Code の版は v2.1.277 以上で、入った版ではない（CHANGELOG に Wrap-Up Allowance の行はないので、入った版は書かない）。成熟度の表記はない
 - id: team-onboarding
   title: /team-onboarding
   page: rolling-out-to-teams
@@ -2708,15 +2776,18 @@ features:
   maturity: GA
   since:
     claude_code: 2.1.101
-    date: 2026-04
-    note: What's new の Week 15（2026-04-06〜10）
+    date: '2026-04-10'
+    note: CHANGELOG 2.1.101 の追加の行（日付は変更履歴のページ）。What's new の Week 15（2026-04-06〜10）にも載る
   match_terms:
   - /team-onboarding
   - team onboarding guide
   sources:
   - cc-docs-commands
+  - cc-changelog
+  - cc-docs-changelog
   - cc-docs-whats-new-2026-w15
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: 過去30日の Claude Code の使い方（セッション・コマンド・MCP サーバー）から、仲間が最初の発言に貼れる手引き（Markdown）を作る。claude.ai の Team と Enterprise では、仲間が Claude Code で開ける共有のリンクも返す。文書に beta などの表記はない
 - id: otel-telemetry
@@ -2744,6 +2815,7 @@ features:
   - hc-release-notes
   - api-release-notes
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: Claude Code は環境変数で metrics と events（logs）を出す（traces は beta）。プロンプトの本文と道具の細部は既定で記録せず、OTEL_LOG_USER_PROMPTS などで入れる。Cowork は Team と Enterprise で、クラウドとローカルのセッションの出来事（プロンプト・道具・ファイル・承認）を流せる（2026-04-09 から）。API と Managed Agents の OpenTelemetry は 2026-10-14 から beta。成熟度は Claude Code の metrics と events に合わせた
 - id: usage-analytics-api
@@ -2786,10 +2858,15 @@ features:
   - Claude Models on Google Cloud
   - Microsoft Foundry
   - Azure AI Foundry
+  - Bedrock
+  - Vertex
+  - Foundry
+  - Mantle
   - CLAUDE_CODE_USE_BEDROCK
   - CLAUDE_CODE_USE_VERTEX
   - CLAUDE_CODE_USE_FOUNDRY
   - CLAUDE_CODE_USE_MANTLE
+  - CLAUDE_CODE_USE_ANTHROPIC_AWS
   - LLM gateway
   - Claude apps gateway
   sources:
@@ -2804,6 +2881,7 @@ features:
   - hc-api-credits
   - hc-wrap-up-allowance
   checked: '2026-11-04'
+  volatility: 中
   status: 確認済み
   note: API の経路：Amazon Bedrock（Opus 4.7 以降は Claude in Amazon Bedrock の Messages API。前のモデルは別の文書）・Claude Platform on AWS（Anthropic が運用し AWS で払う）・Claude Models on Google Cloud（Anthropic の管理と Google の管理）・Claude in Microsoft Foundry。Claude Code の文書は Google Cloud's Agent Platform（旧 Vertex AI）と書く。使える機能は経路で違う（表は facts）。プランの月の API credits・Wrap-Up Allowance・claude.ai のスキルとプラグインの同期は効かない。Claude Desktop と M365 のアドインも経由して使える。文書に preview などの表記はない
 names:
@@ -2855,7 +2933,7 @@ names:
   - cc-changelog
   checked: '2026-11-04'
   status: 確認済み
-  note: 旧名が残る所（公式の文書の一覧）：一部のアカウントの画面（Routines・New routine）、URL の claude.ai/code/routines、/schedule の別名 /routines、API の /fire のパスと beta のヘッダー、組織の設定の Scheduled tasks (Was Routines) の切り替え。CHANGELOG は 2.1.310（2026-10-23）まで routine と書き、2.1.316（10-31）から cloud scheduled task と書く
+  note: 旧名が残る所（公式の文書の一覧）：一部のアカウントの画面（Routines・New routine）、URL の claude.ai/code/routines、/schedule の別名 /routines、API の /fire のパスと beta のヘッダー、組織の設定の Scheduled tasks (Was Routines) の切り替え。CHANGELOG は 2.1.312（2026-10-27）まで routine と書き、2.1.314（10-30）から Scheduled tasks（ページの名前）と書き、2.1.316（10-31）から cloud scheduled task と書く
 - id: cost-stats-to-usage
   current: /usage
   old:
@@ -3041,9 +3119,10 @@ names:
   feature: claude-in-slack
   sources:
   - hc-claude-tag
+  - hc-release-notes
   checked: '2026-11-04'
   status: 確認済み
-  note: Help Center は、Claude in Slack が 2026-08-03 に新しい Claude Tag の体験に切り替わったと書く。features の id は旧名のまま
+  note: Help Center は、Claude in Slack が 2026-08-03 に新しい Claude Tag の体験に切り替わったと書く。Claude Tag そのものの公開は、Help Center のリリースノートの 2026-06-23（Team と Enterprise）。features の id は旧名のまま
 - id: workbench-to-playground
   current: playground（Claude Console）
   old:

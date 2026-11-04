@@ -308,9 +308,9 @@ domains:
   url: https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html
 - domain: media.defcon.org
   checked: '2026-11-04'
-  noai: false
+  noai: true
   url: https://media.defcon.org/DEF%20CON%2033/DEF%20CON%2033%20video%20and%20slides/DEF%20CON%2033%20video%20and%20slides%20captions/DEF%20CON%2033%20-%20Claude%20-%20Climbing%20a%20CTF%20Scoreboard%20Near%20You%20-%20Keane%20Lucas.eng.txt
-  note: check_noai.py は取得できなかった（Remote end closed connection without response）。出典の取得では本文を読めた（meta と X-Robots-Tag に指定はない）
+  note: 'robots.txt は AI のクローラ（anthropic-ai・Claude-Web・ClaudeBot を含む、ai.robots.txt の一覧の組）に全体（Disallow: /）を禁じる（照らす担当が 2026-11-04 に robots.txt を読んで確かめた）。check_noai.py はページの取得で接続を切られ（Remote end closed connection without response）、robots.txt を判定できなかった。2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04'
 - domain: metr.org
   checked: '2026-11-04'
   noai: false
@@ -384,10 +384,15 @@ domains:
   checked: '2026-11-04'
   noai: false
   url: https://rcanand.bearblog.dev/claude-code-just-got-confusing-plan-mode-vs-superpowers-vs-agent-teams-a-practical-guide/
+- domain: reddit.com
+  noai: true
+  checked: '2026-11-04'
+  note: 'robots.txt は * にサイト全体を禁じ（Disallow: /）、Anthropic のクローラに自分の組がない。Anthropic のクローラを禁じる形に当たる（decisions 2026-11-04「工程6b」）'
 - domain: reddit.sentinel-team.org
   checked: '2026-11-04'
-  noai: false
+  noai: true
   url: https://reddit.sentinel-team.org/posts/1qspcip/snapshots/2026-02-01T05%3A38%3A27.093042Z
+  note: 'Reddit の投稿の第三者の写しのサイト（robots.txt はなく、noai・noimageai の指定もない）。写しの出典 2 件は 2026-11-04 に外した：元の reddit.com の robots.txt は * にサイト全体を禁じる（Disallow: /）ので、写しを通して読むことも、AI の利用を断るドメインと同じに扱う（H1 の理由の文）。作者の判断で戻してよい。2026-11-04：写しのサイトそのものも、元の reddit.com と同じに AI の利用を断るドメインとして扱う（decisions 2026-11-04「工程6b」の補足）'
 - domain: redreamality.com
   checked: '2026-11-04'
   noai: false
@@ -648,6 +653,16 @@ domains:
   noai: false
   url: https://zenn.dev/ml_bear/articles/84e92429698177
   note: robots.txt は AI のクローラ（Bytespider）に全体を禁じる。noai・noimageai の指定はない
+- domain: terrytao.wordpress.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://terrytao.wordpress.com/2025/11/05/mathematical-exploration-and-discovery-at-scale/
+  note: robots.txt は管理画面などだけを禁じ、AI 向けの指定はない。meta robots は max-image-preview:large
+- domain: joschu.net
+  checked: '2026-11-04'
+  noai: false
+  url: http://joschu.net/blog/opinionated-guide-ml-research.html
+  note: robots.txt はない（404）。https は時間切れで、http で取得した
 sources:
 - id: cc-docs-features-overview
   url: https://code.claude.com/docs/en/features-overview
@@ -1197,7 +1212,7 @@ sources:
   url: https://web.archive.org/web/20260710101210/https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills
   title: Styles are moving to skills
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-06-01'
@@ -1494,7 +1509,7 @@ sources:
   url: https://web.archive.org/web/20250628195643/https://docs.anthropic.com/en/release-notes/claude-apps
   title: 'Release Notes: Claude Apps'
   kind: リリースノート
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2025-05-22'
@@ -1929,7 +1944,7 @@ sources:
   url: https://web.archive.org/web/20261026194435/https://code.claude.com/docs/en/best-practices
   title: Best practices for Claude Code（改稿前。Internet Archive の写し、2026-10-26 19:44 UTC）
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-10-26'
@@ -1938,7 +1953,7 @@ sources:
   url: https://web.archive.org/web/20261027081520/https://code.claude.com/docs/en/best-practices
   title: Best practices for Claude Code（改稿後。Internet Archive の写し、2026-10-27 08:15 UTC）
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-10-27'
@@ -1947,7 +1962,7 @@ sources:
   url: https://web.archive.org/web/20261019233206/https://code.claude.com/docs/en/routines
   title: Automate work with routines（Internet Archive の写し、2026-10-19 23:32 UTC）
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-10-19'
@@ -1956,7 +1971,7 @@ sources:
   url: https://web.archive.org/web/20261021015745/https://code.claude.com/docs/en/routines
   title: Automate work with scheduled tasks（Internet Archive の写し、2026-10-21 01:57 UTC）
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-10-21'
@@ -1965,7 +1980,7 @@ sources:
   url: https://web.archive.org/web/20260703145240/https://code.claude.com/docs/en/claude-code-on-the-web
   title: Use Claude Code on the web（Internet Archive の写し、2026-07-03 14:52 UTC）
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-07-03'
@@ -1974,7 +1989,7 @@ sources:
   url: https://web.archive.org/web/20260706155758/https://code.claude.com/docs/en/claude-code-on-the-web
   title: Use Claude Code on the web（Internet Archive の写し、2026-07-06 15:57 UTC）
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-07-06'
@@ -1983,7 +1998,7 @@ sources:
   url: https://web.archive.org/web/20260910215328/https://code.claude.com/docs/en/claude-code-on-the-web
   title: Use Claude Code on the web（Internet Archive の写し、2026-09-10 21:53 UTC）
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-09-10'
@@ -1992,7 +2007,7 @@ sources:
   url: https://web.archive.org/web/20260917234940/https://code.claude.com/docs/en/claude-code-on-the-web
   title: Use Claude Code in the cloud（Internet Archive の写し、2026-09-17 23:49 UTC）
   kind: 公式文書
-  publisher: Anthropic
+  publisher: Anthropic（写し）
   lang: en
   checked: '2026-11-04'
   published: '2026-09-17'
@@ -2405,11 +2420,12 @@ sources:
   checked: '2026-11-04'
 - id: claude-blog-articles
   url: https://claude.com/resources/articles
-  title: Claude blog
+  title: Articles
   kind: 公式ブログ
   publisher: Anthropic
   lang: en
   checked: '2026-11-04'
+  note: claude.com の記事の一覧のページ（個別の記事ではない）。出典にするときは、記事ごとの URL を使う
 - id: claude-blog-code-mods
   url: https://claude.com/resources/articles/claude-code-mods
   title: Customize Claude Code with mods in TypeScript
@@ -3623,13 +3639,6 @@ sources:
   publisher: Darragh
   lang: en
   checked: '2026-11-04'
-- id: defcon33-claude-ctf-scoreboard
-  url: https://media.defcon.org/DEF%20CON%2033/DEF%20CON%2033%20video%20and%20slides/DEF%20CON%2033%20video%20and%20slides%20captions/DEF%20CON%2033%20-%20Claude%20-%20Climbing%20a%20CTF%20Scoreboard%20Near%20You%20-%20Keane%20Lucas.eng.txt
-  title: Claude - Climbing a CTF Scoreboard Near You（DEF CON 33 の講演、Keane Lucas。字幕）
-  kind: 実践者
-  publisher: DEF CON（講演の字幕）
-  lang: ja
-  checked: '2026-11-04'
 - id: docker-mcp-horror-stories-whatsapp-data
   url: https://www.docker.com/blog/mcp-horror-stories-whatsapp-data-exfiltration-issue/
   title: 'MCP Horror Stories: WhatsApp Data Exfiltration'
@@ -3716,7 +3725,7 @@ sources:
 - id: github-openai-mle-bench
   url: https://github.com/openai/mle-bench
   title: 'openai/mle-bench: MLE-bench is a benchmark for measuring how well AI agents perform at machine learning engineering'
-  kind: 実践者
+  kind: 研究
   publisher: GitHub（openai）
   lang: en
   checked: '2026-11-04'
@@ -4104,22 +4113,6 @@ sources:
   publisher: rcanand
   lang: en
   checked: '2026-11-04'
-- id: reddit-snapshot-1qspcip
-  url: https://reddit.sentinel-team.org/posts/1qspcip/snapshots/2026-02-01T05%3A38%3A27.093042Z
-  title: 'Post Snapshot: 1qspcip (2026-02-01)'
-  kind: 実践者
-  publisher: Reddit Sentiment Analyzer（Reddit の投稿の写し）
-  lang: en
-  checked: '2026-11-04'
-  note: Reddit の投稿の第三者の写し
-- id: reddit-snapshot-1uk434i
-  url: https://reddit.sentinel-team.org/posts/1uk434i/snapshots/2026-07-03T03%3A00%3A16.73148Z
-  title: 'Post Snapshot: 1uk434i (2026-07-03)'
-  kind: 実践者
-  publisher: Reddit Sentiment Analyzer（Reddit の投稿の写し）
-  lang: en
-  checked: '2026-11-04'
-  note: Reddit の投稿の第三者の写し
 - id: redreamality-library-writing-good
   url: https://redreamality.com/garden/notes/library/writing-a-good-claude-md/
   title: Writing a good CLAUDE.md
@@ -4173,13 +4166,13 @@ sources:
   lang: ja
   checked: '2026-11-04'
 - id: schulman-opinionated-guide-ml-research
-  url: https://pengsida.net/files/John_Schulman_How_to_do_research.pdf
+  url: http://joschu.net/blog/opinionated-guide-ml-research.html
   title: An Opinionated Guide to ML Research
   kind: 実践者
-  publisher: John Schulman（文章の写し）
+  publisher: John Schulman（個人のブログ）
   lang: en
   checked: '2026-11-04'
-  note: 元は https://joschu.net/blog/opinionated-guide-ml-research.html （2026-11-04 はこの環境から接続できなかった）
+  note: 元の記事。https は時間切れで、http で開ける（2026-11-04）。以前は pengsida.net の PDF の写しを URL にしていた
 - id: scrimba-best-code-tutorials-courses
   url: https://scrimba.com/articles/best-claude-code-tutorials-and-courses-in-2026/
   title: 'Best Claude Code Tutorials and Courses in 2026: Free and Paid'
@@ -4424,13 +4417,14 @@ sources:
   checked: '2026-11-04'
   published: '2026-04-07'
 - id: tao-mathematical-exploration-at-scale
-  url: https://tagteam.harvard.edu/hub_feeds/3899/feed_items/16691196
+  url: https://terrytao.wordpress.com/2025/11/05/mathematical-exploration-and-discovery-at-scale/
   title: Mathematical exploration and discovery at scale
   kind: 実践者
-  publisher: Terence Tao（ブログの記事。TagTeam のフィードの写し）
+  publisher: Terence Tao（ブログ What's new）
   lang: en
   checked: '2026-11-04'
-  note: Terence Tao のブログの記事を TagTeam のフィードが集めた写し
+  published: '2025-11-05'
+  note: 元の記事。以前は TagTeam のフィードの写しを URL にしていたが、元の記事が開けることを 2026-11-04 に確かめて替えた
 - id: tembo-write-great
   url: https://www.tembo.io/blog/how-to-write-a-great-claude-md
   title: 'How to Write a Great CLAUDE.md: Best Practices and Tips'

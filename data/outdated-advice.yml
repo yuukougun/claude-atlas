@@ -30,8 +30,8 @@ advice:
   status: 撤回
   principle:
   - 見せる
-  why_then: 2.0.70 より前は、入力の先頭に
-  how_to_find: '記事や手順書で、入力の先頭に # を付けて覚えさせる手順を探す。手元の版を claude --version で確かめ、2.0.70 以上ならこの近道はない。今の入力の記号は、先頭の /（コマンドとスキル）と !（シェル）、ファイルを指す @ だけ。'
+  why_then: '2.0.70 より前は、入力の先頭に # を付けると、その行を CLAUDE.md に書き足す近道があった。'
+  how_to_find: '記事や手順書で、入力の先頭に # を付けて覚えさせる手順を探す。手元の版を claude --version で確かめ、2.0.70 以上ならこの近道はない。今の入力の記号の表（Interactive mode の Quick commands）に # はない。'
   sources:
   - cc-changelog
   - cc-docs-changelog
@@ -44,11 +44,11 @@ advice:
   changed:
     date: '2026-01-09'
     version: 2.1.3
-    note: 'スラッシュコマンドとスキルがまとめられた（動きは変わらない）。名前の project: と user: の前置きは、それより前の 1.0.25（2025-06-16）で外れた（names の project-prefix-removed）'
+    note: 'スラッシュコマンドとスキルがまとめられた（動きは変わらない）。名前の project: と user: の前置きは、それより前に外れた（時期は names の project-prefix-removed）'
   status: 置換
   principle:
   - 見せる
-  why_then: 'スキルが入る前は、繰り返す頼み方を .claude/commands/ の Markdown にしてスラッシュコマンドで呼ぶのが公式のやり方だった（0.2.31 から）。1.0.25 より前は、コマンドの名前に project: と user: の前置きが付いていた。'
+  why_then: 'スキルが入る前は、繰り返す頼み方を .claude/commands/ の Markdown にしてスラッシュコマンドで呼ぶのが公式のやり方だった（0.2.31 から）。以前は、コマンドの名前に project: と user: の前置きが付いていた。'
   how_to_find: リポジトリと ~/.claude/ に commands/ のフォルダがあるかを見る。動くので急いで移さなくてよいが、補助のファイルを置く、Claude が自分で読み込む、呼ぶ人を決める、といったスキルの働きが要るものから移す。記事の /project:<名前> は /<名前> で呼ぶ。
   sources:
   - cc-changelog
@@ -82,7 +82,7 @@ advice:
   status: 置換
   principle:
   - 確かめる
-  why_then: 0.2.44 で think・think harder・ultrathink と書いて考える量を頼めるようになり、1.0.8（2025-06-02）で英語以外の言語でも思考を起動できるようになった。effort の段を選ぶ手段がまだなく、言葉で考える量を変えるのが公式のやり方だった。
+  why_then: 0.2.44 で think・think harder・ultrathink と書いて考える量を頼めるようになり、1.0.8（2025-06-02）で英語以外の言語でも思考を起動できるようになった。effort の段を選ぶ手段がまだなく、言葉で考える量を変えるのが公式のやり方だった。段階のキーワードがいつ外れたかは、一次資料に版の記述がない。変わった時期に書いた 2.1.68 は、ultrathink だけが戻った版である。
   how_to_find: CLAUDE.md・スキル・保存した頼み方で、think hard・think harder・「熟考」「よく考えて」などを探す。effort を上げる働きはないので、深く考えさせたいターンは ultrathink か effort で頼む。/doctor prompt-audit（2.1.283 以上）は、古いモデル向けに書いた指示を洗い出す。
   sources:
   - cc-changelog
@@ -179,7 +179,7 @@ advice:
   status: 撤回
   principle:
   - 見せる
-  why_then: 公式は、この表の助言はどれも書かれた当時はよい助言で、多くはモデルがまだ確実にできなかったことの回避策だったとする。リポジトリを自分で読んで全体をつかむことも、その 1 つだった。
+  why_then: 公式は、この表の助言はどれも書かれた当時はよい助言で、多くはモデルがまだ確実にできなかったことの回避策だったとする。この行がどの回避策に当たるかは、公式は書いていない。構成を書いておけば Claude が毎回リポジトリをたどらずに全体をつかめた、というのはここでの推測である。改稿の前の版（2026-10-26 の写し）も、コードを読めば分かることとファイルごとの説明は CLAUDE.md に書かないものに、プロジェクト固有のアーキテクチャの判断は書くものに挙げていた。
   how_to_find: CLAUDE.md のディレクトリの木、ファイルの一覧、使っているフレームワークの説明を探す。/doctor は、コードから分かる中身を削る案を出す。
   sources:
   - cc-docs-best-practices
@@ -255,6 +255,8 @@ advice:
   sources:
   - api-docs-prompting-opus-5
   - cc-docs-best-practices
+  - wb-cc-best-practices-2026-10-26
+  - wb-cc-best-practices-2026-10-27
   - cc-docs-sub-agents
   checked: '2026-11-04'
 - id: prefill-for-json
@@ -328,7 +330,7 @@ advice:
   note: Workbench の改名は names の workbench-to-playground。Console の画面の prompt generator と improver が旧 Workbench と一緒に消えたことは告知の文から読み取った（画面は確かめていない）。今の Prompt engineering overview は、下書きの生成に Claude Cookbook の metaprompt のノートブックを案内する
 - id: interactive-tutorial
   title: 公式インタラクティブチュートリアルが最新の作法
-  now: 基本の考え方の練習には使えるが、Claude 3 のモデル向けに書かれているので、食い違うところは Prompting best practices に従う（公式の文書もそう書く）。第 5 章の prefill（Speaking for Claude）や temperature を 0 にする呼び方は、今のモデルでは 400 エラーになる。
+  now: 基本の考え方の練習には使えるが、Claude 3 のモデル向けに書かれているので、食い違うところは Prompting best practices に従う（公式の文書もそう書く）。第 5 章の prefill（Speaking for Claude）は Claude 4.6 以降のモデルで、temperature を 0 にする呼び方は Claude 4.7 以降のモデルか API の版 2026-10-21 で、400 エラーになる。
   changed:
     date: '2026-02-05'
     until: '2026-04-20'
@@ -383,13 +385,13 @@ advice:
   principle:
   - 握る
   - 縛る
-  why_then: 2026-07 まではターミナルから始めるフラグが --remote で、2026-09 までは機能の名前も Claude Code on the web だった。
+  why_then: 以前は、ターミナルから始めるフラグが --remote で、機能の名前も Claude Code on the web だった。
   how_to_find: スクリプトや手順書で claude --remote を探し、--cloud に替える。--remote-control は別の機能（手元のセッションを他の端末から操る）なので替えない。
   sources:
   - cc-docs-claude-code-on-the-web
   - cc-docs-cli-reference
   checked: '2026-11-04'
-  note: 名前の変更が 2 つある行。時期は機能の名前の web-to-cloud-sessions を引く。フラグの変更は remote-to-cloud-flag（2026-07-03〜07-06）
+  note: 名前の変更が 2 つある行。時期は機能の名前の web-to-cloud-sessions を引く。フラグの変更は names の remote-to-cloud-flag
 - id: routines-name
   title: routines で定期実行を作る
   now: 今の名前は予定のタスク（cloud scheduled tasks）。claude.ai/code/routines か Desktop の Code タブ、CLI の /schedule で作る。一部の画面・URL・/routines の別名・API には旧名が残るが、同じ機能を指す。
@@ -398,7 +400,7 @@ advice:
   principle:
   - 縛る
   - 確かめる
-  why_then: 2026-10-20 ごろまでは、公式の文書の題も画面も routines で、作り方の記事はその名前で書かれた。
+  why_then: 以前は、公式の文書の題も画面も routines で、作り方の記事はその名前で書かれた。
   how_to_find: 記事の routine・routines の語を、予定のタスクに読み替える。手元で動く予定（Desktop の予定のタスク、/loop）は別の機能なので、どれを指すかを確かめる。
   sources:
   - cc-docs-routines
@@ -412,7 +414,7 @@ advice:
   principle:
   - 確かめる
   - 見せる
-  why_then: 2.1.118 より前は、費用は /cost、使い方の統計は /stats と、別のコマンドだった。
+  why_then: 以前は、費用は /cost、使い方の統計は /stats と、別のコマンドだった。
   how_to_find: 手順書やステータスラインの説明で /cost と /stats を探す。打てば動くので急がないが、新しく書く手順は /usage で書く。
   sources:
   - cc-docs-commands
@@ -425,7 +427,7 @@ advice:
   status: 置換
   principle:
   - 見せる
-  why_then: 2.1.77 より前は、会話の分岐のコマンドの名前が /fork だった。
+  why_then: 以前は、会話の分岐のコマンドの名前が /fork だった。
   how_to_find: 記事や手順書の /fork が、会話の分岐の意味かを見る。分岐の意味なら /branch に読み替える。今の /fork で写したセッションは agent view（claude agents）に並ぶ。
   sources:
   - cc-docs-commands
@@ -437,7 +439,7 @@ advice:
   changed:
     date: '2026-04-02'
     until: '2026-09-18'
-    note: /pr-comments は 2.1.91（2026-04-02。公式の文書の記述で、CHANGELOG に行はない）、/vim と /tag は 2.1.92（04-04）、ultraplan は 2.1.222（08-04）、TaskOutput は 2.1.83（03-25）で非推奨、2.1.277（09-18）で削除
+    note: /pr-comments は 2.1.91（2026-04-02。公式の文書の記述で、CHANGELOG に行はない）、/tag は 2.1.92（04-04。/vim は names の vim-to-editor-mode）、ultraplan は 2.1.222（08-04）、TaskOutput は 2.1.83（03-25）で非推奨、2.1.277（09-18）で削除
   status: 撤回
   principle:
   - 見せる
@@ -490,7 +492,7 @@ advice:
   status: 置換
   principle:
   - 握る
-  why_then: dynamic workflows が入った 2.1.154（2026-05-28）から 2.1.159 までは、workflow という語が起動のキーワードだった。超過分を払う仕組みの名前は、2.1.144 より前の Claude Code では extra usage だった。
+  why_then: dynamic workflows が入った当初は、workflow という語が起動のキーワードだった。超過分を払う仕組みの名前は、以前は extra usage だった。
   how_to_find: 頼み方の型やスキルで、workflow という語を起動のつもりで書いていないかを見る。手順書の extra usage・/extra-usage は、usage credits・/usage-credits に読み替える（旧名のコマンドも動く）。
   sources:
   - cc-changelog
@@ -498,7 +500,7 @@ advice:
   - cc-docs-workflows
   - cc-docs-commands
   checked: '2026-11-04'
-  note: 名前の変更が 2 つある行。時期は workflow-to-ultracode（2.1.160）を引く。超過分の呼び名は extra-usage-to-usage-credits（2.1.144）
+  note: 名前の変更が 2 つある行。時期は names の workflow-to-ultracode を引く。超過分の呼び名は names の extra-usage-to-usage-credits
 - id: ralph-loops
   title: Ralph プラグインや自作 bash ループで回し続ける
   now: 完了の条件を決めて続けさせるなら /goal、決まった間隔でくり返すなら /loop、大きな作業を多くのエージェントに分けるなら dynamic workflows を使う。無人で回すときは、止まる条件と使う量の上限を先に決める。
@@ -516,6 +518,7 @@ advice:
   - cc-changelog
   - cc-docs-changelog
   - cc-docs-goal
+  - cc-docs-cli-reference
   - cc-docs-scheduled-tasks
   - cc-docs-workflows
   checked: '2026-11-04'
@@ -565,7 +568,7 @@ advice:
   status: 置換
   principle:
   - 握る
-  why_then: 2026-10-30 より前は、Max の中に 5x と 20x の 2 つの段があった。
+  why_then: 以前は、Max の中に 5x と 20x の 2 つの段があった。
   how_to_find: 記事や社内の規程で Max 5x・Max 20x の語を探す。Max 20x は今の Ultra（契約は料金そのままで移った）。今の Max は 1 つの段で、Pro の 5 倍を持つ。
   sources:
   - hc-ultra-plan
@@ -593,16 +596,17 @@ advice:
   checked: '2026-11-04'
 - id: customize-tabs
   title: Customize の「Skills」「Connectors」「Plugins」の各タブで管理する
-  now: サイドバーの名前は「Plugins」になり、1 つの「Plugins」のページでプラグイン・スキル・コネクタを管理する（スキルとコネクタだけに絞り込める）。スキルはチャットの「+」か「/」で使う。
+  now: サイドバーの名前は「Plugins」に変わる途中で、変わった口座では 1 つの「Plugins」のページでプラグイン・スキル・コネクタを管理する（スキルとコネクタだけに絞り込める）。展開の途中なので、サイドバーに「Customize」が出る口座は、まだ前の画面（Skills・Connectors・Plugins の各タブ）のままである。スキルはチャットの「+」か「/」で使う。
   name: customize-to-plugins
   status: 置換
   principle:
   - 見せる
   why_then: 2026-02-25 に Claude Desktop に、スキル・プラグイン・コネクタをまとめる Customize の区画が入り、その中のタブで管理した。
-  how_to_find: 手順書の「Customize > Skills」のような道順を探し、「Plugins」のページの道順に読み替える。Team と Enterprise で「Skills」を切っている組織は、2026-11-30 から Desktop のプラグインも止まる。
+  how_to_find: 手順書の「Customize > Skills」のような道順を探し、「Plugins」のページの道順に読み替える。自分の口座がどちらの画面かは、サイドバーに「Customize」と「Plugins」のどちらが出るかで分かる（公式の記事にも、Cowork とチャットが一つになった体験の記事のように、まだ「Customize > Connectors」と書くものがある）。Team と Enterprise で「Skills」を切っている組織は、2026-11-30 から Desktop のプラグインも止まる。
   sources:
   - hc-plugins-page
   - hc-release-notes
+  - hc-cowork-and-chat
   checked: '2026-11-04'
 - id: lower-temperature
   title: temperature（や top_p・top_k）を下げて出力を安定させる

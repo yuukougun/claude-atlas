@@ -8,6 +8,10 @@
 # - 除いたもの：注記・訂正の付いた主張の根拠にだけ出てくる URL、開けなかった URL、AI の利用を断るドメイン（報告の §5）
 # - 並び：公式文書 → CHANGELOG → リリースノート → 公式ブログ → 研究 → 実践者 → 報道（同じ種類の中は id の順）
 # - 一覧は「materials がたどる節にある出典」で、ページの本文に全部を使うという意味ではない。値は執筆の時に一次資料で確かめる
+# - 2026-11-04（工程6b の直し）：robots.txt で Anthropic のクローラを禁じる media.defcon.org の出典と、Reddit の第三者の写し
+#   （reddit.sentinel-team.org）を外した。主題から遠い出典（調査資料の節や章のリンクを全部拾ったもの）を、does-more-than-asked・
+#   how-usage-limits-work・rewind-dont-correct など 11 ページで外し、keeps-stopping・how-attachments-are-read・block-with-exit-2 には
+#   要の出典を足した（外した理由と残りは planning/batches/step6/fix-DF.md）
 # - 出典の一覧があるページ：134／136
 
 pages:
@@ -75,7 +79,6 @@ pages:
   - vasconcelos-2023-explanations-overreliance
   - battlecode-2026-lorem-ipsum-pdf
   - chokudai-competitive-programming-genai-2025
-  - defcon33-claude-ctf-scoreboard
   - kiri8128-ahc-without-annealing
   - lukyanenko-rogii-geosteering-kaggle
   - nvidia-winning-kaggle-competition-generative-ai
@@ -587,34 +590,14 @@ pages:
   - cc-changelog
   - anthropic-research-code-expertise
   - arxiv-2403-08937
-  - arxiv-2412-14137
-  - arxiv-2504-00025
-  - arxiv-2506-02954
   - arxiv-2506-22954
-  - arxiv-2507-15251
-  - arxiv-2507-15822
-  - arxiv-2510-09907
-  - arxiv-2605-15229
-  - arxiv-2609-04909
 - id: does-more-than-asked
   sources:
   - api-docs-prompting-best-practices
   - api-docs-prompting-opus-5
   - cc-docs-best-practices
   - arxiv-2403-08937
-  - arxiv-2412-14137
-  - arxiv-2502-08177
-  - arxiv-2503-11656
-  - arxiv-2504-00025
-  - arxiv-2506-02954
-  - arxiv-2506-22954
-  - arxiv-2507-15251
-  - arxiv-2507-15822
-  - arxiv-2509-16533
-  - arxiv-2510-09907
   - arxiv-2603-00539
-  - arxiv-2605-15229
-  - arxiv-2609-04909
   - awesomeclaude-code-tips
   - dolthub-claude-code-gotchas
   - jitendrazaa-tips-code-tips-creator-boris
@@ -624,8 +607,10 @@ pages:
   sources:
   - api-docs-effort
   - api-docs-models-overview
+  - api-docs-prompting-best-practices
   - api-docs-prompting-claude-sonnet-5-5
   - cc-docs-model-config
+  - cc-docs-permission-modes
   - cc-docs-permissions
   - cc-changelog
   - cc-docs-changelog
@@ -685,7 +670,6 @@ pages:
   - api-release-notes
   - anthropic-eng-demystifying-evals-ai-agents
   - anthropic-research-tracing-thoughts-language-model
-  - defcon33-claude-ctf-scoreboard
 - id: uses-nonexistent-apis
   sources:
   - api-docs-prompting-best-practices
@@ -693,9 +677,7 @@ pages:
   - cc-docs-costs
   - arxiv-2403-08937
   - arxiv-2406-10279
-  - arxiv-2504-00025
   - arxiv-2506-09050
-  - arxiv-2506-22954
   - arxiv-2507-15224
   - arxiv-2509-04664
   - arxiv-2605-17062
@@ -750,13 +732,7 @@ pages:
 - id: summary-overstates-source
   sources:
   - cc-docs-output-styles
-  - arxiv-2403-08937
   - arxiv-2504-00025
-  - arxiv-2506-22954
-  - arxiv-2607-03303
-  - pmc-kestin-2025-ai-tutoring
-  - pnas-bastani-2025-genai-learning
-  - qiita-kmat67916008-d7586a
 - id: forgets-in-long-chats
   sources:
   - cc-docs-best-practices
@@ -776,14 +752,7 @@ pages:
   - cc-docs-features-overview
   - anthropic-eng-effective-context-engineering-ai
   - anthropic-research-code-expertise
-  - arxiv-2403-08937
-  - arxiv-2412-14137
-  - arxiv-2506-02954
-  - arxiv-2506-22954
-  - arxiv-2507-15251
   - arxiv-2507-15822
-  - arxiv-2510-09907
-  - arxiv-2605-15229
   - arxiv-2609-04909
   - chroma-research-context-rot
   - qiita-ennagara128-0f3516
@@ -942,7 +911,6 @@ pages:
   - stanford-scaling-blogs-kernelbenchv01
   - battlecode-2025-the-kragle-pdf
   - battlecode-2026-lorem-ipsum-pdf
-  - defcon33-claude-ctf-scoreboard
   - drivendata-ai-agents-data-science-competitions
   - jeremytian-code-loop-improve
   - speakerdeck-tatyam-ding-shu-bei
@@ -968,7 +936,6 @@ pages:
   - cc-changelog
   - cc-docs-changelog
   - anthropic-eng-harness-design-long-running
-  - defcon33-claude-ctf-scoreboard
   - drivendata-ai-agents-data-science-competitions
   - jeremytian-code-loop-improve
   - speakerdeck-twada-agentic-software-engineering
@@ -1297,9 +1264,9 @@ pages:
   - cc-issue-99704
 - id: block-with-exit-2
   sources:
-  - cc-docs-costs
   - cc-docs-features-overview
   - cc-docs-hooks
+  - cc-docs-hooks-guide
   - cc-docs-permissions
   - cc-docs-sandboxing
 - id: agent-loop
@@ -1368,9 +1335,7 @@ pages:
   - arxiv-2509-04664
 - id: summary-overgeneralization
   sources:
-  - arxiv-2403-08937
   - arxiv-2504-00025
-  - arxiv-2506-22954
   - qiita-kmat67916008-d7586a
 - id: what-survives-compaction
   sources:
@@ -1424,7 +1389,6 @@ pages:
   - api-release-notes
   - anthropic-eng-code-auto-mode
   - anthropic-news-updates-our-consumer-terms
-  - claude-blog-articles
   - checkpoint-rce-api-token-exfiltration-through
   - meta-ai-practical-ai-agent-security
   - simonwillison-newsletter-new-prompt-injection-papers-agents
@@ -1453,21 +1417,15 @@ pages:
   - ndl-current-mext-genai-guideline-v2
 - id: how-usage-limits-work
   sources:
-  - anthropic-legal-aup
-  - api-docs-opus-4-6-overview
-  - cc-docs-data-usage
   - cc-docs-desktop
   - cc-docs-features-overview
   - cc-docs-interactive-mode
   - cc-docs-settings-reference
   - claude-pricing
   - hc-claude-code-plan
-  - hc-cyber-verification-program
-  - hc-exceptions-our-usage-policy
   - hc-fable-models-plan
   - hc-ja-15910845
   - hc-max-plan
-  - hc-preferred-language
   - hc-ultra-plan
   - hc-usage-limit-best-practices
   - hc-usage-limits
@@ -1490,7 +1448,6 @@ pages:
   - cc-docs-costs
   - api-release-notes
   - anthropic-eng-effective-context-engineering-ai
-  - claude-blog-articles
   - anthropic-research-tracing-thoughts-language-model
   - arxiv-2509-04664
   - dylancastillo-til-counting-tokens
@@ -1603,15 +1560,7 @@ pages:
   - cc-changelog
   - anthropic-research-code-expertise
   - arxiv-2403-08937
-  - arxiv-2412-14137
-  - arxiv-2504-00025
-  - arxiv-2506-02954
   - arxiv-2506-22954
-  - arxiv-2507-15251
-  - arxiv-2507-15822
-  - arxiv-2510-09907
-  - arxiv-2605-15229
-  - arxiv-2609-04909
   - mitchellh-writing-ai-adoption-journey
   - paddo-boris-uses-code
   - ronacher-year-vibes
@@ -1622,17 +1571,12 @@ pages:
   - analyticsvidhya-code-best-practices-analysis
 - id: rewind-dont-correct
   sources:
-  - anthropic-constitution
-  - anthropic-legal-aup
   - api-docs-opus-4-6-overview
   - api-docs-sonnet-5-overview
   - cc-docs-best-practices
   - cc-docs-desktop
   - cc-docs-errors
   - cc-docs-mcp
-  - hc-cyber-verification-program
-  - hc-exceptions-our-usage-policy
-  - hc-our-approach-user-safety
   - hc-output-blocked
   - hc-safeguards
   - chroma-research-context-rot
@@ -1781,7 +1725,6 @@ pages:
   - anthropic-research-tracing-thoughts-language-model
   - arxiv-2509-04664
   - chokudai-competitive-programming-genai-2025
-  - defcon33-claude-ctf-scoreboard
 - id: fact-checking
   sources:
   - api-docs-prompting-opus-5
@@ -1834,12 +1777,9 @@ pages:
 - id: how-attachments-are-read
   sources:
   - api-docs-build-with-claude-overview
-  - api-docs-compaction
-  - api-docs-prompt-caching
+  - api-docs-files
   - api-docs-reduce-hallucinations
   - hc-files
-  - hc-memory
-  - hc-personalization
   - hc-upload-files
   - hc-usage-limits
   - api-release-notes
@@ -1993,7 +1933,6 @@ pages:
   - qiita-hikariclaude01-e54c70
   - qiita-jyas-9cc733
   - rcanand-code-just-got-confusing-plan
-  - reddit-snapshot-1qspcip
   - redreamality-library-writing-good
   - sankalp-code-tips-techniques-hn-community
   - serverworks-claude-md-guide
@@ -2138,8 +2077,6 @@ pages:
   - mitchellh-writing-ai-adoption-journey
   - paddo-boris-uses-code
   - paddo-ralph-wiggum-autonomous-loops
-  - reddit-snapshot-1qspcip
-  - reddit-snapshot-1uk434i
   - infoq-code-creator-workflow
   - theneuron-explainer-codes-creator-just-dropped
 - id: humans-set-the-parallel-limit
@@ -2157,8 +2094,6 @@ pages:
   - mitchellh-writing-ai-adoption-journey
   - paddo-boris-uses-code
   - paddo-ralph-wiggum-autonomous-loops
-  - reddit-snapshot-1qspcip
-  - reddit-snapshot-1uk434i
   - simonwillison-parallel-coding-agents
   - simonwillison-pragmatic-summit
   - zenn-resqnet-a1cfd81a
@@ -2440,7 +2375,6 @@ pages:
   - qiita-hikariclaude01-e54c70
   - qiita-jyas-9cc733
   - rcanand-code-just-got-confusing-plan
-  - reddit-snapshot-1qspcip
   - redreamality-library-writing-good
   - serverworks-claude-md-guide
   - shareuhack-code-setup-guide
@@ -2476,7 +2410,6 @@ pages:
   - sakana-ahc058
   - cc-issue-46940
   - cc-issue-64286
-  - defcon33-claude-ctf-scoreboard
   - drivendata-ai-agents-data-science-competitions
   - includesecurity-ctfs-ai-era
   - jeremytian-code-loop-improve

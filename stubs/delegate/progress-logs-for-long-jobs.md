@@ -19,6 +19,7 @@ signs:
   - {type: symptom, text: 長いジョブのログが大きすぎて、Claude が状況を追えない}
 prerequisites: [progress-files]
 related: [checking-unattended-runs, experiment-log, build-observation-tools, goal-until-done, agent-view-and-background, handoff-documents, long-running-agent-context, compact-and-auto-compact, completion-notifications, blames-the-tools]
+tracks: [monitor-tool]
 sources: []
 volatility: 低
 stage: stub
