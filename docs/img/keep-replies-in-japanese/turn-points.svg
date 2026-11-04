@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="470" viewBox="0 0 400 470" role="img" aria-labelledby="t d" font-family="sans-serif">
+  <title id="t">1 ターンの流れと、英語が出る場所に届くフック</title>
+  <desc id="d">依頼、ツールの呼び出し、ツールの合間の一言、最後の返事の順に進む 1 ターンの図。次のツールの実行は PreToolUse で止められる。ツールの合間の一言は MessageDisplay が表示を差し替えるだけで止められない。最後の返事は Stop で続けさせて書き直させられる。どの仕組みでも、英語は止める前に一度画面に出る。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#555555"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="400" height="470" fill="#ffffff"/>
+
+  <text x="200" y="26" font-size="15" font-weight="bold" text-anchor="middle" fill="#222222">1 ターンの流れと、英語が出る場所</text>
+  <text x="96" y="52" font-size="12" text-anchor="middle" fill="#555555">流れ</text>
+  <text x="297" y="52" font-size="12" text-anchor="middle" fill="#555555">届くフック</text>
+
+  <!-- 流れ（左） -->
+  <rect x="12" y="62" width="168" height="40" rx="6" fill="#f4f4f4" stroke="#666666" stroke-width="1.5"/>
+  <text x="96" y="87" font-size="13" text-anchor="middle" fill="#222222">1. 依頼を日本語で頼む</text>
+  <line x1="96" y1="102" x2="96" y2="124" stroke="#555555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="12" y="126" width="168" height="52" rx="6" fill="#f4f4f4" stroke="#666666" stroke-width="1.5"/>
+  <text x="96" y="148" font-size="13" text-anchor="middle" fill="#222222">2. ツールを呼ぶ</text>
+  <text x="96" y="166" font-size="13" text-anchor="middle" fill="#222222">英語の出力が返る</text>
+  <line x1="96" y1="178" x2="96" y2="200" stroke="#555555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="12" y="202" width="168" height="58" rx="6" fill="#fff1cf" stroke="#b45f06" stroke-width="2.5"/>
+  <text x="96" y="226" font-size="13" text-anchor="middle" fill="#222222">3. ツールの合間の一言</text>
+  <text x="96" y="246" font-size="13" font-weight="bold" text-anchor="middle" fill="#7a3f00">英語が出やすい</text>
+  <line x1="96" y1="260" x2="96" y2="298" stroke="#555555" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="104" y="284" font-size="12" fill="#555555">2 と 3 をくり返す</text>
+
+  <rect x="12" y="300" width="168" height="58" rx="6" fill="#fff1cf" stroke="#b45f06" stroke-width="2.5"/>
+  <text x="96" y="324" font-size="13" text-anchor="middle" fill="#222222">4. 最後の返事</text>
+  <text x="96" y="344" font-size="13" font-weight="bold" text-anchor="middle" fill="#7a3f00">英語になることがある</text>
+
+  <!-- 届くフック（右） -->
+  <line x1="180" y1="152" x2="206" y2="152" stroke="#888888" stroke-width="1.5"/>
+  <rect x="206" y="126" width="182" height="52" rx="6" fill="#eaf2fd" stroke="#1a5fb4" stroke-width="2.5"/>
+  <text x="297" y="148" font-size="13" font-weight="bold" text-anchor="middle" fill="#123b73">PreToolUse</text>
+  <text x="297" y="166" font-size="12" text-anchor="middle" fill="#222222">次のツールを止められる</text>
+
+  <line x1="180" y1="231" x2="206" y2="231" stroke="#888888" stroke-width="1.5"/>
+  <rect x="206" y="202" width="182" height="58" rx="6" fill="#fdecee" stroke="#b00020" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <text x="297" y="222" font-size="13" font-weight="bold" text-anchor="middle" fill="#7a0016">MessageDisplay</text>
+  <text x="297" y="239" font-size="12" text-anchor="middle" fill="#222222">表示を差し替えるだけ</text>
+  <text x="297" y="254" font-size="12" font-weight="bold" text-anchor="middle" fill="#7a0016">止められない</text>
+
+  <line x1="180" y1="329" x2="206" y2="329" stroke="#888888" stroke-width="1.5"/>
+  <rect x="206" y="300" width="182" height="58" rx="6" fill="#eaf2fd" stroke="#1a5fb4" stroke-width="2.5"/>
+  <text x="297" y="320" font-size="13" font-weight="bold" text-anchor="middle" fill="#123b73">Stop</text>
+  <text x="297" y="337" font-size="12" text-anchor="middle" fill="#222222">英語なら続けさせて</text>
+  <text x="297" y="352" font-size="12" text-anchor="middle" fill="#222222">書き直させる</text>
+
+  <!-- 凡例 -->
+  <rect x="12" y="378" width="28" height="14" fill="#eaf2fd" stroke="#1a5fb4" stroke-width="2.5"/>
+  <text x="50" y="390" font-size="12" fill="#222222">止められる（実線の枠）</text>
+  <rect x="12" y="400" width="28" height="14" fill="#fdecee" stroke="#b00020" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <text x="50" y="412" font-size="12" fill="#222222">止められない（破線の枠）</text>
+  <rect x="12" y="422" width="28" height="14" fill="#fff1cf" stroke="#b45f06" stroke-width="2.5"/>
+  <text x="50" y="434" font-size="12" fill="#222222">英語が出やすい場所</text>
+  <text x="12" y="458" font-size="12" fill="#222222">どの仕組みでも、英語は止める前に一度画面に出る。</text>
+</svg>

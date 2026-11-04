@@ -1,0 +1,16 @@
+# 数値の提案（keep-replies-in-japanese。手引き §21 の形）。メインが data/facts.yml の facts に写す
+# 本文は、この値を使う場所に数字を書いていない（stop-hook の節の「続けて止められる回数に上限がある」の項目）。
+# facts に足したら、その項目の文末に <!-- fact:begin stop-hook-block-cap --><!-- fact:end --> を置く
+proposals:
+  - fact:
+      id: stop-hook-block-cap
+      title: Stop フックが続けて止められる回数の上限
+      value: 8
+      unit: 回
+      sentence: "続けて止められるのは {value} {unit}まで"
+      sources: [cc-docs-hooks]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: Hooks reference の Stop input の節（2026-11-04 に読んだ）による。Stop フックが続けて 8 回ターンを続けさせた後、次の差し戻しは無視されてターンが終わる。Claude がツールを呼ぶと数え直す。上限は環境変数 CLAUDE_CODE_STOP_HOOK_BLOCK_CAP で変えられる。research/27 は入った版を 2.1.143 とするが、この提案では確かめていない
+    used_in: [keep-replies-in-japanese#stop-hook, stop-hooks#block-cap]

@@ -1,0 +1,14 @@
+# 期待の形（試作で決める案）：title・place・safety・features は道具が読む。conditions・expect・control は実機の確認の材料
+title: Stop フックの登録（settings）
+place: local                 # .claude/settings.local.json。常用するときは ~/.claude/settings.json に移す
+safety: false
+features: [hooks]
+conditions:
+  - .claude/hooks/require-japanese.py を置いてある
+  - 新しいセッションで試す
+expect:
+  - when: 英語のファイルを読ませて、英語で要約するよう頼む
+    then: 最後の返事の後にフックが差し戻し、続きの返事が日本語になる
+  - when: 差し戻した後の返事も英語のまま
+    then: 2 回目は差し戻さず、ターンが終わる（stop_hook_active）
+control: 登録しないとき、同じ依頼の最後の返事は英語のままターンが終わる

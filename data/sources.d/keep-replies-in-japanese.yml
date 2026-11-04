@@ -1,0 +1,11 @@
+# keep-replies-in-japanese が新しく足す出典。ドメイン（platform.claude.com）は data/sources.yml の domains で確かめ済み
+# cc-docs-cloud-environments は data/sources.d/claude-md-vs-rules-skills-styles.yml が同じ URL で足したので、足さずに id で指す
+sources:
+  - id: api-docs-multilingual-support
+    url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
+    title: Multilingual support
+    kind: 公式文書
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-04'
+    note: 「Set the response language」の節（返答の言語は会話から推測されるが、本番ではシステムプロンプトで明示するのが最も確実）

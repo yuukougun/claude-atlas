@@ -1,0 +1,14 @@
+# 期待の形（試作で決める案）：title・place・safety・features は道具が読む。conditions・expect・control は実機の確認の材料
+title: language の設定（個人の設定に置く）
+place: user                  # ~/.claude/settings.json
+safety: false
+features: [language-setting]
+conditions:
+  - リポジトリの .claude/settings.json と .claude/settings.local.json に language がない
+  - 新しいセッションで試す
+expect:
+  - when: /status を開く
+    then: Setting sources の行に User settings が出る
+  - when: 英語で最初の依頼を書く
+    then: 自動で付くセッションの題名が日本語になる
+control: 雛形を置かないとき、英語で最初の依頼を書くと、セッションの題名は英語になる

@@ -45,6 +45,7 @@
 - `check_pages.py --page agreement-is-not-evidence`：エラー 0・警告 0
 - `npm run lint:text`（自分のページ）：エラー 0・警告 1。残したのは 43:52 の `arabic-kanji-numbers`（「五つ」）で、`human-pitfalls` の題名が出所。直しの途中で出た `no-doubled-joshi` の警告 3 件は言い換えて 0 にした
 - `check_templates.py`・`render_pages.py`・`check_svg.py`：流していない（雛形と図がない。描画はメインが流す）
+- 使用量の上限で中断したあとの再開時に、上の 3 つを流し直し、同じ結果を確かめた（gen_site は書き換え 0 ファイル、check_pages はエラー 0・警告 0、lint は自分のページがエラー 0・警告 1〔同じ 43:52〕）。報告の 16 件の扱いは、ページ本体と 1 件ずつ照らして合っていた。ページは再開後に直していない
 
 ## 8. 確かめていないこと
 
@@ -57,3 +58,4 @@
 
 - 道具の呼び出し 約 21 回（Read 7・Bash 9・Edit 3・Write 2）。Web の取得 0 回。時間は計っていない
 - §2 の 3 ファイルのほかに読んだもの：`verify-clarity.md`（直す元）・ページ本体・`write.md`
+- 再開後の確認：道具の呼び出し 約 14 回（Read 8・Bash 4・Edit 2）。Web の取得 0 回。上の約 21 回には含めていない

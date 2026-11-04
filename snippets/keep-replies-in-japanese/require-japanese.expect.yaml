@@ -1,0 +1,22 @@
+# 期待の形（試作で決める案）：title・place・safety・features は道具が読む。conditions・expect・control は実機の確認の材料
+title: Stop フックのスクリプト（最後の返事が英語なら書き直させる）
+place: project               # .claude/hooks/require-japanese.py。登録は hook-settings
+safety: false
+features: [hooks]
+conditions:
+  - python3 が使える（WSL・Linux を基準にする）
+  - 標準入力に Stop フックの JSON を受け取る
+expect:
+  - when: last_assistant_message が英語の文章で、stop_hook_active が false
+    then: 標準出力に decision が block の JSON を 1 つ出し、終了コードは 0
+  - when: last_assistant_message が日本語の文章
+    then: 何も出さず、終了コードは 0
+  - when: stop_hook_active が true
+    then: 何も出さず、終了コードは 0（止め続けない）
+  - when: 英字の少ない短い返事
+    then: 何も出さず、終了コードは 0
+  - when: 環境変数 ALLOW_ENGLISH_REPLY が 1
+    then: 何も出さず、終了コードは 0
+  - when: 標準入力が JSON として読めない
+    then: 何も出さず、終了コードは 0
+control: フックを登録しないとき、英語の最後の返事はそのままターンが終わる

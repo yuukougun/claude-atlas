@@ -1,0 +1,111 @@
+# competition-rules の出典（執筆の担当が足す。形は schema/sources.schema.json、data/sources.yml と同じ）
+# - 2026-11-04 に、主催者の一次資料を自分で読んで確かめたものだけを入れる。atcoder.jp と codeforces.com は開かないので、
+#   出典にしない（本文に外のサイトへのリンクとして置く）
+# - 既にある出典（isucon2026-regulation・prtimes-u22-programming-contest-2026）は data/sources.yml のものを使う
+domains:
+- domain: x.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://x.com/atcoder/status/2112818192007754017
+  note: meta robots は index, follow。robots.txt は * に Disallow を置き、AI 向けの指定は Google-Extended だけ。投稿は X の oEmbed（publish.x.com）で読み、投稿の中のリンクはたどっていない（research/24 の P-4）
+- domain: ieeextreme.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://ieeextreme.org/rules/
+  note: robots.txt に AI 向けのクローラへの指定はない
+- domain: contest.ucup.ac
+  checked: '2026-11-04'
+  noai: false
+  url: https://contest.ucup.ac/blog/4263
+  note: 転送後は https://contest.ucup.ac/blog/qingyu/blog/4263。robots の meta と robots.txt に AI 向けの指定はない
+- domain: euc.icpc.global
+  checked: '2026-11-04'
+  noai: false
+  url: https://euc.icpc.global/home-2026/rules/
+  note: robots.txt に AI 向けのクローラへの指定はない
+- domain: procon.gr.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.procon.gr.jp/
+  note: robots の meta と robots.txt に AI 向けの指定はない
+sources:
+- id: atcoder-x-ahc-trial-contest-2026-10-15
+  url: https://x.com/atcoder/status/2110637070117224505
+  title: 'AtCoder 公式 X：長期AHC生成AI利用ルール検証コンテスト開催のお知らせ（2026-10-15）'
+  kind: 公式ブログ
+  publisher: AtCoder
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-15'
+  note: 主催者の公式 X の投稿。本文は X の oEmbed で読み、投稿の中のリンク（atcoder.jp）はたどっていない
+- id: atcoder-x-long-ahc-divisions-2026-10-21
+  url: https://x.com/atcoder/status/2112818192007754017
+  title: 'AtCoder 公式 X：今後の長期AHCの開催形式について（2026-10-21）'
+  kind: 公式ブログ
+  publisher: AtCoder
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-21'
+  note: 主催者の公式 X の投稿。本文は X の oEmbed で読み、投稿の中のリンク（atcoder.jp）はたどっていない
+- id: atcoder-x-ahc074-2026-10-30
+  url: https://x.com/atcoder/status/2116092762827509984
+  title: 'AtCoder 公式 X：AHC074 の開催のお知らせ（2026-10-30）'
+  kind: 公式ブログ
+  publisher: AtCoder
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-30'
+  note: 主催者の公式 X の投稿。本文は X の oEmbed で読み、投稿の中のリンク（atcoder.jp）はたどっていない
+- id: atcoder-x-abc-arc-rule-change-2024-11-15
+  url: https://x.com/atcoder/status/1857413796391981490
+  title: 'AtCoder 公式 X：生成AIの技術向上に伴うABCおよびARCにおけるルール変更について（2024-11-15）'
+  kind: 公式ブログ
+  publisher: AtCoder
+  lang: ja
+  checked: '2026-11-04'
+  published: '2024-11-15'
+  note: 主催者の公式 X の投稿。本文は X の oEmbed で読み、投稿の中のリンク（atcoder.jp）はたどっていない。変更の中身は読んでいない
+- id: atcoder-x-abc426-rule-change-2025-10-04
+  url: https://x.com/atcoder/status/1974339453234917615
+  title: 'AtCoder 公式 X：生成AI対策ルールの変更の告知（ABC426 から適用。2025-10-04）'
+  kind: 公式ブログ
+  publisher: AtCoder
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-10-04'
+  note: 主催者の公式 X の投稿。本文は X の oEmbed で読み、投稿の中のリンク（atcoder.jp）はたどっていない。変更の中身は読んでいない
+- id: ieeextreme-rules
+  url: https://ieeextreme.org/rules/
+  title: 'IEEEXtreme Rules（IEEEXtreme 20.0 の AI-Permitted and AI-Prohibited Tasks の節を含む）'
+  kind: 公式文書
+  publisher: IEEE（IEEEXtreme）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+  note: ページの時刻は 2026-10-30T22:38:35+00:00。更新日とは書かれていない
+- id: ucup-4th-semifinals-blog
+  url: https://contest.ucup.ac/blog/qingyu/blog/4263
+  title: The 4th Universal Cup Semifinals
+  kind: 公式ブログ
+  publisher: Universal Cup
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-08-26'
+  note: 転送元は https://contest.ucup.ac/blog/4263。規則の PDF（qoj.ac）は開いていない
+- id: icpc-euc-2026-rules
+  url: https://euc.icpc.global/home-2026/rules/
+  title: ICPC Europe Championship 2026 — Official Rules
+  kind: 公式文書
+  publisher: ICPC Foundation（ICPC Europe）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-12-02'
+  note: 規則の末尾（13. Revisions の節）に Last updated 02 December 2025 がある。ページのフッター（ICPC Foundation・Copyright の行）にも Updated 04 Mar 2026 の表記があるが、規則の更新日とは限らない。規則の冒頭に、規則を 2025 年 12 月末までに確定するという注記がある。大会は 2026-02-06〜08 に開かれた（規則のページの記述。2026-11-04 に確かめた）
+- id: procon-gr-jp-37th
+  url: https://www.procon.gr.jp/
+  title: 第37回全国高等専門学校プログラミングコンテスト 香川（高松）大会（トップページ）
+  kind: 公式文書
+  publisher: 全国高等専門学校プログラミングコンテスト
+  lang: ja
+  checked: '2026-11-04'
+  note: トップページは大会ごとに内容が替わる。2026-11-04 に読んだのは第37回の内容。行動規範と応募要領の PDF は開いていない

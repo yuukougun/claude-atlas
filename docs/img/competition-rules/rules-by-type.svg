@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" lang="ja" viewBox="0 0 400 616" width="400" height="616" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif" role="img">
+  <title>主な大会を規則の三類型に置いた図</title>
+  <desc>禁止・部門分け・許可と開示の三類型の欄に、一次資料で類型を確かめた大会を置く。禁止の欄は、禁止と確かめた大会がまだないので空である。AI の文言を見つけていない大会と、類型を確かめていない大会は、三類型の外の欄に置く。部門分けは AtCoder 長期 AHC と IEEEXtreme 20.0、許可と開示は ISUCON2026 と U-22 プログラミング・コンテスト2026。確認日は 2026-11-04。</desc>
+  <rect x="0" y="0" width="400" height="616" fill="#ffffff"/>
+
+  <text x="12" y="24" font-size="14" font-weight="700" fill="#1a1a1a">主な大会を規則の三類型に置く</text>
+  <text x="12" y="44" font-size="12" fill="#333333">実線の枠＝類型を一次資料で確かめた大会</text>
+  <text x="12" y="62" font-size="12" fill="#333333">破線の枠＝類型を置けない大会（文言なし・未確認）</text>
+
+  <!-- 禁止 -->
+  <rect x="6" y="74" width="388" height="58" rx="6" fill="#f3f5f7" stroke="#8a95a1" stroke-width="1"/>
+  <text x="14" y="98" font-size="14" font-weight="700" fill="#1a1a1a">禁止</text>
+  <text x="14" y="116" font-size="12" fill="#333333">AI を認めない</text>
+  <rect x="104" y="80" width="284" height="46" rx="4" fill="#ffffff" stroke="#5b6672" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text x="112" y="99" font-size="12" fill="#1a1a1a">禁止と確かめた大会は、まだない</text>
+  <text x="112" y="116" font-size="12" fill="#1a1a1a">禁止の大会がない、という意味ではない</text>
+
+  <!-- 部門分け -->
+  <rect x="6" y="140" width="388" height="164" rx="6" fill="#f3f5f7" stroke="#8a95a1" stroke-width="1"/>
+  <text x="14" y="162" font-size="14" font-weight="700" fill="#1a1a1a">部門分け</text>
+  <text x="14" y="180" font-size="12" fill="#333333">部門や課題で</text>
+  <text x="14" y="196" font-size="12" fill="#333333">規則を分ける</text>
+  <rect x="104" y="146" width="284" height="82" rx="4" fill="#ffffff" stroke="#2f3b48" stroke-width="1.5"/>
+  <text x="112" y="165" font-size="12.5" font-weight="700" fill="#1a1a1a">AtCoder 長期 AHC</text>
+  <text x="112" y="183" font-size="12" fill="#1a1a1a">Human Only 部門：生成 AI 禁止</text>
+  <text x="112" y="200" font-size="12" fill="#1a1a1a">With AI 部門：生成 AI 使用可</text>
+  <text x="112" y="217" font-size="12" fill="#1a1a1a">使える範囲は未確認</text>
+  <rect x="104" y="234" width="284" height="64" rx="4" fill="#ffffff" stroke="#2f3b48" stroke-width="1.5"/>
+  <text x="112" y="253" font-size="12.5" font-weight="700" fill="#1a1a1a">IEEEXtreme 20.0</text>
+  <text x="112" y="271" font-size="12" fill="#1a1a1a">AI を禁じる課題</text>
+  <text x="112" y="288" font-size="12" fill="#1a1a1a">AI を許す課題（使った AI を記す）</text>
+
+  <!-- 許可と開示 -->
+  <rect x="6" y="312" width="388" height="130" rx="6" fill="#f3f5f7" stroke="#8a95a1" stroke-width="1"/>
+  <text x="14" y="334" font-size="14" font-weight="700" fill="#1a1a1a">許可と開示</text>
+  <text x="14" y="352" font-size="12" fill="#333333">AI を認め、</text>
+  <text x="14" y="368" font-size="12" fill="#333333">説明を求める</text>
+  <rect x="104" y="318" width="284" height="64" rx="4" fill="#ffffff" stroke="#2f3b48" stroke-width="1.5"/>
+  <text x="112" y="337" font-size="12.5" font-weight="700" fill="#1a1a1a">ISUCON2026</text>
+  <text x="112" y="355" font-size="12" fill="#1a1a1a">AI によるコードの分析と生成を許す</text>
+  <text x="112" y="372" font-size="12" fill="#1a1a1a">許可の項目だけ確認（開示は未確認）</text>
+  <rect x="104" y="388" width="284" height="48" rx="4" fill="#ffffff" stroke="#2f3b48" stroke-width="1.5"/>
+  <text x="112" y="407" font-size="12.5" font-weight="700" fill="#1a1a1a">U-22 プログラミング・コンテスト2026</text>
+  <text x="112" y="425" font-size="12" fill="#1a1a1a">AI の使い方を応募時に説明する</text>
+
+  <!-- 三類型の外 -->
+  <rect x="6" y="450" width="388" height="118" rx="6" fill="#ffffff" stroke="#8a95a1" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="14" y="472" font-size="14" font-weight="700" fill="#1a1a1a">類型を</text>
+  <text x="14" y="490" font-size="14" font-weight="700" fill="#1a1a1a">置けない</text>
+  <text x="14" y="508" font-size="12" fill="#333333">文言なし・</text>
+  <text x="14" y="524" font-size="12" fill="#333333">未確認</text>
+  <rect x="104" y="456" width="284" height="42" rx="4" fill="#ffffff" stroke="#5b6672" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text x="112" y="474" font-size="12.5" font-weight="700" fill="#1a1a1a">AI の文言なし</text>
+  <text x="112" y="491" font-size="12" fill="#1a1a1a">ICPC EUC 2026、高専プロコン</text>
+  <rect x="104" y="504" width="284" height="58" rx="4" fill="#ffffff" stroke="#5b6672" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text x="112" y="522" font-size="12.5" font-weight="700" fill="#1a1a1a">未確認（リンクだけを置く）</text>
+  <text x="112" y="539" font-size="12" fill="#1a1a1a">ABC・ARC・AGC、短期 AHC、Codeforces、</text>
+  <text x="112" y="554" font-size="12" fill="#1a1a1a">Universal Cup</text>
+
+  <text x="12" y="590" font-size="12" fill="#333333">確認日 2026-11-04 の配置。規則は回ごとに変わるので、</text>
+  <text x="12" y="606" font-size="12" fill="#333333">出る前に一次資料で今の規則を読む。</text>
+</svg>

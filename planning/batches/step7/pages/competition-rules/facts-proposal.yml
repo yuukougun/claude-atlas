@@ -1,0 +1,84 @@
+# 数値の提案：competition-rules（執筆の担当が書き、直しの担当が分かりやすさの指摘 3・5・6・11・15 で直した版。手引き §21 の形）
+# - fact は data/facts.yml の facts の1項目と同じ形（schema/facts.schema.json）。メインがそのまま写せる
+# - 値は、2026-11-04 に主催者の一次資料を自分で読んで確かめたものだけ。atcoder.jp・codeforces.com は開かない（decisions
+#   2026-11-03「大会の規則の版」）ので、ABC・ARC・AGC・短期 AHC・Codeforces の行は、類型も版も「未確認」と書き、
+#   規則のページへのリンクは本文に置いた。長期 AHC の版（20261026版）も未確認のまま、類型（部門分け）だけを公式 X で確かめた。
+#   ABC・ARC・AGC の行の版・日付には、公式 X が規則の変更を告知した過去の日（2024-11-15・2025-10-04。変更の中身は読んでいない）だけを書く
+# - 出典の id は data/sources.d/competition-rules.yml（と data/sources.yml の isucon2026-regulation・
+#   prtimes-u22-programming-contest-2026）にある。URL は本文の「参考」に出る
+# - 本文は <!-- gen:begin fact-table contest-ai-rules --> で表を出す（類型・版と日付の2列。確認日と出典は表の下に道具が書く）
+# - 直しの版での変え方（verify-clarity.md の指摘）：
+#   - 注（note）は 1〜2 文に絞り、冒頭に「確かめた範囲」を置く（指摘 6：ISUCON2026・長期 AHC）
+#   - 「版・日付」の列は「版の名前か、規則や告知を公開した日」にそろえた。試験コンテストの日程・ページの時刻・開催日は外した（指摘 3）。
+#     終わった回には「開催済みの回」と添える（指摘 5。ISUCON2026 と IEEEXtreme 20.0 は research/22 #45・#46、Universal Cup は
+#     執筆の担当が告知で読んだ開催日、ICPC EUC 2026 は規則のページの「6–8 February 2026」で、どれも確認日の時点で終わっている）
+#   - 「決められない」を「AI の文言なし」に替えた（図と語をそろえる。指摘 11 の b）
+#   - 略称に正式名を添えた（指摘 15 の c。AHC・ABC・ARC・AGC・EUC・高専プロコン）
+#   - ICPC EUC 2026 の版は、規則の末尾（「13. Revisions」の節）の Last updated: 02 December 2025 にした。2026-03-04 の
+#     Updated は、規則の外のページのフッター（ICPC Foundation・Copyright の行）にあり、規則の更新日とは限らないので、版にしない
+#     （指摘 3 の案は「新しいほうに絞る」だったが、2026-11-04 に規則のページの HTML で確かめて、こう替えた）
+#   - 各セルの sources は、行ごとの一次資料を持たせるための印（schema は許す。今の fact-table は描かない。write.md の 6-2・fix.md の提案）
+# - 調査資料の記述との違い（検証役と、確かめ直す担当に知らせる）：
+#   - ISUCON2026：research/22 #45 は AI の項目を「サーバー事項」と「禁止事項」の節にあると書く。レギュレーションを読むと、
+#     許可の項目は「ソフトウェア事項」の節にある（サーバー事項の節にはない）。禁止事項の節にも、許す旨の項目がある
+#   - Universal Cup：録画の義務は、告知（2026-08-26）では「決勝進出を望むチーム」に求めるもの。research/10 の「AI とのやりとりを
+#     すべて録画に映す」と「固定プロンプト2種類」は、規則の PDF にある話で、告知にはなく、確かめていない
+#   - 長期 AHC：AHC074 が2部門で開かれたことは公式 X（2026-10-30）で確かめた。「AHC074 から始まった」とまでは、公式 X
+#     からは言えない（告知は「今後数回の長期 AHC」を2部門制にするというもの）ので、表には書かない
+proposals:
+  - fact:
+      id: contest-ai-rules
+      title: 主な大会の AI の規則（類型・版と日付）
+      table:
+        rows: 大会
+        columns:
+          - {id: type, title: 類型}
+          - {id: version, title: 版・日付}
+        cells:
+          - row: AtCoder 長期 AHC（Heuristic Contest）
+            type: {value: 部門分け, note: "Human Only 部門は生成 AI 禁止、With AI 部門は生成 AI 使用可。使える範囲は未確認"}
+            version: {value: 2026-10-21 の告知, note: "今後数回の長期 AHC を 2 部門制で開くという内容。規則の版は未確認", sources: [atcoder-x-long-ahc-divisions-2026-10-21]}
+          - row: IEEEXtreme 20.0
+            type: {value: 部門分け, note: "AI を許す課題と禁じる課題に分ける。許す課題は、使った AI の記載を求める"}
+            version: {value: 20.0 の規則, note: "開催済みの回", sources: [ieeextreme-rules]}
+          - row: ISUCON2026
+            type: {value: 許可と開示, note: "確認したのは許可の項目だけ。コードの分析と生成を、許される作業に挙げる。開示の求めは未確認"}
+            version: {value: 2026-07-28 公開のレギュレーション, note: "開催済みの回。ソフトウェア事項は当日マニュアルが優先するが、そのマニュアルは未確認", sources: [isucon2026-regulation]}
+          - row: U-22 プログラミング・コンテスト2026
+            type: {value: 許可と開示, note: "AI を使った場合は、どこにどう使ったかを応募時に説明する"}
+            version: {value: 2026-07-01 のプレスリリース, note: "募集要項は未確認", sources: [prtimes-u22-programming-contest-2026]}
+          - row: ICPC EUC 2026（Europe Championship）
+            type: {value: AI の文言なし, note: "代わりに、機器を主催者の 1 台のコンピュータに限り、持ち込みと通信を制限する"}
+            version: {value: 2025-12-02 更新の表記, note: "開催済みの回。規則の末尾の更新日で、ページのフッターの 2026-03-04 は規則の更新日とは限らない", sources: [icpc-euc-2026-rules]}
+          - row: 高専プロコン 第37回（全国高等専門学校プログラミングコンテスト）
+            type: {value: AI の文言なし, note: "トップページの募集要項に AI の記述がなく、行動規範の熟読を求める"}
+            version: {value: 第37回（2026）のトップページ, note: "行動規範と応募要領は未確認", sources: [procon-gr-jp-37th]}
+          - row: Universal Cup 第4回準決勝
+            type: {value: 未確認, note: "告知は、決勝進出を望むチームに画面と映像の録画を求める。AI の公正な利用の規則は続けて適用される"}
+            version: {value: 2026-08-26 の告知, note: "開催済みの回。規則の PDF は未確認", sources: [ucup-4th-semifinals-blog]}
+          - row: AtCoder ABC・ARC・AGC（Beginner・Regular・Grand Contest）
+            type: 未確認
+            version: {value: 未確認, note: "過去の変更の告知は、ABC と ARC が 2024-11-15、ABC426 から適用の変更が 2025-10-04。告知の中身は未確認", sources: [atcoder-x-abc-arc-rule-change-2024-11-15, atcoder-x-abc426-rule-change-2025-10-04]}
+          - row: AtCoder 短期 AHC（Heuristic Contest）
+            type: 未確認
+            version: 未確認
+          - row: Codeforces
+            type: 未確認
+            version: 未確認
+      sources:
+        - atcoder-x-ahc-trial-contest-2026-10-15
+        - atcoder-x-long-ahc-divisions-2026-10-21
+        - atcoder-x-ahc074-2026-10-30
+        - atcoder-x-abc-arc-rule-change-2024-11-15
+        - atcoder-x-abc426-rule-change-2025-10-04
+        - ieeextreme-rules
+        - isucon2026-regulation
+        - prtimes-u22-programming-contest-2026
+        - ucup-4th-semifinals-blog
+        - icpc-euc-2026-rules
+        - procon-gr-jp-37th
+      checked: 2026-11-04
+      volatility: 高
+      status: 確認済み
+      note: "「未確認」の行は、一次資料（atcoder.jp・codeforces.com）を開かないので、値を「未確認」と書いて残す。表の確認日は、行の中でいちばん古い確認日にする"
+    used_in: [competition-rules#rules-by-type]

@@ -1,0 +1,13 @@
+# 期待の形（試作で決める案）：title・place・safety・features は道具が読む。conditions・expect・control は実機の確認の材料
+title: 返答の言語の規則（CLAUDE.md）
+place: user                  # ~/.claude/CLAUDE.md。チームの決まりにするなら、プロジェクトの CLAUDE.md
+safety: false
+features: [claude-md]
+conditions:
+  - 新しいセッションで試す（CLAUDE.md はセッションの開始で読まれる）
+expect:
+  - when: /context を開く
+    then: Memory files に ~/.claude/CLAUDE.md が出る
+  - when: 英語のファイルを読ませて要約させる
+    then: 返答が日本語になる傾向がある（指示なので合否にしない。観察として数回流す）
+control: 雛形を置かないとき、同じ依頼で英語の返答が混ざる割合と比べる
