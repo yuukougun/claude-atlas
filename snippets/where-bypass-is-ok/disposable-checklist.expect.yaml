@@ -1,0 +1,9 @@
+title: bypassPermissions を使う前の確認の一覧（使い捨ての環境）
+kind: other
+place: 依頼の本文
+safety: true
+conditions:
+  - 自分の使い捨ての環境で、動かす前に項目を 1 つずつ確かめる
+expect:
+  - 一覧のどれかを満たせないときは、bypassPermissions を使わない
+  - 満たしたうえで動かした結果は、差分とブランチで確かめてから取り込む

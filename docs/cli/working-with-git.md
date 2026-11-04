@@ -66,7 +66,7 @@ git との付き合い方は、Claude Code の変更をどの単位でコミッ�
 - **試している最中**：チェックポイントで戻す。ただし、Bash で変えたファイルや外での変更は戻らない。範囲は <!-- link:begin checkpoints-and-rewind#what-is-restored -->[チェックポイントと /rewind（git との違い） › 戻せるもの・戻せないもの](checkpoints-and-rewind.md#what-is-restored)<!-- link:end --> にある。
 - **確定した区切り**：コミットにする。git と組み合わせる流れは <!-- link:begin checkpoints-and-rewind#with-git -->[チェックポイントと /rewind（git との違い） › git と組み合わせる](checkpoints-and-rewind.md#with-git)<!-- link:end --> にある。
 
-関係のない作業が混ざりそうなときは、区切りをコミットで切る前に、作業の側を分ける。別の案を試すなら <!-- link:begin resume-and-branch#branch -->セッションに名前を付けて再開・分岐する › 分岐して別案を試す（準備中）<!-- link:end --> を、同時に進めるなら <!-- link:begin parallel-with-worktrees#per-worktree-setup -->git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）（準備中）<!-- link:end --> を使う。
+関係のない作業が混ざりそうなときは、区切りをコミットで切る前に、作業の側を分ける。別の案を試すなら <!-- link:begin resume-and-branch#branch -->セッションに名前を付けて再開・分岐する › 分岐して別案を試す（準備中）<!-- link:end --> を、同時に進めるなら <!-- link:begin parallel-with-worktrees#per-worktree-setup -->[git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）](../delegate/parallel-with-worktrees.md#per-worktree-setup)<!-- link:end --> を使う。
 
 ## 誰がコミットするか {#who-commits}
 
@@ -178,7 +178,7 @@ Claude の作業が悪い方向に進み続けているときは、`/clear` と 
 
 **次に読む**
 
-- git worktree で並列にする（準備中）
+- [git worktree で並列にする](../delegate/parallel-with-worktrees.md)
 - 退行の原因を git bisect で探させる（準備中）
 - リファクタリングと大規模な移行（準備中）
 - PR を作り、レビューを受ける（準備中）

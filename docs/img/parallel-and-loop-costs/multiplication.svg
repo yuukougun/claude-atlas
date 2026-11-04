@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200" font-family="sans-serif" font-size="12">
+  <rect width="400" height="200" fill="#ffffff"/>
+  <text x="200" y="20" text-anchor="middle" fill="#222222">使う量は 3 つの掛け算</text>
+  <g fill="#f5f5f5" stroke="#555555" stroke-width="1">
+    <rect x="8" y="36" width="96" height="84"/>
+    <rect x="148" y="36" width="96" height="84"/>
+    <rect x="288" y="36" width="104" height="84"/>
+  </g>
+  <text x="56" y="62" text-anchor="middle" fill="#111111">本数</text>
+  <text x="56" y="84" text-anchor="middle" font-size="11" fill="#222222">同時に動く</text>
+  <text x="56" y="100" text-anchor="middle" font-size="11" fill="#222222">担当の数</text>
+  <text x="196" y="62" text-anchor="middle" fill="#111111">回数</text>
+  <text x="196" y="84" text-anchor="middle" font-size="11" fill="#222222">ループや目標の</text>
+  <text x="196" y="100" text-anchor="middle" font-size="11" fill="#222222">繰り返し</text>
+  <text x="340" y="62" text-anchor="middle" fill="#111111">1 回の文脈</text>
+  <text x="340" y="84" text-anchor="middle" font-size="11" fill="#222222">読み直す履歴と</text>
+  <text x="340" y="100" text-anchor="middle" font-size="11" fill="#222222">起動時の読み込み</text>
+  <text x="126" y="84" text-anchor="middle" font-size="22" fill="#111111">×</text>
+  <text x="266" y="84" text-anchor="middle" font-size="22" fill="#111111">×</text>
+  <path d="M56 124 L56 142 L200 142 M340 124 L340 142 L200 142 M196 124 L196 142 L200 142 L200 156" fill="none" stroke="#111111" stroke-width="2"/>
+  <rect x="100" y="156" width="200" height="32" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="200" y="177" text-anchor="middle" fill="#111111">使用量と費用</text>
+</svg>

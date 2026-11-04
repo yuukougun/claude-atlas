@@ -207,7 +207,7 @@ handoff 文書と document-and-clear は、会話を捨てる前に続きに要�
 
 長い作業の続け方には、2 つの立場がある。割れる論点なので、三段で示す。
 
-- **公式の立場**：無関係な作業に移るときは `/clear` を使うよう勧めている。`/compact` には、残したい焦点を指示できる。指示の仕方は <!-- link:begin compact-and-auto-compact#focused-compact -->/compact と自動圧縮 › /compact に焦点を指示する（準備中）<!-- link:end --> にある。
+- **公式の立場**：無関係な作業に移るときは `/clear` を使うよう勧めている。`/compact` には、残したい焦点を指示できる。指示の仕方は <!-- link:begin compact-and-auto-compact#focused-compact -->[/compact と自動圧縮 › /compact に焦点を指示する](compact-and-auto-compact.md#focused-compact)<!-- link:end --> にある。
 - **実践者の幅**：焦点を指定して `/compact` に頼る人と、文書に書き出してから `/clear` する人に分かれる。書き出す側は、圧縮では細部（ファイルパス、エラーメッセージ、行番号）が変わりうるので、何を残すかを自分で決めたいと言う（根拠：弱。実務家の経験談）。
 - **この辞典の推奨**：要約で失いたくない作業は、書き出して `/clear` する。短い作業や、同じ話題をそのまま続けるだけなら、焦点を指示した `/compact` で足りる。
 
@@ -219,7 +219,7 @@ handoff 文書と document-and-clear は、会話を捨てる前に続きに要�
     - **選んだもの**：書き出して `/clear` する。
     - **理由**：試して駄目だった方法と、どのコマンドで確かめたかは、要約で薄まると取り返しにくい。文書に書けば、残るものを自分で選べる。逆に、同じ修正を続けているだけの数十分なら、焦点を指示した `/compact` で足りる。
 
-両者の関係は <!-- link:begin compact-and-auto-compact#compact-or-clear -->/compact と自動圧縮 › 圧縮か、書き出して /clear か（準備中）<!-- link:end --> にも書いてある。API で長く動くエージェントを組む場合は、<!-- link:begin long-running-agent-context -->長時間エージェントのコンテキスト管理（準備中）<!-- link:end --> の手段を使う。4 つの動作の全体は <!-- link:begin tidy-the-desk -->机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）<!-- link:end --> にある。
+両者の関係は <!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)<!-- link:end --> にも書いてある。API で長く動くエージェントを組む場合は、<!-- link:begin long-running-agent-context -->長時間エージェントのコンテキスト管理（準備中）<!-- link:end --> の手段を使う。4 つの動作の全体は <!-- link:begin tidy-the-desk -->[机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)<!-- link:end --> にある。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -237,7 +237,7 @@ handoff 文書と document-and-clear は、会話を捨てる前に続きに要�
 
 **関連**
 
-- /compact と自動圧縮 › 圧縮か、書き出して /clear か（準備中）
+- [/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)
 - 失敗の教訓は捨てずに書き残す（準備中）
 - [圧縮で消えない場所に約束を置く](promises-after-compaction.md)
 - セッションに名前を付けて再開・分岐する（準備中）
@@ -245,7 +245,7 @@ handoff 文書と document-and-clear は、会話を捨てる前に続きに要�
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - 長時間エージェントのコンテキスト管理（準備中）
 - 長時間ジョブの進捗ログを設計する（準備中）
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)
 
 </div>
 

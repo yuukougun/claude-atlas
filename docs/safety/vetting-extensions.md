@@ -73,7 +73,7 @@ MCP サーバー・プラグイン・スキルを入れる前の確認は、拡�
 
 === "アプリ"
 
-    アプリのコネクタは、種類と信頼してよいかの判断を <!-- link:begin connectors-in-the-app#trust -->コネクタ（MCP）をアプリで使う › 信頼してよいか（準備中）<!-- link:end --> で確かめる。プラグインは、入るものと動く場所を <!-- link:begin plugins-in-the-app#contents -->アプリでプラグインを使う › プラグインに入るもの・動く場所（準備中）<!-- link:end --> で確かめてから入れる。スキルは、自作と組み込みの違いを <!-- link:begin skills-in-the-app#built-in-and-custom -->アプリでスキルを使う › 組み込みのスキルと自作のスキル（準備中）<!-- link:end --> で押さえる。
+    アプリのコネクタは、種類と信頼してよいかの判断を <!-- link:begin connectors-in-the-app#trust -->[コネクタ（MCP）をアプリで使う › 信頼してよいか](../app/connectors-in-the-app.md#trust)<!-- link:end --> で確かめる。プラグインは、入るものと動く場所を <!-- link:begin plugins-in-the-app#contents -->アプリでプラグインを使う › プラグインに入るもの・動く場所（準備中）<!-- link:end --> で確かめてから入れる。スキルは、自作と組み込みの違いを <!-- link:begin skills-in-the-app#built-in-and-custom -->アプリでスキルを使う › 組み込みのスキルと自作のスキル（準備中）<!-- link:end --> で押さえる。
 
 === "Claude Code"
 
@@ -93,7 +93,7 @@ MCP サーバー・プラグイン・スキルを入れる前の確認は、拡�
 
 - **道具の説明とサーバーの指示文**：MCP の道具の説明は、Claude の判断の材料になる。悪意あるサーバーが、無害に見える道具の説明に隠し指示を入れる手口が報告されている（tool poisoning。Invariant Labs の WhatsApp MCP の事例、2025-04。根拠：中）。全文を読み、道具の役割と関係ない指示がないかを見る。
 - **スキルの本体（SKILL.md）**：Claude が従う指示の束である。同じ場所に置かれたスクリプトも読む。
-- **フック・スクリプト・インストール時に走るコマンド**：利用者の権限で動く。フックの扱いは <!-- link:begin writing-safe-hooks#runs-as-you -->フックを安全に書く › フックは利用者の権限で動く（準備中）<!-- link:end --> を参照する。リポジトリの `.claude/settings.json` のフックや `.mcp.json` だけで、コードの実行と API キーの窃取が成立した脆弱性も報告された（Check Point Research、2026-02。公表前に修正済み。根拠：中）。設定のファイルもコードとして読む。
+- **フック・スクリプト・インストール時に走るコマンド**：利用者の権限で動く。フックの扱いは <!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](../enforce/writing-safe-hooks.md#runs-as-you)<!-- link:end --> を参照する。リポジトリの `.claude/settings.json` のフックや `.mcp.json` だけで、コードの実行と API キーの窃取が成立した脆弱性も報告された（Check Point Research、2026-02。公表前に修正済み。根拠：中）。設定のファイルもコードとして読む。
 - **mod**：Claude の画面や挙動そのものを変える。ほかのプラグインより確認を重くする。入れる前の見方は <!-- link:begin mods -->Mods（プラグインで挙動を深く変える）（準備中）<!-- link:end --> にある。
 
 読む作業を Claude に手伝わせてもよいが、読ませる中身にも指示が仕込まれうる。実行させず、報告だけを求める雛形を使う。
@@ -144,7 +144,7 @@ rug pull は、承認した後に、道具の定義や中身が差し替えら�
 
 1. 版を固定できる入れ方なら、固定する。固定できない遠隔のサーバーは、入れる数を絞る。
 2. 更新を取り込む前に、差分を読む。差分を読む人と頻度を決めておく。
-3. 使わなくなったものは外す。外す基準は <!-- link:begin pruning-extensions#criteria -->拡張の棚卸しと剪定 › 切る基準（準備中）<!-- link:end --> で決める。
+3. 使わなくなったものは外す。外す基準は <!-- link:begin pruning-extensions#criteria -->[拡張の棚卸しと剪定 › 切る基準](../extend/pruning-extensions.md#criteria)<!-- link:end --> で決める。
 
 **終わりの確かめ**：入れたものごとに、「どの版を読んだか」と「次に差分を読む契機」が書けている。
 
@@ -254,7 +254,7 @@ rug pull は、承認した後に、道具の定義や中身が差し替えら�
 2. 渡していた資格情報と、そのセッションで見える場所にあった秘密を、無効にして作り直す。
 3. 何が動いたかを、フックやスクリプトと記録から確認する。
 
-入れる前の確認の抜けを減らすには、使っていない拡張を外すことが効く。見直しの手順は <!-- link:begin pruning-extensions -->拡張の棚卸しと剪定（準備中）<!-- link:end --> にある。
+入れる前の確認の抜けを減らすには、使っていない拡張を外すことが効く。見直しの手順は <!-- link:begin pruning-extensions -->[拡張の棚卸しと剪定](../extend/pruning-extensions.md)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -290,13 +290,13 @@ rug pull は、承認した後に、道具の定義や中身が差し替えら�
 - プラグインとマーケットプレイス（準備中）
 - MCP サーバーの選び方（準備中）
 - Mods（プラグインで挙動を深く変える）（準備中）
-- コネクタ（MCP）をアプリで使う（準備中）
+- [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - アプリでプラグインを使う（準備中）
 - アプリでスキルを使う（準備中）
-- フックを安全に書く（準備中）
+- [フックを安全に書く](../enforce/writing-safe-hooks.md)
 - 見た目は品質の証拠ではない（準備中）
 - [存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)
-- 拡張の棚卸しと剪定（準備中）
+- [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
 - 組織に設定と MCP サーバーを配る（準備中）
 
 </div>

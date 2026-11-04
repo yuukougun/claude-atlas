@@ -70,7 +70,7 @@ updated: 2026-11-05
     - 依頼文に完了の条件と触らない範囲があるか。なければ原因の第一候補である。書き方は <!-- link:begin state-the-scope#anti-goals -->[範囲を伝える（やらないこと） › やらないことを書く](../prompting/state-the-scope.md#anti-goals)<!-- link:end --> にある。
     - 好みの方式があるのに伝えていないか。2 つの妥当な方式があって好みがあるなら、最初に伝える。コードからは読み取れない（公式の Best practices の勧め）。
     - CLAUDE.md や繰り返す頼み方に、「最後までやり切れ」「keep going」「don't be lazy」の類の一言がないか。こうした一言は、停滞を解く代わりに過剰な作業を招きやすい。今どうするかは <!-- link:begin outdated-advice-ledger#keep-going-dont-be-lazy -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#keep-going-dont-be-lazy)<!-- link:end --> にある。
-    - 方針や範囲に迷いがある作業を、いきなり実装させていないか。迷う作業は、plan mode で編集を止めたまま計画を出させ、計画の段階で範囲のずれを見つける。使い方は <!-- link:begin when-to-plan#when -->plan mode の使いどころ › 計画が効く作業、省いてよい作業（準備中）<!-- link:end --> にある。大きな機能なら、実装の前に範囲外まで仕様に書く手もある（<!-- link:begin spec-first#interview -->仕様を先に固める（spec・インタビュー・モック先行） › インタビューで仕様を詰める（準備中）<!-- link:end -->）。
+    - 方針や範囲に迷いがある作業を、いきなり実装させていないか。迷う作業は、plan mode で編集を止めたまま計画を出させ、計画の段階で範囲のずれを見つける。使い方は <!-- link:begin when-to-plan#when -->[plan mode の使いどころ › 計画が効く作業、省いてよい作業](../cli/when-to-plan.md#when)<!-- link:end --> にある。大きな機能なら、実装の前に範囲外まで仕様に書く手もある（<!-- link:begin spec-first#interview -->[仕様を先に固める（spec・インタビュー・モック先行） › インタビューで仕様を詰める](../recipes/spec-first.md#interview)<!-- link:end -->）。
     - 提案で止めてほしい頼みを、実行まで頼む書き方にしていないか。動詞の書き分けは <!-- link:begin suggest-or-do#verbs -->[提案してほしいのか、実行してほしいのか › 提案と実行を動詞で分ける](../prompting/suggest-or-do.md#verbs)<!-- link:end --> にある。
 2. **確かめていない**：増えた物が、差分に出ていたのに、読まずに採ってしまった。範囲を書いても、差分を読まなければ、漏れた変更は残る。
     - `git status` で、追跡されていない新しいファイルと、頼んでいないファイルの変更を見る。`git diff --stat` で、変更が頼みの大きさに見合うかを見る。作業フォルダの一時ファイルは、ここで見つかる。
@@ -111,7 +111,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)<br>plan mode の使いどころ（準備中）<br>仕様を先に固める（spec・インタビュー・モック先行）（準備中） |
+| 見えていない | [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)<br>[plan mode の使いどころ](../cli/when-to-plan.md)<br>[仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md) |
 | 確かめていない | 人間が読むべき差分の箇所（準備中）<br>[git との付き合い方](../cli/working-with-git.md) |
 | 合っていない | [effort の段階と使い分け](../models/effort-levels.md)<br>モデル別の癖と、プロンプトの合わせ方（準備中） |
 
@@ -170,8 +170,8 @@ updated: 2026-11-05
 **次に読む**
 
 - [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)
-- plan mode の使いどころ（準備中）
-- 仕様を先に固める（spec・インタビュー・モック先行）（準備中）
+- [plan mode の使いどころ](../cli/when-to-plan.md)
+- [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)
 - 人間が読むべき差分の箇所（準備中）
 - [git との付き合い方](../cli/working-with-git.md)
 - [effort の段階と使い分け](../models/effort-levels.md)

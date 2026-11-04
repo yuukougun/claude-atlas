@@ -111,8 +111,8 @@ updated: 2026-11-05
 
 並べ方の約束は、疲れてから守るのでなく、始める前に決める。
 
-- **本数と範囲を先に決める**：本流の本数、偵察の本数、人が必ず読む場所を、並列を始める前に決める。決め方は<!-- link:begin humans-set-the-parallel-limit#mainline-vs-scouting -->[並列の上限は人間が決める › 本流と偵察で本数を分ける](../delegate/humans-set-the-parallel-limit.md#mainline-vs-scouting)<!-- link:end -->にある。費用も同じ時点で決める。始める前に決める項目は<!-- link:begin parallel-and-loop-costs#decide-before-starting -->並列・ループ・workflows のコスト › 始める前に決める三つ（準備中）<!-- link:end -->にある。
-- **作業ごとに環境を分ける**：セッションが互いのファイルを上書きしないよう、作業ごとに別のチェックアウトを作る。準備と片付けは<!-- link:begin parallel-with-worktrees#per-worktree-setup -->git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）（準備中）<!-- link:end -->で決める。
+- **本数と範囲を先に決める**：本流の本数、偵察の本数、人が必ず読む場所を、並列を始める前に決める。決め方は<!-- link:begin humans-set-the-parallel-limit#mainline-vs-scouting -->[並列の上限は人間が決める › 本流と偵察で本数を分ける](../delegate/humans-set-the-parallel-limit.md#mainline-vs-scouting)<!-- link:end -->にある。費用も同じ時点で決める。始める前に決める項目は<!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end -->にある。
+- **作業ごとに環境を分ける**：セッションが互いのファイルを上書きしないよう、作業ごとに別のチェックアウトを作る。準備と片付けは<!-- link:begin parallel-with-worktrees#per-worktree-setup -->[git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）](../delegate/parallel-with-worktrees.md#per-worktree-setup)<!-- link:end -->で決める。
 - **承認の段を決める**：変更の段ごとに、人の承認の数を決める。段の分け方は<!-- link:begin risk-tiered-approval#three-tiers -->リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数（準備中）<!-- link:end -->にある。
 - **画面に張りつかない**：終わりや承認待ちを通知させ、確認する時刻を自分で決める。選び方は<!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう › 知らせるか、時刻を決めて見るか（準備中）<!-- link:end -->にある。
 - **並列の前後を記録する**：1 件あたりの完了までの時間とやり直しの回数を取り続け、本数を変えるたびに比べる。
@@ -142,9 +142,9 @@ tmux で自作の組織を作って並べる古いやり方も、レビューの
 
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)
-- git worktree で並列にする（準備中）
+- [git worktree で並列にする](../delegate/parallel-with-worktrees.md)
 - 終わったら知らせてもらう（準備中）
-- 並列・ループ・workflows のコスト（準備中）
+- [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [承認の確認が多すぎる・少なすぎる](wrong-amount-of-approvals.md)
 - [すぐ上限に当たる](hits-limits-quickly.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

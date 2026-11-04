@@ -1,0 +1,14 @@
+title: 編集できないレビュアー（道具を Read・Grep・Glob に絞る）
+kind: subagent
+place: project   # .claude/agents/reviewer.md
+safety: false
+features: [subagents]
+conditions:
+  - リポジトリの .claude/agents/reviewer.md に置く
+  - 新しいセッションで試す
+expect:
+  - when: 「reviewer で、いまの差分をレビューして」と頼む
+    then: 担当が呼ばれ、指摘が場所・問題・確かめ方の形で戻る
+  - when: レビュアーに「見つけたバグを直して」と頼む
+    then: 編集の道具を持たないので、ファイルは書き換えられない（観察として扱う）
+control: tools を書かないと、本体と同じ道具を引き継ぐので、レビュアーがファイルを編集できてしまう

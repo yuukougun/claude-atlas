@@ -1,0 +1,13 @@
+title: 日本語で書く CLAUDE.md（識別子は原文のまま）
+kind: claude-md
+place: project
+safety: false
+features: [claude-md]
+conditions:
+  - 新しいセッションで試す（CLAUDE.md はセッションの開始で読まれる）
+expect:
+  - when: /context を開く
+    then: Memory files にこの CLAUDE.md が出る
+  - when: 変更を頼んで、終わるまで流す
+    then: 報告の前に npm test と npm run lint を流す傾向がある（指示なので合否にしない。観察として数回流す）
+control: 雛形を置かないとき、同じ依頼で報告の前に検査を流す割合と比べる

@@ -1,0 +1,9 @@
+title: 直した後の description（いつ使うかを先頭に書く）
+kind: skill
+place: project   # .claude/skills/release-notes/SKILL.md。個人用なら ~/.claude/skills/release-notes/SKILL.md
+expect:
+  - when: 新しいセッションで「リリースノートを書いて」と頼む
+    then: スキルが読み込まれやすくなる。毎回とは限らないので、何度か試して見る
+  - when: 新しいセッションで「過去のコミットを調べて」と頼む
+    then: リリースノートの手順は読み込まれにくくなる。観察として扱う
+control: 本文は同じで description だけを直す前のものに戻すと、同じ依頼で読み込まれる頻度が変わる

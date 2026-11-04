@@ -74,7 +74,7 @@ updated: 2026-11-05
     - 文体の指定を、依頼文や毎回読まれる場所に書いたかを見る。書き方は「<!-- link:begin consistent-politeness#specify -->[です・ます／だ・であるを揃える › 文体は一行で、理由と一緒に指定する](../japanese/consistent-politeness.md#specify)<!-- link:end -->」にある。
     - 表記は、揃えたい語の一覧を渡したかを見る。一覧がなければ、Claude にとっては、どの形も同じく正しい。一覧の作り方は「<!-- link:begin consistent-notation#glossary -->[表記ゆれと漢字の開き › 表記の一覧（用語集）を作る](../japanese/consistent-notation.md#glossary)<!-- link:end -->」にある。
     - 一覧を渡したくても、正本そのものが決まっていないことがある。決まっていない基準は、指示に書けず、検査に使うこともできない。まず正本を決める。
-    - 言葉で説明しにくい文体は、手本を見せるほうが揃う。選び方は「<!-- link:begin show-examples#choose -->例を見せる › 典型的で多様な例を選ぶ（準備中）<!-- link:end -->」にある。
+    - 言葉で説明しにくい文体は、手本を見せるほうが揃う。選び方は「<!-- link:begin show-examples#choose -->[例を見せる › 典型的で多様な例を選ぶ](../prompting/show-examples.md#choose)<!-- link:end -->」にある。
     - 書いた場所が、揺れた作業に届いているかも見る。サブエージェントや圧縮の後に指示が届くかは「<!-- link:begin align-japanese-output#reach -->[日本語の出力を揃える：お願いで足りること、仕組みが要ること › 届く範囲（サブエージェント・圧縮の後・クラウドのセッション）](../japanese/align-japanese-output.md#reach)<!-- link:end -->」にある。
     - アプリで、旧い手順書にあった Styles のメニューを探しても見つからないときは、手順が古い。調子を揃える手段は、Claude への指示に書くか、スキルにする。経緯は「<!-- link:begin outdated-advice-ledger#styles-for-tone -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#styles-for-tone)<!-- link:end -->」にある。
 
@@ -114,7 +114,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [です・ます／だ・であるを揃える](../japanese/consistent-politeness.md)<br>[表記ゆれと漢字の開き](../japanese/consistent-notation.md)<br>例を見せる（準備中） |
+| 見えていない | [です・ます／だ・であるを揃える](../japanese/consistent-politeness.md)<br>[表記ゆれと漢字の開き](../japanese/consistent-notation.md)<br>[例を見せる](../prompting/show-examples.md) |
 | 散らかっている | 出力の形と分量を指定する › 頼む文の書き方が出力に映る（準備中）<br>[です・ます／だ・であるを揃える › 手本の文章を見せる](../japanese/consistent-politeness.md#example) |
 | 縛っていない | [textlint をフックで回す](../japanese/textlint-hook.md)<br>[日本語の出力を揃える：お願いで足りること、仕組みが要ること › 確かめて差し戻す層：フックと lint](../japanese/align-japanese-output.md#lock-layer) |
 
@@ -174,7 +174,7 @@ updated: 2026-11-05
 
 - [です・ます／だ・であるを揃える](../japanese/consistent-politeness.md)
 - [表記ゆれと漢字の開き](../japanese/consistent-notation.md)
-- 例を見せる（準備中）
+- [例を見せる](../prompting/show-examples.md)
 - 出力の形と分量を指定する（準備中）
 - [textlint をフックで回す](../japanese/textlint-hook.md)
 - [日本語の出力を揃える：お願いで足りること、仕組みが要ること](../japanese/align-japanese-output.md)
@@ -184,7 +184,7 @@ updated: 2026-11-05
 - 日本語の「AI 臭さ」を減らす（準備中）
 - 日本語の資料を読ませる・書かせる（準備中）
 - 文章を頼むとき（読み手・目的・手本を渡す）（準備中）
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [英語で返ってくる](replies-in-english.md)
 - [意図と違うものが出てくる](not-what-i-meant.md)
 - [CLAUDE.md や指示が守られない](instructions-ignored.md)

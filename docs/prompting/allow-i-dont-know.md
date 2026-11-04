@@ -170,7 +170,7 @@ updated: 2026-11-05
 効かない場面は 3 つある。
 
 - **Claude が知っているつもりのとき**：中身を知らないのに知っていると認識している場合、「分からない」と言う場面がそもそも来ない。許可を書いても、確かなものとして誤りが返る。この場合は、答えの外で確かめる。
-- **推測と書かれていない部分が正しいとは限らないとき**：「推測：」の印は、書き手の自己申告である。印のない部分も、重要なものは確かめる。引用や出典は <!-- link:begin checking-citations#steps -->引用や出典の確かめ方 › 確かめる手順（準備中）<!-- link:end -->、事実の照合は <!-- link:begin fact-checking#overall-check -->[事実を確かめる（引用・照合・best-of-N） › 全体の確かめ方](../verify/fact-checking.md#overall-check)<!-- link:end --> に手順がある。
+- **推測と書かれていない部分が正しいとは限らないとき**：「推測：」の印は、書き手の自己申告である。印のない部分も、重要なものは確かめる。引用や出典は <!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end -->、事実の照合は <!-- link:begin fact-checking#overall-check -->[事実を確かめる（引用・照合・best-of-N） › 全体の確かめ方](../verify/fact-checking.md#overall-check)<!-- link:end --> に手順がある。
 - **言葉の許可だけを頼りにしたとき**：成果を迫る力が強いと、許可は守られないことがある。守らせたいことは、答えの外の照合や仕組みと組み合わせる。「念のため確認して」と書き足すより、確かめる手段を渡すほうが効く。選び方は <!-- link:begin verification-ladder#verbal-checks -->[検証の階段 › 「念のため確認して」と書き足すより、確かめる手段を渡す](../verify/verification-ladder.md#verbal-checks)<!-- link:end --> にある。
 
 やりすぎにも注意する。「少しでも自信がなければ分からないと答えて」と強く書くと、答えられることまで「分からない」と返すことがある（推論・実践例なし）。「確かな根拠がある部分は、そのまま答えて」と対にして書く。
@@ -208,7 +208,7 @@ updated: 2026-11-05
 
 - [もっともらしい嘘・出典の誤り](../symptoms/plausible-falsehoods.md)
 - [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)
-- 引用や出典の確かめ方（準備中）
+- [引用や出典の確かめ方](../verify/checking-citations.md)
 - [検証の階段 › 「念のため確認して」と書き足すより、確かめる手段を渡す](../verify/verification-ladder.md#verbal-checks)
 - [長い資料は先、質問は最後](long-context-first.md)
 - [存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)

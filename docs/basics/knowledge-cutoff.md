@@ -91,7 +91,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end fact-table model-knowledge-cutoffs -->
 
-モデルの選び方は <!-- link:begin current-models#lineup -->現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）（準備中）<!-- link:end --> にある。
+モデルの選び方は <!-- link:begin current-models#lineup -->[現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）](../models/current-models.md#lineup)<!-- link:end --> にある。
 
 知識が止まっていることと、止まった時点より前のことを正しく覚えていることは別である。止まった時点の手前でも、情報が少なかった話題は怪しい。この性質の背景は、別のページが説明している。分からなくても答えるほうが得になる訓練の話は <!-- link:begin why-hallucinations#guess-pays -->[ハルシネーションはなぜ起きるか › 分からなくても答えるほうが得になる訓練](why-hallucinations.md#guess-pays)<!-- link:end --> にある。
 
@@ -169,7 +169,7 @@ updated: 2026-11-05
 
 - [ハルシネーションはなぜ起きるか](why-hallucinations.md)
 - いつの情報かを見分ける（準備中）
-- 現行モデルの一覧と位置づけ（準備中）
+- [現行モデルの一覧と位置づけ](../models/current-models.md)
 
 </div>
 

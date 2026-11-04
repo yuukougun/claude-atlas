@@ -72,7 +72,7 @@ Chroma の実験が測ったのは、入力が長いときの成績であり、�
 - 失敗した試みが残っている：訂正を重ねず、前のメッセージを直して送り直すか巻き戻す。理由は <!-- link:begin rewind-dont-correct#why -->[違うと返すより、巻き戻す・編集する › なぜ訂正より巻き戻しか](../context/rewind-dont-correct.md#why)<!-- link:end -->、面ごとの戻し方は <!-- link:begin rewind-dont-correct#how -->[違うと返すより、巻き戻す・編集する › 面ごとの戻し方](../context/rewind-dont-correct.md#how)<!-- link:end --> にある。
 - 話題が変わった：新しい会話にする。合図は <!-- link:begin when-to-start-fresh#signals -->[新しい会話を始めるタイミング › 新しくする合図](../context/when-to-start-fresh.md#signals)<!-- link:end -->、新しくする前に残すものは <!-- link:begin when-to-start-fresh#before-clearing -->[新しい会話を始めるタイミング › 新しくする前に残すもの](../context/when-to-start-fresh.md#before-clearing)<!-- link:end --> にある。
 - 続きの作業を新しい会話に移したい：目的・今の状態・試して駄目だったこと・次の一手を文書に書かせる。書かせる項目は <!-- link:begin handoff-documents#four-items -->[handoff 文書と document-and-clear › 書かせる四項目](../context/handoff-documents.md#four-items)<!-- link:end --> にある。
-- 整頓の全体を見たい：<!-- link:begin tidy-the-desk#four-actions -->机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作（準備中）<!-- link:end --> にある。
+- 整頓の全体を見たい：<!-- link:begin tidy-the-desk#four-actions -->[机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作](../context/tidy-the-desk.md#four-actions)<!-- link:end --> にある。
 
 症状の側から入るなら、次の 2 つで原因を安く切り分ける。長い会話で前提を忘れるときは <!-- link:begin forgets-in-long-chats#diagnosis -->[長い会話で前提を忘れる・雑になる › 原因を安く確かめる順](../symptoms/forgets-in-long-chats.md#diagnosis)<!-- link:end -->。同じ失敗が戻ってくるときは <!-- link:begin going-in-circles#diagnosis -->[同じ失敗を繰り返す（堂々巡り） › 原因を安く確かめる順](../symptoms/going-in-circles.md#diagnosis)<!-- link:end --> を見る。
 
@@ -95,7 +95,7 @@ Liu らの研究（2023 年に arXiv で公開）は、複数の文書からの�
 - 「真ん中は必ず落とされる」と決めて、資料を並べ替える作業に時間をかけない。
 - 大事な箇所が答えに使われなかったかもしれないときは、並べ方を疑う前に、読まれたかを確かめる。確かめ方は <!-- link:begin skipped-later-pages#diagnosis -->[添付した資料の後半を読んでいない › 原因を安く確かめる順](../symptoms/skipped-later-pages.md#diagnosis)<!-- link:end --> にある。
 
-並べ方の手段は <!-- link:begin long-context-first#order -->[長い資料は先、質問は最後 › 資料を先、質問を最後に置く](../prompting/long-context-first.md#order)<!-- link:end -->、資料を分けたり形を直したりする手段は <!-- link:begin handing-long-documents#split-and-convert -->長い資料を渡すとき › 分ける・形を直す（準備中）<!-- link:end --> が持つ。
+並べ方の手段は <!-- link:begin long-context-first#order -->[長い資料は先、質問は最後 › 資料を先、質問を最後に置く](../prompting/long-context-first.md#order)<!-- link:end -->、資料を分けたり形を直したりする手段は <!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end --> が持つ。
 
 ## 誤解
 
@@ -125,6 +125,7 @@ Liu らの研究（2023 年に arXiv で公開）は、複数の文書からの�
 
 **次に読む**
 
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
@@ -132,16 +133,14 @@ Liu らの研究（2023 年に arXiv で公開）は、複数の文書からの�
 - [添付した資料の後半を読んでいない](../symptoms/skipped-later-pages.md)
 - [長い会話で前提を忘れる・雑になる](../symptoms/forgets-in-long-chats.md)
 - [同じ失敗を繰り返す（堂々巡り）](../symptoms/going-in-circles.md)
-- [環境や道具が壊れたと言い出す](../symptoms/blames-the-tools.md)
 - ほか 1 ページ
 
 **関連**
 
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - 広いコンテキストウィンドウとの付き合い方（準備中）
 - [長い資料は先、質問は最後](../prompting/long-context-first.md)
-- 長い資料を渡すとき（準備中）
+- [長い資料を渡すとき](../context/handing-long-documents.md)
 
 </div>
 

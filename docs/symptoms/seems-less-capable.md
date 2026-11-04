@@ -70,10 +70,10 @@ updated: 2026-11-05
     - 確かめ方：今の版を控え、変更履歴の該当の期間を読む。公式の報告・変更履歴・稼働状況の確かめ先は <!-- link:begin suspected-degradation#official-sources -->[劣化を疑ったら測って確かめる › 製品の側の変更を確かめる先（公式の報告・変更履歴・稼働状況）](../models/suspected-degradation.md#official-sources)<!-- link:end --> にある。変更履歴の読み方と古い書き方の点検は <!-- link:begin checking-for-updates -->最新を自分で確かめる方法（準備中）<!-- link:end --> に、主な変更の時系列は <!-- link:begin change-timeline-2026#timeline -->2026 年の主な変更の年表 › 年表（準備中）<!-- link:end --> にある。既定の effort が製品の側で下げられ、品質の不満の後に戻された例は <!-- link:begin suspected-degradation#postmortem-example -->[劣化を疑ったら測って確かめる › 製品の側の変更だった例](../models/suspected-degradation.md#postmortem-example)<!-- link:end --> にある。
 2. **effort が違う**（合っていない）
     - 見るもの：今の effort の段と、前に使っていた段。モデルを替えたあとに、前のモデル向けの段を持ち越していないか。
-    - 確かめ方：今の段を見て、前の記録と並べる。既定の段は面とモデルで違い、時期によっても変わってきた。値は <!-- link:begin effort-levels#defaults-by-surface -->[effort の段階と使い分け › 既定の段（モデル × 面の表）](../models/effort-levels.md#defaults-by-surface)<!-- link:end --> にある。環境変数や設定で段を決めている場合は、既定よりそちらが優先される。変える場所は <!-- link:begin effort-levels#how-to-set -->[effort の段階と使い分け › 面ごとの変え方](../models/effort-levels.md#how-to-set)<!-- link:end --> にある。モデルを替えたあとの見直しの順は <!-- link:begin after-switching-models#checklist -->新しいモデルに替えたら見直すこと › 見直す順（準備中）<!-- link:end --> にある。
+    - 確かめ方：今の段を見て、前の記録と並べる。既定の段は面とモデルで違い、時期によっても変わってきた。値は <!-- link:begin effort-levels#defaults-by-surface -->[effort の段階と使い分け › 既定の段（モデル × 面の表）](../models/effort-levels.md#defaults-by-surface)<!-- link:end --> にある。環境変数や設定で段を決めている場合は、既定よりそちらが優先される。変える場所は <!-- link:begin effort-levels#how-to-set -->[effort の段階と使い分け › 面ごとの変え方](../models/effort-levels.md#how-to-set)<!-- link:end --> にある。モデルを替えたあとの見直しの順は <!-- link:begin after-switching-models#checklist -->[新しいモデルに替えたら見直すこと › 見直す順](../models/after-switching-models.md#checklist)<!-- link:end --> にある。
 3. **モデルが違う**（合っていない）
     - 見るもの：今のモデルと、前に使っていたモデル。既定のモデルが変わっていないか。
-    - 確かめ方：今のモデルを見て、可能なら前のモデルで同じ課題を流す。替える順は、既定で試し、足りなければ effort を上げ、それでも足りないときだけ上位のモデルに替える。理由は <!-- link:begin choosing-a-model#effort-first -->モデルの選び方（三段階） › モデルより effort を先に動かす理由（準備中）<!-- link:end --> にある。いま選べるモデルは <!-- link:begin current-models#lineup -->現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）（準備中）<!-- link:end --> に、既定の変化や退役への気づき方は <!-- link:begin after-switching-models#retirements-and-default-changes -->新しいモデルに替えたら見直すこと › 退役と既定の変化に気づく（準備中）<!-- link:end --> にある。差がモデルでなく、検証の手段・渡す文脈・指示から来る場合もある。見分け方は <!-- link:begin harness-over-model#when-harness-matters -->モデルの差よりハーネスの差 › 差がハーネスから来るとき（準備中）<!-- link:end --> にある。
+    - 確かめ方：今のモデルを見て、可能なら前のモデルで同じ課題を流す。替える順は、既定で試し、足りなければ effort を上げ、それでも足りないときだけ上位のモデルに替える。理由は <!-- link:begin choosing-a-model#effort-first -->[モデルの選び方（三段階） › モデルより effort を先に動かす理由](../models/choosing-a-model.md#effort-first)<!-- link:end --> にある。いま選べるモデルは <!-- link:begin current-models#lineup -->[現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）](../models/current-models.md#lineup)<!-- link:end --> に、既定の変化や退役への気づき方は <!-- link:begin after-switching-models#retirements-and-default-changes -->[新しいモデルに替えたら見直すこと › 退役と既定の変化に気づく](../models/after-switching-models.md#retirements-and-default-changes)<!-- link:end --> にある。差がモデルでなく、検証の手段・渡す文脈・指示から来る場合もある。見分け方は <!-- link:begin harness-over-model#when-harness-matters -->モデルの差よりハーネスの差 › 差がハーネスから来るとき（準備中）<!-- link:end --> にある。
 4. **会話が散らかっている**（散らかっている）
     - 見るもの：会話の長さ、話題の混在、失敗した試みの跡、毎回読み込まれる常駐のもの（CLAUDE.md・スキル・MCP など）。
     - 確かめ方：今の依頼に要る前提と資料だけを書き出して新しい会話に入れ、同じ依頼を出す。答えがよくなるなら、散らかりが原因である。新しい会話にする合図は <!-- link:begin when-to-start-fresh#signals -->[新しい会話を始めるタイミング › 新しくする合図](../context/when-to-start-fresh.md#signals)<!-- link:end --> にある。紛らわしい情報が答えの質を下げる理由は <!-- link:begin context-rot -->[context rot と紛らわしい情報](../basics/context-rot.md)<!-- link:end --> にある。自分の設定（CLAUDE.md・スキル・MCP など）が原因かを、設定を外して同じ依頼で比べる手は、<!-- link:begin isolate-with-safe-mode#compare -->設定を外して切り分ける（--safe-mode） › 比べ方（準備中）<!-- link:end --> にある。
@@ -146,7 +146,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[/context で中身を見る](../context/inspect-context.md)<br>設定を外して切り分ける（--safe-mode）（準備中） |
-| 合っていない | [劣化を疑ったら測って確かめる › 製品の側の変更を確かめる先（公式の報告・変更履歴・稼働状況）](../models/suspected-degradation.md#official-sources)<br>[effort の段階と使い分け](../models/effort-levels.md)<br>新しいモデルに替えたら見直すこと（準備中） |
+| 合っていない | [劣化を疑ったら測って確かめる › 製品の側の変更を確かめる先（公式の報告・変更履歴・稼働状況）](../models/suspected-degradation.md#official-sources)<br>[effort の段階と使い分け](../models/effort-levels.md)<br>[新しいモデルに替えたら見直すこと](../models/after-switching-models.md) |
 | 体感を信じる | [劣化を疑ったら測って確かめる › 版と effort を記録して、同じ課題で比べる](../models/suspected-degradation.md#measure)<br>[体感と実測](../eval/felt-vs-measured.md)<br>[変更が効いたかを測る（小さな eval）](../eval/measure-changes.md) |
 
 <!-- textlint-enable -->
@@ -209,14 +209,14 @@ updated: 2026-11-05
 - 設定を外して切り分ける（--safe-mode）（準備中）
 - [劣化を疑ったら測って確かめる](../models/suspected-degradation.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
-- 新しいモデルに替えたら見直すこと（準備中）
+- [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 
 **関連**
 
-- 現行モデルの一覧と位置づけ（準備中）
-- モデルの選び方（三段階）（準備中）
+- [現行モデルの一覧と位置づけ](../models/current-models.md)
+- [モデルの選び方（三段階）](../models/choosing-a-model.md)
 - [context rot と紛らわしい情報](../basics/context-rot.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - モデルの差よりハーネスの差（準備中）

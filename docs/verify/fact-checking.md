@@ -54,7 +54,7 @@ updated: 2026-11-05
 
 - **分からないと言ってよいと伝える**：分からないまま答えを作らせないための逃げ道になる。書き方は <!-- link:begin allow-i-dont-know#escape-hatch -->[「分からない」と言ってよいと伝える › 分からないと言える逃げ道を作る](../prompting/allow-i-dont-know.md#escape-hatch)<!-- link:end --> に任せる。
 - **確かめる材料を渡す**：最近の出来事や新しい版は、モデルの知識の外にある。検索の結果や公式の資料を渡す。切り分けは <!-- link:begin doesnt-know-latest#diagnosis -->[最新の情報を知らない › 原因を安く確かめる順](../symptoms/doesnt-know-latest.md#diagnosis)<!-- link:end --> にある。
-- **長い資料は形と量を整える**：読まれていない部分があると、確かめる元がずれる。分け方は <!-- link:begin handing-long-documents#split-and-convert -->長い資料を渡すとき › 分ける・形を直す（準備中）<!-- link:end --> にある。
+- **長い資料は形と量を整える**：読まれていない部分があると、確かめる元がずれる。分け方は <!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end --> にある。
 
 「正確に書いて」と頼むだけでは、確かめたことにならない。要約は、頼んでも原文の条件を落とすことがある。理由は <!-- link:begin summary-overgeneralization -->[要約は原文より強く言いがち（過度な一般化）](../basics/summary-overgeneralization.md)<!-- link:end --> にある。確かめるには、照らす先（引用・資料・繰り返しの結果）を作る。
 
@@ -62,7 +62,7 @@ updated: 2026-11-05
 
 答えの主張ごとに、根拠になる原文の引用を付けさせ、引用できない主張を外させる。引用を付けさせると、答えが「どこに書いてあるか」で照らせる形になる。
 
-1. 資料のうち質問に関係する箇所を、原文のまま先に抜き出させる。長い資料では特に効く。詳しい頼み方は <!-- link:begin handing-long-documents#quotes-first -->長い資料を渡すとき › 引用を先に抜かせる（準備中）<!-- link:end --> にある。
+1. 資料のうち質問に関係する箇所を、原文のまま先に抜き出させる。長い資料では特に効く。詳しい頼み方は <!-- link:begin handing-long-documents#quotes-first -->[長い資料を渡すとき › 引用を先に抜かせる](../context/handing-long-documents.md#quotes-first)<!-- link:end --> にある。
 2. 答えの主張に、引用の番号を付けさせる。
 3. 書き終えた後に、主張を 1 つずつ見直させ、引用で裏づけられない主張を外させる。外した所には印を付けさせる。
 
@@ -218,8 +218,8 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 引用・資料の限定・繰り返し・要約の照合のどれを使った後でも、最後に答え全体を確かめる。
 
 - **引用の実在**：引用が原文にそのまま見つかるか。文字列検索で確かめる。Claude Code では、原文のファイルを検索して照らせる。
-- **主張の重さ**：重要な事実（金額・日付・法律・安全・他人に出す文書）は、一次の資料を開いて確かめる。出典のある報告は、<!-- link:begin research-and-reports#check-sources -->調べものとレポート › 出典を原文で確かめる（準備中）<!-- link:end --> と <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> で原文に照らす。
-- **出典そのもの**：挙げられた文献や引用が、実在し、題名・著者・年まで合うか。実在しても細部が違う誤りは、<!-- link:begin checking-citations#steps -->引用や出典の確かめ方 › 確かめる手順（準備中）<!-- link:end --> で確かめる。
+- **主張の重さ**：重要な事実（金額・日付・法律・安全・他人に出す文書）は、一次の資料を開いて確かめる。出典のある報告は、<!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end --> と <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> で原文に照らす。
+- **出典そのもの**：挙げられた文献や引用が、実在し、題名・著者・年まで合うか。実在しても細部が違う誤りは、<!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](checking-citations.md#steps)<!-- link:end --> で確かめる。
 - **決める人**：結論を決めるのは人である。Claude の要約や自己申告に決定を渡さない。
 
 確かめた主張と確かめていない主張は、分けて記録する。そうすると、未確認の主張が最終の文書に混ざらない。
@@ -229,7 +229,7 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 確かめても誤りが残るときは、困りごとの形から次のページへ進む。
 
 - **引用が原文にない、または言い換えられている**：指示で引用させても、引用は作られうる。API なら、<!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる） › 引用させる指示との違い（準備中）<!-- link:end --> の方法を検討する。
-- **実在する文献だが、細部が違う**：<!-- link:begin checking-citations#error-types -->引用や出典の確かめ方 › よくある誤りの形（準備中）<!-- link:end --> で誤りの形を調べる。
+- **実在する文献だが、細部が違う**：<!-- link:begin checking-citations#error-types -->[引用や出典の確かめ方 › よくある誤りの形](checking-citations.md#error-types)<!-- link:end --> で誤りの形を調べる。
 - **もっともらしい嘘が出る**：<!-- link:begin plausible-falsehoods#diagnosis -->[もっともらしい嘘・出典の誤り › 原因を安く確かめる順](../symptoms/plausible-falsehoods.md#diagnosis)<!-- link:end --> で原因を切り分ける。
 - **最近の話で間違う**：<!-- link:begin knowledge-cutoff -->[知識カットオフと「今」を知らない問題](../basics/knowledge-cutoff.md)<!-- link:end --> を確かめ、検索の結果か最新の資料を渡す。調べ方の選択は <!-- link:begin search-research-thinking#comparison -->[web 検索・リサーチ・拡張思考の使い分け › 三つの使い分け](../app/search-research-thinking.md#comparison)<!-- link:end --> にある。
 - **要約が原文より断定的**：<!-- link:begin summary-overstates-source#diagnosis -->[要約が原文より断定的になる › 原因を安く確かめる順](../symptoms/summary-overstates-source.md#diagnosis)<!-- link:end --> で、落ちた条件を見つける。
@@ -246,8 +246,8 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 
 **次に読む**
 
-- 引用や出典の確かめ方（準備中）
-- 知らないコードベースを読む（準備中）
+- [引用や出典の確かめ方](checking-citations.md)
+- [知らないコードベースを読む](../recipes/explore-a-codebase.md)
 - 仕様を自分で読み、AI に誤読を指摘させる（準備中）
 - ドキュメント・技術文書を書く（準備中）
 - 資料・スライドを作る（準備中）
@@ -266,8 +266,8 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 - リサーチを使いこなす（準備中）
 - [要約は原文より強く言いがち（過度な一般化）](../basics/summary-overgeneralization.md)
 - [要約が原文より断定的になる](../symptoms/summary-overstates-source.md)
-- 長い資料を渡すとき（準備中）
-- 調べものとレポート（準備中）
+- [長い資料を渡すとき](../context/handing-long-documents.md)
+- [調べものとレポート](../recipes/research-and-reports.md)
 - citations（根拠の箇所を返させる）（準備中）
 
 </div>

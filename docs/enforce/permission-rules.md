@@ -181,7 +181,7 @@ flowchart TD
 
 読み方は 2 つある。まず、リポジトリが共有の設定に書いた allow は、利用者が信頼するまで効かない。知らないリポジトリが allow で確認を外すことはできない。次に、deny と ask は信頼と関係なく効く。共有の設定に deny を書けば、開いた直後から効く。
 
-`-p` と SDK はダイアログを出さず、信頼したものとして `.claude/settings.json` のフックを走らせる。非対話の実行では確認が出ない点は <!-- link:begin before-opening-unknown-repos#headless -->知らないリポジトリを開く前に › 非対話の実行では確認が出ない（準備中）<!-- link:end --> にある。信頼の前後で何が効くかは <!-- link:begin before-opening-unknown-repos#trust -->知らないリポジトリを開く前に › 信頼の前と後で効くもの（準備中）<!-- link:end -->、チームの共有設定では <!-- link:begin share-team-settings#after-trust -->チームで設定を共有する › 信頼してから効く設定（準備中）<!-- link:end --> を見る。
+`-p` と SDK はダイアログを出さず、信頼したものとして `.claude/settings.json` のフックを走らせる。非対話の実行では確認が出ない点は <!-- link:begin before-opening-unknown-repos#headless -->[知らないリポジトリを開く前に › 非対話の実行では確認が出ない](../safety/before-opening-unknown-repos.md#headless)<!-- link:end --> にある。信頼の前後で何が効くかは <!-- link:begin before-opening-unknown-repos#trust -->[知らないリポジトリを開く前に › 信頼の前と後で効くもの](../safety/before-opening-unknown-repos.md#trust)<!-- link:end -->、チームの共有設定では <!-- link:begin share-team-settings#after-trust -->チームで設定を共有する › 信頼してから効く設定（準備中）<!-- link:end --> を見る。
 
 `permissions.defaultMode` の `auto` と `bypassPermissions` は、プロジェクトと手元の設定では無効である。ユーザーか管理の設定に書く。管理側で使えなくする設定は <!-- link:begin managed-settings-enforcement#disable-modes -->管理設定と組織の強制 › モードを使えなくする設定（準備中）<!-- link:end --> にある。
 
@@ -259,7 +259,7 @@ flowchart TD
 | 利用者の設定で外せない規則 | <!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制 › 利用者の側から外せない範囲（準備中）<!-- link:end --> | 管理設定で組織として強制する |
 | 判断を含む規則 | スキルやお願い | 鍵にせず、理由と相談の基準を伝える |
 
-スキルとフックの選び方は <!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end --> にある。縛りを足しすぎたときの止めすぎと回り込みは <!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end --> で見直す。
+スキルとフックの選び方は <!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end --> にある。縛りを足しすぎたときの止めすぎと回り込みは <!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end --> で見直す。
 
 ## 古くなった助言 {#outdated}
 
@@ -283,11 +283,11 @@ flowchart TD
 **次に読む**
 
 - [サンドボックスで封じ込める](sandboxing.md)
+- [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
 - 消せない場所・触れない場所（protected paths）（準備中）
 - 管理設定と組織の強制（準備中）
-- 知らないリポジトリを開く前に（準備中）
 - dynamic workflows（スクリプトで多数のサブエージェントを動かす）（準備中）
 - Agent SDK（Claude Code をライブラリとして使う）（準備中）
 - ほか 1 ページ
@@ -301,7 +301,7 @@ flowchart TD
 - 評価資産を凍結し、触れる範囲を絞る（準備中）
 - 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
 - チームで設定を共有する（準備中）
-- フックとスキルの違い（準備中）
+- [フックとスキルの違い](../extend/hook-vs-skill.md)
 
 </div>
 

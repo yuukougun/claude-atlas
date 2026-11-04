@@ -59,7 +59,7 @@ textlint をフックで回す手順は、PostToolUse フックで Edit か Writ
 
 読みにくさの型のうち、lint に任せる所と判断の要る所の線引きは、「<!-- link:begin less-ai-sounding-japanese#lint-vs-judgment -->日本語の「AI 臭さ」を減らす › lint に任せる所と、判断の要る所（準備中）<!-- link:end -->」にある。文体の混在の見つけ方は「<!-- link:begin consistent-politeness#lint -->[です・ます／だ・であるを揃える › 混在を lint で見つける](consistent-politeness.md#lint)<!-- link:end -->」、表記の一覧の作り方は「<!-- link:begin consistent-notation#single-source -->[表記ゆれと漢字の開き › 一覧を指示と lint の両方に使う](consistent-notation.md#single-source)<!-- link:end -->」が持つ。ここでは繰り返さない。
 
-公式の文書とリポジトリには、textlint の例がない。形が同じ公式の例は、編集後に整形するフック（Prettier）と、型検査を Stop フックで強制する例である。この雛形は、その形を textlint に当てはめた実践者の記事（根拠：弱。単独の事例）を参考にして、この辞典で組んだ。同じ形のフックは「<!-- link:begin hook-recipes#format-after-edit -->代表的なフックのレシピ › 編集の後に整形する（準備中）<!-- link:end -->」にもある。
+公式の文書とリポジトリには、textlint の例がない。形が同じ公式の例は、編集後に整形するフック（Prettier）と、型検査を Stop フックで強制する例である。この雛形は、その形を textlint に当てはめた実践者の記事（根拠：弱。単独の事例）を参考にして、この辞典で組んだ。同じ形のフックは「<!-- link:begin hook-recipes#format-after-edit -->[代表的なフックのレシピ › 編集の後に整形する](../enforce/hook-recipes.md#format-after-edit)<!-- link:end -->」にもある。
 
 !!! example "判断例：用語集を渡しても揺れが残る"
     - **状況**：用語集を CLAUDE.md に載せて渡したが、「サーバー」と「サーバ」が同じ文書に混ざって出る。
@@ -245,7 +245,7 @@ flowchart TD
 
 ## フックが落ちたときと、規則を増やしすぎないこと {#failure-and-few}
 
-フックは、失敗すると操作を通すのが既定である。次のどれも「止めない誤り」になる。起動できない。0 と 2 以外で終わる。タイムアウトする。出力の JSON が壊れている。textlint を入れ忘れた環境で、検査が黙って止まるのは、この既定のためである。書き方の一般則は、「<!-- link:begin writing-safe-hooks#fail-open -->フックを安全に書く › 既定は失敗すると通す（fail-open）（準備中）<!-- link:end -->」にある。
+フックは、失敗すると操作を通すのが既定である。次のどれも「止めない誤り」になる。起動できない。0 と 2 以外で終わる。タイムアウトする。出力の JSON が壊れている。textlint を入れ忘れた環境で、検査が黙って止まるのは、この既定のためである。書き方の一般則は、「<!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](../enforce/writing-safe-hooks.md#fail-open)<!-- link:end -->」にある。
 
 textlint のフックでは、失敗を次の 2 段で見えるようにする。
 
@@ -267,7 +267,7 @@ textlint のフックでは、失敗を次の 2 段で見えるようにする�
 
 - **信頼してから効く**：初めて開いたリポジトリのフックは、信頼の確認を済ませるまで動かない設定がある。新しい参加者には、その旨を伝える。詳しくは「<!-- link:begin share-team-settings#after-trust -->チームで設定を共有する › 信頼してから効く設定（準備中）<!-- link:end -->」にある。
 - **クラウドのセッション**：ユーザーの設定のフックとプラグインは効かない。リポジトリの `.claude/settings.json` に入れたものは、1 つのリポジトリのセッションで効く。そこに textlint が入っているかは、環境ごとに確かめる（未確認）。
-- **フックは利用者の権限で動く**：他人のスクリプトは、コードとして読んでから使う。「<!-- link:begin writing-safe-hooks#runs-as-you -->フックを安全に書く › フックは利用者の権限で動く（準備中）<!-- link:end -->」を見る。
+- **フックは利用者の権限で動く**：他人のスクリプトは、コードとして読んでから使う。「<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](../enforce/writing-safe-hooks.md#runs-as-you)<!-- link:end -->」を見る。
 - **設定を書き換えて違反を消さない**：Claude は `.textlintrc.json` も Edit できる。違反を消すために、規則を外す直し方をされるおそれがある。直す対象は文章で、設定ではないと CLAUDE.md に一行書く。厳しく守らせるなら、設定のファイルへの編集を PreToolUse で止め、理由と代わりの手段を返す（推論・実践例なし）。止め方は「<!-- link:begin block-with-exit-2#when -->[フックで止めて理由を返す（exit 2 と JSON） › 使いどころ](../enforce/block-with-exit-2.md#when)<!-- link:end -->」にある。
 
 <!-- gen:begin references -->
@@ -298,9 +298,9 @@ textlint のフックでは、失敗を次の 2 段で見えるようにする�
 - [です・ます／だ・であるを揃える](consistent-politeness.md)
 - [表記ゆれと漢字の開き](consistent-notation.md)
 - [文体や表記が揃わない](../symptoms/inconsistent-japanese-style.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
-- フックを安全に書く（準備中）
+- [フックを安全に書く](../enforce/writing-safe-hooks.md)
 - チームで設定を共有する（準備中）
 - 日本語の「AI 臭さ」を減らす（準備中）
 - [日本語で返し続けさせる](keep-replies-in-japanese.md)

@@ -91,7 +91,7 @@ flowchart TD
 
 この研究は、入力の長さと紛らわしい情報の影響を示すもので、「話題が変わったら新しくする」とまでは言っていない。そこへの読み替えは推論である。ただし公式が関係のない作業の間の `/clear` を勧めており、方向は一致している。
 
-広い机の比喩で言えば、会話は机の上の資料である。話題が変わっても前の資料を置いたままだと、探すのに手間がかかり、取り違えも起きる。新しい会話は、机を片付けて、今の作業の資料だけを置き直すことに当たる。机を整える 4 つの動作の全体は <!-- link:begin tidy-the-desk#four-actions -->机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作（準備中）<!-- link:end --> にある。
+広い机の比喩で言えば、会話は机の上の資料である。話題が変わっても前の資料を置いたままだと、探すのに手間がかかり、取り違えも起きる。新しい会話は、机を片付けて、今の作業の資料だけを置き直すことに当たる。机を整える 4 つの動作の全体は <!-- link:begin tidy-the-desk#four-actions -->[机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作](tidy-the-desk.md#four-actions)<!-- link:end --> にある。
 
 ## 何に効くか（見せる・散らかっている・やめられない） {#what-it-prevents}
 
@@ -127,13 +127,13 @@ flowchart TD
 <!-- textlint-enable -->
 <!-- gen:end snippet when-to-start-fresh/restart-request -->
 
-作業が長い、または何度も再開するなら、Claude に文書を書かせてから新しくする。書かせる 4 項目は <!-- link:begin handoff-documents#four-items -->[handoff 文書と document-and-clear › 書かせる四項目](handoff-documents.md#four-items)<!-- link:end --> に、置く場所は <!-- link:begin handoff-documents#where -->[handoff 文書と document-and-clear › 置き場所（圧縮で消えない所）](handoff-documents.md#where)<!-- link:end --> にある。要約で足りるか、書き出してから新しくするかの分かれ目は <!-- link:begin compact-and-auto-compact#compact-or-clear -->/compact と自動圧縮 › 圧縮か、書き出して /clear か（準備中）<!-- link:end --> が持つ。出力を良くするために新しくする場合は、前回の結果を見せて直させる進め方と両立する。両立のさせ方は <!-- link:begin build-on-results#with-clear -->やり直させるより、結果を踏まえて直させる › /clear・巻き戻しとの両立（準備中）<!-- link:end --> にある。
+作業が長い、または何度も再開するなら、Claude に文書を書かせてから新しくする。書かせる 4 項目は <!-- link:begin handoff-documents#four-items -->[handoff 文書と document-and-clear › 書かせる四項目](handoff-documents.md#four-items)<!-- link:end --> に、置く場所は <!-- link:begin handoff-documents#where -->[handoff 文書と document-and-clear › 置き場所（圧縮で消えない所）](handoff-documents.md#where)<!-- link:end --> にある。要約で足りるか、書き出してから新しくするかの分かれ目は <!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)<!-- link:end --> が持つ。出力を良くするために新しくする場合は、前回の結果を見せて直させる進め方と両立する。両立のさせ方は <!-- link:begin build-on-results#with-clear -->やり直させるより、結果を踏まえて直させる › /clear・巻き戻しとの両立（準備中）<!-- link:end --> にある。
 
 面ごとの始め方は次のとおりである。
 
 === "アプリ"
 
-    新しいチャットを始め、最初の発言に残したいことを書く。同じ資料と指示で繰り返す作業なら、毎回貼らずにプロジェクトに入れる。切る単位は <!-- link:begin using-projects#scope -->プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）（準備中）<!-- link:end --> にある。
+    新しいチャットを始め、最初の発言に残したいことを書く。同じ資料と指示で繰り返す作業なら、毎回貼らずにプロジェクトに入れる。切る単位は <!-- link:begin using-projects#scope -->[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](../app/using-projects.md#scope)<!-- link:end --> にある。
 
 === "Claude Code"
 
@@ -192,14 +192,14 @@ flowchart TD
 
 **関連**
 
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)
 - [違うと返すより、巻き戻す・編集する](rewind-dont-correct.md)
-- /compact と自動圧縮（準備中）
+- [/compact と自動圧縮](compact-and-auto-compact.md)
 - やり直させるより、結果を踏まえて直させる（準備中）
 - [長い会話で前提を忘れる・雑になる](../symptoms/forgets-in-long-chats.md)
 - [同じ失敗を繰り返す（堂々巡り）](../symptoms/going-in-circles.md)
 - [利用上限の仕組み（面をまたいで共有する枠）](../cost/how-usage-limits-work.md)
-- プロジェクトの使いどころ（準備中）
+- [プロジェクトの使いどころ](../app/using-projects.md)
 
 </div>
 

@@ -89,8 +89,8 @@ updated: 2026-11-05
 
 - 要約を根拠にする前に、結論の文ごとに、原文でその文が成り立つ条件を探す。照らし方は <!-- link:begin fact-checking#summaries -->[事実を確かめる（引用・照合・best-of-N） › 要約を原文と照らす](../verify/fact-checking.md#summaries)<!-- link:end --> にある。
 - 要約が原文より断定的になったと気づいたとき、落ちた条件を見つける順は <!-- link:begin summary-overstates-source#diagnosis -->[要約が原文より断定的になる › 原因を安く確かめる順](../symptoms/summary-overstates-source.md#diagnosis)<!-- link:end --> にある。
-- 引用や出典の細部を確かめる手順は <!-- link:begin checking-citations#steps -->引用や出典の確かめ方 › 確かめる手順（準備中）<!-- link:end --> にある。
-- 調べものの結論を出典の原文で確かめる流れは <!-- link:begin research-and-reports#check-sources -->調べものとレポート › 出典を原文で確かめる（準備中）<!-- link:end --> にある。
+- 引用や出典の細部を確かめる手順は <!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end --> にある。
+- 調べものの結論を出典の原文で確かめる流れは <!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end --> にある。
 - 仕様のように誤読が高くつく原文は、先に自分で読んで要約する。方法は <!-- link:begin read-specs-yourself#read-first -->仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する（準備中）<!-- link:end --> にある。
 
 !!! example "判断例：要約をどこまで根拠にするか"
@@ -139,8 +139,8 @@ updated: 2026-11-05
 **関連**
 
 - [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)
-- 引用や出典の確かめ方（準備中）
-- 調べものとレポート（準備中）
+- [引用や出典の確かめ方](../verify/checking-citations.md)
+- [調べものとレポート](../recipes/research-and-reports.md)
 - [AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](../judgment/learning-with-ai.md)
 - [ハルシネーションはなぜ起きるか](why-hallucinations.md)
 

@@ -52,7 +52,7 @@ updated: 2026-11-05
 鍵に移す合図は 3 つある。どれも「お願いのままでは、この規則は守られ続けない」と分かる出来事である。
 
 1. **同じ注意を 2 回した**。1 回目の訂正は、CLAUDE.md の 1 行で足りることが多い。同じ規則をもう一度言うことになったなら、お願いが効いていない。2 回目の注意は、規則の置き場所を見直す合図になる。
-2. **強調しても破られた**。IMPORTANT や全部大文字で書き足しても守られない行は、公式が鍵にすべき合図として挙げている。CLAUDE.md は指針であり、Claude は当てはまらないと判断してよいからである。強調で直らない理由は <!-- link:begin emphasis-words#why-not -->強調語（IMPORTANT・必ず）の現在 › 強調で直らない二つの理由（長すぎる・例外がない）（準備中）<!-- link:end --> にある。この助言の変遷は <!-- link:begin outdated-advice-ledger#important-caps -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#important-caps)<!-- link:end --> に載っている。
+2. **強調しても破られた**。IMPORTANT や全部大文字で書き足しても守られない行は、公式が鍵にすべき合図として挙げている。CLAUDE.md は指針であり、Claude は当てはまらないと判断してよいからである。強調で直らない理由は <!-- link:begin emphasis-words#why-not -->[強調語（IMPORTANT・必ず）の現在 › 強調で直らない二つの理由（長すぎる・例外がない）](../prompting/emphasis-words.md#why-not)<!-- link:end --> にある。この助言の変遷は <!-- link:begin outdated-advice-ledger#important-caps -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#important-caps)<!-- link:end --> に載っている。
 3. **会話で言った禁止が圧縮で消えた**。「push しないで」と言ったのに、長い作業の後で push された場合である。詳しくは、この後の「会話で言った禁止は圧縮で消える」の節で扱う。
 
 合図が出ても、すぐに鍵へ移さない。先に 2 つを確かめる。
@@ -100,7 +100,7 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 - **コマンドの中身、ファイルの内容、ターンの終わりの状態を見て判定する**：フックにする。鍵に数えるのは、スクリプトが決まった手順で判定する決定論のフックである。別のモデルに判断させるフックは、鍵ではなくお願いに近い。使いどころは <!-- link:begin hooks-basics#when -->[フックの考え方とイベント › 使いどころ](hooks-basics.md#when)<!-- link:end -->、違いは <!-- link:begin hooks-basics#deterministic -->[フックの考え方とイベント › 決定的なフックと、モデルが判断するフック](hooks-basics.md#deterministic)<!-- link:end --> にある。
 - **毎回 Claude に判断させている作業**：判断そのものをスクリプトに移す。見分け方は <!-- link:begin move-judgment-into-scripts#what-to-move -->判断を決定論的なスクリプトに移す › 移す作業の見分け方（準備中）<!-- link:end --> にある。
 
-この節の例は Claude Code の設定である。アプリと API で使える鍵は面によって違うので、<!-- link:begin request-lock-table#by-surface -->お願いと鍵の対応表 › 面ごとの鍵の手段（準備中）<!-- link:end --> で確かめる。会話で言った禁止を deny ルールに移す設定の例を次に示す。
+この節の例は Claude Code の設定である。アプリと API で使える鍵は面によって違うので、<!-- link:begin request-lock-table#by-surface -->[お願いと鍵の対応表 › 面ごとの鍵の手段](request-lock-table.md#by-surface)<!-- link:end --> で確かめる。会話で言った禁止を deny ルールに移す設定の例を次に示す。
 
 <!-- gen:begin snippet when-to-lock/deny-git-push -->
 <!-- textlint-disable -->
@@ -176,9 +176,9 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 
 ## 誤解 {#misconceptions}
 
-- **強調を重ねれば守られる**：強調を足しても直らない行が、鍵に移す合図である。強調はかえって規則を当てはめすぎる原因にもなる。見直しは <!-- link:begin emphasis-words#overreaction -->強調語（IMPORTANT・必ず）の現在 › 強い言い方が過剰に効く（準備中）<!-- link:end --> にある。
+- **強調を重ねれば守られる**：強調を足しても直らない行が、鍵に移す合図である。強調はかえって規則を当てはめすぎる原因にもなる。見直しは <!-- link:begin emphasis-words#overreaction -->[強調語（IMPORTANT・必ず）の現在 › 強い言い方が過剰に効く](../prompting/emphasis-words.md#overreaction)<!-- link:end --> にある。
 - **会話で一度言えば、ずっと守られる**：会話の禁止は圧縮で溶けうる。長い作業で守らせたい禁止は、会話の外に置く。
-- **スキルにすれば確実に動く**：スキルは Claude が判断して使うお願いである。必ず動かしたい手順は、フックで走らせる。違いは <!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end --> にある。
+- **スキルにすれば確実に動く**：スキルは Claude が判断して使うお願いである。必ず動かしたい手順は、フックで走らせる。違いは <!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end --> にある。
 - **鍵が多いほど安全になる**：縛りを足しすぎると、止めすぎと回り込みが起きる。移すのは、機械で判定でき、害の大きい規則だけにする。
 
 <!-- gen:begin references -->
@@ -209,8 +209,8 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 
 **次に読む**
 
+- [お願いと鍵の対応表](request-lock-table.md)
 - [フックの考え方とイベント](hooks-basics.md)
-- お願いと鍵の対応表（準備中）
 - 失敗を仕組みに戻す（ポストモーテム）（準備中）
 
 **関連**
@@ -222,8 +222,8 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 - [圧縮の後に約束を忘れた](../symptoms/forgot-after-compaction.md)
 - [圧縮で消えない場所に約束を置く](../context/promises-after-compaction.md)
 - [CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](../extend/what-to-put-in-claude-md.md#what-to-leave-out)
-- 強調語（IMPORTANT・必ず）の現在（準備中）
-- フックとスキルの違い（準備中）
+- [強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)
+- [フックとスキルの違い](../extend/hook-vs-skill.md)
 
 </div>
 

@@ -159,10 +159,10 @@ updated: 2026-11-05
 - 最初の 1 分を見て、ずれたらすぐ止める。ずれた答えの上に訂正を重ねない。
 - 巻き戻しや `/clear` で捨てる試みから、分かったことだけを残す習慣をつける。書き残しすぎると別の問題が出るので、残す量は <!-- link:begin keep-failure-lessons#too-much -->失敗の教訓は捨てずに書き残す › 書き残しすぎの副作用（準備中）<!-- link:end --> を見て決める。
 - 出力を良くしたいときは、毎回作り直させず、前回の結果と測った値を見せて直させる。進め方は <!-- link:begin build-on-results#regenerate-or-refine -->やり直させるより、結果を踏まえて直させる › 作り直しと直しの違い（準備中）<!-- link:end --> にある。
-- 自分でも要件が固まっていないときは、先に Claude に質問させる。質問の頼み方は <!-- link:begin let-claude-ask#how -->質問させる・インタビューさせる › 質問させる頼み方（準備中）<!-- link:end --> を見る。
+- 自分でも要件が固まっていないときは、先に Claude に質問させる。質問の頼み方は <!-- link:begin let-claude-ask#how -->[質問させる・インタビューさせる › 質問させる頼み方](../prompting/let-claude-ask.md#how)<!-- link:end --> を見る。
 - 続けるかやめるかを、着手前に書いた基準で判断する。基準の書き方は <!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](../judgment/decide-when-to-quit.md#write-criteria-first)<!-- link:end --> を見る。
 
-会話を整える動作の全体は <!-- link:begin tidy-the-desk#four-actions -->机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作（準備中）<!-- link:end --> にまとめてある。診断の入口は <!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> にある。
+会話を整える動作の全体は <!-- link:begin tidy-the-desk#four-actions -->[机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作](../context/tidy-the-desk.md#four-actions)<!-- link:end --> にまとめてある。診断の入口は <!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -196,9 +196,9 @@ updated: 2026-11-05
 **関連**
 
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
 - やり直させるより、結果を踏まえて直させる（準備中）
-- 質問させる・インタビューさせる（準備中）
+- [質問させる・インタビューさせる](../prompting/let-claude-ask.md)
 - [同じ確認のループにはまる](stuck-in-a-check-loop.md)
 - [直し続けて方針を疑わない（またはすぐ撤退を勧める）](wont-rethink-approach.md)
 - [誤りを認めずに言い張る](insists-on-mistakes.md)

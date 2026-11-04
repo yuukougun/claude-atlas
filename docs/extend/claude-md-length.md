@@ -74,8 +74,8 @@ CLAUDE.md の全文は、セッションを始めるたびに文脈へ入り、�
 | ディレクトリの木・ファイルの一覧・フレームワークの説明 | 削る。Claude がリポジトリを自分で読む |
 | 標準的な言語の規約・linter で検査できる規約 | 削る。検査は linter やフォーマッタに任せる |
 | 詳しい API 文書 | 削り、リンクにする |
-| 特定のフォルダだけに関わる規約 | rules に移す。<!-- link:begin path-scoped-rules#after-compaction -->.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期（準備中）<!-- link:end --> |
-| たまにしか使わない長い手順 | スキルに移す。<!-- link:begin how-skills-load#after-compaction -->スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの（準備中）<!-- link:end --> |
+| 特定のフォルダだけに関わる規約 | rules に移す。<!-- link:begin path-scoped-rules#after-compaction -->[.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期](path-scoped-rules.md#after-compaction)<!-- link:end --> |
+| たまにしか使わない長い手順 | スキルに移す。<!-- link:begin how-skills-load#after-compaction -->[スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの](how-skills-load.md#after-compaction)<!-- link:end --> |
 | 例外を許さない禁止 | 鍵に移し、CLAUDE.md には理由だけを残す。<!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end --> |
 
 最小の手順は次の 5 つだ。
@@ -161,10 +161,10 @@ CLAUDE.md はチームの合意文書として、リポジトリに入れて育�
 - 変更は PR にして、別のメンバーが承認する。古い・矛盾した指示は、自信のある誤ったコードを生むので、足すより直すほうを重く見る（根拠：弱）。
 - 足す基準は、同じ誤りを 2 回訂正したときにする。書く行の選び方は<!-- link:begin what-to-put-in-claude-md#adding-lines -->[CLAUDE.md に書くこと・書かないこと › 足すときの手順](what-to-put-in-claude-md.md#adding-lines)<!-- link:end -->にある。
 - 定期的に棚卸しする。月に 1 回という頻度は実践者の経験則で（根拠：弱）、公式の決まりではない。棚卸しのたびに、上の問いを全行に当てる。
-- モデルを替えたときも見直す。古いモデル向けに入れた強調や検証の指示が残っていないかを見る（<!-- link:begin after-switching-models#checklist -->新しいモデルに替えたら見直すこと › 見直す順（準備中）<!-- link:end -->）。
+- モデルを替えたときも見直す。古いモデル向けに入れた強調や検証の指示が残っていないかを見る（<!-- link:begin after-switching-models#checklist -->[新しいモデルに替えたら見直すこと › 見直す順](../models/after-switching-models.md#checklist)<!-- link:end -->）。
 - モノレポで、ほかのチームの CLAUDE.md が混ざって読まれるときは、除外の設定がある（<!-- link:begin claude-md-loading-order#monorepo -->CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示（準備中）<!-- link:end -->）。
 
-拡張の全体（skills・MCP・プラグイン）の棚卸しは、<!-- link:begin pruning-extensions#criteria -->拡張の棚卸しと剪定 › 切る基準（準備中）<!-- link:end -->が持つ。
+拡張の全体（skills・MCP・プラグイン）の棚卸しは、<!-- link:begin pruning-extensions#criteria -->[拡張の棚卸しと剪定 › 切る基準](pruning-extensions.md#criteria)<!-- link:end -->が持つ。
 
 ## 効かない場面と落とし穴 {#limits}
 
@@ -178,7 +178,7 @@ CLAUDE.md はチームの合意文書として、リポジトリに入れて育�
 
 - CLAUDE.md のほかに rules・スキル・スタイルのどれへ移すかは、<!-- link:begin claude-md-vs-rules-skills-styles -->[CLAUDE.md・rules・スキル・出力スタイルの違い](claude-md-vs-rules-skills-styles.md)<!-- link:end -->で比べている。
 - CLAUDE.md に何を書くかの方針は<!-- link:begin what-to-put-in-claude-md -->[CLAUDE.md に書くこと・書かないこと](what-to-put-in-claude-md.md)<!-- link:end -->、このページは「書いた後に短く保つ」側を持つ。
-- 強調語で守らせる話は<!-- link:begin emphasis-words#why-not -->強調語（IMPORTANT・必ず）の現在 › 強調で直らない二つの理由（長すぎる・例外がない）（準備中）<!-- link:end -->が持つ。
+- 強調語で守らせる話は<!-- link:begin emphasis-words#why-not -->[強調語（IMPORTANT・必ず）の現在 › 強調で直らない二つの理由（長すぎる・例外がない）](../prompting/emphasis-words.md#why-not)<!-- link:end -->が持つ。
 
 ## 古くなった助言 {#outdated}
 
@@ -198,15 +198,15 @@ CLAUDE.md はチームの合意文書として、リポジトリに入れて育�
 **関連**
 
 - /init と最初の CLAUDE.md（準備中）
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
-- スキルの考え方（手順を必要なときだけ読む）（準備中）
+- [.claude/rules と paths で必要なときだけ読ませる](path-scoped-rules.md)
+- [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
-- 強調語（IMPORTANT・必ず）の現在（準備中）
+- [強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)
 - [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
-- 拡張の棚卸しと剪定（準備中）
+- [拡張の棚卸しと剪定](pruning-extensions.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [体感と実測](../eval/felt-vs-measured.md)
-- 新しいモデルに替えたら見直すこと（準備中）
+- [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)
 - チームで設定を共有する（準備中）
 - CLAUDE.md の階層と読み込み順（準備中）
 - [/context で中身を見る](../context/inspect-context.md)

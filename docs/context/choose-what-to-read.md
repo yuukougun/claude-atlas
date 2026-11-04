@@ -73,7 +73,7 @@ After で足したのは 3 点である。直す対象のファイル、症状�
     - **状況**：ログイン処理で、空のパスワードが通る不具合を直したい。
     - **迷う候補**：原因のファイルを @ で指す。または、症状だけを伝えて、Claude に関連するコードを探させる。
     - **選んだもの**：原因が `login.ts` にあると分かっているので、@ で指す。分からないときは、探させる。
-    - **理由**：分かっている対象は、直接渡したほうが探索の手間が省ける。分からない対象を無理に指すと、本当の原因のファイルが読まれずに、的外れな修正になる。探させる場合の進め方は <!-- link:begin explore-a-codebase#broad-to-narrow -->知らないコードベースを読む › 広い質問から絞る（準備中）<!-- link:end --> にある。
+    - **理由**：分かっている対象は、直接渡したほうが探索の手間が省ける。分からない対象を無理に指すと、本当の原因のファイルが読まれずに、的外れな修正になる。探させる場合の進め方は <!-- link:begin explore-a-codebase#broad-to-narrow -->[知らないコードベースを読む › 広い質問から絞る](../recipes/explore-a-codebase.md#broad-to-narrow)<!-- link:end --> にある。
 
 型のある言語では、言語サーバーに尋ねて定義へ飛ばせるので、総当たりで読む量が減る。その設定は <!-- link:begin code-intelligence-plugins -->code intelligence プラグイン（LSP）（準備中）<!-- link:end --> で扱う。
 
@@ -109,7 +109,7 @@ After で足したのは 3 点である。直す対象のファイル、症状�
 
 全文を捨てるわけではない。全文はファイルに残るので、原因の調べに要るときだけ、該当の箇所を読ませる。絞りすぎて原因の手がかりが消えたときは、絞る範囲を広げて、もう一度実行させる。
 
-絞り込みを毎回の頼み方に頼らず、仕組みにする方法もある。テストの出力を絞るフックは <!-- link:begin hook-recipes#filter-test-output -->代表的なフックのレシピ › テストの出力を絞る（準備中）<!-- link:end --> にある。調査そのものが大量の出力を出すときは、絞るより、別の文脈で読ませる手がある。その線引きは <!-- link:begin research-in-subagents#when -->出力の多い調査はサブエージェントに任せて要約だけ受け取る › 任せてよい調査、本筋で読むべきもの（準備中）<!-- link:end --> にある。
+絞り込みを毎回の頼み方に頼らず、仕組みにする方法もある。テストの出力を絞るフックは <!-- link:begin hook-recipes#filter-test-output -->[代表的なフックのレシピ › テストの出力を絞る](../enforce/hook-recipes.md#filter-test-output)<!-- link:end --> にある。調査そのものが大量の出力を出すときは、絞るより、別の文脈で読ませる手がある。その線引きは <!-- link:begin research-in-subagents#when -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る › 任せてよい調査、本筋で読むべきもの](research-in-subagents.md#when)<!-- link:end --> にある。
 
 ## 何に効くか {#effects}
 
@@ -151,7 +151,7 @@ After で足したのは 3 点である。直す対象のファイル、症状�
 <!-- textlint-enable -->
 <!-- gen:end snippet choose-what-to-read/point-with-at -->
 
-長い資料を渡すときの分け方と変換は <!-- link:begin handing-long-documents#split-and-convert -->長い資料を渡すとき › 分ける・形を直す（準備中）<!-- link:end --> にある。MCP でつなぐか CLI で済ませるかによっても、会話に入る量は変わる。選び方は <!-- link:begin mcp-or-cli -->MCP か CLI か（準備中）<!-- link:end --> にある。
+長い資料を渡すときの分け方と変換は <!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](handing-long-documents.md#split-and-convert)<!-- link:end --> にある。MCP でつなぐか CLI で済ませるかによっても、会話に入る量は変わる。選び方は <!-- link:begin mcp-or-cli -->[MCP か CLI か](../extend/mcp-or-cli.md)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -178,18 +178,18 @@ After で足したのは 3 点である。直す対象のファイル、症状�
 
 **次に読む**
 
-- 知らないコードベースを読む（準備中）
+- [知らないコードベースを読む](../recipes/explore-a-codebase.md)
 
 **関連**
 
 - [入力の記号（/ ! @）と Esc](../cli/input-symbols.md)
-- 長い資料を渡すとき（準備中）
-- 出力の多い調査はサブエージェントに任せて要約だけ受け取る（準備中）
+- [長い資料を渡すとき](handing-long-documents.md)
+- [出力の多い調査はサブエージェントに任せて要約だけ受け取る](research-in-subagents.md)
 - [/context で中身を見る](inspect-context.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - code intelligence プラグイン（LSP）（準備中）
 - [具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)
-- MCP か CLI か（準備中）
+- [MCP か CLI か](../extend/mcp-or-cli.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 
 </div>

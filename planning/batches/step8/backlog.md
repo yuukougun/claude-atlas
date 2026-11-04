@@ -112,3 +112,119 @@ where-to-put-instructions の `app-instruction-scope-and-timing`（値が「本�
 - stuck-in-a-check-loop：ISUCON13 の記事は「対処として知識や検索を与えた」と書かない。調査資料 11 の行の表現を見直す
 - going-in-circles：研究段落を消したので sources は1件。研究の根拠は context-rot 側に置く
 - learning-with-ai：競技の上位解法の読み方は kyopro-atlas を指す決めだが、URL・ページ名が束にない。決まったら summaries-of-solutions の末尾に1文
+
+## バッチ4の終わり（TR4）で足したもの
+
+### 数値の提案（各ページの facts-proposal.yml・write.md の proposals。第一波の終わりに入れ、used_in に目印）
+
+| ページ | 提案 | 目印を置く所 |
+| --- | --- | --- |
+| choosing-a-surface | surface-attributes（3面を features に足し tracks に入れる。compare の表が3面を並べられる） | #compare-surfaces |
+| current-models | current-models-lineup・haiku-4-5-removed-from-app-selector・sonnet-4-5-retirement・mythos-availability。入れたら #lineup の表の後に fact-table current-models-lineup、手書きの確認日 2026-10-29 を出典の行に替える | #lineup・#fable-and-mythos |
+| thinking-keywords | ultrathink の版・引き上げる先・対象モデル | #ultrathink |
+| after-switching-models | facts-proposal.yml の4件（/doctor prompt-audit の最低の版ほか）。退役の日付・既定の値・API の版 | #retirements-and-default-changes・#api-parameters |
+| show-examples | few-shot-recommended-count（3〜5 個。一次資料の再確認は未） | #how-many |
+| let-claude-ask | ask-user-question-limits・ask-user-question-timeout（Agent SDK 文書の id が sources にない） | #how・#limits |
+| compact-and-auto-compact | idle compaction の大きさ・放置の時間・端末の版・IDE の版・autoCompactWindow の範囲 | 各 used_in の節 |
+| using-projects | projects-free-limit（5。急がない） | #pitfalls |
+| files-and-code-execution | facts-proposal.yml の3件（ネットワークの既定・30MB の上限・共有の制限） | fact-table |
+| artifacts-overview | facts-proposal.yml の5件（成熟度・プラン・上限・2026-09-16 の日付）。書き出し先の形式の表（#templates）も移すか決める | #templates |
+| connectors-in-the-app | custom-connector-free-limit・connectors-on-demand-recommend-threshold | #types・#on-demand |
+| permission-modes-in-the-app | app-permission-mode-defaults（Ultra の扱いが束の data と調査資料 02 で食い違う。要確認） | #modes |
+| usage-context-statusline | statusline-json-context-used-percentage・statusline-json-five-hour-used-percentage（未確認）。「5-hour limit」の呼び方を fact にするか | #statusline |
+| when-to-add-what | add-trigger-claude-md-mistake-count（2回）・add-trigger-skill-paste-count（3回目）。公式の表の原文で再確認が要る | #triggers |
+| must-know-operations | キー割り当て4件（Shift+Tab・Ctrl+G・Ctrl+O・Ctrl+B・画像の貼り付け）。入れたら手書きのバッククォートを目印に替え、実機で確かめる | 本文の該当箇所 |
+
+### 用語集に足す語
+
+- 強調語（IMPORTANT・YOU MUST・全部が大文字・「絶対に」「必ず」）：emphasis-words が本文で短く定義
+- legacy artifacts：artifacts-overview が本文で短く定義
+- 定期タスク（Scheduled tasks）・信頼境界（trusted boundary）：tasks-and-schedules-in-the-app
+- ステータスライン（正）／status line（別名）：usage-context-statusline
+- bypass permissions の平文表記：when-to-plan は `bypassPermissions` と書いた（prh が弾く）。平文の扱いを決める
+- プラグイン（plugin の訳）：where-it-runs（prh が plugin を弾く）
+
+### 道具・data の形
+
+強制力の値の案（お願い・鍵・モデルの判定・なし。decisions 2026-11-05「強制力の語彙」。線引き：読んで従うよう頼むだけ＝お願い、止める仕組みがない＝なし）：
+
+- ultrathink（thinking-keywords）：お願い（プロンプトに指示を足すだけで何も止めない）
+- compaction（compact-and-auto-compact）：なし（止める仕組みではない）
+- code-execution・ファイル作成（files-and-code-execution）：機能ごとに決める。ネットワーク設定の側は鍵、依頼の文はお願い。2機能を「鍵」とするか、ネットワークの設定を別の行に分けるか
+- artifacts（artifacts-overview）：なし（止める仕組みではない）
+- connectors（connectors-in-the-app）：鍵ではない。止められるのはツールごとの許可で締めた操作だけ。値を1つ選ぶなら「お願い」（許可の設定は別の機能の鍵）
+- app-tasks（tasks-and-schedules-in-the-app）：1値に丸めにくい。権限モードとフォルダ許可は鍵、依頼はお願い。案は「鍵」（主の仕組みが許可）か、行を分ける
+- subagents・plugins・code-intelligence・mcp の圧縮の扱い（extensions-at-a-glance の表で「未確認」「—」）：mcp はなし。subagents・plugins・code-intelligence は出典で決める。「1語で言えない」の値の表現を data に持てるかも検討
+
+そのほか：
+
+- choosing-a-surface：catalog の tracks に claude-code・api 側の機能の id を足す（compare の表が3面を並べられる。今は3軸の表を手書き）
+- usage-context-statusline：compare 表の context-window の行が「— / —」（コストと since が data にない）。data に値を足すか、表から外す
+- thinking-keywords：find-old-keywords の雛形に「要る最低の版」が出る（grep には不要）。features を外す案（上の「雛形の注記」の件と一緒に）
+- thinking-keywords：台帳の行 think-hard-keywords への link `outdated-advice-ledger#think-hard-keywords` が持つ anchor にあるか、一覧で確かめる。emphasis-words の `#keep-going-dont-be-lazy`・`#important-caps` も同じ（公開側の解決を生成後に確かめる）
+- let-claude-ask：雛形 `snippets/let-claude-ask/` と spec-first の担当の雛形の重複（置き場所は batch4-decisions）
+- images-and-voice：音声入力の言語は language の設定。keep-replies-in-japanese の language-setting の節を指す link が束にない（related は足した。本文の link は節が指せるようになってから）
+- current-models：自動の切り替え（分類器が止めた依頼を別のモデルで答え直す）から when-requests-are-refused への link を足してよいか（指せる節に追加するか）
+- choosing-a-model・after-switching-models・emphasis-words：モデル名（Opus 5 など）を names の目印で出すか。names に項目を足す提案
+- 台帳（outdated-advice-ledger）の行 id の節を、公開側で指せるようにする（ledger の sections に行 id の anchor を持たせる）
+
+### 調べる担当に回すもの
+
+- 事実の検証役：using-projects の「1プロジェクト1目的」の裏付け（企業の解説記事1件、根拠：弱）・when-to-plan の「diff を一文で説明できるなら省く」は経験則の明記のまま・connector-request 雛形の control（未検証）
+- アプリ面の手段：show-examples（Projects の資料に置く面ごとの置き方）・images-and-voice（アプリの画像添付の手順）・compact-and-auto-compact（アプリの手で圧縮する操作）・tidy-the-desk（アプリの「任せる」）・handing-long-documents（Claude Code と API の PDF の読み込みの上限）
+- images-and-voice：Windows・WSL の貼り付けのキーを公式から確かめて足すか
+- 確かめ済み（TR4）：say-what-you-want の「フックが止めるときに返す文（exit 2 の stderr）は Claude に届く」は、公式 Hooks の文書（Exit code 2）で確認済み。本文はそのままでよい
+
+## バッチ5の終わり（TR5）で足したもの
+
+### 数値の提案（各ページの facts-proposal.yml・write.md の proposals。第一波の終わりに入れ、used_in に目印）
+
+- path-scoped-rules：必要なときに読み込まれるファイルの文字数の上限（used_in: path-scoped-rules#limits。本文は数字なしで読める）
+- how-skills-load：`skill-description-rebuild-min-version`（圧縮の後に説明文が作り直される挙動が入った版。足し先：how-skills-load#after-compaction の「説明文」の項目）
+- mcp-or-cli：`mcp-output-warning-tokens`（10,000）・`mcp-output-default-limit-tokens`（25,000）。どちらも一次未確認（used_in: mcp-or-cli#table・#verify）
+- pruning-extensions：facts-proposal.yml の 2 件（measure の「/plugin の Installed タブ」の項目。2 件目は任意）。目次の備考「40 個を超えたら見直す」の置き場所も（used_in: pruning-extensions#criteria）
+- hook-recipes：agent_id が入力に付く最低の版（v2.1.69。deny-subagent-commit の min_version_fact に使う）
+- parallel-with-worktrees：`worktree-base-ref-default`・`worktree-sandbox-resume-fix-version`・`worktree-block-writes-setting-version`（2.1.314。いずれも要確認）
+- headless-basics：3 件（`#permissions` の既定の変遷と `--permission-prompts none` の版、`#output-and-exit-codes` の「直った版」）
+- sdk-comparison：`managed-agents-session-hour-price`（#managed-agents の「費用の面では」）
+- parallel-and-loop-costs：複数エージェントの倍率「約7倍」（条件つき。Manage costs の原文は未確認）。「約 15 倍」（2025 年の Research 機能）を目印にするなら提案を足す
+- can-i-prompt-in-japanese：`multilingual-global-mmlu-japanese`（Global-MMLU の日本語の値。モデルごとの fact-table で持つ。置き場所 #evaluation。確かめ済み 2026-11-05）
+
+### 用語集に足す語（glossary を書くバッチで渡す）
+
+- description（スキルの説明文）：「スキルの SKILL.md のフロントマターにあり、Claude がそのスキルを読み込むかを決める手がかりになる文。名前とともに毎回の会話に載る」（skill-descriptions の提案。writing-skills・writing-subagents でも使う）
+- Agent／Environment／Session／Events（Managed Agents の構成要素。sdk-comparison が本文で短く定義）
+- データの区分（ai-usage-guidelines が本文で短く定義。強い提案ではない）
+
+### 道具・data の形
+
+- skill-vs-subagent：subagents に `survives_compaction`（記録は圧縮の影響を受けない）を入れると、表に「圧縮で残るか」の列を足せる。「強制力」の列も、subagents の強制力が空のため外している
+- mcp-or-cli：CLI を data の機能に足すか（足さないと比較の表を作れない）。tracks に `skills` を足す案は batch5-decisions に上げた
+- parallel-with-worktrees：features の worktrees に `enforcement: なし`（作業場所を分けるだけで、書き込みを禁じる鍵でもお願いでもない）。値の選び方はメイン
+- headless-basics：headless に強制力の属性がない（permission-modes の値を指した）。属性の持たせ方
+- feature-to-api-mapping：compare 表の MCP connector の行が自己リンクになる（data の `mcp-connector` の page がこのページ）。道具側で自己リンクを避けるか
+- hook-recipes：`cc-docs-subagents` 相当の出典 id（disallowedTools は指定子を付けても Bash 全体が外れる、の根拠。data/sources.d/hook-recipes.yml への追加が要る）
+- writing-subagents ほか：台帳の行 id の anchor が check_page で通ることは確認済み（アクションなし）
+
+### 出典の差し替え
+
+- checking-citations：Anthropic の訴訟の事例の出典が techcrunch.com（noai）。noai でない別の一次（裁判所の記録など）が見つかれば、事例を足す
+- how-skills-load・path-scoped-rules：`@import` でコンテキストが減る、の説明は実践者の記事（Serverworks）による。公式の文書で確かめられたら（根拠：弱）の印を外す
+
+### 調べる担当に回すもの
+
+- hook-recipes：filter-test-output が `updatedInput` と `permissionDecision: allow` を一緒に返す。allow が必須か（公式の文書の全文で）
+- writing-safe-hooks：`${CLAUDE_PROJECT_DIR}` を `args` の要素に書いたとき、置き換えが効くか（動作確認）
+- request-lock-table：Stop フックで返答の言語を確かめる行が、keep-replies-in-japanese の扱いと揃うか
+- explore-a-codebase：`#guards-first` の plan mode の一言（編集を止めたまま調べさせる）の正確さ
+- before-opening-unknown-repos：起動後に動いているフックと MCP を見る画面やコマンドの名前（手順 4）を公式で確かめて足すか。`.vscode/` の動作
+- entrusted-data：Claude Code の認証方式と契約の側の対応を、公式の文書で照合する（review の指摘 6）。ZDR の説明（sdk-comparison の指摘 1）も同じ
+- parallel-with-worktrees：`.worktreeinclude` の雛形（safety: true）が safety の確認を通ったか
+- parallel-and-loop-costs：`--max-turns`・`--max-budget-usd` が「確かに止める」仕組みか（原文で）
+- research-and-reports：Claude Code の面の web 検索・取得の動作（未確認と書いた）
+- ai-usage-guidelines：「止まって相談する」の一行がモデルの癖に依存する旨の確認日
+
+### 本文の足し先（値が入ったあと）
+
+- 台帳（outdated-advice-ledger）に path-scoped-rules の行（「CLAUDE.md は再注入される」の言い切り）を足すか。足せば #outdated は台帳を指せる
+- hook-vs-skill：「ほかの OS と IDE 拡張は未確認」の位置は #table の末尾のまま（レビューも許容）

@@ -54,7 +54,7 @@ updated: 2026-11-05
 1. **対話**：1 ターンごとに人が結果を見て、次の指示を返す。確認も人の目の前で出る。
 2. **計画の承認**：plan mode などで計画を出させ、人が承認する。承認した後の編集は自動で承認する。手戻りの大きい作業の向きを、先に人が決めるための段である。
 3. **停止条件つきの反復**：測れる終わりの状態・確かめる方法・変えないもの・ターン数の上限を渡して、Claude に繰り返させる。条件の書き方は <!-- link:begin goal-until-done#writing-conditions -->[/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](goal-until-done.md#writing-conditions)<!-- link:end --> にある。
-4. **隔離した無人実行**：worktree・コンテナ・クラウドなどの隔離した場所で、許可した道具だけで動かす。隔離の条件は <!-- link:begin where-bypass-is-ok#requirements -->bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件（準備中）<!-- link:end --> で確かめる。
+4. **隔離した無人実行**：worktree・コンテナ・クラウドなどの隔離した場所で、許可した道具だけで動かす。隔離の条件は <!-- link:begin where-bypass-is-ok#requirements -->[bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件](../safety/where-bypass-is-ok.md#requirements)<!-- link:end --> で確かめる。
 
 この 4 段は作業ごとの目盛りで、読む人の習熟の段階とは別である。習熟の段階（使う・整える・任せる・仕組みにする・回す）は <!-- link:begin roadmap#levels -->[ロードマップ（委任の段階別） › 五つの段階と上がる条件](../start/roadmap.md#levels)<!-- link:end --> にある。同じ人でも、仕様の決まった移行作業は段 3 に上げ、設計の判断を含む作業は段 1 のままにする。どの段でも人が握るものは、<!-- link:begin what-not-to-delegate#what-humans-hold -->[任せないもの（評価・採否・撤退・中核の理解） › どの段階でも人が握るもの](what-not-to-delegate.md#what-humans-hold)<!-- link:end --> にまとまっている。
 
@@ -69,14 +69,14 @@ updated: 2026-11-05
 | 1 完了の定義は何か | 目標の条件、仕様のファイル、緑にすべき失敗するテスト | Claude は終わったように見えた時点で止まる。本当に終わったかの判断材料がない | <!-- link:begin verification-ladder#four-steps -->[検証の階段 › 四つの段](../verify/verification-ladder.md#four-steps)<!-- link:end --> |
 | 2 自分で検証できるか | テストの一式、Stop フック、レビューの段 | 「通った」という報告だけが残り、確かめようがない | <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](../verify/verification-ladder.md#choose-step)<!-- link:end --> |
 | 3 触ってよい範囲はどこか | 権限ルール、`dontAsk`、サンドボックス、worktree、push してよい 1 本のブランチ | 範囲の外へ読み書きや通信が及ぶ | <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> |
-| 4 何で止まるか | `--max-turns`、`--max-budget-usd`、設定した費用の上限 | 方向が間違っていても、止まる点が来るまで続く。費用も膨らむ | <!-- link:begin headless-basics#limits -->非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）（準備中）<!-- link:end --> |
+| 4 何で止まるか | `--max-turns`、`--max-budget-usd`、設定した費用の上限 | 方向が間違っていても、止まる点が来るまで続く。費用も膨らむ | <!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](headless-basics.md#limits)<!-- link:end --> |
 | 5 結果はどこへ行き、誰が承認するか | PR・コメント・要約。マージや公開は人が承認する | 取り戻せない操作が、人の目を通らずに起きる | <!-- link:begin checking-unattended-runs#final-decision -->無人実行の結果を確かめる › 最後の判断を人に置く（準備中）<!-- link:end --> |
 
 問い 1 と 2 は、原因「確かめていない」を防ぐ。問い 3 と 4 は、原因「境界がない」を防ぐ。問い 5 は、人の側の落とし穴「預けすぎる」への歯止めになる。原理でいえば、1 と 2 が「確かめる」、3 と 4 が「縛る」にあたる。
 
 確かめていない場合の失敗は、実際に報告されている。1 つは、テストが失敗しているのに、件数を書き換えて「すべて通過」と報告した例である（Opus 4.6、Issue #46940）。もう 1 つは、失敗が残るのに「テストは緑」と報告し、未検証のコードを main へ push した例である（Opus 4.8、Issue #64286）。どちらも単独の報告である（根拠：弱）。人が見ていれば報告の時点で気づけるが、無人では朝まで残る。
 
-費用の上限は、安全の手段であると同時に、費用を決める手段でもある。上限の決め方は <!-- link:begin parallel-and-loop-costs#decide-before-starting -->並列・ループ・workflows のコスト › 始める前に決める三つ（準備中）<!-- link:end --> にある。
+費用の上限は、安全の手段であると同時に、費用を決める手段でもある。上限の決め方は <!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> にある。
 
 5 つに答えを書き出すときは、次の確認表を使う。1 つでも埋められない欄があれば、その作業はまだ無人にしない。
 
@@ -122,7 +122,7 @@ updated: 2026-11-05
 
 段 3 以上では、例外を許さない境界を会話の指示に頼らない。公式の文書は、指示を「モデルが読んで決めるもの」と「Claude Code が必ず実行するもの」に分ける。禁止したい操作は deny ルールかフックに置き、CLAUDE.md には理由と相談の基準だけを書く。
 
-非対話の `claude -p` では、確認に答える人がいない。モードを指定しないと、承認が要る呼び出しは拒まれる。許す道具は allow ルールなどで明示して渡す（詳しくは <!-- link:begin headless-basics#permissions -->非対話モード（claude -p）の基本 › 許可と権限モード（準備中）<!-- link:end -->）。auto モードを `-p` で使うときも、分類器が止めた操作は拒まれて作業が続くだけで、止まって待つ人はいない。
+非対話の `claude -p` では、確認に答える人がいない。モードを指定しないと、承認が要る呼び出しは拒まれる。許す道具は allow ルールなどで明示して渡す（詳しくは <!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](headless-basics.md#permissions)<!-- link:end -->）。auto モードを `-p` で使うときも、分類器が止めた操作は拒まれて作業が続くだけで、止まって待つ人はいない。
 
 !!! example "判断例：夜のうちに多数のファイルを移行する"
     - **状況**：古いロガーの API を使うファイルが多数あり、テストは揃っている。夜の間に新しい API へ移したい。
@@ -177,8 +177,8 @@ Claude は走り出せば長い作業を自分で進める。人に残るのは�
 **次に読む**
 
 - [/goal（完了するまで続けさせる）](goal-until-done.md)
+- [非対話モード（claude -p）の基本](headless-basics.md)
 - /loop と定期実行の方式（準備中）
-- 非対話モード（claude -p）の基本（準備中）
 
 **関連**
 
@@ -188,11 +188,11 @@ Claude は走り出せば長い作業を自分で進める。人に残るのは�
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
-- bypassPermissions と無人の実行はどこで動かすか（準備中）
+- [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - 無人実行の結果を確かめる（準備中）
-- 並列・ループ・workflows のコスト（準備中）
+- [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
 - AI に改善を回させ続ける罠（開いたループ）（準備中）
 - [ロードマップ（委任の段階別）](../start/roadmap.md)

@@ -136,7 +136,7 @@ trial を走らせる手段は、面ごとに違う。
     task ごとに新しい会話を開き、同じ依頼を前後で同じ回数ずつ出す。変更するのは、プロジェクトの指示やスタイルのうち 1 つにする。結果は手で記録表に写すので、task の数を少なく絞る。
 
 === "Claude Code"
-    task ごとに新しいセッションを開く。作業ディレクトリは、同じコミットを新しく取り出したものにする。非対話モードの `claude -p` を使うと、スクリプトから回せる。無人で回すときは、許す道具と止まる上限を明示する（<!-- link:begin headless-basics#limits -->非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）（準備中）<!-- link:end -->）。
+    task ごとに新しいセッションを開く。作業ディレクトリは、同じコミットを新しく取り出したものにする。非対話モードの `claude -p` を使うと、スクリプトから回せる。無人で回すときは、許す道具と止まる上限を明示する（<!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](../delegate/headless-basics.md#limits)<!-- link:end -->）。
 
 === "API"
     変更前と変更後のシステムプロンプトを用意し、task の入力を、同じモデルと同じ設定で何度か送る。試行が多いときは、急がない処理を一括で流す手段が使える（<!-- link:begin batch-api-basics#fit -->Message Batches API（急がない大量の処理） › 向く仕事・向かない仕事（準備中）<!-- link:end -->）。
@@ -153,7 +153,7 @@ trial を走らせる手段は、面ごとに違う。
 - git のある環境では、git 2.31 以降が要る。
 - マニフェストの `experimental.evals` のキーは、形が変わりうる。書き方は公式の文書で、そのときの版を確かめる。
 
-手動で比べるときも、考え方は同じである。スキルを入れた版と入れない版で、task、モデル、開始時のファイルを揃え、新しいセッションで同じ回数ずつ走らせる。スキルが読み込まれたか、読み込まれたうえで手順どおりに使われたかは、transcript で確かめる。スキルの作り方と、効いているかの確かめの入口は<!-- link:begin writing-skills#evaluate -->[スキルの作り方 › 効いているかを確かめる](../extend/writing-skills.md#evaluate)<!-- link:end -->にある。不要になったスキルを外すときも、外す前後を同じ方法で比べる（<!-- link:begin pruning-extensions#measure -->拡張の棚卸しと剪定 › 測る（準備中）<!-- link:end -->）。
+手動で比べるときも、考え方は同じである。スキルを入れた版と入れない版で、task、モデル、開始時のファイルを揃え、新しいセッションで同じ回数ずつ走らせる。スキルが読み込まれたか、読み込まれたうえで手順どおりに使われたかは、transcript で確かめる。スキルの作り方と、効いているかの確かめの入口は<!-- link:begin writing-skills#evaluate -->[スキルの作り方 › 効いているかを確かめる](../extend/writing-skills.md#evaluate)<!-- link:end -->にある。不要になったスキルを外すときも、外す前後を同じ方法で比べる（<!-- link:begin pruning-extensions#measure -->[拡張の棚卸しと剪定 › 測る](../extend/pruning-extensions.md#measure)<!-- link:end -->）。
 
 ## 採点の種類（コード・モデル・人） {#graders}
 
@@ -265,7 +265,7 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 - **良かった版を選び続けて、本番では効かない**：測っている task に合わせ込んでいる。防ぎ方は<!-- link:begin selection-pressure#defenses -->[選択圧：良かった版を選び続ける罠 › 防ぎ方](selection-pressure.md#defenses)<!-- link:end -->に書く。
 - **採点がおかしい、または指標が目的とずれている**：<!-- link:begin test-the-verifier#hand-calculated -->[検証器そのものを確かめる（red/green・手で計算したケース） › 手で計算したケース](test-the-verifier.md#hand-calculated)<!-- link:end -->と<!-- link:begin check-the-metric#mismatch -->評価指標そのものを確かめる › 指標と目的のずれ（準備中）<!-- link:end -->で確かめる。
 - **結果を残したい、同じ失敗を繰り返す**：仮説を先に書き、採否と判定者を残す。<!-- link:begin experiment-log#hypothesis-first -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 仮説を先に書く](experiment-log.md#hypothesis-first)<!-- link:end -->を使う。
-- **モデルを替えた後の見直し**：外すものを 1 つずつ外して測る（<!-- link:begin after-switching-models#remove-one-at-a-time -->新しいモデルに替えたら見直すこと › ハーネスの部品を一つずつ外して測る（準備中）<!-- link:end -->）。
+- **モデルを替えた後の見直し**：外すものを 1 つずつ外して測る（<!-- link:begin after-switching-models#remove-one-at-a-time -->[新しいモデルに替えたら見直すこと › ハーネスの部品を一つずつ外して測る](../models/after-switching-models.md#remove-one-at-a-time)<!-- link:end -->）。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -294,8 +294,8 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 
 **次に読む**
 
+- [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)
 - [選択圧：良かった版を選び続ける罠](selection-pressure.md)
-- 新しいモデルに替えたら見直すこと（準備中）
 - Claude に採点させる（人の判定で較正する）（準備中）
 - 上界を測って「限界です」を反証する（準備中）
 
@@ -304,14 +304,14 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](experiment-log.md)
 - [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)
 - [スキルの作り方 › 効いているかを確かめる](../extend/writing-skills.md#evaluate)
-- 拡張の棚卸しと剪定（準備中）
-- Before/After プロンプト集（準備中）
+- [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
+- [Before/After プロンプト集](../prompting/before-after-prompts.md)
 - 用途別プロンプトの型（準備中）
 - [日本語で返し続けさせる › 検証の方法](../japanese/keep-replies-in-japanese.md#measure)
 - 評価指標そのものを確かめる（準備中）
 - [検証器そのものを確かめる（red/green・手で計算したケース）](test-the-verifier.md)
 - /insights と /usage で振り返る（準備中）
-- 非対話モード（claude -p）の基本（準備中）
+- [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
 - Message Batches API（急がない大量の処理）（準備中）
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](verifier-defines-problem.md)
 

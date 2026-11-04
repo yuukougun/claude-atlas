@@ -1,0 +1,14 @@
+title: 計画だけを頼む依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+features: [plan-mode]
+conditions:
+  - 新しいセッションで試す
+  - Shift+Tab で plan mode に入ってから出す
+expect:
+  - when: 欄を埋めた依頼を plan mode で出す
+    then: ファイルを編集せずに調べ、変えるファイル・順序・確かめ方・迷った点を書いた計画を返し、進め方を選ぶ画面が出る（観察として扱う）
+  - when: 前提が足りない依頼を出す
+    then: 計画の先頭に質問が並ぶ（観察として扱う。指示は鍵でないので合否にしない）
+control: 依頼に範囲外と確かめ方がないとき、計画が実装の手順の羅列だけになり、取り違えを読み取りにくいことがある

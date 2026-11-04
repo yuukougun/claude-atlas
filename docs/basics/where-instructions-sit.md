@@ -112,7 +112,7 @@ flowchart TB
 | --- | --- | --- | --- |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | Claude Code | セッション開始 | 残る |
 | 出力スタイル（output styles）（準備中） | Claude Code | セッション開始と切り替えたとき | 残る |
-| プロジェクトの指示（project instructions）（準備中） | アプリ | — | 未確認 |
+| [プロジェクトの指示（project instructions）](../app/using-projects.md) | アプリ | — | 未確認 |
 | [Claude への指示（Instructions for Claude）](../app/where-to-put-instructions.md) | アプリ | — | 未確認 |
 
 すべて共通：強制力 お願い。

@@ -3,7 +3,7 @@
 第一波（136ページ。tools/check_catalog.py --stats）のうち、まだ骨格（stub）のページ（124）を書く。流し方は v3.1（[brief-page.md](brief-page.md)、ワークフロー .claude/workflows/step8-wave.js）。作者の決め（decisions 2026-11-05「工程7の終わりの頼みへの回答」）：最初に20ページほどで使用量と質を確かめてから残りを流す。口座に5時間の上限があるので、枠の終わりを見て区切る。
 
 - 束は `uv run python tools/make_packet.py <id> …` で作り直してから流す（型の必ず持つものの節 1b を含む）
-- バッチの終わりにメインがすること：数値の提案（pages/<id>/facts-proposal.yml）と共有のファイルへの提案をまとめて反映、生成、check_all（描画を含む）、使用量の集計、commit と push
+- バッチの終わりにメインがすること：共有のファイルへの提案の反映（rules.md の先例で担当が当てる。数値の提案は、バッチごとに入れず、第一波の終わりに1回で入れる〔backlog.md・decisions 2026-11-05「数値の提案」〕）、生成、check_all（描画を含む）、使用量の集計、commit と push
 - 公開：書いたページは draft のまま、下書きの印付きで公開する。工程7の試作と測定のページ（tools/gen/config.yml の held_back）は、最初のバッチの終わりに held_back から外して一緒に公開する（作者の承認は 2026-11-05 に出た）
 
 ## バッチ1（20ページ。2026-11-05）

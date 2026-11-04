@@ -101,7 +101,7 @@ updated: 2026-11-05
 
 プロジェクトの外の会話が、プロジェクトのメモリを読むかどうかは、確かめていない。
 
-プロジェクトの間を完全に分けたいときは、そのプロジェクトの設定で `Use account memory` をオフにする。これで、プロジェクトの間に境界がないことによる混ざりを防げる。プロジェクトをどう切るかは <!-- link:begin using-projects#scope -->プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）（準備中）<!-- link:end --> にある。
+プロジェクトの間を完全に分けたいときは、そのプロジェクトの設定で `Use account memory` をオフにする。これで、プロジェクトの間に境界がないことによる混ざりを防げる。プロジェクトをどう切るかは <!-- link:begin using-projects#scope -->[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](using-projects.md#scope)<!-- link:end --> にある。
 
 Cowork とは、Cowork がクラウドで動くときだけメモリを共有する。
 
@@ -216,11 +216,11 @@ Cowork とは、Cowork がクラウドで動くときだけメモリを共有す
 
 - [別の会話やプロジェクトの内容が混ざる](../symptoms/unexpected-memories.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](where-to-put-instructions.md)
-- プロジェクトの使いどころ（準備中）
+- [プロジェクトの使いどころ](using-projects.md)
 - 自動メモリ（準備中）
 - [送ったデータの行方（学習・保持期間）](../safety/where-your-data-goes.md)
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任 › アプリでの整え方（準備中）
-- アプリの機能と API の概念の対応表（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任 › アプリでの整え方](../context/tidy-the-desk.md#in-the-app)
+- [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
 
 </div>
 

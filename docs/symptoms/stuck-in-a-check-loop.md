@@ -123,7 +123,7 @@ updated: 2026-11-05
 
 ループを回し続ける作業は、任せる幅を広げる。守りを先に置く。回す前に決めておくのは次の 3 つである。
 
-1. 止める条件と上限。完了の条件、周の上限、使う量の上限を先に決める。書き方は <!-- link:begin goal-until-done#writing-conditions -->[/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<!-- link:end --> にあり、本数と回数の掛け算で費用が膨らむ理由は <!-- link:begin parallel-and-loop-costs#decide-before-starting -->並列・ループ・workflows のコスト › 始める前に決める三つ（準備中）<!-- link:end --> にある。
+1. 止める条件と上限。完了の条件、周の上限、使う量の上限を先に決める。書き方は <!-- link:begin goal-until-done#writing-conditions -->[/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<!-- link:end --> にあり、本数と回数の掛け算で費用が膨らむ理由は <!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> にある。
 2. やめる基準。結果を見る前に、頭打ちの判断を書いておく。判定は作った本人から離す（<!-- link:begin decide-when-to-quit#plateau -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 頭打ちは方針を疑う合図](../judgment/decide-when-to-quit.md#plateau)<!-- link:end -->）。
 3. 見える進捗。要約した指標を定期的に書き出し、人と Claude の両方が状況を追えるようにする。人が見ていない実行の結果は、終了コードだけでなく記録と差分で確かめる（<!-- link:begin checking-unattended-runs#beyond-exit-codes -->無人実行の結果を確かめる › 終了コードと要約だけで決めない（準備中）<!-- link:end -->）。
 
@@ -156,7 +156,7 @@ updated: 2026-11-05
 
 - 性能改善を頼む（プロファイルが先・出力の一致と実測）（準備中）
 - 止まって報告する権利を渡す（準備中）
-- 並列・ループ・workflows のコスト（準備中）
+- [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [同じ失敗を繰り返す（堂々巡り）](going-in-circles.md)
 - [直し続けて方針を疑わない（またはすぐ撤退を勧める）](wont-rethink-approach.md)
 - [環境や道具が壊れたと言い出す](blames-the-tools.md)

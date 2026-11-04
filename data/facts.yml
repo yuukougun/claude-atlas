@@ -1094,6 +1094,385 @@ facts:
   volatility: 中
   status: 確認済み
   note: 'where-your-data-goes の提案。足し先：where-your-data-goes#local-transcripts'
+- id: sonnet-4-5-retirement-date
+  title: Sonnet 4.5 の退役の予定日
+  value: '2026-11-30'
+  sentence: '{value}'
+  sources:
+  - api-docs-model-deprecations
+  - api-release-notes
+  checked: '2026-10-29'
+  volatility: 中
+  status: 未確認
+  note: 'current-models の sonnet-4-5-retirement と after-switching-models の sonnet-4-5-api-retirement-date を 1 つにした（値は同じ）。提案の status は「要確認」で、どちらの担当も一次資料を開いていない（research/22 #41 の写し）。11-30 の前に Model deprecations で確かめ直す。足し先：current-models#by-surface・after-switching-models#retirements-and-default-changes'
+- id: mythos-availability
+  title: Mythos の提供範囲（検証の制度と、提供先の国・組織）
+  value: Cyber Verification Program と Life Sciences Verification Program 経由のみ。現在は米国の組織に限る
+  sentence: '{value}'
+  sources:
+  - anthropic-fable-mythos-5-1
+  checked: '2026-10-29'
+  volatility: 高
+  status: 未確認
+  note: 'current-models の提案。提案の status は確認済みだが、write.md が「一次資料を開いていない（Web の取得 0 回）。束の写し」と書くので 未確認 にした。足し先：current-models#fable-and-mythos'
+- id: ultrathink-raise-min-version-terminal
+  title: ultrathink がそのターンの effort を引き上げる Claude Code の最低の版（対話のターミナル）
+  value: 2.1.311
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.311
+  sources:
+  - cc-changelog
+  - cc-docs-model-config
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 'thinking-keywords の提案。write.md は一次資料を開いていないが、features の ultrathink（確認済み・2026-11-04・同じ出典）の note が「2.1.311 以降」と書いて一致するので 確認済み にした。足し先：thinking-keywords#ultrathink'
+- id: ultrathink-raise-min-version-vscode
+  title: ultrathink がそのターンの effort を引き上げる Claude Code の最低の版（VS Code）
+  value: 2.1.316
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.316
+  sources:
+  - cc-changelog
+  - cc-docs-model-config
+  checked: '2026-11-04'
+  volatility: 中
+  status: 未確認
+  note: 'thinking-keywords の提案。提案の status は確認済みだが、write.md が「束の調査資料の写しで、一次資料は開いていない」と書くので 未確認 にした。足し先：thinking-keywords#ultrathink'
+- id: ultrathink-raise-target-and-models
+  title: ultrathink が引き上げる先の段と、対象のモデル・面
+  value: xhigh。Anthropic の API で Opus 5.5・Sonnet 5.5・Haiku 5.5・Fable 5.1 を使うとき
+  sentence: '{value}'
+  sources:
+  - cc-changelog
+  - cc-docs-model-config
+  checked: '2026-11-04'
+  volatility: 高
+  status: 未確認
+  note: 'thinking-keywords の提案。引き上げる先 xhigh は features の ultrathink の note と一致するが、対象のモデルの一覧は一次資料で確かめていない（write.md）ので 未確認 にした。足し先：thinking-keywords#ultrathink'
+- id: ultrathink-disable-env-min-version
+  title: CLAUDE_CODE_DISABLE_ULTRATHINK が使える Claude Code の最低の版
+  value: 2.1.316
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.316
+  sources:
+  - cc-changelog
+  checked: '2026-11-04'
+  volatility: 中
+  status: 未確認
+  note: 'thinking-keywords の提案。提案の status は確認済みだが、一次資料を開いていない（write.md）ので 未確認 にした。足し先：thinking-keywords#ultrathink'
+- id: api-version-removing-sampling-params
+  title: temperature・top_p・top_k を外した API の版
+  value: '2026-10-21'
+  sentence: API の版 {value}
+  sources:
+  - api-docs-migration-2026-10-21
+  - api-release-notes
+  checked: '2026-11-04'
+  volatility: 中
+  status: 未確認
+  note: 'after-switching-models の提案。提案の status は確認済みだが、write.md が「ほかは束の調査資料の値」（今回確かめたのは doctor prompt-audit の版だけ）と書くので 未確認 にした。足し先：after-switching-models#api-parameters'
+- id: ask-user-question-limits
+  title: AskUserQuestion の 1 回の呼び出しで聞ける問数と選択肢の数
+  value: 1 回の呼び出しで 1〜4 問。Agent SDK の文書は各問に 2〜4 の選択肢、各問の header は 12 文字まで
+  sentence: '{value}'
+  sources:
+  - cc-docs-hooks
+  checked: '2026-11-05'
+  volatility: 中
+  status: 未確認
+  note: 'let-claude-ask の提案。write.md が「一次資料を開いていない」と書くので 未確認 にした。選択肢の数と header の字数の根拠は Agent SDK の文書（Handle approvals and user input）だが、その出典は data の sources にない（research/26 §3.9 の写し）。sources に足してから確かめる。足し先：let-claude-ask#how・#limits'
+- id: ask-user-question-timeout
+  title: askUserQuestionTimeout の指定できる値
+  value: 60s・5m・10m（放っておくと、選んだ分だけ送って先へ進む）
+  sentence: '{value}'
+  sources:
+  - cc-docs-tools-reference
+  checked: '2026-11-05'
+  volatility: 中
+  status: 未確認
+  note: 'let-claude-ask の提案。write.md が「一次資料を開いていない」と書くので 未確認 にした。足し先：let-claude-ask#limits'
+- id: idle-compaction-min-tokens
+  title: idle compaction が働く会話の大きさ（既定。変えられる）
+  value: 200,000
+  unit: トークン
+  sentence: 既定で {value} {unit}以上（変えられる）
+  sources:
+  - cc-changelog
+  - cc-docs-context-window
+  - cc-docs-settings-reference
+  checked: '2026-11-05'
+  volatility: 中
+  status: 未確認
+  note: 'compact-and-auto-compact の提案。write.md が「idle compaction の条件の数値は research/22 #15 の写しで、CHANGELOG の原文は開いていない」と書くので 未確認 にした。足し先：compact-and-auto-compact#idle-compaction'
+- id: idle-compaction-wait
+  title: idle compaction が要約するまでの放置の時間（1 時間の prompt cache のとき）
+  value: 約 1 時間
+  sentence: '{value}（prompt cache が 1 時間のとき。2.1.299 の CHANGELOG は約 54 分と書く）'
+  sources:
+  - cc-changelog
+  - cc-docs-costs
+  checked: '2026-11-05'
+  volatility: 中
+  status: 未確認
+  note: 'compact-and-auto-compact の提案。原文を開いていない（research/22 #15 の写し）ので 未確認。足し先：compact-and-auto-compact#idle-compaction'
+- id: idle-compaction-terminal-version
+  title: idle compaction が端末で既定で有効になった Claude Code の版
+  value: 2.1.299
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.299
+  sources:
+  - cc-changelog
+  checked: '2026-11-05'
+  volatility: 中
+  status: 未確認
+  note: 'compact-and-auto-compact の提案。CHANGELOG の原文を開いていないので 未確認。足し先：compact-and-auto-compact#idle-compaction'
+- id: idle-compaction-ide-version
+  title: idle compaction が VS Code と Desktop の Code タブにも広がった Claude Code の版
+  value: 2.1.314
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.314
+  sources:
+  - cc-changelog
+  checked: '2026-11-05'
+  volatility: 中
+  status: 未確認
+  note: 'compact-and-auto-compact の提案。CHANGELOG の原文を開いていないので 未確認。足し先：compact-and-auto-compact#idle-compaction'
+- id: auto-compact-window-range
+  title: autoCompactWindow に指定できるトークン数の範囲と、必要な版
+  value: 100,000 から 1,000,000
+  unit: トークン
+  sentence: '{value} {unit}で、Claude Code 2.1.288 以降'
+  versions:
+    claude_code: 2.1.288
+  sources:
+  - cc-docs-settings-reference
+  - cc-docs-model-config
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'compact-and-auto-compact の提案。担当が settings-reference を開いて確かめた（write.md）。足し先：compact-and-auto-compact#settings'
+- id: file-creation-size-limit
+  title: ファイル作成・コード実行で扱う 1 ファイルの大きさの上限（アップロード・ダウンロード）
+  value: 30MB
+  sentence: 1 ファイル {value} まで（超える PDF は、会話に載せず実行環境の中で処理できる）
+  sources:
+  - hc-files
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'files-and-code-execution の提案。担当が公式の記事を開いて確かめた（write.md）。足し先：files-and-code-execution#outputs'
+- id: code-execution-network-egress-defaults
+  title: 実行環境のネットワーク（egress）の既定（プラン別）
+  table:
+    rows: プラン
+    columns:
+    - id: default
+      title: 既定
+    cells:
+    - row: 個人向け（Free・Pro・Max・Ultra）
+      default: オン
+    - row: Team
+      default: パッケージ管理のみ
+    - row: Enterprise（新しい組織）
+      default: オフ
+  sources:
+  - hc-files
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: 選べる設定は、オフ・パッケージ管理のみ・指定ドメインの追加・すべてのドメイン（法務のブロックリスト以外。最もリスクが高い）。組織向けのプランでは管理者が決める。担当が公式の記事を開いて確かめた（write.md）。足し先：files-and-code-execution#network
+- id: shared-chat-with-created-files-restriction
+  title: コード実行・ファイル作成で作ったファイルを含む会話の公開共有の制限
+  value: Free・Pro・Max・Ultra では公開共有できない（Team・Enterprise は公式の文書に記述なし）
+  sentence: '{value}'
+  sources:
+  - hc-files
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: 'files-and-code-execution の提案。担当が公式の記事を開いて確かめた（write.md）。足し先：files-and-code-execution#outputs'
+- id: artifacts-template-availability
+  title: アーティファクトのテンプレートごとの使えるプラン
+  table:
+    rows: テンプレート
+    columns:
+    - id: plans
+      title: 使えるプラン
+    cells:
+    - row: Docs・Slides・Design
+      plans:
+        value: 全プラン
+        note: Enterprise は 2026-10-15 から既定でオン
+    - row: Dashboards・アプリ接続・データ保存
+      plans: Pro 以上
+    - row: Motion
+      plans: Team と Enterprise
+  sources:
+  - hc-artifacts
+  - hc-release-notes
+  - claude-pricing
+  checked: '2026-10-29'
+  volatility: 高
+  status: 未確認
+  note: 'artifacts-overview の提案。提案の status は「確認済み（成熟度の書き方に食い違いあり）」だが、write.md が「事実は束の写しだけが根拠。公式の記事を直接開いていない」と書くので 未確認 にした。成熟度の提案（artifacts-template-maturity）は食い違いがあり値が 1 つに決まらないので入れていない。足し先：artifacts-overview#templates・#pitfalls'
+- id: artifacts-storage-limit
+  title: アーティファクトのデータ保存の上限
+  value: 1 つのアーティファクトにつき 20MB まで。テキストのみ
+  sentence: '{value}'
+  sources:
+  - hc-artifacts
+  checked: '2026-10-29'
+  volatility: 中
+  status: 未確認
+  note: 'artifacts-overview の提案（公式の記事を開いていない）。足し先は artifacts-as-apps#runtime'
+- id: artifacts-required-setting
+  title: アーティファクトに要る設定の名前
+  value: Cloud code execution and file creation（新しい設定の画面では Create and edit files）をオンにしておく
+  sentence: '{value}'
+  sources:
+  - hc-artifacts
+  - hc-files
+  checked: '2026-11-04'
+  volatility: 高
+  status: 未確認
+  note: 'artifacts-overview の提案（公式の記事を開いていない）。features の artifacts の note にも同じ名前がある。足し先：artifacts-overview#when・#pitfalls'
+- id: artifacts-rebuilt-date
+  title: アーティファクトが今の形になった日
+  value: '2026-09-16'
+  sentence: '{value} から今の形になった。それより前に作ったものは legacy artifacts で、動き続けるが新しくは作れない'
+  sources:
+  - hc-release-notes
+  - hc-artifacts
+  checked: '2026-10-29'
+  volatility: 低
+  status: 確認済み
+  note: 'artifacts-overview の提案。write.md は公式の記事を開いていないが、features の artifacts（確認済み・2026-11-04・同じ出典）の since.note が「2026-09-16 から今の形」と書いて一致するので 確認済み にした。足し先：artifacts-overview#when・#pitfalls'
+- id: key-permission-mode-switch
+  title: 権限モードを切り替えるキー
+  value: Shift+Tab
+  sentence: '{value}'
+  sources:
+  - cc-docs-interactive-mode
+  checked: '2026-10-29'
+  volatility: 低
+  status: 未確認
+  note: 'must-know-operations の提案（提案の status は「要確認」。実機でも公式の文書でも確かめていない）。足し先：must-know-operations#modes'
+- id: key-external-editor
+  title: 入力を外部エディタで編集するキー
+  value: Ctrl+G
+  sentence: '{value}'
+  sources:
+  - cc-docs-interactive-mode
+  checked: '2026-10-29'
+  volatility: 低
+  status: 未確認
+  note: 'must-know-operations の提案（提案の status は「要確認」）。足し先：must-know-operations#input'
+- id: key-paste-image
+  title: 画像を貼り付けるキー（端末ごと）
+  value: Ctrl+V（iTerm2 は Cmd+V、Windows と WSL は Alt+V）
+  sentence: '{value}'
+  sources:
+  - cc-docs-interactive-mode
+  checked: '2026-10-29'
+  volatility: 中
+  status: 未確認
+  note: 'must-know-operations の提案（提案の status は「要確認」。iTerm2 と Windows・WSL のキーも実機で確かめていない）。足し先：must-know-operations#input・#terminals'
+- id: key-transcript-and-background
+  title: トランスクリプトと背景化のキー
+  value: Ctrl+O（トランスクリプト）・Ctrl+B（実行中タスクを背景に回す）
+  sentence: '{value}'
+  sources:
+  - cc-docs-interactive-mode
+  checked: '2026-10-29'
+  volatility: 低
+  status: 未確認
+  note: 'must-know-operations の提案（提案の status は「要確認」）。足し先：must-know-operations#watch-and-background'
+- id: skill-description-rebuild-min-version
+  title: 圧縮の後にスキルの説明文を作り直して入れ直す、最低の Claude Code の版
+  value: 2.1.304
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.304
+  sources:
+  - cc-docs-context-window
+  - cc-changelog
+  checked: '2026-11-04'
+  volatility: 中
+  status: 未確認
+  note: 'how-skills-load の提案。提案の status は確認済みだが、write.md が「事実は束の写しと data の項目に基づく。公式の文書は開いていない」と書くので 未確認 にした。足し先：how-skills-load#after-compaction'
+- id: plugin-not-used-recently-threshold
+  title: /plugin の Installed タブで「Not used recently」に移るまでの未使用の期間と回数
+  value: 14 日かつ 10 セッション
+  sentence: '{value}'
+  sources:
+  - cc-docs-plugins-measure
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'pruning-extensions の提案。担当が plugins/measure を開いて確かめた（write.md）。足し先：pruning-extensions#measure'
+- id: plugin-context-cost-highlight-threshold
+  title: 公式マーケットプレイスの Context cost で、毎ターンの行が強調される常駐トークンの境目
+  value: 2,000
+  unit: トークン
+  sentence: '{value} {unit}以上'
+  sources:
+  - cc-docs-plugins-measure
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'pruning-extensions の提案（任意。本文では使っていない）。担当が plugins/measure を開いて確かめた'
+- id: headless-permission-prompts-min-version
+  title: claude -p の --permission-prompts none が使える Claude Code の最低の版
+  value: 2.1.259
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.259
+  sources:
+  - cc-docs-headless
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'headless-basics の提案。担当が headless の文書を開いて確かめた（write.md）。足し先：headless-basics#permissions'
+- id: claude-code-p-write-failure-exit-code-fix-version
+  title: claude -p が記録や設定ファイルの書き込みに失敗しても終了コード 0 で終わっていた不具合を直した Claude Code の版（NFS では漏れうる）
+  value: 2.1.317
+  sentence: Claude Code {value}
+  versions:
+    claude_code: 2.1.317
+  sources:
+  - cc-changelog
+  checked: '2026-11-05'
+  volatility: 低
+  status: 未確認
+  note: 'headless-basics の headless-startup-failure-exit-code-fixed-version の後半。前半（起動の失敗の 2.1.314）は既存の claude-code-p-startup-failure-exit-code-fix-version と同じ値なので、そちらに合わせて別の項目にした。write.md が「古い版の不具合は束の research/22 に基づく」と書くので 未確認。足し先：headless-basics#output-and-exit-codes'
+- id: managed-agents-session-hour-price
+  title: Managed Agents のセッション課金（running 中の 1 時間あたり）
+  value: $0.08
+  sentence: セッション 1 時間あたり {value}（running 中のみ）
+  sources:
+  - api-docs-managed-agents
+  checked: '2026-10-29'
+  volatility: 高
+  status: 未確認
+  note: 'sdk-comparison の提案（提案の status は「要確認」。調査資料 02 §5-9 の写しで、公式の Pricing の表で確かめていない）。足し先：sdk-comparison#managed-agents'
+- id: agent-teams-plan-mode-token-multiple
+  title: チームメイトが plan mode で動くときの、通常のセッションに対するトークン使用量の倍率（公式の費用の文書の値。条件つき）
+  value: 7
+  unit: 倍
+  sentence: 約 {value} {unit}（チームメイトが plan mode で動くとき）
+  sources:
+  - cc-docs-costs
+  - cc-docs-agent-teams
+  checked: '2026-11-05'
+  volatility: 中
+  status: 未確認
+  note: 'parallel-and-loop-costs の提案（提案の status は「要確認」）。Agent teams の文書は倍率を書かない（research/23 #7）。Manage costs の原文で再確認してから確認済みにする。足し先：parallel-and-loop-costs#multiplication・#reading-examples・#misconceptions'
 features:
 - id: claude-md
   title: CLAUDE.md
@@ -1725,6 +2104,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   since:
     claude_code: 0.2.47
     note: 自動圧縮が入った版（CHANGELOG）。日付は変更履歴のページの古い版にそろって付いた日なので書かない
@@ -1845,6 +2225,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: お願い
   since:
     claude_code: 0.2.44
     note: 最初に入った版（CHANGELOG）。2.1.68 で「次のターンの effort を上げる」語として入れ直された。日付は古い版にそろって付いた日なので書かない
@@ -2289,6 +2670,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   since:
     claude_code: 2.1.49
     date: '2026-02-19'
@@ -2831,6 +3213,7 @@ features:
   - app
   - claude-code
   maturity: GA
+  enforcement: なし
   since:
     date: '2024-06-20'
     note: experimental な機能として全プランに公開（Claude Apps のリリースノートの写し）。2026-09-16 から今の形（それより前に会話で作ったものは legacy artifacts）

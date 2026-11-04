@@ -139,7 +139,7 @@ updated: 2026-11-05
 
 - 着手前に撤退基準を書き、判定を作った本人から離す。書き方は<!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](../judgment/decide-when-to-quit.md#write-criteria-first)<!-- link:end -->を読む。
 - 達成できる値や上界が分かるなら、依頼に書く。分からないなら先に測る。<!-- link:begin share-targets-and-bounds#measure -->目標値・上界を伝える › 上界が分からないときは測る（準備中）<!-- link:end -->を読む。
-- 実装の前に方針を確かめる。plan mode で編集を止めたまま調べさせ、計画を読んで直してから実装に入る。<!-- link:begin when-to-plan -->plan mode の使いどころ（準備中）<!-- link:end -->を読む。
+- 実装の前に方針を確かめる。plan mode で編集を止めたまま調べさせ、計画を読んで直してから実装に入る。<!-- link:begin when-to-plan -->[plan mode の使いどころ](../cli/when-to-plan.md)<!-- link:end -->を読む。
 - 試した方針と結果は、仮説を先に書く台帳へ残す。<!-- link:begin experiment-log#hypothesis-first -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 仮説を先に書く](../eval/experiment-log.md#hypothesis-first)<!-- link:end -->を読む。
 - 方針そのものを長く回し続けて直そうとしない。<!-- link:begin open-ended-loop-trap#longer-is-not-better -->AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない（準備中）<!-- link:end -->を読む。
 
@@ -183,8 +183,8 @@ updated: 2026-11-05
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
 - 仮説ごとに並べて、同じ物差しで比べる（準備中）
 - 選択肢と推奨案を出させる（準備中）
-- plan mode の使いどころ（準備中）
-- 仕様を先に固める（spec・インタビュー・モック先行）（準備中）
+- [plan mode の使いどころ](../cli/when-to-plan.md)
+- [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)
 - AI に改善を回させ続ける罠（開いたループ）（準備中）
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
 - [体感と実測](../eval/felt-vs-measured.md)

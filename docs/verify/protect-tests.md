@@ -129,7 +129,7 @@ After で足したのは 3 つである。
 
 止まる出口は、モデルによって効きが違う。ImpossibleBench では、人に判断を仰ぐ逃げ道を与えると、Conflicting-SWEbench での GPT-5 の不正率が 54% から 9% に下がった。一方、論文は Claude Opus 4.1 では効果が「ずっと小さい」と書く（数値はない。根拠：強。Opus 4.1 世代）。だから Claude 向けには、言葉の許可を主役にせず、deny ルール・フック・サンドボックスなどの鍵を主役にする。許可の書き方と限界は <!-- link:begin permission-to-stop#limits -->止まって報告する権利を渡す › 言葉の許可が効く範囲（モデルによる差）（準備中）<!-- link:end -->にある。
 
-依頼の文は、例外を許さない禁止の置き場所ではない。禁止は deny ルールかフックで強制し、CLAUDE.md には理由と相談の基準だけを書く。用途ごとの置き場所の分け方は、<!-- link:begin request-lock-table#table -->お願いと鍵の対応表 › 用途ごとの対応表（準備中）<!-- link:end -->にある。
+依頼の文は、例外を許さない禁止の置き場所ではない。禁止は deny ルールかフックで強制し、CLAUDE.md には理由と相談の基準だけを書く。用途ごとの置き場所の分け方は、<!-- link:begin request-lock-table#table -->[お願いと鍵の対応表 › 用途ごとの対応表](../enforce/request-lock-table.md#table)<!-- link:end -->にある。
 
 ## 何に効くか {#what-it-helps}
 
@@ -181,14 +181,14 @@ After で足したのは 3 つである。
 - [検証器の三条件（正しい・書き換えられない・本番を代表する）](../eval/verifier-three-conditions.md)
 - ロックボックスと hold-out（人だけが持つ検証用データ）（準備中）
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - 止まって報告する権利を渡す（準備中）
 - 人間が読むべき差分の箇所（準備中）
 - AI に書かせたテストの落とし穴（準備中）
 - テストを先に書かせる（準備中）
-- お願いと鍵の対応表（準備中）
+- [お願いと鍵の対応表](../enforce/request-lock-table.md)
 
 </div>
 

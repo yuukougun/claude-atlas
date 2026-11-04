@@ -280,7 +280,7 @@ lint が見つけられるのは、綴りの一致で拾える揺れだけであ
 
     縛るほうは、ファイルを書いた直後に textlint を走らせて、残った違反を Claude に返す。仕組みと設定は <!-- link:begin textlint-hook#post-tool-use -->[textlint をフックで回す › 書いた後に走らせて差し戻す](textlint-hook.md#post-tool-use)<!-- link:end --> にある。シェルで書いたファイルは拾えない場合があり、<!-- link:begin textlint-hook#gaps -->[textlint をフックで回す › 拾えない書き込み（シェルで書いたファイル）](textlint-hook.md#gaps)<!-- link:end --> で確かめる。
 
-一覧が長くなると、毎回読まれる文脈を圧迫する。指示に貼るのは実際に揺れた語に絞る。領域ごとの規約は、触れたファイルに合わせて必要なときだけ読ませる方法もある（<!-- link:begin path-scoped-rules -->.claude/rules と paths で必要なときだけ読ませる（準備中）<!-- link:end -->）。ただし圧縮の後は、引き金のファイルを読むまで戻らない（<!-- link:begin path-scoped-rules#after-compaction -->.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期（準備中）<!-- link:end -->）。
+一覧が長くなると、毎回読まれる文脈を圧迫する。指示に貼るのは実際に揺れた語に絞る。領域ごとの規約は、触れたファイルに合わせて必要なときだけ読ませる方法もある（<!-- link:begin path-scoped-rules -->[.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)<!-- link:end -->）。ただし圧縮の後は、引き金のファイルを読むまで戻らない（<!-- link:begin path-scoped-rules#after-compaction -->[.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期](../extend/path-scoped-rules.md#after-compaction)<!-- link:end -->）。
 
 ## 確かめ方 {#verify}
 
@@ -331,7 +331,7 @@ lint が指摘しない揺れは、一覧に載せていない語である。新
 - 日本語の資料を読ませる・書かせる（準備中）
 - 日本語の「AI 臭さ」を減らす（準備中）
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
+- [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
 
 </div>
 

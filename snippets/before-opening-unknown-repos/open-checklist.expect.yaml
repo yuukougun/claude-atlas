@@ -1,0 +1,12 @@
+title: 知らないリポジトリを開く前の確認表
+kind: other
+place: 依頼の本文
+safety: true
+open: true
+conditions:
+  - 自分のものではない小さなリポジトリを 1 つ clone する
+  - 埋めるだけで、Claude Code は起動しない
+expect:
+  - when: 表の「開くだけで動きうるもの」を上から順に埋める
+    then: 説明できないものが残るか、残らないかが、開く前に分かる
+control: 表を使わず、そのまま `claude` で開くと、フックや MCP サーバーの定義を読まないまま、信頼の確認に進むことがある

@@ -79,7 +79,7 @@ Before のままでも、Claude は何かを返す。ただし、誰向けかも
 
 実務家の講演や投稿にも、同じ趣旨の頼み方が見られる。新しい上級エンジニアに頼むつもりで、関連するファイルと良い実装例を渡す。Claude は、明示すれば非常に有能なジュニア開発者として扱う。こうした助言が複数の実務家に見られる（根拠：中。複数の実務家の一致）。
 
-形容詞でしか伝えられない好みは、同僚にも伝わらない。「もっとパンチを」と言われた同僚は、どう直すかで迷う。嫌な点は、具体例で伝えるほうがよい（根拠：弱。単独の実践者の経験談）。例の選び方は <!-- link:begin show-examples#choose -->例を見せる › 典型的で多様な例を選ぶ（準備中）<!-- link:end --> にある。
+形容詞でしか伝えられない好みは、同僚にも伝わらない。「もっとパンチを」と言われた同僚は、どう直すかで迷う。嫌な点は、具体例で伝えるほうがよい（根拠：弱。単独の実践者の経験談）。例の選び方は <!-- link:begin show-examples#choose -->[例を見せる › 典型的で多様な例を選ぶ](show-examples.md#choose)<!-- link:end --> にある。
 
 依頼の雛形を次に置く。空欄のうち、答えで結果が変わるものだけを埋める。
 
@@ -192,7 +192,7 @@ Claude Code は、ファイルや `CLAUDE.md` を読んで机に載せられる�
 - 一度で決める必要はない。ずれが大きければ、元の依頼を直して頼み直す。進め方は <!-- link:begin refine-in-conversation#edit-the-request -->頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す（準備中）<!-- link:end --> にある。
 - 呪文ではない。「新人として扱ってください」と Claude に言う必要はない。書き手が、新人に読ませる気持ちで依頼を書く。
 
-書き換え前後の例をもっと見るには、<!-- link:begin before-after-prompts#specifics -->Before/After プロンプト集 › 具体性を足す（準備中）<!-- link:end --> を引く。理由を添える書き方は <!-- link:begin give-reasons#tts-example -->[理由を添える › 禁止より理由（読み上げの例）](give-reasons.md#tts-example)<!-- link:end --> にある。言葉で説明しにくい画面や図は <!-- link:begin images-and-voice#images -->画像・スクリーンショット・音声で渡す › 画像で渡すと速いもの（準備中）<!-- link:end --> で渡す。
+書き換え前後の例をもっと見るには、<!-- link:begin before-after-prompts#specifics -->[Before/After プロンプト集 › 具体性を足す](before-after-prompts.md#specifics)<!-- link:end --> を引く。理由を添える書き方は <!-- link:begin give-reasons#tts-example -->[理由を添える › 禁止より理由（読み上げの例）](give-reasons.md#tts-example)<!-- link:end --> にある。言葉で説明しにくい画面や図は <!-- link:begin images-and-voice#images -->[画像・スクリーンショット・音声で渡す › 画像で渡すと速いもの](images-and-voice.md#images)<!-- link:end --> で渡す。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -221,14 +221,14 @@ Claude Code は、ファイルや `CLAUDE.md` を読んで机に載せられる�
 
 - [理由を添える](give-reasons.md)
 - [具体性の 4 点（対象・状況・完了・手本）](four-specifics.md)
-- 例を見せる（準備中）
-- 画像・スクリーンショット・音声で渡す（準備中）
+- [例を見せる](show-examples.md)
+- [画像・スクリーンショット・音声で渡す](images-and-voice.md)
 - 頼み方は一回で決めない（会話で詰める）（準備中）
 
 **関連**
 
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
-- Before/After プロンプト集（準備中）
+- [Before/After プロンプト集](before-after-prompts.md)
 - [意図と違うものが出てくる](../symptoms/not-what-i-meant.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)

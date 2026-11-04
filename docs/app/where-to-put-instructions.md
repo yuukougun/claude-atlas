@@ -55,7 +55,7 @@ updated: 2026-11-05
 | 機能 | 面 | 成熟度 | 強制力 | 入った版 |
 | --- | --- | --- | --- | --- |
 | [Claude への指示（Instructions for Claude）](where-to-put-instructions.md) | アプリ | GA | お願い | 2024-12-20 |
-| プロジェクトの指示（project instructions）（準備中） | アプリ | GA | お願い | — |
+| [プロジェクトの指示（project instructions）](using-projects.md) | アプリ | GA | お願い | — |
 | [メモリ（アプリ。memory）](how-memory-works.md) | アプリ | GA | — | 2025-09-11 |
 | スキル（アプリ。skills）（準備中） | アプリ | GA | お願い | 2025-10-16 |
 | スタイル（Styles。スキルへ移行）（準備中） | 未確認 | 未確認 | 未確認 | 未確認 |
@@ -80,7 +80,7 @@ updated: 2026-11-05
 - **メモリは Claude が保存する**：書いて置く場所ではなく、会話から保存されるものである。何がどう保存されるかは <!-- link:begin how-memory-works#what-is-saved -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › 何が、いつ保存されるか](how-memory-works.md#what-is-saved)<!-- link:end --> を見る。範囲の分かれ方は <!-- link:begin how-memory-works#scope -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › アカウントのメモリとプロジェクトのメモリ](how-memory-works.md#scope)<!-- link:end --> にある。
 - **スキルだけが必要なときに読まれる**：指示とメモリは範囲の中で常に効くが、スキルは説明を手がかりに、関わる場面だけ本体を読む。常に載せる量を抑えられる理由は <!-- link:begin always-on-costs#resident-vs-on-demand -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 常駐するものと、使うときだけ読むもの](../context/always-on-costs.md#resident-vs-on-demand)<!-- link:end --> に書いてある。
 
-プロジェクトの指示の書き方と、プロジェクトを切る単位は <!-- link:begin using-projects#instructions -->プロジェクトの使いどころ › プロジェクトの指示に書くこと（準備中）<!-- link:end --> と <!-- link:begin using-projects#scope -->プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）（準備中）<!-- link:end --> へ。スキルの入れ方は <!-- link:begin skills-in-the-app#built-in-and-custom -->アプリでスキルを使う › 組み込みのスキルと自作のスキル（準備中）<!-- link:end --> へ。
+プロジェクトの指示の書き方と、プロジェクトを切る単位は <!-- link:begin using-projects#instructions -->[プロジェクトの使いどころ › プロジェクトの指示に書くこと](using-projects.md#instructions)<!-- link:end --> と <!-- link:begin using-projects#scope -->[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](using-projects.md#scope)<!-- link:end --> へ。スキルの入れ方は <!-- link:begin skills-in-the-app#built-in-and-custom -->アプリでスキルを使う › 組み込みのスキルと自作のスキル（準備中）<!-- link:end --> へ。
 
 ## どこに置くかの選び方 {#how-to-choose}
 
@@ -208,7 +208,7 @@ Claude Code 側の置き場所の選び方は <!-- link:begin claude-md-vs-rules
 
 **関連**
 
-- プロジェクトの使いどころ（準備中）
+- [プロジェクトの使いどころ](using-projects.md)
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](how-memory-works.md)
 - アプリでスキルを使う（準備中）
 - アプリをチームで使う（共有プロジェクト・組織のスキル） › 組織の指示（準備中）
@@ -216,7 +216,7 @@ Claude Code 側の置き場所の選び方は <!-- link:begin claude-md-vs-rules
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)
 - 出力スタイルで応答の仕方を切り替える（準備中）
 - [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任 › アプリでの整え方（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任 › アプリでの整え方](../context/tidy-the-desk.md#in-the-app)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 
 </div>

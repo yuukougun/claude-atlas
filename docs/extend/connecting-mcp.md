@@ -71,7 +71,7 @@ MCP で取ってきたデータも、道具の出力の 1 つである。取れ�
 
 === "アプリ"
 
-    アプリでは、コネクタとして追加する。メールやカレンダー、社内の資料、自分の MCP サーバーをつなぐ手順と、信頼してよいかの判断は「<!-- link:begin connectors-in-the-app#types -->コネクタ（MCP）をアプリで使う › コネクタの種類（準備中）<!-- link:end -->」に任せる。この辞典の Desktop の話は[Desktop アプリの MCP との関係](#desktop)の節だけである。
+    アプリでは、コネクタとして追加する。メールやカレンダー、社内の資料、自分の MCP サーバーをつなぐ手順と、信頼してよいかの判断は「<!-- link:begin connectors-in-the-app#types -->[コネクタ（MCP）をアプリで使う › コネクタの種類](../app/connectors-in-the-app.md#types)<!-- link:end -->」に任せる。この辞典の Desktop の話は[Desktop アプリの MCP との関係](#desktop)の節だけである。
 
 === "Claude Code"
 
@@ -215,7 +215,7 @@ Desktop アプリのローカルの MCP サーバーと、Claude Code の MCP �
 
 === "アプリ"
 
-    Desktop のローカルの MCP サーバーは、`claude_desktop_config.json` の `mcpServers` に書く。書き換えた後は、Desktop を完全に終了して起動し直す。この辞典では、アプリのコネクタの操作には立ち入らない。Desktop のローカル MCP の手順と、信頼してよいかの判断は「<!-- link:begin connectors-in-the-app#desktop-local-mcp -->コネクタ（MCP）をアプリで使う › Desktop のローカル MCP（準備中）<!-- link:end -->」に任せる。
+    Desktop のローカルの MCP サーバーは、`claude_desktop_config.json` の `mcpServers` に書く。書き換えた後は、Desktop を完全に終了して起動し直す。この辞典では、アプリのコネクタの操作には立ち入らない。Desktop のローカル MCP の手順と、信頼してよいかの判断は「<!-- link:begin connectors-in-the-app#desktop-local-mcp -->[コネクタ（MCP）をアプリで使う › Desktop のローカル MCP](../app/connectors-in-the-app.md#desktop-local-mcp)<!-- link:end -->」に任せる。
 
 === "Claude Code"
 
@@ -237,7 +237,7 @@ MCP をつなぐと、次の場面で想定とずれる。
 
 ## 比べる相手 {#compare}
 
-外部ツールの道は、MCP のほかに、CLI とスキルで済ませる方法がある。成熟した CLI があって、決まった作業なら、CLI のほうが文脈の効率がよい。CLI がないときや、認証つきの生きたデータが要るとき、シェル全体より狭い権限にしたいときは、MCP が生きる。選び方は「<!-- link:begin mcp-or-cli -->MCP か CLI か（準備中）<!-- link:end -->」にまとめてある。公式の文書は、つなぐ MCP と、使い方の知識を渡すスキルを組み合わせる形も勧めている。
+外部ツールの道は、MCP のほかに、CLI とスキルで済ませる方法がある。成熟した CLI があって、決まった作業なら、CLI のほうが文脈の効率がよい。CLI がないときや、認証つきの生きたデータが要るとき、シェル全体より狭い権限にしたいときは、MCP が生きる。選び方は「<!-- link:begin mcp-or-cli -->[MCP か CLI か](mcp-or-cli.md)<!-- link:end -->」にまとめてある。公式の文書は、つなぐ MCP と、使い方の知識を渡すスキルを組み合わせる形も勧めている。
 
 組織の全員に MCP サーバーを配るなら、「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る（準備中）<!-- link:end -->」を見る。サーバーを束にして配るなら、「<!-- link:begin plugins-and-marketplaces#before-install -->プラグインとマーケットプレイス › 入れる前の確認（準備中）<!-- link:end -->」の確認を先に通す。
 
@@ -256,8 +256,8 @@ MCP を SSE の転送でつなぐ、という古い説明が残っている。�
 
 **次に読む**
 
+- [MCP か CLI か](mcp-or-cli.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
-- MCP か CLI か（準備中）
 - MCP サーバーの選び方（準備中）
 
 **関連**
@@ -265,7 +265,7 @@ MCP を SSE の転送でつなぐ、という古い説明が残っている。�
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)
 - [プロンプトインジェクションの実際](../safety/prompt-injection-in-practice.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
-- コネクタ（MCP）をアプリで使う（準備中）
+- [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - [/context で中身を見る](../context/inspect-context.md)
 - 設定ファイルの階層と優先順位（準備中）

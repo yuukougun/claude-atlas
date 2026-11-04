@@ -152,7 +152,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 
 ## 雛形 {#templates}
 
-1 つめは、停止条件つきの条件文である。終わりの状態と、確かめ方と、変えないものと、上限を 1 つの文に入れた。変えないものを判定できるよう、`git status` の出力を会話に出させる形にしてある。リファクタリングと移行で同じ条件を使うので、同じ雛形を <!-- link:begin spec-first#goal-with-stop-conditions -->仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す（準備中）<!-- link:end --> と <!-- link:begin refactor-and-migrate#goal-stop-conditions -->リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）<!-- link:end --> でも取り込む。
+1 つめは、停止条件つきの条件文である。終わりの状態と、確かめ方と、変えないものと、上限を 1 つの文に入れた。変えないものを判定できるよう、`git status` の出力を会話に出させる形にしてある。リファクタリングと移行で同じ条件を使うので、同じ雛形を <!-- link:begin spec-first#goal-with-stop-conditions -->[仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)<!-- link:end --> と <!-- link:begin refactor-and-migrate#goal-stop-conditions -->リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）<!-- link:end --> でも取り込む。
 
 <!-- gen:begin snippet goal-until-done/stop-condition -->
 <!-- textlint-disable -->
@@ -191,7 +191,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 
 ## 仕様の決まった実装に限る {#spec-tasks-only}
 
-反復させてよいのは、仕様が決まり、停止条件のある実装の作業に限る。終わりの状態がテストや出力で測れるからである。大きな機能は、先に仕様を固め、仕様を渡した新しいセッションで `/goal` を回す。流れは <!-- link:begin spec-first#goal-with-stop-conditions -->仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す（準備中）<!-- link:end --> にある。挙動を変えないリファクタリングや大きな移行は、小さく確かめられる単位に分けて回す（<!-- link:begin refactor-and-migrate#goal-stop-conditions -->リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）<!-- link:end -->）。
+反復させてよいのは、仕様が決まり、停止条件のある実装の作業に限る。終わりの状態がテストや出力で測れるからである。大きな機能は、先に仕様を固め、仕様を渡した新しいセッションで `/goal` を回す。流れは <!-- link:begin spec-first#goal-with-stop-conditions -->[仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)<!-- link:end --> にある。挙動を変えないリファクタリングや大きな移行は、小さく確かめられる単位に分けて回す（<!-- link:begin refactor-and-migrate#goal-stop-conditions -->リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）<!-- link:end -->）。
 
 戦略そのものを AI に改善させ続ける使い方は、このページでは扱わない。評価が決まっていない開いたループは、手元の評価への過適合を自動で進める（<!-- link:begin open-ended-loop-trap#closed-vs-open -->AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ（準備中）<!-- link:end -->）。長く回せば良くなるとも限らない。Claude Code をループで回してエージェントを最適化した実験では、最良の構成を早く見つけた後は頭打ちになり、延長しても時間と費用の無駄だった（根拠：弱、単独の実験の自己申告）。詳しくは <!-- link:begin open-ended-loop-trap#longer-is-not-better -->AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない（準備中）<!-- link:end --> にある。
 
@@ -233,7 +233,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 
 上限に当たりそうな時間帯に回すと、応答の途中で上限に達することがある。そのときは、区切りまで少しだけ続ける仕組み（Wrap-Up Allowance）が働く場合がある。導入の時期は確かめられておらず、段階的に展開中で、効き方はプランと実行の方法で違う。使った分は週の上限に数える。当てにせず、止まる前提で組む。
 
-`/goal` のチェックインも使用量を使う。席を外して回すと、判定のトークンは小さくても、本体のターンの積み重ねが大きい。費用が掛け算で膨らむ理由は <!-- link:begin parallel-and-loop-costs#multiplication -->並列・ループ・workflows のコスト › 費用が膨らむ掛け算（準備中）<!-- link:end -->、始める前に決める 3 つは <!-- link:begin parallel-and-loop-costs#decide-before-starting -->並列・ループ・workflows のコスト › 始める前に決める三つ（準備中）<!-- link:end --> にある。AI が止まっても仕事を続けられる備えは <!-- link:begin when-ai-is-unavailable#kinds -->AI が使えないときの備え（障害・上限） › 止まり方の種類（障害・上限・規則）（準備中）<!-- link:end --> にある。プランごとの上限の差は、このページには書かない。
+`/goal` のチェックインも使用量を使う。席を外して回すと、判定のトークンは小さくても、本体のターンの積み重ねが大きい。費用が掛け算で膨らむ理由は <!-- link:begin parallel-and-loop-costs#multiplication -->[並列・ループ・workflows のコスト › 費用が膨らむ掛け算](../cost/parallel-and-loop-costs.md#multiplication)<!-- link:end -->、始める前に決める 3 つは <!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> にある。AI が止まっても仕事を続けられる備えは <!-- link:begin when-ai-is-unavailable#kinds -->AI が使えないときの備え（障害・上限） › 止まり方の種類（障害・上限・規則）（準備中）<!-- link:end --> にある。プランごとの上限の差は、このページには書かない。
 
 ## 効かない場面・落とし穴 {#pitfalls}
 
@@ -298,7 +298,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 - [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
-- 仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す（準備中）
+- [仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)
 - リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）
 - AI に改善を回させ続ける罠（開いたループ）（準備中）
 - 長時間ジョブの進捗ログを設計する（準備中）
@@ -306,7 +306,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 - /loop と定期実行の方式（準備中）
 - 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 - 止まって報告する権利を渡す（準備中）
-- 並列・ループ・workflows のコスト（準備中）
+- [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - AI が使えないときの備え（障害・上限）（準備中）
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - [確認ばかりで進まない・途中で止まる](../symptoms/keeps-stopping.md)

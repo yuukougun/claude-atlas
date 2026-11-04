@@ -1,0 +1,9 @@
+proposals:
+  - fact: {id: ultrathink-raise-min-version-terminal, title: ultrathink がそのターンの effort を引き上げる Claude Code の最低の版（対話のターミナル）, value: "2.1.311 以上", sources: [cc-changelog, cc-docs-model-config], checked: 2026-11-04, status: 確認済み}
+    used_in: [thinking-keywords#ultrathink]
+  - fact: {id: ultrathink-raise-min-version-vscode, title: 同（VS Code）, value: "2.1.316 以上", sources: [cc-changelog, cc-docs-model-config], checked: 2026-11-04, status: 確認済み}
+    used_in: [thinking-keywords#ultrathink]
+  - fact: {id: ultrathink-raise-target-and-models, title: ultrathink が引き上げる先の段と、対象のモデル・面, value: "xhigh。Anthropic の API で Opus 5.5・Sonnet 5.5・Haiku 5.5・Fable 5.1 を使うとき", sources: [cc-changelog, cc-docs-model-config], checked: 2026-11-04, status: 確認済み}
+    used_in: [thinking-keywords#ultrathink]
+  - fact: {id: ultrathink-disable-env-min-version, title: CLAUDE_CODE_DISABLE_ULTRATHINK が使える最低の版, value: "2.1.316 以上", sources: [cc-changelog], checked: 2026-11-04, status: 確認済み}
+    used_in: [thinking-keywords#ultrathink]

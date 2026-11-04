@@ -110,7 +110,7 @@ Claude が区別できないのは、Claude に渡る入力が一本の文脈で
 - **構成の側で断ちたい**：信頼できない入力・私的なデータ・外への送信を同時に持たせない考え方は<!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](../safety/lethal-trifecta.md#three-capabilities)<!-- link:end -->にある。
 - **コマンドの読み書きと通信を囲いたい**：<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->で見る。
 - **課題の資料や問題文に指示が混じっていた**：<!-- link:begin instructions-hidden-in-materials#treat-as-data -->課題資料・問題文に仕込まれた指示 › 資料をデータとして扱う（準備中）<!-- link:end -->で扱う。資料の中身は信頼できない入力として扱い、出力をシェルでそのまま自動実行しない。
-- **知らないリポジトリや拡張を入れる**：<!-- link:begin before-opening-unknown-repos#files-to-check -->知らないリポジトリを開く前に › 開く前に見るファイル（準備中）<!-- link:end -->と<!-- link:begin vetting-extensions#provenance -->[MCP・プラグイン・スキルを入れる前の確認 › 出所を確かめる](../safety/vetting-extensions.md#provenance)<!-- link:end -->で、入れる前に確かめる。
+- **知らないリポジトリや拡張を入れる**：<!-- link:begin before-opening-unknown-repos#files-to-check -->[知らないリポジトリを開く前に › 開く前に見るファイル](../safety/before-opening-unknown-repos.md#files-to-check)<!-- link:end -->と<!-- link:begin vetting-extensions#provenance -->[MCP・プラグイン・スキルを入れる前の確認 › 出所を確かめる](../safety/vetting-extensions.md#provenance)<!-- link:end -->で、入れる前に確かめる。
 
 ## 誤解 {#misconceptions}
 
@@ -153,7 +153,7 @@ Claude が区別できないのは、Claude に渡る入力が一本の文脈で
 - [お願いと鍵（決定論的か、非決定論的か）](request-vs-lock.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)
 - 課題資料・問題文に仕込まれた指示（準備中）
-- 知らないリポジトリを開く前に（準備中）
+- [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - ブラウザや画面の操作を任せるときの注意（準備中）
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)

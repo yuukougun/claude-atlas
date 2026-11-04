@@ -1,0 +1,12 @@
+title: 用意した例を Claude に点検させ、足りない例を作らせる依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - 例には、同じ種類の入力ばかりを入れておく
+expect:
+  - when: 欄を埋めた依頼を出す
+    then: 足りない種類の指摘と、追加の例が proposed_examples に分けて返る
+  - when: 例どうしに食い違いがある
+    then: 食い違いの箇所が指摘に出る

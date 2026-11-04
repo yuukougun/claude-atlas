@@ -105,11 +105,11 @@ flowchart LR
 - **整える**：PostToolUse は道具が終わった後に走るので、すでに起きた操作は取り消せない。整形や検査の結果を返す用途に向く。exit 2 にすると、標準エラーの文が Claude に届く。Bash などでファイルが書き換わったときは、matcher が `Edit|Write` の PostToolUse は動かない。どこから書き換えても拾うなら FileChanged を使う
 - **知らせる**：Notification・Stop・SessionEnd で通知を出す。画面に出る返事の文を差し替える MessageDisplay というイベントもあるが、表示を変えるだけで、止めることはできない
 
-どのフックが走るかは、matcher で絞る。matcher は、完全一致、`|` 区切り、それ以外は JavaScript の正規表現として読まれる。MCP の道具は `mcp__server__.*` の形で指す。さらに `if` フィールドに権限ルールと同じ構文（例：`Bash(rm *)`）を書くと、道具の引数まで絞れる。matcher の絞りすぎ・広すぎは <!-- link:begin writing-safe-hooks#matcher -->フックを安全に書く › matcher で止めすぎない（準備中）<!-- link:end --> で扱う。
+どのフックが走るかは、matcher で絞る。matcher は、完全一致、`|` 区切り、それ以外は JavaScript の正規表現として読まれる。MCP の道具は `mcp__server__.*` の形で指す。さらに `if` フィールドに権限ルールと同じ構文（例：`Bash(rm *)`）を書くと、道具の引数まで絞れる。matcher の絞りすぎ・広すぎは <!-- link:begin writing-safe-hooks#matcher -->[フックを安全に書く › matcher で止めすぎない](writing-safe-hooks.md#matcher)<!-- link:end --> で扱う。
 
 終了コードの意味は、どのイベントでもおおむね共通である。exit 0 は成功で、JSON を出していれば解釈される。exit 2 は止める印で、標準エラーが理由として Claude に渡る。それ以外の終了コードは、止めない種類のエラーである。つまり、スクリプトが想定外のコードで落ちると、操作は通る。1 つのイベントで当たったフックは並列に走るので、フック同士の実行順に頼らない。
 
-フックのレシピは <!-- link:begin hook-recipes#format-after-edit -->代表的なフックのレシピ › 編集の後に整形する（準備中）<!-- link:end --> と <!-- link:begin hook-recipes#notify -->代表的なフックのレシピ › 終わったら知らせる（準備中）<!-- link:end --> にある。
+フックのレシピは <!-- link:begin hook-recipes#format-after-edit -->[代表的なフックのレシピ › 編集の後に整形する](hook-recipes.md#format-after-edit)<!-- link:end --> と <!-- link:begin hook-recipes#notify -->[代表的なフックのレシピ › 終わったら知らせる](hook-recipes.md#notify)<!-- link:end --> にある。
 
 ## 最小の使い方 {#minimal}
 
@@ -212,7 +212,7 @@ flowchart LR
 
 登録済みのフックは `/hooks` で閲覧できる。設定の層の優先順位と、効いているかの確かめ方は <!-- link:begin settings-layers#layers -->設定ファイルの階層と優先順位 › 層と優先順位（準備中）<!-- link:end --> と <!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end --> にある。
 
-**サブエージェントの中でも走る。** 設定ファイル・管理の設定・プラグインのフックは、サブエージェントの中でも走り、PreToolUse と PostToolUse がメインの会話と同じように発火する。サブエージェントのフロントマターに書いたフックは、その担当が動く間だけ走る。このとき Stop は SubagentStop に変わる。サブエージェントの作り方は <!-- link:begin writing-subagents#define -->サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）（準備中）<!-- link:end --> にある。
+**サブエージェントの中でも走る。** 設定ファイル・管理の設定・プラグインのフックは、サブエージェントの中でも走り、PreToolUse と PostToolUse がメインの会話と同じように発火する。サブエージェントのフロントマターに書いたフックは、その担当が動く間だけ走る。このとき Stop は SubagentStop に変わる。サブエージェントの作り方は <!-- link:begin writing-subagents#define -->[サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)<!-- link:end --> にある。
 
 フックへの入力には `agent_id` が付き（付く最低の版は <!-- fact:begin hook-agent-id-min-version -->未確認<!-- fact:end -->）、呼び出しがサブエージェントの中のものかを見分けられる。`agent_id` が付くのはサブエージェントなどの中で発火したときだけで、メインの会話には付かない。`agent_type` は `--agent` で起動したセッションのメインにも付くので、見分けには使わない。ワークフローの担当でフックが走るかは、文書に明記がなく、このページでは未確認である。
 
@@ -222,7 +222,7 @@ flowchart LR
     - **選んだもの**：`agent_id` の有無。
     - **理由**：`agent_type` は `--agent` で起動したメインの会話にも付くので、サブエージェントだけを選べない。`agent_id` はサブエージェントなどの中でだけ付く。
 
-**信頼の確認の前は走らない。** 対話のセッションでは、フォルダの信頼のダイアログを受け入れるまで、どの設定ファイルのフックも走らない。自分のユーザー設定のフックも同じである。`-p` と Agent SDK はダイアログを出さず、信頼したものとして `.claude/settings.json` のフックを走らせる。権限ルールの deny と ask は、信頼と関係なく効く。リポジトリを開くと他人のフックが走ることになるので、<!-- link:begin writing-safe-hooks#runs-as-you -->フックを安全に書く › フックは利用者の権限で動く（準備中）<!-- link:end --> を先に読む。
+**信頼の確認の前は走らない。** 対話のセッションでは、フォルダの信頼のダイアログを受け入れるまで、どの設定ファイルのフックも走らない。自分のユーザー設定のフックも同じである。`-p` と Agent SDK はダイアログを出さず、信頼したものとして `.claude/settings.json` のフックを走らせる。権限ルールの deny と ask は、信頼と関係なく効く。リポジトリを開くと他人のフックが走ることになるので、<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](writing-safe-hooks.md#runs-as-you)<!-- link:end --> を先に読む。
 
 **クラウドのセッションでは、ユーザーの設定が届かない。** クラウドのセッションは、ユーザーの `~/.claude/settings.json` と `.claude/settings.local.json` を読まない。リポジトリの `.claude/settings.json` は読まれる。確実に縛りたいフックは、リポジトリの設定に置く。
 
@@ -245,7 +245,7 @@ flowchart LR
     - **選んだもの**：形式は command のフック。質の判断は鍵にしない。
     - **理由**：形式は機械で決まるので、command で確実に止められる。「適切か」は判断を含み、prompt の判定は決定的でない。判断を含むものは CLAUDE.md の依頼に残し、機械で判定できる部分だけを切り出して鍵にする。
 
-イベントの前後で、何を鍵にできるかの全体は <!-- link:begin request-lock-table#where-locks-act -->お願いと鍵の対応表 › 鍵にできるのはどこか（ターンの終わりと道具の前後）（準備中）<!-- link:end --> にある。
+イベントの前後で、何を鍵にできるかの全体は <!-- link:begin request-lock-table#where-locks-act -->[お願いと鍵の対応表 › 鍵にできるのはどこか（ターンの終わりと道具の前後）](request-lock-table.md#where-locks-act)<!-- link:end --> にある。
 
 ## 動いていないように見えるとき {#not-running}
 
@@ -254,7 +254,7 @@ flowchart LR
 1. **信頼の確認を済ませたか**：対話のセッションでは、ダイアログを受け入れるまで走らない。新しいセッションで開き直す
 2. **登録されているか**：`/hooks` を開き、フックが一覧に出るか見る。出ないなら、書いた設定ファイルが読まれていない。効いている層は <!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end --> で確かめる
 3. **イベントと matcher が合っているか**：道具の名前が matcher と合うか、イベントがそもそも起きる操作かを見る。Bash で書き換えたファイルは、`Edit|Write` の PostToolUse では拾えない
-4. **スクリプトが落ちていないか**：想定外の終了コードで落ちると、操作は通る。止めたいフックほど、落ちたときに通る既定が働いていないかを確かめる（<!-- link:begin writing-safe-hooks#fail-open -->フックを安全に書く › 既定は失敗すると通す（fail-open）（準備中）<!-- link:end -->）
+4. **スクリプトが落ちていないか**：想定外の終了コードで落ちると、操作は通る。止めたいフックほど、落ちたときに通る既定が働いていないかを確かめる（<!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end -->）
 5. **フックを止める設定が入っていないか**：`disableAllHooks` などで止まっていないかを、設定の層をまたいで見る
 
 どこで切れているかを見るには、雛形の記録用の設定を一時的に入れ、ログに行が足されるかを見る。足されるなら、フックは走っている。足されないなら、登録・信頼・層のどれかで切れている。
@@ -265,10 +265,10 @@ flowchart LR
 
 - **ターンの終わりと、道具の前後だけを強制できる。** ツールの合間の一言を、画面に出す前に止める仕組みはない。MessageDisplay は表示を変えるだけである
 - **道具の後のフックは、操作を取り消せない。** 止めたいなら PreToolUse に置く
-- **見ていない経路には効かない。** 1 つの道具に当てたフックは、別の道具から同じ結果になる経路を止めない。縛る範囲を、権限ルールやサンドボックスとの二重にする（<!-- link:begin request-lock-table#by-surface -->お願いと鍵の対応表 › 面ごとの鍵の手段（準備中）<!-- link:end -->）
-- **失敗すると通すのが既定である。** 止める用途では、失敗を止めに倒す書き方が要る。詳しくは <!-- link:begin writing-safe-hooks#fail-open -->フックを安全に書く › 既定は失敗すると通す（fail-open）（準備中）<!-- link:end --> を見る
+- **見ていない経路には効かない。** 1 つの道具に当てたフックは、別の道具から同じ結果になる経路を止めない。縛る範囲を、権限ルールやサンドボックスとの二重にする（<!-- link:begin request-lock-table#by-surface -->[お願いと鍵の対応表 › 面ごとの鍵の手段](request-lock-table.md#by-surface)<!-- link:end -->）
+- **失敗すると通すのが既定である。** 止める用途では、失敗を止めに倒す書き方が要る。詳しくは <!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end --> を見る
 - **版によって、効く範囲が違う。** Bash に当てたフックは、新しい版（<!-- fact:begin hook-monitor-min-version -->未確認<!-- fact:end -->）では Monitor の道具が起動するシェルコマンドにも走る。止める・確認を求めることはできるが、許可や書き換えはできない。それより前の版では、Bash のフックは Monitor のコマンドを素通しにしていた。自分の版で確かめる
-- **フックは利用者の権限で動く。** 他人のフックを入れるときは、コードとして読んでから使う（<!-- link:begin writing-safe-hooks#runs-as-you -->フックを安全に書く › フックは利用者の権限で動く（準備中）<!-- link:end -->）
+- **フックは利用者の権限で動く。** 他人のフックを入れるときは、コードとして読んでから使う（<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](writing-safe-hooks.md#runs-as-you)<!-- link:end -->）
 - **Claude Code は WSL・Linux の CLI を基準に書いている。** ほかの OS と IDE 拡張でのフックの動きは、このページでは未確認である
 
 ## 比べる相手 {#compare}
@@ -277,11 +277,11 @@ flowchart LR
 
 | 迷う相手 | 選び方の違い | 読むページ |
 | --- | --- | --- |
-| スキル | スキルは Claude が判断して使うお願い。フックは決まったときに必ず動く鍵 | <!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end --> |
-| CLAUDE.md・権限ルール・出力形式 | 用途ごとに、お願いの書き方と鍵の手段が違う | <!-- link:begin request-lock-table#table -->お願いと鍵の対応表 › 用途ごとの対応表（準備中）<!-- link:end --> |
-| 拡張機能の全体 | 強制力・読み込みの時期・コストで並べて選ぶ | <!-- link:begin extensions-at-a-glance -->拡張機能の全体図と使い分け早見表（準備中）<!-- link:end --> |
+| スキル | スキルは Claude が判断して使うお願い。フックは決まったときに必ず動く鍵 | <!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end --> |
+| CLAUDE.md・権限ルール・出力形式 | 用途ごとに、お願いの書き方と鍵の手段が違う | <!-- link:begin request-lock-table#table -->[お願いと鍵の対応表 › 用途ごとの対応表](request-lock-table.md#table)<!-- link:end --> |
+| 拡張機能の全体 | 強制力・読み込みの時期・コストで並べて選ぶ | <!-- link:begin extensions-at-a-glance -->[拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)<!-- link:end --> |
 
-フックを実際に組むときは、止める側は <!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](block-with-exit-2.md)<!-- link:end -->、決まったレシピは <!-- link:begin hook-recipes -->代表的なフックのレシピ（準備中）<!-- link:end -->、textlint を回す例は <!-- link:begin textlint-hook -->[textlint をフックで回す](../japanese/textlint-hook.md)<!-- link:end --> を見る。
+フックを実際に組むときは、止める側は <!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](block-with-exit-2.md)<!-- link:end -->、決まったレシピは <!-- link:begin hook-recipes -->[代表的なフックのレシピ](hook-recipes.md)<!-- link:end -->、textlint を回す例は <!-- link:begin textlint-hook -->[textlint をフックで回す](../japanese/textlint-hook.md)<!-- link:end --> を見る。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -296,17 +296,17 @@ flowchart LR
 **次に読む**
 
 - [フックで止めて理由を返す（exit 2 と JSON）](block-with-exit-2.md)
-- フックを安全に書く（準備中）
+- [フックを安全に書く](writing-safe-hooks.md)
 
 **関連**
 
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](hook-recipes.md)
 - Stop フックで「終わらせない」（準備中）
-- フックとスキルの違い（準備中）
-- お願いと鍵の対応表（準備中）
-- 拡張機能の全体図と使い分け早見表（準備中）
+- [フックとスキルの違い](../extend/hook-vs-skill.md)
+- [お願いと鍵の対応表](request-lock-table.md)
+- [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
 - 設定ファイルの階層と優先順位（準備中）
-- サブエージェントの作り方と使いどころ（準備中）
+- [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
 - [textlint をフックで回す](../japanese/textlint-hook.md)
 
 </div>

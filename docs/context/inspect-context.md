@@ -123,15 +123,15 @@ Claude Code は WSL・Linux の CLI を基準に書いている。ほかの OS �
 ![内訳の 3 区分と片付け方の対応。会話が大きければ /clear か /compact、読み込んだものが大きければ出力を絞るか調査を任せる、常駐するものが大きければ常駐を減らす。](../img/inspect-context/triage.svg)
 
 - **会話が大きい**：話題が変わったなら `/clear` で新しい会話にする。同じ作業を続けるなら、焦点を指示して `/compact` で要約する。
-  - 焦点の指示：<!-- link:begin compact-and-auto-compact#focused-compact -->/compact と自動圧縮 › /compact に焦点を指示する（準備中）<!-- link:end -->
-  - 書き出してから `/clear` する選び方：<!-- link:begin compact-and-auto-compact#compact-or-clear -->/compact と自動圧縮 › 圧縮か、書き出して /clear か（準備中）<!-- link:end -->
+  - 焦点の指示：<!-- link:begin compact-and-auto-compact#focused-compact -->[/compact と自動圧縮 › /compact に焦点を指示する](compact-and-auto-compact.md#focused-compact)<!-- link:end -->
+  - 書き出してから `/clear` する選び方：<!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)<!-- link:end -->
 - **読み込んだものが大きい**：入れる前に減らす。
   - 長い出力を絞る手：<!-- link:begin choose-what-to-read#trim-output -->[@参照と、何を読ませるかの絞り込み › 出力を絞る](choose-what-to-read.md#trim-output)<!-- link:end -->
-  - 出力の多い調査を別の文脈に任せる手：<!-- link:begin research-in-subagents#when -->出力の多い調査はサブエージェントに任せて要約だけ受け取る › 任せてよい調査、本筋で読むべきもの（準備中）<!-- link:end -->
+  - 出力の多い調査を別の文脈に任せる手：<!-- link:begin research-in-subagents#when -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る › 任せてよい調査、本筋で読むべきもの](research-in-subagents.md#when)<!-- link:end -->
 - **常駐するものが大きい**：使っていないものを外す。
   - 常駐と、使うときだけ読むものの違い：<!-- link:begin always-on-costs#resident-vs-on-demand -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 常駐するものと、使うときだけ読むもの](always-on-costs.md#resident-vs-on-demand)<!-- link:end -->
   - 外す順：<!-- link:begin always-on-costs#reduce -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 減らす順](always-on-costs.md#reduce)<!-- link:end -->
-  - 棚卸しの進め方：<!-- link:begin pruning-extensions#measure -->拡張の棚卸しと剪定 › 測る（準備中）<!-- link:end -->
+  - 棚卸しの進め方：<!-- link:begin pruning-extensions#measure -->[拡張の棚卸しと剪定 › 測る](../extend/pruning-extensions.md#measure)<!-- link:end -->
 
 常駐するものは、`/clear` でも `/compact` でも小さくならない。公式によると、圧縮のあとも CLAUDE.md や自動メモリなどは入れ直される。したがって、常駐が大きいときに会話の側だけを片付けても、内訳はあまり変わらない。
 
@@ -146,13 +146,13 @@ Claude Code は WSL・Linux の CLI を基準に書いている。ほかの OS �
 `/context` が見せるのは使用量であり、その中身が必要かどうかの判断はしてくれない。落とし穴は 3 つある。
 
 - **大きいことは悪いことではない**。毎回役に立っている CLAUDE.md が大きくても、それは必要な費用かもしれない。切る基準は次にある。
-  - 切る基準：<!-- link:begin pruning-extensions#criteria -->拡張の棚卸しと剪定 › 切る基準（準備中）<!-- link:end -->
+  - 切る基準：<!-- link:begin pruning-extensions#criteria -->[拡張の棚卸しと剪定 › 切る基準](../extend/pruning-extensions.md#criteria)<!-- link:end -->
 - **空きがあっても、注意が保たれるとは限らない**。窓に入ることと、中身をよく使えることは別である。理由は <!-- link:begin attention-budget -->[コンテキストウィンドウと注意の予算](../basics/attention-budget.md)<!-- link:end --> が扱う。
 - **上限の消費は別の道具で見る**。`/context` は文脈の中身を見る道具である。利用枠の使われ方は `/usage` で見る。
-  - 道具の使い分け：<!-- link:begin usage-context-statusline#instruments -->/usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの（準備中）<!-- link:end -->
+  - 道具の使い分け：<!-- link:begin usage-context-statusline#instruments -->[/usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの](../cli/usage-context-statusline.md#instruments)<!-- link:end -->
   - `/usage` の内訳の読み方：<!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end -->
 
-長い作業の途中で気づきたいときは、ステータスラインに出す手がある（<!-- link:begin usage-context-statusline#statusline -->/usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの（準備中）<!-- link:end -->）。
+長い作業の途中で気づきたいときは、ステータスラインに出す手がある（<!-- link:begin usage-context-statusline#statusline -->[/usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの](../cli/usage-context-statusline.md#statusline)<!-- link:end -->）。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -178,12 +178,12 @@ Claude Code は WSL・Linux の CLI を基準に書いている。ほかの OS �
 
 **関連**
 
-- /usage・/context・ステータスラインで状態を見る（準備中）
+- [/usage・/context・ステータスラインで状態を見る](../cli/usage-context-statusline.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](always-on-costs.md)
 - [@参照と、何を読ませるかの絞り込み](choose-what-to-read.md)
-- /compact と自動圧縮（準備中）
-- 出力の多い調査はサブエージェントに任せて要約だけ受け取る（準備中）
-- 拡張の棚卸しと剪定（準備中）
+- [/compact と自動圧縮](compact-and-auto-compact.md)
+- [出力の多い調査はサブエージェントに任せて要約だけ受け取る](research-in-subagents.md)
+- [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)
 

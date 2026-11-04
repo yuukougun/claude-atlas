@@ -302,7 +302,7 @@ PAGE_MUTATIONS = [
     ("how-to-use", ("level",), None, {"level"}),                       # 持たないキーは null も書かない
     ("request-vs-lock", ("level",), DELETE, {"level"}),                # concept は level を持つ
     ("request-vs-lock", ("stage",), "draft", {"verified", "verified_with"}),   # draft は verified を持たない
-    ("request-vs-lock", ("verified",), DELETE, {"verified"}),          # reviewed は verified を持つ
+    ("request-vs-lock", ("verified",), DELETE, set()),               # reviewed でも verified は任意（decisions 2026-11-05「段階 reviewed の付け方」）
     ("request-vs-lock", ("verified",), "2026-02-30", {"verified"}),
     ("request-vs-lock", ("verified_with",), {}, {"verified_with"}),
     ("request-vs-lock", ("verified_with",), {"claude_code": "2.1", "channel": "beta"},

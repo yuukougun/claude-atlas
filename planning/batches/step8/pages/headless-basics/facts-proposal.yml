@@ -1,0 +1,7 @@
+proposals:
+  - fact: {id: headless-default-permission-mode, title: 権限モードを決めない claude -p と Agent SDK の実行の開始モード（承認の要る呼び出しの扱い）, value: "Manual で始まり、承認の要る呼び出しは allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否する（2.1.302 以降。2.1.285 で他社の基盤・テレメトリなしの -p を auto で始めていたが 2.1.302 で戻した）", sources: [cc-docs-permission-modes, cc-changelog], checked: 2026-11-05, status: 確認済み}
+    used_in: [headless-basics#permissions]
+  - fact: {id: headless-permission-prompts-min-version, title: claude -p の --permission-prompts none が使える最低の版, value: "2.1.259", sources: [cc-docs-headless], checked: 2026-11-05, status: 確認済み}
+    used_in: [headless-basics#permissions]
+  - fact: {id: headless-startup-failure-exit-code-fixed-version, title: 起動に失敗しても終了コード 0 で終わる不具合が直った版（claude -p）, value: "2.1.314（起動の失敗）・2.1.317（記録や設定ファイルの書き込みの失敗。NFS では漏れうる）", sources: [cc-changelog], checked: 2026-11-05, status: 確認済み}
+    used_in: [headless-basics#output-and-exit-codes]

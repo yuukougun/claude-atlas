@@ -122,8 +122,8 @@ CLAUDE.md に書くのは、リポジトリを読んでも Claude に分から�
 | --- | --- |
 | ディレクトリの木、ファイルの一覧、使っているフレームワークの説明 | どこにも書かない。Claude がリポジトリを自分で読む。書くのは、読んでも分からない例外だけ |
 | インデントなど、formatter や linter で検査できる規約 | formatter と linter に任せる。毎回確実に直したいときは、フックに移す（<!-- link:begin hooks-basics#deterministic -->[フックの考え方とイベント › 決定的なフックと、モデルが判断するフック](../enforce/hooks-basics.md#deterministic)<!-- link:end -->） |
-| 特定のフォルダやファイルにだけ効く規約 | rules と paths に移す（<!-- link:begin path-scoped-rules -->.claude/rules と paths で必要なときだけ読ませる（準備中）<!-- link:end -->） |
-| たまにしか使わない長い手順 | スキルに移す（<!-- link:begin how-skills-load -->スキルの考え方（手順を必要なときだけ読む）（準備中）<!-- link:end -->） |
+| 特定のフォルダやファイルにだけ効く規約 | rules と paths に移す（<!-- link:begin path-scoped-rules -->[.claude/rules と paths で必要なときだけ読ませる](path-scoped-rules.md)<!-- link:end -->） |
+| たまにしか使わない長い手順 | スキルに移す（<!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)<!-- link:end -->） |
 | 例外を許さない禁止 | deny ルールかフックに移す（<!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end -->）。CLAUDE.md には理由と相談の基準だけを残す |
 | 自分だけの好み | 個人用の `CLAUDE.local.md` に書き、`.gitignore` に入れる（<!-- link:begin share-team-settings#shared-vs-personal -->チームで設定を共有する › 共有するものと個人に残すもの（準備中）<!-- link:end -->） |
 | すぐ古くなるコードの写し | コードの場所を `file:line` で指す（根拠：中） |
@@ -156,7 +156,7 @@ CLAUDE.md に書くのは、リポジトリを読んでも Claude に分から�
 
 CLAUDE.md に行を足すのは、見えていないことに気づいたときである。思いつきで足さず、次の順で決める。
 
-1. **足す理由を確かめる。** 同じ訂正を繰り返したか、毎回同じ説明をしているかを見る。まだ一度なら、足さずに様子を見てよい。何回で足すかの目安は、<!-- link:begin when-to-add-what -->拡張を足すタイミング（準備中）<!-- link:end -->にある。
+1. **足す理由を確かめる。** 同じ訂正を繰り返したか、毎回同じ説明をしているかを見る。まだ一度なら、足さずに様子を見てよい。何回で足すかの目安は、<!-- link:begin when-to-add-what -->[拡張を足すタイミング](when-to-add-what.md)<!-- link:end -->にある。
 2. **削除テストにかける。** 「この行を消したら、Claude は誤るか」と問い、誤らないなら足さない。問いの詳しい使い方は、<!-- link:begin claude-md-length#deletion-test -->[CLAUDE.md の長さと剪定 › 削るときの問い](claude-md-length.md#deletion-test)<!-- link:end -->にある。
 3. **置き場所を決める。** 「書かないことと、移し先」の表に当てはめ、CLAUDE.md で足りるか確かめる。例外のない規則は、行ではなく鍵で守る。
 4. **行を書く。** コマンドは動く形で、規約には理由を、禁止には代わりを添える。
@@ -203,7 +203,7 @@ CLAUDE.md に行を足すのは、見えていないことに気づいたとき�
 <!-- textlint-enable -->
 <!-- gen:end snippet what-to-put-in-claude-md/team-three-zones -->
 
-「止まって相談する」の行がどこまで守られるかは、モデルの癖にも左右される。現行のモデルでの挙動は、まだ確かめていない。社内ガイドラインに書く側の話は、<!-- link:begin ai-usage-guidelines#three-categories -->社内ガイドラインに書くこと › 任せてよい・止まって相談する・禁止（準備中）<!-- link:end -->が持つ。
+「止まって相談する」の行がどこまで守られるかは、モデルの癖にも左右される。現行のモデルでの挙動は、まだ確かめていない。社内ガイドラインに書く側の話は、<!-- link:begin ai-usage-guidelines#three-categories -->[社内ガイドラインに書くこと › 任せてよい・止まって相談する・禁止](../team/ai-usage-guidelines.md#three-categories)<!-- link:end -->が持つ。
 
 コンテストの CLAUDE.md は、ビルドと評価のコマンド、制限時間、規則の確認先を書く。大会の規則の中身は、CLAUDE.md に写さない。規則は版ごとに変わるので、写すと古くなる。書くのは確認先だけにして、規則そのものは主催者のページで確かめる。
 
@@ -302,8 +302,8 @@ CLAUDE.md から外した行の置き場所は、目的で選ぶ。
 **次に読む**
 
 - [CLAUDE.md の長さと剪定](claude-md-length.md)
+- [.claude/rules と paths で必要なときだけ読ませる](path-scoped-rules.md)
 - CLAUDE.md の階層と読み込み順（準備中）
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
 - 自動メモリ（準備中）
 
 **関連**
@@ -314,12 +314,12 @@ CLAUDE.md から外した行の置き場所は、目的で選ぶ。
 - /init と最初の CLAUDE.md（準備中）
 - [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
 - [毎回同じ説明をしている](../symptoms/repeating-the-same-explanation.md)
-- スキルの考え方（手順を必要なときだけ読む）（準備中）
+- [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
 - AGENTS.md とほかのツールとの共有（準備中）
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
-- 社内ガイドラインに書くこと（準備中）
+- [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)
 - チームで設定を共有する（準備中）
-- 拡張を足すタイミング（準備中）
+- [拡張を足すタイミング](when-to-add-what.md)
 
 </div>
 

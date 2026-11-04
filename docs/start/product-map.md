@@ -44,12 +44,12 @@ updated: 2026-11-05
 
 | 面 | 入口の性格 | 詳しいページ |
 | --- | --- | --- |
-| アプリ | 会話で頼む。チャットとタスクを一つの会話で扱う | <!-- link:begin choosing-a-surface#app-chat-and-tasks -->アプリ・Claude Code・API の選び方 › アプリはチャットとタスクを一つの会話で扱う（準備中）<!-- link:end --> |
+| アプリ | 会話で頼む。チャットとタスクを一つの会話で扱う | <!-- link:begin choosing-a-surface#app-chat-and-tasks -->[アプリ・Claude Code・API の選び方 › アプリはチャットとタスクを一つの会話で扱う](../surfaces/choosing-a-surface.md#app-chat-and-tasks)<!-- link:end --> |
 | Claude Code | エージェントループを動かし、コードとファイルを直接触る。ターミナル・IDE・Desktop・Web・モバイルから使える | <!-- link:begin claude-code-surfaces#comparison-table -->Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 面ごとの違い（表）（準備中）<!-- link:end --> |
-| API・SDK | 自分のプログラムから呼ぶ。ループを誰が回すかで層が分かれる | <!-- link:begin sdk-comparison#comparison -->Client SDK・Agent SDK・Managed Agents・CLI の比較 › 層ごとの比較（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で動かす）（準備中）<!-- link:end --> |
+| API・SDK | 自分のプログラムから呼ぶ。ループを誰が回すかで層が分かれる | <!-- link:begin sdk-comparison#comparison -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › 層ごとの比較（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で動かす）](../api/sdk-comparison.md#comparison)<!-- link:end --> |
 | 周辺製品 | 本体のアプリの外で使う製品。Office アドインなど | <!-- link:begin peripheral-products#list -->周辺製品の一覧 › 一覧（確認日つき）（準備中）<!-- link:end --> |
 
-どの面で進めるかの判断は <!-- link:begin choosing-a-surface#compare-surfaces -->アプリ・Claude Code・API の選び方 › 三つの面を比べる（準備中）<!-- link:end --> が持つ。この地図は案内にとどめる。
+どの面で進めるかの判断は <!-- link:begin choosing-a-surface#compare-surfaces -->[アプリ・Claude Code・API の選び方 › 三つの面を比べる](../surfaces/choosing-a-surface.md#compare-surfaces)<!-- link:end --> が持つ。この地図は案内にとどめる。
 
 ## 層の重なり {#layers}
 
@@ -59,9 +59,9 @@ updated: 2026-11-05
 
 | 層 | 何を決めるか | 引くページ |
 | --- | --- | --- |
-| モデル | 答えの質と速さ、料金の位置 | <!-- link:begin current-models#lineup -->現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）（準備中）<!-- link:end --> |
+| モデル | 答えの質と速さ、料金の位置 | <!-- link:begin current-models#lineup -->[現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）](../models/current-models.md#lineup)<!-- link:end --> |
 | ハーネス | 道具を呼び、文脈を集め、結果を確かめる輪の回し方 | <!-- link:begin agent-loop#what-happens -->[エージェントループと tool use › 何が起きるか](../basics/agent-loop.md#what-happens)<!-- link:end --> |
-| 拡張 | 毎回の文脈や手順を足す仕組みの使い分け | <!-- link:begin extensions-at-a-glance -->拡張機能の全体図と使い分け早見表（準備中）<!-- link:end --> |
+| 拡張 | 毎回の文脈や手順を足す仕組みの使い分け | <!-- link:begin extensions-at-a-glance -->[拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)<!-- link:end --> |
 | 縛り | 守らせたいことを、お願いではなく仕組みで強制する | <!-- link:begin four-principles#lock -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 縛る](four-principles.md#lock)<!-- link:end --> |
 
 結果が期待と違うとき、モデルを替える前に、ハーネスの側を疑う余地がある。見分け方は <!-- link:begin harness-over-model#when-harness-matters -->モデルの差よりハーネスの差 › 差がハーネスから来るとき（準備中）<!-- link:end --> にある。任せる幅を広げるほど、縛りの層を先に厚くする。その比例則は <!-- link:begin four-principles#proportional-rule -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 比例則](four-principles.md#proportional-rule)<!-- link:end --> で引く。
@@ -74,7 +74,7 @@ updated: 2026-11-05
 | --- | --- |
 | 指示を無視される、同じ失敗を繰り返すなど、症状から探したい | <!-- link:begin field:symptoms -->[症状辞典](../symptoms/index.md)<!-- link:end --> |
 | なぜそうなるのか、仕組みから知りたい | <!-- link:begin field:basics -->[基礎：なぜそうなるか](../basics/index.md)<!-- link:end --> |
-| どの面で何をするか、どこで動かすかを決めたい | <!-- link:begin field:surfaces -->製品の地図と面の選び方（準備中）<!-- link:end --> |
+| どの面で何をするか、どこで動かすかを決めたい | <!-- link:begin field:surfaces -->[製品の地図と面の選び方](../surfaces/index.md)<!-- link:end --> |
 | モデルや effort を選びたい | <!-- link:begin field:models -->[モデル・effort・思考](../models/index.md)<!-- link:end --> |
 | 頼み方を直したい | <!-- link:begin field:prompting -->[頼み方](../prompting/index.md)<!-- link:end --> |
 | 長い会話で文脈が散らかる | <!-- link:begin field:context -->[文脈を整える](../context/index.md)<!-- link:end --> |
@@ -85,7 +85,7 @@ updated: 2026-11-05
 | 例外を許さないことを仕組みで強制したい | <!-- link:begin field:enforce -->[仕組みで縛る](../enforce/index.md)<!-- link:end --> |
 | 安全とデータの扱いを決めたい | <!-- link:begin field:safety -->[安全とデータ](../safety/index.md)<!-- link:end --> |
 | 費用と利用上限が気になる | <!-- link:begin field:cost -->[費用と利用上限](../cost/index.md)<!-- link:end --> |
-| API・SDK から使いたい | <!-- link:begin field:api -->API・SDK の概念（準備中）<!-- link:end --> |
+| API・SDK から使いたい | <!-- link:begin field:api -->[API・SDK の概念](../api/index.md)<!-- link:end --> |
 | 古い記事の助言が今も有効か知りたい | <!-- link:begin field:changes -->[古くなった助言と変更の記録](../changes/index.md)<!-- link:end --> |
 
 ## 記事がどの面の話かを見分ける {#identify-surface}
@@ -111,14 +111,14 @@ updated: 2026-11-05
 
 | 知りたいこと | 引くページ |
 | --- | --- |
-| アプリ・Claude Code・API のどれで進めるか | <!-- link:begin choosing-a-surface#examples -->アプリ・Claude Code・API の選び方 › 判断例（準備中）<!-- link:end --> |
-| クラウドか手元かで何が変わるか | <!-- link:begin where-it-runs#three-locations -->実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所（準備中）<!-- link:end --> |
+| アプリ・Claude Code・API のどれで進めるか | <!-- link:begin choosing-a-surface#examples -->[アプリ・Claude Code・API の選び方 › 判断例](../surfaces/choosing-a-surface.md#examples)<!-- link:end --> |
+| クラウドか手元かで何が変わるか | <!-- link:begin where-it-runs#three-locations -->[実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所](../surfaces/where-it-runs.md#three-locations)<!-- link:end --> |
 | Claude Code をどの窓口で使うか | <!-- link:begin claude-code-surfaces#how-to-choose -->Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 選び方（準備中）<!-- link:end --> |
 | 使いたい機能がない面から移るか | <!-- link:begin what-each-surface-cannot-do#moving-between-surfaces -->面ごとにできないこと（早見表） › 別の面に移すとき（準備中）<!-- link:end --> |
 | Office アドインの位置づけ | <!-- link:begin peripheral-products#office-add-ins -->周辺製品の一覧 › Office アドイン（準備中）<!-- link:end --> |
-| SDK や Managed Agents のどの層を使うか | <!-- link:begin sdk-comparison#examples -->Client SDK・Agent SDK・Managed Agents・CLI の比較 › 選び方の判断例（準備中）<!-- link:end --> |
-| アプリの機能が API の何に当たるか | <!-- link:begin feature-to-api-mapping#insights -->アプリの機能と API の概念の対応表 › 対応から分かること（準備中）<!-- link:end --> |
-| いま選べるモデルと、面ごとの違い | <!-- link:begin current-models#by-surface -->現行モデルの一覧と位置づけ › 面とプランごとに選べるモデル（準備中）<!-- link:end --> |
+| SDK や Managed Agents のどの層を使うか | <!-- link:begin sdk-comparison#examples -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › 選び方の判断例](../api/sdk-comparison.md#examples)<!-- link:end --> |
+| アプリの機能が API の何に当たるか | <!-- link:begin feature-to-api-mapping#insights -->[アプリの機能と API の概念の対応表 › 対応から分かること](../api/feature-to-api-mapping.md#insights)<!-- link:end --> |
+| いま選べるモデルと、面ごとの違い | <!-- link:begin current-models#by-surface -->[現行モデルの一覧と位置づけ › 面とプランごとに選べるモデル](../models/current-models.md#by-surface)<!-- link:end --> |
 | うまくいかない理由を原理で考える | <!-- link:begin four-principles#overview -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 4 つの原理の一覧](four-principles.md#overview)<!-- link:end --> |
 
 <!-- gen:begin page-links -->
@@ -132,15 +132,15 @@ updated: 2026-11-05
 
 **関連**
 
-- アプリ・Claude Code・API の選び方（準備中）
-- 実行場所の違い（クラウド・自分の PC・リモート操作）（準備中）
+- [アプリ・Claude Code・API の選び方](../surfaces/choosing-a-surface.md)
+- [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)
 - Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）
 - 面ごとにできないこと（早見表）（準備中）
 - 周辺製品の一覧（準備中）
-- Client SDK・Agent SDK・Managed Agents・CLI の比較（準備中）
-- アプリの機能と API の概念の対応表（準備中）
-- 拡張機能の全体図と使い分け早見表（準備中）
-- 現行モデルの一覧と位置づけ（準備中）
+- [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)
+- [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
+- [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
+- [現行モデルの一覧と位置づけ](../models/current-models.md)
 - モデルの差よりハーネスの差（準備中）
 - [エージェントループと tool use](../basics/agent-loop.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る）](four-principles.md)

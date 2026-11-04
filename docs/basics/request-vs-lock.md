@@ -41,7 +41,7 @@ updated: 2026-11-04
 別名：決定論的な制御・非決定論的な指示・deterministic・指示と強制
 <!-- textlint-enable -->
 
-お願いと鍵は、Claude への指示を「Claude が読んで判断するもの（非決定論的な指示）」と「Claude の判断によらず働くもの（決定論的な制御）」に分ける見方である。「必ず」と書いても破られるのは、その指示がお願いの側にあるからで、言い方を強めても鍵にはならない。鍵の例（フック・deny ルール・管理設定・サンドボックス）は Claude Code のもので、アプリと API の対応は<!-- link:begin request-lock-table -->お願いと鍵の対応表（準備中）<!-- link:end -->で見る。
+お願いと鍵は、Claude への指示を「Claude が読んで判断するもの（非決定論的な指示）」と「Claude の判断によらず働くもの（決定論的な制御）」に分ける見方である。「必ず」と書いても破られるのは、その指示がお願いの側にあるからで、言い方を強めても鍵にはならない。鍵の例（フック・deny ルール・管理設定・サンドボックス）は Claude Code のもので、アプリと API の対応は<!-- link:begin request-lock-table -->[お願いと鍵の対応表](../enforce/request-lock-table.md)<!-- link:end -->で見る。
 
 ## 何が起きるか {#what-happens}
 
@@ -89,7 +89,7 @@ updated: 2026-11-04
 - **触れてよい範囲**：モデルに任せる形は、auto モードの分類器。任せない形は、deny ルール・strict mode のサンドボックス・管理設定。
 - **最後に決めるのは誰か**：モデルに任せる形は、Claude の作業の要約。任せない形は、ブランチ保護と、マージを承認する人。
 
-この分け方は、どの面でも同じである。アプリでも API でも、プロンプトに書いた指示はお願いである。鍵になる仕組みは面によって違い、ここに挙げたのは Claude Code のものである。面ごとの対応は<!-- link:begin request-lock-table -->お願いと鍵の対応表（準備中）<!-- link:end -->で見る。
+この分け方は、どの面でも同じである。アプリでも API でも、プロンプトに書いた指示はお願いである。鍵になる仕組みは面によって違い、ここに挙げたのは Claude Code のものである。面ごとの対応は<!-- link:begin request-lock-table -->[お願いと鍵の対応表](../enforce/request-lock-table.md)<!-- link:end -->で見る。
 
 ## 二層で書く {#two-layers}
 
@@ -100,7 +100,7 @@ updated: 2026-11-04
 - **例外がない**：どの場面でも守らせたい規則である。「関数は短く書く」のような好みは、例外が多いので、お願いのまま残す。
 - **機械が判定できる**：ファイルの場所・コマンド・テストの結果のように、ツールの呼び出しや結果に当てて書ける規則である。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、deny ルールが当たるのは意図ではなくツールの呼び出しだと書く。
 
-「返答は日本語にする」のように、返事の中身が条件になる規則は、ツールの呼び出しに当てて書けないので、「機械が判定できる」を満たしにくい。この種の規則の扱いは、原因の切り分けなら<!-- link:begin instructions-ignored -->[CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)<!-- link:end -->で、用途ごとの手段なら<!-- link:begin request-lock-table -->お願いと鍵の対応表（準備中）<!-- link:end -->で見る。
+「返答は日本語にする」のように、返事の中身が条件になる規則は、ツールの呼び出しに当てて書けないので、「機械が判定できる」を満たしにくい。この種の規則の扱いは、原因の切り分けなら<!-- link:begin instructions-ignored -->[CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)<!-- link:end -->で、用途ごとの手段なら<!-- link:begin request-lock-table -->[お願いと鍵の対応表](../enforce/request-lock-table.md)<!-- link:end -->で見る。
 
 鍵は少なく保つ。ほとんどの場面は Claude に判断させるほうがよい。フックと deny ルールは、必要のない場面で働くことがあり、保守する人が要る。Best practices も、単なる好みまで鍵にしないよう勧める。
 
@@ -165,13 +165,13 @@ updated: 2026-11-04
 
 - **どの規則を鍵に移すか**：移す合図は<!-- link:begin when-to-lock -->[お願いを鍵に移す判断](../enforce/when-to-lock.md)<!-- link:end -->にある。
 - **鍵の作り方**：フックは<!-- link:begin hooks-basics -->[フックの考え方とイベント](../enforce/hooks-basics.md)<!-- link:end -->、deny ルールは<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->にある。
-- **スキルとフック**：決まった手順をどちらに置くかは<!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end -->で選ぶ。
+- **スキルとフック**：決まった手順をどちらに置くかは<!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end -->で選ぶ。
 
 ## 誤解 {#misconceptions}
 
 お願い（Claude が読んで判断する指示）と鍵（Claude の判断によらず働く仕組み）をめぐって、よく出会う誤解を 5 つ挙げる。
 
-- **「IMPORTANT や『必ず』を付ければ守られる」**：強調は文の書き方を変えるだけで、お願いのままである。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、強調を重ねるとかえって規則を当てはめすぎやすいとして、この助言をもうやめてよいものに挙げる。守られない行は、ファイルが長すぎて埋もれていないかを見る。例外のない規則なら鍵に移す。台帳の記録は<!-- link:begin outdated-advice-ledger#important-caps -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#important-caps)<!-- link:end -->、強調語の現在は<!-- link:begin emphasis-words -->強調語（IMPORTANT・必ず）の現在（準備中）<!-- link:end -->にある。
+- **「IMPORTANT や『必ず』を付ければ守られる」**：強調は文の書き方を変えるだけで、お願いのままである。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、強調を重ねるとかえって規則を当てはめすぎやすいとして、この助言をもうやめてよいものに挙げる。守られない行は、ファイルが長すぎて埋もれていないかを見る。例外のない規則なら鍵に移す。台帳の記録は<!-- link:begin outdated-advice-ledger#important-caps -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#important-caps)<!-- link:end -->、強調語の現在は<!-- link:begin emphasis-words -->[強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)<!-- link:end -->にある。
 - **「CLAUDE.md は設定ファイルだから、書けば強制される」**：CLAUDE.md は強制される設定ではなく、文脈である。組織が配る CLAUDE.md も同じで、[How Claude remembers your project](https://code.claude.com/docs/en/memory) は、指針には CLAUDE.md を使い、強制には管理設定の deny ルールなどを使うよう勧める。強制されているかどうかは、deny ルールか、種類が `command` か `http` のフックに書いてあるかで見分ける。
 - **「フックにすれば必ず守られる」**：フックが走ることと、フックの目的が果たされることは別である。種類が `prompt` か `agent` のフックは、別のモデルが判断するので鍵ではない。種類は、設定の `type` で確かめる。種類が `command` か `http` のフックでも、文を足すだけのものは、足した文がお願いとして読まれる。毎ターン言語の指示をフックで足しても英語に戻ったという報告が、#96326 のコメントにある（根拠：弱）。鍵として働く動作は 3 つある。ハーネスが自分で処理を走らせる動作、ツールの呼び出しを止める動作、終わろうとした Claude を差し戻す動作である。対応するイベントは<!-- link:begin hooks-basics -->[フックの考え方とイベント](../enforce/hooks-basics.md)<!-- link:end -->で選ぶ。
 - **「auto モードがあるから、危ない操作は止まる」**：auto モードの分類器は、別のモデルが行動ごとに判断する仕組みで、決まった規則ではない。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、「never」の規則は deny ルールかフックに置くよう勧める。
@@ -203,23 +203,23 @@ updated: 2026-11-04
 
 **次に読む**
 
+- [否定形ではなく、望む形で書く](../prompting/say-what-you-want.md)
+- [強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)
 - [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)
+- [拡張を足すタイミング](../extend/when-to-add-what.md)
+- [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
+- [フックとスキルの違い](../extend/hook-vs-skill.md)
 - [検証の階段](../verify/verification-ladder.md)
-- [お願いを鍵に移す判断](../enforce/when-to-lock.md)
-- [日本語の出力を揃える：お願いで足りること、仕組みが要ること](../japanese/align-japanese-output.md)
-- [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
-- [英語で返ってくる](../symptoms/replies-in-english.md)
-- [文体や表記が揃わない](../symptoms/inconsistent-japanese-style.md)
 - ほか 10 ページ
 
 **関連**
 
-- お願いと鍵の対応表（準備中）
-- フックとスキルの違い（準備中）
+- [お願いを鍵に移す判断](../enforce/when-to-lock.md)
+- [お願いと鍵の対応表](../enforce/request-lock-table.md)
+- [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
 - [システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](where-instructions-sit.md)
 - [データと命令を区別できない（prompt injection の原理）](data-vs-instructions.md)
-- 強調語（IMPORTANT・必ず）の現在（準備中）
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る） › 縛る](../start/four-principles.md#lock)

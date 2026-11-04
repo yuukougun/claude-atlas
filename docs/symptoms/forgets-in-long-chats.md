@@ -68,7 +68,7 @@ updated: 2026-11-05
 1. **見えていない**：その前提が、会話の中から落ちている。
     - 見るもの：前提を伝えた発言が、まだ会話に残っているか。圧縮や要約が起きていないか。
     - 確かめ方：今把握している目的・完了の条件・前提を列挙させ、自分が最初に伝えた文面と照らす。列挙に出てこない、または言い換わっているなら、その前提は見えていない。依頼の雛形はこの節の末尾にある。
-    - 圧縮の背景：圧縮は、会話の履歴を要約に置き換える。自動で圧縮されると初めの指示は失われうるので、続けて効かせたい規則は CLAUDE.md に置くのが公式の勧めである。何が圧縮の後に残るかは仕組みごとに違い、公式の表が正である。圧縮の起き方と備えは <!-- link:begin compact-and-auto-compact#auto-compact -->/compact と自動圧縮 › 自動圧縮で起きること（準備中）<!-- link:end --> にある。
+    - 圧縮の背景：圧縮は、会話の履歴を要約に置き換える。自動で圧縮されると初めの指示は失われうるので、続けて効かせたい規則は CLAUDE.md に置くのが公式の勧めである。何が圧縮の後に残るかは仕組みごとに違い、公式の表が正である。圧縮の起き方と備えは <!-- link:begin compact-and-auto-compact#auto-compact -->[/compact と自動圧縮 › 自動圧縮で起きること](../context/compact-and-auto-compact.md#auto-compact)<!-- link:end --> にある。
     - 圧縮の後に、決めた約束や禁止を忘れた場合は、<!-- link:begin forgot-after-compaction#diagnosis -->[圧縮の後に約束を忘れた › 原因を安く確かめる順](forgot-after-compaction.md#diagnosis)<!-- link:end --> に進む。
 2. **散らかっている**：前提は残っているが、無関係な情報や失敗の跡が増え、効きにくくなっている。
     - 見るもの：会話に、話題の違う作業が混ざっていないか。失敗した試みや、長い実行結果が残っていないか。
@@ -126,12 +126,12 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 見えていない | [handoff 文書と document-and-clear](../context/handoff-documents.md)<br>長い会話の自動のコンテキスト管理と長さの上限（準備中） |
-| 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）<br>[@参照と、何を読ませるかの絞り込み › 出力を絞る](../context/choose-what-to-read.md#trim-output) |
+| 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)<br>[@参照と、何を読ませるかの絞り込み › 出力を絞る](../context/choose-what-to-read.md#trim-output) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
 
-ログやテストの出力で埋まる場合は、散らかっている側の対処のうち、出力を要点に絞ってから会話に入れる手が中心になる。同じ絞り込みをフックで仕組みにする手は <!-- link:begin hook-recipes#filter-test-output -->代表的なフックのレシピ › テストの出力を絞る（準備中）<!-- link:end --> にある。出力の多い調査を本筋から離す手は <!-- link:begin research-in-subagents#when -->出力の多い調査はサブエージェントに任せて要約だけ受け取る › 任せてよい調査、本筋で読むべきもの（準備中）<!-- link:end --> にある。
+ログやテストの出力で埋まる場合は、散らかっている側の対処のうち、出力を要点に絞ってから会話に入れる手が中心になる。同じ絞り込みをフックで仕組みにする手は <!-- link:begin hook-recipes#filter-test-output -->[代表的なフックのレシピ › テストの出力を絞る](../enforce/hook-recipes.md#filter-test-output)<!-- link:end --> にある。出力の多い調査を本筋から離す手は <!-- link:begin research-in-subagents#when -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る › 任せてよい調査、本筋で読むべきもの](../context/research-in-subagents.md#when)<!-- link:end --> にある。
 
 ## 似た症状との見分け {#lookalikes}
 
@@ -200,7 +200,7 @@ updated: 2026-11-05
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - 長い会話の自動のコンテキスト管理と長さの上限（準備中）
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
 
 **関連**
@@ -208,11 +208,11 @@ updated: 2026-11-05
 - [毎ターン全履歴を読み直す](../basics/rereads-whole-history.md)
 - [コンテキストウィンドウと注意の予算](../basics/attention-budget.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
-- 出力の多い調査はサブエージェントに任せて要約だけ受け取る（準備中）
-- 代表的なフックのレシピ › テストの出力を絞る（準備中）
+- [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
+- [代表的なフックのレシピ › テストの出力を絞る](../enforce/hook-recipes.md#filter-test-output)
 - [/context で中身を見る](../context/inspect-context.md)
 - 広いコンテキストウィンドウとの付き合い方（準備中）
-- /compact と自動圧縮（準備中）
+- [/compact と自動圧縮](../context/compact-and-auto-compact.md)
 - [同じ失敗を繰り返す（堂々巡り）](going-in-circles.md)
 - [圧縮の後に約束を忘れた](forgot-after-compaction.md)
 - [別の会話やプロジェクトの内容が混ざる](unexpected-memories.md)

@@ -67,7 +67,7 @@ updated: 2026-11-05
 
 既定の値そのものは版・プラン・管理者の設定で変わるので、このページには書かない。観点ごとに、値を確かめる先を示す。
 
-- **権限**：既定の開始モードは版で変わってきた。対話の端末と VS Code の既定は、<!-- fact:begin permission-mode-default-interactive -->auto モード（Claude Code 2.1.283 以降の、ターミナルと VS Code の対話のセッション。どのプランと提供元でも）（2026-11-04 時点）<!-- fact:end -->。手元の既定は <!-- link:begin permission-modes-overview#defaults -->[権限モードの選び方 › 既定のモードと版](../cli/permission-modes-overview.md#defaults)<!-- link:end --> で確かめる。非対話の実行（`-p` と Agent SDK）は対話と既定が違い、<!-- fact:begin permission-mode-default-noninteractive -->Manual（Claude Code 2.1.302 以降。承認の要る呼び出しは、allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否）（2026-11-04 時点）<!-- fact:end -->。承認に答える人がいないので、<!-- link:begin headless-basics#permissions -->非対話モード（claude -p）の基本 › 許可と権限モード（準備中）<!-- link:end --> を先に読む
+- **権限**：既定の開始モードは版で変わってきた。対話の端末と VS Code の既定は、<!-- fact:begin permission-mode-default-interactive -->auto モード（Claude Code 2.1.283 以降の、ターミナルと VS Code の対話のセッション。どのプランと提供元でも）（2026-11-04 時点）<!-- fact:end -->。手元の既定は <!-- link:begin permission-modes-overview#defaults -->[権限モードの選び方 › 既定のモードと版](../cli/permission-modes-overview.md#defaults)<!-- link:end --> で確かめる。非対話の実行（`-p` と Agent SDK）は対話と既定が違い、<!-- fact:begin permission-mode-default-noninteractive -->Manual（Claude Code 2.1.302 以降。承認の要る呼び出しは、allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否）（2026-11-04 時点）<!-- fact:end -->。承認に答える人がいないので、<!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end --> を先に読む
 - **通信と読み書き**：Claude が動かすコマンドの囲いは、サンドボックスが担う。サンドボックスの既定の状態は、<!-- fact:begin sandbox-default-state -->未確認<!-- fact:end -->。囲える範囲と囲えない範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> に、読み取りが既定で広いことは <!-- link:begin sandboxing#default-reads -->[サンドボックスで封じ込める › 読み取りは既定で広い](../enforce/sandboxing.md#default-reads)<!-- link:end --> にある
 - **データ**：送った会話が学習に使われる条件は、個人向けと商用の規約で分かれる。条件は <!-- link:begin where-your-data-goes#consumer-vs-commercial -->[送ったデータの行方（学習・保持期間） › 個人のプランと商用のプラン](where-your-data-goes.md#consumer-vs-commercial)<!-- link:end -->、設定の場所は <!-- link:begin where-your-data-goes#training-setting -->[送ったデータの行方（学習・保持期間） › 学習への利用の設定](where-your-data-goes.md#training-setting)<!-- link:end --> にある
 - **記録**：手元の記録は、送ったデータの扱いとは別に残る。<!-- link:begin where-your-data-goes#local-transcripts -->[送ったデータの行方（学習・保持期間） › 手元に残る記録](where-your-data-goes.md#local-transcripts)<!-- link:end --> で場所と期間を確かめる。アプリで記録を残さず試すなら <!-- link:begin incognito-chats#retention -->シークレットチャット（記録を残さない会話） › 残らないもの・残るもの（準備中）<!-- link:end --> を読む
@@ -76,7 +76,7 @@ updated: 2026-11-05
 
 === "アプリ"
 
-    権限は、確認なしに進める Auto と、毎回確かめる Manual から選ぶ。既定はプランと管理者の設定で変わりうる。いまの既定は、<!-- fact:begin app-default-permission-mode -->未確認<!-- fact:end -->。選び方は <!-- link:begin permission-modes-in-the-app#modes -->アプリの権限モード（Auto と Manual）と安全 › Auto と Manual（準備中）<!-- link:end --> にある。
+    権限は、確認なしに進める Auto と、毎回確かめる Manual から選ぶ。既定はプランと管理者の設定で変わりうる。いまの既定は、<!-- fact:begin app-default-permission-mode -->未確認<!-- fact:end -->。選び方は <!-- link:begin permission-modes-in-the-app#modes -->[アプリの権限モード（Auto と Manual）と安全 › Auto と Manual](../app/permission-modes-in-the-app.md#modes)<!-- link:end --> にある。
 
     記録と記憶は、会話ごとの設定とシークレットチャットで調整する。表の incognito と app-memory の行が対応する。シークレットチャットの保持期間は次のとおり：
     <!-- fact:begin incognito-retention-period -->未確認<!-- fact:end -->
@@ -103,14 +103,14 @@ updated: 2026-11-05
 
 - **1. 使う（見ながら進める）**：公式の既定を基準にする。足すのは、データと記録の確認である。学習への利用の設定と手元の記録の場所を一度見ておく。<!-- link:begin where-your-data-goes#training-setting -->[送ったデータの行方（学習・保持期間） › 学習への利用の設定](where-your-data-goes.md#training-setting)<!-- link:end --> と <!-- link:begin approval-fatigue#reduce-prompts -->承認疲れ › 確認を減らす順番（準備中）<!-- link:end --> が入口になる。確認を増やすより、確認を減らして残す確認を読む形にする
 - **2. 任せる（席を離れる）**：サンドボックスと、秘密の読み取りの禁止を足す。どちらも会話の外で効く鍵である。秘密の置き方と二重にする設定は <!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](protecting-secrets.md#two-layers)<!-- link:end -->、囲いの範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> にある。囲いが起動できないときに通さない設定は <!-- link:begin sandboxing#fail-if-unavailable -->[サンドボックスで封じ込める › 起動できないときに通さない](../enforce/sandboxing.md#fail-if-unavailable)<!-- link:end --> で確かめる
-- **3. 回す（無人で走らせる）**：使い捨ての環境で動かす。確認をすべて外すモードや無人の実行は、隔離した環境だけで動かす。理由と環境の条件は <!-- link:begin where-bypass-is-ok#why-isolate -->bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか（準備中）<!-- link:end --> と <!-- link:begin where-bypass-is-ok#requirements -->bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件（準備中）<!-- link:end --> にある。走らせる前の問いは <!-- link:begin five-questions-before-delegating#five-questions -->[任せ方の段階と、無人で走らせる前の五つの問い › 無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md#five-questions)<!-- link:end --> で答える
-- **全段階に共通**：預かったデータや、NDA・規約の付いたデータは、契約で扱いが決まっている面だけで使う。判断の基準は <!-- link:begin entrusted-data#contracted-surfaces -->預かったデータ・規約付きのデータを AI に渡してよいか › 契約のある面だけで使う（準備中）<!-- link:end --> にある
+- **3. 回す（無人で走らせる）**：使い捨ての環境で動かす。確認をすべて外すモードや無人の実行は、隔離した環境だけで動かす。理由と環境の条件は <!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](where-bypass-is-ok.md#why-isolate)<!-- link:end --> と <!-- link:begin where-bypass-is-ok#requirements -->[bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件](where-bypass-is-ok.md#requirements)<!-- link:end --> にある。走らせる前の問いは <!-- link:begin five-questions-before-delegating#five-questions -->[任せ方の段階と、無人で走らせる前の五つの問い › 無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md#five-questions)<!-- link:end --> で答える
+- **全段階に共通**：預かったデータや、NDA・規約の付いたデータは、契約で扱いが決まっている面だけで使う。判断の基準は <!-- link:begin entrusted-data#contracted-surfaces -->[預かったデータ・規約付きのデータを AI に渡してよいか › 契約のある面だけで使う](entrusted-data.md#contracted-surfaces)<!-- link:end --> にある
 
 面ごとに、任せる段階の足し方は次のように違う。
 
 === "アプリ"
 
-    読める範囲と行動できる範囲を同時に広げない。同時に広げる前に、専用のフォルダと低いリスクの作業から始める。置き方は <!-- link:begin permission-modes-in-the-app#two-conditions -->アプリの権限モード（Auto と Manual）と安全 › 読める範囲と行動できる範囲を同時に広げない（準備中）<!-- link:end --> と <!-- link:begin permission-modes-in-the-app#start-small -->アプリの権限モード（Auto と Manual）と安全 › 専用のフォルダと、低いリスクの作業から（準備中）<!-- link:end --> にある。
+    読める範囲と行動できる範囲を同時に広げない。同時に広げる前に、専用のフォルダと低いリスクの作業から始める。置き方は <!-- link:begin permission-modes-in-the-app#two-conditions -->[アプリの権限モード（Auto と Manual）と安全 › 読める範囲と行動できる範囲を同時に広げない](../app/permission-modes-in-the-app.md#two-conditions)<!-- link:end --> と <!-- link:begin permission-modes-in-the-app#start-small -->[アプリの権限モード（Auto と Manual）と安全 › 専用のフォルダと、低いリスクの作業から](../app/permission-modes-in-the-app.md#start-small)<!-- link:end --> にある。
 
 === "Claude Code"
 
@@ -174,14 +174,14 @@ updated: 2026-11-05
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [秘密情報（.env・API キー）を守る](protecting-secrets.md)
-- bypassPermissions と無人の実行はどこで動かすか（準備中）
-- 預かったデータ・規約付きのデータを AI に渡してよいか（準備中）
+- [bypassPermissions と無人の実行はどこで動かすか](where-bypass-is-ok.md)
+- [預かったデータ・規約付きのデータを AI に渡してよいか](entrusted-data.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](lethal-trifecta.md)
 - 承認疲れ（準備中）
-- アプリの権限モード（Auto と Manual）と安全（準備中）
+- [アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
-- 非対話モード（claude -p）の基本（準備中）
+- [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
 - シークレットチャット（記録を残さない会話）（準備中）
 
 </div>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" width="400" height="270" font-family="sans-serif" font-size="12">
+  <title>ループを誰が回すかと、どこで動くかの 2 軸に 4 つの層を置いた図</title>
+  <desc>自分の環境で動くのは、ループを自分で書く Client SDK と、Claude Code のループを使う Agent SDK と CLI。Anthropic がループを回す Managed Agents は、Anthropic のクラウドで動く。</desc>
+  <rect x="0" y="0" width="400" height="270" fill="#ffffff"/>
+  <text x="187" y="26" text-anchor="middle" font-weight="bold">自分の環境で動く</text>
+  <text x="327" y="26" text-anchor="middle" font-weight="bold">Anthropic のクラウドで動く</text>
+  <line x1="120" y1="38" x2="395" y2="38" stroke="#555555" stroke-width="1"/>
+  <text x="8" y="80" font-weight="bold">自分でループを</text>
+  <text x="8" y="96" font-weight="bold">書く</text>
+  <text x="8" y="150" font-weight="bold">Claude Code の</text>
+  <text x="8" y="166" font-weight="bold">ループを使う</text>
+  <text x="8" y="220" font-weight="bold">Anthropic が</text>
+  <text x="8" y="236" font-weight="bold">ループを回す</text>
+  <rect x="122" y="50" width="130" height="58" fill="#ffffff" stroke="#222222" stroke-width="2"/>
+  <text x="187" y="84" text-anchor="middle">Client SDK</text>
+  <rect x="122" y="120" width="130" height="58" fill="#f0f0f0" stroke="#222222" stroke-width="2" stroke-dasharray="6 3"/>
+  <text x="187" y="146" text-anchor="middle">Agent SDK</text>
+  <text x="187" y="164" text-anchor="middle">CLI（claude -p）</text>
+  <rect x="258" y="190" width="135" height="58" fill="#e4e4e4" stroke="#222222" stroke-width="2" stroke-dasharray="2 3"/>
+  <text x="325" y="224" text-anchor="middle">Managed Agents</text>
+</svg>

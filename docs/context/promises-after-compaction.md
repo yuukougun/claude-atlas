@@ -129,7 +129,7 @@ updated: 2026-11-05
 
 この雛形は `git push` をすべて止める。`main` だけを止めたいときは、パターンを自分のブランチ名に合わせて書き換える。deny ルールは、シェルから呼ばれる子プロセスの中の操作には効かない。効く範囲は <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](../enforce/permission-rules.md#child-processes)<!-- link:end --> で確かめる。
 
-圧縮のあとに文脈を足し直したいだけなら、`compact` を matcher にした SessionStart フックが使える。このフックは圧縮のあとにもう一度走り、出力を圧縮後の文脈に足す。ただし足されるのは文脈であり、強制ではない。要約の方針を決めたいときは、CLAUDE.md に `# Compact instructions` の節を書くか、`/compact` に残す焦点を渡す。焦点の渡し方は <!-- link:begin compact-and-auto-compact#focused-compact -->/compact と自動圧縮 › /compact に焦点を指示する（準備中）<!-- link:end --> にある。
+圧縮のあとに文脈を足し直したいだけなら、`compact` を matcher にした SessionStart フックが使える。このフックは圧縮のあとにもう一度走り、出力を圧縮後の文脈に足す。ただし足されるのは文脈であり、強制ではない。要約の方針を決めたいときは、CLAUDE.md に `# Compact instructions` の節を書くか、`/compact` に残す焦点を渡す。焦点の渡し方は <!-- link:begin compact-and-auto-compact#focused-compact -->[/compact と自動圧縮 › /compact に焦点を指示する](compact-and-auto-compact.md#focused-compact)<!-- link:end --> にある。
 
 !!! example "判断例：最初に伝えた 2 つの約束をどこに置くか"
     - **状況**：長い作業の最初に、「`main` へ push しない」と「請求計算の範囲だけを触る」の 2 つを会話で伝えた。作業は数時間続き、自動圧縮が走る。
@@ -141,9 +141,9 @@ updated: 2026-11-05
 
 根の CLAUDE.md に書いたつもりでも、圧縮のあとに戻らないものがある。次の 4 つに気を付ける。
 
-- **paths 付きの rules**：`paths:` を持つ rules は、圧縮のあと、引き金のファイルを読むか書くまで戻らない。圧縮を越えて残したい規則は、`paths:` を外すか、根の CLAUDE.md に移す。戻る時期は <!-- link:begin path-scoped-rules#after-compaction -->.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期（準備中）<!-- link:end --> にある。
+- **paths 付きの rules**：`paths:` を持つ rules は、圧縮のあと、引き金のファイルを読むか書くまで戻らない。圧縮を越えて残したい規則は、`paths:` を外すか、根の CLAUDE.md に移す。戻る時期は <!-- link:begin path-scoped-rules#after-compaction -->[.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期](../extend/path-scoped-rules.md#after-compaction)<!-- link:end --> にある。
 - **サブフォルダの CLAUDE.md**：要約に消え、Claude がそのフォルダのファイルを扱ったときに読み直される。守らせたい規則は、根の CLAUDE.md に置く。
-- **スキルの本文**：呼び出したスキルの本文は、上限付きで入れ直される。古いものから落ち、先頭を残して切られる。大事な指示は SKILL.md の上のほうに置く。説明文は、今のスキルから作り直して入れ直される。くわしくは <!-- link:begin how-skills-load#after-compaction -->スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの（準備中）<!-- link:end --> にある。
+- **スキルの本文**：呼び出したスキルの本文は、上限付きで入れ直される。古いものから落ち、先頭を残して切られる。大事な指示は SKILL.md の上のほうに置く。説明文は、今のスキルから作り直して入れ直される。くわしくは <!-- link:begin how-skills-load#after-compaction -->[スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの](../extend/how-skills-load.md#after-compaction)<!-- link:end --> にある。
 - **フックが前に足した文脈**：会話と一緒に要約に溶けることがある。残したい内容は、フックの出力ではなくファイルに置く。
 
 どの項目も、公式の文書の「圧縮の後に残るもの」の表に基づく。数値の上限は版で変わりうるので、ここには書かない。
@@ -162,7 +162,7 @@ updated: 2026-11-05
 - **誤解：「入れ直される」なら守られる**：根の CLAUDE.md は圧縮のあとに戻る。だが公式の文書はそれを強制ではなく文脈として扱う。例外を許さない規則は、鍵に移す。
 - **誤解：焦点を付けた `/compact` で約束を守らせられる**：残すよう促せるが、要約を作る側へのお願いである。保証にはならない。
 - **誤解：スキルの一覧は圧縮で戻らない**：スキルの説明文は、今のスキルから作り直して入れ直される。説明文を CLAUDE.md に写す必要はない。
-- **誤解：圧縮を避ければ済む**：圧縮を減らしても、会話の中だけの約束は、要約に溶けうる状態のままである。置き場所を移すほうが確実である。圧縮か、書き出して `/clear` するかは <!-- link:begin compact-and-auto-compact#compact-or-clear -->/compact と自動圧縮 › 圧縮か、書き出して /clear か（準備中）<!-- link:end --> で選ぶ。
+- **誤解：圧縮を避ければ済む**：圧縮を減らしても、会話の中だけの約束は、要約に溶けうる状態のままである。置き場所を移すほうが確実である。圧縮か、書き出して `/clear` するかは <!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)<!-- link:end --> で選ぶ。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -189,12 +189,12 @@ updated: 2026-11-05
 
 **関連**
 
-- /compact と自動圧縮（準備中）
+- [/compact と自動圧縮](compact-and-auto-compact.md)
 - [お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
+- [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
-- スキルの考え方（手順を必要なときだけ読む）（準備中）
+- [スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)
 - [handoff 文書と document-and-clear](handoff-documents.md)
 - [圧縮の後に約束を忘れた](../symptoms/forgot-after-compaction.md)
 - [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)

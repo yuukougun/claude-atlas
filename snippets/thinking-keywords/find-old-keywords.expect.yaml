@@ -1,0 +1,13 @@
+title: 古いキーワードの書き残しを探すコマンド
+kind: other
+place: project
+safety: false
+features: [ultrathink]
+conditions:
+  - プロジェクトのルートで実行する
+expect:
+  - when: CLAUDE.md に「think hard」と書いた行がある状態で実行する
+    then: その行がファイル名と行番号つきで出る
+  - when: 該当する語がどこにもない状態で実行する
+    then: 何も出力されない
+control: 何も出ないときも、別の場所（保存した頼み方のファイルなど）にある場合は、その場所を grep の対象に足す

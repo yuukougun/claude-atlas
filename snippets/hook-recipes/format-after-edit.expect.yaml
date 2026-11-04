@@ -1,0 +1,15 @@
+title: 編集の後に ruff format をかけるフック
+kind: hook
+place: project
+safety: false
+requires: [ruff（PATH にあること）]
+conditions:
+  - 新しいセッションで試す
+  - 整形が崩れた Python のファイルを用意する
+expect:
+  - when: Claude に整形の崩れたファイルの 1 行を Edit で直させる
+    then: 編集の直後にファイルが整形され、ruff format をかけた状態になる
+  - when: 構文エラーのある Python を書かせる
+    then: ruff format の失敗が stderr として Claude に返る（観察として扱う）
+  - when: Python 以外のファイルを編集させる
+    then: フックは何もせずに終わる

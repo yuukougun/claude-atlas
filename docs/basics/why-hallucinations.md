@@ -82,7 +82,7 @@ updated: 2026-11-05
 
 - **見せる（防ぐ原因：見えていない）**：根拠となる資料を渡し、その範囲で答えさせる。知らない名前について、記憶で埋める余地を減らせる。渡した資料の範囲に限る頼み方は <!-- link:begin fact-checking#sources-only -->[事実を確かめる（引用・照合・best-of-N） › 渡した資料の範囲で答えさせる](../verify/fact-checking.md#sources-only)<!-- link:end --> と <!-- link:begin allow-i-dont-know#source-only -->[「分からない」と言ってよいと伝える › 渡した資料だけを根拠にさせる](../prompting/allow-i-dont-know.md#source-only)<!-- link:end --> にある。
 - **白紙を許す（防ぐ原因：見えていない）**：分からなければ分からないと答えてよい、根拠のない所は推測と書け、と伝える。山を張るほうが得という傾きを、頼み方の側で和らげる。手順は <!-- link:begin allow-i-dont-know#escape-hatch -->[「分からない」と言ってよいと伝える › 分からないと言える逃げ道を作る](../prompting/allow-i-dont-know.md#escape-hatch)<!-- link:end --> にある。答えを迫るほど作り話が増える点は <!-- link:begin allow-i-dont-know#pressure -->[「分からない」と言ってよいと伝える › 答えを迫ると作り話が増える](../prompting/allow-i-dont-know.md#pressure)<!-- link:end --> で扱う。
-- **確かめる（防ぐ原因：確かめていない）**：出てきた事実を、そのまま使わない。主張ごとに引用させる手がある（<!-- link:begin fact-checking#quotes -->[事実を確かめる（引用・照合・best-of-N） › 主張ごとに引用させる](../verify/fact-checking.md#quotes)<!-- link:end -->）。同じ質問を繰り返して食い違いを見る手もある（<!-- link:begin fact-checking#best-of-n -->[事実を確かめる（引用・照合・best-of-N） › 何度か聞いて比べる（best-of-N）](../verify/fact-checking.md#best-of-n)<!-- link:end -->）。挙げられた出典は原文と照らす（<!-- link:begin checking-citations#steps -->引用や出典の確かめ方 › 確かめる手順（準備中）<!-- link:end -->）。
+- **確かめる（防ぐ原因：確かめていない）**：出てきた事実を、そのまま使わない。主張ごとに引用させる手がある（<!-- link:begin fact-checking#quotes -->[事実を確かめる（引用・照合・best-of-N） › 主張ごとに引用させる](../verify/fact-checking.md#quotes)<!-- link:end -->）。同じ質問を繰り返して食い違いを見る手もある（<!-- link:begin fact-checking#best-of-n -->[事実を確かめる（引用・照合・best-of-N） › 何度か聞いて比べる（best-of-N）](../verify/fact-checking.md#best-of-n)<!-- link:end -->）。挙げられた出典は原文と照らす（<!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end -->）。
 
 Anthropic の公式の案内も、資料を渡す・分からないと言わせる・引用させるといった工夫で大きく減るが、無くなりはしないと述べる。重要な情報は、特に判断を左右するものほど、最後に人が確かめる。
 
@@ -127,7 +127,7 @@ Anthropic の公式の案内も、資料を渡す・分からないと言わせ�
 
 **関連**
 
-- 引用や出典の確かめ方（準備中）
+- [引用や出典の確かめ方](../verify/checking-citations.md)
 - [知識カットオフと「今」を知らない問題](knowledge-cutoff.md)
 - [同じ質問でも答えが変わる（非決定性）](nondeterminism.md)
 - [要約は原文より強く言いがち（過度な一般化）](summary-overgeneralization.md)

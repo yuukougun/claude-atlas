@@ -86,9 +86,9 @@ updated: 2026-11-05
 
 | 機能 | 強制力 | 圧縮で残るか |
 | --- | --- | --- |
-| 圧縮（/compact と自動圧縮）（準備中） | — | 未確認 |
+| [圧縮（/compact と自動圧縮）](../context/compact-and-auto-compact.md) | なし | 未確認 |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | お願い | 残る |
-| rules（.claude/rules/）（準備中） | お願い | 条件による |
+| [rules（.claude/rules/）](../extend/path-scoped-rules.md) | お願い | 条件による |
 | 自動メモリ（auto memory）（準備中） | お願い | 残る |
 | [スキル（skills）](../extend/writing-skills.md) | お願い | 残る |
 
@@ -114,7 +114,7 @@ updated: 2026-11-05
 - **paths 付きの rules**：一致するファイルを Claude が読むか書くまで戻らない。
 - **サブフォルダの CLAUDE.md**：そのフォルダのファイルを Claude が読むか書くまで戻らない。
 
-圧縮を越えて残したい規則は、paths を外すか、根の CLAUDE.md に移す。これは公式の勧めである。paths 付きの rules の読み込みの時期は<!-- link:begin path-scoped-rules#after-compaction -->.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期（準備中）<!-- link:end -->にある。
+圧縮を越えて残したい規則は、paths を外すか、根の CLAUDE.md に移す。これは公式の勧めである。paths 付きの rules の読み込みの時期は<!-- link:begin path-scoped-rules#after-compaction -->[.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期](../extend/path-scoped-rules.md#after-compaction)<!-- link:end -->にある。
 
 読み直しは、Claude がそのフォルダやファイルを再び扱ったときにだけ起きる。扱わない間は、その規則は文脈にない。圧縮の直後に、別の場所の作業へ移ると、その規則は守られない。
 
@@ -150,7 +150,7 @@ updated: 2026-11-05
 - **スキルは圧縮で消える**：スキルの説明は今のスキルから作り直されて戻り、呼んだスキルの本文も上限つきで戻る。ただし、上限を超えた分や古く呼んだものは落ちる。
 - **入れ直されるなら、必ず守られる**：入れ直しは、規則が文脈に戻ることまでを意味する。従うかどうかは、お願いである限り Claude の判断に残る。守りたい規則は<!-- link:begin when-to-lock -->[お願いを鍵に移す判断](../enforce/when-to-lock.md)<!-- link:end -->で鍵に移すかを決める。
 - **要約が丁寧なら、口約束も残る**：残ることはあるが、保証はない。残すと決めた規則は、会話の外に置く。
-- **圧縮の操作を覚えれば足りる**：操作は<!-- link:begin compact-and-auto-compact#focused-compact -->/compact と自動圧縮 › /compact に焦点を指示する（準備中）<!-- link:end -->にある。このページの一覧を知らずに焦点だけ指示しても、会話の外へ出していない規則は守れない。
+- **圧縮の操作を覚えれば足りる**：操作は<!-- link:begin compact-and-auto-compact#focused-compact -->[/compact と自動圧縮 › /compact に焦点を指示する](../context/compact-and-auto-compact.md#focused-compact)<!-- link:end -->にある。このページの一覧を知らずに焦点だけ指示しても、会話の外へ出していない規則は守れない。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -178,18 +178,18 @@ updated: 2026-11-05
 
 **次に読む**
 
+- [/compact と自動圧縮](../context/compact-and-auto-compact.md)
 - [圧縮で消えない場所に約束を置く](../context/promises-after-compaction.md)
+- [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - [圧縮の後に約束を忘れた](../symptoms/forgot-after-compaction.md)
-- /compact と自動圧縮（準備中）
-- 拡張機能の全体図と使い分け早見表（準備中）
 - 長時間エージェントのコンテキスト管理（準備中）
 
 **関連**
 
 - [お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
+- [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
 - 長い会話の自動のコンテキスト管理と長さの上限（準備中）
 
 </div>

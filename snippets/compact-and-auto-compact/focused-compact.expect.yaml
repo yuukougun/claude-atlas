@@ -1,0 +1,14 @@
+title: 残す焦点を指示した /compact と、CLAUDE.md に書く圧縮の方針
+kind: prompt
+place: 依頼の本文（1）と、プロジェクトの CLAUDE.md（2）
+safety: false
+features: [compaction]
+conditions:
+  - 新しいセッションで、何ターンか作業をした後に試す
+  - 2 は CLAUDE.md に足し、新しいセッションを始めてから試す
+expect:
+  - when: 1 の行を打って /compact を実行する
+    then: 圧縮の後の要約に、決めたこと・試して駄目だった方法・変えたファイル・テストの実行コマンドが入っている（観察として扱う。要約の中身は保証されない）
+  - when: 2 を書いたセッションで、自動圧縮か焦点なしの /compact が走る
+    then: 要約に、2 の項目に近いものが残りやすくなる（観察として扱う。CLAUDE.md の指示はお願いで、鍵ではない）
+control: 焦点を付けずに /compact すると、何を残すかは Claude の判断だけで決まり、テストの実行コマンドやファイルの位置が落ちることがある

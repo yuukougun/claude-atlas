@@ -1,0 +1,17 @@
+title: 信頼の前後でフックが走るかを確かめる無害なフック
+kind: hook
+place: project
+safety: true
+features: [hooks]
+conditions:
+  - 使い捨ての空のフォルダに `.claude/settings.json` として置く
+  - 手元ではなく、隔離した環境で試す
+  - まだ信頼していないフォルダで試す
+expect:
+  - when: 対話で `claude` を起動し、信頼の確認を受け入れずに閉じる
+    then: フォルダに `hook-ran.txt` ができない
+  - when: 対話で `claude` を起動し、信頼の確認を受け入れる
+    then: フォルダに `hook-ran.txt` ができる
+  - when: 別の信頼していないフォルダで `claude -p` を実行する
+    then: 信頼の確認が出ないまま、フォルダに `hook-ran.txt` ができる
+control: フックを置かない同じフォルダでは、どの場合でも `hook-ran.txt` ができない

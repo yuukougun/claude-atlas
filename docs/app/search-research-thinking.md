@@ -155,11 +155,11 @@ effort の行は Claude Code と API にも当たる。このページが扱う�
 使い分けた後は、検索やリサーチが実際に使われたかと、結果が合っているかを見る。
 
 - **検索したか**：web 検索を使った回答には出典が付く。最新の事実を述べているのに出典がない答えは、検索せずに記憶で答えた可能性がある（推論・実践例なし）。その場合は、検索するよう頼みに書いて聞き直す。
-- **リサーチの結果**：レポートの出典は、原文を開いて確かめる。手順は <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> と <!-- link:begin research-and-reports#check-sources -->調べものとレポート › 出典を原文で確かめる（準備中）<!-- link:end --> にある。
+- **リサーチの結果**：レポートの出典は、原文を開いて確かめる。手順は <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> と <!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end --> にある。
 - **重要な結論**：<!-- link:begin fact-checking#sources-only -->[事実を確かめる（引用・照合・best-of-N） › 渡した資料の範囲で答えさせる](../verify/fact-checking.md#sources-only)<!-- link:end --> のように、渡した資料の範囲で答えさせる方法もある。重要な事実ほど、一次の資料で裏を取る。
 - **使った量**：思い当たらないのに枠が減るときは、<!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> で内訳を見る。
 
-思考の仕組みと、考えた分も出力として数えられる点は <!-- link:begin how-thinking-works -->[思考（thinking）と effort の仕組み](../basics/how-thinking-works.md)<!-- link:end --> にある。調べもの全体の進め方は <!-- link:begin research-and-reports -->調べものとレポート（準備中）<!-- link:end --> にある。
+思考の仕組みと、考えた分も出力として数えられる点は <!-- link:begin how-thinking-works -->[思考（thinking）と effort の仕組み](../basics/how-thinking-works.md)<!-- link:end --> にある。調べもの全体の進め方は <!-- link:begin research-and-reports -->[調べものとレポート](../recipes/research-and-reports.md)<!-- link:end --> にある。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -172,8 +172,8 @@ effort の行は Claude Code と API にも当たる。このページが扱う�
 
 **次に読む**
 
+- [調べものとレポート](../recipes/research-and-reports.md)
 - リサーチを使いこなす（準備中）
-- 調べものとレポート（準備中）
 
 **関連**
 

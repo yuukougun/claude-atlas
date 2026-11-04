@@ -1,0 +1,14 @@
+title: この 1 回の依頼だけ深く考えさせる例
+kind: prompt
+place: 依頼の本文
+safety: false
+features: [ultrathink]
+conditions:
+  - Claude Code の新しいセッションで試す
+  - 対話の端末で、Anthropic の API の対応モデルを使う
+expect:
+  - when: 上の依頼を送る
+    then: 入力欄の ultrathink が虹色で表示される場合がある（表示は版と環境による。観察として扱う）
+  - when: その次の依頼を、ultrathink なしで送る
+    then: セッションの effort は変わっていないので、次の依頼は元の段で動く
+control: ultrathink を外して同じ依頼を送ると、そのセッションの effort のまま答える

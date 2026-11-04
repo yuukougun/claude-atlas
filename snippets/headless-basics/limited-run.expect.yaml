@@ -1,0 +1,17 @@
+title: 許可を絞った claude -p の実行例（許す道具・上限・出力形式）
+kind: other
+place: project
+safety: true
+features: [headless]
+conditions:
+  - 失敗するテストがある、使い捨てのブランチで試す
+  - npm test が動く Node.js のプロジェクトで試す。jq を入れておく
+  - サブスクリプションで使うなら、環境変数 ANTHROPIC_API_KEY が設定されていないことを先に確かめる
+expect:
+  - when: テストが失敗している状態でスクリプトを実行する
+    then: Claude が許した道具だけでテストを直し、最後に自分で流した npm test の結果と git diff の概要が出る
+  - when: allowedTools に載せていないコマンド（例：git push）を Claude が試みる
+    then: 承認の確認は出ず、その呼び出しは拒まれる
+  - when: 上限に達する小さな値（例：--max-turns 1）に変えて実行する
+    then: 作業の途中で止まる。止まり方（終了コードと出力）は観察して記録する
+control: 許す道具と上限を渡さない -p では、承認の要る呼び出しが拒まれて何も直らずに終わるか、広く許したときに範囲と費用が決まらない

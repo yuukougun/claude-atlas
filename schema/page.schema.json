@@ -238,7 +238,7 @@
       }
     },
     "stage": {
-      "description": "書く人：執筆者（draft）・検証役（reviewed）・メイン（done）。写る先：ページの最後の行・下書きの帯・一覧。移り方は design §10.2。骨格では stub。語彙は site.yml の stages",
+      "description": "書く人：執筆者（draft）・書いた担当とは別の担当（reviewed。分かりやすさの確認で指摘0件のとき）・メイン（done）。写る先：ページの最後の行・下書きの帯・一覧。移り方は design §10.2。骨格では stub。語彙は site.yml の stages",
       "enum": ["stub", "draft", "reviewed", "done"]
     },
     "updated": {
@@ -249,14 +249,14 @@
       "x-message": "日付（2026-11-04 の形）にする"
     },
     "verified": {
-      "description": "書く人：検証役か点検の道具（執筆者は書かない）。写る先：バッジ・期限の日（design §9.2）。出典を読み直して確かめた日。draft は持たない（バッジは「未検証」。design §8.5）",
+      "description": "書く人：出典を読み直した担当か鮮度の点検の道具（執筆者は書かない）。写る先：バッジ・期限の日（design §9.2）。出典を読み直して確かめた日。draft は持たない。reviewed・done でも、読み直していなければ持たない（バッジは「未検証」。decisions 2026-11-05「段階 reviewed」）",
       "type": "string",
       "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
       "format": "date",
       "x-message": "日付（2026-11-04 の形）にする"
     },
     "verified_with": {
-      "description": "書く人：検証役か点検の道具（執筆者は書かない）。写る先：バッジ（確認日と版）。数値の確認日は目印の中に持つ（DR-10）",
+      "description": "書く人：出典を読み直した担当か鮮度の点検の道具（執筆者は書かない）。写る先：バッジ（確認日と版）。数値の確認日は目印の中に持つ（DR-10）",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -358,22 +358,11 @@
       "then": {"required": ["sources"], "x-message": "sources がない（type が guide・hub のほかのページは書く）"}
     },
     {
-      "if": {"required": ["stage"], "properties": {"stage": {"enum": ["reviewed", "done"]}}},
-      "then": {"required": ["verified"], "x-message": "verified がない（stage が reviewed・done のページは書く）"}
-    },
-    {
       "if": {"required": ["stage"], "properties": {"stage": {"enum": ["stub", "draft"]}}},
       "then": {
         "properties": {
           "verified": {"not": {}, "x-message": "stage が stub・draft のページは verified を書かない（null も書かない）"}
         }
-      }
-    },
-    {
-      "if": {"required": ["stage"], "properties": {"stage": {"enum": ["reviewed", "done"]}}},
-      "then": {
-        "required": ["verified_with"],
-        "x-message": "verified_with がない（stage が reviewed・done のページは書く）"
       }
     },
     {

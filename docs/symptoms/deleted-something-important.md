@@ -98,7 +98,7 @@ updated: 2026-11-05
     - 見るもの：消えたパスが作業ディレクトリの内か外か。サンドボックスを有効にしていたか。確認をすべて外すモード（bypassPermissions）で動かしていたか。
     - 確かめ方：パスが作業ディレクトリの外なら、境界がなかった。サンドボックスは、シェルのコマンドとそこから起きたプロセスを OS の層で囲むが、Claude のファイルの道具・MCP サーバー・フックは囲まない。囲えるものは<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->で確かめる。
     - 作業ディレクトリの外への書き込みを止める設定は、ファイルの道具の書き込みを止めるが、シェルのコマンドは止めない。隔離の代わりにならない。見方は<!-- link:begin protected-paths#outside-working-directory -->消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる（準備中）<!-- link:end -->にある。
-    - bypassPermissions で動かしていたなら、隔離した使い捨ての環境の外で使っていないかを見る。理由は<!-- link:begin where-bypass-is-ok#why-isolate -->bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか（準備中）<!-- link:end -->にある。
+    - bypassPermissions で動かしていたなら、隔離した使い捨ての環境の外で使っていないかを見る。理由は<!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](../safety/where-bypass-is-ok.md#why-isolate)<!-- link:end -->にある。
 3. **預けすぎる**（人の側の落とし穴）：確認を減らして任せる幅を広げたのに、見合う守りを足さなかった。
     - 見るもの：消した時点の権限モードと、そのとき足していた守り（deny ルール・サンドボックス・バックアップ）。
     - 確かめ方：auto モードで消されたなら、auto モードは確認を減らす仕組みで、安全を保証しない。すり抜けうる操作は<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end -->にある。任せる段階ごとに足す設定は<!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end -->にある。
@@ -123,7 +123,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 縛っていない | [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>消せない場所・触れない場所（protected paths）（準備中） |
-| 境界がない | [サンドボックスで封じ込める](../enforce/sandboxing.md)<br>bypassPermissions と無人の実行はどこで動かすか（準備中） |
+| 境界がない | [サンドボックスで封じ込める](../enforce/sandboxing.md)<br>[bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md) |
 | 預けすぎる | [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<br>[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits) |
 
 <!-- textlint-enable -->
@@ -148,7 +148,7 @@ updated: 2026-11-05
 同じことを繰り返さないために、戻せる状態を先に作り、消されたくないものは鍵で守る。
 
 - **戻せる状態を先に作る**：変更を小さく区切ってコミットしておくと、消されても戻せる。区切り方は<!-- link:begin working-with-git#granularity -->[git との付き合い方 › どこで区切るか](../cli/working-with-git.md#granularity)<!-- link:end -->にある。ノートの保管庫のような、コードでないフォルダに一括の書き換えを任せるときも、先に戻せる状態にする。<!-- link:begin notes-and-pkm -->ノート・PKM（Obsidian など）（準備中）<!-- link:end -->を参照する。
-- **消されたくないものは鍵で守る**：例外を許さない禁止は、deny ルールかフックで止める。CLAUDE.md には、理由と相談の基準だけを書く。経路と、巻き戻しで戻らないものは<!-- link:begin destructive-commands#how-it-happens -->[消されたくないもの（破壊的コマンド） › 消える経路](../safety/destructive-commands.md#how-it-happens)<!-- link:end -->にある。止めた理由と代わりの手段を返すフックの書き方は、<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end -->と<!-- link:begin hook-recipes#block-dangerous -->代表的なフックのレシピ › 危ない操作を止める（準備中）<!-- link:end -->にある。
+- **消されたくないものは鍵で守る**：例外を許さない禁止は、deny ルールかフックで止める。CLAUDE.md には、理由と相談の基準だけを書く。経路と、巻き戻しで戻らないものは<!-- link:begin destructive-commands#how-it-happens -->[消されたくないもの（破壊的コマンド） › 消える経路](../safety/destructive-commands.md#how-it-happens)<!-- link:end -->にある。止めた理由と代わりの手段を返すフックの書き方は、<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end -->と<!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end -->にある。
 - **境界を OS の層で足す**：サンドボックスでシェルのコマンドを囲む。確認をすべて外す運用は、隔離した使い捨ての環境だけにする。古くなった助言は<!-- link:begin outdated-advice-ledger#yolo-skip-permissions -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#yolo-skip-permissions)<!-- link:end -->にある。
 - **任せる幅に守りを合わせる**：確認を減らすほど、守りを同じ流れの中で足す。段階ごとの設定は<!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end -->にある。
 - **失敗を仕組みに戻す**：誰の誤りかではなく、どの隙間が許したかで振り返る。方法は<!-- link:begin postmortems -->失敗を仕組みに戻す（ポストモーテム）（準備中）<!-- link:end -->にある。
@@ -189,7 +189,7 @@ updated: 2026-11-05
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - 消せない場所・触れない場所（protected paths）（準備中）
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
-- bypassPermissions と無人の実行はどこで動かすか（準備中）
+- [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 
@@ -199,7 +199,7 @@ updated: 2026-11-05
 - [git との付き合い方](../cli/working-with-git.md)
 - セッション記録から失った作業を取り戻す（準備中）
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - 失敗を仕組みに戻す（ポストモーテム）（準備中）
 - ノート・PKM（Obsidian など）（準備中）
 - [承認の確認が多すぎる・少なすぎる](wrong-amount-of-approvals.md)

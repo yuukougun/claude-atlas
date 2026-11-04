@@ -1,0 +1,14 @@
+title: .claude/skills/test-triage/SKILL.md（サブエージェントとして動くスキル）
+kind: skill
+place: project
+safety: false
+features: [skills]
+conditions:
+  - 新しいセッションで試す
+  - 失敗するテストが 1 件以上あるプロジェクトで試す
+expect:
+  - when: "`/test-triage` を呼ぶ"
+    then: テストの出力全体は本筋の会話に残らず、失敗したテストの要約が返る
+  - when: 返ってきた要約を読む
+    then: 失敗ごとにテストの名前とファイルと行が書かれている
+control: context fork の 2 行を外すと、テストの出力が本筋の会話にそのまま入る

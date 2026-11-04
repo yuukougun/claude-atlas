@@ -1,0 +1,17 @@
+title: .claude/skills/github-cli/SKILL.md（MCP の代わりに gh の使い方を教えるスキル）
+kind: skill
+place: project
+safety: false
+features: [skills]
+requires:
+  - gh コマンド（GitHub CLI）がインストールされ、gh auth login で認証してあること
+conditions:
+  - 新しいセッションで試す
+  - 壊れても困らない作業用のリポジトリで試す
+  - GitHub の MCP サーバーは接続しない
+expect:
+  - when: 「PR の CI が落ちた原因を調べて」と頼む
+    then: gh run view の失敗したジョブのログだけを読み、ログ全文は貼らない（観察として扱う）
+  - when: 「この PR をマージして」と頼まずに、状況の確認だけを頼む
+    then: マージなどの書き込みのコマンドは実行されない（スキルの指示はお願いなので、守られるかは観察として扱う）
+control: スキルを置かないと、gh の使い方を推測して長い出力をそのまま読むことがある

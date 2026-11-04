@@ -155,9 +155,9 @@ updated: 2026-11-05
 
 - **シェルや Python では読めてしまう**：サンドボックスが有効になっていない。`failIfUnavailable` を入れていれば、起動できない環境ではコマンドが止まるので気づける。環境の確認は <!-- link:begin sandboxing#pitfalls -->[サンドボックスで封じ込める › 効かない場面・落とし穴](../enforce/sandboxing.md#pitfalls)<!-- link:end --> を引く。Windows のネイティブでは、サンドボックスなしで動く。
 - **何も拒否されない**：パスが当たっていない可能性がある。サブディレクトリの .env に当たるかは、偽の秘密で確かめる。書き方は <!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](../enforce/permission-rules.md#path-rules)<!-- link:end --> を引く。IDE 拡張や、WSL・Linux 以外の OS での動作は未確認である。
-- **サンドボックスの外に出る道**：サンドボックスの外で動くフックや MCP サーバー、サンドボックスから外したコマンドは、秘密に届きうる。囲える範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> を引く。コマンドの文字列で止めたいときは <!-- link:begin hook-recipes#block-dangerous -->代表的なフックのレシピ › 危ない操作を止める（準備中）<!-- link:end --> が使える。
+- **サンドボックスの外に出る道**：サンドボックスの外で動くフックや MCP サーバー、サンドボックスから外したコマンドは、秘密に届きうる。囲える範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> を引く。コマンドの文字列で止めたいときは <!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end --> が使える。
 - **auto モードに任せている**：auto モードの分類器は確認を減らす仕組みで、安全を保証しない。秘密の読み取りは、分類器でなく deny ルールとサンドボックスで縛る（<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end -->）。
-- **知らないリポジトリを開いた**：リポジトリの設定ファイルが、API キーなどを外へ送る経路になった脆弱性が公表されている（修正済み）。開く前に見るものは <!-- link:begin before-opening-unknown-repos#files-to-check -->知らないリポジトリを開く前に › 開く前に見るファイル（準備中）<!-- link:end --> を引く。
+- **知らないリポジトリを開いた**：リポジトリの設定ファイルが、API キーなどを外へ送る経路になった脆弱性が公表されている（修正済み）。開く前に見るものは <!-- link:begin before-opening-unknown-repos#files-to-check -->[知らないリポジトリを開く前に › 開く前に見るファイル](before-opening-unknown-repos.md#files-to-check)<!-- link:end --> を引く。
 - **読まれたと疑う**：読まれた・会話に出たときは、鍵を無効にする手順が先である。<!-- link:begin secrets-exposed#first-response -->[秘密の情報を読まれた・外に出された › まず鍵を無効にする](../symptoms/secrets-exposed.md#first-response)<!-- link:end --> を引く。
 
 読ませない縛りが効いていても、秘密と外への送信と信頼できない入力が 1 つの構成に揃うと、被害の経路は残る。揃えない考え方は <!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](lethal-trifecta.md#three-capabilities)<!-- link:end --> にある。任せる段階ごとの既定の全体は <!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](default-safety-settings.md#by-stage)<!-- link:end --> が正本である。アプリの既定は <!-- link:begin default-safety-settings#defaults-by-surface -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 面ごとの既定（生成の表）](default-safety-settings.md#defaults-by-surface)<!-- link:end --> を引く。このページの設定は、Claude Code の権限ルールとサンドボックスを使うものである。
@@ -197,8 +197,8 @@ updated: 2026-11-05
 - /feedback・トランスクリプトの共有で送られるもの（準備中）
 - [送ったデータの行方（学習・保持期間）](where-your-data-goes.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
-- 代表的なフックのレシピ（準備中）
-- 知らないリポジトリを開く前に（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
+- [知らないリポジトリを開く前に](before-opening-unknown-repos.md)
 - 課金の経路を確かめる（API キーとサブスクリプション）（準備中）
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](default-safety-settings.md#by-stage)
 

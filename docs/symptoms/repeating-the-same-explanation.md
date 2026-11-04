@@ -71,12 +71,12 @@ updated: 2026-11-05
 
     === "アプリ"
         - 全部の会話に効かせたい好みや前提は、Claude への指示に書く。
-        - 案件ごとの背景と資料は、プロジェクトの指示とナレッジに置く。切り方は <!-- link:begin using-projects#scope -->プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）（準備中）<!-- link:end --> にある。
+        - 案件ごとの背景と資料は、プロジェクトの指示とナレッジに置く。切り方は <!-- link:begin using-projects#scope -->[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](../app/using-projects.md#scope)<!-- link:end --> にある。
         - アプリのメモリは Claude が覚える仕組みで、範囲と消し方は <!-- link:begin how-memory-works#scope -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › アカウントのメモリとプロジェクトのメモリ](../app/how-memory-works.md#scope)<!-- link:end --> で確かめる。
 
     === "Claude Code"
         - 毎回読ませたい前提は、CLAUDE.md に書く。CLAUDE.md は強制ではなく文脈として扱われる（<!-- link:begin where-instructions-sit#why -->[システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置 › なぜ強制ではなく文脈になるか](../basics/where-instructions-sit.md#why)<!-- link:end -->）。何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to-write -->[CLAUDE.md に書くこと・書かないこと › 書くこと](../extend/what-to-put-in-claude-md.md#what-to-write)<!-- link:end --> で決める。
-        - 特定のフォルダだけの規約は、触れたときだけ読ませる。<!-- link:begin path-scoped-rules -->.claude/rules と paths で必要なときだけ読ませる（準備中）<!-- link:end --> を見る。
+        - 特定のフォルダだけの規約は、触れたときだけ読ませる。<!-- link:begin path-scoped-rules -->[.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)<!-- link:end --> を見る。
         - 叩き台から始めるなら <!-- link:begin init-and-first-claude-md#run-init -->/init と最初の CLAUDE.md › /init で叩き台を作る（準備中）<!-- link:end --> を見る。
 
 3. **決まった手順か（原因：見えていない）。** 貼っている文書が毎回ほぼ同じで、使うのが特定の作業のときだけなら、スキルにする。スキルは説明文だけが常駐し、本文は必要なときだけ読まれるので、長い手順を常駐の指示へ積まずに済む。作業の種類を問わず常に要る前提なら、手順ではなく背景として、上の「書いていない背景か」の項へ戻る。見分け方と作り方は <!-- link:begin writing-skills#when-to-use -->[スキルの作り方 › どんなときにスキルにするか](../extend/writing-skills.md#when-to-use)<!-- link:end --> と <!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end --> にある。確かめ方は、スキルを呼んだときの動きが、貼っていた手順書のときと同じかを見ることである。
@@ -93,7 +93,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)<br>拡張を足すタイミング（準備中）<br>[CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md) |
+| 見えていない | [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)<br>[拡張を足すタイミング](../extend/when-to-add-what.md)<br>[CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md) |
 | 縛っていない | [お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals) |
 
 <!-- textlint-enable -->
@@ -105,7 +105,7 @@ updated: 2026-11-05
     - **状況**：複数の案件で、読み手・用語・書式の説明を、新しい会話のたびに貼っている。案件ごとに内容が違う。
     - **迷う候補**：全部の会話に効く Claude への指示に書く。案件ごとにプロジェクトを作り、その指示と資料に置く。
     - **選んだもの**：案件ごとのプロジェクトにする。
-    - **理由**：案件の内容は案件ごとで違い、全部の会話に効く指示へ入れると別の案件に混ざる。プロジェクトなら 1 つの目的に 1 つの置き場所が対応する（<!-- link:begin using-projects#knowledge -->プロジェクトの使いどころ › ナレッジを置くと何が変わるか（準備中）<!-- link:end -->）。全案件に共通する好みだけを、Claude への指示に残す。
+    - **理由**：案件の内容は案件ごとで違い、全部の会話に効く指示へ入れると別の案件に混ざる。プロジェクトなら 1 つの目的に 1 つの置き場所が対応する（<!-- link:begin using-projects#knowledge -->[プロジェクトの使いどころ › ナレッジを置くと何が変わるか](../app/using-projects.md#knowledge)<!-- link:end -->）。全案件に共通する好みだけを、Claude への指示に残す。
 
 !!! example "判断例：リリース手順と本番に触るなという注意を毎回添えている（Claude Code）"
     - **状況**：リリースのたびに手順書を貼り、本番の環境には触らないでほしいと添えている。
@@ -115,7 +115,7 @@ updated: 2026-11-05
 
 ## 予防：移した後に削り、足すのは繰り返しが見えてから {#prevention}
 
-- 最初から作り込まない。同じ説明や注意を繰り返したと気づいた時点で、1 つずつ移す。回数を目安にした足し方は <!-- link:begin when-to-add-what -->拡張を足すタイミング（準備中）<!-- link:end --> にある。
+- 最初から作り込まない。同じ説明や注意を繰り返したと気づいた時点で、1 つずつ移す。回数を目安にした足し方は <!-- link:begin when-to-add-what -->[拡張を足すタイミング](../extend/when-to-add-what.md)<!-- link:end --> にある。
 - 移したら、貼っていた元の文面は使わない。二重に残すと、食い違ったときにどちらが効くのかが分からなくなる。
 - CLAUDE.md に移したら、叩き台のまま使わず削る。削り方は <!-- link:begin init-and-first-claude-md#prune -->/init と最初の CLAUDE.md › 叩き台を削ってから使う（削り方は claude-md-length）（準備中）<!-- link:end --> にある。
 - チームで同じ前提を使うなら、リポジトリに入れて共有する。個人の好みと秘密は共有のファイルに入れない（<!-- link:begin share-team-settings#shared-vs-personal -->チームで設定を共有する › 共有するものと個人に残すもの（準備中）<!-- link:end -->）。
@@ -177,19 +177,19 @@ updated: 2026-11-05
 **次に読む**
 
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
-- 拡張を足すタイミング（準備中）
+- [拡張を足すタイミング](../extend/when-to-add-what.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 
 **関連**
 
-- プロジェクトの使いどころ（準備中）
+- [プロジェクトの使いどころ](../app/using-projects.md)
 - /init と最初の CLAUDE.md（準備中）
-- スキルの考え方（手順を必要なときだけ読む）（準備中）
+- [スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)
 - [スキルの作り方](../extend/writing-skills.md)
 - アプリでスキルを使う（準備中）
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
+- [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
 - チームで設定を共有する（準備中）
 - 進捗ファイルで、途中から再開できるようにする（準備中）
 - [CLAUDE.md や指示が守られない](instructions-ignored.md)

@@ -1,0 +1,36 @@
+proposals:
+  - fact:
+      id: current-models-lineup
+      title: 現行モデルの一覧（系統ごとの API ID・コンテキストウィンドウ・最大出力・既定 effort・速さ・料金・得意分野）
+      table:
+        rows: モデル
+        columns: [api-id, context, speed, price, strength]
+        cells: "research/02 §3-1 の表（Fable 5.1・Opus 5.5・Sonnet 5.5・Haiku 5.5）をそのまま移す。価格は入力 / 出力、$/MTok"
+      sources: [api-docs-models-overview, anthropic-fable-mythos-5-1, anthropic-opus-5-5, anthropic-sonnet-5-5, anthropic-haiku-5-5]
+      checked: 2026-10-29
+      status: 確認済み
+    used_in: [current-models#lineup]
+  - fact:
+      id: haiku-4-5-removed-from-app-selector
+      title: アプリのモデルの選択肢から旧世代の Haiku を外した日と、残る面
+      value: "2026-10-29 に外し Haiku 5.5 に置き換え（10-15 に告知）。Claude Code・Team と Enterprise・API には残る。旧世代で始めた会話の続きは Haiku 5.5 が答える"
+      sources: [support.claude.com の該当記事（research/22 #23）]
+      checked: 2026-10-29
+      status: 確認済み
+    used_in: [current-models#by-surface]
+  - fact:
+      id: sonnet-4-5-retirement
+      title: Sonnet 4.5 の退役の予定日
+      value: 2026-11-30
+      sources: [api-docs-model-deprecations]
+      checked: 2026-10-29
+      status: 要確認（11-30 前に確かめ直す。research/22 #41）
+    used_in: [current-models#by-surface]
+  - fact:
+      id: mythos-availability
+      title: Mythos の提供範囲（検証の制度と、提供先の国・組織）
+      value: "Cyber Verification Program と Life Sciences Verification Program 経由のみ。現在は米国の組織に限る"
+      sources: [anthropic-fable-mythos-5-1]
+      checked: 2026-10-29
+      status: 確認済み
+    used_in: [current-models#fable-and-mythos]

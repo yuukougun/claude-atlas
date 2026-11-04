@@ -119,8 +119,8 @@ B を外す具体的な手は <!-- link:begin protecting-secrets#two-layers -->[
     - **B**：コネクタでつないだ社内の資料やメール、Claude に開かせたフォルダ。
     - **C**：コネクタを通した送信や変更、computer use による画面の操作、予定のタスクの中の操作。
     - 公式の指針は、Claude 専用の作業フォルダを作る、低リスクの作業から始める、信頼できる MCP や plugin だけを使う、送信や購入のような取り消しにくい操作を予定のタスクにしない、と案内している。computer use には、Claude とアプリの間にサンドボックスがない。
-    - 読める範囲と行動できる範囲を同時に広げない置き方は <!-- link:begin permission-modes-in-the-app#two-conditions -->アプリの権限モード（Auto と Manual）と安全 › 読める範囲と行動できる範囲を同時に広げない（準備中）<!-- link:end --> に、コネクタを使うときだけ読ませる方法は <!-- link:begin connectors-in-the-app#on-demand -->コネクタ（MCP）をアプリで使う › 使うときだけ読ませる（On demand）（準備中）<!-- link:end --> にある。
-    - 任せない操作の線引きは <!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->タスクと定期タスク（Cowork） › 定期タスクにしないもの（準備中）<!-- link:end --> に、画面操作が届く範囲は <!-- link:begin browser-agent-cautions#reach -->ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）（準備中）<!-- link:end --> にある。
+    - 読める範囲と行動できる範囲を同時に広げない置き方は <!-- link:begin permission-modes-in-the-app#two-conditions -->[アプリの権限モード（Auto と Manual）と安全 › 読める範囲と行動できる範囲を同時に広げない](../app/permission-modes-in-the-app.md#two-conditions)<!-- link:end --> に、コネクタを使うときだけ読ませる方法は <!-- link:begin connectors-in-the-app#on-demand -->[コネクタ（MCP）をアプリで使う › 使うときだけ読ませる（On demand）](../app/connectors-in-the-app.md#on-demand)<!-- link:end --> にある。
+    - 任せない操作の線引きは <!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end --> に、画面操作が届く範囲は <!-- link:begin browser-agent-cautions#reach -->ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）（準備中）<!-- link:end --> にある。
 
 === "Claude Code"
 
@@ -145,7 +145,7 @@ B を外す具体的な手は <!-- link:begin protecting-secrets#two-layers -->[
 作業の都合で 3 つとも要ることがある。そのときの手立てを、効きの強い順に並べる。
 
 1. **本当に 3 つとも要るかを疑う**：読ませる Web を限る、B を要約だけにする、C を下書きの作成にとどめる、のように、1 つを弱める。
-2. **最小権限にする**：1 セッションに渡すリポジトリ、フォルダ、コネクタを作業に要る分に絞る。コネクタは使うときだけ読ませ、信頼してよいかを <!-- link:begin connectors-in-the-app#trust -->コネクタ（MCP）をアプリで使う › 信頼してよいか（準備中）<!-- link:end --> で確かめる。
+2. **最小権限にする**：1 セッションに渡すリポジトリ、フォルダ、コネクタを作業に要る分に絞る。コネクタは使うときだけ読ませ、信頼してよいかを <!-- link:begin connectors-in-the-app#trust -->[コネクタ（MCP）をアプリで使う › 信頼してよいか](../app/connectors-in-the-app.md#trust)<!-- link:end --> で確かめる。
 3. **C の直前に人の承認を置く**：Rule of Two は、3 つとも要るなら人の承認などで監督するとする（根拠：弱。提案する側の立場の表明で、実践者の評価と一致する）。承認の画面で、送信先と中身が全部見えることが前提になる。WhatsApp の MCP を使った報告には、大量の空白の後ろに履歴を隠し、確認画面には短い挨拶しか見えないようにした例がある（根拠：中。Docker の記事による二次の紹介）。
 4. **セッションを分ける**：A を読むセッションと、B を持つセッションを分ける。間で渡すのは、人が読める短い要約に限る（推論・実践例なし）。渡した要約も A を経た文章なので、これだけで安全にはならない。
 5. **無人にしない**：予定のタスクや、人がいない実行では、承認を挟めない。任せる幅を広げるほど、確かめ方と封じ込めを強める。段階の考え方は <!-- link:begin five-questions-before-delegating#autonomy-stages -->[任せ方の段階と、無人で走らせる前の五つの問い › 任せ方の段階](../delegate/five-questions-before-delegating.md#autonomy-stages)<!-- link:end --> にある。
@@ -186,7 +186,7 @@ B を外す具体的な手は <!-- link:begin protecting-secrets#two-layers -->[
 
 **次に読む**
 
-- アプリの権限モード（Auto と Manual）と安全（準備中）
+- [アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)
 - クラウドの定期タスク（準備中）
 
 **関連**
@@ -198,10 +198,10 @@ B を外す具体的な手は <!-- link:begin protecting-secrets#two-layers -->[
 - [秘密の情報を読まれた・外に出された](../symptoms/secrets-exposed.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](default-safety-settings.md)
-- コネクタ（MCP）をアプリで使う（準備中）
+- [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - [MCP をつなぐ](../extend/connecting-mcp.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
-- タスクと定期タスク（Cowork）（準備中）
+- [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
 
 </div>
 

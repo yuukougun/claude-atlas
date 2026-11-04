@@ -1,0 +1,34 @@
+次のコミットの一覧から、リリースノートを書いてほしい。形式は <examples> の例に合わせる。
+
+<examples>
+<example>
+<commits>
+fix: 日付の読み取りで 2 月 29 日が 28 日になる
+feat: CSV の出力に BOM 付きの選択肢を追加
+</commits>
+<release_note>
+### 修正
+- 日付の読み取りで、うるう年の 2 月 29 日が 28 日になる問題を直した。
+
+### 追加
+- CSV の出力で、BOM 付きを選べるようにした。
+</release_note>
+</example>
+<example>
+<commits>
+revert: 検索の並べ替えの変更を取り消す
+docs: README のインストール手順を更新
+</commits>
+<release_note>
+### 変更
+- 検索の並べ替えを、前の動作に戻した。
+
+### ドキュメント
+- README のインストール手順を更新した。
+</release_note>
+</example>
+</examples>
+
+<commits>
+ここに今回のコミットの一覧を貼る
+</commits>

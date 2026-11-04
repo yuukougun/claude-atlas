@@ -46,7 +46,7 @@ updated: 2026-11-05
 
 並列の方式の選び方は、Claude Code で複数の作業を同時に進める方式から、作業に合うものを選ぶための比較である。方式は増減しうるので、数や成熟度はこのページに書かず、表から読む。選ぶ軸は 3 つある。誰が調整するか、同じファイルを触るか、互いに連絡が要るかである。
 
-並列は任せる幅を広げるので、方式を選ぶ前に、確かめる手段と費用の上限を決めておく。確かめる人の分け方は <!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](../verify/independent-review.md#who)<!-- link:end -->、費用は <!-- link:begin parallel-and-loop-costs#decide-before-starting -->並列・ループ・workflows のコスト › 始める前に決める三つ（準備中）<!-- link:end -->、同時に動かす本数の上限は <!-- link:begin humans-set-the-parallel-limit -->[並列の上限は人間が決める](humans-set-the-parallel-limit.md)<!-- link:end --> にある。
+並列は任せる幅を広げるので、方式を選ぶ前に、確かめる手段と費用の上限を決めておく。確かめる人の分け方は <!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](../verify/independent-review.md#who)<!-- link:end -->、費用は <!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end -->、同時に動かす本数の上限は <!-- link:begin humans-set-the-parallel-limit -->[並列の上限は人間が決める](humans-set-the-parallel-limit.md)<!-- link:end --> にある。
 
 ## 方式の比較 {#compare}
 
@@ -57,11 +57,11 @@ updated: 2026-11-05
 
 | 機能 | 成熟度 | 入った版 |
 | --- | --- | --- |
-| サブエージェント（subagents）（準備中） | GA | 1.0.60（2025-07-24） |
+| [サブエージェント（subagents）](../extend/writing-subagents.md) | GA | 1.0.60（2025-07-24） |
 | agent view（準備中） | research preview | 2.1.139（2026-05-11） |
 | エージェントチーム（agent teams）（準備中） | experimental | 2.1.32（2026-02-05） |
 | ワークフロー（workflows）（準備中） | GA | 2.1.154（2026-05-28） |
-| worktree（準備中） | GA | 2.1.49（2026-02-19） |
+| [worktree](parallel-with-worktrees.md) | GA | 2.1.49（2026-02-19） |
 | [Claude Code の Projects（並列の threads）](choosing-parallel-modes.md) | beta | — |
 
 <!-- textlint-enable -->
@@ -79,7 +79,7 @@ updated: 2026-11-05
 
 | 方式 | 調整する者 | 向く作業 | 詳しく |
 | --- | --- | --- | --- |
-| サブエージェント | Claude が、1 つの会話の中で | 並べられる独立の作業・出力が多い作業の切り離し・独立したレビュー | <!-- link:begin writing-subagents#when-to-use -->サブエージェントの作り方と使いどころ › 使いどころと、使わない場面（準備中）<!-- link:end --> |
+| サブエージェント | Claude が、1 つの会話の中で | 並べられる独立の作業・出力が多い作業の切り離し・独立したレビュー | <!-- link:begin writing-subagents#when-to-use -->[サブエージェントの作り方と使いどころ › 使いどころと、使わない場面](../extend/writing-subagents.md#when-to-use)<!-- link:end --> |
 | agent view | 自分が背景のセッションに投入し、後で確認する | 見張らなくてよい独立した作業 | <!-- link:begin agent-view-and-background#what-fits -->agent view と背景セッション › 向く作業と向かない作業（準備中）<!-- link:end --> |
 | エージェントチーム | リードの Claude が計画・割り当て・監督をする | 互いに連絡しながら進める、小さく焦点を絞った作業 | <!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）（準備中）<!-- link:end --> |
 | workflows | Claude が書いたスクリプトが計画を持つ | コードベース全体の監査や、大量のファイルの移行 | <!-- link:begin dynamic-workflows#when-and-start-small -->dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 向く規模と、小さく試す（準備中）<!-- link:end --> |
@@ -100,12 +100,12 @@ updated: 2026-11-05
 
 同じファイルを触る作業を同じ作業場所で並べると、互いの変更が上書きされる。公式の文書の基準は、触るなら worktree で隔離する、である。エージェントチームは worktree で隔離しないので、担当をファイル単位で分ける。
 
-- 触るファイルが重なる作業：作業ごとに worktree を作り、別のセッションで進める。依存の導入・秘密のファイルの写し方・データベースは worktree ごとに決める。手順は <!-- link:begin parallel-with-worktrees#per-worktree-setup -->git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）（準備中）<!-- link:end --> にある。
+- 触るファイルが重なる作業：作業ごとに worktree を作り、別のセッションで進める。依存の導入・秘密のファイルの写し方・データベースは worktree ごとに決める。手順は <!-- link:begin parallel-with-worktrees#per-worktree-setup -->[git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）](parallel-with-worktrees.md#per-worktree-setup)<!-- link:end --> にある。
 - 触るファイルが重ならない作業：worktree は要らない。分けると、準備と片付けの手間だけが増える。
 - エージェントチームで進める作業：チームメイトごとに担当のファイルを決め、同じファイルを 2 人に渡さない。
 - 同じ作業を多数のファイルに流す作業：/batch は、worktree で隔離したサブエージェントに分けて進める。範囲の決め方は <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end --> にある。
 
-worktree は、片付けも要る。残すものと消すものは <!-- link:begin parallel-with-worktrees#cleanup -->git worktree で並列にする › 片付けと残すもの（準備中）<!-- link:end --> で決める。
+worktree は、片付けも要る。残すものと消すものは <!-- link:begin parallel-with-worktrees#cleanup -->[git worktree で並列にする › 片付けと残すもの](parallel-with-worktrees.md#cleanup)<!-- link:end --> で決める。
 
 !!! example "判断例：同じモジュールを触る 2 つの実装案を比べたい"
     - **状況**：認証のモジュールを、案 A と案 B の 2 通りに直したい。どちらも同じファイルを大きく書き換える。
@@ -128,7 +128,7 @@ worktree は、片付けも要る。残すものと消すものは <!-- link:beg
 - 捨ててよい作業：調査・使い捨ての試作・仮説の比較。多めに並べてよい。どれを捨てるかの基準と、止める条件を先に決める。
 - 捨てない作業：レビューの要る本流。少なく保ち、1 本ずつ確かめる。
 
-本流と偵察で本数を分ける考え方は <!-- link:begin humans-set-the-parallel-limit#mainline-vs-scouting -->[並列の上限は人間が決める › 本流と偵察で本数を分ける](humans-set-the-parallel-limit.md#mainline-vs-scouting)<!-- link:end --> にある。費用が本数と回数の掛け算で膨らむ理由は <!-- link:begin parallel-and-loop-costs#multiplication -->並列・ループ・workflows のコスト › 費用が膨らむ掛け算（準備中）<!-- link:end --> にある。
+本流と偵察で本数を分ける考え方は <!-- link:begin humans-set-the-parallel-limit#mainline-vs-scouting -->[並列の上限は人間が決める › 本流と偵察で本数を分ける](humans-set-the-parallel-limit.md#mainline-vs-scouting)<!-- link:end --> にある。費用が本数と回数の掛け算で膨らむ理由は <!-- link:begin parallel-and-loop-costs#multiplication -->[並列・ループ・workflows のコスト › 費用が膨らむ掛け算](../cost/parallel-and-loop-costs.md#multiplication)<!-- link:end --> にある。
 
 ## 組み合わせ方 {#combine}
 
@@ -137,13 +137,13 @@ worktree は、片付けも要る。残すものと消すものは <!-- link:beg
 | 置くもの | どこに置くか | 指す先 |
 | --- | --- | --- |
 | 割り当てと進行 | 調整する者（Claude・スクリプト・自分）の方式 | 前の節「誰が調整するか」 |
-| 作業場所の分離 | worktree（触るファイルが重なるとき） | <!-- link:begin parallel-with-worktrees -->git worktree で並列にする（準備中）<!-- link:end --> |
-| 出力の多い調査 | サブエージェント。本筋には結論と根拠の場所だけを戻す | <!-- link:begin research-in-subagents#how -->出力の多い調査はサブエージェントに任せて要約だけ受け取る › 頼み方と戻させる形（準備中）<!-- link:end --> |
+| 作業場所の分離 | worktree（触るファイルが重なるとき） | <!-- link:begin parallel-with-worktrees -->[git worktree で並列にする](parallel-with-worktrees.md)<!-- link:end --> |
+| 出力の多い調査 | サブエージェント。本筋には結論と根拠の場所だけを戻す | <!-- link:begin research-in-subagents#how -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る › 頼み方と戻させる形](../context/research-in-subagents.md#how)<!-- link:end --> |
 | 結果の確認 | 書いた本人ではない者。AI の承認は人の承認に数えない | <!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](../verify/independent-review.md#ai-approval)<!-- link:end --> |
 | 動かす範囲の囲い | 見張らない方式ほど、OS の層で囲む | <!-- link:begin sandboxing#when -->[サンドボックスで封じ込める › 使いどころ](../enforce/sandboxing.md#when)<!-- link:end --> |
 | 手元を閉じても続ける作業 | クラウドのセッション。計画と縛りはリポジトリに置いてから送る | <!-- link:begin cloud-sessions-and-teleport#what-to-send -->クラウドセッションと teleport › クラウドに送ってよい作業（準備中）<!-- link:end --> |
 
-手順を今の会話で読ませたいだけなら、並列にせずスキルで足りる。違いは <!-- link:begin skill-vs-subagent -->スキルとサブエージェントの違い（準備中）<!-- link:end --> にある。
+手順を今の会話で読ませたいだけなら、並列にせずスキルで足りる。違いは <!-- link:begin skill-vs-subagent -->[スキルとサブエージェントの違い](../extend/skill-vs-subagent.md)<!-- link:end --> にある。
 
 方式を決めきれないときは、作業の情報を渡して、選択肢と推奨案を Claude に出させる。次の雛形は、実行させずに案だけを出させる依頼である。
 
@@ -224,15 +224,15 @@ Claude の推奨は、本文の基準と食い違うことがある。食い違�
 **関連**
 
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
-- git worktree で並列にする（準備中）
+- [git worktree で並列にする](parallel-with-worktrees.md)
 - 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 - 仮説ごとに並べて、同じ物差しで比べる（準備中）
-- サブエージェントの作り方と使いどころ（準備中）
-- スキルとサブエージェントの違い（準備中）
-- 出力の多い調査はサブエージェントに任せて要約だけ受け取る（準備中）
+- [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
+- [スキルとサブエージェントの違い](../extend/skill-vs-subagent.md)
+- [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
-- 並列・ループ・workflows のコスト（準備中）
+- [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - クラウドセッションと teleport（準備中）
 
 </div>

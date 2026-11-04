@@ -1,0 +1,13 @@
+title: paths を付けた rules のファイル（.claude/rules/api.md）
+kind: claude-md
+place: project
+safety: false
+conditions:
+  - "リポジトリの `.claude/rules/api.md` として置く。`paths` のグロブと規約の中身は、自分のリポジトリの構成に置き換える"
+  - 新しいセッションで試す
+expect:
+  - when: セッションを始めた直後に、規約の一覧を尋ねる
+    then: この規約はまだ会話に入っていない（観察として扱う。Claude の自己申告であり、読み込みの証拠ではない）
+  - when: "`src/api/` の下の `.ts` ファイルを 1 つ読ませてから、規約の一覧を尋ねる"
+    then: この規約が一覧に加わる
+control: "`paths` の 2 行を消して置くと、セッションの開始から毎回読み込まれる"

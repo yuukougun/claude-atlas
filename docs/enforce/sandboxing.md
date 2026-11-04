@@ -61,7 +61,7 @@ updated: 2026-11-05
 - auto モードに任せて大丈夫か。auto モードは確認を減らす仕組みで、安全を保証しない。任せる段階では、サンドボックスで囲う。すり抜けうる操作は <!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](what-auto-mode-stops.md#limits)<!-- link:end --> にある
 - 秘密と外への送信を断ちたい。サンドボックスは、秘密の読み取りと外への通信の 2 つの経路に効く。3 つの能力の考え方は <!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](../safety/lethal-trifecta.md#three-capabilities)<!-- link:end --> にある
 
-確認の数を減らす順番は <!-- link:begin approval-fatigue#reduce-prompts -->承認疲れ › 確認を減らす順番（準備中）<!-- link:end -->、段階ごとの既定は <!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end --> にある。確認を全部外すモードや無人の実行は、サンドボックスでは代わりにならない。隔離した使い捨ての環境だけで使う話で、<!-- link:begin where-bypass-is-ok#why-isolate -->bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか（準備中）<!-- link:end --> にある。
+確認の数を減らす順番は <!-- link:begin approval-fatigue#reduce-prompts -->承認疲れ › 確認を減らす順番（準備中）<!-- link:end -->、段階ごとの既定は <!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end --> にある。確認を全部外すモードや無人の実行は、サンドボックスでは代わりにならない。隔離した使い捨ての環境だけで使う話で、<!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](../safety/where-bypass-is-ok.md#why-isolate)<!-- link:end --> にある。
 
 ## 最小の使い方 {#minimal}
 
@@ -127,7 +127,7 @@ updated: 2026-11-05
 
 もう 1 つ、通す抜け道がある。囲いの中で失敗したコマンドを、Claude が `dangerouslyDisableSandbox` で囲いの外へ再試行できる。これを止めるのは `sandbox.allowUnsandboxedCommands` を false にする設定である。
 
-失敗すると通してしまう既定は、フックにもある。同じ考え方は <!-- link:begin writing-safe-hooks#fail-open -->フックを安全に書く › 既定は失敗すると通す（fail-open）（準備中）<!-- link:end --> にある。
+失敗すると通してしまう既定は、フックにもある。同じ考え方は <!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end --> にある。
 
 ## Linux と WSL2 で使う {#linux-wsl}
 
@@ -189,8 +189,8 @@ WSL2 には、見落としやすい経路がある。サンドボックスの中
 | --- | --- | --- |
 | 手元のマシンで、スクリプトやテストを確認なしで動かしたい | サンドボックス | 読み書きと通信を OS の層で囲える。コンテナを用意しなくてよい |
 | 機密性の高いリポジトリ。フックや MCP も含めて隔離したい | コンテナか仮想マシンに、サンドボックスを重ねる | 外側の経路もコンテナが受ける |
-| 確認を全部外す、または無人で動かす | 隔離した使い捨ての環境 | サンドボックスでは代わりにならない。条件は <!-- link:begin where-bypass-is-ok#requirements -->bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件（準備中）<!-- link:end --> |
-| 知らないリポジトリを開く | 隔離した環境 | 手順は <!-- link:begin before-opening-unknown-repos#isolate -->知らないリポジトリを開く前に › 隔離して動かす（準備中）<!-- link:end --> |
+| 確認を全部外す、または無人で動かす | 隔離した使い捨ての環境 | サンドボックスでは代わりにならない。条件は <!-- link:begin where-bypass-is-ok#requirements -->[bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件](../safety/where-bypass-is-ok.md#requirements)<!-- link:end --> |
+| 知らないリポジトリを開く | 隔離した環境 | 手順は <!-- link:begin before-opening-unknown-repos#isolate -->[知らないリポジトリを開く前に › 隔離して動かす](../safety/before-opening-unknown-repos.md#isolate)<!-- link:end --> |
 
 チームの運用の例として、devcontainer にファイアウォールを置き、`.env` の読み取りの拒否や deny ルールと組み合わせる報告がある（根拠：弱。1 件の発表）。コンテナの中でも、Claude Code の設定の守りは省かない。
 
@@ -200,7 +200,7 @@ WSL2 には、見落としやすい経路がある。サンドボックスの中
     - **選んだもの**：まずサンドボックスと秘密の二重の拒否にする。フックや MCP を他人のものから借りる、または無人で動かすなら、コンテナに上げる。
     - **理由**：どちらも筋が通る。コンテナは外側の経路まで受けるが、用意と保守の手間がかかる。外側の経路が自分で確かめたものだけなら、サンドボックスで足りる。
 
-無人の実行でコンテナを使う手順と雛形は、この辞典では <!-- link:begin where-bypass-is-ok -->bypassPermissions と無人の実行はどこで動かすか（準備中）<!-- link:end --> が持つ。このページには置かない。この辞典の制作の環境では、コンテナを動かして確かめられていない。
+無人の実行でコンテナを使う手順と雛形は、この辞典では <!-- link:begin where-bypass-is-ok -->[bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)<!-- link:end --> が持つ。このページには置かない。この辞典の制作の環境では、コンテナを動かして確かめられていない。
 
 ## 効かない場面・落とし穴 {#pitfalls}
 
@@ -208,7 +208,7 @@ WSL2 には、見落としやすい経路がある。サンドボックスの中
 - `denyRead` で Read の道具が止まると思う。止まらない。権限ルールの deny も書く
 - Read の deny だけで、スクリプト経由の読み取りまで止まると思う。止まらない。サンドボックスで囲う
 - 外側のものを任せる。フック・ローカルの MCP サーバー・ファイルの道具は囲いの外で、利用者の権限で動く。
-  - フックは <!-- link:begin writing-safe-hooks#runs-as-you -->フックを安全に書く › フックは利用者の権限で動く（準備中）<!-- link:end -->。
+  - フックは <!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](writing-safe-hooks.md#runs-as-you)<!-- link:end -->。
   - 作業ディレクトリの外への書き込みを道具の側で止める設定は <!-- link:begin protected-paths#outside-working-directory -->消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる（準備中）<!-- link:end --> にある
 - `WebFetch` の許可の一覧が、サンドボックスの通信の許可になると思う。`allowedDomains` は WebFetch の道具を縛らない。一方、`WebFetch(domain:...)` の権限ルールはサンドボックスの通信の一覧に入り、Bash の通信にも効く
 - `dangerouslyDisableSandbox` の再試行と `excludedCommands` を放置する。囲いの外で動く経路になる
@@ -223,7 +223,7 @@ WSL2 には、見落としやすい経路がある。サンドボックスの中
 | --- | --- | --- |
 | ファイルの道具と、見分けられるシェルのコマンド | <!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](permission-rules.md)<!-- link:end --> | ルールは道具の呼び出しを止める。子プロセスは止まらない。サンドボックスは OS の層で子プロセスまで囲う |
 | 分類器による確認の削減 | <!-- link:begin what-auto-mode-stops -->[auto モードは何を止め、何を止めないか](what-auto-mode-stops.md)<!-- link:end --> | 分類器は確認を減らす仕組みで、安全を保証しない。サンドボックスは境界を OS が保つ |
-| フックによる止め方 | <!-- link:begin writing-safe-hooks -->フックを安全に書く（準備中）<!-- link:end --> | フックは条件を書けるが、失敗すると通す既定がある。サンドボックスは条件を書けず、範囲で囲う |
+| フックによる止め方 | <!-- link:begin writing-safe-hooks -->[フックを安全に書く](writing-safe-hooks.md)<!-- link:end --> | フックは条件を書けるが、失敗すると通す既定がある。サンドボックスは条件を書けず、範囲で囲う |
 | 手元のマシンの外への隔離 | このページの「コンテナ」の節 | コンテナは Claude Code 全体を隔てる |
 | 面ごとの既定と段階 | <!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end --> | 段階ごとに足す設定の正本 |
 
@@ -238,9 +238,9 @@ WSL2 には、見落としやすい経路がある。サンドボックスの中
 
 **次に読む**
 
+- [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - 評価資産を凍結し、触れる範囲を絞る（準備中）
-- bypassPermissions と無人の実行はどこで動かすか（準備中）
 
 **関連**
 
@@ -249,8 +249,8 @@ WSL2 には、見落としやすい経路がある。サンドボックスの中
 - 消せない場所・触れない場所（protected paths）（準備中）
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)
-- 知らないリポジトリを開く前に（準備中）
-- フックを安全に書く（準備中）
+- [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
+- [フックを安全に書く](writing-safe-hooks.md)
 - dynamic workflows（スクリプトで多数のサブエージェントを動かす）（準備中）
 
 </div>

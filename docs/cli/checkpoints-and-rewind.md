@@ -131,8 +131,8 @@ updated: 2026-11-05
 
 要約は、同じセッションの中で場所を空ける操作で、狙いを絞った `/compact` に近い。
 
-- `/compact` の焦点の指示：<!-- link:begin compact-and-auto-compact#focused-compact -->/compact と自動圧縮 › /compact に焦点を指示する（準備中）<!-- link:end -->
-- 書き出して `/clear` する選び方：<!-- link:begin compact-and-auto-compact#compact-or-clear -->/compact と自動圧縮 › 圧縮か、書き出して /clear か（準備中）<!-- link:end -->
+- `/compact` の焦点の指示：<!-- link:begin compact-and-auto-compact#focused-compact -->[/compact と自動圧縮 › /compact に焦点を指示する](../context/compact-and-auto-compact.md#focused-compact)<!-- link:end -->
+- 書き出して `/clear` する選び方：<!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](../context/compact-and-auto-compact.md#compact-or-clear)<!-- link:end -->
 - 元のセッションを保ったまま別の方法を試すなら、要約ではなく分岐：<!-- link:begin resume-and-branch#branch -->セッションに名前を付けて再開・分岐する › 分岐して別案を試す（準備中）<!-- link:end -->
 
 ## git と組み合わせる {#with-git}
@@ -200,7 +200,7 @@ updated: 2026-11-05
 
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
 - セッションに名前を付けて再開・分岐する（準備中）
-- /compact と自動圧縮（準備中）
+- [/compact と自動圧縮](../context/compact-and-auto-compact.md)
 - [消してはいけないものを消された](../symptoms/deleted-something-important.md)
 - IDE（VS Code・JetBrains）で使う（準備中）
 

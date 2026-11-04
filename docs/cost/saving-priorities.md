@@ -79,12 +79,12 @@ updated: 2026-11-05
 
 手戻りを減らすには、実装に入る前と終わった後の両方で、誤解を安く見つける。公式の文書も、plan mode・早期の軌道修正・検証の目標を、費用の削減策に挙げている。
 
-- **計画を読んで直してから実装に入る**：誤解は計画の段階で見つけるほど安く直せる。計画の読み方は <!-- link:begin when-to-plan#review -->plan mode の使いどころ › 計画の読み方と直し方（準備中）<!-- link:end --> にある。
+- **計画を読んで直してから実装に入る**：誤解は計画の段階で見つけるほど安く直せる。計画の読み方は <!-- link:begin when-to-plan#review -->[plan mode の使いどころ › 計画の読み方と直し方](../cli/when-to-plan.md#review)<!-- link:end --> にある。
 - **完了を測れる形で渡す**：終わりとなるコマンドの返りを先に決める。入れるものは <!-- link:begin define-done#what-to-include -->[「完了」を定義して渡す › 完了の定義に入れるもの](../verify/define-done.md#what-to-include)<!-- link:end --> にある。
 - **確かめる手段を渡す**：「念のため確認して」と書き足すより、テストやコマンドなど確かめる手段を渡す。段の選び方は <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](../verify/verification-ladder.md#choose-step)<!-- link:end --> にある。
 - **外れたら早く止めて直す**：外れた方向のまま進めさせると、履歴に外れた作業が積み上がる。数ターン進めてから直すより、気づいた時点で直す。
 
-小さな作業では、計画を省いてよい。省く目安は <!-- link:begin when-to-plan#when -->plan mode の使いどころ › 計画が効く作業、省いてよい作業（準備中）<!-- link:end --> にある。
+小さな作業では、計画を省いてよい。省く目安は <!-- link:begin when-to-plan#when -->[plan mode の使いどころ › 計画が効く作業、省いてよい作業](../cli/when-to-plan.md#when)<!-- link:end --> にある。
 
 !!! example "判断例：上限が近い週の、機能追加の依頼"
     - **状況**：週の上限が近い。範囲が曖昧な機能追加を、これから頼む。
@@ -97,8 +97,8 @@ updated: 2026-11-05
 手戻りを減らした後に効くのは、答えの役に立たないのに毎回送られるものを片付けることである。対象は 3 つある。
 
 - **関係のない文脈**：無関係な作業の間で `/clear` する。新しい会話に移す合図は <!-- link:begin when-to-start-fresh#signals -->[新しい会話を始めるタイミング › 新しくする合図](../context/when-to-start-fresh.md#signals)<!-- link:end --> にある。
-- **常駐するもの**：`CLAUDE.md` の全文・スキルの説明・MCP のツールの一覧は、毎回のリクエストに乗る。使わない接続は外し、必要なときだけ読ませる形に移す。減らす順は <!-- link:begin always-on-costs#reduce -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 減らす順](../context/always-on-costs.md#reduce)<!-- link:end --> にある。入れた拡張の見直しは、先に常駐の費用を測ってから切る（<!-- link:begin pruning-extensions#measure -->拡張の棚卸しと剪定 › 測る（準備中）<!-- link:end -->）。
-- **出力**：テスト出力は失敗の行だけに絞る。フックで絞る形は <!-- link:begin hook-recipes#filter-test-output -->代表的なフックのレシピ › テストの出力を絞る（準備中）<!-- link:end --> にある。
+- **常駐するもの**：`CLAUDE.md` の全文・スキルの説明・MCP のツールの一覧は、毎回のリクエストに乗る。使わない接続は外し、必要なときだけ読ませる形に移す。減らす順は <!-- link:begin always-on-costs#reduce -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 減らす順](../context/always-on-costs.md#reduce)<!-- link:end --> にある。入れた拡張の見直しは、先に常駐の費用を測ってから切る（<!-- link:begin pruning-extensions#measure -->[拡張の棚卸しと剪定 › 測る](../extend/pruning-extensions.md#measure)<!-- link:end -->）。
+- **出力**：テスト出力は失敗の行だけに絞る。フックで絞る形は <!-- link:begin hook-recipes#filter-test-output -->[代表的なフックのレシピ › テストの出力を絞る](../enforce/hook-recipes.md#filter-test-output)<!-- link:end --> にある。
 
 ## effort とモデルは最後に触る {#last}
 
@@ -165,11 +165,11 @@ effort やモデルを下げるのは、ほかの手段を試した後にする�
 **関連**
 
 - [「完了」を定義して渡す](../verify/define-done.md)
-- plan mode の使いどころ（準備中）
+- [plan mode の使いどころ](../cli/when-to-plan.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
-- 拡張の棚卸しと剪定（準備中）
-- 代表的なフックのレシピ（準備中）
+- [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [検証の階段](../verify/verification-ladder.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
 - 計画・実装・サブエージェントでモデルを分ける（準備中）

@@ -1,0 +1,16 @@
+title: 危ない Bash のコマンドを止めて理由を返すフック
+kind: hook
+place: project
+safety: true
+conditions:
+  - 新しいセッションで試す
+  - 壊れても困らない使い捨てのリポジトリで試す
+expect:
+  - when: git push --force を実行させる
+    then: 操作が止められ、--force-with-lease か確認を促す理由が Claude に見える
+  - when: git reset --hard を実行させる
+    then: 操作が止められ、git restore か git stash を促す理由が Claude に見える
+  - when: git push --force-with-lease を実行させる
+    then: このフックでは止められない
+  - when: git -C . push -f のように書き方を変えて実行させる
+    then: 照合に当たらず、止められないことがある（観察として扱う）

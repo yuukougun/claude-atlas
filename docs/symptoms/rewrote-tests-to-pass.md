@@ -151,7 +151,7 @@ updated: 2026-11-05
 予防の考え方は、「テストを変えないで」と頼み続けるのをやめ、書き換えられない状態を仕組みに置くことである。任せる幅を広げるほど、先に鍵と確かめる手段を整える。
 
 - 範囲を絞って鍵をかける。テスト・採点のスクリプト・検証用のデータを、deny ルールとサンドボックスで書き換えられなくする。手順は <!-- link:begin freeze-eval-assets#how-to-freeze -->評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）（準備中）<!-- link:end --> にある。
-- 例外なく守らせる規則は、お願いでなく鍵に置く。PreToolUse のフックなら、止めた理由と代わりの手段を返せる。書き方は <!-- link:begin block-with-exit-2#exit-2-vs-json -->[フックで止めて理由を返す（exit 2 と JSON） › exit 2 と JSON の違い](../enforce/block-with-exit-2.md#exit-2-vs-json)<!-- link:end -->。型は <!-- link:begin hook-recipes#block-dangerous -->代表的なフックのレシピ › 危ない操作を止める（準備中）<!-- link:end --> にある。移す合図の見分け方は <!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end --> にある。
+- 例外なく守らせる規則は、お願いでなく鍵に置く。PreToolUse のフックなら、止めた理由と代わりの手段を返せる。書き方は <!-- link:begin block-with-exit-2#exit-2-vs-json -->[フックで止めて理由を返す（exit 2 と JSON） › exit 2 と JSON の違い](../enforce/block-with-exit-2.md#exit-2-vs-json)<!-- link:end -->。型は <!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end --> にある。移す合図の見分け方は <!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end --> にある。
 - 依頼には、一般解を求める文を足す。特例の分岐を認めない旨を書く。症状だけを隠す修正を認めない頼み方は <!-- link:begin fix-a-bug#no-symptom-patches -->[バグを直す › 症状を隠す修正を認めない](../recipes/fix-a-bug.md#no-symptom-patches)<!-- link:end -->。テストの守りを依頼に書く方法は <!-- link:begin protect-tests#in-the-request -->[テストを守る（改ざんを防ぐ） › 依頼に書くこと](../verify/protect-tests.md#in-the-request)<!-- link:end --> にある。
 - 差分は、赤信号の箇所だけでも人が読む。テストと採点の変更・特例の分岐・例外の握りつぶし・件数の変化が、その中心である（<!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end -->）。AI の承認は人の承認に数えない（<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](../verify/independent-review.md#ai-approval)<!-- link:end -->）。
 - 検証する仕組みそのものを点検する。書き換えられないことは <!-- link:begin verifier-three-conditions#tamper-proof -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](../eval/verifier-three-conditions.md#tamper-proof)<!-- link:end -->、使う前に凍結する手順は <!-- link:begin test-the-verifier#freeze -->[検証器そのものを確かめる（red/green・手で計算したケース） › 確かめてから凍結する](../eval/test-the-verifier.md#freeze)<!-- link:end --> にある。
@@ -195,7 +195,7 @@ updated: 2026-11-05
 
 - [検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](../eval/verifier-three-conditions.md#tamper-proof)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - AI に書かせたテストの落とし穴（準備中）
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [検証器そのものを確かめる（red/green・手で計算したケース）](../eval/test-the-verifier.md)

@@ -219,7 +219,7 @@ JSON の版。
 <!-- textlint-enable -->
 <!-- gen:end snippet block-with-exit-2/block-migrations-json -->
 
-フックの登録は、プロジェクトの `.claude/settings.json` に次のように書く（スクリプトは `.claude/hooks/` に置く）。exit 2 の版を使うなら、command のファイル名を `block-migrations-exit2.py` に替える。matcher を Edit と Write に絞り、ほかの道具を巻き込まない（<!-- link:begin writing-safe-hooks#matcher -->フックを安全に書く › matcher で止めすぎない（準備中）<!-- link:end -->）。
+フックの登録は、プロジェクトの `.claude/settings.json` に次のように書く（スクリプトは `.claude/hooks/` に置く）。exit 2 の版を使うなら、command のファイル名を `block-migrations-exit2.py` に替える。matcher を Edit と Write に絞り、ほかの道具を巻き込まない（<!-- link:begin writing-safe-hooks#matcher -->[フックを安全に書く › matcher で止めすぎない](writing-safe-hooks.md#matcher)<!-- link:end -->）。
 
 <!-- gen:begin snippet block-with-exit-2/register-hook -->
 <!-- textlint-disable -->
@@ -249,14 +249,14 @@ JSON の版。
 <!-- textlint-enable -->
 <!-- gen:end snippet block-with-exit-2/register-hook -->
 
-コマンドの止め方（Bash の `rm` など）や、そのほかの代表的な例は <!-- link:begin hook-recipes#block-dangerous -->代表的なフックのレシピ › 危ない操作を止める（準備中）<!-- link:end --> にある。決めたコマンドへ誘導する書き方は <!-- link:begin hook-recipes#redirect-commands -->代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）（準備中）<!-- link:end --> を見る。
+コマンドの止め方（Bash の `rm` など）や、そのほかの代表的な例は <!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](hook-recipes.md#block-dangerous)<!-- link:end --> にある。決めたコマンドへ誘導する書き方は <!-- link:begin hook-recipes#redirect-commands -->[代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）](hook-recipes.md#redirect-commands)<!-- link:end --> を見る。
 
 ## 効かない場面と落とし穴 {#limits}
 
-- **フックが失敗すると操作は通る**。スクリプトの異常終了や JSON の崩れなどの失敗は、止めない種類のエラーになりうる。止める用途では、失敗を止めに倒す書き方が要る（<!-- link:begin writing-safe-hooks#fail-open -->フックを安全に書く › 既定は失敗すると通す（fail-open）（準備中）<!-- link:end -->）
+- **フックが失敗すると操作は通る**。スクリプトの異常終了や JSON の崩れなどの失敗は、止めない種類のエラーになりうる。止める用途では、失敗を止めに倒す書き方が要る（<!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end -->）
 - **回り込まれる**。Edit を止めると、Claude が Bash の別のコマンドで同じファイルを変えようとすることがある。代わりの手段を返して、そちらへ向ける。同じ対象を別の道具からも触れるなら、matcher を広げるか権限ルールを重ねる
 - **止めすぎる**。matcher が広いと、関係のない操作まで止める。止めた記録を見て絞り直す（<!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end -->）
-- **フックは利用者の権限で動く**。スクリプトも、確かめてから置く（<!-- link:begin writing-safe-hooks#runs-as-you -->フックを安全に書く › フックは利用者の権限で動く（準備中）<!-- link:end -->）
+- **フックは利用者の権限で動く**。スクリプトも、確かめてから置く（<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](writing-safe-hooks.md#runs-as-you)<!-- link:end -->）
 - **止めるのは操作の前だけ**。終わろうとするターンを止めたいときは、別の仕組みを使う（<!-- link:begin stop-hooks -->Stop フックで「終わらせない」（準備中）<!-- link:end -->）
 - **消えたものは戻らない**。消す操作を止められなかったときの備えは <!-- link:begin destructive-commands#not-recoverable -->[消されたくないもの（破壊的コマンド） › 巻き戻しで戻らないもの](../safety/destructive-commands.md#not-recoverable)<!-- link:end --> を見る
 
@@ -273,14 +273,14 @@ JSON の版。
 
 **次に読む**
 
+- [代表的なフックのレシピ](hook-recipes.md)
 - [textlint をフックで回す](../japanese/textlint-hook.md)
-- 代表的なフックのレシピ（準備中）
 - Stop フックで「終わらせない」（準備中）
 - 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
 
 **関連**
 
-- フックを安全に書く（準備中）
+- [フックを安全に書く](writing-safe-hooks.md)
 - [権限ルール（allow・ask・deny）](permission-rules.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)

@@ -1,0 +1,8 @@
+title: 直す前の description（何をするスキルか分からない）
+kind: skill
+place: project   # .claude/skills/release-notes/SKILL.md。個人用なら ~/.claude/skills/release-notes/SKILL.md
+expect:
+  - when: 新しいセッションで「リリースノートを書いて」と頼む
+    then: スキルが読み込まれないことがある。説明に「リリースノート」も「頼まれたとき」もないので、観察として扱う
+  - when: 新しいセッションで「過去のコミットを調べて」と頼む
+    then: 説明が広いので、リリースノートの手順が読み込まれることがある。観察として扱う

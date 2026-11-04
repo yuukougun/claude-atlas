@@ -1,0 +1,16 @@
+title: pip を止めて uv を案内するフック
+kind: hook
+place: project
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - uv を使うプロジェクトで試す
+expect:
+  - when: pip install requests を実行させる
+    then: 操作が止められ、uv add と uv run を案内する理由が Claude に見える
+  - when: python -m pip install requests を実行させる
+    then: 同じく止められる
+  - when: uv add requests を実行させる
+    then: 止められない
+  - when: 止められた後に続きを頼む
+    then: Claude が uv add に切り替える（観察として扱う。指示は鍵でないので合否にしない）

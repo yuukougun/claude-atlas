@@ -143,11 +143,11 @@ updated: 2026-11-05
 
 - メモリ：<!-- link:begin how-memory-works -->[アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)<!-- link:end -->・<!-- link:begin using-auto-memory -->自動メモリ（準備中）<!-- link:end -->
 - 出力スタイル／Styles：<!-- link:begin output-style-modes -->出力スタイルで応答の仕方を切り替える（準備中）<!-- link:end -->・<!-- link:begin skills-in-the-app#migrated-styles -->アプリでスキルを使う › 移された Styles（準備中）<!-- link:end -->
-- プロジェクト：<!-- link:begin using-projects -->プロジェクトの使いどころ（準備中）<!-- link:end -->
+- プロジェクト：<!-- link:begin using-projects -->[プロジェクトの使いどころ](../app/using-projects.md)<!-- link:end -->
 - 音声：<!-- link:begin voice-and-mobile -->音声モード・Quick entry・モバイル（準備中）<!-- link:end -->
-- タスク：<!-- link:begin tasks-and-schedules-in-the-app -->タスクと定期タスク（Cowork）（準備中）<!-- link:end -->・<!-- link:begin loop-and-scheduling -->/loop と定期実行の方式（準備中）<!-- link:end -->
+- タスク：<!-- link:begin tasks-and-schedules-in-the-app -->[タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)<!-- link:end -->・<!-- link:begin loop-and-scheduling -->/loop と定期実行の方式（準備中）<!-- link:end -->
 - スキル・プラグイン：<!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end -->・<!-- link:begin plugins-in-the-app -->アプリでプラグインを使う（準備中）<!-- link:end -->
-- 権限モード：<!-- link:begin permission-modes-overview -->[権限モードの選び方](../cli/permission-modes-overview.md)<!-- link:end -->・<!-- link:begin permission-modes-in-the-app -->アプリの権限モード（Auto と Manual）と安全（準備中）<!-- link:end -->
+- 権限モード：<!-- link:begin permission-modes-overview -->[権限モードの選び方](../cli/permission-modes-overview.md)<!-- link:end -->・<!-- link:begin permission-modes-in-the-app -->[アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)<!-- link:end -->
 - バッチ：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->・<!-- link:begin batch-api-basics -->Message Batches API（急がない大量の処理）（準備中）<!-- link:end -->
 - 圧縮：<!-- link:begin what-survives-compaction -->[圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)<!-- link:end -->
 

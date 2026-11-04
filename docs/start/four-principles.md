@@ -63,7 +63,7 @@ updated: 2026-11-05
 
 | うまくいかないようす | 先に疑う原理 | 次の一手 |
 | --- | --- | --- |
-| 的外れな答え。資料や前提を知らないようす | 見せる | 依頼と資料を具体的にする。長い会話なら新しく始める（<!-- link:begin tidy-the-desk#four-actions -->机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作（準備中）<!-- link:end -->） |
+| 的外れな答え。資料や前提を知らないようす | 見せる | 依頼と資料を具体的にする。長い会話なら新しく始める（<!-- link:begin tidy-the-desk#four-actions -->[机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作](../context/tidy-the-desk.md#four-actions)<!-- link:end -->） |
 | 「できた」と言うが、動かない | 確かめる | 合否を返すテストなどを渡す（<!-- link:begin agent-loop#close-the-loop -->[エージェントループと tool use › 合否を返すものを渡してループを閉じる](../basics/agent-loop.md#close-the-loop)<!-- link:end -->） |
 | 書いたはずの禁止が何度も破られる | 縛る | 例外のない規則を鍵に移す（<!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end -->） |
 | 結果は出たが、採るかどうか決められない | 握る | 評価の基準を先に自分で決める（<!-- link:begin what-not-to-delegate#what-humans-hold -->[任せないもの（評価・採否・撤退・中核の理解） › どの段階でも人が握るもの](../delegate/what-not-to-delegate.md#what-humans-hold)<!-- link:end -->） |
@@ -76,7 +76,7 @@ updated: 2026-11-05
 
 **なぜ成り立つか。** 毎ターン、会話の全履歴が読み直される。毎回読み直す受験者の机に、関係のない資料が積まれるほど、大事なものへの注意は薄くなる。これが context rot であり、似ているが違う情報が混ざるほど質は下がりやすい。失敗した試みが会話に残ると、それも紛らわしい情報になる。
 
-**代表的な手段。** 具体的な依頼、資料、`CLAUDE.md`、会話を新しくすること、handoff 文書、サブエージェントでの隔離がある。片付けも「見せる」に入る。コンテキストを溢れさせない節約術ではなく、答えの質と費用のための整頓だからである。詳しくは <!-- link:begin tidy-the-desk#why-now -->机を整える：新鮮さ・巻き戻し・書き出し・委任 › 溢れの心配から、質と費用へ（準備中）<!-- link:end --> にある。
+**代表的な手段。** 具体的な依頼、資料、`CLAUDE.md`、会話を新しくすること、handoff 文書、サブエージェントでの隔離がある。片付けも「見せる」に入る。コンテキストを溢れさせない節約術ではなく、答えの質と費用のための整頓だからである。詳しくは <!-- link:begin tidy-the-desk#why-now -->[机を整える：新鮮さ・巻き戻し・書き出し・委任 › 溢れの心配から、質と費用へ](../context/tidy-the-desk.md#why-now)<!-- link:end --> にある。
 
 **効かない場面。** 見せても、確かめる手段がなければ、終わったように見えたところで止まる。また、見せる資料を増やせば増やすほど良いわけではない。
 
@@ -187,7 +187,7 @@ updated: 2026-11-05
 - [ハルシネーションはなぜ起きるか](../basics/why-hallucinations.md)
 - [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)
 - [データと命令を区別できない（prompt injection の原理）](../basics/data-vs-instructions.md)
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
 - [検証の階段](../verify/verification-ladder.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](../eval/verifier-defines-problem.md)

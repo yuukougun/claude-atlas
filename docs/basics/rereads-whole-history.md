@@ -134,18 +134,19 @@ Claude は、会話の状態を自分の中に持ち続けない。API の基本
 **次に読む**
 
 - [圧縮（compaction）で何が残り、何が消えるか](what-survives-compaction.md)
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
+- [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
 - [返事が遅い・時間がかかりすぎる](../symptoms/too-slow.md)
-- プロンプトキャッシング（先頭が変わらないことの価値）（準備中）
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
 - ほか 3 ページ
 
 **関連**
 
 - [コンテキストウィンドウと注意の予算](attention-budget.md)
+- プロンプトキャッシング（先頭が変わらないことの価値）（準備中）
 - Messages API と会話の正体（準備中）
 
 </div>

@@ -1,0 +1,12 @@
+proposals:
+  - fact: {id: idle-compaction-min-tokens, title: idle compaction が働く会話の大きさ（既定。変えられる）, value: 200,000 トークン以上, sources: [cc-changelog, cc-docs-context-window, cc-docs-settings-reference], checked: 2026-11-05, status: 確認済み}
+    used_in: [compact-and-auto-compact#idle-compaction]
+  - fact: {id: idle-compaction-wait, title: idle compaction が要約するまでの放置の時間（1 時間の prompt cache のとき。2.1.299 の CHANGELOG は約 54 分）, value: 約 1 時間, sources: [cc-changelog, cc-docs-costs], checked: 2026-11-05, status: 確認済み}
+    used_in: [compact-and-auto-compact#idle-compaction]
+  - fact: {id: idle-compaction-terminal-version, title: idle compaction が端末で既定で有効になった Claude Code の版, value: 2.1.299, sources: [cc-changelog], checked: 2026-11-05, status: 確認済み}
+    used_in: [compact-and-auto-compact#idle-compaction]
+  - fact: {id: idle-compaction-ide-version, title: idle compaction が VS Code と Desktop の Code タブにも広がった Claude Code の版, value: 2.1.314, sources: [cc-changelog], checked: 2026-11-05, status: 確認済み}
+    used_in: [compact-and-auto-compact#idle-compaction]
+  - fact: {id: auto-compact-window-range, title: autoCompactWindow に指定できるトークン数の範囲と、必要な版, value: 100000 から 1000000（Claude Code 2.1.288 以降）, sources: [cc-docs-settings-reference, cc-docs-model-config], checked: 2026-11-05, status: 確認済み}
+    used_in: [compact-and-auto-compact#settings]
+frontmatter: []

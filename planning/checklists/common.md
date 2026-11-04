@@ -46,11 +46,13 @@
 
 元：design §10.2・§3.3・§9.2
 
+- 工程8の流し方（2026-11-05）では、直しの差分を確かめ直す担当は置かない。検証と直しの担当が直したページは draft のまま、指摘0件なら reviewed にする（decisions 2026-11-05「段階 reviewed の付け方」）。差分を確かめ直すときは、下の手順に従う
+
 - 検証役は本文を直さない。直しは、書いた担当に戻す
 - 直しの後は、指摘ごとに直しの差分を確かめ直し、解決か未解決かを書く。解決とは、必須の指摘が直ったこと、推奨の指摘が直ったか、直さない理由が直しの報告にあること、である
-- reviewed にするのは、そのページに当てたすべての観点（雛形や図のないページは、その観点を当てない）の指摘が解決したときである。それを確かめた検証役（ふつうは、直しの差分を最後に確かめ直す担当）が、front matter の `stage` を `reviewed` にし、同時に `verified` と `verified_with` を書く
-- `verified` は、事実・出典・鮮度の検証役が出典を読み直して確かめた日である。事実・出典・鮮度の検証役は、この日と確かめた版を報告に書く
-- `verified_with` は、そのとき確かめた版（`{claude_code, channel, models, app}`）である。channel は latest か stable で、試していない項目は書かない（形は `schema/page.schema.json`）
+- reviewed にするのは、分かりやすさの検証と直しの担当が、指摘を0件（「直す」「直したほうがよい」が0）と見たときだけである。直したときは draft のままにし、直しの差分を別の担当が確かめていないため reviewed にしない。reviewed にするときは front matter の `stage` だけを変え、`verified`・`verified_with` は書かない
+- `verified` は、出典を読み直した担当か、鮮度の点検の道具（tools/freshness.py）が書く、出典を読み直して確かめた日である。事実の検証の担当は置かない（decisions 2026-11-04）。分かりやすさの検証では書かない
+- `verified_with` は、`verified` と一緒に書く、そのとき確かめた版（`{claude_code, channel, models, app}`）である。channel は latest か stable で、試していない項目は書かない（形は `schema/page.schema.json`）
 - 未解決の指摘が残るなら、段階を動かさない
 - done にするのはメインである（検査が0件で、未解決の指摘がないことを確かめる）
 

@@ -1,0 +1,16 @@
+title: 失敗したら止める設定（onFailure と args）
+kind: settings
+place: project
+safety: true
+min_version_fact: hook-on-failure-block-min-version
+requires:
+  - .claude/hooks/guard-migrations.sh
+conditions:
+  - 新しいセッションで試す
+  - 対話のセッションでは、フォルダの信頼のダイアログを受け入れてから試す
+  - 試すのは壊れても困らない作業用のリポジトリだけにする
+expect:
+  - when: スクリプトのファイル名を一時的に変えて、Edit を呼ぶ
+    then: 操作が止められ、フックの失敗が Claude に伝わる
+  - when: 設定から onFailure の行を外して、同じことをする
+    then: 操作が通る

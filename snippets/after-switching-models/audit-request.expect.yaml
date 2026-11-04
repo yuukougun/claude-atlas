@@ -1,0 +1,13 @@
+title: 見直す候補を洗い出させる依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - IMPORTANT などの強調を含む行がある CLAUDE.md のプロジェクトで試す
+expect:
+  - when: この依頼を出す
+    then: ファイルが書き換わらず、候補の表が返る
+  - when: 返った表を見る
+    then: 各行にファイル名と行、引用、種類が付く
+control: 依頼を出さず自分で grep すると、強調語は見つかるが、古いモデル向けの補助の記述は見落としやすい

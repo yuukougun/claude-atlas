@@ -138,7 +138,7 @@ updated: 2026-11-05
 **結果の読み方**
 
 - 差がない：劣化は確認できなかった。体感した場面と課題が違うなら、その場面の課題を足してやり直す。体感と実測がずれる仕組みは <!-- link:begin felt-vs-measured#evidence -->[体感と実測 › 何が起きるか（研究と根拠の強さ）](../eval/felt-vs-measured.md#evidence)<!-- link:end --> にある。
-- 差があり、条件も違う：条件の違いが原因の候補である。モデルや既定を替えた後の見直しは <!-- link:begin after-switching-models#checklist -->新しいモデルに替えたら見直すこと › 見直す順（準備中）<!-- link:end --> にある。
+- 差があり、条件も違う：条件の違いが原因の候補である。モデルや既定を替えた後の見直しは <!-- link:begin after-switching-models#checklist -->[新しいモデルに替えたら見直すこと › 見直す順](after-switching-models.md#checklist)<!-- link:end --> にある。
 - 差があり、条件が同じ：製品の側の変更を疑い、次の節で確かめる。
 
 ## 製品の側の変更を確かめる先（公式の報告・変更履歴・稼働状況） {#official-sources}
@@ -178,7 +178,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end snippet suspected-degradation/update-channel -->
 
-どの確かめでも説明がつかないときは、文脈の量やモデルを疑う確かめに戻る。順番は <!-- link:begin seems-less-capable#diagnosis -->[急に賢くなくなった気がする › 原因を安く確かめる順](../symptoms/seems-less-capable.md#diagnosis)<!-- link:end --> にある。モデルの退役や既定の変化に気づく方法は <!-- link:begin after-switching-models#retirements-and-default-changes -->新しいモデルに替えたら見直すこと › 退役と既定の変化に気づく（準備中）<!-- link:end --> にある。
+どの確かめでも説明がつかないときは、文脈の量やモデルを疑う確かめに戻る。順番は <!-- link:begin seems-less-capable#diagnosis -->[急に賢くなくなった気がする › 原因を安く確かめる順](../symptoms/seems-less-capable.md#diagnosis)<!-- link:end --> にある。モデルの退役や既定の変化に気づく方法は <!-- link:begin after-switching-models#retirements-and-default-changes -->[新しいモデルに替えたら見直すこと › 退役と既定の変化に気づく](after-switching-models.md#retirements-and-default-changes)<!-- link:end --> にある。
 
 ## 製品の側の変更だった例 {#postmortem-example}
 
@@ -195,7 +195,7 @@ updated: 2026-11-05
 - 疑う先は、モデルそのものとは限らない。既定の設定、会話の扱い、システムプロンプトのような製品の側の変更が、結果を変えうる。
 - 3 つの期間が重なっているので、症状は 1 つの原因に見えにくい。日付で区切って別々に確かめる。
 - 戻し方は、アカウントの種類で時期が違った。変更履歴では、API キー・クラウド経由・Team・Enterprise の戻しが先で、Pro と Max の Opus 4.6・Sonnet 4.6 の戻しは後だった。だから、契約の種類も記録する。
-- 報道が挙げる教訓も、版と effort をまず確かめること、モデルを替えたら effort を設定し直すことだった（根拠：弱。二次の報道）。モデルを替えた後の見直しは <!-- link:begin after-switching-models -->新しいモデルに替えたら見直すこと（準備中）<!-- link:end --> にある。
+- 報道が挙げる教訓も、版と effort をまず確かめること、モデルを替えたら effort を設定し直すことだった（根拠：弱。二次の報道）。モデルを替えた後の見直しは <!-- link:begin after-switching-models -->[新しいモデルに替えたら見直すこと](after-switching-models.md)<!-- link:end --> にある。
 
 nerf という言葉で語られる劣化の一部は、この例のように、製品の側の設定や指示の変更で説明された。ただし、毎回そうとは限らない。別の原因は、この手順で切り分ける。
 
@@ -232,7 +232,7 @@ nerf という言葉で語られる劣化の一部は、この例のように、
 - [同じ質問でも答えが変わる（非決定性）](../basics/nondeterminism.md)
 - 最新を自分で確かめる方法（準備中）
 - 2026 年の主な変更の年表（準備中）
-- 新しいモデルに替えたら見直すこと（準備中）
+- [新しいモデルに替えたら見直すこと](after-switching-models.md)
 
 </div>
 

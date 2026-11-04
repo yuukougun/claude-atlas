@@ -62,7 +62,7 @@ updated: 2026-11-05
 
 トークンの数は、コンテキストの大きさにも結び付く。コンテキストは、Claude が一度に机の上に広げて見られる資料の量にあたる。この広い机の広さは、文字数ではなくトークンで測る。机に載せた資料の量を測る物差しが、そのまま費用と利用上限の物差しにもなっている。
 
-日本語で頼んだときに数がどう変わるか、英語に替えて節約すべきかは、<!-- link:begin can-i-prompt-in-japanese#tokens -->日本語で指示して大丈夫か › 日本語のトークン数と、上限への効き方（準備中）<!-- link:end -->で扱う。このページでは、数がモデルと言語で変わるという考え方までにとどめる。
+日本語で頼んだときに数がどう変わるか、英語に替えて節約すべきかは、<!-- link:begin can-i-prompt-in-japanese#tokens -->[日本語で指示して大丈夫か › 日本語のトークン数と、上限への効き方](../japanese/can-i-prompt-in-japanese.md#tokens)<!-- link:end -->で扱う。このページでは、数がモデルと言語で変わるという考え方までにとどめる。
 
 ## 手元で数えて確かめる {#count}
 
@@ -136,12 +136,12 @@ updated: 2026-11-05
 - [コンテキストウィンドウと注意の予算](attention-budget.md)
 - [毎ターン全履歴を読み直す](rereads-whole-history.md)
 - [思考（thinking）と effort の仕組み](how-thinking-works.md)
+- [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)
 - API 料金の読み方（準備中）
-- 日本語で指示して大丈夫か（準備中）
 
 **関連**
 
-- 日本語で指示して大丈夫か › 日本語のトークン数と、上限への効き方（準備中）
+- [日本語で指示して大丈夫か › 日本語のトークン数と、上限への効き方](../japanese/can-i-prompt-in-japanese.md#tokens)
 - [利用上限の仕組み（面をまたいで共有する枠）](../cost/how-usage-limits-work.md)
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
 - [/context で中身を見る](../context/inspect-context.md)

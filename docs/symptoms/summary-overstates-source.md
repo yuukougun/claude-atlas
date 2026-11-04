@@ -68,11 +68,11 @@ Claude に資料を要約させたところ、原文が慎重に書いていた�
 1. **見えていない：要約の材料が原文そのものではなかった**
     - 何を見る：要約の材料が、原文の全体だったか。検索結果の断片、他人が書いた要約、貼り付けの一部、長い資料の前半だけ、のどれかではなかったか。
     - どう確かめる：要約の強い主張を 3 つほど選び、それぞれの根拠になる原文の箇所を、そのまま引用させる。引用が出せない、または引用した文が主張ほど強くないなら、この原因が疑わしい。
-    - 見つかったとき：資料の渡し方を直す。長い資料は先に置いて、答えの前に引用を抜かせる（<!-- link:begin long-context-first#quote-first -->[長い資料は先、質問は最後 › 答えの前に引用を抜かせる](../prompting/long-context-first.md#quote-first)<!-- link:end -->）。面ごとの読み込みの限界は <!-- link:begin handing-long-documents#limits -->長い資料を渡すとき › 面ごとの読み込みの限界（準備中）<!-- link:end --> を見る。後半だけが使われていないなら <!-- link:begin skipped-later-pages -->[添付した資料の後半を読んでいない](skipped-later-pages.md)<!-- link:end --> へ進む。
+    - 見つかったとき：資料の渡し方を直す。長い資料は先に置いて、答えの前に引用を抜かせる（<!-- link:begin long-context-first#quote-first -->[長い資料は先、質問は最後 › 答えの前に引用を抜かせる](../prompting/long-context-first.md#quote-first)<!-- link:end -->）。面ごとの読み込みの限界は <!-- link:begin handing-long-documents#limits -->[長い資料を渡すとき › 面ごとの読み込みの限界](../context/handing-long-documents.md#limits)<!-- link:end --> を見る。後半だけが使われていないなら <!-- link:begin skipped-later-pages -->[添付した資料の後半を読んでいない](skipped-later-pages.md)<!-- link:end --> へ進む。
 2. **確かめていない：要約が原文と照らされないまま使われた**
     - 何を見る：要約の中の強い言葉。「必ず」「常に」「すべて」「証明した」のような言い切りと、数や範囲を表す言葉を拾う。
     - どう確かめる：拾った言葉ごとに、原文の同じ主張の前後を探す。その近くに、限定の語（「場合がある」「〜の範囲では」「〜に限り」）、対象や標本や期間の記述、著者が書いた限界があるかを見る。あるのに要約になければ、落ちた条件である。照合は Claude にさせてもよい（依頼の雛形はこの節の終わりにある）。ただし、結果の引用は、原文を開いて自分の目で 1 か所は確かめる。
-    - 見つかったとき：要約を根拠に使う前に、原文と照らす手順を入れる（<!-- link:begin fact-checking#summaries -->[事実を確かめる（引用・照合・best-of-N） › 要約を原文と照らす](../verify/fact-checking.md#summaries)<!-- link:end -->）。引用や出典の細部の確かめ方は <!-- link:begin checking-citations#steps -->引用や出典の確かめ方 › 確かめる手順（準備中）<!-- link:end --> を見る。与えられた仕様や読み物は、自分で要約を書いてから Claude に誤読を指摘させる（<!-- link:begin read-specs-yourself#misreading-detector -->仕様を自分で読み、AI に誤読を指摘させる › AI に誤読を指摘させる（準備中）<!-- link:end -->）。
+    - 見つかったとき：要約を根拠に使う前に、原文と照らす手順を入れる（<!-- link:begin fact-checking#summaries -->[事実を確かめる（引用・照合・best-of-N） › 要約を原文と照らす](../verify/fact-checking.md#summaries)<!-- link:end -->）。引用や出典の細部の確かめ方は <!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end --> を見る。与えられた仕様や読み物は、自分で要約を書いてから Claude に誤読を指摘させる（<!-- link:begin read-specs-yourself#misreading-detector -->仕様を自分で読み、AI に誤読を指摘させる › AI に誤読を指摘させる（準備中）<!-- link:end -->）。
 3. **人の側：要約の言葉をそのまま次の文章に使う**
     - 何を見る：「正確に要約して」と頼んだだけで済んだと考えていないか。要約を一次の資料として別の文書や次の依頼に貼り直していないか。
     - どう確かめる：要約から取った数や結論が、いまの文書に原文の条件なしで入っていないかを見る。
@@ -88,7 +88,7 @@ Claude に資料を要約させたところ、原文が慎重に書いていた�
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 見えていない | [長い資料は先、質問は最後 › 答えの前に引用を抜かせる](../prompting/long-context-first.md#quote-first) |
-| 確かめていない | [事実を確かめる（引用・照合・best-of-N） › 要約を原文と照らす](../verify/fact-checking.md#summaries)<br>引用や出典の確かめ方（準備中）<br>仕様を自分で読み、AI に誤読を指摘させる（準備中） |
+| 確かめていない | [事実を確かめる（引用・照合・best-of-N） › 要約を原文と照らす](../verify/fact-checking.md#summaries)<br>[引用や出典の確かめ方](../verify/checking-citations.md)<br>仕様を自分で読み、AI に誤読を指摘させる（準備中） |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -164,7 +164,7 @@ Claude に資料を要約させたところ、原文が慎重に書いていた�
 <!-- textlint-enable -->
 <!-- gen:end snippet summary-overstates-source/summary-keeps-conditions -->
 
-調べものでは、出典の原文を開いて確かめる手順が、リサーチの使い方にも調べもののレポートにも書いてある（<!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end -->、<!-- link:begin research-and-reports#check-sources -->調べものとレポート › 出典を原文で確かめる（準備中）<!-- link:end -->）。学習で上位解法を要約させるときは、手法・その手法を正当化した問題の性質・原文の短い引用の 3 列の表にさせるとよい（<!-- link:begin learning-with-ai#summaries-of-solutions -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる） › 上位解法や解説を AI に要約させるとき](../judgment/learning-with-ai.md#summaries-of-solutions)<!-- link:end -->）。どの場合も、結論の核になる 1 件は、要約でなく原文を自分で読む。
+調べものでは、出典の原文を開いて確かめる手順が、リサーチの使い方にも調べもののレポートにも書いてある（<!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end -->、<!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end -->）。学習で上位解法を要約させるときは、手法・その手法を正当化した問題の性質・原文の短い引用の 3 列の表にさせるとよい（<!-- link:begin learning-with-ai#summaries-of-solutions -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる） › 上位解法や解説を AI に要約させるとき](../judgment/learning-with-ai.md#summaries-of-solutions)<!-- link:end -->）。どの場合も、結論の核になる 1 件は、要約でなく原文を自分で読む。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -179,15 +179,15 @@ Claude に資料を要約させたところ、原文が慎重に書いていた�
 
 - [長い資料は先、質問は最後](../prompting/long-context-first.md)
 - [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)
-- 引用や出典の確かめ方（準備中）
+- [引用や出典の確かめ方](../verify/checking-citations.md)
 - 仕様を自分で読み、AI に誤読を指摘させる（準備中）
 
 **関連**
 
-- 調べものとレポート（準備中）
+- [調べものとレポート](../recipes/research-and-reports.md)
 - リサーチを使いこなす（準備中）
 - [AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](../judgment/learning-with-ai.md)
-- 長い資料を渡すとき（準備中）
+- [長い資料を渡すとき](../context/handing-long-documents.md)
 - [もっともらしい嘘・出典の誤り](plausible-falsehoods.md)
 - [添付した資料の後半を読んでいない](skipped-later-pages.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

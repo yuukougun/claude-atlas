@@ -1,0 +1,15 @@
+title: 文脈と上限の使用率を出すステータスラインのスクリプト
+kind: other
+place: user
+safety: false
+features: [statusline]
+requires: [jq, statusline-settings.json]
+conditions:
+  - スクリプトに実行権限を付ける（chmod +x）
+  - 新しいセッションで試す
+expect:
+  - when: 設定を入れた後でセッションを開き、依頼を 1 つ出す
+    then: 画面の下に「文脈 …%」の形の表示が出て、やり取りが進むと数字が変わる
+  - when: 上限の使用率が渡されない環境で使う
+    then: 上限の表示は出ず、文脈の表示だけが出る（上限の項目が渡る条件は未確認）
+control: ステータスラインを設定しないとき、画面に使用率は出ず、見るには /usage か /context を打つ

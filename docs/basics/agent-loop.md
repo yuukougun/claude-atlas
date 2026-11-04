@@ -192,9 +192,9 @@ After で足したのは次のものである。合否を返すコマンド。�
 - [MCP をつなぐ](../extend/connecting-mcp.md)
 - [「完了」を定義して渡す](../verify/define-done.md)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
+- [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)
 - [確認ばかりで進まない・途中で止まる](../symptoms/keeps-stopping.md)
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
-- [同じ確認のループにはまる](../symptoms/stuck-in-a-check-loop.md)
 - ほか 3 ページ
 
 **関連**

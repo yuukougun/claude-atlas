@@ -1,0 +1,17 @@
+title: テストの出力を失敗の行だけに絞るフック
+kind: hook
+place: project
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - 失敗するテストが 1 つ以上ある pytest のプロジェクトで試す
+expect:
+  - when: pytest を実行させる
+    then: 会話に出る出力が、失敗の行とその後の数行、最後の要約だけになる
+  - when: 失敗するテストを含めて実行させる
+    then: コマンドの終了コードは 0 にならない（pipefail で保たれる）
+  - when: pytest 以外のコマンドを実行させる
+    then: コマンドは書き換えられない
+  - when: 全部のテストが通る実行をさせる
+    then: 最後の要約の行（passed を含む行）が見える
+control: フックを置かないと、同じ pytest の実行で、通ったテストの行を含む全出力が会話に入る

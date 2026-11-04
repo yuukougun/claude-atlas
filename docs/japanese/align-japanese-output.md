@@ -80,7 +80,7 @@ updated: 2026-11-05
 | 出力スタイル（output styles）（準備中） | Claude Code | お願い | セッション開始と切り替えたとき | 残る |
 | [フック（hooks）](../enforce/hooks-basics.md) | Claude Code | 鍵 | イベントが起きたとき | 残る |
 | [Claude への指示（Instructions for Claude）](../app/where-to-put-instructions.md) | アプリ | お願い | — | 未確認 |
-| プロジェクトの指示（project instructions）（準備中） | アプリ | お願い | — | 未確認 |
+| [プロジェクトの指示（project instructions）](../app/using-projects.md) | アプリ | お願い | — | 未確認 |
 | スキル（アプリ。skills）（準備中） | アプリ | お願い | — | 未確認 |
 
 <!-- textlint-enable -->
@@ -199,7 +199,7 @@ updated: 2026-11-05
 - **lint を通せば日本語の文章の質は保証される。** lint が見つけるのは、機械で判定できる混在と揺れだけである。読みやすさは、人が確かめる。
 - **アプリでも、スタイルで調子を切り替えられる。** スタイルは、スキルへの移行が告知された。経緯は、台帳の行を見る。
 
-誤読されやすい似た機能の違いは、「<!-- link:begin claude-md-vs-rules-skills-styles#similar-names -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 混同されやすい別の機能](../extend/claude-md-vs-rules-skills-styles.md#similar-names)<!-- link:end -->」にある。症状から引くときは、「<!-- link:begin replies-in-english#diagnosis -->[英語で返ってくる › 原因を安く確かめる順](../symptoms/replies-in-english.md#diagnosis)<!-- link:end -->」と「<!-- link:begin inconsistent-japanese-style#diagnosis -->[文体や表記が揃わない › 原因を安く確かめる順](../symptoms/inconsistent-japanese-style.md#diagnosis)<!-- link:end -->」から入る。用途ごとのお願いと鍵の対応は、「<!-- link:begin request-lock-table#table -->お願いと鍵の対応表 › 用途ごとの対応表（準備中）<!-- link:end -->」にある。
+誤読されやすい似た機能の違いは、「<!-- link:begin claude-md-vs-rules-skills-styles#similar-names -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 混同されやすい別の機能](../extend/claude-md-vs-rules-skills-styles.md#similar-names)<!-- link:end -->」にある。症状から引くときは、「<!-- link:begin replies-in-english#diagnosis -->[英語で返ってくる › 原因を安く確かめる順](../symptoms/replies-in-english.md#diagnosis)<!-- link:end -->」と「<!-- link:begin inconsistent-japanese-style#diagnosis -->[文体や表記が揃わない › 原因を安く確かめる順](../symptoms/inconsistent-japanese-style.md#diagnosis)<!-- link:end -->」から入る。用途ごとのお願いと鍵の対応は、「<!-- link:begin request-lock-table#table -->[お願いと鍵の対応表 › 用途ごとの対応表](../enforce/request-lock-table.md#table)<!-- link:end -->」にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -249,7 +249,7 @@ updated: 2026-11-05
 - [文体や表記が揃わない](../symptoms/inconsistent-japanese-style.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)
-- お願いと鍵の対応表（準備中）
+- [お願いと鍵の対応表](../enforce/request-lock-table.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - 出力スタイルで応答の仕方を切り替える（準備中）
 

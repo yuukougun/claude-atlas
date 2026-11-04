@@ -1,0 +1,12 @@
+title: このページのフックをまとめて登録する設定
+kind: settings
+place: project
+safety: false
+requires: [".claude/hooks/ の下の 5 つのスクリプト", "notify-send（通知を使うとき。Linux のデスクトップ）"]
+conditions:
+  - 新しいセッションで試す
+  - スクリプトを置いたあと、/hooks で登録を見る
+expect:
+  - /hooks の一覧に、PostToolUse の Edit|Write と、PreToolUse の Bash に付いたフックが出る
+  - Notification と Stop のフックが一覧に出る
+  - スクリプトが無い、または動かないときは、操作は止められずに通る

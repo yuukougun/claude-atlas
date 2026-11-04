@@ -88,7 +88,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
         - **文字数の上限**：サブフォルダの CLAUDE.md と、必要なときに読まれる rules には、1 ファイルごとの文字数の上限があり、超えると先頭しか入らない。上限の値は、コンテキストの窓の大きさとモデルで違う。`wc -m` で文字数を数え、公式の[How Claude remembers your project](https://code.claude.com/docs/en/memory#claude-ignores-the-end-of-my-subdirectory-claude-md)にある上限と比べる。
         - **圧縮の後**：圧縮（長い会話の要約への置き換え）の後に守られなくなったなら、規則の置き場所を見る。プロジェクトの根の CLAUDE.md は、圧縮の後もディスクから入れ直される。消えているのは、会話の中だけで言った規則、まだ読み直されていないサブフォルダの CLAUDE.md、その後に一致するファイルを扱っていない paths 付きの rules のどれかである。会話だけで言った規則は、CLAUDE.md に書いて残す。
         - **サブエージェント**：サブエージェントに任せた作業で破られたなら、そのサブエージェントが CLAUDE.md を読んで始まったかを見る。組み込みの Explore と Plan は、CLAUDE.md を読まずに始まる。ほかのサブエージェントは、定義で `omitClaudeMd` を設定しない限り、読んで始まる。CLAUDE.md を読まないサブエージェントに守らせたい規則は、任せる依頼の文にあらためて書く。例外を許さない規則は、鍵に移す。settings.json のフックと権限ルールは、サブエージェントの道具の呼び出しにも効く。
-        - **スキルの説明が届かない**：説明が Claude に届かない原因は、次の 3 つである。front matter の YAML が壊れていると、説明が空のまま読み込まれる（`--debug` で誤りが出る）。`disable-model-invocation: true` のスキルは、自動では呼ばれない。スキルが多いと、セッション開始に入るスキルの名前と説明の一覧が予算に収まらず、説明が削られる（`/context` の Skills の行と `/doctor` で一覧の大きさを見る）。説明は届いているのに呼ばれないなら、書き方を見直す。直し方は「<!-- link:begin skill-descriptions -->スキルの description の書き方（準備中）<!-- link:end -->」にある。
+        - **スキルの説明が届かない**：説明が Claude に届かない原因は、次の 3 つである。front matter の YAML が壊れていると、説明が空のまま読み込まれる（`--debug` で誤りが出る）。`disable-model-invocation: true` のスキルは、自動では呼ばれない。スキルが多いと、セッション開始に入るスキルの名前と説明の一覧が予算に収まらず、説明が削られる（`/context` の Skills の行と `/doctor` で一覧の大きさを見る）。説明は届いているのに呼ばれないなら、書き方を見直す。直し方は「<!-- link:begin skill-descriptions -->[スキルの description の書き方](../extend/skill-descriptions.md)<!-- link:end -->」にある。
 
 2. **散らかっている**：規則は届いているが、長さ・食い違い・古い指示・強調の重なりに埋もれている。長いファイルはコンテキストを多く使い、守られにくくなる。
 
@@ -104,7 +104,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
         - `/doctor` が、リポジトリに入れた CLAUDE.md の削れる部分を提案する。ディレクトリ構成や依存の一覧のように、コードから分かる内容が対象である。`/doctor prompt-audit` は、古いモデル向けに書いた指示、存在しないファイルやコマンドへの参照、食い違うファイルを洗い出して報告する。頼むまで、ファイルは書き換えない。
         - ユーザーの CLAUDE.md、プロジェクトの CLAUDE.md、サブフォルダの CLAUDE.md、rules を通して、同じ振る舞いに別の指示がないかを探す。食い違う指示があると、Claude はどちらかを恣意的に選ぶことがある。
         - コミットや PR の規則を書いたなら、Claude Code が自分で足す指針と競合していないかを見る。組み込みの分は `includeGitInstructions` で外せ、署名の文は `attribution` で決められる。
-        - 強調（IMPORTANT・YOU MUST・全部が大文字）を足して直そうとしていないかを見る。足しても直らない行は、ファイルが長すぎて埋もれているか、例外を許さない規則かのどちらかである。強調を重ねると、規則を当てはめすぎる原因にもなる。詳しくは「<!-- link:begin emphasis-words -->強調語（IMPORTANT・必ず）の現在（準備中）<!-- link:end -->」にある。
+        - 強調（IMPORTANT・YOU MUST・全部が大文字）を足して直そうとしていないかを見る。足しても直らない行は、ファイルが長すぎて埋もれているか、例外を許さない規則かのどちらかである。強調を重ねると、規則を当てはめすぎる原因にもなる。詳しくは「<!-- link:begin emphasis-words -->[強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)<!-- link:end -->」にある。
 
 3. **縛っていない**：「見えていない」と「散らかっている」を直しても破られるなら、規則は届いていて、埋もれてもいない。CLAUDE.md・rules・スキルの指示は、Claude が読んで判断するお願いなので、読まれたうえで外れることがある。外れて困る規則を洗い出して、鍵（毎回必ず効く制御）へ移す候補にする。
 
@@ -114,7 +114,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
     === "アプリ"
 
         - アプリの指示は、Claude への指示・プロジェクトの指示・組織の指示のどれも、Claude が読んで判断するお願いである。組織の指示は個人の指示より優先され、直接食い違うときは組織の指示に従う。ただし、この優先の決まり自体がプロンプトの層の指示なので、直接食い違う指示では、まれに挙動が一定にならない、と公式が書く。
-        - 毎回必ず効かせたい規則に使える鍵は、面ごとに違う。アプリで使える鍵があるかは、この教材ではまだ確かめていない（未確認）。用途ごとの手段は「<!-- link:begin request-lock-table -->お願いと鍵の対応表（準備中）<!-- link:end -->」で見る。守られないと困る規則は、出力を人が確かめる手を足す。
+        - 毎回必ず効かせたい規則に使える鍵は、面ごとに違う。アプリで使える鍵があるかは、この教材ではまだ確かめていない（未確認）。用途ごとの手段は「<!-- link:begin request-lock-table -->[お願いと鍵の対応表](../enforce/request-lock-table.md)<!-- link:end -->」で見る。守られないと困る規則は、出力を人が確かめる手を足す。
 
     === "Claude Code"
 
@@ -132,9 +132,9 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [/context で中身を見る](../context/inspect-context.md)<br>CLAUDE.md の階層と読み込み順（準備中）<br>スキルの description の書き方（準備中） |
-| 散らかっている | [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)<br>[CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)<br>.claude/rules と paths で必要なときだけ読ませる（準備中） |
-| 縛っていない | [お願いを鍵に移す判断](../enforce/when-to-lock.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）（準備中） |
+| 見えていない | [/context で中身を見る](../context/inspect-context.md)<br>CLAUDE.md の階層と読み込み順（準備中）<br>[スキルの description の書き方](../extend/skill-descriptions.md) |
+| 散らかっている | [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)<br>[CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)<br>[.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md) |
+| 縛っていない | [お願いを鍵に移す判断](../enforce/when-to-lock.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）](../enforce/hook-recipes.md#redirect-commands) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -173,7 +173,7 @@ CLAUDE.md や指示を直しても、同じ規則が破られ続けるときは�
 | 機能 | 強制力 | 読み込みの時期 | コンテキストのコスト | 圧縮で残るか |
 | --- | --- | --- | --- | --- |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | お願い | セッション開始 | 常駐 | 残る |
-| rules（.claude/rules/）（準備中） | お願い | セッション開始か、一致するファイルを扱うとき | 常駐か、一致するファイルのときだけ | 条件による |
+| [rules（.claude/rules/）](../extend/path-scoped-rules.md) | お願い | セッション開始か、一致するファイルを扱うとき | 常駐か、一致するファイルのときだけ | 条件による |
 | [スキル（skills）](../extend/writing-skills.md) | お願い | セッション開始と使うとき | 使うまで小さい | 残る |
 | [フック（hooks）](../enforce/hooks-basics.md) | 鍵 | イベントが起きたとき | ゼロ（出力を返さない限り） | 残る |
 | [権限（permissions）](../enforce/permission-rules.md) | 鍵 | — | — | 残る |
@@ -187,7 +187,7 @@ CLAUDE.md や指示を直しても、同じ規則が破られ続けるときは�
 - 「圧縮で残るか」の「残る」の中身は、機能ごとに違う。スキルは、新しい版では名前と説明の一覧が入れ直され、呼んだスキルの本文は、上限つきで入れ直されて古いものから外れる。
 - rules の「条件による」は、答えが paths の有無で変わり、1 語で書けないことを指す。paths のない rules は圧縮の後も残り、paths 付きの rules は、一致するファイルを再び扱うまで戻らない。
 
-CLAUDE.md の側には、使うコマンド、理由、例外のときの相談の基準を書く。次の雛形は、uv の例である。鍵の側の雛形は「<!-- link:begin hook-recipes#redirect-commands -->代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）（準備中）<!-- link:end -->」にある。
+CLAUDE.md の側には、使うコマンド、理由、例外のときの相談の基準を書く。次の雛形は、uv の例である。鍵の側の雛形は「<!-- link:begin hook-recipes#redirect-commands -->[代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）](../enforce/hook-recipes.md#redirect-commands)<!-- link:end -->」にある。
 
 <!-- gen:begin snippet instructions-ignored/claude-md-command-rule -->
 <!-- textlint-disable -->
@@ -211,7 +211,7 @@ CLAUDE.md の側には、使うコマンド、理由、例外のときの相談�
 
 - **道具やファイルの使用を禁じる規則**：権限ルールの deny にする。権限ルールは、モデルでなく Claude Code が強制し、deny はどのモードでも止める。ただし、限界が 2 つある。1 つ目は、パスの書き方が合わないルールは当たらないことである。先頭が `/` 1 つのパスは、ファイルシステムの根でなく、設定を置いた場所を基準にする。2 つ目は、子プロセスには効かない場合があることである。Python のスクリプトが自分でファイルを開くときは、Read の deny は働かない。詳しくは「<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->」にある。
 - **決めたコマンドへの誘導や、危ない操作の遮断**：PreToolUse（道具を呼ぶ直前に動くフックのイベント）のフックにする。止めるときは、理由と代わりの手段を返す。返し方は「<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end -->」にある。フックは会話の外で動くので、圧縮の後も効く。鍵に数えるのは、コマンドなどの決まった処理を走らせるフックである。prompt と agent の型のフックは、別のモデルが判断するので、鍵に数えない。
-- **決まった手順**：スキルのままにするか、フックで必ず走らせるかは、「<!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end -->」で選ぶ。
+- **決まった手順**：スキルのままにするか、フックで必ず走らせるかは、「<!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end -->」で選ぶ。
 
 鍵を足したら、効いたかを確かめる。壊れても困らない操作（たとえば、中身のない試験用のファイルの読み取り）をわざと頼み、止まることを見る。止まらなければ、ルールの書き方と、当てはまる範囲を見直す。
 
@@ -251,19 +251,19 @@ CLAUDE.md の側には、使うコマンド、理由、例外のときの相談�
 
 - [/context で中身を見る](../context/inspect-context.md)
 - CLAUDE.md の階層と読み込み順（準備中）
-- スキルの description の書き方（準備中）
+- [スキルの description の書き方](../extend/skill-descriptions.md)
 - [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
+- [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - ほか 1 ページ
 
 **関連**
 
-- 強調語（IMPORTANT・必ず）の現在（準備中）
-- フックとスキルの違い（準備中）
-- お願いと鍵の対応表（準備中）
+- [強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)
+- [フックとスキルの違い](../extend/hook-vs-skill.md)
+- [お願いと鍵の対応表](../enforce/request-lock-table.md)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)

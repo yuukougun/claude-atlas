@@ -1,0 +1,15 @@
+title: .claude/skills/format-after-edit/SKILL.md（整形の手順を書いたスキル）
+kind: skill
+place: project
+safety: false
+features: [skills]
+requires:
+  - npx（prettier を呼べる Node.js の環境）
+conditions:
+  - 新しいセッションで試す
+expect:
+  - when: ソースファイルの編集を頼む
+    then: 多くの場合は、編集のあとに Claude が prettier を流す。ただし、流すかどうかは Claude の判断で、流さない回があることを観察として記録する
+  - when: 編集の作業が長引き、手順を読んだことが薄れる
+    then: 整形の一歩が抜ける回が出うる。観察として扱い、合否にはしない
+control: スキルを置かないとき、整形は頼んだときだけ走る

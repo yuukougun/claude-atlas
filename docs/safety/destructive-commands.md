@@ -122,7 +122,7 @@ updated: 2026-11-05
 鍵は、会話の外にある仕組みである。消されたくないものごとに、次の組を使う。
 
 - **権限ルール**：Claude Code が強制する。強制力は <!-- gen:begin feature permissions/enforcement -->鍵<!-- gen:end feature permissions/enforcement --> である。拒否は先に評価される。ただし、パスのルールが当たらない場合や、子プロセスに効かない場合がある。評価の順番は <!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](../enforce/permission-rules.md#evaluation-order)<!-- link:end -->、効かない子プロセスは <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](../enforce/permission-rules.md#child-processes)<!-- link:end --> が持つ。
-- **フック**：PreToolUse のフックは、操作を止めて、理由と代わりの手段を Claude に返せる。書き方は <!-- link:begin block-with-exit-2#reason -->[フックで止めて理由を返す（exit 2 と JSON） › 理由と代わりの手段の書き方](../enforce/block-with-exit-2.md#reason)<!-- link:end -->、効かない場面は <!-- link:begin block-with-exit-2#limits -->[フックで止めて理由を返す（exit 2 と JSON） › 効かない場面と落とし穴](../enforce/block-with-exit-2.md#limits)<!-- link:end --> を引く。決まりきった危ない操作の遮断の型は <!-- link:begin hook-recipes#block-dangerous -->代表的なフックのレシピ › 危ない操作を止める（準備中）<!-- link:end --> にある。
+- **フック**：PreToolUse のフックは、操作を止めて、理由と代わりの手段を Claude に返せる。書き方は <!-- link:begin block-with-exit-2#reason -->[フックで止めて理由を返す（exit 2 と JSON） › 理由と代わりの手段の書き方](../enforce/block-with-exit-2.md#reason)<!-- link:end -->、効かない場面は <!-- link:begin block-with-exit-2#limits -->[フックで止めて理由を返す（exit 2 と JSON） › 効かない場面と落とし穴](../enforce/block-with-exit-2.md#limits)<!-- link:end --> を引く。決まりきった危ない操作の遮断の型は <!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end --> にある。
 - **サンドボックス**：OS が強制する境界で、強制力は <!-- gen:begin feature sandbox/enforcement -->鍵<!-- gen:end feature sandbox/enforcement --> である。Bash のコマンドとそこから起きたプロセスの書き込みを、作業ディレクトリなどに閉じる。ホームを消す `rm` が届かなくなる。一方、Claude のファイルの道具・MCP サーバー・フックはサンドボックスの外で動く。囲える範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->、使い始めは <!-- link:begin sandboxing#minimal -->[サンドボックスで封じ込める › 最小の使い方](../enforce/sandboxing.md#minimal)<!-- link:end --> が持つ。
 - **保護される場所**：ルートやホームなどへの `rm` は、どのモードでも止まる。止まるのは決まった場所の削除に限られ、force push や `git reset --hard` は含まれない。範囲は <!-- link:begin protected-paths#critical-rm -->消せない場所・触れない場所（protected paths） › どのモードでも止まる削除（準備中）<!-- link:end --> が持つ。
 - **auto モード**：別の分類器が、実行前の操作を見て、範囲を超えるものを止める。ただし、公式は「確認を減らすが安全を保証しない」と書き、判断は決定論ではない。止める対象と見逃しは <!-- link:begin what-auto-mode-stops#defaults -->[auto モードは何を止め、何を止めないか › 既定で止めるもの・通すもの](../enforce/what-auto-mode-stops.md#defaults)<!-- link:end --> と <!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end --> が持つ。
@@ -253,7 +253,7 @@ updated: 2026-11-05
 - 本番の接続の資格情報を、Claude が動く環境に置かない。読み取り専用の資格情報だけを渡す。
 - リモートのブランチは、サーバー側のブランチ保護で強制 push と削除を禁じる。設定の手順はホスティングの文書にある。
 - commit と push を人が握るか任せるかは <!-- link:begin working-with-git#who-commits -->[git との付き合い方 › 誰がコミットするか](../cli/working-with-git.md#who-commits)<!-- link:end --> で決める。
-- 確認をすべて外すモードや無人の実行は、隔離した使い捨ての環境だけで動かす。理由は <!-- link:begin where-bypass-is-ok#why-isolate -->bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか（準備中）<!-- link:end --> が持つ。確認を減らしたいだけなら、先に鍵を置く。
+- 確認をすべて外すモードや無人の実行は、隔離した使い捨ての環境だけで動かす。理由は <!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](where-bypass-is-ok.md#why-isolate)<!-- link:end --> が持つ。確認を減らしたいだけなら、先に鍵を置く。
 
 !!! example "判断例：夜間にブランチを整理させる"
     - **状況**：マージ済みの古いブランチが 40 本ある。夜間の整理を Claude へ任せて、朝に結果だけを見たい。
@@ -320,9 +320,9 @@ updated: 2026-11-05
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [git との付き合い方](../cli/working-with-git.md)
-- bypassPermissions と無人の実行はどこで動かすか（準備中）
+- [bypassPermissions と無人の実行はどこで動かすか](where-bypass-is-ok.md)
 
 </div>
 

@@ -1,0 +1,14 @@
+title: 役割を伝えて、サブエージェントの定義を書かせるプロンプト
+kind: prompt
+place: 依頼の本文
+safety: false
+features: [subagents]
+conditions:
+  - 山かっこの部分を、自分の役割・道具の制限に置き換えて出す
+  - 新しいセッションで試す
+expect:
+  - when: 山かっこを埋めた依頼を出す
+    then: .claude/agents/ の下に Markdown のファイルが作られ、front matter に name と description、道具の制限が入る（観察として扱う）
+  - when: 作られたファイルの description を読む
+    then: 先頭に、どんなときに呼ぶかが書かれている
+control: 置き場所と道具を伝えないと、置き場所や道具の制限が既定のままのファイルができ、意図と違うことがある

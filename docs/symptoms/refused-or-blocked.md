@@ -111,7 +111,7 @@ Claude 側の原因を、確かめる手間が小さい順に並べる。全体�
 
 断られたときの表示の文は面ごとに違い、変わりやすい。本体は <!-- link:begin when-requests-are-refused#by-surface -->正当な依頼が断られたとき › 面ごとの表示と仕組み（分類器が見るもの・自動のモデルの切り替え）（準備中）<!-- link:end --> が 1 か所で持つので、ここには書かない。
 
-途中で別のモデルの返事になったときは、自動のモデルの切り替えが起きた手がかりとして読む。切り替えた先のモデルの位置づけは <!-- link:begin current-models -->現行モデルの一覧と位置づけ（準備中）<!-- link:end --> で読める。「モデルを変えれば通る」という手段としては扱わない。
+途中で別のモデルの返事になったときは、自動のモデルの切り替えが起きた手がかりとして読む。切り替えた先のモデルの位置づけは <!-- link:begin current-models -->[現行モデルの一覧と位置づけ](../models/current-models.md)<!-- link:end --> で読める。「モデルを変えれば通る」という手段としては扱わない。
 
 ## 判断例 {#examples}
 
@@ -176,7 +176,7 @@ Claude 側の原因を、確かめる手間が小さい順に並べる。全体�
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
 - /feedback・トランスクリプトの共有で送られるもの（準備中）
 - 設定を外して切り分ける（--safe-mode）（準備中）
-- 現行モデルの一覧と位置づけ（準備中）
+- [現行モデルの一覧と位置づけ](../models/current-models.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [確認ばかりで進まない・途中で止まる](keeps-stopping.md)
 - [読ませたページやファイルの指示に従ってしまった](followed-injected-instructions.md)

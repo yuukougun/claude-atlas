@@ -43,31 +43,52 @@ nav:
           - 指示はどこに入るか: basics/where-instructions-sit.md
           - お願いと鍵: basics/request-vs-lock.md
           - データと命令を区別できない: basics/data-vs-instructions.md
+  - 製品の地図と面の選び方:
+      - surfaces/index.md
+      - 面の選び方:
+          - アプリ・Claude Code・API の選び方: surfaces/choosing-a-surface.md
+          - 実行場所の違い: surfaces/where-it-runs.md
   - モデル・effort・思考:
       - models/index.md
+      - モデルを選ぶ:
+          - 現行モデルの一覧と位置づけ: models/current-models.md
+          - モデルの選び方（三段階）: models/choosing-a-model.md
       - effort・思考・コンテキスト:
           - effort の段階と使い分け: models/effort-levels.md
+          - 「考えて」と書くことの現在（ultrathink）: models/thinking-keywords.md
       - 替えたとき・劣化を疑うとき:
           - 劣化を疑ったら測って確かめる: models/suspected-degradation.md
+          - 新しいモデルに替えたら見直すこと: models/after-switching-models.md
   - 頼み方:
       - prompting/index.md
       - 頼み方の原則:
           - 新人の同僚に頼むつもりで: prompting/brief-a-new-colleague.md
           - 理由を添える: prompting/give-reasons.md
           - 具体性の 4 点（対象・状況・完了・手本）: prompting/four-specifics.md
+          - 例を見せる: prompting/show-examples.md
+          - 否定形ではなく、望む形で書く: prompting/say-what-you-want.md
+          - 強調語（IMPORTANT・必ず）の現在: prompting/emphasis-words.md
       - 何をどこまで頼むか:
           - 提案してほしいのか、実行してほしいのか: prompting/suggest-or-do.md
           - 範囲を伝える（やらないこと）: prompting/state-the-scope.md
       - 資料と入力の渡し方:
           - 長い資料は先、質問は最後: prompting/long-context-first.md
+          - 画像・スクリーンショット・音声で渡す: prompting/images-and-voice.md
+      - 詰め方と頼み直し:
+          - 質問させる・インタビューさせる: prompting/let-claude-ask.md
       - 正直さと確かめ方:
           - 「分からない」と言ってよいと伝える: prompting/allow-i-dont-know.md
+      - 型と例文:
+          - Before/After プロンプト集: prompting/before-after-prompts.md
   - 文脈を整える:
       - context/index.md
+      - 総論:
+          - 机を整える（総論）: context/tidy-the-desk.md
       - 新しくする・巻き戻す:
           - 新しい会話を始めるタイミング: context/when-to-start-fresh.md
           - 違うと返すより、巻き戻す・編集する: context/rewind-dont-correct.md
       - 圧縮:
+          - /compact と自動圧縮: context/compact-and-auto-compact.md
           - 圧縮で消えない場所に約束を置く: context/promises-after-compaction.md
       - 書き出す:
           - handoff 文書と document-and-clear: context/handoff-documents.md
@@ -75,34 +96,62 @@ nav:
           - /context で中身を見る: context/inspect-context.md
           - 常駐するもののコスト（CLAUDE.md・MCP・スキル）: context/always-on-costs.md
           - "@参照と、何を読ませるかの絞り込み": context/choose-what-to-read.md
+          - 長い資料を渡すとき: context/handing-long-documents.md
+      - 脇道を分ける:
+          - 調査をサブエージェントに任せる: context/research-in-subagents.md
   - アプリを使いこなす:
       - app/index.md
       - 指示と記憶:
           - 指示の置き場所（アプリ）: app/where-to-put-instructions.md
+          - プロジェクトの使いどころ: app/using-projects.md
           - アプリのメモリ: app/how-memory-works.md
       - 資料と長い会話:
           - 添付ファイルはどこまで読まれるか: app/how-attachments-are-read.md
       - 調べる・作る:
           - web 検索・リサーチ・拡張思考の使い分け: app/search-research-thinking.md
+          - ファイル作成とコード実行: app/files-and-code-execution.md
+          - アーティファクト: app/artifacts-overview.md
+      - つなぐ・足す:
+          - コネクタ（MCP）をアプリで使う: app/connectors-in-the-app.md
+      - 任せる:
+          - 権限モードと安全: app/permission-modes-in-the-app.md
+          - タスクと定期タスク（Cowork）: app/tasks-and-schedules-in-the-app.md
   - Claude Code の基本操作:
       - cli/index.md
       - 入力と基本の操作:
           - 入力の記号（/ ! @）と Esc: cli/input-symbols.md
+          - 知らないと損をする操作: cli/must-know-operations.md
       - 権限モードと計画:
           - 権限モードの選び方: cli/permission-modes-overview.md
+          - plan mode の使いどころ: cli/when-to-plan.md
       - 巻き戻しとセッション:
           - チェックポイントと /rewind（git との違い）: cli/checkpoints-and-rewind.md
           - git との付き合い方: cli/working-with-git.md
+      - 見る・切り分ける:
+          - /usage・/context・ステータスライン: cli/usage-context-statusline.md
   - 文脈と指示を仕組みにする:
       - extend/index.md
+      - 全体と使い分け:
+          - 拡張を足すタイミング: extend/when-to-add-what.md
+          - 拡張の早見表: extend/extensions-at-a-glance.md
       - CLAUDE.md・rules・自動メモリ:
           - CLAUDE.md に書くこと・書かないこと: extend/what-to-put-in-claude-md.md
           - CLAUDE.md の長さと剪定: extend/claude-md-length.md
+          - .claude/rules と paths: extend/path-scoped-rules.md
           - CLAUDE.md・rules・スキル・出力スタイルの違い: extend/claude-md-vs-rules-skills-styles.md
       - スキル:
+          - スキルの考え方: extend/how-skills-load.md
           - スキルの作り方: extend/writing-skills.md
+          - スキルの description の書き方: extend/skill-descriptions.md
+          - フックとスキルの違い: extend/hook-vs-skill.md
+      - サブエージェント:
+          - サブエージェントの作り方と使いどころ: extend/writing-subagents.md
+          - スキルとサブエージェントの違い: extend/skill-vs-subagent.md
       - MCP:
           - MCP をつなぐ: extend/connecting-mcp.md
+          - MCP か CLI か: extend/mcp-or-cli.md
+      - 見直し:
+          - 拡張の棚卸しと剪定: extend/pruning-extensions.md
   - 確かめる:
       - verify/index.md
       - 完了を確かめる:
@@ -111,6 +160,7 @@ nav:
           - 検証の階段: verify/verification-ladder.md
       - 事実を確かめる:
           - 事実を確かめる: verify/fact-checking.md
+          - 引用や出典の確かめ方: verify/checking-citations.md
       - テストで確かめる:
           - テストを守る（改ざんを防ぐ）: verify/protect-tests.md
       - レビューで確かめる:
@@ -132,6 +182,7 @@ nav:
       - enforce/index.md
       - 何を縛るか:
           - お願いを鍵に移す判断: enforce/when-to-lock.md
+          - お願いと鍵の対応表: enforce/request-lock-table.md
       - 権限と封じ込め:
           - 権限ルール（allow・ask・deny）: enforce/permission-rules.md
           - auto モードは何を止め、何を止めないか: enforce/what-auto-mode-stops.md
@@ -139,19 +190,26 @@ nav:
       - フック:
           - フックの考え方とイベント: enforce/hooks-basics.md
           - フックで止めて理由を返す: enforce/block-with-exit-2.md
+          - フックを安全に書く: enforce/writing-safe-hooks.md
+          - 代表的なフックのレシピ: enforce/hook-recipes.md
   - 安全とデータ:
       - safety/index.md
       - 既定と承認:
           - 安全の早見表: safety/default-safety-settings.md
+          - bypassPermissions と無人の実行はどこで動かすか: safety/where-bypass-is-ok.md
       - データの扱い:
           - 送ったデータの行方（学習・保持期間）: safety/where-your-data-goes.md
+          - 預かったデータ・規約付きのデータを AI に渡してよいか: safety/entrusted-data.md
       - 悪意ある入力:
           - プロンプトインジェクションの実際: safety/prompt-injection-in-practice.md
           - 三つを同時に持たせない: safety/lethal-trifecta.md
+          - 知らないリポジトリを開く前に: safety/before-opening-unknown-repos.md
           - MCP・プラグイン・スキルを入れる前の確認: safety/vetting-extensions.md
       - 秘密と壊す操作:
           - 秘密情報（.env・API キー）を守る: safety/protecting-secrets.md
           - 消されたくないもの（破壊的コマンド）: safety/destructive-commands.md
+      - 規則と開示:
+          - 学校・組織・コンテストの規則: safety/checking-ai-rules.md
   - 任せて並べる:
       - delegate/index.md
       - 任せる前の判断:
@@ -162,6 +220,9 @@ nav:
       - 並べる:
           - 並列の上限は人間が決める: delegate/humans-set-the-parallel-limit.md
           - 並列の方式の選び方: delegate/choosing-parallel-modes.md
+          - git worktree で並列にする: delegate/parallel-with-worktrees.md
+      - 定期と無人の実行:
+          - 非対話モード（claude -p）の基本: delegate/headless-basics.md
   - 判断と理解を守る:
       - judgment/index.md
       - 総論:
@@ -173,15 +234,24 @@ nav:
           - AI の案は「みんなの案」（均質化）: judgment/ai-ideas-are-everyones.md
       - 理解を手放さない:
           - AI で新しい技術を学ぶ: judgment/learning-with-ai.md
+  - API・SDK の概念:
+      - api/index.md
+      - アプリと API の対応:
+          - アプリの機能と API の概念の対応表: api/feature-to-api-mapping.md
+      - エージェントを組む:
+          - SDK と CLI の比較: api/sdk-comparison.md
   - 費用と利用上限:
       - cost/index.md
       - 上限と節約:
           - 利用上限の仕組み: cost/how-usage-limits-work.md
           - 上限を早く使う要因: cost/what-uses-up-limits.md
           - 節約の優先順位: cost/saving-priorities.md
+      - 任せて回すとき:
+          - 並列・ループ・workflows のコスト: cost/parallel-and-loop-costs.md
   - 日本語で使う:
       - japanese/index.md
       - 考え方:
+          - 日本語で指示して大丈夫か: japanese/can-i-prompt-in-japanese.md
           - 日本語の出力を揃える仕組み: japanese/align-japanese-output.md
       - 返答とコミットの言語:
           - 日本語で返し続けさせる: japanese/keep-replies-in-japanese.md
@@ -191,16 +261,25 @@ nav:
           - textlint をフックで回す: japanese/textlint-hook.md
   - 用途別レシピ:
       - recipes/index.md
+      - 読んで理解する:
+          - 知らないコードベースを読む: recipes/explore-a-codebase.md
       - 直す:
           - バグを直す: recipes/fix-a-bug.md
+      - 作る・変える:
+          - 仕様を先に固める: recipes/spec-first.md
+      - 調べものと文書:
+          - 調べものとレポート: recipes/research-and-reports.md
   - 組織・チームで使う:
       - team/index.md
+      - 導入と決まり:
+          - 社内ガイドラインに書くこと: team/ai-usage-guidelines.md
       - レビューと判断:
           - レビューのボトルネックと疲労: team/review-bottlenecks.md
   - コンテストで使う:
       - contest/index.md
       - 規則と練習:
           - 大会の規則の早見: contest/competition-rules.md
+          - 練習と本番の使い分け: contest/practice-vs-contest-day.md
   - 症状辞典:
       - symptoms/index.md
       - 返答と品質:
@@ -318,58 +397,105 @@ extra:
       how-thinking-works: "2027-02-02"
       knowledge-cutoff: "2027-02-02"
       where-instructions-sit: "2027-02-02"
+      choosing-a-surface: "2026-12-04"
+      where-it-runs: "2026-12-04"
+      current-models: "2026-11-28"
+      choosing-a-model: "2027-02-02"
       effort-levels: "2026-12-03"
+      thinking-keywords: "2026-12-04"
       suspected-degradation: "2027-02-02"
+      after-switching-models: "2027-02-02"
+      emphasis-words: "2027-02-02"
       long-context-first: "2027-01-27"
+      images-and-voice: "2026-12-04"
+      let-claude-ask: "2027-02-02"
+      tidy-the-desk: "2027-02-02"
       when-to-start-fresh: "2027-02-01"
       rewind-dont-correct: "2027-02-02"
+      compact-and-auto-compact: "2027-02-02"
       promises-after-compaction: "2027-02-02"
       handoff-documents: "2027-02-02"
       inspect-context: "2027-02-02"
       always-on-costs: "2027-02-02"
       choose-what-to-read: "2027-01-27"
+      handing-long-documents: "2027-02-02"
+      research-in-subagents: "2027-02-02"
       where-to-put-instructions: "2026-12-04"
+      using-projects: "2027-02-02"
       how-memory-works: "2026-12-04"
       how-attachments-are-read: "2027-02-02"
       search-research-thinking: "2027-01-27"
+      files-and-code-execution: "2026-12-05"
+      artifacts-overview: "2027-02-02"
+      connectors-in-the-app: "2027-02-02"
+      permission-modes-in-the-app: "2027-02-02"
+      tasks-and-schedules-in-the-app: "2026-12-04"
       input-symbols: "2027-02-02"
+      must-know-operations: "2027-02-02"
       permission-modes-overview: "2026-12-04"
+      when-to-plan: "2027-02-02"
       checkpoints-and-rewind: "2027-02-02"
+      usage-context-statusline: "2027-02-02"
+      when-to-add-what: "2027-02-02"
+      extensions-at-a-glance: "2027-02-02"
       what-to-put-in-claude-md: "2027-02-02"
       claude-md-length: "2027-02-02"
+      path-scoped-rules: "2027-02-02"
       claude-md-vs-rules-skills-styles: "2027-02-02"
+      how-skills-load: "2027-02-02"
       writing-skills: "2027-02-02"
+      skill-descriptions: "2027-02-02"
+      hook-vs-skill: "2027-02-02"
+      writing-subagents: "2027-02-02"
+      skill-vs-subagent: "2027-02-02"
       connecting-mcp: "2027-02-02"
+      mcp-or-cli: "2027-02-02"
+      pruning-extensions: "2027-02-02"
       evidence-not-reports: "2027-11-05"
       verification-ladder: "2027-02-02"
       fact-checking: "2027-02-02"
+      checking-citations: "2027-02-02"
       protect-tests: "2027-02-02"
       independent-review: "2027-02-02"
       measure-changes: "2027-02-02"
       when-to-lock: "2027-02-02"
+      request-lock-table: "2027-02-02"
       permission-rules: "2027-02-02"
       what-auto-mode-stops: "2027-01-27"
       sandboxing: "2027-02-02"
       hooks-basics: "2026-12-05"
       block-with-exit-2: "2027-02-02"
+      writing-safe-hooks: "2027-02-02"
+      hook-recipes: "2027-02-02"
       default-safety-settings: "2026-12-04"
+      where-bypass-is-ok: "2027-02-02"
       where-your-data-goes: "2027-02-02"
       prompt-injection-in-practice: "2027-02-02"
+      before-opening-unknown-repos: "2027-02-02"
       vetting-extensions: "2027-02-02"
       protecting-secrets: "2027-02-02"
       destructive-commands: "2027-02-02"
       five-questions-before-delegating: "2027-02-02"
       goal-until-done: "2027-02-02"
       choosing-parallel-modes: "2026-12-04"
+      parallel-with-worktrees: "2027-02-02"
+      headless-basics: "2026-12-04"
       learning-with-ai: "2027-02-02"
+      feature-to-api-mapping: "2026-12-04"
+      sdk-comparison: "2026-11-28"
       how-usage-limits-work: "2026-12-04"
       what-uses-up-limits: "2026-12-04"
+      parallel-and-loop-costs: "2026-12-04"
+      can-i-prompt-in-japanese: "2027-02-02"
       align-japanese-output: "2026-12-04"
       keep-replies-in-japanese: "2027-02-02"
       consistent-politeness: "2026-12-04"
       consistent-notation: "2027-02-02"
       textlint-hook: "2027-02-02"
+      explore-a-codebase: "2027-02-02"
       fix-a-bug: "2027-02-02"
+      spec-first: "2027-02-02"
+      research-and-reports: "2027-02-02"
       competition-rules: "2026-12-04"
       does-more-than-asked: "2027-02-02"
       keeps-stopping: "2027-02-02"
@@ -403,61 +529,107 @@ extra:
     badges:
       tokens: {maturity: GA}
       attention-budget: {maturity: GA, enforcement: なし}
-      what-survives-compaction: {maturity: GA}
+      what-survives-compaction: {maturity: GA, enforcement: なし}
       subagent-isolation: {maturity: GA}
       how-thinking-works: {maturity: GA, enforcement: なし}
       knowledge-cutoff: {maturity: GA}
       where-instructions-sit: {maturity: GA, enforcement: お願い}
+      choosing-a-surface: {maturity: GA}
+      where-it-runs: {maturity: GA}
+      current-models: {maturity: GA}
+      choosing-a-model: {maturity: GA}
       effort-levels: {maturity: GA, enforcement: なし}
+      thinking-keywords: {maturity: GA, enforcement: お願い}
       suspected-degradation: {maturity: GA, enforcement: なし}
+      after-switching-models: {maturity: GA}
+      emphasis-words: {maturity: GA, enforcement: お願い}
+      images-and-voice: {maturity: beta}
+      let-claude-ask: {maturity: GA}
+      tidy-the-desk: {maturity: GA}
       when-to-start-fresh: {maturity: GA}
       rewind-dont-correct: {maturity: GA, enforcement: なし}
-      promises-after-compaction: {maturity: GA}
+      compact-and-auto-compact: {maturity: GA, enforcement: なし}
+      promises-after-compaction: {maturity: GA, enforcement: なし}
       handoff-documents: {maturity: GA}
       inspect-context: {maturity: GA, enforcement: なし}
       always-on-costs: {maturity: GA, enforcement: お願い}
       choose-what-to-read: {maturity: GA, enforcement: なし}
+      research-in-subagents: {maturity: GA}
       where-to-put-instructions: {maturity: GA, enforcement: お願い}
+      using-projects: {maturity: GA}
       how-memory-works: {maturity: GA}
       how-attachments-are-read: {maturity: GA}
       search-research-thinking: {maturity: GA}
+      files-and-code-execution: {maturity: GA}
+      artifacts-overview: {maturity: GA, enforcement: なし}
+      connectors-in-the-app: {maturity: GA}
+      permission-modes-in-the-app: {maturity: GA, enforcement: 鍵}
+      tasks-and-schedules-in-the-app: {maturity: GA}
       input-symbols: {maturity: GA, enforcement: なし}
+      must-know-operations: {maturity: GA, enforcement: なし}
       permission-modes-overview: {maturity: GA, enforcement: 鍵}
+      when-to-plan: {maturity: GA, enforcement: 鍵}
       checkpoints-and-rewind: {maturity: GA, enforcement: なし}
+      usage-context-statusline: {maturity: GA}
+      when-to-add-what: {maturity: GA, enforcement: お願い}
+      extensions-at-a-glance: {maturity: GA, enforcement: お願い}
       what-to-put-in-claude-md: {maturity: GA, enforcement: お願い}
       claude-md-length: {maturity: GA, enforcement: お願い}
+      path-scoped-rules: {maturity: GA, enforcement: お願い}
       claude-md-vs-rules-skills-styles: {maturity: GA, enforcement: お願い}
+      how-skills-load: {maturity: GA, enforcement: お願い}
       writing-skills: {maturity: GA, enforcement: お願い}
+      skill-descriptions: {maturity: GA, enforcement: お願い}
+      hook-vs-skill: {maturity: GA, enforcement: 鍵}
+      writing-subagents: {maturity: GA}
+      skill-vs-subagent: {maturity: GA, enforcement: お願い}
       connecting-mcp: {maturity: GA, enforcement: なし}
+      mcp-or-cli: {maturity: GA, enforcement: なし}
+      pruning-extensions: {maturity: GA, enforcement: お願い}
       verification-ladder: {maturity: GA, enforcement: モデルの判定}
       fact-checking: {maturity: GA}
+      checking-citations: {maturity: GA}
       protect-tests: {maturity: GA, enforcement: 鍵}
       independent-review: {maturity: GA}
       measure-changes: {maturity: GA}
       when-to-lock: {maturity: GA, enforcement: お願い}
+      request-lock-table: {maturity: GA, enforcement: 鍵}
       permission-rules: {maturity: GA, enforcement: 鍵}
       what-auto-mode-stops: {maturity: GA, enforcement: モデルの判定}
       sandboxing: {maturity: GA, enforcement: 鍵}
       hooks-basics: {maturity: GA, enforcement: 鍵}
       block-with-exit-2: {maturity: GA, enforcement: 鍵}
+      writing-safe-hooks: {maturity: GA, enforcement: 鍵}
+      hook-recipes: {maturity: GA, enforcement: 鍵}
       default-safety-settings: {maturity: GA, enforcement: 鍵}
+      where-bypass-is-ok: {maturity: GA, enforcement: 鍵}
       where-your-data-goes: {maturity: GA}
       prompt-injection-in-practice: {maturity: GA, enforcement: なし}
+      before-opening-unknown-repos: {maturity: GA}
       vetting-extensions: {maturity: GA, enforcement: なし}
       protecting-secrets: {maturity: GA, enforcement: 鍵}
       destructive-commands: {maturity: GA, enforcement: なし}
       five-questions-before-delegating: {maturity: GA}
       goal-until-done: {maturity: GA, enforcement: モデルの判定}
       choosing-parallel-modes: {maturity: GA}
+      parallel-with-worktrees: {maturity: GA, enforcement: なし}
+      headless-basics: {maturity: GA}
       learning-with-ai: {maturity: GA, enforcement: お願い}
+      feature-to-api-mapping: {maturity: GA}
+      sdk-comparison: {maturity: GA}
       how-usage-limits-work: {maturity: GA}
       what-uses-up-limits: {maturity: GA}
+      parallel-and-loop-costs: {maturity: GA}
+      can-i-prompt-in-japanese: {maturity: GA}
       align-japanese-output: {maturity: GA, enforcement: お願い}
       keep-replies-in-japanese: {maturity: GA, enforcement: お願い}
       consistent-politeness: {maturity: GA, enforcement: お願い}
       consistent-notation: {maturity: GA, enforcement: お願い}
       textlint-hook: {maturity: GA, enforcement: 鍵}
+      explore-a-codebase: {maturity: GA}
       fix-a-bug: {maturity: GA, enforcement: なし}
+      spec-first: {maturity: GA}
+      research-and-reports: {maturity: GA}
       does-more-than-asked: {maturity: GA, enforcement: なし}
       keeps-stopping: {maturity: GA, enforcement: なし}
       refused-or-blocked: {maturity: GA, enforcement: なし}
@@ -468,7 +640,7 @@ extra:
       summary-overstates-source: {maturity: GA}
       forgets-in-long-chats: {maturity: GA, enforcement: なし}
       going-in-circles: {maturity: GA, enforcement: なし}
-      forgot-after-compaction: {maturity: GA}
+      forgot-after-compaction: {maturity: GA, enforcement: なし}
       unexpected-memories: {maturity: GA}
       instructions-ignored: {maturity: GA, enforcement: お願い}
       repeating-the-same-explanation: {maturity: GA, enforcement: お願い}
@@ -479,7 +651,7 @@ extra:
       stuck-in-a-check-loop: {maturity: GA, enforcement: モデルの判定}
       wont-rethink-approach: {maturity: GA, enforcement: 鍵}
       blames-the-tools: {maturity: GA, enforcement: 鍵}
-      parallel-fatigue: {maturity: GA}
+      parallel-fatigue: {maturity: GA, enforcement: なし}
       deleted-something-important: {maturity: GA, enforcement: なし}
       secrets-exposed: {maturity: GA, enforcement: 鍵}
       followed-injected-instructions: {maturity: GA}

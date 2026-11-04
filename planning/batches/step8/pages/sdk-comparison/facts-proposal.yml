@@ -1,0 +1,3 @@
+proposals:
+  - fact: {id: managed-agents-session-hour-price, title: Managed Agents のセッション課金（running 中の 1 時間あたり）, value: "$0.08（セッション 1 時間あたり。running 中のみ）", sources: [api-docs-managed-agents], checked: 2026-10-29, status: 要確認（調査資料 02 §5-9 の写し。公式の Pricing の表で確かめていない）}
+    used_in: [sdk-comparison#managed-agents]

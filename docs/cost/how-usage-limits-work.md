@@ -102,7 +102,7 @@ updated: 2026-11-05
 
 === "Claude Code"
 
-    `/usage` で上限の使われ方を見る。ステータスラインに出しておけば、長い作業の途中でも気づける。見方は <!-- link:begin usage-context-statusline#statusline -->/usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの（準備中）<!-- link:end --> にある。
+    `/usage` で上限の使われ方を見る。ステータスラインに出しておけば、長い作業の途中でも気づける。見方は <!-- link:begin usage-context-statusline#statusline -->[/usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの](../cli/usage-context-statusline.md#statusline)<!-- link:end --> にある。
 
 何が枠を減らしているかを調べるときは、<!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> に進む。減りが速いと感じるときに、何から確かめるかは <!-- link:begin hits-limits-quickly#diagnosis -->[すぐ上限に当たる › 原因を安く確かめる順](../symptoms/hits-limits-quickly.md#diagnosis)<!-- link:end --> にある。
 
@@ -168,9 +168,9 @@ updated: 2026-11-05
 
 **次に読む**
 
+- [/usage・/context・ステータスラインで状態を見る](../cli/usage-context-statusline.md)
 - [上限を早く使う要因](what-uses-up-limits.md)
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
-- /usage・/context・ステータスラインで状態を見る（準備中）
 - プランの選び方（準備中）
 - 最上位のモデルを使う前に（準備中）
 - usage credits（上限を超えた分の従量課金）（準備中）
@@ -181,7 +181,7 @@ updated: 2026-11-05
 
 - [節約の優先順位（手戻りを減らすのが先）](saving-priorities.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
-- /usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの（準備中）
+- [/usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの](../cli/usage-context-statusline.md#statusline)
 - rate limits とエラー（混雑と再試行）（準備中）
 
 </div>

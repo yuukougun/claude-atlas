@@ -36,7 +36,7 @@ updated: 2026-11-04
 !!! abstract "要点"
     - **何ができるか**：Claude Code で常に効かせる規則は CLAUDE.md、フォルダやファイルごとの規約は rules、ときどき使う手順はスキル、応答の口調や形は出力スタイルに置き分けられる。4 つはどれも守られる保証のないお願いである。例外を許さない禁止は、鍵（Claude が従うかどうかに頼らず Claude Code が実行するフックや deny ルール）に移し、CLAUDE.md には止めている理由と、例外が要るときの相談の基準だけを書く。
     - **いつ引くか**：常に守らせたい規則とときどき使う手順の置き場所を分けたいとき。応答の口調や形式を変えたいが、どこに書けばよいか分からないとき。アプリ（claude.ai）の Styles を探しているときは、別の機能なので「混同されやすい別の機能」の節を見る。
-    - **前提**：<!-- link:begin path-scoped-rules -->.claude/rules と paths で必要なときだけ読ませる（準備中）<!-- link:end -->、<!-- link:begin how-skills-load -->スキルの考え方（手順を必要なときだけ読む）（準備中）<!-- link:end -->
+    - **前提**：<!-- link:begin path-scoped-rules -->[.claude/rules と paths で必要なときだけ読ませる](path-scoped-rules.md)<!-- link:end -->、<!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)<!-- link:end -->
 
 <!-- textlint-disable -->
 別名：指示の置き場所・output style と CLAUDE.md の違い・rules と CLAUDE.md の違い
@@ -54,7 +54,7 @@ CLAUDE.md・rules・スキル・出力スタイルを、属性ごとに比べる
 | 機能 | 読み込みの時期 | コンテキストのコスト | 圧縮で残るか |
 | --- | --- | --- | --- |
 | [CLAUDE.md](what-to-put-in-claude-md.md) | セッション開始 | 常駐 | 残る |
-| rules（.claude/rules/）（準備中） | セッション開始か、一致するファイルを扱うとき | 常駐か、一致するファイルのときだけ | 条件による |
+| [rules（.claude/rules/）](path-scoped-rules.md) | セッション開始か、一致するファイルを扱うとき | 常駐か、一致するファイルのときだけ | 条件による |
 | [スキル（skills）](writing-skills.md) | セッション開始と使うとき | 使うまで小さい | 残る |
 | 出力スタイル（output styles）（準備中） | セッション開始と切り替えたとき | 常駐 | 残る |
 
@@ -78,7 +78,7 @@ CLAUDE.md・rules・スキル・出力スタイルを、属性ごとに比べる
 
 CLAUDE.md・rules・スキル・出力スタイルのどこに指示を置くかは、3 つの軸で決まる。軸 A は、例外を許さないかどうかである。軸 B は、変えたいのが応答の形なのか、知識や手順なのかである。軸 C は、いつ読み込ませるか（毎回、触るファイルに応じて、使う作業に応じて）である。次の 5 つの問いを、この順に当てはめる。
 
-1. **例外を許さないか（軸 A）**：許さないなら、鍵（フックや deny ルールなど、Claude Code が実行する制御）に移す。CLAUDE.md には、鍵で止めている理由と、例外が要るときに人へ相談する基準だけを書く。鍵の考え方は<!-- link:begin request-vs-lock -->[お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)<!-- link:end -->、手段の選び方は<!-- link:begin request-lock-table -->お願いと鍵の対応表（準備中）<!-- link:end -->を見る。
+1. **例外を許さないか（軸 A）**：許さないなら、鍵（フックや deny ルールなど、Claude Code が実行する制御）に移す。CLAUDE.md には、鍵で止めている理由と、例外が要るときに人へ相談する基準だけを書く。鍵の考え方は<!-- link:begin request-vs-lock -->[お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)<!-- link:end -->、手段の選び方は<!-- link:begin request-lock-table -->[お願いと鍵の対応表](../enforce/request-lock-table.md)<!-- link:end -->を見る。
 2. **変えたいのは応答の形か（軸 B）**：口調・説明の量・確認の仕方をセッション全体で変えたいなら、出力スタイルに置く。選ぶには、`/output-style` のコマンドか、`/config` のメニューを使う。まず組み込みのスタイルで足りるかを試す。足りないとき、たとえば文体を指定したいときや役割を大きく変えたいときに、自作する。組み込みの種類と選び方は<!-- link:begin output-style-modes -->出力スタイルで応答の仕方を切り替える（準備中）<!-- link:end -->を見る。日本語で返し続けさせる設定の組み合わせは<!-- link:begin keep-replies-in-japanese -->[日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)<!-- link:end -->を見る。
 3. **毎回の作業に要る事実か（軸 C：毎回）**：コマンド・推測できない落とし穴・規則の理由は、プロジェクトの根の CLAUDE.md に置く。ただし長くするほど、コンテキストを使い、守られにくくなると公式の文書は述べている。残す行と外す行の見分け方は<!-- link:begin what-to-put-in-claude-md -->[CLAUDE.md に書くこと・書かないこと](what-to-put-in-claude-md.md)<!-- link:end -->、長さの目安と削り方は<!-- link:begin claude-md-length -->[CLAUDE.md の長さと剪定](claude-md-length.md)<!-- link:end -->を見る。
 4. **一部のフォルダやファイルにだけ要るか（軸 C：触るファイルに応じて）**：`paths` を付けた rules に置く。規約が 1 つのフォルダに収まるなら、そのフォルダの CLAUDE.md でもよい。
@@ -86,13 +86,13 @@ CLAUDE.md・rules・スキル・出力スタイルのどこに指示を置くか
 
 1〜5 で置く種類を決めたあと、自分だけの好みなら、置く階層をユーザーレベルに替える。同じ種類のファイル（`~/.claude/CLAUDE.md`・`~/.claude/rules/`・`~/.claude/skills/`・`~/.claude/output-styles/`）に置き、チームで共有するプロジェクトのファイルには書かない。
 
-最初から全部を分ける必要はない。同じ注意を繰り返すようになってから仕組みに移すほうがよい。その目安は<!-- link:begin when-to-add-what -->拡張を足すタイミング（準備中）<!-- link:end -->を見る。サブエージェントやフック、MCP、プラグインまで含めた全体図は<!-- link:begin extensions-at-a-glance -->拡張機能の全体図と使い分け早見表（準備中）<!-- link:end -->にある。迷いやすい場面を、判断例で示す。
+最初から全部を分ける必要はない。同じ注意を繰り返すようになってから仕組みに移すほうがよい。その目安は<!-- link:begin when-to-add-what -->[拡張を足すタイミング](when-to-add-what.md)<!-- link:end -->を見る。サブエージェントやフック、MCP、プラグインまで含めた全体図は<!-- link:begin extensions-at-a-glance -->[拡張機能の全体図と使い分け早見表](extensions-at-a-glance.md)<!-- link:end -->にある。迷いやすい場面を、判断例で示す。
 
 !!! example "判断例：.env を読ませない"
     - **状況**：`.env` の中身を Claude に読ませたくない。今は CLAUDE.md に「`.env` を読まない」と一行書いてある。
     - **迷う候補**：CLAUDE.md の文を強める。rules にする。deny ルールかフックで止める。
     - **選んだもの**：deny ルールかフックで止める。CLAUDE.md には、止めている理由と、値が要るときは人に頼むという基準を書く。
-    - **理由**：CLAUDE.md は文脈であり、文を強めても守られる保証は増えない。rules も CLAUDE.md と同じお願いで、置き場所を替えても強さは変わらない。例外を許さない禁止は、Claude が従うかどうかに頼らない鍵で止める。理由を残しておくと、止められたときに何をすればよいかが Claude に伝わる。deny ルールとフックの選び方は<!-- link:begin request-lock-table -->お願いと鍵の対応表（準備中）<!-- link:end -->を見る。
+    - **理由**：CLAUDE.md は文脈であり、文を強めても守られる保証は増えない。rules も CLAUDE.md と同じお願いで、置き場所を替えても強さは変わらない。例外を許さない禁止は、Claude が従うかどうかに頼らない鍵で止める。理由を残しておくと、止められたときに何をすればよいかが Claude に伝わる。deny ルールとフックの選び方は<!-- link:begin request-lock-table -->[お願いと鍵の対応表](../enforce/request-lock-table.md)<!-- link:end -->を見る。
 
 !!! example "判断例：テストファイルだけの規約"
     - **状況**：`*.test.ts` の書き方に規約がある。テストはフォルダのあちこちにあり、根の CLAUDE.md に書くと、テストに触れない作業でも毎回読み込まれる。
@@ -126,7 +126,7 @@ CLAUDE.md・rules・スキル・出力スタイルは択一ではなく、指示
 - **rules**（`.claude/rules/`。`paths` 付き）：一部のフォルダやファイルだけの規約を置く。圧縮の後も要る規約は、`paths` を外すか根の CLAUDE.md に置く。
 - **スキル**（`.claude/skills/<名前>/SKILL.md`）：ときどき使う手順と、その場面だけの書式を置く。毎回要る事実は置かない。
 - **出力スタイル**（`.claude/output-styles/`）：セッション全体の口調・説明の量・確認の仕方を置く。プロジェクトの知識は置かない。CLAUDE.md との細かい分担は<!-- link:begin output-style-modes#vs-claude-md -->出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担（準備中）<!-- link:end -->を見る。
-- **鍵**（フック・deny ルール・管理設定）：例外を許さない禁止と、必ず起きるべき処理を置く。管理設定（managed settings）は、組織が配り、利用者のファイルでは上書きできない設定である。判断の基準や理由は置かず、CLAUDE.md に書く。フックとスキルの選び方は<!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end -->を見る。
+- **鍵**（フック・deny ルール・管理設定）：例外を許さない禁止と、必ず起きるべき処理を置く。管理設定（managed settings）は、組織が配り、利用者のファイルでは上書きできない設定である。判断の基準や理由は置かず、CLAUDE.md に書く。フックとスキルの選び方は<!-- link:begin hook-vs-skill -->[フックとスキルの違い](hook-vs-skill.md)<!-- link:end -->を見る。
 - **ユーザーレベルのファイル**（`~/.claude/` の下）：自分だけの好みを置く。チームで共有する規約は置かない。
 - **起動時のフラグ `--append-system-prompt`**：その起動だけ、システムプロンプトに文を足す。起動のたびに渡すので、対話での普段使いより、スクリプトや自動化に向く。自作の出力スタイルと違い、標準の指示を外さず足すだけである。足す指示が増えるほど守られにくくなると、公式のブログは述べている。
 
@@ -288,19 +288,19 @@ CLAUDE.md・rules・スキル・出力スタイルと混同されやすい機能
 
 **前提**
 
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
-- スキルの考え方（手順を必要なときだけ読む）（準備中）
+- [.claude/rules と paths で必要なときだけ読ませる](path-scoped-rules.md)
+- [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
 
 **関連**
 
 - 出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担（準備中）
 - [CLAUDE.md に書くこと・書かないこと](what-to-put-in-claude-md.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
-- 拡張機能の全体図と使い分け早見表（準備中）
-- お願いと鍵の対応表（準備中）
+- [拡張機能の全体図と使い分け早見表](extensions-at-a-glance.md)
+- [お願いと鍵の対応表](../enforce/request-lock-table.md)
 - 自動メモリ（準備中）
-- フックとスキルの違い（準備中）
-- 拡張を足すタイミング（準備中）
+- [フックとスキルの違い](hook-vs-skill.md)
+- [拡張を足すタイミング](when-to-add-what.md)
 - [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)
 - サブエージェントに引き継がれないもの（準備中）
 - アプリでスキルを使う › 移された Styles（準備中）

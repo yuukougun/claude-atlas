@@ -1,0 +1,10 @@
+sources:
+  - id: jinrai-claude-projects-guide
+    url: https://jinrai.co.jp/blog/claude-projects-guide/
+    title: Claude Projects の解説記事（仁頼のブログ）
+    kind: 実践者
+    publisher: 仁頼
+    lang: ja
+    checked: '2026-11-05'
+    published: '2026-04-03'
+    note: 1 プロジェクト 1 目的の勧め（目的を混ぜると指示とナレッジが衝突する）、最初は少数のファイルから始めて古い版を消すこと、指示に数値や形式を書くことを、調査資料 04 Q4 の写しで確かめた。企業の解説記事で、単独の実践者の勧めとして扱う

@@ -1,0 +1,13 @@
+title: .worktreeinclude の例（秘密を写しすぎない）
+kind: other
+place: project
+safety: true
+conditions:
+  - 壊れても困らない試験用のリポジトリで試す
+  - 偽の値を入れた .env.local を作り、gitignore に入れておく
+  - 新しいセッションで試す
+expect:
+  - when: この一覧を置いて claude --worktree <名前> で worktree を作る
+    then: .env.local が新しい worktree に写っている
+  - when: 一覧に書いていない gitignore 済みのファイル（例：.env.production）を worktree の中で探す
+    then: そのファイルは写っていない

@@ -1,0 +1,9 @@
+proposals:
+  - fact:
+      id: on-demand-instruction-file-size-limit
+      title: 必要なときに読み込まれる CLAUDE.md・rules（paths 付きを含む）の 1 ファイルあたりの文字数の上限
+      value: "200K のコンテキストウィンドウでは 40,000 文字。1M では Claude Opus 4.6 と Claude Sonnet 4.6 が 200,000 文字、それより後のモデルが 150,000 文字。超えると先頭だけが渡り、残りは Read で読むよう促す注記が付く。v2.1.309 より前は、この上限が必要なときに読み込まれるファイルには適用されなかった"
+      sources: [cc-docs-memory]
+      checked: 2026-11-05
+      status: 確認済み
+    used_in: [path-scoped-rules#limits]

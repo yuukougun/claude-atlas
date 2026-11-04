@@ -54,7 +54,7 @@ updated: 2026-11-05
 - **スキル**：読み込みの時期は <!-- gen:begin feature skills/load_timing -->セッション開始と使うとき<!-- gen:end feature skills/load_timing -->、コストの分類は「<!-- gen:begin feature skills/context_cost -->使うまで小さい<!-- gen:end feature skills/context_cost -->」である。名前と説明がセッション開始から毎回入り、本体は呼ばれたときに入る。`disable-model-invocation: true` のスキルは、呼ぶまで何も入らない。
 - **MCP**：読み込みの時期は <!-- gen:begin feature mcp/load_timing -->セッション開始<!-- gen:end feature mcp/load_timing -->、コストの分類は「<!-- gen:begin feature mcp/context_cost -->使うまで小さい<!-- gen:end feature mcp/context_cost -->」である。開始時に入るのはツールの名前とサーバーの指示だけで、JSON のスキーマは使うときまで遅らせる（ツール検索が既定で有効）。サーバーの指示が長ければ、それは常駐の分として残る。
 
-ほかの拡張も、入り方で費用が分かれる。出力スタイルは毎リクエストに乗り、サブエージェントは本体のコンテキストから隔離され、フックは出力を返さない限りコンテキストを使わない。この分類は公式の Extend Claude Code に基づき、2026-10-29 に確かめた。全拡張を並べた比較は <!-- link:begin extensions-at-a-glance -->拡張機能の全体図と使い分け早見表（準備中）<!-- link:end --> にある。
+ほかの拡張も、入り方で費用が分かれる。出力スタイルは毎リクエストに乗り、サブエージェントは本体のコンテキストから隔離され、フックは出力を返さない限りコンテキストを使わない。この分類は公式の Extend Claude Code に基づき、2026-10-29 に確かめた。全拡張を並べた比較は <!-- link:begin extensions-at-a-glance -->[拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)<!-- link:end --> にある。
 
 ツール検索が使えない配置（公式は Microsoft Foundry の Azure の配置などを挙げる）は、MCP の入り方がここに書いたとおりにならない可能性がある。その場合の挙動は確かめていない。
 
@@ -80,11 +80,11 @@ updated: 2026-11-05
 
 常駐を減らす順は、失うものが少なく戻しやすいものから進める、というのがこの辞典の推奨である。公式が順番を定めているわけではない。
 
-1. **測る**：起動直後の /context の値を控え、何が常駐の分を占めているかを見る。読み方と基準値は <!-- link:begin inspect-context#baseline -->[/context で中身を見る › 起動直後の基準値](inspect-context.md#baseline)<!-- link:end -->、棚卸し全体の測り方は <!-- link:begin pruning-extensions#measure -->拡張の棚卸しと剪定 › 測る（準備中）<!-- link:end --> にある。
-2. **使っていないものを外す**：使っていない MCP サーバーとスキルを外す。入れ直すのは簡単で、失うものがほぼない。外すかの基準は <!-- link:begin pruning-extensions#criteria -->拡張の棚卸しと剪定 › 切る基準（準備中）<!-- link:end -->、つなぎ方は <!-- link:begin connecting-mcp -->[MCP をつなぐ](../extend/connecting-mcp.md)<!-- link:end --> にある。
-3. **MCP を CLI で置き換えられるか見る**：成熟した CLI があれば、CLI とスキルのほうがコンテキストの効率がよいとする実務家の声が多い（根拠：中）。選び方は <!-- link:begin mcp-or-cli -->MCP か CLI か（準備中）<!-- link:end --> にある。
-4. **長い手順をスキルへ移す**：特定の作業でしか使わない長い手順は、説明だけを常駐させ、本体を呼ばれたときに読ませる。仕組みは <!-- link:begin how-skills-load -->スキルの考え方（手順を必要なときだけ読む）（準備中）<!-- link:end --> にある。
-5. **特定のフォルダ向けの規約を絞る**：そのフォルダのファイルに触れたときだけ読ませる。やり方は <!-- link:begin path-scoped-rules -->.claude/rules と paths で必要なときだけ読ませる（準備中）<!-- link:end --> にある。
+1. **測る**：起動直後の /context の値を控え、何が常駐の分を占めているかを見る。読み方と基準値は <!-- link:begin inspect-context#baseline -->[/context で中身を見る › 起動直後の基準値](inspect-context.md#baseline)<!-- link:end -->、棚卸し全体の測り方は <!-- link:begin pruning-extensions#measure -->[拡張の棚卸しと剪定 › 測る](../extend/pruning-extensions.md#measure)<!-- link:end --> にある。
+2. **使っていないものを外す**：使っていない MCP サーバーとスキルを外す。入れ直すのは簡単で、失うものがほぼない。外すかの基準は <!-- link:begin pruning-extensions#criteria -->[拡張の棚卸しと剪定 › 切る基準](../extend/pruning-extensions.md#criteria)<!-- link:end -->、つなぎ方は <!-- link:begin connecting-mcp -->[MCP をつなぐ](../extend/connecting-mcp.md)<!-- link:end --> にある。
+3. **MCP を CLI で置き換えられるか見る**：成熟した CLI があれば、CLI とスキルのほうがコンテキストの効率がよいとする実務家の声が多い（根拠：中）。選び方は <!-- link:begin mcp-or-cli -->[MCP か CLI か](../extend/mcp-or-cli.md)<!-- link:end --> にある。
+4. **長い手順をスキルへ移す**：特定の作業でしか使わない長い手順は、説明だけを常駐させ、本体を呼ばれたときに読ませる。仕組みは <!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)<!-- link:end --> にある。
+5. **特定のフォルダ向けの規約を絞る**：そのフォルダのファイルに触れたときだけ読ませる。やり方は <!-- link:begin path-scoped-rules -->[.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)<!-- link:end --> にある。
 6. **CLAUDE.md の行を削る**：「消したら誤りが出るか」で残す行を選ぶ。問いは <!-- link:begin claude-md-length#deletion-test -->[CLAUDE.md の長さと剪定 › 削るときの問い](../extend/claude-md-length.md#deletion-test)<!-- link:end -->、/init の叩き台なら <!-- link:begin claude-md-length#init-draft -->[CLAUDE.md の長さと剪定 › /init の叩き台を削る](../extend/claude-md-length.md#init-draft)<!-- link:end --> を使う。
 7. **機械的に守らせたいことはフックか設定へ**：例外を許さない禁止は、CLAUDE.md に長く書かず、権限の設定かフックで強制し、CLAUDE.md には理由と相談の基準だけを残す。
 
@@ -99,8 +99,8 @@ updated: 2026-11-05
 ## 誤解と、移すときの落とし穴 {#misconceptions}
 
 - **「常駐は悪で、ゼロにするのがよい」ではない**。毎回効かせたい規約や、守りの前提は常駐に置くものである。公式の How Claude Code works は、自動の圧縮で会話の初めの指示が失われうるので、続けて守らせる規則は CLAUDE.md に置くよう勧める。減らす対象は「毎回は要らないもの」である。
-- **「スキルや MCP は入れても無料」ではない**。スキルは説明だけ、MCP はツールの名前とサーバーの指示だけでも、数が増えれば常駐の分は増える。入れすぎたときに残るコストは <!-- link:begin how-skills-load -->スキルの考え方（手順を必要なときだけ読む）（準備中）<!-- link:end --> にもある。
-- **「使うときだけ読む形に移せば、いつでも効く」ではない**。フォルダ向けの規約やスキルの本体は、会話が圧縮された後、戻る時期が常駐のものと違う。<!-- link:begin path-scoped-rules#after-compaction -->.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期（準備中）<!-- link:end --> と <!-- link:begin how-skills-load#after-compaction -->スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの（準備中）<!-- link:end --> で確かめる。必ず効かせたい規約を移してしまわない。
+- **「スキルや MCP は入れても無料」ではない**。スキルは説明だけ、MCP はツールの名前とサーバーの指示だけでも、数が増えれば常駐の分は増える。入れすぎたときに残るコストは <!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)<!-- link:end --> にもある。
+- **「使うときだけ読む形に移せば、いつでも効く」ではない**。フォルダ向けの規約やスキルの本体は、会話が圧縮された後、戻る時期が常駐のものと違う。<!-- link:begin path-scoped-rules#after-compaction -->[.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期](../extend/path-scoped-rules.md#after-compaction)<!-- link:end --> と <!-- link:begin how-skills-load#after-compaction -->[スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの](../extend/how-skills-load.md#after-compaction)<!-- link:end --> で確かめる。必ず効かせたい規約を移してしまわない。
 - **「CLAUDE.md の強調で守らせる」は常駐を増やすだけ**。強調しても守られない行は、ファイルを短くするか、強制できる仕組みに移す。
 - **入れる前の確認は別に要る**。MCP やスキルは、利用者の権限で動く。常駐の費用の話と別に、出所と中身の確認が要るので、<!-- link:begin vetting-extensions -->[MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)<!-- link:end --> で確かめてから入れる。
 
@@ -135,17 +135,17 @@ updated: 2026-11-05
 **次に読む**
 
 - [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)
-- 拡張の棚卸しと剪定（準備中）
+- [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
 
 **関連**
 
 - [/context で中身を見る](inspect-context.md)
 - [返事が遅い・時間がかかりすぎる](../symptoms/too-slow.md)
-- 拡張機能の全体図と使い分け早見表（準備中）
-- .claude/rules と paths で必要なときだけ読ませる（準備中）
-- スキルの考え方（手順を必要なときだけ読む）（準備中）
+- [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
+- [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
+- [スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)
 - [MCP をつなぐ](../extend/connecting-mcp.md)
-- MCP か CLI か（準備中）
+- [MCP か CLI か](../extend/mcp-or-cli.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - プロンプトキャッシング（先頭が変わらないことの価値）（準備中）
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)

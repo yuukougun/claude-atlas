@@ -84,7 +84,7 @@ effort を変えると、プロンプトキャッシュが外れることがあ�
 
 このページが主に関わるのは、Claude 側の原因のうち「依頼と答えが合っていない」ものの、effort の選び違いである。依頼に対して考える深さが浅すぎると、答えの筋が外れる。逆に深すぎると、待ち時間と使用量だけが増える。辞典の原理（Claude の仕組みを分ける見方）のどれにも主には当たらないので、ここでは原理ではなく原因で整理する。
 
-- **浅すぎるとき**：難しい調査や設計に、低い段のまま頼むと、手がかりを拾い切らずに答えが出る。段を上げるのが先で、モデルを替えるのはその後になる。順番の理由は <!-- link:begin choosing-a-model#effort-first -->モデルの選び方（三段階） › モデルより effort を先に動かす理由（準備中）<!-- link:end --> にある。
+- **浅すぎるとき**：難しい調査や設計に、低い段のまま頼むと、手がかりを拾い切らずに答えが出る。段を上げるのが先で、モデルを替えるのはその後になる。順番の理由は <!-- link:begin choosing-a-model#effort-first -->[モデルの選び方（三段階） › モデルより effort を先に動かす理由](../models/choosing-a-model.md#effort-first)<!-- link:end --> にある。
 - **深すぎるとき**：単純な作業に高い段を使うと、答えの質が上がらないまま、待ち時間と使用量が増える。
 - **確かめる手段になるか**：考える量を増やしても、答えが正しい保証は得られない。結果は、テストや原文など独立した手段で確かめる。
 
@@ -92,7 +92,7 @@ effort を変えると、プロンプトキャッシュが外れることがあ�
 
 ## 誤解 {#misconceptions}
 
-**「よく考えて」と書けば effort が上がる**。上がらない。think hard や「熟考」などの言い回しは、キーワードとして扱われず、普通の文として渡る。深く考えさせたいときは effort を上げる。Claude Code では、ultrathink だけが、その 1 ターンを深く考えさせる言葉として認識される。詳しくは <!-- link:begin thinking-keywords#plain-text-phrases -->「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し（準備中）<!-- link:end --> と <!-- link:begin thinking-keywords#ultrathink -->「考えて」と書くことの現在（ultrathink） › ultrathink の使いどころ（準備中）<!-- link:end --> にある。古い助言としての扱いは <!-- link:begin outdated-advice-ledger#think-hard-keywords -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#think-hard-keywords)<!-- link:end --> にある。
+**「よく考えて」と書けば effort が上がる**。上がらない。think hard や「熟考」などの言い回しは、キーワードとして扱われず、普通の文として渡る。深く考えさせたいときは effort を上げる。Claude Code では、ultrathink だけが、その 1 ターンを深く考えさせる言葉として認識される。詳しくは <!-- link:begin thinking-keywords#plain-text-phrases -->[「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し](../models/thinking-keywords.md#plain-text-phrases)<!-- link:end --> と <!-- link:begin thinking-keywords#ultrathink -->[「考えて」と書くことの現在（ultrathink） › ultrathink の使いどころ](../models/thinking-keywords.md#ultrathink)<!-- link:end --> にある。古い助言としての扱いは <!-- link:begin outdated-advice-ledger#think-hard-keywords -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#think-hard-keywords)<!-- link:end --> にある。
 
 **画面に出る思考が、Claude の計算のすべてである**。そうとは限らない。画面に出るのは要約であることがあり、数えられるのは生の思考の量である。要約や説明が、実際の内部の処理と一致する保証もない。この点は <!-- link:begin unfaithful-reasoning -->表示された思考は内部の計算と一致するとは限らない（準備中）<!-- link:end --> にある。
 
@@ -136,8 +136,8 @@ effort を変えると、プロンプトキャッシュが外れることがあ�
 
 **関連**
 
-- 「考えて」と書くことの現在（ultrathink）（準備中）
-- モデルの選び方（三段階）（準備中）
+- [「考えて」と書くことの現在（ultrathink）](../models/thinking-keywords.md)
+- [モデルの選び方（三段階）](../models/choosing-a-model.md)
 - 推論を見せてほしいとき（準備中）
 - プロンプトキャッシング（先頭が変わらないことの価値）（準備中）
 

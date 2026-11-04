@@ -1,0 +1,17 @@
+title: 他の人が作ったスキルを名前だけ、または非表示にする skillOverrides の設定
+kind: settings
+place: local   # /skills の画面から保存すると .claude/settings.local.json に書かれる。設定のファイルに直接書いてもよい
+safety: false
+features: [skills]
+conditions:
+  - legacy-context と deploy は例の名前。自分の環境にあるスキルの名前に置き換える
+  - SKILL.md は編集しない（共有のリポジトリにあるスキルを想定する）
+  - 設定を変えた後は新しいセッションで試す
+expect:
+  - when: /skills の画面を開く
+    then: name-only にしたスキルは名前だけが一覧に出て、off にしたスキルは / のメニューにも出ない
+  - when: off にしたスキルを名前を打って呼ぶ
+    then: スキルは動かず、skillOverrides によるエラーが返る
+  - when: エントリを消すか "on" に戻す
+    then: 名前と説明が元どおり一覧に出る
+control: 設定を入れないと、2 つのスキルの名前と説明は毎回の一覧に載り続ける

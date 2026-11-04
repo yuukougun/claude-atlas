@@ -1,0 +1,13 @@
+title: claude_desktop_config.json にローカル MCP サーバーを足す例
+kind: settings
+place: user
+safety: true
+conditions:
+  - Node.js が使える Desktop で試す
+  - 渡すフォルダは、壊れても困らない作業用の 1 つに絞る
+  - 設定を保存したら、Desktop を完全に終了して起動し直す
+expect:
+  - when: Desktop を起動し直し、入力欄の「+」から Connectors を開く
+    then: filesystem のサーバーとそのツールが見える
+  - when: 渡したフォルダの外のファイルを読むよう頼む
+    then: サーバーが断る。ただし、これはサーバーの実装の側の制限であり、Claude への指示では守れない

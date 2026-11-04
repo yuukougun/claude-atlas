@@ -55,7 +55,7 @@ updated: 2026-11-05
 | モデルと effort | 高い effort ほど考えるトークンが増える。最上位のモデルは、ほかより速く減る | <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end -->、<!-- link:begin before-using-top-model#which-limit -->最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）（準備中）<!-- link:end --> |
 | artifact の作成と利用 | 生成物を作って直すたびに、出力と読み直しが増える | <!-- link:begin saving-priorities#order -->[節約の優先順位（手戻りを減らすのが先） › 優先順位](saving-priorities.md#order)<!-- link:end --> |
 | 多段の作業（コード実行・ファイル作成・ブラウジング） | 1 回の依頼の中で、ツールの呼び出しと結果の読み込みが連なる | <!-- link:begin saving-priorities#reduce-rework -->[節約の優先順位（手戻りを減らすのが先） › 手戻りを減らす](saving-priorities.md#reduce-rework)<!-- link:end --> |
-| サブエージェント・並列・ループ・workflows | 本数と回数と 1 回の文脈の大きさの掛け算で増える | <!-- link:begin parallel-and-loop-costs#multiplication -->並列・ループ・workflows のコスト › 費用が膨らむ掛け算（準備中）<!-- link:end --> |
+| サブエージェント・並列・ループ・workflows | 本数と回数と 1 回の文脈の大きさの掛け算で増える | <!-- link:begin parallel-and-loop-costs#multiplication -->[並列・ループ・workflows のコスト › 費用が膨らむ掛け算](parallel-and-loop-costs.md#multiplication)<!-- link:end --> |
 
 出典は、Help Center の利用上限の案内と、Claude Code の費用の文書である（2026-10 時点の確認）。公式が挙げる要因の数と並びは変わりうるので、この表を網羅とは読まない。
 
@@ -111,7 +111,7 @@ updated: 2026-11-05
     - **選んだもの**：先に、使わない MCP を外す。サブエージェントは、本数と 1 回の文脈の大きさを見直してから、残すかを決める。
     - **理由**：サブエージェントは別室の部下で、片付けの作業を本体の文脈から離せる利点もある。やめると、本体の文脈が太って逆に増えることがある。使わない MCP は外しても困らず、毎回の常駐の分が確実に減る。
 
-内訳の判断（どれを削るか）は <!-- link:begin insights-and-usage-review#usage-breakdown -->/insights と /usage で振り返る › /usage の内訳から削るものを選ぶ（準備中）<!-- link:end --> が持つ。道具の一覧とステータスラインへの出し方は <!-- link:begin usage-context-statusline#instruments -->/usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの（準備中）<!-- link:end --> を引く。内訳を読んだ後に自分で試せる依頼を、下に置く。
+内訳の判断（どれを削るか）は <!-- link:begin insights-and-usage-review#usage-breakdown -->/insights と /usage で振り返る › /usage の内訳から削るものを選ぶ（準備中）<!-- link:end --> が持つ。道具の一覧とステータスラインへの出し方は <!-- link:begin usage-context-statusline#instruments -->[/usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの](../cli/usage-context-statusline.md#instruments)<!-- link:end --> を引く。内訳を読んだ後に自分で試せる依頼を、下に置く。
 
 <!-- gen:begin snippet what-uses-up-limits/ask-usage-breakdown -->
 <!-- textlint-disable -->
@@ -177,12 +177,12 @@ updated: 2026-11-05
 **次に読む**
 
 - [節約の優先順位（手戻りを減らすのが先）](saving-priorities.md)
-- 並列・ループ・workflows のコスト（準備中）
+- [並列・ループ・workflows のコスト](parallel-and-loop-costs.md)
 
 **関連**
 
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
-- /usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの（準備中）
+- [/usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの](../cli/usage-context-statusline.md#instruments)
 - /insights と /usage で振り返る（準備中）
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - [effort の段階と使い分け](../models/effort-levels.md)

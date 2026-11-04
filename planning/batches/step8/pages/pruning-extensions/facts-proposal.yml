@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: plugin-not-used-recently-threshold, title: "/plugin の Installed タブで「Not used recently」に移るまでの未使用の期間と回数, 日数と回数", value: "14 日かつ 10 セッション（未使用）", sources: [cc-docs-plugins-measure], checked: 2026-11-05, status: 確認済み}
+    used_in: [pruning-extensions#measure]
+  - fact: {id: plugin-context-cost-highlight-threshold, title: "公式マーケットプレイスの Context cost で、毎ターンの行が強調される常駐トークンの境目", value: "2,000 トークン以上", sources: [cc-docs-plugins-measure], checked: 2026-11-05, status: 確認済み}
+    used_in: [pruning-extensions#measure]

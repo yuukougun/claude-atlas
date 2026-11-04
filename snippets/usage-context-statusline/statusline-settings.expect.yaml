@@ -1,0 +1,14 @@
+title: ステータスラインのスクリプトを登録する設定
+kind: settings
+place: user
+safety: false
+features: [statusline]
+requires: [~/.claude/statusline.sh]
+conditions:
+  - 設定ファイルに既に statusLine があるときは、上書きする前に中身を控える
+  - 新しいセッションで試す
+expect:
+  - when: 設定を入れて新しいセッションを開く
+    then: 画面の下に、スクリプトが出力した 1 行が出る
+  - when: スクリプトが無い、または動かない
+    then: ステータスラインは空になるか出ないだけで、会話の動きは変わらない（動作は未確認）

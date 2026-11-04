@@ -1,0 +1,14 @@
+title: 開くだけで動きうる設定を探す一覧
+kind: other
+place: 依頼の本文
+safety: true
+requires: [bash, find, grep]
+conditions:
+  - 自分のものではない小さなリポジトリを 1 つ clone する
+  - Claude Code は起動せず、端末から実行する
+expect:
+  - when: clone したディレクトリを渡して実行する
+    then: 設定・MCP・エディタの設定のファイルの一覧と、フックや環境変数などの行が出る
+  - when: "`.claude/` も `.mcp.json` もないリポジトリで実行する"
+    then: 一覧は空で、行も出ない
+control: "一覧を使わず `ls` だけで見ると、隠しディレクトリの中身と、設定の中のフックや接続先を見落とすことがある"

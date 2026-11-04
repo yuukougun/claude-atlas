@@ -89,7 +89,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 3. **散らかっている（常駐するもの・裏で動くもの）**
     - **見るもの**：毎回のリクエストに乗るもの（CLAUDE.md の全文、スキルの説明、MCP のツールの一覧）が大きくないか。ループ、定期実行、サブエージェントなど、入力していない間も動くものがないか。
     - **確かめ方**：Claude Code では `/usage` の内訳で、スキル・サブエージェント・プラグイン・MCP サーバーのどれが大きいかを見る（根拠は公式の費用の文書）。アプリでは、有効にしているコネクタや拡張を数える（この辞典の推奨。公式の文書の記述ではない）。
-    - **当たったとき**：使わないものを無効にし、常駐するものを小さくする。順序は <!-- link:begin always-on-costs#reduce -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 減らす順](../context/always-on-costs.md#reduce)<!-- link:end -->、裏で動く仕事の膨らみ方は <!-- link:begin parallel-and-loop-costs#multiplication -->並列・ループ・workflows のコスト › 費用が膨らむ掛け算（準備中）<!-- link:end --> にある。
+    - **当たったとき**：使わないものを無効にし、常駐するものを小さくする。順序は <!-- link:begin always-on-costs#reduce -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 減らす順](../context/always-on-costs.md#reduce)<!-- link:end -->、裏で動く仕事の膨らみ方は <!-- link:begin parallel-and-loop-costs#multiplication -->[並列・ループ・workflows のコスト › 費用が膨らむ掛け算](../cost/parallel-and-loop-costs.md#multiplication)<!-- link:end --> にある。
 4. **合っていない（手戻りが多い）**
     - **見るもの**：同じ作業をやり直させていないか。出てきたものが意図と違い、頼み直す回数が多くなっていないか。
     - **確かめ方**：直近の作業を見返し、やり直しにかけた往復の数を数える。往復が増えるほど、毎回の読み直しも重なる。
@@ -97,7 +97,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 5. **合っていない（モデルと effort が作業に重い）**
     - **見るもの**：既定のモデルと effort のまま、軽い作業に重い設定を当てていないか。逆に、重い作業で軽い設定にして手戻りを増やしていないか。
     - **確かめ方**：今の設定を確かめてから、1 つだけ変えて同じ種類の作業で比べる。モデルによって上限の減り方が変わるので、`/usage` で自分の作業の減り方を見る。
-    - **当たったとき**：まず既定で試し、足りなければ effort、それでも足りないときだけ上位のモデルを使う。段階の順は <!-- link:begin choosing-a-model#three-steps -->モデルの選び方（三段階） › 三段階：既定 → effort → 上位のモデル（準備中）<!-- link:end -->、effort の使い分けは <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end --> にある。
+    - **当たったとき**：まず既定で試し、足りなければ effort、それでも足りないときだけ上位のモデルを使う。段階の順は <!-- link:begin choosing-a-model#three-steps -->[モデルの選び方（三段階） › 三段階：既定 → effort → 上位のモデル](../models/choosing-a-model.md#three-steps)<!-- link:end -->、effort の使い分けは <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end --> にある。
 6. **枠の側（プランの上限の種類・課金の経路）**
     - **見るもの**：1 から 5 のどれにも当たらないとき、自分の口座にどの上限があるか。API キーの環境変数があって、意図しない経路で課金されていないか。
     - **確かめ方**：上限の種類と戻る時刻は <!-- link:begin how-usage-limits-work#limit-types -->[利用上限の仕組み（面をまたいで共有する枠） › 枠の種類と戻る時刻（プランごとの表）](../cost/how-usage-limits-work.md#limit-types)<!-- link:end --> で確かめる。経路は <!-- link:begin check-billing-path#how-the-path-is-chosen -->課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順（準備中）<!-- link:end --> で確かめる。
@@ -117,7 +117,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 散らかっている | [上限を早く使う要因](../cost/what-uses-up-limits.md)<br>長い会話の自動のコンテキスト管理と長さの上限（準備中）<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md) |
-| 合っていない | [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)<br>モデルの選び方（三段階）（準備中）<br>[effort の段階と使い分け](../models/effort-levels.md) |
+| 合っていない | [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)<br>[モデルの選び方（三段階）](../models/choosing-a-model.md)<br>[effort の段階と使い分け](../models/effort-levels.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -157,10 +157,10 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 
 予防は、気をつけることではなく、見える形と習慣に移す。
 
-- **状態を見えるようにする**：使用量をステータスラインへ出しておくと、長い作業の途中でも気づける。出し方は <!-- link:begin usage-context-statusline#statusline -->/usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの（準備中）<!-- link:end --> にある。
+- **状態を見えるようにする**：使用量をステータスラインへ出しておくと、長い作業の途中でも気づける。出し方は <!-- link:begin usage-context-statusline#statusline -->[/usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの](../cli/usage-context-statusline.md#statusline)<!-- link:end --> にある。
 - **話題が変わったら新しい会話にする**：続けるか新しくするかの合図は <!-- link:begin when-to-start-fresh#signals -->[新しい会話を始めるタイミング › 新しくする合図](../context/when-to-start-fresh.md#signals)<!-- link:end --> にある。
 - **常駐するものを小さく保つ**：必要なときだけ読ませる形に移す。移す順序は <!-- link:begin always-on-costs#reduce -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 減らす順](../context/always-on-costs.md#reduce)<!-- link:end --> にある。
-- **始める前に決める**：並列やループは、同時に動かす数、止める条件、費用の上限を、始める前に決める。<!-- link:begin parallel-and-loop-costs#decide-before-starting -->並列・ループ・workflows のコスト › 始める前に決める三つ（準備中）<!-- link:end --> を見る。
+- **始める前に決める**：並列やループは、同時に動かす数、止める条件、費用の上限を、始める前に決める。<!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> を見る。
 - **手戻りを先に減らす**：計画と確かめを先に入れる。<!-- link:begin saving-priorities#order -->[節約の優先順位（手戻りを減らすのが先） › 優先順位](../cost/saving-priorities.md#order)<!-- link:end --> の順で進める。
 - **上限額を先に決める**：従量で続ける手を使うなら、月の上限額と通知を、使う前に決める。決め方は <!-- link:begin usage-credits-basics#set-a-cap -->usage credits（上限を超えた分の従量課金） › 上限額と通知を決める（準備中）<!-- link:end --> にある。
 
@@ -201,16 +201,16 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 - 長い会話の自動のコンテキスト管理と長さの上限（準備中）
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)
-- モデルの選び方（三段階）（準備中）
+- [モデルの選び方（三段階）](../models/choosing-a-model.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
 
 **関連**
 
 - プランの選び方（準備中）
-- /usage・/context・ステータスラインで状態を見る（準備中）
+- [/usage・/context・ステータスラインで状態を見る](../cli/usage-context-statusline.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
-- 日本語で指示して大丈夫か（準備中）
-- 並列・ループ・workflows のコスト（準備中）
+- [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)
+- [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - usage credits（上限を超えた分の従量課金）（準備中）
 - 課金の経路を確かめる（API キーとサブスクリプション）（準備中）
 - AI が使えないときの備え（障害・上限）（準備中）

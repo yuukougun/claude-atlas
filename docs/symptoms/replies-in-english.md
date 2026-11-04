@@ -207,9 +207,9 @@ issue に書かれた件数や割合は、利用者が自分の記録を数え�
 
 **関連**
 
-- 日本語で指示して大丈夫か（準備中）
+- [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)
 - コミットメッセージ・コメントの言語（準備中）
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - 出力スタイルで応答の仕方を切り替える（準備中）
 - [圧縮の後に約束を忘れた](forgot-after-compaction.md)
 - [CLAUDE.md や指示が守られない](instructions-ignored.md)

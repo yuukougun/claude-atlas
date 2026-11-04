@@ -1,0 +1,27 @@
+proposals:
+  - fact:
+      id: file-creation-size-limit
+      title: ファイル作成・コード実行で扱う 1 ファイルの大きさの上限（アップロード・ダウンロード）
+      value: 30MB（超える PDF は context に載せず実行環境の中で処理できる）
+      sources: [hc-files]
+      checked: 2026-11-05
+      status: 確認済み
+    used_in: [files-and-code-execution#outputs]
+  - fact:
+      id: code-execution-network-egress-defaults
+      title: 実行環境のネットワーク（egress）の既定（プラン別）
+      value: 個人向け（Free・Pro・Max・Ultra）はオン／Team は package manager のみ／Enterprise（新しい組織）はオフ。選択肢は off・package managers only・指定ドメイン追加・All domains（法務のブロックリスト以外。最もリスクが高い）
+      sources: [hc-files]
+      checked: 2026-11-05
+      status: 確認済み
+    used_in: [files-and-code-execution#network]
+  - fact:
+      id: shared-chat-with-created-files-restriction
+      title: コード実行・ファイル作成で作ったファイルを含む会話の公開共有の制限
+      value: Free・Pro・Max・Ultra では公開共有できない（Team・Enterprise は公式の文書に記述なし）
+      sources: [hc-files]
+      checked: 2026-11-05
+      status: 確認済み
+    used_in: [files-and-code-execution#outputs]
+frontmatter:
+  - {id: files-and-code-execution, key: tracks, before: [file-creation, code-execution], after: [file-creation, code-execution], reason: "変更なし。ただし両機能の enforcement が null のため compare の強制力の列は出ない。ネットワークの設定は『鍵』に当たるか、作者の判断を仰ぎたい"}

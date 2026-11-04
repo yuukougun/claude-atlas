@@ -1,0 +1,9 @@
+proposals:
+  - fact: {id: doctor-prompt-audit-min-version, title: "/doctor prompt-audit が使える Claude Code の最低の版", value: "2.1.283", sources: [cc-docs-commands], checked: 2026-11-05, status: 確認済み}
+    used_in: [after-switching-models#checklist]
+  - fact: {id: sonnet-4-5-api-retirement-date, title: "Sonnet 4.5 の API での退役予定日", value: "2026-11-30", sources: [api-docs-model-deprecations, api-release-notes], checked: 2026-11-04, status: 要確認}
+    used_in: [after-switching-models#retirements-and-default-changes]
+  - fact: {id: haiku-4-5-removed-from-app-selector, title: "アプリのモデルの選択肢から Haiku 4.5 を外した日（Claude Code・Team と Enterprise・API には残る）", value: "2026-10-29", sources: [], checked: 2026-11-04, status: 要確認}
+    used_in: [after-switching-models#retirements-and-default-changes]
+  - fact: {id: api-version-removing-sampling-params, title: "temperature・top_p・top_k を外した API の版", value: "2026-10-21", sources: [api-docs-migration-2026-10-21, api-release-notes], checked: 2026-11-04, status: 確認済み}
+    used_in: [after-switching-models#api-parameters]

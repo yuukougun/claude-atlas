@@ -242,7 +242,7 @@ thinking は、答える前にどれだけ考えるかの仕組みで、effort �
 
 - **段は厳密な予算ではない。** 同じ段でも、依頼しだいで使う量は大きく変わる。使用量を確実に抑える手段としては使えない。上限を早く使う要因は <!-- link:begin what-uses-up-limits#causes -->[上限を早く使う要因 › 枠を早く減らす原因](../cost/what-uses-up-limits.md#causes)<!-- link:end --> で、自分の場合は <!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> で確かめる。
 - **max の常用。** 最高の段は、過剰に考えて逆効果になる場合がある。待ち時間も費用になる。先に低い段で試し、足りないときだけ上げる。
-- **段の持ち越し。** モデルを替えたら、前のモデルで決めた段をそのまま使わない。新しいモデルの既定から始める。見直す順は <!-- link:begin after-switching-models#checklist -->新しいモデルに替えたら見直すこと › 見直す順（準備中）<!-- link:end --> にある。
+- **段の持ち越し。** モデルを替えたら、前のモデルで決めた段をそのまま使わない。新しいモデルの既定から始める。見直す順は <!-- link:begin after-switching-models#checklist -->[新しいモデルに替えたら見直すこと › 見直す順](after-switching-models.md#checklist)<!-- link:end --> にある。
 - **体感で判断する。** 「浅くなった」「遅くなった」と感じたときは、版と段を記録して、同じ課題で比べる。
 - **遅さの原因を段だけに見る。** 遅いときの原因は段のほかに、文脈の重さや面の違いもある。切り分けは <!-- link:begin too-slow#diagnosis -->[返事が遅い・時間がかかりすぎる › 原因を安く確かめる順](../symptoms/too-slow.md#diagnosis)<!-- link:end --> にある。
 - **言葉で段を上げようとする。** 「よく考えて」と書いても、段は上がらない。段は設定で決める。
@@ -251,8 +251,8 @@ thinking は、答える前にどれだけ考えるかの仕組みで、effort �
 
 effort と並べて考える手段は、効く場所が違う。
 
-- **モデルを替える。** 選ぶ順は、既定で試し、足りなければ effort を上げ、それでも足りないときだけ上位のモデルにする。理由は <!-- link:begin choosing-a-model#effort-first -->モデルの選び方（三段階） › モデルより effort を先に動かす理由（準備中）<!-- link:end --> にある。
-- **プロンプトに考えさせる言葉を書く。** 普通の文として渡るだけで、effort は上がらない。1 回だけ深く考えさせる手段もある。使い分けは <!-- link:begin thinking-keywords#plain-text-phrases -->「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し（準備中）<!-- link:end --> と <!-- link:begin thinking-keywords#ultrathink -->「考えて」と書くことの現在（ultrathink） › ultrathink の使いどころ（準備中）<!-- link:end --> にある。
+- **モデルを替える。** 選ぶ順は、既定で試し、足りなければ effort を上げ、それでも足りないときだけ上位のモデルにする。理由は <!-- link:begin choosing-a-model#effort-first -->[モデルの選び方（三段階） › モデルより effort を先に動かす理由](choosing-a-model.md#effort-first)<!-- link:end --> にある。
+- **プロンプトに考えさせる言葉を書く。** 普通の文として渡るだけで、effort は上がらない。1 回だけ深く考えさせる手段もある。使い分けは <!-- link:begin thinking-keywords#plain-text-phrases -->[「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し](thinking-keywords.md#plain-text-phrases)<!-- link:end --> と <!-- link:begin thinking-keywords#ultrathink -->[「考えて」と書くことの現在（ultrathink） › ultrathink の使いどころ](thinking-keywords.md#ultrathink)<!-- link:end --> にある。
 - **fast mode と advisor。** 速さを料金と引き換えに得る手段と、要所だけ別のモデルに助言させる手段である。既定と effort で足りないときに足す。<!-- link:begin fast-mode-and-advisor#fast-mode -->fast mode と advisor › fast mode（準備中）<!-- link:end --> を見る。
 - **軽いモデルをサブエージェントに使う。** 仕事の重さの差が大きいときは、段でなくモデルで分ける。<!-- link:begin split-models-by-role#lighter-models -->計画・実装・サブエージェントでモデルを分ける › 軽いモデルの使いどころ（準備中）<!-- link:end --> を見る。
 - **web 検索やリサーチ。** 考える深さでなく、調べる範囲や最新の情報が要るかで選ぶ。<!-- link:begin search-research-thinking#comparison -->[web 検索・リサーチ・拡張思考の使い分け › 三つの使い分け](../app/search-research-thinking.md#comparison)<!-- link:end --> を見る。
@@ -290,14 +290,14 @@ effort と並べて考える手段は、効く場所が違う。
 
 **次に読む**
 
+- [「考えて」と書くことの現在（ultrathink）](thinking-keywords.md)
 - [劣化を疑ったら測って確かめる](suspected-degradation.md)
-- 「考えて」と書くことの現在（ultrathink）（準備中）
-- 新しいモデルに替えたら見直すこと（準備中）
+- [新しいモデルに替えたら見直すこと](after-switching-models.md)
 - fast mode と advisor（準備中）
 
 **関連**
 
-- モデルの選び方（三段階）（準備中）
+- [モデルの選び方（三段階）](choosing-a-model.md)
 - [返事が遅い・時間がかかりすぎる](../symptoms/too-slow.md)
 - 計画・実装・サブエージェントでモデルを分ける（準備中）
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)

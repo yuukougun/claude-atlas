@@ -64,7 +64,7 @@ updated: 2026-11-05
 
 図のとおり、すべての作業の出口は人のレビューの帯域である。本流の出口は幅を全部使い、偵察の出口は要約だけを通す。本数を決める問いは「何本動かせるか」ではなく、「出てくる結果を、何本分なら読み切れるか」になる。
 
-マシンと予算は、この帯域の手前にある別の制約である。台数や費用が膨らむ仕組みは <!-- link:begin parallel-and-loop-costs#multiplication -->並列・ループ・workflows のコスト › 費用が膨らむ掛け算（準備中）<!-- link:end --> で扱う。レビューと動作確認が人に積もる仕組みは <!-- link:begin review-bottlenecks#where-it-clogs -->[レビューのボトルネックと疲労 › 詰まる場所はレビューと動作確認](../team/review-bottlenecks.md#where-it-clogs)<!-- link:end --> にある。ここでは、費用が足りていても上限は消えないことだけを押さえる。
+マシンと予算は、この帯域の手前にある別の制約である。台数や費用が膨らむ仕組みは <!-- link:begin parallel-and-loop-costs#multiplication -->[並列・ループ・workflows のコスト › 費用が膨らむ掛け算](../cost/parallel-and-loop-costs.md#multiplication)<!-- link:end --> で扱う。レビューと動作確認が人に積もる仕組みは <!-- link:begin review-bottlenecks#where-it-clogs -->[レビューのボトルネックと疲労 › 詰まる場所はレビューと動作確認](../team/review-bottlenecks.md#where-it-clogs)<!-- link:end --> にある。ここでは、費用が足りていても上限は消えないことだけを押さえる。
 
 ## 本流と偵察で本数を分ける {#mainline-vs-scouting}
 
@@ -80,7 +80,7 @@ updated: 2026-11-05
 
 重要な変更は、一度に 1 つしかレビューしてマージできない、という実践者の指摘がある（根拠：弱。単独の経験談）。並列に向く作業として、同じ書き手は調査・試作・低リスクの保守・マージしない前提の偵察を挙げる。表はこの整理に沿っている。
 
-捨てる前提で回す作業の考え方は <!-- link:begin choosing-parallel-modes#expect-to-discard -->[並列の方式の選び方 › 一部は捨てる前提で回す](choosing-parallel-modes.md#expect-to-discard)<!-- link:end --> にある。仮説ごとに分けて同じ物差しで比べる手順は <!-- link:begin compare-hypotheses-in-parallel -->仮説ごとに並べて、同じ物差しで比べる（準備中）<!-- link:end --> が持つ。作業ごとに別のチェックアウトを作る方法は <!-- link:begin parallel-with-worktrees -->git worktree で並列にする（準備中）<!-- link:end --> を引く。
+捨てる前提で回す作業の考え方は <!-- link:begin choosing-parallel-modes#expect-to-discard -->[並列の方式の選び方 › 一部は捨てる前提で回す](choosing-parallel-modes.md#expect-to-discard)<!-- link:end --> にある。仮説ごとに分けて同じ物差しで比べる手順は <!-- link:begin compare-hypotheses-in-parallel -->仮説ごとに並べて、同じ物差しで比べる（準備中）<!-- link:end --> が持つ。作業ごとに別のチェックアウトを作る方法は <!-- link:begin parallel-with-worktrees -->[git worktree で並列にする](parallel-with-worktrees.md)<!-- link:end --> を引く。
 
 !!! example "判断例：機能の実装 2 本と、原因調査をまとめて並べる"
     - **状況**：マージしたい機能の実装が 2 件あり、ほかに、遅い画面の原因調査と依存ライブラリの移行の影響調査がある。マシンと利用枠には余裕がある。
@@ -181,8 +181,8 @@ updated: 2026-11-05
 - 人間が読むべき差分の箇所（準備中）
 - 承認疲れ（準備中）
 - [体感と実測](../eval/felt-vs-measured.md)
-- 並列・ループ・workflows のコスト（準備中）
-- git worktree で並列にする（準備中）
+- [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
+- [git worktree で並列にする](parallel-with-worktrees.md)
 - agent view と背景セッション（準備中）
 - 仮説ごとに並べて、同じ物差しで比べる（準備中）
 

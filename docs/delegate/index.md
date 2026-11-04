@@ -19,3 +19,8 @@ title: 任せて並べる
 
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)（仕組みにする・下書き）：並列の本数を決めるのはマシンや予算ではなく、結果をレビューする人の帯域だと分かる。
 - [並列の方式の選び方](choosing-parallel-modes.md)（仕組みにする・下書き）：並列の方式を、誰が調整するか・同じファイルを触るか・互いに連絡が要るかで選べる。
+- [git worktree で並列にする](parallel-with-worktrees.md)（仕組みにする・下書き）：git worktree で作業ごとに別のチェックアウトを作り、複数のセッションが互いのファイルを上書きせずに並行して進められる。
+
+## 定期と無人の実行
+
+- [非対話モード（claude -p）の基本](headless-basics.md)（回す・下書き）：claude -p でスクリプトや CI から Claude Code を動かし、結果を決まった形式で受け取れる。

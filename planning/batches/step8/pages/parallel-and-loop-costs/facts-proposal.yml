@@ -1,0 +1,4 @@
+proposals:
+  - fact: {id: agent-teams-plan-mode-token-multiple, title: "チームメイトが plan mode で動くときの、通常のセッションに対するトークン使用量の倍率（公式の費用の文書の値。条件つき）", value: "約7倍", sources: [cc-docs-costs, cc-docs-agent-teams], checked: 2026-11-05, status: 要確認}
+    used_in: [parallel-and-loop-costs#multiplication, parallel-and-loop-costs#reading-examples, parallel-and-loop-costs#misconceptions]
+    note: 本文は数字なしで読める形にしてある。承認されたら、エージェントチームの箇条と表の行に目印を足す。Agent teams の文書は倍率を書かない（research/23 #7）。値を載せる前に Manage costs の原文で再確認する

@@ -240,7 +240,7 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 
 やめどきも先に決めておく。たとえば、同じ質問に 2 回続けて答えられなかったら、AI を閉じて原文か公式の文書を読む。AI を使わない時間を残す考え方は、別のページが扱う。<!-- link:begin how-much-understanding-to-keep#ai-free-time -->どこまで理解を手放してよいか（中核と周辺） › AI を使わない時間を残す（準備中）<!-- link:end -->
 
-大会に向けては、本番の条件で自力を確かめる段階も要る。<!-- link:begin practice-vs-contest-day#test-under-contest-conditions -->練習と本番の使い分け（AI を禁じる大会に向けた練習を含む） › 本番の条件で自力を確かめる（準備中）<!-- link:end -->
+大会に向けては、本番の条件で自力を確かめる段階も要る。<!-- link:begin practice-vs-contest-day#test-under-contest-conditions -->[練習と本番の使い分け（AI を禁じる大会に向けた練習を含む） › 本番の条件で自力を確かめる](../contest/practice-vs-contest-day.md#test-under-contest-conditions)<!-- link:end -->
 
 生成されたコードを採る前に、処理の流れを説明させて確かめる手順は、学ぶ場面ではなく出荷の基準として、別のページが持つ。<!-- link:begin own-generated-code#explain -->生成コードを自分のものにする › 処理の流れと入力の端を説明させる（準備中）<!-- link:end -->
 
@@ -272,8 +272,8 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 
 **次に読む**
 
+- [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](../contest/practice-vs-contest-day.md)
 - どこまで理解を手放してよいか（中核と周辺）（準備中）
-- 練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）（準備中）
 
 **関連**
 
@@ -281,9 +281,9 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 - 出力スタイルで応答の仕方を切り替える（準備中）
 - [体感と実測](../eval/felt-vs-measured.md)
 - [要約が原文より断定的になる](../symptoms/summary-overstates-source.md)
-- 引用や出典の確かめ方（準備中）
+- [引用や出典の確かめ方](../verify/checking-citations.md)
 - 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
-- 知らないコードベースを読む（準備中）
+- [知らないコードベースを読む](../recipes/explore-a-codebase.md)
 - [バグを直す](../recipes/fix-a-bug.md)
 - 振り返りで AI に評価させない（集計係にとどめる）（準備中）
 

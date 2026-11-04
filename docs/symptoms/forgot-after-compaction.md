@@ -64,9 +64,9 @@ updated: 2026-11-05
 原因は 2 つに絞れる。約束が圧縮で戻らない場所にあった（散らかっている）か、戻る場所にあっても縛っていなかった（縛っていない）かである。確かめる手間の小さい順に並べる。
 
 1. **約束の置き場所（散らかっている）**：約束が会話の発言にしかなかったかを見る。圧縮の前に、どこで約束したかをたどる。CLAUDE.md・rules・スキル・計画やメモのファイルに書いた覚えがなく、会話で口頭のように伝えただけなら、要約に溶けて消えたと考えるのが自然である。確かめるには、圧縮の直後に、この節の末に置いた雛形の依頼で、Claude に見えている約束とその置き場所を挙げさせる。返答は観察として読み、原因の証明にはしない。仕組みは <!-- link:begin what-survives-compaction#dissolved -->[圧縮（compaction）で何が残り、何が消えるか › 要約に溶けて消えるもの](../basics/what-survives-compaction.md#dissolved)<!-- link:end --> にある。
-2. **書いた場所の種類（散らかっている）**：約束が CLAUDE.md や rules にあっても戻らなかったときは、置いた場所を見る。プロジェクトの根の CLAUDE.md は入れ直される。サブフォルダの CLAUDE.md と `paths` 付きの rules は、引き金になるファイルを読むまで戻らない。確かめるには、ファイルの置き場所と `paths` の有無を見る。仕組みの説明は <!-- link:begin what-survives-compaction#reread-on-demand -->[圧縮（compaction）で何が残り、何が消えるか › 必要になったら読み直されるもの](../basics/what-survives-compaction.md#reread-on-demand)<!-- link:end --> と <!-- link:begin path-scoped-rules#after-compaction -->.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期（準備中）<!-- link:end --> にある。
+2. **書いた場所の種類（散らかっている）**：約束が CLAUDE.md や rules にあっても戻らなかったときは、置いた場所を見る。プロジェクトの根の CLAUDE.md は入れ直される。サブフォルダの CLAUDE.md と `paths` 付きの rules は、引き金になるファイルを読むまで戻らない。確かめるには、ファイルの置き場所と `paths` の有無を見る。仕組みの説明は <!-- link:begin what-survives-compaction#reread-on-demand -->[圧縮（compaction）で何が残り、何が消えるか › 必要になったら読み直されるもの](../basics/what-survives-compaction.md#reread-on-demand)<!-- link:end --> と <!-- link:begin path-scoped-rules#after-compaction -->[.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期](../extend/path-scoped-rules.md#after-compaction)<!-- link:end --> にある。
 3. **作業の途中の状態（散らかっている）**：禁止ではなく「手順のどの段まで終えたか」が飛んだときは、状態が会話にしかなかった。読み込んだファイルも、一部しか戻らず、大きいものは中身なしの参照になる。呼び出したスキルの本文も上限付きである。確かめるには、状態を書いたファイルがあるかを見る。置き場所の整理は <!-- link:begin promises-after-compaction#caveats -->[圧縮で消えない場所に約束を置く › paths 付きの rules とスキルの本文の注意](../context/promises-after-compaction.md#caveats)<!-- link:end --> にある。
-4. **圧縮が起きたとき（散らかっている）**：自動圧縮は打たなくても走る。席を外した間にも起きる。確かめるには、いつ圧縮が走ったかと、その前に長く放置していなかったかを思い出す。放置で起きる圧縮は <!-- link:begin compact-and-auto-compact#idle-compaction -->/compact と自動圧縮 › 席を外すとき（idle compaction と cache 切れ）（準備中）<!-- link:end --> にある。
+4. **圧縮が起きたとき（散らかっている）**：自動圧縮は打たなくても走る。席を外した間にも起きる。確かめるには、いつ圧縮が走ったかと、その前に長く放置していなかったかを思い出す。放置で起きる圧縮は <!-- link:begin compact-and-auto-compact#idle-compaction -->[/compact と自動圧縮 › 席を外すとき（idle compaction と cache 切れ）](../context/compact-and-auto-compact.md#idle-compaction)<!-- link:end --> にある。
 5. **例外を許さない禁止か（縛っていない）**：破られたのが「push してはいけない」のような禁止で、置き場所が CLAUDE.md や会話だけなら、縛っていない。公式は、CLAUDE.md や会話の指示は Claude が試みることを変えても、許すことは変えないと書く。会話で言った境界は圧縮で消えうるので、確かな保証には deny ルールを足すよう勧めている。確かめるには、その禁止が設定の権限ルールやフックにあるかを見る。設定にあるルールは圧縮の影響を受けない。判断は <!-- link:begin when-to-lock#spoken-rules-fade -->[お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)<!-- link:end --> にある。
 6. **版（どちらにも関わる）**：圧縮まわりの不具合は、版を上げて直ったものがある。圧縮の後の "Prompt is too long" と要約の取りこぼしは、<!-- fact:begin compaction-bugfix-version -->未確認<!-- fact:end --> で直った。大きな CLAUDE.md が変わった後の自動圧縮で失敗する不具合などが、更新履歴に出ている。確かめるには、使っている版と更新履歴の圧縮の項を見る。該当する不具合があって版が古いなら、版を上げてから同じ症状が出るかを見る。
 
@@ -79,8 +79,8 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 散らかっている | [圧縮で消えない場所に約束を置く](../context/promises-after-compaction.md)<br>/compact と自動圧縮（準備中）<br>[handoff 文書と document-and-clear](../context/handoff-documents.md) |
-| 縛っていない | [お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>代表的なフックのレシピ（準備中） |
+| 散らかっている | [圧縮で消えない場所に約束を置く](../context/promises-after-compaction.md)<br>[/compact と自動圧縮](../context/compact-and-auto-compact.md)<br>[handoff 文書と document-and-clear](../context/handoff-documents.md) |
+| 縛っていない | [お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[代表的なフックのレシピ](../enforce/hook-recipes.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -166,17 +166,17 @@ updated: 2026-11-05
 **次に読む**
 
 - [圧縮で消えない場所に約束を置く](../context/promises-after-compaction.md)
-- /compact と自動圧縮（準備中）
+- [/compact と自動圧縮](../context/compact-and-auto-compact.md)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 
 **関連**
 
 - 進捗ファイルで、途中から再開できるようにする（準備中）
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
-- .claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期（準備中）
+- [.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期](../extend/path-scoped-rules.md#after-compaction)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [CLAUDE.md や指示が守られない](instructions-ignored.md)
 - [英語で返ってくる](replies-in-english.md)

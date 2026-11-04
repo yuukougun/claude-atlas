@@ -114,7 +114,7 @@ updated: 2026-11-05
 === "Claude Code"
 
     - 読ませない設定を、権限ルールとサンドボックスの 2 つにする。作り方は <!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](../safety/protecting-secrets.md#two-layers)<!-- link:end --> にある。
-    - 特定の操作を止めて理由を返すなら、<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end --> を使う。型は <!-- link:begin hook-recipes#block-dangerous -->代表的なフックのレシピ › 危ない操作を止める（準備中）<!-- link:end --> にある。
+    - 特定の操作を止めて理由を返すなら、<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end --> を使う。型は <!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end --> にある。
     - 3 つ（信頼できない入力・秘密・外への送信）が要る作業は、<!-- link:begin lethal-trifecta#when-all-three -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つとも要るとき](../safety/lethal-trifecta.md#when-all-three)<!-- link:end --> で人の承認を挟む。
 
 任せる幅を広げる前に、この縛りを先に置く。出たものを仕組みの隙間として記録し、再発防止をどこに入れるかは <!-- link:begin postmortems#where-to-put-fixes -->失敗を仕組みに戻す（ポストモーテム） › 再発防止をどこに入れるか（準備中）<!-- link:end --> で決める。
@@ -154,10 +154,10 @@ updated: 2026-11-05
 - /feedback・トランスクリプトの共有で送られるもの（準備中）
 - 共有リンクと公開アーティファクトの扱い（準備中）
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
-- 知らないリポジトリを開く前に（準備中）
+- [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - 失敗を仕組みに戻す（ポストモーテム）（準備中）
 - [読ませたページやファイルの指示に従ってしまった](followed-injected-instructions.md)
 - [消してはいけないものを消された](deleted-something-important.md)

@@ -1,0 +1,15 @@
+title: .claude/agents/release-reviewer.md（スキルを読み込んで動く読み取り専用のサブエージェント）
+kind: subagent
+place: project
+safety: false
+features: [subagents]
+requires: [.claude/skills/review-checklist/SKILL.md]
+conditions:
+  - 新しいセッションで試す
+  - review-checklist という名前のスキルを先に置く
+expect:
+  - when: "`release-reviewer` にレビューするファイルを指定して頼む"
+    then: 返答の最初の行に問題ありの件数があり、項目ごとの判定と根拠の場所が続く
+  - when: ファイルの変更を頼む
+    then: tools に Edit と Write がないので、変更の道具が使われない
+control: skills の 2 行を外すと、チェックリストの項目に沿わない自由な形のレビューになる

@@ -1,0 +1,16 @@
+title: サブエージェントにだけ git commit を禁じるフック
+kind: hook
+place: project
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - 壊れても困らない使い捨てのリポジトリで試す
+  - サブエージェントを 1 つ用意する
+expect:
+  - when: サブエージェントに git commit を実行させる
+    then: 操作が止められ、commit はメインが行う旨の理由がサブエージェントに見える
+  - when: メインの会話で同じ git commit を実行させる
+    then: このフックでは止められない
+  - when: サブエージェントに git status を実行させる
+    then: 止められない
+control: deny ルールで git commit を止めると、メインの commit も止まる

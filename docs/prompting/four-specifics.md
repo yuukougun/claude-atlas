@@ -174,7 +174,7 @@ Claude はリポジトリを読んで、規約や既存の部品の作りを見�
 
 手本の中身も、対象と同じ手段で会話に入れる。Claude Code はパスで指せるが、アプリと API では中身そのものを会話に入れる。手段は、[対象の節](#target)のタブにある。
 
-例の選び方と、手本に合わせすぎる危険は <!-- link:begin show-examples -->例を見せる（準備中）<!-- link:end --> が扱う。
+例の選び方と、手本に合わせすぎる危険は <!-- link:begin show-examples -->[例を見せる](show-examples.md)<!-- link:end --> が扱う。
 
 ## 誤読されやすい所（仕様の解釈・境界の入力） {#misreadings}
 
@@ -297,16 +297,16 @@ LLM が生成したコードの不具合 333 件を分類した研究では、�
 
 - [提案してほしいのか、実行してほしいのか](suggest-or-do.md)
 - [範囲を伝える（やらないこと）](state-the-scope.md)
+- [質問させる・インタビューさせる](let-claude-ask.md)
+- [Before/After プロンプト集](before-after-prompts.md)
 - 細かく指図するか、成果で頼むか（準備中）
-- 質問させる・インタビューさせる（準備中）
-- Before/After プロンプト集（準備中）
 - 用途別プロンプトの型（準備中）
 
 **関連**
 
 - [意図と違うものが出てくる](../symptoms/not-what-i-meant.md)
 - [「完了」を定義して渡す](../verify/define-done.md)
-- 例を見せる（準備中）
+- [例を見せる](show-examples.md)
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
 - [バグを直す](../recipes/fix-a-bug.md)
 - [存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)

@@ -20,6 +20,7 @@ settings:
     - language                  # research/27 #2（返答の言語。v2.1.0 から。公式の settings の文書）
     - skillOverrides            # スキルの表示の上書き。公式の skills の文書「Override skill visibility from settings」（cc-docs-skills。2026-11-05 に判断 #18）
     - modelSettings             # モデルごとの effort の段の保存。公式の settings-reference「modelSettings」（cc-docs-settings-reference。2026-11-05 に確認。v2.1.251 から）
+    - statusLine                # 自分のコマンドで入力欄の下に状態の行を出す。公式の settings-reference の一覧「statusLine」（Scope: Any file。2026-11-05 にメインが確認）
   permissions:                  # permissions の下
     - allow                     # research/28 #13
     - ask                       # research/28 #13

@@ -180,7 +180,7 @@ After で足したのは、試して外れた候補の 1 行である。外れ�
 
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
 - [新しい会話を始めるタイミング](when-to-start-fresh.md)
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)
 - [同じ失敗を繰り返す（堂々巡り）](../symptoms/going-in-circles.md)
 - [誤りを認めずに言い張る](../symptoms/insists-on-mistakes.md)
 - 頼み方は一回で決めない（会話で詰める）（準備中）

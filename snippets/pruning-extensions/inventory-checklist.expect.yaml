@@ -1,0 +1,14 @@
+title: 棚卸しの手順のチェックリスト
+kind: other
+place: 手元のメモ（リポジトリ内の docs など）
+safety: false
+features: [skills, mcp, plugins]
+conditions:
+  - 棚卸しの前に、プロジェクトの設定と CLAUDE.md を git に入れておく（切った後に戻せるようにする）
+  - 新しいセッションで /context を開ける状態にする
+expect:
+  - when: チェックリストを上から埋める
+    then: 切る前の基準値と、各拡張の判断と戻し方が 1 枚に残る
+  - when: 切った後に基準値と見比べる
+    then: 常駐の内訳が基準値より減っている
+control: チェックリストなしで「重い気がする」から外すと、何を根拠にいくつ外したかが残らず、減ったかも測れない

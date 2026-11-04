@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: ask-user-question-limits, title: AskUserQuestion の 1 回の呼び出しで聞ける問数と選択肢の数, value: "1 回の呼び出しで 1〜4 問。Agent SDK の文書は各問に 2〜4 の選択肢、各問の header は 12 文字まで", sources: [cc-docs-hooks], checked: 2026-11-05, status: 確認済み}
+    used_in: [let-claude-ask#how, let-claude-ask#limits]
+  - fact: {id: ask-user-question-timeout, title: askUserQuestionTimeout の指定できる値, value: "60s・5m・10m（放っておくと、選んだ分だけ送って先へ進む）", sources: [cc-docs-tools-reference], checked: 2026-11-05, status: 確認済み}
+    used_in: [let-claude-ask#limits]

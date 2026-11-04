@@ -211,7 +211,7 @@ sections:
       stage:
         required: all
         format: {vocab: stages}
-        writer: 執筆者（draft）・検証役（reviewed）・メイン（done）
+        writer: 執筆者（draft）・書いた担当とは別の担当（reviewed。分かりやすさの確認で指摘0件のとき）・メイン（done）
         shows: ページの最後の行・下書きの帯・一覧
         note: 移り方は design §10.2。骨格では stub
       updated:
@@ -221,14 +221,12 @@ sections:
         shows: ページの最後の行
         note: 読者に見える中身を変えたときだけ進める
       verified:
-        required: {stages: [reviewed, done]}
         forbidden: {stages: [stub, draft]}
         format: date
-        writer: 検証役か点検の道具（執筆者は書かない）
+        writer: 出典を読み直した担当か鮮度の点検の道具（執筆者は書かない）
         shows: バッジ・期限の日（design §9.2）
-        note: 出典を読み直して確かめた日。draft は持たない（バッジは「未検証」。design §8.5）
+        note: 出典を読み直して確かめた日。draft は持たない。reviewed・done でも、読み直していなければ持たない（バッジは「未検証」。decisions 2026-11-05「段階 reviewed」）
       verified_with:
-        required: {stages: [reviewed, done]}
         forbidden: {stages: [stub, draft]}
         format:
           object:
@@ -237,7 +235,7 @@ sections:
             models: {format: ids, note: 確かめたモデル（claude-opus-5-5 の形）}
             app: {format: text, note: 確かめたアプリと時期（平文）}
         min_keys: 1
-        writer: 検証役か点検の道具（執筆者は書かない）
+        writer: 出典を読み直した担当か鮮度の点検の道具（執筆者は書かない）
         shows: バッジ（確認日と版）
         note: 数値の確認日は目印の中に持つ（DR-10）
       checked:

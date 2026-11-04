@@ -83,14 +83,14 @@ updated: 2026-11-05
 
 ## 手本の文章を見せる {#example}
 
-指定の次に、その文体で書かれた手本の文章を見せる。言葉で説明するより、典型的で多様な例を見せるほうが形や文体は揃う。選び方は <!-- link:begin show-examples#choose -->例を見せる › 典型的で多様な例を選ぶ（準備中）<!-- link:end --> にあり、数は <!-- link:begin show-examples#how-many -->例を見せる › 何個見せるか（準備中）<!-- link:end --> で決める。
+指定の次に、その文体で書かれた手本の文章を見せる。言葉で説明するより、典型的で多様な例を見せるほうが形や文体は揃う。選び方は <!-- link:begin show-examples#choose -->[例を見せる › 典型的で多様な例を選ぶ](../prompting/show-examples.md#choose)<!-- link:end --> にあり、数は <!-- link:begin show-examples#how-many -->[例を見せる › 何個見せるか](../prompting/show-examples.md#how-many)<!-- link:end --> で決める。
 
-手本は、自分が書いた既存の文書から取るのがよい。言葉にしにくい好みまで伝わる（<!-- link:begin show-examples#own-writing -->例を見せる › 自分の文章を手本にする（準備中）<!-- link:end -->）。
+手本は、自分が書いた既存の文書から取るのがよい。言葉にしにくい好みまで伝わる（<!-- link:begin show-examples#own-writing -->[例を見せる › 自分の文章を手本にする](../prompting/show-examples.md#own-writing)<!-- link:end -->）。
 
 - **短くする**：本文・見出し・箇条書きが入った数段落で足りる。長い手本は、毎回読まれる場所を圧迫する。
 - **指定と同じ文体のものを選ぶ**：手本の文体が指定と違うと、手本に引かれる恐れがある（推論・実践例なし）。
 - **混在のない文書を選ぶ**：手本に混在があると、そこが揺れの元になる。lint か文末を数える依頼で、手本を先に通しておく。
-- **手本の写しすぎ**：手本の話題や構成まで写されることがある（<!-- link:begin show-examples#overfit -->例を見せる › 例にだけ合う出力に気をつける（準備中）<!-- link:end -->）。
+- **手本の写しすぎ**：手本の話題や構成まで写されることがある（<!-- link:begin show-examples#overfit -->[例を見せる › 例にだけ合う出力に気をつける](../prompting/show-examples.md#overfit)<!-- link:end -->）。
 
 手本が長くなるなら、スキルに置いて、文書を書くときだけ読ませる。スキルは名前と説明を先に見て、関わるときだけ本体を読む。使われないときの確かめ方は <!-- link:begin skills-in-the-app#not-triggered -->アプリでスキルを使う › 使われないとき（準備中）<!-- link:end --> にある。
 
@@ -108,7 +108,7 @@ updated: 2026-11-05
 | 機能 | 面 | 強制力 | 読み込みの時期 |
 | --- | --- | --- | --- |
 | [Claude への指示（Instructions for Claude）](../app/where-to-put-instructions.md) | アプリ | お願い | — |
-| プロジェクトの指示（project instructions）（準備中） | アプリ | お願い | — |
+| [プロジェクトの指示（project instructions）](../app/using-projects.md) | アプリ | お願い | — |
 | スキル（アプリ。skills）（準備中） | アプリ | お願い | — |
 | スタイル（Styles。スキルへ移行）（準備中） | 未確認 | 未確認 | 未確認 |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | Claude Code | お願い | セッション開始 |
@@ -255,7 +255,7 @@ lint まで入れても揺れが残るときは、症状から原因を切り分
 - [文体や表記が揃わない](../symptoms/inconsistent-japanese-style.md)
 - [表記ゆれと漢字の開き](consistent-notation.md)
 - [textlint をフックで回す](textlint-hook.md)
-- 例を見せる（準備中）
+- [例を見せる](../prompting/show-examples.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
 - アプリでスキルを使う › 移された Styles（準備中）
 - 出力スタイルで応答の仕方を切り替える（準備中）

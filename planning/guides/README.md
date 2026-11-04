@@ -12,7 +12,7 @@
 | [common.md](common.md) | 執筆の共通の手引き | 執筆・直しの担当（検証の担当も照らす） |
 | `<型>.md`（[concept](concept.md)・[feature](feature.md)・[symptom](symptom.md)・[comparison](comparison.md)・[recipe](recipe.md)・[judgment](judgment.md)・[ledger](ledger.md)・[guide](guide.md)・[hub](hub.md)） | 型の手引き：構成の目安と、その型に固有の注意だけ | その型のページの執筆・直しの担当 |
 | [../checklists/common.md](../checklists/common.md) | 検証の共通の決まり（観点・指摘の形・段階の移し方・報告の形） | 検証の担当 |
-| [../checklists/fact.md](../checklists/fact.md) | 事実・出典・鮮度 | 事実・出典・鮮度の検証役 |
+| [../checklists/fact.md](../checklists/fact.md) | 事実・出典・鮮度 | 鮮度の点検で出典を読み直す担当（制作の流し方では使わない。2026-11-05） |
 | [../checklists/template.md](../checklists/template.md) | 雛形の動作 | 雛形の動作の検証役 |
 | [../checklists/clarity.md](../checklists/clarity.md) | 分かりやすさ | 分かりやすさの検証役 |
 | [../checklists/render.md](../checklists/render.md) | 図と描画 | 図と描画の検証役 |

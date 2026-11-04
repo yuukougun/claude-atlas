@@ -1,0 +1,15 @@
+title: テストを走らせて失敗だけを報告する担当
+kind: subagent
+place: project   # .claude/agents/test-runner.md。model の haiku は例で、軽いモデルの別名に置き換えてよい
+safety: false
+features: [subagents]
+conditions:
+  - リポジトリの .claude/agents/test-runner.md に置く
+  - テストが動くリポジトリで、わざと 1 件失敗するテストを作っておく
+  - 新しいセッションで試す
+expect:
+  - when: 「test-runner で全テストを走らせて」と頼む
+    then: 本体の会話には、実行したコマンド・件数・失敗したテストの要約だけが戻り、テストの長い出力は残らない
+  - when: 戻ってきた報告を読む
+    then: 失敗の件数と全体の件数が書かれている（観察として扱う）
+control: 本体の会話でそのまま全テストを走らせると、成功したテストを含む長い出力が会話に残る

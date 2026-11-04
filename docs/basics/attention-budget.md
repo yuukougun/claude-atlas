@@ -83,7 +83,7 @@ Anthropic は、コンテキストエンジニアリングの解説でこれを�
 
 **窓の広さを理由に、片付けをやめない**。溢れる心配が減ったので、窓を埋めないための節約はやめてよい。一方、関係のない作業へ移るときに会話を新しくする片付けは、答えの質と費用のために続ける。やめてよいことと続けることの切り分けは、<!-- link:begin large-context-window#what-to-stop -->広いコンテキストウィンドウとの付き合い方 › やめてよいこと（準備中）<!-- link:end --> にある。窓を節約する古い決まりが手元に残っているなら、<!-- link:begin outdated-advice-ledger#save-context-for-200k -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#save-context-for-200k)<!-- link:end --> が今どうするかを示している。
 
-**いま何が机を占めているかは、見て確かめる**。会話・読み込んだファイル・常駐するものの内訳は Claude Code の画面で見られ、読み方は <!-- link:begin inspect-context#reading -->[/context で中身を見る › 内訳の読み方](../context/inspect-context.md#reading)<!-- link:end --> にある。毎回乗る常駐の部分は、<!-- link:begin always-on-costs#resident-vs-on-demand -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 常駐するものと、使うときだけ読むもの](../context/always-on-costs.md#resident-vs-on-demand)<!-- link:end --> が分けている。片付けの 4 つの動作は <!-- link:begin tidy-the-desk#four-actions -->机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作（準備中）<!-- link:end --> にある。
+**いま何が机を占めているかは、見て確かめる**。会話・読み込んだファイル・常駐するものの内訳は Claude Code の画面で見られ、読み方は <!-- link:begin inspect-context#reading -->[/context で中身を見る › 内訳の読み方](../context/inspect-context.md#reading)<!-- link:end --> にある。毎回乗る常駐の部分は、<!-- link:begin always-on-costs#resident-vs-on-demand -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 常駐するものと、使うときだけ読むもの](../context/always-on-costs.md#resident-vs-on-demand)<!-- link:end --> が分けている。片付けの 4 つの動作は <!-- link:begin tidy-the-desk#four-actions -->[机を整える：新鮮さ・巻き戻し・書き出し・委任 › 四つの動作](../context/tidy-the-desk.md#four-actions)<!-- link:end --> にある。
 
 ## 資料を渡す量の判断例 {#examples}
 
@@ -119,16 +119,17 @@ Anthropic は、コンテキストエンジニアリングの解説でこれを�
 - [サブエージェントは別室の部下](subagent-isolation.md)
 - [長い資料は先、質問は最後](../prompting/long-context-first.md)
 - [/context で中身を見る](../context/inspect-context.md)
+- [長い資料を渡すとき](../context/handing-long-documents.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
-- 広いコンテキストウィンドウとの付き合い方（準備中）
-- 長い資料を渡すとき（準備中）
-- プロジェクトの使いどころ（準備中）
+- [プロジェクトの使いどころ](../app/using-projects.md)
+- [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
 - ほか 2 ページ
 
 **関連**
 
 - [毎ターン全履歴を読み直す](rereads-whole-history.md)
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
+- 広いコンテキストウィンドウとの付き合い方（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る） › 見せる](../start/four-principles.md#show)
 

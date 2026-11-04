@@ -65,7 +65,7 @@ After で足したものは 3 つある。やること（直す場所と症状�
 
 「やらないこと」には理由を添える。理由があると、Claude は書かれていない近い場面にも判断を応用できる。理由の書き方は <!-- link:begin give-reasons -->[理由を添える](give-reasons.md)<!-- link:end --> の持ち分である。
 
-「やらないこと」を禁止形だけで並べると、望む形で書いたほうが守られやすい、という別の問題に当たる。書き換え方は <!-- link:begin say-what-you-want#rewrite -->否定形ではなく、望む形で書く › 禁止を望む形に書き換える（準備中）<!-- link:end --> にある。
+「やらないこと」を禁止形だけで並べると、望む形で書いたほうが守られやすい、という別の問題に当たる。書き換え方は <!-- link:begin say-what-you-want#rewrite -->[否定形ではなく、望む形で書く › 禁止を望む形に書き換える](say-what-you-want.md#rewrite)<!-- link:end --> にある。
 
 ## いまの作業に要る最小限を求める {#minimum}
 
@@ -214,7 +214,7 @@ Sonnet 5.5 の指針は、effort を上げると頼まれていないことま�
 **関連**
 
 - [頼んでいないことまでやる（過剰設計）](../symptoms/does-more-than-asked.md)
-- 否定形ではなく、望む形で書く（準備中）
+- [否定形ではなく、望む形で書く](say-what-you-want.md)
 - [提案してほしいのか、実行してほしいのか](suggest-or-do.md)
 - [理由を添える](give-reasons.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)

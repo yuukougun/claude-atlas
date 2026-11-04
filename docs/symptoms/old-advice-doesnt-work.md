@@ -88,10 +88,10 @@ updated: 2026-11-05
 消えたコマンド、作成の画面がなくなった `/agents`、`.claude/commands/` からスキルへの移行といった例は、台帳に今どうするかが並んでいる。台帳の入口は <!-- link:begin outdated-advice-ledger -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md)<!-- link:end --> である。
 
 - 自分の設定や記事に残る古い書き方を探すとき：<!-- link:begin outdated-advice-ledger#find-in-your-setup -->[古くなった助言の台帳 › 自分の設定や記事で見つける](../changes/outdated-advice-ledger.md#find-in-your-setup)<!-- link:end -->。
-- サブエージェントの作り方：<!-- link:begin writing-subagents#define -->サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）（準備中）<!-- link:end -->。
+- サブエージェントの作り方：<!-- link:begin writing-subagents#define -->[サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)<!-- link:end -->。
 - カスタムコマンドからスキルへの移り方：<!-- link:begin writing-skills#from-commands -->[スキルの作り方 › カスタムコマンドから移る](../extend/writing-skills.md#from-commands)<!-- link:end -->。
 
-「よく考えて」や強調語のような頼み方の勧めは、台帳から <!-- link:begin thinking-keywords -->「考えて」と書くことの現在（ultrathink）（準備中）<!-- link:end --> と <!-- link:begin emphasis-words -->強調語（IMPORTANT・必ず）の現在（準備中）<!-- link:end --> へ進む。
+「よく考えて」や強調語のような頼み方の勧めは、台帳から <!-- link:begin thinking-keywords -->[「考えて」と書くことの現在（ultrathink）](../models/thinking-keywords.md)<!-- link:end --> と <!-- link:begin emphasis-words -->[強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)<!-- link:end --> へ進む。
 
 ### 人の側の落とし穴
 
@@ -199,9 +199,9 @@ Claude Code に自分の使い方を聞く場合も、答えが手元の版よ�
 - Claude Code 自身に聞く › 答えの版を確かめる（準備中）
 - 2026 年の主な変更の年表（準備中）
 - [スキルの作り方 › カスタムコマンドから移る](../extend/writing-skills.md#from-commands)
-- サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）（準備中）
-- 「考えて」と書くことの現在（ultrathink）（準備中）
-- 強調語（IMPORTANT・必ず）の現在（準備中）
+- [サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)
+- [「考えて」と書くことの現在（ultrathink）](../models/thinking-keywords.md)
+- [強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)
 - [最新の情報を知らない](doesnt-know-latest.md)
 - [急に賢くなくなった気がする](seems-less-capable.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

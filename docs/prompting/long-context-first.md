@@ -41,7 +41,7 @@ updated: 2026-11-05
 別名：Long context prompting・資料を先頭に置く・先に引用を抜かせる
 <!-- textlint-enable -->
 
-「長い資料は先、質問は最後」とは、1 回の依頼の中で、資料を先頭に、質問と指示を末尾に置く頼み方である。ここで扱うのは依頼の中の並べ方と、答えの前に引用を抜かせる使い方だけである。資料の形や量を整える方法は <!-- link:begin handing-long-documents#split-and-convert -->長い資料を渡すとき › 分ける・形を直す（準備中）<!-- link:end --> が持つ。
+「長い資料は先、質問は最後」とは、1 回の依頼の中で、資料を先頭に、質問と指示を末尾に置く頼み方である。ここで扱うのは依頼の中の並べ方と、答えの前に引用を抜かせる使い方だけである。資料の形や量を整える方法は <!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end --> が持つ。
 
 ## 資料を先、質問を最後に置く {#order}
 
@@ -147,7 +147,7 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
 
 公式の Reduce hallucinations は、とくに長い文書（目安は<!-- fact:begin long-context-quote-first-length-threshold -->約 20000 トークン超（2026-10-29 時点）<!-- fact:end -->）では、先に逐語の引用を抜き出させ、その引用だけに基づいて分析させる対策を挙げる。同じ文書は、「分からない」と言ってよいと明示することや、資料だけを使わせることも、対策に挙げる。これらは作り話を大きく減らすが、無くさない。重要な情報、特に重大な判断に関わるものは検証するよう、公式も書く。
 
-引用が原文と合っているかは、自分で原文を開いて確かめる。確かめ方は <!-- link:begin checking-citations#steps -->引用や出典の確かめ方 › 確かめる手順（準備中）<!-- link:end --> にある。誤りの形は <!-- link:begin checking-citations#error-types -->引用や出典の確かめ方 › よくある誤りの形（準備中）<!-- link:end --> にある。「分からない」と言ってよい、資料だけを根拠にする、という添え方は <!-- link:begin allow-i-dont-know#escape-hatch -->[「分からない」と言ってよいと伝える › 分からないと言える逃げ道を作る](allow-i-dont-know.md#escape-hatch)<!-- link:end --> と <!-- link:begin allow-i-dont-know#source-only -->[「分からない」と言ってよいと伝える › 渡した資料だけを根拠にさせる](allow-i-dont-know.md#source-only)<!-- link:end --> が扱う。
+引用が原文と合っているかは、自分で原文を開いて確かめる。確かめ方は <!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end --> にある。誤りの形は <!-- link:begin checking-citations#error-types -->[引用や出典の確かめ方 › よくある誤りの形](../verify/checking-citations.md#error-types)<!-- link:end --> にある。「分からない」と言ってよい、資料だけを根拠にする、という添え方は <!-- link:begin allow-i-dont-know#escape-hatch -->[「分からない」と言ってよいと伝える › 分からないと言える逃げ道を作る](allow-i-dont-know.md#escape-hatch)<!-- link:end --> と <!-- link:begin allow-i-dont-know#source-only -->[「分からない」と言ってよいと伝える › 渡した資料だけを根拠にさせる](allow-i-dont-know.md#source-only)<!-- link:end --> が扱う。
 
 ## 原文を見せるか、自分の要約を渡すか {#source-or-summary}
 
@@ -181,7 +181,7 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
 - 引用の指示は、出力を長くする。要点だけでよい質問や、1 行で答えられる質問には重い
 - 引用は、原文と合っているとは限らない。引用の体裁でも細部が違うことがある。大事な箇所は原文を開いて確かめる
 - 質問に関係する箇所が資料に無いと、引用が空になるか、近い箇所を無理に探す。「該当なし」と書いてよいと添える
-- 資料が読み込めていないと、並べ方では直らない。PDF の図や、面ごとの読み込みの限界は <!-- link:begin handing-long-documents#limits -->長い資料を渡すとき › 面ごとの読み込みの限界（準備中）<!-- link:end --> が、日本語の PDF は <!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end --> が扱う
+- 資料が読み込めていないと、並べ方では直らない。PDF の図や、面ごとの読み込みの限界は <!-- link:begin handing-long-documents#limits -->[長い資料を渡すとき › 面ごとの読み込みの限界](../context/handing-long-documents.md#limits)<!-- link:end --> が、日本語の PDF は <!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end --> が扱う
 
 やりすぎの例は、すべての依頼に引用の段と何重ものタグを足すことである。長い資料を読ませて根拠を確かめたいときに使い、短い質問には足さない。
 
@@ -213,10 +213,10 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
 
 **関連**
 
-- 長い資料を渡すとき（準備中）
+- [長い資料を渡すとき](../context/handing-long-documents.md)
 - [context rot と紛らわしい情報 › 中ほどの情報は使われにくいか（lost in the middle）](../basics/context-rot.md#lost-in-the-middle)
 - XML タグで区切る（準備中）
-- 引用や出典の確かめ方（準備中）
+- [引用や出典の確かめ方](../verify/checking-citations.md)
 - [添付した資料の後半を読んでいない](../symptoms/skipped-later-pages.md)
 - 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
 - [「分からない」と言ってよいと伝える](allow-i-dont-know.md)

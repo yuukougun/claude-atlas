@@ -1,0 +1,9 @@
+proposals:
+  - fact:
+      id: skill-description-rebuild-min-version
+      title: 圧縮の後にスキルの説明文を作り直して入れ直す、最低の Claude Code の版
+      value: 2.1.304
+      sources: [cc-docs-context-window, cc-changelog]
+      checked: 2026-11-04
+      status: 確認済み
+    used_in: [how-skills-load#after-compaction]

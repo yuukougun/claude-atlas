@@ -76,7 +76,7 @@ updated: 2026-11-05
     - 確かめ方：その一文を足して、同じ質問をし直す。作り話だった部分が「分からない」「推測」に変われば、迫ったことが一因だった。仕組みは <!-- link:begin allow-i-dont-know#pressure -->[「分からない」と言ってよいと伝える › 答えを迫ると作り話が増える](../prompting/allow-i-dont-know.md#pressure)<!-- link:end --> にある。
 4. **出てきた出典を、原文で確かめていない（確かめていない）**
     - 見ること：挙がった論文・URL・引用を、自分の目で開いたか。実在するだけでは足りず、題名・著者・年と引用の文言まで照らしたか。
-    - 確かめ方：原文を開いて照合する。手順と誤りの形は <!-- link:begin checking-citations#steps -->引用や出典の確かめ方 › 確かめる手順（準備中）<!-- link:end --> と <!-- link:begin checking-citations#error-types -->引用や出典の確かめ方 › よくある誤りの形（準備中）<!-- link:end --> にある。
+    - 確かめ方：原文を開いて照合する。手順と誤りの形は <!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end --> と <!-- link:begin checking-citations#error-types -->[引用や出典の確かめ方 › よくある誤りの形](../verify/checking-citations.md#error-types)<!-- link:end --> にある。
 5. **答えが割れることを、確かめる合図にしていない（確かめていない）**
     - 見ること：同じ質問への答えが、回ごとに違っていないか。
     - 確かめ方：同じ質問を数回出して並べる。割れた主張は、根拠が弱い部分の合図として扱い、原文で確かめる。比べ方は <!-- link:begin fact-checking#best-of-n -->[事実を確かめる（引用・照合・best-of-N） › 何度か聞いて比べる（best-of-N）](../verify/fact-checking.md#best-of-n)<!-- link:end -->、割れる理由は <!-- link:begin nondeterminism#why -->[同じ質問でも答えが変わる（非決定性） › なぜ答えが変わるか](../basics/nondeterminism.md#why)<!-- link:end --> にある。
@@ -93,7 +93,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 見えていない | [「分からない」と言ってよいと伝える](../prompting/allow-i-dont-know.md)<br>[web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md) |
-| 確かめていない | [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)<br>引用や出典の確かめ方（準備中） |
+| 確かめていない | [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)<br>[引用や出典の確かめ方](../verify/checking-citations.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -165,7 +165,7 @@ updated: 2026-11-05
 - [「分からない」と言ってよいと伝える](../prompting/allow-i-dont-know.md)
 - [web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md)
 - [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)
-- 引用や出典の確かめ方（準備中）
+- [引用や出典の確かめ方](../verify/checking-citations.md)
 
 **関連**
 

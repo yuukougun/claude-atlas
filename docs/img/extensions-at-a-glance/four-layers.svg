@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="290" viewBox="0 0 400 290" role="img" aria-label="拡張の 4 つの層。上から、常駐する文脈、必要なときに読む、別の文脈で動く、決定論的に縛る。">
+  <rect x="0" y="0" width="400" height="290" fill="#ffffff"/>
+  <g font-family="sans-serif" fill="#222222">
+    <rect x="10" y="10" width="380" height="60" fill="#f4f4f4" stroke="#444444" stroke-width="2"/>
+    <text x="22" y="34" font-size="15" font-weight="bold">層 1　常駐する文脈</text>
+    <text x="22" y="56" font-size="12">CLAUDE.md・rules・自動メモリ・出力スタイル</text>
+    <rect x="10" y="80" width="380" height="60" fill="#f4f4f4" stroke="#444444" stroke-width="2"/>
+    <text x="22" y="104" font-size="15" font-weight="bold">層 2　必要なときに読む</text>
+    <text x="22" y="126" font-size="12">スキルの本文・MCP のツールの定義</text>
+    <rect x="10" y="150" width="380" height="60" fill="#f4f4f4" stroke="#444444" stroke-width="2"/>
+    <text x="22" y="174" font-size="15" font-weight="bold">層 3　別の文脈で動く</text>
+    <text x="22" y="196" font-size="12">サブエージェント（要約だけが本筋に戻る）</text>
+    <rect x="10" y="220" width="380" height="60" fill="#ffffff" stroke="#222222" stroke-width="2" stroke-dasharray="7 4"/>
+    <text x="22" y="244" font-size="15" font-weight="bold">層 4　決定論的に縛る（破線）</text>
+    <text x="22" y="266" font-size="12">フック・deny ルール（Claude の判断を通らない）</text>
+  </g>
+</svg>

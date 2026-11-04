@@ -1,0 +1,18 @@
+title: 依存の有無を確かめてから判定するフックのスクリプト
+kind: hook
+place: project
+safety: true
+features: [hooks]
+requires:
+  - jq
+conditions:
+  - 新しいセッションで試す
+  - 試すのは壊れても困らない作業用のリポジトリだけにする
+  - jq が無い状況は、PATH から jq を外したシェルで試す
+expect:
+  - when: migrations の下にある既存のファイルを Edit か Write で直そうとする
+    then: 操作が止められ、理由と代わりの手段が Claude に返る
+  - when: migrations の下に新しいファイルを作る
+    then: 操作は通る
+  - when: jq が見つからない環境で、同じ操作をする
+    then: 操作が止められ、jq が無いという理由が返る

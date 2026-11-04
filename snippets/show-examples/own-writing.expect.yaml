@@ -1,0 +1,13 @@
+title: 自分の過去の文章を手本にする依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - sample に、実際に自分が書いた文章を貼る
+expect:
+  - when: 欄を埋めた依頼を出す
+    then: 返答の語尾・段落の長さ・漢字の開き方が sample に近くなる
+  - when: 返答の最後の確認を読む
+    then: sample と違う点があれば、箇条書きで挙げられている
+control: sample を外して「読みやすい文体で」と頼むと、語尾や漢字の開き方が自分の文章と離れやすい

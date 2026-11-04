@@ -52,12 +52,12 @@ PDF は、前のほうのページでは文字と図表などの視覚要素の�
 
 PDF 以外の文書（Word など）は、文字だけが抽出され、中に埋め込んだ画像は読まれない。「Word の資料に入れた図を読んでくれない」のは、不具合ではなく、この仕様による。
 
-表計算ファイル（XLSX）は、コードの実行を有効にしておく必要がある。コードの実行の側は <!-- link:begin files-and-code-execution -->ファイル作成とコード実行（準備中）<!-- link:end --> が受け持つ。
+表計算ファイル（XLSX）は、コードの実行を有効にしておく必要がある。コードの実行の側は <!-- link:begin files-and-code-execution -->[ファイル作成とコード実行](files-and-code-execution.md)<!-- link:end --> が受け持つ。
 
 図を読ませたいときの手段は 3 つある。
 
 - 資料を PDF にして、図が読まれる範囲に収める
-- 図だけを画像にして、別に添える。画像の渡し方は <!-- link:begin images-and-voice#images -->画像・スクリーンショット・音声で渡す › 画像で渡すと速いもの（準備中）<!-- link:end --> にある
+- 図だけを画像にして、別に添える。画像の渡し方は <!-- link:begin images-and-voice#images -->[画像・スクリーンショット・音声で渡す › 画像で渡すと速いもの](../prompting/images-and-voice.md#images)<!-- link:end --> にある
 - 図の中身を文字で書き添える
 
 !!! example "判断例：Word の資料に入れた図を読ませたい"
@@ -78,11 +78,11 @@ PDF 以外の文書（Word など）は、文字だけが抽出され、中に�
 
 読まれる範囲に収まっていても、長い資料の中ほどの情報は使われにくい傾向がある。2023 年の研究が、当時の言語モデルでこの傾向を報告した（根拠：中）。現行の Claude にそのまま当てはめるのは類推にとどまる（類推）。この傾向の詳細は <!-- link:begin context-rot#lost-in-the-middle -->[context rot と紛らわしい情報 › 中ほどの情報は使われにくいか（lost in the middle）](../basics/context-rot.md#lost-in-the-middle)<!-- link:end --> にある。分けて渡すと、この傾向にも効く。
 
-大きな PDF を実行環境の中で処理する方法もある。ファイルの作成の記事は、大きな PDF を会話の context に載せず、実行環境の中で処理できると書く。context に載せない分、Claude が PDF の中身を見て答えるのではなく、コードで取り出した結果を読む形になる。手順は <!-- link:begin files-and-code-execution#outputs -->ファイル作成とコード実行 › 作ったファイルの受け取り方（準備中）<!-- link:end --> の側にある。
+大きな PDF を実行環境の中で処理する方法もある。ファイルの作成の記事は、大きな PDF を会話の context に載せず、実行環境の中で処理できると書く。context に載せない分、Claude が PDF の中身を見て答えるのではなく、コードで取り出した結果を読む形になる。手順は <!-- link:begin files-and-code-execution#outputs -->[ファイル作成とコード実行 › 作ったファイルの受け取り方](files-and-code-execution.md#outputs)<!-- link:end --> の側にある。
 
 分け方と形の直し方の全般は、次のページが受け持つ。
 
-- 長い資料の分け方と形の直し方：<!-- link:begin handing-long-documents#split-and-convert -->長い資料を渡すとき › 分ける・形を直す（準備中）<!-- link:end -->
+- 長い資料の分け方と形の直し方：<!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end -->
 - 資料の後半を読んでいない疑いの切り分け：<!-- link:begin skipped-later-pages#diagnosis -->[添付した資料の後半を読んでいない › 原因を安く確かめる順](../symptoms/skipped-later-pages.md#diagnosis)<!-- link:end -->
 - 資料の置き場がプロジェクトのとき：<!-- link:begin too-much-project-knowledge#curate -->プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方（準備中）<!-- link:end -->
 
@@ -160,7 +160,7 @@ PDF 以外の文書（Word など）は、文字だけが抽出され、中に�
 
 引用の確かめ方の詳細は、次のページが受け持つ。
 
-- 引用や出典の誤りの形と確かめる手順：<!-- link:begin checking-citations#steps -->引用や出典の確かめ方 › 確かめる手順（準備中）<!-- link:end -->
+- 引用や出典の誤りの形と確かめる手順：<!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end -->
 - 答えの前に引用を抜かせる頼み方：<!-- link:begin long-context-first#quote-first -->[長い資料は先、質問は最後 › 答えの前に引用を抜かせる](../prompting/long-context-first.md#quote-first)<!-- link:end -->
 - 日本語の PDF を渡す前と後に確かめること：<!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end -->
 
@@ -187,7 +187,7 @@ PDF の対応（文字と図の両方の解析）と、画像を読む機能（v
 <!-- textlint-enable -->
 <!-- gen:end compare 面 成熟度 -->
 
-アプリの機能が API のどの概念に当たるかは、<!-- link:begin feature-to-api-mapping#table -->アプリの機能と API の概念の対応表 › 対応表（準備中）<!-- link:end --> にある。
+アプリの機能が API のどの概念に当たるかは、<!-- link:begin feature-to-api-mapping#table -->[アプリの機能と API の概念の対応表 › 対応表](../api/feature-to-api-mapping.md#table)<!-- link:end --> にある。
 
 ## 効かない場面・落とし穴 {#pitfalls}
 
@@ -228,15 +228,15 @@ PDF の対応（文字と図の両方の解析）と、画像を読む機能（v
 **関連**
 
 - [添付した資料の後半を読んでいない](../symptoms/skipped-later-pages.md)
-- 長い資料を渡すとき（準備中）
+- [長い資料を渡すとき](../context/handing-long-documents.md)
 - [context rot と紛らわしい情報 › 中ほどの情報は使われにくいか（lost in the middle）](../basics/context-rot.md#lost-in-the-middle)
 - [長い資料は先、質問は最後](../prompting/long-context-first.md)
-- 画像・スクリーンショット・音声で渡す（準備中）
-- 引用や出典の確かめ方（準備中）
+- [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)
+- [引用や出典の確かめ方](../verify/checking-citations.md)
 - プロジェクトのナレッジが多すぎるとき（準備中）
-- ファイル作成とコード実行（準備中）
+- [ファイル作成とコード実行](files-and-code-execution.md)
 - 日本語の資料を読ませる・書かせる（準備中）
-- アプリの機能と API の概念の対応表（準備中）
+- [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
 
 </div>
 

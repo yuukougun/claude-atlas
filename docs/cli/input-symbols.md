@@ -167,14 +167,14 @@ Vim のモードを使っているときは、`Esc` の動きが変わる。入�
 - **`!` の出力は全部会話に入る。** 長いログを出すコマンドを打つと、会話が長くなり、答えがぼやける。出力は要点の数行に絞ってから入れる。方法は <!-- link:begin choose-what-to-read#trim-output -->[@参照と、何を読ませるかの絞り込み › 出力を絞る](../context/choose-what-to-read.md#trim-output)<!-- link:end --> にある。
 - **`/` は先頭でしか働かない。** 文の途中に書いたコマンド名は、Claude への文章として読まれる。
 - **`Esc` は変更を元に戻さない。** 止めた時点までの変更はファイルに残りうる。止めた後は差分を確かめ、必要なら巻き戻すか、git と組み合わせる。組み合わせ方は <!-- link:begin checkpoints-and-rewind#with-git -->[チェックポイントと /rewind（git との違い） › git と組み合わせる](checkpoints-and-rewind.md#with-git)<!-- link:end --> にある。
-- **キーの割り当ては端末と面で違う。** ここに書いたのは、WSL・Linux の端末の Claude Code を基準にした話である。ほかの OS と IDE 拡張での動作は未確認。端末ごとの違いは <!-- link:begin must-know-operations#terminals -->知らないと損をする操作 › 端末と WSL での違い（準備中）<!-- link:end --> にある。
+- **キーの割り当ては端末と面で違う。** ここに書いたのは、WSL・Linux の端末の Claude Code を基準にした話である。ほかの OS と IDE 拡張での動作は未確認。端末ごとの違いは <!-- link:begin must-know-operations#terminals -->[知らないと損をする操作 › 端末と WSL での違い](must-know-operations.md#terminals)<!-- link:end --> にある。
 
 ## つながる操作 {#compare}
 
 入力の記号は最初の入口で、ほかの操作と組み合わせて使う。
 
-- モードの切り替えや、長い指示・画像の渡し方、背景に回す操作は、<!-- link:begin must-know-operations -->知らないと損をする操作（準備中）<!-- link:end --> にまとまっている。
-- 画像や音声で渡すと速いものは、<!-- link:begin images-and-voice -->画像・スクリーンショット・音声で渡す（準備中）<!-- link:end --> にある。
+- モードの切り替えや、長い指示・画像の渡し方、背景に回す操作は、<!-- link:begin must-know-operations -->[知らないと損をする操作](must-know-operations.md)<!-- link:end --> にまとまっている。
+- 画像や音声で渡すと速いものは、<!-- link:begin images-and-voice -->[画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)<!-- link:end --> にある。
 - 止めた後の巻き戻しと要約は、<!-- link:begin checkpoints-and-rewind -->[チェックポイントと /rewind（git との違い）](checkpoints-and-rewind.md)<!-- link:end --> にある。
 - 機能の使い方を迷ったら、<!-- link:begin ask-claude-code -->Claude Code 自身に聞く（準備中）<!-- link:end --> のとおり、Claude Code 自身に聞く。
 
@@ -206,15 +206,15 @@ Vim のモードを使っているときは、`Esc` の動きが変わる。入�
 
 **次に読む**
 
+- [知らないと損をする操作](must-know-operations.md)
 - [チェックポイントと /rewind（git との違い）](checkpoints-and-rewind.md)
-- 知らないと損をする操作（準備中）
 - Claude Code 自身に聞く（準備中）
 
 **関連**
 
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
 - 主要コマンド早見表（準備中）
-- 画像・スクリーンショット・音声で渡す（準備中）
+- [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)
 
 </div>
 

@@ -73,12 +73,12 @@ Claude が文章で「続けますか」と聞いて止まる症状は、権限�
     - 確かめる：安全な操作にまで確認が出るなら、モードが慎重すぎる。危ない操作が確認なしで通るなら、モードが緩い。モードごとの違いは <!-- link:begin permission-modes-overview#modes -->[権限モードの選び方 › モードごとに確認なしで進むもの](../cli/permission-modes-overview.md#modes)<!-- link:end --> で見る。
     - 既定のモードは版で変わってきた。古い記事の「最初は毎回確認が出る」を前提にしない。経緯は <!-- link:begin outdated-advice-ledger#approve-everything-first -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#approve-everything-first)<!-- link:end -->、手元の既定は <!-- link:begin permission-modes-overview#defaults -->[権限モードの選び方 › 既定のモードと版](../cli/permission-modes-overview.md#defaults)<!-- link:end --> で確かめる。毎回確かめる権限モードは、今の表示では <!-- name:begin default-to-manual-mode -->Manual（権限モード。設定の値は default のまま）<!-- name:end --> である。
     - `claude -p` と Agent SDK には確認の画面がない。モードを決めていないと、許可していない操作は実行されずに進まなくなる（公式の権限モードの文書で確認、2026-11-03）。
-    - 起動のコマンドの alias・スクリプト・CI の設定に、確認をすべて外すモードの指定が残っていないかも見る。使ってよい場所は <!-- link:begin where-bypass-is-ok#why-isolate -->bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか（準備中）<!-- link:end --> にある。
+    - 起動のコマンドの alias・スクリプト・CI の設定に、確認をすべて外すモードの指定が残っていないかも見る。使ってよい場所は <!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](../safety/where-bypass-is-ok.md#why-isolate)<!-- link:end --> にある。
 
     モードの見方は面で違う。
 
     === "アプリ"
-        アプリは、確認なしに進める Auto と、毎回確かめる Manual を選べる。選び方と、読める範囲と行動できる範囲を同時に広げない置き方は <!-- link:begin permission-modes-in-the-app#two-conditions -->アプリの権限モード（Auto と Manual）と安全 › 読める範囲と行動できる範囲を同時に広げない（準備中）<!-- link:end --> にある。
+        アプリは、確認なしに進める Auto と、毎回確かめる Manual を選べる。選び方と、読める範囲と行動できる範囲を同時に広げない置き方は <!-- link:begin permission-modes-in-the-app#two-conditions -->[アプリの権限モード（Auto と Manual）と安全 › 読める範囲と行動できる範囲を同時に広げない](../app/permission-modes-in-the-app.md#two-conditions)<!-- link:end --> にある。
 
     === "Claude Code"
         起動したときのモードは、画面の下の表示（auto mode on・manual mode on など）で分かる。切り替え方は <!-- link:begin permission-modes-overview#switch -->[権限モードの選び方 › 切り替え方](../cli/permission-modes-overview.md#switch)<!-- link:end --> にある。
@@ -107,7 +107,7 @@ Claude が文章で「続けますか」と聞いて止まる症状は、権限�
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 合っていない | [権限モードの選び方](../cli/permission-modes-overview.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>アプリの権限モード（Auto と Manual）と安全（準備中） |
+| 合っていない | [権限モードの選び方](../cli/permission-modes-overview.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md) |
 | 境界がない | [サンドボックスで封じ込める](../enforce/sandboxing.md)<br>[auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md) |
 | 預けすぎる | 承認疲れ（準備中）<br>[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage) |
 
@@ -165,7 +165,7 @@ Claude が文章で「続けますか」と聞いて止まる症状は、権限�
 
 - [権限モードの選び方](../cli/permission-modes-overview.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- アプリの権限モード（Auto と Manual）と安全（準備中）
+- [アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - 承認疲れ（準備中）
@@ -173,7 +173,7 @@ Claude が文章で「続けますか」と聞いて止まる症状は、権限�
 
 **関連**
 
-- bypassPermissions と無人の実行はどこで動かすか（準備中）
+- [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - 消せない場所・触れない場所（protected paths）（準備中）
 - 設定ファイルの階層と優先順位（準備中）
 - [確認ばかりで進まない・途中で止まる](keeps-stopping.md)

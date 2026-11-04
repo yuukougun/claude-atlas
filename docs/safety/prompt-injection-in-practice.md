@@ -63,11 +63,11 @@ updated: 2026-11-05
 
 === "アプリ"
 
-    Web 検索や、有効にすると使える web fetch、つないだコネクタ（メール・カレンダー・社内の資料）が入口になる。多くつなぐほど、読ませる文章の出どころが増える。つなぎ方と信頼の判断は <!-- link:begin connectors-in-the-app#trust -->コネクタ（MCP）をアプリで使う › 信頼してよいか（準備中）<!-- link:end --> と <!-- link:begin connectors-in-the-app#on-demand -->コネクタ（MCP）をアプリで使う › 使うときだけ読ませる（On demand）（準備中）<!-- link:end --> を見る。
+    Web 検索や、有効にすると使える web fetch、つないだコネクタ（メール・カレンダー・社内の資料）が入口になる。多くつなぐほど、読ませる文章の出どころが増える。つなぎ方と信頼の判断は <!-- link:begin connectors-in-the-app#trust -->[コネクタ（MCP）をアプリで使う › 信頼してよいか](../app/connectors-in-the-app.md#trust)<!-- link:end --> と <!-- link:begin connectors-in-the-app#on-demand -->[コネクタ（MCP）をアプリで使う › 使うときだけ読ませる（On demand）](../app/connectors-in-the-app.md#on-demand)<!-- link:end --> を見る。
 
 === "Claude Code"
 
-    clone したリポジトリのファイルと設定、issue や PR の本文、MCP の道具の説明と結果が入口になる。設定ファイルも「読むだけ」では済まず、開くだけで動くものがある。開く前の確認は <!-- link:begin before-opening-unknown-repos#files-to-check -->知らないリポジトリを開く前に › 開く前に見るファイル（準備中）<!-- link:end --> を見る。
+    clone したリポジトリのファイルと設定、issue や PR の本文、MCP の道具の説明と結果が入口になる。設定ファイルも「読むだけ」では済まず、開くだけで動くものがある。開く前の確認は <!-- link:begin before-opening-unknown-repos#files-to-check -->[知らないリポジトリを開く前に › 開く前に見るファイル](before-opening-unknown-repos.md#files-to-check)<!-- link:end --> を見る。
 
 === "API"
 
@@ -125,7 +125,7 @@ updated: 2026-11-05
 
 防ぐ手立ては、この辞典の原理「縛る」に当たる。頼み方で守るのではなく、仕込まれた指示に従っても被害にならないよう、権限と通信を先に絞る。防ぐ対象は、原因「境界がない」である。データと命令の境が文脈の中にないので、境を作るのは、文脈の外にある権限と経路になる。
 
-- 入口を選ぶ：読ませる文章の出どころを減らす。知らないリポジトリは開く前に確かめる（<!-- link:begin before-opening-unknown-repos#trust -->知らないリポジトリを開く前に › 信頼の前と後で効くもの（準備中）<!-- link:end -->）。入れる道具は出所と中身を確かめる（<!-- link:begin vetting-extensions#provenance -->[MCP・プラグイン・スキルを入れる前の確認 › 出所を確かめる](vetting-extensions.md#provenance)<!-- link:end -->）。
+- 入口を選ぶ：読ませる文章の出どころを減らす。知らないリポジトリは開く前に確かめる（<!-- link:begin before-opening-unknown-repos#trust -->[知らないリポジトリを開く前に › 信頼の前と後で効くもの](before-opening-unknown-repos.md#trust)<!-- link:end -->）。入れる道具は出所と中身を確かめる（<!-- link:begin vetting-extensions#provenance -->[MCP・プラグイン・スキルを入れる前の確認 › 出所を確かめる](vetting-extensions.md#provenance)<!-- link:end -->）。
 - 持たせる権限を絞る：読み取り専用の資格情報から始め、1 セッションで触れる範囲を狭くする（<!-- link:begin connecting-mcp#credentials -->[MCP をつなぐ › 資格情報と権限](../extend/connecting-mcp.md#credentials)<!-- link:end -->）。
 - 外への通信と変更を、信頼できない入力と同居させない：信頼できない入力・秘密・外への送信を 1 つの構成に同居させない考え方は <!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](lethal-trifecta.md#three-capabilities)<!-- link:end --> が持つ。どうしても要る作業は <!-- link:begin lethal-trifecta#when-all-three -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つとも要るとき](lethal-trifecta.md#when-all-three)<!-- link:end --> を見る。
 - 囲う：サンドボックスは、囲える範囲が決まっている。MCP サーバーやフックには及ばない（<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->）。
@@ -180,9 +180,9 @@ updated: 2026-11-05
 **次に読む**
 
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](lethal-trifecta.md)
+- [知らないリポジトリを開く前に](before-opening-unknown-repos.md)
 - [MCP・プラグイン・スキルを入れる前の確認](vetting-extensions.md)
 - 課題資料・問題文に仕込まれた指示（準備中）
-- 知らないリポジトリを開く前に（準備中）
 - ブラウザや画面の操作を任せるときの注意（準備中）
 
 **関連**
@@ -190,7 +190,7 @@ updated: 2026-11-05
 - [読ませたページやファイルの指示に従ってしまった](../symptoms/followed-injected-instructions.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
-- コネクタ（MCP）をアプリで使う（準備中）
+- [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - [MCP をつなぐ](../extend/connecting-mcp.md)
 
 </div>

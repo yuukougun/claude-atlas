@@ -166,7 +166,7 @@ flowchart TD
 
     **After**：症状と再現の手順に、次の指示を足す。コードはまだ変えない。ファイルを開いて処理の流れを説明する。仮説ごとに予測と反対の証拠を書く。ログで確かめる。最小の修正を diff で提案する。
 
-    足したものは 3 つである。コードを変える前に観察させる順番、仮説ごとの予測と反証、修正を diff で見てから適用する関門である。Before/After の考え方は <!-- link:begin before-after-prompts -->Before/After プロンプト集（準備中）<!-- link:end --> にある。
+    足したものは 3 つである。コードを変える前に観察させる順番、仮説ごとの予測と反証、修正を diff で見てから適用する関門である。Before/After の考え方は <!-- link:begin before-after-prompts -->[Before/After プロンプト集](../prompting/before-after-prompts.md)<!-- link:end --> にある。
 
 <!-- gen:begin snippet fix-a-bug/hypothesis-request -->
 <!-- textlint-disable -->
@@ -327,7 +327,7 @@ Claude Code では、チェックポイントで会話とファイルを戻せ�
 - [存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)
 - [MCP・プラグイン・スキルを入れる前の確認 › 依存のパッケージを入れる前に（存在しない名前・後から登録された名前）](../safety/vetting-extensions.md#dependencies)
 - エージェントチーム（複数の Claude に分担させる）（準備中）
-- Before/After プロンプト集（準備中）
+- [Before/After プロンプト集](../prompting/before-after-prompts.md)
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
 
 </div>

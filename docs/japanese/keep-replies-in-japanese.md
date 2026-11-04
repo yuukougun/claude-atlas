@@ -414,7 +414,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 - クラウドセッションと teleport（準備中）
 - [エージェントループと tool use](../basics/agent-loop.md)
 - [システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](../basics/where-instructions-sit.md)
-- 代表的なフックのレシピ（準備中）
+- [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)
 

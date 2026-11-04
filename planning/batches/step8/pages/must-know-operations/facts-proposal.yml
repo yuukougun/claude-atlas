@@ -1,0 +1,9 @@
+proposals:
+  - fact: {id: key-permission-mode-switch, title: 権限モードを切り替えるキー, value: Shift+Tab, sources: [cc-docs-interactive-mode], checked: 2026-10-29, status: 要確認}
+    used_in: [must-know-operations#modes]
+  - fact: {id: key-external-editor, title: 入力を外部エディタで編集するキー, value: Ctrl+G, sources: [cc-docs-interactive-mode], checked: 2026-10-29, status: 要確認}
+    used_in: [must-know-operations#input]
+  - fact: {id: key-paste-image, title: 画像を貼り付けるキー（端末ごと）, value: "Ctrl+V（iTerm2 は Cmd+V、Windows と WSL は Alt+V）", sources: [cc-docs-interactive-mode], checked: 2026-10-29, status: 要確認}
+    used_in: [must-know-operations#input, must-know-operations#terminals]
+  - fact: {id: key-transcript-and-background, title: トランスクリプトと背景化のキー, value: "Ctrl+O（トランスクリプト）・Ctrl+B（実行中タスクを背景に回す）", sources: [cc-docs-interactive-mode], checked: 2026-10-29, status: 要確認}
+    used_in: [must-know-operations#watch-and-background]

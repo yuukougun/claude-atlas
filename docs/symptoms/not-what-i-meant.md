@@ -76,8 +76,8 @@ updated: 2026-11-05
     - 依頼文を、事情を知らない同僚に見せて迷うかを確かめる。迷う所は、Claude も迷う所である。見せ方は「<!-- link:begin brief-a-new-colleague#colleague-test -->[新人の同僚に頼むつもりで › 文脈のない同僚に見せて確かめる](../prompting/brief-a-new-colleague.md#colleague-test)<!-- link:end -->」にある。
     - 外れ方から、欠けている点を探す。対象のファイルや画面、症状と再現の手順、何が起きれば終わりか、倣う既存の手本のどれが書かれていないかを見る。探し方は「<!-- link:begin four-specifics#which-to-add -->[具体性の 4 点（対象・状況・完了・手本） › ずれ方から、次に足す点を探す](../prompting/four-specifics.md#which-to-add)<!-- link:end -->」にある。対象・状況・完了・手本を書くという助言は、公式の [Best practices](https://code.claude.com/docs/en/best-practices) にある。
     - 手元で最も安いのは、Claude に推測した点を挙げさせることである。下の 2 つの依頼のどちらかを使う。挙がった推測のうち、意図と違うものが、次に足す情報である。
-    - 平凡な答えが出るときは、形容詞で頼んでいないかを見る。好みを言葉にしにくいときは、自分の過去の文章や既存のコードを手本に見せる。選び方は「<!-- link:begin show-examples#own-writing -->例を見せる › 自分の文章を手本にする（準備中）<!-- link:end -->」にある。画面やエラーは、画像で渡すほうが速いこともある（<!-- link:begin images-and-voice#images -->画像・スクリーンショット・音声で渡す › 画像で渡すと速いもの（準備中）<!-- link:end -->）。
-    - 要件が自分でも固まっていないなら、依頼文を磨く前に、Claude に質問させる。頼み方は「<!-- link:begin let-claude-ask#how -->質問させる・インタビューさせる › 質問させる頼み方（準備中）<!-- link:end -->」にある。大きな機能は、仕様を先に固める進め方を「<!-- link:begin spec-first#interview -->仕様を先に固める（spec・インタビュー・モック先行） › インタビューで仕様を詰める（準備中）<!-- link:end -->」で見る。
+    - 平凡な答えが出るときは、形容詞で頼んでいないかを見る。好みを言葉にしにくいときは、自分の過去の文章や既存のコードを手本に見せる。選び方は「<!-- link:begin show-examples#own-writing -->[例を見せる › 自分の文章を手本にする](../prompting/show-examples.md#own-writing)<!-- link:end -->」にある。画面やエラーは、画像で渡すほうが速いこともある（<!-- link:begin images-and-voice#images -->[画像・スクリーンショット・音声で渡す › 画像で渡すと速いもの](../prompting/images-and-voice.md#images)<!-- link:end -->）。
+    - 要件が自分でも固まっていないなら、依頼文を磨く前に、Claude に質問させる。頼み方は「<!-- link:begin let-claude-ask#how -->[質問させる・インタビューさせる › 質問させる頼み方](../prompting/let-claude-ask.md#how)<!-- link:end -->」にある。大きな機能は、仕様を先に固める進め方を「<!-- link:begin spec-first#interview -->[仕様を先に固める（spec・インタビュー・モック先行） › インタビューで仕様を詰める](../recipes/spec-first.md#interview)<!-- link:end -->」で見る。
 
 2. **散らかっている**：依頼は足りているのに、同じ会話の中の外れた試みや、積み重ねた訂正が、次の答えを引きずる。
 
@@ -144,7 +144,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)<br>例を見せる（準備中）<br>質問させる・インタビューさせる（準備中） |
+| 見えていない | [具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)<br>[例を見せる](../prompting/show-examples.md)<br>[質問させる・インタビューさせる](../prompting/let-claude-ask.md) |
 | 散らかっている | [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md) |
 | 合っていない | モデル別の癖と、プロンプトの合わせ方（準備中）<br>[effort の段階と使い分け](../models/effort-levels.md) |
 
@@ -171,7 +171,7 @@ updated: 2026-11-05
 
 - 頼む前に、対象・状況・完了・手本のどれが欠けているかを見る。書き方の雛形は「<!-- link:begin four-specifics#templates -->[具体性の 4 点（対象・状況・完了・手本） › 4 点を書く雛形](../prompting/four-specifics.md#templates)<!-- link:end -->」にある。
 - 毎回同じ背景を書いているなら、依頼ごとに書かず、置き場所に移す。移し方は「<!-- link:begin repeating-the-same-explanation -->[毎回同じ説明をしている](repeating-the-same-explanation.md)<!-- link:end -->」にある。
-- 例外を許さない決まり（このファイルは触らない、など）は、頼み方を磨かず、仕組みに移す。考え方は「<!-- link:begin say-what-you-want#two-layers -->否定形ではなく、望む形で書く › 例外のない禁止は仕組みへ（二層）（準備中）<!-- link:end -->」にある。
+- 例外を許さない決まり（このファイルは触らない、など）は、頼み方を磨かず、仕組みに移す。考え方は「<!-- link:begin say-what-you-want#two-layers -->[否定形ではなく、望む形で書く › 例外のない禁止は仕組みへ（二層）](../prompting/say-what-you-want.md#two-layers)<!-- link:end -->」にある。
 
 最初から完璧な依頼を作らなくてよい。最初は平易に頼み、返事を見て足りない所だけを足す。進め方は「<!-- link:begin refine-in-conversation#start-plain -->頼み方は一回で決めない（会話で詰める） › まず平易に頼み、足りない分を足す（準備中）<!-- link:end -->」にある。良くなったかは、前回の結果と見比べて確かめる。毎回一から作り直させず、前回の結果を踏まえて直させる進め方は「<!-- link:begin build-on-results#regenerate-or-refine -->やり直させるより、結果を踏まえて直させる › 作り直しと直しの違い（準備中）<!-- link:end -->」にある。
 
@@ -199,8 +199,8 @@ updated: 2026-11-05
 **次に読む**
 
 - [具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)
-- 例を見せる（準備中）
-- 質問させる・インタビューさせる（準備中）
+- [例を見せる](../prompting/show-examples.md)
+- [質問させる・インタビューさせる](../prompting/let-claude-ask.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - モデル別の癖と、プロンプトの合わせ方（準備中）
@@ -210,14 +210,14 @@ updated: 2026-11-05
 
 - [新人の同僚に頼むつもりで](../prompting/brief-a-new-colleague.md)
 - 出力の形と分量を指定する（準備中）
-- 仕様を先に固める（spec・インタビュー・モック先行）（準備中）
-- 否定形ではなく、望む形で書く（準備中）
+- [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)
+- [否定形ではなく、望む形で書く](../prompting/say-what-you-want.md)
 - 文章を頼むとき（読み手・目的・手本を渡す）（準備中）
 - 日本語の「AI 臭さ」を減らす（準備中）
 - 頼み方は一回で決めない（会話で詰める）（準備中）
 - やり直させるより、結果を踏まえて直させる（準備中）
 - [提案してほしいのか、実行してほしいのか](../prompting/suggest-or-do.md)
-- 画像・スクリーンショット・音声で渡す（準備中）
+- [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)
 - [頼んでいないことまでやる（過剰設計）](does-more-than-asked.md)
 - [毎回同じ説明をしている](repeating-the-same-explanation.md)
 - [文体や表記が揃わない](inconsistent-japanese-style.md)

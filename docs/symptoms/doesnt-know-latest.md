@@ -200,7 +200,7 @@ updated: 2026-11-05
 **関連**
 
 - リサーチを使いこなす（準備中）
-- コネクタ（MCP）をアプリで使う（準備中）
+- [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - [記事や前のやり方が通じない](old-advice-doesnt-work.md)
 - いつの情報かを見分ける（準備中）
 - [もっともらしい嘘・出典の誤り](plausible-falsehoods.md)

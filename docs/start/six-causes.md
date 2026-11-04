@@ -210,7 +210,7 @@ Claude 側の六つは、Claude が置かれた状況の欠けである。見せ
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)
 - [context rot と紛らわしい情報](../basics/context-rot.md)
-- 机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）
+- [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
 
 </div>
 

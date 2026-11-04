@@ -1,0 +1,11 @@
+proposals:
+  - fact: {id: artifacts-template-availability, title: アーティファクトのテンプレートごとの使えるプラン, value: "Docs・Slides・Design は全プラン。Dashboards・アプリ接続・データ保存は Pro 以上。Motion は Team と Enterprise。Enterprise は Docs・Slides・Design が 2026-10-15 から既定でオン", sources: [hc-artifacts, hc-release-notes, claude-pricing], checked: 2026-10-29, status: 確認済み（成熟度の書き方に食い違いあり。features の artifacts の note を参照）}
+    used_in: [artifacts-overview#templates, artifacts-overview#pitfalls]
+  - fact: {id: artifacts-template-maturity, title: アーティファクトのテンプレートごとの成熟度, value: "Dashboards と Motion は beta。Docs・Slides・Design は、アーティファクトの記事と料金のページは beta と書かず、Cowork とチャットの統合の記事は beta と書く。リリースノート（2026-09-16）は Enterprise で beta と書く", sources: [hc-artifacts, hc-cowork-and-chat, hc-release-notes, claude-pricing], checked: 2026-11-04, status: 食い違いあり}
+    used_in: [artifacts-overview#templates, artifacts-overview#pitfalls]
+  - fact: {id: artifacts-storage-limit, title: アーティファクトのデータ保存の上限, value: "1 つのアーティファクトにつき 20MB まで。テキストのみ", sources: [hc-artifacts], checked: 2026-10-29, status: 確認済み}
+    used_in: [artifacts-as-apps#runtime]
+  - fact: {id: artifacts-required-setting, title: アーティファクトに要る設定の名前, value: "Cloud code execution and file creation（新しい設定の画面では Create and edit files）をオンにしておく", sources: [hc-artifacts, hc-files], checked: 2026-11-04, status: 確認済み}
+    used_in: [artifacts-overview#when, artifacts-overview#pitfalls]
+  - fact: {id: artifacts-rebuilt-date, title: アーティファクトが今の形になった日, value: "2026-09-16。それより前に作ったものは legacy artifacts で、動き続けるが新規には作れない", sources: [hc-release-notes, hc-artifacts], checked: 2026-10-29, status: 確認済み}
+    used_in: [artifacts-overview#when, artifacts-overview#pitfalls]
