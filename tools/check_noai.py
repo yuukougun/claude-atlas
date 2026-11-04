@@ -207,13 +207,17 @@ def check(url: str, with_robots: bool) -> dict:
         r["robots_txt"] = robots_txt(final or url)
         agents = r["robots_txt"].get("agents") or {}
         def whole_site(rules: list[str]) -> bool:
-            # Disallow: / があり、ルート以外のパスを開ける Allow がない（PMC のように /articles/ を開けるものは当たらない）
-            opens = [r for r in rules if r.startswith("Allow: /") and r not in ("Allow: /", "Allow: /$")]
-            return "Disallow: /" in rules and not opens
+            # Disallow: / があり、中身のパスを開ける Allow がない。PMC のように /articles/ を開けるものは当たらない。
+            # ads.txt・robots.txt・sitemap.xml のような直下の小さなファイルだけを開けるものは、全体を禁じたと数える
+            def opens(rule: str) -> bool:
+                path = rule.split(":", 1)[1].strip()
+                if path in ("/", "/$"):
+                    return False
+                return not re.fullmatch(r"/[^/]+\.(?:txt|xml|json|ico)\$?", path)
+            return "Disallow: /" in rules and not any(opens(r) for r in rules if r.startswith("Allow:"))
+        # 名前で書かれた Anthropic のクローラの組だけを見る。* の組（名前で書かれていないクローラ全部）は見ない
+        # （decisions.md 2026-11-04「robots.txt の * の組」）
         blocked = [a for a in ANTHROPIC_AGENTS if whole_site(agents.get(a, []))]
-        # * でサイト全体を禁じ、Anthropic のクローラに自分の組がないときも、Anthropic のクローラを禁じる形に当たる
-        if not blocked and whole_site(agents.get("*", [])) and not any(a in agents for a in ANTHROPIC_AGENTS):
-            blocked = ["*（Anthropic のクローラも含む）"]
         if blocked:
             r["found"].append(f"robots.txt で {'・'.join(blocked)} にサイト全体を禁じる")
             r["noai"] = True

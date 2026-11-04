@@ -384,13 +384,9 @@ domains:
   checked: '2026-11-04'
   noai: false
   url: https://rcanand.bearblog.dev/claude-code-just-got-confusing-plan-mode-vs-superpowers-vs-agent-teams-a-practical-guide/
-- domain: reddit.com
-  noai: true
-  checked: '2026-11-04'
-  note: 'robots.txt は * にサイト全体を禁じ（Disallow: /）、Anthropic のクローラに自分の組がない。Anthropic のクローラを禁じる形に当たる（decisions 2026-11-04「工程6b」）'
 - domain: reddit.sentinel-team.org
   checked: '2026-11-04'
-  noai: true
+  noai: false
   url: https://reddit.sentinel-team.org/posts/1qspcip/snapshots/2026-02-01T05%3A38%3A27.093042Z
   note: 'Reddit の投稿の第三者の写しのサイト（robots.txt はなく、noai・noimageai の指定もない）。写しの出典 2 件は 2026-11-04 に外した：元の reddit.com の robots.txt は * にサイト全体を禁じる（Disallow: /）ので、写しを通して読むことも、AI の利用を断るドメインと同じに扱う（H1 の理由の文）。作者の判断で戻してよい。2026-11-04：写しのサイトそのものも、元の reddit.com と同じに AI の利用を断るドメインとして扱う（decisions 2026-11-04「工程6b」の補足）'
 - domain: redreamality.com
@@ -4777,3 +4773,19 @@ sources:
   lang: ja
   checked: '2026-11-04'
   published: '2026-08-26'
+- id: reddit-snapshot-1qspcip
+  url: https://reddit.sentinel-team.org/posts/1qspcip/snapshots/2026-02-01T05%3A38%3A27.093042Z
+  title: 'Post Snapshot: 1qspcip (2026-02-01)'
+  kind: 実践者
+  publisher: Reddit Sentiment Analyzer（Reddit の投稿の写し）
+  lang: en
+  checked: '2026-11-04'
+  note: Reddit の投稿の第三者の写し
+- id: reddit-snapshot-1uk434i
+  url: https://reddit.sentinel-team.org/posts/1uk434i/snapshots/2026-07-03T03%3A00%3A16.73148Z
+  title: 'Post Snapshot: 1uk434i (2026-07-03)'
+  kind: 実践者
+  publisher: Reddit Sentiment Analyzer（Reddit の投稿の写し）
+  lang: en
+  checked: '2026-11-04'
+  note: Reddit の投稿の第三者の写し

@@ -1942,6 +1942,7 @@ pages:
   - stulberg-code-everything-code-tips-tricks
   - tembo-write-great
   - infoq-code-creator-workflow
+  - reddit-snapshot-1qspcip
 - id: where-to-put-instructions
   sources:
   - api-docs-migration-guide
@@ -2079,6 +2080,8 @@ pages:
   - paddo-ralph-wiggum-autonomous-loops
   - infoq-code-creator-workflow
   - theneuron-explainer-codes-creator-just-dropped
+  - reddit-snapshot-1qspcip
+  - reddit-snapshot-1uk434i
 - id: humans-set-the-parallel-limit
   sources:
   - cc-docs-best-practices
@@ -2100,6 +2103,8 @@ pages:
   - officechai-ai-after-finishing-2nd-last
   - prtimes-algo-artis-awtf-2026
   - theneuron-explainer-codes-creator-just-dropped
+  - reddit-snapshot-1qspcip
+  - reddit-snapshot-1uk434i
 - id: destructive-commands
   sources:
   - api-docs-prompting-best-practices
@@ -2381,6 +2386,7 @@ pages:
   - speakerdeck-minorun365-codebesutopurakuteisumatome
   - speakerdeck-tsukamoto1783-humanlayernoblogkaradu-mijie-kuliang
   - tembo-write-great
+  - reddit-snapshot-1qspcip
 - id: always-on-costs
   sources:
   - cc-docs-best-practices
