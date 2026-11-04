@@ -6,7 +6,8 @@ kyopro-atlas の tools/check_noai.py（同じ作者、MIT）を写し、名前�
 
 使い方:
   python3 tools/check_noai.py URL [URL ...]       各 URL を取得して、noai・noimageai の有無を出す
-  python3 tools/check_noai.py --robots URL ...    加えて robots.txt の AI 向けのクローラ（GPTBot・ClaudeBot など）への指定も出す
+  python3 tools/check_noai.py URL ...              robots.txt の AI 向けのクローラ（GPTBot・ClaudeBot など）への指定も見る（既定）。
+                                                 Anthropic のクローラにサイト全体を禁じていれば「断る」と判定する（2026-11-04）
   python3 tools/check_noai.py --json URL ...      結果を JSON で出す
 atcoder.jp・codeforces.com（とそのサブドメイン）は取得せず「既知の noai」と出す（AI で開かない。kyopro-atlas の decisions.md 2026-10-21）。
 転送（リダイレクト）の先がこれらのドメインなら、転送をたどらない。
@@ -24,6 +25,7 @@ from __future__ import annotations
 import argparse
 import html.parser
 import json
+from pathlib import Path
 import re
 import sys
 import urllib.error
@@ -38,14 +40,32 @@ KNOWN_NOAI = {
 FLAGS = ("noai", "noimageai")
 BOT_METAS = {"robots", "googlebot", "google-extended", "bingbot", "gptbot", "chatgpt-user", "ccbot", "claudebot",
              "claude-web", "anthropic-ai", "perplexitybot", "applebot-extended", "bytespider"}
-AI_AGENTS = ["GPTBot", "ChatGPT-User", "ClaudeBot", "Claude-Web", "anthropic-ai", "Google-Extended", "CCBot",
-             "PerplexityBot", "Applebot-Extended", "Bytespider"]
+AI_AGENTS = ["GPTBot", "ChatGPT-User", "ClaudeBot", "Claude-Web", "anthropic-ai", "Claude-User", "Claude-SearchBot",
+             "Google-Extended", "CCBot", "PerplexityBot", "Applebot-Extended", "Bytespider"]
+# robots.txt でこれらのどれかにサイト全体（Disallow: /）を禁じるドメインは、AI の利用を断るドメインと同じに扱う
+# （資料にしない。decisions.md 2026-11-04「robots.txt で Anthropic のクローラを禁じるドメイン」）
+ANTHROPIC_AGENTS = ["ClaudeBot", "Claude-Web", "anthropic-ai", "Claude-User", "Claude-SearchBot"]
 MAX_BYTES = 3 * 1024 * 1024
+
+
+def _deny_domains() -> dict:
+    """.claude/settings.json の deny の WebFetch(domain:…) を、既知の noai として読む（読めなければ空）。"""
+    path = Path(__file__).resolve().parent.parent / ".claude" / "settings.json"
+    try:
+        deny = json.loads(path.read_text(encoding="utf-8")).get("permissions", {}).get("deny", [])
+    except Exception:  # noqa: BLE001
+        return {}
+    out = {}
+    for rule in deny if isinstance(deny, list) else []:
+        m = re.fullmatch(r"WebFetch\(domain:(?:\*\.)?([^)]+)\)", str(rule).strip())
+        if m:
+            out[m.group(1).lower()] = ".claude/settings.json の deny にある（AI の利用を断るドメイン。decisions.md）"
+    return out
 
 
 def known_noai(url: str) -> str | None:
     host = (urllib.parse.urlsplit(url).hostname or "").lower().rstrip(".")
-    for d, note in KNOWN_NOAI.items():
+    for d, note in {**_deny_domains(), **KNOWN_NOAI}.items():
         if host == d or host.endswith("." + d):
             return f"{d}：{note}"
     return None
@@ -185,6 +205,11 @@ def check(url: str, with_robots: bool) -> dict:
              found=found, noai=bool(found))
     if with_robots:
         r["robots_txt"] = robots_txt(final or url)
+        agents = r["robots_txt"].get("agents") or {}
+        blocked = [a for a in ANTHROPIC_AGENTS if "Disallow: /" in agents.get(a, [])]
+        if blocked:
+            r["found"].append(f"robots.txt で {'・'.join(blocked)} にサイト全体を禁じる")
+            r["noai"] = True
     return r
 
 
@@ -221,14 +246,15 @@ def show(r: dict) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("urls", nargs="+", help="確かめる URL")
-    parser.add_argument("--robots", action="store_true", help="robots.txt の AI 向けのクローラへの指定も出す")
+    parser.add_argument("--robots", action="store_true", help="（いまは既定で見る。前からの書き方のために残した）")
+    parser.add_argument("--no-robots", action="store_true", help="robots.txt を見ない（判定に Anthropic のクローラへの禁止が入らない）")
     parser.add_argument("--json", action="store_true", help="結果を JSON で出す")
     args = parser.parse_args()
     results = []
     for url in args.urls:
         if not re.match(r"https?://", url):
             url = "https://" + url
-        results.append(check(url, args.robots))
+        results.append(check(url, not args.no_robots))
     if args.json:
         print(json.dumps(results, ensure_ascii=False, indent=1))
     else:

@@ -22,5 +22,4764 @@
 #       published: <発行・更新の日。任意>
 #       archive: <写しの URL。任意>
 
-domains: []
-sources: []
+domains:
+- domain: code.claude.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://code.claude.com/docs/en/features-overview
+  note: 日本語版（/docs/ja/）も同じ結果。robots.txt に AI 向けのクローラへの指定はない
+- domain: github.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+  note: robots.txt は AI 向けのクローラに一部のパスを禁じるが、noai・noimageai の指定はない
+- domain: raw.githubusercontent.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md
+  note: CHANGELOG の本文を読むのに使った
+- domain: platform.claude.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://platform.claude.com/docs/en/build-with-claude/effort
+- domain: support.claude.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://support.claude.com/en/articles/8664678-change-the-model-effort-and-thinking-settings
+  note: meta robots は all
+- domain: claude.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://claude.com/pricing
+  note: claude.com/docs と claude.com/resources も同じドメイン
+- domain: web.archive.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://web.archive.org/
+  note: すでにある写しを読んだだけ（新しい写しは作っていない）
+- domain: api.github.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://api.github.com/repos/anthropics/claude-code-action/releases
+  note: claude-code-action の v1 の公開の日時を読むのに使った（sources の URL は github.com）
+- domain: modelcontextprotocol.io
+  checked: '2026-11-04'
+  noai: false
+  url: https://modelcontextprotocol.io/specification/2025-03-26/changelog
+- domain: academy.claude.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://academy.claude.com/courses/claude-101/creating-with-artifacts
+- domain: advait.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://advait.org/files/lee_2025_ai_critical_thinking_survey.pdf
+- domain: ai-revolution.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://ai-revolution.co.jp/media/claude-code-quality-postmortem/
+- domain: ai-tldr.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://ai-tldr.dev/releases/anthropic-claude-code-team-code-review/
+- domain: ai.giftx.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://ai.giftx.co.jp/blog/claude-memory-guide/
+- domain: ai.meta.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://ai.meta.com/blog/practical-ai-agent-security/
+- domain: ai.zenken.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://ai.zenken.co.jp/post/claude-code-pricing/
+- domain: aiweekly.co
+  checked: '2026-11-04'
+  noai: false
+  url: https://aiweekly.co/editors-blog/found-first-thirty-percent-of-ai-kernel-wins-fail-on-held-out-configurations
+- domain: andlukyane.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://andlukyane.com/blog/rogii-geosteering-kaggle
+- domain: anthropic-partners.skilljar.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://anthropic-partners.skilljar.com/claude-code-in-action
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・ChatGPT-User・ClaudeBot・GPTBot・Google-Extended・PerplexityBot・anthropic-ai）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: anthropic.skilljar.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://anthropic.skilljar.com/claude-code-101?next=%2Fclaude-code-101%2F469795
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・ChatGPT-User・ClaudeBot・GPTBot・Google-Extended・PerplexityBot・anthropic-ai）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: arxiv.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://arxiv.org/html/2506.09050v2
+- domain: assets.anthropic.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://assets.anthropic.com/m/785e231869ea8b3b/original/claude-3-7-sonnet-system-card.pdf
+- domain: atmarkit.itmedia.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://atmarkit.itmedia.co.jp/ait/spv/2608/04/news002.html
+- domain: awesomeclaude.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://awesomeclaude.ai/claude-code-tips
+- domain: b.hatena.ne.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://b.hatena.ne.jp/entry/s/zenn.dev/goat_eat_any/articles/claude-code-cloud-sessions
+- domain: battlecode.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://battlecode.org/assets/files/postmortem-2026-lorem-ipsum.pdf
+- domain: blog.drivendata.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://blog.drivendata.org/blog/ai-agents-data-science-competitions
+- domain: blog.includesecurity.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://blog.includesecurity.com/2026/04/ctfs-in-the-ai-era/
+- domain: blog.pebblous.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://blog.pebblous.ai/blog/agentic-data-science-silent-failures/en/
+- domain: blog.serverworks.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://blog.serverworks.co.jp/claude-code-claudemd-guide
+- domain: blog.terry-u16.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://blog.terry-u16.net/entry/how-to-use-pahcer
+- domain: chessprogramming.org
+  checked: '2026-11-04'
+  noai: true
+  url: https://chessprogramming.org/Sequential_Probability_Ratio_Test
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・CCBot・Claude-Web・ClaudeBot・GPTBot・Google-Extended・anthropic-ai）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: chokudai.hatenablog.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://chokudai.hatenablog.com/entry/2025/07/02/151841
+- domain: cicl.stanford.edu
+  checked: '2026-11-04'
+  noai: false
+  url: https://cicl.stanford.edu/papers/vasconcelos2023explanations.pdf
+- domain: claude.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://claude.dev/blog/solving-code-review-at-anthropic/
+- domain: cloud.google.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://cloud.google.com/blog/products/ai-machine-learning/introducing-doras-inaugural-ai-capabilities-model
+- domain: codex.danielvaughan.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://codex.danielvaughan.com/2026/04/25/codex-cli-automated-git-bisect-regression-hunting-root-cause-analysis/
+- domain: composio.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://composio.dev/content/best-mcp-servers-claude-code-codex
+- domain: crystal-method.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://crystal-method.com/blog/claude-code-non-engineer/
+- domain: current.ndl.go.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://current.ndl.go.jp/car/236829
+- domain: darragh.bearblog.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://darragh.bearblog.dev/i-stopped-coding-for-11-weeks-and-still-placed-3rd-on-kaggle/
+- domain: dev.classmethod.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://dev.classmethod.jp/articles/claude-code-hooks-prevent-english-reply/
+- domain: developer.nvidia.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://developer.nvidia.com/blog/winning-a-kaggle-competition-with-generative-ai-assisted-coding/
+- domain: devtools.shingoirie.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://devtools.shingoirie.com/blog/claude-code-japanese-claude-md-guide/
+- domain: dylancastillo.co
+  checked: '2026-11-04'
+  noai: false
+  url: https://dylancastillo.co/til/counting-tokens.html
+- domain: engineering.mercari.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://engineering.mercari.com/en/blog/entry/20251028-the-ai-lied-to-me-and-thats-when-i-learned-how-to-use-it/
+- domain: feeds.simonwillison.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://feeds.simonwillison.net/2025/Nov/2/how-i-use-every-claude-code-feature/
+- domain: findy-tools.io
+  checked: '2026-11-04'
+  noai: false
+  url: https://findy-tools.io/products/claudecode/1065/825
+- domain: gigazine.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://gigazine.net/news/20260424-anthropic-claude-code-quality/
+- domain: gihyo.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://gihyo.jp/article/2026/02/get-started-claude-code-07
+- domain: gwern.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://gwern.net/doc/psychology/cognitive-bias/sunk-cost/2012-sleesman.pdf
+- domain: hannahstulberg.substack.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://hannahstulberg.substack.com/p/claude-code-for-everything-30-claude-code-tips-and-tricks
+- domain: harper.blog
+  checked: '2026-11-04'
+  noai: false
+  url: https://harper.blog/2025/05/08/basic-claude-code/
+- domain: hyperdev.matsuoka.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://hyperdev.matsuoka.com/p/the-tired-toddler-problem
+- domain: ideas.repec.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html
+- domain: ijcai.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://ijcai.org/proceedings/2025/1142
+- domain: insight.kellogg.northwestern.edu
+  checked: '2026-11-04'
+  noai: false
+  url: https://insight.kellogg.northwestern.edu/article/when-it-comes-to-creativity-ai-doesnt-always-have-the-answer
+- domain: invariantlabs.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://invariantlabs.ai/blog/mcp-github-vulnerability
+- domain: israynotarray.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://israynotarray.com/en/ai/2026/10/11/claude-code-save-token-cost/
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・CCBot・ClaudeBot・GPTBot・Google-Extended）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: isucon.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://isucon.net/archives/59966826.html
+- domain: jangwook.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://jangwook.net/en/blog/en/multilingual-llm-token-tax-experiment/
+- domain: jeremytian.substack.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://jeremytian.substack.com/p/can-claude-code-in-a-loop-improve
+- domain: jinrai.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://jinrai.co.jp/blog/2026/03/26/claude-japanese/
+- domain: kiri8128.hatenablog.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://kiri8128.hatenablog.com/entry/2023/11/29/024335
+- domain: labs.cloudsecurityalliance.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://labs.cloudsecurityalliance.org/research/csa-research-note-readme-instruction-injection-ai-coding-age/
+- domain: lucumr.pocoo.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://lucumr.pocoo.org/2025/7/30/things-that-didnt-work/
+- domain: maggieappleton.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://maggieappleton.com/gastown
+- domain: marmelab.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html
+- domain: media.defcon.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://media.defcon.org/DEF%20CON%2033/DEF%20CON%2033%20video%20and%20slides/DEF%20CON%2033%20video%20and%20slides%20captions/DEF%20CON%2033%20-%20Claude%20-%20Climbing%20a%20CTF%20Scoreboard%20Near%20You%20-%20Keane%20Lucas.eng.txt
+  note: check_noai.py は取得できなかった（Remote end closed connection without response）。出典の取得では本文を読めた（meta と X-Robots-Tag に指定はない）
+- domain: metr.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://metr.org/blog/2026-02-24-uplift-update/
+- domain: mitchellh.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://mitchellh.com/writing/my-ai-adoption-journey
+- domain: news.creeta.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://news.creeta.com/en/claude-code-automation-primitives-loops-goals-routines-dynamic-workflows/
+- domain: news.harvard.edu
+  checked: '2026-11-04'
+  noai: false
+  url: https://news.harvard.edu/gazette/story/2026/09/taming-the-duck-for-starters/
+- domain: note.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://note.com/good_nerine619/n/n93163a04fb77
+- domain: officechai.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://officechai.com/ai/after-finishing-2nd-last-year-openai-is-dominating-the-atcoder-coding-competition-2026/
+- domain: openrouter.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://openrouter.ai/blog/insights/opus-47-tokenizer-analysis/
+- domain: paddo.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://paddo.dev/blog/how-boris-uses-claude-code
+- domain: pc.watch.impress.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://pc.watch.impress.co.jp/docs/news/2034998.html
+- domain: pengsida.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://pengsida.net/files/John_Schulman_How_to_do_research.pdf
+- domain: pmc.ncbi.nlm.nih.gov
+  checked: '2026-11-04'
+  noai: false
+  url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11659167/
+- domain: posfie.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://posfie.com/@s_kombu/p/lrhGRMH
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・CCBot・ChatGPT-User・Claude-Web・ClaudeBot・GPTBot・PerplexityBot・anthropic-ai）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: privacy.claude.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data
+- domain: proceedings.iclr.cc
+  checked: '2026-11-04'
+  noai: false
+  url: https://proceedings.iclr.cc/paper_files/paper/2024/hash/0105f7972202c1d4fb817da9f21a9663-Abstract-Conference.html
+- domain: prtimes.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://prtimes.jp/main/html/rd/p/000000251.000013310.html
+- domain: prussianblue.hatenadiary.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://prussianblue.hatenadiary.jp/entry/2025/09/29/223244
+- domain: qiita.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://qiita.com/ennagara128/items/0f35168cfc887c38e152
+- domain: rcanand.bearblog.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://rcanand.bearblog.dev/claude-code-just-got-confusing-plan-mode-vs-superpowers-vs-agent-teams-a-practical-guide/
+- domain: reddit.sentinel-team.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://reddit.sentinel-team.org/posts/1qspcip/snapshots/2026-02-01T05%3A38%3A27.093042Z
+- domain: redreamality.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://redreamality.com/garden/notes/library/writing-a-good-claude-md/
+- domain: registry.npmjs.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://registry.npmjs.org/@anthropic-ai/claude-code
+- domain: research.checkpoint.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://research.checkpoint.com/2026/rce-and-api-token-exfiltration-through-claude-code-project-files-cve-2025-59536/
+- domain: research.jfrog.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://research.jfrog.com/post/nx-supply-chain-attack-targets-ai-tool-users/
+- domain: ringling.libguides.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://ringling.libguides.com/ai/framework
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・CCBot・Google-Extended）に全体を禁じる。noai・noimageai の指定はない
+- domain: ruben.substack.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://ruben.substack.com/p/1800-hours-of-claude
+- domain: rustc-dev-guide.rust-lang.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://rustc-dev-guide.rust-lang.org/llm-guidance/reviewing.html
+- domain: sakana.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://sakana.ai/ahc058/
+- domain: sankalp.bearblog.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://sankalp.bearblog.dev/claude-code-tips-techniques-from-the-hn-community/
+- domain: scalingintelligence.stanford.edu
+  checked: '2026-11-04'
+  noai: false
+  url: https://scalingintelligence.stanford.edu/blogs/kernelbenchv01/
+- domain: scrimba.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://scrimba.com/articles/best-claude-code-tutorials-and-courses-in-2026/
+- domain: simonw.substack.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://simonw.substack.com/p/new-prompt-injection-papers-agents
+- domain: simonwillison.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
+- domain: speakerdeck.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://speakerdeck.com/shun_pi/duan-qi-ahcdesheng-tutamenotekunituku
+- domain: sylvie.fyi
+  checked: '2026-11-04'
+  noai: false
+  url: https://sylvie.fyi/posts/ritsec-2026/
+- domain: tagteam.harvard.edu
+  checked: '2026-11-04'
+  noai: false
+  url: https://tagteam.harvard.edu/hub_feeds/3899/feed_items/16691196
+  note: 1回目の check_noai.py は 503、2回目（同じ日）は 200 で指定なし
+- domain: tech.andpad.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://tech.andpad.co.jp/entry/2026/08/07/100000
+- domain: tech.asoview.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://tech.asoview.co.jp/entry/2026/08/12/113238
+- domain: techcrunch.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://techcrunch.com/2025/07/11/ai-coding-tools-may-not-speed-up-every-developer-study-shows/
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・CCBot・ChatGPT-User・Claude-Web・ClaudeBot・GPTBot・Google-Extended・anthropic-ai）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: the-decoder.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://the-decoder.com/ai-coding-can-make-developers-slower-even-if-they-feel-faster/
+- domain: thorstenball.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://thorstenball.com/talks/how-i-prompt/
+- domain: threadreaderapp.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://threadreaderapp.com/thread/1605570944537280512.html
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・CCBot・Claude-Web・ClaudeBot・GPTBot・Google-Extended・anthropic-ai）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: tutorialsdojo.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://tutorialsdojo.com/claude-skills-unlocked-a-practical-guide-to-anthropic-academys-21-free-courses/
+- domain: usaco.guide
+  checked: '2026-11-04'
+  noai: false
+  url: https://usaco.guide/general/debugging-checklist
+- domain: velvetshark.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://velvetshark.com/stop-prompting-claude-code-let-it-interview-you
+- domain: weel.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://weel.co.jp/media/tech/claudes-memory/
+- domain: www-cdn.anthropic.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www-cdn.anthropic.com/334975cdec18f744b4fa511dc8518bd8d119d29d.pdf
+- domain: www.a1k0n.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.a1k0n.net/2010/03/04/google-ai-postmortem.html
+- domain: www.ai-orchestra.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.ai-orchestra.ai/claude-code-training/columns/claude-code-nihongo
+- domain: www.analyticsvidhya.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.analyticsvidhya.com/blog/2026/08/claude-code-best-practices-analysis/
+- domain: www.anthropic.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.anthropic.com/research/effective-context-engineering-for-ai-agents
+- domain: bleepingcomputer.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-confirms-claude-is-down-in-major-outage-affecting-multiple-services/
+  note: robots.txt は AI のクローラ（Applebot-Extended・CCBot・ClaudeBot）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: www.businesstoday.in
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.businesstoday.in/technology/news/story/anthropic-is-making-claude-code-more-autonomous-auto-mode-coming-as-default-for-paid-users-548281-2026-08-10
+- domain: www.codeknights.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer
+- domain: www.coursera.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.coursera.org/learn/claude-code-in-action/reviews
+- domain: www.docker.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.docker.com/blog/mcp-horror-stories-whatsapp-data-exfiltration-issue/
+- domain: www.dolthub.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.dolthub.com/blog/2025-06-30-claude-code-gotchas/
+- domain: www.dsebastien.net
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.dsebastien.net/claude-code-tips-and-best-practices/
+- domain: www.eecs.harvard.edu
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.eecs.harvard.edu/~kgajos/papers/2021/bucinca21trust.pdf
+- domain: www.heyuan110.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.heyuan110.com/posts/ai/2026-03-05-best-mcp-servers-claude-code/
+- domain: www.humanlayer.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.humanlayer.dev/blog/writing-a-good-claude-md
+- domain: www.infoq.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.infoq.com/news/2026/05/anthropic-claude-code-postmortem/
+- domain: www.invicti.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.invicti.com/blog/web-security/owasp-top-10-risks-llm-security-2025
+- domain: www.jitendrazaa.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.jitendrazaa.com/blog/others/tips/10-claude-code-tips-from-the-creator-boris-cherny-february/
+- domain: www.maruzenjunkudo.co.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.maruzenjunkudo.co.jp/products/9784297159399
+- domain: www.mext.go.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.mext.go.jp/kaigisiryo/content/000245316.pdf
+- domain: www.mindstudio.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.mindstudio.ai/blog/claude-code-goal-command-vs-dynamic-workflows
+- domain: www.nara-k.ac.jp
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.nara-k.ac.jp/education/uploads/nict_seiseiai_katsuyoguidelines-2.pdf
+- domain: www.oneusefulthing.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged?r=4rahd
+- domain: oreilly.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://www.oreilly.com/radar/podcast/generative-ai-in-the-real-world-vibe-coding-with-steve-yegge/
+  note: robots.txt は AI のクローラ（Bytespider・CCBot・GPTBot・anthropic-ai）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: www.sarahshihuiwong.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.sarahshihuiwong.com/post/think-first-chatgpt-later-wong-qiu-2026-educational-psychology-review
+- domain: www.schemastore.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.schemastore.org/claude-code-settings.json
+- domain: www.sciencedaily.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.sciencedaily.com/releases/2024/07/240712222127.htm
+- domain: www.shareuhack.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.shareuhack.com/en/posts/claude-code-claude-md-setup-guide-2026
+- domain: www.splunk.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.splunk.com/ja_jp/blog/observability/isucon-rethink-observability-in-the-age-of-ai.html
+- domain: www.ssdnodes.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.ssdnodes.com/learn/lang/ja/claude-in-japanese-app-language-and-limits
+- domain: www.tembo.io
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.tembo.io/blog/how-to-write-a-great-claude-md
+- domain: www.theneuron.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.theneuron.ai/explainer-articles/-claude-codes-creator-just-dropped-his-15-favorite-power-features-most-people-dont-know-about-/
+- domain: theregister.com
+  checked: '2026-11-04'
+  noai: true
+  url: https://www.theregister.com/software/2025/08/13/claude-codes-endless-sycophancy-annoys-customers/328260
+  note: robots.txt は AI のクローラ（Applebot-Extended・Bytespider・CCBot・Claude-Web・ClaudeBot・GPTBot・Google-Extended・anthropic-ai）に全体を禁じる。noai・noimageai の指定はない（2026-11-04：robots.txt で Anthropic のクローラにサイト全体を禁じるので、AI の利用を断るドメインと同じに扱う。decisions 2026-11-04）
+- domain: www.trychroma.com
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.trychroma.com/research/context-rot
+- domain: www.understandingai.org
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.understandingai.org/p/an-openai-model-crushed-top-human
+- domain: www.wafer.ai
+  checked: '2026-11-04'
+  noai: false
+  url: https://www.wafer.ai/blog/reward-hacking
+- domain: zenn.dev
+  checked: '2026-11-04'
+  noai: false
+  url: https://zenn.dev/ml_bear/articles/84e92429698177
+  note: robots.txt は AI のクローラ（Bytespider）に全体を禁じる。noai・noimageai の指定はない
+sources:
+- id: cc-docs-features-overview
+  url: https://code.claude.com/docs/en/features-overview
+  title: Extend Claude Code
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: 「Context cost by feature」の表（When it loads・What loads・Context cost）と比較のタブ
+- id: cc-docs-features-overview-ja
+  url: https://code.claude.com/docs/ja/features-overview
+  title: Claude Code を拡張する
+  kind: 公式文書
+  publisher: Anthropic
+  lang: ja
+  checked: '2026-11-04'
+  note: 「機能別のコンテキストコスト」の表（ロード時期・ロード内容・コンテキストコスト）。読み込みの時期とコンテキストのコストの語彙の元
+- id: cc-docs-context-window
+  url: https://code.claude.com/docs/en/context-window
+  title: Explore the context window
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: 「What survives compaction」の表
+- id: cc-docs-how-claude-code-works
+  url: https://code.claude.com/docs/en/how-claude-code-works
+  title: How Claude Code works
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-memory
+  url: https://code.claude.com/docs/en/memory
+  title: How Claude remembers your project
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-skills
+  url: https://code.claude.com/docs/en/skills
+  title: Extend Claude with skills
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-sub-agents
+  url: https://code.claude.com/docs/en/sub-agents
+  title: Create custom subagents
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-agent-teams
+  url: https://code.claude.com/docs/en/agent-teams
+  title: Orchestrate teams of Claude Code sessions
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-agents
+  url: https://code.claude.com/docs/en/agents
+  title: Run agents in parallel
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-output-styles
+  url: https://code.claude.com/docs/en/output-styles
+  title: Output styles
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-mcp
+  url: https://code.claude.com/docs/en/mcp
+  title: Connect Claude Code to tools via MCP
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-plugins-overview
+  url: https://code.claude.com/docs/en/plugins/overview
+  title: Plugins overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-plugins-measure
+  url: https://code.claude.com/docs/en/plugins/measure
+  title: Measure plugin cost and usage
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-plugins-create-marketplace
+  url: https://code.claude.com/docs/en/plugins/create-marketplace
+  title: Create a marketplace
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-statusline
+  url: https://code.claude.com/docs/en/statusline
+  title: Customize your status line
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-mods-overview
+  url: https://code.claude.com/docs/en/plugins/mods/overview
+  title: Mods overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-mods-admin
+  url: https://code.claude.com/docs/en/plugins/mods/admin
+  title: Manage mods for your organization
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-code-intelligence
+  url: https://code.claude.com/docs/en/plugins/code-intelligence
+  title: Code intelligence plugins
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-plugin-evals
+  url: https://code.claude.com/docs/en/plugin-evals
+  title: Test plugins with evals
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-hooks-guide
+  url: https://code.claude.com/docs/en/hooks-guide
+  title: Automate actions with hooks
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-permissions
+  url: https://code.claude.com/docs/en/permissions
+  title: Configure permissions
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-permission-modes
+  url: https://code.claude.com/docs/en/permission-modes
+  title: Choose a permission mode
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-auto-mode-config
+  url: https://code.claude.com/docs/en/auto-mode-config
+  title: Configure auto mode
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-sandboxing
+  url: https://code.claude.com/docs/en/sandboxing
+  title: Configure the sandboxed Bash tool
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-managed-settings
+  url: https://code.claude.com/docs/en/managed-settings
+  title: Deploy managed settings
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-settings
+  url: https://code.claude.com/docs/en/settings
+  title: Settings files and precedence
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-settings-reference
+  url: https://code.claude.com/docs/en/settings-reference
+  title: All settings
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-checkpointing
+  url: https://code.claude.com/docs/en/checkpointing
+  title: Checkpointing
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-commands
+  url: https://code.claude.com/docs/en/commands
+  title: Commands
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-model-config
+  url: https://code.claude.com/docs/en/model-config
+  title: Model configuration
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-fast-mode
+  url: https://code.claude.com/docs/en/fast-mode
+  title: Speed up responses with fast mode
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-advisor
+  url: https://code.claude.com/docs/en/advisor
+  title: Escalate hard decisions with the advisor tool
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-costs
+  url: https://code.claude.com/docs/en/costs
+  title: Manage costs effectively
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-tools-reference
+  url: https://code.claude.com/docs/en/tools-reference
+  title: Tools reference
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-interactive-mode
+  url: https://code.claude.com/docs/en/interactive-mode
+  title: Interactive mode
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-sessions
+  url: https://code.claude.com/docs/en/sessions
+  title: Manage sessions
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-voice-dictation
+  url: https://code.claude.com/docs/en/voice-dictation
+  title: Voice dictation
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-cli-reference
+  url: https://code.claude.com/docs/en/cli-reference
+  title: CLI reference
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-data-usage
+  url: https://code.claude.com/docs/en/data-usage
+  title: Data usage
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-code-review-local
+  url: https://code.claude.com/docs/en/code-review-local
+  title: Review locally with /code-review
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-goal
+  url: https://code.claude.com/docs/en/goal
+  title: Keep Claude working toward a goal
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-scheduled-tasks
+  url: https://code.claude.com/docs/en/scheduled-tasks
+  title: Run prompts on a schedule
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-routines
+  url: https://code.claude.com/docs/en/routines
+  title: Automate work with scheduled tasks
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-desktop-scheduled-tasks
+  url: https://code.claude.com/docs/en/desktop-scheduled-tasks
+  title: Schedule recurring tasks in Claude Code Desktop
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-workflows
+  url: https://code.claude.com/docs/en/workflows
+  title: Orchestrate subagents at scale with dynamic workflows
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-worktrees
+  url: https://code.claude.com/docs/en/worktrees
+  title: Run parallel sessions with worktrees
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-agent-view
+  url: https://code.claude.com/docs/en/agent-view
+  title: Manage multiple agents with agent view
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-claude-code-on-the-web
+  url: https://code.claude.com/docs/en/claude-code-on-the-web
+  title: Use Claude Code in the cloud
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-remote-control
+  url: https://code.claude.com/docs/en/remote-control
+  title: Continue local sessions from any device with Remote Control
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-headless
+  url: https://code.claude.com/docs/en/headless
+  title: Run Claude Code programmatically
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-github-actions
+  url: https://code.claude.com/docs/en/github-actions
+  title: Claude Code GitHub Actions
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-cross-session-messaging
+  url: https://code.claude.com/docs/en/cross-session-messaging
+  title: Message your other Claude Code sessions
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-claude-projects
+  url: https://code.claude.com/docs/en/claude-projects
+  title: Let Claude coordinate ongoing work with Projects
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-code-review
+  url: https://code.claude.com/docs/en/code-review
+  title: Code Review
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-code-review-costs
+  url: https://code.claude.com/docs/en/code-review-costs
+  title: Code Review costs and usage
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-ultrareview
+  url: https://code.claude.com/docs/en/ultrareview
+  title: Find bugs with ultrareview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-vs-code
+  url: https://code.claude.com/docs/en/vs-code
+  title: Use Claude Code in VS Code
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-jetbrains
+  url: https://code.claude.com/docs/en/jetbrains
+  title: JetBrains IDEs
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-desktop
+  url: https://code.claude.com/docs/en/desktop
+  title: Desktop application
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-chrome
+  url: https://code.claude.com/docs/en/chrome
+  title: Use Claude Code with Chrome
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-feature-availability
+  url: https://code.claude.com/docs/en/feature-availability
+  title: Feature availability
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-changelog
+  url: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+  title: Changelog
+  kind: CHANGELOG
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: 2.1.318 まで読んだ。版ごとの日付はない（日付は cc-docs-changelog）
+- id: cc-docs-changelog
+  url: https://code.claude.com/docs/en/changelog
+  title: Claude Code changelog
+  kind: CHANGELOG
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: GitHub の CHANGELOG.md から作るページで、版ごとに日付がある。0.2.x の古い版はどれも同じ日付（2025-04-02）なので、その日付は入った日に使わない
+- id: api-docs-effort
+  url: https://platform.claude.com/docs/en/build-with-claude/effort
+  title: Effort
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-fast-mode
+  url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
+  title: Fast mode
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-advisor-tool
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
+  title: Advisor tool
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-context-windows
+  url: https://platform.claude.com/docs/en/build-with-claude/context-windows
+  title: Context windows
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: hc-effort-settings
+  url: https://support.claude.com/en/articles/8664678-change-the-model-effort-and-thinking-settings
+  title: Change the model, effort, and thinking settings
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: hc-context-window
+  url: https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans
+  title: How large is the context window on paid Claude plans?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: hc-claude-in-chrome
+  url: https://support.claude.com/en/articles/12012173-get-started-with-claude-in-chrome
+  title: Get started with Claude in Chrome
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: hc-release-notes
+  url: https://support.claude.com/en/articles/12138966-release-notes
+  title: Release notes
+  kind: リリースノート
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+  note: Claude のアプリのリリースノート。2025-08 から。最新の項目は 2026-10-21
+- id: hc-projects-manage
+  url: https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects
+  title: How can I create and manage projects?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-projects-what
+  url: https://support.claude.com/en/articles/9517075-what-are-projects
+  title: What are projects?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-personalization
+  url: https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features
+  title: Understanding Claude's personalization features
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-23'
+- id: hc-memory
+  url: https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context
+  title: Use Claude’s chat search and memory to build on previous context
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-11-02'
+- id: hc-incognito
+  url: https://support.claude.com/en/articles/12260368-use-incognito-chats
+  title: Use incognito chats
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-styles-to-skills
+  url: https://web.archive.org/web/20260710101210/https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills
+  title: Styles are moving to skills
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-06-01'
+  note: 元の URL https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills は 2026-11-04 に 404。Internet Archive にすでにあった写し（2026-07-10）で読んだ
+- id: hc-artifacts
+  url: https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them
+  title: What are artifacts and how do I use them?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-files
+  url: https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude
+  title: Create and edit files with Claude
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-web-search
+  url: https://support.claude.com/en/articles/10684626-enable-and-use-web-search
+  title: Enable and use web search
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-07'
+- id: hc-research
+  url: https://support.claude.com/en/articles/11088861-use-research-on-claude
+  title: Use research on Claude
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-connectors
+  url: https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities
+  title: Use connectors to extend Claude's capabilities
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-skills-what
+  url: https://support.claude.com/en/articles/12512176-what-are-skills
+  title: What are skills?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-skills-use
+  url: https://support.claude.com/en/articles/12512180-use-skills-in-claude
+  title: Use skills in Claude
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-claude-tag
+  url: https://support.claude.com/en/articles/15594475-what-is-claude-tag
+  title: What is Claude Tag?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-24'
+- id: hc-voice-mode
+  url: https://support.claude.com/en/articles/11101966-use-voice-mode
+  title: Use voice mode
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-cowork-and-chat
+  url: https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude
+  title: Claude Cowork and chat are one Claude
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-cowork-surfaces
+  url: https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile
+  title: Use Claude Cowork on web, desktop, and mobile
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-cowork-start
+  url: https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork
+  title: Get started with Claude Cowork
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-cowork-safety
+  url: https://support.claude.com/en/articles/13364135-use-claude-cowork-safely
+  title: Use Claude Cowork safely
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-cowork-schedule
+  url: https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork
+  title: Schedule recurring tasks in Claude Cowork
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-cowork-otel
+  url: https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry
+  title: Monitor Claude Cowork activity with OpenTelemetry
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-computer-use
+  url: https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork
+  title: Let Claude use your computer in Cowork
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-plugins
+  url: https://support.claude.com/en/articles/13837440-use-plugins-in-claude
+  title: Use plugins in Claude
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-plugins-page
+  url: https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page
+  title: Manage plugins, skills, and connectors from one Plugins page
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-upload-files
+  url: https://support.claude.com/en/articles/8241126-upload-files-to-claude
+  title: Upload files to Claude
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-23'
+- id: hc-usage-limits
+  url: https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work
+  title: How do usage and length limits work?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-limit-reset
+  url: https://support.claude.com/en/articles/17007452-what-is-a-limit-reset
+  title: What is a limit reset?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-22'
+- id: hc-share-chats
+  url: https://support.claude.com/en/articles/10593882-share-and-unshare-chats
+  title: Share and unshare chats
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-share-people
+  url: https://support.claude.com/en/articles/16762496-share-a-chat-with-specific-people
+  title: Share a chat with specific people
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-share-public
+  url: https://support.claude.com/en/articles/16762437-public-links-for-shared-chats
+  title: Public links for shared chats
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-switched-models
+  url: https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5-or-opus-5-5
+  title: Why Claude switched models in your conversation with Opus 5 or Opus 5.5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-24'
+- id: hc-output-blocked
+  url: https://support.claude.com/en/articles/9205721-why-am-i-receiving-an-output-blocked-by-content-filtering-policy-error
+  title: Why am I receiving an 'Output blocked by content filtering policy' error?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-16'
+- id: hc-pro-plan
+  url: https://support.claude.com/en/articles/8325606-what-is-the-pro-plan
+  title: What is the Pro plan?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-max-plan
+  url: https://support.claude.com/en/articles/11049741-what-is-the-max-plan
+  title: What is the Max plan?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-ultra-plan
+  url: https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan
+  title: What is the Ultra plan?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-team-plan
+  url: https://support.claude.com/en/articles/9266767-what-is-the-team-plan
+  title: What is the Team plan?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-enterprise-plan
+  url: https://support.claude.com/en/articles/9797531-what-is-the-enterprise-plan
+  title: What is the Enterprise plan?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-01'
+- id: hc-usage-credits
+  url: https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans
+  title: Manage usage credits for paid Claude plans
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-api-credits
+  url: https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-ultra-and-team-plans
+  title: Monthly API credits for Max, Ultra, and Team plans
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-wrap-up-allowance
+  url: https://support.claude.com/en/articles/17040437-claude-code-wrap-up-allowance
+  title: Claude Code Wrap-Up Allowance
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: 更新日の機械で読める表記がない（画面は Updated this week）
+- id: hc-claude-code-plan
+  url: https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan
+  title: Use Claude Code with your Pro, Max, or Ultra plan
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-agent-sdk-plan
+  url: https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan
+  title: Use the Claude Agent SDK with your Claude plan
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: claude-apps-release-notes-archive
+  url: https://web.archive.org/web/20250628195643/https://docs.anthropic.com/en/release-notes/claude-apps
+  title: 'Release Notes: Claude Apps'
+  kind: リリースノート
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-05-22'
+  note: 元の URL https://docs.anthropic.com/en/release-notes/claude-apps は今 Help Center のリリースノートへ転送され、2025-07 より前の項目は読めない。Internet Archive にすでにあった写し（2025-06-28）で読んだ
+- id: claude-pricing
+  url: https://claude.com/pricing
+  title: Plans & pricing
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-docs-m365-overview
+  url: https://claude.com/docs/office-agents/overview
+  title: Claude for M365 overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-docs-m365-excel
+  url: https://claude.com/docs/office-agents/excel
+  title: Use Claude for Excel
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-docs-m365-powerpoint
+  url: https://claude.com/docs/office-agents/powerpoint
+  title: Use Claude for PowerPoint
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-docs-m365-word
+  url: https://claude.com/docs/office-agents/word
+  title: Use Claude for Word
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-docs-m365-outlook
+  url: https://claude.com/docs/office-agents/outlook
+  title: Use Claude for Outlook
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-docs-m365-across-apps
+  url: https://claude.com/docs/office-agents/work-across-apps
+  title: Work across M365 apps
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-31'
+  note: Help Center の記事 13892150（Work across Excel and PowerPoint）はここへ転送される
+- id: claude-docs-claude-tag
+  url: https://claude.com/docs/claude-tag/overview
+  title: Work with Claude Tag
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-docs-slack
+  url: https://claude.com/docs/connectors/slack
+  title: Slack integration
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-docs-plugins
+  url: https://claude.com/docs/plugins/overview
+  title: Plugins
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-blog-web-search
+  url: https://claude.com/resources/articles/web-search
+  title: Claude web search now available globally on all plans
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-03-20'
+  note: https://www.anthropic.com/news/web-search はここへ転送される。2025-05-27 の更新の注がある
+- id: claude-blog-research
+  url: https://claude.com/resources/articles/research
+  title: Claude takes research to new places
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-04-15'
+  note: https://www.anthropic.com/news/research はここへ転送される。2026-10-30 より前の Max の記述は今の Max と Ultra を含むという編集の注がある
+- id: claude-blog-integrations
+  url: https://claude.com/resources/articles/integrations
+  title: Claude can now connect to your world
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-05-01'
+  note: https://www.anthropic.com/news/integrations はここへ転送される。2025-06-03 の更新の注がある
+- id: api-release-notes
+  url: https://platform.claude.com/docs/en/release-notes/overview
+  title: Claude Platform release notes
+  kind: リリースノート
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-11-03'
+- id: api-docs-messages
+  url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
+  title: Using the Messages API
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-prompt-caching
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
+  title: Prompt caching
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-structured-outputs
+  url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
+  title: Structured outputs
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-tool-use
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
+  title: Tool use with Claude
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-define-tools
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
+  title: Define tools
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-batch
+  url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
+  title: Batch processing
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-files
+  url: https://platform.claude.com/docs/en/build-with-claude/files
+  title: Files API
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-thinking
+  url: https://platform.claude.com/docs/en/build-with-claude/thinking
+  title: Thinking
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-adaptive-thinking
+  url: https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost
+  title: Steering thinking
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: Features overview の Adaptive thinking の行が指すページ。…/build-with-claude/adaptive-thinking はここへ転送される
+- id: api-docs-citations
+  url: https://platform.claude.com/docs/en/build-with-claude/citations
+  title: Citations
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-server-tools
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
+  title: Server tools
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-web-search-tool
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
+  title: Web search tool
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-web-fetch-tool
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
+  title: Web fetch tool
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-code-execution-tool
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
+  title: Code execution tool
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-computer-use
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
+  title: Computer use tool
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-mcp-connector
+  url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
+  title: MCP connector
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-agent-skills
+  url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
+  title: Agent Skills
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-managed-agents
+  url: https://platform.claude.com/docs/en/managed-agents/overview
+  title: Claude Managed Agents overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-token-counting
+  url: https://platform.claude.com/docs/en/build-with-claude/token-counting
+  title: Token counting
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-message-threads
+  url: https://platform.claude.com/docs/en/build-with-claude/message-threads
+  title: Message threads
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-compaction
+  url: https://platform.claude.com/docs/en/build-with-claude/compaction
+  title: Compaction overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-compaction-threshold
+  url: https://platform.claude.com/docs/en/build-with-claude/compaction-threshold
+  title: Compaction at a token threshold
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-compaction-on-demand
+  url: https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand
+  title: Compaction on demand
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-context-editing
+  url: https://platform.claude.com/docs/en/build-with-claude/context-editing
+  title: Context editing
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-memory-tool
+  url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
+  title: Memory tool
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-rate-limits
+  url: https://platform.claude.com/docs/en/api/rate-limits
+  title: Rate limits
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-errors
+  url: https://platform.claude.com/docs/en/api/errors
+  title: Claude API errors
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-refusals
+  url: https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
+  title: Refusals and fallback
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-usage-cost-analytics
+  url: https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api
+  title: Usage and Cost Analytics API
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-opentelemetry
+  url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
+  title: OpenTelemetry tracing for the Claude API
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-bedrock
+  url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
+  title: Claude in Amazon Bedrock (Opus 4.7 and later)
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-platform-on-aws
+  url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
+  title: Claude Platform on AWS
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-google-cloud
+  url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview
+  title: Claude Models on Google Cloud
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-foundry
+  url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
+  title: Claude in Microsoft Foundry
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-agent-sdk-overview
+  url: https://code.claude.com/docs/en/agent-sdk/overview
+  title: Agent SDK overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: https://platform.claude.com/docs/en/agent-sdk/overview は https://code.claude.com/docs/en/agent-sdk へ転送される
+- id: cc-docs-agent-sdk-migration
+  url: https://code.claude.com/docs/en/agent-sdk/migration-guide
+  title: Migrate to Claude Agent SDK
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-whats-new-2026-w15
+  url: https://code.claude.com/docs/en/whats-new/2026-w15
+  title: Week 15 · April 6–10, 2026
+  kind: リリースノート
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: Claude Code の週ごとの新機能のまとめ（v2.1.92〜v2.1.101）
+- id: cc-docs-errors
+  url: https://code.claude.com/docs/en/errors
+  title: Error reference
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-computer-use
+  url: https://code.claude.com/docs/en/computer-use
+  title: Let Claude use your computer from the CLI
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-monitoring-usage
+  url: https://code.claude.com/docs/en/monitoring-usage
+  title: Monitoring
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-third-party-integrations
+  url: https://code.claude.com/docs/en/third-party-integrations
+  title: Enterprise deployment overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-amazon-bedrock
+  url: https://code.claude.com/docs/en/amazon-bedrock
+  title: Claude Code on Amazon Bedrock
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-google-vertex-ai
+  url: https://code.claude.com/docs/en/google-vertex-ai
+  title: Claude Code on Google Cloud's Agent Platform
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-microsoft-foundry
+  url: https://code.claude.com/docs/en/microsoft-foundry
+  title: Claude Code on Microsoft Foundry
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-best-practices
+  url: https://code.claude.com/docs/en/best-practices
+  title: Best practices for Claude Code
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: 「What you can stop doing」の表（7 行）。2026-10-27 ごろに大きく改稿された（写しは wb-cc-best-practices-2026-10-26・-10-27）
+- id: wb-cc-best-practices-2026-10-26
+  url: https://web.archive.org/web/20261026194435/https://code.claude.com/docs/en/best-practices
+  title: Best practices for Claude Code（改稿前。Internet Archive の写し、2026-10-26 19:44 UTC）
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-26'
+  note: すでにある写し。窓はすぐ埋まるという前提、守られない 1 行にだけ IMPORTANT を付ける勧め、調べものはサブエージェントに任せる勧めがある
+- id: wb-cc-best-practices-2026-10-27
+  url: https://web.archive.org/web/20261027081520/https://code.claude.com/docs/en/best-practices
+  title: Best practices for Claude Code（改稿後。Internet Archive の写し、2026-10-27 08:15 UTC）
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-27'
+  note: すでにある写し。「What you can stop doing」の表があるいちばん早い写し
+- id: wb-cc-routines-2026-10-19
+  url: https://web.archive.org/web/20261019233206/https://code.claude.com/docs/en/routines
+  title: Automate work with routines（Internet Archive の写し、2026-10-19 23:32 UTC）
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-19'
+  note: すでにある写し。題が routines のいちばん遅い写し
+- id: wb-cc-routines-2026-10-21
+  url: https://web.archive.org/web/20261021015745/https://code.claude.com/docs/en/routines
+  title: Automate work with scheduled tasks（Internet Archive の写し、2026-10-21 01:57 UTC）
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-21'
+  note: すでにある写し。題が scheduled tasks のいちばん早い写し
+- id: wb-cc-web-2026-07-03
+  url: https://web.archive.org/web/20260703145240/https://code.claude.com/docs/en/claude-code-on-the-web
+  title: Use Claude Code on the web（Internet Archive の写し、2026-07-03 14:52 UTC）
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-03'
+  note: すでにある写し。ターミナルから始めるフラグを --remote と書くいちばん遅い写し
+- id: wb-cc-web-2026-07-06
+  url: https://web.archive.org/web/20260706155758/https://code.claude.com/docs/en/claude-code-on-the-web
+  title: Use Claude Code on the web（Internet Archive の写し、2026-07-06 15:57 UTC）
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-06'
+  note: すでにある写し。--cloud と「--remote は非推奨の別名」を書くいちばん早い写し
+- id: wb-cc-web-2026-09-10
+  url: https://web.archive.org/web/20260910215328/https://code.claude.com/docs/en/claude-code-on-the-web
+  title: Use Claude Code on the web（Internet Archive の写し、2026-09-10 21:53 UTC）
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-10'
+  note: すでにある写し。題が on the web のいちばん遅い写し
+- id: wb-cc-web-2026-09-17
+  url: https://web.archive.org/web/20260917234940/https://code.claude.com/docs/en/claude-code-on-the-web
+  title: Use Claude Code in the cloud（Internet Archive の写し、2026-09-17 23:49 UTC）
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-17'
+  note: すでにある写し。題が in the cloud のいちばん早い写し
+- id: api-docs-prompting-best-practices
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
+  title: Prompting best practices
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-prompting-opus-5
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5
+  title: Prompting Claude Opus 5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-prompting-opus-5-5
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5
+  title: Prompting Claude Opus 5.5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-prompt-engineering-overview
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
+  title: Prompt engineering overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-extended-thinking
+  url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
+  title: Extended thinking
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-model-deprecations
+  url: https://platform.claude.com/docs/en/about-claude/model-deprecations
+  title: Model deprecations
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-migration-2026-10-21
+  url: https://platform.claude.com/docs/en/api/migration-2026-10-21
+  title: Migrating to API version 2026-10-21
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-pricing
+  url: https://platform.claude.com/docs/en/about-claude/pricing
+  title: Pricing
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-blog-auto-mode-default
+  url: https://claude.com/resources/articles/auto-mode-default-in-claude-code
+  title: Auto mode is now the default in Claude Code for Pro, Max, Ultra, and Team plans
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-08-07'
+  note: https://claude.com/blog/auto-mode-default-in-claude-code はここへ転送される。2026-10-22 の追記（アプリでも auto モードを既定にする）がある
+- id: gh-prompt-eng-tutorial
+  url: https://github.com/anthropics/prompt-eng-interactive-tutorial
+  title: Anthropic's Prompt Engineering Interactive Tutorial
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: README は Claude 3 Haiku を使うと書き、第 5 章は prefill（Speaking for Claude）を教え、例のコードは temperature を 0 にする
+- id: gh-claude-code-action-v1
+  url: https://github.com/anthropics/claude-code-action/releases/tag/v1
+  title: Claude Code GitHub Action v1.0
+  kind: リリースノート
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-08-26'
+- id: gh-claude-code-action-migration
+  url: https://github.com/anthropics/claude-code-action/blob/main/docs/migration-guide.md
+  title: 'Migration Guide: v0.x to v1.0'
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: mcp-spec-2025-03-26-changelog
+  url: https://modelcontextprotocol.io/specification/2025-03-26/changelog
+  title: Key Changes（MCP の仕様の版 2025-03-26）
+  kind: 公式文書
+  publisher: Model Context Protocol
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-03-26'
+- id: cc-docs-agent-sdk-claude-code-features
+  url: https://code.claude.com/docs/en/agent-sdk/claude-code-features
+  title: Use Claude Code features in the SDK
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-authentication
+  url: https://code.claude.com/docs/en/authentication
+  title: Authentication
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-claude-code-docs-map
+  url: https://code.claude.com/docs/en/claude_code_docs_map
+  title: Claude code docs map
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-common-workflows
+  url: https://code.claude.com/docs/en/common-workflows
+  title: Common workflows
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-env-vars
+  url: https://code.claude.com/docs/en/env-vars
+  title: Environment variables
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-hooks
+  url: https://code.claude.com/docs/en/hooks
+  title: Hooks reference
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-large-codebases
+  url: https://code.claude.com/docs/en/large-codebases
+  title: Set up Claude Code in a monorepo or large codebase
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-llms-full-txt
+  url: https://code.claude.com/docs/llms-full.txt
+  title: Claude Code Docs llms-full.txt
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: 文書の全文
+- id: cc-docs-llms-txt
+  url: https://code.claude.com/docs/llms.txt
+  title: Claude Code Docs llms.txt
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  note: 文書の索引と全文（日本語版の索引は https://code.claude.com/docs/_llms/jp.txt ）
+- id: cc-docs-security
+  url: https://code.claude.com/docs/en/security
+  title: Security
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: cc-docs-settings-reference-ja
+  url: https://code.claude.com/docs/ja/settings-reference
+  title: すべての設定
+  kind: 公式文書
+  publisher: Anthropic
+  lang: ja
+  checked: '2026-11-04'
+- id: api-docs-build-with-claude-overview
+  url: https://platform.claude.com/docs/en/build-with-claude/overview
+  title: Features overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-choosing-a-model
+  url: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
+  title: Choosing the right model
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-migration-guide
+  url: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide
+  title: Claude Opus 5.5 migration guide
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-models-overview
+  url: https://platform.claude.com/docs/en/models/overview
+  title: Models overview
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-opus-4-6-overview
+  url: https://platform.claude.com/docs/en/models/opus-4-6/overview
+  title: Claude Opus 4.6
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-opus-5-overview
+  url: https://platform.claude.com/docs/en/models/opus-5/overview
+  title: Claude Opus 5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-prompting-claude-fable-5-1
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
+  title: Prompting Claude Fable 5.1
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-prompting-claude-haiku-5-5
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
+  title: Prompting Claude Haiku 5.5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-prompting-claude-sonnet-5
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
+  title: Prompting Claude Sonnet 5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-prompting-claude-sonnet-5-5
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
+  title: Prompting Claude Sonnet 5.5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-reduce-hallucinations
+  url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+  title: Reduce hallucinations
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-sonnet-5-overview
+  url: https://platform.claude.com/docs/en/models/sonnet-5/overview
+  title: Claude Sonnet 5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: api-docs-whats-new-opus-5-5
+  url: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5
+  title: What's new in Claude Opus 5.5
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: hc-cyber-verification-program
+  url: https://support.claude.com/en/articles/14604842-cyber-verification-program
+  title: Cyber Verification Program
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-11-03'
+- id: hc-exceptions-our-usage-policy
+  url: https://support.claude.com/en/articles/9528712-exceptions-to-our-usage-policy
+  title: Exceptions to our Usage Policy
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-16'
+- id: hc-fable-models-plan
+  url: https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan
+  title: Claude Fable models on your plan
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-getting-started-local-mcp
+  url: https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop
+  title: Getting Started with Local MCP Servers on Claude Desktop
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-23'
+- id: hc-google-docs-sheets-slides
+  url: https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides
+  title: Use Claude in Google Docs, Sheets, and Slides
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-ja-14553413
+  url: https://support.claude.com/ja/articles/14553413-claude-code%E3%83%81%E3%83%BC%E3%83%88%E3%82%B7%E3%83%BC%E3%83%88
+  title: Claude Codeチートシート
+  kind: 公式文書
+  publisher: Anthropic
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-08-07'
+- id: hc-ja-15910845
+  url: https://support.claude.com/ja/articles/15910845-claude-code-2026%E5%B9%B45%E6%9C%88-8%E6%9C%88-%E9%80%B1%E9%96%93%E5%88%B6%E9%99%90%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3
+  title: Claude Code 2026年5月～8月 週間制限プロモーション
+  kind: 公式文書
+  publisher: Anthropic
+  lang: ja
+  checked: '2026-11-04'
+- id: hc-our-approach-user-safety
+  url: https://support.claude.com/en/articles/8106465-our-approach-to-user-safety
+  title: Our Approach to User Safety
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-16'
+- id: hc-preferred-language
+  url: https://support.claude.com/en/articles/10769299-how-to-use-claude-in-your-preferred-language
+  title: How to use Claude in your preferred language
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-23'
+- id: hc-quick-desktop-mac
+  url: https://support.claude.com/en/articles/12626668-use-quick-entry-with-claude-desktop-on-mac
+  title: Use quick entry with Claude Desktop on Mac
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-11-02'
+- id: hc-safeguards
+  url: https://support.claude.com/en/collections/4078535-safeguards
+  title: Safeguards
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: hc-set-organization-instructions
+  url: https://support.claude.com/en/articles/14546867-set-organization-instructions
+  title: Set organization instructions
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-08-31'
+- id: hc-started-duet
+  url: https://support.claude.com/en/articles/17631495-get-started-with-claude-duet
+  title: Get started with Claude Duet
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-up-date-training-data
+  url: https://support.claude.com/en/articles/8114494-how-up-to-date-is-claude-s-training-data
+  title: How up-to-date is Claude's training data?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-07'
+- id: hc-usage-limit-best-practices
+  url: https://support.claude.com/en/articles/9797557-usage-limit-best-practices
+  title: Usage limit best practices
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-30'
+- id: hc-web-search-extended-thinking
+  url: https://support.claude.com/en/articles/11095361-when-should-i-use-web-search-extended-thinking-and-research
+  title: When should I use web search, extended thinking, and research?
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-06-02'
+- id: privacy-long-store-data
+  url: https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data
+  title: How long do you store my data?
+  kind: 公式文書
+  publisher: Anthropic（Privacy Center）
+  lang: en
+  checked: '2026-11-04'
+- id: academy-claude-101-creating-with-artifacts
+  url: https://academy.claude.com/courses/claude-101/creating-with-artifacts
+  title: Creating with artifacts · Claude 101 · Claude Academy
+  kind: 公式文書
+  publisher: Anthropic（Claude Academy）
+  lang: en
+  checked: '2026-11-04'
+- id: claude-blog-articles
+  url: https://claude.com/resources/articles
+  title: Claude blog
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-blog-code-mods
+  url: https://claude.com/resources/articles/claude-code-mods
+  title: Customize Claude Code with mods in TypeScript
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-01'
+- id: claude-blog-introducing-dynamic-workflows-code
+  url: https://claude.com/resources/articles/introducing-dynamic-workflows-in-claude-code
+  title: Introducing dynamic workflows in Claude Code
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-05-28'
+- id: claude-blog-steering-code-skills-hooks
+  url: https://claude.com/resources/articles/steering-claude-code-skills-hooks-rules-subagents-and-more
+  title: 'Steering Claude Code: when to use CLAUDE.md, skills, hooks, and subagents'
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-06-18'
+- id: anthropic-ai-fluency-framework
+  url: https://www-cdn.anthropic.com/334975cdec18f744b4fa511dc8518bd8d119d29d.pdf
+  title: The AI Fluency Framework
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: anthropic-claude-3-7-sonnet-system-card
+  url: https://assets.anthropic.com/m/785e231869ea8b3b/original/claude-3-7-sonnet-system-card.pdf
+  title: Claude 3.7 Sonnet System Card
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: anthropic-constitution
+  url: https://www.anthropic.com/constitution
+  title: Claude’s Constitution
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: anthropic-eng-building-c-compiler
+  url: https://www.anthropic.com/research/building-c-compiler
+  title: Building a C compiler with a team of parallel Claudes
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-05'
+  note: Anthropic の Engineering のブログの記事。https://www.anthropic.com/engineering/building-c-compiler から転送される（2026-11-04）
+- id: anthropic-eng-code-auto-mode
+  url: https://www.anthropic.com/research/claude-code-auto-mode
+  title: 'How we built Claude Code auto mode: a safer way to skip permissions'
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-25'
+  note: Anthropic の Engineering のブログの記事。https://www.anthropic.com/engineering/claude-code-auto-mode から転送される（2026-11-04）
+- id: anthropic-eng-demystifying-evals-ai-agents
+  url: https://www.anthropic.com/research/demystifying-evals-for-ai-agents
+  title: Demystifying evals for AI agents
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-09'
+  note: Anthropic の Engineering のブログの記事。https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents から転送される（2026-11-04）
+- id: anthropic-eng-effective-context-engineering-ai
+  url: https://www.anthropic.com/research/effective-context-engineering-for-ai-agents
+  title: Effective context engineering for AI agents
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-09-29'
+  note: Anthropic の Engineering のブログの記事。https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents から転送される（2026-11-04）
+- id: anthropic-eng-effective-harnesses-long-running
+  url: https://www.anthropic.com/research/effective-harnesses-for-long-running-agents
+  title: Effective harnesses for long-running agents
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-11-26'
+  note: Anthropic の Engineering のブログの記事。https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents から転送される（2026-11-04）
+- id: anthropic-eng-harness-design-long-running
+  url: https://www.anthropic.com/research/harness-design-long-running-apps
+  title: Harness design for long-running application development
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-24'
+  note: Anthropic の Engineering のブログの記事。https://www.anthropic.com/engineering/harness-design-long-running-apps から転送される（2026-11-04）
+- id: anthropic-eng-multi-agent-research-system
+  url: https://www.anthropic.com/research/multi-agent-research-system
+  title: How we built our multi-agent research system
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-06-13'
+  note: Anthropic の Engineering のブログの記事。https://www.anthropic.com/engineering/multi-agent-research-system から転送される（2026-11-04）
+- id: anthropic-eng-writing-tools-agents
+  url: https://www.anthropic.com/research/writing-tools-for-agents
+  title: Writing effective tools for agents — with agents
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-09-11'
+  note: Anthropic の Engineering のブログの記事。https://www.anthropic.com/engineering/writing-tools-for-agents から転送される（2026-11-04）
+- id: anthropic-fable-mythos-5-1
+  url: https://www.anthropic.com/claude-fable-and-mythos-5-1
+  title: Introducing Claude Fable 5.1 and Claude Mythos 5.1
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: anthropic-haiku-5-5
+  url: https://www.anthropic.com/claude-haiku-5-5
+  title: Introducing Claude Haiku 5.5
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: anthropic-legal-aup
+  url: https://www.anthropic.com/legal/aup
+  title: Usage Policy
+  kind: 公式文書
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: anthropic-news-design-anthropic-labs
+  url: https://www.anthropic.com/news/claude-design-anthropic-labs
+  title: Introducing Claude Design by Anthropic Labs
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-17'
+- id: anthropic-news-models
+  url: https://www.anthropic.com/news/models
+  title: Models
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: anthropic-news-redeploying-fable-5
+  url: https://www.anthropic.com/news/redeploying-fable-5
+  title: Redeploying Claude Fable 5
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-06-30'
+- id: anthropic-news-science-ai-workbench
+  url: https://www.anthropic.com/news/claude-science-ai-workbench
+  title: Claude Science, an AI workbench for scientists, is now available
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-06-30'
+- id: anthropic-news-updates-our-consumer-terms
+  url: https://www.anthropic.com/news/updates-to-our-consumer-terms
+  title: Updates to Consumer Terms and Privacy Policy
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-08-28'
+- id: anthropic-opus-5-5
+  url: https://www.anthropic.com/claude-opus-5-5
+  title: Introducing Claude Opus 5.5
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: anthropic-research-ai-assistance-coding-skills
+  url: https://www.anthropic.com/research/AI-assistance-coding-skills
+  title: How AI assistance impacts the formation of coding skills
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-29'
+- id: anthropic-research-ai-resistant-technical-evaluations
+  url: https://www.anthropic.com/research/AI-resistant-technical-evaluations
+  title: Designing AI resistant technical evaluations
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-21'
+- id: anthropic-research-ai-transforming-work-anthropic
+  url: https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic
+  title: How AI is transforming work at Anthropic
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-12-02'
+- id: anthropic-research-april-23-postmortem
+  url: https://www.anthropic.com/research/april-23-postmortem
+  title: An update on recent Claude Code quality reports
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-23'
+- id: anthropic-research-code-expertise
+  url: https://www.anthropic.com/research/claude-code-expertise
+  title: Agentic coding and persistent returns to expertise
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-06-16'
+- id: anthropic-research-cyber-competitions
+  url: https://www.anthropic.com/research/cyber-competitions
+  title: Claude is competitive with humans in (some) cyber competitions
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-08-09'
+- id: anthropic-research-emergent-misalignment-reward-hacking
+  url: https://www.anthropic.com/research/emergent-misalignment-reward-hacking
+  title: 'From shortcuts to sabotage: Natural emergent misalignment from reward hacking'
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-11-21'
+- id: anthropic-research-infrastructure-noise
+  url: https://www.anthropic.com/research/infrastructure-noise
+  title: Quantifying infrastructure noise in agentic coding evals
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-05'
+- id: anthropic-research-personal-guidance
+  url: https://www.anthropic.com/research/claude-personal-guidance
+  title: How people ask Claude for personal guidance
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-30'
+- id: anthropic-research-towards-understanding-sycophancy-language
+  url: https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models
+  title: Towards understanding sycophancy in language models
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2023-10-23'
+- id: anthropic-research-tracing-thoughts-language-model
+  url: https://www.anthropic.com/research/tracing-thoughts-language-model
+  title: Tracing the thoughts of a large language model
+  kind: 研究
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-03-27'
+- id: anthropic-sonnet-5-5
+  url: https://www.anthropic.com/claude-sonnet-5-5
+  title: Introducing Claude Sonnet 5.5
+  kind: 公式ブログ
+  publisher: Anthropic
+  lang: en
+  checked: '2026-11-04'
+- id: claude-dev-blog-solving-code-review-anthropic
+  url: https://claude.dev/blog/solving-code-review-at-anthropic/
+  title: How the Claude Code team does code review
+  kind: 公式ブログ
+  publisher: Anthropic（claude.dev Blog）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-15'
+- id: anthropic-github-courses
+  url: https://github.com/anthropics/courses
+  title: 'anthropics/courses: Anthropic''s educational courses'
+  kind: 公式文書
+  publisher: Anthropic（GitHub）
+  lang: en
+  checked: '2026-11-04'
+  note: 調査資料は Algolia の DocSearch のページ（docsearch.algolia.com）を引いた。元のリポジトリを出典にした
+- id: cc-issue-10077
+  url: https://github.com/anthropics/claude-code/issues/10077
+  title: '[BUG] ## CRITICAL: Claude Code executed rm -rf deleting entire home directory（Issue #10077）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-10-21'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-101940
+  url: https://github.com/anthropics/claude-code/issues/101940
+  title: '[BUG] Claude switches to English mid-session despite Japanese conversation and "language": "japanese" (Windows desktop app)（Issue #101940）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-14'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-24460
+  url: https://github.com/anthropics/claude-code/issues/24460
+  title: 'CLAUDE.md context lost after /compact — re-inject project instructions（Issue #24460）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-09'
+  note: 調査資料は claudeissues.com（GitHub の issue の写し。2026-11-04 はホストが引けなかった）を引いた。元の issue を出典にした。利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-4017
+  url: https://github.com/anthropics/claude-code/issues/4017
+  title: '[BUG] /compact causes Claude Code to ignore CLAUDE.md（Issue #4017）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-07-20'
+  note: 調査資料は claudeissues.com（GitHub の issue の写し。2026-11-04 はホストが引けなかった）を引いた。元の issue を出典にした。利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-46940
+  url: https://github.com/anthropics/claude-code/issues/46940
+  title: 'Claude fabricates test results - reports ALL PASSED when tests are FAILING（Issue #46940）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-12'
+  note: 調査資料は claudeissues.com（GitHub の issue の写し。2026-11-04 はホストが引けなかった）を引いた。元の issue を出典にした。利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-6354
+  url: https://github.com/anthropics/claude-code/issues/6354
+  title: '[BUG] Claude forgets everything in CLAUDE.md after compaction（Issue #6354）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-08-22'
+  note: 調査資料は claudeissues.com（GitHub の issue の写し。2026-11-04 はホストが引けなかった）を引いた。元の issue を出典にした。利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-64286
+  url: https://github.com/anthropics/claude-code/issues/64286
+  title: '[Bug] Claude Code fabricated test results and pushed untested code to main branch (Opus 4.8 @ Effort = High)（Issue #64286）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-05-31'
+  note: 調査資料は claudeissues.com（GitHub の issue の写し。2026-11-04 はホストが引けなかった）を引いた。元の issue を出典にした。利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-7074
+  url: https://github.com/anthropics/claude-code/issues/7074
+  title: '[BUG] Claude Code manipulates tests instead of following instructions（Issue #7074）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-09-03'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-75859
+  url: https://github.com/anthropics/claude-code/issues/75859
+  title: 'Claude Code ran rm -rf against $HOME due to env var not persisting between Bash tool calls, deleting Downloads/Documents/Pictures/.config（Issue #75859）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-08'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-87647
+  url: https://github.com/anthropics/claude-code/issues/87647
+  title: '[BUG] Over 6k issues labeled with "has repro" have been auto-closed since March 2026（Issue #87647）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-08-18'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-96326
+  url: https://github.com/anthropics/claude-code/issues/96326
+  title: '[BUG] Replies drift into English right after reading English tool output, despite a CLAUDE.md rule requiring Japanese; corrections do not hold（Issue #96326）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-23'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-96601
+  url: https://github.com/anthropics/claude-code/issues/96601
+  title: 'Opus 5.5 ignores output-style language rule after tool chains (0.4% -> 4.2% English)（Issue #96601）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-24'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-98633
+  url: https://github.com/anthropics/claude-code/issues/98633
+  title: '[Model] Repeatedly switches to English despite CLAUDE.md + memory + repeated in-chat instructions to reply only in Japanese（Issue #98633）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-01'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-99704
+  url: https://github.com/anthropics/claude-code/issues/99704
+  title: '[Bug] Opus 5.5 ignores the CLAUDE.md language rule: 33% of replies in English vs 0% on Opus 5 (same session, same CLI)（Issue #99704）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-05'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: cc-issue-99800
+  url: https://github.com/anthropics/claude-code/issues/99800
+  title: 'Responses drift into English mid-task despite `language: "japanese"` and CLAUDE.md language rules（Issue #99800）'
+  kind: 実践者
+  publisher: GitHub の anthropics/claude-code の issue（利用者の報告）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-05'
+  note: 利用者の報告。失敗の例に使うときは書き手を名指ししない（decisions 2026-11-03「書き方の方針（第三者・根拠・コンテスト）」の1）
+- id: npm-claude-code
+  url: https://registry.npmjs.org/@anthropic-ai/claude-code
+  title: '@anthropic-ai/claude-code (npm registry)'
+  kind: 公式文書
+  publisher: Anthropic（npm の公開記録）
+  lang: en
+  checked: '2026-11-04'
+- id: isucon2026-regulation
+  url: https://isucon.net/archives/59966826.html
+  title: ISUCON2026 レギュレーション
+  kind: 公式文書
+  publisher: ISUCON 運営
+  lang: ja
+  checked: '2026-11-04'
+- id: mcp-docs-develop-connect-local-servers
+  url: https://modelcontextprotocol.io/docs/2026-07-28/develop/connect-local-servers
+  title: Connect to local MCP servers
+  kind: 公式文書
+  publisher: Model Context Protocol
+  lang: en
+  checked: '2026-11-04'
+- id: mext-genai-university-overview
+  url: https://www.mext.go.jp/kaigisiryo/content/000245316.pdf
+  title: 大学・高専における生成AIの教学面の取扱いについて【概要】
+  kind: 公式文書
+  publisher: 文部科学省
+  lang: ja
+  checked: '2026-11-04'
+- id: nara-kosen-genai-guidelines
+  url: https://www.nara-k.ac.jp/education/uploads/nict_seiseiai_katsuyoguidelines-2.pdf
+  title: 奈良高専 生成 AI 対応ガイドライン ver.1.0
+  kind: 公式文書
+  publisher: 奈良工業高等専門学校
+  lang: ja
+  checked: '2026-11-04'
+- id: rustc-dev-guide-llm-guidance-reviewing
+  url: https://rustc-dev-guide.rust-lang.org/llm-guidance/reviewing.html
+  title: Reviewing code with LLMs
+  kind: 公式文書
+  publisher: Rust Project（rustc-dev-guide）
+  lang: en
+  checked: '2026-11-04'
+- id: arxiv-2307-03172
+  url: https://arxiv.org/abs/2307.03172
+  title: 'Lost in the Middle: How Language Models Use Long Contexts'
+  kind: 研究
+  publisher: arXiv（Liu, Nelson F. ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2023-07-06'
+  note: 調査資料は arxiv.org/abs/2307.03172v3 を引いた
+- id: arxiv-2403-08937
+  url: https://arxiv.org/abs/2403.08937
+  title: 'Bugs in Large Language Models Generated Code: An Empirical Study'
+  kind: 研究
+  publisher: arXiv（Tambon, Florian ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-03-13'
+  note: 調査資料は arxiv.org/html/2403.08937v2 を引いた
+- id: arxiv-2403-11164
+  url: https://arxiv.org/abs/2403.11164
+  title: The Effects of Generative AI on Design Fixation and Divergent Thinking
+  kind: 研究
+  publisher: arXiv（Wadinambiarachchi, Samangi ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-03-17'
+  note: 調査資料は arxiv.org/html/2403.11164v1 を引いた
+- id: arxiv-2405-17739
+  url: https://arxiv.org/abs/2405.17739
+  title: 'The Widening Gap: The Benefits and Harms of Generative AI for Novice Programmers'
+  kind: 研究
+  publisher: arXiv（Prather, James ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-05-28'
+  note: 調査資料は arxiv.org/html/2405.17739v1 を引いた
+- id: arxiv-2406-10279
+  url: https://arxiv.org/abs/2406.10279
+  title: We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs
+  kind: 研究
+  publisher: arXiv（Spracklen, Joseph ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-06-12'
+  note: 調査資料は arxiv.org/abs/2406.10279v3 を引いた
+- id: arxiv-2407-01725
+  url: https://arxiv.org/abs/2407.01725
+  title: 'DiscoveryBench: Towards Data-Driven Discovery with Large Language Models'
+  kind: 研究
+  publisher: arXiv（Majumder, Bodhisattwa Prasad ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-07-01'
+  note: 調査資料は arxiv.org/pdf/2407.01725 を引いた
+- id: arxiv-2409-04109
+  url: https://arxiv.org/abs/2409.04109
+  title: Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers
+  kind: 研究
+  publisher: arXiv（Si, Chenglei ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-09-06'
+  note: 調査資料は arxiv.org/pdf/2409.04109 を引いた
+- id: arxiv-2410-03703
+  url: https://arxiv.org/abs/2410.03703
+  title: 'Human Creativity in the Age of LLMs: Randomized Experiments on Divergent and Convergent Thinking'
+  kind: 研究
+  publisher: arXiv（Kumar, Harsh ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-09-24'
+  note: 調査資料は arxiv.org/html/2410.03703v2 を引いた
+- id: arxiv-2412-14137
+  url: https://arxiv.org/abs/2412.14137
+  title: Design choices made by LLM-based test generators prevent them from finding bugs
+  kind: 研究
+  publisher: arXiv（Mathews, Noble Saji ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-12-18'
+  note: 調査資料は arxiv.org/html/2412.14137v1 を引いた
+- id: arxiv-2502-06197
+  url: https://arxiv.org/abs/2502.06197
+  title: 'Timing Matters: How Using LLMs at Different Timings Influences Writers'' Perceptions and Ideation Outcomes in AI-Assisted Ideation'
+  kind: 研究
+  publisher: arXiv（Qin, Peinuan ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-02-10'
+  note: 調査資料は arxiv.org/pdf/2502.06197 を引いた
+- id: arxiv-2502-08177
+  url: https://arxiv.org/abs/2502.08177
+  title: 'SycEval: Evaluating LLM Sycophancy'
+  kind: 研究
+  publisher: arXiv（Fanous, Aaron ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-02-12'
+  note: 調査資料は arxiv.org/html/2502.08177v2 を引いた
+- id: arxiv-2503-11656
+  url: https://arxiv.org/abs/2503.11656
+  title: 'TRUTH DECAY: Quantifying Multi-Turn Sycophancy in Language Models'
+  kind: 研究
+  publisher: arXiv（Liu, Joshua ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-02-04'
+  note: 調査資料は arxiv.org/html/2503.11656v1 を引いた
+- id: arxiv-2504-00025
+  url: https://arxiv.org/abs/2504.00025
+  title: Generalization Bias in Large Language Model Summarization of Scientific Research
+  kind: 研究
+  publisher: arXiv（Peters, Uwe ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-03-28'
+  note: 調査資料は arxiv.org/abs/2504.00025v1 を引いた
+- id: arxiv-2505-13995
+  url: https://arxiv.org/abs/2505.13995
+  title: 'ELEPHANT: Measuring and understanding social sycophancy in LLMs'
+  kind: 研究
+  publisher: arXiv（Cheng, Myra ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-05-20'
+  note: 調査資料は arxiv.org/html/2505.13995v2 を引いた
+- id: arxiv-2505-17241
+  url: https://arxiv.org/abs/2505.17241
+  title: 'Generative AI and Creativity: A Systematic Literature Review and Meta-Analysis'
+  kind: 研究
+  publisher: arXiv（Holzner, Niklas ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-05-22'
+  note: 調査資料は arxiv.org/html/2505.17241v1 を引いた。調査資料は arxiv.org/pdf/2505.17241 を引いた
+- id: arxiv-2506-02954
+  url: https://arxiv.org/abs/2506.02954
+  title: Mutation-Guided Unit Test Generation with a Large Language Model
+  kind: 研究
+  publisher: arXiv（Wang, Guancheng ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-06-03'
+  note: 調査資料は arxiv.org/html/2506.02954v6 を引いた
+- id: arxiv-2506-09050
+  url: https://arxiv.org/abs/2506.09050
+  title: 'ALE-Bench: A Benchmark for Long-Horizon Objective-Driven Algorithm Engineering'
+  kind: 研究
+  publisher: arXiv（Imajuku, Yuki ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-06-10'
+  note: 調査資料は arxiv.org/html/2506.09050v2 を引いた
+- id: arxiv-2506-20803
+  url: https://arxiv.org/abs/2506.20803
+  title: 'The Ideation-Execution Gap: Execution Outcomes of LLM-Generated versus Human Research Ideas'
+  kind: 研究
+  publisher: arXiv（Si, Chenglei ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-06-25'
+  note: 調査資料は arxiv.org/html/2506.20803v1 を引いた
+- id: arxiv-2506-22954
+  url: https://arxiv.org/abs/2506.22954
+  title: Evaluating and Improving Large Language Models for Competitive Program Generation
+  kind: 研究
+  publisher: arXiv（Wei, Minnan ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-06-28'
+  note: 調査資料は arxiv.org/html/2506.22954v1 を引いた
+- id: arxiv-2507-15224
+  url: https://arxiv.org/abs/2507.15224
+  title: 'SimdBench: Benchmarking Large Language Models for SIMD-Intrinsic Code Generation'
+  kind: 研究
+  publisher: arXiv（He, Yibo ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-07-21'
+- id: arxiv-2507-15251
+  url: https://arxiv.org/abs/2507.15251
+  title: Input Reduction Enhanced LLM-based Program Repair
+  kind: 研究
+  publisher: arXiv（Yang, Boyang ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-07-21'
+  note: 調査資料は arxiv.org/pdf/2507.15251 を引いた
+- id: arxiv-2507-15822
+  url: https://arxiv.org/abs/2507.15822
+  title: Do AI models help produce verified bug fixes?
+  kind: 研究
+  publisher: arXiv（Huang, Li ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-07-21'
+  note: 調査資料は arxiv.org/pdf/2507.15822 を引いた
+- id: arxiv-2509-04664
+  url: https://arxiv.org/abs/2509.04664
+  title: Why Language Models Hallucinate
+  kind: 研究
+  publisher: arXiv（Kalai, Adam Tauman ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-09-04'
+  note: 調査資料は arxiv.org/html/2509.04664v1 を引いた
+- id: arxiv-2509-16533
+  url: https://arxiv.org/abs/2509.16533
+  title: 'Challenging the Evaluator: LLM Sycophancy Under User Rebuttal'
+  kind: 研究
+  publisher: arXiv（Kim, Sungwon ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-09-20'
+  note: 調査資料は arxiv.org/html/2509.16533v1 を引いた
+- id: arxiv-2510-01395
+  url: https://arxiv.org/abs/2510.01395
+  title: Sycophantic AI Decreases Prosocial Intentions and Promotes Dependence
+  kind: 研究
+  publisher: arXiv（Cheng, Myra ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-10-01'
+- id: arxiv-2510-09907
+  url: https://arxiv.org/abs/2510.09907
+  title: 'Agentic Property-Based Testing: Finding Bugs Across the Python Ecosystem'
+  kind: 研究
+  publisher: arXiv（Maaz, Muhammad ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-10-10'
+- id: arxiv-2510-20270
+  url: https://arxiv.org/abs/2510.20270
+  title: 'ImpossibleBench: Measuring LLMs'' Propensity of Exploiting Test Cases'
+  kind: 研究
+  publisher: arXiv（Zhong, Ziqian ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-10-23'
+  note: 調査資料は arxiv.org/html/2510.20270v1 を引いた
+- id: arxiv-2511-18397
+  url: https://arxiv.org/abs/2511.18397
+  title: Natural Emergent Misalignment from Reward Hacking in Production RL
+  kind: 研究
+  publisher: arXiv（MacDiarmid, Monte ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-11-23'
+  note: 調査資料は arxiv.org/pdf/2511.18397 を引いた
+- id: arxiv-2601-20245
+  url: https://arxiv.org/abs/2601.20245
+  title: How AI Impacts Skill Formation
+  kind: 研究
+  publisher: arXiv（Shen, Judy Hanwen ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-28'
+  note: 調査資料は arxiv.org/html/2601.20245 を引いた。調査資料は arxiv.org/pdf/2601.20245 を引いた
+- id: arxiv-2603-00539
+  url: https://arxiv.org/abs/2603.00539
+  title: Are LLMs Reliable Code Reviewers? Systematic Overcorrection in Requirement Conformance Judgement
+  kind: 研究
+  publisher: arXiv（Jin, Haolin ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-28'
+  note: 調査資料は arxiv.org/html/2603.00539v1 を引いた
+- id: arxiv-2603-11337
+  url: https://arxiv.org/abs/2603.11337
+  title: 'RewardHackingAgents: Benchmarking Evaluation Integrity for LLM ML-Engineering Agents'
+  kind: 研究
+  publisher: arXiv（Atinafu, Yonas ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-11'
+  note: 調査資料は arxiv.org/html/2603.11337v1 を引いた
+- id: arxiv-2603-21551
+  url: https://arxiv.org/abs/2603.21551
+  title: AI In Cybersecurity Education -- Scalable Agentic CTF Design Principles and Educational Outcomes
+  kind: 研究
+  publisher: arXiv（Xi, Haoran ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-23'
+  note: 調査資料は arxiv.org/html/2603.21551v2 を引いた
+- id: arxiv-2604-19049
+  url: https://arxiv.org/abs/2604.19049
+  title: 'Refute-or-Promote: An Adversarial Stage-Gated Multi-Agent Review Methodology for High-Precision LLM-Assisted Defect Discovery'
+  kind: 研究
+  publisher: arXiv（Agarwal, Abhinav ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-21'
+  note: 調査資料は arxiv.org/pdf/2604.19049 を引いた
+- id: arxiv-2605-15229
+  url: https://arxiv.org/abs/2605.15229
+  title: 'PBT-Bench: Benchmarking AI Agents on Property-Based Testing'
+  kind: 研究
+  publisher: arXiv（Jing, Lucas ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-05-13'
+  note: 調査資料は arxiv.org/pdf/2605.15229 を引いた
+- id: arxiv-2605-17062
+  url: https://arxiv.org/abs/2605.17062
+  title: 'The Range Shrinks, the Threat Remains: Re-evaluating LLM Package Hallucinations on the 2026 Frontier-Model Cohort'
+  kind: 研究
+  publisher: arXiv（Churilov, Aleksandr ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-05-16'
+  note: 調査資料は arxiv.org/pdf/2605.17062 を引いた
+- id: arxiv-2605-21384
+  url: https://arxiv.org/abs/2605.21384
+  title: 'SpecBench: Measuring Reward Hacking in Long-Horizon Coding Agents'
+  kind: 研究
+  publisher: arXiv（Zhao, Bingchen ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-05-20'
+  note: 調査資料は arxiv.org/pdf/2605.21384 を引いた
+- id: arxiv-2607-03303
+  url: https://arxiv.org/abs/2607.03303
+  title: Reflective Dialogue or Prompt Refinement? Effects of Tutor Scaffolding on Students' Independent LLM Use for Programming
+  kind: 研究
+  publisher: arXiv（Brender, Jerome ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-03'
+- id: arxiv-2607-05068
+  url: https://arxiv.org/abs/2607.05068
+  title: 'When AI Is Wrong on Purpose: How Students Respond to Buggy GenAI Code'
+  kind: 研究
+  publisher: arXiv（Pădurean, Victor-Alexandru ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-06'
+- id: arxiv-2607-07744
+  url: https://arxiv.org/abs/2607.07744
+  title: 'PERFOPT-Bench: Evaluating Coding Agents on Software Performance Optimization'
+  kind: 研究
+  publisher: arXiv（Cui, Yingyun ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-08'
+  note: 調査資料は www.alphaxiv.org/abs/2607.07744.md を引いた
+- id: arxiv-2607-16475
+  url: https://arxiv.org/abs/2607.16475
+  title: 'To Police or to Guide: How Higher Education Computer Science Instructors Design and Implement Generative AI Policies'
+  kind: 研究
+  publisher: arXiv（Gu, Xingjian ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-17'
+  note: 調査資料は arxiv.org/html/2607.16475v2 を引いた
+- id: arxiv-2609-04909
+  url: https://arxiv.org/abs/2609.04909
+  title: Better Understanding, Better Fixes? A Study of Hallucination in LLM-based Automated Program Repair
+  kind: 研究
+  publisher: arXiv（Cai, Xuemeng ほか）
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-04'
+  note: 調査資料は arxiv.org/pdf/2609.04909 を引いた
+- id: bucinca-2021-cognitive-forcing
+  url: https://www.eecs.harvard.edu/~kgajos/papers/2021/bucinca21trust.pdf
+  title: 'To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-assisted Decision-making'
+  kind: 研究
+  publisher: Harvard SEAS
+  lang: en
+  checked: '2026-11-04'
+  note: CSCW 2021 の論文（Buçinca ほか）
+- id: checkpoint-rce-api-token-exfiltration-through
+  url: https://research.checkpoint.com/2026/rce-and-api-token-exfiltration-through-claude-code-project-files-cve-2025-59536/
+  title: 'Caught in the Hook: RCE and API Token Exfiltration Through Claude Code Project Files'
+  kind: 研究
+  publisher: Check Point Research
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-25'
+- id: chroma-research-context-rot
+  url: https://www.trychroma.com/research/context-rot
+  title: 'Context Rot: How Increasing Input Tokens Impacts LLM Performance'
+  kind: 研究
+  publisher: Chroma
+  lang: en
+  checked: '2026-11-04'
+- id: csa-research-csa-research-note-readme
+  url: https://labs.cloudsecurityalliance.org/research/csa-research-note-readme-instruction-injection-ai-coding-age/
+  title: 'README Injection: Repository Files Hijacking AI Coding Assistants'
+  kind: 研究
+  publisher: Cloud Security Alliance
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-17'
+- id: iclr-2024-sharma-sycophancy
+  url: https://proceedings.iclr.cc/paper_files/paper/2024/hash/0105f7972202c1d4fb817da9f21a9663-Abstract-Conference.html
+  title: Towards Understanding Sycophancy in Language Models
+  kind: 研究
+  publisher: ICLR
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-05-31'
+- id: ijcai-2025-creative-momentum
+  url: https://ijcai.org/proceedings/2025/1142
+  title: 'Creative Momentum Transfer: How Timing and Labeling of AI Suggestions Shape Iterative Human Ideation | IJCAI'
+  kind: 研究
+  publisher: IJCAI
+  lang: en
+  checked: '2026-11-04'
+  published: 2025
+- id: invariantlabs-mcp-github-vulnerability
+  url: https://invariantlabs.ai/blog/mcp-github-vulnerability
+  title: 'GitHub MCP Exploited: Accessing private repositories via MCP'
+  kind: 研究
+  publisher: Invariant Labs
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-05-26'
+- id: jfrog-post-nx-supply-chain-attack
+  url: https://research.jfrog.com/post/nx-supply-chain-attack-targets-ai-tool-users/
+  title: Nx Supply Chain Attack Targets AI Tool Users
+  kind: 研究
+  publisher: JFrog Security Research
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-08-28'
+- id: lee-2025-genai-critical-thinking
+  url: https://advait.org/files/lee_2025_ai_critical_thinking_survey.pdf
+  title: 'The Impact of Generative AI on Critical Thinking: Self-Reported Reductions in Cognitive Effort and Confidence Effects From a Survey of Knowledge Workers'
+  kind: 研究
+  publisher: Advait Sarkar（論文の写し）
+  lang: en
+  checked: '2026-11-04'
+  note: CHI 2025 の論文（Lee ほか）
+- id: meta-ai-practical-ai-agent-security
+  url: https://ai.meta.com/blog/practical-ai-agent-security/
+  title: 'Agents Rule of Two: A Practical Approach to AI Agent Security'
+  kind: 研究
+  publisher: Meta AI
+  lang: en
+  checked: '2026-11-04'
+- id: metr-2025-early-ai-os-dev-study
+  url: https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/
+  title: Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity
+  kind: 研究
+  publisher: METR
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-07-10'
+- id: metr-2026-uplift-update
+  url: https://metr.org/blog/2026-02-24-uplift-update/
+  title: We are Changing our Developer Productivity Experiment Design
+  kind: 研究
+  publisher: METR
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-24'
+- id: pmc-kestin-2025-ai-tutoring
+  url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/
+  title: 'AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting'
+  kind: 研究
+  publisher: PubMed Central
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-06-03'
+- id: pmc-vaccaro-2024-human-ai-combinations
+  url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11659167/
+  title: 'When combinations of humans and AI are useful: A systematic review and meta-analysis'
+  kind: 研究
+  publisher: PubMed Central
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-10-28'
+- id: pnas-bastani-2025-genai-learning
+  url: https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html
+  title: 'Generative AI without guardrails can harm learning: Evidence'
+  kind: 研究
+  publisher: RePEc IDEAS（PNAS の論文の書誌）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-02-02'
+  note: PNAS（2025）の論文の書誌のページ（Bastani ほか）
+- id: sakana-ahc058
+  url: https://sakana.ai/ahc058/
+  title: Sakana AI Agent Wins AtCoder Heuristic Contest (First AI to Place 1st)
+  kind: 研究
+  publisher: Sakana AI
+  lang: en
+  checked: '2026-11-04'
+- id: sakana-ale-bench
+  url: https://sakana.ai/ale-bench/
+  title: Towards Automating Long-Horizon Algorithm Engineering for Hard Optimization Problems
+  kind: 研究
+  publisher: Sakana AI
+  lang: en
+  checked: '2026-11-04'
+- id: sakana-icfp
+  url: https://sakana.ai/icfp-2025/
+  title: 'ShinkaEvolve in Action: How a Human-AI Partnership Conquered a Coding Challenge'
+  kind: 研究
+  publisher: Sakana AI
+  lang: en
+  checked: '2026-11-04'
+- id: sleesman-2012-escalation-commitment
+  url: https://gwern.net/doc/psychology/cognitive-bias/sunk-cost/2012-sleesman.pdf
+  title: 'Cleaning Up the Big Muddy: A Meta-Analytic Review of the Determinants of Escalation of Commitment'
+  kind: 研究
+  publisher: gwern.net（論文の写し）
+  lang: en
+  checked: '2026-11-04'
+  note: Academy of Management Journal（2012）の論文の写し
+- id: stanford-scaling-blogs-kernelbenchv01
+  url: https://scalingintelligence.stanford.edu/blogs/kernelbenchv01/
+  title: KernelBench v0.1
+  kind: 研究
+  publisher: Stanford Scaling Intelligence Lab
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-07-27'
+- id: vasconcelos-2023-explanations-overreliance
+  url: https://cicl.stanford.edu/papers/vasconcelos2023explanations.pdf
+  title: Explanations Can Reduce Overreliance on AI Systems During Decision-Making
+  kind: 研究
+  publisher: Stanford CICL
+  lang: en
+  checked: '2026-11-04'
+  note: CSCW 2023 の論文（Vasconcelos ほか）
+- id: a1k0n-google-ai-postmortem
+  url: https://www.a1k0n.net/2010/03/04/google-ai-postmortem.html
+  title: Google AI Challenge post-mortem
+  kind: 実践者
+  publisher: a1k0n
+  lang: en
+  checked: '2026-11-04'
+- id: ai-orchestra-claude-code-japanese
+  url: https://www.ai-orchestra.ai/claude-code-training/columns/claude-code-nihongo
+  title: Claude Codeを日本語で使う設定方法を解説
+  kind: 実践者
+  publisher: AI Orchestra
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-07-22'
+- id: ai-revolution-quality-postmortem
+  url: https://ai-revolution.co.jp/media/claude-code-quality-postmortem/
+  title: Claude Code 品質劣化の真相｜Anthropic公式ポストモーテムで判明した3つの原因と今やるべきこと
+  kind: 実践者
+  publisher: AI Revolution
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-04-24'
+- id: andpad-claude-code-ml-loop
+  url: https://tech.andpad.co.jp/entry/2026/08/07/100000
+  title: Claude CodeでML実験ループを自動化した際の学び
+  kind: 実践者
+  publisher: ANDPAD Tech Blog
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-08-07'
+- id: asoview-claude-code-review
+  url: https://tech.asoview.co.jp/entry/2026/08/12/113238
+  title: Claude にコードレビューを任せてみて気づいたこと
+  kind: 実践者
+  publisher: asoview! Tech Blog
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-08-12'
+- id: awesomeclaude-code-tips
+  url: https://awesomeclaude.ai/claude-code-tips
+  title: Claude Code Tips - 40+ Tips from Basics to Advanced
+  kind: 実践者
+  publisher: Awesome Claude（ykdojo の Claude Code Tips）
+  lang: en
+  checked: '2026-11-04'
+  published: '2024-12-23'
+- id: battlecode-2023-4-musketeers-pdf
+  url: https://battlecode.org/assets/files/postmortem-2023-4-musketeers.pdf
+  title: 4 Musketeers - Battlecode 2023 Strategy Guide
+  kind: 実践者
+  publisher: Battlecode（MIT）の参加チームの振り返り
+  lang: en
+  checked: '2026-11-04'
+  note: 参加チーム自身の振り返り
+- id: battlecode-2023-dont-at-me-pdf
+  url: https://battlecode.org/assets/files/postmortem-2023-dont-at-me.pdf
+  title: Battlecode 2023 Postmortem - Don't @ Me
+  kind: 実践者
+  publisher: Battlecode（MIT）の参加チームの振り返り
+  lang: en
+  checked: '2026-11-04'
+  note: 参加チーム自身の振り返り
+- id: battlecode-2025-confused-pdf
+  url: https://battlecode.org/assets/files/postmortem-2025-confused.pdf
+  title: Battlecode 2025 Postmortem（confused）
+  kind: 実践者
+  publisher: Battlecode（MIT）の参加チームの振り返り
+  lang: en
+  checked: '2026-11-04'
+  note: 参加チーム自身の振り返り
+- id: battlecode-2025-just-woke-up-pdf
+  url: https://battlecode.org/assets/files/postmortem-2025-just-woke-up.pdf
+  title: Just Woke Up - BattleCode 2025 Postmortem
+  kind: 実践者
+  publisher: Battlecode（MIT）の参加チームの振り返り
+  lang: en
+  checked: '2026-11-04'
+  note: 参加チーム自身の振り返り
+- id: battlecode-2025-the-kragle-pdf
+  url: https://battlecode.org/assets/files/postmortem-2025-the-kragle.pdf
+  title: The Kragle - Battlecode 25 Postmortem
+  kind: 実践者
+  publisher: Battlecode（MIT）の参加チームの振り返り
+  lang: en
+  checked: '2026-11-04'
+  note: 参加チーム自身の振り返り
+- id: battlecode-2026-lorem-ipsum-pdf
+  url: https://battlecode.org/assets/files/postmortem-2026-lorem-ipsum.pdf
+  title: Battlecode 2026 Postmortem（Lorem Ipsum）
+  kind: 実践者
+  publisher: Battlecode（MIT）の参加チームの振り返り
+  lang: en
+  checked: '2026-11-04'
+  note: 参加チーム自身の振り返り
+- id: chokudai-competitive-programming-genai-2025
+  url: https://chokudai.hatenablog.com/entry/2025/07/02/151841
+  title: 競技プログラミングと生成AIの今 2025/07/02版
+  kind: 実践者
+  publisher: chokudai
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-07-02'
+- id: classmethod-ccg-writing-guide-textlint
+  url: https://dev.classmethod.jp/articles/ccg-writing-guide-textlint/
+  title: textlint による文章校正への対応について【CCG執筆者向け】
+  kind: 実践者
+  publisher: クラスメソッド（DevelopersIO）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2023-08-15'
+- id: classmethod-code-bedrock-governance-tips
+  url: https://dev.classmethod.jp/articles/claude-code-bedrock-governance-tips/
+  title: '[登壇レポート] DevelopersIO 2026 で「Claude Code on Bedrock で統制をかける小ネタ集」という内容で登壇してきました #devio2026'
+  kind: 実践者
+  publisher: クラスメソッド（DevelopersIO）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-24'
+- id: classmethod-code-hooks-prevent-english-reply
+  url: https://dev.classmethod.jp/articles/claude-code-hooks-prevent-english-reply/
+  title: Claude Opus 5.5 の返事が英語になりがちだったのでClaude Code のフック機能でこの問題を解決してみた
+  kind: 実践者
+  publisher: クラスメソッド（DevelopersIO）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-20'
+- id: classmethod-code-keep-sessions-short
+  url: https://dev.classmethod.jp/articles/claude-code-keep-sessions-short/
+  title: Claude Code のセッションを長くしすぎないために入れた工夫3つ
+  kind: 実践者
+  publisher: クラスメソッド（DevelopersIO）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-14'
+- id: classmethod-code-subagent-review
+  url: https://dev.classmethod.jp/articles/claude-code-subagent-review/
+  title: サブエージェントを増やしすぎていたら、Claude公式が挙げる失敗パターンに当てはまっていた話
+  kind: 実践者
+  publisher: クラスメソッド（DevelopersIO）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-26'
+- id: classmethod-devio2026-tokyo-code-automode-unattended
+  url: https://dev.classmethod.jp/articles/devio2026-tokyo-claude-code-automode-unattended-environment/
+  title: 'DevelopersIO 2026 TOKYO で「ガチで放置できる Claude Code実行環境の作り方」というタイトルで登壇しました #devio2026'
+  kind: 実践者
+  publisher: クラスメソッド（DevelopersIO）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-24'
+- id: classmethod-tags-code
+  url: https://dev.classmethod.jp/tags/claude-code/
+  title: Claude Code の記事一覧（DevelopersIO のタグ）
+  kind: 実践者
+  publisher: クラスメソッド（DevelopersIO）
+  lang: ja
+  checked: '2026-11-04'
+- id: codeknights-japan-cases-2026-summer
+  url: https://www.codeknights.co.jp/contents/claude-japan-cases-2026summer
+  title: Claudeの日本企業の導入事例まとめ【2026年夏】
+  kind: 実践者
+  publisher: CodeKnights
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-07-31'
+- id: composio-content-best-mcp-servers-code
+  url: https://composio.dev/content/best-mcp-servers-claude-code-codex
+  title: Best MCP servers for Claude Code and Codex I'm using in 2026
+  kind: 実践者
+  publisher: Composio
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-06-29'
+- id: coursera-code-action-reviews
+  url: https://www.coursera.org/learn/claude-code-in-action/reviews
+  title: Learner Reviews & Feedback for Claude Code in Action Course
+  kind: 実践者
+  publisher: Coursera
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-25'
+- id: crystal-method-compact-clear
+  url: https://crystal-method.com/blog/claude-code-compact-clear/
+  title: Claude Codeの/clearとは？使い方と使うタイミングをcompactとの違いも解説
+  kind: 実践者
+  publisher: crystal-method
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-06-07'
+- id: crystal-method-non-engineer
+  url: https://crystal-method.com/blog/claude-code-non-engineer/
+  title: Claude Code 非エンジニアの使い方｜職種別の任せ方・始め方・結果の確かめ方【2026年11月】
+  kind: 実践者
+  publisher: crystal-method
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-06-08'
+- id: danielvaughan-codex-cli-automated-git-bisect
+  url: https://codex.danielvaughan.com/2026/04/25/codex-cli-automated-git-bisect-regression-hunting-root-cause-analysis/
+  title: 'Automated Regression Hunting with Codex CLI: AI-Powered Git Bisect and Root Cause Analysis'
+  kind: 実践者
+  publisher: Daniel Vaughan
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-25'
+- id: darragh-stopped-coding-weeks-still-placed
+  url: https://darragh.bearblog.dev/i-stopped-coding-for-11-weeks-and-still-placed-3rd-on-kaggle/
+  title: I Stopped Coding for 11 Weeks — and Still Placed 3rd on Kaggle
+  kind: 実践者
+  publisher: Darragh
+  lang: en
+  checked: '2026-11-04'
+- id: defcon33-claude-ctf-scoreboard
+  url: https://media.defcon.org/DEF%20CON%2033/DEF%20CON%2033%20video%20and%20slides/DEF%20CON%2033%20video%20and%20slides%20captions/DEF%20CON%2033%20-%20Claude%20-%20Climbing%20a%20CTF%20Scoreboard%20Near%20You%20-%20Keane%20Lucas.eng.txt
+  title: Claude - Climbing a CTF Scoreboard Near You（DEF CON 33 の講演、Keane Lucas。字幕）
+  kind: 実践者
+  publisher: DEF CON（講演の字幕）
+  lang: ja
+  checked: '2026-11-04'
+- id: docker-mcp-horror-stories-whatsapp-data
+  url: https://www.docker.com/blog/mcp-horror-stories-whatsapp-data-exfiltration-issue/
+  title: 'MCP Horror Stories: WhatsApp Data Exfiltration'
+  kind: 実践者
+  publisher: Docker
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-11-13'
+- id: dolthub-claude-code-gotchas
+  url: https://www.dolthub.com/blog/2025-06-30-claude-code-gotchas/
+  title: Claude Code Gotchas
+  kind: 実践者
+  publisher: DoltHub
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-06-30'
+- id: drivendata-ai-agents-data-science-competitions
+  url: https://blog.drivendata.org/blog/ai-agents-data-science-competitions
+  title: 'AI Agents in Data Science Competitions: Lessons from the Leaderboard'
+  kind: 実践者
+  publisher: DrivenData
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-02'
+- id: dsebastien-code-tips-best-practices
+  url: https://www.dsebastien.net/claude-code-tips-and-best-practices/
+  title: Claude Code Tips and Best Practices
+  kind: 実践者
+  publisher: Sébastien Dubois
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-16'
+- id: dylancastillo-til-counting-tokens
+  url: https://dylancastillo.co/til/counting-tokens.html
+  title: Japanese is the most expensive language in terms of input tokens
+  kind: 実践者
+  publisher: Dylan Castillo
+  lang: en
+  checked: '2026-11-04'
+- id: findy-tools-claude-code-rollout
+  url: https://findy-tools.io/products/claudecode/1065/825
+  title: Claude Code導入による開発効率化と全社展開までの段階的アプローチ
+  kind: 実践者
+  publisher: Findy Tools
+  lang: ja
+  checked: '2026-11-04'
+- id: giftx-claude-memory-guide
+  url: https://ai.giftx.co.jp/blog/claude-memory-guide/
+  title: Claudeのメモリ機能とは？設定・使い方・オフにする方法を解説
+  kind: 実践者
+  publisher: GiftX
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-08-26'
+- id: github-fakepsyho-psyleague
+  url: https://github.com/FakePsyho/psyleague
+  title: 'FakePsyho/psyleague: Simple cmd-line league system for bot contests.'
+  kind: 実践者
+  publisher: GitHub（FakePsyho）
+  lang: en
+  checked: '2026-11-04'
+- id: github-florianbruniaux-claude-code-ultimate-guide
+  url: https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/693d97d284ea342c8c8fb13894df0cee26d3a3d3/guide/learning-path/README.md
+  title: 'claude-code-ultimate-guide: guide/learning-path/README.md'
+  kind: 実践者
+  publisher: GitHub（FlorianBruniaux）
+  lang: en
+  checked: '2026-11-04'
+- id: github-luongnv89-claude-howto
+  url: https://github.com/luongnv89/claude-howto
+  title: 'luongnv89/claude-howto: A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.'
+  kind: 実践者
+  publisher: GitHub（luongnv89）
+  lang: en
+  checked: '2026-11-04'
+  note: 調査資料は jsDelivr の README の写しを引いた。元のリポジトリを出典にした
+- id: github-official-stockfish-fishtest
+  url: https://github.com/official-stockfish/fishtest/wiki/Fishtest-faq
+  title: Fishtest FAQ
+  kind: 実践者
+  publisher: GitHub（official-stockfish）
+  lang: en
+  checked: '2026-11-04'
+- id: github-openai-mle-bench
+  url: https://github.com/openai/mle-bench
+  title: 'openai/mle-bench: MLE-bench is a benchmark for measuring how well AI agents perform at machine learning engineering'
+  kind: 実践者
+  publisher: GitHub（openai）
+  lang: en
+  checked: '2026-11-04'
+- id: google-cloud-ai-machine-learning-introducing-doras
+  url: https://cloud.google.com/blog/products/ai-machine-learning/introducing-doras-inaugural-ai-capabilities-model
+  title: Introducing DORA’s inaugural AI Capabilities Model
+  kind: 実践者
+  publisher: Google Cloud Blog
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-09-23'
+- id: harper-basic-code
+  url: https://harper.blog/2025/05/08/basic-claude-code/
+  title: Basic Claude Code
+  kind: 実践者
+  publisher: Harper Reed
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-05-08'
+- id: harper-llm-codegen-workflow-atm
+  url: https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/
+  title: My LLM codegen workflow atm
+  kind: 実践者
+  publisher: Harper Reed
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-02-16'
+- id: hatebu-goat-eat-any-cloud-sessions
+  url: https://b.hatena.ne.jp/entry/s/zenn.dev/goat_eat_any/articles/claude-code-cloud-sessions
+  title: 『Claude Code クラウドセッション、使ってみて！』へのコメント
+  kind: 実践者
+  publisher: はてなブックマーク（コメントの一覧）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-09-25'
+  note: 記事へのコメントの一覧（読者の反応の記録）。コメントの書き手を名指ししない
+- id: hatebu-npaka-claude-code
+  url: https://b.hatena.ne.jp/entry/s/note.com/npaka/n/n3d754c78f439
+  title: 『Claude Code の使い方｜npaka』へのコメント
+  kind: 実践者
+  publisher: はてなブックマーク（コメントの一覧）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-02-26'
+  note: 記事へのコメントの一覧（読者の反応の記録）。コメントの書き手を名指ししない
+- id: hatebu-stafes-intro
+  url: https://b.hatena.ne.jp/entry/s/zenn.dev/stafes_blog/articles/nano72mkn-claude-code-intro
+  title: 『Claude Codeをはじめて触るエンジニアのためのざっくり入門』へのコメント
+  kind: 実践者
+  publisher: はてなブックマーク（コメントの一覧）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-05-30'
+  note: 記事へのコメントの一覧（読者の反応の記録）。コメントの書き手を名指ししない
+- id: hatebu-tonkotsuboy-meetup
+  url: https://b.hatena.ne.jp/entry/s/tonkotsuboy.github.io/20250717-findy-claudecode/
+  title: 『実務で使っているClaude Codeの活用事例集 - Claude Code Meetup』へのコメント
+  kind: 実践者
+  publisher: はてなブックマーク（コメントの一覧）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-07-17'
+  note: 記事へのコメントの一覧（読者の反応の記録）。コメントの書き手を名指ししない
+- id: hatebu-trysmr-one-month
+  url: https://b.hatena.ne.jp/entry/s/zenn.dev/trysmr/articles/one-month-using-claude-code
+  title: 『1ヶ月ほぼ毎日Claude Codeを使ってわかった魅力と所感』へのコメント
+  kind: 実践者
+  publisher: はてなブックマーク（コメントの一覧）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-06-11'
+  note: 記事へのコメントの一覧（読者の反応の記録）。コメントの書き手を名指ししない
+- id: hatebu-wataru86-commands
+  url: https://b.hatena.ne.jp/entry/s/qiita.com/wataru86/items/b859f1578191a1e15808
+  title: 『Claude Code を4ヶ月使ってわかった、おすすめコマンド・スキル 10 選 - Qiita』へのコメント
+  kind: 実践者
+  publisher: はてなブックマーク（コメントの一覧）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-06-28'
+  note: 記事へのコメントの一覧（読者の反応の記録）。コメントの書き手を名指ししない
+- id: heyuan110-ai-best-mcp-servers-code
+  url: https://www.heyuan110.com/posts/ai/2026-03-05-best-mcp-servers-claude-code/
+  title: 'Best MCP Servers for Claude Code: 18 Tools You Need in 2026'
+  kind: 実践者
+  publisher: heyuan110
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-03'
+- id: humanlayer-writing-good
+  url: https://www.humanlayer.dev/blog/writing-a-good-claude-md
+  title: Writing a good CLAUDE.md
+  kind: 実践者
+  publisher: HumanLayer
+  lang: en
+  checked: '2026-11-04'
+- id: hyperdev-tired-toddler-problem
+  url: https://hyperdev.matsuoka.com/p/the-tired-toddler-problem
+  title: The Tired Toddler Problem
+  kind: 実践者
+  publisher: Matsuoka（HyperDev）
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-12-24'
+- id: includesecurity-ctfs-ai-era
+  url: https://blog.includesecurity.com/2026/04/ctfs-in-the-ai-era/
+  title: CTFs in the AI Era
+  kind: 実践者
+  publisher: Include Security
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-23'
+- id: invicti-web-security-owasp-top-risks
+  url: https://www.invicti.com/blog/web-security/owasp-top-10-risks-llm-security-2025
+  title: 'OWASP Top 10 for LLMs 2025: Key Risks and Mitigation Strategies'
+  kind: 実践者
+  publisher: Invicti
+  lang: en
+  checked: '2026-11-04'
+- id: jangwook-en-multilingual-llm-token-tax
+  url: https://jangwook.net/en/blog/en/multilingual-llm-token-tax-experiment/
+  title: The Non-English Token Tax — Korean Costs 1.4x, Measured
+  kind: 実践者
+  publisher: jangwook.net
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-06-23'
+- id: jeremytian-code-loop-improve
+  url: https://jeremytian.substack.com/p/can-claude-code-in-a-loop-improve
+  title: Can Claude Code in a loop improve a production enterprise AI agent with $10,745 of budget?
+  kind: 実践者
+  publisher: Jeremy Tian
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-08-11'
+- id: jinrai-claude-japanese
+  url: https://jinrai.co.jp/blog/2026/03/26/claude-japanese/
+  title: Claude日本語精度｜ChatGPT・Gemini比較と自然な出力のコツ
+  kind: 実践者
+  publisher: 仁頼
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-03-26'
+- id: jitendrazaa-tips-code-tips-creator-boris
+  url: https://www.jitendrazaa.com/blog/others/tips/10-claude-code-tips-from-the-creator-boris-cherny-february/
+  title: 10 Claude Code Tips from the Creator Boris Cherny
+  kind: 実践者
+  publisher: Jitendra Zaa
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-20'
+- id: kiri8128-ahc-without-annealing
+  url: https://kiri8128.hatenablog.com/entry/2023/11/29/024335
+  title: 焼きなまし法が使えなくても AHC 橙になれたよ
+  kind: 実践者
+  publisher: Kiri8128
+  lang: ja
+  checked: '2026-11-04'
+  published: '2023-11-28'
+- id: kiri8128-relative-score-ahc
+  url: https://kiri8128.hatenablog.com/entry/2024/05/06/032420
+  title: 相対スコア AHC の立ち回り
+  kind: 実践者
+  publisher: Kiri8128
+  lang: ja
+  checked: '2026-11-04'
+  published: '2024-05-05'
+- id: lukyanenko-kaggle-antigravity-s6e7
+  url: https://andlukyane.com/blog/kaggle-antigravity-s6e7
+  title: Starting and iterating on a Kaggle competition in Google Antigravity
+  kind: 実践者
+  publisher: Andrey Lukyanenko
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-09'
+- id: lukyanenko-rogii-geosteering-kaggle
+  url: https://andlukyane.com/blog/rogii-geosteering-kaggle
+  title: How AI agents helped me win a Kaggle silver medal — and how they failed me
+  kind: 実践者
+  publisher: Andrey Lukyanenko
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-10'
+- id: maggieappleton-gastown
+  url: https://maggieappleton.com/gastown
+  title: Gas Town’s Agent Patterns, Design Bottlenecks, and Vibecoding at Scale
+  kind: 実践者
+  publisher: Maggie Appleton
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-23'
+- id: marmelab-code-tips-wish-id-had
+  url: https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html
+  title: Claude Code Tips I Wish I’d Had From Day One
+  kind: 実践者
+  publisher: marmelab
+  lang: en
+  checked: '2026-11-04'
+- id: maruzenjunkudo-minorun-claude-code-book
+  url: https://www.maruzenjunkudo.co.jp/products/9784297159399
+  title: ［みのるん式］ビジネスパーソンのためのClaude Code仕事術
+  kind: 実践者
+  publisher: 丸善ジュンク堂（書籍の目次）
+  lang: ja
+  checked: '2026-11-04'
+- id: mercari-ai-lied-me-thats-learned
+  url: https://engineering.mercari.com/en/blog/entry/20251028-the-ai-lied-to-me-and-thats-when-i-learned-how-to-use-it/
+  title: The AI Lied to Me — And That’s When I Learned How to Use It
+  kind: 実践者
+  publisher: Mercari Engineering
+  lang: en
+  checked: '2026-11-04'
+- id: mindstudio-code-goal-command-vs-dynamic
+  url: https://www.mindstudio.ai/blog/claude-code-goal-command-vs-dynamic-workflows
+  title: What Is the /goal Command vs Dynamic Workflows in Claude Code? Depth vs Width Explained
+  kind: 実践者
+  publisher: MindStudio
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-05-31'
+- id: mitchellh-writing-ai-adoption-journey
+  url: https://mitchellh.com/writing/my-ai-adoption-journey
+  title: My AI Adoption Journey
+  kind: 実践者
+  publisher: Mitchell Hashimoto
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-05'
+- id: mollick-centaurs-cyborgs-jagged
+  url: https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged
+  title: Centaurs and Cyborgs on the Jagged Frontier
+  kind: 実践者
+  publisher: Ethan Mollick（One Useful Thing）
+  lang: en
+  checked: '2026-11-04'
+  published: '2023-09-16'
+- id: note-good-nerine619-opus-english-replies
+  url: https://note.com/good_nerine619/n/n93163a04fb77
+  title: Opus 5.5で返事が英語に変わる理由と戻し方｜アポロ
+  kind: 実践者
+  publisher: note
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-09-29'
+- id: nvidia-kaggle-grandmasters-playbook-battle-tested
+  url: https://developer.nvidia.com/blog/the-kaggle-grandmasters-playbook-7-battle-tested-modeling-techniques-for-tabular-data
+  title: 'The Kaggle Grandmasters Playbook: 7 Battle-Tested Modeling Techniques for Tabular Data'
+  kind: 実践者
+  publisher: NVIDIA Developer Blog
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-09-18'
+- id: nvidia-winning-kaggle-competition-generative-ai
+  url: https://developer.nvidia.com/blog/winning-a-kaggle-competition-with-generative-ai-assisted-coding/
+  title: Winning a Kaggle Competition with Generative AI–Assisted Coding
+  kind: 実践者
+  publisher: NVIDIA Developer Blog
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-23'
+- id: openrouter-insights-opus-tokenizer-analysis
+  url: https://openrouter.ai/blog/insights/opus-47-tokenizer-analysis/
+  title: 'Opus 4.7''s New Tokenizer: What It Actually Costs'
+  kind: 実践者
+  publisher: OpenRouter
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-27'
+- id: paddo-boris-uses-code
+  url: https://paddo.dev/blog/how-boris-uses-claude-code
+  title: How the Creator of Claude Code Uses Claude Code
+  kind: 実践者
+  publisher: paddo.dev
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-05'
+- id: paddo-ralph-wiggum-autonomous-loops
+  url: https://paddo.dev/blog/ralph-wiggum-autonomous-loops/
+  title: 'Ralph Wiggum: Autonomous Loops for Claude Code'
+  kind: 実践者
+  publisher: paddo.dev
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-12-02'
+- id: pebblous-agentic-data-science-silent-failures
+  url: https://blog.pebblous.ai/blog/agentic-data-science-silent-failures/en/
+  title: 'Data Leakage: The Flaw That Makes an AI''s Analysis Score Higher'
+  kind: 実践者
+  publisher: Pebblous
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-15'
+- id: prussianblue-ahc054-claude-code
+  url: https://prussianblue.hatenadiary.jp/entry/2025/09/29/223244
+  title: AHC054参加記録 with Claude Code
+  kind: 実践者
+  publisher: PrussianBlue
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-09-29'
+- id: qiita-ennagara128-0f3516
+  url: https://qiita.com/ennagara128/items/0f35168cfc887c38e152
+  title: Claude Codeに「丸投げしていい作業」と「させてはいけない作業」を線引きする実践パターン
+  kind: 実践者
+  publisher: Qiita（ennagara128）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-06-08'
+- id: qiita-fujisho1216-90b34e
+  url: https://qiita.com/fujisho1216/items/90b34ef9abd910deb6ac
+  title: 役割が混在してきたので「CLAUDE.md / サブエージェント / スラッシュコマンド / エージェントスキル」を改めてまとめてみた
+  kind: 実践者
+  publisher: Qiita（fujisho1216）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-01-13'
+- id: qiita-hikariclaude01-e54c70
+  url: https://qiita.com/hikariclaude01/items/e54c70c90c6aa84d0f66
+  title: CLAUDE.md 設計パターン集──プロジェクト規模別に使い分ける7つのテンプレート
+  kind: 実践者
+  publisher: Qiita（hikariclaude01）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-07-20'
+- id: qiita-inoyu-0ffe6e
+  url: https://qiita.com/inoyu-qiita/items/0ffe6e74ecaf3aaa8b14
+  title: 新しい日本語推敲スキル「yomiyasu」がバズっていたので、Claudeで日本語推敲スキル3つを比べてみた
+  kind: 実践者
+  publisher: Qiita（inoyu-qiita）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-01'
+- id: qiita-jyas-9cc733
+  url: https://qiita.com/jyas-protein/items/9cc733d2ed7f80bef7a1
+  title: 【Claude Code】CLAUDE.mdの書き方と注意点
+  kind: 実践者
+  publisher: Qiita（jyas-protein）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-03-30'
+- id: qiita-kmat67916008-73e303
+  url: https://qiita.com/Kmat67916008/items/73e303451e3bc69e50bb
+  title: Kaggle画像コンペでやっていること②
+  kind: 実践者
+  publisher: Qiita（Kmat67916008）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2024-12-14'
+- id: qiita-kmat67916008-7aaa41
+  url: https://qiita.com/Kmat67916008/items/7aaa41be4e25bace43dc
+  title: Kaggle画像コンペでやっていること①
+  kind: 実践者
+  publisher: Qiita（Kmat67916008）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2024-12-08'
+- id: qiita-kmat67916008-d7586a
+  url: https://qiita.com/Kmat67916008/items/d7586a28e6ec8595d579
+  title: Kaggle画像コンペでやっていること④
+  kind: 実践者
+  publisher: Qiita（Kmat67916008）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2024-12-24'
+- id: qiita-ktdatascience-cad6d1
+  url: https://qiita.com/ktdatascience/items/cad6d18c080aa6ca812c
+  title: 【kaggle】Claude CodeだけでKaggleコンペに挑んで惨敗した話
+  kind: 実践者
+  publisher: Qiita（ktdatascience）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-05-23'
+- id: qiita-minorun365-114f53
+  url: https://qiita.com/minorun365/items/114f53def8cb0db60f47
+  title: Claude Codeですべての日常業務を爆速化しよう！
+  kind: 実践者
+  publisher: Qiita（minorun365）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-03-02'
+- id: rcanand-code-just-got-confusing-plan
+  url: https://rcanand.bearblog.dev/claude-code-just-got-confusing-plan-mode-vs-superpowers-vs-agent-teams-a-practical-guide/
+  title: 'Claude Code Just Got Confusing: Plan Mode vs Superpowers vs Agent Teams — A Practical Guide'
+  kind: 実践者
+  publisher: rcanand
+  lang: en
+  checked: '2026-11-04'
+- id: reddit-snapshot-1qspcip
+  url: https://reddit.sentinel-team.org/posts/1qspcip/snapshots/2026-02-01T05%3A38%3A27.093042Z
+  title: 'Post Snapshot: 1qspcip (2026-02-01)'
+  kind: 実践者
+  publisher: Reddit Sentiment Analyzer（Reddit の投稿の写し）
+  lang: en
+  checked: '2026-11-04'
+  note: Reddit の投稿の第三者の写し
+- id: reddit-snapshot-1uk434i
+  url: https://reddit.sentinel-team.org/posts/1uk434i/snapshots/2026-07-03T03%3A00%3A16.73148Z
+  title: 'Post Snapshot: 1uk434i (2026-07-03)'
+  kind: 実践者
+  publisher: Reddit Sentiment Analyzer（Reddit の投稿の写し）
+  lang: en
+  checked: '2026-11-04'
+  note: Reddit の投稿の第三者の写し
+- id: redreamality-library-writing-good
+  url: https://redreamality.com/garden/notes/library/writing-a-good-claude-md/
+  title: Writing a good CLAUDE.md
+  kind: 実践者
+  publisher: redreamality
+  lang: en
+  checked: '2026-11-04'
+- id: ringling-ai-framework
+  url: https://ringling.libguides.com/ai/framework
+  title: 'LibGuides: Artificial Intelligence at Ringling: Framework for AI Fluency'
+  kind: 実践者
+  publisher: Ringling College Library
+  lang: en
+  checked: '2026-11-04'
+- id: ronacher-things-didnt-work
+  url: https://lucumr.pocoo.org/2025/7/30/things-that-didnt-work/
+  title: Agentic Coding Things That Didn’t Work
+  kind: 実践者
+  publisher: Armin Ronacher
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-07-30'
+- id: ronacher-year-vibes
+  url: https://lucumr.pocoo.org/2025/12/22/a-year-of-vibes/
+  title: A Year Of Vibes
+  kind: 実践者
+  publisher: Armin Ronacher
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-12-22'
+- id: ruben-hours
+  url: https://ruben.substack.com/p/1800-hours-of-claude
+  title: 27 Claude tips after 1,800 hours.
+  kind: 実践者
+  publisher: Ruben Hassid
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-29'
+- id: sankalp-code-tips-techniques-hn-community
+  url: https://sankalp.bearblog.dev/claude-code-tips-techniques-from-the-hn-community/
+  title: Claude Code Tips & Techniques from the HN Community
+  kind: 実践者
+  publisher: sankalp
+  lang: en
+  checked: '2026-11-04'
+- id: schemastore-code-settings-json
+  url: https://www.schemastore.org/claude-code-settings.json
+  title: Claude Code の設定の JSON Schema（claude-code-settings.json）
+  kind: 実践者
+  publisher: SchemaStore
+  lang: ja
+  checked: '2026-11-04'
+- id: schulman-opinionated-guide-ml-research
+  url: https://pengsida.net/files/John_Schulman_How_to_do_research.pdf
+  title: An Opinionated Guide to ML Research
+  kind: 実践者
+  publisher: John Schulman（文章の写し）
+  lang: en
+  checked: '2026-11-04'
+  note: 元は https://joschu.net/blog/opinionated-guide-ml-research.html （2026-11-04 はこの環境から接続できなかった）
+- id: scrimba-best-code-tutorials-courses
+  url: https://scrimba.com/articles/best-claude-code-tutorials-and-courses-in-2026/
+  title: 'Best Claude Code Tutorials and Courses in 2026: Free and Paid'
+  kind: 実践者
+  publisher: Scrimba
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-25'
+- id: serverworks-claude-md-guide
+  url: https://blog.serverworks.co.jp/claude-code-claudemd-guide
+  title: CLAUDE.md の書き方ガイド － Claude Code にプロジェクトのルールを教える方法
+  kind: 実践者
+  publisher: サーバーワークス
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-05-10'
+- id: shareuhack-code-setup-guide
+  url: https://www.shareuhack.com/en/posts/claude-code-claude-md-setup-guide-2026
+  title: Claude Code Ignores Your CLAUDE.md? It's the Delivery Mechanism, Not a Bug (2026 Fix)
+  kind: 実践者
+  publisher: Shareuhack
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-27'
+- id: shingoirie-claude-md-japanese
+  url: https://devtools.shingoirie.com/blog/claude-code-japanese-claude-md-guide/
+  title: Claude Codeを日本語で使いこなすCLAUDE.mdの書き方
+  kind: 実践者
+  publisher: 入江慎吾（AI Dev Tools Blog）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-04-07'
+- id: simonwillison-agentic-coding
+  url: https://simonwillison.net/2025/Jun/29/agentic-coding/
+  title: 'Agentic Coding: The Future of Software Development with Agents'
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-ai-adoption-journey
+  url: https://simonwillison.net/2026/Feb/5/ai-adoption-journey/
+  title: 'Mitchell Hashimoto: My AI Adoption Journey'
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-code-review
+  url: https://simonwillison.net/2026/Oct/16/code-review/
+  title: A quote from Addy Osmani, Morgan Westlee Lunt, and Qing Wang
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-designing-agentic-loops
+  url: https://simonwillison.net/2025/Sep/30/designing-agentic-loops/
+  title: Designing agentic loops
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-every-code-feature
+  url: https://feeds.simonwillison.net/2025/Nov/2/how-i-use-every-claude-code-feature/
+  title: How I Use Every Claude Code Feature
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-guides-agentic-engineering-patterns-red
+  url: https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/
+  title: Red/green TDD - Agentic Engineering Patterns
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-lethal-trifecta
+  url: https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
+  title: 'The lethal trifecta for AI agents: private data, untrusted content, and external communication'
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-mcp-prompt-injection
+  url: https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/
+  title: Model Context Protocol has prompt injection security problems
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-newsletter-new-prompt-injection-papers-agents
+  url: https://simonw.substack.com/p/new-prompt-injection-papers-agents
+  title: 'New prompt injection papers: Agents Rule of Two and The Attacker Moves Second'
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-11-03'
+- id: simonwillison-parallel-coding-agents
+  url: https://simonwillison.net/2025/Oct/5/parallel-coding-agents/
+  title: Embracing the parallel coding agent lifestyle
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-pragmatic-summit
+  url: https://simonwillison.net/2026/Mar/14/pragmatic-summit/
+  title: My fireside chat about agentic engineering at the Pragmatic Summit
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-quote-from-claude
+  url: https://simonwillison.net/2025/Dec/9/claude/
+  title: A quote from Claude
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-recovering-lost-code
+  url: https://simonwillison.net/2026/Feb/19/recovering-lost-code/
+  title: Recovering lost code
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: simonwillison-vibe-coding-agentic-engineering
+  url: https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/
+  title: Vibe coding and agentic engineering are getting closer than I’d like
+  kind: 実践者
+  publisher: Simon Willison
+  lang: en
+  checked: '2026-11-04'
+- id: speakerdeck-chihironakayama-agentshi-dai-nokagglede
+  url: https://speakerdeck.com/chihironakayama/agentshi-dai-nokagglede-ren-jian-hahe-wojian-rubekika-guan-xi-kagglerhui-2026-dot-5-22
+  title: Agent時代のKaggleで、人間は何を見るべきか (関西kaggler会 2026.5.22)
+  kind: 実践者
+  publisher: Speaker Deck（chihironakayama）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-05-21'
+- id: speakerdeck-minorun365-codebesutopurakuteisumatome
+  url: https://speakerdeck.com/minorun365/claude-codebesutopurakuteisumatome
+  title: Claude Codeベストプラクティスまとめ
+  kind: 実践者
+  publisher: Speaker Deck（minorun365）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-01-24'
+- id: speakerdeck-oikon48-codekarawo-gaxue-bubekikoto
+  url: https://speakerdeck.com/oikon48/claude-codekarawo-gaxue-bubekikoto
+  title: Claude Codeから我々が学ぶべきこと
+  kind: 実践者
+  publisher: Speaker Deck（oikon48）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-08-05'
+- id: speakerdeck-shun-duan-qi-ahcdesheng
+  url: https://speakerdeck.com/shun_pi/duan-qi-ahcdesheng-tutamenotekunituku
+  title: 短期AHCで勝つためのテクニック
+  kind: 実践者
+  publisher: Speaker Deck（shun_pi）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2024-06-11'
+- id: speakerdeck-tatyam-ding-shu-bei
+  url: https://speakerdeck.com/tatyam_prime/ding-shu-bei-gao-su-hua-noji-shu
+  title: 定数倍高速化の技術
+  kind: 実践者
+  publisher: Speaker Deck（tatyam_prime）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2024-07-16'
+- id: speakerdeck-terryu16-atcoder-heuristic-first
+  url: https://speakerdeck.com/terryu16/atcoder-heuristic-first-step-vol-dot-1-jiang-yi-suraido
+  title: AtCoder Heuristic First-step Vol.1 講義スライド
+  kind: 実践者
+  publisher: Speaker Deck（terryu16）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-03-23'
+- id: speakerdeck-tomoki10-team-code-practices
+  url: https://speakerdeck.com/tomoki10/team-claude-code-practices
+  title: チームで安全にClaude Codeを利用するためのプラクティス / team-claude-code-practices
+  kind: 実践者
+  publisher: Speaker Deck（tomoki10）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-01-09'
+- id: speakerdeck-tsukamoto1783-humanlayernoblogkaradu-mijie-kuliang
+  url: https://speakerdeck.com/tsukamoto1783/humanlayernoblogkaradu-mijie-kuliang-iclaude-dot-mdnoshu-kifang-no
+  title: humanlayerのブログから学ぶ、良いCLAUDE.mdの書き方
+  kind: 実践者
+  publisher: Speaker Deck（tsukamoto1783）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-01-19'
+- id: speakerdeck-twada-agentic-software-engineering
+  url: https://speakerdeck.com/twada/agentic-software-engineering-2026-07-findy-edition
+  title: 2026年のソフトウェア開発を考える（2026/07版） / Agentic Software Engineering 2026-07 Findy Edition
+  kind: 実践者
+  publisher: Speaker Deck（twada）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-07-23'
+- id: speakerdeck-yuuuuuuuuu54-codefa-biao
+  url: https://speakerdeck.com/yuuuuuuuuu54/claude-codefa-biao
+  title: Claude Codeで始める新時代の開発
+  kind: 実践者
+  publisher: Speaker Deck（yuuuuuuuuu54）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-07-13'
+- id: splunk-isucon-observability
+  url: https://www.splunk.com/ja_jp/blog/observability/isucon-rethink-observability-in-the-age-of-ai.html
+  title: ISUCONを解いて考える、AI時代のオブザーバビリティ活用
+  kind: 実践者
+  publisher: Splunk
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-10-21'
+- id: ssdnodes-claude-japanese
+  url: https://www.ssdnodes.com/learn/lang/ja/claude-in-japanese-app-language-and-limits
+  title: Claudeを日本語で使う方法：表示言語と返答の設定、使用量の違い
+  kind: 実践者
+  publisher: SSD Nodes
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-11-02'
+- id: stulberg-code-everything-code-tips-tricks
+  url: https://hannahstulberg.substack.com/p/claude-code-for-everything-30-claude-code-tips-and-tricks
+  title: 'Claude Code for Everything: Keeping Up with the Claude Code Treadmill (30 Claude Code Tips & Tricks)'
+  kind: 実践者
+  publisher: Hannah Stulberg
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-05-04'
+- id: sylvie-ritsec
+  url: https://sylvie.fyi/posts/ritsec-2026/
+  title: Lessons Learned From RITSEC CTF
+  kind: 実践者
+  publisher: sylvie.fyi
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-07'
+- id: tao-mathematical-exploration-at-scale
+  url: https://tagteam.harvard.edu/hub_feeds/3899/feed_items/16691196
+  title: Mathematical exploration and discovery at scale
+  kind: 実践者
+  publisher: Terence Tao（ブログの記事。TagTeam のフィードの写し）
+  lang: en
+  checked: '2026-11-04'
+  note: Terence Tao のブログの記事を TagTeam のフィードが集めた写し
+- id: tembo-write-great
+  url: https://www.tembo.io/blog/how-to-write-a-great-claude-md
+  title: 'How to Write a Great CLAUDE.md: Best Practices and Tips'
+  kind: 実践者
+  publisher: Tembo
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-02-04'
+- id: terry-ahc001
+  url: https://blog.terry-u16.net/entry/ahc001-how-to
+  title: AtCoder Heuristic Contest 001 (AHC001) 初心者向け解説
+  kind: 実践者
+  publisher: TERRY（terry_u16）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2021-03-15'
+- id: terry-ahc040
+  url: https://blog.terry-u16.net/entry/ahc040
+  title: HACK TO THE FUTURE 2025 (AHC040) 解説
+  kind: 実践者
+  publisher: TERRY（terry_u16）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2024-12-14'
+- id: terry-pahcer
+  url: https://blog.terry-u16.net/entry/how-to-use-pahcer
+  title: AHCテストケース実行ツールpahcerの使い方
+  kind: 実践者
+  publisher: TERRY（terry_u16）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-07-30'
+- id: thorstenball-talks-prompt
+  url: https://thorstenball.com/talks/how-i-prompt/
+  title: 'Think Harder: How I Prompt — Thorsten Ball, Laracon US 2026'
+  kind: 実践者
+  publisher: Thorsten Ball
+  lang: en
+  checked: '2026-11-04'
+- id: tutorialsdojo-skills-unlocked-practical-guide-anthropic
+  url: https://tutorialsdojo.com/claude-skills-unlocked-a-practical-guide-to-anthropic-academys-21-free-courses/
+  title: 'Claude Skills Unlocked: A Practical Guide to Anthropic Academy''s 21 Free Courses'
+  kind: 実践者
+  publisher: Tutorials Dojo
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-31'
+- id: usaco-guide-general-debugging-checklist
+  url: https://usaco.guide/general/debugging-checklist
+  title: How to Debug
+  kind: 実践者
+  publisher: USACO Guide
+  lang: en
+  checked: '2026-11-04'
+- id: velvetshark-stop-prompting-code-let-interview
+  url: https://velvetshark.com/stop-prompting-claude-code-let-it-interview-you
+  title: Stop prompting Claude Code - let it interview you
+  kind: 実践者
+  publisher: VelvetShark
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-02'
+- id: wafer-reward-hacking
+  url: https://www.wafer.ai/blog/reward-hacking
+  title: 'Case Study: A 104x (?) Speedup on KernelBench'
+  kind: 実践者
+  publisher: Wafer
+  lang: en
+  checked: '2026-11-04'
+- id: wong-post-think-first-chatgpt-later
+  url: https://www.sarahshihuiwong.com/post/think-first-chatgpt-later-wong-qiu-2026-educational-psychology-review
+  title: Think First, ChatGPT Later (Wong & Qiu, 2026, Educational Psychology Review)
+  kind: 実践者
+  publisher: Sarah Shi Hui Wong
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-04-15'
+- id: zenken-claude-code-pricing
+  url: https://ai.zenken.co.jp/post/claude-code-pricing/
+  title: Claude Code の料金｜無料で使える？Pro・Max の月額費用を日本円で解説
+  kind: 実践者
+  publisher: Zenken
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-03-03'
+- id: zenn-attgm-d28df25b
+  url: https://zenn.dev/attgm/articles/d28df25b88254a
+  title: AIとコンテストに参加する
+  kind: 実践者
+  publisher: Zenn（attgm）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-bookamasedo-a0160f7c
+  url: https://zenn.dev/bookamasedo/articles/a0160f7c0132da
+  title: チームの Claude Code 運用を揃えるプレイブック
+  kind: 実践者
+  publisher: Zenn（bookamasedo）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-chiman-b233cc80
+  url: https://zenn.dev/chiman/articles/b233cc808d6af3
+  title: Claude Code / CodexでKaggle金メダルを取った話
+  kind: 実践者
+  publisher: Zenn（chiman）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-choplin-20250624
+  url: https://zenn.dev/choplin/articles/2025-06-24-claude-code-1-reality-and-mindset
+  title: Claude Codeとどう向き合うか - 1. 3つの現実と心構え
+  kind: 実践者
+  publisher: Zenn（choplin）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-hkdeveloper-claudeco
+  url: https://zenn.dev/hkdeveloper/articles/claude-code-meetup-japan-3
+  title: 'Claude Code Meetup Japan #3 参加レポート（前編）- 開発手法・実践編'
+  kind: 実践者
+  publisher: Zenn（hkdeveloper）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-lluminai-7bd42376
+  url: https://zenn.dev/lluminai_tech/articles/7bd423768740a0
+  title: '[Claude Code] Kaggle完全自動化で金メダルは獲れるのか？（前編：最強の推論パイプライン構築と見えない壁）'
+  kind: 実践者
+  publisher: Zenn（lluminai_tech）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-microsoft-78e01f59
+  url: https://zenn.dev/microsoft/articles/78e01f5932c025
+  title: Azure SRE エージェントは ISUCON で戦えるか？パフォーマンスチューニングに挑戦してみた
+  kind: 実践者
+  publisher: Zenn（microsoft）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-ml-84e92429
+  url: https://zenn.dev/ml_bear/articles/84e92429698177
+  title: Claude Code 逆引きコマンド事典
+  kind: 実践者
+  publisher: Zenn（ml_bear）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-nakakiiro-kagglecl
+  url: https://zenn.dev/nakakiiro/articles/kaggle_claude_code_boilerplate
+  title: 【Claude Code】Kaggle上位勢が設定するClaude Codeのskillsとagentsをチェックする
+  kind: 実践者
+  publisher: Zenn（nakakiiro）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-resqnet-a1cfd81a
+  url: https://zenn.dev/resqnet/articles/a1cfd81a562e07
+  title: Claude Code導入3ヶ月後の社内アンケートから分かったこと
+  kind: 実践者
+  publisher: Zenn（resqnet）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-stafes-nano72mk
+  url: https://zenn.dev/stafes_blog/articles/nano72mkn-claude-code-intro
+  title: Claude Codeをはじめて触るエンジニアのためのざっくり入門
+  kind: 実践者
+  publisher: Zenn（stafes_blog）
+  lang: ja
+  checked: '2026-11-04'
+- id: zenn-yuki-a01e472d
+  url: https://zenn.dev/yuki_fujisawa/articles/a01e472dc190cf
+  title: '[進化版] VSCode + Claude Code Hooksでマークダウンの文書作成を爆速化する環境構築方法'
+  kind: 実践者
+  publisher: Zenn（yuki_fujisawa）
+  lang: ja
+  checked: '2026-11-04'
+- id: ai-tldr-releases-anthropic-code-team-code
+  url: https://ai-tldr.dev/releases/anthropic-claude-code-team-code-review/
+  title: How the Claude Code team does code review —…
+  kind: 報道
+  publisher: AI/TLDR
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-10-15'
+- id: aiweekly-editors-found-first-thirty-percent
+  url: https://aiweekly.co/editors-blog/found-first-thirty-percent-of-ai-kernel-wins-fail-on-held-out-configurations
+  title: Thirty percent of AI kernel wins fail on held-out configurations
+  kind: 報道
+  publisher: AI Weekly
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-08-12'
+- id: analyticsvidhya-code-best-practices-analysis
+  url: https://www.analyticsvidhya.com/blog/2026/08/claude-code-best-practices-analysis/
+  title: 'Claude Code Best Practices: 3 Lessons from 400,000 Sessions'
+  kind: 報道
+  publisher: Analytics Vidhya
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-08-06'
+- id: atmarkit-mercari-claude-code-rollout
+  url: https://atmarkit.itmedia.co.jp/ait/spv/2608/04/news002.html
+  title: メルカリが明かす「Claude Code全社展開」「シャドーAI対策」を支える仕組み
+  kind: 報道
+  publisher: '@IT（アイティメディア）'
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-08-13'
+- id: businesstoday-story-anthropic-making-code-more
+  url: https://www.businesstoday.in/technology/news/story/anthropic-is-making-claude-code-more-autonomous-auto-mode-coming-as-default-for-paid-users-548281-2026-08-10
+  title: Anthropic is making Claude Code more autonomous; Auto Mode coming as default for paid users
+  kind: 報道
+  publisher: Business Today
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-08-10'
+- id: creeta-en-code-automation-primitives-loops
+  url: https://news.creeta.com/en/claude-code-automation-primitives-loops-goals-routines-dynamic-workflows/
+  title: Claude Code automation primitives loops goals routines dynamic
+  kind: 報道
+  publisher: Creeta
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-12'
+- id: decoder-ai-coding-make-developers-slower
+  url: https://the-decoder.com/ai-coding-can-make-developers-slower-even-if-they-feel-faster/
+  title: AI coding can make developers slower even if they feel faster
+  kind: 報道
+  publisher: The Decoder
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-07-13'
+- id: gigazine-news-anthropic-code-quality
+  url: https://gigazine.net/news/20260424-anthropic-claude-code-quality/
+  title: Claudeの品質が低下していた問題についてAnthropicが調査結果を報告、ユーザーには利用制限をリセットへ
+  kind: 報道
+  publisher: GIGAZINE
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-04-24'
+- id: gihyo-claude-code-agent-teams
+  url: https://gihyo.jp/article/2026/02/get-started-claude-code-07
+  title: Claude Code Agent Teamsの衝撃と実際
+  kind: 報道
+  publisher: gihyo.jp（技術評論社）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-03-03'
+- id: harvard-gazette-taming-duck-starters
+  url: https://news.harvard.edu/gazette/story/2026/09/taming-the-duck-for-starters/
+  title: Taming the Duck, for starters
+  kind: 報道
+  publisher: Harvard Gazette
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-09-25'
+- id: infoq-anthropic-code-postmortem
+  url: https://www.infoq.com/news/2026/05/anthropic-claude-code-postmortem/
+  title: Anthropic Traces Six Weeks of Claude Code Quality Complaints to Three Overlapping Product Changes
+  kind: 報道
+  publisher: InfoQ
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-05-14'
+- id: infoq-code-creator-workflow
+  url: https://www.infoq.com/news/2026/01/claude-code-creator-workflow/
+  title: Inside the Development Workflow of Claude Code's Creator
+  kind: 報道
+  publisher: InfoQ
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-10'
+- id: infoq-dora-state-ai-dev
+  url: https://www.infoq.com/news/2025/09/dora-state-of-ai-in-dev-2025/
+  title: DORA Report Finds AI Is an Amplifier in Software Development, But Trust Remains Low
+  kind: 報道
+  publisher: InfoQ
+  lang: en
+  checked: '2026-11-04'
+  published: '2025-09-29'
+- id: kellogg-article-comes-creativity-ai-doesnt
+  url: https://insight.kellogg.northwestern.edu/article/when-it-comes-to-creativity-ai-doesnt-always-have-the-answer
+  title: When It Comes to Creativity, AI Doesn’t Always Have the Answer
+  kind: 報道
+  publisher: Kellogg Insight
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-01-01'
+- id: ndl-current-mext-genai-guideline-v2
+  url: https://current.ndl.go.jp/car/236829
+  title: 文部科学省、「初等中等教育段階における生成AIの利活用に関するガイドライン（Ver.2.0）」を公表
+  kind: 報道
+  publisher: カレントアウェアネス・ポータル（国立国会図書館）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-01-10'
+- id: officechai-ai-after-finishing-2nd-last
+  url: https://officechai.com/ai/after-finishing-2nd-last-year-openai-is-dominating-the-atcoder-coding-competition-2026/
+  title: After Finishing 2nd Last Year, OpenAI Is Dominating The AtCoder Coding Competition 2026
+  kind: 報道
+  publisher: OfficeChai
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-07'
+- id: pcwatch-claude-code-weekly-limits
+  url: https://pc.watch.impress.co.jp/docs/news/2034998.html
+  title: Anthropic、Claude Code利用者に週次制限を導入
+  kind: 報道
+  publisher: PC Watch（インプレス）
+  lang: ja
+  checked: '2026-11-04'
+  published: '2025-07-29'
+- id: prtimes-algo-artis-awtf-2026
+  url: https://prtimes.jp/main/html/rd/p/000000072.000085809.html
+  title: ALGO ARTISから3名が世界最高峰の競技プログラミング大会「AtCoder World Tour Finals 2026 Heuristic」に出場
+  kind: 報道
+  publisher: PR TIMES
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-07-03'
+- id: prtimes-u22-programming-contest-2026
+  url: https://prtimes.jp/main/html/rd/p/000000251.000013310.html
+  title: U-22プログラミング・コンテスト2026 応募受付開始！締切は8月31日
+  kind: 報道
+  publisher: PR TIMES
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-07-01'
+- id: sciencedaily-ai-creativity-2024
+  url: https://www.sciencedaily.com/releases/2024/07/240712222127.htm
+  title: AI found to boost individual creativity -- at the expense of less varied content
+  kind: 報道
+  publisher: ScienceDaily
+  lang: en
+  checked: '2026-11-04'
+- id: theneuron-explainer-codes-creator-just-dropped
+  url: https://www.theneuron.ai/explainer-articles/-claude-codes-creator-just-dropped-his-15-favorite-power-features-most-people-dont-know-about-/
+  title: Claude Code Creator Shares 15 Hidden Power Features
+  kind: 報道
+  publisher: The Neuron
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-03-31'
+- id: understandingai-openai-model-crushed-top-human
+  url: https://www.understandingai.org/p/an-openai-model-crushed-top-human
+  title: An OpenAI model crushed top human programmers at a world coding competition
+  kind: 報道
+  publisher: Understanding AI
+  lang: en
+  checked: '2026-11-04'
+  published: '2026-07-10'
+- id: weel-claude-memory
+  url: https://weel.co.jp/media/tech/claudes-memory/
+  title: 【Claude’s memory】チャットとCoworkの記憶を統合！Anthropicのメモリ機能の仕組み・使い方・活用シーンを徹底解説
+  kind: 報道
+  publisher: WEEL
+  lang: ja
+  checked: '2026-11-04'
+  published: '2026-08-26'

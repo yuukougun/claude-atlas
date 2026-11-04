@@ -153,3 +153,9 @@ requirements §11 の最初の質問と、そこから派生した点への回�
 | --- | --- | --- |
 | コミットの作者のメールアドレス | 書き換えずに push する（公開の履歴に残る） | ユーザーの選択（推奨は、最初の push の前に GitHub の noreply のアドレスに書き換えることだった） |
 | 実名の検索の結果 | planning/ の公開するファイルに、否定的な文脈の個人の名前はなかった（batches/step6/names-N1.md）。団体と製品の名前は、工程2と同じく決まりの範囲の外として残す。目次の notes の1か所だけ、ほかの notes にそろえて、他社のモデルの失敗を名前で書かない形にした | メインの判断（決まりは個人と著作に当てる。decisions 2026-11-03「書き方の方針（第三者・根拠・文体）」1） |
+
+## 2026-11-04 工程6b（data の初版）
+
+| 項目 | 決定 | 補足 |
+| --- | --- | --- |
+| robots.txt で Anthropic のクローラを禁じるドメイン | robots.txt で Anthropic のクローラ（ClaudeBot・Claude-Web・anthropic-ai・Claude-User・Claude-SearchBot）にサイト全体を禁じるドメインは、AI の利用を断るドメインと同じに扱う（資料にしない。H1 の deny に足す）。Anthropic Academy（skilljar）も同じ規則で外す。ほかの AI のクローラだけを禁じるドメイン（zenn.dev の Bytespider など）と、一部のパスだけを禁じるドメイン（github.com）は使ってよい | ユーザーの選択（推奨の案）。2026-11-04 の時点で当たるのは10ドメイン（anthropic.skilljar.com・anthropic-partners.skilljar.com・chessprogramming.org・israynotarray.com・posfie.com・techcrunch.com・threadreaderapp.com・www.bleepingcomputer.com・www.oreilly.com・www.theregister.com）。tools/check_noai.py は robots.txt を既定で見て、この形を「断る」と判定する |

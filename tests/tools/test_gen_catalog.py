@@ -104,6 +104,8 @@ class TestWaveSite(CatalogSiteCase):
         for path in docs.rglob("*.md"):
             text = path.read_text(encoding="utf-8")
             for m in LINK_RE.finditer(text):
+                if re.match(r"[a-z][a-z0-9+.-]*://", m.group(1)):   # 外部のリンク（台帳の出典など）は確かめの外
+                    continue
                 target = (path.parent / m.group(1)).resolve()
                 self.assertTrue(target.exists(), f"{path.relative_to(self.root)} → {m.group(1)}")
                 self.assertTrue(str(target).startswith(str(docs.resolve())), m.group(1))
