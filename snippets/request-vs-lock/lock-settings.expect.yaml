@@ -1,0 +1,7 @@
+title: 鍵：読ませない場所と編集させない場所を deny ルールで止める
+place: project
+features: [permissions]
+safety: true
+expect:
+  - {do: "credentials/ の中のファイルを読ませる", result: 止められる}
+  - {do: "src/client/ の中のファイルを編集させる", result: 止められる}

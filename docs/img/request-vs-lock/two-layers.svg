@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="480" viewBox="0 0 400 480" role="img" aria-labelledby="rvl-title rvl-desc" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif">
+  <title id="rvl-title">お願いと鍵の二層</title>
+  <desc id="rvl-desc">上の層のお願い（プロンプト・CLAUDE.md・スキル）は、扉に貼った紙にあたる。Claude が読んで判断するので、守られる保証がない。Claude が出した行動の案は、下の層の鍵（フック・deny ルール・管理設定・サンドボックス）を通ったものだけが実行される。鍵は扉の錠にあたる。ただし、フックの種類やサンドボックスの設定によっては、鍵にならない。</desc>
+  <defs>
+    <marker id="rvl-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="400" height="480" fill="#ffffff"/>
+
+  <!-- 上の層：お願い（破線の枠） -->
+  <rect x="12" y="12" width="376" height="134" rx="10" fill="#eef3fb" stroke="#4a6fa5" stroke-width="2" stroke-dasharray="7 4"/>
+  <text x="200" y="36" text-anchor="middle" font-size="15" font-weight="bold" fill="#1b2a41">お願い（非決定論的な指示）<tspan font-size="12" font-weight="normal">＝扉に貼った紙</tspan></text>
+  <rect x="28" y="48" width="104" height="30" rx="6" fill="#ffffff" stroke="#4a6fa5" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="80" y="68" text-anchor="middle" font-size="13" fill="#1b2a41">プロンプト</text>
+  <rect x="148" y="48" width="104" height="30" rx="6" fill="#ffffff" stroke="#4a6fa5" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="200" y="68" text-anchor="middle" font-size="13" fill="#1b2a41">CLAUDE.md</text>
+  <rect x="268" y="48" width="104" height="30" rx="6" fill="#ffffff" stroke="#4a6fa5" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="320" y="68" text-anchor="middle" font-size="13" fill="#1b2a41">スキル</text>
+  <text x="200" y="102" text-anchor="middle" font-size="13" fill="#1b2a41">Claude が読んで、従うかどうかを判断する</text>
+  <text x="200" y="126" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b2a41">守られる保証はない</text>
+
+  <!-- 矢印1：お願いは文として読まれる -->
+  <line x1="200" y1="146" x2="200" y2="176" stroke="#333333" stroke-width="2" marker-end="url(#rvl-arrow)"/>
+  <text x="212" y="166" font-size="12" fill="#333333">文として読まれる</text>
+
+  <!-- Claude -->
+  <rect x="90" y="176" width="220" height="46" rx="8" fill="#f2f2f2" stroke="#444444" stroke-width="2"/>
+  <text x="200" y="196" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a1a">Claude（モデル）</text>
+  <text x="200" y="214" text-anchor="middle" font-size="12" fill="#1a1a1a">次の行動を決める</text>
+
+  <!-- 矢印2：行動の案 -->
+  <line x1="200" y1="222" x2="200" y2="256" stroke="#333333" stroke-width="2" marker-end="url(#rvl-arrow)"/>
+  <text x="212" y="244" font-size="12" fill="#333333">行動の案（ツール呼び出し）</text>
+
+  <!-- 下の層：鍵（実線の太い枠） -->
+  <rect x="12" y="258" width="376" height="168" rx="10" fill="#e8f5ec" stroke="#2c7a47" stroke-width="3"/>
+  <text x="200" y="282" text-anchor="middle" font-size="15" font-weight="bold" fill="#123d24">鍵（決定論的な制御）<tspan font-size="12" font-weight="normal">＝扉の錠</tspan></text>
+  <rect x="24" y="294" width="62" height="30" rx="6" fill="#ffffff" stroke="#2c7a47" stroke-width="2"/>
+  <text x="55" y="314" text-anchor="middle" font-size="12" fill="#123d24">フック※</text>
+  <rect x="94" y="294" width="82" height="30" rx="6" fill="#ffffff" stroke="#2c7a47" stroke-width="2"/>
+  <text x="135" y="314" text-anchor="middle" font-size="12" fill="#123d24">deny ルール</text>
+  <rect x="184" y="294" width="74" height="30" rx="6" fill="#ffffff" stroke="#2c7a47" stroke-width="2"/>
+  <text x="221" y="314" text-anchor="middle" font-size="12" fill="#123d24">管理設定</text>
+  <rect x="266" y="294" width="110" height="30" rx="6" fill="#ffffff" stroke="#2c7a47" stroke-width="2"/>
+  <text x="321" y="314" text-anchor="middle" font-size="12" fill="#123d24">サンドボックス※</text>
+  <text x="200" y="348" text-anchor="middle" font-size="13" fill="#123d24">ハーネス（Claude Code 本体）が毎回必ず実行する</text>
+  <text x="200" y="372" text-anchor="middle" font-size="14" font-weight="bold" fill="#123d24">Claude の判断によらず、同じに働く</text>
+  <text x="200" y="394" text-anchor="middle" font-size="12" fill="#333333">ただし、効く範囲と条件には限りがある</text>
+  <text x="200" y="412" text-anchor="middle" font-size="12" fill="#333333">※ 種類や設定によっては、鍵にならない</text>
+
+  <!-- 矢印3：実行 -->
+  <line x1="200" y1="426" x2="200" y2="448" stroke="#333333" stroke-width="2" marker-end="url(#rvl-arrow)"/>
+  <text x="200" y="468" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a1a">通った行動だけが実行される</text>
+</svg>

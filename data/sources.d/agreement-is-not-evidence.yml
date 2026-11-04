@@ -1,0 +1,10 @@
+sources:
+  - id: arxiv-2607-10411
+    url: https://arxiv.org/abs/2607.10411
+    title: Mitigating LLM Sycophancy in Code Smell Detection Using Evidence-Guided Reasoning Prompts
+    kind: 研究
+    publisher: arXiv（Fahad, Istiaq Ahmed ほか）
+    lang: en
+    checked: '2026-11-04'
+    published: '2026-07-11'
+    note: 要旨だけを確かめた（査読前）。調査資料は alphaxiv.org/abs/2607.10411 を引いた

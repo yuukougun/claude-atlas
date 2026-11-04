@@ -1,0 +1,6 @@
+title: お願い：止める理由と代わりの手順を CLAUDE.md に書く
+place: project
+features: [claude-md]
+expect:
+  - {do: "credentials/ の中を読ませる", result: "止められたうえで、読まずに済む方法を提案する（お願いなので、毎回とは限らない）"}
+  - {do: "src/client/ の修正を頼む", result: "openapi.json を直して再生成する手順で進める（お願いなので、毎回とは限らない）"}

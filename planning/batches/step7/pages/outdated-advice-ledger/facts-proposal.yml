@@ -1,0 +1,14 @@
+# 数値の提案：outdated-advice-ledger（執筆）。手引き §21 の形。メインが data/facts.yml に写す。
+# 本文では、この版を手で書かず、台帳の IMPORTANT の行（#important-caps）を指すにとどめた（手引き §9）。
+# 取り込まれたら、Claude Code のタブの「/doctor の prompt-audit」の後ろに fact の目印で版を足せる。
+proposals:
+  - fact:
+      id: doctor-prompt-audit-since
+      title: /doctor prompt-audit が使える Claude Code の最低の版
+      value: 2.1.283
+      sources: [cc-changelog]
+      checked: 2026-11-04
+      volatility: 低
+      status: 確認済み
+      note: 公式の変更履歴（https://code.claude.com/docs/en/changelog）の 2.1.283（2026-09-25）に、/doctor prompt-audit（/checkup prompt-audit でも）を足したとある。CLAUDE.md・スキル・エージェント・コマンドから、古いモデル向けの書き方を洗い出す。2026-11-04 に読んで確かめた。
+    used_in: [outdated-advice-ledger#find-in-your-setup]

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 336" width="400" height="336" role="img" aria-labelledby="t d" font-family="sans-serif">
+  <title id="t">お願いと鍵の二層</title>
+  <desc id="d">上の層は CLAUDE.md・rules・スキルで、理由と相談する基準を書く。守られないことがある。下の層は deny ルールとフックで、例外を許さない禁止を置く。Claude の判断に関係なく止まる。例外のない禁止は上から下へ移す。</desc>
+  <rect x="0" y="0" width="400" height="336" fill="#ffffff"/>
+  <rect x="16" y="14" width="368" height="124" rx="8" fill="#eef3fa" stroke="#35557a" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="30" y="40" font-size="16" font-weight="bold" fill="#1b1b1b">お願いの層（Claude が読んで判断する）</text>
+  <text x="30" y="66" font-size="14" fill="#1b1b1b">置く場所：CLAUDE.md・rules・スキル</text>
+  <text x="30" y="90" font-size="14" fill="#1b1b1b">書くこと：理由と、相談する基準</text>
+  <text x="30" y="114" font-size="14" fill="#1b1b1b">守られないことがある</text>
+  <line x1="200" y1="142" x2="200" y2="184" stroke="#1b1b1b" stroke-width="2"/>
+  <polygon points="191,180 209,180 200,194" fill="#1b1b1b"/>
+  <text x="214" y="166" font-size="13" fill="#1b1b1b">例外のない禁止は下へ移す</text>
+  <rect x="16" y="198" width="368" height="124" rx="8" fill="#fdf1e0" stroke="#8a4b00" stroke-width="4"/>
+  <text x="30" y="224" font-size="16" font-weight="bold" fill="#1b1b1b">鍵の層（毎回必ず効く）</text>
+  <text x="30" y="250" font-size="14" fill="#1b1b1b">置く場所：deny ルール・フック</text>
+  <text x="30" y="274" font-size="14" fill="#1b1b1b">置くこと：例外を許さない禁止</text>
+  <text x="30" y="298" font-size="14" fill="#1b1b1b">Claude の判断に関係なく止まる</text>
+</svg>

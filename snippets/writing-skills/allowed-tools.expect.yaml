@@ -1,0 +1,5 @@
+title: 確認を省く allowed-tools の行（SKILL.md のフロントマターに足す）
+place: project   # 雛形 SKILL-with-script のフロントマター（name・description と同じ階層）に足す
+expect:
+  - 「/release-notes」を呼んだターンでは、collect-changes.sh の実行に確認が出ない
+  - 次のメッセージを送ると、この許可は消える

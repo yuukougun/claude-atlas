@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 388" width="400" height="388" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif">
+  <title>依頼の 4 点と、書かないと推測で埋まる所</title>
+  <desc>依頼の 4 点（対象・状況・完了・手本）を 1 行ずつ並べ、各行の下に点線の枠で、その行がなければ Claude が推測で埋める内容を示した図。対象がなければ直す場所、状況がなければ何がおかしいか、完了がなければ終わりの基準、手本がなければ書き方を、Claude が推測で埋める。</desc>
+  <rect x="0" y="0" width="400" height="388" fill="#ffffff"/>
+
+  <text x="12" y="22" font-size="14" font-weight="700" fill="#1a1a1a">依頼の 4 点と、書かないと推測で埋まる所</text>
+  <rect x="12" y="34" width="24" height="14" rx="3" fill="#eeeeee" stroke="#444444" stroke-width="1.5"/>
+  <text x="42" y="46" font-size="13" fill="#1a1a1a">書いた点</text>
+  <rect x="116" y="34" width="24" height="14" rx="3" fill="#ffffff" stroke="#444444" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <text x="146" y="46" font-size="13" fill="#1a1a1a">書かないと Claude が推測で埋める所</text>
+
+  <!-- 対象 -->
+  <rect x="12" y="64" width="52" height="30" rx="4" fill="#1f5fa8"/>
+  <text x="38" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">対象</text>
+  <rect x="72" y="64" width="316" height="30" rx="4" fill="#e6effa" stroke="#1f5fa8" stroke-width="1.5"/>
+  <text x="80" y="84" font-size="13" fill="#1a1a1a">src/cart/total.ts の calcTotal</text>
+  <line x1="38" y1="94" x2="38" y2="105" stroke="#1f5fa8" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <circle cx="38" cy="117" r="12" fill="#ffffff" stroke="#1f5fa8" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="38" y="122" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fa8">？</text>
+  <rect x="72" y="102" width="316" height="30" rx="4" fill="#ffffff" stroke="#1f5fa8" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="80" y="122" font-size="13" fill="#1a1a1a">推測で埋まる：直す場所（どのファイルの何か）</text>
+
+  <!-- 状況 -->
+  <rect x="12" y="144" width="52" height="30" rx="4" fill="#b24a00"/>
+  <text x="38" y="164" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">状況</text>
+  <rect x="72" y="144" width="316" height="30" rx="4" fill="#fbebdd" stroke="#b24a00" stroke-width="1.5"/>
+  <text x="80" y="164" font-size="13" fill="#1a1a1a">700 円引きを 2 つ入れると合計がマイナス</text>
+  <line x1="38" y1="174" x2="38" y2="185" stroke="#b24a00" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <circle cx="38" cy="197" r="12" fill="#ffffff" stroke="#b24a00" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="38" y="202" text-anchor="middle" font-size="14" font-weight="700" fill="#b24a00">？</text>
+  <rect x="72" y="182" width="316" height="30" rx="4" fill="#ffffff" stroke="#b24a00" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="80" y="202" font-size="13" fill="#1a1a1a">推測で埋まる：何がおかしいか、どう再現するか</text>
+
+  <!-- 完了 -->
+  <rect x="12" y="224" width="52" height="30" rx="4" fill="#1e7b4b"/>
+  <text x="38" y="244" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">完了</text>
+  <rect x="72" y="224" width="316" height="30" rx="4" fill="#e2f3ea" stroke="#1e7b4b" stroke-width="1.5"/>
+  <text x="80" y="244" font-size="13" fill="#1a1a1a">npm test -- cart が通れば終わり</text>
+  <line x1="38" y1="254" x2="38" y2="265" stroke="#1e7b4b" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <circle cx="38" cy="277" r="12" fill="#ffffff" stroke="#1e7b4b" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="38" y="282" text-anchor="middle" font-size="14" font-weight="700" fill="#1e7b4b">？</text>
+  <rect x="72" y="262" width="316" height="30" rx="4" fill="#ffffff" stroke="#1e7b4b" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="80" y="282" font-size="13" fill="#1a1a1a">推測で埋まる：どこまで直し、何で確かめるか</text>
+
+  <!-- 手本 -->
+  <rect x="12" y="304" width="52" height="30" rx="4" fill="#7b3fa0"/>
+  <text x="38" y="324" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">手本</text>
+  <rect x="72" y="304" width="316" height="30" rx="4" fill="#f0e7f6" stroke="#7b3fa0" stroke-width="1.5"/>
+  <text x="80" y="324" font-size="13" fill="#1a1a1a">テストは src/order/total.test.ts に倣う</text>
+  <line x1="38" y1="334" x2="38" y2="345" stroke="#7b3fa0" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <circle cx="38" cy="357" r="12" fill="#ffffff" stroke="#7b3fa0" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="38" y="362" text-anchor="middle" font-size="14" font-weight="700" fill="#7b3fa0">？</text>
+  <rect x="72" y="342" width="316" height="30" rx="4" fill="#ffffff" stroke="#7b3fa0" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="80" y="362" font-size="13" fill="#1a1a1a">推測で埋まる：書き方と、使う部品</text>
+</svg>

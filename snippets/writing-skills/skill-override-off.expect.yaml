@@ -1,0 +1,5 @@
+title: 比べる実験でスキルを切る設定（.claude/settings.local.json の skillOverrides）
+place: local   # .claude/settings.local.json。/skills のメニューからも同じ設定が書ける
+expect:
+  - release-notes が Claude の一覧からも / のメニューからも消える
+  - 切ったスキルを名前で呼ぶと、skillOverrides のエラーが返り、実行されない

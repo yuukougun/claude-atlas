@@ -1,0 +1,11 @@
+# writing-skills（スキルの作り方）で足した出典。形は data/sources.yml と同じ（schema/sources.schema.json）。
+# platform.claude.com は data/sources.yml の domains で確かめ済み（2026-11-04）。
+sources:
+  - id: api-docs-skill-best-practices
+    url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
+    title: Skill authoring best practices
+    kind: 公式文書
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-04'
+    note: Platform 側の Agent Skills の書き方の指針。Claude Code の skills の文書の関連リソースにも挙がっている

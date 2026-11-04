@@ -1,0 +1,58 @@
+# how-to-use（この辞典の引き方）で新しく使う出典。形は schema/sources.schema.json。ドメインはすべて data/sources.yml の domains で確かめ済み
+sources:
+  - id: cc-docs-setup-ja
+    url: https://code.claude.com/docs/ja/setup
+    title: 高度なセットアップ
+    kind: 公式文書
+    publisher: Anthropic
+    lang: ja
+    checked: '2026-11-04'
+    note: 「リリースチャネルを構成」の節（latest と stable の違い）と「インストールを確認」の節（claude --version）を読んだ。英語版（/docs/en/setup）も同じ内容
+  - id: cc-docs-cli-reference-ja
+    url: https://code.claude.com/docs/ja/cli-reference
+    title: CLI リファレンス
+    kind: 公式文書
+    publisher: Anthropic
+    lang: ja
+    checked: '2026-11-04'
+    note: 英語版（cc-docs-cli-reference）の日本語版。--version, -v の行を英語版で読んだ
+  - id: cc-docs-hooks-ja
+    url: https://code.claude.com/docs/ja/hooks
+    title: Hooks リファレンス
+    kind: 公式文書
+    publisher: Anthropic
+    lang: ja
+    checked: '2026-11-04'
+    note: 英語版（cc-docs-hooks）の日本語版。案内として指すだけで、中身は使っていない
+  - id: cc-docs-best-practices-ja
+    url: https://code.claude.com/docs/ja/best-practices
+    title: Claude Code のベストプラクティス
+    kind: 公式文書
+    publisher: Anthropic
+    lang: ja
+    checked: '2026-11-04'
+    note: 英語版（cc-docs-best-practices）の日本語版。冒頭の説明の行を読んだ
+  - id: platform-docs-ja-intro
+    url: https://platform.claude.com/docs/ja/intro
+    title: Claudeの紹介
+    kind: 公式文書
+    publisher: Anthropic
+    lang: ja
+    checked: '2026-11-04'
+    note: Claude Platform の文書の日本語版の入口。API とクライアント SDK のリファレンスなどへ進める
+  - id: hc-ja-top
+    url: https://support.claude.com/ja/
+    title: Anthropicヘルプセンター
+    kind: 公式文書
+    publisher: Anthropic
+    lang: ja
+    checked: '2026-11-04'
+    note: ヘルプセンターの日本語版の入口
+  - id: claude-academy
+    url: https://academy.claude.com/
+    title: 'Claude Academy · Learn to work and build with Claude'
+    kind: 公式文書
+    publisher: Anthropic（Claude Academy）
+    lang: en
+    checked: '2026-11-04'
+    note: 入口のページ。「Free courses, tutorials, and use cases from Anthropic's education team.」と説明している。講座の名前と数は変わるので、入口だけを指す

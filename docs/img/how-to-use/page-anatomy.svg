@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 640" width="400" height="640" role="img" aria-labelledby="t d" font-family="'Hiragino Sans','Noto Sans CJK JP','Yu Gothic',Meiryo,sans-serif">
+  <title id="t">ページの見取り図</title>
+  <desc id="d">各ページの部品の並びを、上から下の順に示す。実線の枠はどのページにも出る部品、破線の枠は条件を満たしたページだけに出る部品である。</desc>
+  <rect x="0" y="0" width="400" height="640" fill="#ffffff"/>
+
+  <rect x="12" y="12" width="376" height="30" rx="4" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="32" font-size="14" font-weight="bold" fill="#0f172a">最上部の帯：非公式の文</text>
+
+  <rect x="12" y="50" width="376" height="30" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="70" font-size="14" font-weight="bold" fill="#0f172a">題名</text>
+
+  <rect x="12" y="88" width="376" height="44" rx="4" fill="#ffffff" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="24" y="107" font-size="14" font-weight="bold" fill="#0f172a">下書きの帯「下書き・未検証」</text>
+  <text x="24" y="124" font-size="12" fill="#1e293b">下書きのページだけに出る</text>
+
+  <rect x="12" y="140" width="376" height="44" rx="4" fill="#ffffff" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="24" y="159" font-size="14" font-weight="bold" fill="#0f172a">期限切れの注意書き</text>
+  <text x="24" y="176" font-size="12" fill="#1e293b">確認の期限を過ぎたページだけに出る</text>
+
+  <rect x="12" y="192" width="376" height="62" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="211" font-size="14" font-weight="bold" fill="#0f172a">バッジの列</text>
+  <text x="24" y="228" font-size="12" fill="#1e293b">レベル・型・面・原理・成熟度・強制力</text>
+  <text x="24" y="244" font-size="12" fill="#1e293b">変わりやすさ・確認日・ページの段階</text>
+
+  <rect x="12" y="262" width="376" height="44" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="281" font-size="14" font-weight="bold" fill="#0f172a">要点の囲み</text>
+  <text x="24" y="298" font-size="12" fill="#1e293b">何ができるか・いつ引くか・前提</text>
+
+  <rect x="12" y="314" width="376" height="30" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="334" font-size="14" font-weight="bold" fill="#0f172a">別名の行</text>
+
+  <rect x="12" y="352" width="376" height="44" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="371" font-size="14" font-weight="bold" fill="#0f172a">導入と本文</text>
+  <text x="24" y="388" font-size="12" fill="#1e293b">導入は 1〜3 文。本文は見出しごとの節</text>
+
+  <rect x="12" y="404" width="376" height="30" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="424" font-size="14" font-weight="bold" fill="#0f172a">参考（出典の一覧）</text>
+
+  <rect x="12" y="442" width="376" height="44" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="461" font-size="14" font-weight="bold" fill="#0f172a">前提・次に読む・関連</text>
+  <text x="24" y="478" font-size="12" fill="#1e293b">未公開のページは「題名（準備中）」と出る</text>
+
+  <rect x="12" y="494" width="376" height="44" rx="4" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="513" font-size="14" font-weight="bold" fill="#0f172a">ページの段階と更新日</text>
+  <text x="24" y="530" font-size="12" fill="#1e293b">「このページの誤りを報告する」のリンク</text>
+
+  <rect x="12" y="546" width="376" height="30" rx="4" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+  <text x="24" y="566" font-size="14" font-weight="bold" fill="#0f172a">フッター：著作権・ライセンス・非公式の文</text>
+
+  <rect x="12" y="590" width="28" height="14" rx="2" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="50" y="602" font-size="12" fill="#1e293b">実線の枠：どのページにも出る</text>
+  <rect x="12" y="612" width="28" height="14" rx="2" fill="#ffffff" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="50" y="624" font-size="12" fill="#1e293b">破線の枠：条件を満たしたページだけに出る</text>
+</svg>

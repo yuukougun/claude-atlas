@@ -1,0 +1,18 @@
+# claude-md-vs-rules-skills-styles が足す出典（形は data/sources.yml と同じ）
+sources:
+  - id: cc-docs-cloud-environments
+    url: https://code.claude.com/docs/en/cloud-environments
+    title: Configure cloud environments
+    kind: 公式文書
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-04'
+    note: 「What carries over from your setup」の表（クラウドのセッションに届く設定と届かない設定）と、setup script で ~/.claude/CLAUDE.md を書く例
+  - id: cc-docs-debug-your-config
+    url: https://code.claude.com/docs/en/debug-your-config
+    title: Debug your configuration
+    kind: 公式文書
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-04'
+    note: 「See what loaded into context」の /context・/memory・/skills の表と、「Check common causes」の表（スキルが /skills に出ない・サブフォルダの CLAUDE.md が読まれない）

@@ -1,0 +1,6 @@
+.claude/skills/release-notes/
+├── SKILL.md                  # 本文。手順の骨格と、補助ファイルを読む条件だけ書く
+├── format.md                 # 補助ファイル。書式の詳細。本文から案内し、必要なときだけ読ませる
+├── examples.md               # 補助ファイル。出来上がりの見本
+└── scripts/
+    └── collect-changes.sh    # 決まった処理。実行させ、中身は読ませない

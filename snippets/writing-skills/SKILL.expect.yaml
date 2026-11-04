@@ -1,0 +1,5 @@
+title: 最小の SKILL.md（リリースノートの下書き）
+place: project   # .claude/skills/release-notes/SKILL.md。個人用なら ~/.claude/skills/release-notes/SKILL.md
+expect:
+  - 「/release-notes」で呼ぶと、本文の手順どおりにコミットを集めて、下書きを作る
+  - 「リリースノートを書いて」と頼むと、Claude がこのスキルを読み込む

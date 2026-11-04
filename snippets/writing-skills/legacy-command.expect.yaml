@@ -1,0 +1,5 @@
+title: 移る前：.claude/commands/ のコマンド（リリースノートの下書き）
+place: project   # .claude/commands/release-notes.md
+expect:
+  - 「/release-notes」で呼べる（今も動く）
+  - 同じ名前のスキルがあるときは、スキルが優先される

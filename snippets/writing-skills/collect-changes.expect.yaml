@@ -1,0 +1,5 @@
+title: スクリプト：collect-changes.sh（コミットの一覧を出す）
+place: project   # .claude/skills/release-notes/scripts/collect-changes.sh
+expect:
+  - git のリポジトリで、起点のタグ（引数、なければ直近のタグ）から HEAD までのコミットを 1 行 1 件で出す
+  - 起点が決まらないときは、標準エラーにメッセージを出して終了コード 1 で止まる

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 372" width="400" height="372" role="img" aria-labelledby="t d" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif">
+  <title id="t">回避策から正式な仕組みへの置き換わり</title>
+  <desc id="d">見せるの回避策だった .claude/commands/ はスキルに、確かめるの回避策だった think hard の書き足しは effort に、自作のループは /goal に、縛るの回避策だった IMPORTANT の連打はフックと deny ルールに、確認を飛ばす起動は auto モードとサンドボックスに置き換わった。</desc>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="400" height="372" fill="#ffffff"/>
+
+  <text x="88" y="24" font-size="13" font-weight="700" text-anchor="middle" fill="#9a3412">回避策</text>
+  <text x="200" y="24" font-size="12" text-anchor="middle" fill="#374151">補う原理</text>
+  <text x="312" y="24" font-size="13" font-weight="700" text-anchor="middle" fill="#166534">正式な仕組み</text>
+
+  <!-- 見せる -->
+  <rect x="8" y="40" width="160" height="52" rx="6" fill="#fff7ed" stroke="#9a3412" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="88" y="62" font-size="13" text-anchor="middle" fill="#111827">.claude/commands/</text>
+  <text x="88" y="80" font-size="13" text-anchor="middle" fill="#111827">にコマンドを作る</text>
+  <text x="200" y="62" font-size="12" font-weight="700" text-anchor="middle" fill="#374151">見せる</text>
+  <line x1="174" y1="72" x2="226" y2="72" stroke="#374151" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="232" y="40" width="160" height="52" rx="6" fill="#ecfdf5" stroke="#166534" stroke-width="1.5"/>
+  <text x="312" y="71" font-size="13" text-anchor="middle" fill="#111827">スキルで作る</text>
+
+  <!-- 確かめる：think hard -->
+  <rect x="8" y="102" width="160" height="52" rx="6" fill="#fff7ed" stroke="#9a3412" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="88" y="124" font-size="13" text-anchor="middle" fill="#111827">「think hard」と</text>
+  <text x="88" y="142" font-size="13" text-anchor="middle" fill="#111827">書き足す</text>
+  <text x="200" y="124" font-size="12" font-weight="700" text-anchor="middle" fill="#374151">確かめる</text>
+  <line x1="174" y1="134" x2="226" y2="134" stroke="#374151" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="232" y="102" width="160" height="52" rx="6" fill="#ecfdf5" stroke="#166534" stroke-width="1.5"/>
+  <text x="312" y="124" font-size="13" text-anchor="middle" fill="#111827">effort で</text>
+  <text x="312" y="142" font-size="13" text-anchor="middle" fill="#111827">考える深さを決める</text>
+
+  <!-- 確かめる：自作のループ -->
+  <rect x="8" y="164" width="160" height="52" rx="6" fill="#fff7ed" stroke="#9a3412" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="88" y="186" font-size="13" text-anchor="middle" fill="#111827">自作のループで</text>
+  <text x="88" y="204" font-size="13" text-anchor="middle" fill="#111827">回し続ける</text>
+  <text x="200" y="186" font-size="12" font-weight="700" text-anchor="middle" fill="#374151">確かめる</text>
+  <line x1="174" y1="196" x2="226" y2="196" stroke="#374151" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="232" y="164" width="160" height="52" rx="6" fill="#ecfdf5" stroke="#166534" stroke-width="1.5"/>
+  <text x="312" y="186" font-size="13" text-anchor="middle" fill="#111827">/goal で完了の</text>
+  <text x="312" y="204" font-size="13" text-anchor="middle" fill="#111827">条件まで続ける</text>
+
+  <!-- 縛る：IMPORTANT -->
+  <rect x="8" y="226" width="160" height="52" rx="6" fill="#fff7ed" stroke="#9a3412" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="88" y="248" font-size="13" text-anchor="middle" fill="#111827">IMPORTANT を</text>
+  <text x="88" y="266" font-size="13" text-anchor="middle" fill="#111827">重ねて強調する</text>
+  <text x="200" y="248" font-size="12" font-weight="700" text-anchor="middle" fill="#374151">縛る</text>
+  <line x1="174" y1="258" x2="226" y2="258" stroke="#374151" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="232" y="226" width="160" height="52" rx="6" fill="#ecfdf5" stroke="#166534" stroke-width="1.5"/>
+  <text x="312" y="248" font-size="13" text-anchor="middle" fill="#111827">フック・deny ルール</text>
+  <text x="312" y="266" font-size="13" text-anchor="middle" fill="#111827">（例外のない規則）</text>
+
+  <!-- 縛る：確認を飛ばす起動 -->
+  <rect x="8" y="288" width="160" height="52" rx="6" fill="#fff7ed" stroke="#9a3412" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="88" y="310" font-size="13" text-anchor="middle" fill="#111827">確認を飛ばして</text>
+  <text x="88" y="328" font-size="13" text-anchor="middle" fill="#111827">起動する</text>
+  <text x="200" y="310" font-size="12" font-weight="700" text-anchor="middle" fill="#374151">縛る</text>
+  <line x1="174" y1="320" x2="226" y2="320" stroke="#374151" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="232" y="288" width="160" height="52" rx="6" fill="#ecfdf5" stroke="#166534" stroke-width="1.5"/>
+  <text x="312" y="310" font-size="13" text-anchor="middle" fill="#111827">auto モードと</text>
+  <text x="312" y="328" font-size="13" text-anchor="middle" fill="#111827">サンドボックス</text>
+
+  <text x="200" y="362" font-size="12" text-anchor="middle" fill="#374151">点線の枠は回避策、実線の枠は今の正式な仕組み</text>
+</svg>

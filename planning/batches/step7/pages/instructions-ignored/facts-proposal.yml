@@ -1,0 +1,47 @@
+# 数値の提案：instructions-ignored（執筆）。data/facts.yml の facts は空（facts: []）なので、目印で指せる値がない。
+# 本文には書いていない（手引き §9）。メインが facts に足したら、used_in の所で目印にできる。
+# 出典はどちらも公式の memory の文書（https://code.claude.com/docs/en/memory）を 2026-11-04 に取得して確かめた。
+proposals:
+  - fact:
+      id: claude-md-recommended-lines
+      title: CLAUDE.md の 1 ファイルの推奨の長さ
+      value: 200
+      unit: 行
+      sentence: 目安は 1 ファイル {value} {unit}以内
+      sources: [cc-docs-memory]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: 公式は Write effective instructions で「target under 200 lines per CLAUDE.md file. Longer files consume more context and reduce adherence」と書く。超えたファイルがあると、起動時と /status に警告が出る（rules のファイルと @path の取り込みも別のファイルとして数える）。
+    used_in: [instructions-ignored#diagnosis]
+  - fact:
+      id: doctor-prompt-audit-min-version
+      title: /doctor prompt-audit に要る Claude Code の最低の版
+      value: 2.1.283
+      sentence: Claude Code {value} 以上が要る
+      versions: {claude_code: 2.1.283}
+      sources: [cc-docs-memory]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: 公式は「/doctor prompt-audit requires Claude Code v2.1.283 or later」と書く。bundled の /claude-api スキルを切っていると使えない（skillOverrides か disableBundledSkills）。束の台帳の行（important-caps）の how_to_find の「2.1.283 以上」と一致する。
+    used_in: [instructions-ignored#diagnosis]
+  # 以下は直し（fix.md 指摘 2）で足した。公式の memory の文書（https://code.claude.com/docs/en/memory）の「Claude ignores the end of my subdirectory CLAUDE.md」の節を 2026-11-04 に取得して確かめた。
+  - fact:
+      id: claude-md-on-demand-char-limit
+      title: 必要なときに読み込まれる CLAUDE.md と rules の 1 ファイルの文字数の上限
+      table:
+        rows: コンテキストの窓とモデル
+        columns:
+          - {id: chars, title: 上限（文字数）}
+        cells:
+          - {row: 200K の窓, chars: 40000}
+          - {row: 1M の窓（Claude Opus 4.6・Claude Sonnet 4.6）, chars: 200000}
+          - {row: 1M の窓（それより後のモデル）, chars: 150000}
+      versions: {claude_code: 2.1.309}
+      sources: [cc-docs-memory]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: 公式は、サブフォルダの CLAUDE.md・CLAUDE.local.md とその @path の取り込み、サブフォルダの .claude/rules/ の rules、paths 付きの rules が、1 ファイルごとの上限を超えると、先頭の部分だけが Claude に入ると書く（残りを Read ツールで読むよう促す注記が付く）。上限は 200K の窓で 40,000 文字、1M の窓で Claude Opus 4.6 と Claude Sonnet 4.6 が 200,000 文字、それより後のモデルが 150,000 文字。2.1.309 より前は、必要なときに読み込まれる分にこの上限を適用しなかった。文字数は wc -m で数える。
+    used_in: [instructions-ignored#diagnosis]

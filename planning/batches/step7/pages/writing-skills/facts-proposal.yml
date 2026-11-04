@@ -1,0 +1,142 @@
+# 数値の提案：writing-skills（スキルの作り方）。形は手引き §21（fact は data/facts.yml の facts の1項目と同じ形）
+# - 本文には数字を書いていない。数値ファイルに入ったら、used_in の節の該当の文に目印 <!-- fact:begin <id> --> を足してほしい
+#   （文は数字なしでも読める形にしてある。足す場所は各項目の note に書いた）
+# - 出典：cc-docs-skills（https://code.claude.com/docs/en/skills）と api-docs-skill-best-practices
+#   （https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices。data/sources.d/writing-skills.yml に足した）。
+#   どちらも 2026-11-04 に全文を読んだ
+# - 2026-11-04 の直し（fix.md）：数字を書けない境目には、公式の文書の該当の節へのリンクを仮に付けた。数値ファイルに入って
+#   目印に替えたら、そのリンクは外してよい。各 note の「本文の足し先」は、直した後の文に合わせて書き直した
+proposals:
+  - fact:
+      id: skill-md-body-lines
+      title: SKILL.md の本文の行数の目安（これより短く保つ）
+      value: 500
+      unit: 行
+      sentence: "{value} {unit}未満"
+      match: {units: [行]}
+      sources: [cc-docs-skills, api-docs-skill-best-practices]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: 'cc-docs-skills は「Keep SKILL.md under 500 lines」、Platform の指針は「Keep the SKILL.md body under 500 lines for optimal performance」。本文の足し先：節 supporting-files の第 1 段落「本文を短く保つ行数の目安を挙げている（値は、…で確かめる）」の「値は、…で確かめる」の所'
+    used_in: [writing-skills#supporting-files]
+
+  - fact:
+      id: skill-reattach-tokens-each
+      title: 圧縮の後に入れ直す、呼んだスキル1つあたりの本文の量
+      value: 5000
+      unit: トークン
+      sentence: "先頭から {value} {unit}まで"
+      match: {units: [トークン]}
+      sources: [cc-docs-skills]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: '自動の圧縮の後、呼んだスキルごとに最新の呼び出しだけを、先頭の分だけ入れ直す。本文の足し先：節 supporting-files の圧縮の段落の「呼んだスキルの本文の先頭から一定の量まで」の「一定の量」の所（そのあとの「量は、…で確かめる」のリンクは、目印に替えたら外す）'
+    used_in: [writing-skills#supporting-files]
+
+  - fact:
+      id: skill-reattach-tokens-total
+      title: 圧縮の後に入れ直す、呼んだスキル全体の本文の量の合計
+      value: 25000
+      unit: トークン
+      sentence: "合計 {value} {unit}まで"
+      match: {units: [トークン]}
+      sources: [cc-docs-skills]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: '最後に呼んだスキルから順に枠を埋め、古いスキルは丸ごと落ちることがある。本文の足し先：節 supporting-files の圧縮の段落の「古く呼んだものは落ちることがある」の所（「量は、…で確かめる」のリンクは、目印に替えたら外す）'
+    used_in: [writing-skills#supporting-files]
+
+  - fact:
+      id: skill-name-max-chars
+      title: スキルの name の最大の文字数（アプリ・API・Agent Skills の仕様）
+      value: 64
+      unit: 字
+      sentence: "{value} {unit}まで"
+      match: {units: [字, 文字]}
+      sources: [api-docs-skill-best-practices]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: 'Platform の指針は「Maximum 64 characters。小文字・数字・ハイフンだけ。anthropic と claude は予約語」。cc-docs-skills（Claude Code）は name の長さを書いていない。本文の足し先：節 minimal の「`name` と `description` には文字数の上限があり、値は…で確かめる」の所'
+    used_in: [writing-skills#minimal]
+
+  - fact:
+      id: skill-description-max-chars
+      title: スキルの description の最大の文字数（アプリ・API・Agent Skills の仕様）
+      value: 1024
+      unit: 字
+      sentence: "{value} {unit}まで"
+      match: {units: [字, 文字]}
+      sources: [api-docs-skill-best-practices]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: 'Platform の指針は「Maximum 1,024 characters。空にしない」。本文の足し先：節 minimal の「`name` と `description` には文字数の上限があり、値は…で確かめる」の所'
+    used_in: [writing-skills#minimal]
+
+  - fact:
+      id: skill-listing-entry-max-chars
+      title: スキルの一覧に載せる description と when_to_use の合計の最大の文字数（Claude Code）
+      value: 1536
+      unit: 字
+      sentence: "{value} {unit}で切られる"
+      match: {units: [字, 文字]}
+      sources: [cc-docs-skills]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: '一覧の予算にかかわらず1件ごとに切られる。設定 skillListingMaxDescChars で変えられる。本文の足し先：節 limits の「一覧に載るコストが積もる」の項目（1件ごとの上限の一言を足す。「上限の値と変え方は、…にある」のリンクは、目印に替えたら外す）'
+    used_in: [writing-skills#limits]
+
+  - fact:
+      id: skill-listing-budget-fraction
+      title: スキルの一覧の予算（コンテキストウィンドウに対する割合の既定）
+      value: 1
+      unit: '%'
+      sentence: "コンテキストウィンドウの {value}{unit}"
+      sources: [cc-docs-skills]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: '一覧が予算を超えると、使われていないスキルから説明が落ちる。設定 skillListingBudgetFraction か環境変数 SLASH_COMMAND_TOOL_CHAR_BUDGET で変えられる。本文の足し先：節 limits の「一覧の長さの上限を超えないよう」の所'
+    used_in: [writing-skills#limits]
+
+  - fact:
+      id: skill-doctor-min-version
+      title: /skill-doctor を使うのに要る Claude Code の最低の版
+      value: 2.1.252
+      sentence: "Claude Code {value} 以降"
+      versions: {claude_code: 2.1.252}
+      sources: [cc-docs-skills]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: '機能フラグの取得を省くセッションでは使えない。リモート操作の接続からは使えない。本文の足し先：節 limits の「/skill-doctor で費用と使われ方を見て」の後ろ'
+    used_in: [writing-skills#limits]
+
+  - fact:
+      id: skill-verify-simplify-commit-min-version
+      title: verify か simplify という名前のスキルを、コミットの直前に Claude が実行する、最低の版
+      value: 2.1.286
+      sentence: "Claude Code {value} 以降"
+      versions: {claude_code: 2.1.286}
+      sources: [cc-docs-skills]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: 'スキルが enterprise・personal・project・追加ディレクトリか .claude/commands/ にあり、Claude が呼べる設定で、includeGitInstructions を切っていないときに限る。同梱の /verify・/simplify とプラグインのスキルは数えない。本文の足し先：節 limits の項目「`verify` か `simplify` という名前」の最後'
+    used_in: [writing-skills#limits]
+
+  - fact:
+      id: skill-upload-frontmatter-keys
+      title: claude.ai へのアップロード・Skills API・package_skill.py で使えるフロントマターのキー
+      value: [name, description, license, compatibility, metadata, allowed-tools]
+      sources: [cc-docs-skills]
+      checked: '2026-11-04'
+      volatility: 中
+      status: 確認済み
+      note: 'これ以外のキーは取り込みがエラーで止まる。いまは本文（節 minimal のアプリのタブ）に手で書いてある。数値ファイルの項目にするなら、そこを目印に替えてほしい（キーの一覧を数値と呼ぶかはメインの判断）'
+    used_in: [writing-skills#minimal]

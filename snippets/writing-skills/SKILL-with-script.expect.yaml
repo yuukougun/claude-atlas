@@ -1,0 +1,7 @@
+title: スクリプトを呼ぶ SKILL.md（リリースノートの下書き）
+place: project   # .claude/skills/release-notes/SKILL.md。最小の SKILL.md の手順 1 を、スクリプトの実行に置き換えたもの
+requires:
+  - scripts/collect-changes.sh   # 雛形 collect-changes を、同じフォルダの scripts/ に置く
+expect:
+  - 「/release-notes」で呼ぶと、本文の手順どおりに collect-changes.sh を実行する
+  - 「/release-notes v1.2.0」のように引数を付けて呼ぶと、そのタグを起点にコミットを集める

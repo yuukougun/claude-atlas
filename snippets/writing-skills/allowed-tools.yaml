@@ -1,0 +1,1 @@
+allowed-tools: Bash(bash ${CLAUDE_SKILL_DIR}/scripts/collect-changes.sh *)
