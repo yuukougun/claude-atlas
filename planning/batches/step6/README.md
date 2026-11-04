@@ -36,13 +36,30 @@
 
 | 担当 | 書くもの | 報告 | 状態 |
 | --- | --- | --- | --- |
-| G | 作る層：`tools/gen/`・`gen_site.py`・生成物（nav.yml・分野の入口・一覧・llms.txt・サイト用のデータ・目印の中身）と試験 | `build-G.md` | 実行中 |
-| C | 検査の層：`tools/checks/`・`check_pages.py`・`check_templates.py`・`check_all.py`・`render_pages.py`・`check_svg.py`・CI の check.yml・deny の追加と試験 | `build-C.md` | 実行中 |
-| V | 見た目：`overrides/` の部品・CSS・JS（バッジ・下書きの帯・期限切れの表示・前提と次に読む・知識マップ・絞り込み）と試験 | `build-V.md` | 実行中 |
+| G | 作る層：`tools/gen/`・`gen_site.py`・生成物（nav.yml・分野の入口・一覧・llms.txt・サイト用のデータ・目印の中身）と試験 | `build-G.md` | 完了（gen_site.py と生成物、目印の中身。試験71件） |
+| C | 検査の層：`tools/checks/`・`check_pages.py`・`check_templates.py`・`check_all.py`・`render_pages.py`・`check_svg.py`・CI の check.yml・deny の追加と試験 | `build-C.md` | 完了（check_pages.py 55種ほか、check_all.py 13段。試験は tools 454・site 66・hooks 52件） |
+| V | 見た目：`overrides/` の部品・CSS・JS（バッジ・下書きの帯・期限切れの表示・前提と次に読む・知識マップ・絞り込み）と試験 | `build-V.md` | 完了（帯・注意書き・バッジ・CSS と JS・地図の写し。試験66件） |
 
-## 6a 3段目：つなぐ
+### 2段目の報告への判断（2026-11-04 メイン）
 
-空のサイトのビルドとデプロイ（GitHub Pages）、CI の検査、hooks がワークフローの担当にも効くかの確かめ、制作の権限モード、手元の Chrome と日本語のフォント。
+| 点 | 判断 |
+| --- | --- |
+| 注意書きと誤りの報告のリンクの文（V） | 工程7の終わりの、作者への頼み（方針の文の承認）に入れる。ページを公開するのは第一波（8a）からなので、承認はその前に済む |
+| 大会の規則の表の形（G） | data の初版（6b）で、大会の規則の数値の形とともに決める |
+| 波から公開を外す一覧（G） | いまは手で書く。第一波（8a）の前に、wave と routes から道具が出す形にする |
+| 手引きの「作る予定」の印（C の提案1） | 道具ができた21種46か所を「検査」に書き換えた（メイン）。残り11か所は、道具ができたときに書き換える |
+| 担当の逸脱（C） | 読むだけの git status を1回、uv sync で外れた Zensical を戻した（メインが Zensical 0.0.74 で動くことを確かめた） |
+
+## 6a 3段目：つなぐ（2026-11-04）
+
+| 確かめること | 結果 |
+| --- | --- |
+| 空のサイトのビルドとデプロイ | 済み。GitHub Pages（公開元は GitHub Actions）で https://yuukougun.github.io/claude-atlas/ に出た。冒頭とフッターの文を確かめた |
+| CI の検査 | 済み。GitHub 上で ci（試験と目次の検査・サイトのビルド・公開）が通る。手元の check_all.py は13段が通る |
+| hooks が担当にも効くか | サブエージェント（Agent の道具）で済み。制作の印 state/production を置き、担当の読むだけの git は通り、書き込みの git は理由の文つきで止められ、state/blocks.log に担当の id つきで残った。メインの git は止められない。ワークフローの担当は、試作（工程7）で最初にワークフローを使うときに確かめる（効かなければ、バッチの始めと終わりの HEAD を比べる） |
+| 制作の権限モード | auto モード（このセッションの今のモード）。ワークフローのスクリプトの置き場所は、試作で最初に使うときに、.claude/ への書き込みで確認が出るかを見て決める |
+| 手元の Chrome と日本語のフォント | Chrome は puppeteer の chrome-headless-shell 146（render_pages.py が自分で見つける）。日本語のフォントは、Windows の Noto Sans JP・Noto Serif JP を ~/.local/share/fonts にリンクした（sudo も取得もしない。消せば戻る）。CI の描画の検査には、試作で fonts-noto-cjk を入れる |
+| 描画の検査 | 手元で空のサイトに流し、エラー0件・警告0件 |
 
 ## 6b・6c
 

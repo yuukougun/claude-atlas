@@ -39,10 +39,11 @@
 
 ## 次にやること
 
-1. 工程6a（土台作り）：1段目の担当5人（B1 サイトと CI・B2 読む層と data・B3 書き方の検査・B4 縛り・B5 手引きとチェックリスト）が並列に作る（batches/step6/README.md）。終わったら2段目（作る層・検査の層・見た目）、3段目（つなぐ：空のサイトのデプロイ、hooks の確かめ）
-2. 6b data の初版、6c 骨格
+1. 工程6b（data の初版）：担当が research/22〜28 と公式の文書から data/facts.yml（機能の属性・名称と旧名・面やモデルで違う値の表）・sources.yml・outdated-advice.yml を作り、別の担当が出典と照らす。終わりの条件は design §10.1 の6b
+2. 工程6c（骨格）：目次から全ページの stub を stubs/<field>/<id>.md に作る（以後は front matter が正）
+3. 工程7（試作）：型ごとに1ページ以上を書いて確かめ、使用量と期間を測る。終わりに、作者への頼みを1回にまとめる（使用量と期間の見込み・方針の文と画面の注意書きの文の承認・この環境で試せない確認・口座の状態）
 
-済んだこと（2026-11-04）：planning/ の実名の検索（0件。batches/step6/names-N1.md）、GitHub の公開のリポジトリ yuukougun/claude-atlas の作成と push
+済んだこと（2026-11-04）：土台作り 6a（サイトと CI・読む層と data の雛形・書き方の検査・縛り・手引きとチェックリスト・作る層・検査の層・見た目）。空のサイトを https://yuukougun.github.io/claude-atlas/ に公開し、GitHub 上の CI が通る。hooks が担当に効くことを確かめた（batches/step6/README.md）
 
 ## ユーザーにお願いしていること
 
