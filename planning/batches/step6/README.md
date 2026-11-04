@@ -30,9 +30,15 @@
 | H3 で許す git（B4） | 読むだけのサブコマンドを広く許す形（B4 の一覧）でよい。DR-08 の「status・diff・log・show」は例 |
 | lychee を手元で動かすこと（B1） | 取得が自動モードで止められたので、回り込まない。外部リンクの検査は CI（週1回）で動かして確かめる |
 
-## 6a 2段目（1段目の後）
+## 6a 2段目（1段目の後、並列）
 
-作る層（`tools/gen/`・`gen_site.py`）、検査の層（`tools/checks/`・`check_pages.py`・`check_templates.py`・`render_pages.py`・`check_svg.py`・`check_all.py`）、見た目（`overrides/` の CSS と JS：バッジ・下書きの帯・期限切れの表示・前提と次に読む・知識マップ・絞り込み）。1段目の報告を見て割り当てる。
+共通の指示は [brief-build2.md](brief-build2.md)（1段目の指示との差分と、担当どうしの受け渡しの形）。
+
+| 担当 | 書くもの | 報告 | 状態 |
+| --- | --- | --- | --- |
+| G | 作る層：`tools/gen/`・`gen_site.py`・生成物（nav.yml・分野の入口・一覧・llms.txt・サイト用のデータ・目印の中身）と試験 | `build-G.md` | 実行中 |
+| C | 検査の層：`tools/checks/`・`check_pages.py`・`check_templates.py`・`check_all.py`・`render_pages.py`・`check_svg.py`・CI の check.yml・deny の追加と試験 | `build-C.md` | 実行中 |
+| V | 見た目：`overrides/` の部品・CSS・JS（バッジ・下書きの帯・期限切れの表示・前提と次に読む・知識マップ・絞り込み）と試験 | `build-V.md` | 実行中 |
 
 ## 6a 3段目：つなぐ
 
