@@ -38,7 +38,305 @@
 #     - {id: <id>, current: <今の名前>, old: [<旧名>], changed: {date: <YYYY-MM か YYYY-MM-DD>}, sources: [<id>],
 #        checked: <確認日>, status: 確認済み}
 
-facts: []
+facts:
+- id: contest-ai-rules
+  title: 主な大会の AI の規則（類型・版と日付）
+  table:
+    rows: 大会
+    columns:
+    - id: type
+      title: 類型
+    - id: version
+      title: 版・日付
+    cells:
+    - row: AtCoder 長期 AHC（Heuristic Contest）
+      type:
+        value: 部門分け
+        note: Human Only 部門は生成 AI 禁止、With AI 部門は生成 AI 使用可。使える範囲は未確認
+      version:
+        value: 2026-10-21 の告知
+        note: 今後数回の長期 AHC を 2 部門制で開くという内容。規則の版は未確認
+        sources:
+        - atcoder-x-long-ahc-divisions-2026-10-21
+    - row: IEEEXtreme 20.0
+      type:
+        value: 部門分け
+        note: AI を許す課題と禁じる課題に分ける。許す課題は、使った AI の記載を求める
+      version:
+        value: 20.0 の規則
+        note: 開催済みの回
+        sources:
+        - ieeextreme-rules
+    - row: ISUCON2026
+      type:
+        value: 許可と開示
+        note: 確認したのは許可の項目だけ。コードの分析と生成を、許される作業に挙げる。開示の求めは未確認
+      version:
+        value: 2026-07-28 公開のレギュレーション
+        note: 開催済みの回。ソフトウェア事項は当日マニュアルが優先するが、そのマニュアルは未確認
+        sources:
+        - isucon2026-regulation
+    - row: U-22 プログラミング・コンテスト2026
+      type:
+        value: 許可と開示
+        note: AI を使った場合は、どこにどう使ったかを応募時に説明する
+      version:
+        value: 2026-07-01 のプレスリリース
+        note: 募集要項は未確認
+        sources:
+        - prtimes-u22-programming-contest-2026
+    - row: ICPC EUC 2026（Europe Championship）
+      type:
+        value: AI の文言なし
+        note: 代わりに、機器を主催者の 1 台のコンピュータに限り、持ち込みと通信を制限する
+      version:
+        value: 2025-12-02 更新の表記
+        note: 開催済みの回。規則の末尾の更新日で、ページのフッターの 2026-03-04 は規則の更新日とは限らない
+        sources:
+        - icpc-euc-2026-rules
+    - row: 高専プロコン 第37回（全国高等専門学校プログラミングコンテスト）
+      type:
+        value: AI の文言なし
+        note: トップページの募集要項に AI の記述がなく、行動規範の熟読を求める
+      version:
+        value: 第37回（2026）のトップページ
+        note: 行動規範と応募要領は未確認
+        sources:
+        - procon-gr-jp-37th
+    - row: Universal Cup 第4回準決勝
+      type:
+        value: 未確認
+        note: 告知は、決勝進出を望むチームに画面と映像の録画を求める。AI の公正な利用の規則は続けて適用される
+      version:
+        value: 2026-08-26 の告知
+        note: 開催済みの回。規則の PDF は未確認
+        sources:
+        - ucup-4th-semifinals-blog
+    - row: AtCoder ABC・ARC・AGC（Beginner・Regular・Grand Contest）
+      type: 未確認
+      version:
+        value: 未確認
+        note: 過去の変更の告知は、ABC と ARC が 2024-11-15、ABC426 から適用の変更が 2025-10-04。告知の中身は未確認
+        sources:
+        - atcoder-x-abc-arc-rule-change-2024-11-15
+        - atcoder-x-abc426-rule-change-2025-10-04
+    - row: AtCoder 短期 AHC（Heuristic Contest）
+      type: 未確認
+      version: 未確認
+    - row: Codeforces
+      type: 未確認
+      version: 未確認
+  sources:
+  - atcoder-x-ahc-trial-contest-2026-10-15
+  - atcoder-x-long-ahc-divisions-2026-10-21
+  - atcoder-x-ahc074-2026-10-30
+  - atcoder-x-abc-arc-rule-change-2024-11-15
+  - atcoder-x-abc426-rule-change-2025-10-04
+  - ieeextreme-rules
+  - isucon2026-regulation
+  - prtimes-u22-programming-contest-2026
+  - ucup-4th-semifinals-blog
+  - icpc-euc-2026-rules
+  - procon-gr-jp-37th
+  checked: '2026-11-04'
+  volatility: 高
+  status: 確認済み
+  note: 「未確認」の行は、一次資料（atcoder.jp・codeforces.com）を開かないので、値を「未確認」と書いて残す。表の確認日は、行の中でいちばん古い確認日にする
+- id: claude-md-recommended-lines
+  title: CLAUDE.md の 1 ファイルの推奨の長さ
+  value: 200
+  unit: 行
+  sentence: 目安は 1 ファイル {value} {unit}以内
+  sources:
+  - cc-docs-memory
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 公式は Write effective instructions で「target under 200 lines per CLAUDE.md file. Longer files consume more context and reduce adherence」と書く。超えたファイルがあると、起動時と /status に警告が出る（rules のファイルと @path の取り込みも別のファイルとして数える）。
+- id: doctor-prompt-audit-min-version
+  title: /doctor prompt-audit に要る Claude Code の最低の版
+  value: 2.1.283
+  sentence: Claude Code {value} 以上が要る
+  versions:
+    claude_code: 2.1.283
+  sources:
+  - cc-changelog
+  - cc-docs-memory
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 公式は「/doctor prompt-audit requires Claude Code v2.1.283 or later」と書く。bundled の /claude-api スキルを切っていると使えない（skillOverrides か disableBundledSkills）。束の台帳の行（important-caps）の how_to_find の「2.1.283 以上」と一致する。 版の由来は公式の変更履歴（https://code.claude.com/docs/en/changelog）の 2.1.283（2026-09-25）で、/doctor prompt-audit（/checkup prompt-audit でも）を足したとある（outdated-advice-ledger の提案と統合）。
+- id: claude-md-on-demand-char-limit
+  title: 必要なときに読み込まれる CLAUDE.md と rules の 1 ファイルの文字数の上限
+  table:
+    rows: コンテキストの窓とモデル
+    columns:
+    - id: chars
+      title: 上限（文字数）
+    cells:
+    - row: 200K の窓
+      chars: 40000
+    - row: 1M の窓（Claude Opus 4.6・Claude Sonnet 4.6）
+      chars: 200000
+    - row: 1M の窓（それより後のモデル）
+      chars: 150000
+  versions:
+    claude_code: 2.1.309
+  sources:
+  - cc-docs-memory
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 公式は、サブフォルダの CLAUDE.md・CLAUDE.local.md とその @path の取り込み、サブフォルダの .claude/rules/ の rules、paths 付きの rules が、1 ファイルごとの上限を超えると、先頭の部分だけが Claude に入ると書く（残りを Read ツールで読むよう促す注記が付く）。上限は 200K の窓で 40,000 文字、1M の窓で Claude Opus 4.6 と Claude Sonnet 4.6 が 200,000 文字、それより後のモデルが 150,000 文字。2.1.309 より前は、必要なときに読み込まれる分にこの上限を適用しなかった。文字数は wc -m で数える。
+- id: stop-hook-block-cap
+  title: Stop フックが続けて止められる回数の上限
+  value: 8
+  unit: 回
+  sentence: 続けて止められるのは {value} {unit}まで
+  sources:
+  - cc-docs-hooks
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: Hooks reference の Stop input の節（2026-11-04 に読んだ）による。Stop フックが続けて 8 回ターンを続けさせた後、次の差し戻しは無視されてターンが終わる。Claude がツールを呼ぶと数え直す。上限は環境変数 CLAUDE_CODE_STOP_HOOK_BLOCK_CAP で変えられる。research/27 は入った版を 2.1.143 とするが、この提案では確かめていない
+- id: skill-md-body-lines
+  title: SKILL.md の本文の行数の目安（これより短く保つ）
+  value: 500
+  unit: 行
+  sentence: '{value} {unit}未満'
+  match:
+    units:
+    - 行
+  sources:
+  - cc-docs-skills
+  - api-docs-skill-best-practices
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: cc-docs-skills は「Keep SKILL.md under 500 lines」、Platform の指針は「Keep the SKILL.md body under 500 lines for optimal performance」。本文の足し先：節 supporting-files の第 1 段落「本文を短く保つ行数の目安を挙げている（値は、…で確かめる）」の「値は、…で確かめる」の所
+- id: skill-reattach-tokens-each
+  title: 圧縮の後に入れ直す、呼んだスキル1つあたりの本文の量
+  value: 5000
+  unit: トークン
+  sentence: 先頭から {value} {unit}まで
+  match:
+    units:
+    - トークン
+  sources:
+  - cc-docs-skills
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 自動の圧縮の後、呼んだスキルごとに最新の呼び出しだけを、先頭の分だけ入れ直す。本文の足し先：節 supporting-files の圧縮の段落の「呼んだスキルの本文の先頭から一定の量まで」の「一定の量」の所（そのあとの「量は、…で確かめる」のリンクは、目印に替えたら外す）
+- id: skill-reattach-tokens-total
+  title: 圧縮の後に入れ直す、呼んだスキル全体の本文の量の合計
+  value: 25000
+  unit: トークン
+  sentence: 合計 {value} {unit}まで
+  match:
+    units:
+    - トークン
+  sources:
+  - cc-docs-skills
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 最後に呼んだスキルから順に枠を埋め、古いスキルは丸ごと落ちることがある。本文の足し先：節 supporting-files の圧縮の段落の「古く呼んだものは落ちることがある」の所（「量は、…で確かめる」のリンクは、目印に替えたら外す）
+- id: skill-name-max-chars
+  title: スキルの name の最大の文字数（アプリ・API・Agent Skills の仕様）
+  value: 64
+  unit: 字
+  sentence: '{value} {unit}まで'
+  match:
+    units:
+    - 字
+    - 文字
+  sources:
+  - api-docs-skill-best-practices
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: Platform の指針は「Maximum 64 characters。小文字・数字・ハイフンだけ。anthropic と claude は予約語」。cc-docs-skills（Claude Code）は name の長さを書いていない。本文の足し先：節 minimal の「`name` と `description` には文字数の上限があり、値は…で確かめる」の所
+- id: skill-description-max-chars
+  title: スキルの description の最大の文字数（アプリ・API・Agent Skills の仕様）
+  value: 1024
+  unit: 字
+  sentence: '{value} {unit}まで'
+  match:
+    units:
+    - 字
+    - 文字
+  sources:
+  - api-docs-skill-best-practices
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: Platform の指針は「Maximum 1,024 characters。空にしない」。本文の足し先：節 minimal の「`name` と `description` には文字数の上限があり、値は…で確かめる」の所
+- id: skill-listing-entry-max-chars
+  title: スキルの一覧に載せる description と when_to_use の合計の最大の文字数（Claude Code）
+  value: 1536
+  unit: 字
+  sentence: '{value} {unit}で切られる'
+  match:
+    units:
+    - 字
+    - 文字
+  sources:
+  - cc-docs-skills
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 一覧の予算にかかわらず1件ごとに切られる。設定 skillListingMaxDescChars で変えられる。本文の足し先：節 limits の「一覧に載るコストが積もる」の項目（1件ごとの上限の一言を足す。「上限の値と変え方は、…にある」のリンクは、目印に替えたら外す）
+- id: skill-listing-budget-fraction
+  title: スキルの一覧の予算（コンテキストウィンドウに対する割合の既定）
+  value: 1
+  unit: '%'
+  sentence: コンテキストウィンドウの {value}{unit}
+  sources:
+  - cc-docs-skills
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 一覧が予算を超えると、使われていないスキルから説明が落ちる。設定 skillListingBudgetFraction か環境変数 SLASH_COMMAND_TOOL_CHAR_BUDGET で変えられる。本文の足し先：節 limits の「一覧の長さの上限を超えないよう」の所
+- id: skill-doctor-min-version
+  title: /skill-doctor を使うのに要る Claude Code の最低の版
+  value: 2.1.252
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.252
+  sources:
+  - cc-docs-skills
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: 機能フラグの取得を省くセッションでは使えない。リモート操作の接続からは使えない。本文の足し先：節 limits の「/skill-doctor で費用と使われ方を見て」の後ろ
+- id: skill-verify-simplify-commit-min-version
+  title: verify か simplify という名前のスキルを、コミットの直前に Claude が実行する、最低の版
+  value: 2.1.286
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.286
+  sources:
+  - cc-docs-skills
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: スキルが enterprise・personal・project・追加ディレクトリか .claude/commands/ にあり、Claude が呼べる設定で、includeGitInstructions を切っていないときに限る。同梱の /verify・/simplify とプラグインのスキルは数えない。本文の足し先：節 limits の項目「`verify` か `simplify` という名前」の最後
+- id: skill-upload-frontmatter-keys
+  title: claude.ai へのアップロード・Skills API・package_skill.py で使えるフロントマターのキー
+  value:
+  - name
+  - description
+  - license
+  - compatibility
+  - metadata
+  - allowed-tools
+  sources:
+  - cc-docs-skills
+  checked: '2026-11-04'
+  volatility: 中
+  status: 確認済み
+  note: これ以外のキーは取り込みがエラーで止まる。いまは本文（節 minimal のアプリのタブ）に手で書いてある。数値ファイルの項目にするなら、そこを目印に替えてほしい（キーの一覧を数値と呼ぶかはメインの判断）
 features:
 - id: claude-md
   title: CLAUDE.md

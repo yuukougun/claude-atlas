@@ -17,6 +17,7 @@ settings:
     - apiKeyHelper              # research/28 の §4 の8
     - autoMemoryEnabled         # research/28 #26
     - disableClaudeAiConnectors # research/28 #26
+    - language                  # research/27 #2（返答の言語。v2.1.0 から。公式の settings の文書）
   permissions:                  # permissions の下
     - allow                     # research/28 #13
     - ask                       # research/28 #13

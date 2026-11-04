@@ -3,6 +3,17 @@
 # chapter ごとのページ（front matter の order の順）→ 一覧。exclude_docs は docs/ にあって公開しないページ。
 nav:
   - index.md
+exclude_docs: |
+  /basics/request-vs-lock.md
+  /changes/outdated-advice-ledger.md
+  /contest/competition-rules.md
+  /extend/claude-md-vs-rules-skills-styles.md
+  /extend/writing-skills.md
+  /japanese/keep-replies-in-japanese.md
+  /judgment/agreement-is-not-evidence.md
+  /prompting/four-specifics.md
+  /start/how-to-use.md
+  /symptoms/instructions-ignored.md
 extra:
   ca:
     fields:

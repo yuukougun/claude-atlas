@@ -168,6 +168,55 @@ class TestRun(TargetsCase):
         self.assertIn("npm ci", done.stderr)
 
 
+class TestMaskGenerated(unittest.TestCase):
+    def test_marker_pairs_are_wrapped_in_textlint_disable_and_enable(self):
+        text = ("前。<!-- link:begin a#b -->五つの題名<!-- link:end -->後。\n"
+                "<!-- gen:begin table x -->\n| 表 |\n<!-- gen:end table x -->\n"
+                "<!-- fact:begin f --> 値 <!-- fact:end -->\n")
+        out = tt.mask_generated(text)
+        self.assertEqual(out.count("<!-- textlint-disable -->"), 3)
+        self.assertEqual(out.count("<!-- textlint-enable -->"), 3)
+        self.assertIn("<!-- link:begin a#b --><!-- textlint-disable -->五つの題名<!-- textlint-enable --><!-- link:end -->", out)
+        self.assertEqual(out.count("\n"), text.count("\n"))   # 行番号は変わらない
+        self.assertTrue(tt.has_generated_marker(text))
+        self.assertFalse(tt.has_generated_marker("普通の本文である。\n"))
+
+
+class TestRunMasked(TargetsCase):
+    """目印のあるページは、目印を足した写しで検査し、パスを元に戻す。"""
+
+    def setUp(self) -> None:
+        super().setUp()
+        fake = self.write("node_modules/.bin/textlint", (
+            "#!/bin/sh\n"
+            'for a in "$@"; do case "$a" in docs/*|.textlint-mask-*) printf \'%s\\n\' "$a" >> "$(dirname "$0")/args.txt";'
+            ' cp "$a" "$(dirname "$0")/seen-$(basename "$a")";; esac; done\n'
+            'echo "$(pwd)/$(ls -d .textlint-mask-*/docs/start/a.md 2>/dev/null | head -1)  警告"\n'
+            "exit 0\n"))
+        fake.chmod(0o755)
+        self.bin = fake.parent
+
+    def test_page_with_markers_goes_through_masked_copy_and_is_removed_after(self):
+        self.write("docs/start/a.md", "---\nid: a\ntitle: A\nstage: draft\n---\n\n"
+                   "<!-- link:begin x -->五つ<!-- link:end -->\n")
+        self.write("docs/start/b.md", page("draft"))
+        done = self.cli("--run")
+        self.assertEqual(done.returncode, 0, done.stderr)
+        args = (self.bin / "args.txt").read_text(encoding="utf-8").splitlines()
+        self.assertTrue(args[0].startswith(".textlint-mask-") and args[0].endswith("/docs/start/a.md"), args)
+        self.assertEqual(args[1], "docs/start/b.md")
+        seen = (self.bin / "seen-a.md").read_text(encoding="utf-8")
+        self.assertIn("<!-- link:begin x --><!-- textlint-disable -->五つ<!-- textlint-enable --><!-- link:end -->", seen)
+        self.assertIn(str(self.root / "docs/start/a.md"), done.stdout)   # 出力のパスは元のページ
+        self.assertNotIn(".textlint-mask-", done.stdout)
+        self.assertEqual([p.name for p in self.root.iterdir() if p.name.startswith(".textlint-mask-")], [])
+
+    def test_fix_uses_original_files(self):
+        self.write("docs/start/a.md", "---\nid: a\ntitle: A\nstage: draft\n---\n<!-- link:begin x -->y<!-- link:end -->\n")
+        self.cli("--run", "--", "--fix")
+        self.assertEqual((self.bin / "args.txt").read_text(encoding="utf-8").splitlines(), ["docs/start/a.md"])
+
+
 class TestRealRepository(unittest.TestCase):
     def test_lists_existing_markdown_under_docs(self):
         done = subprocess.run([sys.executable, str(TOOL)], capture_output=True, text=True, cwd=REPO)

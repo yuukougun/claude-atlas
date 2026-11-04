@@ -65,6 +65,24 @@ updated: 2026-11-05
 - **確認日**：この教材が一次資料を読んだ日で、表の下に書く。
 
 <!-- gen:begin fact-table contest-ai-rules -->
+<!-- textlint-disable -->
+
+| 大会 | 類型 | 版・日付 |
+| --- | --- | --- |
+| AtCoder 長期 AHC（Heuristic Contest） | 部門分け（Human Only 部門は生成 AI 禁止、With AI 部門は生成 AI 使用可。使える範囲は未確認） | 2026-10-21 の告知（今後数回の長期 AHC を 2 部門制で開くという内容。規則の版は未確認） |
+| IEEEXtreme 20.0 | 部門分け（AI を許す課題と禁じる課題に分ける。許す課題は、使った AI の記載を求める） | 20.0 の規則（開催済みの回） |
+| ISUCON2026 | 許可と開示（確認したのは許可の項目だけ。コードの分析と生成を、許される作業に挙げる。開示の求めは未確認） | 2026-07-28 公開のレギュレーション（開催済みの回。ソフトウェア事項は当日マニュアルが優先するが、そのマニュアルは未確認） |
+| U-22 プログラミング・コンテスト2026 | 許可と開示（AI を使った場合は、どこにどう使ったかを応募時に説明する） | 2026-07-01 のプレスリリース（募集要項は未確認） |
+| ICPC EUC 2026（Europe Championship） | AI の文言なし（代わりに、機器を主催者の 1 台のコンピュータに限り、持ち込みと通信を制限する） | 2025-12-02 更新の表記（開催済みの回。規則の末尾の更新日で、ページのフッターの 2026-03-04 は規則の更新日とは限らない） |
+| 高専プロコン 第37回（全国高等専門学校プログラミングコンテスト） | AI の文言なし（トップページの募集要項に AI の記述がなく、行動規範の熟読を求める） | 第37回（2026）のトップページ（行動規範と応募要領は未確認） |
+| Universal Cup 第4回準決勝 | 未確認（告知は、決勝進出を望むチームに画面と映像の録画を求める。AI の公正な利用の規則は続けて適用される） | 2026-08-26 の告知（開催済みの回。規則の PDF は未確認） |
+| AtCoder ABC・ARC・AGC（Beginner・Regular・Grand Contest） | 未確認 | 未確認（過去の変更の告知は、ABC と ARC が 2024-11-15、ABC426 から適用の変更が 2025-10-04。告知の中身は未確認） |
+| AtCoder 短期 AHC（Heuristic Contest） | 未確認 | 未確認 |
+| Codeforces | 未確認 | 未確認 |
+
+確認日 2026-11-04。出典：[AtCoder 公式 X：長期AHC生成AI利用ルール検証コンテスト開催のお知らせ（2026-10-15）](https://x.com/atcoder/status/2110637070117224505)、[AtCoder 公式 X：今後の長期AHCの開催形式について（2026-10-21）](https://x.com/atcoder/status/2112818192007754017)、[AtCoder 公式 X：AHC074 の開催のお知らせ（2026-10-30）](https://x.com/atcoder/status/2116092762827509984)、[AtCoder 公式 X：生成AIの技術向上に伴うABCおよびARCにおけるルール変更について（2024-11-15）](https://x.com/atcoder/status/1857413796391981490)、[AtCoder 公式 X：生成AI対策ルールの変更の告知（ABC426 から適用。2025-10-04）](https://x.com/atcoder/status/1974339453234917615)、[IEEEXtreme Rules（IEEEXtreme 20.0 の AI-Permitted and AI-Prohibited Tasks の節を含む）](https://ieeextreme.org/rules/)、[ISUCON2026 レギュレーション](https://isucon.net/archives/59966826.html)、[U-22プログラミング・コンテスト2026 応募受付開始！締切は8月31日](https://prtimes.jp/main/html/rd/p/000000251.000013310.html)、[The 4th Universal Cup Semifinals](https://contest.ucup.ac/blog/qingyu/blog/4263)、[ICPC Europe Championship 2026 — Official Rules](https://euc.icpc.global/home-2026/rules/)、[第37回全国高等専門学校プログラミングコンテスト 香川（高松）大会（トップページ）](https://www.procon.gr.jp/)。
+
+<!-- textlint-enable -->
 <!-- gen:end fact-table contest-ai-rules -->
 
 表にない形式の大会（CTF・データ分析・ハッカソンなど）は、一次資料で確かめた規則がまだない。出る前に確かめる手順は、表にない大会にも使える。形式ごとの傾向は<!-- link:begin format-cheatsheet -->コンテストの形式別の早見表（AI の効き方と人が握るところ）（準備中）<!-- link:end -->にある。各大会の規則のページは、[大会ごとの規則のページと、出る前に確かめること](#unverified-versions)の節に並べた。
