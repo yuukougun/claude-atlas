@@ -61,6 +61,17 @@
 | 手元の Chrome と日本語のフォント | Chrome は puppeteer の chrome-headless-shell 146（render_pages.py が自分で見つける）。日本語のフォントは、Windows の Noto Sans JP・Noto Serif JP を ~/.local/share/fonts にリンクした（sudo も取得もしない。消せば戻る）。CI の描画の検査には、試作で fonts-noto-cjk を入れる |
 | 描画の検査 | 手元で空のサイトに流し、エラー0件・警告0件 |
 
-## 6b・6c
+## 6b data の初版（並列）
 
-data の初版（一次資料で確かめ、別の担当が照らす）と、骨格（目次から全ページの stub を作る）。6a の後に割り当てる。
+共通の指示は [brief-data.md](brief-data.md)。担当は data/ を直接書かず、`data/<担当>.yml` の下書きに書く。メインがまとめ、別の担当が出典と照らす。
+
+| 担当 | 受け持ち | 報告 | 状態 |
+| --- | --- | --- | --- |
+| D1 | features（Claude Code の機能） | `data-D1.md` | 実行中 |
+| D2 | features（アプリ・API・プランと上限・組織） | `data-D2.md` | 実行中 |
+| D3 | 古くなった助言の台帳（37行）と、名称と旧名 | `data-D3.md` | 実行中 |
+| D4 | 第一波のページの一次資料の sources と domains、ページごとの sources の一覧 | `data-D4.md` | 実行中 |
+
+## 6c 骨格
+
+目次から全ページの stub を `stubs/<field>/<id>.md` に作る。6b の後に行う。
