@@ -121,6 +121,8 @@ updated: 2026-11-04
 
 ### 「#」で始めると CLAUDE.md に記憶される {#hash-to-memorize}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：CLAUDE.md に足したいことは、Claude に CLAUDE.md の編集を頼むか、/memory でファイルを開いて自分で書く。セッションの中で学んだことは、自動メモリが書き残す。
 - **変わった時期**：2025-12-15・Claude Code 2.0.70
 - **状態**：撤回
@@ -131,6 +133,8 @@ updated: 2026-11-04
 - **出典**：[Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)、[Claude Code changelog](https://code.claude.com/docs/en/changelog)、[How Claude remembers your project](https://code.claude.com/docs/en/memory)、[Interactive mode](https://code.claude.com/docs/en/interactive-mode)
 
 ### .claude/commands/ にカスタムコマンドを作る、/project:name 記法 {#commands-directory}
+
+古い助言（状態：置換）
 
 - **今どうするか**：新しく作るものはスキル（.claude/skills/&lt;名前&gt;/SKILL.md）にする。.claude/commands/ のファイルも今も同じように動き、同じ名前のスキルがあればスキルが優先される。名前に project: や user: は付けず /&lt;名前&gt; で呼ぶ（サブディレクトリのファイルは /&lt;フォルダ&gt;:&lt;名前&gt;）。
 - **変わった時期**：2026-01-09・Claude Code 2.1.3
@@ -143,6 +147,8 @@ updated: 2026-11-04
 
 ### /agents でサブエージェントを作る {#agents-command}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：Claude にサブエージェントを作らせるか直させる（どこに置き、何をさせ、どの道具を許すかを頼む）。または .claude/agents/ か ~/.claude/agents/ の Markdown を直接書く。今の /agents は、このやり方を知らせる文を出すだけになった。
 - **変わった時期**：2026-07-01・Claude Code 2.1.198
 - **状態**：撤回
@@ -154,8 +160,10 @@ updated: 2026-11-04
 
 ### think → think hard → ultrathink の段階、日本語の「熟考」 {#think-hard-keywords}
 
-- **今どうするか**：考える深さは effort（/effort・--effort・設定）で決める。think・think hard・「熟考」などの言い回しはキーワードとして扱われず、effort の範囲で少し後押しするふつうの文として渡る。ultrathink だけが、そのターンだけ深く考えるよう頼む言葉として認識され、セッションの effort は変えない。Anthropic の API の Opus 5.5・Sonnet 5.5・Haiku 5.5・Fable 5.1 では、そのターンを xhigh で動かす。効くのは対話のターミナル（2.1.311 以上）と VS Code（2.1.316 以上）。CLAUDE\_CODE\_DISABLE\_ULTRATHINK（2.1.316 以上）で切れる。
-- **変わった時期**：2026-03-04・Claude Code 2.1.68
+古い助言（状態：置換）
+
+- **今どうするか**：think・think hard・think harder・「熟考」・「よく考えて」と書いても、effort は上がらない。これらはキーワードとして扱われず、effort の範囲で少し後押しするふつうの文として渡る。考える深さは effort（/effort・--effort・設定）で決める。ultrathink だけは、そのターンだけ深く考えるよう頼む言葉として認識され、セッションの effort は変えない。Claude Code が Anthropic の API で Opus 5.5・Sonnet 5.5・Haiku 5.5・Fable 5.1 を使うときは、ultrathink のターンを xhigh で動かす。この動きは、対話のターミナル（2.1.311 以上）と VS Code（2.1.316 以上）で働く。CLAUDE\_CODE\_DISABLE\_ULTRATHINK（2.1.316 以上）で切れる。
+- **変わった時期**：2026-03-04・Claude Code 2.1.68（ultrathink が戻った版。think hard などの段階のキーワードが外れた時期は、確かめられていない）
 - **状態**：置換
 - **どの原理の回避策だったか**：確かめる
 - **かつてなぜ正しかったか**：0.2.44 で think・think harder・ultrathink と書いて考える量を頼めるようになり、1.0.8（2025-06-02）で英語以外の言語でも思考を起動できるようになった。effort の段を選ぶ手段がまだなく、言葉で考える量を変えるのが公式のやり方だった。段階のキーワードがいつ外れたかは、一次資料に版の記述がない。変わった時期に書いた 2.1.68 は、ultrathink だけが戻った版である。
@@ -164,6 +172,8 @@ updated: 2026-11-04
 - **出典**：[Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)、[Claude Code changelog](https://code.claude.com/docs/en/changelog)、[Model configuration](https://code.claude.com/docs/en/model-config)、[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)、[How Claude remembers your project](https://code.claude.com/docs/en/memory)
 
 ### IMPORTANT や YOU MUST で強調すれば守られる {#important-caps}
+
+古い助言（状態：撤回）
 
 - **今どうするか**：強調せず、ふつうの言葉で書く。それでも守られないなら、ファイルが長すぎて埋もれていないかを見て短くするか、例外を許さない規則ならフックか deny ルールにする。強調を重ねると、Claude が規則を当てはめすぎる原因にもなる。
 - **変わった時期**：2026-10-27 ごろ
@@ -176,8 +186,10 @@ updated: 2026-11-04
 
 ### --dangerously-skip-permissions で YOLO 運用 {#yolo-skip-permissions}
 
+古い助言（状態：置換）
+
 - **今どうするか**：ふだんの対話は auto モード（今の既定）にし、サンドボックスを重ねる。bypassPermissions（--dangerously-skip-permissions と同じ）は、使い捨てのコンテナや VM の中だけで使う。permissions.blockWritesOutsideWorkingDirectories（2.1.314 以上）は、bypass でも Write・Edit・NotebookEdit が作業ディレクトリの外に書くのを止める。ただしシェルのコマンドは止めないので、隔離の代わりにはならない。
-- **変わった時期**：2026-08-14〜2026-09-28
+- **変わった時期**：2026-08-14〜2026-09-28（始まり：Pro・Max・Team の新しいセッションで auto モードが既定になった日。終わり：対話のセッション全体で既定になった日）
 - **状態**：置換
 - **どの原理の回避策だったか**：縛る
 - **かつてなぜ正しかったか**：auto モードが使えるようになる前は、確認なしに長い作業を進める手段が、allow ルールを積み上げるか、bypass で確認をすべて飛ばすかしかなかった。
@@ -187,8 +199,10 @@ updated: 2026-11-04
 
 ### 最初は毎回承認を求められる {#approve-everything-first}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：何も設定していなければ、ターミナルと VS Code の対話のセッションは auto モードで始まる（2.1.283 以上）。毎回確かめたいなら、permissions.defaultMode を default（表示は Manual）にするか、--permission-mode manual で起動する。claude -p と Agent SDK は、決めていなければ Manual で動く。
-- **変わった時期**：2026-08-14〜2026-09-28・Claude Code 2.1.283
+- **変わった時期**：2026-08-14〜2026-09-28・Claude Code 2.1.283（始まり：Pro・Max・Team の新しいセッションで auto モードが既定になった日。終わり：どのプランと提供元でも既定になった日。2.1.283 は、公式の文書が既定の境とする版）
 - **状態**：撤回
 - **どの原理の回避策だったか**：縛る
 - **かつてなぜ正しかったか**：既定の権限モードが default（今の表示は Manual）だったころは、読み取り以外の操作のたびに確認が出た。
@@ -197,6 +211,8 @@ updated: 2026-11-04
 - **出典**：[Choose a permission mode](https://code.claude.com/docs/en/permission-modes)、[Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)、[Claude Code changelog](https://code.claude.com/docs/en/changelog)、[Auto mode is now the default in Claude Code for Pro, Max, Ultra, and Team plans](https://claude.com/resources/articles/auto-mode-default-in-claude-code)
 
 ### 200k を前提にコンテキストを最優先で節約する {#save-context-for-200k}
+
+古い助言（状態：条件付き）
 
 - **今どうするか**：今の多くのモデルは 1M トークンのコンテキストウィンドウを持ち、圧縮も自動なので、溢れることはまれになった。関係のない作業に移るときの /clear は、答えの質とコストのために今も勧められる。大きな会話（既定で 200K トークン以上）を 1 時間ほど放置すると、プロンプトキャッシュが切れる前に要約される（idle compaction）。ターミナルは 2.1.299、VS Code と Desktop の Code タブは 2.1.314 から働き、idleCompaction を false にするか /config で止められる。
 - **変わった時期**：2026-10-27 ごろ
@@ -209,60 +225,74 @@ updated: 2026-11-04
 
 ### アーキテクチャやファイル構成を CLAUDE.md に書く {#architecture-in-claude-md}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：Claude はリポジトリを自分で読むので、構成やファイルの並びは書かない。書くのは、リポジトリを読んでも分からないこと（推測できない理由・決まり・落とし穴）だけにする。
 - **変わった時期**：2026-10-27 ごろ
 - **状態**：撤回
 - **どの原理の回避策だったか**：見せる
-- **かつてなぜ正しかったか**：公式は、この表の助言はどれも書かれた当時はよい助言で、多くはモデルがまだ確実にできなかったことの回避策だったとする。この行がどの回避策に当たるかは、公式は書いていない。構成を書いておけば Claude が毎回リポジトリをたどらずに全体をつかめた、というのはここでの推測である。改稿の前の版（2026-10-26 の写し）も、コードを読めば分かることとファイルごとの説明は CLAUDE.md に書かないものに、プロジェクト固有のアーキテクチャの判断は書くものに挙げていた。
+- **かつてなぜ正しかったか**：公式の Best practices は、「もうやめてよい助言」の表の助言はどれも書かれた当時はよい助言で、多くはモデルがまだ確実にできなかったことの回避策だったとする。この行がどの回避策に当たるかは、公式は書いていない。構成を書いておけば Claude が毎回リポジトリをたどらずに全体をつかめた、というのはここでの推測である。改稿の前の版（2026-10-26 の写し）も、コードを読めば分かることとファイルごとの説明は CLAUDE.md に書かないものに、プロジェクト固有のアーキテクチャの判断は書くものに挙げていた。
 - **自分の設定や記事で見つける方法**：CLAUDE.md のディレクトリの木、ファイルの一覧、使っているフレームワークの説明を探す。/doctor は、コードから分かる中身を削る案を出す。
 - **関わるページ**：/init と最初の CLAUDE.md（準備中）・CLAUDE.md に書くこと・書かないこと（準備中）・CLAUDE.md の長さと剪定（準備中）・知らないコードベースを読む（準備中）
 - **出典**：[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿前。Internet Archive の写し、2026-10-26 19:44 UTC）](https://web.archive.org/web/20261026194435/https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿後。Internet Archive の写し、2026-10-27 08:15 UTC）](https://web.archive.org/web/20261027081520/https://code.claude.com/docs/en/best-practices)
 
 ### 「keep going」「don't be lazy」と書く {#keep-going-dont-be-lazy}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：こうした一言は消す。今のモデルは合意した作業を言われなくても続け、この手の文はやりすぎの原因になりやすい。代わりに、通すべきテストのような確かめる手段を渡す。途中で止まったら continue と言い、誰も見ていない実行は /goal か Stop フックで続けさせる。
 - **変わった時期**：2026-10-27 ごろ
 - **状態**：撤回
 - **どの原理の回避策だったか**：確かめる
-- **かつてなぜ正しかったか**：以前のモデルは長い作業の途中で止まりやすく、続けるよう促す一言が効いた。公式は、この表の助言の多くはモデルがまだ確実にできなかったことの回避策だったとする。
+- **かつてなぜ正しかったか**：以前のモデルは長い作業の途中で止まりやすく、続けるよう促す一言が効いた。公式の Best practices は、「もうやめてよい助言」の表の助言の多くはモデルがまだ確実にできなかったことの回避策だったとする。
 - **自分の設定や記事で見つける方法**：CLAUDE.md・スキル・繰り返す頼み方で、keep going・don't stop・don't be lazy・loop until done・「最後までやり切れ」などを探す。
 - **関わるページ**：エージェントループと tool use（準備中）・モデル別の癖と、プロンプトの合わせ方（準備中）・強調語（IMPORTANT・必ず）の現在（準備中）・「完了」を定義して渡す（準備中）・/goal（完了するまで続けさせる）（準備中）・リファクタリングと大規模な移行（準備中）・頼んでいないことまでやる（過剰設計）（準備中）・確認ばかりで進まない・途中で止まる（準備中）
 - **出典**：[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿前。Internet Archive の写し、2026-10-26 19:44 UTC）](https://web.archive.org/web/20261026194435/https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿後。Internet Archive の写し、2026-10-27 08:15 UTC）](https://web.archive.org/web/20261027081520/https://code.claude.com/docs/en/best-practices)、[Keep Claude working toward a goal](https://code.claude.com/docs/en/goal)
 
 ### 「最後に double-check して」と書き足す {#add-double-check}
 
-- **今どうするか**：確かめる手段（テスト・型の検査・照らす基準）を渡す。Opus 5 は自分の作業を言われなくても確かめるので、「見直して」「double-check して」や、確かめ役のサブエージェントを使わせる指示は消す（確かめすぎでトークンと時間が増える）。ほかのモデルでは、終わる前に基準と照らして確かめるよう頼むのは今も効く。
+古い助言（状態：条件付き）
+
+- **今どうするか**：確かめる手段（テスト・型の検査・照らす基準）を渡す。Opus 5 は自分の作業を言われなくても確かめるので、「見直して」「double-check して」や、確かめ役のサブエージェントを使わせる指示は消す（確かめすぎでトークンと時間が増える）。Opus 5.5 の公式の手引きは、Opus 5 の頼み方を出発点として使えるとするので、同じ扱いから始め、自分の作業で比べる。ほかのモデルでは、終わる前に基準と照らして確かめるよう頼むのは今も効く。
 - **変わった時期**：2026-07-24
 - **状態**：条件付き
 - **どの原理の回避策だったか**：確かめる
 - **かつてなぜ正しかったか**：自分の答えを見直させる一言で、コードや計算の誤りが減った。今の Prompting best practices も、多くのモデルにはこの頼み方を勧め、Opus 5 を例外とする。
-- **自分の設定や記事で見つける方法**：システムプロンプト・CLAUDE.md・スキルで、double-check・re-verify・「最後に見直して」・「確かめ役のサブエージェントを使え」を探し、使うモデルが Opus 5 か Opus 5.5 かを確かめる。
+- **自分の設定や記事で見つける方法**：システムプロンプト・CLAUDE.md・スキルで、double-check・re-verify・「最後に見直して」・「確かめ役のサブエージェントを使え」を探し、使うモデルを確かめる。Opus 5 と Opus 5.5 は、一言を消して比べることから始める。ほかのモデルは残してよい。
 - **関わるページ**：エージェントループと tool use（準備中）・モデル別の癖と、プロンプトの合わせ方（準備中）・新しいモデルに替えたら見直すこと（準備中）・検証の階段（準備中）・バグを直す（準備中）・「完了」と言うが終わっていない（準備中）
 - **出典**：[Prompting Claude Opus 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)、[Prompting Claude Opus 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5)、[Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)、[Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview)
 
 ### 「subagent を使え」と書き足す {#tell-it-to-use-subagents}
 
+古い助言（状態：条件付き）
+
 - **今どうするか**：書き足さない。サブエージェントに任せるのは、大きく、本当に独立していて並べられる作業だけにする。同じ作業をサブエージェントに渡しても答えはよくならない（よくなるのは、書く過程を見ていない別のレビューを頼むとき）。Claude Code では CLAUDE\_CODE\_MAX\_SUBAGENT\_SPAWN\_DEPTH と CLAUDE\_CODE\_MAX\_CONCURRENT\_SUBAGENTS で数を縛れる。
-- **変わった時期**：2026-07-24〜2026-10-27
+- **変わった時期**：2026-07-24〜2026-10-27（始まり：Opus 5 の頼み方の手引きの公開日。終わり：Best practices の改稿の日）
 - **状態**：条件付き
 - **どの原理の回避策だったか**：見せる
 - **かつてなぜ正しかったか**：以前のモデルは自分からはあまり委任しなかった。Opus 5 は、以前のモデルより進んで委任する（Opus 5 の頼み方の手引き）。
 - **自分の設定や記事で見つける方法**：CLAUDE.md・スキル・システムプロンプトで、「subagent を使え」「並べて調べさせよ」などの一言を探す。/usage でサブエージェントの種類ごとの使用量を見て、元が取れているかを確かめる。
 - **関わるページ**：サブエージェントは別室の部下（準備中）・モデル別の癖と、プロンプトの合わせ方（準備中）・出力の多い調査はサブエージェントに任せて要約だけ受け取る（準備中）・サブエージェントの作り方と使いどころ（準備中）
+- **同じ話題の行**：[工程ごとにサブエージェントを大量に作る](#subagent-per-step)・[コンテキストを守るためにサブエージェントに調べさせる](#subagents-to-save-context)
 - **出典**：[Prompting Claude Opus 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)、[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿後。Internet Archive の写し、2026-10-27 08:15 UTC）](https://web.archive.org/web/20261027081520/https://code.claude.com/docs/en/best-practices)、[Create custom subagents](https://code.claude.com/docs/en/sub-agents)
 
 ### 工程ごとにサブエージェントを大量に作る {#subagent-per-step}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：サブエージェントは、文脈を分ける意味のある作業に使う：本筋に残したくない長い出力（すべてのテストの実行や広い検索）、並べられる独立の作業、書く過程を見ていないレビュー、道具を絞った役。小さな作業は本体で済ませる。新しいサブエージェントは文脈を集め直すので、かえって遅くなることもある。
-- **変わった時期**：2026-07-24〜2026-10-27
+- **変わった時期**：2026-07-24〜2026-10-27（始まり：Opus 5 の頼み方の手引きの公開日。終わり：Best practices の改稿の日）
 - **状態**：撤回
 - **どの原理の回避策だったか**：見せる
 - **かつてなぜ正しかったか**：サブエージェントは文脈を分けられるので、工程ごとに役を作れば本筋が散らからないと考えられた。
 - **自分の設定や記事で見つける方法**：.claude/agents/ と ~/.claude/agents/ の定義の数と、実際に使われているものを見る。/usage でサブエージェントの種類ごとの使用量を見る。
 - **関わるページ**：サブエージェントは別室の部下（準備中）・出力の多い調査はサブエージェントに任せて要約だけ受け取る（準備中）・サブエージェントの作り方と使いどころ（準備中）・並列の方式の選び方（準備中）
+- **同じ話題の行**：[「subagent を使え」と書き足す](#tell-it-to-use-subagents)・[コンテキストを守るためにサブエージェントに調べさせる](#subagents-to-save-context)
 - **出典**：[Prompting Claude Opus 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)、[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿前。Internet Archive の写し、2026-10-26 19:44 UTC）](https://web.archive.org/web/20261026194435/https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿後。Internet Archive の写し、2026-10-27 08:15 UTC）](https://web.archive.org/web/20261027081520/https://code.claude.com/docs/en/best-practices)、[Create custom subagents](https://code.claude.com/docs/en/sub-agents)
 
 ### prefill で JSON の形を強制する {#prefill-for-json}
+
+古い助言（状態：撤回）
 
 - **今どうするか**：structured outputs（JSON の出力か strict tool use）で形を保証する。まず形を指示に書き、検査して再試行する手もある。分類なら、ラベルを enum にした道具か structured outputs を使う。Claude 4.6 以降のモデルは、最後の assistant のターンを先に書いた要求を 400 エラーで断る。
 - **変わった時期**：2026-02-05
@@ -275,6 +305,8 @@ updated: 2026-11-04
 
 ### budget\_tokens で思考量を指定する {#budget-tokens}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：thinking の type を adaptive にし、深さは effort で決める。Claude 4.7 以降のモデルは、budget\_tokens を使う要求を 400 エラーで断る。Opus 4.6 と Sonnet 4.6 では非推奨。手動の思考しか持たないモデル（Opus 4.5・Haiku 4.5 など）は今のままでよい。
 - **変わった時期**：2026-02-05
 - **状態**：撤回
@@ -285,6 +317,8 @@ updated: 2026-11-04
 - **出典**：[Extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking)、[Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)、[Effort](https://platform.claude.com/docs/en/build-with-claude/effort)、[Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview)
 
 ### &lt;thinking&gt; タグに推論を書かせる {#thinking-tags}
+
+古い助言（状態：撤回）
 
 - **今どうするか**：推論を見たいときは、応答の本文に書かせず、thinking のブロックを読む（display を summarized にして要約を受け取る）。根拠が要るなら、短い説明を頼む。Fable 5・Opus 5・Sonnet 5.5・Opus 5.5・Fable 5.1 では、内部の推論を本文に書かせる頼み方は reasoning\_extraction として断られることがある。
 - **変わった時期**：2026-06-09
@@ -297,6 +331,8 @@ updated: 2026-11-04
 
 ### Console の prompt generator / improver を使う {#console-prompt-generator}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：公式の Prompting best practices を出発点にし、成功の基準と評価（eval）を決めて、変えた効果を測りながら直す。下書きを機械に作らせたいなら、公式の文書は Claude Cookbook の metaprompt のノートブックを案内している。
 - **変わった時期**：2026-08-17
 - **状態**：撤回
@@ -308,8 +344,10 @@ updated: 2026-11-04
 
 ### 公式インタラクティブチュートリアルが最新の作法 {#interactive-tutorial}
 
-- **今どうするか**：基本の考え方の練習には使えるが、Claude 3 のモデル向けに書かれているので、食い違うところは Prompting best practices に従う（公式の文書もそう書く）。第 5 章の prefill（Speaking for Claude）は Claude 4.6 以降のモデルで、temperature を 0 にする呼び方は Claude 4.7 以降のモデルか API の版 2026-10-21 で、400 エラーになる。
-- **変わった時期**：2026-02-05〜2026-04-20
+古い助言（状態：条件付き）
+
+- **今どうするか**：基本の考え方の練習には使えるが、Claude 3 のモデル向けに書かれているので、食い違うところは Prompting best practices に従う（公式の文書もそう書く）。第 5 章の prefill（Speaking for Claude）は、Claude 4.6 以降のモデルで 400 エラーになる。temperature を 0 にする呼び方は、Claude 4.7 以降のモデルで、または API の版 2026-10-21 で、400 エラーになる。
+- **変わった時期**：2026-02-05〜2026-04-20（始まり：Claude 4.6 以降のモデルが prefill を受け付けなくなった日。終わり：チュートリアルが使う Claude 3 Haiku が退役した日）
 - **状態**：条件付き
 - **どの原理の回避策だったか**：見せる
 - **かつてなぜ正しかったか**：Claude 3 の世代では、公式のチュートリアルがそのまま最新の作法だった。
@@ -319,10 +357,12 @@ updated: 2026-11-04
 
 ### Cowork は別アプリ、Web search はトグルで入れる {#cowork-separate-app}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：新しい Claude の体験では、チャットと Cowork は 1 つの会話にまとまり、モードを選ばずに頼む。Web 検索のトグルはなく、Claude が要るときに自分で検索する。リサーチは /deep-research か「+」から選ぶ。体験は順に展開中で、入力欄に「Chat」と「Cowork」の選択が残るアカウントは、まだ前のやり方のまま。
 - **変わった時期**：2026-09-16
 - **状態**：撤回
-- **どの原理の回避策だったか**：見せる
+- **この機能が受け持つ原理**：見せる
 - **かつてなぜ正しかったか**：2026-09-16 より前は、チャットと Cowork は別の選択で、Web 検索は「+」のメニューから自分で有効にした。
 - **自分の設定や記事で見つける方法**：手順書で「Cowork に切り替える」「Web 検索をオンにする」の手順を探す。自分のアカウントがどちらの体験かは、入力欄に「Chat」「Cowork」の選択があるかで分かる。
 - **関わるページ**：アプリ・Claude Code・API の選び方（準備中）・web 検索・リサーチ・拡張思考の使い分け（準備中）・タスクと定期タスク（Cowork）（準備中）・調べものとレポート（準備中）
@@ -330,10 +370,12 @@ updated: 2026-11-04
 
 ### メモリは会話の後に日次で要約される {#memory-daily-summary}
 
+古い助言（状態：撤回）
+
 - **今どうするか**：今のメモリは、話している間に Claude がトピックごとの項目として保存し、読み、更新する（「覚えて」と頼んで保存させることもできる）。覚えたことは設定の Topics で見て、直し、消せる。
 - **変わった時期**：2026-07-10
 - **状態**：撤回
-- **どの原理の回避策だったか**：見せる
+- **この機能が受け持つ原理**：見せる
 - **かつてなぜ正しかったか**：前のメモリは、会話の履歴から要約を作り、24 時間ごとに更新して新しい会話に使っていた（今もヘルプの記事の前の体験の節にある）。
 - **自分の設定や記事で見つける方法**：「メモリには翌日に反映される」「要約を待つ」と書いた記事や手順を探す。設定に Memory の項目か、Your Claude の Generate memory from chats があれば新しい体験。
 - **関わるページ**：アプリのメモリ（仕組み・範囲・消し方と止め方）（準備中）・別の会話やプロジェクトの内容が混ざる（準備中）
@@ -341,10 +383,12 @@ updated: 2026-11-04
 
 ### Claude Code on the Web と --remote を使う {#code-on-the-web-remote}
 
+古い助言（状態：置換）
+
 - **今どうするか**：機能の名前はクラウドセッション（cloud sessions）。ターミナルからは、claude --cloud に頼む内容を付けて始める（--remote は非推奨の別名として今も動く）。ブラウザの claude.ai/code は、今も Claude Code on the web とも呼ばれる。
-- **変わった時期**：2026-09-10〜2026-09-17
+- **変わった時期**：2026-09-10〜2026-09-17（日までは絞れない。公式の文書の題が、始まりの日の写しでは旧名、終わりの日の写しでは新名だった）
 - **状態**：置換
-- **どの原理の回避策だったか**：握る・縛る
+- **この機能が受け持つ原理**：握る・縛る
 - **かつてなぜ正しかったか**：以前は、ターミナルから始めるフラグが --remote で、機能の名前も Claude Code on the web だった。
 - **自分の設定や記事で見つける方法**：スクリプトや手順書で claude --remote を探し、--cloud に替える。--remote-control は別の機能（手元のセッションを他の端末から操る）なので替えない。
 - **関わるページ**：実行場所の違い（クラウド・自分の PC・リモート操作）（準備中）・Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）・クラウドセッションと teleport（準備中）・記事や前のやり方が通じない（準備中）
@@ -352,21 +396,25 @@ updated: 2026-11-04
 
 ### routines で定期実行を作る {#routines-name}
 
-- **今どうするか**：今の名前は予定のタスク（cloud scheduled tasks）。claude.ai/code/routines か Desktop の Code タブ、CLI の /schedule で作る。一部の画面・URL・/routines の別名・API には旧名が残るが、同じ機能を指す。
+古い助言（状態：置換）
+
+- **今どうするか**：今の名前はクラウドの予定のタスク（cloud scheduled tasks）。claude.ai/code/routines か Desktop の Code タブ（Local と Cloud の選択が出たら Cloud）、CLI の /schedule で作る。一部の画面・URL・/routines の別名・API には旧名が残るが、同じ機能を指す。
 - **変わった時期**：2026-10-20 ごろ
 - **状態**：置換
-- **どの原理の回避策だったか**：縛る・確かめる
+- **この機能が受け持つ原理**：縛る・確かめる
 - **かつてなぜ正しかったか**：以前は、公式の文書の題も画面も routines で、作り方の記事はその名前で書かれた。
-- **自分の設定や記事で見つける方法**：記事の routine・routines の語を、予定のタスクに読み替える。手元で動く予定（Desktop の予定のタスク、/loop）は別の機能なので、どれを指すかを確かめる。
+- **自分の設定や記事で見つける方法**：記事の routine・routines の語を、予定のタスクに読み替える。手元で動く Desktop の予定のタスクと /loop は、クラウドの予定のタスクとは別の機能なので、どれを指すかを確かめる。
 - **関わるページ**：自動化の選び方（定期タスク・非対話モード・SDK）（準備中）・クラウドの定期タスク（準備中）・記事や前のやり方が通じない（準備中）
 - **出典**：[Automate work with scheduled tasks](https://code.claude.com/docs/en/routines)、[Commands](https://code.claude.com/docs/en/commands)
 
 ### /cost・/stats で使用量を見る {#slash-cost-and-stats}
 
+古い助言（状態：置換）
+
 - **今どうするか**：/usage で見る。/cost と /stats は今も打てる別名で、/usage の該当のタブを開く。
 - **変わった時期**：2026-04-23・Claude Code 2.1.118
 - **状態**：置換
-- **どの原理の回避策だったか**：確かめる・見せる
+- **この機能が受け持つ原理**：確かめる・見せる
 - **かつてなぜ正しかったか**：以前は、費用は /cost、使い方の統計は /stats と、別のコマンドだった。
 - **自分の設定や記事で見つける方法**：手順書やステータスラインの説明で /cost と /stats を探す。打てば動くので急がないが、新しく書く手順は /usage で書く。
 - **関わるページ**：/usage・/context・ステータスラインで状態を見る（準備中）・主要コマンド早見表（準備中）・/insights と /usage で振り返る（準備中）・上限を早く使う要因（準備中）・すぐ上限に当たる（準備中）
@@ -374,10 +422,12 @@ updated: 2026-11-04
 
 ### /fork で会話を分岐する {#fork-to-branch}
 
+古い助言（状態：置換）
+
 - **今どうするか**：会話を分けて別の方向を試すのは /branch。今の /fork は、会話を新しい背景のセッションに写し、元の会話を続ける別の機能（2.1.212 から）。
 - **変わった時期**：2026-03-17・Claude Code 2.1.77
 - **状態**：置換
-- **どの原理の回避策だったか**：見せる
+- **この機能が受け持つ原理**：見せる
 - **かつてなぜ正しかったか**：以前は、会話の分岐のコマンドの名前が /fork だった。
 - **自分の設定や記事で見つける方法**：記事や手順書の /fork が、会話の分岐の意味かを見る。分岐の意味なら /branch に読み替える。今の /fork で写したセッションは agent view（claude agents）に並ぶ。
 - **関わるページ**：セッションに名前を付けて再開・分岐する（準備中）・主要コマンド早見表（準備中）・記事や前のやり方が通じない（準備中）
@@ -385,8 +435,10 @@ updated: 2026-11-04
 
 ### /vim・/tag・/pr-comments・ultraplan・TaskOutput ツールを使う {#removed-commands}
 
-- **今どうするか**：どれも消えた。Vim の操作は /config の Editor mode で切り替える。PR のコメントは Claude に直接頼んで読ませる。ultraplan の代わりは plan mode。背景の作業の出力は、Claude が Read でその出力のファイルを読む。/tag の代わりの案内は文書にない。
-- **変わった時期**：2026-04-02〜2026-09-18
+古い助言（状態：撤回）
+
+- **今どうするか**：どれも消えた。/pr-comments（2.1.91）の代わりは、PR のコメントを Claude に直接頼んで読ませること。/vim（2.1.92）の代わりは、/config の Editor mode で Vim の操作を切り替えること。/tag（2.1.92）の代わりの案内は文書にない。ultraplan（2.1.222）の代わりは plan mode。TaskOutput ツール（2.1.83 から非推奨、2.1.277 で削除）の代わりは、Claude が Read でその出力のファイルを読むこと。
+- **変わった時期**：2026-04-02〜2026-09-18（始まり：最初に消えた /pr-comments の日。終わり：最後に消えた TaskOutput ツールの日。機能ごとの版は「今どうするか」に書く）
 - **状態**：撤回
 - **どの原理の回避策だったか**：見せる
 - **かつてなぜ正しかったか**：どれも消える前の版では公式の機能で、記事や手順書に使い方が書かれた。
@@ -395,6 +447,8 @@ updated: 2026-11-04
 - **出典**：[Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)、[Claude Code changelog](https://code.claude.com/docs/en/changelog)、[Commands](https://code.claude.com/docs/en/commands)、[Tools reference](https://code.claude.com/docs/en/tools-reference)
 
 ### MCP を SSE transport でつなぐ {#mcp-sse-transport}
+
+古い助言（状態：撤回）
 
 - **今どうするか**：リモートの MCP サーバーは HTTP（Streamable HTTP）でつなぐ（claude mcp add --transport http）。2.1.265 以上は、SSE しか出していないサーバーにも HTTP を先に試してから SSE に切り替える。SSE を直接指定するのは、古い版のときか、HTTP を受け付けないサーバーのときだけ。
 - **変わった時期**：2025-03-26
@@ -407,6 +461,8 @@ updated: 2026-11-04
 
 ### GitHub Action を @beta と direct\_prompt で書く {#action-beta-direct-prompt}
 
+古い助言（状態：置換）
+
 - **今どうするか**：anthropics/claude-code-action@v1 を使い、direct\_prompt は prompt に、max\_turns や model などの CLI の設定は claude\_args に移す。mode の入力は外す（自動で判定する）。custom\_instructions は claude\_args の --append-system-prompt になる。
 - **変わった時期**：2025-08-26
 - **状態**：置換
@@ -418,30 +474,36 @@ updated: 2026-11-04
 
 ### 「workflow」と書いて workflows を起動し、超過分は extra usage で払う {#workflow-keyword-extra-usage}
 
+古い助言（状態：置換）
+
 - **今どうするか**：dynamic workflows を 1 つの作業で使うなら、プロンプトに ultracode と書くか、「ワークフローで」と自分の言葉で頼む（workflow という語だけでは起動しない）。セッション全体なら /effort ultracode にする。上限を超えた分は usage credits（/usage-credits）で払う。
 - **変わった時期**：2026-06-02・Claude Code 2.1.160
 - **状態**：置換
-- **どの原理の回避策だったか**：握る
+- **この機能が受け持つ原理**：握る
 - **かつてなぜ正しかったか**：dynamic workflows が入った当初は、workflow という語が起動のキーワードだった。超過分を払う仕組みの名前は、以前は extra usage だった。
 - **自分の設定や記事で見つける方法**：頼み方の型やスキルで、workflow という語を起動のつもりで書いていないかを見る。手順書の extra usage・/extra-usage は、usage credits・/usage-credits に読み替える（旧名のコマンドも動く）。
 - **関わるページ**：dynamic workflows（スクリプトで多数のサブエージェントを動かす）（準備中）・usage credits（上限を超えた分の従量課金）（準備中）・並列・ループ・workflows のコスト（準備中）
 - **出典**：[Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)、[Claude Code changelog](https://code.claude.com/docs/en/changelog)、[Orchestrate subagents at scale with dynamic workflows](https://code.claude.com/docs/en/workflows)、[Commands](https://code.claude.com/docs/en/commands)
 
-### Ralph プラグインや自作 bash ループで回し続ける {#ralph-loops}
+### プラグインや自作の bash ループで回し続ける {#ralph-loops}
+
+古い助言（状態：置換）
 
 - **今どうするか**：完了の条件を決めて続けさせるなら /goal、決まった間隔でくり返すなら /loop、大きな作業を多くのエージェントに分けるなら dynamic workflows を使う。無人で回すときは、止まる条件と使う量の上限を先に決める。
-- **変わった時期**：2026-05-11〜2026-05-28・Claude Code 2.1.139
+- **変わった時期**：2026-05-11〜2026-05-28・Claude Code 2.1.139（始まり：/goal が入った日（2.1.139）。終わり：dynamic workflows が入った日（2.1.154））
 - **状態**：置換
 - **どの原理の回避策だったか**：確かめる
 - **かつてなぜ正しかったか**：/goal が入る前は、完了の条件を満たすまで続けさせる公式の手段がなく、同じプロンプトを外のループで流し直す手が使われた。
-- **自分の設定や記事で見つける方法**：シェルのスクリプトで、ループの中から claude -p を呼んでいるもの、ループのためのプラグインやスキルを探す。止まる条件と上限（--max-turns・--max-budget-usd）のない回し方は特に見直す。
+- **自分の設定や記事で見つける方法**：シェルのスクリプトで、ループの中から claude -p を呼んでいるもの、ループのためのプラグインやスキルを探す。止まる条件と上限（--max-turns・--max-budget-usd）のない回し方は特に見直す。記事で「Ralph」の名で紹介される回し方（同じ依頼を外のループで流し直す）も、同じ仕組みの行として探す。
 - **関わるページ**：/goal（完了するまで続けさせる）（準備中）・並列・ループ・workflows のコスト（準備中）・リファクタリングと大規模な移行（準備中）・同じ確認のループにはまる（準備中）
 - **出典**：[Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)、[Claude Code changelog](https://code.claude.com/docs/en/changelog)、[Keep Claude working toward a goal](https://code.claude.com/docs/en/goal)、[CLI reference](https://code.claude.com/docs/en/cli-reference)、[Run prompts on a schedule](https://code.claude.com/docs/en/scheduled-tasks)、[Orchestrate subagents at scale with dynamic workflows](https://code.claude.com/docs/en/workflows)
 
 ### tmux で自作のエージェント組織を作る {#tmux-agent-orgs}
 
+古い助言（状態：置換）
+
 - **今どうするか**：背景のセッションをまとめて見るなら agent view（claude agents。research preview）を使う。リードがチームメイトに仕事を振って調整するなら、エージェントチーム（experimental。CLAUDE\_CODE\_EXPERIMENTAL\_AGENT\_TEAMS を 1 にして有効にする）を使う。どちらも使う量が増えるので、まずサブエージェントやセッションの間のメッセージで足りないかを確かめる。
-- **変わった時期**：2026-02-05〜2026-05-11・Claude Code 2.1.32
+- **変わった時期**：2026-02-05〜2026-05-11・Claude Code 2.1.32（始まり：エージェントチームが入った日（2.1.32）。終わり：agent view が入った日（2.1.139））
 - **状態**：置換
 - **どの原理の回避策だったか**：握る
 - **かつてなぜ正しかったか**：公式の仕組みが入る前は、tmux の画面を分けて複数の Claude Code を並べ、役割を決めて手で連絡させる自作の組織が使われた。
@@ -451,10 +513,12 @@ updated: 2026-11-04
 
 ### Opus は高いので避ける {#avoid-opus-as-expensive}
 
+古い助言（状態：条件付き）
+
 - **今どうするか**：一律に避けず、自分の作業で比べて選ぶ。Opus 5.5 は Opus 5 より安く、Claude Code の Pro・Max・Ultra・Team・Enterprise と API で既定のモデル（2.1.280 以上）。プランでは、選ぶモデルで上限の減り方が変わるので、/usage で確かめる。
 - **変わった時期**：2026-09-22・Claude Code 2.1.280
 - **状態**：条件付き
-- **どの原理の回避策だったか**：確かめる
+- **どの原理の回避策だったか**：握る・確かめる
 - **かつてなぜ正しかったか**：Opus 4 と Opus 4.1 は、API の料金が入力・出力とも Sonnet 4 の 5 倍で、使い分けで費用が大きく変わった。
 - **自分の設定や記事で見つける方法**：settings.json の model・ANTHROPIC\_MODEL・サブエージェントの model で、Sonnet や Haiku に固定していないかを見る。固定の理由が費用だけなら、作業で比べ直す。
 - **関わるページ**：モデルの選び方（三段階）（準備中）・計画・実装・サブエージェントでモデルを分ける（準備中）・すぐ上限に当たる（準備中）
@@ -462,16 +526,20 @@ updated: 2026-11-04
 
 ### Max は 5x と 20x から選ぶ {#max-5x-or-20x}
 
+古い助言（状態：置換）
+
 - **今どうするか**：個人の上位のプランは Max と Ultra（旧 Max 20x）の 2 つ。Max は 5 時間ごとと週ごとの上限を持ち、Ultra は確認済みの口座なら 5 時間の上限がなく週の上限だけ。倍率と料金はプランのページで確かめる。
 - **変わった時期**：2026-10-30
 - **状態**：置換
-- **どの原理の回避策だったか**：握る
+- **この機能が受け持つ原理**：握る
 - **かつてなぜ正しかったか**：以前は、Max の中に 5x と 20x の 2 つの段があった。
 - **自分の設定や記事で見つける方法**：記事や社内の規程で Max 5x・Max 20x の語を探す。Max 20x は今の Ultra（契約は料金そのままで移った）。今の Max は 1 つの段で、Pro の 5 倍を持つ。
 - **関わるページ**：プランの選び方（準備中）
 - **出典**：[What is the Ultra plan?](https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan)、[What is the Max plan?](https://support.claude.com/en/articles/11049741-what-is-the-max-plan)、[Claude takes research to new places](https://claude.com/resources/articles/research)、[Plans & pricing](https://claude.com/pricing)
 
 ### 有料プランは 5 時間の上限に当たったら待つしかない {#wait-out-5-hour-limit}
+
+古い助言（状態：条件付き）
 
 - **今どうするか**：確認済みの Ultra の口座には 5 時間の上限がなく、週の上限だけ。ほかの有料プランは 5 時間と週の 2 段のまま。上限に当たったら、待つほかに、usage credits を有効にして続けるか、プランを上げる手がある。Claude Code（2.1.234 以上）は、開いたままのセッションで待ち、上限が戻ると自動で作業を続ける（続けるのは 3 回まで）。
 - **変わった時期**：2026-10-30
@@ -484,18 +552,22 @@ updated: 2026-11-04
 
 ### Customize の「Skills」「Connectors」「Plugins」の各タブで管理する {#customize-tabs}
 
-- **今どうするか**：サイドバーの名前は「Plugins」に変わる途中で、変わった口座では 1 つの「Plugins」のページでプラグイン・スキル・コネクタを管理する（スキルとコネクタだけに絞り込める）。展開の途中なので、サイドバーに「Customize」が出る口座は、まだ前の画面（Skills・Connectors・Plugins の各タブ）のままである。スキルはチャットの「+」か「/」で使う。
-- **変わった時期**：2026-10-29〜2026-11-30
+古い助言（状態：置換）
+
+- **今どうするか**：サイドバーの名前は「Plugins」に変わる途中で、変わった口座では 1 つの「Plugins」のページでプラグイン・スキル・コネクタを管理する（スキルとコネクタだけに絞り込める）。展開の途中なので、サイドバーに「Customize」が出る口座は、まだ前の画面（Skills・Connectors・Plugins の各タブ）のままである。スキルはチャットの「+」か「/」で使う。Team と Enterprise で「Skills」を切っている組織は、2026-11-30 から Desktop のプラグインも止まる。
+- **変わった時期**：2026-10-29〜2026-11-30（始まり：Free・Pro・Max・Ultra・Team で順に展開が始まった日。終わり：Enterprise で既定で有効になる予定の日（2026-11-04 の時点））
 - **状態**：置換
-- **どの原理の回避策だったか**：見せる
+- **この機能が受け持つ原理**：見せる
 - **かつてなぜ正しかったか**：2026-02-25 に Claude Desktop に、スキル・プラグイン・コネクタをまとめる Customize の区画が入り、その中のタブで管理した。
-- **自分の設定や記事で見つける方法**：手順書の「Customize &gt; Skills」のような道順を探し、「Plugins」のページの道順に読み替える。自分の口座がどちらの画面かは、サイドバーに「Customize」と「Plugins」のどちらが出るかで分かる（公式の記事にも、Cowork とチャットが一つになった体験の記事のように、まだ「Customize &gt; Connectors」と書くものがある）。Team と Enterprise で「Skills」を切っている組織は、2026-11-30 から Desktop のプラグインも止まる。
+- **自分の設定や記事で見つける方法**：手順書の「Customize &gt; Skills」のような道順を探し、「Plugins」のページの道順に読み替える。自分の口座がどちらの画面かは、サイドバーに「Customize」と「Plugins」のどちらが出るかで分かる（公式の記事にも、Cowork とチャットが一つになった体験の記事のように、まだ「Customize &gt; Connectors」と書くものがある）。
 - **関わるページ**：コネクタ（MCP）をアプリで使う（準備中）・アプリでスキルを使う（準備中）・アプリでプラグインを使う（準備中）
 - **出典**：[Manage plugins, skills, and connectors from one Plugins page](https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page)、[Release notes](https://support.claude.com/en/articles/12138966-release-notes)、[Claude Cowork and chat are one Claude](https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude)
 
 ### temperature（や top\_p・top\_k）を下げて出力を安定させる {#lower-temperature}
 
-- **今どうするか**：引数を送らず、指示で振る舞いを導く。API の版 2026-10-21 では、この 3 つを送ると既定の値でも 400 エラーになる。それより前の版でも、Claude 4.7 以降のモデルは既定以外の値で 400 になる。既定以外の値を受け付けるモデル（Sonnet 4.6 など）を古い版で呼ぶときだけ今も効くが、版を上げると効き目がなくなり、代わりの設定はない。
+古い助言（状態：撤回）
+
+- **今どうするか**：引数を送らず、指示で振る舞いを導く。API の版 2026-10-21 では、この 3 つを送ると、既定の値でも 400 エラーになる。それより前の API の版でも、Claude 4.7 以降のモデルは、既定以外の値で 400 エラーになる。既定以外の値を受け付けるモデル（Sonnet 4.6 など）を古い API の版で呼ぶときだけ、今も効く。API の版を上げると効き目がなくなり、代わりの設定はない。
 - **変わった時期**：2026-10-21
 - **状態**：撤回
 - **どの原理の回避策だったか**：確かめる
@@ -506,16 +578,20 @@ updated: 2026-11-04
 
 ### スタイル（Styles）で応答の調子と形式を切り替える {#styles-for-tone}
 
+古い助言（状態：置換）
+
 - **今どうするか**：いつも同じ調子にするなら、全会話に効く Claude への指示（設定の Instructions）に書く。場面ごとに切り替えるならスキルにする。自分で作ったスタイルは移行でスキルになり、名前から作られるスラッシュコマンド（/&lt;名前&gt;-style）で呼ぶ。既定の Learning はスキルとして残った。
 - **変わった時期**：2026-06-01
 - **状態**：置換
-- **どの原理の回避策だったか**：見せる
+- **この機能が受け持つ原理**：見せる
 - **かつてなぜ正しかったか**：移行の前は、アプリのスタイルで、応答の調子と形式を会話ごとに選べた。
 - **自分の設定や記事で見つける方法**：手順書で、スタイルのメニューの操作や、既定の Concise・Explanatory・Formal を使う手順を探す。移されたスキルは既定で無効なので、有効にしたかを確かめる。
 - **関わるページ**：出力の形と分量を指定する（準備中）・アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）（準備中）・アプリでスキルを使う（準備中）・お願いと鍵の対応表（準備中）・日本語の出力を揃える：お願いで足りること、仕組みが要ること（準備中）・です・ます／だ・であるを揃える（準備中）・毎回同じ説明をしている（準備中）・文体や表記が揃わない（準備中）
 - **出典**：[Styles are moving to skills](https://web.archive.org/web/20260710101210/https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills)、[Understanding Claude's personalization features](https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features)
 
 ### コンテキストを守るためにサブエージェントに調べさせる {#subagents-to-save-context}
+
+古い助言（状態：条件付き）
 
 - **今どうするか**：溢れることはまれになったので、守るためだけには使わない。サブエージェントが今も向くのは、並べる作業、うるさい出力を本筋から離すこと、独立したレビュー。どれもトークンが余分にかかる。
 - **変わった時期**：2026-10-27 ごろ
@@ -524,6 +600,7 @@ updated: 2026-11-04
 - **かつてなぜ正しかったか**：窓が埋まりやすかったころは、調べものの長い出力を別の文脈に閉じ込めて要約だけを受け取ると、本筋の窓を守れた。改稿前の Best practices も、コンテキストが根本の制約なので調べものはサブエージェントに任せるよう勧めていた。
 - **自分の設定や記事で見つける方法**：CLAUDE.md や頼み方の型で「調べものはサブエージェントに」と一律に決めていないかを見る。/usage でサブエージェントの種類ごとの使用量を見る。
 - **関わるページ**：サブエージェントは別室の部下（準備中）・広いコンテキストウィンドウとの付き合い方（準備中）・机を整える：新鮮さ・巻き戻し・書き出し・委任（準備中）・出力の多い調査はサブエージェントに任せて要約だけ受け取る（準備中）・サブエージェントの作り方と使いどころ（準備中）・並列の方式の選び方（準備中）・並列・ループ・workflows のコスト（準備中）・長い会話で前提を忘れる・雑になる（準備中）
+- **同じ話題の行**：[「subagent を使え」と書き足す](#tell-it-to-use-subagents)・[工程ごとにサブエージェントを大量に作る](#subagent-per-step)
 - **出典**：[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿前。Internet Archive の写し、2026-10-26 19:44 UTC）](https://web.archive.org/web/20261026194435/https://code.claude.com/docs/en/best-practices)、[Best practices for Claude Code（改稿後。Internet Archive の写し、2026-10-27 08:15 UTC）](https://web.archive.org/web/20261027081520/https://code.claude.com/docs/en/best-practices)、[Create custom subagents](https://code.claude.com/docs/en/sub-agents)
 
 <!-- textlint-enable -->

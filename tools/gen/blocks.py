@@ -22,6 +22,7 @@ class Block:
     render: Callable
     anchors: Callable | None = None
     param: str = ""                            # 引数の説明（なければ引数を取らない）
+    param_optional: bool = False               # True なら引数を省ける（compare の列の指定）
 
 
 @dataclass
@@ -36,9 +37,10 @@ class Ctx:
     name: str                                  # 名前の全体
 
 
-def block(name: str, kind: str = "block", doc: str = "", anchors: Callable | None = None, param: str = ""):
+def block(name: str, kind: str = "block", doc: str = "", anchors: Callable | None = None, param: str = "",
+          param_optional: bool = False):
     def deco(fn):
-        REGISTRY[name] = Block(name, kind, doc, fn, anchors, param)
+        REGISTRY[name] = Block(name, kind, doc, fn, anchors, param, param_optional)
         return fn
     return deco
 

@@ -696,6 +696,19 @@ class PacketTests(FixtureCase):
         self.assertIn("目次の materials がない（写す材料なし）", section(self.packet("concept-a"), "6. 材料の抜き出し"))
         self.assertIn("目次の materials がない（写す材料なし）", section(self.packet("lonely"), "6. 材料の抜き出し"))
 
+    def test_type_musts_section_copies_guide_sections(self):
+        sec = section(self.packet("concept-a"), "1b. 型の必ず持つもの")
+        guide = self.read("planning/guides/concept.md")
+        for num in ("1", "2"):
+            m = re.search(rf"^## {num}\. .*?(?=^## |\Z)", guide, flags=re.M | re.S)
+            self.assertIsNotNone(m)
+            self.assertIn("#" + m.group(0).rstrip(), sec)
+        self.assertNotIn("## 3.", sec)
+
+    def test_type_musts_section_for_a_type_without_guide(self):
+        sec = section(self.packet("feat-a"), "1b. 型の必ず持つもの")
+        self.assertEqual(sec.rstrip().split("\n")[2:], ["この型の手引きはない"])
+
     def test_guides_section_names_the_two_guides_and_the_report_place(self):
         sec = section(self.packet("sym-a"), "7. 書き方")
         self.assertIn("planning/guides/card.md", sec)
@@ -798,7 +811,7 @@ class PacketTests(FixtureCase):
         self.assertEqual(code, 0, err)
         size = len(self.read("state/packets/sym-a.md"))
         self.assertIn(f"sym-a: {size} 字（", out)
-        self.assertRegex(out, r"sym-a: \d+ 字（\d+／\d+／\d+／\d+／\d+／\d+／\d+）｜材料 4 項目（見つかった 1・一部 1・見つからない 1・対象外 1・切った写し 0）｜1項目 3000 字")
+        self.assertRegex(out, r"sym-a: \d+ 字（\d+／\d+／\d+／\d+／\d+／\d+／\d+／\d+）｜材料 4 項目（見つかった 1・一部 1・見つからない 1・対象外 1・切った写し 0）｜1項目 3000 字")
         self.assertIn("lonely:", out)
         self.assertRegex(out, r"計 2 束：最小 \d+・最大 \d+・合計 \d+ 字｜見つからない 1・一部 1・対象外 1")
         code, out, _ = self.run_tool("sym-a")

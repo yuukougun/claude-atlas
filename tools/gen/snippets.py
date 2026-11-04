@@ -18,7 +18,12 @@ verified.yaml の形（案。雛形の動作の検証役か check_templates.py -
     channel: latest              # latest か stable
     models: [claude-opus-5-5]
     os: WSL2 Ubuntu 24.04
-expect.yaml から読むのは title（折りたたみの題。なければ名前）と features（要る最低の版の元。なければ tracks）だけ。
+expect.yaml から道具が読むのは次の4つだけ（ほかのキーは書き手の記録。形は planning/guides/card.md §10）:
+  title             折りたたみの題。なければ名前
+  features          要る最低の版の元（機能の id のリスト。since.claude_code のうち新しいもの）。なければページの tracks
+  min_version_fact  要る最低の版を、data/facts.yml の facts の id で指す。features・tracks の since より優先
+  open              true なら折りたたみを開いた状態（???+）で出す。省くと閉じる（???）
+  safety            true なら、守りとして頼る前に自分の環境で確かめるよう促す一文を添える
 """
 from __future__ import annotations
 
@@ -61,6 +66,25 @@ def min_version(gen, feature_ids: list[str]) -> str:
         if key is not None and (best_key is None or key > best_key):
             best, best_key = ver, key
     return best
+
+
+def _fact_version(gen, host: str, where: str, fid: str) -> str:
+    """expect.yaml の min_version_fact（facts の id）が指す版。なければ・確認済みでなければ空（注意に出す）。"""
+    if not fid:
+        return ""
+    data = gen.atlas.data
+    item = data.facts.get(fid) if data is not None else None
+    if item is None:
+        gen.note(f"{host}: {where} の min_version_fact「{fid}」が data/facts.yml の facts にない（features の版にした）")
+        return ""
+    if not gen.is_confirmed(item):
+        gen.note(f"{host}: {where} の min_version_fact「{fid}」は確認済みでない（features の版にした）")
+        return ""
+    value = item.raw.get("value")
+    if isinstance(value, str) or isinstance(value, (int, float)) and not isinstance(value, bool):
+        return as_text(str(value))
+    gen.note(f"{host}: {where} の min_version_fact「{fid}」の value が版の文字でない（features の版にした）")
+    return ""
 
 
 def fence_for(text: str) -> str:
@@ -114,7 +138,10 @@ def b_snippet(ctx) -> str:
     if as_text(str(result.get("date") or "")):
         env.append(str(result.get("date")))
     feats = as_strings(expect.get("features")) or (ctx.page.tracks if ctx.page is not None else [])
-    need = min_version(gen, feats)
+    need = _fact_version(gen, ctx.host, f"{shown}/{name}.expect.yaml", as_text(expect.get("min_version_fact"))) or \
+        min_version(gen, feats)
+    if expect.get("open") is True and fold.startswith("???") and not fold.startswith("???+"):
+        fold = "???+" + fold[3:]
     tail = []
     if not passed:
         tail.append(cfg.text("snippets", "unverified", "動作を確かめていない雛形").rstrip("。"))

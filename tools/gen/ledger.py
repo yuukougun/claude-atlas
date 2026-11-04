@@ -1,7 +1,11 @@
 """古くなった助言の台帳と、変更の記録（年表）。design §7・§9.1・DR-18、README の判断「台帳の行を指す形」。
 
+  <!-- gen:begin ledger-index --> 台帳の一覧表：古い助言（行へのリンク）・状態・変わった時期・面。台帳の行と同じページに置く
   <!-- gen:begin ledger -->     台帳の行（data/outdated-advice.yml の advice。ファイルの順）。行ごとに見出し
-                               「### 古い助言 {#<台帳の id>}」を置き、ほかのページは outdated-advice-ledger#<台帳の id> で指す
+                               「### 古い助言 {#<台帳の id>}」を置き、ほかのページは outdated-advice-ledger#<台帳の id> で指す。
+                               見出しの直下に「古い助言（状態：…）」の1行、時期の後に changed.label の（…）、
+                               名前や画面だけが変わった行（name か principle_kind: feature）は原理の欄の見出しを替え、
+                               see_also の行へのリンクを「同じ話題の行」として出す
   <!-- gen:begin timeline -->   年表：data の names（名前の変更）と advice（変わった時期のある行）を、時期の順に
 
 名前と画面の変更の行（advice の name）は、data/facts.yml の names の時期を引く（二か所に持たない。DR-18）。
@@ -27,6 +31,15 @@ def advice_changed(gen, item) -> dict | None:
     return ch if isinstance(ch, dict) else None
 
 
+def period_with_label(gen, ch) -> str:
+    """時期（period_text）の後に、読者に見せる注 changed.label を（…）で付ける。時期がなければ何も付けない。"""
+    text = period_text(gen, ch)
+    label = ch.get("label") if isinstance(ch, dict) else None
+    if text and isinstance(label, str) and label.strip():
+        text += f"（{md_text(label.strip())}）"
+    return text
+
+
 def _ledger_anchors(gen, page, param):
     data = gen.atlas.data
     return {a.id for a in data.entries("advice") if a.id} if data is not None else set()
@@ -49,13 +62,16 @@ def b_ledger(ctx) -> str:
         if a.text("name") and data.names.get(a.text("name")) is None:
             gen.note(f"{ctx.host}: 台帳の行「{a.id}」の name「{a.text('name')}」が data/facts.yml の names にない")
         out += [f"### {md_text(a.text('title') or a.id)} {{#{a.id}}}", ""]
+        out += [word("stale", "古い助言（状態：{status}）").replace("{status}", md_text(a.text("status"))), ""]
         rows = [(word("now", "今どうするか"), md_text(a.text("now")))]
-        period = period_text(gen, advice_changed(gen, a))
+        period = period_with_label(gen, advice_changed(gen, a))
         if period:
             rows.append((word("changed", "変わった時期"), period))
         rows.append((word("status", "状態"), md_text(a.text("status"))))
         if a.strings("principle"):
-            rows.append((word("principle", "どの原理の回避策だったか"), "・".join(md_text(x) for x in a.strings("principle"))))
+            feature_only = a.has("name") or a.text("principle_kind") == "feature"
+            key = word("principle_feature", "この機能が受け持つ原理") if feature_only else word("principle", "どの原理の回避策だったか")
+            rows.append((key, "・".join(md_text(x) for x in a.strings("principle"))))
         if a.text("why_then"):
             rows.append((word("why_then", "かつてなぜ正しかったか"), md_text(a.text("why_then"))))
         if a.text("how_to_find"):
@@ -63,10 +79,37 @@ def b_ledger(ctx) -> str:
         pages = gen.advice_pages.get(a.id, [])
         if pages:
             rows.append((word("pages", "関わるページ"), "・".join(gen.page_link(ctx.host, p) for p in pages)))
+        also = []
+        for sid in a.strings("see_also"):
+            other = next((x for x in items if x.id == sid), None)
+            if other is None:
+                gen.note(f"{ctx.host}: 台帳の行「{a.id}」の see_also「{sid}」が台帳にない")
+                continue
+            also.append(f"[{md_text(other.text('title') or sid)}](#{sid})")
+        if also:
+            rows.append((word("see_also", "同じ話題の行"), "・".join(also)))
         if a.strings("sources"):
             rows.append((word("sources", "出典"), sources_line(gen, ctx.host, a.strings("sources"))))
         out += [f"- **{md_text(k)}**：{v}" for k, v in rows if v] + [""]
     return "\n".join(out).rstrip("\n")
+
+
+@block("ledger-index", doc="古くなった助言の一覧表：古い助言（台帳の行へのリンク）・状態・変わった時期・面（台帳の行と同じページに置く）")
+def b_ledger_index(ctx) -> str:
+    gen = ctx.gen
+    data = gen.atlas.data
+    items = [a for a in (data.entries("advice") if data is not None else []) if a.id]
+    if not items:
+        return gen.text("empty", "（まだない）")
+    word = lambda key, default: gen.config.text("ledger", key, default)   # noqa: E731
+    head = [word("index_title", "古い助言"), word("status", "状態"), word("changed", "変わった時期"), word("index_surfaces", "面")]
+    out = ["| " + " | ".join(head) + " |", "| " + " | ".join("---" for _ in head) + " |"]
+    for a in items:
+        surfaces = "・".join(gen.label("surfaces", s) for s in a.strings("surfaces")) or "—"
+        period = period_text(gen, advice_changed(gen, a)) or "—"
+        title = md_text(a.text("title") or a.id, True)
+        out.append(f"| [{title}](#{a.id}) | {md_text(a.text('status'), True)} | {period} | {md_text(surfaces, True)} |")
+    return "\n".join(out)
 
 
 @block("timeline", doc="変更の記録（年表）：名前の変更（names）と台帳の行（advice）を、変わった時期の順に")

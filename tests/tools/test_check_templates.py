@@ -15,6 +15,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import yaml
+
 REPO = Path(__file__).resolve().parents[2]
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "checks"
 sys.path.insert(0, str(REPO / "tools"))
@@ -99,6 +101,21 @@ class TestTemplates(TemplatesCase):
         self.write("snippets/hooks-basics/settings.expect.yaml", "- a list\n")
         issues = self.assertFound(("期待の形", "hooks-basics"))
         self.assertEqual(len(issues), 2)
+
+    def test_expectation_min_version_fact_and_open(self):
+        self.write("snippets/hooks-basics/settings.json", GOOD_SETTINGS)
+        fact = next(iter(yaml.safe_load((self.root / "data/facts.yml").read_text(encoding="utf-8"))["facts"]))["id"]
+        self.write("snippets/hooks-basics/settings.expect.yaml", f"min_version_fact: {fact}\nopen: true\n")
+        self.assertFound()
+        self.write("snippets/hooks-basics/settings.expect.yaml", "min_version_fact: no-such-fact\nopen: yes-please\n")
+        issues = self.assertFound(("期待の形", "hooks-basics"))
+        self.assertEqual(len(issues), 2)
+
+    def test_skill_overrides_is_a_known_settings_key(self):
+        good = json.loads(json.dumps(GOOD_SETTINGS))
+        good["skillOverrides"] = {"some-skill": "off"}
+        self.write("snippets/hooks-basics/local-settings.json", good)
+        self.assertFound()
 
     @covers("スキルの front matter")
     def test_skill_front_matter(self):

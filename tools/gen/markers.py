@@ -72,7 +72,7 @@ def wrap_block(content: str, indent: str) -> str:
 def render_marker(gen, base: dict, mk, body: str, where: str) -> str | None:
     """目印1つの間に置く文字（書かないときは None）。"""
     if mk.kind == "link":
-        return gen.ref_link(base["host"], mk.arg) if mk.arg else None
+        return gen.ref_link(base["host"], mk.arg) if mk.arg else None   # field:<分野の id> は gen.ref_link が分野の入口にする
     if mk.kind == "fact":
         from .facts import fact_text            # 循環を避ける
         return fact_text(gen, base["host"], mk.arg) if mk.arg else None
@@ -83,7 +83,7 @@ def render_marker(gen, base: dict, mk, body: str, where: str) -> str | None:
     if param and not blk.param:
         gen.note(f"{where}:{mk.line}: 生成の部分「{blk.name}」は引数を取らない（「{mk.arg}」。書かずに残した）")
         return None
-    if blk.param and not param:
+    if blk.param and not param and not blk.param_optional:
         gen.note(f"{where}:{mk.line}: 生成の部分「{blk.name}」に引数（{blk.param}）がない（書かずに残した）")
         return None
     head, tail = _line_bounds(body, mk.start, mk.inner_start)

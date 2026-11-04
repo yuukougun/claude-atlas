@@ -5,6 +5,7 @@ advice:
     now: 試験用の今どうするか
     changed: {date: 2026-10-27, approx: true}
     status: 撤回
+    surfaces: [claude-code]
     principle: [縛る]
     sources: [sample-doc]
     checked: 2026-10-28
@@ -13,6 +14,7 @@ advice:
     now: 新しい名前を使う
     name: sample-rename
     status: 置換
+    surfaces: [claude-code]
     principle: [見せる]
     sources: [sample-doc]
     checked: 2026-10-30

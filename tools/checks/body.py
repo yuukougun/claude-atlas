@@ -15,7 +15,7 @@ import posixpath
 import re
 from typing import Iterator
 
-from lib.base import Ref
+from lib.base import FIELD_PREFIX, Ref
 from lib.markdown import mask_code_spans
 
 from .context import Context
@@ -371,6 +371,14 @@ def _site_url(ctx: Context) -> str:
     return ""
 
 
+def _ledger_ids(ctx: Context, page) -> set[str]:
+    """台帳の行の id（data/outdated-advice.yml の advice）。台帳を生成するページ（gen:begin ledger を持つ）を指すときだけ返す。"""
+    data = ctx.data
+    if data is None or not any(m.kind == "gen" and m.arg.split()[:1] == ["ledger"] for m in getattr(page, "markers", [])):
+        return set()
+    return {a.id for a in data.entries("advice") if a.id}
+
+
 @check("link の目印", ERROR)
 def check_link_markers(ctx: Context) -> Iterator[Finding]:
     """本文の link の目印（<!-- link:begin <id>[#<anchor>] -->）の id のページがない。#anchor が相手の sections にない
@@ -381,10 +389,18 @@ def check_link_markers(ctx: Context) -> Iterator[Finding]:
         for m in p.markers:
             if m.kind != "link" or not m.arg:
                 continue
+            if m.arg.strip().startswith(FIELD_PREFIX):
+                field = m.arg.strip()[len(FIELD_PREFIX):].strip()
+                if field not in ctx.site.fields:
+                    yield Finding(p.file, m.line, p.label, f"link の目印の「{m.arg}」の分野が schema/site.yml の fields にない"
+                                                           f"（あるのは {joined(ctx.site.fields)}）")
+                continue
             ref = Ref.parse(m.arg)
             q = ctx.page(ref.target)
             if q is None:
                 yield Finding(p.file, m.line, p.label, f"link の目印の「{m.arg}」のページがない", frozenset({ref.target}))
+            elif ref.anchor is not None and ref.anchor in _ledger_ids(ctx, q):
+                continue                       # 台帳のページを outdated-advice-ledger#<行の id> で指す（行の id が anchor になる）
             elif ref.anchor is not None and ref.anchor not in q.anchors():
                 have = f"あるのは {joined(q.anchors())}" if q.anchors() else "sections がない"
                 yield Finding(p.file, m.line, p.label, f"link の目印の「{m.arg}」: {q.id} の sections に anchor「{ref.anchor}」が"

@@ -204,8 +204,8 @@ class TestMarkers(GenCase):
         self.assertTrue(block.startswith("\n<!-- textlint-disable -->\n\n| 原因 | 対処のページ（近い順） |"))
         rows = [x for x in block.split("\n") if x.startswith("| ") and "---" not in x][1:]
         self.assertEqual(rows, ["| 散らかっている | CLAUDE.md に何を書くか（準備中） |",               # site.yml の原因の順
-                                "| 縛っていない | [フック（hooks）の基本 › 終了コード](../enforce/hooks-basics.md#exit-codes)・"
-                                "安全なフックの書き方（準備中） |"])
+                                "| 縛っていない | [フック（hooks）の基本 › 終了コード](../enforce/hooks-basics.md#exit-codes)<br>"
+                                "安全なフックの書き方（準備中） |"])    # 行き先は1つずつセルの中で改行（<br>）
 
     def test_page_bottom_and_references_are_added(self):
         text = self.read("docs/symptoms/instructions-ignored.md")

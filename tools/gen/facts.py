@@ -5,8 +5,10 @@
   <!-- gen:begin fact-table <id> -->                         facts の table の全体を表にする
   <!-- gen:begin feature <属性> -->（文の中）               ページの tracks の最初の機能の属性（強制力など）
   <!-- gen:begin feature <機能の id>/<属性> -->（文の中）    指定した機能の属性
-  <!-- gen:begin compare -->                                ページの tracks の機能の比較の表（属性は値のあるものだけ。
-                                                            並びは作る層の設定の labels.feature_keys）
+  <!-- gen:begin compare [<列> …] -->                        ページの tracks の機能の比較の表。列は属性の id（enforcement）か
+                                                            表示の名前（強制力）か 確認日。省くと値のある属性だけ（並びは作る層の
+                                                            設定の labels.feature_keys）。全行が同じ値の列は表から省き、表の下に
+                                                            「すべて共通：…」の1行で出す
 
 決まった文（sentence）は {value}・{unit}・{checked} を埋める。sentence がなければ「{value} {unit}」、どちらも確認日を
 含まなければ「（{checked} 時点）」を足す（design §6.7：数値と決まった文と確認日を道具が書く）。
@@ -131,21 +133,44 @@ def b_fact_table(ctx) -> str:
         title = as_text(c.get("title")) if isinstance(c, dict) else ""
         cols.append((str(cid), title or surfaces.get(str(cid), str(cid))))
     rows = []
+    row_sources: list[tuple[str, list[tuple[str, list[str]]]]] = []      # (行の名前, [(列の題, セルの出典の id)])
     for cell in t.get("cells") or []:
         if isinstance(cell, dict):
             rows.append([md_text(cell.get("row"), True)] + [value_text(gen, cell.get(c), table_cell=True) for c, _ in cols])
+            per = [(title, as_strings(cell[c].get("sources"))) for c, title in cols
+                   if isinstance(cell.get(c), dict) and as_strings(cell[c].get("sources"))]
+            if per:
+                row_sources.append((md_text(cell.get("row")), per))
     out = table([md_text(as_text(t.get("rows")), True)] + [md_text(title, True) for _, title in cols], rows)
     tail = [f"{gen.config.text('references', 'checked', '確認日')} {item.text('checked')}"]
-    if item.strings("sources"):
+    if item.strings("sources") and not row_sources:
         tail.append(f"{gen.text('sources', '出典')}：" + sources_line(gen, ctx.host, item.strings("sources")))
     for c in item.parts("conflict"):
         tail.append(f"{gen.text('conflict', '食い違い')}：" + value_text(gen, c.get("value")) + "（" + sources_line(gen, ctx.host, as_strings(c.get("sources")))
                     + (f"。{md_text(as_text(c.get('note')))}" if as_text(c.get("note")) else "") + "）")
-    return out + "\n\n" + "。".join(tail) + "。"
+    out += "\n\n" + "。".join(tail) + "。"
+    if row_sources:
+        out += "\n\n" + gen.text("sources", "出典") + "（" + gen.text("per_row", "行ごと") + "）：\n\n" + \
+            "\n".join(_row_sources_line(gen, ctx.host, name, per) for name, per in row_sources)
+        used = {s for _, per in row_sources for _, ids in per for s in ids}
+        rest = [s for s in item.strings("sources") if s not in used]
+        if rest:
+            out += f"\n\n{gen.text('other_sources', 'そのほかの出典')}：" + sources_line(gen, ctx.host, rest) + "。"
+    return out
 
 
-def feature_value(gen, key: str, v, table_cell: bool = False) -> str:
-    """機能の属性の値を表示の文字にする。"""
+def _row_sources_line(gen, host: str, name: str, per: list[tuple[str, list[str]]]) -> str:
+    """行ごとの出典の1行。その行のセルの出典がすべて同じなら「行：出典」、違えば「行：列の題 出典；列の題 出典」。"""
+    if all(ids == per[0][1] for _, ids in per):
+        return f"- {name}：" + sources_line(gen, host, per[0][1])
+    return f"- {name}：" + "；".join(f"{md_text(title)} " + sources_line(gen, host, ids) for title, ids in per)
+
+
+def feature_value(gen, key: str, v, table_cell: bool = False, feat=None) -> str:
+    """機能の属性の値を表示の文字にする。値が null で、機能の conditional にその属性があれば「条件による」
+    （条件で値が変わる）、conditional になければ「未確認」など（確かめていない。属性ごとの言葉は labels.<属性>.null）。"""
+    if v is None and feat is not None and key in feat.strings("conditional"):
+        return gen.text("conditional", "条件による")
     if key == "surfaces":
         return "・".join(gen.label("surfaces", s) for s in as_strings(v)) or "—"
     if key == "since" and isinstance(v, dict):
@@ -173,10 +198,38 @@ def b_feature(ctx) -> str:
     if key not in gen.config.labels("feature_keys") and key not in FEATURE_KEYS_DEFAULT:
         gen.note(f"{ctx.host}: 生成の部分「{ctx.name}」の属性「{key}」は機能の属性でない（空にした）")
         return ""
-    return feature_value(gen, key, feat.raw.get(key))
+    return feature_value(gen, key, feat.raw.get(key), feat=feat)
 
 
-@block("compare", doc="比較の表：ページの tracks の機能の属性（data/facts.yml の features。値のある属性だけ）")
+CHECKED_KEY = "checked"      # compare の列の指定で確認日を指す id（表示の名前は references.checked の「確認日」）
+
+
+def _compare_columns(ctx, names: dict[str, str], feats: list) -> list[str]:
+    """compare の列（属性の id と CHECKED_KEY の並び）。目印の引数があればそれ（属性の id か表示の名前か確認日）、
+    なければ値のある属性（または conditional で挙げた属性）と確認日。"""
+    gen = ctx.gen
+    checked_word = gen.config.text("references", "checked", "確認日")
+    if not ctx.param.strip():
+        confirmed = [f for f in feats if gen.is_confirmed(f)]
+        keys = [k for k in names if any(f.raw.get(k) is not None or k in f.strings("conditional") for f in confirmed)]
+        return keys + [CHECKED_KEY]
+    by_label = {v: k for k, v in names.items()}
+    cols: list[str] = []
+    for tok in ctx.param.split():
+        key = tok if tok in names else by_label.get(tok)
+        if key is None and tok in (CHECKED_KEY, checked_word):
+            key = CHECKED_KEY
+        if key is None:
+            gen.note(f"{ctx.host}: 比較の表の列「{tok}」は機能の属性でも確認日でもない（列にしない。"
+                     f"使えるのは {'・'.join(names.values())}・{checked_word}）")
+        elif key not in cols:
+            cols.append(key)
+    return cols
+
+
+@block("compare", param="[<列> …]", param_optional=True,
+       doc="比較の表：ページの tracks の機能の属性（data/facts.yml の features）。列は属性の id か表示の名前か確認日で指す"
+           "（省くと値のある属性と確認日）。全行が同じ値の列は表から省き、表の下に「すべて共通：…」の1行で出す")
 def b_compare(ctx) -> str:
     gen = ctx.gen
     page = ctx.page
@@ -190,17 +243,28 @@ def b_compare(ctx) -> str:
             feats.append(f)
     if not feats:
         return gen.text("empty", "（まだない）")
-    keys = [k for k in names if any(f.raw.get(k) is not None for f in feats if gen.is_confirmed(f))]
-    header = [md_text(gen.text("feature_column", "機能"), True)] + [md_text(names[k], True) for k in keys] + \
-        [md_text(gen.config.text("references", "checked", "確認日"), True)]
-    rows = []
+    keys = _compare_columns(ctx, names, feats)
+    if not keys:
+        return gen.text("empty", "（まだない）")
+    heads = {k: md_text(gen.config.text("references", "checked", "確認日") if k == CHECKED_KEY else names[k], True) for k in keys}
+    rows = []                                   # 行ごとの {列: 表示の文字}
     for f in feats:
+        if gen.is_confirmed(f):
+            cell = {k: (f.text("checked") or "—") if k == CHECKED_KEY else feature_value(gen, k, f.raw.get(k), True, f) for k in keys}
+        else:
+            cell = {k: (f.text("checked") or "—") if k == CHECKED_KEY else unchecked(gen) for k in keys}
+        rows.append(cell)
+    common = [k for k in keys if len(rows) > 1 and len({r[k] for r in rows}) == 1]
+    if len(common) == len(keys):
+        common = []                             # 全部が共通なら、表の中身がなくなるので省かない
+    shown = [k for k in keys if k not in common]
+    out_rows = []
+    for f, cell in zip(feats, rows):
         main = gen.atlas.by_id.get(f.text("page"))
         name = gen.page_link(ctx.host, main, table=True, text=md_text(f.text("title") or f.id, True)) if main else \
             md_text(f.text("title") or f.id, True)
-        if gen.is_confirmed(f):
-            cells = [feature_value(gen, k, f.raw.get(k), True) for k in keys]
-        else:
-            cells = [unchecked(gen)] * len(keys)
-        rows.append([name] + cells + [f.text("checked") or "—"])
-    return table(header, rows)
+        out_rows.append([name] + [cell[k] for k in shown])
+    out = table([md_text(gen.text("feature_column", "機能"), True)] + [heads[k] for k in shown], out_rows)
+    if common:
+        out += "\n\n" + gen.text("common", "すべて共通") + "：" + "、".join(f"{heads[k]} {rows[0][k]}" for k in common) + "。"
+    return out

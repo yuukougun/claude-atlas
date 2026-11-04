@@ -500,3 +500,14 @@
     linear-gradient(to left, var(--ca-scroll-shadow), transparent) right / 0.9em 100% no-repeat scroll;
 }
 .md-typeset .md-typeset__table table:not([class]) { background-color: transparent; }
+
+/* ---------- 頼み方の例文などの折り返し（工程7の判断 #41） ---------- */
+/* text・markdown のコードブロックは、プログラムではなく文章（頼み方の例文など）なので、狭い画面でも横に送らず折り返す。
+   プログラムのコード（bash・json・python など）は今までどおり横に送る */
+.md-typeset .highlight.language-text pre,
+.md-typeset .highlight.language-markdown pre,
+.md-typeset .highlight.language-text code,
+.md-typeset .highlight.language-markdown code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

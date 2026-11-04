@@ -42,7 +42,7 @@ DECISIONS = PLANNING / "decisions.md"
 DESIGN_REVIEW = PLANNING / "design-review.md"
 RESEARCH = PLANNING / "research"
 CARD = GUIDES / "card.md"
-CARD_MAX_LINES = 200
+CARD_MAX_LINES = 230   # 2026-11-05：200 から上げた（工程7の道具の直しで、目印の列の指定・expect.yaml の形・型の必ず持つものを足した。decisions-main）
 NOT_TYPE_GUIDES = {"README.md", "common.md", "card.md"}
 
 # 節の番号で指す文書（指すときの語 → ファイル）
@@ -270,7 +270,7 @@ class CheckMarks(unittest.TestCase):
 
 class Card(unittest.TestCase):
     def test_card_is_short(self):
-        self.assertLessEqual(len(read(CARD).splitlines()), CARD_MAX_LINES, "執筆カードは 200 行以内にする")
+        self.assertLessEqual(len(read(CARD).splitlines()), CARD_MAX_LINES, "執筆カードは 230 行以内にする")
 
     def test_every_card_section_cites_its_source(self):
         for n, line in lines_outside_code(read(CARD)):

@@ -136,7 +136,7 @@ class TestMarkerEdgeCases(GenCase):
         self.replace("docs/enforce/hooks-basics.md", "## 終了コード {#exit-codes}", "## 終了コード")
         out = self.generate()
         block = block_content(self.read("docs/symptoms/instructions-ignored.md"), "routes")
-        self.assertIn("[フック（hooks）の基本 › 終了コード](../enforce/hooks-basics.md)・", block)   # ページへのリンクにした
+        self.assertIn("[フック（hooks）の基本 › 終了コード](../enforce/hooks-basics.md)<br>", block)   # ページへのリンクにした
         self.assertIn("hooks-basics#exit-codes の見出しが hooks-basics の本文にない", out)
 
     def test_facts_errors(self):

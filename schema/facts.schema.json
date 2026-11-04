@@ -220,6 +220,12 @@
             "type": ["boolean", "null"],
             "x-message": "true か false にする"
           },
+          "conditional": {
+            "description": "値が null の属性のうち、確かめていないのでなく条件で値が変わるもの（属性の id のリスト。compare と feature の目印は「条件による」と出す。書かない null は「未確認」）",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
+          },
           "since": {
             "description": "入った版と時期（雛形が要る最低の版を道具が書く。design §8.7）",
             "type": "object",
@@ -328,6 +334,12 @@
                 "type": "string",
                 "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
                 "x-message": "版（2.1.317 の形の文字列）にする"
+              },
+              "label": {
+                "description": "読者に見せる短い注。台帳の行の時期の後に（…）で付く",
+                "type": "string",
+                "minLength": 1,
+                "x-message": "空でない文字列（平文）にする"
               },
               "note": {"type": "string", "minLength": 1, "x-message": "空でない文字列（平文）にする"}
             }

@@ -5,6 +5,7 @@ advice:
     now: 守らせたい規則はフックに移す
     changed: {date: 2026-03, approx: true}
     status: 置換
+    surfaces: [claude-code]
     principle: [縛る]
     why_then: 試験用の理由
     how_to_find: 試験用の見つけ方
@@ -15,6 +16,7 @@ advice:
     now: フックで止める
     name: sample-rename
     status: 置換
+    surfaces: [claude-code]
     principle: [縛る]
     sources: [sample-blog]
     checked: 2026-10-01

@@ -134,7 +134,7 @@ def check_template_syntax(ctx: Context) -> Iterator[Finding]:
 @check("期待の形", ERROR, TEMPLATES)
 def check_expectations(ctx: Context) -> Iterator[Finding]:
     """<名前>.expect.yaml と verified.yaml が YAML のマッピングでない。<名前>.expect.yaml と同じ名前の雛形がない
-    （中の項目の形は試作で決める）"""
+    （中の項目の形は planning/guides/card.md §10。min_version_fact の id と open の型も見る）"""
     files = snippet_files(ctx)
     stems = {(t.page, str(Path(t.rel).parent), t.path.stem) for t in files
              if not t.name.endswith(EXPECT_SUFFIX) and t.name != VERIFIED_NAME}
@@ -144,6 +144,11 @@ def check_expectations(ctx: Context) -> Iterator[Finding]:
         doc = read_yaml(t.path)
         if doc.error is None and not isinstance(doc.data, dict):
             yield finding(t, "YAML のマッピングにする")
+        fid = doc.data.get("min_version_fact") if t.name.endswith(EXPECT_SUFFIX) and isinstance(doc.data, dict) else None
+        if fid is not None and ctx.data is not None and str(fid) not in ctx.data.facts:
+            yield finding(t, f"min_version_fact の「{fid}」が data/facts.yml の facts にない")
+        if isinstance(doc.data, dict) and doc.data.get("open") not in (None, True, False):
+            yield finding(t, "open は true か false にする")
         if t.name.endswith(EXPECT_SUFFIX):
             stem = t.name[:-len(EXPECT_SUFFIX)]
             if (t.page, str(Path(t.rel).parent), stem) not in stems:

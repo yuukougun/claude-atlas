@@ -6,6 +6,7 @@ advice:
     date: '2026-01-09'
     version: 2.1.3
   status: 置換
+  surfaces: [claude-code]
   principle:
   - 見せる
   why_then: かつては効いた。

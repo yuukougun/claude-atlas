@@ -1,7 +1,8 @@
 """症状のページの routes から書くもの（design §8.3・§8.4・DR-02）。
 
   <!-- gen:begin routes -->  症状のページの診断の節：原因ごとの振り分け先の表（原因は site.yml の prevents・pitfalls の
-                            並び＝安く確かめられる順。振り分け先は routes の to の順＝近い順。未公開は「題名（準備中）」）
+                            並び＝安く確かめられる順。振り分け先は routes の to の順＝近い順で、セルの中で1つずつ改行（<br>）。
+                            未公開は「題名（準備中）」）
   <!-- gen:begin causes -->  失敗の二つの軸のページ（six-causes）：原因ごとに、その原因へ振り分ける公開の症状のページ
 """
 from __future__ import annotations
@@ -32,7 +33,7 @@ def b_routes(ctx) -> str:
     rows = []
     for r in ordered:
         links = [gen.ref_link(ctx.host, ref, table=True) for ref in r.to]
-        rows.append([md_text(r.cause, True), "・".join(links) or "—"])
+        rows.append([md_text(r.cause, True), "<br>".join(links) or "—"])   # 行き先は1つずつセルの中で改行する
     return table([md_text(cfg.text("routes", "cause", "原因"), True), md_text(cfg.text("routes", "to", "対処のページ（近い順）"), True)],
                  rows)
 

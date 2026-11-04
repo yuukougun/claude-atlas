@@ -61,6 +61,10 @@ labels:
   as_of: 時点                    # 数値の決まった文の既定「{value} {unit}（{checked} 時点）」
   none: なし                     # ページ下部の前提がないとき
   empty: （まだない）            # 生成の部分に載せるものがないとき
+  common: すべて共通             # 比較の表で、全行が同じ値の列を省いて表の下の1行に出すときの頭（gen:begin compare）
+  conditional: 条件による        # features の conditional に挙げた属性が null のとき（条件で値が変わる。null の「未確認」と分ける）
+  per_row: 行ごと                # 表のセルの sources を行ごとに出すときの「出典（行ごと）」
+  other_sources: そのほかの出典  # 行ごとの出典に出なかった、項目の sources
   more: ほか {n} ページ          # ページ下部の「次に読む」を切ったとき
   other_group: そのほか          # 逆引きで、分けられない行の節
   snippet_pending: 雛形「{name}」は準備中。   # 雛形のファイルがない・読めないとき（decisions 2026-11-04「雛形の動作確認」）

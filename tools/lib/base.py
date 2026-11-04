@@ -106,6 +106,8 @@ def partial_date_key(v) -> tuple[int, ...] | None:
 
 # ---------------------------------------------------------------- 参照
 
+FIELD_PREFIX = "field:"      # link の目印で分野の入口を指す形（field:<分野の id>）。ページの id は英小文字・数字・ハイフンなので重ならない
+
 
 @dataclass(frozen=True)
 class Ref:

@@ -80,7 +80,20 @@ updated: 2026-11-05
 | AtCoder 短期 AHC（Heuristic Contest） | 未確認 | 未確認 |
 | Codeforces | 未確認 | 未確認 |
 
-確認日 2026-11-04。出典：[AtCoder 公式 X：長期AHC生成AI利用ルール検証コンテスト開催のお知らせ（2026-10-15）](https://x.com/atcoder/status/2110637070117224505)、[AtCoder 公式 X：今後の長期AHCの開催形式について（2026-10-21）](https://x.com/atcoder/status/2112818192007754017)、[AtCoder 公式 X：AHC074 の開催のお知らせ（2026-10-30）](https://x.com/atcoder/status/2116092762827509984)、[AtCoder 公式 X：生成AIの技術向上に伴うABCおよびARCにおけるルール変更について（2024-11-15）](https://x.com/atcoder/status/1857413796391981490)、[AtCoder 公式 X：生成AI対策ルールの変更の告知（ABC426 から適用。2025-10-04）](https://x.com/atcoder/status/1974339453234917615)、[IEEEXtreme Rules（IEEEXtreme 20.0 の AI-Permitted and AI-Prohibited Tasks の節を含む）](https://ieeextreme.org/rules/)、[ISUCON2026 レギュレーション](https://isucon.net/archives/59966826.html)、[U-22プログラミング・コンテスト2026 応募受付開始！締切は8月31日](https://prtimes.jp/main/html/rd/p/000000251.000013310.html)、[The 4th Universal Cup Semifinals](https://contest.ucup.ac/blog/qingyu/blog/4263)、[ICPC Europe Championship 2026 — Official Rules](https://euc.icpc.global/home-2026/rules/)、[第37回全国高等専門学校プログラミングコンテスト 香川（高松）大会（トップページ）](https://www.procon.gr.jp/)。
+確認日 2026-11-04。
+
+出典（行ごと）：
+
+- AtCoder 長期 AHC（Heuristic Contest）：[AtCoder 公式 X：今後の長期AHCの開催形式について（2026-10-21）](https://x.com/atcoder/status/2112818192007754017)
+- IEEEXtreme 20.0：[IEEEXtreme Rules（IEEEXtreme 20.0 の AI-Permitted and AI-Prohibited Tasks の節を含む）](https://ieeextreme.org/rules/)
+- ISUCON2026：[ISUCON2026 レギュレーション](https://isucon.net/archives/59966826.html)
+- U-22 プログラミング・コンテスト2026：[U-22プログラミング・コンテスト2026 応募受付開始！締切は8月31日](https://prtimes.jp/main/html/rd/p/000000251.000013310.html)
+- ICPC EUC 2026（Europe Championship）：[ICPC Europe Championship 2026 — Official Rules](https://euc.icpc.global/home-2026/rules/)
+- 高専プロコン 第37回（全国高等専門学校プログラミングコンテスト）：[第37回全国高等専門学校プログラミングコンテスト 香川（高松）大会（トップページ）](https://www.procon.gr.jp/)
+- Universal Cup 第4回準決勝：[The 4th Universal Cup Semifinals](https://contest.ucup.ac/blog/qingyu/blog/4263)
+- AtCoder ABC・ARC・AGC（Beginner・Regular・Grand Contest）：[AtCoder 公式 X：生成AIの技術向上に伴うABCおよびARCにおけるルール変更について（2024-11-15）](https://x.com/atcoder/status/1857413796391981490)、[AtCoder 公式 X：生成AI対策ルールの変更の告知（ABC426 から適用。2025-10-04）](https://x.com/atcoder/status/1974339453234917615)
+
+そのほかの出典：[AtCoder 公式 X：長期AHC生成AI利用ルール検証コンテスト開催のお知らせ（2026-10-15）](https://x.com/atcoder/status/2110637070117224505)、[AtCoder 公式 X：AHC074 の開催のお知らせ（2026-10-30）](https://x.com/atcoder/status/2116092762827509984)。
 
 <!-- textlint-enable -->
 <!-- gen:end fact-table contest-ai-rules -->

@@ -104,19 +104,25 @@ def check_data_duplicates(ctx: Context) -> Iterator[Finding]:
 
 @check("facts の id", ERROR)
 def check_fact_ids(ctx: Context) -> Iterator[Finding]:
-    """本文の fact の目印（<!-- fact:begin <id> -->）の id が data/facts.yml の facts にない"""
+    """本文の fact の目印（<!-- fact:begin <id> -->）と fact-table の目印（<!-- gen:begin fact-table <id> -->）の id が
+    data/facts.yml の facts にない"""
     data = ctx.data
     if data is None:
         return
     facts = data.facts
     for p in ctx.pages:
         for m in getattr(p, "markers", []):
+            gen_name = m.arg.split() if m.kind == "gen" else []
             if m.kind == "fact" and m.arg:
-                fid = m.arg.split()[0]
-                if fid not in facts:
-                    yield Finding(p.file, m.line, p.label, f"fact の目印の「{fid}」が data/facts.yml の facts にない"
-                                                           "（数値の提案のファイルに書いて、メインに足してもらう）",
-                                  severity=demote(ctx, p))
+                fid, what = m.arg.split()[0], "fact の目印"
+            elif gen_name[:1] == ["fact-table"] and len(gen_name) > 1:
+                fid, what = gen_name[1], "fact-table の目印"
+            else:
+                continue
+            if fid not in facts:
+                yield Finding(p.file, m.line, p.label, f"{what}の「{fid}」が data/facts.yml の facts にない"
+                                                       "（数値の提案のファイルに書いて、メインに足してもらう）",
+                              severity=demote(ctx, p))
 
 
 @check("tracks の id", ERROR)

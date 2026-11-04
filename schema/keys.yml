@@ -307,6 +307,7 @@ sections:
             load_timing: {format: {vocab: load_timings}, note: 読み込みの時期}
             context_cost: {format: {vocab: context_costs}, note: コンテキストのコスト}
             survives_compaction: {format: boolean, nullable: true, note: 圧縮で残るか（null は確かめていない）}
+            conditional: {format: texts, note: 値が null の属性のうち、確かめていないのでなく条件で値が変わるもの（属性の id のリスト。compare と feature の目印は「条件による」と出す。書かない null は「未確認」）}
             since:
               format:
                 object:
@@ -336,6 +337,7 @@ sections:
                   until: {format: partial_date, note: 移り変わりに幅があるときの終わり}
                   approx: {format: boolean, note: 「ごろ」}
                   version: {format: version, note: 変わった Claude Code の版}
+                  label: {format: text, note: 読者に見せる短い注。台帳の行の時期の後に（…）で付く}
                   note: {format: text}
               note: 変わった時期と版
             feature: {format: id, note: data の features の id（機能の名前のとき）}
@@ -396,13 +398,17 @@ sections:
                   until: {format: partial_date, note: 移り変わりに幅があるときの終わり}
                   approx: {format: boolean, note: 「ごろ」}
                   version: {format: version, note: 変わった Claude Code の版}
-                  note: {format: text}
+                  label: {format: text, note: 読者に見せる短い注。時期の後に（…）で付く。範囲の始まりと終わりが何の日かなどを書く}
+                  note: {format: text, note: 内部のメモ。ページには出ない}
               note: 変わった時期と版（名前と画面の変更の行は持たず、name の時期を使う）
             name: {format: id, note: 名前と画面の変更の行は data/facts.yml の names の id を指し、時期をそこから引く（DR-18）}
+            surfaces: {required: all, format: {vocab_list: surfaces}, non_empty: true, note: 助言が関わる面（一覧表の面の列に出る）}
             status: {required: all, format: {vocab: advice_statuses}}
             principle: {required: all, format: {vocab_list: principles}, non_empty: true, note: どの原理の回避策だったか}
+            principle_kind: {format: text, note: "feature と書くと、原理の欄の見出しを「この機能が受け持つ原理」にする。name を持つ行は書かなくても同じ"}
             why_then: {format: text, note: かつてなぜ正しかったか}
             how_to_find: {format: text, note: 自分の設定や記事で見つける方法}
+            see_also: {format: ids, note: 同じ話題の台帳の行の id（互いに指す。「同じ話題の行」として出る）}
             sources: {required: all, format: ids, non_empty: true}
             checked: {required: all, format: date}
             note: {format: text}

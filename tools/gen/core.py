@@ -11,7 +11,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from lib import Atlas, load_atlas
-from lib.base import Ref, as_text
+from lib.base import FIELD_PREFIX, Ref, as_text
 
 from . import blocks as B
 from .config import Config, SiteInfo, load_config, load_site_info
@@ -169,8 +169,21 @@ class Gen:
                 self.note(f"{host}: {page.id}#{anchor} の見出しが {page.id} の本文にない（ページへのリンクにした）")
         return f"[{label}]({href})"
 
+    def field_link(self, host: str, field: str, table: bool = False) -> str:
+        """分野の入口（<分野>/index.md）へのリンク（link の目印の field:<分野の id>。表示は分野の名前）。
+        分野がない・公開するページがなければ、分野の名前（準備中）の平文。"""
+        if field not in self.site.fields:
+            self.note(f"{host}: 「{FIELD_PREFIX}{field}」の分野が schema/site.yml の fields にない（文字のまま書いた）")
+            return md_text(FIELD_PREFIX + field, table)
+        label = md_text(self.field_title(field), table)
+        if not any(p.field == field for p in self.published):
+            return self.unpublished(label)
+        return f"[{label}]({rel_md(host, field + '/index.md')})"
+
     def ref_link(self, host: str, ref: Ref | str, table: bool = False) -> str:
         """参照（id か id#anchor）へのリンク。相手のページがなければ参照の文字のまま（注意に出す）。"""
+        if isinstance(ref, str) and ref.strip().startswith(FIELD_PREFIX):
+            return self.field_link(host, ref.strip()[len(FIELD_PREFIX):].strip(), table)
         ref = Ref.parse(ref) if isinstance(ref, str) else ref
         page = self.atlas.resolve(ref)
         if page is None:

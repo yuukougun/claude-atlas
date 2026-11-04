@@ -20,6 +20,8 @@
 束の中身（Markdown。節の番号は固定）:
   1 ページ              front matter（stubs/ か docs/）の id・分野・型・level・優先度・題名・要約・signs・sections・volatility
                         と、本文を結び付ける aliases・面・原理・原因・場面
+  1b 型の必ず持つもの   型の手引き planning/guides/<型>.md の「## 1. 用途と、必ず持つもの」「## 2. 構成の目安」の写し
+                        （手引きのない型は「この型の手引きはない」の1行）
   2 つながるページ      prerequisites・related・routes（cause ごと）の先の id・題名・要約・型（id#anchor は節も）
   3 目次の情報          planning/catalog/<field>.yaml の同じ id の templates・visual・notes・level_evidence と materials の一覧
   4 data               tracks の機能（data/facts.yml の features）・outdated_advice の台帳の行（data/outdated-advice.yml）・
@@ -1402,6 +1404,25 @@ class Builder:
                 out += [f"見つからない：{it.raw}（{what}）", ""]
         return out, truncated
 
+    def sec_type_musts(self, page) -> list[str]:
+        """型の手引きの「## 1. 用途と、必ず持つもの」「## 2. 構成の目安」の写し（見出しは1段下げる。中身は書き換えない）。"""
+        out = ["## 1b. 型の必ず持つもの", ""]
+        path = self.root / GUIDES_DIR / f"{page.type}.md" if page.type else None
+        if path is None or not path.is_file():
+            return out + ["この型の手引きはない"]
+        lines = path.read_text(encoding="utf-8").split("\n")
+        out.append(f"{GUIDES_DIR}/{page.type}.md の §1・§2 の写し。")
+        for num in ("1", "2"):
+            start = next((i for i, ln in enumerate(lines) if re.match(rf"^## {num}\. ", ln)), None)
+            if start is None:
+                out += ["", f"（手引きに「## {num}. …」の節がない）"]
+                continue
+            end = next((i for i in range(start + 1, len(lines)) if lines[i].startswith("## ")), len(lines))
+            out += ["", "#" + lines[start], *lines[start + 1:end]]
+        while out and out[-1] == "":
+            out.pop()
+        return out
+
     def sec_guides(self, page) -> list[str]:
         out = ["## 7. 書き方", "", f"- 執筆カード：{GUIDES_DIR}/card.md（書く規則の要点はこれで足りる。全部読む）",
                f"- 共通の手引き：{GUIDES_DIR}/common.md（迷ったときだけ、カードの（common §N）の節を引く。全部は読まない）"]
@@ -1434,7 +1455,7 @@ class Builder:
     def render(self, page, cat, items: list[Item], limit: int) -> Packet:
         mats, truncated = self.sec_materials(items, limit)
         sections = {
-            "1 ページ": self.sec_page(page), "2 つながるページ": self.sec_links(page), "3 目次の情報": self.sec_catalog(page, cat),
+            "1 ページ": self.sec_page(page), "1b 型の必ず持つもの": self.sec_type_musts(page), "2 つながるページ": self.sec_links(page), "3 目次の情報": self.sec_catalog(page, cat),
             "4 data": self.sec_data(page), "5 出典の一覧": self.sec_sources(page), "6 材料の抜き出し": mats,
             "7 書き方": self.sec_guides(page),
         }
@@ -1446,7 +1467,7 @@ class Builder:
             "道具 tools/make_packet.py が作った（手で直さない。作り直すと上書きされる）。束にないことが要るときだけ、ほかの資料を開く"
             "（decisions 2026-11-04「執筆の担当が開く一次資料」、2026-11-05「使用量を抑える運用」）。",
             "",
-            f"- 構成：1 ページ／2 つながるページ／3 目次の情報／4 data／5 出典の一覧／6 材料の抜き出し（1項目 {limit} 字まで）／7 書き方",
+            f"- 構成：1 ページ／1b 型の必ず持つもの（型の手引きの §1・§2 の写し）／2 つながるページ／3 目次の情報／4 data／5 出典の一覧／6 材料の抜き出し（1項目 {limit} 字まで）／7 書き方",
         ])
         parts, sizes = [head], {}
         for name, lines in sections.items():
@@ -1466,7 +1487,7 @@ def write_if_changed(path: Path, text: str) -> None:
 
 
 def format_stats(packets: list[Packet], packet_limit: int) -> list[str]:
-    lines = ["束の大きさ（文字数）。内訳は 1 ページ／2 つながるページ／3 目次／4 data／5 出典／6 材料／7 書き方"]
+    lines = ["束の大きさ（文字数）。内訳は 1 ページ／1b 型の必ず持つもの／2 つながるページ／3 目次／4 data／5 出典／6 材料／7 書き方"]
     for pk in packets:
         parts = "／".join(str(n) for n in pk.sections.values())
         mats = (f"材料 {len(pk.items)} 項目（見つかった {pk.count('ok')}・一部 {pk.count('partial')}・見つからない {pk.count('missing')}"
