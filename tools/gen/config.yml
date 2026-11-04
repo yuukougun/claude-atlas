@@ -7,7 +7,17 @@
 
 # 公開から外す試作のページの id（design §8.4・§10.1 の7「波が来るまで」）。docs/ にあり stage が draft 以上でも、
 # nav に載せず exclude_docs に書き、生成物とリンクでは未公開（「題名（準備中）」）として扱う。メインが書き換える
-held_back: []
+held_back:   # 工程7の試作の10ページ（2026-11-04。planning/batches/step7/README.md）
+  - instructions-ignored
+  - request-vs-lock
+  - writing-skills
+  - claude-md-vs-rules-skills-styles
+  - keep-replies-in-japanese
+  - agreement-is-not-evidence
+  - competition-rules
+  - outdated-advice-ledger
+  - how-to-use
+  - four-specifics
 
 # 語彙の値の役（どの型が症状のページか、など）。値は site.yml の語彙
 roles:
