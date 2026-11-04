@@ -58,7 +58,7 @@ labels:
   empty: （まだない）            # 生成の部分に載せるものがないとき
   more: ほか {n} ページ          # ページ下部の「次に読む」を切ったとき
   other_group: そのほか          # 逆引きで、分けられない行の節
-  snippet_pending: 雛形「{name}」は、動作確認の後に載せる。   # brief-build2 §2・README の判断（雛形の扱い）
+  snippet_pending: 雛形「{name}」は準備中。   # 雛形のファイルがない・読めないとき（decisions 2026-11-04「雛形の動作確認」）
 
 # ページ下部（design §8.5。前提・次に読む・関連）。gen:begin page-links の目印の間に書く（目印がなければ末尾に足す）
 page_links:

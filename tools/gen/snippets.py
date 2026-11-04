@@ -3,9 +3,12 @@
   <!-- gen:begin snippet <ページの id>/<名前> -->
 
 snippets/<id>/<名前>.<拡張子>（<名前>.expect.yaml を除く1つのファイル）を、折りたたみの中のコードにして写す。
-写すのは、動作確認を通ったもの（snippets/<id>/verified.yaml の <名前> の result が pass）だけ。通っていないものは
-「雛形「<名前>」は、動作確認の後に載せる。」とだけ書く。確かめた環境（版・系列・モデル・OS・日付）と、要る最低の版
-（expect.yaml の features か、ページの tracks の機能の since.claude_code のうち新しいもの）を道具が書く。
+雛形は、動作確認の有無にかかわらず写す（decisions.md 2026-11-04「雛形の動作確認」。方針 B2 を改めた）。
+動作確認を通ったもの（snippets/<id>/verified.yaml の <名前> の result が pass）には確かめた環境（版・系列・モデル・OS・
+日付）を、通っていないものには「動作を確かめていない雛形。」を書く。expect.yaml の safety が true の雛形（安全とデータ）
+には、守りとして頼る前に自分の環境で確かめるよう促す一文も添える。雛形のファイルがない・読めないときだけ
+「雛形「<名前>」は準備中。」と書く。要る最低の版（expect.yaml の features か、ページの tracks の機能の
+since.claude_code のうち新しいもの）を道具が書く。
 
 verified.yaml の形（案。雛形の動作の検証役か check_templates.py --live が書く。キーの台帳に足すのはメイン）:
   <名前>:
@@ -77,22 +80,23 @@ def b_snippet(ctx) -> str:
     base = cfg.text("snippets", "dir", "snippets")
     folder = gen.root / base / sid
     shown = f"{base}/{sid}"
-    pending = gen.text("snippet_pending", "雛形「{name}」は、動作確認の後に載せる。").replace("{name}", md_text(name))
+    pending = gen.text("snippet_pending", "雛形「{name}」は準備中。").replace("{name}", md_text(name))
     files = sorted(p for p in folder.glob(f"{name}.*") if p.is_file() and not p.name.endswith(".expect.yaml")) \
         if folder.is_dir() else []
     if len(files) != 1:
         what = "ない" if not files else f"{len(files)} つある（{'・'.join(p.name for p in files)}）"
-        gen.note(f"{ctx.host}: 雛形 {shown}/{name}.* が{what}（「動作確認の後に載せる」と書いた）")
+        gen.note(f"{ctx.host}: 雛形 {shown}/{name}.* が{what}（「準備中」と書いた）")
         return pending
     verified = _read_map(folder / "verified.yaml", gen, f"{shown}/verified.yaml")
     result = verified.get(name)
-    if not (isinstance(result, dict) and as_text(result.get("result")) == PASS):
-        return pending
+    passed = isinstance(result, dict) and as_text(result.get("result")) == PASS
+    if not passed:
+        result = {}
     path = files[0]
     try:
         code = path.read_text(encoding="utf-8").rstrip("\n")
     except (OSError, UnicodeDecodeError) as e:
-        gen.note(f"{shown}/{path.name} が読めない（{e}。「動作確認の後に載せる」と書いた）")
+        gen.note(f"{shown}/{path.name} が読めない（{e}。「準備中」と書いた）")
         return pending
     expect = _read_map(folder / f"{name}.expect.yaml", gen, f"{shown}/{name}.expect.yaml")
     title = as_text(expect.get("title")) or name
@@ -112,6 +116,11 @@ def b_snippet(ctx) -> str:
     feats = as_strings(expect.get("features")) or (ctx.page.tracks if ctx.page is not None else [])
     need = min_version(gen, feats)
     tail = []
+    if not passed:
+        tail.append(cfg.text("snippets", "unverified", "動作を確かめていない雛形").rstrip("。"))
+        if expect.get("safety") is True:
+            tail.append(cfg.text("snippets", "unverified_safety",
+                                 "安全のための雛形なので、守りとして頼る前に、止めたい操作が自分の環境で止まるかを確かめる").rstrip("。"))
     if env:
         tail.append(f"{cfg.text('snippets', 'verified_with', '確かめた環境')}：{'・'.join(env)}")
     if need:

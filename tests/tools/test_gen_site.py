@@ -347,8 +347,8 @@ class TestIndexBlocks(GenCase):
         self.assertIn("確かめた環境：Claude Code 2.1.317（latest）・claude-opus-5-5・WSL2 Ubuntu 24.04・2026-11-20。"
                       "要る最低の版：Claude Code 2.1.50。", snip)
         pending = block_content(hooks, "snippet hooks-basics/pending-one")
-        self.assertIn("雛形「pending-one」は、動作確認の後に載せる。", pending)
-        self.assertNotIn("permissions", pending)
+        self.assertIn("動作を確かめていない雛形", pending)   # 確認が fail でも写す（decisions 2026-11-04）
+        self.assertNotIn("確かめた環境", pending)
 
     def test_graph_container(self):
         block = block_content(self.read("docs/start/knowledge-map.md"), "graph")

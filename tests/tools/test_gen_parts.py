@@ -160,14 +160,16 @@ class TestMarkerEdgeCases(GenCase):
         self.assertIn("属性「nothing」は機能の属性でない", out)
         self.assertIn("機能「no-such」が data/facts.yml の features にない", out)
         self.assertIn("雛形 snippets/hooks-basics/no-file.* がない", out)
-        self.assertIn("雛形「no-file」は、動作確認の後に載せる。", block_content(self.read(PAGE), "snippet hooks-basics/no-file"))
+        self.assertIn("雛形「no-file」は準備中。", block_content(self.read(PAGE), "snippet hooks-basics/no-file"))
 
     def test_unverified_snippet_without_verified_file(self):
+        # 動作確認の記録がなくても写し、確かめていないことを書く（decisions 2026-11-04「雛形の動作確認」）
         (self.root / "snippets/hooks-basics/verified.yaml").unlink()
         self.generate()
         block = block_content(self.read(PAGE), "snippet hooks-basics/block-rm")
-        self.assertIn("雛形「block-rm」は、動作確認の後に載せる。", block)
-        self.assertNotIn("PreToolUse", block)
+        self.assertIn("PreToolUse", block)
+        self.assertIn("動作を確かめていない雛形", block)
+        self.assertNotIn("確かめた環境", block)
 
     def test_indented_block_keeps_the_indent(self):
         self.add('!!! note "試験"\n\n    <!-- gen:begin causes -->\n    <!-- gen:end causes -->')
