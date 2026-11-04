@@ -1,0 +1,14 @@
+{
+  "name": "team-tools",
+  "description": "Plugins for our team",
+  "owner": {
+    "name": "Platform Team"
+  },
+  "plugins": [
+    {
+      "name": "review-helpers",
+      "source": "./plugins/review-helpers",
+      "description": "Review skills and a pre-commit check hook"
+    }
+  ]
+}

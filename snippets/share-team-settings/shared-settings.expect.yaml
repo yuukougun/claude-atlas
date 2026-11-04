@@ -1,0 +1,19 @@
+title: チームで共有する .claude/settings.json（許可は最小、読ませないものは deny）
+kind: settings
+place: project
+safety: true
+features: [settings, permissions]
+conditions:
+  - 壊れても困らない作業用のリポジトリで、偽の秘密だけを入れた .env を置いて試す
+  - ファイルをコミットして別の場所に clone し、新しいセッションでワークスペースを信頼してから試す
+  - Linux か WSL2 で試す
+expect:
+  - when: 信頼する前に、Claude が npm run test を実行しようとする
+    then: allow ルールはまだ効かず、確認の画面が出る。信頼の前後の差は観察として扱う
+  - when: 信頼した後に、Claude が npm run test を実行する
+    then: 確認なしで通る
+  - when: Claude が Read の道具で .env を読もうとする
+    then: deny ルールで止まり、中身は返らない
+  - when: Claude が git push を実行しようとする
+    then: ask ルールにより、確認の画面が出る
+control: 設定を置かないとき、npm run test は確認の画面になり、Read の道具で .env を読ませる依頼も、許可の状態によっては通る

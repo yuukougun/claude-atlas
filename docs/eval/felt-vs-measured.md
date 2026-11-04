@@ -142,7 +142,7 @@ AI が「速くなりましたね」と言っても、それは記録に数え�
 - **件数**：数件の記録は傾向としてしか読めない。差の大きさと件数の考え方は、<!-- link:begin measure-changes#how-many-runs -->[変更が効いたかを測る（小さな eval） › 試行の数と差の大きさ](measure-changes.md#how-many-runs)<!-- link:end -->にある。
 - **採点**：自分の作業を自分の感覚で採点すると、体感が戻ってくる。テストの通過件数のように、機械的に決まる物差しを優先する。
 - **測れないもの**：理解や学習は、時間では測れない。AI を外して自分で説明できるかを、小さく試して記録する。
-- **自動の集計**：使い方の内訳を見る道具は、物差しを選ぶ手がかりにする。出てきた提案は下書きとして読む。読み方は、<!-- link:begin insights-and-usage-review#insights-as-drafts -->/insights と /usage で振り返る › /insights の提案を下書きとして読む（準備中）<!-- link:end -->にある。
+- **自動の集計**：使い方の内訳を見る道具は、物差しを選ぶ手がかりにする。出てきた提案は下書きとして読む。読み方は、<!-- link:begin insights-and-usage-review#insights-as-drafts -->[/insights と /usage で振り返る › /insights の提案を下書きとして読む](insights-and-usage-review.md#insights-as-drafts)<!-- link:end -->にある。
 - **変更の効果**：CLAUDE.md やプロンプトの変更が効いたかは、同じ課題を前後で走らせる小さな eval で比べられる。手順は、<!-- link:begin measure-changes#small-eval -->[変更が効いたかを測る（小さな eval） › 小さな eval の手順](measure-changes.md#small-eval)<!-- link:end -->にある。
 
 確かめ方は、期間の終わりに、記録を見る前に書いた体感と実測を並べることである。ずれた物差しが分かれば、次から何を信じてよいかの目安になる。
@@ -173,7 +173,7 @@ AI が「速くなりましたね」と言っても、それは記録に数え�
 
 - [劣化を疑ったら測って確かめる](../models/suspected-degradation.md)
 - [変更が効いたかを測る（小さな eval）](measure-changes.md)
-- /insights と /usage で振り返る（準備中）
+- [/insights と /usage で振り返る](insights-and-usage-review.md)
 
 **関連**
 

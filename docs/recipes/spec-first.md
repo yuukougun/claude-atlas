@@ -156,7 +156,7 @@ updated: 2026-11-05
 
 評価器や採点の処理のように、検証の道具そのものを作る仕様では、確かめ方に「その道具が正しいことを確かめる手順」も書かせる。仕様を書き終える段で、確かめ方が実行できる形かを見る。
 
-この段の終わりの印は次のとおり。仕様だけを渡した新しいセッションに読ませ、分からない点を挙げさせる。挙がらないか、要確認事項に既にあるものだけなら、仕様は自己完結している。進捗や決定の記録の分け方は <!-- link:begin progress-files#decided-vs-open -->進捗ファイルで、途中から再開できるようにする › 決めたことと、聞くべきことを分ける（準備中）<!-- link:end --> にある。
+この段の終わりの印は次のとおり。仕様だけを渡した新しいセッションに読ませ、分からない点を挙げさせる。挙がらないか、要確認事項に既にあるものだけなら、仕様は自己完結している。進捗や決定の記録の分け方は <!-- link:begin progress-files#decided-vs-open -->[進捗ファイルで、途中から再開できるようにする › 決めたことと、聞くべきことを分ける](../context/progress-files.md#decided-vs-open)<!-- link:end --> にある。
 
 ## モックで先に合意する {#mock-first}
 
@@ -237,7 +237,7 @@ Claude Code では、この計画の段を plan mode で行うと、承認する
 回す前に、次の 3 つが済んでいるかを見る。
 
 - 仕様の要確認事項が解消している。残っていると、判定の基準がぶれる（<!-- link:begin goal-until-done#spec-tasks-only -->[/goal（完了するまで続けさせる） › 仕様の決まった実装に限る](../delegate/goal-until-done.md#spec-tasks-only)<!-- link:end -->）。
-- 確かめ方が、コマンドの結果で合否を返す形になっている。仕様からテストを先に書かせる進め方は <!-- link:begin tests-first#steps -->テストを先に書かせる › 手順（準備中）<!-- link:end --> にある。
+- 確かめ方が、コマンドの結果で合否を返す形になっている。仕様からテストを先に書かせる進め方は <!-- link:begin tests-first#steps -->[テストを先に書かせる › 手順](../verify/tests-first.md#steps)<!-- link:end --> にある。
 - 範囲外と、変えてはならないファイルが仕様に書いてある。
 
 `/goal` で条件を満たしたかを各ターンの後に判定する役（判定役）は、会話に出た証拠しか読まない（<!-- link:begin goal-until-done#evaluator-reads-conversation -->[/goal（完了するまで続けさせる） › 判定役は会話しか読まない](../delegate/goal-until-done.md#evaluator-reads-conversation)<!-- link:end -->）。そのため「tests/ と eval/ を変更しない」と書くだけでは、変更していないことを判定できない。変更していないことを示すコマンドの出力を会話に出させる条件にする。条件に入れるもの（終わりの状態・確かめ方・変えないもの・上限）の考え方は <!-- link:begin goal-until-done#writing-conditions -->[/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<!-- link:end --> にある。
@@ -286,8 +286,8 @@ Claude Code では、この計画の段を plan mode で行うと、承認する
 - 頼んだものと違うものが出てくる：伝えた情報の不足から順に切り分ける（<!-- link:begin not-what-i-meant#diagnosis -->[意図と違うものが出てくる › 原因を安く確かめる順](../symptoms/not-what-i-meant.md#diagnosis)<!-- link:end -->）。
 - 頼んでいないことまでやる：範囲の伝え方と差分の確かめ方を見直す（<!-- link:begin does-more-than-asked#diagnosis -->[頼んでいないことまでやる（過剰設計） › 原因を安く確かめる順](../symptoms/does-more-than-asked.md#diagnosis)<!-- link:end -->）。
 - 新しいセッションが仕様を読み落とす：引き継ぎの確かめ方と対処は <!-- link:begin handoff-documents#troubleshoot -->[handoff 文書と document-and-clear › 引き継いだのにうまくいかないとき](../context/handoff-documents.md#troubleshoot)<!-- link:end --> にある。
-- 作業が長引いて途中から再開する：進捗をファイルに分けて持たせる（<!-- link:begin progress-files#files -->進捗ファイルで、途中から再開できるようにする › ファイルの分け方（準備中）<!-- link:end -->）。
-- 与えられた仕様がある：自分で原文を読み、Claude には誤読の指摘だけを頼む（<!-- link:begin read-specs-yourself#read-first -->仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する（準備中）<!-- link:end -->）。
+- 作業が長引いて途中から再開する：進捗をファイルに分けて持たせる（<!-- link:begin progress-files#files -->[進捗ファイルで、途中から再開できるようにする › ファイルの分け方](../context/progress-files.md#files)<!-- link:end -->）。
+- 与えられた仕様がある：自分で原文を読み、Claude には誤読の指摘だけを頼む（<!-- link:begin read-specs-yourself#read-first -->[仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する](read-specs-yourself.md#read-first)<!-- link:end -->）。
 - 決めたことと理由をチームで残したい：<!-- link:begin record-decisions -->決定を文書に残す（ADR と週次アップデート）（準備中）<!-- link:end --> を使う。
 
 <!-- gen:begin references -->
@@ -317,16 +317,16 @@ Claude Code では、この計画の段を plan mode で行うと、承認する
 
 **関連**
 
-- 仕様を自分で読み、AI に誤読を指摘させる（準備中）
+- [仕様を自分で読み、AI に誤読を指摘させる](read-specs-yourself.md)
 - フロントエンドのデザイン（準備中）
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)
-- 細かく指図するか、成果で頼むか（準備中）
-- テストを先に書かせる（準備中）
+- [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)
+- [テストを先に書かせる](../verify/tests-first.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
 - [意図と違うものが出てくる](../symptoms/not-what-i-meant.md)
 - [頼んでいないことまでやる（過剰設計）](../symptoms/does-more-than-asked.md)
-- 進捗ファイルで、途中から再開できるようにする（準備中）
+- [進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)
 - 決定を文書に残す（ADR と週次アップデート）（準備中）
 - リファクタリングと大規模な移行（準備中）
 

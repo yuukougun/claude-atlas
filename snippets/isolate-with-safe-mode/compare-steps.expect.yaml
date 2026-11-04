@@ -1,0 +1,15 @@
+title: 同じ依頼を通常の起動と --safe-mode で比べる手順
+kind: other
+place: 作業メモ（プロジェクトの外でもよい）
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - CLAUDE.md や hooks などの設定があるプロジェクトで試す
+expect:
+  - when: メモの依頼を通常の起動で貼る
+    then: /context に CLAUDE.md・スキル・MCP などの項目が出る
+  - when: 同じ依頼を --safe-mode の起動で貼る
+    then: /context にそれらの項目が出ない（またはほぼ空になる）
+  - when: 2 つの返答を見比べる
+    then: 設定のせいなら返答が変わる。返答にばらつきがあるので、1 回ずつの違いだけで決めない
+control: 比べずに safe mode だけで試すと、直ったように見えても、依頼の言い方や会話の長さが変わっただけの可能性を消せない

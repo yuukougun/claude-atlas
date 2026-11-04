@@ -1,0 +1,15 @@
+title: 使うスキルを先に読ませる定義（skills の項目）
+kind: subagent
+place: project   # .claude/agents/pr-reviewer.md
+safety: false
+features: [subagents]
+requires: [.claude/skills/review-checklist/SKILL.md]
+conditions:
+  - リポジトリの .claude/agents/pr-reviewer.md に置き、review-checklist という名前のスキルを用意する
+  - 新しいセッションで試す
+expect:
+  - when: 「pr-reviewer で、いまの差分をレビューして」と頼む
+    then: 担当が呼ばれ、指摘が review-checklist の基準に沿った形で、日本語で戻る（指示は鍵でないので合否にしない）
+  - when: レビュアーに「見つけたバグを直して」と頼む
+    then: 編集の道具を持たないので、ファイルは書き換えられない（観察として扱う）
+control: skills の項目を書かないと、親の会話で読み込んだスキルは担当に届かず、担当は基準を知らないまま見る

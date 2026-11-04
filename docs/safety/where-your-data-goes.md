@@ -62,7 +62,7 @@ updated: 2026-11-05
 
 === "Claude Code"
 
-    認証の経路で決まる。個人のサブスクリプションでログインしているなら個人向けの規約が当たり、組織のプランなら商用、API キーなら API の側になると読めるが、公式で直接は確かめていない。今どの経路で動いているかは <!-- link:begin check-billing-path#check-current-path -->課金の経路を確かめる（API キーとサブスクリプション） › 今の経路を確かめる（準備中）<!-- link:end --> で確かめる。
+    認証の経路で決まる。個人のサブスクリプションでログインしているなら個人向けの規約が当たり、組織のプランなら商用、API キーなら API の側になると読めるが、公式で直接は確かめていない。今どの経路で動いているかは <!-- link:begin check-billing-path#check-current-path -->[課金の経路を確かめる（API キーとサブスクリプション） › 今の経路を確かめる](../cost/check-billing-path.md#check-current-path)<!-- link:end --> で確かめる。
 
 === "API"
 
@@ -80,7 +80,7 @@ updated: 2026-11-05
 
 個人向けのアカウントでは、会話が学習に使われる場面が 3 つある。設定で改善への利用を許可したとき、会話が安全の審査の対象になったとき（利用ポリシーの検出と執行の改善に使う）、Trusted Tester などに明示して参加したときである。
 
-使われるのは会話の全体で、内容・custom styles・会話の好みの設定・Claude in Chrome のデータを含む。connector や MCP サーバーから取った生の内容は含まないが、会話に貼った分は含む。シークレットチャットの会話は、許可していても学習に使わない（<!-- link:begin incognito-chats#retention -->シークレットチャット（記録を残さない会話） › 残らないもの・残るもの（準備中）<!-- link:end --> を見る）。
+使われるのは会話の全体で、内容・custom styles・会話の好みの設定・Claude in Chrome のデータを含む。connector や MCP サーバーから取った生の内容は含まないが、会話に貼った分は含む。シークレットチャットの会話は、許可していても学習に使わない（<!-- link:begin incognito-chats#retention -->[シークレットチャット（記録を残さない会話） › 残らないもの・残るもの](../app/incognito-chats.md#retention)<!-- link:end --> を見る）。
 
 設定の場所は、Settings > Privacy の「Help improve our AI models」である。`claude.ai/settings/data-privacy-controls` から開け、Web・Desktop・Mobile のどれからでも変えられる。新しく使い始める人は登録のときに選ぶ。既定がオンかオフかは、公式の文書に書かれていないので、自分の画面で確かめる。
 
@@ -110,9 +110,9 @@ updated: 2026-11-05
 
 標準の期間は、消した会話がバックエンドから消えるまでの期間である。Claude Code の文書と 2025 年の規約改定のお知らせは「許可すれば長く、しなければ標準の期間」と短く書くが、Privacy Center は「最大・匿名化・学習のパイプライン」と区別して書く。この辞典は Privacy Center の書き方に合わせる。
 
-- シークレットチャットは、履歴とメモリに残らず、学習に使われないが、バックエンドには標準の期間残る。企業向けの契約では組織の保持の設定に従う。詳しくは <!-- link:begin incognito-chats#retention -->シークレットチャット（記録を残さない会話） › 残らないもの・残るもの（準備中）<!-- link:end --> を見る。
-- 違反と判定された会話が長く残る点は、<!-- link:begin when-requests-are-refused#by-surface -->正当な依頼が断られたとき › 面ごとの表示と仕組み（分類器が見るもの・自動のモデルの切り替え）（準備中）<!-- link:end --> と合わせて読む。
-- `/feedback` などで会話とコードを送ったときに何が送られるかは <!-- link:begin what-feedback-sends#what-is-sent -->/feedback・トランスクリプトの共有で送られるもの › 送られるものと残る期間（準備中）<!-- link:end --> にある。
+- シークレットチャットは、履歴とメモリに残らず、学習に使われないが、バックエンドには標準の期間残る。企業向けの契約では組織の保持の設定に従う。詳しくは <!-- link:begin incognito-chats#retention -->[シークレットチャット（記録を残さない会話） › 残らないもの・残るもの](../app/incognito-chats.md#retention)<!-- link:end --> を見る。
+- 違反と判定された会話が長く残る点は、<!-- link:begin when-requests-are-refused#by-surface -->[正当な依頼が断られたとき › 面ごとの表示と仕組み（分類器が見るもの・自動のモデルの切り替え）](when-requests-are-refused.md#by-surface)<!-- link:end --> と合わせて読む。
+- `/feedback` などで会話とコードを送ったときに何が送られるかは <!-- link:begin what-feedback-sends#what-is-sent -->[/feedback・トランスクリプトの共有で送られるもの › 送られるものと残る期間](what-feedback-sends.md#what-is-sent)<!-- link:end --> にある。
 - 商用の側は、標準の保持期間が基本になる。Zero Data Retention は資格のある Enterprise の組織で個別に有効にされるもので、既定ではない。
 - Team と Enterprise では、管理者がデータエクスポートでシークレットチャットの会話を見られることがあり、保持ポリシーの対象にもなる。
 
@@ -124,7 +124,7 @@ updated: 2026-11-05
 
 アプリのメモリも別の保管である。会話を消してもメモリに残る内容があり、見る・直す・消すは <!-- link:begin how-memory-works#deleted-chats -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › 会話を消しても残るもの](../app/how-memory-works.md#deleted-chats)<!-- link:end --> にある。消したはずの内容を覚えているときの切り分けは <!-- link:begin unexpected-memories#diagnosis -->[別の会話やプロジェクトの内容が混ざる › 原因を安く確かめる順](../symptoms/unexpected-memories.md#diagnosis)<!-- link:end --> を見る。
 
-手元の保管と通信の既定は、面ごとに <!-- link:begin default-safety-settings#defaults-by-surface -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 面ごとの既定（生成の表）](default-safety-settings.md#defaults-by-surface)<!-- link:end --> に並んでいる。テレメトリと報告の機能を止める方法は <!-- link:begin what-feedback-sends#telemetry -->/feedback・トランスクリプトの共有で送られるもの › テレメトリと報告の機能を止める（準備中）<!-- link:end --> を見る。
+手元の保管と通信の既定は、面ごとに <!-- link:begin default-safety-settings#defaults-by-surface -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 面ごとの既定（生成の表）](default-safety-settings.md#defaults-by-surface)<!-- link:end --> に並んでいる。テレメトリと報告の機能を止める方法は <!-- link:begin what-feedback-sends#telemetry -->[/feedback・トランスクリプトの共有で送られるもの › テレメトリと報告の機能を止める](what-feedback-sends.md#telemetry)<!-- link:end --> を見る。
 
 ## 何に効くか {#what-it-prevents}
 
@@ -134,7 +134,7 @@ updated: 2026-11-05
 - 握る：学習の設定、消し方、手元の記録の期間は、いずれも自分で変えられる。変えられるものを先に決めておけば、渡した後で悩まずに済む。
 - 預かったデータなど、渡してよいかが契約で決まるものは、先に誰のデータかを決める。<!-- link:begin entrusted-data#whose-data -->[預かったデータ・規約付きのデータを AI に渡してよいか › 誰のデータで、何が決まっているか](entrusted-data.md#whose-data)<!-- link:end --> が、その判断を扱う。
 
-共有リンクや公開アーティファクトの見え方は別の話で、<!-- link:begin shared-artifacts-and-files#who-can-see -->共有リンクと公開アーティファクトの扱い › 見られる人と、プランによる違い（準備中）<!-- link:end --> にある。
+共有リンクや公開アーティファクトの見え方は別の話で、<!-- link:begin shared-artifacts-and-files#who-can-see -->[共有リンクと公開アーティファクトの扱い › 見られる人と、プランによる違い](shared-artifacts-and-files.md#who-can-see)<!-- link:end --> にある。
 
 ## よくある誤解 {#misconceptions}
 
@@ -142,9 +142,9 @@ updated: 2026-11-05
 - 会話を消せば、すべて消える：履歴からは消えるが、バックエンドには標準の期間残る。メモリと手元の記録は別に残る。
 - 学習に使われないなら、何も残らない：学習への利用と保持は別である。シークレットチャットも、学習に使わないだけで、標準の期間は保持される。
 - 商用なら、何も残らない：商用でも標準の保持期間はある。残らない設計にするには、資格のある組織が Zero Data Retention を個別に有効にする。
-- `/share` は共有のリンクを作る：リンクを作る機能ではない。`/bug` の別名で、会話を報告として送る。くわしくは <!-- link:begin what-feedback-sends#share-is-bug -->/feedback・トランスクリプトの共有で送られるもの › /share は共有のリンクではない（準備中）<!-- link:end --> にある。
+- `/share` は共有のリンクを作る：リンクを作る機能ではない。`/bug` の別名で、会話を報告として送る。くわしくは <!-- link:begin what-feedback-sends#share-is-bug -->[/feedback・トランスクリプトの共有で送られるもの › /share は共有のリンクではない](what-feedback-sends.md#share-is-bug)<!-- link:end --> にある。
 
-業務で使うときの流れの中で私的な情報を渡す範囲を決める例は <!-- link:begin office-paperwork#private-data -->事務作業の半自動化（経費・報告） › 私的な情報を渡す範囲（準備中）<!-- link:end --> にある。データ分析で生データを渡す前の考え方は <!-- link:begin data-analysis#check-raw-data -->データを分析する › 生データで裏を取る（準備中）<!-- link:end --> を見る。
+業務で使うときの流れの中で私的な情報を渡す範囲を決める例は <!-- link:begin office-paperwork#private-data -->[事務作業の半自動化（経費・報告） › 私的な情報を渡す範囲](../recipes/office-paperwork.md#private-data)<!-- link:end --> にある。データ分析で生データを渡す前の考え方は <!-- link:begin data-analysis#check-raw-data -->[データを分析する › 生データで裏を取る](../recipes/data-analysis.md#check-raw-data)<!-- link:end --> を見る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -173,22 +173,22 @@ updated: 2026-11-05
 **次に読む**
 
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](default-safety-settings.md)
+- [/feedback・トランスクリプトの共有で送られるもの](what-feedback-sends.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](entrusted-data.md)
 - [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)
 - [秘密の情報を読まれた・外に出された](../symptoms/secrets-exposed.md)
-- /feedback・トランスクリプトの共有で送られるもの（準備中）
 - 組織で使うプランの選び方（準備中）
 
 **関連**
 
-- シークレットチャット（記録を残さない会話）（準備中）
-- 共有リンクと公開アーティファクトの扱い（準備中）
+- [シークレットチャット（記録を残さない会話）](../app/incognito-chats.md)
+- [共有リンクと公開アーティファクトの扱い](shared-artifacts-and-files.md)
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)
 - [別の会話やプロジェクトの内容が混ざる](../symptoms/unexpected-memories.md)
-- 正当な依頼が断られたとき（準備中）
-- データを分析する（準備中）
-- 事務作業の半自動化（経費・報告）（準備中）
-- 課金の経路を確かめる（API キーとサブスクリプション）（準備中）
+- [正当な依頼が断られたとき](when-requests-are-refused.md)
+- [データを分析する](../recipes/data-analysis.md)
+- [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
+- [課金の経路を確かめる（API キーとサブスクリプション）](../cost/check-billing-path.md)
 
 </div>
 

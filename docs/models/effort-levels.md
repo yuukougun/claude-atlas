@@ -178,7 +178,7 @@ Claude Code の設定の例を次に示す。モデルの名前は、自分が�
 
 本体と別のモデルで動くサブエージェントやチームメイトは、セッションの段を受け継がない。そのモデルに保存した段か、そのモデルの既定の段で動く。この挙動は <!-- fact:begin subagent-own-model-effort-min-version -->未確認<!-- fact:end --> で入った。これは Claude Code の CHANGELOG による（2026-11-03 に確認）。サブエージェントの文書には、この記述がまだない。チームの文書には「リーダーの段を引き継ぐ」と読める記述があり、合わない場合がある。挙動を確かめるまで、別のモデルを割り当てたサブエージェントの段は、既定だと見ておく。
 
-軽いモデルをサブエージェントに割り当てると、そのサブエージェントはそのモデルの既定の段で動く。軽くて速い作業で段をさらに `low` に固定したいときは、次の雛形のように `effort` を書く。モデルを分ける判断は <!-- link:begin split-models-by-role#patterns -->計画・実装・サブエージェントでモデルを分ける › 分ける形（計画と実装・本体とサブエージェント）（準備中）<!-- link:end --> にある。
+軽いモデルをサブエージェントに割り当てると、そのサブエージェントはそのモデルの既定の段で動く。軽くて速い作業で段をさらに `low` に固定したいときは、次の雛形のように `effort` を書く。モデルを分ける判断は <!-- link:begin split-models-by-role#patterns -->[計画・実装・サブエージェントでモデルを分ける › 分ける形（計画と実装・本体とサブエージェント）](split-models-by-role.md#patterns)<!-- link:end --> にある。
 
 <!-- gen:begin snippet effort-levels/low-effort-subagent -->
 <!-- textlint-disable -->
@@ -254,7 +254,7 @@ effort と並べて考える手段は、効く場所が違う。
 - **モデルを替える。** 選ぶ順は、既定で試し、足りなければ effort を上げ、それでも足りないときだけ上位のモデルにする。理由は <!-- link:begin choosing-a-model#effort-first -->[モデルの選び方（三段階） › モデルより effort を先に動かす理由](choosing-a-model.md#effort-first)<!-- link:end --> にある。
 - **プロンプトに考えさせる言葉を書く。** 普通の文として渡るだけで、effort は上がらない。1 回だけ深く考えさせる手段もある。使い分けは <!-- link:begin thinking-keywords#plain-text-phrases -->[「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し](thinking-keywords.md#plain-text-phrases)<!-- link:end --> と <!-- link:begin thinking-keywords#ultrathink -->[「考えて」と書くことの現在（ultrathink） › ultrathink の使いどころ](thinking-keywords.md#ultrathink)<!-- link:end --> にある。
 - **fast mode と advisor。** 速さを料金と引き換えに得る手段と、要所だけ別のモデルに助言させる手段である。既定と effort で足りないときに足す。<!-- link:begin fast-mode-and-advisor#fast-mode -->fast mode と advisor › fast mode（準備中）<!-- link:end --> を見る。
-- **軽いモデルをサブエージェントに使う。** 仕事の重さの差が大きいときは、段でなくモデルで分ける。<!-- link:begin split-models-by-role#lighter-models -->計画・実装・サブエージェントでモデルを分ける › 軽いモデルの使いどころ（準備中）<!-- link:end --> を見る。
+- **軽いモデルをサブエージェントに使う。** 仕事の重さの差が大きいときは、段でなくモデルで分ける。<!-- link:begin split-models-by-role#lighter-models -->[計画・実装・サブエージェントでモデルを分ける › 軽いモデルの使いどころ](split-models-by-role.md#lighter-models)<!-- link:end --> を見る。
 - **web 検索やリサーチ。** 考える深さでなく、調べる範囲や最新の情報が要るかで選ぶ。<!-- link:begin search-research-thinking#comparison -->[web 検索・リサーチ・拡張思考の使い分け › 三つの使い分け](../app/search-research-thinking.md#comparison)<!-- link:end --> を見る。
 
 ## 古くなった助言 {#outdated-advice}
@@ -299,7 +299,7 @@ effort と並べて考える手段は、効く場所が違う。
 
 - [モデルの選び方（三段階）](choosing-a-model.md)
 - [返事が遅い・時間がかかりすぎる](../symptoms/too-slow.md)
-- 計画・実装・サブエージェントでモデルを分ける（準備中）
+- [計画・実装・サブエージェントでモデルを分ける](split-models-by-role.md)
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
 - [web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)

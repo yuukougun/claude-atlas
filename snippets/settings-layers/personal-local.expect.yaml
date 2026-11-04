@@ -1,0 +1,14 @@
+title: 自分だけの上書き（.claude/settings.local.json）
+kind: settings
+place: local
+safety: false
+features: [settings]
+conditions:
+  - 手で作ったときは、.gitignore に追加してから試す
+  - プロジェクトの .claude/settings.json が同じキーを true にしている状態で試す
+expect:
+  - when: 新しいセッションを始め、/status で Setting sources を見る
+    then: Project local settings が読み込まれた層に並ぶ
+  - when: 作業の途中でスピナーの下を見る
+    then: 共有の設定が true でも、ヒントの表示が出なくなる（同じプロジェクトの仲間の表示は変わらない）
+control: 置かないとき、共有の設定の値（true）が使われてヒントが出る

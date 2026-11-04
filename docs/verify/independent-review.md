@@ -125,13 +125,13 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end snippet independent-review/reviewer-subagent -->
 
-編集できないレビュアーの雛形は、レビューの基準と成果物を依頼で受け取り、全部挙げさせ、指摘ごとに確かめ方を書かせる。網羅と選別の分け方は <!-- link:begin instructing-reviewers#exhaustive-then-filter -->レビュアーへの指示の書き方 › 網羅と選別を分ける（準備中）<!-- link:end --> が、指摘ごとの確かめ方は <!-- link:begin instructing-reviewers#per-finding -->レビュアーへの指示の書き方 › 指摘ごとに確かめ方を付けさせる（準備中）<!-- link:end --> が扱う。
+編集できないレビュアーの雛形は、レビューの基準と成果物を依頼で受け取り、全部挙げさせ、指摘ごとに確かめ方を書かせる。網羅と選別の分け方は <!-- link:begin instructing-reviewers#exhaustive-then-filter -->[レビュアーへの指示の書き方 › 網羅と選別を分ける](instructing-reviewers.md#exhaustive-then-filter)<!-- link:end --> が、指摘ごとの確かめ方は <!-- link:begin instructing-reviewers#per-finding -->[レビュアーへの指示の書き方 › 指摘ごとに確かめ方を付けさせる](instructing-reviewers.md#per-finding)<!-- link:end --> が扱う。
 
 !!! example "判断例：どの独立したレビューを使うか"
     - **状況**：認証の周りを直した変更がある。自分で全部は読めないが、午後までにマージしたい。
     - **迷う候補**：新しいセッションに読ませて、その結果で済ませる。新しいセッションの指摘を見たうえで、人に認証の部分だけを読んでもらう。
     - **選んだもの**：新しいセッションに読ませたうえで、認証の部分は人に読んでもらう。
-    - **理由**：新しいセッションは推論に引きずられないが、責任を持てない。認証は誤ると被害が大きい場所なので、人の目を残す。変更の中身で常に人が見る場所を決める考え方は、<!-- link:begin risk-tiered-approval#always-human -->リスク段階別の承認（AI の承認を人の承認に数えない） › 段を決めるのは中身、常に人が見る場所（準備中）<!-- link:end --> にある。
+    - **理由**：新しいセッションは推論に引きずられないが、責任を持てない。認証は誤ると被害が大きい場所なので、人の目を残す。変更の中身で常に人が見る場所を決める考え方は、<!-- link:begin risk-tiered-approval#always-human -->[リスク段階別の承認（AI の承認を人の承認に数えない） › 段を決めるのは中身、常に人が見る場所](../team/risk-tiered-approval.md#always-human)<!-- link:end --> にある。
 
 ## 推論を見せない {#hide-reasoning}
 
@@ -149,7 +149,7 @@ updated: 2026-11-05
 
 After では、次の 3 つを変えている。
 
-- 「問題ないと思う」という自分の見立てを外した。見立てを書き添えると、レビュアーが同意に流れる（<!-- link:begin instructing-reviewers#hide-your-view -->レビュアーへの指示の書き方 › 自分の見立てを書き添えない（準備中）<!-- link:end -->）。
+- 「問題ないと思う」という自分の見立てを外した。見立てを書き添えると、レビュアーが同意に流れる（<!-- link:begin instructing-reviewers#hide-your-view -->[レビュアーへの指示の書き方 › 自分の見立てを書き添えない](instructing-reviewers.md#hide-your-view)<!-- link:end -->）。
 - 省いた確認の理由を外した。理由が妥当かどうかは、レビュアーが判断する材料にする。
 - 基準を、確かめられる形で足した。基準がないと、何を見るべきかも決まらない。
 
@@ -184,7 +184,7 @@ After では、次の 3 つを変えている。
 <!-- textlint-enable -->
 <!-- gen:end snippet independent-review/fresh-session-request -->
 
-成果物と基準だけを新しい文脈で批評させる考え方は、<!-- link:begin ask-without-sycophancy#fresh-context-critique -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 新しい文脈で、成果物と基準だけを見せる（準備中）<!-- link:end --> でも扱う。批判を強めすぎない加減は、<!-- link:begin ask-without-sycophancy#dont-overdo-criticism -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判を強めすぎない（準備中）<!-- link:end --> にある。
+成果物と基準だけを新しい文脈で批評させる考え方は、<!-- link:begin ask-without-sycophancy#fresh-context-critique -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 新しい文脈で、成果物と基準だけを見せる](../judgment/ask-without-sycophancy.md#fresh-context-critique)<!-- link:end --> でも扱う。批判を強めすぎない加減は、<!-- link:begin ask-without-sycophancy#dont-overdo-criticism -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判を強めすぎない](../judgment/ask-without-sycophancy.md#dont-overdo-criticism)<!-- link:end --> にある。
 
 ## AI の承認を人の承認に数えない {#ai-approval}
 
@@ -194,7 +194,7 @@ Claude Code のチームのレビュー運用を述べた記事も、エージ�
 
 （出典：[How the Claude Code team does code review](https://claude.dev/blog/solving-code-review-at-anthropic/)。Anthropic の開発者向けのブログである。）
 
-変更をリスクの段に分け、段ごとに人の承認の数を決める方法の本体は、<!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない（準備中）<!-- link:end --> にある。AI のレビューが付いた PR の扱いは、<!-- link:begin create-and-review-prs#risks-before-submitting -->PR を作り、レビューを受ける › 出す前にリスクを挙げさせる（準備中）<!-- link:end --> と <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> が扱う。
+変更をリスクの段に分け、段ごとに人の承認の数を決める方法の本体は、<!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->[リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない](../team/risk-tiered-approval.md#ai-approval-doesnt-count)<!-- link:end --> にある。AI のレビューが付いた PR の扱いは、<!-- link:begin create-and-review-prs#risks-before-submitting -->PR を作り、レビューを受ける › 出す前にリスクを挙げさせる（準備中）<!-- link:end --> と <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> が扱う。
 
 AI のレビュアーを何体並べても、全員の一致は正しさの証拠にならない。決め手は実行と計測である。理由は <!-- link:begin agreement-is-not-evidence#reviewer-agreement -->[同意は根拠に数えない（AI レビュアーの一致を含む） › AI レビュアーの一致](../judgment/agreement-is-not-evidence.md#reviewer-agreement)<!-- link:end --> と <!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end --> にある。
 
@@ -236,7 +236,7 @@ Claude Code には、組み込みのコマンド `/security-review` がある。
 <!-- textlint-enable -->
 <!-- gen:end snippet independent-review/security-review-request -->
 
-この依頼の雛形では、見つからなかったときに、見た観点と見ていない範囲を書かせる。「問題なし」の一言では、何を確かめたのか分からないからである。観点の決め方や指摘の出させ方の一般則は、<!-- link:begin instructing-reviewers -->レビュアーへの指示の書き方（準備中）<!-- link:end --> が扱う。
+この依頼の雛形では、見つからなかったときに、見た観点と見ていない範囲を書かせる。「問題なし」の一言では、何を確かめたのか分からないからである。観点の決め方や指摘の出させ方の一般則は、<!-- link:begin instructing-reviewers -->[レビュアーへの指示の書き方](instructing-reviewers.md)<!-- link:end --> が扱う。
 
 AI のレビューで見つからなかったことを、安全の証拠に数えない。見つからなかったのは、見た観点では見つからなかった、という意味に限られる。本番に出す前の判断は、人が持つ。
 
@@ -244,9 +244,9 @@ AI のレビューで見つからなかったことを、安全の証拠に数�
 
 独立したレビューは、原理の「確かめる」に当たる。防ぐ原因は、Claude 側の「確かめていない」である。書いた側の見方をなぞった確認は、確かめたことにならない。書いていない者を通すと、別の見方での確かめが 1 回入る。
 
-人の側の落とし穴は、「同意を根拠にする」である。レビューが通ったという同意を、そのまま正しさの根拠にしてしまう。AI の承認を人の承認に数えない決まりが、この落とし穴を塞ぐ。組織で役割に分けて守る方法は、<!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end --> にある。
+人の側の落とし穴は、「同意を根拠にする」である。レビューが通ったという同意を、そのまま正しさの根拠にしてしまう。AI の承認を人の承認に数えない決まりが、この落とし穴を塞ぐ。組織で役割に分けて守る方法は、<!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end --> にある。
 
-差分を全部は読めないとき、人が必ず読む箇所は <!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end --> で見分ける。生成されたコードを自分のものにする確かめ方は <!-- link:begin own-generated-code#gate -->生成コードを自分のものにする › 自分の言葉で言い直してから採る（準備中）<!-- link:end --> にある。
+差分を全部は読めないとき、人が必ず読む箇所は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](diffs-humans-must-read.md#red-flags)<!-- link:end --> で見分ける。生成されたコードを自分のものにする確かめ方は <!-- link:begin own-generated-code#gate -->[生成コードを自分のものにする › 自分の言葉で言い直してから採る](own-generated-code.md#gate)<!-- link:end --> にある。
 
 ## 効かない場面と誤解 {#limits}
 
@@ -287,22 +287,22 @@ AI のレビューで見つからなかったことを、安全の証拠に数�
 
 **次に読む**
 
+- [レビュアーへの指示の書き方](instructing-reviewers.md)
 - [レビューのボトルネックと疲労](../team/review-bottlenecks.md)
-- レビュアーへの指示の書き方（準備中）
+- [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)
+- [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)
 - 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 - 自動 PR レビュー（Code Review・/ultrareview）（準備中）
 - PR を作り、レビューを受ける（準備中）
-- リスク段階別の承認（AI の承認を人の承認に数えない）（準備中）
-- 役割を分ける（書く人・承認する人・疑う人）（準備中）
 
 **関連**
 
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
-- 人間が読むべき差分の箇所（準備中）
-- 生成コードを自分のものにする（準備中）
+- [人間が読むべき差分の箇所](diffs-humans-must-read.md)
+- [生成コードを自分のものにする](own-generated-code.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
 - [迎合（sycophancy）](../basics/sycophancy.md)
-- 迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）
+- [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)
 
 </div>
 

@@ -78,7 +78,7 @@ Anthropic が複数の Claude を並列に動かして C コンパイラを作�
 
 この考え方は Simon Willison の「先にテストが失敗することを確かめる」から借りた。手順の本体は <!-- link:begin test-the-verifier#red-green -->[検証器そのものを確かめる（red/green・手で計算したケース） › red/green を検証器に当てる](test-the-verifier.md#red-green)<!-- link:end --> にあり、手計算のケースは <!-- link:begin test-the-verifier#hand-calculated -->[検証器そのものを確かめる（red/green・手で計算したケース） › 手で計算したケース](test-the-verifier.md#hand-calculated)<!-- link:end --> にある。
 
-答えの分かる遅い解があるときは、それと突き合わせる手が使える。やり方は <!-- link:begin differential-testing#steps -->答えの分かる遅い解と比べる（差分テスト・オラクル） › 手順（準備中）<!-- link:end --> に譲る。機械で判定しにくい出力を Claude に採点させる場合は、その採点が人の判定と合うかも確かめる対象になる。基準の較正は <!-- link:begin model-based-grading#calibrate -->Claude に採点させる（人の判定で較正する） › 人の判定と比べて較正する（準備中）<!-- link:end --> にある。
+答えの分かる遅い解があるときは、それと突き合わせる手が使える。やり方は <!-- link:begin differential-testing#steps -->[答えの分かる遅い解と比べる（差分テスト・オラクル） › 手順](differential-testing.md#steps)<!-- link:end --> に譲る。機械で判定しにくい出力を Claude に採点させる場合は、その採点が人の判定と合うかも確かめる対象になる。基準の較正は <!-- link:begin model-based-grading#calibrate -->[Claude に採点させる（人の判定で較正する） › 人の判定と比べて較正する](model-based-grading.md#calibrate)<!-- link:end --> にある。
 
 ## 書き換えられない {#tamper-proof}
 
@@ -94,9 +94,9 @@ Anthropic が複数の Claude を並列に動かして C コンパイラを作�
 守りは 4 つの層で組む。
 
 1. 依頼に書く：テストを変えないと伝える。これは助言であり、鍵ではない。書き方は <!-- link:begin protect-tests#in-the-request -->[テストを守る（改ざんを防ぐ） › 依頼に書くこと](../verify/protect-tests.md#in-the-request)<!-- link:end --> にある。
-2. 設定で止める：権限ルールとサンドボックスとファイルの権限で、評価資産に触れないようにする。公式の Best practices は、CLAUDE.md を助言にすぎないものとし、例外を許さない規則はフックや deny ルールに置くよう勧めている。止め方は <!-- link:begin freeze-eval-assets#how-to-freeze -->評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）（準備中）<!-- link:end --> にある。
-3. 検証を作業から離す：採点を別のプロセスや別の場所で動かし、結果だけを返す。分け方は <!-- link:begin build-test-harness#separate-eval-assets -->検証環境・テスト基盤を作らせる › 検証の資産を分けて置く（準備中）<!-- link:end --> にある。
-4. 見せないデータを持つ：作業する側が読めない検証用データを人が持ち、点数だけを返す。分け方は <!-- link:begin lockbox-and-holdout#scores-only -->ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す（準備中）<!-- link:end --> にある。
+2. 設定で止める：権限ルールとサンドボックスとファイルの権限で、評価資産に触れないようにする。公式の Best practices は、CLAUDE.md を助言にすぎないものとし、例外を許さない規則はフックや deny ルールに置くよう勧めている。止め方は <!-- link:begin freeze-eval-assets#how-to-freeze -->[評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）](../enforce/freeze-eval-assets.md#how-to-freeze)<!-- link:end --> にある。
+3. 検証を作業から離す：採点を別のプロセスや別の場所で動かし、結果だけを返す。分け方は <!-- link:begin build-test-harness#separate-eval-assets -->[検証環境・テスト基盤を作らせる › 検証の資産を分けて置く](../recipes/build-test-harness.md#separate-eval-assets)<!-- link:end --> にある。
+4. 見せないデータを持つ：作業する側が読めない検証用データを人が持ち、点数だけを返す。分け方は <!-- link:begin lockbox-and-holdout#scores-only -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す](lockbox-and-holdout.md#scores-only)<!-- link:end --> にある。
 
 特例の分岐のように、検証器を書き換えずに通す手は、どの層を重ねても残る。見せないデータで見張る意味はここにある。全体の守りは <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](../verify/protect-tests.md#layers)<!-- link:end --> にある。
 
@@ -122,9 +122,9 @@ Anthropic が複数の Claude を並列に動かして C コンパイラを作�
 共通するのは、手元の評価が本番の分布の一部しか映さない点である。確かめ方は 2 つに分かれる。
 
 - 入力の側：入力の生成器の分布を人が見る。手順は <!-- link:begin test-the-verifier#input-distribution -->[検証器そのものを確かめる（red/green・手で計算したケース） › 入力の生成器の分布を人が見る](test-the-verifier.md#input-distribution)<!-- link:end --> にある。
-- 測るものの側：検証器が測る指標が、本当の目的とずれていないかを、最適化の前に見る。やり方は <!-- link:begin check-the-metric#mismatch -->評価指標そのものを確かめる › 指標と目的のずれ（準備中）<!-- link:end --> にある。
+- 測るものの側：検証器が測る指標が、本当の目的とずれていないかを、最適化の前に見る。やり方は <!-- link:begin check-the-metric#mismatch -->[評価指標そのものを確かめる › 指標と目的のずれ](check-the-metric.md#mismatch)<!-- link:end --> にある。
 
-節目の判定は、手元で使い込んでいない検証用データで行う。この分け方は <!-- link:begin lockbox-and-holdout#three-tiers -->ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける（準備中）<!-- link:end --> にある。形式ごとに何が検証器に当たるかは <!-- link:begin evaluators-by-format#evaluator-first -->形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › どの形式でも、最初の成果物は評価器（準備中）<!-- link:end --> にある。
+節目の判定は、手元で使い込んでいない検証用データで行う。この分け方は <!-- link:begin lockbox-and-holdout#three-tiers -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける](lockbox-and-holdout.md#three-tiers)<!-- link:end --> にある。形式ごとに何が検証器に当たるかは <!-- link:begin evaluators-by-format#evaluator-first -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › どの形式でも、最初の成果物は評価器](../contest/evaluators-by-format.md#evaluator-first)<!-- link:end --> にある。
 
 ## 三条件を点検する {#audit}
 
@@ -212,18 +212,18 @@ Anthropic が複数の Claude を並列に動かして C コンパイラを作�
 **次に読む**
 
 - [検証器そのものを確かめる（red/green・手で計算したケース）](test-the-verifier.md)
-- 答えの分かる遅い解と比べる（差分テスト・オラクル）（準備中）
-- Claude に採点させる（人の判定で較正する）（準備中）
-- ロックボックスと hold-out（人だけが持つ検証用データ）（準備中）
-- 評価資産を凍結し、触れる範囲を絞る（準備中）
+- [答えの分かる遅い解と比べる（差分テスト・オラクル）](differential-testing.md)
+- [Claude に採点させる（人の判定で較正する）](model-based-grading.md)
+- [ロックボックスと hold-out（人だけが持つ検証用データ）](lockbox-and-holdout.md)
+- [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
+- [検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)
+- [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)
 - 退行の原因を git bisect で探させる（準備中）
-- 検証環境・テスト基盤を作らせる（準備中）
-- 形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）（準備中）
 
 **関連**
 
 - [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)
-- 評価指標そのものを確かめる（準備中）
+- [評価指標そのものを確かめる](check-the-metric.md)
 - [手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)
 - [テストを書き換えて通した](../symptoms/rewrote-tests-to-pass.md)
 

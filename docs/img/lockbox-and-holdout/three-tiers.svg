@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="290" viewBox="0 0 400 290" role="img" aria-labelledby="t d">
+  <title id="t">入力の三層</title>
+  <desc id="d">入力を開発用・検証用・ロックボックスに分ける。開発用は Claude に中身を見せて毎回使う。検証用は人が持ち、Claude には点数だけを返して変更の採否に使う。ロックボックスは人だけが持ち、節目にだけ見る。</desc>
+  <rect x="0" y="0" width="400" height="290" fill="#ffffff"/>
+  <g font-family="sans-serif" fill="#1a1a1a">
+    <rect x="10" y="10" width="380" height="82" rx="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+    <text x="22" y="34" font-size="15" font-weight="bold">1. 開発用（中身を見せる）</text>
+    <text x="22" y="56" font-size="13">見る人：Claude も人も、中身と点数の両方</text>
+    <text x="22" y="76" font-size="13">使う場面：作りながら毎回回す</text>
+
+    <rect x="10" y="102" width="380" height="82" rx="6" fill="#f0f0f0" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="8 4"/>
+    <text x="22" y="126" font-size="15" font-weight="bold">2. 検証用（点数だけ返す）</text>
+    <text x="22" y="148" font-size="13">見る人：中身は人だけ。Claude には点数だけ</text>
+    <text x="22" y="168" font-size="13">使う場面：変更を採るか捨てるかの判断</text>
+
+    <rect x="10" y="194" width="380" height="86" rx="6" fill="#d9d9d9" stroke="#1a1a1a" stroke-width="4"/>
+    <text x="22" y="218" font-size="15" font-weight="bold">3. ロックボックス（節目にだけ開ける）</text>
+    <text x="22" y="240" font-size="13">見る人：人だけ。Claude には中身も点数も出さない</text>
+    <text x="22" y="260" font-size="13">使う場面：節目の確認。選ぶためには使わない</text>
+  </g>
+</svg>

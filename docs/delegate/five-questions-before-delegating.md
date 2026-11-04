@@ -70,7 +70,7 @@ updated: 2026-11-05
 | 2 自分で検証できるか | テストの一式、Stop フック、レビューの段 | 「通った」という報告だけが残り、確かめようがない | <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](../verify/verification-ladder.md#choose-step)<!-- link:end --> |
 | 3 触ってよい範囲はどこか | 権限ルール、`dontAsk`、サンドボックス、worktree、push してよい 1 本のブランチ | 範囲の外へ読み書きや通信が及ぶ | <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> |
 | 4 何で止まるか | `--max-turns`、`--max-budget-usd`、設定した費用の上限 | 方向が間違っていても、止まる点が来るまで続く。費用も膨らむ | <!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](headless-basics.md#limits)<!-- link:end --> |
-| 5 結果はどこへ行き、誰が承認するか | PR・コメント・要約。マージや公開は人が承認する | 取り戻せない操作が、人の目を通らずに起きる | <!-- link:begin checking-unattended-runs#final-decision -->無人実行の結果を確かめる › 最後の判断を人に置く（準備中）<!-- link:end --> |
+| 5 結果はどこへ行き、誰が承認するか | PR・コメント・要約。マージや公開は人が承認する | 取り戻せない操作が、人の目を通らずに起きる | <!-- link:begin checking-unattended-runs#final-decision -->[無人実行の結果を確かめる › 最後の判断を人に置く](../verify/checking-unattended-runs.md#final-decision)<!-- link:end --> |
 
 問い 1 と 2 は、原因「確かめていない」を防ぐ。問い 3 と 4 は、原因「境界がない」を防ぐ。問い 5 は、人の側の落とし穴「預けすぎる」への歯止めになる。原理でいえば、1 と 2 が「確かめる」、3 と 4 が「縛る」にあたる。
 
@@ -116,7 +116,7 @@ updated: 2026-11-05
 | 1 対話 | 人が毎ターン結果を見る | 確認が人の前に出る（<!-- link:begin permission-rules#minimal -->[権限ルール（allow・ask・deny） › 最小の使い方](../enforce/permission-rules.md#minimal)<!-- link:end -->） |
 | 2 計画の承認 | 承認した計画と、実際の差分を突き合わせる | 承認した範囲に権限ルールを合わせる（<!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](../enforce/permission-rules.md#evaluation-order)<!-- link:end -->） |
 | 3 停止条件つきの反復 | 合否が返る手段を渡し、判定役に会話の中の証拠を読ませる（<!-- link:begin goal-until-done#evaluator-reads-conversation -->[/goal（完了するまで続けさせる） › 判定役は会話しか読まない](goal-until-done.md#evaluator-reads-conversation)<!-- link:end -->） | deny ルールとターン数の上限。auto モードは確認を減らすが、安全を保証しない（<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end -->） |
-| 4 隔離した無人実行 | 書いていない者に、記録と差分で確かめさせる（<!-- link:begin checking-unattended-runs#records -->無人実行の結果を確かめる › 記録と差分で確かめる（準備中）<!-- link:end -->） | サンドボックス、秘密を置かない、使い捨ての環境（<!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](../safety/protecting-secrets.md#two-layers)<!-- link:end -->） |
+| 4 隔離した無人実行 | 書いていない者に、記録と差分で確かめさせる（<!-- link:begin checking-unattended-runs#records -->[無人実行の結果を確かめる › 記録と差分で確かめる](../verify/checking-unattended-runs.md#records)<!-- link:end -->） | サンドボックス、秘密を置かない、使い捨ての環境（<!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](../safety/protecting-secrets.md#two-layers)<!-- link:end -->） |
 
 封じ込めの既定の細部は、<!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end --> が正本である。ここでは繰り返さない。
 
@@ -143,7 +143,7 @@ updated: 2026-11-05
 - 新しい作業の最初の数回で、前提の取り違えや想定外の変更が出た。結果を確かめて直すまで、広げない。
 - 評価の定義・採否・撤退・中核の理解が絡む。これはどの段でも人が握る（<!-- link:begin what-not-to-delegate#verifiable-axis -->[任せないもの（評価・採否・撤退・中核の理解） › 分ける軸：機械的に確かめられるか](what-not-to-delegate.md#verifiable-axis)<!-- link:end -->）。
 - 点数が頭打ちになった。方針を疑う合図なので、続けさせる前に <!-- link:begin decide-when-to-quit#plateau -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 頭打ちは方針を疑う合図](../judgment/decide-when-to-quit.md#plateau)<!-- link:end --> で撤退の基準を見直す。
-- 反復で戦略そのものを改善させようとしている。反復させるのは、仕様が決まり停止条件のある実装の作業に限る（<!-- link:begin open-ended-loop-trap#closed-vs-open -->AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ（準備中）<!-- link:end -->）。
+- 反復で戦略そのものを改善させようとしている。反復させるのは、仕様が決まり停止条件のある実装の作業に限る（<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->）。
 
 Claude は走り出せば長い作業を自分で進める。人に残るのは、始めること、今回の「終わり」の意味を決めること、最後に承認することである。見ながら進める伴走との使い分けは <!-- link:begin pairing-and-delegating -->伴走と委託（準備中）<!-- link:end --> にある。
 
@@ -177,8 +177,8 @@ Claude は走り出せば長い作業を自分で進める。人に残るのは�
 **次に読む**
 
 - [/goal（完了するまで続けさせる）](goal-until-done.md)
+- [/loop と定期実行の方式](loop-and-scheduling.md)
 - [非対話モード（claude -p）の基本](headless-basics.md)
-- /loop と定期実行の方式（準備中）
 
 **関連**
 
@@ -191,10 +191,10 @@ Claude は走り出せば長い作業を自分で進める。人に残るのは�
 - [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
-- 無人実行の結果を確かめる（準備中）
+- [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
+- [AI に改善を回させ続ける罠（開いたループ）](open-ended-loop-trap.md)
 - [ロードマップ（委任の段階別）](../start/roadmap.md)
 
 </div>

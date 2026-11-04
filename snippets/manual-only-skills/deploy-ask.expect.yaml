@@ -1,0 +1,14 @@
+title: .claude/settings.json（デプロイのスクリプトを流す前に確認を求める ask ルール）
+kind: settings
+place: project
+safety: true
+features: [permissions]
+conditions:
+  - 新しいセッションで試す
+  - スクリプトは何もしないダミーにして試す
+expect:
+  - when: Claude に `./scripts/deploy.sh staging` を直接流すよう頼む
+    then: 実行の前に確認が出る
+  - when: 人が `/deploy staging` を呼び、手順が最後のコマンドに進む
+    then: スキルの経由でも、同じコマンドの前に確認が出る
+control: ルールを置かないと、許可の設定しだいで確認なしに流れることがある

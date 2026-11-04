@@ -74,8 +74,8 @@ updated: 2026-11-05
 
 詳しい手順は次のとおりである。
 
-- 手順 1（確かめていない）：<!-- link:begin ask-without-sycophancy#hide-preferences -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる（準備中）<!-- link:end -->。
-- 手順 1（確かめていない）：<!-- link:begin ask-without-sycophancy#fresh-context-critique -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 新しい文脈で、成果物と基準だけを見せる（準備中）<!-- link:end -->。
+- 手順 1（確かめていない）：<!-- link:begin ask-without-sycophancy#hide-preferences -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる](../judgment/ask-without-sycophancy.md#hide-preferences)<!-- link:end -->。
+- 手順 1（確かめていない）：<!-- link:begin ask-without-sycophancy#fresh-context-critique -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 新しい文脈で、成果物と基準だけを見せる](../judgment/ask-without-sycophancy.md#fresh-context-critique)<!-- link:end -->。
 - 手順 2（同意を根拠にする）：<!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](../judgment/agreement-is-not-evidence.md#what-counts)<!-- link:end -->。
 - 人の側の落とし穴の全体：<!-- link:begin human-pitfalls -->[人の側の五つの落とし穴（総論）](../judgment/human-pitfalls.md)<!-- link:end -->。
 
@@ -86,8 +86,8 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 確かめていない | 迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）<br>[書いた本人ではない者にレビューさせる](../verify/independent-review.md) |
-| 同意を根拠にする | [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)<br>役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中） |
+| 確かめていない | [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)<br>[書いた本人ではない者にレビューさせる](../verify/independent-review.md) |
+| 同意を根拠にする | [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)<br>[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -110,14 +110,14 @@ updated: 2026-11-05
 
 予防は、聞き方を変える手と、確かめ方を決まりにする手の 2 つに分かれる。頼み方だけで直そうとしても、効果はまちまちである。お願いの文言で直す手は、ここでは勧めない。
 
-聞き方の手は次の 4 つで、詳細は <!-- link:begin ask-without-sycophancy -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）<!-- link:end --> にある。
+聞き方の手は次の 4 つで、詳細は <!-- link:begin ask-without-sycophancy -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)<!-- link:end --> にある。
 
-1. 好みと確信を伏せる（<!-- link:begin ask-without-sycophancy#hide-preferences -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる（準備中）<!-- link:end -->）。どちらが自分の案かを言わない。
-2. 並べて同時に比べさせる（<!-- link:begin ask-without-sycophancy#compare-side-by-side -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 並べて同時に比べさせる（準備中）<!-- link:end -->）。後から追撃するより、折れにくい。
-3. 新しい文脈で、成果物と基準だけを見せる（<!-- link:begin ask-without-sycophancy#fresh-context-critique -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 新しい文脈で、成果物と基準だけを見せる（準備中）<!-- link:end -->）。
-4. 批判には、反証の実験を付けさせる（<!-- link:begin ask-without-sycophancy#critique-with-experiments -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判には反証の実験を付けさせる（準備中）<!-- link:end -->）。
+1. 好みと確信を伏せる（<!-- link:begin ask-without-sycophancy#hide-preferences -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる](../judgment/ask-without-sycophancy.md#hide-preferences)<!-- link:end -->）。どちらが自分の案かを言わない。
+2. 並べて同時に比べさせる（<!-- link:begin ask-without-sycophancy#compare-side-by-side -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 並べて同時に比べさせる](../judgment/ask-without-sycophancy.md#compare-side-by-side)<!-- link:end -->）。後から追撃するより、折れにくい。
+3. 新しい文脈で、成果物と基準だけを見せる（<!-- link:begin ask-without-sycophancy#fresh-context-critique -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 新しい文脈で、成果物と基準だけを見せる](../judgment/ask-without-sycophancy.md#fresh-context-critique)<!-- link:end -->）。
+4. 批判には、反証の実験を付けさせる（<!-- link:begin ask-without-sycophancy#critique-with-experiments -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判には反証の実験を付けさせる](../judgment/ask-without-sycophancy.md#critique-with-experiments)<!-- link:end -->）。
 
-批判を強めすぎると、今度は何でも欠点として挙げるようになる。加減は <!-- link:begin ask-without-sycophancy#dont-overdo-criticism -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判を強めすぎない（準備中）<!-- link:end --> を見る。
+批判を強めすぎると、今度は何でも欠点として挙げるようになる。加減は <!-- link:begin ask-without-sycophancy#dont-overdo-criticism -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判を強めすぎない](../judgment/ask-without-sycophancy.md#dont-overdo-criticism)<!-- link:end --> を見る。
 
 好みを伏せて比べさせる依頼の雛形は次のとおりである。
 
@@ -174,9 +174,9 @@ updated: 2026-11-05
 
 - 独立したレビューを使う。分け方と、AI の承認の扱いは <!-- link:begin independent-review -->[書いた本人ではない者にレビューさせる](../verify/independent-review.md)<!-- link:end --> が持つ。
 - Claude や複数の AI レビュアーの一致を、正しさの証拠に数えない。実行結果・計測・一次資料を証拠に数える。人が握るものの一覧を <!-- link:begin agreement-is-not-evidence#what-you-keep -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 人が握るもの](../judgment/agreement-is-not-evidence.md#what-you-keep)<!-- link:end --> に置いている。別のモデルに意見を求めても、一致は証拠にならない（<!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end -->）。
-- チームでは、評価の役を実装する人から離し、疑う役を持ち回りにする。決まりは <!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end --> にある。
+- チームでは、評価の役を実装する人から離し、疑う役を持ち回りにする。決まりは <!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end --> にある。
 
-頼み方は、答えを選ぶ場面と案を作る場面で変わる。<!-- link:begin ask-for-options#choose -->選択肢と推奨案を出させる › 答えを選ぶ場面：選択肢と推奨案（準備中）<!-- link:end --> と <!-- link:begin think-before-asking#choose-vs-ideate -->頼む前に自分で考える（AI には問い・反論・道具を頼む） › 答えを選ぶ場面と、発想する場面（準備中）<!-- link:end --> を見る。原因がこのページのどちらでもないときは、<!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> に戻って診断し直す。出典のない主張を疑う場面は <!-- link:begin plausible-falsehoods -->[もっともらしい嘘・出典の誤り](plausible-falsehoods.md)<!-- link:end --> が持つ。
+頼み方は、答えを選ぶ場面と案を作る場面で変わる。<!-- link:begin ask-for-options#choose -->[選択肢と推奨案を出させる › 答えを選ぶ場面：選択肢と推奨案](../prompting/ask-for-options.md#choose)<!-- link:end --> と <!-- link:begin think-before-asking#choose-vs-ideate -->[頼む前に自分で考える（AI には問い・反論・道具を頼む） › 答えを選ぶ場面と、発想する場面](../judgment/think-before-asking.md#choose-vs-ideate)<!-- link:end --> を見る。原因がこのページのどちらでもないときは、<!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> に戻って診断し直す。出典のない主張を疑う場面は <!-- link:begin plausible-falsehoods -->[もっともらしい嘘・出典の誤り](plausible-falsehoods.md)<!-- link:end --> が持つ。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -203,16 +203,16 @@ updated: 2026-11-05
 
 **次に読む**
 
-- 迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）
+- [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
-- 役割を分ける（書く人・承認する人・疑う人）（準備中）
+- [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)
 
 **関連**
 
 - 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
-- 選択肢と推奨案を出させる（準備中）
-- 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
+- [選択肢と推奨案を出させる](../prompting/ask-for-options.md)
+- [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)
 - [人の側の五つの落とし穴（総論）](../judgment/human-pitfalls.md)
 - [誤りを認めずに言い張る](insists-on-mistakes.md)
 - [もっともらしい嘘・出典の誤り](plausible-falsehoods.md)

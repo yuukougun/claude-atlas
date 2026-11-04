@@ -68,7 +68,7 @@ updated: 2026-11-05
 | [CLAUDE.md](what-to-put-in-claude-md.md) | セッション開始 | 常駐 |
 | [スキル（skills）](writing-skills.md) | セッション開始と使うとき | 使うまで小さい |
 | [MCP](connecting-mcp.md) | セッション開始 | 使うまで小さい |
-| プラグイン（plugins）（準備中） | セッション開始と使うとき | 使うまで小さい |
+| [プラグイン（plugins）](plugins-and-marketplaces.md) | セッション開始と使うとき | 使うまで小さい |
 
 <!-- textlint-enable -->
 <!-- gen:end compare 読み込みの時期 コンテキストのコスト -->
@@ -89,7 +89,7 @@ updated: 2026-11-05
 - `/skill-doctor`：スキルごとの費用と使われ方を出す。一度も呼ばれていないスキルに印を付け、どこで切るかも示す。対象は組み込みと企業管理のスキルを除いたもので、使うには <!-- fact:begin skill-doctor-min-version -->Claude Code 2.1.252 以降（2026-11-04 時点）<!-- fact:end --> が要る。対話のセッションでは `/plugin` の Stats タブが開く。
 - `/plugin` の Installed タブ：使われなかった期間と回数が <!-- fact:begin plugin-not-used-recently-threshold -->14 日かつ 10 セッション（2026-11-05 時点）<!-- fact:end --> に達したプラグインが「Not used recently」の見出しに移る。`--plugin-dir` で読んだものや、組織の設定で有効にしたものには出ない。
 - `/doctor`：入れたスキル・MCP サーバー・プラグインを並べ、使われなかったものの無効化を勧める。
-- `/usage`：対応するプランでは、最近の使用量をスキル・サブエージェント・プラグイン・MCP サーバーの割合で出す。読み方は <!-- link:begin insights-and-usage-review#usage-breakdown -->/insights と /usage で振り返る › /usage の内訳から削るものを選ぶ（準備中）<!-- link:end --> と <!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> にある。
+- `/usage`：対応するプランでは、最近の使用量をスキル・サブエージェント・プラグイン・MCP サーバーの割合で出す。読み方は <!-- link:begin insights-and-usage-review#usage-breakdown -->[/insights と /usage で振り返る › /usage の内訳から削るものを選ぶ](../eval/insights-and-usage-review.md#usage-breakdown)<!-- link:end --> と <!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> にある。
 
 確かめ：一覧の各行に「最後に使われた時期」か「使われた記録なし」が書けている。記録がない拡張は、記録がないと書いたまま次へ進む。
 
@@ -149,7 +149,7 @@ updated: 2026-11-05
 | 同じ役目の拡張が 2 つある | 一方に寄せる | 説明が重なると、常駐も増え、どちらが呼ばれるかも揺れる |
 | CLAUDE.md の行で、消しても誤りが出ない | 削る | 判断は <!-- link:begin claude-md-length#deletion-test -->[CLAUDE.md の長さと剪定 › 削るときの問い](claude-md-length.md#deletion-test)<!-- link:end --> の問いに従う |
 
-共有するものには別の基準を足す。リポジトリに入れて全員に配るスキルやコマンドは、複数の人が使うものに絞る。使うのが 1 人なら、その人の個人の設定に置く。公式が、別のリポジトリでも使うならプラグインにする、と勧める型と同じである（根拠：中）。共有と個人の分け方は <!-- link:begin share-team-settings#shared-vs-personal -->チームで設定を共有する › 共有するものと個人に残すもの（準備中）<!-- link:end --> にある。
+共有するものには別の基準を足す。リポジトリに入れて全員に配るスキルやコマンドは、複数の人が使うものに絞る。使うのが 1 人なら、その人の個人の設定に置く。公式が、別のリポジトリでも使うならプラグインにする、と勧める型と同じである（根拠：中）。共有と個人の分け方は <!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end --> にある。
 
 !!! example "判断例：共有のデプロイ用スキルが一度も呼ばれていない"
     - **状況**：リポジトリに入れたデプロイ用のスキルが、`/skill-doctor` で一度も呼ばれていない。チームで見直している。
@@ -218,7 +218,7 @@ updated: 2026-11-05
 - **切ったのにプラグインのスキルが残っている**：プラグインのスキルは `skillOverrides` の対象ではない。`/plugin` から管理する。
 - **切っても重いままで、上限に早く当たる**：常駐が主因ではない可能性がある。原因の切り分けは <!-- link:begin hits-limits-quickly#diagnosis -->[すぐ上限に当たる › 原因を安く確かめる順](../symptoms/hits-limits-quickly.md#diagnosis)<!-- link:end --> にある。
 - **スキルが使われない、または余計に使われる**：外すのではなく説明を直す。直し方は <!-- link:begin skill-descriptions -->[スキルの description の書き方](skill-descriptions.md)<!-- link:end --> にある。
-- **外す前に、入れる側の確認が足りなかった**：次に入れるときは <!-- link:begin plugins-and-marketplaces#before-install -->プラグインとマーケットプレイス › 入れる前の確認（準備中）<!-- link:end --> と <!-- link:begin vetting-extensions#checklist -->[MCP・プラグイン・スキルを入れる前の確認 › 全体の確かめ方](../safety/vetting-extensions.md#checklist)<!-- link:end --> を先に見る。
+- **外す前に、入れる側の確認が足りなかった**：次に入れるときは <!-- link:begin plugins-and-marketplaces#before-install -->[プラグインとマーケットプレイス › 入れる前の確認](plugins-and-marketplaces.md#before-install)<!-- link:end --> と <!-- link:begin vetting-extensions#checklist -->[MCP・プラグイン・スキルを入れる前の確認 › 全体の確かめ方](../safety/vetting-extensions.md#checklist)<!-- link:end --> を先に見る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -251,13 +251,13 @@ updated: 2026-11-05
 - [/context で中身を見る](../context/inspect-context.md)
 - [CLAUDE.md の長さと剪定](claude-md-length.md)
 - [スキルの description の書き方](skill-descriptions.md)
-- プラグインとマーケットプレイス（準備中）
+- [プラグインとマーケットプレイス](plugins-and-marketplaces.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
-- /insights と /usage で振り返る（準備中）
+- [/insights と /usage で振り返る](../eval/insights-and-usage-review.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
-- チームで設定を共有する（準備中）
+- [チームで設定を共有する](../team/share-team-settings.md)
 - [拡張を足すタイミング](when-to-add-what.md)
 
 </div>

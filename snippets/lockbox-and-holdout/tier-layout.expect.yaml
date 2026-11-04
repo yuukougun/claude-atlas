@@ -1,0 +1,10 @@
+title: 三層の置き場所の例
+kind: other
+place: 作業用のディレクトリの外と中
+safety: false
+conditions:
+  - 自分の環境で、パスを置き換えて試す
+expect:
+  - when: 三層を例のとおりに置き、Claude に作業させる
+    then: Claude の作業場所から検証用とロックボックスが見えない。観察として扱い、読めないことは別に確かめる
+control: 三層をリポジトリの中に置くとき、Claude は検証用の中身を読める

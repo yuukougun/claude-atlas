@@ -1,0 +1,15 @@
+title: 週報の下書きを頼む依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - 作業用のフォルダで新しいセッションを始める
+  - weekly-report/inbox/ にダミーの議事メモとチケットの一覧を置く
+expect:
+  - when: 上の依頼を出す
+    then: weekly-report/out/ に 3 見出しの下書きのファイルができる
+  - when: 材料にない出来事を、依頼で尋ねた項目に含める
+    then: その項目が「材料なし」と書かれる
+  - when: 依頼の終わりまで進む
+    then: 「材料なし」にした項目と迷った項目の一覧が最後に出る
+control: 「材料なし」と書く決まりを外した依頼では、材料にない項目がもっともらしい文で埋まることがある

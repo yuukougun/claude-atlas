@@ -1,0 +1,27 @@
+{
+  "model": "<モデルの id>",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "次の問い合わせを分類してください。\n\n「先月の請求書が届いていません」"
+    }
+  ],
+  "output_config": {
+    "format": {
+      "type": "json_schema",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": ["billing", "bug", "other"]
+          },
+          "summary": { "type": "string" }
+        },
+        "required": ["category", "summary"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

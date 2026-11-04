@@ -97,7 +97,7 @@ updated: 2026-11-05
 2. **境界がない**：Claude に触らせるつもりのない場所が消えていたか。
     - 見るもの：消えたパスが作業ディレクトリの内か外か。サンドボックスを有効にしていたか。確認をすべて外すモード（bypassPermissions）で動かしていたか。
     - 確かめ方：パスが作業ディレクトリの外なら、境界がなかった。サンドボックスは、シェルのコマンドとそこから起きたプロセスを OS の層で囲むが、Claude のファイルの道具・MCP サーバー・フックは囲まない。囲えるものは<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->で確かめる。
-    - 作業ディレクトリの外への書き込みを止める設定は、ファイルの道具の書き込みを止めるが、シェルのコマンドは止めない。隔離の代わりにならない。見方は<!-- link:begin protected-paths#outside-working-directory -->消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる（準備中）<!-- link:end -->にある。
+    - 作業ディレクトリの外への書き込みを止める設定は、ファイルの道具の書き込みを止めるが、シェルのコマンドは止めない。隔離の代わりにならない。見方は<!-- link:begin protected-paths#outside-working-directory -->[消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる](../enforce/protected-paths.md#outside-working-directory)<!-- link:end -->にある。
     - bypassPermissions で動かしていたなら、隔離した使い捨ての環境の外で使っていないかを見る。理由は<!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](../safety/where-bypass-is-ok.md#why-isolate)<!-- link:end -->にある。
 3. **預けすぎる**（人の側の落とし穴）：確認を減らして任せる幅を広げたのに、見合う守りを足さなかった。
     - 見るもの：消した時点の権限モードと、そのとき足していた守り（deny ルール・サンドボックス・バックアップ）。
@@ -122,7 +122,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 縛っていない | [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>消せない場所・触れない場所（protected paths）（準備中） |
+| 縛っていない | [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md) |
 | 境界がない | [サンドボックスで封じ込める](../enforce/sandboxing.md)<br>[bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md) |
 | 預けすぎる | [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<br>[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits) |
 
@@ -187,7 +187,7 @@ updated: 2026-11-05
 
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- 消せない場所・触れない場所（protected paths）（準備中）
+- [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)

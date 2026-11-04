@@ -133,7 +133,7 @@ updated: 2026-11-05
 
 - `/compact` の焦点の指示：<!-- link:begin compact-and-auto-compact#focused-compact -->[/compact と自動圧縮 › /compact に焦点を指示する](../context/compact-and-auto-compact.md#focused-compact)<!-- link:end -->
 - 書き出して `/clear` する選び方：<!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](../context/compact-and-auto-compact.md#compact-or-clear)<!-- link:end -->
-- 元のセッションを保ったまま別の方法を試すなら、要約ではなく分岐：<!-- link:begin resume-and-branch#branch -->セッションに名前を付けて再開・分岐する › 分岐して別案を試す（準備中）<!-- link:end -->
+- 元のセッションを保ったまま別の方法を試すなら、要約ではなく分岐：<!-- link:begin resume-and-branch#branch -->[セッションに名前を付けて再開・分岐する › 分岐して別案を試す](resume-and-branch.md#branch)<!-- link:end -->
 
 ## git と組み合わせる {#with-git}
 
@@ -161,12 +161,12 @@ updated: 2026-11-05
 | --- | --- | --- |
 | チェックポイントと `/rewind` | Claude の編集の道具が変えたファイルと、会話 | 試しをすぐ取り消す。失敗した試みを会話から外す |
 | 要約（Summarize） | 会話の長さだけ（ファイルは変えない） | 会話が膨らんだので場所を空ける |
-| 分岐（`/branch`） | 元のセッションを保ったまま別の道を進む | 元の会話を残して別案を試す（<!-- link:begin resume-and-branch#branch -->セッションに名前を付けて再開・分岐する › 分岐して別案を試す（準備中）<!-- link:end -->） |
+| 分岐（`/branch`） | 元のセッションを保ったまま別の道を進む | 元の会話を残して別案を試す（<!-- link:begin resume-and-branch#branch -->[セッションに名前を付けて再開・分岐する › 分岐して別案を試す](resume-and-branch.md#branch)<!-- link:end -->） |
 | git | コミットした履歴すべて。Bash が変えたファイルも | 永続の履歴。共同作業。戻らないものの最後の守り |
 
 関連する手順は次のページにある。
 
-- セッションに名前を付けて再開する流れ：<!-- link:begin resume-and-branch#resume -->セッションに名前を付けて再開・分岐する › 再開する（準備中）<!-- link:end -->
+- セッションに名前を付けて再開する流れ：<!-- link:begin resume-and-branch#resume -->[セッションに名前を付けて再開・分岐する › 再開する](resume-and-branch.md#resume)<!-- link:end -->
 - 失った作業をセッションの記録から探す手順：<!-- link:begin recover-lost-work#transcripts -->セッション記録から失った作業を取り戻す › トランスクリプトの場所と読み方（準備中）<!-- link:end -->
 
 <!-- gen:begin references -->
@@ -199,7 +199,7 @@ updated: 2026-11-05
 **関連**
 
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
-- セッションに名前を付けて再開・分岐する（準備中）
+- [セッションに名前を付けて再開・分岐する](resume-and-branch.md)
 - [/compact と自動圧縮](../context/compact-and-auto-compact.md)
 - [消してはいけないものを消された](../symptoms/deleted-something-important.md)
 - IDE（VS Code・JetBrains）で使う（準備中）

@@ -51,7 +51,7 @@ updated: 2026-11-05
 
 防ぐ原因は 2 つある。
 
-- **確かめていない**：文章の暗算ではなく、コードで数えた結果が返る。スクリプトが残るので、数字をあとで出し直せる。確かめ方は、データの分析のページに書いた（<!-- link:begin data-analysis#check-raw-data -->データを分析する › 生データで裏を取る（準備中）<!-- link:end -->）。
+- **確かめていない**：文章の暗算ではなく、コードで数えた結果が返る。スクリプトが残るので、数字をあとで出し直せる。確かめ方は、データの分析のページに書いた（<!-- link:begin data-analysis#check-raw-data -->[データを分析する › 生データで裏を取る](../recipes/data-analysis.md#check-raw-data)<!-- link:end -->）。
 - **境界がない**：コードは隔離された環境の中で動く。外への通信は設定で縛れる。ただし、縛れる範囲には限りがある（次の「実行環境とネットワークの設定」）。
 
 2 つの機能は同じ設定で入り切りする。設定の名前は、新しい画面では Create and edit files である。ファイルを作る機能と、コードを動かす機能は、別々に選べない。
@@ -107,7 +107,7 @@ After で足したのは、シートごとの中身、作る前の件数の報�
 
 文字コードが Shift_JIS の CSV は、文字化けや空欄の元になる。UTF-8 に変えて渡す手順は、別のページにある（<!-- link:begin character-encodings#convert -->文字コード（Shift\_JIS の CSV など） › UTF-8 に変えてから渡す（準備中）<!-- link:end -->）。大きな PDF や図を含む資料の読まれ方は、添付ファイルのページで確かめる（<!-- link:begin how-attachments-are-read#splitting -->[添付ファイルはどこまで読まれるか › 大きな資料の分け方](how-attachments-are-read.md#splitting)<!-- link:end -->）。
 
-事務作業の中でこの機能を使うときは、人が材料を渡し、Claude が下書きし、人が確かめて出す流れにする（<!-- link:begin office-paperwork#human-ai-human -->事務作業の半自動化（経費・報告） › 人 → AI → 人の流れにする（準備中）<!-- link:end -->）。
+事務作業の中でこの機能を使うときは、人が材料を渡し、Claude が下書きし、人が確かめて出す流れにする（<!-- link:begin office-paperwork#human-ai-human -->[事務作業の半自動化（経費・報告） › 人 → AI → 人の流れにする](../recipes/office-paperwork.md#human-ai-human)<!-- link:end -->）。
 
 ## 実行環境とネットワークの設定 {#network}
 
@@ -178,7 +178,7 @@ MCP の連携は、ネットワークの設定にかかわらず、外と通信�
 <!-- textlint-enable -->
 <!-- gen:end snippet files-and-code-execution/request-private-analysis -->
 
-集計を再実行できる形にする考え方と、観察と解釈を分ける考え方は、データの分析のページにある（<!-- link:begin data-analysis#reproducible-queries -->データを分析する › 再実行できる形で集計させる（準備中）<!-- link:end -->・<!-- link:begin data-analysis#observation-vs-interpretation -->データを分析する › 観察と解釈を分ける（準備中）<!-- link:end -->）。
+集計を再実行できる形にする考え方と、観察と解釈を分ける考え方は、データの分析のページにある（<!-- link:begin data-analysis#reproducible-queries -->[データを分析する › 再実行できる形で集計させる](../recipes/data-analysis.md#reproducible-queries)<!-- link:end -->・<!-- link:begin data-analysis#observation-vs-interpretation -->[データを分析する › 観察と解釈を分ける](../recipes/data-analysis.md#observation-vs-interpretation)<!-- link:end -->）。
 
 ## 作ったファイルの受け取り方 {#outputs}
 
@@ -190,7 +190,7 @@ MCP の連携は、ネットワークの設定にかかわらず、外と通信�
 - **数字を突き合わせる**：依頼に書いた確かめ（合計の一致など）の報告と、ファイルの中身を、数か所だけ見比べる。
 - **渡す前に見る**：渡す相手に見せない列や注記が、ファイルに残っていないかを見る。
 
-作ったファイルを含む会話の公開リンクでの共有は、<!-- fact:begin shared-chat-with-created-files-restriction -->Free・Pro・Max・Ultra では公開共有できない（Team・Enterprise は公式の文書に記述なし）（2026-11-05 時点）<!-- fact:end -->。会話の共有の扱いと、共有した中身の見え方は、共有のページにある（<!-- link:begin shared-artifacts-and-files#how-to-share -->共有リンクと公開アーティファクトの扱い › 共有のしかた（特定の人への招待・公開リンク・組織の中だけの共有）（準備中）<!-- link:end -->）。
+作ったファイルを含む会話の公開リンクでの共有は、<!-- fact:begin shared-chat-with-created-files-restriction -->Free・Pro・Max・Ultra では公開共有できない（Team・Enterprise は公式の文書に記述なし）（2026-11-05 時点）<!-- fact:end -->。会話の共有の扱いと、共有した中身の見え方は、共有のページにある（<!-- link:begin shared-artifacts-and-files#how-to-share -->[共有リンクと公開アーティファクトの扱い › 共有のしかた（特定の人への招待・公開リンク・組織の中だけの共有）](../safety/shared-artifacts-and-files.md#how-to-share)<!-- link:end -->）。
 
 ## 効かない場面・落とし穴 {#pitfalls}
 
@@ -225,17 +225,17 @@ MCP の連携は、ネットワークの設定にかかわらず、外と通信�
 
 **次に読む**
 
-- データを分析する（準備中）
+- [データを分析する](../recipes/data-analysis.md)
 
 **関連**
 
 - [アーティファクト（会話の中で作る文書・スライド・デザイン）](artifacts-overview.md)
-- 事務作業の半自動化（経費・報告）（準備中）
+- [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
 - [プロンプトインジェクションの実際](../safety/prompt-injection-in-practice.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](../safety/entrusted-data.md)
 - 文字コード（Shift\_JIS の CSV など）（準備中）
 - [添付ファイルはどこまで読まれるか](how-attachments-are-read.md)
-- 共有リンクと公開アーティファクトの扱い（準備中）
+- [共有リンクと公開アーティファクトの扱い](../safety/shared-artifacts-and-files.md)
 
 </div>
 

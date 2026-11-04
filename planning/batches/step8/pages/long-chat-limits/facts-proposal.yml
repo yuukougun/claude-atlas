@@ -1,0 +1,3 @@
+proposals:
+  - fact: {id: app-context-window-sizes, title: アプリの会話のコンテキストウィンドウの大きさ（モデルとプラン別。応答用の領域が確保され、実際に使える長さは少し短い）, value: "有料プランの最新モデルは最大 1M トークン。それ以外のモデルは 500K または 200K（research/02 §2-3 の写し。プランごとの表は一次資料で再確認が要る）", sources: [hc-usage-limits, hc-context-window], checked: 2026-10-29, status: 要確認}
+    used_in: [long-chat-limits#auto-management]

@@ -157,7 +157,7 @@ After で足したのは次のものである。合否を返すコマンド。�
 
 **「『double-check して』と書けば確かめる」**：確かめる手段を渡さない書き足しは、効きが読めない。書き足しが要らないモデルは変わるので、<!-- link:begin outdated-advice-ledger#add-double-check -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#add-double-check)<!-- link:end -->で今の扱いを見る。確かめ役を別に立てるなら、<!-- link:begin subagent-isolation -->[サブエージェントは別室の部下](subagent-isolation.md)<!-- link:end --> と <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](../verify/verification-ladder.md#choose-step)<!-- link:end --> にある。
 
-**「結果の差はモデルから来る」**：検証の手段、渡す文脈、指示といったハーネスの差から来る場合がある。比べるときは自分の評価で比べる（<!-- link:begin harness-over-model#compare-with-your-eval -->モデルの差よりハーネスの差 › 比べるときは自分の評価で（準備中）<!-- link:end -->）。
+**「結果の差はモデルから来る」**：検証の手段、渡す文脈、指示といったハーネスの差から来る場合がある。比べるときは自分の評価で比べる（<!-- link:begin harness-over-model#compare-with-your-eval -->[モデルの差よりハーネスの差 › 比べるときは自分の評価で](../models/harness-over-model.md#compare-with-your-eval)<!-- link:end -->）。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -202,7 +202,7 @@ After で足したのは次のものである。合否を返すコマンド。�
 - [検証の階段](../verify/verification-ladder.md)
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - tool use のループ（準備中）
-- モデルの差よりハーネスの差（準備中）
+- [モデルの差よりハーネスの差](../models/harness-over-model.md)
 - [サブエージェントは別室の部下](subagent-isolation.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
 

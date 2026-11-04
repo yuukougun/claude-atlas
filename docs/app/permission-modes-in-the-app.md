@@ -79,7 +79,7 @@ Claude に仕込まれた指示（prompt injection）が被害につながるの
 
 Auto で進めたいときは、条件 A か条件 B のどちらかを先に絞ってから切り替える。確認を減らすことと、範囲を広げることを、同じ時点でしない。
 
-画面を直接操作させる computer use には、Claude とアプリの間を隔てるサンドボックスがない。許可はアプリごとに求められる。銀行・医療・行政系のアプリはオフにしておくよう案内されている（[Let Claude use your computer in Cowork](https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork)）。ブラウザと画面の操作の選び方は <!-- link:begin browser-control#which-to-use -->Claude in Chrome と computer use（ブラウザと画面の操作） › コネクタ・ブラウザ・画面の順に選ぶ（準備中）<!-- link:end -->、任せない作業は <!-- link:begin browser-agent-cautions#what-not-to-do -->ブラウザや画面の操作を任せるときの注意 › 任せない作業（準備中）<!-- link:end --> にある。
+画面を直接操作させる computer use には、Claude とアプリの間を隔てるサンドボックスがない。許可はアプリごとに求められる。銀行・医療・行政系のアプリはオフにしておくよう案内されている（[Let Claude use your computer in Cowork](https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork)）。ブラウザと画面の操作の選び方は <!-- link:begin browser-control#which-to-use -->[Claude in Chrome と computer use（ブラウザと画面の操作） › コネクタ・ブラウザ・画面の順に選ぶ](../surfaces/browser-control.md#which-to-use)<!-- link:end -->、任せない作業は <!-- link:begin browser-agent-cautions#what-not-to-do -->[ブラウザや画面の操作を任せるときの注意 › 任せない作業](../safety/browser-agent-cautions.md#what-not-to-do)<!-- link:end --> にある。
 
 !!! example "判断例：Web で調べた資料をフォルダに整理させる"
     - **状況**：Web で調べて、結果をローカルのフォルダの文書にまとめる作業を頼みたい。フォルダには、ほかの仕事の文書も入っている。
@@ -132,7 +132,7 @@ Claude がした行動の責任は、ユーザーにある。確認なしで進�
     - **選んだもの**：同じ専用のフォルダの、同じ種類の作業に限って Auto に切り替える。
     - **理由**：確認が多すぎると、中身を読まずに承認するようになり、確認が安全の仕組みとして働かなくなる。範囲を変えないまま、確認の負担だけを減らせる。フォルダを広げる、ブラウザを加えるといった拡大は、別の段階として Manual に戻して試す。
 
-確認が多い・少ないの調整は <!-- link:begin approval-fatigue#reduce-prompts -->承認疲れ › 確認を減らす順番（準備中）<!-- link:end --> と <!-- link:begin wrong-amount-of-approvals -->[承認の確認が多すぎる・少なすぎる](../symptoms/wrong-amount-of-approvals.md)<!-- link:end --> にある。
+確認が多い・少ないの調整は <!-- link:begin approval-fatigue#reduce-prompts -->[承認疲れ › 確認を減らす順番](../safety/approval-fatigue.md#reduce-prompts)<!-- link:end --> と <!-- link:begin wrong-amount-of-approvals -->[承認の確認が多すぎる・少なすぎる](../symptoms/wrong-amount-of-approvals.md)<!-- link:end --> にある。
 
 ## 効かない場面・落とし穴 {#limits}
 
@@ -166,9 +166,9 @@ Claude がした行動の責任は、ユーザーにある。確認なしで進�
 **関連**
 
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
-- 承認疲れ（準備中）
-- ブラウザや画面の操作を任せるときの注意（準備中）
-- Claude in Chrome と computer use（ブラウザと画面の操作）（準備中）
+- [承認疲れ](../safety/approval-fatigue.md)
+- [ブラウザや画面の操作を任せるときの注意](../safety/browser-agent-cautions.md)
+- [Claude in Chrome と computer use（ブラウザと画面の操作）](../surfaces/browser-control.md)
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)
 - [プロンプトインジェクションの実際](../safety/prompt-injection-in-practice.md)

@@ -1,0 +1,15 @@
+title: ほかのチームのフォルダの CLAUDE.md と rules を読み込みから外す設定
+kind: settings
+place: local
+safety: false
+features: [claude-md]
+conditions:
+  - モノレポに other-team/ のフォルダがあり、その直下に CLAUDE.md を置いてある
+  - 設定は .claude/settings.local.json に書く
+  - 新しいセッションで試す
+expect:
+  - when: 設定を置いて、モノレポの根でセッションを始め、/context all を実行する
+    then: other-team/CLAUDE.md が Memory files の一覧に出ない
+  - when: 設定を外して同じ手順を繰り返す
+    then: other-team/CLAUDE.md が一覧に出る（作業ディレクトリより上の階層にある場合）
+control: 設定を置かないとき、作業ディレクトリより上の階層にあるほかのチームの CLAUDE.md も連結されて文脈に入る

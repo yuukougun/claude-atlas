@@ -161,7 +161,7 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
     - **選んだもの**：原文を 2 つとも渡し、引用を先に抜かせる。
     - **理由**：目的は差分の見落としを減らすことであり、要約で落ちた変更は Claude にも自分にも見えなくなる。原文なら、引用に出ない変更を見て、取りこぼしに気づける。
 
-発想の段階の使い分けは <!-- link:begin think-before-asking#self-first -->頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI（準備中）<!-- link:end --> が扱う。この辞典の推奨は、理解と確認なら原文を見せ、発想を広げたいときに限って、自分の言葉の要約を先に作ることである。
+発想の段階の使い分けは <!-- link:begin think-before-asking#self-first -->[頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI](../judgment/think-before-asking.md#self-first)<!-- link:end --> が扱う。この辞典の推奨は、理解と確認なら原文を見せ、発想を広げたいときに限って、自分の言葉の要約を先に作ることである。
 
 ## なぜ効くか、何に効くか {#why}
 
@@ -181,7 +181,7 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
 - 引用の指示は、出力を長くする。要点だけでよい質問や、1 行で答えられる質問には重い
 - 引用は、原文と合っているとは限らない。引用の体裁でも細部が違うことがある。大事な箇所は原文を開いて確かめる
 - 質問に関係する箇所が資料に無いと、引用が空になるか、近い箇所を無理に探す。「該当なし」と書いてよいと添える
-- 資料が読み込めていないと、並べ方では直らない。PDF の図や、面ごとの読み込みの限界は <!-- link:begin handing-long-documents#limits -->[長い資料を渡すとき › 面ごとの読み込みの限界](../context/handing-long-documents.md#limits)<!-- link:end --> が、日本語の PDF は <!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end --> が扱う
+- 資料が読み込めていないと、並べ方では直らない。PDF の図や、面ごとの読み込みの限界は <!-- link:begin handing-long-documents#limits -->[長い資料を渡すとき › 面ごとの読み込みの限界](../context/handing-long-documents.md#limits)<!-- link:end --> が、日本語の PDF は <!-- link:begin documents-in-japanese#pdf -->[日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること](../japanese/documents-in-japanese.md#pdf)<!-- link:end --> が扱う
 
 やりすぎの例は、すべての依頼に引用の段と何重ものタグを足すことである。長い資料を読ませて根拠を確かめたいときに使い、短い質問には足さない。
 
@@ -209,7 +209,7 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
 
 **次に読む**
 
-- 日本語の資料を読ませる・書かせる（準備中）
+- [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)
 
 **関連**
 
@@ -218,7 +218,7 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
 - XML タグで区切る（準備中）
 - [引用や出典の確かめ方](../verify/checking-citations.md)
 - [添付した資料の後半を読んでいない](../symptoms/skipped-later-pages.md)
-- 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
+- [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)
 - [「分からない」と言ってよいと伝える](allow-i-dont-know.md)
 
 </div>

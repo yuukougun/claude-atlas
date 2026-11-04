@@ -92,7 +92,7 @@ updated: 2026-11-05
     - 当てはまったら：資料を渡す。読ませる範囲の絞り方は <!-- link:begin choose-what-to-read#point-or-search -->[@参照と、何を読ませるかの絞り込み › 直接指すか、探させるか](../context/choose-what-to-read.md#point-or-search)<!-- link:end --> にある。
 5. **検索で拾った情報自体が古くないか**（何を見る：出典の日付と版）
     - 検索に成功しても、古い記事を拾うと古い答えが返る。
-    - 確かめ方：出典の日付と、対象の版を見る。日付と版の確かめ方は <!-- link:begin dating-information#check-date-and-version -->いつの情報かを見分ける › 日付と版の確かめ方（準備中）<!-- link:end -->、リサーチの出典の確かめ方は <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> にある。
+    - 確かめ方：出典の日付と、対象の版を見る。日付と版の確かめ方は <!-- link:begin dating-information#check-date-and-version -->[いつの情報かを見分ける › 日付と版の確かめ方](../changes/dating-information.md#check-date-and-version)<!-- link:end -->、リサーチの出典の確かめ方は <!-- link:begin using-research#checking-sources -->[リサーチを使いこなす › 出典の確かめ方](../app/using-research.md#checking-sources)<!-- link:end --> にある。
     - 当てはまったら：新しい資料を指定して、もう一度調べさせる。
 6. **締め切りより前でも、資料の薄い領域か**（何を見る：公開の文書が少ない話題か）
     - 公開の資料が少ない領域や、文書と実際のソースが食い違う領域では、締め切りより前の事柄でも間違えやすい。セキュリティ競技（CTF）の難問が最後まで残った観察から一般化した見方である（根拠：弱・類推）。
@@ -129,7 +129,7 @@ updated: 2026-11-05
     - **状況**：ライブラリの設定を頼むと、動くが今は非推奨の書き方で出てきた。
     - **迷う候補**：検索させて新しい書き方を探させる。使っている版と公式の移行の文書の抜粋を渡して書き直させる。
     - **選んだもの**：使っている版と移行の文書の抜粋を渡す。
-    - **理由**：書き方が古くなる速さは、対象によって違う。版と抜粋を渡せば、どの版の書き方かが確定する。検索は、古い記事を拾う可能性が残る。記事の古さを疑う場合は <!-- link:begin dating-information#layers -->いつの情報かを見分ける › 古くなる速さの三つの層（準備中）<!-- link:end --> で速さの層を見る。
+    - **理由**：書き方が古くなる速さは、対象によって違う。版と抜粋を渡せば、どの版の書き方かが確定する。検索は、古い記事を拾う可能性が残る。記事の古さを疑う場合は <!-- link:begin dating-information#layers -->[いつの情報かを見分ける › 古くなる速さの三つの層](../changes/dating-information.md#layers)<!-- link:end --> で速さの層を見る。
 
 ## 予防 {#prevention}
 
@@ -138,7 +138,7 @@ updated: 2026-11-05
 - 日付・使っている版・根拠にする資料を、依頼の型にして毎回付ける。この節の終わりの雛形がその型である。
 - 使っている主要な製品やライブラリの版は、CLAUDE.md に書いて毎回の前提にする。版を上げたら書き換える。
 - 公式の文書は、URL か @ 参照で直接読ませる。選び方は <!-- link:begin choose-what-to-read#point-or-search -->[@参照と、何を読ませるかの絞り込み › 直接指すか、探させるか](../context/choose-what-to-read.md#point-or-search)<!-- link:end --> にある。
-- 最新が要る調べものは、検索かリサーチを使い、出典の日付を確かめる手順までを依頼に含める。リサーチの頼み方は <!-- link:begin using-research#requesting -->リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）（準備中）<!-- link:end --> にある。
+- 最新が要る調べものは、検索かリサーチを使い、出典の日付を確かめる手順までを依頼に含める。リサーチの頼み方は <!-- link:begin using-research#requesting -->[リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）](../app/using-research.md#requesting)<!-- link:end --> にある。
 
 <!-- gen:begin snippet doesnt-know-latest/date-and-source -->
 <!-- textlint-disable -->
@@ -199,10 +199,10 @@ updated: 2026-11-05
 
 **関連**
 
-- リサーチを使いこなす（準備中）
+- [リサーチを使いこなす](../app/using-research.md)
 - [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - [記事や前のやり方が通じない](old-advice-doesnt-work.md)
-- いつの情報かを見分ける（準備中）
+- [いつの情報かを見分ける](../changes/dating-information.md)
 - [もっともらしい嘘・出典の誤り](plausible-falsehoods.md)
 - [存在しない関数やパッケージを使う](uses-nonexistent-apis.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

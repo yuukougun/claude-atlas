@@ -61,7 +61,7 @@ updated: 2026-11-05
 防ぐ原因は 2 つある。
 
 - 境界がない：確認に答える人がいないので、許す道具と止まる上限を決めて渡さないと、実行の範囲と費用が決まらない（原理：縛る）。
-- 確かめていない：成功と出ても何が起きたかは別である。出力・記録・差分で確かめる（原理：確かめる）。確かめ方は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->無人実行の結果を確かめる › 終了コードと要約だけで決めない（準備中）<!-- link:end --> にある。
+- 確かめていない：成功と出ても何が起きたかは別である。出力・記録・差分で確かめる（原理：確かめる）。確かめ方は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->[無人実行の結果を確かめる › 終了コードと要約だけで決めない](../verify/checking-unattended-runs.md#beyond-exit-codes)<!-- link:end --> にある。
 
 自分のプログラムに組み込むなら Agent SDK、決まった時刻や GitHub のイベントで動かすなら別の手段が合う。選び方は「比べる相手」の節にある。
 
@@ -89,7 +89,7 @@ updated: 2026-11-05
 - `json`：結果の文章を `result` に、セッション ID と費用の見積もりなどを別の欄に入れた JSON が、最後に 1 つ出る。スクリプトで読むならこれが基本である。
 - `stream-json`：1 行 1 イベントの JSON で、進みが流れる。`--verbose` を併用する。トークンを逐次受け取るなら `--include-partial-messages` も付ける。最後の行が最終の結果である。
 
-形を決めた値を受け取りたいときは、`--output-format json` に `--json-schema` を足す。結果は `structured_output` の欄に入る。有効な値を得られずに終わると、この欄は出ない。使う前に、欄があるかを確かめる。形が合っていても中身が正しいとは限らない。この仕組みの考え方は <!-- link:begin structured-outputs-basics#claude-code -->structured outputs（形式を保証する） › Claude Code の -p で形を指定する（準備中）<!-- link:end --> にある。
+形を決めた値を受け取りたいときは、`--output-format json` に `--json-schema` を足す。結果は `structured_output` の欄に入る。有効な値を得られずに終わると、この欄は出ない。使う前に、欄があるかを確かめる。形が合っていても中身が正しいとは限らない。この仕組みの考え方は <!-- link:begin structured-outputs-basics#claude-code -->[structured outputs（形式を保証する） › Claude Code の -p で形を指定する](../api/structured-outputs-basics.md#claude-code)<!-- link:end --> にある。
 
 終了コードは、成功で 0、失敗で 0 以外になる。ただし、これだけで成功とは決められない。
 
@@ -97,7 +97,7 @@ updated: 2026-11-05
 - 古い版には、起動に失敗しても何も出さず終了コード 0 で終わる不具合や、記録の書き込みに失敗しても 0 で終わる不具合があった。いまは直っているが、固定した古い版で動かす CI では、終了コードだけの判定が失敗を見逃す。入った版は更新履歴で確かめる。
 - 終了コード 0 でも、許可が足りず何もせずに終わることがある。原因と見分け方は、この下の「許可と権限モード」の節で扱う。
 
-終了コードと要約だけで決めず、記録と差分で確かめる手順は <!-- link:begin checking-unattended-runs#records -->無人実行の結果を確かめる › 記録と差分で確かめる（準備中）<!-- link:end --> にある。最後の判断は人とブランチの保護に置く（<!-- link:begin checking-unattended-runs#final-decision -->無人実行の結果を確かめる › 最後の判断を人に置く（準備中）<!-- link:end -->）。
+終了コードと要約だけで決めず、記録と差分で確かめる手順は <!-- link:begin checking-unattended-runs#records -->[無人実行の結果を確かめる › 記録と差分で確かめる](../verify/checking-unattended-runs.md#records)<!-- link:end --> にある。最後の判断は人とブランチの保護に置く（<!-- link:begin checking-unattended-runs#final-decision -->[無人実行の結果を確かめる › 最後の判断を人に置く](../verify/checking-unattended-runs.md#final-decision)<!-- link:end -->）。
 
 ## 許可と権限モード {#permissions}
 
@@ -172,9 +172,9 @@ updated: 2026-11-05
 
 1. 動かすシェルで `ANTHROPIC_API_KEY` が設定されているかを見る。
 2. 対話の Claude Code で `/status` を開き、今の認証を見る。
-3. 経路が決まる順と確かめ方は <!-- link:begin check-billing-path#how-the-path-is-chosen -->課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順（準備中）<!-- link:end --> と <!-- link:begin check-billing-path#check-current-path -->課金の経路を確かめる（API キーとサブスクリプション） › 今の経路を確かめる（準備中）<!-- link:end --> にある。
+3. 経路が決まる順と確かめ方は <!-- link:begin check-billing-path#how-the-path-is-chosen -->[課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順](../cost/check-billing-path.md#how-the-path-is-chosen)<!-- link:end --> と <!-- link:begin check-billing-path#check-current-path -->[課金の経路を確かめる（API キーとサブスクリプション） › 今の経路を確かめる](../cost/check-billing-path.md#check-current-path)<!-- link:end --> にある。
 
-鍵のある `-p` の費用は、プランとは別の課金である。月の API credits の扱いは <!-- link:begin check-billing-path#monthly-api-credits -->課金の経路を確かめる（API キーとサブスクリプション） › プランに付く API credits（準備中）<!-- link:end --> にある。
+鍵のある `-p` の費用は、プランとは別の課金である。月の API credits の扱いは <!-- link:begin check-billing-path#monthly-api-credits -->[課金の経路を確かめる（API キーとサブスクリプション） › プランに付く API credits](../cost/check-billing-path.md#monthly-api-credits)<!-- link:end --> にある。
 
 ## 雛形 {#templates}
 
@@ -268,15 +268,15 @@ updated: 2026-11-05
 **関連**
 
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- 無人実行の結果を確かめる（準備中）
+- [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
-- 課金の経路を確かめる（API キーとサブスクリプション）（準備中）
+- [課金の経路を確かめる（API キーとサブスクリプション）](../cost/check-billing-path.md)
 - [上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)
-- structured outputs（形式を保証する）（準備中）
+- [structured outputs（形式を保証する）](../api/structured-outputs-basics.md)
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)
 - Agent SDK（Claude Code をライブラリとして使う）（準備中）
 

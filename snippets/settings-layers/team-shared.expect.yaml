@@ -1,0 +1,15 @@
+title: チームで共有する設定（.claude/settings.json）
+kind: settings
+place: project
+safety: true
+features: [settings]
+conditions:
+  - リポジトリの直下に .claude/settings.json として置き、コミットする
+  - 各メンバーがフォルダを信頼した後で試す
+  - 試すのは .env に偽の値を入れたリポジトリだけにする
+expect:
+  - when: 信頼したフォルダで、Claude に .env を読むよう頼む
+    then: Read の拒否が出て、中身は返答に出ない
+  - when: 信頼する前の新しいクローンで npm run lint を頼む
+    then: allow ルールはまだ効かず、確認が出る（deny は信頼の前から効く）
+control: 置かないとき、.env は読まれ、lint の実行ごとに確認が出る

@@ -153,7 +153,7 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 
 === "Claude Code"
 
-    会話での頼み方は、アプリと同じである。セッション全体の答え方を切り替えるには、出力スタイルが使える。Learning という組み込みのスタイルは、設計判断を含む数行を `TODO(human)` として利用者に書かせる設計である。ただし、この学習効果を示す実証データは見つかっていない。設計上の意図として紹介する。スタイルの種類と使い方は、機能のページが扱う。<!-- link:begin output-style-modes#built-in -->出力スタイルで応答の仕方を切り替える › 組み込みのスタイル（準備中）<!-- link:end -->
+    会話での頼み方は、アプリと同じである。セッション全体の答え方を切り替えるには、出力スタイルが使える。Learning という組み込みのスタイルは、設計判断を含む数行を `TODO(human)` として利用者に書かせる設計である。ただし、この学習効果を示す実証データは見つかっていない。設計上の意図として紹介する。スタイルの種類と使い方は、機能のページが扱う。<!-- link:begin output-style-modes#built-in -->[出力スタイルで応答の仕方を切り替える › 組み込みのスタイル](../cli/output-style-modes.md#built-in)<!-- link:end -->
 
 <!-- gen:begin snippet learning-with-ai/hints-only -->
 <!-- textlint-disable -->
@@ -224,9 +224,9 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 - **予測**。実験の前に結果を書き、外れた理由を考える。
 - **原文を読むこと**。要約は入口にとどめ、重要な箇所は原文で確かめる。
 
-独創性の要る考察では、答えそのものを AI に頼らず、先に自分の案を書く順序が要る。<!-- link:begin think-before-asking#self-first -->頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI（準備中）<!-- link:end -->
+独創性の要る考察では、答えそのものを AI に頼らず、先に自分の案を書く順序が要る。<!-- link:begin think-before-asking#self-first -->[頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI](think-before-asking.md#self-first)<!-- link:end -->
 
-どこまで理解を求めるかは、コードの重要度で変わる。周辺のコードは任せきりでよく、中核は説明できるまで確かめる。その線引きは、別のページが扱う。<!-- link:begin how-much-understanding-to-keep#core-and-periphery -->どこまで理解を手放してよいか（中核と周辺） › 中核と周辺を分ける（準備中）<!-- link:end -->
+どこまで理解を求めるかは、コードの重要度で変わる。周辺のコードは任せきりでよく、中核は説明できるまで確かめる。その線引きは、別のページが扱う。<!-- link:begin how-much-understanding-to-keep#core-and-periphery -->[どこまで理解を手放してよいか（中核と周辺） › 中核と周辺を分ける](how-much-understanding-to-keep.md#core-and-periphery)<!-- link:end -->
 
 ## 理解が残ったかの確かめ方 {#how-to-check}
 
@@ -238,11 +238,11 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 
 記録の取り方は、体感を実測で置き換える別のページが扱う。<!-- link:begin felt-vs-measured#what-to-record -->[体感と実測 › 記録で測るもの](../eval/felt-vs-measured.md#what-to-record)<!-- link:end -->
 
-やめどきも先に決めておく。たとえば、同じ質問に 2 回続けて答えられなかったら、AI を閉じて原文か公式の文書を読む。AI を使わない時間を残す考え方は、別のページが扱う。<!-- link:begin how-much-understanding-to-keep#ai-free-time -->どこまで理解を手放してよいか（中核と周辺） › AI を使わない時間を残す（準備中）<!-- link:end -->
+やめどきも先に決めておく。たとえば、同じ質問に 2 回続けて答えられなかったら、AI を閉じて原文か公式の文書を読む。AI を使わない時間を残す考え方は、別のページが扱う。<!-- link:begin how-much-understanding-to-keep#ai-free-time -->[どこまで理解を手放してよいか（中核と周辺） › AI を使わない時間を残す](how-much-understanding-to-keep.md#ai-free-time)<!-- link:end -->
 
 大会に向けては、本番の条件で自力を確かめる段階も要る。<!-- link:begin practice-vs-contest-day#test-under-contest-conditions -->[練習と本番の使い分け（AI を禁じる大会に向けた練習を含む） › 本番の条件で自力を確かめる](../contest/practice-vs-contest-day.md#test-under-contest-conditions)<!-- link:end -->
 
-生成されたコードを採る前に、処理の流れを説明させて確かめる手順は、学ぶ場面ではなく出荷の基準として、別のページが持つ。<!-- link:begin own-generated-code#explain -->生成コードを自分のものにする › 処理の流れと入力の端を説明させる（準備中）<!-- link:end -->
+生成されたコードを採る前に、処理の流れを説明させて確かめる手順は、学ぶ場面ではなく出荷の基準として、別のページが持つ。<!-- link:begin own-generated-code#explain -->[生成コードを自分のものにする › 処理の流れと入力の端を説明させる](../verify/own-generated-code.md#explain)<!-- link:end -->
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -272,17 +272,17 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 
 **次に読む**
 
+- [どこまで理解を手放してよいか（中核と周辺）](how-much-understanding-to-keep.md)
 - [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](../contest/practice-vs-contest-day.md)
-- どこまで理解を手放してよいか（中核と周辺）（準備中）
 
 **関連**
 
-- 生成コードを自分のものにする（準備中）
-- 出力スタイルで応答の仕方を切り替える（準備中）
+- [生成コードを自分のものにする](../verify/own-generated-code.md)
+- [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [要約が原文より断定的になる](../symptoms/summary-overstates-source.md)
 - [引用や出典の確かめ方](../verify/checking-citations.md)
-- 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
+- [頼む前に自分で考える（AI には問い・反論・道具を頼む）](think-before-asking.md)
 - [知らないコードベースを読む](../recipes/explore-a-codebase.md)
 - [バグを直す](../recipes/fix-a-bug.md)
 - 振り返りで AI に評価させない（集計係にとどめる）（準備中）

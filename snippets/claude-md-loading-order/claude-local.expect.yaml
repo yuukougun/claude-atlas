@@ -1,0 +1,18 @@
+title: 個人だけの指示を置く CLAUDE.local.md
+kind: claude-md
+place: local
+safety: false
+features: [claude-md]
+requires: [~/.claude/my-project-instructions.md]
+conditions:
+  - プロジェクトの根に置き、.gitignore に CLAUDE.local.md を足す
+  - 取り込み先の ~/.claude/my-project-instructions.md を用意する（無ければ最後の行を消す）
+  - 新しいセッションで試す
+expect:
+  - when: セッションを始めて /context all を実行する
+    then: CLAUDE.local.md が Memory files の一覧に出る
+  - when: プロジェクトの CLAUDE.md と食い違う指示を CLAUDE.local.md に書いて、挙動を観察する
+    then: どちらも文脈に入り、片方が上書きされるとは限らない（観察として扱う。合否にしない）
+  - when: git status を見る
+    then: .gitignore に足していれば CLAUDE.local.md は変更として出ない
+control: ファイルを置かないとき、個人の好みはプロジェクトの CLAUDE.md に書くか、毎回の依頼で伝えることになる

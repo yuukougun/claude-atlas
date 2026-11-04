@@ -183,7 +183,7 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 2. 数値は原文のとおりに写させる。丸めさせない。
 3. 原文に書かれていることと、推測を分けさせる。原文にない一般化を禁じるだけでは、お願いで終わる。引用の列があると、照合できる形になる。
 4. 引用を原文で文字列検索する。見つからない引用は、作られている。
-5. 一番重要な主張は、原文を自分で読む。読み方は <!-- link:begin read-specs-yourself#read-first -->仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する（準備中）<!-- link:end --> にある。
+5. 一番重要な主張は、原文を自分で読む。読み方は <!-- link:begin read-specs-yourself#read-first -->[仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する](../recipes/read-specs-yourself.md#read-first)<!-- link:end --> にある。
 
 依頼の雛形は次のとおりである。
 
@@ -218,7 +218,7 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 引用・資料の限定・繰り返し・要約の照合のどれを使った後でも、最後に答え全体を確かめる。
 
 - **引用の実在**：引用が原文にそのまま見つかるか。文字列検索で確かめる。Claude Code では、原文のファイルを検索して照らせる。
-- **主張の重さ**：重要な事実（金額・日付・法律・安全・他人に出す文書）は、一次の資料を開いて確かめる。出典のある報告は、<!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end --> と <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> で原文に照らす。
+- **主張の重さ**：重要な事実（金額・日付・法律・安全・他人に出す文書）は、一次の資料を開いて確かめる。出典のある報告は、<!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end --> と <!-- link:begin using-research#checking-sources -->[リサーチを使いこなす › 出典の確かめ方](../app/using-research.md#checking-sources)<!-- link:end --> で原文に照らす。
 - **出典そのもの**：挙げられた文献や引用が、実在し、題名・著者・年まで合うか。実在しても細部が違う誤りは、<!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](checking-citations.md#steps)<!-- link:end --> で確かめる。
 - **決める人**：結論を決めるのは人である。Claude の要約や自己申告に決定を渡さない。
 
@@ -248,7 +248,7 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 
 - [引用や出典の確かめ方](checking-citations.md)
 - [知らないコードベースを読む](../recipes/explore-a-codebase.md)
-- 仕様を自分で読み、AI に誤読を指摘させる（準備中）
+- [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)
 - ドキュメント・技術文書を書く（準備中）
 - 資料・スライドを作る（準備中）
 
@@ -263,7 +263,7 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 - [知識カットオフと「今」を知らない問題](../basics/knowledge-cutoff.md)
 - [同じ質問でも答えが変わる（非決定性）](../basics/nondeterminism.md)
 - [web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md)
-- リサーチを使いこなす（準備中）
+- [リサーチを使いこなす](../app/using-research.md)
 - [要約は原文より強く言いがち（過度な一般化）](../basics/summary-overgeneralization.md)
 - [要約が原文より断定的になる](../symptoms/summary-overstates-source.md)
 - [長い資料を渡すとき](../context/handing-long-documents.md)

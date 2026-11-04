@@ -1,0 +1,15 @@
+title: セッションの命名・再開・分岐のコマンド集
+kind: other
+place: ターミナル（セッションの中の操作はプロンプト）
+safety: false
+conditions:
+  - 作業用のディレクトリで試す（セッションはディレクトリごとに保存される）
+  - 壊れても困らない題材のセッションで試す
+expect:
+  - when: "`claude -n oauth-migration` で始めて終了し、同じディレクトリで `claude --resume oauth-migration` を実行する"
+    then: 名前の付いたセッションが直接開く
+  - when: セッションの中で `/branch try-streaming` を実行する
+    then: 確認の表示に新しいセッションと元のセッションの ID が出て、元のセッションは `/resume` の一覧に残る
+  - when: 同じ名前のセッションが複数ある状態で `claude --resume <名前>` を実行する
+    then: 名前を検索語に入れた状態で一覧が開く
+control: 名前を付けないと、一覧では最初の依頼から作られた題で並び、似た題が増えると見分けにくい

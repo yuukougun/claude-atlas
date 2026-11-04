@@ -99,7 +99,7 @@ Liu らの研究（2023 年に arXiv で公開）は、複数の文書からの�
 
 ## 誤解
 
-- **窓が広がったから、もう関係ない**：窓が広がって溢れる心配は減ったが、関係のない文脈が答えの質と費用を下げる点は変わらない。やめてよい節約と続ける片付けの分け方は <!-- link:begin large-context-window#what-to-stop -->広いコンテキストウィンドウとの付き合い方 › やめてよいこと（準備中）<!-- link:end --> にある。窓を最優先で節約するという古い助言は <!-- link:begin outdated-advice-ledger#save-context-for-200k -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#save-context-for-200k)<!-- link:end --> で、今どうするかを確かめられる。
+- **窓が広がったから、もう関係ない**：窓が広がって溢れる心配は減ったが、関係のない文脈が答えの質と費用を下げる点は変わらない。やめてよい節約と続ける片付けの分け方は <!-- link:begin large-context-window#what-to-stop -->[広いコンテキストウィンドウとの付き合い方 › やめてよいこと](../models/large-context-window.md#what-to-stop)<!-- link:end --> にある。窓を最優先で節約するという古い助言は <!-- link:begin outdated-advice-ledger#save-context-for-200k -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#save-context-for-200k)<!-- link:end --> で、今どうするかを確かめられる。
 - **長い入力なら、どの課題でも同じように落ちる**：研究が示したのは、試した課題と試したモデルでの傾向である。割合を今の Claude の目安として覚えない。
 - **失敗を残しておけば、モデルが学ぶ**：同じ会話の中では、失敗した試みは学びである前に、似た書類として残ると考えられる。（類推）学んだことは、書き出して新しい会話に持ち込むほうが、紛らわしさが少ない。（推論・実践例なし）
 
@@ -138,7 +138,7 @@ Liu らの研究（2023 年に arXiv で公開）は、複数の文書からの�
 **関連**
 
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
-- 広いコンテキストウィンドウとの付き合い方（準備中）
+- [広いコンテキストウィンドウとの付き合い方](../models/large-context-window.md)
 - [長い資料は先、質問は最後](../prompting/long-context-first.md)
 - [長い資料を渡すとき](../context/handing-long-documents.md)
 

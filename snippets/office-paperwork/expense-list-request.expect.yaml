@@ -1,0 +1,16 @@
+title: 経費の一覧を作らせる依頼
+kind: prompt
+place: 依頼の本文
+safety: true
+requires: [expenses/categories.md]
+conditions:
+  - 作業用のフォルダで新しいセッションを始める
+  - 偽の領収書と偽の明細だけを inbox/ に置く（実際の領収書は使わない）
+expect:
+  - when: 上の依頼を出す
+    then: expenses/out/ に、照合の列つきの CSV と合計を確かめるスクリプトができる
+  - when: 領収書だけがあって明細にない行を混ぜる
+    then: その行の照合の列が「明細なし」になる
+  - when: 文字が潰れて読めない領収書を混ぜる
+    then: 値を空にして備考に理由が書かれ、推測の値は入らない
+control: 合計をスクリプトで出す指定を外すと、明細の合計と一覧の合計が食い違っても気づきにくい

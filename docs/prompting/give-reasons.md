@@ -165,7 +165,7 @@ CLAUDE.md に残す行と外す行の見分け方は、<!-- link:begin what-to-p
 
 よくある誤解は、理由を書くと丁寧になるだけ、というものである。理由は丁寧さではなく、判断の材料として働く。もう 1 つの誤解は、理由があれば必ず意図どおりになる、というものである。理由は意図が届く可能性を上げる書き方であり、届いたかどうかは返答で確かめる。
 
-依頼が誤って断られたときに、本当の目的と文脈を足すことは、<!-- link:begin when-requests-are-refused#official-steps -->正当な依頼が断られたとき › 公式が案内する手段（準備中）<!-- link:end -->が持つ。偽った理由を添えることはしない。
+依頼が誤って断られたときに、本当の目的と文脈を足すことは、<!-- link:begin when-requests-are-refused#official-steps -->[正当な依頼が断られたとき › 公式が案内する手段](../safety/when-requests-are-refused.md#official-steps)<!-- link:end -->が持つ。偽った理由を添えることはしない。
 
 理由と合わせて、依頼に対象・状況・完了・手本を書くと、推測で埋める所がさらに減る（<!-- link:begin four-specifics -->[具体性の 4 点（対象・状況・完了・手本）](four-specifics.md)<!-- link:end -->）。
 
@@ -196,7 +196,7 @@ CLAUDE.md に残す行と外す行の見分け方は、<!-- link:begin what-to-p
 
 - [強調語（IMPORTANT・必ず）の現在](emphasis-words.md)
 - [具体性の 4 点（対象・状況・完了・手本）](four-specifics.md)
-- 正当な依頼が断られたとき（準備中）
+- [正当な依頼が断られたとき](../safety/when-requests-are-refused.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)
 

@@ -59,7 +59,7 @@ updated: 2026-11-05
 属性の表に出ない違いは次のとおりである。
 
 - **動く場所**：スキルは今の会話の中で動く。サブエージェントは自分の文脈を新しく作って動く。
-- **履歴が見えるか**：スキルは会話の履歴をそのまま見られる。サブエージェントには会話の履歴が渡らない。渡らないものの全体は<!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end -->にある。
+- **履歴が見えるか**：スキルは会話の履歴をそのまま見られる。サブエージェントには会話の履歴が渡らない。渡らないものの全体は<!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](what-subagents-dont-inherit.md)<!-- link:end -->にある。
 - **本筋に残るもの**：スキルは手順の本文と、実行の途中の出力が本筋に残る。サブエージェントは要約だけが戻る。
 - **費用の出方**：スキルは読み込まれた本文が、そのあと会話に残り続ける。サブエージェントは自分の request を送るので、同じ使用量の枠を消費する。本筋がすでに持っていた文脈を集め直すこともある。詳しくは<!-- link:begin subagent-isolation#cost -->[サブエージェントは別室の部下 › 賢くはならず、費用がかかる](../basics/subagent-isolation.md#cost)<!-- link:end -->を見る。
 - **圧縮の後**：スキルは、呼んだスキルの本文が上限つきで入れ直される。入れ直しの仕組みは<!-- link:begin how-skills-load#after-compaction -->[スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの](how-skills-load.md#after-compaction)<!-- link:end -->にある。サブエージェントの記録は、本筋の会話の圧縮の影響を受けない。
@@ -200,7 +200,7 @@ updated: 2026-11-05
 - [拡張機能の全体図と使い分け早見表](extensions-at-a-glance.md)
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [並列の方式の選び方](../delegate/choosing-parallel-modes.md)
-- サブエージェントに引き継がれないもの（準備中）
+- [サブエージェントに引き継がれないもの](what-subagents-dont-inherit.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 
 </div>

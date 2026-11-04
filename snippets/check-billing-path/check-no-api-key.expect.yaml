@@ -1,0 +1,16 @@
+title: claude -p の前に、API キーの設定が残っていないか確かめるスクリプト
+kind: other
+place: project
+safety: true
+conditions:
+  - 新しいシェルで試す
+  - 本物の鍵は使わず、偽の値（ANTHROPIC_API_KEY=dummy-not-a-real-key）で試す
+  - bash のある環境（WSL・Linux）で試す
+expect:
+  - when: ANTHROPIC_API_KEY を設定しないシェルで実行する
+    then: 「見つからなかった」と出て、終了コードが 0 になる
+  - when: ANTHROPIC_API_KEY=dummy-not-a-real-key を付けて実行する
+    then: 「設定あり：ANTHROPIC_API_KEY」と出る。値は画面に出ず、終了コードが 1 になる
+  - when: 実行した出力を見る
+    then: 変数の値と、設定ファイルの中身が一行も出ていない
+control: スクリプトを使わず echo や env で確かめると、鍵の値が画面とログに残る

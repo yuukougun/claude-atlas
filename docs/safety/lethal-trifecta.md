@@ -120,7 +120,7 @@ B を外す具体的な手は <!-- link:begin protecting-secrets#two-layers -->[
     - **C**：コネクタを通した送信や変更、computer use による画面の操作、予定のタスクの中の操作。
     - 公式の指針は、Claude 専用の作業フォルダを作る、低リスクの作業から始める、信頼できる MCP や plugin だけを使う、送信や購入のような取り消しにくい操作を予定のタスクにしない、と案内している。computer use には、Claude とアプリの間にサンドボックスがない。
     - 読める範囲と行動できる範囲を同時に広げない置き方は <!-- link:begin permission-modes-in-the-app#two-conditions -->[アプリの権限モード（Auto と Manual）と安全 › 読める範囲と行動できる範囲を同時に広げない](../app/permission-modes-in-the-app.md#two-conditions)<!-- link:end --> に、コネクタを使うときだけ読ませる方法は <!-- link:begin connectors-in-the-app#on-demand -->[コネクタ（MCP）をアプリで使う › 使うときだけ読ませる（On demand）](../app/connectors-in-the-app.md#on-demand)<!-- link:end --> にある。
-    - 任せない操作の線引きは <!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end --> に、画面操作が届く範囲は <!-- link:begin browser-agent-cautions#reach -->ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）（準備中）<!-- link:end --> にある。
+    - 任せない操作の線引きは <!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end --> に、画面操作が届く範囲は <!-- link:begin browser-agent-cautions#reach -->[ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）](browser-agent-cautions.md#reach)<!-- link:end --> にある。
 
 === "Claude Code"
 
@@ -192,7 +192,7 @@ B を外す具体的な手は <!-- link:begin protecting-secrets#two-layers -->[
 **関連**
 
 - [MCP・プラグイン・スキルを入れる前の確認](vetting-extensions.md)
-- ブラウザや画面の操作を任せるときの注意（準備中）
+- [ブラウザや画面の操作を任せるときの注意](browser-agent-cautions.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [秘密情報（.env・API キー）を守る](protecting-secrets.md)
 - [秘密の情報を読まれた・外に出された](../symptoms/secrets-exposed.md)

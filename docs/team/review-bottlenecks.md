@@ -57,7 +57,7 @@ AI で変更が増えたチームで最初に詰まるのは、書く工程で�
 
 動作確認は、読むだけでは終わらない。差分を読んで筋が通っていても、動かして確かめるまでは、確かめていない変更である。Claude が完了と報告した変更でも、人が動きを見ていなければ同じ扱いになる。この点は <!-- link:begin independent-review#what-happens -->[書いた本人ではない者にレビューさせる › 同じ会話で確かめさせると何が起きるか](../verify/independent-review.md#what-happens)<!-- link:end --> に詳しい。
 
-疲れも同じ場所に溜まる。AI の作業を見守り、出てきたものを確かめる時間そのものが、人の側の負荷になる。承認の確認が多すぎて読まなくなる仕組みは <!-- link:begin approval-fatigue#why -->承認疲れ › なぜ読まなくなるか（準備中）<!-- link:end --> にある。並列にして疲れた、レビューが追いつかないという症状から入るなら、<!-- link:begin parallel-fatigue -->[並列にしたら疲れた・レビューが追いつかない](../symptoms/parallel-fatigue.md)<!-- link:end --> で原因を切り分ける。
+疲れも同じ場所に溜まる。AI の作業を見守り、出てきたものを確かめる時間そのものが、人の側の負荷になる。承認の確認が多すぎて読まなくなる仕組みは <!-- link:begin approval-fatigue#why -->[承認疲れ › なぜ読まなくなるか](../safety/approval-fatigue.md#why)<!-- link:end --> にある。並列にして疲れた、レビューが追いつかないという症状から入るなら、<!-- link:begin parallel-fatigue -->[並列にしたら疲れた・レビューが追いつかない](../symptoms/parallel-fatigue.md)<!-- link:end --> で原因を切り分ける。
 
 ## 事例の数値の読み方（自己申告と標本の大きさ） {#reading-case-numbers}
 
@@ -87,8 +87,8 @@ READYFOR の元の記事は社内アンケートの報告で、筆者は疲労�
 
 1. **詰まりを測る。** PR が出てから承認されるまでの時間、承認が集まっている人、差し戻しの回数を記録する。「回っている気がする」という体感だけで判断しない。体感と実測がずれる理由は <!-- link:begin felt-vs-measured#why -->[体感と実測 › なぜ体感はずれるか](../eval/felt-vs-measured.md#why)<!-- link:end --> にある。
 2. **流す量に上限を置く。** 1 人が 1 日に動かして確かめられる PR の数を、実際の記録から見積もり、それを超えて出さない。レビューが要る本流は少なく、使い捨ての調査や試作は多めにしてよい。分け方は <!-- link:begin humans-set-the-parallel-limit#mainline-vs-scouting -->[並列の上限は人間が決める › 本流と偵察で本数を分ける](../delegate/humans-set-the-parallel-limit.md#mainline-vs-scouting)<!-- link:end --> にある。
-3. **読む深さを分ける。** すべての PR を同じ深さで読まない。リスクの段に分けて、段ごとに人の承認の数と読む深さを決める。段の決め方は <!-- link:begin risk-tiered-approval#three-tiers -->リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数（準備中）<!-- link:end --> に、人が必ず読む箇所は <!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end --> にある。
-4. **AI のレビューは下ごしらえに使う。** 人が見る前に指摘を出させて、読む手間を減らす。承認は人が決める。AI の承認は人の承認に数えない（<!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない（準備中）<!-- link:end -->）。仕組みは <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> にある。
+3. **読む深さを分ける。** すべての PR を同じ深さで読まない。リスクの段に分けて、段ごとに人の承認の数と読む深さを決める。段の決め方は <!-- link:begin risk-tiered-approval#three-tiers -->[リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数](risk-tiered-approval.md#three-tiers)<!-- link:end --> に、人が必ず読む箇所は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end --> にある。
+4. **AI のレビューは下ごしらえに使う。** 人が見る前に指摘を出させて、読む手間を減らす。承認は人が決める。AI の承認は人の承認に数えない（<!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->[リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない](risk-tiered-approval.md#ai-approval-doesnt-count)<!-- link:end -->）。仕組みは <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> にある。
 5. **見落としを観点に戻す。** 見落としが見つかったら、その理由をレビューの観点に足す。育て方は <!-- link:begin grow-review-checklists -->レビューの観点を育てる（準備中）<!-- link:end --> にある。
 
 AI のレビューについては、実践者の報告が 1 件ある。ある開発組織は、AI にコードレビューを任せて、1 件あたり 10〜15 分かかっていたのが 2〜3 分ほどになったと書いている。時間を測った条件は記事に書かれていない（根拠：弱。自己申告）。同じ記事の筆者は、承認までを自動にしたのは「やりすぎ」だったとして、承認を自動にしないルールを置いた。下ごしらえは AI に、承認は人に、と分けた形である。
@@ -104,7 +104,7 @@ AI のレビューについては、実践者の報告が 1 件ある。ある�
 このページが関わる原理は「確かめる」と「握る」、防ぐ原因は「確かめていない」、人の側の落とし穴は「預けすぎる」と「体感を信じる」である。
 
 - **確かめる（原理）／確かめていない（Claude 側の原因）**：Claude は、動かして確かめていない変更を、完了として出すことがある。最後の確かめを受け持つのは、レビューと動作確認である。量が確かめる力を超えると、確かめたつもりの承認が増える。確かめる役を書いた本人から離す理由は <!-- link:begin independent-review -->[書いた本人ではない者にレビューさせる](../verify/independent-review.md)<!-- link:end --> にある。
-- **握る（原理）／預けすぎる（落とし穴）**：何をどの深さで承認するか、どれだけ流すかは人が決める。承認まで AI に預けると、AI の同意を根拠にしてしまう。役割の分け方は <!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end --> にある。
+- **握る（原理）／預けすぎる（落とし穴）**：何をどの深さで承認するか、どれだけ流すかは人が決める。承認まで AI に預けると、AI の同意を根拠にしてしまう。役割の分け方は <!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](separate-roles.md#against-sycophancy)<!-- link:end --> にある。
 - **体感を信じる（落とし穴）**：変更が次々に出て回っている感覚は、待ちが積もっていることを隠す。実測で見る。根拠の強さは <!-- link:begin felt-vs-measured#evidence -->[体感と実測 › 何が起きるか（研究と根拠の強さ）](../eval/felt-vs-measured.md#evidence)<!-- link:end --> にある。
 
 AI は組織の土台の強さも弱さも増幅する。広げる前にテストとレビューの体制を見直す考え方は <!-- link:begin paved-roads#amplifier -->禁止ではなく安全な道を作る › AI は土台の強さも弱さも増幅する（広げる前に見直すもの）（準備中）<!-- link:end --> にある。
@@ -141,13 +141,13 @@ AI は組織の土台の強さも弱さも増幅する。広げる前にテス�
 
 - [並列の上限は人間が決める](../delegate/humans-set-the-parallel-limit.md)
 - [並列にしたら疲れた・レビューが追いつかない](../symptoms/parallel-fatigue.md)
-- 人間が読むべき差分の箇所（準備中）
-- 生成コードを自分のものにする（準備中）
-- リスク段階別の承認（AI の承認を人の承認に数えない）（準備中）
-- 役割を分ける（書く人・承認する人・疑う人）（準備中）
+- [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
+- [生成コードを自分のものにする](../verify/own-generated-code.md)
+- [リスク段階別の承認（AI の承認を人の承認に数えない）](risk-tiered-approval.md)
+- [役割を分ける（書く人・承認する人・疑う人）](separate-roles.md)
 - レビューの観点を育てる（準備中）
 - 自動 PR レビュー（Code Review・/ultrareview）（準備中）
-- 承認疲れ（準備中）
+- [承認疲れ](../safety/approval-fatigue.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - 禁止ではなく安全な道を作る › AI は土台の強さも弱さも増幅する（広げる前に見直すもの）（準備中）
 

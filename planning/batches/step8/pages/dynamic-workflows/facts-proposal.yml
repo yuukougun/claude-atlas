@@ -1,0 +1,9 @@
+proposals:
+  - fact: {id: workflow-concurrent-agents, title: ワークフローで同時に動かせる担当の数, value: "既定は 16。CPU が少ないと減る。環境変数 CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS で 1〜256（v2.1.269 以降）", sources: [cc-docs-workflows], checked: 2026-11-05, status: 確認済み}
+    used_in: [dynamic-workflows#when-and-start-small]
+  - fact: {id: workflow-agent-caps, title: ワークフローの 1 回の実行の上限, value: "担当は 1 回の実行で合計 1000。parallel() と pipeline() の 1 回の呼び出しは 4096 件まで", sources: [cc-docs-workflows], checked: 2026-11-05, status: 確認済み}
+    used_in: [dynamic-workflows#when-and-start-small]
+  - fact: {id: workflow-large-warning, title: Large workflow の警告が出るしきい値, value: "担当が 25 を超えるか、トークンの見込みが 150 万を超えたとき。size guideline を自分で選ぶと、担当の数のしきい値はその段の数に替わる。ultracode が on の間は出ない。警告は助言で、止めない", sources: [cc-docs-workflows], checked: 2026-11-05, status: 確認済み}
+    used_in: [dynamic-workflows#when-and-start-small]
+  - fact: {id: workflow-size-guideline, title: ワークフローの規模の目安（workflowSizeGuideline）, value: "unrestricted は目安なし、small は 5 未満、medium は 10 未満、large は 50 未満。既定は medium、Pro で v2.1.271 以降は small。助言で上限ではない", sources: [cc-docs-workflows], checked: 2026-11-05, status: 確認済み}
+    used_in: [dynamic-workflows#when-and-start-small]

@@ -1,0 +1,17 @@
+title: 毎回同じ安全なコマンドは allow ルールで通し、外へ出す操作は ask ルールで確認に残す設定
+kind: settings
+place: project
+safety: true
+features: [permissions]
+conditions:
+  - 壊れても困らない作業用のリポジトリで試す。npm test が動くプロジェクトを使う
+  - push 先は試してよい捨てのリモートにする
+  - 新しいセッションで試す
+expect:
+  - when: テストを走らせるよう頼む
+    then: npm test の実行で確認が出ない
+  - when: 変更を push するよう頼む
+    then: git push の実行の前に確認が出る
+  - when: git -C <dir> push のように、先頭が git push でない形で push させる
+    then: ask ルールに当たらず、確認が出ないことがある（観察として扱う。確かな止め方は deny ルールかフック）
+control: この設定を置かないとき、npm test も git push も同じ確認の列に並び、見分けずに押しやすい

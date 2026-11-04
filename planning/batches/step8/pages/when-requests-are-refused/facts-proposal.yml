@@ -1,0 +1,15 @@
+proposals:
+  - fact: {id: refusals-auto-switch-default, title: 自動のモデルの切り替えの既定（アプリと Claude Code は有効。API は既定でなく fallbacks を設定して使う）, value: "アプリ・Claude Code：有効。API：fallbacks を設定して使う（server-side は beta）", sources: [hc-switched-models, cc-docs-model-config, api-docs-refusals], checked: 2026-11-04, status: 確認済み}
+    used_in: [when-requests-are-refused#by-surface]
+  - fact: {id: refusals-cc-per-category-switch-min-version, title: 分類ごとの切り替えが要る Claude Code の最低の版, value: "v2.1.219 以上", sources: [cc-docs-errors, cc-docs-model-config], checked: 2026-11-04, status: 確認済み}
+    used_in: [when-requests-are-refused#by-surface]
+  - fact: {id: refusals-api-categories, title: API の stop_details.category の値, value: "cyber・bio・frontier_llm・reasoning_extraction・general_harms（または null）", sources: [api-docs-refusals], checked: 2026-11-04, status: 確認済み}
+    used_in: [when-requests-are-refused#by-surface]
+  - fact: {id: refusals-flagged-models, title: 分類器をかけるモデルと、分野ごとの対象（最先端の LLM 開発の分類は一部のモデルだけ）, value: "要確認（束の材料には Opus 5・5.5 などとあるが、一覧は公式の記事で取り直す）", sources: [hc-switched-models], checked: 2026-11-04, status: 要確認}
+    used_in: [when-requests-are-refused#by-surface]
+  - fact: {id: refusals-billing-by-category, title: 拒否の課金の扱い（分野ごと。出力の前に止まっても課金される分類がある）, value: "要確認（2026-09 時点で reasoning_extraction は課金される。2026 年に何度か変わった）", sources: [api-docs-refusals, cc-docs-errors, api-release-notes], checked: 2026-11-04, status: 要確認}
+    used_in: [when-requests-are-refused#by-surface]
+  - fact: {id: refusals-cc-display-texts, title: Claude Code の止まったときの表示の文（通常・サイバー・自動の切り替えがあるモデル）, value: "要確認（v2.1.219 以降の文。errors で取り直す）", sources: [cc-docs-errors], checked: 2026-11-04, status: 要確認}
+    used_in: [when-requests-are-refused#by-surface]
+  - fact: {id: refusals-cvp-tiers, title: Cyber Verification Program の段階と、個人で申し込める段階, value: "3 段階。個人は Defense の段階だけ（2026-10 時点）", sources: [hc-cyber-verification-program], checked: 2026-11-04, status: 確認済み}
+    used_in: [when-requests-are-refused#official-steps]

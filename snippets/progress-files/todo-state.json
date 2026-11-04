@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": "T1",
+      "title": "入力の検証を足す",
+      "done_when": "`npm test -- validate` が成功する",
+      "passes": false
+    },
+    {
+      "id": "T2",
+      "title": "エラー表示を日本語にする",
+      "done_when": "`npm test -- messages` が成功する",
+      "passes": false
+    }
+  ]
+}

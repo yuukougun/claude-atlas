@@ -65,7 +65,7 @@ updated: 2026-11-05
 - ISUCON13 の問題にエージェントを挑ませた企業の報告（Azure SRE エージェント）では、開始から約 1 時間で上位に近いスコアに届いた。3〜4 時間経った時点で伸びが止まり、ベンチの実行とスコアの確認を繰り返すだけになった。プロファイルの取り直しも、別の方針の検討もなかった。報告は今後の改善として、手法の知識を与える仕組みや検索を挙げる。試して効いたとは書いていない（根拠：中。単独の事例で、Claude とは限らないため類推）。
 - 開発者の集まりの参加レポートに、同じ修正を利用上限に達するまで繰り返す「無限検証ループ」が止めるべき失敗の兆候として出る（根拠：弱。単独の経験談）。
 
-どちらにも、時間をかければ良くなるという前提が崩れる所がある。長く回すだけでは足りないことは、<!-- link:begin open-ended-loop-trap#longer-is-not-better -->AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない（準備中）<!-- link:end --> でも扱う。
+どちらにも、時間をかければ良くなるという前提が崩れる所がある。長く回すだけでは足りないことは、<!-- link:begin open-ended-loop-trap#longer-is-not-better -->[AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない](../delegate/open-ended-loop-trap.md#longer-is-not-better)<!-- link:end --> でも扱う。
 
 訂正を重ねても同じ誤りが戻ってくるなら、会話の中の堂々巡りである。その場合の入口は <!-- link:begin going-in-circles -->[同じ失敗を繰り返す（堂々巡り）](going-in-circles.md)<!-- link:end --> から入る。この症状は、実行と確認を繰り返す長い作業のループの中で起きる点で分けている。
 
@@ -103,10 +103,10 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | 目標値・上界を伝える（準備中）<br>失敗の教訓は捨てずに書き残す（準備中）<br>[実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md) |
+| 見えていない | 目標値・上界を伝える（準備中）<br>[失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)<br>[実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md) |
 | 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[handoff 文書と document-and-clear](../context/handoff-documents.md) |
-| 合っていない | [/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<br>Stop フックで「終わらせない」 › 止め続けるループを避ける（準備中）<br>AI に改善を回させ続ける罠（開いたループ）（準備中） |
-| 預けすぎる | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)<br>長時間ジョブの進捗ログを設計する（準備中）<br>無人実行の結果を確かめる（準備中） |
+| 合っていない | [/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<br>[Stop フックで「終わらせない」 › 止め続けるループを避ける](../enforce/stop-hooks.md#avoid-loops)<br>[AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md) |
+| 預けすぎる | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)<br>長時間ジョブの進捗ログを設計する（準備中）<br>[無人実行の結果を確かめる](../verify/checking-unattended-runs.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -125,9 +125,9 @@ updated: 2026-11-05
 
 1. 止める条件と上限。完了の条件、周の上限、使う量の上限を先に決める。書き方は <!-- link:begin goal-until-done#writing-conditions -->[/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<!-- link:end --> にあり、本数と回数の掛け算で費用が膨らむ理由は <!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> にある。
 2. やめる基準。結果を見る前に、頭打ちの判断を書いておく。判定は作った本人から離す（<!-- link:begin decide-when-to-quit#plateau -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 頭打ちは方針を疑う合図](../judgment/decide-when-to-quit.md#plateau)<!-- link:end -->）。
-3. 見える進捗。要約した指標を定期的に書き出し、人と Claude の両方が状況を追えるようにする。人が見ていない実行の結果は、終了コードだけでなく記録と差分で確かめる（<!-- link:begin checking-unattended-runs#beyond-exit-codes -->無人実行の結果を確かめる › 終了コードと要約だけで決めない（準備中）<!-- link:end -->）。
+3. 見える進捗。要約した指標を定期的に書き出し、人と Claude の両方が状況を追えるようにする。人が見ていない実行の結果は、終了コードだけでなく記録と差分で確かめる（<!-- link:begin checking-unattended-runs#beyond-exit-codes -->[無人実行の結果を確かめる › 終了コードと要約だけで決めない](../verify/checking-unattended-runs.md#beyond-exit-codes)<!-- link:end -->）。
 
-反復させてよいのは、仕様が決まり、止める条件のある実装の作業に限る。戦略そのものを回し続けさせる開いたループは、手元の評価への過適合を進めるので避ける（<!-- link:begin open-ended-loop-trap#closed-vs-open -->AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ（準備中）<!-- link:end -->）。
+反復させてよいのは、仕様が決まり、止める条件のある実装の作業に限る。戦略そのものを回し続けさせる開いたループは、手元の評価への過適合を進めるので避ける（<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](../delegate/open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->）。
 
 自作のループで同じ依頼を流し直す回し方は、古くなった助言として台帳にある。<!-- link:begin outdated-advice-ledger#ralph-loops -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#ralph-loops)<!-- link:end --> を見て、今の手段に置き換える。
 
@@ -143,19 +143,19 @@ updated: 2026-11-05
 **次に読む**
 
 - 目標値・上界を伝える（準備中）
-- 失敗の教訓は捨てずに書き残す（準備中）
+- [失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
-- Stop フックで「終わらせない」（準備中）
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
+- [Stop フックで「終わらせない」](../enforce/stop-hooks.md)
+- [AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)
 - ほか 3 ページ
 
 **関連**
 
 - 性能改善を頼む（プロファイルが先・出力の一致と実測）（準備中）
-- 止まって報告する権利を渡す（準備中）
+- [止まって報告する権利を渡す](../prompting/permission-to-stop.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [同じ失敗を繰り返す（堂々巡り）](going-in-circles.md)
 - [直し続けて方針を疑わない（またはすぐ撤退を勧める）](wont-rethink-approach.md)

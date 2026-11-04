@@ -68,7 +68,7 @@ updated: 2026-11-05
 2. 発行元の利用ログで、身に覚えのない使われ方がないかを見る。
 3. 写しが残る場所を洗う。会話は手元の記録に平文で残る。詳しくは <!-- link:begin where-your-data-goes#local-transcripts -->[送ったデータの行方（学習・保持期間） › 手元に残る記録](../safety/where-your-data-goes.md#local-transcripts)<!-- link:end --> を見る。
 4. コミットされたなら、履歴から消す書き換えは、キーを無効にした後の掃除として行う。書き換えはキーの無効化の代わりにならない。GitHub の文書も、まずキーを無効にするか交換するよう書き、履歴を書き換えて強制 push しただけでは、機密を含むコミットがほかの所から見えることがあると警告している（2026-11-05 に確認）。
-5. `/feedback` やトランスクリプトの共有で会話を送っていたら、送った中身と残る期間を <!-- link:begin what-feedback-sends#what-is-sent -->/feedback・トランスクリプトの共有で送られるもの › 送られるものと残る期間（準備中）<!-- link:end --> で確かめる。会話を共有リンクにしていたら、<!-- link:begin shared-artifacts-and-files#revoke -->共有リンクと公開アーティファクトの扱い › 取り消せるもの・取り消せないもの（準備中）<!-- link:end --> で取り消せるかを確かめる。
+5. `/feedback` やトランスクリプトの共有で会話を送っていたら、送った中身と残る期間を <!-- link:begin what-feedback-sends#what-is-sent -->[/feedback・トランスクリプトの共有で送られるもの › 送られるものと残る期間](../safety/what-feedback-sends.md#what-is-sent)<!-- link:end --> で確かめる。会話を共有リンクにしていたら、<!-- link:begin shared-artifacts-and-files#revoke -->[共有リンクと公開アーティファクトの扱い › 取り消せるもの・取り消せないもの](../safety/shared-artifacts-and-files.md#revoke)<!-- link:end --> で取り消せるかを確かめる。
 6. 新しいキーは、置き場所と縛りを決めてから使う。前と同じ状態に置けば、同じことが繰り返される。次の節で、欠けていた縛りを探す。
 
 ## 原因を安く確かめる順 {#diagnosis}
@@ -151,8 +151,8 @@ updated: 2026-11-05
 
 **関連**
 
-- /feedback・トランスクリプトの共有で送られるもの（準備中）
-- 共有リンクと公開アーティファクトの扱い（準備中）
+- [/feedback・トランスクリプトの共有で送られるもの](../safety/what-feedback-sends.md)
+- [共有リンクと公開アーティファクトの扱い](../safety/shared-artifacts-and-files.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)

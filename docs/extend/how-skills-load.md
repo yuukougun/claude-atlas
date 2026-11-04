@@ -126,7 +126,7 @@ After で足したのは、「いつ使うか」を書いた短い説明文と�
 
 === "アプリ"
 
-    アプリでは、Excel・Word・PowerPoint・PDF 用の組み込みのスキルが、関連する場面で自動的に使われる。自作のスキルも置ける。スキルを使うには code execution が有効である必要がある。使われないときは、スキルのスイッチがオンかを確かめ、プロンプトでスキル名を挙げる。画面の操作は変わりやすいので、<!-- link:begin skills-in-the-app#not-triggered -->アプリでスキルを使う › 使われないとき（準備中）<!-- link:end --> を見る。
+    アプリでは、Excel・Word・PowerPoint・PDF 用の組み込みのスキルが、関連する場面で自動的に使われる。自作のスキルも置ける。スキルを使うには code execution が有効である必要がある。使われないときは、スキルのスイッチがオンかを確かめ、プロンプトでスキル名を挙げる。画面の操作は変わりやすいので、<!-- link:begin skills-in-the-app#not-triggered -->[アプリでスキルを使う › 使われないとき](../app/skills-in-the-app.md#not-triggered)<!-- link:end --> を見る。
 
 === "Claude Code"
 
@@ -171,11 +171,11 @@ After で足したのは、「いつ使うか」を書いた短い説明文と�
 
 **次に読む**
 
+- [アプリでスキルを使う](../app/skills-in-the-app.md)
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](claude-md-vs-rules-skills-styles.md)
 - [スキルの作り方](writing-skills.md)
 - [フックとスキルの違い](hook-vs-skill.md)
 - [スキルとサブエージェントの違い](skill-vs-subagent.md)
-- アプリでスキルを使う（準備中）
 
 **関連**
 

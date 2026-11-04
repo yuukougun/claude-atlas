@@ -69,14 +69,14 @@ CLAUDE.md・rules・自動メモリ・スキル・サブエージェント・出
 | --- | --- | --- | --- | --- |
 | [CLAUDE.md](what-to-put-in-claude-md.md) | お願い | セッション開始 | 常駐 | 残る |
 | [rules（.claude/rules/）](path-scoped-rules.md) | お願い | セッション開始か、一致するファイルを扱うとき | 常駐か、一致するファイルのときだけ | 条件による |
-| 自動メモリ（auto memory）（準備中） | お願い | セッション開始 | 常駐 | 残る |
+| [自動メモリ（auto memory）](using-auto-memory.md) | お願い | セッション開始 | 常駐 | 残る |
 | [スキル（skills）](writing-skills.md) | お願い | セッション開始と使うとき | 使うまで小さい | 残る |
 | [サブエージェント（subagents）](writing-subagents.md) | — | 起動したとき | 分離 | 未確認 |
-| 出力スタイル（output styles）（準備中） | お願い | セッション開始と切り替えたとき | 常駐 | 残る |
+| [出力スタイル（output styles）](../cli/output-style-modes.md) | お願い | セッション開始と切り替えたとき | 常駐 | 残る |
 | [フック（hooks）](../enforce/hooks-basics.md) | 鍵 | イベントが起きたとき | ゼロ（出力を返さない限り） | 残る |
 | [MCP](connecting-mcp.md) | なし | セッション開始 | 使うまで小さい | 未確認 |
-| プラグイン（plugins）（準備中） | — | セッション開始と使うとき | 使うまで小さい | 未確認 |
-| code intelligence プラグイン（LSP）（準備中） | — | 編集の後と調べるとき | 小さい | 未確認 |
+| [プラグイン（plugins）](plugins-and-marketplaces.md) | — | セッション開始と使うとき | 使うまで小さい | 未確認 |
+| [code intelligence プラグイン（LSP）](code-intelligence-plugins.md) | — | 編集の後と調べるとき | 小さい | 未確認 |
 
 <!-- textlint-enable -->
 <!-- gen:end compare 強制力 読み込みの時期 コンテキストのコスト 圧縮で残るか -->
@@ -101,11 +101,11 @@ CLAUDE.md・rules・自動メモリ・スキル・サブエージェント・出
 1. **例外を許さないか**：許さないなら、フックか deny ルールに移す。CLAUDE.md には、止めている理由と、例外が要るときの相談の基準だけを書く。フックの使いどころは<!-- link:begin hooks-basics#when -->[フックの考え方とイベント › 使いどころ](../enforce/hooks-basics.md#when)<!-- link:end -->、スキルとの選び方は<!-- link:begin hook-vs-skill -->[フックとスキルの違い](hook-vs-skill.md)<!-- link:end -->、用途ごとの鍵の手段は<!-- link:begin request-lock-table#table -->[お願いと鍵の対応表 › 用途ごとの対応表](../enforce/request-lock-table.md#table)<!-- link:end -->を見る。
 2. **外部サービスの操作や情報が要るか**：MCP でつなぐ。ただし成熟した CLI があれば、CLI とスキルで済むことが多い。選び方は<!-- link:begin mcp-or-cli -->[MCP か CLI か](mcp-or-cli.md)<!-- link:end -->を見る。
 3. **大量に読む脇道や、出力が会話を埋める作業か**：サブエージェントに任せる。要約だけが本筋に戻る。スキルとの違いは<!-- link:begin skill-vs-subagent -->[スキルとサブエージェントの違い](skill-vs-subagent.md)<!-- link:end -->を見る。
-4. **応答の口調や形を変えたいか**：出力スタイルに置く。何を知るべきかは CLAUDE.md、どう答えるかは出力スタイルである。分担は<!-- link:begin output-style-modes#vs-claude-md -->出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担（準備中）<!-- link:end -->を見る。
+4. **応答の口調や形を変えたいか**：出力スタイルに置く。何を知るべきかは CLAUDE.md、どう答えるかは出力スタイルである。分担は<!-- link:begin output-style-modes#vs-claude-md -->[出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担](../cli/output-style-modes.md#vs-claude-md)<!-- link:end -->を見る。
 5. **ときどき使う手順か**：スキルに置く。説明だけが先に入り、本文は使うときに読まれる。
 6. **一部のフォルダやファイルにだけ要る規約か**：`paths` を付けた rules に置く。
 7. **毎回の作業に要る事実か**：根の CLAUDE.md に置く。長くするほど文脈を使うので、残す行は絞る。
-8. **複数のリポジトリやチームに同じ設定を配りたいか**：プラグインに束ねる。入れたものは、使わないときも説明が常駐する。入れる前の確認は<!-- link:begin plugins-and-marketplaces#before-install -->プラグインとマーケットプレイス › 入れる前の確認（準備中）<!-- link:end -->を見る。
+8. **複数のリポジトリやチームに同じ設定を配りたいか**：プラグインに束ねる。入れたものは、使わないときも説明が常駐する。入れる前の確認は<!-- link:begin plugins-and-marketplaces#before-install -->[プラグインとマーケットプレイス › 入れる前の確認](plugins-and-marketplaces.md#before-install)<!-- link:end -->を見る。
 
 4〜7 の中での細かい選び分けは<!-- link:begin claude-md-vs-rules-skills-styles#how-to-choose -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示の置き場所の選び方](claude-md-vs-rules-skills-styles.md#how-to-choose)<!-- link:end -->にある。最初から全部を作り込む必要はない。同じ注意や手順が繰り返されるのを見てから仕組みに移すほうがよく、その目安は<!-- link:begin when-to-add-what -->[拡張を足すタイミング](when-to-add-what.md)<!-- link:end -->を見る。迷いやすい場面を、判断例で示す。
 
@@ -147,7 +147,7 @@ CLAUDE.md・rules・自動メモリ・スキル・サブエージェント・出
 
 指示や手順を別の置き場所に移した後は、効いているかを確かめる。確かめ方は 3 つである。まず、新しい会話で、移す前に失敗した依頼をもう一度出し、同じ失敗が出ないかを見る。次に、圧縮の後でも同じ依頼を出し、規則が残っているかを見る。置き場所によっては、圧縮で消えたり、触るまで戻らなかったりするためである。最後に、数週間たってから、使っていない拡張がないかを見る。常駐するものは使わなくても費用が出るので、測ってから切る。測り方は<!-- link:begin pruning-extensions#measure -->[拡張の棚卸しと剪定 › 測る](pruning-extensions.md#measure)<!-- link:end -->にある。指示が読み込まれたかの確かめ方は<!-- link:begin claude-md-vs-rules-skills-styles#verify -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示が読み込まれたかの確かめ方](claude-md-vs-rules-skills-styles.md#verify)<!-- link:end -->を見る。
 
-効かないときに、モデルを替える前に直すものがある。結果の差が、検証の手段・渡す文脈・指示といったハーネスから来る場合があるためである。見分け方は<!-- link:begin harness-over-model#when-harness-matters -->モデルの差よりハーネスの差 › 差がハーネスから来るとき（準備中）<!-- link:end -->を見る。
+効かないときに、モデルを替える前に直すものがある。結果の差が、検証の手段・渡す文脈・指示といったハーネスから来る場合があるためである。見分け方は<!-- link:begin harness-over-model#when-harness-matters -->[モデルの差よりハーネスの差 › 差がハーネスから来るとき](../models/harness-over-model.md#when-harness-matters)<!-- link:end -->を見る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -181,8 +181,8 @@ CLAUDE.md・rules・自動メモリ・スキル・サブエージェント・出
 
 **次に読む**
 
+- [プラグインとマーケットプレイス](plugins-and-marketplaces.md)
 - [拡張の棚卸しと剪定](pruning-extensions.md)
-- プラグインとマーケットプレイス（準備中）
 
 **関連**
 
@@ -196,8 +196,8 @@ CLAUDE.md・rules・自動メモリ・スキル・サブエージェント・出
 - [システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](../basics/where-instructions-sit.md)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [並列の方式の選び方](../delegate/choosing-parallel-modes.md)
-- 出力スタイルで応答の仕方を切り替える（準備中）
-- モデルの差よりハーネスの差（準備中）
+- [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)
+- [モデルの差よりハーネスの差](../models/harness-over-model.md)
 
 </div>
 

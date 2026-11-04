@@ -1,0 +1,14 @@
+title: クラウドに渡す作業の計画ファイル
+kind: prompt
+place: project
+safety: false
+features: [cloud-sessions]
+conditions:
+  - plan mode で作った計画を、この形に直して docs/ などのリポジトリ内のファイルに保存する
+  - commit して push してから、claude --cloud で渡す
+expect:
+  - when: push 済みの計画ファイルを指して claude --cloud で頼む
+    then: クラウドのセッションがクローンの中の計画ファイルを読み、手順の順に進める（観察として扱う）
+  - when: 範囲外のファイルを変えないと進めない場面になる
+    then: 変更せずに止まって報告する（観察として扱う。指示は鍵でないので合否にしない）
+control: 計画ファイルを置かず一行で頼むと、範囲と完了の解釈がセッション任せになり、差分の確かめに時間がかかる

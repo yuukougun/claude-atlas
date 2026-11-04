@@ -77,11 +77,11 @@ updated: 2026-11-05
 | --- | --- | --- | --- | --- |
 | [language の設定（返答の言語）](keep-replies-in-japanese.md) | Claude Code | お願い | — | 未確認 |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | Claude Code | お願い | セッション開始 | 残る |
-| 出力スタイル（output styles）（準備中） | Claude Code | お願い | セッション開始と切り替えたとき | 残る |
+| [出力スタイル（output styles）](../cli/output-style-modes.md) | Claude Code | お願い | セッション開始と切り替えたとき | 残る |
 | [フック（hooks）](../enforce/hooks-basics.md) | Claude Code | 鍵 | イベントが起きたとき | 残る |
 | [Claude への指示（Instructions for Claude）](../app/where-to-put-instructions.md) | アプリ | お願い | — | 未確認 |
 | [プロジェクトの指示（project instructions）](../app/using-projects.md) | アプリ | お願い | — | 未確認 |
-| スキル（アプリ。skills）（準備中） | アプリ | お願い | — | 未確認 |
+| [スキル（アプリ。skills）](../app/skills-in-the-app.md) | アプリ | お願い | — | 未確認 |
 
 <!-- textlint-enable -->
 <!-- gen:end compare 面 強制力 読み込みの時期 圧縮で残るか -->
@@ -96,7 +96,7 @@ updated: 2026-11-05
 - 手本と理由を添える。書き方は「<!-- link:begin consistent-politeness#example -->[です・ます／だ・であるを揃える › 手本の文章を見せる](consistent-politeness.md#example)<!-- link:end -->」にある。
 - 置き場所を選ぶ。毎回読まれる場所に置くほど、読み落としは減る。置き場所の比べ方は「<!-- link:begin claude-md-vs-rules-skills-styles#how-to-choose -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示の置き場所の選び方](../extend/claude-md-vs-rules-skills-styles.md#how-to-choose)<!-- link:end -->」にある。
 
-出力スタイルと日本語の応答の関係は、「<!-- link:begin output-style-modes#japanese -->出力スタイルで応答の仕方を切り替える › 日本語の応答との関係（準備中）<!-- link:end -->」で扱う。
+出力スタイルと日本語の応答の関係は、「<!-- link:begin output-style-modes#japanese -->[出力スタイルで応答の仕方を切り替える › 日本語の応答との関係](../cli/output-style-modes.md#japanese)<!-- link:end -->」で扱う。
 
 ## 確かめて差し戻す層：フックと lint {#lock-layer}
 
@@ -251,7 +251,7 @@ updated: 2026-11-05
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)
 - [お願いと鍵の対応表](../enforce/request-lock-table.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
-- 出力スタイルで応答の仕方を切り替える（準備中）
+- [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)
 
 </div>
 

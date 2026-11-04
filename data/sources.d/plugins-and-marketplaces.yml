@@ -1,0 +1,11 @@
+# plugins-and-marketplaces で足した出典。形は data/sources.yml と同じ（schema/sources.schema.json）。
+# code.claude.com は data/sources.yml の domains で確かめ済み。
+sources:
+  - id: cc-docs-plugins-org
+    url: https://code.claude.com/docs/en/plugins/org
+    title: Manage Claude Code plugins for your organization
+    kind: 公式文書
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-05'
+    note: extraKnownMarketplaces・enabledPlugins をリポジトリの設定で配ること、strictKnownMarketplaces で使えるマーケットプレイスを絞ること

@@ -81,13 +81,13 @@ updated: 2026-11-05
 - **同じアイデアの再試行の上限**：変種を含めて何回までか。
 - **見直しの合図**：改善幅が誤差以内の変更が何回続いたら、調整をやめて方針を見直すか。
 
-例を挙げる。「期日までに、基準ボット群に対するロックボックスでの勝率が 0.60 未満なら撤退する」「同じアイデアの再試行は 4 回まで」。0.60 や 4 回に根拠はなく、例である。ロックボックスは、人だけが持つ検証用データで、<!-- link:begin lockbox-and-holdout#keep-out-of-reach -->ロックボックスと hold-out（人だけが持つ検証用データ） › 読めない所に置く（準備中）<!-- link:end -->が置き方を扱う。
+例を挙げる。「期日までに、基準ボット群に対するロックボックスでの勝率が 0.60 未満なら撤退する」「同じアイデアの再試行は 4 回まで」。0.60 や 4 回に根拠はなく、例である。ロックボックスは、人だけが持つ検証用データで、<!-- link:begin lockbox-and-holdout#keep-out-of-reach -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 読めない所に置く](../eval/lockbox-and-holdout.md#keep-out-of-reach)<!-- link:end -->が置き方を扱う。
 
 4 回は、Stockfish の検定基盤 Fishtest の FAQ にある目安を借りた例である。FAQ は同じアイデアの再挑戦を「おおむね 4〜5 回が上限」とし、変更を試すことと、運のよい試行を通しすぎないことの釣り合いを理由にする。チェスエンジンの検定の慣行で、一般の規則ではない（根拠：弱。経験則）。再挑戦に上限を置く理由は、<!-- link:begin selection-pressure#retry-cap -->[選択圧：良かった版を選び続ける罠 › 同じアイデアの再挑戦に上限を置く](../eval/selection-pressure.md#retry-cap)<!-- link:end -->が扱う。
 
 基準を書く前の見積もりも、同じ向きの手になる。実装の前に概算でスコアを見積もり、届かない見込みの方針には着手しない。「期待改善量 ÷ 実装時間」で優先順位を付ける実践者もいる（根拠：弱。コンテストの個人の記事）。業務では「期待効果 ÷ 工数」と読み替えられる。
 
-撤退したときは、「何が分かったか」を台帳に残し、次の方針の禁止事項にする。何を残し、何を捨てるかは<!-- link:begin keep-failure-lessons#what-to-keep -->失敗の教訓は捨てずに書き残す › 何を残し、何を捨てるか（準備中）<!-- link:end -->が扱う。
+撤退したときは、「何が分かったか」を台帳に残し、次の方針の禁止事項にする。何を残し、何を捨てるかは<!-- link:begin keep-failure-lessons#what-to-keep -->[失敗の教訓は捨てずに書き残す › 何を残し、何を捨てるか](../context/keep-failure-lessons.md#what-to-keep)<!-- link:end -->が扱う。
 
 雛形は次のとおりである。動作は確かめていない。
 
@@ -134,9 +134,9 @@ updated: 2026-11-05
 - **判定の測定は、実装者が触れない所に置く**：開発用の入力で測ると、実装者が合わせ込める。人だけが持つ検証用データ（ロックボックス）で測る。
 - **続ける・やめる・作り直すの決定は、人が持つ**：AI に測定の実行や表の作成は任せてよい。決定は任せない。撤退は、どの段階でも人が握るものである。分け方は<!-- link:begin what-not-to-delegate#what-humans-hold -->[任せないもの（評価・採否・撤退・中核の理解） › どの段階でも人が握るもの](../delegate/what-not-to-delegate.md#what-humans-hold)<!-- link:end -->が扱う。
 - **AI の賛成を判定の根拠に数えない**：AI が「この方針は有望です」と答えても、基準を満たした証拠にはならない。何を証拠に数えるかは<!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](agreement-is-not-evidence.md#what-counts)<!-- link:end -->が扱う。
-- **戦略の改善を AI に回し続けさせて、やめどきも AI に決めさせる運用はしない**：開いたループが過適合を進める理由は<!-- link:begin open-ended-loop-trap#closed-vs-open -->AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ（準備中）<!-- link:end -->が扱う。
+- **戦略の改善を AI に回し続けさせて、やめどきも AI に決めさせる運用はしない**：開いたループが過適合を進める理由は<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](../delegate/open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->が扱う。
 
-チームの役割の分け方は<!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end -->が、長期のチーム戦での置き方は<!-- link:begin long-team-competitions#roles -->チーム戦の運用（長期・対戦型） › 役割を分ける（準備中）<!-- link:end -->が扱う。
+チームの役割の分け方は<!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end -->が、長期のチーム戦での置き方は<!-- link:begin long-team-competitions#roles -->チーム戦の運用（長期・対戦型） › 役割を分ける（準備中）<!-- link:end -->が扱う。
 
 ## 頭打ちは方針を疑う合図 {#plateau}
 
@@ -251,19 +251,19 @@ AI にどれだけ任せても、方針の単位では次の 3 つを人が握�
 
 **次に読む**
 
-- 役割を分ける（書く人・承認する人・疑う人）（準備中）
+- [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)
 
 **関連**
 
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
-- ロックボックスと hold-out（人だけが持つ検証用データ）（準備中）
+- [ロックボックスと hold-out（人だけが持つ検証用データ）](../eval/lockbox-and-holdout.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [直し続けて方針を疑わない（またはすぐ撤退を勧める）](../symptoms/wont-rethink-approach.md)
 - [同じ失敗を繰り返す（堂々巡り）](../symptoms/going-in-circles.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
+- [AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)
 - [選択圧：良かった版を選び続ける罠](../eval/selection-pressure.md)
-- 失敗の教訓は捨てずに書き残す（準備中）
+- [失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](agreement-is-not-evidence.md)
 - 実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）（準備中）
 - 本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）

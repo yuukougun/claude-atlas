@@ -60,10 +60,10 @@ updated: 2026-11-05
 
 各組を詳しく読むページは次のとおりである。
 
-- キャッシュ：<!-- link:begin why-prompt-caching -->プロンプトキャッシング（先頭が変わらないことの価値）（準備中）<!-- link:end -->、<!-- link:begin prompt-caching-in-practice -->プロンプトキャッシングの実務（準備中）<!-- link:end -->、<!-- link:begin using-projects#knowledge -->[プロジェクトの使いどころ › ナレッジを置くと何が変わるか](../app/using-projects.md#knowledge)<!-- link:end -->を読む。
-- 要約と圧縮：<!-- link:begin long-chat-limits -->長い会話の自動のコンテキスト管理と長さの上限（準備中）<!-- link:end -->と<!-- link:begin what-survives-compaction -->[圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)<!-- link:end -->を読む。
-- メモリ：<!-- link:begin how-memory-works -->[アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)<!-- link:end -->、<!-- link:begin using-auto-memory -->自動メモリ（準備中）<!-- link:end -->を読む。
-- スキル：<!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end -->、<!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)<!-- link:end -->を読む。
+- キャッシュ：<!-- link:begin why-prompt-caching -->[プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)<!-- link:end -->、<!-- link:begin prompt-caching-in-practice -->プロンプトキャッシングの実務（準備中）<!-- link:end -->、<!-- link:begin using-projects#knowledge -->[プロジェクトの使いどころ › ナレッジを置くと何が変わるか](../app/using-projects.md#knowledge)<!-- link:end -->を読む。
+- 要約と圧縮：<!-- link:begin long-chat-limits -->[長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)<!-- link:end -->と<!-- link:begin what-survives-compaction -->[圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)<!-- link:end -->を読む。
+- メモリ：<!-- link:begin how-memory-works -->[アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)<!-- link:end -->、<!-- link:begin using-auto-memory -->[自動メモリ](../extend/using-auto-memory.md)<!-- link:end -->を読む。
+- スキル：<!-- link:begin skills-in-the-app -->[アプリでスキルを使う](../app/skills-in-the-app.md)<!-- link:end -->、<!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)<!-- link:end -->を読む。
 - コネクタと添付：<!-- link:begin connectors-in-the-app -->[コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)<!-- link:end -->、<!-- link:begin how-attachments-are-read#api -->[添付ファイルはどこまで読まれるか › API で渡すとき（Files API・PDF・画像）](../app/how-attachments-are-read.md#api)<!-- link:end -->を読む。
 - 検索と道具：<!-- link:begin search-research-thinking -->[web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md)<!-- link:end -->を読む。
 - SDK とホスト：<!-- link:begin sdk-comparison#managed-agents -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › Managed Agents（Anthropic がループと環境を持つ）](sdk-comparison.md#managed-agents)<!-- link:end -->を読む。
@@ -77,11 +77,11 @@ updated: 2026-11-05
 | --- | --- | --- |
 | [プロジェクト（Projects）](../app/using-projects.md) | アプリ | GA |
 | プロンプトキャッシング（prompt caching）（準備中） | API | GA |
-| アプリの自動のコンテキスト管理（automatic context management）（準備中） | アプリ | GA |
+| [アプリの自動のコンテキスト管理（automatic context management）](../app/long-chat-limits.md) | アプリ | GA |
 | compaction（API）（準備中） | API | beta |
 | [メモリ（アプリ。memory）](../app/how-memory-works.md) | アプリ | GA |
 | memory tool（準備中） | API | GA |
-| スキル（アプリ。skills）（準備中） | アプリ | GA |
+| [スキル（アプリ。skills）](../app/skills-in-the-app.md) | アプリ | GA |
 | サーバーの道具（server tools）（準備中） | API | GA |
 | [MCP connector](feature-to-api-mapping.md) | API | beta |
 | [Files API](../app/how-attachments-are-read.md) | API | GA |
@@ -100,7 +100,7 @@ updated: 2026-11-05
 - **長い会話が重い理由**：Claude は毎回、会話の最初から読み直して返事をする。<!-- link:begin stateless-messages-api#stateless -->Messages API と会話の正体 › 毎回、全体を渡す（準備中）<!-- link:end -->とあるとおり、API でも毎回、全体を渡す。アプリの自動の要約も API の compaction も、この読み直す量を減らす手段である。要約が起きる長い会話は、利用上限を多く使う。
 - **資料をプロジェクトに置く理由**：同じ先頭が続けば読み直しが安く済む。<!-- link:begin prompt-caching-in-practice#invalidation -->プロンプトキャッシングの実務 › キャッシュを無効にする変更（準備中）<!-- link:end -->にあるとおり、途中を変えるとそこから後は外れる。資料と指示を毎回同じ形で置けるのが、プロジェクトの利点である。
 - **圧縮の後に何が戻るか**：要約に置き換わったあとも、そのまま効くものと、溶けて消えるものがある。<!-- link:begin what-survives-compaction#kept -->[圧縮（compaction）で何が残り、何が消えるか › そのまま効くもの](../basics/what-survives-compaction.md#kept)<!-- link:end -->と<!-- link:begin how-skills-load#after-compaction -->[スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの](../extend/how-skills-load.md#after-compaction)<!-- link:end -->で確かめる。残したい規則は、要約に頼らず別の置き場所に出す。
-- **会話を消してもメモリが残る理由**：メモリは会話の中身ではなく、会話をまたいで残す記録だからである。API の memory tool も、会話をまたいでファイルに残す仕組みである。残った記録が誤っていないかは、<!-- link:begin using-auto-memory#review -->自動メモリ › 誤った記録の見直し（準備中）<!-- link:end -->で見直す。
+- **会話を消してもメモリが残る理由**：メモリは会話の中身ではなく、会話をまたいで残す記録だからである。API の memory tool も、会話をまたいでファイルに残す仕組みである。残った記録が誤っていないかは、<!-- link:begin using-auto-memory#review -->[自動メモリ › 誤った記録の見直し](../extend/using-auto-memory.md#review)<!-- link:end -->で見直す。
 
 この対応には 2 つの限界がある。1 つ目は、対応が役割の近さにとどまることである。アプリは API のパラメータを自分では指定できない。API の文書にある閾値や寿命を、そのままアプリの挙動とは決めつけない。
 
@@ -120,7 +120,7 @@ updated: 2026-11-05
     - **状況**：アプリの長い会話で、利用上限の減りが速い。理由を仕組みから知りたいが、自分でプログラムを書く予定はない。
     - **迷う候補**：API の文書を読んで閾値やキャッシュの設定を調べる。アプリの文書を読んで、会話の切り方と資料の置き場所を見直す。
     - **選んだもの**：アプリの文書で会話の切り方と置き場所を見直し、API は仕組みを知る補助として読む。
-    - **理由**：アプリでは API のパラメータを自分で指定できない。効く操作は、会話を分ける、資料をプロジェクトに置く、のようにアプリ側にある。対処は<!-- link:begin long-chat-limits#at-the-limit -->長い会話の自動のコンテキスト管理と長さの上限 › 長さの上限に当たったとき（準備中）<!-- link:end -->を読む。
+    - **理由**：アプリでは API のパラメータを自分で指定できない。効く操作は、会話を分ける、資料をプロジェクトに置く、のようにアプリ側にある。対処は<!-- link:begin long-chat-limits#at-the-limit -->[長い会話の自動のコンテキスト管理と長さの上限 › 長さの上限に当たったとき](../app/long-chat-limits.md#at-the-limit)<!-- link:end -->を読む。
 
 ## 組み合わせ方 {#combine}
 
@@ -173,12 +173,12 @@ API の機能には、ZDR（ゼロデータ保持）の対象外のものがあ�
 
 - Messages API と会話の正体（準備中）
 - プロンプトキャッシングの実務（準備中）
-- プロンプトキャッシング（先頭が変わらないことの価値）（準備中）
+- [プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)
 - [圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)
-- 長い会話の自動のコンテキスト管理と長さの上限（準備中）
+- [長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)
-- 自動メモリ（準備中）
-- アプリでスキルを使う（準備中）
+- [自動メモリ](../extend/using-auto-memory.md)
+- [アプリでスキルを使う](../app/skills-in-the-app.md)
 - [スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)
 - [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - [web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md)

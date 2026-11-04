@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "team-tools": {
+      "source": {
+        "source": "github",
+        "repo": "your-org/team-tools"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "review-helpers@team-tools": true
+  }
+}

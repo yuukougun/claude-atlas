@@ -86,7 +86,7 @@ flowchart TD
 
 公式の Best practices は、2026 年 10 月下旬の改稿で、「コンテキストを最優先で節約する」を「もうやめてよい」助言の表に入れた。理由は、現行モデルの多くが広い窓を持ち、圧縮も自動なので、溢れることがまれになったからである。同じ表に、コンテキストを守るためにサブエージェントを使う助言も入っている。
 
-一方で、関係のない作業の間の `/clear` は、答えの質と費用のために今も勧められている。焦点の合った文脈は、答えの質と費用の両方を改善する。やめてよい節約と、続ける片付けの切り分けは <!-- link:begin large-context-window#what-to-stop -->広いコンテキストウィンドウとの付き合い方 › やめてよいこと（準備中）<!-- link:end --> と <!-- link:begin large-context-window#what-to-keep -->広いコンテキストウィンドウとの付き合い方 › 続けること（準備中）<!-- link:end --> にある。
+一方で、関係のない作業の間の `/clear` は、答えの質と費用のために今も勧められている。焦点の合った文脈は、答えの質と費用の両方を改善する。やめてよい節約と、続ける片付けの切り分けは <!-- link:begin large-context-window#what-to-stop -->[広いコンテキストウィンドウとの付き合い方 › やめてよいこと](../models/large-context-window.md#what-to-stop)<!-- link:end --> と <!-- link:begin large-context-window#what-to-keep -->[広いコンテキストウィンドウとの付き合い方 › 続けること](../models/large-context-window.md#what-to-keep)<!-- link:end --> にある。
 
 古い助言を台帳で引ける。窓の節約を最優先にする助言は <!-- link:begin outdated-advice-ledger#save-context-for-200k -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#save-context-for-200k)<!-- link:end --> に、守るためだけにサブエージェントへ任せる助言は <!-- link:begin outdated-advice-ledger#subagents-to-save-context -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#subagents-to-save-context)<!-- link:end --> にある。窓が埋まるほど性能が落ちる、という説明は改稿前の版のものである。2026 年 10 月下旬より前の記事や手順書にあれば、現行の説明に読み替える。
 
@@ -116,7 +116,7 @@ flowchart TD
 - プロジェクト：同じ資料と指示で繰り返す作業を、1 つに 1 つの目的で切って入れる。切り方は <!-- link:begin using-projects#scope -->[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](../app/using-projects.md#scope)<!-- link:end --> にある。
 - メモリ：新しいチャットでも前提を引き継げるが、会話の整頓の代わりにはならない。会話を消してもメモリは残る。範囲と止め方は <!-- link:begin how-memory-works#deleted-chats -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › 会話を消しても残るもの](../app/how-memory-works.md#deleted-chats)<!-- link:end --> にある。
 
-アプリには、会話が長くなったときの自動の管理もある。コードの実行が有効なとき、上限に近づくと前の発言が要約されて会話が続く。全履歴は残り、参照できる（出典：Help Center）。要約が起きる長い会話は、利用上限を多く使いやすい。自動で何が残り、何が消えうるかは <!-- link:begin long-chat-limits#auto-management -->長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか（準備中）<!-- link:end --> にある。長さの上限に当たったときの対処は <!-- link:begin long-chat-limits#at-the-limit -->長い会話の自動のコンテキスト管理と長さの上限 › 長さの上限に当たったとき（準備中）<!-- link:end --> にある。
+アプリには、会話が長くなったときの自動の管理もある。コードの実行が有効なとき、上限に近づくと前の発言が要約されて会話が続く。全履歴は残り、参照できる（出典：Help Center）。要約が起きる長い会話は、利用上限を多く使いやすい。自動で何が残り、何が消えうるかは <!-- link:begin long-chat-limits#auto-management -->[長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか](../app/long-chat-limits.md#auto-management)<!-- link:end --> にある。長さの上限に当たったときの対処は <!-- link:begin long-chat-limits#at-the-limit -->[長い会話の自動のコンテキスト管理と長さの上限 › 長さの上限に当たったとき](../app/long-chat-limits.md#at-the-limit)<!-- link:end --> にある。
 
 繰り返す前提や形式の指定は、会話の中で言い直さず、置き場所を決めて置く。選び方は <!-- link:begin where-to-put-instructions#how-to-choose -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル） › どこに置くかの選び方](../app/where-to-put-instructions.md#how-to-choose)<!-- link:end --> にある。Claude Code の `/compact` や `/context` のような手段は、アプリにはない。そちらは Claude Code のタブと、各ページの持ち主を見る。
 
@@ -192,12 +192,12 @@ flowchart TD
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](research-in-subagents.md)
 - [/context で中身を見る](inspect-context.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](always-on-costs.md)
-- 長い会話の自動のコンテキスト管理と長さの上限（準備中）
+- [長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)
 - [プロジェクトの使いどころ](../app/using-projects.md)
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
 - [コンテキストウィンドウと注意の予算](../basics/attention-budget.md)
-- 広いコンテキストウィンドウとの付き合い方（準備中）
+- [広いコンテキストウィンドウとの付き合い方](../models/large-context-window.md)
 - [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)
 

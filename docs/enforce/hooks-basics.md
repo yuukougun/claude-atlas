@@ -101,7 +101,7 @@ flowchart LR
 
 使い方の違いを、止める・整える・知らせるごとに見る。
 
-- **止める**：PreToolUse は道具の実行の前に走るので、操作そのものを止められる。止め方は <!-- link:begin block-with-exit-2#exit-2-vs-json -->[フックで止めて理由を返す（exit 2 と JSON） › exit 2 と JSON の違い](block-with-exit-2.md#exit-2-vs-json)<!-- link:end --> にある。Stop は、確かめる処理が通るまでターンを終わらせないために使う（<!-- link:begin stop-hooks#block-cap -->Stop フックで「終わらせない」 › 続けて止められる回数の上限（準備中）<!-- link:end -->）
+- **止める**：PreToolUse は道具の実行の前に走るので、操作そのものを止められる。止め方は <!-- link:begin block-with-exit-2#exit-2-vs-json -->[フックで止めて理由を返す（exit 2 と JSON） › exit 2 と JSON の違い](block-with-exit-2.md#exit-2-vs-json)<!-- link:end --> にある。Stop は、確かめる処理が通るまでターンを終わらせないために使う（<!-- link:begin stop-hooks#block-cap -->[Stop フックで「終わらせない」 › 続けて止められる回数の上限](stop-hooks.md#block-cap)<!-- link:end -->）
 - **整える**：PostToolUse は道具が終わった後に走るので、すでに起きた操作は取り消せない。整形や検査の結果を返す用途に向く。exit 2 にすると、標準エラーの文が Claude に届く。Bash などでファイルが書き換わったときは、matcher が `Edit|Write` の PostToolUse は動かない。どこから書き換えても拾うなら FileChanged を使う
 - **知らせる**：Notification・Stop・SessionEnd で通知を出す。画面に出る返事の文を差し替える MessageDisplay というイベントもあるが、表示を変えるだけで、止めることはできない
 
@@ -210,7 +210,7 @@ flowchart LR
 | プラグインの `hooks/hooks.json` | プラグインを入れた環境 |
 | スキルやサブエージェントのフロントマター | そのスキルやサブエージェントが動く間 |
 
-登録済みのフックは `/hooks` で閲覧できる。設定の層の優先順位と、効いているかの確かめ方は <!-- link:begin settings-layers#layers -->設定ファイルの階層と優先順位 › 層と優先順位（準備中）<!-- link:end --> と <!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end --> にある。
+登録済みのフックは `/hooks` で閲覧できる。設定の層の優先順位と、効いているかの確かめ方は <!-- link:begin settings-layers#layers -->[設定ファイルの階層と優先順位 › 層と優先順位](../cli/settings-layers.md#layers)<!-- link:end --> と <!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](../cli/settings-layers.md#verify)<!-- link:end --> にある。
 
 **サブエージェントの中でも走る。** 設定ファイル・管理の設定・プラグインのフックは、サブエージェントの中でも走り、PreToolUse と PostToolUse がメインの会話と同じように発火する。サブエージェントのフロントマターに書いたフックは、その担当が動く間だけ走る。このとき Stop は SubagentStop に変わる。サブエージェントの作り方は <!-- link:begin writing-subagents#define -->[サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)<!-- link:end --> にある。
 
@@ -252,7 +252,7 @@ flowchart LR
 設定したフックが動いていないように見えるときは、次の順に確かめる。
 
 1. **信頼の確認を済ませたか**：対話のセッションでは、ダイアログを受け入れるまで走らない。新しいセッションで開き直す
-2. **登録されているか**：`/hooks` を開き、フックが一覧に出るか見る。出ないなら、書いた設定ファイルが読まれていない。効いている層は <!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end --> で確かめる
+2. **登録されているか**：`/hooks` を開き、フックが一覧に出るか見る。出ないなら、書いた設定ファイルが読まれていない。効いている層は <!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](../cli/settings-layers.md#verify)<!-- link:end --> で確かめる
 3. **イベントと matcher が合っているか**：道具の名前が matcher と合うか、イベントがそもそも起きる操作かを見る。Bash で書き換えたファイルは、`Edit|Write` の PostToolUse では拾えない
 4. **スクリプトが落ちていないか**：想定外の終了コードで落ちると、操作は通る。止めたいフックほど、落ちたときに通る既定が働いていないかを確かめる（<!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end -->）
 5. **フックを止める設定が入っていないか**：`disableAllHooks` などで止まっていないかを、設定の層をまたいで見る
@@ -301,11 +301,11 @@ flowchart LR
 **関連**
 
 - [代表的なフックのレシピ](hook-recipes.md)
-- Stop フックで「終わらせない」（準備中）
+- [Stop フックで「終わらせない」](stop-hooks.md)
 - [フックとスキルの違い](../extend/hook-vs-skill.md)
 - [お願いと鍵の対応表](request-lock-table.md)
 - [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
-- 設定ファイルの階層と優先順位（準備中）
+- [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
 - [textlint をフックで回す](../japanese/textlint-hook.md)
 

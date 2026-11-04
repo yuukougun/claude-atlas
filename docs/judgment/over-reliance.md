@@ -89,7 +89,7 @@ CSAW の LLM CTF 部門の分析では、人が主導するトラックの会話
 
 次の 3 つの問いに、1 つでも「いいえ」と答えるなら、その判断は預けすぎである。
 
-- Claude の答えを、採る前に自分の言葉で説明できるか。説明できないなら <!-- link:begin how-much-understanding-to-keep#explain-or-reject -->どこまで理解を手放してよいか（中核と周辺） › 説明できないものは採らない（準備中）<!-- link:end --> に従い、採らない。
+- Claude の答えを、採る前に自分の言葉で説明できるか。説明できないなら <!-- link:begin how-much-understanding-to-keep#explain-or-reject -->[どこまで理解を手放してよいか（中核と周辺） › 説明できないものは採らない](how-much-understanding-to-keep.md#explain-or-reject)<!-- link:end --> に従い、採らない。
 - Claude の答えが間違っていたら、どの事実を見れば分かるか。見る先がないなら、確かめようのない判断を預けている。
 - Claude の答えに「おかしい」と思ったとき、自分の根拠で上書きできるか。根拠がないなら、評価の軸を自分が持っていない。
 
@@ -147,7 +147,7 @@ CSAW の LLM CTF 部門の分析では、人が主導するトラックの会話
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - [検証の階段](../verify/verification-ladder.md)
 - [ハルシネーションはなぜ起きるか](../basics/why-hallucinations.md)
-- どこまで理解を手放してよいか（中核と周辺）（準備中）
+- [どこまで理解を手放してよいか（中核と周辺）](how-much-understanding-to-keep.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](agreement-is-not-evidence.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](../eval/verifier-defines-problem.md)

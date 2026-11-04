@@ -52,7 +52,7 @@ updated: 2026-11-05
 | --- | --- | --- |
 | 会話の長さ・添付・メッセージの長さ | 毎回、会話の最初から読み直すので、積もった分が毎ターン乗る | <!-- link:begin rereads-whole-history#why -->[毎ターン全履歴を読み直す › なぜそうなるか](../basics/rereads-whole-history.md#why)<!-- link:end --> |
 | ツールとコネクタ | 検索や調査で読み込む量が大きい。公式はトークンを多く使うものとして挙げる | <!-- link:begin always-on-costs#resident-vs-on-demand -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 常駐するものと、使うときだけ読むもの](../context/always-on-costs.md#resident-vs-on-demand)<!-- link:end --> |
-| モデルと effort | 高い effort ほど考えるトークンが増える。最上位のモデルは、ほかより速く減る | <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end -->、<!-- link:begin before-using-top-model#which-limit -->最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）（準備中）<!-- link:end --> |
+| モデルと effort | 高い effort ほど考えるトークンが増える。最上位のモデルは、ほかより速く減る | <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end -->、<!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](before-using-top-model.md#which-limit)<!-- link:end --> |
 | artifact の作成と利用 | 生成物を作って直すたびに、出力と読み直しが増える | <!-- link:begin saving-priorities#order -->[節約の優先順位（手戻りを減らすのが先） › 優先順位](saving-priorities.md#order)<!-- link:end --> |
 | 多段の作業（コード実行・ファイル作成・ブラウジング） | 1 回の依頼の中で、ツールの呼び出しと結果の読み込みが連なる | <!-- link:begin saving-priorities#reduce-rework -->[節約の優先順位（手戻りを減らすのが先） › 手戻りを減らす](saving-priorities.md#reduce-rework)<!-- link:end --> |
 | サブエージェント・並列・ループ・workflows | 本数と回数と 1 回の文脈の大きさの掛け算で増える | <!-- link:begin parallel-and-loop-costs#multiplication -->[並列・ループ・workflows のコスト › 費用が膨らむ掛け算](parallel-and-loop-costs.md#multiplication)<!-- link:end --> |
@@ -111,7 +111,7 @@ updated: 2026-11-05
     - **選んだもの**：先に、使わない MCP を外す。サブエージェントは、本数と 1 回の文脈の大きさを見直してから、残すかを決める。
     - **理由**：サブエージェントは別室の部下で、片付けの作業を本体の文脈から離せる利点もある。やめると、本体の文脈が太って逆に増えることがある。使わない MCP は外しても困らず、毎回の常駐の分が確実に減る。
 
-内訳の判断（どれを削るか）は <!-- link:begin insights-and-usage-review#usage-breakdown -->/insights と /usage で振り返る › /usage の内訳から削るものを選ぶ（準備中）<!-- link:end --> が持つ。道具の一覧とステータスラインへの出し方は <!-- link:begin usage-context-statusline#instruments -->[/usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの](../cli/usage-context-statusline.md#instruments)<!-- link:end --> を引く。内訳を読んだ後に自分で試せる依頼を、下に置く。
+内訳の判断（どれを削るか）は <!-- link:begin insights-and-usage-review#usage-breakdown -->[/insights と /usage で振り返る › /usage の内訳から削るものを選ぶ](../eval/insights-and-usage-review.md#usage-breakdown)<!-- link:end --> が持つ。道具の一覧とステータスラインへの出し方は <!-- link:begin usage-context-statusline#instruments -->[/usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの](../cli/usage-context-statusline.md#instruments)<!-- link:end --> を引く。内訳を読んだ後に自分で試せる依頼を、下に置く。
 
 <!-- gen:begin snippet what-uses-up-limits/ask-usage-breakdown -->
 <!-- textlint-disable -->
@@ -143,7 +143,7 @@ updated: 2026-11-05
 ## 誤解 {#misconceptions}
 
 - **会話を片付ければ、使った分が戻る**：戻らない。`/clear` で減らせるのは、次のターン以降に送り直す量だけである。すでに減った枠は戻らない。
-- **窓が広くなったので、長さを気にしなくてよい**：溢れる心配は減っても、関係のない文脈が答えの質と費用を下げる点は変わらない（<!-- link:begin large-context-window#cost-of-long-context -->広いコンテキストウィンドウとの付き合い方 › 長い文脈の費用（準備中）<!-- link:end -->）。
+- **窓が広くなったので、長さを気にしなくてよい**：溢れる心配は減っても、関係のない文脈が答えの質と費用を下げる点は変わらない（<!-- link:begin large-context-window#cost-of-long-context -->[広いコンテキストウィンドウとの付き合い方 › 長い文脈の費用](../models/large-context-window.md#cost-of-long-context)<!-- link:end -->）。
 - **モデルを下げれば、いちばん節約できる**：下げて効く場面もある。ただ、長い文脈の送り直しと並列の増殖のほうが大きい場面が多い（根拠：中。公式文書からの読みで、版に依存する）。内訳で確かめてから決める。
 - **「think hard」と書き足せば、考える深さが増える**：2026-10 の公式文書では、この言い回しは effort を上げる言葉として働かず、普通の文として渡る（<!-- link:begin thinking-keywords#plain-text-phrases -->[「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し](../models/thinking-keywords.md#plain-text-phrases)<!-- link:end -->）。深さは effort で決める（<!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end -->）。
 
@@ -183,11 +183,11 @@ updated: 2026-11-05
 
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
 - [/usage・/context・ステータスラインで状態を見る › 三つの道具で見えるもの](../cli/usage-context-statusline.md#instruments)
-- /insights と /usage で振り返る（準備中）
+- [/insights と /usage で振り返る](../eval/insights-and-usage-review.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
-- 広いコンテキストウィンドウとの付き合い方 › 長い文脈の費用（準備中）
-- 最上位のモデルを使う前に（準備中）
+- [広いコンテキストウィンドウとの付き合い方 › 長い文脈の費用](../models/large-context-window.md#cost-of-long-context)
+- [最上位のモデルを使う前に](before-using-top-model.md)
 
 </div>
 

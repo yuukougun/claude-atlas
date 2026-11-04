@@ -73,9 +73,9 @@ updated: 2026-11-05
 - 使用量が抑えられる。公式の節約の勧めは、繰り返し参照する主要な資料を最初にプロジェクトへアップロードすることである。キャッシュが効き、再利用のときの消費が少なくなる。ただし、一定の時間使わないとキャッシュが切れ、全量が数えられる状態に戻る（[Usage limit best practices](https://support.claude.com/en/articles/9797557-usage-limit-best-practices)）。
 - 会話をまたいで同じ資料を前提にできる。資料の版が会話ごとにそろい、「どの版を見たか」がずれにくい。
 
-使用量が抑えられるのは、先頭が変わらなければ読み直しが安く済む、という仕組みに乗るからである。積み木の下の段が変わらない限り、そこは積み直さずに済む。仕組みは <!-- link:begin why-prompt-caching -->プロンプトキャッシング（先頭が変わらないことの価値）（準備中）<!-- link:end --> にあり、何が上限を早く使うかは <!-- link:begin what-uses-up-limits#causes -->[上限を早く使う要因 › 枠を早く減らす原因](../cost/what-uses-up-limits.md#causes)<!-- link:end --> で確かめられる。ただし、使わずに時間が空くとキャッシュは切れるので、「毎回安い」とは限らない。
+使用量が抑えられるのは、先頭が変わらなければ読み直しが安く済む、という仕組みに乗るからである。積み木の下の段が変わらない限り、そこは積み直さずに済む。仕組みは <!-- link:begin why-prompt-caching -->[プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)<!-- link:end --> にあり、何が上限を早く使うかは <!-- link:begin what-uses-up-limits#causes -->[上限を早く使う要因 › 枠を早く減らす原因](../cost/what-uses-up-limits.md#causes)<!-- link:end --> で確かめられる。ただし、使わずに時間が空くとキャッシュは切れるので、「毎回安い」とは限らない。
 
-置けば読まれる、ではない。ナレッジは、会話の材料にできる状態になるだけである。実際にどこが使われるかは、資料の量と指示の書き方で決まる。資料が多すぎて容量に近づくと、読み方が変わる。その場合は <!-- link:begin too-much-project-knowledge#rag-mode -->プロジェクトのナレッジが多すぎるとき › 容量に近づくと何が変わるか（準備中）<!-- link:end --> と <!-- link:begin too-much-project-knowledge#curate -->プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方（準備中）<!-- link:end --> を見る。
+置けば読まれる、ではない。ナレッジは、会話の材料にできる状態になるだけである。実際にどこが使われるかは、資料の量と指示の書き方で決まる。資料が多すぎて容量に近づくと、読み方が変わる。その場合は <!-- link:begin too-much-project-knowledge#rag-mode -->[プロジェクトのナレッジが多すぎるとき › 容量に近づくと何が変わるか](too-much-project-knowledge.md#rag-mode)<!-- link:end --> と <!-- link:begin too-much-project-knowledge#curate -->[プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方](too-much-project-knowledge.md#curate)<!-- link:end --> を見る。
 
 入れる資料は、少数から始める。実践者の解説は、最初は少数のファイルにし、古い版は削除するよう勧める（根拠：弱）。長い資料は、分ける・テキストに直すなど、形と量を整えてから置く（<!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end -->）。
 
@@ -167,15 +167,15 @@ updated: 2026-11-05
 
 **次に読む**
 
+- [プロジェクトのナレッジが多すぎるとき](too-much-project-knowledge.md)
 - [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
-- プロジェクトのナレッジが多すぎるとき（準備中）
 - アプリをチームで使う（共有プロジェクト・組織のスキル）（準備中）
 
 **関連**
 
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](where-to-put-instructions.md)
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](how-memory-works.md)
-- プロンプトキャッシング（先頭が変わらないことの価値）（準備中）
+- [プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)
 - [机を整える：新鮮さ・巻き戻し・書き出し・委任 › アプリでの整え方](../context/tidy-the-desk.md#in-the-app)
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
 - [長い資料を渡すとき](../context/handing-long-documents.md)

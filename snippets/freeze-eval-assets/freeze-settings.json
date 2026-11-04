@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(/eval/**)",
+      "Edit(/tests/frozen/**)",
+      "Edit(/data/holdout/**)",
+      "Read(/data/holdout/**)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+      "denyWrite": ["./eval", "./tests/frozen", "./data/holdout"],
+      "denyRead": ["./data/holdout"]
+    }
+  }
+}

@@ -58,9 +58,9 @@ updated: 2026-11-05
 | 機能 | 成熟度 | 入った版 |
 | --- | --- | --- |
 | [サブエージェント（subagents）](../extend/writing-subagents.md) | GA | 1.0.60（2025-07-24） |
-| agent view（準備中） | research preview | 2.1.139（2026-05-11） |
+| [agent view](agent-view-and-background.md) | research preview | 2.1.139（2026-05-11） |
 | エージェントチーム（agent teams）（準備中） | experimental | 2.1.32（2026-02-05） |
-| ワークフロー（workflows）（準備中） | GA | 2.1.154（2026-05-28） |
+| [ワークフロー（workflows）](dynamic-workflows.md) | GA | 2.1.154（2026-05-28） |
 | [worktree](parallel-with-worktrees.md) | GA | 2.1.49（2026-02-19） |
 | [Claude Code の Projects（並列の threads）](choosing-parallel-modes.md) | beta | — |
 
@@ -80,13 +80,13 @@ updated: 2026-11-05
 | 方式 | 調整する者 | 向く作業 | 詳しく |
 | --- | --- | --- | --- |
 | サブエージェント | Claude が、1 つの会話の中で | 並べられる独立の作業・出力が多い作業の切り離し・独立したレビュー | <!-- link:begin writing-subagents#when-to-use -->[サブエージェントの作り方と使いどころ › 使いどころと、使わない場面](../extend/writing-subagents.md#when-to-use)<!-- link:end --> |
-| agent view | 自分が背景のセッションに投入し、後で確認する | 見張らなくてよい独立した作業 | <!-- link:begin agent-view-and-background#what-fits -->agent view と背景セッション › 向く作業と向かない作業（準備中）<!-- link:end --> |
+| agent view | 自分が背景のセッションに投入し、後で確認する | 見張らなくてよい独立した作業 | <!-- link:begin agent-view-and-background#what-fits -->[agent view と背景セッション › 向く作業と向かない作業](agent-view-and-background.md#what-fits)<!-- link:end --> |
 | エージェントチーム | リードの Claude が計画・割り当て・監督をする | 互いに連絡しながら進める、小さく焦点を絞った作業 | <!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）（準備中）<!-- link:end --> |
-| workflows | Claude が書いたスクリプトが計画を持つ | コードベース全体の監査や、大量のファイルの移行 | <!-- link:begin dynamic-workflows#when-and-start-small -->dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 向く規模と、小さく試す（準備中）<!-- link:end --> |
+| workflows | Claude が書いたスクリプトが計画を持つ | コードベース全体の監査や、大量のファイルの移行 | <!-- link:begin dynamic-workflows#when-and-start-small -->[dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 向く規模と、小さく試す](dynamic-workflows.md#when-and-start-small)<!-- link:end --> |
 | Projects | Claude が、続いている会話の中で | 会話を軸に、タスクごとに threads を分けたい作業 | [Let Claude coordinate ongoing work with Projects](https://code.claude.com/docs/en/claude-projects) |
 | /batch と claude -p のループ | 自分が出したコマンドかループ | 同じ作業を多数のファイルに流す | <!-- link:begin batch-and-p-loops#not-the-batch-api -->多数のファイルに同じ作業を流す（/batch と -p のループ） › API の Message Batches API とは別のもの（準備中）<!-- link:end --> |
 
-互いに連絡が要るかは、この軸とほぼ重なる。サブエージェントは別の文脈で作業して、要約だけを返す。エージェントチームだけが、共有のタスクリストと相互のメッセージで、担当どうしが途中経過を渡し合える。途中経過を渡し合う必要がなければ、エージェントチームを選ぶ理由は薄い。チームメイトの数だけトークンを使うからである。背景のセッションに別のセッションから知らせたいだけなら、<!-- link:begin agent-view-and-background#cross-session-messaging -->agent view と背景セッション › ほかのセッションに知らせる（cross-session messaging）（準備中）<!-- link:end --> で足りる。
+互いに連絡が要るかは、この軸とほぼ重なる。サブエージェントは別の文脈で作業して、要約だけを返す。エージェントチームだけが、共有のタスクリストと相互のメッセージで、担当どうしが途中経過を渡し合える。途中経過を渡し合う必要がなければ、エージェントチームを選ぶ理由は薄い。チームメイトの数だけトークンを使うからである。背景のセッションに別のセッションから知らせたいだけなら、<!-- link:begin agent-view-and-background#cross-session-messaging -->[agent view と背景セッション › ほかのセッションに知らせる（cross-session messaging）](agent-view-and-background.md#cross-session-messaging)<!-- link:end --> で足りる。
 
 サブエージェントを選ぶ理由に、コンテキストの節約だけを置かない。工程ごとにサブエージェントを作る形は <!-- link:begin outdated-advice-ledger#subagent-per-step -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#subagent-per-step)<!-- link:end -->、コンテキストを守るためだけに調べさせる形は <!-- link:begin outdated-advice-ledger#subagents-to-save-context -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#subagents-to-save-context)<!-- link:end --> が扱う。今は、並べる作業・うるさい出力を本筋から離すこと・独立したレビューのために使い、どれもトークンが余分にかかる。
 
@@ -111,7 +111,7 @@ worktree は、片付けも要る。残すものと消すものは <!-- link:beg
     - **状況**：認証のモジュールを、案 A と案 B の 2 通りに直したい。どちらも同じファイルを大きく書き換える。
     - **迷う候補**：エージェントチームに 2 人のチームメイトを作らせ、案ごとに割り当てる。worktree を 2 つ作り、案ごとに別のセッションで進める。
     - **選んだもの**：worktree を 2 つ作り、案ごとに別のセッションで進める。
-    - **理由**：エージェントチームは worktree で隔離せず、ファイル単位の分担を前提にする。2 案は同じファイルを書き換えるので、分担のしようがない。案どうしの連絡も要らない。同じ評価器で比べて勝った方だけを取り込む流れは <!-- link:begin compare-hypotheses-in-parallel -->仮説ごとに並べて、同じ物差しで比べる（準備中）<!-- link:end --> にある。
+    - **理由**：エージェントチームは worktree で隔離せず、ファイル単位の分担を前提にする。2 案は同じファイルを書き換えるので、分担のしようがない。案どうしの連絡も要らない。同じ評価器で比べて勝った方だけを取り込む流れは <!-- link:begin compare-hypotheses-in-parallel -->[仮説ごとに並べて、同じ物差しで比べる](compare-hypotheses-in-parallel.md)<!-- link:end --> にある。
 
 ## 一部は捨てる前提で回す {#expect-to-discard}
 
@@ -141,7 +141,7 @@ worktree は、片付けも要る。残すものと消すものは <!-- link:beg
 | 出力の多い調査 | サブエージェント。本筋には結論と根拠の場所だけを戻す | <!-- link:begin research-in-subagents#how -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る › 頼み方と戻させる形](../context/research-in-subagents.md#how)<!-- link:end --> |
 | 結果の確認 | 書いた本人ではない者。AI の承認は人の承認に数えない | <!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](../verify/independent-review.md#ai-approval)<!-- link:end --> |
 | 動かす範囲の囲い | 見張らない方式ほど、OS の層で囲む | <!-- link:begin sandboxing#when -->[サンドボックスで封じ込める › 使いどころ](../enforce/sandboxing.md#when)<!-- link:end --> |
-| 手元を閉じても続ける作業 | クラウドのセッション。計画と縛りはリポジトリに置いてから送る | <!-- link:begin cloud-sessions-and-teleport#what-to-send -->クラウドセッションと teleport › クラウドに送ってよい作業（準備中）<!-- link:end --> |
+| 手元を閉じても続ける作業 | クラウドのセッション。計画と縛りはリポジトリに置いてから送る | <!-- link:begin cloud-sessions-and-teleport#what-to-send -->[クラウドセッションと teleport › クラウドに送ってよい作業](../cli/cloud-sessions-and-teleport.md#what-to-send)<!-- link:end --> |
 
 手順を今の会話で読ませたいだけなら、並列にせずスキルで足りる。違いは <!-- link:begin skill-vs-subagent -->[スキルとサブエージェントの違い](../extend/skill-vs-subagent.md)<!-- link:end --> にある。
 
@@ -217,8 +217,8 @@ Claude の推奨は、本文の基準と食い違うことがある。食い違�
 
 **次に読む**
 
-- agent view と背景セッション（準備中）
-- dynamic workflows（スクリプトで多数のサブエージェントを動かす）（準備中）
+- [agent view と背景セッション](agent-view-and-background.md)
+- [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](dynamic-workflows.md)
 - エージェントチーム（複数の Claude に分担させる）（準備中）
 
 **関連**
@@ -226,14 +226,14 @@ Claude の推奨は、本文の基準と食い違うことがある。食い違�
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
 - [git worktree で並列にする](parallel-with-worktrees.md)
 - 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
-- 仮説ごとに並べて、同じ物差しで比べる（準備中）
+- [仮説ごとに並べて、同じ物差しで比べる](compare-hypotheses-in-parallel.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
 - [スキルとサブエージェントの違い](../extend/skill-vs-subagent.md)
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
-- クラウドセッションと teleport（準備中）
+- [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 
 </div>
 

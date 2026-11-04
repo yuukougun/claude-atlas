@@ -1,0 +1,13 @@
+title: JSON outputs の依頼の本文（応答を分類のスキーマに合わせる）
+kind: other
+place: 依頼の本文
+safety: false
+conditions:
+  - Messages API に、この本文を POST する（モデルの id は自分の環境で使えるものに替える）
+  - 使うモデルが structured outputs に対応している
+expect:
+  - when: この本文で依頼を出す
+    then: 応答の text ブロックが JSON として読め、category と summary を持つ
+  - when: stop_reason が end_turn 以外（refusal・max_tokens）で返る
+    then: 形が合わないことがある。観察として扱い、合否にしない
+control: output_config を外して同じ依頼を出すと、前置きや説明が混じった文章で返ることがある

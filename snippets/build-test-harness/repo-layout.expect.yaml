@@ -1,0 +1,13 @@
+title: 検証の資産を分けたリポジトリの構成例
+kind: other
+place: project
+safety: false
+conditions:
+  - 〔〕の欄と、自分のプロジェクトの名前に合わせて置き換える
+  - 読み取り専用にする所は、凍結の方法を別のページで決めてから適用する
+expect:
+  - when: この構成で Claude に新しい実験を頼む
+    then: 変更が solution/ と experiments/ の中に収まり、tools/official/・brute/・cases/hand/ は変わらない
+  - when: Claude が新しいテストを書く
+    then: tests/proposed/ に置かれ、人が見るまで tests/frozen/ には入らない
+control: 資産を分けずに 1 か所へ置くと、解を直す作業の中でテストや採点の側も書き換えられる形になりやすい

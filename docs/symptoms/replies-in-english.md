@@ -79,13 +79,13 @@ issue に書かれた件数や割合は、利用者が自分の記録を数え�
 
     === "Claude Code"
 
-        - **設定の層**：`language` の設定を、ユーザー・プロジェクト・手元だけ・管理のどの層に書いたかを思い出し、`/status` で読み込まれた層を確かめる。確かめ方は「<!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end -->」にある。
+        - **設定の層**：`language` の設定を、ユーザー・プロジェクト・手元だけ・管理のどの層に書いたかを思い出し、`/status` で読み込まれた層を確かめる。確かめ方は「<!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](../cli/settings-layers.md#verify)<!-- link:end -->」にある。
         - **値の綴り**：`language` の値は検証されず、綴りを誤ってもエラーにならない。公式は、値をそのまま「いつもその言語で答える」指示として Claude に渡すと書く。settings.json を開き、キー名と値の綴りを見る。
         - **JSON の誤り**：JSON の構文の誤りで設定ファイルが読まれていない可能性も見る。公式の文書に診断の手順としては書かれていない、妥当な推測である。
-        - **別の層の値**：同じキーは、優先順の高い層の値が使われる。リポジトリの設定（プロジェクトや手元だけの層）に別の言語の値がないかを見る。合わさる設定と上書きされる設定の違いは「<!-- link:begin settings-layers#merge -->設定ファイルの階層と優先順位 › 合わさる設定、上書きされる設定（準備中）<!-- link:end -->」にある。
-        - **出力スタイル**：選んでいるスタイルの本文に、言語の指示や英語での応答を促す書き方がないかを見る。出力スタイルも、守らせる仕組みではなくお願いである。関係は「<!-- link:begin output-style-modes#japanese -->出力スタイルで応答の仕方を切り替える › 日本語の応答との関係（準備中）<!-- link:end -->」にある。
+        - **別の層の値**：同じキーは、優先順の高い層の値が使われる。リポジトリの設定（プロジェクトや手元だけの層）に別の言語の値がないかを見る。合わさる設定と上書きされる設定の違いは「<!-- link:begin settings-layers#merge -->[設定ファイルの階層と優先順位 › 合わさる設定、上書きされる設定](../cli/settings-layers.md#merge)<!-- link:end -->」にある。
+        - **出力スタイル**：選んでいるスタイルの本文に、言語の指示や英語での応答を促す書き方がないかを見る。出力スタイルも、守らせる仕組みではなくお願いである。関係は「<!-- link:begin output-style-modes#japanese -->[出力スタイルで応答の仕方を切り替える › 日本語の応答との関係](../cli/output-style-modes.md#japanese)<!-- link:end -->」にある。
         - **CLAUDE.md の英語の指示**：CLAUDE.md や、取り込んだファイルに、英語で答える指示や英語だけの例がないかを見る。CLAUDE.md は強制する設定ではなく、文脈として渡される。
-        - **サブエージェント**：英語が、サブエージェントに任せた作業の報告から来ているなら、会話の指示や出力スタイルはサブエージェントに届かない。届かないものは「<!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end -->」にある。
+        - **サブエージェント**：英語が、サブエージェントに任せた作業の報告から来ているなら、会話の指示や出力スタイルはサブエージェントに届かない。届かないものは「<!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)<!-- link:end -->」にある。
 
     === "API"
 
@@ -111,7 +111,7 @@ issue に書かれた件数や割合は、利用者が自分の記録を数え�
 
         - 同じ場面で繰り返し英語になるかを見る。#96326 には、UserPromptSubmit のフックで毎ターン指示を注入しても英語になった、という報告がある（根拠：弱）。指示を増やしても直らないなら、お願いの限界である。
         - Stop フックで最後の返事を確かめ、英語なら差し戻すと、最後の返事は減らせる。ターンの終わりとツールの前後は止められるが、ツールの合間の短い一言を、画面に出る前に止める仕組みはない。作り方は「<!-- link:begin keep-replies-in-japanese#stop-hook -->[日本語で返し続けさせる › Stop フックで最後の返事を確かめる](../japanese/keep-replies-in-japanese.md#stop-hook)<!-- link:end -->」にある。
-        - 差し戻しを続けると止まらなくなる恐れがあるので、続けて止められる回数の上限を先に知る。上限は「<!-- link:begin stop-hooks#block-cap -->Stop フックで「終わらせない」 › 続けて止められる回数の上限（準備中）<!-- link:end -->」にある。
+        - 差し戻しを続けると止まらなくなる恐れがあるので、続けて止められる回数の上限を先に知る。上限は「<!-- link:begin stop-hooks#block-cap -->[Stop フックで「終わらせない」 › 続けて止められる回数の上限](../enforce/stop-hooks.md#block-cap)<!-- link:end -->」にある。
         - 英語の一言が一度画面に出ることは、公式の仕組みでは防げない。それを許せるかを、仕組みにする前に決める。
 
     === "API"
@@ -120,11 +120,11 @@ issue に書かれた件数や割合は、利用者が自分の記録を数え�
 
 4. **合っていない**：指示が届いていて縛っていても、モデルや面、実行の場所が症状に合っていない。
 
-    - **モデル**：報告の多くは Opus 5.5 である（確認日 2026-11-03）。#96601 は、出力スタイルの言語の規則が、ツールを何度も使った後に外れやすいと報告する（英語の割合が増えたという自己申告、根拠：弱）。`/model` でモデルを替え、同じ依頼と同じ設定で比べる。傾向は版で変わるので、暗記せず記録する。比べ方は「<!-- link:begin model-quirks#observe-and-record -->モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する（準備中）<!-- link:end -->」にある。
-    - **クラウドのセッション**：クラウドで動かしたセッションは、手元の設定の一部を読まない。手元の `language` が効いているのに、クラウドでだけ英語になるなら、これを疑う。違いは「<!-- link:begin cloud-sessions-and-teleport#settings -->クラウドセッションと teleport › 手元の設定との違い（準備中）<!-- link:end -->」にある。
+    - **モデル**：報告の多くは Opus 5.5 である（確認日 2026-11-03）。#96601 は、出力スタイルの言語の規則が、ツールを何度も使った後に外れやすいと報告する（英語の割合が増えたという自己申告、根拠：弱）。`/model` でモデルを替え、同じ依頼と同じ設定で比べる。傾向は版で変わるので、暗記せず記録する。比べ方は「<!-- link:begin model-quirks#observe-and-record -->[モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する](../models/model-quirks.md#observe-and-record)<!-- link:end -->」にある。
+    - **クラウドのセッション**：クラウドで動かしたセッションは、手元の設定の一部を読まない。手元の `language` が効いているのに、クラウドでだけ英語になるなら、これを疑う。違いは「<!-- link:begin cloud-sessions-and-teleport#settings -->[クラウドセッションと teleport › 手元の設定との違い](../cli/cloud-sessions-and-teleport.md#settings)<!-- link:end -->」にある。
     - **面**：アプリと API は、使える手段が Claude Code と違う。面ごとの手段は「<!-- link:begin keep-replies-in-japanese#app-and-api -->[日本語で返し続けさせる › アプリと API の場合](../japanese/keep-replies-in-japanese.md#app-and-api)<!-- link:end -->」にある。
 
-1 から 4 のどれを直しても英語に戻るときは、設定を外して同じ依頼を比べ、不調が自分の設定から来るかを切り分ける。方法は「<!-- link:begin isolate-with-safe-mode#compare -->設定を外して切り分ける（--safe-mode） › 比べ方（準備中）<!-- link:end -->」にある。ほかの規則も破られるなら、「<!-- link:begin instructions-ignored -->[CLAUDE.md や指示が守られない](instructions-ignored.md)<!-- link:end -->」を見る。文体や表記だけが揃わないなら、「<!-- link:begin inconsistent-japanese-style -->[文体や表記が揃わない](inconsistent-japanese-style.md)<!-- link:end -->」を見る。
+1 から 4 のどれを直しても英語に戻るときは、設定を外して同じ依頼を比べ、不調が自分の設定から来るかを切り分ける。方法は「<!-- link:begin isolate-with-safe-mode#compare -->[設定を外して切り分ける（--safe-mode） › 比べ方](../cli/isolate-with-safe-mode.md#compare)<!-- link:end -->」にある。ほかの規則も破られるなら、「<!-- link:begin instructions-ignored -->[CLAUDE.md や指示が守られない](instructions-ignored.md)<!-- link:end -->」を見る。文体や表記だけが揃わないなら、「<!-- link:begin inconsistent-japanese-style -->[文体や表記が揃わない](inconsistent-japanese-style.md)<!-- link:end -->」を見る。
 
 原因が分かったら、次の表の先へ進む。
 
@@ -133,10 +133,10 @@ issue に書かれた件数や割合は、利用者が自分の記録を数え�
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [日本語で返し続けさせる › 言語の設定と、効かないときに確かめること](../japanese/keep-replies-in-japanese.md#language-setting)<br>設定ファイルの階層と優先順位（準備中）<br>サブエージェントに引き継がれないもの（準備中） |
+| 見えていない | [日本語で返し続けさせる › 言語の設定と、効かないときに確かめること](../japanese/keep-replies-in-japanese.md#language-setting)<br>[設定ファイルの階層と優先順位](../cli/settings-layers.md)<br>[サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md) |
 | 散らかっている | [日本語で返し続けさせる › 英語に戻りやすい場面](../japanese/keep-replies-in-japanese.md#when) |
-| 縛っていない | [日本語で返し続けさせる › Stop フックで最後の返事を確かめる](../japanese/keep-replies-in-japanese.md#stop-hook)<br>[日本語の出力を揃える：お願いで足りること、仕組みが要ること › 確かめて差し戻す層：フックと lint](../japanese/align-japanese-output.md#lock-layer)<br>Stop フックで「終わらせない」（準備中） |
-| 合っていない | モデル別の癖と、プロンプトの合わせ方（準備中）<br>[日本語で返し続けさせる › アプリと API の場合](../japanese/keep-replies-in-japanese.md#app-and-api)<br>クラウドセッションと teleport › 手元の設定との違い（準備中） |
+| 縛っていない | [日本語で返し続けさせる › Stop フックで最後の返事を確かめる](../japanese/keep-replies-in-japanese.md#stop-hook)<br>[日本語の出力を揃える：お願いで足りること、仕組みが要ること › 確かめて差し戻す層：フックと lint](../japanese/align-japanese-output.md#lock-layer)<br>[Stop フックで「終わらせない」](../enforce/stop-hooks.md) |
+| 合っていない | [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)<br>[日本語で返し続けさせる › アプリと API の場合](../japanese/keep-replies-in-japanese.md#app-and-api)<br>[クラウドセッションと teleport › 手元の設定との違い](../cli/cloud-sessions-and-teleport.md#settings) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -198,23 +198,23 @@ issue に書かれた件数や割合は、利用者が自分の記録を数え�
 **次に読む**
 
 - [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)
-- 設定ファイルの階層と優先順位（準備中）
-- サブエージェントに引き継がれないもの（準備中）
+- [設定ファイルの階層と優先順位](../cli/settings-layers.md)
+- [サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)
 - [日本語の出力を揃える：お願いで足りること、仕組みが要ること](../japanese/align-japanese-output.md)
-- Stop フックで「終わらせない」（準備中）
-- モデル別の癖と、プロンプトの合わせ方（準備中）
-- クラウドセッションと teleport（準備中）
+- [Stop フックで「終わらせない」](../enforce/stop-hooks.md)
+- [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
+- [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 
 **関連**
 
 - [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)
 - コミットメッセージ・コメントの言語（準備中）
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
-- 出力スタイルで応答の仕方を切り替える（準備中）
+- [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)
 - [圧縮の後に約束を忘れた](forgot-after-compaction.md)
 - [CLAUDE.md や指示が守られない](instructions-ignored.md)
 - [文体や表記が揃わない](inconsistent-japanese-style.md)
-- 設定を外して切り分ける（--safe-mode）（準備中）
+- [設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)
 
 </div>

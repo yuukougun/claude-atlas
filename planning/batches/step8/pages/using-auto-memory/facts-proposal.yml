@@ -1,0 +1,3 @@
+proposals:
+  - fact: {id: auto-memory-default-local, title: 自動メモリの既定の状態（ローカルのセッション）, value: 既定で有効, sources: [cc-docs-memory], checked: 2026-11-05, status: 確認済み}
+    used_in: [using-auto-memory#usage]

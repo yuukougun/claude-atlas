@@ -55,7 +55,7 @@ updated: 2026-11-05
 | [権限モード](../cli/permission-modes-overview.md) | Claude Code | 鍵 |
 | [auto モード](../enforce/what-auto-mode-stops.md) | Claude Code | モデルの判定 |
 | [サンドボックス](../enforce/sandboxing.md) | Claude Code | 鍵 |
-| シークレットチャット（incognito chats）（準備中） | アプリ | — |
+| [シークレットチャット（incognito chats）](../app/incognito-chats.md) | アプリ | — |
 | [メモリ（アプリ。memory）](../app/how-memory-works.md) | アプリ | — |
 
 すべて共通：成熟度 GA、確認日 2026-11-04。
@@ -70,7 +70,7 @@ updated: 2026-11-05
 - **権限**：既定の開始モードは版で変わってきた。対話の端末と VS Code の既定は、<!-- fact:begin permission-mode-default-interactive -->auto モード（Claude Code 2.1.283 以降の、ターミナルと VS Code の対話のセッション。どのプランと提供元でも）（2026-11-04 時点）<!-- fact:end -->。手元の既定は <!-- link:begin permission-modes-overview#defaults -->[権限モードの選び方 › 既定のモードと版](../cli/permission-modes-overview.md#defaults)<!-- link:end --> で確かめる。非対話の実行（`-p` と Agent SDK）は対話と既定が違い、<!-- fact:begin permission-mode-default-noninteractive -->Manual（Claude Code 2.1.302 以降。承認の要る呼び出しは、allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否）（2026-11-04 時点）<!-- fact:end -->。承認に答える人がいないので、<!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end --> を先に読む
 - **通信と読み書き**：Claude が動かすコマンドの囲いは、サンドボックスが担う。サンドボックスの既定の状態は、<!-- fact:begin sandbox-default-state -->未確認<!-- fact:end -->。囲える範囲と囲えない範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> に、読み取りが既定で広いことは <!-- link:begin sandboxing#default-reads -->[サンドボックスで封じ込める › 読み取りは既定で広い](../enforce/sandboxing.md#default-reads)<!-- link:end --> にある
 - **データ**：送った会話が学習に使われる条件は、個人向けと商用の規約で分かれる。条件は <!-- link:begin where-your-data-goes#consumer-vs-commercial -->[送ったデータの行方（学習・保持期間） › 個人のプランと商用のプラン](where-your-data-goes.md#consumer-vs-commercial)<!-- link:end -->、設定の場所は <!-- link:begin where-your-data-goes#training-setting -->[送ったデータの行方（学習・保持期間） › 学習への利用の設定](where-your-data-goes.md#training-setting)<!-- link:end --> にある
-- **記録**：手元の記録は、送ったデータの扱いとは別に残る。<!-- link:begin where-your-data-goes#local-transcripts -->[送ったデータの行方（学習・保持期間） › 手元に残る記録](where-your-data-goes.md#local-transcripts)<!-- link:end --> で場所と期間を確かめる。アプリで記録を残さず試すなら <!-- link:begin incognito-chats#retention -->シークレットチャット（記録を残さない会話） › 残らないもの・残るもの（準備中）<!-- link:end --> を読む
+- **記録**：手元の記録は、送ったデータの扱いとは別に残る。<!-- link:begin where-your-data-goes#local-transcripts -->[送ったデータの行方（学習・保持期間） › 手元に残る記録](where-your-data-goes.md#local-transcripts)<!-- link:end --> で場所と期間を確かめる。アプリで記録を残さず試すなら <!-- link:begin incognito-chats#retention -->[シークレットチャット（記録を残さない会話） › 残らないもの・残るもの](../app/incognito-chats.md#retention)<!-- link:end --> を読む
 
 面ごとの違いの大筋は、次のタブのとおりである。
 
@@ -101,7 +101,7 @@ updated: 2026-11-05
 
 図のとおり、段階が上がるほど足す設定が積み上がる。各段階の内容は次のとおりである。
 
-- **1. 使う（見ながら進める）**：公式の既定を基準にする。足すのは、データと記録の確認である。学習への利用の設定と手元の記録の場所を一度見ておく。<!-- link:begin where-your-data-goes#training-setting -->[送ったデータの行方（学習・保持期間） › 学習への利用の設定](where-your-data-goes.md#training-setting)<!-- link:end --> と <!-- link:begin approval-fatigue#reduce-prompts -->承認疲れ › 確認を減らす順番（準備中）<!-- link:end --> が入口になる。確認を増やすより、確認を減らして残す確認を読む形にする
+- **1. 使う（見ながら進める）**：公式の既定を基準にする。足すのは、データと記録の確認である。学習への利用の設定と手元の記録の場所を一度見ておく。<!-- link:begin where-your-data-goes#training-setting -->[送ったデータの行方（学習・保持期間） › 学習への利用の設定](where-your-data-goes.md#training-setting)<!-- link:end --> と <!-- link:begin approval-fatigue#reduce-prompts -->[承認疲れ › 確認を減らす順番](approval-fatigue.md#reduce-prompts)<!-- link:end --> が入口になる。確認を増やすより、確認を減らして残す確認を読む形にする
 - **2. 任せる（席を離れる）**：サンドボックスと、秘密の読み取りの禁止を足す。どちらも会話の外で効く鍵である。秘密の置き方と二重にする設定は <!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](protecting-secrets.md#two-layers)<!-- link:end -->、囲いの範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> にある。囲いが起動できないときに通さない設定は <!-- link:begin sandboxing#fail-if-unavailable -->[サンドボックスで封じ込める › 起動できないときに通さない](../enforce/sandboxing.md#fail-if-unavailable)<!-- link:end --> で確かめる
 - **3. 回す（無人で走らせる）**：使い捨ての環境で動かす。確認をすべて外すモードや無人の実行は、隔離した環境だけで動かす。理由と環境の条件は <!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](where-bypass-is-ok.md#why-isolate)<!-- link:end --> と <!-- link:begin where-bypass-is-ok#requirements -->[bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件](where-bypass-is-ok.md#requirements)<!-- link:end --> にある。走らせる前の問いは <!-- link:begin five-questions-before-delegating#five-questions -->[任せ方の段階と、無人で走らせる前の五つの問い › 無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md#five-questions)<!-- link:end --> で答える
 - **全段階に共通**：預かったデータや、NDA・規約の付いたデータは、契約で扱いが決まっている面だけで使う。判断の基準は <!-- link:begin entrusted-data#contracted-surfaces -->[預かったデータ・規約付きのデータを AI に渡してよいか › 契約のある面だけで使う](entrusted-data.md#contracted-surfaces)<!-- link:end --> にある
@@ -140,7 +140,7 @@ updated: 2026-11-05
 
 **2. 会話で言った境界は、圧縮で消えうる。** 「ここには触れない」という発言は、会話の記録から読み直される。記録が圧縮されて発言が消えると、効かなくなりうる。確かな保証が要る禁止は、deny ルールかサンドボックスに置く。
 
-**3. 人の確認も限界がある。** Anthropic の 2026-08-07 の記事は、有償の被験者 1,053 人の実験を報告する。確認の 1 回を明らかに危ないコマンドに差し替えたところ、止めたのは auto モードが 89 %、人が 13.6 % だった。人はセッションが長くなるほど止めなくなった。これは自社の報告で、対象のモデルは記事の時点のものである（根拠の強さ：中）。確認を増やして守る発想には限りがある。だから、確認を減らして残す確認を絞る。理由は <!-- link:begin approval-fatigue#why -->承認疲れ › なぜ読まなくなるか（準備中）<!-- link:end --> にある。なお、auto モードの検出率はデータの作り方で大きく変わる。1 つの値を「検出率」として覚えない。
+**3. 人の確認も限界がある。** Anthropic の 2026-08-07 の記事は、有償の被験者 1,053 人の実験を報告する。確認の 1 回を明らかに危ないコマンドに差し替えたところ、止めたのは auto モードが 89 %、人が 13.6 % だった。人はセッションが長くなるほど止めなくなった。これは自社の報告で、対象のモデルは記事の時点のものである（根拠の強さ：中）。確認を増やして守る発想には限りがある。だから、確認を減らして残す確認を絞る。理由は <!-- link:begin approval-fatigue#why -->[承認疲れ › なぜ読まなくなるか](approval-fatigue.md#why)<!-- link:end --> にある。なお、auto モードの検出率はデータの作り方で大きく変わる。1 つの値を「検出率」として覚えない。
 
 **4. 信頼できない内容は構成で防ぐ。** 公式は、信頼できない内容について 4 つを勧める。コマンドを承認前に見る。信頼できない内容を直接パイプしない。重要なファイルの変更を確かめる。外部のサービスと関わる作業は VM で動かす。さらに、仕込まれた指示に気づけない前提で、信頼できない入力・秘密・外への送信を同じ構成に置かない。考え方は <!-- link:begin lethal-trifecta#when-all-three -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つとも要るとき](lethal-trifecta.md#when-all-three)<!-- link:end --> にある。
 
@@ -166,7 +166,7 @@ updated: 2026-11-05
 
 **次に読む**
 
-- 事務作業の半自動化（経費・報告）（準備中）
+- [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
 - 禁止ではなく安全な道を作る（準備中）
 
 **関連**
@@ -177,12 +177,12 @@ updated: 2026-11-05
 - [bypassPermissions と無人の実行はどこで動かすか](where-bypass-is-ok.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](entrusted-data.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](lethal-trifecta.md)
-- 承認疲れ（準備中）
+- [承認疲れ](approval-fatigue.md)
 - [アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
-- シークレットチャット（記録を残さない会話）（準備中）
+- [シークレットチャット（記録を残さない会話）](../app/incognito-chats.md)
 
 </div>
 

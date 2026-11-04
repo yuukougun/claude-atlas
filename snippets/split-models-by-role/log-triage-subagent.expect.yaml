@@ -1,0 +1,15 @@
+title: ログの分類を軽いモデルのサブエージェントに任せる例
+kind: subagent
+place: project
+safety: false
+features: [subagents]
+conditions:
+  - 新しいセッションで試す
+  - テストやビルドのログのファイルが手元にある
+  - 定義のファイルは .claude/agents/log-triage.md に置く
+expect:
+  - when: 「テストのログの分類は log-triage に任せて」と頼む
+    then: サブエージェントが起動し、失敗の種類ごとの件数と代表の行の表が返る
+  - when: 返った表を、ログを grep した結果と照らす
+    then: 件数の大きな種類は一致するが、細かい種類の分け方は揺れることがある
+control: model の行を消して同じ依頼を出し、使用量と分類の質を比べる

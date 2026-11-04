@@ -1,0 +1,10 @@
+sources:
+  - id: claude-for-chrome-blog
+    url: https://claude.com/blog/claude-for-chrome
+    title: Piloting Claude for Chrome
+    kind: 公式ブログ
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-05'
+    published: '2025-08-25'
+    note: https://www.anthropic.com/news/claude-for-chrome はここへ転送される。2025-08 の research preview の時点の試験結果と、2025-11・2025-12 の更新の注がある

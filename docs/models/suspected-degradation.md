@@ -152,7 +152,7 @@ updated: 2026-11-05
 | アプリの Help Center のリリースノート、API の Platform のリリースノート | アプリと API の変更 | 面ごとに別の場所にある。Claude Code の変更は別に引く |
 | 稼働状況のページ（status.claude.com） | 障害の有無と経過。メールや RSS で購読できる | 障害として扱われない質の変化は、ここに出るとは限らない |
 
-報道や解説の記事は、公式の報告や変更履歴で確かめてから使う。掲示板の書き込みは、同じ症状の人がいるかの手がかりにとどめる（根拠：弱）。変更履歴の引き方と、自分の版の確かめ方は <!-- link:begin checking-for-updates -->最新を自分で確かめる方法（準備中）<!-- link:end --> に、日付順の一覧は <!-- link:begin change-timeline-2026#timeline -->2026 年の主な変更の年表 › 年表（準備中）<!-- link:end --> にある。
+報道や解説の記事は、公式の報告や変更履歴で確かめてから使う。掲示板の書き込みは、同じ症状の人がいるかの手がかりにとどめる（根拠：弱）。変更履歴の引き方と、自分の版の確かめ方は <!-- link:begin checking-for-updates -->[最新を自分で確かめる方法](../changes/checking-for-updates.md)<!-- link:end --> に、日付順の一覧は <!-- link:begin change-timeline-2026#timeline -->[2026 年の主な変更の年表 › 年表](../changes/change-timeline-2026.md#timeline)<!-- link:end --> にある。
 
 ## 製品の側だったときの手当て（更新の通り道・報告） {#if-product-side}
 
@@ -230,8 +230,8 @@ nerf という言葉で語られる劣化の一部は、この例のように、
 - [急に賢くなくなった気がする](../symptoms/seems-less-capable.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [同じ質問でも答えが変わる（非決定性）](../basics/nondeterminism.md)
-- 最新を自分で確かめる方法（準備中）
-- 2026 年の主な変更の年表（準備中）
+- [最新を自分で確かめる方法](../changes/checking-for-updates.md)
+- [2026 年の主な変更の年表](../changes/change-timeline-2026.md)
 - [新しいモデルに替えたら見直すこと](after-switching-models.md)
 
 </div>

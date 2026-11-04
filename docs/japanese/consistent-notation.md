@@ -114,7 +114,7 @@ lint が見つけられるのは、綴りの一致で拾える揺れだけであ
 2. 開く語を、表記を揃える語と同じ正本に入れる。使う表記がかな、使わない表記が漢字である。確かめ：同じファイルを開けば、綴りの語と開く語の両方が見える。
 3. 一文字の漢字は入れない。prh は綴りの一致を探すので、「事」や「時」のような 1 文字は、「仕事」や「時間」の一部に当たって誤検出する。確かめ：pattern を、開きたい語を含む文に通して、他の語に当たっていない。
 
-語の一覧で足りない硬さは、言い回しや語の選び方の問題である。自分の文章を手本にする方法は <!-- link:begin less-ai-sounding-japanese#own-writing -->日本語の「AI 臭さ」を減らす › 自分の文章を手本にする（準備中）<!-- link:end -->、読みにくさの型を挙げて直させる方法は <!-- link:begin less-ai-sounding-japanese#patterns -->日本語の「AI 臭さ」を減らす › 読みにくさの型を具体的に挙げる（準備中）<!-- link:end --> にある。
+語の一覧で足りない硬さは、言い回しや語の選び方の問題である。自分の文章を手本にする方法は <!-- link:begin less-ai-sounding-japanese#own-writing -->[日本語の「AI 臭さ」を減らす › 自分の文章を手本にする](less-ai-sounding-japanese.md#own-writing)<!-- link:end -->、読みにくさの型を挙げて直させる方法は <!-- link:begin less-ai-sounding-japanese#patterns -->[日本語の「AI 臭さ」を減らす › 読みにくさの型を具体的に挙げる](less-ai-sounding-japanese.md#patterns)<!-- link:end --> にある。
 
 ## 一覧を指示と lint の両方に使う {#single-source}
 
@@ -296,7 +296,7 @@ lint が指摘しない揺れは、一覧に載せていない語である。新
 - 一覧を貼っても綴りは直らない：指示が読まれていない、または別の指示に埋もれている。原因を安く確かめる順は <!-- link:begin inconsistent-japanese-style#diagnosis -->[文体や表記が揃わない › 原因を安く確かめる順](../symptoms/inconsistent-japanese-style.md#diagnosis)<!-- link:end --> にある。
 - lint が正しい綴りまで指摘する：pattern が他の語の一部に当たっている。語の単位に広げるか、`(?!ー)` のような除外を足す。固有名詞や引用の中の同じ綴りは、辞書側で除くか、その行を検査から外す。
 - 文末のです・ますとだ・であるが混ざる：表記の辞書では拾えない。<!-- link:begin consistent-politeness -->[です・ます／だ・であるを揃える](consistent-politeness.md)<!-- link:end --> へ。
-- 社内用語を使わせたい：用語の一覧を依頼に添える方法は <!-- link:begin documents-in-japanese#glossary -->日本語の資料を読ませる・書かせる › 社内用語は一覧で渡す（準備中）<!-- link:end --> にある。
+- 社内用語を使わせたい：用語の一覧を依頼に添える方法は <!-- link:begin documents-in-japanese#glossary -->[日本語の資料を読ませる・書かせる › 社内用語は一覧で渡す](documents-in-japanese.md#glossary)<!-- link:end --> にある。
 - 揺れを直すたびに別の揺れが出る：原因は、一覧の長すぎか、指示と辞書の正本の分裂である。正本を 1 つにして、一覧を短く絞る。
 
 <!-- gen:begin references -->
@@ -328,8 +328,8 @@ lint が指摘しない揺れは、一覧に載せていない語である。新
 - [文体や表記が揃わない](../symptoms/inconsistent-japanese-style.md)
 - [です・ます／だ・であるを揃える](consistent-politeness.md)
 - [textlint をフックで回す](textlint-hook.md)
-- 日本語の資料を読ませる・書かせる（準備中）
-- 日本語の「AI 臭さ」を減らす（準備中）
+- [日本語の資料を読ませる・書かせる](documents-in-japanese.md)
+- [日本語の「AI 臭さ」を減らす](less-ai-sounding-japanese.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
 - [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
 

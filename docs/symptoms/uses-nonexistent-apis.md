@@ -105,8 +105,8 @@ LLM が使う依存関係のリスクは、OWASP の LLM 向け Top 10（2025 �
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)<br>code intelligence プラグイン（LSP）（準備中） |
-| 確かめていない | テストを先に書かせる（準備中）<br>[報告ではなく証拠を求める](../verify/evidence-not-reports.md) |
+| 見えていない | [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)<br>[code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md) |
+| 確かめていない | [テストを先に書かせる](../verify/tests-first.md)<br>[報告ではなく証拠を求める](../verify/evidence-not-reports.md) |
 | 境界がない | [MCP・プラグイン・スキルを入れる前の確認 › 依存のパッケージを入れる前に（存在しない名前・後から登録された名前）](../safety/vetting-extensions.md#dependencies) |
 
 <!-- textlint-enable -->
@@ -145,7 +145,7 @@ LLM が使う依存関係のリスクは、OWASP の LLM 向け Top 10（2025 �
 <!-- textlint-enable -->
 <!-- gen:end snippet uses-nonexistent-apis/read-then-write -->
 
-- **動かした結果で受け取る**：型の検査とテストを通した出力を、完了の条件にする。型のある言語では <!-- link:begin code-intelligence-plugins -->code intelligence プラグイン（LSP）（準備中）<!-- link:end --> で、定義へのジャンプと編集後の型エラーの報告を使える。
+- **動かした結果で受け取る**：型の検査とテストを通した出力を、完了の条件にする。型のある言語では <!-- link:begin code-intelligence-plugins -->[code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md)<!-- link:end --> で、定義へのジャンプと編集後の型エラーの報告を使える。
 - **新しい依存は入れる前に相談させる**：理由と相談の基準を `CLAUDE.md` に書く。その雛形を次に示す。例外を許さないなら、`CLAUDE.md` ではなく、設定やフックで強制する。
 
 <!-- gen:begin snippet uses-nonexistent-apis/new-dependency-rule -->
@@ -201,8 +201,8 @@ LLM が使う依存関係のリスクは、OWASP の LLM 向け Top 10（2025 �
 **次に読む**
 
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
-- code intelligence プラグイン（LSP）（準備中）
-- テストを先に書かせる（準備中）
+- [code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md)
+- [テストを先に書かせる](../verify/tests-first.md)
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 
@@ -210,7 +210,7 @@ LLM が使う依存関係のリスクは、OWASP の LLM 向け Top 10（2025 �
 
 - [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)
 - [MCP をつなぐ](../extend/connecting-mcp.md)
-- 仕様を自分で読み、AI に誤読を指摘させる（準備中）
+- [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)
 - [最新の情報を知らない](doesnt-know-latest.md)
 - [もっともらしい嘘・出典の誤り](plausible-falsehoods.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

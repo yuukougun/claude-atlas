@@ -74,7 +74,7 @@ updated: 2026-11-05
 | `memory` | 担当が持つ永続のメモリ。公式は `project` の範囲を既定に勧めている |
 | `isolation` | `worktree` を指定すると、担当が独立した作業ツリーで動く |
 
-本文は、その担当のシステムプロンプトになる。担当は起動したときに、この本文、指定したスキル、CLAUDE.md、git status で新しい文脈を作る。組み込みの調査用の Explore と、plan mode 用の Plan は、CLAUDE.md と git status を持たない。本筋の会話で話した内容は渡らないので、担当に守らせたい規則は、定義か呼ぶときの依頼に書き直す（<!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end --> を見る）。
+本文は、その担当のシステムプロンプトになる。担当は起動したときに、この本文、指定したスキル、CLAUDE.md、git status で新しい文脈を作る。組み込みの調査用の Explore と、plan mode 用の Plan は、CLAUDE.md と git status を持たない。本筋の会話で話した内容は渡らないので、担当に守らせたい規則は、定義か呼ぶときの依頼に書き直す（<!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](what-subagents-dont-inherit.md)<!-- link:end --> を見る）。
 
 担当を呼ぶ方法は 3 つある。依頼に「X のサブエージェントを使って」と書く、`@"X (agent)"` と書いて確実に呼ぶ、`claude --agent X` で本体をその担当として起動する、である。Claude に自動で呼ばせたいなら、description に、いつ使うかをはっきり書く。description の書き方はスキルと共通する点が多い（<!-- link:begin skill-descriptions -->[スキルの description の書き方](skill-descriptions.md)<!-- link:end --> を見る）。
 
@@ -108,7 +108,7 @@ updated: 2026-11-05
 サブエージェントを使うのは、文脈を分ける意味のある作業に限る。分ける軸は、工程ではなく、文脈が独立しているかどうかである。向くのは次の 4 つで、どれもトークンが余分にかかる。
 
 - **出力が多くて、本筋に残したくない作業**：すべてのテストの実行や、広い検索。長い出力は担当の側に残り、本筋には要約だけが戻る。防ぐ原因は「散らかっている」である（仕組みは <!-- link:begin subagent-isolation#what-it-helps -->[サブエージェントは別室の部下 › 何に効くか（原理「見せる」と原因「散らかっている」）](../basics/subagent-isolation.md#what-it-helps)<!-- link:end --> を見る）。
-- **書いた過程を見ていない者のレビュー**：変更を生んだ推論を見ていない担当が確かめる。防ぐ原因は「確かめていない」である（<!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](../verify/independent-review.md#who)<!-- link:end --> と <!-- link:begin instructing-reviewers#exhaustive-then-filter -->レビュアーへの指示の書き方 › 網羅と選別を分ける（準備中）<!-- link:end --> を見る）。
+- **書いた過程を見ていない者のレビュー**：変更を生んだ推論を見ていない担当が確かめる。防ぐ原因は「確かめていない」である（<!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](../verify/independent-review.md#who)<!-- link:end --> と <!-- link:begin instructing-reviewers#exhaustive-then-filter -->[レビュアーへの指示の書き方 › 網羅と選別を分ける](../verify/instructing-reviewers.md#exhaustive-then-filter)<!-- link:end --> を見る）。
 - **並べられる独立した作業**：互いの結果に依存しない調査を同時に進める。並べる前に、同時に動かす数・止める条件・費用の上限を決める（<!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> を見る）。数は環境変数の `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` と `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` で縛れる。
 - **道具を絞った役**：編集できないレビュアーのように、できることを減らした担当。
 
@@ -136,7 +136,7 @@ updated: 2026-11-05
 
 **道具**：`tools` に使える道具を並べる（許可の側）。`disallowedTools` には外す道具を並べる（禁止の側）。レビュー系は、`tools: Read, Grep, Glob` だけにする。編集の道具がないので、ハーネスが編集できないことを保証する。この形は、下の 1 つ目の雛形にある。道具の単位は、MCP ならサーバーごとにも指定できる。
 
-**モデル**：`model` を省くと、本体のモデルを継承する。軽い作業の担当には軽いモデルを指定できる。分ける価値があるかは、仕事の重さの差と費用で決める（<!-- link:begin split-models-by-role#when-to-split -->計画・実装・サブエージェントでモデルを分ける › 分ける価値があるとき（準備中）<!-- link:end --> を見る）。
+**モデル**：`model` を省くと、本体のモデルを継承する。軽い作業の担当には軽いモデルを指定できる。分ける価値があるかは、仕事の重さの差と費用で決める（<!-- link:begin split-models-by-role#when-to-split -->[計画・実装・サブエージェントでモデルを分ける › 分ける価値があるとき](../models/split-models-by-role.md#when-to-split)<!-- link:end --> を見る）。
 
 **effort**：担当の `effort` で、考える深さを担当ごとに変えられる。環境変数 `CLAUDE_CODE_SUBAGENT_EFFORT` は、ほかに指定がないときに担当が動く effort になる。本体と違うモデルで動く担当は、セッションの effort を受け継がず、そのモデルに保存された effort か、そのモデルの既定で動く。軽いモデルを指定した担当は、そのモデルの既定の effort で動くということである。この挙動は更新履歴で確かめたもので、公式の担当の文書には記述がない。詳しくは <!-- link:begin effort-levels#subagents-and-org-limits -->[effort の段階と使い分け › サブエージェントと組織の上限](../models/effort-levels.md#subagents-and-org-limits)<!-- link:end --> を見る。
 
@@ -254,14 +254,14 @@ updated: 2026-11-05
 
 **次に読む**
 
-- サブエージェントに引き継がれないもの（準備中）
+- [サブエージェントに引き継がれないもの](what-subagents-dont-inherit.md)
 
 **関連**
 
 - [スキルとサブエージェントの違い](skill-vs-subagent.md)
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
-- レビュアーへの指示の書き方（準備中）
+- [レビュアーへの指示の書き方](../verify/instructing-reviewers.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - [代表的なフックのレシピ › 担当にだけ禁じる（agent\_id）](../enforce/hook-recipes.md#subagent-only)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
@@ -269,7 +269,7 @@ updated: 2026-11-05
 - エージェントチーム（複数の Claude に分担させる）（準備中）
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
-- 計画・実装・サブエージェントでモデルを分ける（準備中）
+- [計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)
 - [effort の段階と使い分け › サブエージェントと組織の上限](../models/effort-levels.md#subagents-and-org-limits)
 - [スキルの description の書き方](skill-descriptions.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む） › AI レビュアーの一致](../judgment/agreement-is-not-evidence.md#reviewer-agreement)

@@ -53,7 +53,7 @@ updated: 2026-11-05
 
 Tasks は、結果を伝えると Claude が手順を決めて進める機能である。複数のタスクを同時に走らせることができ、成果物は編集できるファイルとして返る（[Claude Cowork and chat are one Claude](https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude)）。
 
-手順を細かく指図するより、終わりの条件を測れる形で渡すほうが、多段の作業には向く。成果で頼む考え方は <!-- link:begin ask-for-outcomes#outcomes -->細かく指図するか、成果で頼むか › 成果で示すもの：目的と完了の条件（準備中）<!-- link:end --> を、完了の定義に入れるものは <!-- link:begin define-done#what-to-include -->[「完了」を定義して渡す › 完了の定義に入れるもの](../verify/define-done.md#what-to-include)<!-- link:end --> を見る。
+手順を細かく指図するより、終わりの条件を測れる形で渡すほうが、多段の作業には向く。成果で頼む考え方は <!-- link:begin ask-for-outcomes#outcomes -->[細かく指図するか、成果で頼むか › 成果で示すもの：目的と完了の条件](../prompting/ask-for-outcomes.md#outcomes)<!-- link:end --> を、完了の定義に入れるものは <!-- link:begin define-done#what-to-include -->[「完了」を定義して渡す › 完了の定義に入れるもの](../verify/define-done.md#what-to-include)<!-- link:end --> を見る。
 
 同じ依頼を、結果で頼む形に直すと次のようになる。
 
@@ -107,7 +107,7 @@ Tasks は、結果を伝えると Claude が手順を決めて進める機能で
 
 Desktop の出力は Storage folder に保存され、アクセスを許したフォルダは Trusted folders に並ぶ。許したフォルダはクラウドのセッションからも届くことがあり、そのとき Desktop が開いている必要がある。管理された PC では、その届き方が適切かを見直す（[Use Claude Cowork safely](https://support.claude.com/en/articles/13364135-use-claude-cowork-safely)）。
 
-実行場所そのものの違いは <!-- link:begin where-it-runs#three-locations -->[実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所](../surfaces/where-it-runs.md#three-locations)<!-- link:end --> が持つ。ブラウザや画面の操作を任せる場合は <!-- link:begin browser-control#which-to-use -->Claude in Chrome と computer use（ブラウザと画面の操作） › コネクタ・ブラウザ・画面の順に選ぶ（準備中）<!-- link:end --> を先に見る。
+実行場所そのものの違いは <!-- link:begin where-it-runs#three-locations -->[実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所](../surfaces/where-it-runs.md#three-locations)<!-- link:end --> が持つ。ブラウザや画面の操作を任せる場合は <!-- link:begin browser-control#which-to-use -->[Claude in Chrome と computer use（ブラウザと画面の操作） › コネクタ・ブラウザ・画面の順に選ぶ](../surfaces/browser-control.md#which-to-use)<!-- link:end --> を先に見る。
 
 !!! example "判断例：毎朝の調査をどこに書き出させるか"
     - **状況**：毎朝、公開されている更新情報を調べて、前日からの差を表にまとめたい。
@@ -186,7 +186,7 @@ Claude がした行動の責任は利用者にある。評価の定義・採否�
 
 - 頼みたい作業をアプリのタスクで進めるか Claude Code で進めるかは <!-- link:begin choosing-a-surface#app-tasks-or-claude-code -->[アプリ・Claude Code・API の選び方 › アプリのタスクか Claude Code か](../surfaces/choosing-a-surface.md#app-tasks-or-claude-code)<!-- link:end --> で決める。
 - Claude Code を、PC を閉じていても決まった時刻に走らせたいときは <!-- link:begin cloud-schedules -->クラウドの定期タスク（準備中）<!-- link:end --> を見る。
-- 開いているセッションの中で繰り返すのは <!-- link:begin loop-and-scheduling -->/loop と定期実行の方式（準備中）<!-- link:end --> が持つ。
+- 開いているセッションの中で繰り返すのは <!-- link:begin loop-and-scheduling -->[/loop と定期実行の方式](../delegate/loop-and-scheduling.md)<!-- link:end --> が持つ。
 - 時刻・イベント・スクリプトから動かす方法の全体の選び方は <!-- link:begin choosing-automation -->自動化の選び方（定期タスク・非対話モード・SDK）（準備中）<!-- link:end --> にある。
 
 ## 古くなった助言 {#outdated-advice}
@@ -206,16 +206,16 @@ Claude がした行動の責任は利用者にある。評価の定義・採否�
 **関連**
 
 - [アプリ・Claude Code・API の選び方 › アプリのタスクか Claude Code か](../surfaces/choosing-a-surface.md#app-tasks-or-claude-code)
-- 細かく指図するか、成果で頼むか（準備中）
+- [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
-- /loop と定期実行の方式（準備中）
+- [/loop と定期実行の方式](../delegate/loop-and-scheduling.md)
 - クラウドの定期タスク（準備中）
 - 自動化の選び方（定期タスク・非対話モード・SDK）（準備中）
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)
-- Claude in Chrome と computer use（ブラウザと画面の操作）（準備中）
+- [Claude in Chrome と computer use（ブラウザと画面の操作）](../surfaces/browser-control.md)
 - 音声モード・Quick entry・モバイル（準備中）
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
 

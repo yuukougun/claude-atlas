@@ -53,7 +53,7 @@ updated: 2026-11-05
 
 ## 層の重なり {#layers}
 
-層とは、どの面にも重なっている仕組みの段である。面が違っても、モデルを土台に、ハーネス、拡張、縛りの順に重なる。使える手段は面ごとに違うので、その違いは <!-- link:begin what-each-surface-cannot-do#table -->面ごとにできないこと（早見表） › 早見表（面 × 機能）（準備中）<!-- link:end --> で引く。
+層とは、どの面にも重なっている仕組みの段である。面が違っても、モデルを土台に、ハーネス、拡張、縛りの順に重なる。使える手段は面ごとに違うので、その違いは <!-- link:begin what-each-surface-cannot-do#table -->[面ごとにできないこと（早見表） › 早見表（面 × 機能）](../surfaces/what-each-surface-cannot-do.md#table)<!-- link:end --> で引く。
 
 ![面を横に、層を縦に置いた地図。面はアプリ・Claude Code・API・SDK・周辺製品の 4 つで、その下にモデル、ハーネス、拡張、縛りの 4 つの層が重なる。縛りの層だけ破線で、仕組みで強制する層であることを示す。](../img/product-map/map.svg)
 
@@ -64,7 +64,7 @@ updated: 2026-11-05
 | 拡張 | 毎回の文脈や手順を足す仕組みの使い分け | <!-- link:begin extensions-at-a-glance -->[拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)<!-- link:end --> |
 | 縛り | 守らせたいことを、お願いではなく仕組みで強制する | <!-- link:begin four-principles#lock -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 縛る](four-principles.md#lock)<!-- link:end --> |
 
-結果が期待と違うとき、モデルを替える前に、ハーネスの側を疑う余地がある。見分け方は <!-- link:begin harness-over-model#when-harness-matters -->モデルの差よりハーネスの差 › 差がハーネスから来るとき（準備中）<!-- link:end --> にある。任せる幅を広げるほど、縛りの層を先に厚くする。その比例則は <!-- link:begin four-principles#proportional-rule -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 比例則](four-principles.md#proportional-rule)<!-- link:end --> で引く。
+結果が期待と違うとき、モデルを替える前に、ハーネスの側を疑う余地がある。見分け方は <!-- link:begin harness-over-model#when-harness-matters -->[モデルの差よりハーネスの差 › 差がハーネスから来るとき](../models/harness-over-model.md#when-harness-matters)<!-- link:end --> にある。任せる幅を広げるほど、縛りの層を先に厚くする。その比例則は <!-- link:begin four-principles#proportional-rule -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 比例則](four-principles.md#proportional-rule)<!-- link:end --> で引く。
 
 ## 困りごとから分野を引く {#find-by-trouble}
 
@@ -114,7 +114,7 @@ updated: 2026-11-05
 | アプリ・Claude Code・API のどれで進めるか | <!-- link:begin choosing-a-surface#examples -->[アプリ・Claude Code・API の選び方 › 判断例](../surfaces/choosing-a-surface.md#examples)<!-- link:end --> |
 | クラウドか手元かで何が変わるか | <!-- link:begin where-it-runs#three-locations -->[実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所](../surfaces/where-it-runs.md#three-locations)<!-- link:end --> |
 | Claude Code をどの窓口で使うか | <!-- link:begin claude-code-surfaces#how-to-choose -->Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 選び方（準備中）<!-- link:end --> |
-| 使いたい機能がない面から移るか | <!-- link:begin what-each-surface-cannot-do#moving-between-surfaces -->面ごとにできないこと（早見表） › 別の面に移すとき（準備中）<!-- link:end --> |
+| 使いたい機能がない面から移るか | <!-- link:begin what-each-surface-cannot-do#moving-between-surfaces -->[面ごとにできないこと（早見表） › 別の面に移すとき](../surfaces/what-each-surface-cannot-do.md#moving-between-surfaces)<!-- link:end --> |
 | Office アドインの位置づけ | <!-- link:begin peripheral-products#office-add-ins -->周辺製品の一覧 › Office アドイン（準備中）<!-- link:end --> |
 | SDK や Managed Agents のどの層を使うか | <!-- link:begin sdk-comparison#examples -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › 選び方の判断例](../api/sdk-comparison.md#examples)<!-- link:end --> |
 | アプリの機能が API の何に当たるか | <!-- link:begin feature-to-api-mapping#insights -->[アプリの機能と API の概念の対応表 › 対応から分かること](../api/feature-to-api-mapping.md#insights)<!-- link:end --> |
@@ -135,13 +135,13 @@ updated: 2026-11-05
 - [アプリ・Claude Code・API の選び方](../surfaces/choosing-a-surface.md)
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)
 - Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）
-- 面ごとにできないこと（早見表）（準備中）
+- [面ごとにできないこと（早見表）](../surfaces/what-each-surface-cannot-do.md)
 - 周辺製品の一覧（準備中）
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)
 - [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
 - [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
 - [現行モデルの一覧と位置づけ](../models/current-models.md)
-- モデルの差よりハーネスの差（準備中）
+- [モデルの差よりハーネスの差](../models/harness-over-model.md)
 - [エージェントループと tool use](../basics/agent-loop.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る）](four-principles.md)
 

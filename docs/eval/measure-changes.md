@@ -68,7 +68,7 @@ eval の語は、Anthropic の記事の定義で揃える（[Demystifying evals 
 
 結果のまとめ方にも 2 つの語がある。pass@k は、k 回のうち 1 回でも成功する確率である。pass^k は、k 回すべてが成功する確率である。1 回あたりの成功率が 75% なら、3 回続けて成功する確率は約 42% になる（0.75 の 3 乗。Anthropic の同じ記事の例）。CLAUDE.md の規則や手順のように、毎回守られてほしい変更は、pass^k で見る。
 
-測る前に整える守りが 2 つある。1 つ目は、採点そのものが正しいかである。壊れた grader で測った結果は、変更の効果を表さない。その確かめ方は<!-- link:begin test-the-verifier#red-green -->[検証器そのものを確かめる（red/green・手で計算したケース） › red/green を検証器に当てる](test-the-verifier.md#red-green)<!-- link:end -->に書く。2 つ目は、指標が本当の目的とずれていないかである。このずれは<!-- link:begin check-the-metric#mismatch -->評価指標そのものを確かめる › 指標と目的のずれ（準備中）<!-- link:end -->で確かめる。
+測る前に整える守りが 2 つある。1 つ目は、採点そのものが正しいかである。壊れた grader で測った結果は、変更の効果を表さない。その確かめ方は<!-- link:begin test-the-verifier#red-green -->[検証器そのものを確かめる（red/green・手で計算したケース） › red/green を検証器に当てる](test-the-verifier.md#red-green)<!-- link:end -->に書く。2 つ目は、指標が本当の目的とずれていないかである。このずれは<!-- link:begin check-the-metric#mismatch -->[評価指標そのものを確かめる › 指標と目的のずれ](check-the-metric.md#mismatch)<!-- link:end -->で確かめる。
 
 古い手順にも注意する。Console の prompt generator や improver にプロンプトを直させる手順は、すでに使えない（<!-- link:begin outdated-advice-ledger#console-prompt-generator -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#console-prompt-generator)<!-- link:end -->）。今は、成功の基準と評価を決めて、変えた効果を測りながら直す。
 
@@ -79,7 +79,7 @@ eval の語は、Anthropic の記事の定義で揃える（[Demystifying evals 
 1. **変えるものを 1 つに絞る**。CLAUDE.md の 1 か所、プロンプトの 1 文、スキルの 1 つのように、1 回の eval で変えるのは 1 つにする。確かめ：変更前の版を残してあり、差分を見て何を変えたか 1 文で言える。複数を一度に変えた結果は、どれが効いたか分からない。良かった版を選び続ける罠は<!-- link:begin selection-pressure#defenses -->[選択圧：良かった版を選び続ける罠 › 防ぎ方](selection-pressure.md#defenses)<!-- link:end -->で防ぐ。
 2. **失敗したタスクを集める**。実際に Claude が失敗した、または不満が残った作業から取る。Anthropic の記事は、実際の失敗から取った 20〜50 個の単純なタスクで始められるとする（公式の立場）。個人の変更を測る小さな版では、数個から 20 個ほどを目安にする（推論・実践例なし。この辞典の提案）。層（小さな修正と大きな変更など、変更の影響が違いそうな task の分け方）も、結果を見る前のここで決めておく。確かめ：各 task に、入力と、成功の基準と、層が書いてある。
 3. **起きるべき場合と起きるべきでない場合の両方を入れる**。「テストを実行する」規則を足すなら、テストのある作業のほかに、テストのない作業も入れる。確かめ：変更が出しゃばる側のケースが、1 つ以上ある。
-4. **採点を決める**。コードで採点できるものはコードで採点する（Claude に採点させる場合は<!-- link:begin model-based-grading#prefer-code -->Claude に採点させる（人の判定で較正する） › コードで判定できるものはコードで（準備中）<!-- link:end -->を参照）。確かめ：1 つの trial を見て、人が合否を同じ答えに決められる。
+4. **採点を決める**。コードで採点できるものはコードで採点する（Claude に採点させる場合は<!-- link:begin model-based-grading#prefer-code -->[Claude に採点させる（人の判定で較正する） › コードで判定できるものはコードで](model-based-grading.md#prefer-code)<!-- link:end -->を参照）。確かめ：1 つの trial を見て、人が合否を同じ答えに決められる。
 5. **変更前を測る**。同じ task を、変更前の版で、1 つにつき数回ずつ走らせる。各 trial は、きれいな環境から始める。確かめ：前の trial の作業ファイルや会話が、次の trial に残っていない。
 6. **変更後を測る**。変更だけを入れ替え、モデルと effort、使える道具、開始時のファイルを同じにして、同じ回数を走らせる。確かめ：前後で変わっているのが、変えたもの 1 つだけである。
 7. **記録表に書いて比べる**。trial ごとの合否と、失敗の様子を表に残す。合計、層別、前より悪くなった task の順に見て、最後に失敗の transcript を読む。確かめ：採否の理由を、表の数字と transcript の引用で言える。
@@ -169,7 +169,7 @@ trial を走らせる手段は、面ごとに違う。
 
 コードの採点にも落とし穴がある。Anthropic の記事によれば、Opus 4.5 の CORE-Bench の点が最初は 42% だった理由の 1 つは、厳しすぎる採点だった。96.12 という答えを、96.124991… と違うとして落としていた。ほかに、あいまいな課題の仕様と、厳密には再現できない確率的な課題があった。これらを直し、制約の少ない scaffold に替えると、点は 95% になった。それぞれの寄与は、記事に書かれていない（根拠：中）。
 
-モデルによる採点は、人の判定と比べて較正してから使う。手順は<!-- link:begin model-based-grading#calibrate -->Claude に採点させる（人の判定で較正する） › 人の判定と比べて較正する（準備中）<!-- link:end -->に書く。人による採点は、モデルの採点を較正するために、少数の trial に使う。
+モデルによる採点は、人の判定と比べて較正してから使う。手順は<!-- link:begin model-based-grading#calibrate -->[Claude に採点させる（人の判定で較正する） › 人の判定と比べて較正する](model-based-grading.md#calibrate)<!-- link:end -->に書く。人による採点は、モデルの採点を較正するために、少数の trial に使う。
 
 ## 試行の数と差の大きさ {#how-many-runs}
 
@@ -248,7 +248,7 @@ trial を走らせる手段は、面ごとに違う。
 <!-- textlint-enable -->
 <!-- gen:end snippet measure-changes/classify-failures -->
 
-Claude の分類は下書きとして読み、少なくとも数件は、自分で transcript を読んで確かめる。採点役の Claude の較正は<!-- link:begin model-based-grading#calibrate -->Claude に採点させる（人の判定で較正する） › 人の判定と比べて較正する（準備中）<!-- link:end -->の方法による。
+Claude の分類は下書きとして読み、少なくとも数件は、自分で transcript を読んで確かめる。採点役の Claude の較正は<!-- link:begin model-based-grading#calibrate -->[Claude に採点させる（人の判定で較正する） › 人の判定と比べて較正する](model-based-grading.md#calibrate)<!-- link:end -->の方法による。
 
 ## 手順が回っているかの確かめと、失敗したとき {#when-it-fails}
 
@@ -263,7 +263,7 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 - **一度試して良かった変更が、次には効かなかった**：試行が少なく、偶然で動いている。回数を増やし、変更前も複数回測る。答えのばらつきの仕組みは<!-- link:begin nondeterminism -->[同じ質問でも答えが変わる（非決定性）](../basics/nondeterminism.md)<!-- link:end -->にある。
 - **平均は良くなったのに、一部が悪くなっていた**：層別と、前より悪くなった task を先に見る。原因は transcript で確かめる。
 - **良かった版を選び続けて、本番では効かない**：測っている task に合わせ込んでいる。防ぎ方は<!-- link:begin selection-pressure#defenses -->[選択圧：良かった版を選び続ける罠 › 防ぎ方](selection-pressure.md#defenses)<!-- link:end -->に書く。
-- **採点がおかしい、または指標が目的とずれている**：<!-- link:begin test-the-verifier#hand-calculated -->[検証器そのものを確かめる（red/green・手で計算したケース） › 手で計算したケース](test-the-verifier.md#hand-calculated)<!-- link:end -->と<!-- link:begin check-the-metric#mismatch -->評価指標そのものを確かめる › 指標と目的のずれ（準備中）<!-- link:end -->で確かめる。
+- **採点がおかしい、または指標が目的とずれている**：<!-- link:begin test-the-verifier#hand-calculated -->[検証器そのものを確かめる（red/green・手で計算したケース） › 手で計算したケース](test-the-verifier.md#hand-calculated)<!-- link:end -->と<!-- link:begin check-the-metric#mismatch -->[評価指標そのものを確かめる › 指標と目的のずれ](check-the-metric.md#mismatch)<!-- link:end -->で確かめる。
 - **結果を残したい、同じ失敗を繰り返す**：仮説を先に書き、採否と判定者を残す。<!-- link:begin experiment-log#hypothesis-first -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 仮説を先に書く](experiment-log.md#hypothesis-first)<!-- link:end -->を使う。
 - **モデルを替えた後の見直し**：外すものを 1 つずつ外して測る（<!-- link:begin after-switching-models#remove-one-at-a-time -->[新しいモデルに替えたら見直すこと › ハーネスの部品を一つずつ外して測る](../models/after-switching-models.md#remove-one-at-a-time)<!-- link:end -->）。
 
@@ -295,8 +295,8 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 **次に読む**
 
 - [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)
+- [Claude に採点させる（人の判定で較正する）](model-based-grading.md)
 - [選択圧：良かった版を選び続ける罠](selection-pressure.md)
-- Claude に採点させる（人の判定で較正する）（準備中）
 - 上界を測って「限界です」を反証する（準備中）
 
 **関連**
@@ -308,9 +308,9 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 - [Before/After プロンプト集](../prompting/before-after-prompts.md)
 - 用途別プロンプトの型（準備中）
 - [日本語で返し続けさせる › 検証の方法](../japanese/keep-replies-in-japanese.md#measure)
-- 評価指標そのものを確かめる（準備中）
+- [評価指標そのものを確かめる](check-the-metric.md)
 - [検証器そのものを確かめる（red/green・手で計算したケース）](test-the-verifier.md)
-- /insights と /usage で振り返る（準備中）
+- [/insights と /usage で振り返る](insights-and-usage-review.md)
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
 - Message Batches API（急がない大量の処理）（準備中）
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](verifier-defines-problem.md)

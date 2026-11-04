@@ -129,7 +129,7 @@ After で足したものは 3 つある。
 - 効かせたい場面を、「〜のとき」と書く。
 - やってほしいことだけでなく、やらなくてよい場面も 1 つ書く。
 
-どのモデルがどの程度強く反応するかは、版で変わる。傾向は <!-- link:begin model-quirks#official-guidance -->モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向（準備中）<!-- link:end --> で公式の指針から引き、自分の環境での観察は <!-- link:begin model-quirks#observe-and-record -->モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する（準備中）<!-- link:end --> の手順で記録する。
+どのモデルがどの程度強く反応するかは、版で変わる。傾向は <!-- link:begin model-quirks#official-guidance -->[モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向](../models/model-quirks.md#official-guidance)<!-- link:end --> で公式の指針から引き、自分の環境での観察は <!-- link:begin model-quirks#observe-and-record -->[モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する](../models/model-quirks.md#observe-and-record)<!-- link:end --> の手順で記録する。
 
 ## 「手を抜くな」「続けて」と書く代わりに {#keep-going}
 
@@ -217,7 +217,7 @@ Best practices は 2026-10-27 ごろに大きく書き直され、「What you ca
 - [理由を添える](give-reasons.md)
 - [お願いと鍵の対応表](../enforce/request-lock-table.md)
 - [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)
-- モデル別の癖と、プロンプトの合わせ方（準備中）
+- [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
 - [古くなった助言の台帳](../changes/outdated-advice-ledger.md)
 
 </div>

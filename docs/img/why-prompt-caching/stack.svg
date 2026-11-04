@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="260" viewBox="0 0 400 260" role="img" aria-labelledby="t d">
+  <title id="t">プロンプトキャッシングの積み木</title>
+  <desc id="d">下から tools、system、messages の順に積む。ある段を変えると、その段とそれより上の段のキャッシュが外れ、それより下の段は残る。</desc>
+  <rect x="0" y="0" width="400" height="260" fill="#ffffff"/>
+  <text x="200" y="22" font-size="14" text-anchor="middle" fill="#222222" font-family="sans-serif">読む順に下から積む（変えた段から上が外れる）</text>
+  <rect x="40" y="40" width="320" height="52" fill="#ffffff" stroke="#b3261e" stroke-width="3" stroke-dasharray="8 4"/>
+  <text x="200" y="62" font-size="15" text-anchor="middle" fill="#222222" font-family="sans-serif">messages（これまでの発言）</text>
+  <text x="200" y="82" font-size="12" text-anchor="middle" fill="#b3261e" font-family="sans-serif">外れる（system を変えたとき）</text>
+  <rect x="40" y="100" width="320" height="52" fill="#ffffff" stroke="#b3261e" stroke-width="3" stroke-dasharray="8 4"/>
+  <text x="200" y="122" font-size="15" text-anchor="middle" fill="#222222" font-family="sans-serif">system（システムプロンプト）</text>
+  <text x="200" y="142" font-size="12" text-anchor="middle" fill="#b3261e" font-family="sans-serif">外れる（ここを変えた）</text>
+  <rect x="40" y="160" width="320" height="52" fill="#e8f0fe" stroke="#1a56a0" stroke-width="3"/>
+  <text x="200" y="182" font-size="15" text-anchor="middle" fill="#222222" font-family="sans-serif">tools（ツールの定義）</text>
+  <text x="200" y="202" font-size="12" text-anchor="middle" fill="#1a56a0" font-family="sans-serif">残る（実線の枠）</text>
+  <text x="200" y="240" font-size="12" text-anchor="middle" fill="#222222" font-family="sans-serif">tools を変えると、3 段すべてが外れる</text>
+</svg>

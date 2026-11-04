@@ -109,7 +109,7 @@ ultrathink を付けても、深さが上がったと確かめられない場面
 
 毎回の依頼の頭に付けるのは、勧めない。常用すると、effort を上げたのと同じ重さになり、待ち時間と使用量が増える。その増え方は <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](effort-levels.md#levels)<!-- link:end --> にある。
 
-深く考えさせても、答えが正しくなる保証はない。画面に出る思考や「こう計算した」という説明は、実際の内部の処理とずれることがある。結果は独立に確かめる。理由は <!-- link:begin unfaithful-reasoning -->表示された思考は内部の計算と一致するとは限らない（準備中）<!-- link:end --> にある。考える仕組みと、何に効くかは <!-- link:begin how-thinking-works#effects -->[思考（thinking）と effort の仕組み › 何に効くか](../basics/how-thinking-works.md#effects)<!-- link:end --> にある。
+深く考えさせても、答えが正しくなる保証はない。画面に出る思考や「こう計算した」という説明は、実際の内部の処理とずれることがある。結果は独立に確かめる。理由は <!-- link:begin unfaithful-reasoning -->[表示された思考は内部の計算と一致するとは限らない](../basics/unfaithful-reasoning.md)<!-- link:end --> にある。考える仕組みと、何に効くかは <!-- link:begin how-thinking-works#effects -->[思考（thinking）と effort の仕組み › 何に効くか](../basics/how-thinking-works.md#effects)<!-- link:end --> にある。
 
 古い記事の「think → think hard → ultrathink」と段が上がる書き方をそのまま写しても、段は上がらない。think hard などは普通の文として読まれるだけなので、深さを変えたいなら effort を使う。
 
@@ -187,7 +187,7 @@ effort で段を選べるようになると、段階のキーワードは外れ�
 
 - [思考（thinking）と effort の仕組み](../basics/how-thinking-works.md)
 - [強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)
-- 表示された思考は内部の計算と一致するとは限らない（準備中）
+- [表示された思考は内部の計算と一致するとは限らない](../basics/unfaithful-reasoning.md)
 - [古くなった助言の台帳](../changes/outdated-advice-ledger.md)
 
 </div>

@@ -77,7 +77,7 @@ tests/test_retry.py を流して通ることを確かめて。
 | 案を見てから実行 | まず案を出して。私が選んだら実装して | 「選ぶまで着手しないで」 |
 | 懸念があれば止まる | 実装の前に懸念を述べて、返事を待って | 止まる条件（「懸念があれば止まって相談させる」の節の雛形に例がある） |
 
-提案と実行を 1 つの依頼に混ぜるときは、順序を書く。「案を出す、私が選ぶ、実装する」の 3 段で頼めば、勝手に先へ進むことも案の後で止まることも減る。選択肢を出させる頼み方は <!-- link:begin ask-for-options#choose -->選択肢と推奨案を出させる › 答えを選ぶ場面：選択肢と推奨案（準備中）<!-- link:end --> が扱う。
+提案と実行を 1 つの依頼に混ぜるときは、順序を書く。「案を出す、私が選ぶ、実装する」の 3 段で頼めば、勝手に先へ進むことも案の後で止まることも減る。選択肢を出させる頼み方は <!-- link:begin ask-for-options#choose -->[選択肢と推奨案を出させる › 答えを選ぶ場面：選択肢と推奨案](ask-for-options.md#choose)<!-- link:end --> が扱う。
 
 ## 既定の振る舞いを決める（すぐ実行するか、指示を待つか） {#default}
 
@@ -147,7 +147,7 @@ tests/test_retry.py を流して通ることを確かめて。
 <!-- textlint-enable -->
 <!-- gen:end snippet suggest-or-do/wait-for-instructions -->
 
-モデルや版によって、指示がないときの既定は違う。確認のために止まりすぎる設定もあれば、頼まれていないことまで進める設定もある。傾向の見方は <!-- link:begin model-quirks#official-guidance -->モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向（準備中）<!-- link:end --> が扱う。
+モデルや版によって、指示がないときの既定は違う。確認のために止まりすぎる設定もあれば、頼まれていないことまで進める設定もある。傾向の見方は <!-- link:begin model-quirks#official-guidance -->[モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向](../models/model-quirks.md#official-guidance)<!-- link:end --> が扱う。
 
 ## 懸念があれば止まって相談させる {#stop-and-discuss}
 
@@ -193,7 +193,7 @@ tests/test_retry.py を流して通ることを確かめて。
 <!-- textlint-enable -->
 <!-- gen:end snippet suggest-or-do/stop-and-discuss -->
 
-止まる条件の書き方と、モデルによる差は <!-- link:begin permission-to-stop#conditions -->止まって報告する権利を渡す › 止まって報告する条件を書く（準備中）<!-- link:end --> が扱う。
+止まる条件の書き方と、モデルによる差は <!-- link:begin permission-to-stop#conditions -->[止まって報告する権利を渡す › 止まって報告する条件を書く](permission-to-stop.md#conditions)<!-- link:end --> が扱う。
 
 ## なぜ効くか、何に効くか {#why}
 
@@ -210,11 +210,11 @@ tests/test_retry.py を流して通ることを確かめて。
 
 動詞や既定を書いても効かない場面がある。
 
-- **言葉は鍵ではない**：「変更しないで」と書いても、権限が許していれば、書き換えが起きる可能性は残る。例外を許さない範囲は、言葉ではなく権限やフックで縛る。縛り方は <!-- link:begin state-the-scope#two-layers -->[範囲を伝える（やらないこと） › 例外を許さない範囲は仕組みで縛る（二層）](state-the-scope.md#two-layers)<!-- link:end --> と <!-- link:begin permission-to-stop#with-structure -->止まって報告する権利を渡す › 書き換えられない仕組みと組み合わせる（準備中）<!-- link:end --> が扱う。
+- **言葉は鍵ではない**：「変更しないで」と書いても、権限が許していれば、書き換えが起きる可能性は残る。例外を許さない範囲は、言葉ではなく権限やフックで縛る。縛り方は <!-- link:begin state-the-scope#two-layers -->[範囲を伝える（やらないこと） › 例外を許さない範囲は仕組みで縛る（二層）](state-the-scope.md#two-layers)<!-- link:end --> と <!-- link:begin permission-to-stop#with-structure -->[止まって報告する権利を渡す › 書き換えられない仕組みと組み合わせる](permission-to-stop.md#with-structure)<!-- link:end --> が扱う。
 - **強すぎる書き方**：「必ず」「絶対に」を重ねると、指示に強く反応するモデルでは、効きすぎることがある。公式の指針は、「必ず使え」のような強い書き方を、「〜のときに使う」という条件の書き方に和らげるよう勧めている。
 - **既定の書きすぎ**：実行に寄せる指示と、待たせる指示を両方置くと、どちらに従うかが読めなくなる。既定は 1 つにして、例外は依頼の動詞で上書きする。
 - **止まりすぎ・やりすぎが続くとき**：動詞を直しても止まり続けるときの原因の切り分けは <!-- link:begin keeps-stopping#diagnosis -->[確認ばかりで進まない・途中で止まる › 原因を安く確かめる順](../symptoms/keeps-stopping.md#diagnosis)<!-- link:end --> が扱う。頼んでいないことまで進むときの切り分けは <!-- link:begin does-more-than-asked#diagnosis -->[頼んでいないことまでやる（過剰設計） › 原因を安く確かめる順](../symptoms/does-more-than-asked.md#diagnosis)<!-- link:end --> が扱う。範囲を伝える書き方は <!-- link:begin state-the-scope#anti-goals -->[範囲を伝える（やらないこと） › やらないことを書く](state-the-scope.md#anti-goals)<!-- link:end --> が扱う。
-- **版で変わる**：既定の傾向は、版が変わると変わる。雛形の効き方は、新しいセッションで試して記録する。記録の付け方は <!-- link:begin model-quirks#observe-and-record -->モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する（準備中）<!-- link:end --> が扱う。
+- **版で変わる**：既定の傾向は、版が変わると変わる。雛形の効き方は、新しいセッションで試して記録する。記録の付け方は <!-- link:begin model-quirks#observe-and-record -->[モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する](../models/model-quirks.md#observe-and-record)<!-- link:end --> が扱う。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -240,7 +240,7 @@ tests/test_retry.py を流して通ることを確かめて。
 
 **次に読む**
 
-- 選択肢と推奨案を出させる（準備中）
+- [選択肢と推奨案を出させる](ask-for-options.md)
 
 **関連**
 
@@ -248,8 +248,8 @@ tests/test_retry.py を流して通ることを確かめて。
 - [頼んでいないことまでやる（過剰設計）](../symptoms/does-more-than-asked.md)
 - [範囲を伝える（やらないこと）](state-the-scope.md)
 - [plan mode の使いどころ](../cli/when-to-plan.md)
-- 止まって報告する権利を渡す（準備中）
-- モデル別の癖と、プロンプトの合わせ方（準備中）
+- [止まって報告する権利を渡す](permission-to-stop.md)
+- [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
 
 </div>
 

@@ -55,7 +55,7 @@ web 検索は、役に立つときに検索して、答えに出典を付ける�
 | 機能 | 面 | 強制力 | 入った版 |
 | --- | --- | --- | --- |
 | [Web 検索（web search。アプリ）](search-research-thinking.md) | アプリ | — | 2025-03-20 |
-| リサーチ（Research）（準備中） | アプリ | — | 2025-04-15 |
+| [リサーチ（Research）](using-research.md) | アプリ | — | 2025-04-15 |
 | [effort](../models/effort-levels.md) | アプリ・Claude Code・API | なし | 2025-11-24 |
 
 すべて共通：成熟度 GA、確認日 2026-11-04。
@@ -92,7 +92,7 @@ effort の行は Claude Code と API にも当たる。このページが扱う�
     - **状況**：複数の競合の最近の動きを、出典付きの 1 本のレポートにまとめたい。
     - **迷う候補**：web 検索を何度も頼んで、自分でまとめる。リサーチに頼む。
     - **選んだもの**：リサーチ。観点の設計が結果を左右するなら、思考も足す。
-    - **理由**：前の結果をもとに次の検索を重ねて集める作業は、リサーチの役割である。頼み方の型は <!-- link:begin using-research#requesting -->リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）（準備中）<!-- link:end --> にある。
+    - **理由**：前の結果をもとに次の検索を重ねて集める作業は、リサーチの役割である。頼み方の型は <!-- link:begin using-research#requesting -->[リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）](using-research.md#requesting)<!-- link:end --> にある。
 
 ## 組み合わせる {#combine}
 
@@ -155,7 +155,7 @@ effort の行は Claude Code と API にも当たる。このページが扱う�
 使い分けた後は、検索やリサーチが実際に使われたかと、結果が合っているかを見る。
 
 - **検索したか**：web 検索を使った回答には出典が付く。最新の事実を述べているのに出典がない答えは、検索せずに記憶で答えた可能性がある（推論・実践例なし）。その場合は、検索するよう頼みに書いて聞き直す。
-- **リサーチの結果**：レポートの出典は、原文を開いて確かめる。手順は <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> と <!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end --> にある。
+- **リサーチの結果**：レポートの出典は、原文を開いて確かめる。手順は <!-- link:begin using-research#checking-sources -->[リサーチを使いこなす › 出典の確かめ方](using-research.md#checking-sources)<!-- link:end --> と <!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end --> にある。
 - **重要な結論**：<!-- link:begin fact-checking#sources-only -->[事実を確かめる（引用・照合・best-of-N） › 渡した資料の範囲で答えさせる](../verify/fact-checking.md#sources-only)<!-- link:end --> のように、渡した資料の範囲で答えさせる方法もある。重要な事実ほど、一次の資料で裏を取る。
 - **使った量**：思い当たらないのに枠が減るときは、<!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> で内訳を見る。
 
@@ -172,8 +172,8 @@ effort の行は Claude Code と API にも当たる。このページが扱う�
 
 **次に読む**
 
+- [リサーチを使いこなす](using-research.md)
 - [調べものとレポート](../recipes/research-and-reports.md)
-- リサーチを使いこなす（準備中）
 
 **関連**
 

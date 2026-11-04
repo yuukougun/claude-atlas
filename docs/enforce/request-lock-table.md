@@ -58,8 +58,8 @@ updated: 2026-11-05
 | [権限（permissions）](permission-rules.md) | Claude Code | 鍵 | 残る |
 | [サンドボックス](sandboxing.md) | Claude Code | 鍵 | 残る |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | Claude Code | お願い | 残る |
-| 出力スタイル（output styles）（準備中） | Claude Code | お願い | 残る |
-| structured outputs（準備中） | API | 鍵 | 未確認 |
+| [出力スタイル（output styles）](../cli/output-style-modes.md) | Claude Code | お願い | 残る |
+| [structured outputs](../api/structured-outputs-basics.md) | API | 鍵 | 未確認 |
 
 <!-- textlint-enable -->
 <!-- gen:end compare 面 強制力 圧縮で残るか -->
@@ -80,7 +80,7 @@ updated: 2026-11-05
 
 - 鍵の列が「なし」の用途は、お願いだけで運ぶ。鍵にしない規則の見分け方は <!-- link:begin when-to-lock#what-not-to-lock -->[お願いを鍵に移す判断 › 鍵にしない規則（判断を含むもの）](when-to-lock.md#what-not-to-lock)<!-- link:end --> にある。
 - 禁止と境界の行は、手段が 1 つでは足りない。deny ルールは Bash から起きた子プロセスに効かず、サンドボックスは Claude のファイルの道具に効かない。詳しくは <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](permission-rules.md#child-processes)<!-- link:end --> と <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](sandboxing.md#scope)<!-- link:end --> を読む。
-- 完了の判定の行は、Stop フックが続けて止められる回数に上限がある。止め続けるループを避ける書き方は <!-- link:begin stop-hooks#avoid-loops -->Stop フックで「終わらせない」 › 止め続けるループを避ける（準備中）<!-- link:end --> にある。
+- 完了の判定の行は、Stop フックが続けて止められる回数に上限がある。止め続けるループを避ける書き方は <!-- link:begin stop-hooks#avoid-loops -->[Stop フックで「終わらせない」 › 止め続けるループを避ける](stop-hooks.md#avoid-loops)<!-- link:end --> にある。
 
 ## 鍵にできるのはどこか（ターンの終わりと道具の前後） {#where-locks-act}
 
@@ -119,7 +119,7 @@ Claude Code で強制できるのは、ターンの終わりと、道具の呼�
 
 === "API"
 
-    使える鍵は structured outputs で、応答を与えた JSON スキーマに合う形にする。道具の名前と入力をスキーマに合わせる strict tool use も同じ仕組みである。形が保証されない場合と、形が正しくても中身は別に確かめる理由は <!-- link:begin structured-outputs-basics#not-guaranteed -->structured outputs（形式を保証する） › 形が保証されない場合（準備中）<!-- link:end --> にある。
+    使える鍵は structured outputs で、応答を与えた JSON スキーマに合う形にする。道具の名前と入力をスキーマに合わせる strict tool use も同じ仕組みである。形が保証されない場合と、形が正しくても中身は別に確かめる理由は <!-- link:begin structured-outputs-basics#not-guaranteed -->[structured outputs（形式を保証する） › 形が保証されない場合](../api/structured-outputs-basics.md#not-guaranteed)<!-- link:end --> にある。
 
     返答の言語や文体には鍵がない。公式の多言語の文書は、本番では言語を明示し、最も確実な場所はシステムプロンプトだとする。文体は、呼び出し側のコードで検査して、再試行するかを決める。
 
@@ -137,7 +137,7 @@ Claude Code で強制できるのは、ターンの終わりと、道具の呼�
     - **状況**：Claude の出力を、人が読まずに、後続のプログラムへ渡す。
     - **迷う候補**：形を指示に書いて、検査して再試行する。structured outputs で形を指定する。
     - **選んだもの**：API を自分のコードから呼べるなら structured outputs にする。形が崩れる場合に備えて、検査も残す。
-    - **理由**：形は指示ではなく、デコードの制約で守られる。ただし、保証されない場合があり、形が正しくても中身の正しさは別に確かめる。Claude Code の `-p` で形を指定する方法は <!-- link:begin structured-outputs-basics#claude-code -->structured outputs（形式を保証する） › Claude Code の -p で形を指定する（準備中）<!-- link:end --> にある。
+    - **理由**：形は指示ではなく、デコードの制約で守られる。ただし、保証されない場合があり、形が正しくても中身の正しさは別に確かめる。Claude Code の `-p` で形を指定する方法は <!-- link:begin structured-outputs-basics#claude-code -->[structured outputs（形式を保証する） › Claude Code の -p で形を指定する](../api/structured-outputs-basics.md#claude-code)<!-- link:end --> にある。
 
 ## 組み合わせ方と確かめ方 {#combine}
 
@@ -145,7 +145,7 @@ Claude Code で強制できるのは、ターンの終わりと、道具の呼�
 
 - **二層で書く**：例外を許さない部分は鍵で止め、CLAUDE.md には理由と相談の基準だけを書く。鍵は Claude の振る舞いを変えず、止めるだけなので、理由を読ませる層が別に要る。書き分けは <!-- link:begin request-vs-lock#two-layers -->[お願いと鍵（決定論的か、非決定論的か） › 二層で書く](../basics/request-vs-lock.md#two-layers)<!-- link:end --> にある。
 - **止めるのは壊れにくい手段に任せる**：依存のない deny ルールに強制を任せ、フックには理由の文と記録を受け持たせる（推論・実践例なし）。フックだけが強制を担う規則では、フックが動かない場合に何が起きるかを先に確かめる。確かめ方は <!-- link:begin hooks-basics#not-running -->[フックの考え方とイベント › 動いていないように見えるとき](hooks-basics.md#not-running)<!-- link:end --> にある。
-- **判断を含む規則は鍵にしない**：判断を鍵に押し込むと止めすぎる。判断は <!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end --> や <!-- link:begin claude-md-vs-rules-skills-styles -->[CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)<!-- link:end --> で置き場所を選び、毎回 Claude に判断させている作業は <!-- link:begin move-judgment-into-scripts -->判断を決定論的なスクリプトに移す（準備中）<!-- link:end --> でスクリプトに移す。
+- **判断を含む規則は鍵にしない**：判断を鍵に押し込むと止めすぎる。判断は <!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end --> や <!-- link:begin claude-md-vs-rules-skills-styles -->[CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)<!-- link:end --> で置き場所を選び、毎回 Claude に判断させている作業は <!-- link:begin move-judgment-into-scripts -->[判断を決定論的なスクリプトに移す](move-judgment-into-scripts.md)<!-- link:end --> でスクリプトに移す。
 
 鍵を置いたら、効く範囲を確かめる。
 
@@ -194,15 +194,15 @@ Claude Code で強制できるのは、ターンの終わりと、道具の呼�
 - [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)
 - [権限ルール（allow・ask・deny）](permission-rules.md)
 - [フックの考え方とイベント](hooks-basics.md)
-- Stop フックで「終わらせない」（準備中）
+- [Stop フックで「終わらせない」](stop-hooks.md)
 - [サンドボックスで封じ込める](sandboxing.md)
 - [フックとスキルの違い](../extend/hook-vs-skill.md)
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)
-- structured outputs（形式を保証する）（準備中）
+- [structured outputs（形式を保証する）](../api/structured-outputs-basics.md)
 - [textlint をフックで回す](../japanese/textlint-hook.md)
 - [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)
 - [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)
-- 判断を決定論的なスクリプトに移す（準備中）
+- [判断を決定論的なスクリプトに移す](move-judgment-into-scripts.md)
 
 </div>
 

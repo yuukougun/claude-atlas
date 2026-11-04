@@ -80,7 +80,7 @@ flowchart LR
 確認なしの範囲を広げる前に、先に守りを置く。広げるほど、Claude が間違った操作をしたときに止める手段が、モードの外の仕組みだけになるからである。
 
 - 触らせたくないファイルとコマンドは、<!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](../enforce/permission-rules.md#evaluation-order)<!-- link:end --> の deny ルールで止める。deny ルールは bypassPermissions を含むどのモードでも効く
-- どのモードでも確認なしには書かせない場所は、<!-- link:begin protected-paths#protected -->消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い（準備中）<!-- link:end --> で確かめる。止まる削除は <!-- link:begin protected-paths#critical-rm -->消せない場所・触れない場所（protected paths） › どのモードでも止まる削除（準備中）<!-- link:end --> で確かめる
+- どのモードでも確認なしには書かせない場所は、<!-- link:begin protected-paths#protected -->[消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い](../enforce/protected-paths.md#protected)<!-- link:end --> で確かめる。止まる削除は <!-- link:begin protected-paths#critical-rm -->[消せない場所・触れない場所（protected paths） › どのモードでも止まる削除](../enforce/protected-paths.md#critical-rm)<!-- link:end --> で確かめる
 - 子プロセスまで囲むなら、<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> を重ねる
 - auto モードを選ぶなら、<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end --> で、分類器をすり抜けうる操作を先に知っておく
 - bypassPermissions を使ってよい環境の条件は、<!-- link:begin where-bypass-is-ok#requirements -->[bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件](../safety/where-bypass-is-ok.md#requirements)<!-- link:end --> にある。確認を減らすだけなら、bypassPermissions の前に auto モードとサンドボックスを使う
@@ -94,7 +94,7 @@ flowchart LR
 手元の既定は、推測せずに次の順で確かめる。
 
 1. 起動した直後の、画面の下の表示を見る。今のモードを示す表示が出る
-2. 設定で `permissions.defaultMode` を決めているかを見る。決めていれば、そのモードで始まる。どの層の設定が読み込まれているかは <!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end --> の手順で確かめる
+2. 設定で `permissions.defaultMode` を決めているかを見る。決めていれば、そのモードで始まる。どの層の設定が読み込まれているかは <!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](settings-layers.md#verify)<!-- link:end --> の手順で確かめる
 3. 決めていなければ、版ごとの既定で始まる。対話の端末と VS Code の拡張、`claude -p` と Agent SDK で既定が違う。非対話の既定は<!-- fact:begin permission-mode-default-noninteractive -->Manual（Claude Code 2.1.302 以降。承認の要る呼び出しは、allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否）（2026-11-04 時点）<!-- fact:end -->
 
 `claude -p` と Agent SDK は、無人で動く。確認に答える人がいないので、承認の要る呼び出しは、allow ルール・フックなどで許していなければ拒否される。この扱いは版で変わってきた。詳しくは <!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end --> にある。
@@ -113,7 +113,7 @@ VS Code の拡張の最初のモードも、版で変わってきた。公式の
 
     起動時には `--permission-mode <名前>` で決める。毎回同じモードで始めたいときは、設定の `permissions.defaultMode` に書く。plan mode には `/plan` でも入れる。
 
-    `permissions.defaultMode` の `auto` と `bypassPermissions` は、プロジェクトと手元の設定では無効である。ユーザーか管理の設定に書く。層の違いは <!-- link:begin settings-layers#layers -->設定ファイルの階層と優先順位 › 層と優先順位（準備中）<!-- link:end --> にある。
+    `permissions.defaultMode` の `auto` と `bypassPermissions` は、プロジェクトと手元の設定では無効である。ユーザーか管理の設定に書く。層の違いは <!-- link:begin settings-layers#layers -->[設定ファイルの階層と優先順位 › 層と優先順位](settings-layers.md#layers)<!-- link:end --> にある。
 
     VS Code の拡張では、設定 `claudeCode.initialPermissionMode` で最初のモードを決める。この設定はユーザーの設定だけを読む。
 
@@ -139,7 +139,7 @@ VS Code の拡張の最初のモードも、版で変わってきた。公式の
     - **選んだもの**：`dontAsk` と、必要な操作の allow ルール。
     - **理由**：`dontAsk` は、許可していない操作を確認待ちにせず拒否するので、無人でも止まらず、範囲も広がらない。`bypassPermissions` は隔離した使い捨ての環境専用で、CI の実行環境がその条件を満たすかを先に確かめる（<!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](../safety/where-bypass-is-ok.md#why-isolate)<!-- link:end -->）。
 
-確認が多すぎる症状も、少なすぎる症状も、調整先は診断で決める。入口は <!-- link:begin wrong-amount-of-approvals#diagnosis -->[承認の確認が多すぎる・少なすぎる › 原因を安く確かめる順](../symptoms/wrong-amount-of-approvals.md#diagnosis)<!-- link:end --> である。確認が多いと読まずに承認する理由と、確認を減らす順番は <!-- link:begin approval-fatigue#reduce-prompts -->承認疲れ › 確認を減らす順番（準備中）<!-- link:end --> にある。
+確認が多すぎる症状も、少なすぎる症状も、調整先は診断で決める。入口は <!-- link:begin wrong-amount-of-approvals#diagnosis -->[承認の確認が多すぎる・少なすぎる › 原因を安く確かめる順](../symptoms/wrong-amount-of-approvals.md#diagnosis)<!-- link:end --> である。確認が多いと読まずに承認する理由と、確認を減らす順番は <!-- link:begin approval-fatigue#reduce-prompts -->[承認疲れ › 確認を減らす順番](../safety/approval-fatigue.md#reduce-prompts)<!-- link:end --> にある。
 
 ## 雛形 {#templates}
 
@@ -181,11 +181,11 @@ VS Code の拡張の最初のモードも、版で変わってきた。公式の
 | --- | --- | --- |
 | 特定のファイルと操作を禁じる | <!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end --> | deny ルールはモードを問わず先に評価される |
 | 子プロセスまで含めて読み書きと通信を囲う | <!-- link:begin sandboxing -->[サンドボックスで封じ込める](../enforce/sandboxing.md)<!-- link:end --> | OS の層で止める。モードは Claude Code が見分ける呼び出しの確認の基準 |
-| どのモードでも守りたい場所 | <!-- link:begin protected-paths -->消せない場所・触れない場所（protected paths）（準備中）<!-- link:end --> | 設定なしで保護される場所と、足りない境界を足す設定 |
+| どのモードでも守りたい場所 | <!-- link:begin protected-paths -->[消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)<!-- link:end --> | 設定なしで保護される場所と、足りない境界を足す設定 |
 | 無人の実行の許可 | <!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end --> | 確認に答える人がいないので、許す道具を明示する |
 | アプリでの確認の量 | <!-- link:begin permission-modes-in-the-app -->[アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)<!-- link:end --> | アプリには Auto と Manual の 2 択がある |
 
-確認を減らす手段を 1 つずつ足す順番は、<!-- link:begin approval-fatigue#keep-prompts -->承認疲れ › 残す確認を選ぶ（準備中）<!-- link:end --> で選ぶ。
+確認を減らす手段を 1 つずつ足す順番は、<!-- link:begin approval-fatigue#keep-prompts -->[承認疲れ › 残す確認を選ぶ](../safety/approval-fatigue.md#keep-prompts)<!-- link:end --> で選ぶ。
 
 ## 古くなった助言 {#outdated}
 
@@ -227,16 +227,16 @@ VS Code の拡張の最初のモードも、版で変わってきた。公式の
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)
+- [承認疲れ](../safety/approval-fatigue.md)
 - スマホから操作する（Remote Control）（準備中）
-- 承認疲れ（準備中）
 
 **関連**
 
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
-- 消せない場所・触れない場所（protected paths）（準備中）
+- [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
-- 設定ファイルの階層と優先順位（準備中）
+- [設定ファイルの階層と優先順位](settings-layers.md)
 - [承認の確認が多すぎる・少なすぎる](../symptoms/wrong-amount-of-approvals.md)
 - [アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)
 - [非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)

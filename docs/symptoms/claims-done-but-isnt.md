@@ -79,7 +79,7 @@ updated: 2026-11-05
     - 手段が依頼の一言にとどまっているなら、段を上げる。選び方は <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](../verify/verification-ladder.md#choose-step)<!-- link:end -->、書いた本人に確かめさせない分け方は <!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](../verify/independent-review.md#who)<!-- link:end --> にある。
 3. **預けすぎる**（人の側）：報告を確かめないまま受け取る習慣が、症状を通している。
     - 見るもの：最後に自分の目か自分の手で結果を確かめたのはいつか。誰も見ていない実行の結果を、終了コードや要約だけで受け取っていないか。
-    - 確かめ方：直近の完了の報告のうち、元の出力や差分まで見たものを数える。ほとんどなければ、確かめる手間を下げる工夫が先に要る。手元に残す判断は <!-- link:begin over-reliance#what-to-keep -->[判断を預けすぎる（過度依存） › 手元に残す判断](../judgment/over-reliance.md#what-to-keep)<!-- link:end -->、無人の実行は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->無人実行の結果を確かめる › 終了コードと要約だけで決めない（準備中）<!-- link:end --> にある。
+    - 確かめ方：直近の完了の報告のうち、元の出力や差分まで見たものを数える。ほとんどなければ、確かめる手間を下げる工夫が先に要る。手元に残す判断は <!-- link:begin over-reliance#what-to-keep -->[判断を預けすぎる（過度依存） › 手元に残す判断](../judgment/over-reliance.md#what-to-keep)<!-- link:end -->、無人の実行は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->[無人実行の結果を確かめる › 終了コードと要約だけで決めない](../verify/checking-unattended-runs.md#beyond-exit-codes)<!-- link:end --> にある。
 
 根拠を出させる依頼の雛形を、次に置く。報告の直後の、同じセッションで使う。
 
@@ -114,7 +114,7 @@ updated: 2026-11-05
 | --- | --- |
 | 見えていない | [「完了」を定義して渡す](../verify/define-done.md) |
 | 確かめていない | [報告ではなく証拠を求める](../verify/evidence-not-reports.md)<br>[検証の階段](../verify/verification-ladder.md)<br>[書いた本人ではない者にレビューさせる](../verify/independent-review.md) |
-| 預けすぎる | [判断を預けすぎる（過度依存） › 確かめる手間を下げる](../judgment/over-reliance.md#cheap-verification)<br>無人実行の結果を確かめる（準備中） |
+| 預けすぎる | [判断を預けすぎる（過度依存） › 確かめる手間を下げる](../judgment/over-reliance.md#cheap-verification)<br>[無人実行の結果を確かめる](../verify/checking-unattended-runs.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -143,9 +143,9 @@ updated: 2026-11-05
 
 - 依頼に完了の定義を書く。どのコマンドがどう返れば終わりか、止まって報告する条件は何かを決める。書き方は <!-- link:begin define-done#stop-and-report -->[「完了」を定義して渡す › 止まって報告する条件](../verify/define-done.md#stop-and-report)<!-- link:end --> にある。
 - 報告は、実行したコマンドと生の出力と分母を付けた証拠で受け取る。形は <!-- link:begin evidence-not-reports#what-counts -->[報告ではなく証拠を求める › 証拠の形（コマンド・生の出力・分母）](../verify/evidence-not-reports.md#what-counts)<!-- link:end --> にある。
-- 実装の前に、落ちるテストを用意させる。<!-- link:begin tests-first#steps -->テストを先に書かせる › 手順（準備中）<!-- link:end --> の手順で、後追いのテストが今の挙動をそのまま正解にするのを防ぐ。
-- 画面を持つ成果物は、人が使うのと同じ操作で確かめさせる。<!-- link:begin visual-checks#as-a-user -->画面で確かめる（ブラウザ・スクリーンショット・/verify） › 人のユーザーとして確かめさせる（準備中）<!-- link:end --> を使う。
-- 席を外す実行には、2 つの仕組みがある。`/goal` は、完了の条件を別のモデルが毎ターン判定する。判定役が読むのは会話に出た証拠だけなので、証拠を会話に出させる条件を書く（<!-- link:begin goal-until-done#evaluator-reads-conversation -->[/goal（完了するまで続けさせる） › 判定役は会話しか読まない](../delegate/goal-until-done.md#evaluator-reads-conversation)<!-- link:end -->）。判定はモデルが行うので、強制ではない。Stop フックは、確かめる処理が通るまでターンを終わらせない。決まったコマンドの結果で止めるフックは強制になる。ただし、続けて止められる回数には上限がある（<!-- link:begin stop-hooks#block-cap -->Stop フックで「終わらせない」 › 続けて止められる回数の上限（準備中）<!-- link:end -->）。使い分けは <!-- link:begin stop-hooks#vs-goal -->Stop フックで「終わらせない」 › /goal との使い分け（準備中）<!-- link:end --> にある。
+- 実装の前に、落ちるテストを用意させる。<!-- link:begin tests-first#steps -->[テストを先に書かせる › 手順](../verify/tests-first.md#steps)<!-- link:end --> の手順で、後追いのテストが今の挙動をそのまま正解にするのを防ぐ。
+- 画面を持つ成果物は、人が使うのと同じ操作で確かめさせる。<!-- link:begin visual-checks#as-a-user -->[画面で確かめる（ブラウザ・スクリーンショット・/verify） › 人のユーザーとして確かめさせる](../verify/visual-checks.md#as-a-user)<!-- link:end --> を使う。
+- 席を外す実行には、2 つの仕組みがある。`/goal` は、完了の条件を別のモデルが毎ターン判定する。判定役が読むのは会話に出た証拠だけなので、証拠を会話に出させる条件を書く（<!-- link:begin goal-until-done#evaluator-reads-conversation -->[/goal（完了するまで続けさせる） › 判定役は会話しか読まない](../delegate/goal-until-done.md#evaluator-reads-conversation)<!-- link:end -->）。判定はモデルが行うので、強制ではない。Stop フックは、確かめる処理が通るまでターンを終わらせない。決まったコマンドの結果で止めるフックは強制になる。ただし、続けて止められる回数には上限がある（<!-- link:begin stop-hooks#block-cap -->[Stop フックで「終わらせない」 › 続けて止められる回数の上限](../enforce/stop-hooks.md#block-cap)<!-- link:end -->）。使い分けは <!-- link:begin stop-hooks#vs-goal -->[Stop フックで「終わらせない」 › /goal との使い分け](../enforce/stop-hooks.md#vs-goal)<!-- link:end --> にある。
 - 「最後に double-check して」と書き足す助言は、新しいモデルでは消してよいものがあり、ほかのモデルでは今も効く。どちらに当たるかと、自分の設定に残っていないかを、<!-- link:begin outdated-advice-ledger#add-double-check -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#add-double-check)<!-- link:end --> で確かめる。確かめる手段を渡すほうが、一言の書き足しより確実に効く。
 
 <!-- gen:begin references -->
@@ -179,15 +179,15 @@ updated: 2026-11-05
 - [検証の階段](../verify/verification-ladder.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)
-- 無人実行の結果を確かめる（準備中）
+- [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 
 **関連**
 
-- テストを先に書かせる（準備中）
+- [テストを先に書かせる](../verify/tests-first.md)
 - [バグを直す › 症状を隠す修正を認めない](../recipes/fix-a-bug.md#no-symptom-patches)
-- 画面で確かめる（ブラウザ・スクリーンショット・/verify）（準備中）
+- [画面で確かめる（ブラウザ・スクリーンショット・/verify）](../verify/visual-checks.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
-- Stop フックで「終わらせない」（準備中）
+- [Stop フックで「終わらせない」](../enforce/stop-hooks.md)
 - [テストを書き換えて通した](rewrote-tests-to-pass.md)
 - [手元の評価は良いのに本番で通用しない](misses-broken-evaluation.md)
 - [環境や道具が壊れたと言い出す](blames-the-tools.md)

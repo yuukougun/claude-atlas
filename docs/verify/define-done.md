@@ -98,7 +98,7 @@ After で足したものは 3 つある。1 つ目は、完了のコマンドと
 
 **証拠の形：** 完了を「通った」の一言ではなく、実行したコマンドと出力で受け取れるようにする。「All tests pass」だけでは情報がほとんどない。見ていなかったセッションでは、実行したコマンドとその出力が唯一の証拠になる。証拠の形は<!-- link:begin evidence-not-reports#what-counts -->[報告ではなく証拠を求める › 証拠の形（コマンド・生の出力・分母）](evidence-not-reports.md#what-counts)<!-- link:end -->で扱う。
 
-**変えてはならないもの：** 完了の条件を満たす近道として、テストや設定を書き換えられることがある。完了のコマンドが指すテストファイル、公開している関数の名前と引数、設定などを書く。言葉で書いても守られないものは、<!-- link:begin state-the-scope#two-layers -->[範囲を伝える（やらないこと） › 例外を許さない範囲は仕組みで縛る（二層）](../prompting/state-the-scope.md#two-layers)<!-- link:end -->のとおり、権限やフックで縛る。テストの書き換えを読むときの注意は<!-- link:begin tests-first#review-test-changes -->テストを先に書かせる › テストの変更は特に読む（準備中）<!-- link:end -->にある。
+**変えてはならないもの：** 完了の条件を満たす近道として、テストや設定を書き換えられることがある。完了のコマンドが指すテストファイル、公開している関数の名前と引数、設定などを書く。言葉で書いても守られないものは、<!-- link:begin state-the-scope#two-layers -->[範囲を伝える（やらないこと） › 例外を許さない範囲は仕組みで縛る（二層）](../prompting/state-the-scope.md#two-layers)<!-- link:end -->のとおり、権限やフックで縛る。テストの書き換えを読むときの注意は<!-- link:begin tests-first#review-test-changes -->[テストを先に書かせる › テストの変更は特に読む](tests-first.md#review-test-changes)<!-- link:end -->にある。
 
 !!! example "判断例：完了のコマンドを何にするか"
     - **状況**：ライブラリの更新に伴う修正を、夜のうちに Claude へ任せる。リポジトリには、数秒で終わる単体テストと、数十分かかる結合テストがある。
@@ -120,7 +120,7 @@ After で足したものは 3 つある。1 つ目は、完了のコマンドと
 
 席を外す前には、5 つの問いに答えておく。完了の定義は何か。自分で確かめられるか。触ってよい範囲はどこか。何で止まるか（`--max-turns` や `--max-budget-usd` のような上限）。結果を誰が承認するか。これは公式の Best practices にある。
 
-「止まってよい」と書くだけで、どれほど止まるようになるかには、モデルによる差がある。その範囲は<!-- link:begin permission-to-stop#limits -->止まって報告する権利を渡す › 言葉の許可が効く範囲（モデルによる差）（準備中）<!-- link:end -->に、書き換えられない仕組みとの組み合わせは<!-- link:begin permission-to-stop#with-structure -->止まって報告する権利を渡す › 書き換えられない仕組みと組み合わせる（準備中）<!-- link:end -->にある。この辞典では、止まる条件を完了の定義の一部として書く。止まる権利そのものの効き方は、そちらに任せる。
+「止まってよい」と書くだけで、どれほど止まるようになるかには、モデルによる差がある。その範囲は<!-- link:begin permission-to-stop#limits -->[止まって報告する権利を渡す › 言葉の許可が効く範囲（モデルによる差）](../prompting/permission-to-stop.md#limits)<!-- link:end -->に、書き換えられない仕組みとの組み合わせは<!-- link:begin permission-to-stop#with-structure -->[止まって報告する権利を渡す › 書き換えられない仕組みと組み合わせる](../prompting/permission-to-stop.md#with-structure)<!-- link:end -->にある。この辞典では、止まる条件を完了の定義の一部として書く。止まる権利そのものの効き方は、そちらに任せる。
 
 ## 面ごとの渡し方 {#by-surface}
 
@@ -207,7 +207,7 @@ After で足したものは 3 つある。1 つ目は、完了のコマンドと
 - **確かめていない**（原理：確かめる）。完了のコマンドが、終わったかどうかを判定する手段になる。手段がなければ、Claude は「終わったように見える」所で止まる。コマンドを渡すと、合否が返るまで作業を続ける理由が生まれる。
 - **見えていない**（原理：見せる）。どこまでやれば終わりか、何を変えてはならないかは、依頼や会話に書かれていなければ Claude に見えない。完了の定義は、頭の中にある終わりの基準を、Claude が読める形に出す。
 
-関連する近い頼み方との分担は次のとおりである。対象・状況・完了の形・手本の 4 点を依頼に書く頼み方は<!-- link:begin four-specifics -->[具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)<!-- link:end -->で、完了はその 1 点にあたる。目的と完了を成果で渡す考え方は<!-- link:begin ask-for-outcomes -->細かく指図するか、成果で頼むか（準備中）<!-- link:end -->にある。
+関連する近い頼み方との分担は次のとおりである。対象・状況・完了の形・手本の 4 点を依頼に書く頼み方は<!-- link:begin four-specifics -->[具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)<!-- link:end -->で、完了はその 1 点にあたる。目的と完了を成果で渡す考え方は<!-- link:begin ask-for-outcomes -->[細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)<!-- link:end -->にある。
 
 ## 誤解と、効かない場面 {#misreadings}
 
@@ -215,9 +215,9 @@ After で足したものは 3 つある。1 つ目は、完了のコマンドと
 
 **「keep going」と書けば、最後までやり切る。** 以前のモデルは長い作業の途中で止まりやすく、続けるよう促す一言が効いた。いまは、こうした一言を消し、通すべきテストのような確かめる手段を渡すのが公式の勧めである。途中で止まったら続けるよう伝え、誰も見ていない実行は、完了の条件を満たすまで続けさせる機能で続けさせる。行の詳細は<!-- link:begin outdated-advice-ledger#keep-going-dont-be-lazy -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#keep-going-dont-be-lazy)<!-- link:end -->にある。
 
-**完了のコマンドが通れば、本当に終わっている。** 完了の定義の効き目は、検証器の質で決まる。並列の Claude 群で C コンパイラを作った事例の記事は、エージェントが与えられた問題を解くので検証器はほぼ完璧でなければならない、と述べる（[Building a C compiler with a team of parallel Claudes](https://www.anthropic.com/research/building-c-compiler)）。指標だけを満たし、本当の目的を外れる変更も起きうる。指標と目的のずれは<!-- link:begin check-the-metric#mismatch -->評価指標そのものを確かめる › 指標と目的のずれ（準備中）<!-- link:end -->で確かめる。
+**完了のコマンドが通れば、本当に終わっている。** 完了の定義の効き目は、検証器の質で決まる。並列の Claude 群で C コンパイラを作った事例の記事は、エージェントが与えられた問題を解くので検証器はほぼ完璧でなければならない、と述べる（[Building a C compiler with a team of parallel Claudes](https://www.anthropic.com/research/building-c-compiler)）。指標だけを満たし、本当の目的を外れる変更も起きうる。指標と目的のずれは<!-- link:begin check-the-metric#mismatch -->[評価指標そのものを確かめる › 指標と目的のずれ](../eval/check-the-metric.md#mismatch)<!-- link:end -->で確かめる。
 
-**完了の定義を細かく書くほど、よい。** 目的と完了は成果で渡し、攻める場所と測り方は具体的に書く。成果の条件だけを渡して中身を任せすぎると、迷走や指標だけを満たす変更が起きうる。分け方は<!-- link:begin ask-for-outcomes#outcomes -->細かく指図するか、成果で頼むか › 成果で示すもの：目的と完了の条件（準備中）<!-- link:end -->にある。
+**完了の定義を細かく書くほど、よい。** 目的と完了は成果で渡し、攻める場所と測り方は具体的に書く。成果の条件だけを渡して中身を任せすぎると、迷走や指標だけを満たす変更が起きうる。分け方は<!-- link:begin ask-for-outcomes#outcomes -->[細かく指図するか、成果で頼むか › 成果で示すもの：目的と完了の条件](../prompting/ask-for-outcomes.md#outcomes)<!-- link:end -->にある。
 
 効かない場面もある。完了の定義が機械的に測れない作業では、合否を返すコマンドを置けない。その場合は、含めるべき項目の一覧のような合格の基準を渡し、別の者に確かめさせる段へ移る。仕様が固まっていない大きな機能は、完了を決める前に、<!-- link:begin spec-first -->[仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)<!-- link:end -->の手順で仕様を詰める。変更が効いたかを、複数回の試行で比べて測るのは<!-- link:begin measure-changes -->[変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)<!-- link:end -->の役割である。
 
@@ -247,24 +247,24 @@ After で足したものは 3 つある。1 つ目は、完了のコマンドと
 
 **次に読む**
 
+- [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
 - [報告ではなく証拠を求める](evidence-not-reports.md)
+- [テストを先に書かせる](tests-first.md)
+- [AI に書かせたテストの落とし穴](pitfalls-of-ai-written-tests.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)
-- 細かく指図するか、成果で頼むか（準備中）
-- テストを先に書かせる（準備中）
-- AI に書かせたテストの落とし穴（準備中）
 
 **関連**
 
 - [検証の階段](verification-ladder.md)
 - [具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)
 - [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)
-- 止まって報告する権利を渡す（準備中）
+- [止まって報告する権利を渡す](../prompting/permission-to-stop.md)
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - [頼んでいないことまでやる（過剰設計）](../symptoms/does-more-than-asked.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
-- 評価指標そのものを確かめる（準備中）
+- [評価指標そのものを確かめる](../eval/check-the-metric.md)
 
 </div>
 

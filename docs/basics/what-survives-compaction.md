@@ -54,7 +54,7 @@ updated: 2026-11-05
 
 同じ圧縮で、片方は残り、片方は消えた。違いは、手順が CLAUDE.md という会話の外の置き場所にあり、禁止が会話の中にしかなかったことである。公式の表は、会話の中だけで伝えた指示を「要約に溶ける」ものに分類する。要約に載ることはあっても、載る保証はない。
 
-このページの一覧は、Claude Code の公式の表に基づく。アプリの長い会話で上限が近づいたときの自動の整理は<!-- link:begin long-chat-limits#auto-management -->長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか（準備中）<!-- link:end -->が扱う。API の compaction は別の仕組みで、この一覧をそのまま当てはめない。
+このページの一覧は、Claude Code の公式の表に基づく。アプリの長い会話で上限が近づいたときの自動の整理は<!-- link:begin long-chat-limits#auto-management -->[長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか](../app/long-chat-limits.md#auto-management)<!-- link:end -->が扱う。API の compaction は別の仕組みで、この一覧をそのまま当てはめない。
 
 ## なぜ 4 つに分かれるか {#why}
 
@@ -89,7 +89,7 @@ updated: 2026-11-05
 | [圧縮（/compact と自動圧縮）](../context/compact-and-auto-compact.md) | なし | 未確認 |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | お願い | 残る |
 | [rules（.claude/rules/）](../extend/path-scoped-rules.md) | お願い | 条件による |
-| 自動メモリ（auto memory）（準備中） | お願い | 残る |
+| [自動メモリ（auto memory）](../extend/using-auto-memory.md) | お願い | 残る |
 | [スキル（skills）](../extend/writing-skills.md) | お願い | 残る |
 
 <!-- textlint-enable -->
@@ -190,7 +190,7 @@ updated: 2026-11-05
 - [お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
-- 長い会話の自動のコンテキスト管理と長さの上限（準備中）
+- [長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)
 
 </div>
 

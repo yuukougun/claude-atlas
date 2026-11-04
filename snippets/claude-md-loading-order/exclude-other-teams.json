@@ -1,0 +1,7 @@
+{
+  "claudeMdExcludes": [
+    "**/other-team/CLAUDE.md",
+    "**/other-team/.claude/CLAUDE.md",
+    "**/other-team/.claude/rules/**"
+  ]
+}

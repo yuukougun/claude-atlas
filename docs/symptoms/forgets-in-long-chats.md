@@ -83,7 +83,7 @@ updated: 2026-11-05
 
 === "アプリ"
 
-    長い会話の上限が近づくと、自動で要約されるなどの管理が働く。何が要約され何が残るかは <!-- link:begin long-chat-limits#auto-management -->長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか（準備中）<!-- link:end --> にある。前提が落ちたと思うときは、まず列挙の依頼で確かめる。
+    長い会話の上限が近づくと、自動で要約されるなどの管理が働く。何が要約され何が残るかは <!-- link:begin long-chat-limits#auto-management -->[長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか](../app/long-chat-limits.md#auto-management)<!-- link:end --> にある。前提が落ちたと思うときは、まず列挙の依頼で確かめる。
 
 === "Claude Code"
 
@@ -125,7 +125,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [handoff 文書と document-and-clear](../context/handoff-documents.md)<br>長い会話の自動のコンテキスト管理と長さの上限（準備中） |
+| 見えていない | [handoff 文書と document-and-clear](../context/handoff-documents.md)<br>[長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md) |
 | 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)<br>[@参照と、何を読ませるかの絞り込み › 出力を絞る](../context/choose-what-to-read.md#trim-output) |
 
 <!-- textlint-enable -->
@@ -159,7 +159,7 @@ updated: 2026-11-05
 - 「窓を最優先で節約する」という助言は、条件付きになった。溢れることはまれになったが、関係のない作業に移るときの新しい会話は、質と費用のために今も勧められる。今の扱いは <!-- link:begin outdated-advice-ledger#save-context-for-200k -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#save-context-for-200k)<!-- link:end --> にある。
 - 「コンテキストを守るためのサブエージェント」という助言も、条件付きである。出力の多い調査を本筋から離す委任はよいが、守る目的だけでは使わない。今の扱いは <!-- link:begin outdated-advice-ledger#subagents-to-save-context -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#subagents-to-save-context)<!-- link:end --> にある。
 
-窓の広さと注意の関係は <!-- link:begin large-context-window#what-to-keep -->広いコンテキストウィンドウとの付き合い方 › 続けること（準備中）<!-- link:end --> にある。窓が広くなっても、関係のない文脈が答えの質と費用を下げる点は変わらない。
+窓の広さと注意の関係は <!-- link:begin large-context-window#what-to-keep -->[広いコンテキストウィンドウとの付き合い方 › 続けること](../models/large-context-window.md#what-to-keep)<!-- link:end --> にある。窓が広くなっても、関係のない文脈が答えの質と費用を下げる点は変わらない。
 
 ## 予防：前提を会話の外に置く {#prevention}
 
@@ -198,7 +198,7 @@ updated: 2026-11-05
 **次に読む**
 
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
-- 長い会話の自動のコンテキスト管理と長さの上限（準備中）
+- [長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
@@ -211,7 +211,7 @@ updated: 2026-11-05
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [代表的なフックのレシピ › テストの出力を絞る](../enforce/hook-recipes.md#filter-test-output)
 - [/context で中身を見る](../context/inspect-context.md)
-- 広いコンテキストウィンドウとの付き合い方（準備中）
+- [広いコンテキストウィンドウとの付き合い方](../models/large-context-window.md)
 - [/compact と自動圧縮](../context/compact-and-auto-compact.md)
 - [同じ失敗を繰り返す（堂々巡り）](going-in-circles.md)
 - [圧縮の後に約束を忘れた](forgot-after-compaction.md)

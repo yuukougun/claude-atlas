@@ -1,0 +1,15 @@
+title: 区切りで進捗ファイルを更新させる依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+requires: [progress/PLAN.md, progress/TODO.md, progress/DECISIONS.md, progress/KNOWLEDGE.md]
+conditions:
+  - 作業が途中まで進んだセッションで試す
+expect:
+  - when: 依頼を出す
+    then: TODO.md の済みの項目に根拠が付き、次の一手が 1 つだけ残る
+  - when: git の差分を見る
+    then: KNOWLEDGE.md は行の追加だけで、PLAN.md は変わっていない（観察する。依頼はお願いなので合否にしない）
+  - when: 返答を見る
+    then: 変えた項目の一覧が出て、実装の続きには進まない
+control: 項目を指定せず「進捗を更新して」とだけ頼むと、経過の要約が TODO.md に流れ込みやすい

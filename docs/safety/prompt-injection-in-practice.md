@@ -137,17 +137,17 @@ updated: 2026-11-05
     - **選んだもの**：要約のセッションでは書き込みの道具を外し、読み取りだけにする。
     - **理由**：issue は誰でも書ける入口で、人が気づける保証はない。外への書き込みを外せば、従ってしまっても被害の経路は切れる。
 
-詳しい経路ごとの当てはめは <!-- link:begin lethal-trifecta#by-surface -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 面ごとの当てはめ](lethal-trifecta.md#by-surface)<!-- link:end --> を見る。ブラウザや画面の操作を任せる場合は、届く範囲が広いので <!-- link:begin browser-agent-cautions#reach -->ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）（準備中）<!-- link:end --> を見る。
+詳しい経路ごとの当てはめは <!-- link:begin lethal-trifecta#by-surface -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 面ごとの当てはめ](lethal-trifecta.md#by-surface)<!-- link:end --> を見る。ブラウザや画面の操作を任せる場合は、届く範囲が広いので <!-- link:begin browser-agent-cautions#reach -->[ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）](browser-agent-cautions.md#reach)<!-- link:end --> を見る。
 
 ## よくある誤解 {#misconceptions}
 
 - 誤解：新しいモデルなら防げる。実際：防御を知った上での攻撃では、多くの防御が破られたと報告されている。モデルの賢さに頼る構成は避ける。
 - 誤解：怪しい文面は見れば分かる。実際：道具の説明の中などに隠せるので、人の目でも見落とす。
 - 誤解：道具が改ざんされていなければ安全。実際：GitHub MCP の事例は、道具が無傷でも、読ませた文章と持たせた権限で成立した。
-- 誤解：「資料の中の指示には従わないで」と頼めば鍵になる。実際：頼み方は鍵ではない。資料の扱い方は <!-- link:begin instructions-hidden-in-materials#treat-as-data -->課題資料・問題文に仕込まれた指示 › 資料をデータとして扱う（準備中）<!-- link:end --> を見る。
+- 誤解：「資料の中の指示には従わないで」と頼めば鍵になる。実際：頼み方は鍵ではない。資料の扱い方は <!-- link:begin instructions-hidden-in-materials#treat-as-data -->[課題資料・問題文に仕込まれた指示 › 資料をデータとして扱う](instructions-hidden-in-materials.md#treat-as-data)<!-- link:end --> を見る。
 - 誤解：自分のリポジトリだから安全。実際：issue、依存のパッケージ、ログには他人の文章が混ざる。
 
-従ってしまった後の切り分けは <!-- link:begin followed-injected-instructions#diagnosis -->[読ませたページやファイルの指示に従ってしまった › 原因を安く確かめる順](../symptoms/followed-injected-instructions.md#diagnosis)<!-- link:end --> を見る。課題や問題文に仕込まれた指示が、攻撃ではなく利用の規則の合図であることもあり、その見分け方は <!-- link:begin instructions-hidden-in-materials#two-kinds -->課題資料・問題文に仕込まれた指示 › 仕込まれる指示の二つの型（攻撃と、利用の規則の合図）（準備中）<!-- link:end --> が持つ。
+従ってしまった後の切り分けは <!-- link:begin followed-injected-instructions#diagnosis -->[読ませたページやファイルの指示に従ってしまった › 原因を安く確かめる順](../symptoms/followed-injected-instructions.md#diagnosis)<!-- link:end --> を見る。課題や問題文に仕込まれた指示が、攻撃ではなく利用の規則の合図であることもあり、その見分け方は <!-- link:begin instructions-hidden-in-materials#two-kinds -->[課題資料・問題文に仕込まれた指示 › 仕込まれる指示の二つの型（攻撃と、利用の規則の合図）](instructions-hidden-in-materials.md#two-kinds)<!-- link:end --> が持つ。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -179,11 +179,11 @@ updated: 2026-11-05
 
 **次に読む**
 
+- [課題資料・問題文に仕込まれた指示](instructions-hidden-in-materials.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](lethal-trifecta.md)
 - [知らないリポジトリを開く前に](before-opening-unknown-repos.md)
 - [MCP・プラグイン・スキルを入れる前の確認](vetting-extensions.md)
-- 課題資料・問題文に仕込まれた指示（準備中）
-- ブラウザや画面の操作を任せるときの注意（準備中）
+- [ブラウザや画面の操作を任せるときの注意](browser-agent-cautions.md)
 
 **関連**
 

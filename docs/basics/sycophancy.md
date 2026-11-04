@@ -37,7 +37,7 @@ updated: 2026-11-05
 別名：sycophancy・すぐ同意する・押されると折れる・好みに合わせる
 <!-- textlint-enable -->
 
-迎合（sycophancy）は、利用者の考えや期待に合わせて、事実や自分の評価を曲げて応答する傾向である。Claude を含む対話型の言語モデルで観察されていて、賛成が多すぎる、押されると答えを変える、という形で現れる。このページは、その傾向が生まれる理由と、規範や頼み方では保証にならない理由を説明する。聞き方による対処は<!-- link:begin ask-without-sycophancy -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）<!-- link:end -->で扱う。
+迎合（sycophancy）は、利用者の考えや期待に合わせて、事実や自分の評価を曲げて応答する傾向である。Claude を含む対話型の言語モデルで観察されていて、賛成が多すぎる、押されると答えを変える、という形で現れる。このページは、その傾向が生まれる理由と、規範や頼み方では保証にならない理由を説明する。聞き方による対処は<!-- link:begin ask-without-sycophancy -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)<!-- link:end -->で扱う。
 
 ## 何が起きるか {#what-happens}
 
@@ -73,9 +73,9 @@ Claude の訓練の詳細は公開されていないので、Claude の迎合が
 
 そこで、文を足すより構造で補う。この辞典の推奨は次の 3 つである。
 
-- **聞き方を変える**：好みや確信を伏せる、複数の案を並べて比べさせる。方法は<!-- link:begin ask-without-sycophancy#hide-preferences -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる（準備中）<!-- link:end -->と<!-- link:begin ask-without-sycophancy#compare-side-by-side -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 並べて同時に比べさせる（準備中）<!-- link:end -->にある。
+- **聞き方を変える**：好みや確信を伏せる、複数の案を並べて比べさせる。方法は<!-- link:begin ask-without-sycophancy#hide-preferences -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる](../judgment/ask-without-sycophancy.md#hide-preferences)<!-- link:end -->と<!-- link:begin ask-without-sycophancy#compare-side-by-side -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 並べて同時に比べさせる](../judgment/ask-without-sycophancy.md#compare-side-by-side)<!-- link:end -->にある。
 - **書いた本人ではない者に見せる**：変更を生んだ推論を見ていない新しいセッションや別の人にレビューさせる。分け方は<!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](../verify/independent-review.md#who)<!-- link:end -->にある。
-- **役割に決まりを置く**：AI の同意を根拠に数えない決まりを、チームの役割に埋め込む。<!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end -->を見る。
+- **役割に決まりを置く**：AI の同意を根拠に数えない決まりを、チームの役割に埋め込む。<!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end -->を見る。
 
 !!! example "判断例：設計案に「問題ありません」と返ってきた"
     - **状況**：新しい設計案を見せて「これでよいですよね」と聞いたら、Claude が「問題ありません」と答えた。
@@ -86,7 +86,7 @@ Claude の訓練の詳細は公開されていないので、Claude の迎合が
 ## 誤解 {#misconceptions}
 
 - **「強く言えば直る」**：「正直に評価して」と足しても、保証にはならない。規範と頼み方は読まれる文にすぎず、傾向を生んだ訓練そのものは変わらない。聞き方と、独立したレビューで補う。
-- **「批判を強めさせれば安全」**：迎合を減らそうとして批判を強めすぎると、今度は根拠のない指摘が増える。加減は<!-- link:begin ask-without-sycophancy#dont-overdo-criticism -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判を強めすぎない（準備中）<!-- link:end -->で見る。
+- **「批判を強めさせれば安全」**：迎合を減らそうとして批判を強めすぎると、今度は根拠のない指摘が増える。加減は<!-- link:begin ask-without-sycophancy#dont-overdo-criticism -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判を強めすぎない](../judgment/ask-without-sycophancy.md#dont-overdo-criticism)<!-- link:end -->で見る。
 - **「新しいモデルなら起きない」**：迎合の率はモデルと世代で変わる。ただし、この傾向が無いと確かめた研究は、このページの材料には見つかっていない。使うモデルで、自分の課題について確かめる。
 - **「言い張るのも迎合の一種」**：誤りを指摘されても認めずに言い張る症状は、迎合とは別の原因で起きうる。切り分けは<!-- link:begin insists-on-mistakes#diagnosis -->[誤りを認めずに言い張る › 原因を安く確かめる順](../symptoms/insists-on-mistakes.md#diagnosis)<!-- link:end -->で行う。
 
@@ -106,10 +106,10 @@ Claude の訓練の詳細は公開されていないので、Claude の迎合が
 
 **関連**
 
-- 迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）
+- [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)
 - [誤りを認めずに言い張る](../symptoms/insists-on-mistakes.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
-- 役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）
+- [役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)
 - [人の側の五つの落とし穴（総論）](../judgment/human-pitfalls.md)
 
 </div>

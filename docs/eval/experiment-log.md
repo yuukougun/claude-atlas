@@ -135,7 +135,7 @@ updated: 2026-11-05
 
 結果を見た後の解釈は、仮説の欄とは別の「なぜ効いたか」の欄に書く。2 つの欄を比べると、予想どおりだったのか、予想外だったのかが残る。
 
-説明できない採用は保留にする。「改善したが、なぜかは分からない」変更は、別の入力や別の検証器で崩れる危険を抱えたまま本流に入る。説明を Claude に出させて自分で確かめる手順は<!-- link:begin own-generated-code#gate -->生成コードを自分のものにする › 自分の言葉で言い直してから採る（準備中）<!-- link:end -->で見る。
+説明できない採用は保留にする。「改善したが、なぜかは分からない」変更は、別の入力や別の検証器で崩れる危険を抱えたまま本流に入る。説明を Claude に出させて自分で確かめる手順は<!-- link:begin own-generated-code#gate -->[生成コードを自分のものにする › 自分の言葉で言い直してから採る](../verify/own-generated-code.md#gate)<!-- link:end -->で見る。
 
 台帳の書き込みは Claude に手伝わせてよいが、仮説の欄と採否の基準の欄は人が書く。実行前の欄だけを埋めさせ、結果の欄を空のまま残させる依頼の雛形を次に置く。
 
@@ -176,7 +176,7 @@ updated: 2026-11-05
 - **ケースを足した後**：入力の組が変わるので、平均は別の物差しになる。
 - **実行環境が変わった後**：実行環境の違いだけで、エージェント型のコーディング評価の結果が動くという Anthropic の報告がある（根拠：中）。環境の版（ランナーの設定、マシン、ライブラリ）も、分かる範囲で台帳に書く。細かい差は「ぶれ」として扱い、小さな差を採否の理由にしない。詳細は[Quantifying infrastructure noise in agentic coding evals](https://www.anthropic.com/research/infrastructure-noise)を読む。
 
-Claude に検証器そのものを書き換えさせない守りは<!-- link:begin verifier-three-conditions#tamper-proof -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](verifier-three-conditions.md#tamper-proof)<!-- link:end -->で見る。人だけが持つ入力の扱いは<!-- link:begin lockbox-and-holdout#scores-only -->ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す（準備中）<!-- link:end -->で見る。台帳のハッシュは、書き換えを事後に見つける手がかりにもなる。
+Claude に検証器そのものを書き換えさせない守りは<!-- link:begin verifier-three-conditions#tamper-proof -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](verifier-three-conditions.md#tamper-proof)<!-- link:end -->で見る。人だけが持つ入力の扱いは<!-- link:begin lockbox-and-holdout#scores-only -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す](lockbox-and-holdout.md#scores-only)<!-- link:end -->で見る。台帳のハッシュは、書き換えを事後に見つける手がかりにもなる。
 
 ## 提案者を記録する {#proposer}
 
@@ -189,15 +189,15 @@ Claude に検証器そのものを書き換えさせない守りは<!-- link:beg
 
 提案者ごとに、当たりの率（採用に至った実験の割合）を比べる案も考えられる。ただし、この比べ方は先行例のない独自の提案である（推論・実践例なし）。案の種類や難しさが人と AI で違えば、率の差は提案者の力量を表さない。傾向を見る程度にとどめ、採否の基準にはしない。
 
-AI の案を採用するときの確認は、台帳の外にも持つ。採る前に、変更の理由を Claude に説明させ、自分の言葉で言い直せるかを確かめる（<!-- link:begin own-generated-code#explain -->生成コードを自分のものにする › 処理の流れと入力の端を説明させる（準備中）<!-- link:end -->）。
+AI の案を採用するときの確認は、台帳の外にも持つ。採る前に、変更の理由を Claude に説明させ、自分の言葉で言い直せるかを確かめる（<!-- link:begin own-generated-code#explain -->[生成コードを自分のものにする › 処理の流れと入力の端を説明させる](../verify/own-generated-code.md#explain)<!-- link:end -->）。
 
 ## 進捗ファイルなどとの違い {#not-progress-file}
 
 実験台帳は、採否の記録である。作業を続けるための記録とは目的が違う。
 
-- **進捗ファイル**：計画・やること・決めたこと・分かったことを持ち、別のセッションから作業を再開するためのファイルである。内容は更新され続ける。<!-- link:begin progress-files#files -->進捗ファイルで、途中から再開できるようにする › ファイルの分け方（準備中）<!-- link:end -->を見る。
+- **進捗ファイル**：計画・やること・決めたこと・分かったことを持ち、別のセッションから作業を再開するためのファイルである。内容は更新され続ける。<!-- link:begin progress-files#files -->[進捗ファイルで、途中から再開できるようにする › ファイルの分け方](../context/progress-files.md#files)<!-- link:end -->を見る。
 - **実験台帳**：1 件ずつ、実行前に仮説を書き、実行後に結果と採否を足す記録である。件が増えるだけで、過去の件は書き換えない。
-- **失敗の教訓**：捨てた試みから「何が駄目だったか」だけを短く残すものである。台帳の「なぜ効かなかったか」の欄を要約して持ってもよい。<!-- link:begin keep-failure-lessons#what-to-keep -->失敗の教訓は捨てずに書き残す › 何を残し、何を捨てるか（準備中）<!-- link:end -->を見る。
+- **失敗の教訓**：捨てた試みから「何が駄目だったか」だけを短く残すものである。台帳の「なぜ効かなかったか」の欄を要約して持ってもよい。<!-- link:begin keep-failure-lessons#what-to-keep -->[失敗の教訓は捨てずに書き残す › 何を残し、何を捨てるか](../context/keep-failure-lessons.md#what-to-keep)<!-- link:end -->を見る。
 - **決定の記録**：決めたことと理由を、チームに残す文書である。実験で採った変更の理由は、台帳を指す形でそこに書ける。<!-- link:begin record-decisions -->決定を文書に残す（ADR と週次アップデート）（準備中）<!-- link:end -->を見る。
 
 効かなかった実験も、台帳に残す。Kaggle の事例では、改善しなかった実験の予測も保存して、後で組み合わせた（根拠：弱）。Claude が前の実験の要約ファイルを「記憶」として読み、失敗済みの案の再提案を防いだ事例もある（根拠：弱）。個々の事例は[Winning a Kaggle Competition with Generative AI–Assisted Coding](https://developer.nvidia.com/blog/winning-a-kaggle-competition-with-generative-ai-assisted-coding/)と[Claude Code / CodexでKaggle金メダルを取った話](https://zenn.dev/chiman/articles/b233cc808d6af3)にある。
@@ -216,14 +216,14 @@ Claude に、台帳の過去の件と今回の案の重複を調べさせるの�
 
 台帳を付けても、同じ失敗の繰り返しは起きる。起きたときは、次の順に見直す。
 
-- **台帳を読まずに案を出している**：Claude に案を考えさせる前に、台帳を読ませる。依頼に台帳のパスを書く。台帳が長くなりすぎたら、見送った案の一覧を別に作る（<!-- link:begin keep-failure-lessons#too-much -->失敗の教訓は捨てずに書き残す › 書き残しすぎの副作用（準備中）<!-- link:end -->）。
+- **台帳を読まずに案を出している**：Claude に案を考えさせる前に、台帳を読ませる。依頼に台帳のパスを書く。台帳が長くなりすぎたら、見送った案の一覧を別に作る（<!-- link:begin keep-failure-lessons#too-much -->[失敗の教訓は捨てずに書き残す › 書き残しすぎの副作用](../context/keep-failure-lessons.md#too-much)<!-- link:end -->）。
 - **同じ案の変種を延々と試している**：変種ごとに別の案として記録すると、1 つの案への挑戦回数が見えなくなる。同じ案の再挑戦に上限を置く。チェスエンジンの検定基盤 Fishtest の FAQ は、同じアイデアの再挑戦におおむね数回の上限を置くとしている。チェスの慣行なので、他の課題への当てはめは類推である。上限の考え方は<!-- link:begin selection-pressure#retry-cap -->[選択圧：良かった版を選び続ける罠 › 同じアイデアの再挑戦に上限を置く](selection-pressure.md#retry-cap)<!-- link:end -->で見る。出典は[Fishtest FAQ](https://github.com/official-stockfish/fishtest/wiki/Fishtest-faq)にある。
 - **やめどきが決まっていない**：頭打ちになった後も実験を重ねている。方針そのものを疑う合図は<!-- link:begin decide-when-to-quit#plateau -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 頭打ちは方針を疑う合図](../judgment/decide-when-to-quit.md#plateau)<!-- link:end -->で見る。
 - **方針を変えすぎている**：逆に、方針を頻繁に変えすぎるのも失敗になる。ML 研究の実践者に、毎日の実験とアイデアをノートに残して定期的に見返すことを勧める例がある（根拠：弱）。変えすぎの扱いは<!-- link:begin decide-when-to-quit#dont-switch-too-often -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 変えすぎも失敗](../judgment/decide-when-to-quit.md#dont-switch-too-often)<!-- link:end -->にある。
 - **台帳が形だけになっている**：仮説の欄が「改善する」の一言である。外れたときの解釈と採否の基準が書けないなら、その実験は走らせる前に設計し直す。
 - **失敗の原因を仕組みで見たい**：誰が間違えたかではなく、どの隙間が許したかで振り返る。<!-- link:begin postmortems#which-gap -->失敗を仕組みに戻す（ポストモーテム） › 誰がではなく、どの隙間が（準備中）<!-- link:end -->を見る。
 
-開発用の入力で測り続けると、台帳に書いた「採った」変更の集まりが、その入力に合わせ込まれる。節目の確認には、開発では見ない入力を使う（<!-- link:begin lockbox-and-holdout#three-tiers -->ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける（準備中）<!-- link:end -->）。台帳は、合わせ込みを防ぐ代わりに、合わせ込みが起きた経緯を後から追う手段になる。
+開発用の入力で測り続けると、台帳に書いた「採った」変更の集まりが、その入力に合わせ込まれる。節目の確認には、開発では見ない入力を使う（<!-- link:begin lockbox-and-holdout#three-tiers -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける](lockbox-and-holdout.md#three-tiers)<!-- link:end -->）。台帳は、合わせ込みを防ぐ代わりに、合わせ込みが起きた経緯を後から追う手段になる。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -251,18 +251,18 @@ Claude に、台帳の過去の件と今回の案の重複を調べさせるの�
 
 **次に読む**
 
-- 仮説ごとに並べて、同じ物差しで比べる（準備中）
+- [仮説ごとに並べて、同じ物差しで比べる](../delegate/compare-hypotheses-in-parallel.md)
 - 実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）（準備中）
 
 **関連**
 
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
-- ロックボックスと hold-out（人だけが持つ検証用データ）（準備中）
+- [ロックボックスと hold-out（人だけが持つ検証用データ）](lockbox-and-holdout.md)
 - [変更が効いたかを測る（小さな eval）](measure-changes.md)
 - [検証器の三条件（正しい・書き換えられない・本番を代表する）](verifier-three-conditions.md)
-- 進捗ファイルで、途中から再開できるようにする（準備中）
-- 失敗の教訓は捨てずに書き残す（準備中）
-- 生成コードを自分のものにする（準備中）
+- [進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)
+- [失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)
+- [生成コードを自分のものにする](../verify/own-generated-code.md)
 - 決定を文書に残す（ADR と週次アップデート）（準備中）
 - 失敗を仕組みに戻す（ポストモーテム）（準備中）
 - 上界を測って「限界です」を反証する（準備中）

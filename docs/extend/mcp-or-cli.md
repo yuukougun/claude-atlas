@@ -76,7 +76,7 @@ MCP の属性を、データから作った表で見る。CLI は Claude Code �
 
 次の順に問うと、選べる。
 
-1. その相手に、成熟した CLI があるか。ないなら MCP を考える。決まった処理だけなら、書かせたスクリプトで足りることもある（<!-- link:begin move-judgment-into-scripts#what-to-move -->判断を決定論的なスクリプトに移す › 移す作業の見分け方（準備中）<!-- link:end -->）。
+1. その相手に、成熟した CLI があるか。ないなら MCP を考える。決まった処理だけなら、書かせたスクリプトで足りることもある（<!-- link:begin move-judgment-into-scripts#what-to-move -->[判断を決定論的なスクリプトに移す › 移す作業の見分け方](../enforce/move-judgment-into-scripts.md#what-to-move)<!-- link:end -->）。
 2. 作業の手順は決まっているか。決まっているなら、スキルに書いて CLI を呼ばせる。
 3. 権限を、シェル全体より狭くしたいか。MCP は、サーバーが出すツールだけを渡せる。CLI は権限ルールで絞れるが、子プロセスには効かない点がある（<!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](../enforce/permission-rules.md#child-processes)<!-- link:end -->）。
 4. 認証つきのライブな状態を扱うか。ログイン済みのブラウザや、操作のたびに結果が変わる画面なら、MCP が合う。
@@ -186,7 +186,7 @@ MCP の属性を、データから作った表で見る。CLI は Claude Code �
 
 **関連**
 
-- 判断を決定論的なスクリプトに移す（準備中）
+- [判断を決定論的なスクリプトに移す](../enforce/move-judgment-into-scripts.md)
 - [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - MCP サーバーの選び方（準備中）

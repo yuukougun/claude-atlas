@@ -1,0 +1,10 @@
+sources:
+  - id: anthropic-research-reasoning-models-dont-say-think
+    url: https://www.anthropic.com/research/reasoning-models-dont-say-think
+    title: Reasoning models don't always say what they think
+    kind: 研究
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-05'
+    published: '2025-04-03'
+    note: 公式の解説ページを確かめた（Claude 3.7 Sonnet などの思考の過程が、与えたヒントをどれだけ書くかを測った研究）。論文の本文は読んでいない

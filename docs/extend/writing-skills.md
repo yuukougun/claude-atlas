@@ -60,7 +60,7 @@ updated: 2026-11-04
 - **別の文脈で作業させ、要約だけを受け取りたいとき**はサブエージェントにする。違いは「<!-- link:begin skill-vs-subagent -->[スキルとサブエージェントの違い](skill-vs-subagent.md)<!-- link:end -->」にある。
 - **常に成り立つ短い事実や規約**は、CLAUDE.md や rules に置く。分け方は「<!-- link:begin claude-md-vs-rules-skills-styles -->[CLAUDE.md・rules・スキル・出力スタイルの違い](claude-md-vs-rules-skills-styles.md)<!-- link:end -->」にある。
 
-文章の手直しも、スキルにできる。<!-- link:begin less-ai-sounding-japanese#proofreading-skill -->日本語の「AI 臭さ」を減らす › 推敲をスキルにする（文体を保つか、構成から直すか）（準備中）<!-- link:end -->は、日本語の推敲をスキルにする例である。
+文章の手直しも、スキルにできる。<!-- link:begin less-ai-sounding-japanese#proofreading-skill -->[日本語の「AI 臭さ」を減らす › 推敲をスキルにする（文体を保つか、構成から直すか）](../japanese/less-ai-sounding-japanese.md#proofreading-skill)<!-- link:end -->は、日本語の推敲をスキルにする例である。
 
 ## 最小のスキルを作る {#minimal}
 
@@ -95,7 +95,7 @@ updated: 2026-11-04
 
 === "アプリ"
 
-    アプリでは、同じ形の `SKILL.md` を入れたスキルをアップロードして有効にする。手順は「<!-- link:begin skills-in-the-app#upload -->アプリでスキルを使う › 自作のスキルを入れる（準備中）<!-- link:end -->」に任せる。
+    アプリでは、同じ形の `SKILL.md` を入れたスキルをアップロードして有効にする。手順は「<!-- link:begin skills-in-the-app#upload -->[アプリでスキルを使う › 自作のスキルを入れる](../app/skills-in-the-app.md#upload)<!-- link:end -->」に任せる。
 
     アップロードで使えるフロントマターのキーは、`name`・`description`・`license`・`compatibility`・`metadata`・`allowed-tools` だけである。ほかのキーを入れると、取り込みはエラーで止まる。`argument-hint` や `disable-model-invocation` のような Claude Code だけのキーを使ったスキルは、そのままではアップロードできない。コマンドの出力を本文に埋め込む記法など、Claude Code だけの本文の機能も、アプリでは動かない。
 
@@ -105,7 +105,7 @@ updated: 2026-11-04
     2. その中に `SKILL.md` を置く。スクリプトを使うなら `scripts/` に入れる。
     3. `/名前` で呼んで、本文のとおりに動くかを見る。Claude に任せるときは、`description` に合う依頼を投げる。
 
-    編集した内容は、同じセッションの中で反映される。セッションを始めた後に、`~/.claude/skills/` か `.claude/skills/` のフォルダそのものを初めて作ったときだけ、`/reload-skills` を流す。リポジトリの `.claude/skills/` を commit すれば、チームで同じスキルを使える。共有の設定は「<!-- link:begin share-team-settings -->チームで設定を共有する（準備中）<!-- link:end -->」、複数のリポジトリに配る方法は「<!-- link:begin plugins-and-marketplaces -->プラグインとマーケットプレイス（準備中）<!-- link:end -->」にある。
+    編集した内容は、同じセッションの中で反映される。セッションを始めた後に、`~/.claude/skills/` か `.claude/skills/` のフォルダそのものを初めて作ったときだけ、`/reload-skills` を流す。リポジトリの `.claude/skills/` を commit すれば、チームで同じスキルを使える。共有の設定は「<!-- link:begin share-team-settings -->[チームで設定を共有する](../team/share-team-settings.md)<!-- link:end -->」、複数のリポジトリに配る方法は「<!-- link:begin plugins-and-marketplaces -->[プラグインとマーケットプレイス](plugins-and-marketplaces.md)<!-- link:end -->」にある。
 
 Claude Code では、フロントマターのキーはすべて省けるが、`description` は書く。`name` を省くと、フォルダ名がスキルの名前になる。アプリや API に持ち出すスキルは、`name` と `description` の両方が要る。`name` は英小文字・数字・ハイフンだけにしておくと、持ち出しやすい。`name` と `description` には文字数の上限があり、値は [Skill authoring best practices の Skill structure の項](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#skill-structure)で確かめる。ほかのキーは、[公式の文書のフロントマターの一覧](https://code.claude.com/docs/en/skills#frontmatter-reference)で確かめる。
 
@@ -140,7 +140,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 `.claude/commands/` に置いた Markdown のカスタムコマンドは、今もそのまま動く。コマンドとスキルはまとめられていて、`.claude/commands/deploy.md` と `.claude/skills/deploy/SKILL.md` は、どちらも `/deploy` になる。同じ名前のものが両方あるときは、スキルが優先される。そのため、急いで移す必要はない。
 
-この節と、これ以降の節は、特に断らない限り、Claude Code の話である。アプリで使うスキルは、「<!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end -->」に任せる。
+この節と、これ以降の節は、特に断らない限り、Claude Code の話である。アプリで使うスキルは、「<!-- link:begin skills-in-the-app -->[アプリでスキルを使う](../app/skills-in-the-app.md)<!-- link:end -->」に任せる。
 
 スキルに移すのは、スキルにしかない働きが要るものからにする。公式の文書は、スキルが足す働きとして次の 3 つを挙げている。
 
@@ -183,7 +183,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 1. `.claude/skills/<名前>/` を作り、コマンドのファイルを `SKILL.md` として移す。
 2. フロントマターの `description` を、いつ使うかを先頭に具体的に書いた文に書き直す。スキルでは、説明が Claude の読み込む手がかりになる。`name` は、Claude Code だけで使うなら省ける。アプリや API へ持ち出すなら足す。
-3. デプロイや送信のように副作用のある手順なら、`disable-model-invocation: true` を足して、人だけが呼べるようにする。考え方は「<!-- link:begin manual-only-skills -->副作用のあるスキルを勝手に動かさない（準備中）<!-- link:end -->」にある。
+3. デプロイや送信のように副作用のある手順なら、`disable-model-invocation: true` を足して、人だけが呼べるようにする。考え方は「<!-- link:begin manual-only-skills -->[副作用のあるスキルを勝手に動かさない](manual-only-skills.md)<!-- link:end -->」にある。
 4. 長い本文を、補助ファイルとスクリプトに分ける。分け方は、[補助ファイルとスクリプトに分ける](#supporting-files)の節で述べる。
 5. 古いコマンドのファイルを消す。同名のスキルが優先されるが、どちらが動いているかが分かりにくくなる。
 
@@ -287,7 +287,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 **何を補助ファイルに出すか**：毎回要る手順は本文に残し、特定の場面でだけ要る詳細を補助ファイルに出す。補助ファイルは、本文から直接案内するものに限る。補助ファイルからさらに別のファイルへ案内を重ねると、Claude が先頭だけを読んで止まることがある。長い補助ファイルは、冒頭に目次を置く（長さの目安は、[Platform の指針の該当の項](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#structure-longer-reference-files-with-a-table-of-contents)にある）。
 
-**何をスクリプトにするか**：手順が 1 通りに決まり、結果が毎回同じであるべき処理は、スクリプトにする。状況で判断が変わる所は、文章で書く。公式の指針も、壊れやすい処理には具体的なスクリプトを、判断が要る処理には文章の指示を使い分けるよう書いている。スクリプトにすると結果が毎回同じになり、確かめやすくなる。考え方は「<!-- link:begin move-judgment-into-scripts -->判断を決定論的なスクリプトに移す（準備中）<!-- link:end -->」にある。
+**何をスクリプトにするか**：手順が 1 通りに決まり、結果が毎回同じであるべき処理は、スクリプトにする。状況で判断が変わる所は、文章で書く。公式の指針も、壊れやすい処理には具体的なスクリプトを、判断が要る処理には文章の指示を使い分けるよう書いている。スクリプトにすると結果が毎回同じになり、確かめやすくなる。考え方は「<!-- link:begin move-judgment-into-scripts -->[判断を決定論的なスクリプトに移す](../enforce/move-judgment-into-scripts.md)<!-- link:end -->」にある。
 
 **実行させるのか、読ませるのか**：本文に、スクリプトを実行するのか、読んで参考にするのかを書く。ほとんどは実行させる。
 
@@ -359,7 +359,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
     - **選んだもの**：控えた依頼で、新しいセッションを使い、スキルを有効にした場合と切った場合を、それぞれ数回ずつ走らせて比べる。
     - **理由**：2 回の成功では、スキルのおかげか、たまたまかを分けられない。もう数回試しても、スキルなしでも同じ結果が出たかは分からない。スキルを書いた会話には手順の補足が残っているので、同じ会話で試すと、書き漏れも見えない。
 
-どの方法でも、1 回の試行で判断しない。体感と実測がずれる理由は「<!-- link:begin felt-vs-measured -->[体感と実測](../eval/felt-vs-measured.md)<!-- link:end -->」、小さく比べる手順は「<!-- link:begin measure-changes -->[変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)<!-- link:end -->」にある。効き方は使うモデルでも変わるので、公式のベストプラクティスに従い、使うモデルのすべてで試す。アプリで使うスキルが使われないときの確かめ方は、「<!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end -->」にある。
+どの方法でも、1 回の試行で判断しない。体感と実測がずれる理由は「<!-- link:begin felt-vs-measured -->[体感と実測](../eval/felt-vs-measured.md)<!-- link:end -->」、小さく比べる手順は「<!-- link:begin measure-changes -->[変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)<!-- link:end -->」にある。効き方は使うモデルでも変わるので、公式のベストプラクティスに従い、使うモデルのすべてで試す。アプリで使うスキルが使われないときの確かめ方は、「<!-- link:begin skills-in-the-app -->[アプリでスキルを使う](../app/skills-in-the-app.md)<!-- link:end -->」にある。
 
 ## 効かない場面と落とし穴 {#limits}
 
@@ -368,7 +368,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 - **途中で従わなくなる**：本文は呼ばれたときに一度だけ会話に入り、ファイルは読み直されない。毎回守らせたい規則は、フックに移す。設定のフックは、そのイベントのたびに動く。スキルと一緒に持たせたいなら、フロントマターの `hooks` に書く。この `hooks` は、スキルを呼んだときから、セッションの終わりまで効く。
 - **指針が一度きりの手順として読まれる**：作業全体に当てはめたい指針は、「テストを走らせる」ではなく「編集のたびにテストを走らせる」のように、作業全体に当てはまる形で書く。
 - **呼ばれない、呼ばれすぎる**：説明が依頼の言葉に合っていないか、ほかのスキルと重なっている。呼ばれないときは、依頼で使う言葉を含む形に説明を直す。呼ばれすぎるときは、説明を具体的にするか、人だけが呼ぶ設定にする。説明の直し方は「<!-- link:begin skill-descriptions -->[スキルの description の書き方](skill-descriptions.md)<!-- link:end -->」にある。
-- **副作用のある手順を勝手に動かす**：デプロイや送信のような手順は、`disable-model-invocation: true` を付けて、Claude が自分の判断では動かさないようにする。付け方は「<!-- link:begin manual-only-skills -->副作用のあるスキルを勝手に動かさない（準備中）<!-- link:end -->」にある。
+- **副作用のある手順を勝手に動かす**：デプロイや送信のような手順は、`disable-model-invocation: true` を付けて、Claude が自分の判断では動かさないようにする。付け方は「<!-- link:begin manual-only-skills -->[副作用のあるスキルを勝手に動かさない](manual-only-skills.md)<!-- link:end -->」にある。
 - **一覧に載るコストが積もる**：入れたスキルの名前と説明は、使わなくても毎回のやり取りに載る。数が増えると、一覧の長さの上限を超えないよう説明が削られ、呼ばれにくくなる（上限の値は「<!-- link:begin how-skills-load#residual-cost -->[スキルの考え方（手順を必要なときだけ読む） › 入れすぎたときに残るコスト](how-skills-load.md#residual-cost)<!-- link:end -->」、変え方は[公式の文書の説明が切られる節](https://code.claude.com/docs/en/skills#skill-descriptions-are-cut-short)にある）。`/skill-doctor` で費用と使われ方を見て、使っていないものを外す。外し方は「<!-- link:begin pruning-extensions -->[拡張の棚卸しと剪定](pruning-extensions.md)<!-- link:end -->」にある。
 - **同じ名前のスキルが複数ある**：管理設定、個人用、プロジェクトの順に優先される。個人用とプロジェクトに同じ名前のスキルがあれば、個人用が動く。`.claude/commands/` のファイルと同じ名前なら、スキルが動く。詳しい表は、[公式の文書の同名の扱い](https://code.claude.com/docs/en/skills#resolve-skills-that-share-a-name)にある。
 - **組み込みのコマンドや同梱のスキルと同じ名前にしたとき**：その名前では、自作のスキルが動く。置き換わるのは名前だけで、元のコマンドの別名で呼ぶと、元のコマンドが動く。組み込みのコマンドについては、ローカルのターミナルのセッションでの挙動で、ほかの環境は確かめていない。
@@ -398,7 +398,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 **次に読む**
 
 - [スキルの description の書き方](skill-descriptions.md)
-- 副作用のあるスキルを勝手に動かさない（準備中）
+- [副作用のあるスキルを勝手に動かさない](manual-only-skills.md)
 
 **関連**
 
@@ -408,11 +408,11 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [体感と実測](../eval/felt-vs-measured.md)
-- 判断を決定論的なスクリプトに移す（準備中）
-- プラグインとマーケットプレイス（準備中）
-- アプリでスキルを使う（準備中）
-- チームで設定を共有する（準備中）
-- 日本語の「AI 臭さ」を減らす › 推敲をスキルにする（文体を保つか、構成から直すか）（準備中）
+- [判断を決定論的なスクリプトに移す](../enforce/move-judgment-into-scripts.md)
+- [プラグインとマーケットプレイス](plugins-and-marketplaces.md)
+- [アプリでスキルを使う](../app/skills-in-the-app.md)
+- [チームで設定を共有する](../team/share-team-settings.md)
+- [日本語の「AI 臭さ」を減らす › 推敲をスキルにする（文体を保つか、構成から直すか）](../japanese/less-ai-sounding-japanese.md#proofreading-skill)
 - [拡張の棚卸しと剪定](pruning-extensions.md)
 - [サブエージェントの作り方と使いどころ](writing-subagents.md)
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](claude-md-vs-rules-skills-styles.md)

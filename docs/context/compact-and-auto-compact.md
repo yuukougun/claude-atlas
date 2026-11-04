@@ -54,7 +54,7 @@ updated: 2026-11-05
 
 === "アプリ"
 
-    アプリには、会話を手で畳む操作をこの辞典は確認していない（未確認）。長い会話が上限に近づいたときの自動の要約と、残るものは <!-- link:begin long-chat-limits#auto-management -->長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか（準備中）<!-- link:end --> にある。
+    アプリには、会話を手で畳む操作をこの辞典は確認していない（未確認）。長い会話が上限に近づいたときの自動の要約と、残るものは <!-- link:begin long-chat-limits#auto-management -->[長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか](../app/long-chat-limits.md#auto-management)<!-- link:end --> にある。
 
 === "Claude Code"
 
@@ -112,7 +112,7 @@ updated: 2026-11-05
 
 idle compaction は、大きな会話を長く放置したときに、Claude Code が自動で要約する仕組みである。放置した後の最初の 1 手で、会話の全体を読み直す費用を減らす狙いがある。
 
-背景にあるのは、<!-- link:begin why-prompt-caching -->プロンプトキャッシング（先頭が変わらないことの価値）（準備中）<!-- link:end --> である。会話の先頭が変わらなければ読み直しは安く済むが、キャッシュは時間が経つと切れる。切れた後に戻ると、最初の 1 手で会話の全体を、キャッシュなしで読み直す。idle compaction は、そのキャッシュが切れる前に、会話を要約しておく。
+背景にあるのは、<!-- link:begin why-prompt-caching -->[プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)<!-- link:end --> である。会話の先頭が変わらなければ読み直しは安く済むが、キャッシュは時間が経つと切れる。切れた後に戻ると、最初の 1 手で会話の全体を、キャッシュなしで読み直す。idle compaction は、そのキャッシュが切れる前に、会話を要約しておく。
 
 この仕組みの条件は、会話の大きさ・放置の時間・入った版で決まる。どれも変わりやすい。押さえておくことは次の 4 つである。
 
@@ -177,7 +177,7 @@ flowchart TD
 - **実践者の幅**：使用率の半分で畳む、決まったトークン数で畳む、窓を縮める、と記事ごとに目安がばらつく。測定したデータは見つからない（根拠：弱。経験則）。
 - **この辞典の推奨**：まず既定のままにする。圧縮の後に困ったことが続いたときだけ、`/context` で使用量を見て、困った時点から逆算して動かす。目安を数字で決めて、全員に当てはめない。
 
-窓が広くなった今の考え方は <!-- link:begin large-context-window -->広いコンテキストウィンドウとの付き合い方（準備中）<!-- link:end --> にある。
+窓が広くなった今の考え方は <!-- link:begin large-context-window -->[広いコンテキストウィンドウとの付き合い方](../models/large-context-window.md)<!-- link:end --> にある。
 
 ## 効かない場面・落とし穴 {#pitfalls}
 
@@ -228,9 +228,9 @@ flowchart TD
 - [/context で中身を見る](inspect-context.md)
 - [圧縮の後に約束を忘れた](../symptoms/forgot-after-compaction.md)
 - [お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)
-- 長い会話の自動のコンテキスト管理と長さの上限（準備中）
-- 広いコンテキストウィンドウとの付き合い方（準備中）
-- プロンプトキャッシング（先頭が変わらないことの価値）（準備中）
+- [長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)
+- [広いコンテキストウィンドウとの付き合い方](../models/large-context-window.md)
+- [プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
 - [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)
 

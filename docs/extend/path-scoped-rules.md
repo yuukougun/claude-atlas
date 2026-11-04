@@ -199,7 +199,7 @@ CLAUDE.md を短くする判断そのものは <!-- link:begin claude-md-length#
 
 置き場所の選び方は <!-- link:begin claude-md-vs-rules-skills-styles#how-to-choose -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示の置き場所の選び方](claude-md-vs-rules-skills-styles.md#how-to-choose)<!-- link:end --> に表と基準がある。ここでは近い 2 つとの違いだけを書く。
 
-- **サブフォルダの CLAUDE.md**：どちらも必要なときに読み込まれる。ディレクトリに結びつく規約はサブフォルダの CLAUDE.md、`*.test.ts` のように、フォルダをまたぐファイルの種類に結びつく規約は rules が向く。読み込み順と重なりは <!-- link:begin claude-md-loading-order#monorepo -->CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示（準備中）<!-- link:end --> で確かめる。
+- **サブフォルダの CLAUDE.md**：どちらも必要なときに読み込まれる。ディレクトリに結びつく規約はサブフォルダの CLAUDE.md、`*.test.ts` のように、フォルダをまたぐファイルの種類に結びつく規約は rules が向く。読み込み順と重なりは <!-- link:begin claude-md-loading-order#monorepo -->[CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示](claude-md-loading-order.md#monorepo)<!-- link:end --> で確かめる。
 - **スキル**：スキルは作業の手順を、呼ぶ場面で読む。rules はファイルへの触れ方で自動的に入る規約で、手順書には向かない。
 
 ## 古くなった助言 {#outdated}
@@ -224,7 +224,7 @@ CLAUDE.md を短くする判断そのものは <!-- link:begin claude-md-length#
 
 **関連**
 
-- CLAUDE.md の階層と読み込み順（準備中）
+- [CLAUDE.md の階層と読み込み順](claude-md-loading-order.md)
 - [CLAUDE.md の長さと剪定](claude-md-length.md)
 - [圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)
 - [圧縮で消えない場所に約束を置く](../context/promises-after-compaction.md)

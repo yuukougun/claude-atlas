@@ -77,7 +77,7 @@ updated: 2026-11-05
     - 古い関数の隣に、名前だけ違う新しい版が並んでいないかを見る。死んだコードが残るのは、公式の文書ではなく実践者の記事にある報告である（根拠：弱）。
     - 洗い出しを Claude に頼むなら、この項目の後ろにある雛形のように、直さずに一覧だけ出させる。同じ会話の Claude は、自分の変更を甘く見やすい（推論・実践例なし）。差分が大きいときは、変更を作っていない新しいセッションか別の担当に見せる（<!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](../verify/independent-review.md#who)<!-- link:end -->）。
     - 洗い出しで、判定・理由・修正案まで求めすぎない。コードを要件に照らして判定させる 2026 年の研究がある。この研究では、判定・理由・修正案まで求めると、正しいコードを要件不適合と判定する率が上がった（根拠：中・類推。旧世代のモデルを含む 5 つのモデルの結果なので、現行の Claude の傾向とは言えない）。事実の一覧だけを出させ、判断は人が行う。
-    - 人が読むべき差分の箇所は <!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end --> にある。変更を小さく区切るほど、増えた物は見つけやすい（<!-- link:begin working-with-git#granularity -->[git との付き合い方 › どこで区切るか](../cli/working-with-git.md#granularity)<!-- link:end -->）。
+    - 人が読むべき差分の箇所は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end --> にある。変更を小さく区切るほど、増えた物は見つけやすい（<!-- link:begin working-with-git#granularity -->[git との付き合い方 › どこで区切るか](../cli/working-with-git.md#granularity)<!-- link:end -->）。
 
 <!-- gen:begin snippet does-more-than-asked/scope-audit -->
 <!-- textlint-disable -->
@@ -101,7 +101,7 @@ updated: 2026-11-05
 
 3. **合っていない**：範囲を書き、差分も読んでいるのに、同じ種類の余計な物が出る。モデルや effort の癖が、作業に合っていない可能性がある。公式のモデル別の指針には、過剰設計や範囲の拡大が出やすいと書かれたものがある（Prompting best practices と Prompting Claude Opus 5。確認日 2026-11-05）。傾向はモデルの版で変わるので、暗記せず、使っているモデルの最新の指針を見る。
     - 同じ依頼を、別のモデルか別の段の effort で出し、差分の大きさを比べる。現在の既定の段は、面とモデルで違う（<!-- link:begin effort-levels#defaults-by-surface -->[effort の段階と使い分け › 既定の段（モデル × 面の表）](../models/effort-levels.md#defaults-by-surface)<!-- link:end -->）。effort の段と過剰設計の関係は、公式の文書では確かめていない（未確認）ので、比べた結果を記録して判断する。
-    - 傾向の見方と記録のしかたは <!-- link:begin model-quirks#observe-and-record -->モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する（準備中）<!-- link:end --> にある。
+    - 傾向の見方と記録のしかたは <!-- link:begin model-quirks#observe-and-record -->[モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する](../models/model-quirks.md#observe-and-record)<!-- link:end --> にある。
     - 公式は、範囲の拡大が出るモデルに対して、頼んだ範囲を守らせる一文を指示に足す手を示している。書き方は <!-- link:begin state-the-scope#anti-goals -->[範囲を伝える（やらないこと） › やらないことを書く](../prompting/state-the-scope.md#anti-goals)<!-- link:end --> にある。
 
 原因が分かったら、次の表の先へ進む。
@@ -112,8 +112,8 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 見えていない | [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)<br>[plan mode の使いどころ](../cli/when-to-plan.md)<br>[仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md) |
-| 確かめていない | 人間が読むべき差分の箇所（準備中）<br>[git との付き合い方](../cli/working-with-git.md) |
-| 合っていない | [effort の段階と使い分け](../models/effort-levels.md)<br>モデル別の癖と、プロンプトの合わせ方（準備中） |
+| 確かめていない | [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)<br>[git との付き合い方](../cli/working-with-git.md) |
+| 合っていない | [effort の段階と使い分け](../models/effort-levels.md)<br>[モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -136,7 +136,7 @@ updated: 2026-11-05
 
 予防は、範囲を先に決めることと、差分を毎回見ることの 2 つである。
 
-- **範囲を先に書く**：やること・やらないこと・触ってよい範囲を、依頼文の中で示す。最小限で足りるなら、その旨を書く（<!-- link:begin state-the-scope#minimum -->[範囲を伝える（やらないこと） › いまの作業に要る最小限を求める](../prompting/state-the-scope.md#minimum)<!-- link:end -->）。目的と完了の条件は成果で渡し、どこを触るかは具体的に書く（<!-- link:begin ask-for-outcomes#specifics -->細かく指図するか、成果で頼むか › 具体的に書くもの：対象と測り方（準備中）<!-- link:end -->）。
+- **範囲を先に書く**：やること・やらないこと・触ってよい範囲を、依頼文の中で示す。最小限で足りるなら、その旨を書く（<!-- link:begin state-the-scope#minimum -->[範囲を伝える（やらないこと） › いまの作業に要る最小限を求める](../prompting/state-the-scope.md#minimum)<!-- link:end -->）。目的と完了の条件は成果で渡し、どこを触るかは具体的に書く（<!-- link:begin ask-for-outcomes#specifics -->[細かく指図するか、成果で頼むか › 具体的に書くもの：対象と測り方](../prompting/ask-for-outcomes.md#specifics)<!-- link:end -->）。
 - **迷う作業は計画を読む**：範囲に迷う作業は、plan mode で計画を出させ、読んでから実装に入る。
 - **例外を許さない範囲は鍵に移す**：触らせないファイルや作らせない物は、権限やフックで縛る。CLAUDE.md には理由と相談の基準を書く（<!-- link:begin what-to-put-in-claude-md#what-to-write -->[CLAUDE.md に書くこと・書かないこと › 書くこと](../extend/what-to-put-in-claude-md.md#what-to-write)<!-- link:end -->）。
 - **変更を小さく区切り、毎回差分を見る**：1 つの変更を 1 つの確かめと 1 つのコミットに対応させると、余計な物が混ざった時点で戻せる。コミットの前に `git status` と `git diff` を見る習慣は、実践者の報告にもある（根拠：弱）。
@@ -172,20 +172,20 @@ updated: 2026-11-05
 - [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)
 - [plan mode の使いどころ](../cli/when-to-plan.md)
 - [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)
-- 人間が読むべき差分の箇所（準備中）
+- [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
 - [git との付き合い方](../cli/working-with-git.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
-- モデル別の癖と、プロンプトの合わせ方（準備中）
+- [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
 
 **関連**
 
 - [提案してほしいのか、実行してほしいのか](../prompting/suggest-or-do.md)
-- 細かく指図するか、成果で頼むか（準備中）
+- [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
-- 生成コードを自分のものにする（準備中）
+- [生成コードを自分のものにする](../verify/own-generated-code.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
-- 出力の形と分量を指定する（準備中）
+- [出力の形と分量を指定する](../prompting/output-shape.md)
 - [意図と違うものが出てくる](not-what-i-meant.md)
 - [確認ばかりで進まない・途中で止まる](keeps-stopping.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

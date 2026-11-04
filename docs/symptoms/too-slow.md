@@ -63,12 +63,12 @@ updated: 2026-11-05
 
 遅さの原因を、確かめる手間の小さい順に並べた診断である。上から順に、1 つずつ確かめる。人の側の落とし穴は最後に置く。
 
-1. **止まっているだけではないか**：何を見るか。ほかの人や別の面でも同じ依頼が遅いか。どう確かめるか。別の面や別の会話で短い依頼を出す。全体が遅いなら、自分の設定ではなく障害や混雑の可能性がある。止まり方の種類は <!-- link:begin when-ai-is-unavailable#kinds -->AI が使えないときの備え（障害・上限） › 止まり方の種類（障害・上限・規則）（準備中）<!-- link:end --> にある。
+1. **止まっているだけではないか**：何を見るか。ほかの人や別の面でも同じ依頼が遅いか。どう確かめるか。別の面や別の会話で短い依頼を出す。全体が遅いなら、自分の設定ではなく障害や混雑の可能性がある。止まり方の種類は <!-- link:begin when-ai-is-unavailable#kinds -->[AI が使えないときの備え（障害・上限） › 止まり方の種類（障害・上限・規則）](../cost/when-ai-is-unavailable.md#kinds)<!-- link:end --> にある。
 2. **散らかっている（会話が長い）**：何を見るか。同じ会話を長く続けていないか。どう確かめるか。同じ依頼を新しい会話で出して、速さが変わるかを見る。Claude は毎回会話の最初から読み直すので、長い会話ほど重くなる。新しくする合図は <!-- link:begin when-to-start-fresh#signals -->[新しい会話を始めるタイミング › 新しくする合図](../context/when-to-start-fresh.md#signals)<!-- link:end --> にある。
 3. **散らかっている（常駐するものが多い）**：何を見るか。入れた CLAUDE.md・スキル・MCP・プラグインが、毎回の入力に乗っていないか。どう確かめるか。Claude Code で、新しい会話の直後の内訳を `/context` で見て、常駐するものの占める量を読む。見方は <!-- link:begin inspect-context#baseline -->[/context で中身を見る › 起動直後の基準値](../context/inspect-context.md#baseline)<!-- link:end --> にある。
 4. **合っていない（effort が作業より高い）**：何を見るか。いまの effort と、直前に変えたかどうか。どう確かめるか。effort を 1 段下げて、同じ依頼で待ち時間と質を比べる。既定の段はモデルと面で違うので、先に <!-- link:begin effort-levels#defaults-by-surface -->[effort の段階と使い分け › 既定の段（モデル × 面の表）](../models/effort-levels.md#defaults-by-surface)<!-- link:end --> で自分の組み合わせの既定を確かめる。「よく考えて」と書き足しても effort は上がらない。書き方による違いは <!-- link:begin thinking-keywords#plain-text-phrases -->[「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し](../models/thinking-keywords.md#plain-text-phrases)<!-- link:end --> にある。
 5. **合っていない（モデルが作業に重い）**：何を見るか。上位のモデルへ替えた直後から遅くなっていないか。どう確かめるか。既定のモデルに戻して同じ依頼を試す。選ぶ順は、既定で試し、足りなければ effort を上げ、それでも足りないときだけ上位のモデルである（<!-- link:begin choosing-a-model#three-steps -->[モデルの選び方（三段階） › 三段階：既定 → effort → 上位のモデル](../models/choosing-a-model.md#three-steps)<!-- link:end -->）。
-6. **合っていない（サブエージェントの effort が想定と違う）**：何を見るか。本体と違うモデルで動くサブエージェントがないか。どう確かめるか。2026-11 時点の CHANGELOG では、そのようなサブエージェントは、セッションの effort を受け継がず、そのモデルに保存した値か既定の値で動く。本体の effort を下げても、サブエージェント側の待ち時間は変わらないことがある。分け方は <!-- link:begin split-models-by-role#patterns -->計画・実装・サブエージェントでモデルを分ける › 分ける形（計画と実装・本体とサブエージェント）（準備中）<!-- link:end --> にある。
+6. **合っていない（サブエージェントの effort が想定と違う）**：何を見るか。本体と違うモデルで動くサブエージェントがないか。どう確かめるか。2026-11 時点の CHANGELOG では、そのようなサブエージェントは、セッションの effort を受け継がず、そのモデルに保存した値か既定の値で動く。本体の effort を下げても、サブエージェント側の待ち時間は変わらないことがある。分け方は <!-- link:begin split-models-by-role#patterns -->[計画・実装・サブエージェントでモデルを分ける › 分ける形（計画と実装・本体とサブエージェント）](../models/split-models-by-role.md#patterns)<!-- link:end --> にある。
 7. **人の側：体感を信じる**：何を見るか。遅いという感覚が、実測と合っているか。どう確かめるか。同じ依頼を、条件を変える前と後で 1 回ずつ流し、待った時間を控える。感覚だけで effort やモデルを動かすと、質を落としたのに速くならない結果もありうる。
 
 ## 面ごとに見る場所 {#by-surface}
@@ -155,12 +155,12 @@ effort とモデルを確かめる場所は面で違う。固有の詳しい手�
 **関連**
 
 - [思考（thinking）と effort の仕組み](../basics/how-thinking-works.md)
-- 計画・実装・サブエージェントでモデルを分ける（準備中）
+- [計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)
 - [/context で中身を見る](../context/inspect-context.md)
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [「考えて」と書くことの現在（ultrathink）](../models/thinking-keywords.md)
 - [現行モデルの一覧と位置づけ](../models/current-models.md)
-- AI が使えないときの備え（障害・上限）（準備中）
+- [AI が使えないときの備え（障害・上限）](../cost/when-ai-is-unavailable.md)
 - [すぐ上限に当たる](hits-limits-quickly.md)
 - [急に賢くなくなった気がする](seems-less-capable.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

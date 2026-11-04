@@ -1,0 +1,26 @@
+{
+  "model": "<モデルの id>",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "東京の明日の天気を調べて。単位は摂氏で。"
+    }
+  ],
+  "tools": [
+    {
+      "name": "get_weather",
+      "description": "指定した都市の天気を返す",
+      "strict": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "city": { "type": "string" },
+          "unit": { "type": "string", "enum": ["celsius", "fahrenheit"] }
+        },
+        "required": ["city", "unit"],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

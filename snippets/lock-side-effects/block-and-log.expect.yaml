@@ -1,0 +1,15 @@
+title: 強制上書きの push だけを止め、理由と代わりを返して記録するフック
+kind: hook
+place: project
+safety: true
+features: [hooks]
+conditions:
+  - 新しいセッションで試す
+  - 壊れても困らない試験用のリポジトリで試す
+expect:
+  - when: Claude に git push --force を実行させる
+    then: 操作が止められ、permissionDecisionReason の文が理由と代わりの手段として Claude に見える
+  - when: git push --force-with-lease や、通常の git push を実行させる
+    then: 止められない
+  - when: 止められた後に blocks.log を開く
+    then: 日時・規則の番号・メインか担当か・コマンドの先頭が 1 行で残っている

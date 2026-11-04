@@ -62,14 +62,14 @@ updated: 2026-11-05
 | 繰り返していること | 移す先 | 詳しく |
 | --- | --- | --- |
 | 同じ規約やコマンドを、何度も間違える | CLAUDE.md | <!-- link:begin what-to-put-in-claude-md -->[CLAUDE.md に書くこと・書かないこと](what-to-put-in-claude-md.md)<!-- link:end --> |
-| 毎回「短く」「説明を多めに」と頼んでいる | 出力スタイル | <!-- link:begin output-style-modes -->出力スタイルで応答の仕方を切り替える（準備中）<!-- link:end --> |
+| 毎回「短く」「説明を多めに」と頼んでいる | 出力スタイル | <!-- link:begin output-style-modes -->[出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)<!-- link:end --> |
 | 同じ開始の依頼を、毎回打っている | 自分で呼び出せるスキル | <!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)<!-- link:end --> |
 | 同じ手順書を、何度も貼っている | スキル | <!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)<!-- link:end --> |
 | ブラウザのデータを、コピーして貼り続けている | MCP | <!-- link:begin connecting-mcp -->[MCP をつなぐ](connecting-mcp.md)<!-- link:end --> |
-| 定義の探索のために、多数のファイルを読ませている | code intelligence プラグイン | <!-- link:begin code-intelligence-plugins -->code intelligence プラグイン（LSP）（準備中）<!-- link:end --> |
+| 定義の探索のために、多数のファイルを読ませている | code intelligence プラグイン | <!-- link:begin code-intelligence-plugins -->[code intelligence プラグイン（LSP）](code-intelligence-plugins.md)<!-- link:end --> |
 | 副作業の出力が、会話を埋めてしまう | サブエージェント | <!-- link:begin writing-subagents -->[サブエージェントの作り方と使いどころ](writing-subagents.md)<!-- link:end --> |
 | 毎回、必ず起きてほしいことがある | フック | <!-- link:begin hooks-basics -->[フックの考え方とイベント](../enforce/hooks-basics.md)<!-- link:end --> |
-| 2 つ目のリポジトリでも、同じ設定を使いたい | プラグイン | <!-- link:begin plugins-and-marketplaces -->プラグインとマーケットプレイス（準備中）<!-- link:end --> |
+| 2 つ目のリポジトリでも、同じ設定を使いたい | プラグイン | <!-- link:begin plugins-and-marketplaces -->[プラグインとマーケットプレイス](plugins-and-marketplaces.md)<!-- link:end --> |
 
 公式の表は、規約を間違えた回数や手順書を貼った回数を添えて、足す目安を示している。回数は公式の表の値で、変わりうる。この表は種類だけを並べ、回数を載せない。大事なのは、何回かではなく、「同じことを、また言っている」と気づくことである。
 
@@ -136,12 +136,12 @@ updated: 2026-11-05
 | 機能 | 強制力 | 読み込みの時期 | コンテキストのコスト | 圧縮で残るか |
 | --- | --- | --- | --- | --- |
 | [CLAUDE.md](what-to-put-in-claude-md.md) | お願い | セッション開始 | 常駐 | 残る |
-| 出力スタイル（output styles）（準備中） | お願い | セッション開始と切り替えたとき | 常駐 | 残る |
+| [出力スタイル（output styles）](../cli/output-style-modes.md) | お願い | セッション開始と切り替えたとき | 常駐 | 残る |
 | [スキル（skills）](writing-skills.md) | お願い | セッション開始と使うとき | 使うまで小さい | 残る |
 | [サブエージェント（subagents）](writing-subagents.md) | — | 起動したとき | 分離 | 未確認 |
 | [MCP](connecting-mcp.md) | なし | セッション開始 | 使うまで小さい | 未確認 |
 | [フック（hooks）](../enforce/hooks-basics.md) | 鍵 | イベントが起きたとき | ゼロ（出力を返さない限り） | 残る |
-| プラグイン（plugins）（準備中） | — | セッション開始と使うとき | 使うまで小さい | 未確認 |
+| [プラグイン（plugins）](plugins-and-marketplaces.md) | — | セッション開始と使うとき | 使うまで小さい | 未確認 |
 
 <!-- textlint-enable -->
 <!-- gen:end compare 強制力 読み込みの時期 コンテキストのコスト 圧縮で残るか -->
@@ -183,7 +183,7 @@ updated: 2026-11-05
 
 - **誤解：拡張は多いほど Claude を使いこなせる**。足した分は、常駐する説明と管理の手間になる。使っていないものは外す。減らす順は <!-- link:begin always-on-costs#reduce -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 減らす順](../context/always-on-costs.md#reduce)<!-- link:end --> にある。
 - **誤解：最初に CLAUDE.md を作り込めばよい**。推測できないコマンドや落とし穴だけを残す。構成の説明や、検査で確かめられる規約は外す。書く行と外す行は <!-- link:begin what-to-put-in-claude-md#what-to-leave-out -->[CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](what-to-put-in-claude-md.md#what-to-leave-out)<!-- link:end --> にある。
-- **誤解：繰り返しが見えたら、まずプラグインにする**。プラグインは、スキルやフックなどを束ねて配る単位である。足す目安は、2 つ目のリポジトリや、ほかの人にも同じ設定が要るときである。入れる前の確認は <!-- link:begin plugins-and-marketplaces#before-install -->プラグインとマーケットプレイス › 入れる前の確認（準備中）<!-- link:end --> にある。共有する拡張は、複数の人が使うものに絞る（根拠：中、実務の一致）。
+- **誤解：繰り返しが見えたら、まずプラグインにする**。プラグインは、スキルやフックなどを束ねて配る単位である。足す目安は、2 つ目のリポジトリや、ほかの人にも同じ設定が要るときである。入れる前の確認は <!-- link:begin plugins-and-marketplaces#before-install -->[プラグインとマーケットプレイス › 入れる前の確認](plugins-and-marketplaces.md#before-install)<!-- link:end --> にある。共有する拡張は、複数の人が使うものに絞る（根拠：中、実務の一致）。
 - **誤解：回数さえ守れば、判断は要らない**。表の回数は目安である。同じ内容でも、守られなくても取り返せるか、例外なく毎回必要かで、移す先は変わる。
 - **誤解：古い記事のカスタムコマンドは、別の拡張として足す**。カスタムコマンドは、今はスキルにまとめられている。記事の「コマンドにする」は、スキルにすると読み替える。
 - **誤解：足したら終わり**。足した後は、使っているかを見て削る。移した後に削り、足すのは繰り返しが見えてからにする流れは <!-- link:begin repeating-the-same-explanation#prevention -->[毎回同じ説明をしている › 予防：移した後に削り、足すのは繰り返しが見えてから](../symptoms/repeating-the-same-explanation.md#prevention)<!-- link:end --> にある。
@@ -221,10 +221,10 @@ updated: 2026-11-05
 - [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
 - [サブエージェントの作り方と使いどころ](writing-subagents.md)
 - [MCP をつなぐ](connecting-mcp.md)
-- code intelligence プラグイン（LSP）（準備中）
-- プラグインとマーケットプレイス（準備中）
+- [code intelligence プラグイン（LSP）](code-intelligence-plugins.md)
+- [プラグインとマーケットプレイス](plugins-and-marketplaces.md)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
-- 出力スタイルで応答の仕方を切り替える（準備中）
+- [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)
 - [拡張の棚卸しと剪定](pruning-extensions.md)
 
 </div>

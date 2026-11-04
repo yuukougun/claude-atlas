@@ -87,15 +87,15 @@ Claude が文章で「続けますか」と聞いて止まる症状は、権限�
     - 見る：毎回同じ種類の確認が出る操作と、確認なしで通ってほしくない操作。設定に、それぞれのルールがあるか。
     - 確かめる：安全と分かっているコマンドは、範囲を絞った allow ルールで、毎回確かめさせずに済む。止めたい操作は deny ルールで止める。評価の順番は <!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](../enforce/permission-rules.md#evaluation-order)<!-- link:end --> にある。
     - 会話での頼みや CLAUDE.md の指示は、Claude が試みることを変えるが、許すことは変えない。確実に止めたい操作は、頼むのではなく deny ルールにする。
-    - ルールを書いたのに効かないなら、当たらないパスの書き方と、子プロセスに効かない場面（<!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](../enforce/permission-rules.md#path-rules)<!-- link:end -->）を疑う。読み込まれた層の確かめ方は <!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end --> にある。
+    - ルールを書いたのに効かないなら、当たらないパスの書き方と、子プロセスに効かない場面（<!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](../enforce/permission-rules.md#path-rules)<!-- link:end -->）を疑う。読み込まれた層の確かめ方は <!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](../cli/settings-layers.md#verify)<!-- link:end --> にある。
 4. **境界があるか**（原因：境界がない。手間：環境を見る）
     - 見る：確認なしで進む操作が、実際にどこまで及ぶか。auto モードの分類器が何を止め、サンドボックスが何を囲んでいるか。
     - 確かめる：auto モードは確認を減らす仕組みで、安全を保証しない。止めるものとすり抜けうるものは <!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end --> にある。auto モードが止めた操作は、<!-- name:begin recently-denied-to-blocked -->Recently blocked（/permissions のタブ）<!-- name:end --> で見直せる。
     - サンドボックスは、コマンドの読み書きと通信を OS の層で囲む。囲える範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->、読み取りは <!-- link:begin sandboxing#default-reads -->[サンドボックスで封じ込める › 読み取りは既定で広い](../enforce/sandboxing.md#default-reads)<!-- link:end --> で確かめる。
-    - どのモードでも確認なしには書かせない場所は決まっている。保護される場所と、モードごとの扱いは <!-- link:begin protected-paths#protected -->消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い（準備中）<!-- link:end --> で知る。足りない境界は、作業ディレクトリの外への読み書きを閉じる設定で足せる（<!-- link:begin protected-paths#outside-working-directory -->消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる（準備中）<!-- link:end -->）。
+    - どのモードでも確認なしには書かせない場所は決まっている。保護される場所と、モードごとの扱いは <!-- link:begin protected-paths#protected -->[消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い](../enforce/protected-paths.md#protected)<!-- link:end --> で知る。足りない境界は、作業ディレクトリの外への読み書きを閉じる設定で足せる（<!-- link:begin protected-paths#outside-working-directory -->[消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる](../enforce/protected-paths.md#outside-working-directory)<!-- link:end -->）。
 5. **人の側：確認を読めない状態を作っていないか**（落とし穴：預けすぎる。手間：自分の押し方を振り返る）
     - 見る：確認の画面を、中身を読んで押しているか。読めない速さで、同じ画面が続いていないか。
-    - 確かめる：確認が多いと中身を読まなくなり、確認が仕組みとして働かなくなる。理由は <!-- link:begin approval-fatigue#why -->承認疲れ › なぜ読まなくなるか（準備中）<!-- link:end --> にある。読まずに押しているなら、確認を減らすか、残す確認を絞る。
+    - 確かめる：確認が多いと中身を読まなくなり、確認が仕組みとして働かなくなる。理由は <!-- link:begin approval-fatigue#why -->[承認疲れ › なぜ読まなくなるか](../safety/approval-fatigue.md#why)<!-- link:end --> にある。読まずに押しているなら、確認を減らすか、残す確認を絞る。
     - 任せる段階ごとの足し方：<!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end -->。
 
 ## 原因ごとの振り分け先 {#routes}
@@ -109,7 +109,7 @@ Claude が文章で「続けますか」と聞いて止まる症状は、権限�
 | --- | --- |
 | 合っていない | [権限モードの選び方](../cli/permission-modes-overview.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md) |
 | 境界がない | [サンドボックスで封じ込める](../enforce/sandboxing.md)<br>[auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md) |
-| 預けすぎる | 承認疲れ（準備中）<br>[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage) |
+| 預けすぎる | [承認疲れ](../safety/approval-fatigue.md)<br>[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -132,11 +132,11 @@ Claude が文章で「続けますか」と聞いて止まる症状は、権限�
 
 確認の量を、その場の気分で変えるのをやめ、置き方を決めておく。
 
-- **減らす前に守りを置く**：確認を減らすのは任せる幅を広げることなので、サンドボックスと deny ルールを先に置く。減らす順番は <!-- link:begin approval-fatigue#reduce-prompts -->承認疲れ › 確認を減らす順番（準備中）<!-- link:end --> にある。
-- **残す確認を先に決める**：取り返しのつかない操作の確認は残し、そのほかを減らす。選び方は <!-- link:begin approval-fatigue#keep-prompts -->承認疲れ › 残す確認を選ぶ（準備中）<!-- link:end --> にある。
-- **例外を許さない禁止は鍵にする**：頼みではなく deny ルールかフックで止める。縛る規則の選び方：<!-- link:begin lock-side-effects#what-to-lock -->縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）（準備中）<!-- link:end -->。止めるときに返すこと：<!-- link:begin lock-side-effects#reason-and-alternative -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと（準備中）<!-- link:end -->。
+- **減らす前に守りを置く**：確認を減らすのは任せる幅を広げることなので、サンドボックスと deny ルールを先に置く。減らす順番は <!-- link:begin approval-fatigue#reduce-prompts -->[承認疲れ › 確認を減らす順番](../safety/approval-fatigue.md#reduce-prompts)<!-- link:end --> にある。
+- **残す確認を先に決める**：取り返しのつかない操作の確認は残し、そのほかを減らす。選び方は <!-- link:begin approval-fatigue#keep-prompts -->[承認疲れ › 残す確認を選ぶ](../safety/approval-fatigue.md#keep-prompts)<!-- link:end --> にある。
+- **例外を許さない禁止は鍵にする**：頼みではなく deny ルールかフックで止める。縛る規則の選び方：<!-- link:begin lock-side-effects#what-to-lock -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）](../enforce/lock-side-effects.md#what-to-lock)<!-- link:end -->。止めるときに返すこと：<!-- link:begin lock-side-effects#reason-and-alternative -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと](../enforce/lock-side-effects.md#reason-and-alternative)<!-- link:end -->。
 - **確認をすべて外す運用は、隔離した環境に限る**：普段の作業では使わない。古くなった助言は <!-- link:begin outdated-advice-ledger#yolo-skip-permissions -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#yolo-skip-permissions)<!-- link:end --> にある。
-- **止めた記録を見直す**：止めすぎや回り込みが出ていないかを、記録で確かめる。見直し方は <!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end --> にある。
+- **止めた記録を見直す**：止めすぎや回り込みが出ていないかを、記録で確かめる。見直し方は <!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](../enforce/lock-side-effects.md#review-blocks)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -168,18 +168,18 @@ Claude が文章で「続けますか」と聞いて止まる症状は、権限�
 - [アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
-- 承認疲れ（準備中）
+- [承認疲れ](../safety/approval-fatigue.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)
 
 **関連**
 
 - [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
-- 消せない場所・触れない場所（protected paths）（準備中）
-- 設定ファイルの階層と優先順位（準備中）
+- [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)
+- [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [確認ばかりで進まない・途中で止まる](keeps-stopping.md)
 - [消してはいけないものを消された](deleted-something-important.md)
 - [並列にしたら疲れた・レビューが追いつかない](parallel-fatigue.md)
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)
 
 </div>

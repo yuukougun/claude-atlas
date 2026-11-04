@@ -68,7 +68,7 @@ updated: 2026-11-05
 1. **見えていない**：その箇所が、そもそも Claude に渡る範囲の外にある。
     - 見るもの：資料の形式とページ数。図が根拠の箇所は、PDF のどのページにあるか。Word などの文書か、PDF か。
     - 確かめ方：添付した資料の長さを数え、読み込みの範囲と照らす。PDF の読まれ方は、<!-- fact:begin app-pdf-visual-pages -->100 ページまで（文字と視覚要素）（2026-11-04 時点）<!-- fact:end -->。<!-- fact:begin app-pdf-text-only-pages -->101〜1000 ページは文字だけが読まれ、1000 ページを超えると拒否される（2026-11-04 時点）<!-- fact:end -->。PDF 以外の文書は、文字だけが取り出され、埋め込みの画像は読まれない。範囲の外にある図について聞いていたなら、これが原因である。範囲の値は <!-- link:begin how-attachments-are-read#pdf-and-others -->[添付ファイルはどこまで読まれるか › PDF とそれ以外の文書](../app/how-attachments-are-read.md#pdf-and-others)<!-- link:end --> にあり、API で渡すときの違いは <!-- link:begin how-attachments-are-read#api -->[添付ファイルはどこまで読まれるか › API で渡すとき（Files API・PDF・画像）](../app/how-attachments-are-read.md#api)<!-- link:end --> にある。
-    - 日本語の PDF では、文字として読めているかも別に確かめる。確かめ方は <!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end --> にある。
+    - 日本語の PDF では、文字として読めているかも別に確かめる。確かめ方は <!-- link:begin documents-in-japanese#pdf -->[日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること](../japanese/documents-in-japanese.md#pdf)<!-- link:end --> にある。
 2. **見えていない（範囲の中で読まれたかの確認）**：範囲の中にあるはずなのに、読まれたか分からない。
     - 見るもの：答えに、資料の言葉やページの記述が引かれているか。
     - 確かめ方：答えに対応するページ番号と、そのページの原文の引用を出させ、原本を開いて文言を照らす。引用が出せない、または原本と合わないなら、その箇所は読まれていないか、使われていない。1 で範囲の外と言えないときは、次の 3 に進む。出させる依頼の雛形はこの節の末尾にある。引用を先に抜き出させる手法の考え方は <!-- link:begin handing-long-documents#quotes-first -->[長い資料を渡すとき › 引用を先に抜かせる](../context/handing-long-documents.md#quotes-first)<!-- link:end --> にあり、読まれたかの確かめ方の全体は <!-- link:begin how-attachments-are-read#verify -->[添付ファイルはどこまで読まれるか › 読まれたかを確かめる（ページの番号と引用）](../app/how-attachments-are-read.md#verify)<!-- link:end --> にある。
@@ -77,7 +77,7 @@ updated: 2026-11-05
     - 確かめ方：資料を先頭に、質問を最後に置き直して、同じ質問をもう一度出す。中ほどの情報は使われにくい傾向がある（根拠：中。公刊は 2023 年で、対象は当時の言語モデルである。今の Claude にそのまま当てはまるとは限らない）。傾向の説明は前提の <!-- link:begin context-rot#lost-in-the-middle -->[context rot と紛らわしい情報 › 中ほどの情報は使われにくいか（lost in the middle）](../basics/context-rot.md#lost-in-the-middle)<!-- link:end --> にある。置き方は <!-- link:begin long-context-first#order -->[長い資料は先、質問は最後 › 資料を先、質問を最後に置く](../prompting/long-context-first.md#order)<!-- link:end --> にある。
 4. **散らかっている**：資料を何点も添付している、またはプロジェクトのナレッジに資料を溜めている。
     - 見るもの：同じ会話やプロジェクトに入れた資料の数と、今回の質問に関係しない資料の量。
-    - 確かめ方：質問に要る資料だけを新しい会話に入れ直して、同じ質問を出す。答えが改善するなら、余分な資料が邪魔をしていた。プロジェクトのナレッジが容量に近づくと読み方が変わる点は <!-- link:begin too-much-project-knowledge#rag-mode -->プロジェクトのナレッジが多すぎるとき › 容量に近づくと何が変わるか（準備中）<!-- link:end --> にある。
+    - 確かめ方：質問に要る資料だけを新しい会話に入れ直して、同じ質問を出す。答えが改善するなら、余分な資料が邪魔をしていた。プロジェクトのナレッジが容量に近づくと読み方が変わる点は <!-- link:begin too-much-project-knowledge#rag-mode -->[プロジェクトのナレッジが多すぎるとき › 容量に近づくと何が変わるか](../app/too-much-project-knowledge.md#rag-mode)<!-- link:end --> にある。
 
 引用で確かめる依頼の雛形を、次に置く。資料を添付した後の、質問の部分に使う。この確かめ方は、公式が幻覚を減らす手法として挙げる「先に引用を抜き出させる」ことの応用である。
 
@@ -112,7 +112,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 見えていない | [添付ファイルはどこまで読まれるか](../app/how-attachments-are-read.md)<br>[長い資料を渡すとき](../context/handing-long-documents.md) |
-| 散らかっている | [長い資料は先、質問は最後](../prompting/long-context-first.md)<br>プロジェクトのナレッジが多すぎるとき（準備中） |
+| 散らかっている | [長い資料は先、質問は最後](../prompting/long-context-first.md)<br>[プロジェクトのナレッジが多すぎるとき](../app/too-much-project-knowledge.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -141,7 +141,7 @@ updated: 2026-11-05
 - 図が根拠になる資料は、渡す前に分ける。分け方は <!-- link:begin how-attachments-are-read#splitting -->[添付ファイルはどこまで読まれるか › 大きな資料の分け方](../app/how-attachments-are-read.md#splitting)<!-- link:end --> にある。形や量の整え方は <!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end --> にある。
 - 答えを求める依頼に、ページ番号付きの引用を先に出させる指示を含める。引用が資料の中にあるかを、原本で照らす。
 - 資料は依頼の先頭、質問は最後に置く。引用を答えの前に抜かせる使い方は <!-- link:begin long-context-first#quote-first -->[長い資料は先、質問は最後 › 答えの前に引用を抜かせる](../prompting/long-context-first.md#quote-first)<!-- link:end --> にある。
-- プロジェクトのナレッジには、使う資料だけを入れ、不要になった資料は外す。絞り方は <!-- link:begin too-much-project-knowledge#curate -->プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方（準備中）<!-- link:end --> にある。
+- プロジェクトのナレッジには、使う資料だけを入れ、不要になった資料は外す。絞り方は <!-- link:begin too-much-project-knowledge#curate -->[プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方](../app/too-much-project-knowledge.md#curate)<!-- link:end --> にある。
 - 読み込みの範囲は面や時期で変わる。値は本文に頼らず、<!-- link:begin how-attachments-are-read#pitfalls -->[添付ファイルはどこまで読まれるか › 効かない場面・落とし穴](../app/how-attachments-are-read.md#pitfalls)<!-- link:end --> と公式の文書で、使う面について確かめる。
 
 <!-- gen:begin references -->
@@ -170,11 +170,11 @@ updated: 2026-11-05
 - [添付ファイルはどこまで読まれるか](../app/how-attachments-are-read.md)
 - [長い資料を渡すとき](../context/handing-long-documents.md)
 - [長い資料は先、質問は最後](../prompting/long-context-first.md)
-- プロジェクトのナレッジが多すぎるとき（準備中）
+- [プロジェクトのナレッジが多すぎるとき](../app/too-much-project-knowledge.md)
 
 **関連**
 
-- 日本語の資料を読ませる・書かせる（準備中）
+- [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)
 - [引用や出典の確かめ方](../verify/checking-citations.md)
 - [要約が原文より断定的になる](summary-overstates-source.md)
 - [長い会話で前提を忘れる・雑になる](forgets-in-long-chats.md)

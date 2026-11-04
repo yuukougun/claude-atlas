@@ -64,14 +64,14 @@ updated: 2026-11-05
 
 - **サブエージェント**：別室の部下に調べさせると、本筋の文脈は膨らまない。ただし部下の作業ぶんのトークンは余分にかかる。文脈を分けることは、全体の使用量を減らすことではない。現行の公式の説明は、サブエージェントが今も向く場面を、並べる作業、うるさい出力を本筋から離すこと、独立したレビューとする。どれも追加のトークンがかかる。この変化は <!-- link:begin outdated-advice-ledger#subagents-to-save-context -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#subagents-to-save-context)<!-- link:end --> に行がある。
 - **エージェントチーム**：チームメイトはそれぞれ自分の文脈を持ち、起動したときに CLAUDE.md・MCP サーバー・スキルを読み込む。トークンの使用量は、動いているチームメイトの数に応じて増える。倍率の数字は条件つきである。公式の費用の文書は、チームメイトが plan mode で動くときの値として示す。条件を外して「何倍」と覚えない。どう選ぶかは <!-- link:begin choosing-parallel-modes#compare -->[並列の方式の選び方 › 方式の比較](../delegate/choosing-parallel-modes.md#compare)<!-- link:end --> が扱う。
-- **dynamic workflows**：Claude が書いたスクリプトが多数のサブエージェントを背景で動かす。途中の結果はスクリプトの変数に残り、本筋の文脈には入らない。担当の数だけ使用量が増えるので、小さな範囲で試してから広げる（<!-- link:begin dynamic-workflows#when-and-start-small -->dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 向く規模と、小さく試す（準備中）<!-- link:end -->）。起動の語は呼び方が替わっていて、今は <!-- name:begin workflow-to-ultracode -->ultracode（dynamic workflows を起動するキーワード）<!-- name:end --> である。古い書き方は <!-- link:begin outdated-advice-ledger#workflow-keyword-extra-usage -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#workflow-keyword-extra-usage)<!-- link:end --> にある。
+- **dynamic workflows**：Claude が書いたスクリプトが多数のサブエージェントを背景で動かす。途中の結果はスクリプトの変数に残り、本筋の文脈には入らない。担当の数だけ使用量が増えるので、小さな範囲で試してから広げる（<!-- link:begin dynamic-workflows#when-and-start-small -->[dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 向く規模と、小さく試す](../delegate/dynamic-workflows.md#when-and-start-small)<!-- link:end -->）。起動の語は呼び方が替わっていて、今は <!-- name:begin workflow-to-ultracode -->ultracode（dynamic workflows を起動するキーワード）<!-- name:end --> である。古い書き方は <!-- link:begin outdated-advice-ledger#workflow-keyword-extra-usage -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#workflow-keyword-extra-usage)<!-- link:end --> にある。
 - **`/loop` と `/goal`**：開いているセッションの中で繰り返す。繰り返すほど履歴が伸び、1 回あたりの文脈も大きくなる。長いセッションで増える理由は <!-- link:begin what-uses-up-limits#long-sessions -->[上限を早く使う要因 › 長いセッションで増える理由](what-uses-up-limits.md#long-sessions)<!-- link:end --> にある。
 
 ### 枠が尽きたあと
 
 夜通しの実行では、枠が尽きる場面も考える。枠を使い切った作業は、開いたままのセッションで待ち、リセットの後に自動で続く場合がある。この自動の継続は <!-- fact:begin auto-continue-max-times -->3 回まで（2026-11-05 時点）<!-- fact:end --> と決まっている（`/goal` も同じ）。止まり方の詳細は <!-- link:begin goal-until-done#at-usage-limits -->[/goal（完了するまで続けさせる） › 利用上限で止まったとき](../delegate/goal-until-done.md#at-usage-limits)<!-- link:end --> にある。
 
-usage credits を有効にしていると、プランの枠を超えても従量課金で作業が続く。夜通しのループの請求が増える原因になりうる。切り替わる仕組みは <!-- link:begin usage-credits-basics#how-it-works -->usage credits（上限を超えた分の従量課金） › 切り替わる仕組み（準備中）<!-- link:end --> にある。
+usage credits を有効にしていると、プランの枠を超えても従量課金で作業が続く。夜通しのループの請求が増える原因になりうる。切り替わる仕組みは <!-- link:begin usage-credits-basics#how-it-works -->[usage credits（上限を超えた分の従量課金） › 切り替わる仕組み](usage-credits-basics.md#how-it-works)<!-- link:end --> にある。
 
 ## 始める前に決める三つ {#decide-before-starting}
 
@@ -79,7 +79,7 @@ usage credits を有効にしていると、プランの枠を超えても従量
 
 1. **同時に動かす数**：本数は、機械の限界や予算ではなく、結果を確かめる人の手が回る数で決める。レビューの要る本流は少なく、調査や使い捨ての試作は多めにする。考え方は <!-- link:begin humans-set-the-parallel-limit#mainline-vs-scouting -->[並列の上限は人間が決める › 本流と偵察で本数を分ける](../delegate/humans-set-the-parallel-limit.md#mainline-vs-scouting)<!-- link:end --> と <!-- link:begin humans-set-the-parallel-limit#guards-before-widening -->[並列の上限は人間が決める › 本数を増やす前に置く守り](../delegate/humans-set-the-parallel-limit.md#guards-before-widening)<!-- link:end --> にある。方式の選び方は <!-- link:begin choosing-parallel-modes#who-coordinates -->[並列の方式の選び方 › 誰が調整するか](../delegate/choosing-parallel-modes.md#who-coordinates)<!-- link:end --> が扱う。
 2. **止める条件**：回数の上限、終わりの状態、前より進まなくなったら止まる、の 3 つを依頼に書く。条件を書いていないループは、終わりの条件を満たすか別の上限に着くまで回りうる。`/goal` なら、条件に終わりの状態、証明、変えないもの、上限を入れる（<!-- link:begin goal-until-done#writing-conditions -->[/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<!-- link:end -->）。やめる基準を着手前に書く考え方は <!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](../judgment/decide-when-to-quit.md#write-criteria-first)<!-- link:end --> にある。
-3. **費用の上限**：仕組みで止める上限を置く。非対話モードの `claude -p` には、ターン数の上限 `--max-turns` と、費用の上限 `--max-budget-usd` がある（<!-- link:begin outdated-advice-ledger#ralph-loops -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#ralph-loops)<!-- link:end --> も参照）。usage credits は、月の上限額と通知を先に決める（<!-- link:begin usage-credits-basics#set-a-cap -->usage credits（上限を超えた分の従量課金） › 上限額と通知を決める（準備中）<!-- link:end -->）。
+3. **費用の上限**：仕組みで止める上限を置く。非対話モードの `claude -p` には、ターン数の上限 `--max-turns` と、費用の上限 `--max-budget-usd` がある（<!-- link:begin outdated-advice-ledger#ralph-loops -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#ralph-loops)<!-- link:end --> も参照）。usage credits は、月の上限額と通知を先に決める（<!-- link:begin usage-credits-basics#set-a-cap -->[usage credits（上限を超えた分の従量課金） › 上限額と通知を決める](usage-credits-basics.md#set-a-cap)<!-- link:end -->）。
 
 プロンプトに書いた上限は依頼であって、鍵ではない。確実に止めたい費用の上限は、依頼の文ではなく、`--max-turns`・`--max-budget-usd`・usage credits の上限額のような仕組みで置く。依頼の文の上限は、それを補う手がかりになる。
 
@@ -108,7 +108,7 @@ usage credits を有効にしていると、プランの枠を超えても従量
 <!-- textlint-enable -->
 <!-- gen:end snippet parallel-and-loop-costs/loop-with-limits -->
 
-人が見ていない実行は、終了コードや要約だけで終わりにしない。出力・記録・差分で確かめる（<!-- link:begin checking-unattended-runs#beyond-exit-codes -->無人実行の結果を確かめる › 終了コードと要約だけで決めない（準備中）<!-- link:end -->）。戦略そのものを AI に改善させ続ける開いたループは、仕様の決まった閉じた反復とは別物で、回すほど良くなるとは限らない（<!-- link:begin open-ended-loop-trap#closed-vs-open -->AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ（準備中）<!-- link:end -->）。
+人が見ていない実行は、終了コードや要約だけで終わりにしない。出力・記録・差分で確かめる（<!-- link:begin checking-unattended-runs#beyond-exit-codes -->[無人実行の結果を確かめる › 終了コードと要約だけで決めない](../verify/checking-unattended-runs.md#beyond-exit-codes)<!-- link:end -->）。戦略そのものを AI に改善させ続ける開いたループは、仕様の決まった閉じた反復とは別物で、回すほど良くなるとは限らない（<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](../delegate/open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->）。
 
 !!! example "判断例：夜通しの移行をどう始めるか"
     - **状況**：多数のファイルを新しい書き方へ移す作業を、夜のうちに workflows で終わらせたい。
@@ -185,14 +185,14 @@ usage credits を有効にしていると、プランの枠を超えても従量
 - [並列の上限は人間が決める](../delegate/humans-set-the-parallel-limit.md)
 - [並列の方式の選び方](../delegate/choosing-parallel-modes.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
-- /loop と定期実行の方式（準備中）
-- dynamic workflows（スクリプトで多数のサブエージェントを動かす）（準備中）
+- [/loop と定期実行の方式](../delegate/loop-and-scheduling.md)
+- [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
 - エージェントチーム（複数の Claude に分担させる）（準備中）
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
-- 無人実行の結果を確かめる（準備中）
+- [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
-- usage credits（上限を超えた分の従量課金）（準備中）
+- [AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)
+- [usage credits（上限を超えた分の従量課金）](usage-credits-basics.md)
 
 </div>
 

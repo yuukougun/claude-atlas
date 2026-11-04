@@ -59,7 +59,7 @@ updated: 2026-11-05
 | 自分の PC（ターミナルの Claude Code、Desktop の Code タブ、Desktop が開いている間のアプリのタスク） | 自分の機械 | 続かない。機械が動いていることが前提 | 届く |
 | リモート操作（Remote Control） | 自分の機械。スマホやブラウザは操作する窓口 | 続かない。機械が動いていることが前提 | 届く |
 
-アプリのタスクは、クラウドで動くものと、Desktop を開いた手元で動くものがある。どちらで動くかの今の扱いは、<!-- link:begin tasks-and-schedules-in-the-app#where-it-runs -->[タスクと定期タスク（Cowork） › どこで動くか（クラウドと Desktop）](../app/tasks-and-schedules-in-the-app.md#where-it-runs)<!-- link:end --> にある。Claude Code の側でクラウドへ送る手順は <!-- link:begin cloud-sessions-and-teleport#what-to-send -->クラウドセッションと teleport › クラウドに送ってよい作業（準備中）<!-- link:end --> にある。
+アプリのタスクは、クラウドで動くものと、Desktop を開いた手元で動くものがある。どちらで動くかの今の扱いは、<!-- link:begin tasks-and-schedules-in-the-app#where-it-runs -->[タスクと定期タスク（Cowork） › どこで動くか（クラウドと Desktop）](../app/tasks-and-schedules-in-the-app.md#where-it-runs)<!-- link:end --> にある。Claude Code の側でクラウドへ送る手順は <!-- link:begin cloud-sessions-and-teleport#what-to-send -->[クラウドセッションと teleport › クラウドに送ってよい作業](../cli/cloud-sessions-and-teleport.md#what-to-send)<!-- link:end --> にある。
 
 API を自分のプログラムから呼ぶ場合は、そのプログラムを動かす機械を実行場所とみなす。この表の外にあり、選び方は <!-- link:begin choosing-a-surface#when-to-build-with-api -->[アプリ・Claude Code・API の選び方 › 自分のプログラムから呼ぶとき（API・SDK）](choosing-a-surface.md#when-to-build-with-api)<!-- link:end --> にある。
 
@@ -80,7 +80,7 @@ API を自分のプログラムから呼ぶ場合は、そのプログラムを�
     - ネットワークへのアクセス、環境変数、セットアップのスクリプトは、クラウドの環境の設定として別に用意する。
     - `ANTHROPIC_API_KEY` などの環境変数は、クラウドのセッションも Desktop も読まない。認証はサブスクリプションの OAuth が使われる。
 
-効かせたい規則は、リポジトリの `CLAUDE.md` と `.claude/settings.json` に置く。設定がどの層から読まれるかは <!-- link:begin settings-layers#layers -->設定ファイルの階層と優先順位 › 層と優先順位（準備中）<!-- link:end --> で見られる。クラウドのセッションで読み込まれた層を同じ手順で確かめられるかは、まだ確かめていない。
+効かせたい規則は、リポジトリの `CLAUDE.md` と `.claude/settings.json` に置く。設定がどの層から読まれるかは <!-- link:begin settings-layers#layers -->[設定ファイルの階層と優先順位 › 層と優先順位](../cli/settings-layers.md#layers)<!-- link:end --> で見られる。クラウドのセッションで読み込まれた層を同じ手順で確かめられるかは、まだ確かめていない。
 
 PC を閉じても進めさせるのは、見ていない間に動かすことである。任せる幅が広がるので、縛りを先にリポジトリへ置く。秘密は逆向きにも注意が要る。手元だけにある秘密のファイルはクラウドに届かないが、リポジトリにコミットした秘密は届く。置き方は <!-- link:begin protecting-secrets#keep-out -->[秘密情報（.env・API キー）を守る › 秘密を作業ディレクトリと会話に置かない](../safety/protecting-secrets.md#keep-out)<!-- link:end --> を見る。
 
@@ -89,7 +89,7 @@ PC を閉じても進めさせるのは、見ていない間に動かすこと�
 手元で動くときは、ファイル・ブラウザ・設定が全部届く。その分、届く範囲を自分で囲う必要がある。
 
 - ターミナルの Claude Code は、コマンドの読み取りが既定で広い。秘密のある場所は明示して塞ぐ。囲み方は <!-- link:begin sandboxing#default-reads -->[サンドボックスで封じ込める › 読み取りは既定で広い](../enforce/sandboxing.md#default-reads)<!-- link:end --> にある。
-- Desktop の computer use は、Claude とアプリの間にサンドボックスがない。アプリごとに許可を求められる。使う順は、コネクタ、ブラウザ、画面の操作の順である。順の理由は <!-- link:begin browser-control#which-to-use -->Claude in Chrome と computer use（ブラウザと画面の操作） › コネクタ・ブラウザ・画面の順に選ぶ（準備中）<!-- link:end --> にある。
+- Desktop の computer use は、Claude とアプリの間にサンドボックスがない。アプリごとに許可を求められる。使う順は、コネクタ、ブラウザ、画面の操作の順である。順の理由は <!-- link:begin browser-control#which-to-use -->[Claude in Chrome と computer use（ブラウザと画面の操作） › コネクタ・ブラウザ・画面の順に選ぶ](browser-control.md#which-to-use)<!-- link:end --> にある。
 - 信頼できない入力を読める状態と、被害につながる行動もできる状態が重なると、仕込まれた指示が被害になる。片方を外せば攻撃は難しくなる。組み立て方は <!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](../safety/lethal-trifecta.md#three-capabilities)<!-- link:end --> にある。
 - 手元で動くアプリのタスクには、Claude 専用の作業フォルダを作る。送信や購入のような取り消しにくい操作は、定期タスクにしない。
 
@@ -179,20 +179,20 @@ PC を閉じても進めさせるのは、見ていない間に動かすこと�
 
 **次に読む**
 
+- [Claude in Chrome と computer use（ブラウザと画面の操作）](browser-control.md)
+- [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 - Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）
-- Claude in Chrome と computer use（ブラウザと画面の操作）（準備中）
-- クラウドセッションと teleport（準備中）
 
 **関連**
 
-- クラウドセッションと teleport › 手元の設定との違い（準備中）
+- [クラウドセッションと teleport › 手元の設定との違い](../cli/cloud-sessions-and-teleport.md#settings)
 - [タスクと定期タスク（Cowork） › どこで動くか（クラウドと Desktop）](../app/tasks-and-schedules-in-the-app.md#where-it-runs)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
-- 設定ファイルの階層と優先順位（準備中）
-- /loop と定期実行の方式（準備中）
-- 面ごとにできないこと（早見表）（準備中）
+- [設定ファイルの階層と優先順位](../cli/settings-layers.md)
+- [/loop と定期実行の方式](../delegate/loop-and-scheduling.md)
+- [面ごとにできないこと（早見表）](what-each-surface-cannot-do.md)
 
 </div>
 

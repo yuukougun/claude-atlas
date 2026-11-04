@@ -1,0 +1,10 @@
+# checking-for-updates で新しく使う出典。形は schema/sources.schema.json。ドメインは data/sources.yml の domains で確かめ済み
+sources:
+  - id: cc-docs-setup
+    url: https://code.claude.com/docs/en/setup
+    title: Advanced setup
+    kind: 公式文書
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-05'
+    note: 「Verify your installation」「Update Claude Code」「Configure release channel」「Pin a minimum version」の節を読んだ。claude --version、claude doctor、autoUpdatesChannel（latest が既定、stable は約 1 週間遅れで大きな退行のある版を飛ばす）、minimumVersion、Homebrew の cask 名・Linux のパッケージのリポジトリで通り道を選ぶこと、claude update を確かめた

@@ -1,0 +1,12 @@
+title: Stop フックを登録する設定
+kind: settings
+place: project
+safety: false
+features: [hooks]
+requires: [.claude/hooks/stop-until-tests-pass.py]
+conditions:
+  - 新しいセッションで試す
+  - スクリプトを置いたあと、/hooks で登録を見る
+expect:
+  - /hooks の一覧に、Stop のフックが出る
+  - スクリプトが無い、または動かないときは、止められずにターンが終わる

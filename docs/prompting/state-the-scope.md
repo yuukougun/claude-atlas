@@ -78,7 +78,7 @@ After で足したものは 3 つある。やること（直す場所と症状�
 - Prompting Claude Opus 5：`Deliver what was asked, at the scope intended.`
 - Prompting Claude Sonnet 5.5：`Don't add features, tests, files, docs or refactors that weren't asked for.`
 
-Sonnet 5.5 の指針は、effort を上げると頼まれていないことまでやりがちになる、とも述べている。モデルや effort による傾向の違いは <!-- link:begin model-quirks#official-guidance -->モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向（準備中）<!-- link:end --> で見る。傾向は版で変わるので、文面を暗記せず、自分の環境で観察する。
+Sonnet 5.5 の指針は、effort を上げると頼まれていないことまでやりがちになる、とも述べている。モデルや effort による傾向の違いは <!-- link:begin model-quirks#official-guidance -->[モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向](../models/model-quirks.md#official-guidance)<!-- link:end --> で見る。傾向は版で変わるので、文面を暗記せず、自分の環境で観察する。
 
 「最小限」は、気づいたことの置き場所とセットで頼む。ついでの直しを禁じるだけだと、気づいた問題が消える。「直さずに、返答の最後に書く」と頼めば、差分は小さいまま、気づきも残る。提案で止めるか実行までさせるかは、動詞で書き分ける（<!-- link:begin suggest-or-do#verbs -->[提案してほしいのか、実行してほしいのか › 提案と実行を動詞で分ける](suggest-or-do.md#verbs)<!-- link:end -->）。
 
@@ -144,7 +144,7 @@ Sonnet 5.5 の指針は、effort を上げると頼まれていないことま�
 - CLAUDE.md には、その禁止の理由と、止まって相談する基準だけを書く。判断を含む規則は、お願いのままにする
 - 依頼文には、今回の作業の範囲を書く。作業ごとに変わる範囲は、仕組みに移さない
 
-仕組みにも穴がある。当たらないパスのルールや、子プロセスに効かないものがあるので、<!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](../enforce/permission-rules.md#path-rules)<!-- link:end --> と <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](../enforce/permission-rules.md#child-processes)<!-- link:end --> を確かめる。作業ディレクトリの外への書き込みを閉じる設定は <!-- link:begin protected-paths#outside-working-directory -->消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる（準備中）<!-- link:end --> にある。
+仕組みにも穴がある。当たらないパスのルールや、子プロセスに効かないものがあるので、<!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](../enforce/permission-rules.md#path-rules)<!-- link:end --> と <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](../enforce/permission-rules.md#child-processes)<!-- link:end --> を確かめる。作業ディレクトリの外への書き込みを閉じる設定は <!-- link:begin protected-paths#outside-working-directory -->[消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる](../enforce/protected-paths.md#outside-working-directory)<!-- link:end --> にある。
 
 会話の途中で言った禁止は、長いセッションで圧縮されると消えることがある。同じ注意を 2 回した、強調しても破られた、というときが仕組みに移す合図である（<!-- link:begin when-to-lock#spoken-rules-fade -->[お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)<!-- link:end -->）。
 
@@ -218,9 +218,9 @@ Sonnet 5.5 の指針は、effort を上げると頼まれていないことま�
 - [提案してほしいのか、実行してほしいのか](suggest-or-do.md)
 - [理由を添える](give-reasons.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- 消せない場所・触れない場所（protected paths）（準備中）
+- [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)
 - [お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)
-- モデル別の癖と、プロンプトの合わせ方（準備中）
+- [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
 
 </div>
 

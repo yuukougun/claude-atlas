@@ -65,8 +65,8 @@ updated: 2026-11-05
 
 安く確かめられるものから順に並べる。上の項目で原因が決まったら、下は読まなくてよい。
 
-1. **記事の日付と版を見る（確かめていない）**。記事の公開日、更新日、記事が前提にしている版を探す。どれも書かれていなければ、通じない原因が古さかどうかを、この時点では決められない。日付と版の見分け方は <!-- link:begin dating-information#check-date-and-version -->いつの情報かを見分ける › 日付と版の確かめ方（準備中）<!-- link:end --> にある。
-2. **手元の版と、記事の版を並べる（確かめていない）**。手元の版が記事の版より新しければ、変更が入っている可能性が高い。版や変更履歴の確かめ方は <!-- link:begin checking-for-updates -->最新を自分で確かめる方法（準備中）<!-- link:end --> にある。同じ版で通じないなら、古さではなく別の原因を疑う。
+1. **記事の日付と版を見る（確かめていない）**。記事の公開日、更新日、記事が前提にしている版を探す。どれも書かれていなければ、通じない原因が古さかどうかを、この時点では決められない。日付と版の見分け方は <!-- link:begin dating-information#check-date-and-version -->[いつの情報かを見分ける › 日付と版の確かめ方](../changes/dating-information.md#check-date-and-version)<!-- link:end --> にある。
+2. **手元の版と、記事の版を並べる（確かめていない）**。手元の版が記事の版より新しければ、変更が入っている可能性が高い。版や変更履歴の確かめ方は <!-- link:begin checking-for-updates -->[最新を自分で確かめる方法](../changes/checking-for-updates.md)<!-- link:end --> にある。同じ版で通じないなら、古さではなく別の原因を疑う。
 3. **公式の文書と変更履歴で、その名前を引く（合っていない）**。記事に出る機能やコマンドの名前を、公式の文書と変更履歴で検索する。出てくる結果は 3 通りである。結果は、古くなった助言を状態と今のやり方つきで並べた「台帳」（下の節でリンクする）の状態の名前でも呼ばれる。
     - **名前が変わっただけ**：中身は同じで、呼び方だけ変わっている。台帳では「置換」と書かれる。
     - **撤回された**：機能や画面が消えた。台帳では「撤回」と書かれ、代わりのやり方が添えられる。
@@ -106,7 +106,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 確かめていない | いつの情報かを見分ける › 日付と版の確かめ方（準備中）<br>最新を自分で確かめる方法（準備中）<br>[古くなった助言の台帳 › 自分の設定や記事で見つける](../changes/outdated-advice-ledger.md#find-in-your-setup) |
+| 確かめていない | [いつの情報かを見分ける › 日付と版の確かめ方](../changes/dating-information.md#check-date-and-version)<br>[最新を自分で確かめる方法](../changes/checking-for-updates.md)<br>[古くなった助言の台帳 › 自分の設定や記事で見つける](../changes/outdated-advice-ledger.md#find-in-your-setup) |
 | 合っていない | [古くなった助言の台帳](../changes/outdated-advice-ledger.md)<br>[用語索引と旧名の対応 › 旧名から引く](../start/term-index.md#old-names)<br>主要コマンド早見表（準備中） |
 
 <!-- textlint-enable -->
@@ -161,7 +161,7 @@ Claude Code に自分の使い方を聞く場合も、答えが手元の版よ�
 
 - 記事から写した設定や手順には、写した日と、記事の日付・版・URL を 1 行で残す。次に通じなくなったとき、記事の日付と版を探す手間と、手元の版と並べる手間が省ける。
 - 手順書やスキルに書いたコマンドや機能の名前は、変更履歴を確かめるたびに台帳で引き直す。引き直しの入口は <!-- link:begin outdated-advice-ledger#find-in-your-setup -->[古くなった助言の台帳 › 自分の設定や記事で見つける](../changes/outdated-advice-ledger.md#find-in-your-setup)<!-- link:end --> である。
-- 台帳は、回避策が正式な仕組みに置き換わる規則から、次に古くなりそうなものの見当も付ける。2026 年に何が変わったかの流れは <!-- link:begin change-timeline-2026 -->2026 年の主な変更の年表（準備中）<!-- link:end --> で見られる。
+- 台帳は、回避策が正式な仕組みに置き換わる規則から、次に古くなりそうなものの見当も付ける。2026 年に何が変わったかの流れは <!-- link:begin change-timeline-2026 -->[2026 年の主な変更の年表](../changes/change-timeline-2026.md)<!-- link:end --> で見られる。
 - 記事を読むときは、まず日付と版を見る。方向性を学び、個別の手順は書かれた時点のものと考える。
 
 <!-- gen:begin references -->
@@ -188,8 +188,8 @@ Claude Code に自分の使い方を聞く場合も、答えが手元の版よ�
 
 **次に読む**
 
-- いつの情報かを見分ける（準備中）
-- 最新を自分で確かめる方法（準備中）
+- [いつの情報かを見分ける](../changes/dating-information.md)
+- [最新を自分で確かめる方法](../changes/checking-for-updates.md)
 - [古くなった助言の台帳](../changes/outdated-advice-ledger.md)
 - [用語索引と旧名の対応](../start/term-index.md)
 - 主要コマンド早見表（準備中）
@@ -197,7 +197,7 @@ Claude Code に自分の使い方を聞く場合も、答えが手元の版よ�
 **関連**
 
 - Claude Code 自身に聞く › 答えの版を確かめる（準備中）
-- 2026 年の主な変更の年表（準備中）
+- [2026 年の主な変更の年表](../changes/change-timeline-2026.md)
 - [スキルの作り方 › カスタムコマンドから移る](../extend/writing-skills.md#from-commands)
 - [サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)
 - [「考えて」と書くことの現在（ultrathink）](../models/thinking-keywords.md)

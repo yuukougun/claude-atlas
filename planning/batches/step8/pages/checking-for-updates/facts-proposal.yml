@@ -1,0 +1,11 @@
+proposals:
+  - fact:
+      id: claude-code-stable-channel-delay
+      title: Claude Code の stable の通り道が latest より遅れる日数
+      value: ふつう 1 週間ほど前の版（大きな退行のある版を飛ばす）
+      sources: [cc-docs-setup]
+      checked: 2026-11-05
+      volatility: 中
+      status: 確認済み
+      note: 公式（Advanced setup、Configure release channel）は「typically about one week old, skipping releases with major regressions」と書く。調査資料 research/22 の #3 も同じ。本文は今、日数を書かずに「遅れて届く」と書いている。目印にするなら、手順の段 1（checking-for-updates#steps）の stable の説明の後ろ
+    used_in: [checking-for-updates#steps]

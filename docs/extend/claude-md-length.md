@@ -104,7 +104,7 @@ CLAUDE.md の全文は、セッションを始めるたびに文脈へ入り、�
 
 `/init` は、リポジトリを調べて CLAUDE.md の叩き台を作る。叩き台は膨らみやすく、重要な「なぜ」が抜けやすい（根拠：弱。実践者の主張）。叩き台に入りがちなのは、構成の説明、ファイルごとの説明、フレームワークの紹介で、どれも Claude がリポジトリから自分で読み取れる。
 
-実践者の間では、叩き台を使う派（公式を含む）と、1 行ずつ手で書く派に割れている。この辞典は、**叩き台に使うなら、必ず削って手で直してから使い始める**とする。手で書く場合も、書いた後に同じ問いで削る。操作の流れは<!-- link:begin init-and-first-claude-md#run-init -->/init と最初の CLAUDE.md › /init で叩き台を作る（準備中）<!-- link:end -->、手で書く流儀との違いは<!-- link:begin init-and-first-claude-md#by-hand -->/init と最初の CLAUDE.md › 手で書く流儀との違い（準備中）<!-- link:end -->にある。
+実践者の間では、叩き台を使う派（公式を含む）と、1 行ずつ手で書く派に割れている。この辞典は、**叩き台に使うなら、必ず削って手で直してから使い始める**とする。手で書く場合も、書いた後に同じ問いで削る。操作の流れは<!-- link:begin init-and-first-claude-md#run-init -->[/init と最初の CLAUDE.md › /init で叩き台を作る](../cli/init-and-first-claude-md.md#run-init)<!-- link:end -->、手で書く流儀との違いは<!-- link:begin init-and-first-claude-md#by-hand -->[/init と最初の CLAUDE.md › 手で書く流儀との違い](../cli/init-and-first-claude-md.md#by-hand)<!-- link:end -->にある。
 
 削る順番は、次のようにする。
 
@@ -154,7 +154,7 @@ CLAUDE.md の全文は、セッションを始めるたびに文脈へ入り、�
 
 ## チームで育てる {#team}
 
-CLAUDE.md はチームの合意文書として、リポジトリに入れて育てる。個人の好みは共有のファイルに入れず、`CLAUDE.local.md` か `~/.claude/CLAUDE.md` に分ける。共有する設定全体の分け方は<!-- link:begin share-team-settings#shared-vs-personal -->チームで設定を共有する › 共有するものと個人に残すもの（準備中）<!-- link:end -->にある。
+CLAUDE.md はチームの合意文書として、リポジトリに入れて育てる。個人の好みは共有のファイルに入れず、`CLAUDE.local.md` か `~/.claude/CLAUDE.md` に分ける。共有する設定全体の分け方は<!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end -->にある。
 
 育てる運用の案は、次のとおりだ。
 
@@ -162,7 +162,7 @@ CLAUDE.md はチームの合意文書として、リポジトリに入れて育�
 - 足す基準は、同じ誤りを 2 回訂正したときにする。書く行の選び方は<!-- link:begin what-to-put-in-claude-md#adding-lines -->[CLAUDE.md に書くこと・書かないこと › 足すときの手順](what-to-put-in-claude-md.md#adding-lines)<!-- link:end -->にある。
 - 定期的に棚卸しする。月に 1 回という頻度は実践者の経験則で（根拠：弱）、公式の決まりではない。棚卸しのたびに、上の問いを全行に当てる。
 - モデルを替えたときも見直す。古いモデル向けに入れた強調や検証の指示が残っていないかを見る（<!-- link:begin after-switching-models#checklist -->[新しいモデルに替えたら見直すこと › 見直す順](../models/after-switching-models.md#checklist)<!-- link:end -->）。
-- モノレポで、ほかのチームの CLAUDE.md が混ざって読まれるときは、除外の設定がある（<!-- link:begin claude-md-loading-order#monorepo -->CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示（準備中）<!-- link:end -->）。
+- モノレポで、ほかのチームの CLAUDE.md が混ざって読まれるときは、除外の設定がある（<!-- link:begin claude-md-loading-order#monorepo -->[CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示](claude-md-loading-order.md#monorepo)<!-- link:end -->）。
 
 拡張の全体（skills・MCP・プラグイン）の棚卸しは、<!-- link:begin pruning-extensions#criteria -->[拡張の棚卸しと剪定 › 切る基準](pruning-extensions.md#criteria)<!-- link:end -->が持つ。
 
@@ -170,7 +170,7 @@ CLAUDE.md はチームの合意文書として、リポジトリに入れて育�
 
 - **削っても守られない規則がある。** お願いの形のまま短くしても、例外を許さない規則は破られる。原因の切り分けは<!-- link:begin instructions-ignored#diagnosis -->[CLAUDE.md や指示が守られない › 原因を安く確かめる順](../symptoms/instructions-ignored.md#diagnosis)<!-- link:end -->、鍵に移す判断は<!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end -->に任せる。
 - **体感で決めると外れる。** 「短くしたら速く・賢くなった」は体感で、削る前後の記録とずれることがある。落とし穴は「体感を信じる」ことで、判断は同じ物差しで取った記録に頼る（<!-- link:begin felt-vs-measured#evidence -->[体感と実測 › 何が起きるか（研究と根拠の強さ）](../eval/felt-vs-measured.md#evidence)<!-- link:end -->）。
-- **行を別のファイルに分けただけでは減らない。** `@path` の取り込みは整理に役立つが、取り込み先も一緒に読み込まれ、常駐の量は減らない（<!-- link:begin claude-md-loading-order -->CLAUDE.md の階層と読み込み順（準備中）<!-- link:end -->）。減らしたいなら、rules に移して条件付きで読ませるか、スキルに移す。
+- **行を別のファイルに分けただけでは減らない。** `@path` の取り込みは整理に役立つが、取り込み先も一緒に読み込まれ、常駐の量は減らない（<!-- link:begin claude-md-loading-order -->[CLAUDE.md の階層と読み込み順](claude-md-loading-order.md)<!-- link:end -->）。減らしたいなら、rules に移して条件付きで読ませるか、スキルに移す。
 - **「なぜ」まで削らない。** 行数を詰めるあまり、理由を消すと、Claude が例外の場面で判断できなくなる。コマンドだけ残して理由を消した行は、削る前より弱い。
 - **対象の範囲。** 手順は Claude Code を WSL・Linux の CLI で使う場合を基準にした。ほかの OS と IDE 拡張で `/doctor` の出力が同じかは未確認である。
 
@@ -197,7 +197,7 @@ CLAUDE.md はチームの合意文書として、リポジトリに入れて育�
 
 **関連**
 
-- /init と最初の CLAUDE.md（準備中）
+- [/init と最初の CLAUDE.md](../cli/init-and-first-claude-md.md)
 - [.claude/rules と paths で必要なときだけ読ませる](path-scoped-rules.md)
 - [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
@@ -207,8 +207,8 @@ CLAUDE.md はチームの合意文書として、リポジトリに入れて育�
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)
-- チームで設定を共有する（準備中）
-- CLAUDE.md の階層と読み込み順（準備中）
+- [チームで設定を共有する](../team/share-team-settings.md)
+- [CLAUDE.md の階層と読み込み順](claude-md-loading-order.md)
 - [/context で中身を見る](../context/inspect-context.md)
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](claude-md-vs-rules-skills-styles.md)
 

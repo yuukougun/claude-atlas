@@ -105,7 +105,7 @@ matcher は、どの道具の呼び出しにフックを走らせるかを決め
 
 `if` のフィールドに権限ルールの構文（`Bash(rm *)` など）を書くと、フックを走らせる呼び出しを絞れる。ただし、書けるのは 1 つの規則だけで、`&&` や `||` はない。Bash の判定は best-effort で、コマンドを読み切れないときは規則にかかわらずフックが走る。`if` はフックの呼び出し回数を減らすために使い、止めるかどうかの判定はスクリプトの中でも行う。
 
-関係のない呼び出しまで止められているときは、止めた記録から原因の規則を探して絞り直す。その見直し方は <!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end --> にある。
+関係のない呼び出しまで止められているときは、止めた記録から原因の規則を探して絞り直す。その見直し方は <!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end --> にある。
 
 ## シェルを通さずに起動する（args） {#exec-form}
 
@@ -236,7 +236,7 @@ migrations の既存ファイルを止めるフックを、失敗を止めに倒
 | --- | --- | --- |
 | パスやコマンドを単に禁じる | <!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](permission-rules.md)<!-- link:end --> の deny ルール | スクリプトが無いので、スクリプトの失敗で開くことがない。条件付きの判定や理由の返却が要るときにフックを足す |
 | 条件付きで止め、理由と代わりを返す | <!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](block-with-exit-2.md)<!-- link:end --> | 返し方はそちら。失敗したときに止める書き方はこのページ |
-| 縛る規則を増やしすぎた | <!-- link:begin lock-side-effects#what-to-lock -->縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）（準備中）<!-- link:end --> | 止めすぎと回り込みの見直しはそちら |
+| 縛る規則を増やしすぎた | <!-- link:begin lock-side-effects#what-to-lock -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）](lock-side-effects.md#what-to-lock)<!-- link:end --> | 止めすぎと回り込みの見直しはそちら |
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -254,7 +254,7 @@ migrations の既存ファイルを止めるフックを、失敗を止めに倒
 **関連**
 
 - [フックで止めて理由を返す（exit 2 と JSON）](block-with-exit-2.md)
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
 - [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - [サンドボックスで封じ込める](sandboxing.md)

@@ -1,0 +1,14 @@
+proposals:
+  - fact:
+      id: model-prompting-tendencies
+      title: 公式のモデル別プロンプト指針が挙げる偏り（系統・版・effort ごと）
+      value:
+        - {model: Opus 5, tendency: 既定で冗長。自分で検証するので確かめ直しの指示は外す。委任しすぎを抑える}
+        - {model: Opus 5.5, tendency: 既定 effort は medium で thinking は常時オン。思考を減らすなら指示より effort を下げる}
+        - {model: Sonnet 5.5, tendency: low と medium では確認で止まりすぎ、high 以上では頼まれていない追加をしがち}
+        - {model: Fable 5.1, tendency: 最後の段落が計画や約束で終わらないか確かめさせる。low では検索を減らし記憶で答えがち。書式を控えめにする}
+        - {model: Haiku 5.5, tendency: low では早く止まりがちで、medium に上げると減った。一律の「何でも検索」は過剰検索になる}
+      sources: [api-docs-prompting-opus-5, api-docs-prompting-opus-5-5, api-docs-prompting-claude-sonnet-5-5, api-docs-prompting-claude-fable-5-1, api-docs-prompting-claude-haiku-5-5, api-docs-prompting-best-practices]
+      checked: 2026-10-29
+      status: 調査資料 02 §4-13 の写し（一次資料は未再確認。fact にする前に各指針で再確認が要る）
+    used_in: [model-quirks#official-guidance]

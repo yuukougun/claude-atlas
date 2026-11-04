@@ -81,9 +81,9 @@ updated: 2026-11-05
 
 === "Claude Code"
 
-    1. **作業ディレクトリの上の階層に、別のプロジェクトの CLAUDE.md がないか**（境界がない）：CLAUDE.md は、作業ディレクトリから上の階層の分がセッション開始で読み込まれる。リポジトリを入れ子やモノレポで置いていると、隣の案件の指示が一緒に入る。読み込み元を確かめる。重なり方は <!-- link:begin claude-md-loading-order#monorepo -->CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示（準備中）<!-- link:end --> にある。
+    1. **作業ディレクトリの上の階層に、別のプロジェクトの CLAUDE.md がないか**（境界がない）：CLAUDE.md は、作業ディレクトリから上の階層の分がセッション開始で読み込まれる。リポジトリを入れ子やモノレポで置いていると、隣の案件の指示が一緒に入る。読み込み元を確かめる。重なり方は <!-- link:begin claude-md-loading-order#monorepo -->[CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示](../extend/claude-md-loading-order.md#monorepo)<!-- link:end --> にある。
     2. **サブディレクトリの CLAUDE.md が、あとから読み込まれていないか**（境界がない）：サブディレクトリの CLAUDE.md は、Claude がそのディレクトリのファイルを読み書きしたときに読み込まれる。作業の途中で別の領域に入ると、その領域の指示が加わり、回答の前提が変わる。
-    3. **自動メモリに、誤った記録や古い記録が残っていないか**（散らかっている）：自動メモリは、セッション開始に MEMORY.md の頭の部分を読み込み、話題ごとのファイルは Claude が必要なときに読む。誤った結論が記録に残ると、後の作業に混ざる。記録を開いて、混ざった内容と同じ話題がないかを見る。見直し方は <!-- link:begin using-auto-memory#review -->自動メモリ › 誤った記録の見直し（準備中）<!-- link:end --> にある。
+    3. **自動メモリに、誤った記録や古い記録が残っていないか**（散らかっている）：自動メモリは、セッション開始に MEMORY.md の頭の部分を読み込み、話題ごとのファイルは Claude が必要なときに読む。誤った結論が記録に残ると、後の作業に混ざる。記録を開いて、混ざった内容と同じ話題がないかを見る。見直し方は <!-- link:begin using-auto-memory#review -->[自動メモリ › 誤った記録の見直し](../extend/using-auto-memory.md#review)<!-- link:end --> にある。
     4. **圧縮のあとに、指示の効き方が変わっていないか**（散らかっている）：圧縮のあと、プロジェクトの根の CLAUDE.md はディスクから入れ直される。入れ子の CLAUDE.md は要約に消え、必要になったときに読み直される。圧縮の前後で、出てくる指示の内容が変わったように見えるときは、この動きを疑う。
 
 原因が見つからないときは、混ざった内容について Claude に尋ねる。たとえば「いまの内容は、この会話の発言・メモリ・過去の会話の検索・指示ファイルのどれから得たか」と聞く。答えは手がかりであって、証拠ではない。上の確認で裏を取る。
@@ -99,8 +99,8 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 散らかっている | [アプリのメモリ（仕組み・範囲・消し方と止め方） › 覚えた内容を見る・直す（棚卸し）](../app/how-memory-works.md#manage)<br>自動メモリ › 誤った記録の見直し（準備中）<br>CLAUDE.md の階層と読み込み順（準備中） |
-| 境界がない | [アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)<br>[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](../app/using-projects.md#scope)<br>シークレットチャット（記録を残さない会話）（準備中） |
+| 散らかっている | [アプリのメモリ（仕組み・範囲・消し方と止め方） › 覚えた内容を見る・直す（棚卸し）](../app/how-memory-works.md#manage)<br>[自動メモリ › 誤った記録の見直し](../extend/using-auto-memory.md#review)<br>[CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md) |
+| 境界がない | [アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)<br>[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](../app/using-projects.md#scope)<br>[シークレットチャット（記録を残さない会話）](../app/incognito-chats.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -128,9 +128,9 @@ updated: 2026-11-05
 混ざる症状は、置き場所と範囲を最初に決めておくと減る。注意に頼らず、仕組みに移す。
 
 - **プロジェクトは、1 つに 1 つの目的で切る**：目的の違う資料や指示を混ぜない。切る単位は <!-- link:begin using-projects#scope -->[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](../app/using-projects.md#scope)<!-- link:end --> にある。
-- **残したくない相談は、記録を残さない会話にする**：履歴にもメモリにも残らない。一部は残るので、見分け方は <!-- link:begin incognito-chats#retention -->シークレットチャット（記録を残さない会話） › 残らないもの・残るもの（準備中）<!-- link:end --> にある。保持の考え方は <!-- link:begin where-your-data-goes#retention -->[送ったデータの行方（学習・保持期間） › 残る期間](../safety/where-your-data-goes.md#retention)<!-- link:end --> にある。
+- **残したくない相談は、記録を残さない会話にする**：履歴にもメモリにも残らない。一部は残るので、見分け方は <!-- link:begin incognito-chats#retention -->[シークレットチャット（記録を残さない会話） › 残らないもの・残るもの](../app/incognito-chats.md#retention)<!-- link:end --> にある。保持の考え方は <!-- link:begin where-your-data-goes#retention -->[送ったデータの行方（学習・保持期間） › 残る期間](../safety/where-your-data-goes.md#retention)<!-- link:end --> にある。
 - **会話ごとにメモリを止めたいときは、最初のメッセージを送る前に切る**：後からは切り替えられない。手順は <!-- link:begin how-memory-works#turning-off -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › 消し方と止め方（Pause・Reset・会話ごとのオフ・シークレットチャット）](../app/how-memory-works.md#turning-off)<!-- link:end --> にある。
-- **メモリの項目と自動メモリの記録を、ときどき見る**：誤った記録や古い記録を早めに消せば、後の作業を汚さない。見る場所は <!-- link:begin how-memory-works#manage -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › 覚えた内容を見る・直す（棚卸し）](../app/how-memory-works.md#manage)<!-- link:end --> と <!-- link:begin using-auto-memory#review -->自動メモリ › 誤った記録の見直し（準備中）<!-- link:end --> にある。
+- **メモリの項目と自動メモリの記録を、ときどき見る**：誤った記録や古い記録を早めに消せば、後の作業を汚さない。見る場所は <!-- link:begin how-memory-works#manage -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › 覚えた内容を見る・直す（棚卸し）](../app/how-memory-works.md#manage)<!-- link:end --> と <!-- link:begin using-auto-memory#review -->[自動メモリ › 誤った記録の見直し](../extend/using-auto-memory.md#review)<!-- link:end --> にある。
 - **繰り返し頼む前提は、持ち主の置き場所へ移す**：毎回の説明を記憶に頼らず、置き場所に書く。選び方は <!-- link:begin where-to-put-instructions#how-to-choose -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル） › どこに置くかの選び方](../app/where-to-put-instructions.md#how-to-choose)<!-- link:end --> にある。説明の繰り返しが症状の本体なら <!-- link:begin repeating-the-same-explanation#diagnosis -->[毎回同じ説明をしている › 原因を安く確かめる順](repeating-the-same-explanation.md#diagnosis)<!-- link:end --> に進む。
 - **人の側の落とし穴も疑う**：思い込みや目的の混在など、人の側の落とし穴は <!-- link:begin six-causes#human-side -->[失敗の二つの軸と診断の入口 › 人の側の五つの落とし穴](../start/six-causes.md#human-side)<!-- link:end --> にまとまっている。
 
@@ -159,10 +159,10 @@ updated: 2026-11-05
 **次に読む**
 
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)
-- 自動メモリ（準備中）
-- CLAUDE.md の階層と読み込み順（準備中）
+- [自動メモリ](../extend/using-auto-memory.md)
+- [CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)
 - [プロジェクトの使いどころ](../app/using-projects.md)
-- シークレットチャット（記録を残さない会話）（準備中）
+- [シークレットチャット（記録を残さない会話）](../app/incognito-chats.md)
 
 **関連**
 

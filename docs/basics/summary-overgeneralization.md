@@ -91,7 +91,7 @@ updated: 2026-11-05
 - 要約が原文より断定的になったと気づいたとき、落ちた条件を見つける順は <!-- link:begin summary-overstates-source#diagnosis -->[要約が原文より断定的になる › 原因を安く確かめる順](../symptoms/summary-overstates-source.md#diagnosis)<!-- link:end --> にある。
 - 引用や出典の細部を確かめる手順は <!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end --> にある。
 - 調べものの結論を出典の原文で確かめる流れは <!-- link:begin research-and-reports#check-sources -->[調べものとレポート › 出典を原文で確かめる](../recipes/research-and-reports.md#check-sources)<!-- link:end --> にある。
-- 仕様のように誤読が高くつく原文は、先に自分で読んで要約する。方法は <!-- link:begin read-specs-yourself#read-first -->仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する（準備中）<!-- link:end --> にある。
+- 仕様のように誤読が高くつく原文は、先に自分で読んで要約する。方法は <!-- link:begin read-specs-yourself#read-first -->[仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する](../recipes/read-specs-yourself.md#read-first)<!-- link:end --> にある。
 
 !!! example "判断例：要約をどこまで根拠にするか"
     - **状況**：論文を AI に要約させ、「この手法は精度を改善する」と読めた。自分の課題にこの手法を入れるか決めたい。
@@ -133,8 +133,8 @@ updated: 2026-11-05
 
 **次に読む**
 
+- [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)
 - [要約が原文より断定的になる](../symptoms/summary-overstates-source.md)
-- 仕様を自分で読み、AI に誤読を指摘させる（準備中）
 
 **関連**
 

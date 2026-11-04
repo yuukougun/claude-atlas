@@ -170,7 +170,7 @@ updated: 2026-11-05
 - **条件を確かめる**：使い捨てで、手元の認証情報を持ち込まない環境にする。条件の一覧は <!-- link:begin where-bypass-is-ok#requirements -->[bypassPermissions と無人の実行はどこで動かすか › 使い捨ての環境の条件](where-bypass-is-ok.md#requirements)<!-- link:end --> にある。
 - **書き込みの制限は代わりにならない**：書き込みを作業ディレクトリに閉じても、隔離の代わりにはならない。理由は <!-- link:begin where-bypass-is-ok#not-a-substitute -->[bypassPermissions と無人の実行はどこで動かすか › 書き込みを作業ディレクトリに閉じても代わりにならない](where-bypass-is-ok.md#not-a-substitute)<!-- link:end --> を見る。
 - **サンドボックスとの使い分け**：サンドボックスの対象は Claude が動かすコマンドである。フックや MCP サーバーまで含むかは、<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> で確かめる。コンテナとの使い分けは <!-- link:begin sandboxing#containers -->[サンドボックスで封じ込める › コンテナ（Docker・devcontainer）との使い分け](../enforce/sandboxing.md#containers)<!-- link:end --> にある。
-- **クラウドに送る**：送ってよい作業の見分けは <!-- link:begin cloud-sessions-and-teleport#what-to-send -->クラウドセッションと teleport › クラウドに送ってよい作業（準備中）<!-- link:end --> に、手元の設定との違いは <!-- link:begin cloud-sessions-and-teleport#settings -->クラウドセッションと teleport › 手元の設定との違い（準備中）<!-- link:end --> にある。
+- **クラウドに送る**：送ってよい作業の見分けは <!-- link:begin cloud-sessions-and-teleport#what-to-send -->[クラウドセッションと teleport › クラウドに送ってよい作業](../cli/cloud-sessions-and-teleport.md#what-to-send)<!-- link:end --> に、手元の設定との違いは <!-- link:begin cloud-sessions-and-teleport#settings -->[クラウドセッションと teleport › 手元の設定との違い](../cli/cloud-sessions-and-teleport.md#settings)<!-- link:end --> にある。
 
 ## 手順 {#steps}
 
@@ -249,7 +249,7 @@ updated: 2026-11-05
 - [秘密情報（.env・API キー）を守る](protecting-secrets.md)
 - [知らないコードベースを読む](../recipes/explore-a-codebase.md)
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
-- クラウドセッションと teleport（準備中）
+- [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 
 </div>
 

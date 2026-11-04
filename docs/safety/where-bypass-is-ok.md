@@ -77,10 +77,10 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
 - **秘密を入れない**：ホームの鍵、本物の `.env`、広い権限のトークンを環境へ渡さない。渡すなら、その作業だけの最小の権限で、捨てても困らないものにする。
 - **届く範囲をその作業のコピーに限る**：ホストのホームやほかのリポジトリ、ホストを操作できる入口を、環境から見えるようにしない。
 - **通信を開けるなら宛先を絞る**：パッケージの取得など開けざるをえないときも、送り先を必要な分だけにする。
-- **結果は差分で取り出し、人が見てから取り込む**：環境の外へ出すのは、ブランチや差分のような確かめられる形だけにする。確かめ方は <!-- link:begin checking-unattended-runs#records -->無人実行の結果を確かめる › 記録と差分で確かめる（準備中）<!-- link:end --> で、最後の判断を人に置く考え方は <!-- link:begin checking-unattended-runs#final-decision -->無人実行の結果を確かめる › 最後の判断を人に置く（準備中）<!-- link:end --> にある。
+- **結果は差分で取り出し、人が見てから取り込む**：環境の外へ出すのは、ブランチや差分のような確かめられる形だけにする。確かめ方は <!-- link:begin checking-unattended-runs#records -->[無人実行の結果を確かめる › 記録と差分で確かめる](../verify/checking-unattended-runs.md#records)<!-- link:end --> で、最後の判断を人に置く考え方は <!-- link:begin checking-unattended-runs#final-decision -->[無人実行の結果を確かめる › 最後の判断を人に置く](../verify/checking-unattended-runs.md#final-decision)<!-- link:end --> にある。
 - **止まる上限を決める**：無人の実行は、ターンと費用の上限を明示して渡す。上限は <!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](../delegate/headless-basics.md#limits)<!-- link:end --> にある。
 
-最初から条件がそろっている例が、クラウドセッションである。Anthropic がホストする隔離した VM で動き、GitHub の資格情報は VM に入らず proxy 側で付与される。ブランチの削除やタグの push は拒否され、操作は監査ログに残る（公式の Security の文書、2026-11-04 に確認した範囲）。名前は <!-- name:begin web-to-cloud-sessions -->クラウドセッション（cloud sessions）<!-- name:end --> である。送ってよい作業と手元の設定との違いは <!-- link:begin cloud-sessions-and-teleport#what-to-send -->クラウドセッションと teleport › クラウドに送ってよい作業（準備中）<!-- link:end --> と <!-- link:begin cloud-sessions-and-teleport#settings -->クラウドセッションと teleport › 手元の設定との違い（準備中）<!-- link:end --> にある。
+最初から条件がそろっている例が、クラウドセッションである。Anthropic がホストする隔離した VM で動き、GitHub の資格情報は VM に入らず proxy 側で付与される。ブランチの削除やタグの push は拒否され、操作は監査ログに残る（公式の Security の文書、2026-11-04 に確認した範囲）。名前は <!-- name:begin web-to-cloud-sessions -->クラウドセッション（cloud sessions）<!-- name:end --> である。送ってよい作業と手元の設定との違いは <!-- link:begin cloud-sessions-and-teleport#what-to-send -->[クラウドセッションと teleport › クラウドに送ってよい作業](../cli/cloud-sessions-and-teleport.md#what-to-send)<!-- link:end --> と <!-- link:begin cloud-sessions-and-teleport#settings -->[クラウドセッションと teleport › 手元の設定との違い](../cli/cloud-sessions-and-teleport.md#settings)<!-- link:end --> にある。
 
 自分で用意するコンテナ（Docker・devcontainer）は、条件を自分で満たす必要がある。コンテナと OS のサンドボックスの使い分けは <!-- link:begin sandboxing#containers -->[サンドボックスで封じ込める › コンテナ（Docker・devcontainer）との使い分け](../enforce/sandboxing.md#containers)<!-- link:end --> にある。GitHub Actions で動かすときの鍵と権限は <!-- link:begin github-actions-with-claude#secrets-and-permissions -->GitHub Actions と @claude › 鍵と権限（準備中）<!-- link:end --> にある。知らないフォルダを非対話で動かすと信頼の確認が出ないので、隔離して動かす。理由は <!-- link:begin before-opening-unknown-repos#headless -->[知らないリポジトリを開く前に › 非対話の実行では確認が出ない](before-opening-unknown-repos.md#headless)<!-- link:end --> にある。
 
@@ -115,8 +115,8 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
 つまり、ファイル編集の道具は作業ディレクトリに閉じても、`rm` や `curl`、`git push` のようなシェル経由の操作は、環境が許す範囲にそのまま届く。外への通信も閉じない。この設定は、隔離の上に重ねる 1 枚の守りである。
 
 - 閉じるのは、ファイル編集の道具が書く場所だけである。シェルの読み書きと通信は別の層で囲う。
-- 設定の効き方は <!-- link:begin protected-paths#outside-working-directory -->消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる（準備中）<!-- link:end --> にある。
-- どのモードでも止まる場所は <!-- link:begin protected-paths#protected -->消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い（準備中）<!-- link:end --> にある。
+- 設定の効き方は <!-- link:begin protected-paths#outside-working-directory -->[消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる](../enforce/protected-paths.md#outside-working-directory)<!-- link:end --> にある。
+- どのモードでも止まる場所は <!-- link:begin protected-paths#protected -->[消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い](../enforce/protected-paths.md#protected)<!-- link:end --> にある。
 - シェルのコマンドの読み書きと通信を OS の層で囲うのは、サンドボックスの役目である。囲えるものは <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> にある。
 
 「確認を外す代わりに、書き込み先を絞ったから大丈夫」という判断は、この点で成り立たない。古い助言「`--dangerously-skip-permissions` で YOLO 運用」との関係は、台帳の <!-- link:begin outdated-advice-ledger#yolo-skip-permissions -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#yolo-skip-permissions)<!-- link:end --> にある。
@@ -166,11 +166,11 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](default-safety-settings.md#by-stage)
 - [権限モードの選び方](../cli/permission-modes-overview.md)
 - 管理設定と組織の強制（準備中）
-- 消せない場所・触れない場所（protected paths）（準備中）
+- [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)
 - [知らないリポジトリを開く前に](before-opening-unknown-repos.md)
 - GitHub Actions と @claude（準備中）
-- クラウドセッションと teleport（準備中）
-- 無人実行の結果を確かめる（準備中）
+- [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
+- [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [消されたくないもの（破壊的コマンド）](destructive-commands.md)
 - クラウドの定期タスク（準備中）
 

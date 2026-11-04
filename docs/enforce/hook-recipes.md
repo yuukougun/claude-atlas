@@ -58,7 +58,7 @@ updated: 2026-11-05
 - **止める用途では、フックの失敗を止めに倒す**。フックは、既定ではスクリプトが失敗すると操作を通す。ポリシーとして止めたい規則は、この既定を知ったうえで書く。<!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end --> を見る
 - **当てる範囲を狭くする**。`matcher` を道具の名前に絞り、スクリプトの中でも対象を絞る。広く当てると、関係のない操作まで止める。<!-- link:begin writing-safe-hooks#matcher -->[フックを安全に書く › matcher で止めすぎない](writing-safe-hooks.md#matcher)<!-- link:end --> を見る
 
-縛る規則そのものは、機械で判定でき、破ったときの害が大きいものに絞る。選び方は <!-- link:begin lock-side-effects#what-to-lock -->縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）（準備中）<!-- link:end --> にある。判断を含む規則（何が小さな直しか、など）は、フックにせず CLAUDE.md に任せる。
+縛る規則そのものは、機械で判定でき、破ったときの害が大きいものに絞る。選び方は <!-- link:begin lock-side-effects#what-to-lock -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）](lock-side-effects.md#what-to-lock)<!-- link:end --> にある。判断を含む規則（何が小さな直しか、など）は、フックにせず CLAUDE.md に任せる。
 
 他人が書いたフックを入れるときは、利用者の権限で動くコードなので、中身を読んでから使う（<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](writing-safe-hooks.md#runs-as-you)<!-- link:end -->）。
 
@@ -423,7 +423,7 @@ CLAUDE.md に何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to
 
 手順の確かめは、短い作業を頼んで、終わったときに通知が出ることを見る。
 
-知らせを増やしすぎると、作業が細切れになる。Stop のたびに通知を出すか、時刻を決めて自分で見に行くかは、<!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう › 知らせるか、時刻を決めて見るか（準備中）<!-- link:end --> で選ぶ。Stop のフックには、別の使い方もあり、確かめる処理が通るまでターンを終えさせない型は <!-- link:begin stop-hooks -->Stop フックで「終わらせない」（準備中）<!-- link:end --> が持つ。
+知らせを増やしすぎると、作業が細切れになる。Stop のたびに通知を出すか、時刻を決めて自分で見に行くかは、<!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう › 知らせるか、時刻を決めて見るか（準備中）<!-- link:end --> で選ぶ。Stop のフックには、別の使い方もあり、確かめる処理が通るまでターンを終えさせない型は <!-- link:begin stop-hooks -->[Stop フックで「終わらせない」](stop-hooks.md)<!-- link:end --> が持つ。
 
 ## 担当にだけ禁じる（agent_id） {#subagent-only}
 
@@ -501,7 +501,7 @@ CLAUDE.md に何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to
 
 この教材のリポジトリも、同じ型を使っている。担当（サブエージェント）に、読むだけの git（status・diff・log・show）以外を使わせず、止めたときは「担当の git は読むだけ。commit はメインが行う。変更は報告に書いて終える」と返す。制作の印があるときだけ働く縛りで、読者がリポジトリを開いたときは動かない。ワークフローの担当でも効くかは、文書に書かれていないため、確かめた結果を見てから頼る。
 
-サブエージェントに、規則がそもそも届かない仕組みは <!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end --> にある。サブエージェントの定義の書き方は <!-- link:begin writing-subagents#define -->[サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)<!-- link:end --> を見る。
+サブエージェントに、規則がそもそも届かない仕組みは <!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)<!-- link:end --> にある。サブエージェントの定義の書き方は <!-- link:begin writing-subagents#define -->[サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)<!-- link:end --> を見る。
 
 ## 常設する前に確かめる {#verify}
 
@@ -517,7 +517,7 @@ CLAUDE.md に何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to
 3. **実機で止まるか、変わるかを見る**。壊れても困らない使い捨てのリポジトリで、止めたい操作を実際に頼む
 4. **止めすぎていないか見る**。ふつうの操作（`--force-with-lease`、`uv add`、`git status`）を頼み、止められないことを確かめる
 5. **常設する**。プロジェクトの設定に入れてチームで共有するなら、利用者の権限で動くコードなので、中身を読んでからコミットする。置き場所は <!-- link:begin hooks-basics#locations -->[フックの考え方とイベント › 置き場所と効く範囲（サブエージェントと信頼の確認）](hooks-basics.md#locations)<!-- link:end -->
-6. **止めた記録を見直す**。止めたのに回り込まれたり、意図しない操作が止まったりしていないかを、あとで見る。<!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end --> を見る
+6. **止めた記録を見直す**。止めたのに回り込まれたり、意図しない操作が止まったりしていないかを、あとで見る。<!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end --> を見る
 
 フックは、確かめる側（動作の確認）と縛る側（常設）の両方の性質を持つ。確かめを飛ばすと、効いていない鍵を、効いていると思い込む。
 
@@ -529,12 +529,12 @@ CLAUDE.md に何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to
 | --- | --- |
 | フックが走っていないように見える | <!-- link:begin hooks-basics#not-running -->[フックの考え方とイベント › 動いていないように見えるとき](hooks-basics.md#not-running)<!-- link:end --> |
 | スクリプトが落ちたのに、操作が通った | <!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end --> |
-| 関係のない操作まで止まる | <!-- link:begin writing-safe-hooks#matcher -->[フックを安全に書く › matcher で止めすぎない](writing-safe-hooks.md#matcher)<!-- link:end -->、<!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end --> |
+| 関係のない操作まで止まる | <!-- link:begin writing-safe-hooks#matcher -->[フックを安全に書く › matcher で止めすぎない](writing-safe-hooks.md#matcher)<!-- link:end -->、<!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end --> |
 | 止めたのに、Claude が理由を分からず同じ操作を繰り返す | <!-- link:begin block-with-exit-2#reason -->[フックで止めて理由を返す（exit 2 と JSON） › 理由と代わりの手段の書き方](block-with-exit-2.md#reason)<!-- link:end --> |
 | 書き方を変えられて、止めた操作が通る | <!-- link:begin destructive-commands#guard -->[消されたくないもの（破壊的コマンド） › 確認を求めさせる頼み方と、鍵](../safety/destructive-commands.md#guard)<!-- link:end --> |
-| 確かめる処理が通るまで、ターンを終えさせたくない | <!-- link:begin stop-hooks#avoid-loops -->Stop フックで「終わらせない」 › 止め続けるループを避ける（準備中）<!-- link:end --> |
+| 確かめる処理が通るまで、ターンを終えさせたくない | <!-- link:begin stop-hooks#avoid-loops -->[Stop フックで「終わらせない」 › 止め続けるループを避ける](stop-hooks.md#avoid-loops)<!-- link:end --> |
 
-評価ファイルなど、触らせたくないファイルを守る型は <!-- link:begin freeze-eval-assets -->評価資産を凍結し、触れる範囲を絞る（準備中）<!-- link:end --> が持つ。権限ルールだけでは子プロセスの書き込みを止められないので、サンドボックスと組む。
+評価ファイルなど、触らせたくないファイルを守る型は <!-- link:begin freeze-eval-assets -->[評価資産を凍結し、触れる範囲を絞る](freeze-eval-assets.md)<!-- link:end --> が持つ。権限ルールだけでは子プロセスの書き込みを止められないので、サンドボックスと組む。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -561,15 +561,15 @@ CLAUDE.md に何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to
 **関連**
 
 - [フックの考え方とイベント](hooks-basics.md)
-- Stop フックで「終わらせない」（準備中）
+- [Stop フックで「終わらせない」](stop-hooks.md)
 - [textlint をフックで回す](../japanese/textlint-hook.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [CLAUDE.md に書くこと・書かないこと › 書くこと](../extend/what-to-put-in-claude-md.md#what-to-write)
-- 評価資産を凍結し、触れる範囲を絞る（準備中）
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
+- [評価資産を凍結し、触れる範囲を絞る](freeze-eval-assets.md)
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
-- サブエージェントに引き継がれないもの（準備中）
+- [サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)
 - 終わったら知らせてもらう（準備中）
 
 </div>

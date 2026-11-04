@@ -1,0 +1,16 @@
+title: 自分だけの許可を置く .claude/settings.local.json
+kind: settings
+place: local
+safety: true
+features: [settings, permissions]
+conditions:
+  - 共有の .claude/settings.json の雛形を置いたリポジトリで試す
+  - settings.local.json が git に入らないことを、git status で確かめてから試す
+  - 新しいセッションで試す
+  - Linux か WSL2 で試す
+expect:
+  - when: Claude が docker compose logs を実行する
+    then: 自分のセッションでは確認なしで通る。同じリポジトリを開いた別の人のセッションには、この許可は及ばない
+  - when: 共有の設定にある deny ルールの対象を、Claude が読もうとする
+    then: 手元の allow ルールがあっても deny ルールで止まる。deny が先に評価される動作は観察として扱う
+control: このファイルを置かないとき、docker compose logs は毎回確認の画面になる

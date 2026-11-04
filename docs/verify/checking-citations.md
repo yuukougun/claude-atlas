@@ -86,7 +86,7 @@ Claude が挙げる出典の誤りは、存在しない文献だけではない�
 <!-- textlint-enable -->
 <!-- gen:end snippet checking-citations/checkable-list -->
 
-Research を使って調べさせた場合の頼み方は <!-- link:begin using-research#requesting -->リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）（準備中）<!-- link:end --> にある。API で渡した文書の中の根拠を返させる仕組みは <!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる） › 引用させる指示との違い（準備中）<!-- link:end --> で扱う。どの守りを入れても、挙げられた出典を原文で確かめる手順は要る。
+Research を使って調べさせた場合の頼み方は <!-- link:begin using-research#requesting -->[リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）](../app/using-research.md#requesting)<!-- link:end --> にある。API で渡した文書の中の根拠を返させる仕組みは <!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる） › 引用させる指示との違い（準備中）<!-- link:end --> で扱う。どの守りを入れても、挙げられた出典を原文で確かめる手順は要る。
 
 ## 確かめる手順 {#steps}
 
@@ -119,7 +119,7 @@ Research を使って調べさせた場合の頼み方は <!-- link:begin using-
 原文を開く手段は、使っている面によって違う。
 
 === "アプリ"
-    返答にある題名や URL を、自分でブラウザに入れて開く。Research のレポートの出典は、<!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> に沿って確かめる。
+    返答にある題名や URL を、自分でブラウザに入れて開く。Research のレポートの出典は、<!-- link:begin using-research#checking-sources -->[リサーチを使いこなす › 出典の確かめ方](../app/using-research.md#checking-sources)<!-- link:end --> に沿って確かめる。
 
 === "Claude Code"
     表をファイルに置き、行ごとに原文を Claude に取得させ、照合させることもできる。その結果の「一致」も、数件は自分で原文を開いて見直す。書いた本人に採点させない、という考え方である。
@@ -166,7 +166,7 @@ Research を使って調べさせた場合の頼み方は <!-- link:begin using-
 **関連**
 
 - [もっともらしい嘘・出典の誤り](../symptoms/plausible-falsehoods.md)
-- リサーチを使いこなす（準備中）
+- [リサーチを使いこなす](../app/using-research.md)
 - [要約が原文より断定的になる](../symptoms/summary-overstates-source.md)
 
 </div>

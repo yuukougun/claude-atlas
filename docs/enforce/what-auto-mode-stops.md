@@ -99,7 +99,7 @@ auto モードは確認を減らす仕組みで、安全を保証しない。限
 | 消されたくないもの | 権限ルールとバックアップ | <!-- link:begin destructive-commands#guard -->[消されたくないもの（破壊的コマンド） › 確認を求めさせる頼み方と、鍵](../safety/destructive-commands.md#guard)<!-- link:end --> |
 | 信頼できない入力・秘密・外への送信が揃う構成 | 三つを同時に持たせない | <!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](../safety/lethal-trifecta.md#three-capabilities)<!-- link:end --> |
 
-確認を全部外す bypassPermissions は、auto モードの代わりにならない。使い捨てて隔離した環境だけで使う（<!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](../safety/where-bypass-is-ok.md#why-isolate)<!-- link:end -->）。承認が多すぎて読まなくなる問題は <!-- link:begin approval-fatigue#reduce-prompts -->承認疲れ › 確認を減らす順番（準備中）<!-- link:end --> で扱う。
+確認を全部外す bypassPermissions は、auto モードの代わりにならない。使い捨てて隔離した環境だけで使う（<!-- link:begin where-bypass-is-ok#why-isolate -->[bypassPermissions と無人の実行はどこで動かすか › なぜ隔離した環境だけか](../safety/where-bypass-is-ok.md#why-isolate)<!-- link:end -->）。承認が多すぎて読まなくなる問題は <!-- link:begin approval-fatigue#reduce-prompts -->[承認疲れ › 確認を減らす順番](../safety/approval-fatigue.md#reduce-prompts)<!-- link:end --> で扱う。
 
 !!! example "判断例：夜間に長い作業を auto モードで任せたい"
     - **状況**：作業ディレクトリには `.env` があり、会社の別のリポジトリへ push する作業も含む。夜に離席して進めたい。
@@ -127,7 +127,7 @@ auto モードに操作を止められたら、止めた理由を読み、足り
 
 分類器の判定が返らない場合もある。通知が「判定がなかった」ことを示し、`/permissions` にも行が出ないなら、分類器は答えていないだけで、危ないと判断してはいない。公式のエラーの案内に沿って、操作のやり方を直す。
 
-止めすぎて回り込む動きが出ていないかは、止めた記録で見る（<!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end -->）。確認の回数そのものを調整するなら <!-- link:begin wrong-amount-of-approvals#diagnosis -->[承認の確認が多すぎる・少なすぎる › 原因を安く確かめる順](../symptoms/wrong-amount-of-approvals.md#diagnosis)<!-- link:end --> を引く。
+止めすぎて回り込む動きが出ていないかは、止めた記録で見る（<!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end -->）。確認の回数そのものを調整するなら <!-- link:begin wrong-amount-of-approvals#diagnosis -->[承認の確認が多すぎる・少なすぎる › 原因を安く確かめる順](../symptoms/wrong-amount-of-approvals.md#diagnosis)<!-- link:end --> を引く。
 
 ## 面ごとの違い {#by-surface}
 
@@ -233,15 +233,15 @@ auto モードの周りには、古い前提の助言が残っている。
 **次に読む**
 
 - [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
-- agent view と背景セッション（準備中）
+- [agent view と背景セッション](../delegate/agent-view-and-background.md)
+- [/loop と定期実行の方式](../delegate/loop-and-scheduling.md)
 - エージェントチーム（複数の Claude に分担させる）（準備中）
-- /loop と定期実行の方式（準備中）
 
 **関連**
 
 - [権限ルール（allow・ask・deny）](permission-rules.md)
 - [サンドボックスで封じ込める](sandboxing.md)
-- 承認疲れ（準備中）
+- [承認疲れ](../safety/approval-fatigue.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
@@ -251,7 +251,7 @@ auto モードの周りには、古い前提の助言が残っている。
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
 - [お願いを鍵に移す判断](when-to-lock.md)
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
 
 </div>
 

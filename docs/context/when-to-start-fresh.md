@@ -127,7 +127,7 @@ flowchart TD
 <!-- textlint-enable -->
 <!-- gen:end snippet when-to-start-fresh/restart-request -->
 
-作業が長い、または何度も再開するなら、Claude に文書を書かせてから新しくする。書かせる 4 項目は <!-- link:begin handoff-documents#four-items -->[handoff 文書と document-and-clear › 書かせる四項目](handoff-documents.md#four-items)<!-- link:end --> に、置く場所は <!-- link:begin handoff-documents#where -->[handoff 文書と document-and-clear › 置き場所（圧縮で消えない所）](handoff-documents.md#where)<!-- link:end --> にある。要約で足りるか、書き出してから新しくするかの分かれ目は <!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)<!-- link:end --> が持つ。出力を良くするために新しくする場合は、前回の結果を見せて直させる進め方と両立する。両立のさせ方は <!-- link:begin build-on-results#with-clear -->やり直させるより、結果を踏まえて直させる › /clear・巻き戻しとの両立（準備中）<!-- link:end --> にある。
+作業が長い、または何度も再開するなら、Claude に文書を書かせてから新しくする。書かせる 4 項目は <!-- link:begin handoff-documents#four-items -->[handoff 文書と document-and-clear › 書かせる四項目](handoff-documents.md#four-items)<!-- link:end --> に、置く場所は <!-- link:begin handoff-documents#where -->[handoff 文書と document-and-clear › 置き場所（圧縮で消えない所）](handoff-documents.md#where)<!-- link:end --> にある。要約で足りるか、書き出してから新しくするかの分かれ目は <!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)<!-- link:end --> が持つ。出力を良くするために新しくする場合は、前回の結果を見せて直させる進め方と両立する。両立のさせ方は <!-- link:begin build-on-results#with-clear -->[やり直させるより、結果を踏まえて直させる › /clear・巻き戻しとの両立](build-on-results.md#with-clear)<!-- link:end --> にある。
 
 面ごとの始め方は次のとおりである。
 
@@ -137,7 +137,7 @@ flowchart TD
 
 === "Claude Code"
 
-    `/clear` で空の文脈から始める。前の会話は `/resume` で戻れる。後で戻る予定があるなら、`/clear oauth-migration` のように名前を付けておくと探しやすい。名前の付け方は <!-- link:begin resume-and-branch#naming -->セッションに名前を付けて再開・分岐する › 名前の付け方（準備中）<!-- link:end --> にある。
+    `/clear` で空の文脈から始める。前の会話は `/resume` で戻れる。後で戻る予定があるなら、`/clear oauth-migration` のように名前を付けておくと探しやすい。名前の付け方は <!-- link:begin resume-and-branch#naming -->[セッションに名前を付けて再開・分岐する › 名前の付け方](../cli/resume-and-branch.md#naming)<!-- link:end --> にある。
 
 ## 新しくしても戻らないもの（上限・記憶） {#what-does-not-reset}
 
@@ -188,14 +188,14 @@ flowchart TD
 **次に読む**
 
 - [handoff 文書と document-and-clear](handoff-documents.md)
-- セッションに名前を付けて再開・分岐する（準備中）
+- [セッションに名前を付けて再開・分岐する](../cli/resume-and-branch.md)
 
 **関連**
 
 - [机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)
 - [違うと返すより、巻き戻す・編集する](rewind-dont-correct.md)
 - [/compact と自動圧縮](compact-and-auto-compact.md)
-- やり直させるより、結果を踏まえて直させる（準備中）
+- [やり直させるより、結果を踏まえて直させる](build-on-results.md)
 - [長い会話で前提を忘れる・雑になる](../symptoms/forgets-in-long-chats.md)
 - [同じ失敗を繰り返す（堂々巡り）](../symptoms/going-in-circles.md)
 - [利用上限の仕組み（面をまたいで共有する枠）](../cost/how-usage-limits-work.md)

@@ -105,7 +105,7 @@ updated: 2026-11-05
 
 Cowork とは、Cowork がクラウドで動くときだけメモリを共有する。
 
-メモリは、Claude が自分で書き溜める記録である。毎回守らせたい前提や形式は、メモリではなく指示に書く。置き場所の選び方は <!-- link:begin where-to-put-instructions#how-to-choose -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル） › どこに置くかの選び方](where-to-put-instructions.md#how-to-choose)<!-- link:end --> にある。Claude Code の自動メモリは別の機能で、確かめ方は <!-- link:begin using-auto-memory#review -->自動メモリ › 誤った記録の見直し（準備中）<!-- link:end --> にある。
+メモリは、Claude が自分で書き溜める記録である。毎回守らせたい前提や形式は、メモリではなく指示に書く。置き場所の選び方は <!-- link:begin where-to-put-instructions#how-to-choose -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル） › どこに置くかの選び方](where-to-put-instructions.md#how-to-choose)<!-- link:end --> にある。Claude Code の自動メモリは別の機能で、確かめ方は <!-- link:begin using-auto-memory#review -->[自動メモリ › 誤った記録の見直し](../extend/using-auto-memory.md#review)<!-- link:end --> にある。
 
 別の会話やプロジェクトの内容が混ざる原因を切り分けたいときは、<!-- link:begin unexpected-memories#diagnosis -->[別の会話やプロジェクトの内容が混ざる › 原因を安く確かめる順](../symptoms/unexpected-memories.md#diagnosis)<!-- link:end --> から入る。
 
@@ -170,7 +170,7 @@ Cowork とは、Cowork がクラウドで動くときだけメモリを共有す
 - 会話ごとのオフ：最初のメッセージを送る前に、`+` メニューの Memory をオフにする。後から切り替えられないと説明されているので、送ったあとには使えない。
 - Pause：既存のメモリを残したまま、使用と追加の両方を止める。しばらく記憶を使わせずに話したいときの手段である。
 - Reset：プロジェクトのメモリを含めて全削除する。取り消せないので、実行前に Topics を見て、残したい項目を控える。
-- シークレットチャット：履歴とメモリに残らない。詳しい扱いは次の 2 か所にある。残らないもの・残るものは <!-- link:begin incognito-chats#retention -->シークレットチャット（記録を残さない会話） › 残らないもの・残るもの（準備中）<!-- link:end -->、使えない機能は <!-- link:begin incognito-chats#limits -->シークレットチャット（記録を残さない会話） › 使えない機能（準備中）<!-- link:end --> にある。
+- シークレットチャット：履歴とメモリに残らない。詳しい扱いは次の 2 か所にある。残らないもの・残るものは <!-- link:begin incognito-chats#retention -->[シークレットチャット（記録を残さない会話） › 残らないもの・残るもの](incognito-chats.md#retention)<!-- link:end -->、使えない機能は <!-- link:begin incognito-chats#limits -->[シークレットチャット（記録を残さない会話） › 使えない機能](incognito-chats.md#limits)<!-- link:end --> にある。
 
 !!! example "判断例：今夜だけメモリを使わせたくない"
     - **状況**：個人的な相談を今夜だけしたい。普段のメモリは混ぜたくないが、会話は後で見返したい。
@@ -210,14 +210,14 @@ Cowork とは、Cowork がクラウドで動くときだけメモリを共有す
 
 **次に読む**
 
-- シークレットチャット（記録を残さない会話）（準備中）
+- [シークレットチャット（記録を残さない会話）](incognito-chats.md)
 
 **関連**
 
 - [別の会話やプロジェクトの内容が混ざる](../symptoms/unexpected-memories.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](where-to-put-instructions.md)
 - [プロジェクトの使いどころ](using-projects.md)
-- 自動メモリ（準備中）
+- [自動メモリ](../extend/using-auto-memory.md)
 - [送ったデータの行方（学習・保持期間）](../safety/where-your-data-goes.md)
 - [机を整える：新鮮さ・巻き戻し・書き出し・委任 › アプリでの整え方](../context/tidy-the-desk.md#in-the-app)
 - [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)

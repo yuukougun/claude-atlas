@@ -96,7 +96,7 @@ updated: 2026-11-05
 
 読む量が多いときは、次の 2 つの手で本筋の会話を軽くする。
 
-- 型のあるコードベースでは、言語サーバーを使わせると、ファイルを総当たりで読む代わりに定義へ飛べる。入れ方と効き方は <!-- link:begin code-intelligence-plugins -->code intelligence プラグイン（LSP）（準備中）<!-- link:end --> が扱う。
+- 型のあるコードベースでは、言語サーバーを使わせると、ファイルを総当たりで読む代わりに定義へ飛べる。入れ方と効き方は <!-- link:begin code-intelligence-plugins -->[code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md)<!-- link:end --> が扱う。
 - 出力が多く、本筋から独立した調査は、別室の部下であるサブエージェントに任せ、結論と根拠の場所だけを戻させる。トークンは余分にかかる。任せてよい調査と頼み方は <!-- link:begin research-in-subagents#when -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る › 任せてよい調査、本筋で読むべきもの](../context/research-in-subagents.md#when)<!-- link:end --> と <!-- link:begin research-in-subagents#how -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る › 頼み方と戻させる形](../context/research-in-subagents.md#how)<!-- link:end --> が扱う。
 
 !!! example "判断例：認証まわりの調べを、本筋で読むか、サブエージェントに任せるか"
@@ -140,7 +140,7 @@ Claude のコードの説明は、該当のファイルと行を自分で開い�
 <!-- textlint-enable -->
 <!-- gen:end snippet explore-a-codebase/recheck-claims -->
 
-「本当にそう？」と聞くだけでは、根拠を示さずに前の説明を言い直すことがある。引用を求めると、その場でコードを読み直す手間が入るので、合わない主張が見つかりやすい。処理の流れと入力の端を説明させ、実際の動きと照らす手順は、生成コードを採る前の確かめと同じである。詳しくは <!-- link:begin own-generated-code#check-explanation -->生成コードを自分のものにする › 説明を実際の動きと照らす（準備中）<!-- link:end --> が扱う。
+「本当にそう？」と聞くだけでは、根拠を示さずに前の説明を言い直すことがある。引用を求めると、その場でコードを読み直す手間が入るので、合わない主張が見つかりやすい。処理の流れと入力の端を説明させ、実際の動きと照らす手順は、生成コードを採る前の確かめと同じである。詳しくは <!-- link:begin own-generated-code#check-explanation -->[生成コードを自分のものにする › 説明を実際の動きと照らす](../verify/own-generated-code.md#check-explanation)<!-- link:end --> が扱う。
 
 重要な主張は、同じ質問を新しい会話でもう一度して、答えが一致するかを見る手もある。やり方は <!-- link:begin fact-checking#best-of-n -->[事実を確かめる（引用・照合・best-of-N） › 何度か聞いて比べる（best-of-N）](../verify/fact-checking.md#best-of-n)<!-- link:end --> が扱う。一致しても正しいとは限らない。一致しない主張は、読み直す箇所の目印になる。
 
@@ -182,7 +182,7 @@ Claude のコードの説明は、該当のファイルと行を自分で開い�
 <!-- textlint-enable -->
 <!-- gen:end snippet explore-a-codebase/write-map -->
 
-地図と用語集は CLAUDE.md には書かず、別のファイルに置く。Claude はリポジトリを自分で読めるので、構成やファイルの並びを CLAUDE.md に書く助言は、今は勧められていない。CLAUDE.md に残すのは、リポジトリを読んでも分からないことに絞る。この助言の変化は <!-- link:begin outdated-advice-ledger#architecture-in-claude-md -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#architecture-in-claude-md)<!-- link:end --> にあり、残す行と外す行の見分け方は <!-- link:begin what-to-put-in-claude-md#what-to-leave-out -->[CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](../extend/what-to-put-in-claude-md.md#what-to-leave-out)<!-- link:end --> が扱う。`/init` で CLAUDE.md の叩き台を作る手は <!-- link:begin init-and-first-claude-md#run-init -->/init と最初の CLAUDE.md › /init で叩き台を作る（準備中）<!-- link:end --> が扱う。
+地図と用語集は CLAUDE.md には書かず、別のファイルに置く。Claude はリポジトリを自分で読めるので、構成やファイルの並びを CLAUDE.md に書く助言は、今は勧められていない。CLAUDE.md に残すのは、リポジトリを読んでも分からないことに絞る。この助言の変化は <!-- link:begin outdated-advice-ledger#architecture-in-claude-md -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#architecture-in-claude-md)<!-- link:end --> にあり、残す行と外す行の見分け方は <!-- link:begin what-to-put-in-claude-md#what-to-leave-out -->[CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](../extend/what-to-put-in-claude-md.md#what-to-leave-out)<!-- link:end --> が扱う。`/init` で CLAUDE.md の叩き台を作る手は <!-- link:begin init-and-first-claude-md#run-init -->[/init と最初の CLAUDE.md › /init で叩き台を作る](../cli/init-and-first-claude-md.md#run-init)<!-- link:end --> が扱う。
 
 地図は、Claude が書いた文章を人が確かめないまま残すと、誤りを固定してしまう。残す前に、地図の中のパスと関数名の数か所を、自分で開いて確かめる。
 
@@ -196,11 +196,11 @@ Claude のコードの説明は、該当のファイルと行を自分で開い�
 
 読み終えたら、自分の理解を全体で確かめる。Claude の説明が正しいことと、自分が分かったことは別だからである。
 
-- 追った処理を、自分の言葉で、ファイルを見ずに言い直す。言い直せない所が、読み直す箇所になる。手順は <!-- link:begin own-generated-code#gate -->生成コードを自分のものにする › 自分の言葉で言い直してから採る（準備中）<!-- link:end --> が扱う。
+- 追った処理を、自分の言葉で、ファイルを見ずに言い直す。言い直せない所が、読み直す箇所になる。手順は <!-- link:begin own-generated-code#gate -->[生成コードを自分のものにする › 自分の言葉で言い直してから採る](../verify/own-generated-code.md#gate)<!-- link:end --> が扱う。
 - 「この処理に項目を 1 つ足すなら、どのファイルのどこを変えるか」を Claude に聞き、答えの箇所を自分で開く。変える箇所が見当違いなら、まだ全体をつかめていない。
 - 地図の通りにコードをたどり、実在しないパスや関数名がないかを数か所で確かめる。
 
-中核になる部分は、説明できるまで理解を確かめる。周辺の部分は、地図に任せてよい。線の引き方は <!-- link:begin how-much-understanding-to-keep#core-and-periphery -->どこまで理解を手放してよいか（中核と周辺） › 中核と周辺を分ける（準備中）<!-- link:end --> が扱う。AI を介した学びで理解が残りにくいことは <!-- link:begin learning-with-ai#faster-but-shallower -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる） › 速さの得は確かめられず、理解は残りにくい](../judgment/learning-with-ai.md#faster-but-shallower)<!-- link:end --> が扱う。仕様書や規約が別にあるときは、原文を先に自分で読む手が <!-- link:begin read-specs-yourself#read-first -->仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する（準備中）<!-- link:end --> にある。
+中核になる部分は、説明できるまで理解を確かめる。周辺の部分は、地図に任せてよい。線の引き方は <!-- link:begin how-much-understanding-to-keep#core-and-periphery -->[どこまで理解を手放してよいか（中核と周辺） › 中核と周辺を分ける](../judgment/how-much-understanding-to-keep.md#core-and-periphery)<!-- link:end --> が扱う。AI を介した学びで理解が残りにくいことは <!-- link:begin learning-with-ai#faster-but-shallower -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる） › 速さの得は確かめられず、理解は残りにくい](../judgment/learning-with-ai.md#faster-but-shallower)<!-- link:end --> が扱う。仕様書や規約が別にあるときは、原文を先に自分で読む手が <!-- link:begin read-specs-yourself#read-first -->[仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する](read-specs-yourself.md#read-first)<!-- link:end --> にある。
 
 ## うまくいかないとき {#when-it-fails}
 
@@ -209,7 +209,7 @@ Claude のコードの説明は、該当のファイルと行を自分で開い�
 - 説明に存在しないファイル・関数・パッケージが出てくる：<!-- link:begin uses-nonexistent-apis#diagnosis -->[存在しない関数やパッケージを使う › 原因を安く確かめる順](../symptoms/uses-nonexistent-apis.md#diagnosis)<!-- link:end --> で原因を切り分ける。読ませた範囲が足りない場合は、入口を `@` で直接指して、読ませ直す。
 - 説明の行番号が実際のコードと合わない：該当の主張を捨て、「説明をコードで確かめる」の 2 つ目の手の雛形で、主張ごとに引用を取り直す。繰り返し合わないときは、新しいセッションで範囲を狭めてやり直す（推論・実践例なし）。
 - 流れを追っている途中で、バグらしい挙動が見つかった：読む作業をいったん止め、<!-- link:begin fix-a-bug -->[バグを直す](fix-a-bug.md)<!-- link:end --> の手順に移る。読む作業の中で、そのままコードを直させない。
-- 読んだ内容を、自分では説明できない：<!-- link:begin how-much-understanding-to-keep -->どこまで理解を手放してよいか（中核と周辺）（準備中）<!-- link:end --> で、どこまで理解を手放すかを決める。
+- 読んだ内容を、自分では説明できない：<!-- link:begin how-much-understanding-to-keep -->[どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)<!-- link:end --> で、どこまで理解を手放すかを決める。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -234,16 +234,16 @@ Claude のコードの説明は、該当のファイルと行を自分で開い�
 
 **関連**
 
-- 仕様を自分で読み、AI に誤読を指摘させる（準備中）
+- [仕様を自分で読み、AI に誤読を指摘させる](read-specs-yourself.md)
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
-- code intelligence プラグイン（LSP）（準備中）
-- 生成コードを自分のものにする（準備中）
-- どこまで理解を手放してよいか（中核と周辺）（準備中）
+- [code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md)
+- [生成コードを自分のものにする](../verify/own-generated-code.md)
+- [どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)
 - [AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](../judgment/learning-with-ai.md)
 - [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - [MCP・プラグイン・スキルを入れる前の確認 › 依存のパッケージを入れる前に（存在しない名前・後から登録された名前）](../safety/vetting-extensions.md#dependencies)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
-- /init と最初の CLAUDE.md（準備中）
+- [/init と最初の CLAUDE.md](../cli/init-and-first-claude-md.md)
 - [存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)
 - [バグを直す](fix-a-bug.md)
 

@@ -66,9 +66,9 @@ updated: 2026-11-05
 1. **止まり方を見分ける**（手間：なし）
     - 見る：止まる直前の返答と画面。Claude が文で聞いているのか、権限の確認の画面が出て待っているのか、何も出ずに止まっているのか。
     - 確かめる：文で聞いているなら手順 2 へ進む。権限の確認が出ているなら手順 4 へ進む。確認の画面を見落としたまま「止まった」と思い込んでいる場合も、ここで見つかる。
-    - 拒否や停止の表示が出ている、または何も出ずに止まっているときは、何かに止められた可能性がある。利用ポリシーの判定か、auto モード・フック・権限ルールの停止かの見分け方は <!-- link:begin refused-or-blocked#what-stopped -->[断られた・止められた › 何に止められたかを見分ける（利用ポリシーか、auto モード・フック・権限ルールか）](refused-or-blocked.md#what-stopped)<!-- link:end --> にある。auto モードの分類器やフックに止められたときの見直しは <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> と <!-- link:begin lock-side-effects#reason-and-alternative -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと（準備中）<!-- link:end --> にある。
+    - 拒否や停止の表示が出ている、または何も出ずに止まっているときは、何かに止められた可能性がある。利用ポリシーの判定か、auto モード・フック・権限ルールの停止かの見分け方は <!-- link:begin refused-or-blocked#what-stopped -->[断られた・止められた › 何に止められたかを見分ける（利用ポリシーか、auto モード・フック・権限ルールか）](refused-or-blocked.md#what-stopped)<!-- link:end --> にある。auto モードの分類器やフックに止められたときの見直しは <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> と <!-- link:begin lock-side-effects#reason-and-alternative -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと](../enforce/lock-side-effects.md#reason-and-alternative)<!-- link:end --> にある。
     - 古い版の Claude Code には、auto モードの判定が返らないときに表示がおかしくなる不具合があり、止まった理由が出ないことがあった。その不具合は後の版で修正されている。理由が出ない停止は、Claude Code を更新してから見直す。修正の版は更新履歴（CHANGELOG）で確かめる。
-    - Claude が懸念やテストの異常を述べて止まっているなら、止まったことは正しい。止まる権利を外さず、その懸念に答える。止まる条件の書き方は <!-- link:begin permission-to-stop#conditions -->止まって報告する権利を渡す › 止まって報告する条件を書く（準備中）<!-- link:end --> にある。
+    - Claude が懸念やテストの異常を述べて止まっているなら、止まったことは正しい。止まる権利を外さず、その懸念に答える。止まる条件の書き方は <!-- link:begin permission-to-stop#conditions -->[止まって報告する権利を渡す › 止まって報告する条件を書く](../prompting/permission-to-stop.md#conditions)<!-- link:end --> にある。
 2. **依頼が提案にも読めるか**（原因：見えていない。手間：依頼を 1 回出し直す）
     - 見る：依頼の動詞。「検討して」「どう思う」「案を出して」「見て」は、提案で終えてよい依頼とも読める。
     - 確かめる：同じ依頼を「直して」「実装して、テストまで流して」のように動詞を変えて 1 回だけ出し直す。実行まで進むなら原因はここにある。動詞の書き分けは <!-- link:begin suggest-or-do#verbs -->[提案してほしいのか、実行してほしいのか › 提案と実行を動詞で分ける](../prompting/suggest-or-do.md#verbs)<!-- link:end -->、既定をどちらに寄せるかは <!-- link:begin suggest-or-do#default -->[提案してほしいのか、実行してほしいのか › 既定の振る舞いを決める（すぐ実行するか、指示を待つか）](../prompting/suggest-or-do.md#default)<!-- link:end --> にある。
@@ -78,10 +78,10 @@ updated: 2026-11-05
 4. **権限モードと確認の出方**（原因：合っていない。手間：設定を見る）
     - 見る：手元の権限モードと、確認が出る操作。権限モードは Claude Code の機能で、既定は版で変わってきた。手元の既定は <!-- link:begin permission-modes-overview#defaults -->[権限モードの選び方 › 既定のモードと版](../cli/permission-modes-overview.md#defaults)<!-- link:end --> で確かめる。
     - 確かめる：確認が毎回同じ種類の操作で出るなら、Claude が聞いているのではなく、動かしているのはモードか権限ルールである。モードごとに何が確認なしで進むかは <!-- link:begin permission-modes-overview#modes -->[権限モードの選び方 › モードごとに確認なしで進むもの](../cli/permission-modes-overview.md#modes)<!-- link:end --> にある。承認の数そのものを調整するかどうかは <!-- link:begin wrong-amount-of-approvals -->[承認の確認が多すぎる・少なすぎる](wrong-amount-of-approvals.md)<!-- link:end --> で決める。
-    - 確認を減らす方向へ動かす前に、止める側の守りを決める。auto モードは確認を減らす仕組みで、安全を保証しない（<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end -->）。縛る規則の選び方は <!-- link:begin lock-side-effects#what-to-lock -->縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）（準備中）<!-- link:end --> にある。
+    - 確認を減らす方向へ動かす前に、止める側の守りを決める。auto モードは確認を減らす仕組みで、安全を保証しない（<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end -->）。縛る規則の選び方は <!-- link:begin lock-side-effects#what-to-lock -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）](../enforce/lock-side-effects.md#what-to-lock)<!-- link:end --> にある。
 5. **effort の段**（原因：合っていない。手間：段を 1 つ変えて出し直す）
     - 見る：今の effort の段。既定の段はモデルと面で違うので、手元の値は <!-- link:begin effort-levels#defaults-by-surface -->[effort の段階と使い分け › 既定の段（モデル × 面の表）](../models/effort-levels.md#defaults-by-surface)<!-- link:end --> の表で確かめる。
-    - 確かめる：1 段上げて同じ依頼を出し直し、確認の回数が減るかを見る。上げると考える時間と使用量が増えるので、効かなければ戻す。公式の指針は、低めの段（low・medium）の長い作業で、途中で確認を挟みやすくなると書く（2026-11-05 に確認。<!-- link:begin model-quirks#official-guidance -->モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向（準備中）<!-- link:end -->）。
+    - 確かめる：1 段上げて同じ依頼を出し直し、確認の回数が減るかを見る。上げると考える時間と使用量が増えるので、効かなければ戻す。公式の指針は、低めの段（low・medium）の長い作業で、途中で確認を挟みやすくなると書く（2026-11-05 に確認。<!-- link:begin model-quirks#official-guidance -->[モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向](../models/model-quirks.md#official-guidance)<!-- link:end -->）。
 
     effort を見る場所は面で違う。
 
@@ -93,7 +93,7 @@ updated: 2026-11-05
 
 6. **モデルの癖**（原因：合っていない。手間：記録を見る、または別のモデルで試す）
     - 見る：使っているモデルの公式のプロンプトの指針。Sonnet 向けの [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5) は、low と medium の段の長い作業について、次の止まり方をすることがあると書く（2026-11-05 に確認）。計画の確認を挟む。自分で答えられる質問をする。複数の部分の 1 つ目で続けるかを聞く。
-    - 確かめる：同じ依頼を、effort を上げて、または止まる条件つきの依頼で出し直す。止まる条件つきの依頼の型は、このページの「予防：仕組みに移す」の節に雛形がある。傾向はモデルの版で変わるので、暗記せず、自分の環境で観察して記録する（<!-- link:begin model-quirks#observe-and-record -->モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する（準備中）<!-- link:end -->）。
+    - 確かめる：同じ依頼を、effort を上げて、または止まる条件つきの依頼で出し直す。止まる条件つきの依頼の型は、このページの「予防：仕組みに移す」の節に雛形がある。傾向はモデルの版で変わるので、暗記せず、自分の環境で観察して記録する（<!-- link:begin model-quirks#observe-and-record -->[モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する](../models/model-quirks.md#observe-and-record)<!-- link:end -->）。
 
 人の側で起きやすい落とし穴もある。
 
@@ -111,7 +111,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 見えていない | [提案してほしいのか、実行してほしいのか](../prompting/suggest-or-do.md)<br>[「完了」を定義して渡す](../verify/define-done.md) |
-| 合っていない | [effort の段階と使い分け](../models/effort-levels.md)<br>モデル別の癖と、プロンプトの合わせ方（準備中）<br>[権限モードの選び方](../cli/permission-modes-overview.md) |
+| 合っていない | [effort の段階と使い分け](../models/effort-levels.md)<br>[モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)<br>[権限モードの選び方](../cli/permission-modes-overview.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -129,9 +129,9 @@ updated: 2026-11-05
 毎回「進めて」と言い足すのをやめ、頼み方と仕組みに移す。
 
 - **頼み方の型にする**：動詞（提案か実行か）・終わりの条件・止まって相談する条件を、依頼の型に入れておく。型の例を下に置く。完了の定義を含む依頼の型は <!-- link:begin define-done#templates -->[「完了」を定義して渡す › 完了の定義を含む依頼の雛形](../verify/define-done.md#templates)<!-- link:end --> にもある。
-- **目的は成果で渡す**：目的と完了は測れる成果で渡し、着手点は具体的に書く。<!-- link:begin ask-for-outcomes#outcomes -->細かく指図するか、成果で頼むか › 成果で示すもの：目的と完了の条件（準備中）<!-- link:end --> を見る。
+- **目的は成果で渡す**：目的と完了は測れる成果で渡し、着手点は具体的に書く。<!-- link:begin ask-for-outcomes#outcomes -->[細かく指図するか、成果で頼むか › 成果で示すもの：目的と完了の条件](../prompting/ask-for-outcomes.md#outcomes)<!-- link:end --> を見る。
 - **誰も見ていない実行は仕組みで続けさせる**：席を外す作業は、`/goal` で完了の条件を満たすまでターンを続けさせられる。判定役は会話に出た証拠しか読まないので、条件の書き方に注意する（<!-- link:begin goal-until-done#evaluator-reads-conversation -->[/goal（完了するまで続けさせる） › 判定役は会話しか読まない](../delegate/goal-until-done.md#evaluator-reads-conversation)<!-- link:end -->）。
-- **止まる権利は残す**：止まるべきところで止まるのは正しい。止まる条件を書いたうえで、テストを書き換えられない仕組みと組み合わせる（<!-- link:begin permission-to-stop#with-structure -->止まって報告する権利を渡す › 書き換えられない仕組みと組み合わせる（準備中）<!-- link:end -->）。
+- **止まる権利は残す**：止まるべきところで止まるのは正しい。止まる条件を書いたうえで、テストを書き換えられない仕組みと組み合わせる（<!-- link:begin permission-to-stop#with-structure -->[止まって報告する権利を渡す › 書き換えられない仕組みと組み合わせる](../prompting/permission-to-stop.md#with-structure)<!-- link:end -->）。
 - **確認を減らすなら先に守りを置く**：権限を緩める前に、止める側の規則を機械的に判定できるものへ絞る。
 
 <!-- gen:begin snippet keeps-stopping/carry-through -->
@@ -183,16 +183,16 @@ updated: 2026-11-05
 - [提案してほしいのか、実行してほしいのか](../prompting/suggest-or-do.md)
 - [「完了」を定義して渡す](../verify/define-done.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
-- モデル別の癖と、プロンプトの合わせ方（準備中）
+- [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
 - [権限モードの選び方](../cli/permission-modes-overview.md)
 
 **関連**
 
-- 細かく指図するか、成果で頼むか（準備中）
+- [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
-- 止まって報告する権利を渡す（準備中）
+- [止まって報告する権利を渡す](../prompting/permission-to-stop.md)
 - [auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)
 - [承認の確認が多すぎる・少なすぎる](wrong-amount-of-approvals.md)
 - [頼んでいないことまでやる（過剰設計）](does-more-than-asked.md)
 - [断られた・止められた](refused-or-blocked.md)

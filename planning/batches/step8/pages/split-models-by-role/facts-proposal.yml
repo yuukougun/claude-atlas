@@ -1,0 +1,3 @@
+proposals:
+  - fact: {id: opusplan-alias-mapping, title: "opusplan エイリアスの割り当て（plan mode と実行で使う系統）", value: "plan mode では opus、実行では sonnet に自動で切り替わる", sources: [cc-docs-model-config], checked: 2026-11-05, status: 確認済み}
+    used_in: [split-models-by-role#patterns]

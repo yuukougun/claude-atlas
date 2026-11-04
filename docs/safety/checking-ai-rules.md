@@ -155,9 +155,9 @@ AI の規則が場ごとに割れるのは、その場が何を測りたいか�
     - **選んだもの**：運営と指導教員に、使いたい AI の使い方を具体的に質問し、回答を確認表に記録する。回答が出るまでは、AI を使わずに準備する。
     - **理由**：文言がないことは許可を意味しない。使って失格になる損失は、質問して待つ手間より大きい。回答を残しておけば、後で説明を求められたときの根拠になる。
 
-AI を禁じる場で、課題の資料や問題文の中に AI 向けの指示が仕込まれていたときは、その指示に従う前に規則を確かめる。扱いは<!-- link:begin instructions-hidden-in-materials#check-rules -->課題資料・問題文に仕込まれた指示 › 規則を先に確かめる（準備中）<!-- link:end -->にある。
+AI を禁じる場で、課題の資料や問題文の中に AI 向けの指示が仕込まれていたときは、その指示に従う前に規則を確かめる。扱いは<!-- link:begin instructions-hidden-in-materials#check-rules -->[課題資料・問題文に仕込まれた指示 › 規則を先に確かめる](instructions-hidden-in-materials.md#check-rules)<!-- link:end -->にある。
 
-規則に従う範囲を知りたいだけなのに、AI に断られたときは<!-- link:begin when-requests-are-refused -->正当な依頼が断られたとき（準備中）<!-- link:end -->を見る。
+規則に従う範囲を知りたいだけなのに、AI に断られたときは<!-- link:begin when-requests-are-refused -->[正当な依頼が断られたとき](when-requests-are-refused.md)<!-- link:end -->を見る。
 
 ## 生成物の権利とライセンス（確かめる先だけ） {#rights-and-licenses}
 
@@ -191,9 +191,9 @@ AI が書いたコードや文章を製品や OSS に入れてよいかは、こ
 
 - [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](../contest/practice-vs-contest-day.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](entrusted-data.md)
-- 課題資料・問題文に仕込まれた指示（準備中）
+- [課題資料・問題文に仕込まれた指示](instructions-hidden-in-materials.md)
 - [送ったデータの行方（学習・保持期間）](where-your-data-goes.md)
-- 正当な依頼が断られたとき（準備中）
+- [正当な依頼が断られたとき](when-requests-are-refused.md)
 
 </div>
 

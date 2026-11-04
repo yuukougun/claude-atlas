@@ -67,7 +67,7 @@ updated: 2026-11-05
     - 説明文は、アップロードしたスキルの `SKILL.md` に書いてある。直したら、スキルのフォルダを ZIP にして上げ直す。
     - 公式は、「いつ使うスキルか」が分かる説明を書くように勧めている。Claude は依頼と説明を見て、使うかを決めるためである。
     - 使われないときは、スキルのトグルがオンになっているかを確かめ、依頼でスキルの名前を挙げる。スキルを使うには、code execution が有効になっている必要がある。
-    - スキルの設定画面の名前と場所は、展開中で変わっている。今の手順は「<!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end -->」で確かめる。
+    - スキルの設定画面の名前と場所は、展開中で変わっている。今の手順は「<!-- link:begin skills-in-the-app -->[アプリでスキルを使う](../app/skills-in-the-app.md)<!-- link:end -->」で確かめる。
 
 === "Claude Code"
 
@@ -149,7 +149,7 @@ updated: 2026-11-05
     - **選んだもの**：先に、説明文で境目を作る。リリースノートには「リリースの準備で」と書き、PR の説明文には「PR を作るときに」と書き、互いに使わない場面を足す。
     - **理由**：どちらのスキルも、Claude が自分の判断で使えるほうが便利である。名前で呼ぶ運用は、直した後も取り違えが残る場合の次の手にする。
 
-人だけが呼べるスキルにする方法は、「<!-- link:begin manual-only-skills -->副作用のあるスキルを勝手に動かさない（準備中）<!-- link:end -->」にある。自分で説明文を直せないスキルは、`skillOverrides` で見え方を調整できる。ただし、プラグインで配られるスキルには効かない（「<!-- link:begin writing-skills#evaluate -->[スキルの作り方 › 効いているかを確かめる](writing-skills.md#evaluate)<!-- link:end -->」）。
+人だけが呼べるスキルにする方法は、「<!-- link:begin manual-only-skills -->[副作用のあるスキルを勝手に動かさない](manual-only-skills.md)<!-- link:end -->」にある。自分で説明文を直せないスキルは、`skillOverrides` で見え方を調整できる。ただし、プラグインで配られるスキルには効かない（「<!-- link:begin writing-skills#evaluate -->[スキルの作り方 › 効いているかを確かめる](writing-skills.md#evaluate)<!-- link:end -->」）。
 
 ## 起動を確かめる {#check}
 
@@ -235,11 +235,11 @@ updated: 2026-11-05
 **関連**
 
 - [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
-- 副作用のあるスキルを勝手に動かさない（準備中）
+- [副作用のあるスキルを勝手に動かさない](manual-only-skills.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [拡張の棚卸しと剪定](pruning-extensions.md)
 - [サブエージェントの作り方と使いどころ](writing-subagents.md)
-- アプリでスキルを使う（準備中）
+- [アプリでスキルを使う](../app/skills-in-the-app.md)
 - [フックとスキルの違い](hook-vs-skill.md)
 - [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
 

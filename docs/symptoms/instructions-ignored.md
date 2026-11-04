@@ -123,7 +123,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
         - 決めたコマンドが使われない報告と対処は、実践者の記事にある。pip で入れる、指示しても `uv pip install` を使う、という報告が[Basic Claude Code](https://harper.blog/2025/05/08/basic-claude-code/)に、誤ったコマンドを PATH 上の代わりの実行ファイルで止め、`uv run python` を案内する対処が[Agentic Coding Things That Didn’t Work](https://lucumr.pocoo.org/2025/7/30/things-that-didnt-work/)にある（根拠：弱）。
         - スキルの手順が、最初は守られ、後から守られなくなるなら、毎回必ず走らせる分をフックに移す。Claude の判断で使う分は、作業の間ずっと当てはまる指示の形に書き直す。公式が勧める書き方で、たとえば「最初に型を確かめる」のような一度きりの手順は、「型を変えるたびに確かめる」と書く。圧縮の後は、呼んだスキルの本文が外れていることがあるので、外れたと思うときは呼び直す。
 
-1 から 3 のどれを直しても破られ続けるときは、設定を外して同じ依頼を比べ、不調が自分の設定から来るかを切り分ける。方法は「<!-- link:begin isolate-with-safe-mode -->設定を外して切り分ける（--safe-mode）（準備中）<!-- link:end -->」にある。
+1 から 3 のどれを直しても破られ続けるときは、設定を外して同じ依頼を比べ、不調が自分の設定から来るかを切り分ける。方法は「<!-- link:begin isolate-with-safe-mode -->[設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)<!-- link:end -->」にある。
 
 原因が分かったら、次の表の先へ進む。
 
@@ -132,7 +132,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [/context で中身を見る](../context/inspect-context.md)<br>CLAUDE.md の階層と読み込み順（準備中）<br>[スキルの description の書き方](../extend/skill-descriptions.md) |
+| 見えていない | [/context で中身を見る](../context/inspect-context.md)<br>[CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)<br>[スキルの description の書き方](../extend/skill-descriptions.md) |
 | 散らかっている | [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)<br>[CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)<br>[.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md) |
 | 縛っていない | [お願いを鍵に移す判断](../enforce/when-to-lock.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）](../enforce/hook-recipes.md#redirect-commands) |
 
@@ -215,7 +215,7 @@ CLAUDE.md の側には、使うコマンド、理由、例外のときの相談�
 
 鍵を足したら、効いたかを確かめる。壊れても困らない操作（たとえば、中身のない試験用のファイルの読み取り）をわざと頼み、止まることを見る。止まらなければ、ルールの書き方と、当てはまる範囲を見直す。
 
-縛りを足しすぎると、止めすぎと回り込みが起きる。鍵にする規則は絞り、止めた記録を見直す。見直し方は「<!-- link:begin lock-side-effects -->縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）<!-- link:end -->」にある。
+縛りを足しすぎると、止めすぎと回り込みが起きる。鍵にする規則は絞り、止めた記録を見直す。見直し方は「<!-- link:begin lock-side-effects -->[縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)<!-- link:end -->」にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -250,7 +250,7 @@ CLAUDE.md の側には、使うコマンド、理由、例外のときの相談�
 **次に読む**
 
 - [/context で中身を見る](../context/inspect-context.md)
-- CLAUDE.md の階層と読み込み順（準備中）
+- [CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)
 - [スキルの description の書き方](../extend/skill-descriptions.md)
 - [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
@@ -267,13 +267,13 @@ CLAUDE.md の側には、使うコマンド、理由、例外のときの相談�
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
-- /init と最初の CLAUDE.md（準備中）
+- [/init と最初の CLAUDE.md](../cli/init-and-first-claude-md.md)
 - [圧縮の後に約束を忘れた](forgot-after-compaction.md)
 - [英語で返ってくる](replies-in-english.md)
 - [毎回同じ説明をしている](repeating-the-same-explanation.md)
 - [文体や表記が揃わない](inconsistent-japanese-style.md)
-- 設定を外して切り分ける（--safe-mode）（準備中）
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
+- [設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)
 - [意図と違うものが出てくる](not-what-i-meant.md)
 - [長い会話で前提を忘れる・雑になる](forgets-in-long-chats.md)

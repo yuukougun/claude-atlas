@@ -65,7 +65,7 @@ updated: 2026-11-05
 「壊れた」と言われたら、安く確かめられるものから順に潰す。Claude 側の 6 つの原因のうち、この症状に関わるのは 3 つで、全体の順は <!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> にある。
 
 1. **人が同じ操作を自分で実行する**。いちばん安い確かめである。Claude が失敗したと言うコマンドを、同じ場所で人が実行する。人の側でも失敗するなら、本当に環境が壊れている。環境を直すのは人の仕事で、直してから作業を続ける。人の側で動くなら、Claude の実行の仕方に原因があるので、次に進む。
-2. **見えていない**。Claude が実行する環境に制限があり、その制限が Claude から見えていない。見るのは、失敗の出力に拒否・時間切れ・権限を示す文言があるかと、サンドボックスの有無と範囲である。サンドボックスが効くのは、Claude が動かすコマンドとそこから起きたプロセスだ。Claude のファイルの道具・MCP サーバー・フックはサンドボックスの外で動く。この範囲を <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> で照らし、制限が原因なら、その制限の中身（拒否される場所や時間の上限）を、次の依頼に書いて Claude に見える形で伝える。自分の設定が原因かは <!-- link:begin isolate-with-safe-mode#compare -->設定を外して切り分ける（--safe-mode） › 比べ方（準備中）<!-- link:end --> の比べ方で切り分ける。この手は設定を外して挙動を比べるもので、権限と管理の設定は効いたままである。安全の設定を外して試す手ではない。
+2. **見えていない**。Claude が実行する環境に制限があり、その制限が Claude から見えていない。見るのは、失敗の出力に拒否・時間切れ・権限を示す文言があるかと、サンドボックスの有無と範囲である。サンドボックスが効くのは、Claude が動かすコマンドとそこから起きたプロセスだ。Claude のファイルの道具・MCP サーバー・フックはサンドボックスの外で動く。この範囲を <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> で照らし、制限が原因なら、その制限の中身（拒否される場所や時間の上限）を、次の依頼に書いて Claude に見える形で伝える。自分の設定が原因かは <!-- link:begin isolate-with-safe-mode#compare -->[設定を外して切り分ける（--safe-mode） › 比べ方](../cli/isolate-with-safe-mode.md#compare)<!-- link:end --> の比べ方で切り分ける。この手は設定を外して挙動を比べるもので、権限と管理の設定は効いたままである。安全の設定を外して試す手ではない。
 3. **散らかっている**。長い作業で、失敗した試みや無関係な情報が会話に溜まっている。見るのは、作業の長さと、同じ失敗の話が何度も残っていないか、不満が増えていないかである。<!-- link:begin inspect-context#reading -->[/context で中身を見る › 内訳の読み方](../context/inspect-context.md#reading)<!-- link:end --> で、何が場所を取っているかを見分ける。確かめは、引き継ぎを書かせて新しい会話で同じ依頼を出し、「壊れた」が消えるかを見ることだ。消えるなら劣化で、新しくする合図は <!-- link:begin when-to-start-fresh#signals -->[新しい会話を始めるタイミング › 新しくする合図](../context/when-to-start-fresh.md#signals)<!-- link:end --> にある。
 4. **確かめていない**。向きは 2 つある。1 つは、Claude が出力を読まずに「壊れた」と決めた場合。もう 1 つは、道具が本当に誤った結果を返していた場合で、検索が途中で打ち切られたり、起動に失敗しても成功の終了コードで終わったりする。見るのは、Claude が「壊れた」の根拠にした出力そのものである。確かめは、実行したコマンドと生の出力を出させ、人が同じ出力を再現することだ。道具の出力を疑う例は <!-- link:begin evidence-not-reports#tool-output -->[報告ではなく証拠を求める › 道具の出力も確かめる（途中で切れた検索・失敗を成功として返す起動）](../verify/evidence-not-reports.md#tool-output)<!-- link:end --> にある。
 
@@ -103,9 +103,9 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [サンドボックスで封じ込める](../enforce/sandboxing.md)<br>設定を外して切り分ける（--safe-mode）（準備中） |
+| 見えていない | [サンドボックスで封じ込める](../enforce/sandboxing.md)<br>[設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md) |
 | 散らかっている | [handoff 文書と document-and-clear](../context/handoff-documents.md)<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md) |
-| 確かめていない | [報告ではなく証拠を求める › 道具の出力も確かめる（途中で切れた検索・失敗を成功として返す起動）](../verify/evidence-not-reports.md#tool-output)<br>無人実行の結果を確かめる（準備中） |
+| 確かめていない | [報告ではなく証拠を求める › 道具の出力も確かめる（途中で切れた検索・失敗を成功として返す起動）](../verify/evidence-not-reports.md#tool-output)<br>[無人実行の結果を確かめる](../verify/checking-unattended-runs.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -126,8 +126,8 @@ updated: 2026-11-05
 
 - 長い作業には進捗ログを用意し、人と Claude の両方に状況が見えるようにする。道具への不満が増える様子を早く拾える。設計は <!-- link:begin progress-logs-for-long-jobs -->長時間ジョブの進捗ログを設計する（準備中）<!-- link:end --> にある。
 - 「壊れた」と判断する前に、実行したコマンドと生の出力を出す決まりを、依頼に書く。上の雛形を、そのまま依頼に足せる。
-- 無人で走らせる作業は、終了コードと要約だけで決めず、出力と記録で確かめる。確かめ方は <!-- link:begin checking-unattended-runs -->無人実行の結果を確かめる（準備中）<!-- link:end --> にある。
-- フックや deny ルールで操作を止めているなら、止めるときに理由と代わりの手段を返す設計かを見直す。見直し方は <!-- link:begin lock-side-effects#reason-and-alternative -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと（準備中）<!-- link:end --> にある。
+- 無人で走らせる作業は、終了コードと要約だけで決めず、出力と記録で確かめる。確かめ方は <!-- link:begin checking-unattended-runs -->[無人実行の結果を確かめる](../verify/checking-unattended-runs.md)<!-- link:end --> にある。
+- フックや deny ルールで操作を止めているなら、止めるときに理由と代わりの手段を返す設計かを見直す。見直し方は <!-- link:begin lock-side-effects#reason-and-alternative -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと](../enforce/lock-side-effects.md#reason-and-alternative)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -152,11 +152,11 @@ updated: 2026-11-05
 **次に読む**
 
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
-- 設定を外して切り分ける（--safe-mode）（準備中）
+- [設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
-- 無人実行の結果を確かめる（準備中）
+- [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 
 **関連**
 
@@ -166,7 +166,7 @@ updated: 2026-11-05
 - [誤りを認めずに言い張る](insists-on-mistakes.md)
 - [「完了」と言うが終わっていない](claims-done-but-isnt.md)
 - [長い会話で前提を忘れる・雑になる](forgets-in-long-chats.md)
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)
 
 </div>

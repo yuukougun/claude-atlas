@@ -1,0 +1,9 @@
+sources:
+  - id: usaco-guide-general-debugging-general
+    url: https://usaco.guide/general/debugging-general
+    title: How to Debug
+    kind: 実践者
+    publisher: USACO Guide
+    lang: en
+    checked: '2026-11-05'
+    note: 「テストケースの生成器を書き、遅くても単純な解の出力と比べる」の 1 文だけを確かめた（詳しい手順は別の節への案内）

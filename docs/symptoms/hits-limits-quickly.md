@@ -76,12 +76,12 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
     `/usage` で、プランの上限の残りと、何が上限に数えられたかの内訳を見る。内訳の読み方は <!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> にある。ステータスラインに出しておく手は、予防の節で示す。
 
 === "API"
-    API キーの経路では、プランの上限ではなく従量で費用が増える。Claude Code を API キーで動かしている場合も同じである。まず <!-- link:begin check-billing-path#check-current-path -->課金の経路を確かめる（API キーとサブスクリプション） › 今の経路を確かめる（準備中）<!-- link:end --> でどちらで課金されているかを確かめる。
+    API キーの経路では、プランの上限ではなく従量で費用が増える。Claude Code を API キーで動かしている場合も同じである。まず <!-- link:begin check-billing-path#check-current-path -->[課金の経路を確かめる（API キーとサブスクリプション） › 今の経路を確かめる](../cost/check-billing-path.md#check-current-path)<!-- link:end --> でどちらで課金されているかを確かめる。
 
 1. **表示の取り違え（長さの上限）**
     - **見るもの**：出ている文言が「会話が長すぎる」の類か、利用上限の知らせか。
     - **確かめ方**：長さの上限は、その会話だけで起きる。別の会話を開いて同じ作業ができるなら、利用上限ではなく長さの上限である。
-    - **当たったとき**：待たずに、長さの上限の対処へ進む。<!-- link:begin long-chat-limits#at-the-limit -->長い会話の自動のコンテキスト管理と長さの上限 › 長さの上限に当たったとき（準備中）<!-- link:end --> を見る。
+    - **当たったとき**：待たずに、長さの上限の対処へ進む。<!-- link:begin long-chat-limits#at-the-limit -->[長い会話の自動のコンテキスト管理と長さの上限 › 長さの上限に当たったとき](../app/long-chat-limits.md#at-the-limit)<!-- link:end --> を見る。
 2. **散らかっている（会話の長さ・話題の混在）**
     - **見るもの**：1 つの会話を長く使い続けていないか。別の話題に移っても、同じ会話で頼んでいないか。
     - **確かめ方**：会話の最初から今までのやりとりの数を見る。Claude は毎回、会話の最初から全部を読み直して返事をする。長い会話は、1 回ごとの費用が大きい（<!-- link:begin rereads-whole-history#effects -->[毎ターン全履歴を読み直す › 何に効くか](../basics/rereads-whole-history.md#effects)<!-- link:end -->）。
@@ -100,7 +100,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
     - **当たったとき**：まず既定で試し、足りなければ effort、それでも足りないときだけ上位のモデルを使う。段階の順は <!-- link:begin choosing-a-model#three-steps -->[モデルの選び方（三段階） › 三段階：既定 → effort → 上位のモデル](../models/choosing-a-model.md#three-steps)<!-- link:end -->、effort の使い分けは <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end --> にある。
 6. **枠の側（プランの上限の種類・課金の経路）**
     - **見るもの**：1 から 5 のどれにも当たらないとき、自分の口座にどの上限があるか。API キーの環境変数があって、意図しない経路で課金されていないか。
-    - **確かめ方**：上限の種類と戻る時刻は <!-- link:begin how-usage-limits-work#limit-types -->[利用上限の仕組み（面をまたいで共有する枠） › 枠の種類と戻る時刻（プランごとの表）](../cost/how-usage-limits-work.md#limit-types)<!-- link:end --> で確かめる。経路は <!-- link:begin check-billing-path#how-the-path-is-chosen -->課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順（準備中）<!-- link:end --> で確かめる。
+    - **確かめ方**：上限の種類と戻る時刻は <!-- link:begin how-usage-limits-work#limit-types -->[利用上限の仕組み（面をまたいで共有する枠） › 枠の種類と戻る時刻（プランごとの表）](../cost/how-usage-limits-work.md#limit-types)<!-- link:end --> で確かめる。経路は <!-- link:begin check-billing-path#how-the-path-is-chosen -->[課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順](../cost/check-billing-path.md#how-the-path-is-chosen)<!-- link:end --> で確かめる。
     - **当たったとき**：原因を直した後でも足りないときだけ、プランを見直す。比べ方は <!-- link:begin choosing-a-plan#what-to-compare -->プランの選び方 › 比べる観点（準備中）<!-- link:end --> にある。
 
 人の側にも落とし穴がある。並列の数を増やして任せ、気づいたら裏の仕事が上限を使っていた、という形である。並列にして疲れた、レビューが追いつかないときは <!-- link:begin parallel-fatigue#diagnosis -->[並列にしたら疲れた・レビューが追いつかない › 原因を安く確かめる順](parallel-fatigue.md#diagnosis)<!-- link:end --> から切り分ける。
@@ -116,7 +116,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 散らかっている | [上限を早く使う要因](../cost/what-uses-up-limits.md)<br>長い会話の自動のコンテキスト管理と長さの上限（準備中）<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md) |
+| 散らかっている | [上限を早く使う要因](../cost/what-uses-up-limits.md)<br>[長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md) |
 | 合っていない | [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)<br>[モデルの選び方（三段階）](../models/choosing-a-model.md)<br>[effort の段階と使い分け](../models/effort-levels.md) |
 
 <!-- textlint-enable -->
@@ -128,8 +128,8 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 
 - **待つ**：戻る時刻まで待つ。時刻と、戻る枠の種類は <!-- link:begin how-usage-limits-work#when-you-hit-the-limit -->[利用上限の仕組み（面をまたいで共有する枠） › 上限に当たったとき](../cost/how-usage-limits-work.md#when-you-hit-the-limit)<!-- link:end --> で確かめる。Claude Code には、開いたままのセッションで待ち、戻ると自動で続ける機能がある。
 - **モデルを替える**：全モデルにかかる上限は、モデルを替えても戻らない。モデル別の上限だけに当たったなら、別のモデルに替えて続けられる（公式の費用の文書）。
-- **従量で続ける**：usage credits を有効にすると、上限を超えた分を従量で続けられる。先に、月の上限額と通知を決める。決め方は <!-- link:begin usage-credits-basics#set-a-cap -->usage credits（上限を超えた分の従量課金） › 上限額と通知を決める（準備中）<!-- link:end --> にある。
-- **AI なしで進める**：止まっても進められる作業を先に決めておくと、待ち時間が無駄にならない。備えは <!-- link:begin when-ai-is-unavailable#minimum-without-ai -->AI が使えないときの備え（障害・上限） › AI なしで最低限を進められる状態（準備中）<!-- link:end --> にある。
+- **従量で続ける**：usage credits を有効にすると、上限を超えた分を従量で続けられる。先に、月の上限額と通知を決める。決め方は <!-- link:begin usage-credits-basics#set-a-cap -->[usage credits（上限を超えた分の従量課金） › 上限額と通知を決める](../cost/usage-credits-basics.md#set-a-cap)<!-- link:end --> にある。
+- **AI なしで進める**：止まっても進められる作業を先に決めておくと、待ち時間が無駄にならない。備えは <!-- link:begin when-ai-is-unavailable#minimum-without-ai -->[AI が使えないときの備え（障害・上限） › AI なしで最低限を進められる状態](../cost/when-ai-is-unavailable.md#minimum-without-ai)<!-- link:end --> にある。
 
 従量で続ける手は、止まらない代わりに費用が出る。原因を切り分けずに続けると、同じ減り方で費用が膨らむ。続けながら、上の診断の項目も確かめる。
 
@@ -145,7 +145,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
     - **状況**：アプリで資料を貼りながら長く話していたところ、「会話が長すぎる」と出て続けられなくなった。利用枠の残りは十分ある。
     - **迷う候補**：戻る時刻まで待つ。または、新しい会話に移る。
     - **選んだもの**：新しい会話に移る。
-    - **理由**：長さの上限は、その会話に入る量の上限であり、待っても戻らない。移るときは、それまでの結論だけを短く書き出して貼る。上限の近くで起きることは <!-- link:begin long-chat-limits#auto-management -->長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか（準備中）<!-- link:end --> にある。
+    - **理由**：長さの上限は、その会話に入る量の上限であり、待っても戻らない。移るときは、それまでの結論だけを短く書き出して貼る。上限の近くで起きることは <!-- link:begin long-chat-limits#auto-management -->[長い会話の自動のコンテキスト管理と長さの上限 › 上限が近づくと何が起きるか](../app/long-chat-limits.md#auto-management)<!-- link:end --> にある。
 
 !!! example "判断例：節約のために effort を下げ続けた"
     - **状況**：上限に当たりたくなくて、すべての作業で effort を下げた。出力が浅くなり、やり直しの依頼が増えた。使用量は思ったほど減らない。
@@ -162,7 +162,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 - **常駐するものを小さく保つ**：必要なときだけ読ませる形に移す。移す順序は <!-- link:begin always-on-costs#reduce -->[常駐するもののコスト（CLAUDE.md・MCP・スキル） › 減らす順](../context/always-on-costs.md#reduce)<!-- link:end --> にある。
 - **始める前に決める**：並列やループは、同時に動かす数、止める条件、費用の上限を、始める前に決める。<!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> を見る。
 - **手戻りを先に減らす**：計画と確かめを先に入れる。<!-- link:begin saving-priorities#order -->[節約の優先順位（手戻りを減らすのが先） › 優先順位](../cost/saving-priorities.md#order)<!-- link:end --> の順で進める。
-- **上限額を先に決める**：従量で続ける手を使うなら、月の上限額と通知を、使う前に決める。決め方は <!-- link:begin usage-credits-basics#set-a-cap -->usage credits（上限を超えた分の従量課金） › 上限額と通知を決める（準備中）<!-- link:end --> にある。
+- **上限額を先に決める**：従量で続ける手を使うなら、月の上限額と通知を、使う前に決める。決め方は <!-- link:begin usage-credits-basics#set-a-cap -->[usage credits（上限を超えた分の従量課金） › 上限額と通知を決める](../cost/usage-credits-basics.md#set-a-cap)<!-- link:end --> にある。
 
 ## 古くなった助言 {#outdated}
 
@@ -198,7 +198,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 **次に読む**
 
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
-- 長い会話の自動のコンテキスト管理と長さの上限（準備中）
+- [長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)
 - [モデルの選び方（三段階）](../models/choosing-a-model.md)
@@ -211,9 +211,9 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
-- usage credits（上限を超えた分の従量課金）（準備中）
-- 課金の経路を確かめる（API キーとサブスクリプション）（準備中）
-- AI が使えないときの備え（障害・上限）（準備中）
+- [usage credits（上限を超えた分の従量課金）](../cost/usage-credits-basics.md)
+- [課金の経路を確かめる（API キーとサブスクリプション）](../cost/check-billing-path.md)
+- [AI が使えないときの備え（障害・上限）](../cost/when-ai-is-unavailable.md)
 - [返事が遅い・時間がかかりすぎる](too-slow.md)
 - [同じ確認のループにはまる](stuck-in-a-check-loop.md)
 - [並列にしたら疲れた・レビューが追いつかない](parallel-fatigue.md)

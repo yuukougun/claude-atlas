@@ -228,3 +228,55 @@ where-to-put-instructions の `app-instruction-scope-and-timing`（値が「本�
 
 - 台帳（outdated-advice-ledger）に path-scoped-rules の行（「CLAUDE.md は再注入される」の言い切り）を足すか。足せば #outdated は台帳を指せる
 - hook-vs-skill：「ほかの OS と IDE 拡張は未確認」の位置は #table の末尾のまま（レビューも許容）
+
+## 推奨R1（TR-R1、2026-11-05）
+
+### 数値の提案（第一波の終わりに data へ）
+
+| ページ | 提案 | 置く所 |
+| --- | --- | --- |
+| output-style-modes | output-style-concise-min-version（2.1.237）・output-style-command-min-version（2.1.269）・output-style-setting-case-sensitive（区別する）。write.md の proposals のとおり | #built-in・#switch |
+| protected-paths | block-writes-outside-min-version（v2.1.314）。facts-proposal.yml | #outside-working-directory（タブの版の文を目印に替える。「提案済み」の文は採用後に消す） |
+| split-models-by-role | opusplan の割り当て（plan は上位の系統、実行は日常の系統）。facts-proposal.yml | 承認後に本文の系統名を目印へ |
+| model-quirks | モデルの系統名（Opus・Sonnet・Fable・Haiku）の fact-table 化または names への追加。facts-proposal.yml | #official-guidance の表 |
+| using-auto-memory | ローカルのセッションでの既定の状態。facts-proposal.yml | #usage |
+| why-prompt-caching | prompt-cache-default-ttl・prompt-cache-read-multiplier（write.md の proposals） | #what-happens・#why |
+| long-chat-limits | 窓の大きさ。facts-proposal.yml | auto-management の fact の目印 |
+| using-research | research-model（値は hc-research で確かめてから） | #when-to-use |
+| cloud-sessions-and-teleport | 入れ子の `claude -p` の不具合が直った版（CHANGELOG v2.1.317） | #limits |
+| large-context-window | 窓の大きさ・長い入力の単価・トークナイザーの差の fact の id | #費用の節（今は current-models への link） |
+| lockbox-and-holdout | 「月 1 回程度」の確認の頻度を数値にするか（根拠：弱のまま数字なしでも可） | — |
+
+### 強制力（enforcement）の値の案（お願い・鍵・モデルの判定・なし。decisions 2026-11-05「強制力の語彙」の線引き）
+
+- research：お願い（調べる機能。条件は依頼に書くお願い）。using-research の要点は手書きの「お願い」
+- settings：鍵（管理の層は鍵、個人の層はお願いが混ざる。主を鍵と見るか確認）
+- cloud-sessions：なし（実行の場所であり、止める力を持たない）
+- sessions（resume-and-branch）：なし（操作で、お願い・鍵のどちらでもない）
+- subagents（what-subagents-dont-inherit）：なし（継承の仕様。tools・permissionMode の指定は鍵として別の機能で扱う）
+- plugins：なし（束ねて配るだけ。write.md の feature_patch のとおり。足したら要点に `feature plugins/enforcement` を入れる）
+- auto-management（long-chat-limits）：なし
+- init（init-and-first-claude-md）：お願い（CLAUDE.md を作る機能）
+
+### 用語集に足す語
+
+- 縛る（規則を鍵に移すこと）・握る・回り込み・止めすぎ（lock-side-effects が本文で定義）
+- critical paths（重要な場所への rm/rmdir の保護）・protected paths（protected-paths）
+- 層（scope。settings-layers が「層」で統一）
+- 上位の系統・日常の系統・軽い系統（split-models-by-role。current-models の表と言い方を揃える）
+- ロックボックス・hold-out（lockbox-and-holdout）
+- teleport（cloud-sessions-and-teleport）
+- マーケットプレイス（plugins-and-marketplaces。ストアではなくカタログ）
+- lint・推敲（less-ai-sounding-japanese。あるか未確認）
+
+### 道具・data の形
+
+- compare の表の「—」「未確認」：share-team-settings（settings・mcp の強制力 null）。上の enforcement の値が入れば解ける
+- 「提案済み」の文が採用後に古くなる：protected-paths（上の版の fact を入れたら目印に替える）
+- 出典（sources）の足し先：open-ended-loop-trap（頭打ちの実験・DrivenData・ISUCON の一次資料）・read-specs-yourself（arXiv 2種・競技者の記事＋ check_noai）・documents-in-japanese（support.claude.com の Upload files to Claude）・init-and-first-claude-md（redreamality・Tembo。実践者の幅）・ask-without-sycophancy（Truth Decay arxiv-2503-11656・Jin & Chen arxiv-2603-00539 の一次資料）
+- diffs-humans-must-read：p56#61（AI 生成 PR の指摘が約 1.7 倍。販売元の分析）は出典を立てるなら利害を併記
+- using-research：要点の「前提」の link が生成後に search-research-thinking の題名で出るかを確かめる。research-call-guide の目印の間の日付「（2026-10-29 時点）」が生成で消えるか
+- 動作確認：freeze-eval-assets の雛形の `./eval` 形のパス（settings-reference の節を未確認）。外れたら `/` 始まりの絶対パスに
+- 確認が要る事実（束の外）：stop-hooks の Stop フックと `/goal` の併用・resume-and-branch の「分岐が分けるのは会話でファイルではない」・approval-fatigue のサンドボックスの自動許可の記述・output-style-modes の Proactive・Concise の挙動・own-generated-code の Rust ガイドの規約
+- 目次の備考・調査資料 11 の要約の直し：DrivenData の記事はモデルとハーネスを切り分けていない（harness-over-model は記事に合わせた）
+- 注釈付きのセッション記録（目次の見せ方 DR-17）：lock-side-effects・stop-hooks・checking-unattended-runs で未作成。state/blocks.log などの材料をメインが渡すとき

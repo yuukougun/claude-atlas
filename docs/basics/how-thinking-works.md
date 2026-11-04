@@ -78,7 +78,7 @@ flowchart LR
 
 手動で考える量を決める古い形は、budget_tokens を使う拡張思考である。いまの推奨は、thinking を adaptive にして、深さを effort で変える形である。新しいモデルは、budget_tokens を使う要求を断る。具体的な対応は <!-- link:begin outdated-advice-ledger#budget-tokens -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#budget-tokens)<!-- link:end --> にある。
 
-effort を変えると、プロンプトキャッシュが外れることがある。先頭を変えないことの価値は、<!-- link:begin why-prompt-caching -->プロンプトキャッシング（先頭が変わらないことの価値）（準備中）<!-- link:end --> に任せる。プロンプトキャッシュは、前回と同じ先頭の部分を安く読み直す仕組みである。ここでは、途中で effort を替えると、この安い読み直しが効かなくなりうる点だけを覚えておけばよい。
+effort を変えると、プロンプトキャッシュが外れることがある。先頭を変えないことの価値は、<!-- link:begin why-prompt-caching -->[プロンプトキャッシング（先頭が変わらないことの価値）](why-prompt-caching.md)<!-- link:end --> に任せる。プロンプトキャッシュは、前回と同じ先頭の部分を安く読み直す仕組みである。ここでは、途中で effort を替えると、この安い読み直しが効かなくなりうる点だけを覚えておけばよい。
 
 ## 何に効くか {#effects}
 
@@ -94,7 +94,7 @@ effort を変えると、プロンプトキャッシュが外れることがあ�
 
 **「よく考えて」と書けば effort が上がる**。上がらない。think hard や「熟考」などの言い回しは、キーワードとして扱われず、普通の文として渡る。深く考えさせたいときは effort を上げる。Claude Code では、ultrathink だけが、その 1 ターンを深く考えさせる言葉として認識される。詳しくは <!-- link:begin thinking-keywords#plain-text-phrases -->[「考えて」と書くことの現在（ultrathink） › 普通の文として渡る言い回し](../models/thinking-keywords.md#plain-text-phrases)<!-- link:end --> と <!-- link:begin thinking-keywords#ultrathink -->[「考えて」と書くことの現在（ultrathink） › ultrathink の使いどころ](../models/thinking-keywords.md#ultrathink)<!-- link:end --> にある。古い助言としての扱いは <!-- link:begin outdated-advice-ledger#think-hard-keywords -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#think-hard-keywords)<!-- link:end --> にある。
 
-**画面に出る思考が、Claude の計算のすべてである**。そうとは限らない。画面に出るのは要約であることがあり、数えられるのは生の思考の量である。要約や説明が、実際の内部の処理と一致する保証もない。この点は <!-- link:begin unfaithful-reasoning -->表示された思考は内部の計算と一致するとは限らない（準備中）<!-- link:end --> にある。
+**画面に出る思考が、Claude の計算のすべてである**。そうとは限らない。画面に出るのは要約であることがあり、数えられるのは生の思考の量である。要約や説明が、実際の内部の処理と一致する保証もない。この点は <!-- link:begin unfaithful-reasoning -->[表示された思考は内部の計算と一致するとは限らない](unfaithful-reasoning.md)<!-- link:end --> にある。
 
 **推論の全文を本文に書かせれば、確かめやすくなる**。確かめやすくはならない。推論を本文に書かせる指示の効き方は、モデルと版で変わる（推論・実践例なし）。根拠が要るなら、短い説明を頼むか、表示される思考の要約を読む。やり方は <!-- link:begin asking-for-reasoning#alternatives -->推論を見せてほしいとき › 短い根拠と思考の要約で読む（準備中）<!-- link:end -->、台帳の行は <!-- link:begin outdated-advice-ledger#thinking-tags -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#thinking-tags)<!-- link:end --> にある。
 
@@ -131,15 +131,15 @@ effort を変えると、プロンプトキャッシュが外れることがあ�
 
 **次に読む**
 
+- [表示された思考は内部の計算と一致するとは限らない](unfaithful-reasoning.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
-- 表示された思考は内部の計算と一致するとは限らない（準備中）
 
 **関連**
 
 - [「考えて」と書くことの現在（ultrathink）](../models/thinking-keywords.md)
 - [モデルの選び方（三段階）](../models/choosing-a-model.md)
 - 推論を見せてほしいとき（準備中）
-- プロンプトキャッシング（先頭が変わらないことの価値）（準備中）
+- [プロンプトキャッシング（先頭が変わらないことの価値）](why-prompt-caching.md)
 
 </div>
 

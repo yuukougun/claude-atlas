@@ -1,0 +1,14 @@
+title: 週報の手順をスキルにしたもの
+kind: skill
+place: project
+safety: false
+features: [skills]
+conditions:
+  - .claude/skills/weekly-report/SKILL.md として置く
+  - weekly-report/README.md とダミーの inbox/ を用意する
+  - 新しいセッションで試す
+expect:
+  - when: /weekly-report を呼ぶ
+    then: weekly-report/out/ に 3 見出しの下書きができる
+  - when: 「週報を作って」とだけ頼む
+    then: "スキルは自動では呼ばれない（disable-model-invocation: true のため。観察として扱う）"

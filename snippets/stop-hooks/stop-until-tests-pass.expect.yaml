@@ -1,0 +1,19 @@
+title: テストが通るまで終えさせない Stop フック
+kind: hook
+place: project
+safety: false
+features: [hooks]
+requires: [pytest（確かめるコマンドは TEST_CMD で替える）]
+conditions:
+  - 新しいセッションで試す
+  - 壊れても困らない使い捨てのリポジトリで、わざと落ちるテストを 1 つ置いて試す
+expect:
+  - when: 落ちるテストがある状態で、Claude に「README を 1 行直して」と頼む
+    then: 終わろうとするたびに差し戻され、失敗の出力を含む理由が Claude に見える
+  - when: 落ちるテストを直せないまま差し戻しが続く
+    then: 自分で決めた回数（MAX_BLOCKS）で打ち切られ、通っていない旨の警告が出てターンが終わる（観察として扱う）
+  - when: テストをすべて通してから終わらせる
+    then: 差し戻されずにターンが終わる
+  - when: TEST_CMD を存在しないコマンドに替えて終わらせる
+    then: 止められずにターンが終わり、標準エラーに走らせられなかった旨が出る
+control: フックを置かないとき、落ちるテストがあっても Claude が完了を報告してターンが終わる

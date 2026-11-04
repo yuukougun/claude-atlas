@@ -153,9 +153,9 @@ VS Code の拡張では、plan mode の計画が Markdown の文書として開�
 | plan mode | 方針や範囲を、Claude の調べを見て決めたい | このページ |
 | 仕様を先に固める | 要件そのものが固まっていない大きな機能 | <!-- link:begin spec-first -->[仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)<!-- link:end --> |
 | 質問させる | 自分でも決めていない点を洗い出したい | <!-- link:begin let-claude-ask -->[質問させる・インタビューさせる](../prompting/let-claude-ask.md)<!-- link:end --> |
-| 計画と実装でモデルを分ける | 計画に重いモデル、実装に軽いモデルを使いたい | <!-- link:begin split-models-by-role -->計画・実装・サブエージェントでモデルを分ける（準備中）<!-- link:end --> |
+| 計画と実装でモデルを分ける | 計画に重いモデル、実装に軽いモデルを使いたい | <!-- link:begin split-models-by-role -->[計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)<!-- link:end --> |
 
-手元を離れて長く走らせる作業は、計画と縛りをリポジトリに置いてから送る。その進め方は <!-- link:begin cloud-sessions-and-teleport#what-to-send -->クラウドセッションと teleport › クラウドに送ってよい作業（準備中）<!-- link:end --> にある。
+手元を離れて長く走らせる作業は、計画と縛りをリポジトリに置いてから送る。その進め方は <!-- link:begin cloud-sessions-and-teleport#what-to-send -->[クラウドセッションと teleport › クラウドに送ってよい作業](cloud-sessions-and-teleport.md#what-to-send)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -179,14 +179,14 @@ VS Code の拡張では、plan mode の計画が Markdown の文書として開�
 
 **次に読む**
 
+- [クラウドセッションと teleport](cloud-sessions-and-teleport.md)
 - [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)
-- クラウドセッションと teleport（準備中）
 
 **関連**
 
 - [質問させる・インタビューさせる](../prompting/let-claude-ask.md)
 - [「完了」を定義して渡す](../verify/define-done.md)
-- 計画・実装・サブエージェントでモデルを分ける（準備中）
+- [計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)
 - [意図と違うものが出てくる](../symptoms/not-what-i-meant.md)
 - [頼んでいないことまでやる（過剰設計）](../symptoms/does-more-than-asked.md)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)

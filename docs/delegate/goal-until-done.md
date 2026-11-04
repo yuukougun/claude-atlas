@@ -193,7 +193,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 
 反復させてよいのは、仕様が決まり、停止条件のある実装の作業に限る。終わりの状態がテストや出力で測れるからである。大きな機能は、先に仕様を固め、仕様を渡した新しいセッションで `/goal` を回す。流れは <!-- link:begin spec-first#goal-with-stop-conditions -->[仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)<!-- link:end --> にある。挙動を変えないリファクタリングや大きな移行は、小さく確かめられる単位に分けて回す（<!-- link:begin refactor-and-migrate#goal-stop-conditions -->リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）<!-- link:end -->）。
 
-戦略そのものを AI に改善させ続ける使い方は、このページでは扱わない。評価が決まっていない開いたループは、手元の評価への過適合を自動で進める（<!-- link:begin open-ended-loop-trap#closed-vs-open -->AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ（準備中）<!-- link:end -->）。長く回せば良くなるとも限らない。Claude Code をループで回してエージェントを最適化した実験では、最良の構成を早く見つけた後は頭打ちになり、延長しても時間と費用の無駄だった（根拠：弱、単独の実験の自己申告）。詳しくは <!-- link:begin open-ended-loop-trap#longer-is-not-better -->AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない（準備中）<!-- link:end --> にある。
+戦略そのものを AI に改善させ続ける使い方は、このページでは扱わない。評価が決まっていない開いたループは、手元の評価への過適合を自動で進める（<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->）。長く回せば良くなるとも限らない。Claude Code をループで回してエージェントを最適化した実験では、最良の構成を早く見つけた後は頭打ちになり、延長しても時間と費用の無駄だった（根拠：弱、単独の実験の自己申告）。詳しくは <!-- link:begin open-ended-loop-trap#longer-is-not-better -->[AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない](open-ended-loop-trap.md#longer-is-not-better)<!-- link:end --> にある。
 
 長い作業の進みを人と Claude の両方に見せる方法は <!-- link:begin progress-logs-for-long-jobs -->長時間ジョブの進捗ログを設計する（準備中）<!-- link:end --> にある。
 
@@ -202,7 +202,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 自作のループは、同じ依頼を外のループで流し直す回し方である。シェルのスクリプトの中で `claude -p` を繰り返し呼ぶ形と、ループのためのプラグインがある。`/goal` が入る前は、完了の条件を満たすまで続けさせる公式の手段がなく、こうした回し方が使われた。いまは、用途ごとに次のように置き換える。
 
 - 完了の条件を満たすまで続けさせる：`/goal`
-- 決まった間隔でくり返す：`/loop`（<!-- link:begin loop-and-scheduling#loop -->/loop と定期実行の方式 › セッションの中で繰り返す（/loop）（準備中）<!-- link:end -->）
+- 決まった間隔でくり返す：`/loop`（<!-- link:begin loop-and-scheduling#loop -->[/loop と定期実行の方式 › セッションの中で繰り返す（/loop）](loop-and-scheduling.md#loop)<!-- link:end -->）
 - 大きな作業を多くのエージェントに分ける：dynamic workflows
 
 移すときの対応は次のとおりである。
@@ -233,7 +233,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 
 上限に当たりそうな時間帯に回すと、応答の途中で上限に達することがある。そのときは、区切りまで少しだけ続ける仕組み（Wrap-Up Allowance）が働く場合がある。導入の時期は確かめられておらず、段階的に展開中で、効き方はプランと実行の方法で違う。使った分は週の上限に数える。当てにせず、止まる前提で組む。
 
-`/goal` のチェックインも使用量を使う。席を外して回すと、判定のトークンは小さくても、本体のターンの積み重ねが大きい。費用が掛け算で膨らむ理由は <!-- link:begin parallel-and-loop-costs#multiplication -->[並列・ループ・workflows のコスト › 費用が膨らむ掛け算](../cost/parallel-and-loop-costs.md#multiplication)<!-- link:end -->、始める前に決める 3 つは <!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> にある。AI が止まっても仕事を続けられる備えは <!-- link:begin when-ai-is-unavailable#kinds -->AI が使えないときの備え（障害・上限） › 止まり方の種類（障害・上限・規則）（準備中）<!-- link:end --> にある。プランごとの上限の差は、このページには書かない。
+`/goal` のチェックインも使用量を使う。席を外して回すと、判定のトークンは小さくても、本体のターンの積み重ねが大きい。費用が掛け算で膨らむ理由は <!-- link:begin parallel-and-loop-costs#multiplication -->[並列・ループ・workflows のコスト › 費用が膨らむ掛け算](../cost/parallel-and-loop-costs.md#multiplication)<!-- link:end -->、始める前に決める 3 つは <!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> にある。AI が止まっても仕事を続けられる備えは <!-- link:begin when-ai-is-unavailable#kinds -->[AI が使えないときの備え（障害・上限） › 止まり方の種類（障害・上限・規則）](../cost/when-ai-is-unavailable.md#kinds)<!-- link:end --> にある。プランごとの上限の差は、このページには書かない。
 
 ## 効かない場面・落とし穴 {#pitfalls}
 
@@ -251,12 +251,12 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 続けさせる手段は、何が次のターンを始めるかで選ぶ。
 
 - **`/goal`**：条件を満たすまで続けたいとき。判定役が条件を見て、次のターンを始める。
-- **`/loop`**：時間の間隔で繰り返したいとき。条件ではなく時計で動く。使い分けは <!-- link:begin loop-and-scheduling#where-to-run -->/loop と定期実行の方式 › どこで走らせるか（セッション・手元・クラウド）（準備中）<!-- link:end --> にある。
-- **Stop フック**：確かめる処理を自分のスクリプトで決定的に書きたいとき。`/goal` との使い分けは <!-- link:begin stop-hooks#vs-goal -->Stop フックで「終わらせない」 › /goal との使い分け（準備中）<!-- link:end -->、続けて止められる回数の上限は <!-- link:begin stop-hooks#block-cap -->Stop フックで「終わらせない」 › 続けて止められる回数の上限（準備中）<!-- link:end --> にある。
+- **`/loop`**：時間の間隔で繰り返したいとき。条件ではなく時計で動く。使い分けは <!-- link:begin loop-and-scheduling#where-to-run -->[/loop と定期実行の方式 › どこで走らせるか（セッション・手元・クラウド）](loop-and-scheduling.md#where-to-run)<!-- link:end --> にある。
+- **Stop フック**：確かめる処理を自分のスクリプトで決定的に書きたいとき。`/goal` との使い分けは <!-- link:begin stop-hooks#vs-goal -->[Stop フックで「終わらせない」 › /goal との使い分け](../enforce/stop-hooks.md#vs-goal)<!-- link:end -->、続けて止められる回数の上限は <!-- link:begin stop-hooks#block-cap -->[Stop フックで「終わらせない」 › 続けて止められる回数の上限](../enforce/stop-hooks.md#block-cap)<!-- link:end --> にある。
 - **多数のファイルへ同じ作業を流す**：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end --> を引く。
 - **auto モード**：確認を減らすだけで、新しいターンは始めない。`/goal` は新しいターンを始めるが、確認は減らさない。両者は補い合うので、席を外すなら併用する。
 
-完了の確かめ方を段で選ぶ考え方は <!-- link:begin verification-ladder#four-steps -->[検証の階段 › 四つの段](../verify/verification-ladder.md#four-steps)<!-- link:end -->、止まって報告してよいと渡す書き方は <!-- link:begin permission-to-stop#conditions -->止まって報告する権利を渡す › 止まって報告する条件を書く（準備中）<!-- link:end --> にある。
+完了の確かめ方を段で選ぶ考え方は <!-- link:begin verification-ladder#four-steps -->[検証の階段 › 四つの段](../verify/verification-ladder.md#four-steps)<!-- link:end -->、止まって報告してよいと渡す書き方は <!-- link:begin permission-to-stop#conditions -->[止まって報告する権利を渡す › 止まって報告する条件を書く](../prompting/permission-to-stop.md#conditions)<!-- link:end --> にある。
 
 ## 古くなった助言 {#outdated}
 
@@ -294,20 +294,20 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - [検証の階段](../verify/verification-ladder.md)
-- Stop フックで「終わらせない」（準備中）
+- [Stop フックで「終わらせない」](../enforce/stop-hooks.md)
 - [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)
 - リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
+- [AI に改善を回させ続ける罠（開いたループ）](open-ended-loop-trap.md)
 - 長時間ジョブの進捗ログを設計する（準備中）
 - 終わったら知らせてもらう（準備中）
-- /loop と定期実行の方式（準備中）
+- [/loop と定期実行の方式](loop-and-scheduling.md)
 - 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
-- 止まって報告する権利を渡す（準備中）
+- [止まって報告する権利を渡す](../prompting/permission-to-stop.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
-- AI が使えないときの備え（障害・上限）（準備中）
+- [AI が使えないときの備え（障害・上限）](../cost/when-ai-is-unavailable.md)
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - [確認ばかりで進まない・途中で止まる](../symptoms/keeps-stopping.md)
 - [同じ確認のループにはまる](../symptoms/stuck-in-a-check-loop.md)

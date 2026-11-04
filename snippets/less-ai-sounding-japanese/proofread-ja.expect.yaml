@@ -1,0 +1,16 @@
+title: 文体を保つ日本語の推敲スキル（SKILL.md）
+kind: skill
+place: project
+safety: false
+features: [skills]
+conditions:
+  - 新しいセッションで試す
+  - .claude/skills/proofread-ja/SKILL.md として置く
+expect:
+  - when: です・ます調の文章を渡して「推敲して」と頼む
+    then: 文末はです・ますのまま、直した箇所の一覧が先に出る
+  - when: 見出しの順を入れ替えたほうがよい文章を渡す
+    then: 構成は直されず、提案が一覧の末尾に書かれる
+  - when: スキルの説明に当てはまらない依頼（翻訳など）を出す
+    then: このスキルは使われないことがある（使われるかは Claude の判断）
+control: スキルを置かないと、同じ依頼で、直す範囲と一覧の有無が毎回変わることがある

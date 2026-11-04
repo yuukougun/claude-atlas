@@ -1,0 +1,14 @@
+title: 自作の出力スタイルの例（要点先行・日本語）
+kind: other
+place: user
+safety: false
+features: [output-styles]
+conditions:
+  - ~/.claude/output-styles/ に要点先行.md として置く（プロジェクトだけなら .claude/output-styles/）
+  - ファイルを置いた後、Claude Code を起動し直す
+expect:
+  - when: /output-style 要点先行 で切り替え、簡単な質問をする
+    then: 返答の最初の 1 文が答えになり、前置きと最後のまとめが付かない
+  - when: 同じセッションで、詳しい説明を明示して頼む
+    then: 説明は省かれず、全文で返る
+control: スタイルを選ばない状態（Default）で同じ質問をすると、前置きや最後のまとめが付くことがある。これは観察であり、指示は鍵でないので合否にしない

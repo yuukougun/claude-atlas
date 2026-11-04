@@ -89,7 +89,7 @@ flowchart TD
 - 変えないもの。既存のテスト、公開している関数の名前と引数など。
 - 止まって報告する条件。再現できないとき、変えないものを変える必要が出たとき。
 
-直す前に、バグで落ちるテストを 1 つ書かせ、修正の前に落ちることを確かめさせる。テストを先に書かせる手順は <!-- link:begin tests-first#steps -->テストを先に書かせる › 手順（準備中）<!-- link:end --> にある。落ちることを見ずに書いたテストは、直った後の挙動をなぞるだけになりやすい。
+直す前に、バグで落ちるテストを 1 つ書かせ、修正の前に落ちることを確かめさせる。テストを先に書かせる手順は <!-- link:begin tests-first#steps -->[テストを先に書かせる › 手順](../verify/tests-first.md#steps)<!-- link:end --> にある。落ちることを見ずに書いたテストは、直った後の挙動をなぞるだけになりやすい。
 
 入力が大きいときは、直させる前に最小の再現例へ縮める。縮める処理は、何度でも同じ結果を出すスクリプトとして書かせる。LLM に入力を直接縮めさせるより、縮小スクリプトを 1 つ書かせるほうが成功しやすかった。縮めた失敗入力を修正の依頼に渡すと、元の入力を渡すより直る率が上がった。AtCoder 由来の問題を使った研究（ReduceFix、arXiv、2025）の結果で、対象の LLM は Claude とは限らない（根拠：中）。手順は <!-- link:begin shrink-failing-inputs -->失敗する入力を縮めるスクリプトを書かせる（準備中）<!-- link:end --> にある。前は動いていたものが壊れたときは、原因のコミットを絞る <!-- link:begin bisect-regressions -->退行の原因を git bisect で探させる（準備中）<!-- link:end --> から入る。
 
@@ -237,7 +237,7 @@ flowchart TD
 1. 修正の前に落ちたテストが、修正の後に通ったことを、実行した出力で見る。
 2. 既存のテストが、通った数と全体の数の形で通ったことを見る。出力が途中で切れていないかも見る。
 3. 入力を変えて試す。別の seed、境界値、空の入力を足す。「条件を変えると同じバグが出る」症状は、ここで見つかる。境界値と条件式は、競技の問題で LLM の誤りが多い所でもある（Wei らの研究、arXiv、2025。根拠：中）。
-4. 答えの分かる遅い解があるなら、それと突き合わせる。正解の側を、本解に合わせて直させない（<!-- link:begin differential-testing#protect-the-oracle -->答えの分かる遅い解と比べる（差分テスト・オラクル） › 正解の側を守る（準備中）<!-- link:end -->）。
+4. 答えの分かる遅い解があるなら、それと突き合わせる。正解の側を、本解に合わせて直させない（<!-- link:begin differential-testing#protect-the-oracle -->[答えの分かる遅い解と比べる（差分テスト・オラクル） › 正解の側を守る](../eval/differential-testing.md#protect-the-oracle)<!-- link:end -->）。
 5. 説明と事実が食い違ったら、実行・grep・git で見た事実を正とする（<!-- link:begin evidence-not-reports#facts-win -->[報告ではなく証拠を求める › 説明と事実が食い違ったら](../verify/evidence-not-reports.md#facts-win)<!-- link:end -->）。
 
 「最後に double-check して」と書き足す古い頼み方は、モデルによって扱いが違う。今どうするかは台帳にある（<!-- link:begin outdated-advice-ledger#add-double-check -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#add-double-check)<!-- link:end -->）。基本は、見直させるより、確かめる手段を渡す。
@@ -320,9 +320,9 @@ Claude Code では、チェックポイントで会話とファイルを戻せ�
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - [テストを書き換えて通した](../symptoms/rewrote-tests-to-pass.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
-- テストを先に書かせる（準備中）
+- [テストを先に書かせる](../verify/tests-first.md)
 - [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)
-- 答えの分かる遅い解と比べる（差分テスト・オラクル）（準備中）
+- [答えの分かる遅い解と比べる（差分テスト・オラクル）](../eval/differential-testing.md)
 - [直し続けて方針を疑わない（またはすぐ撤退を勧める）](../symptoms/wont-rethink-approach.md)
 - [存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)
 - [MCP・プラグイン・スキルを入れる前の確認 › 依存のパッケージを入れる前に（存在しない名前・後から登録された名前）](../safety/vetting-extensions.md#dependencies)

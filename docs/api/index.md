@@ -10,6 +10,10 @@ title: API・SDK の概念
 
 - [アプリの機能と API の概念の対応表](feature-to-api-mapping.md)（任せる・下書き）：プロジェクトのキャッシュ・長い会話の自動の要約・メモリ・スキルなどが、API のどの概念に当たるかが分かる。
 
+## API の主な機能
+
+- [structured outputs（形式を保証する）](structured-outputs-basics.md)（仕組みにする・下書き）：出力やツールの呼び出しを、指定したスキーマどおりの形で受け取れる。
+
 ## エージェントを組む
 
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](sdk-comparison.md)（仕組みにする・下書き）：Client SDK・Agent SDK・Managed Agents・CLI を、ループを誰が回すか、どこで動くかで比べ、自分の用途に合う層を選べる。

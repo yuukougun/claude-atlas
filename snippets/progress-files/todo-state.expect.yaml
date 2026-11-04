@@ -1,0 +1,11 @@
+title: 状態を JSON で持ち、変えてよい欄を passes に限る例
+kind: other
+place: project
+safety: false
+conditions:
+  - CLAUDE.md か依頼に「この JSON を編集してよいのは `passes` の値だけ」と書いてから試す
+  - 新しいセッションで試す
+expect:
+  - when: 項目 T1 を実装させ、終わったら状態を更新させる
+    then: 差分に出るのは T1 の `passes` の値だけで、`title` と `done_when` は変わらない
+control: 同じ内容を Markdown のチェックリストで持たせると、項目の文言ごと書き換えられる例が出やすい（観察する）

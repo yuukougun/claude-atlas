@@ -1,0 +1,14 @@
+title: /loop でデプロイを見張る依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+features: [loop]
+conditions:
+  - 新しいセッションで試す
+  - 状態を確かめるコマンドか MCP を、セッションが使える状態にしておく
+expect:
+  - when: 依頼をそのまま出す
+    then: 間隔をおいて状態の報告が出る
+  - when: デプロイが成功か失敗で終わる
+    then: 最後の報告のあとにループが終わる
+control: 終わりの条件を書かないと、ループは止まらず、期限が来るまで同じ報告を繰り返す

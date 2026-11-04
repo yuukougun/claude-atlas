@@ -57,7 +57,7 @@ textlint をフックで回す手順は、PostToolUse フックで Edit か Writ
 | 読みやすさ、構成、定型の言い回し | 任せない | 判断が要る。lint の誤検出が増える |
 | 内容の正しさ、事実 | 任せない | textlint の守備範囲の外である |
 
-読みにくさの型のうち、lint に任せる所と判断の要る所の線引きは、「<!-- link:begin less-ai-sounding-japanese#lint-vs-judgment -->日本語の「AI 臭さ」を減らす › lint に任せる所と、判断の要る所（準備中）<!-- link:end -->」にある。文体の混在の見つけ方は「<!-- link:begin consistent-politeness#lint -->[です・ます／だ・であるを揃える › 混在を lint で見つける](consistent-politeness.md#lint)<!-- link:end -->」、表記の一覧の作り方は「<!-- link:begin consistent-notation#single-source -->[表記ゆれと漢字の開き › 一覧を指示と lint の両方に使う](consistent-notation.md#single-source)<!-- link:end -->」が持つ。ここでは繰り返さない。
+読みにくさの型のうち、lint に任せる所と判断の要る所の線引きは、「<!-- link:begin less-ai-sounding-japanese#lint-vs-judgment -->[日本語の「AI 臭さ」を減らす › lint に任せる所と、判断の要る所](less-ai-sounding-japanese.md#lint-vs-judgment)<!-- link:end -->」にある。文体の混在の見つけ方は「<!-- link:begin consistent-politeness#lint -->[です・ます／だ・であるを揃える › 混在を lint で見つける](consistent-politeness.md#lint)<!-- link:end -->」、表記の一覧の作り方は「<!-- link:begin consistent-notation#single-source -->[表記ゆれと漢字の開き › 一覧を指示と lint の両方に使う](consistent-notation.md#single-source)<!-- link:end -->」が持つ。ここでは繰り返さない。
 
 公式の文書とリポジトリには、textlint の例がない。形が同じ公式の例は、編集後に整形するフック（Prettier）と、型検査を Stop フックで強制する例である。この雛形は、その形を textlint に当てはめた実践者の記事（根拠：弱。単独の事例）を参考にして、この辞典で組んだ。同じ形のフックは「<!-- link:begin hook-recipes#format-after-edit -->[代表的なフックのレシピ › 編集の後に整形する](../enforce/hook-recipes.md#format-after-edit)<!-- link:end -->」にもある。
 
@@ -263,9 +263,9 @@ textlint のフックでは、失敗を次の 2 段で見えるようにする�
 
 ## チームで共有する {#share}
 
-チームで共有するものは、フックの設定、スクリプト、`.textlintrc.json`、`prh.yml`、textlint の依存の宣言である。フックの設定は、リポジトリの `.claude/settings.json` に入れる。個人の好みや秘密を共有のファイルに入れない分け方は、「<!-- link:begin share-team-settings#shared-vs-personal -->チームで設定を共有する › 共有するものと個人に残すもの（準備中）<!-- link:end -->」にある。
+チームで共有するものは、フックの設定、スクリプト、`.textlintrc.json`、`prh.yml`、textlint の依存の宣言である。フックの設定は、リポジトリの `.claude/settings.json` に入れる。個人の好みや秘密を共有のファイルに入れない分け方は、「<!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end -->」にある。
 
-- **信頼してから効く**：初めて開いたリポジトリのフックは、信頼の確認を済ませるまで動かない設定がある。新しい参加者には、その旨を伝える。詳しくは「<!-- link:begin share-team-settings#after-trust -->チームで設定を共有する › 信頼してから効く設定（準備中）<!-- link:end -->」にある。
+- **信頼してから効く**：初めて開いたリポジトリのフックは、信頼の確認を済ませるまで動かない設定がある。新しい参加者には、その旨を伝える。詳しくは「<!-- link:begin share-team-settings#after-trust -->[チームで設定を共有する › 信頼してから効く設定](../team/share-team-settings.md#after-trust)<!-- link:end -->」にある。
 - **クラウドのセッション**：ユーザーの設定のフックとプラグインは効かない。リポジトリの `.claude/settings.json` に入れたものは、1 つのリポジトリのセッションで効く。そこに textlint が入っているかは、環境ごとに確かめる（未確認）。
 - **フックは利用者の権限で動く**：他人のスクリプトは、コードとして読んでから使う。「<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](../enforce/writing-safe-hooks.md#runs-as-you)<!-- link:end -->」を見る。
 - **設定を書き換えて違反を消さない**：Claude は `.textlintrc.json` も Edit できる。違反を消すために、規則を外す直し方をされるおそれがある。直す対象は文章で、設定ではないと CLAUDE.md に一行書く。厳しく守らせるなら、設定のファイルへの編集を PreToolUse で止め、理由と代わりの手段を返す（推論・実践例なし）。止め方は「<!-- link:begin block-with-exit-2#when -->[フックで止めて理由を返す（exit 2 と JSON） › 使いどころ](../enforce/block-with-exit-2.md#when)<!-- link:end -->」にある。
@@ -301,8 +301,8 @@ textlint のフックでは、失敗を次の 2 段で見えるようにする�
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [フックを安全に書く](../enforce/writing-safe-hooks.md)
-- チームで設定を共有する（準備中）
-- 日本語の「AI 臭さ」を減らす（準備中）
+- [チームで設定を共有する](../team/share-team-settings.md)
+- [日本語の「AI 臭さ」を減らす](less-ai-sounding-japanese.md)
 - [日本語で返し続けさせる](keep-replies-in-japanese.md)
 
 </div>

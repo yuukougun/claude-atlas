@@ -56,8 +56,8 @@ updated: 2026-11-05
 
 - **頼んだものと違うものが出てくる**：対象のファイルや範囲の取り違え、仕様の読み違え、書かれていない境界の入力の見落としが典型である。先に「見えていない」を疑う。
 - **「いい感じに」と頼むと平凡なものしか出ない**：形容詞だけでは、どこにでもある無難な答えに落ち着きやすい。好みや基準が Claude に見えていないので、先に「見えていない」を疑う。
-- **回答が長すぎる・短すぎる**：形と分量を指定していないなら「見えていない」である。指定したのに外れるなら「合っていない」を疑う。指定の仕方は「<!-- link:begin output-shape#length -->出力の形と分量を指定する › 長さと要約の有無（準備中）<!-- link:end -->」にある。
-- **文章が AI っぽい**：読み手・目的・手本を渡していないことが多い。先に「見えていない」を疑う。頼み方は「<!-- link:begin requesting-prose -->文章を頼むとき（読み手・目的・手本を渡す）（準備中）<!-- link:end -->」、直し方は「<!-- link:begin less-ai-sounding-japanese -->日本語の「AI 臭さ」を減らす（準備中）<!-- link:end -->」にある。です・ますの混在や表記ゆれは、別の原因なので「<!-- link:begin inconsistent-japanese-style -->[文体や表記が揃わない](inconsistent-japanese-style.md)<!-- link:end -->」で受ける。
+- **回答が長すぎる・短すぎる**：形と分量を指定していないなら「見えていない」である。指定したのに外れるなら「合っていない」を疑う。指定の仕方は「<!-- link:begin output-shape#length -->[出力の形と分量を指定する › 長さと要約の有無](../prompting/output-shape.md#length)<!-- link:end -->」にある。
+- **文章が AI っぽい**：読み手・目的・手本を渡していないことが多い。先に「見えていない」を疑う。頼み方は「<!-- link:begin requesting-prose -->[文章を頼むとき（読み手・目的・手本を渡す）](../prompting/requesting-prose.md)<!-- link:end -->」、直し方は「<!-- link:begin less-ai-sounding-japanese -->[日本語の「AI 臭さ」を減らす](../japanese/less-ai-sounding-japanese.md)<!-- link:end -->」にある。です・ますの混在や表記ゆれは、別の原因なので「<!-- link:begin inconsistent-japanese-style -->[文体や表記が揃わない](inconsistent-japanese-style.md)<!-- link:end -->」で受ける。
 
 近い症状は、次のページが受ける。
 
@@ -87,7 +87,7 @@ updated: 2026-11-05
 
 3. **合っていない**：依頼が足りていて、会話も新しいのに外れる。モデルの傾向や effort が作業に合っていない。
 
-    - 止まりすぎ・やりすぎ・冗長さのように、モデルごとに出やすい傾向がある。傾向は版で変わるので、公式の指針で傾向を知り、自分の環境で観察して記録する。進め方は「<!-- link:begin model-quirks#observe-and-record -->モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する（準備中）<!-- link:end -->」にある。
+    - 止まりすぎ・やりすぎ・冗長さのように、モデルごとに出やすい傾向がある。傾向は版で変わるので、公式の指針で傾向を知り、自分の環境で観察して記録する。進め方は「<!-- link:begin model-quirks#observe-and-record -->[モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する](../models/model-quirks.md#observe-and-record)<!-- link:end -->」にある。
     - effort は、考える深さと、待ち時間や使用量の釣り合いを変える。既定の段は面とモデルで違うので、先に今の段を確かめる。確かめ方は「<!-- link:begin effort-levels#defaults-by-surface -->[effort の段階と使い分け › 既定の段（モデル × 面の表）](../models/effort-levels.md#defaults-by-surface)<!-- link:end -->」、変え方は「<!-- link:begin effort-levels#how-to-set -->[effort の段階と使い分け › 面ごとの変え方](../models/effort-levels.md#how-to-set)<!-- link:end -->」にある。
     - 確かめ方は、同じ依頼を新しい会話で出し、モデルか effort のどちらか 1 つだけを変えて比べることである。2 つ同時に変えると、どちらが効いたか分からない。
 
@@ -146,7 +146,7 @@ updated: 2026-11-05
 | --- | --- |
 | 見えていない | [具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)<br>[例を見せる](../prompting/show-examples.md)<br>[質問させる・インタビューさせる](../prompting/let-claude-ask.md) |
 | 散らかっている | [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md) |
-| 合っていない | モデル別の癖と、プロンプトの合わせ方（準備中）<br>[effort の段階と使い分け](../models/effort-levels.md) |
+| 合っていない | [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)<br>[effort の段階と使い分け](../models/effort-levels.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -173,7 +173,7 @@ updated: 2026-11-05
 - 毎回同じ背景を書いているなら、依頼ごとに書かず、置き場所に移す。移し方は「<!-- link:begin repeating-the-same-explanation -->[毎回同じ説明をしている](repeating-the-same-explanation.md)<!-- link:end -->」にある。
 - 例外を許さない決まり（このファイルは触らない、など）は、頼み方を磨かず、仕組みに移す。考え方は「<!-- link:begin say-what-you-want#two-layers -->[否定形ではなく、望む形で書く › 例外のない禁止は仕組みへ（二層）](../prompting/say-what-you-want.md#two-layers)<!-- link:end -->」にある。
 
-最初から完璧な依頼を作らなくてよい。最初は平易に頼み、返事を見て足りない所だけを足す。進め方は「<!-- link:begin refine-in-conversation#start-plain -->頼み方は一回で決めない（会話で詰める） › まず平易に頼み、足りない分を足す（準備中）<!-- link:end -->」にある。良くなったかは、前回の結果と見比べて確かめる。毎回一から作り直させず、前回の結果を踏まえて直させる進め方は「<!-- link:begin build-on-results#regenerate-or-refine -->やり直させるより、結果を踏まえて直させる › 作り直しと直しの違い（準備中）<!-- link:end -->」にある。
+最初から完璧な依頼を作らなくてよい。最初は平易に頼み、返事を見て足りない所だけを足す。進め方は「<!-- link:begin refine-in-conversation#start-plain -->[頼み方は一回で決めない（会話で詰める） › まず平易に頼み、足りない分を足す](../prompting/refine-in-conversation.md#start-plain)<!-- link:end -->」にある。良くなったかは、前回の結果と見比べて確かめる。毎回一から作り直させず、前回の結果を踏まえて直させる進め方は「<!-- link:begin build-on-results#regenerate-or-refine -->[やり直させるより、結果を踏まえて直させる › 作り直しと直しの違い](../context/build-on-results.md#regenerate-or-refine)<!-- link:end -->」にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -203,19 +203,19 @@ updated: 2026-11-05
 - [質問させる・インタビューさせる](../prompting/let-claude-ask.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
-- モデル別の癖と、プロンプトの合わせ方（準備中）
+- [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
 
 **関連**
 
 - [新人の同僚に頼むつもりで](../prompting/brief-a-new-colleague.md)
-- 出力の形と分量を指定する（準備中）
+- [出力の形と分量を指定する](../prompting/output-shape.md)
 - [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)
 - [否定形ではなく、望む形で書く](../prompting/say-what-you-want.md)
-- 文章を頼むとき（読み手・目的・手本を渡す）（準備中）
-- 日本語の「AI 臭さ」を減らす（準備中）
-- 頼み方は一回で決めない（会話で詰める）（準備中）
-- やり直させるより、結果を踏まえて直させる（準備中）
+- [文章を頼むとき（読み手・目的・手本を渡す）](../prompting/requesting-prose.md)
+- [日本語の「AI 臭さ」を減らす](../japanese/less-ai-sounding-japanese.md)
+- [頼み方は一回で決めない（会話で詰める）](../prompting/refine-in-conversation.md)
+- [やり直させるより、結果を踏まえて直させる](../context/build-on-results.md)
 - [提案してほしいのか、実行してほしいのか](../prompting/suggest-or-do.md)
 - [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)
 - [頼んでいないことまでやる（過剰設計）](does-more-than-asked.md)

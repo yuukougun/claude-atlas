@@ -56,7 +56,7 @@ CLAUDE.md・rules・スキル・出力スタイルを、属性ごとに比べる
 | [CLAUDE.md](what-to-put-in-claude-md.md) | セッション開始 | 常駐 | 残る |
 | [rules（.claude/rules/）](path-scoped-rules.md) | セッション開始か、一致するファイルを扱うとき | 常駐か、一致するファイルのときだけ | 条件による |
 | [スキル（skills）](writing-skills.md) | セッション開始と使うとき | 使うまで小さい | 残る |
-| 出力スタイル（output styles）（準備中） | セッション開始と切り替えたとき | 常駐 | 残る |
+| [出力スタイル（output styles）](../cli/output-style-modes.md) | セッション開始と切り替えたとき | 常駐 | 残る |
 
 すべて共通：強制力 お願い。
 
@@ -79,7 +79,7 @@ CLAUDE.md・rules・スキル・出力スタイルを、属性ごとに比べる
 CLAUDE.md・rules・スキル・出力スタイルのどこに指示を置くかは、3 つの軸で決まる。軸 A は、例外を許さないかどうかである。軸 B は、変えたいのが応答の形なのか、知識や手順なのかである。軸 C は、いつ読み込ませるか（毎回、触るファイルに応じて、使う作業に応じて）である。次の 5 つの問いを、この順に当てはめる。
 
 1. **例外を許さないか（軸 A）**：許さないなら、鍵（フックや deny ルールなど、Claude Code が実行する制御）に移す。CLAUDE.md には、鍵で止めている理由と、例外が要るときに人へ相談する基準だけを書く。鍵の考え方は<!-- link:begin request-vs-lock -->[お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)<!-- link:end -->、手段の選び方は<!-- link:begin request-lock-table -->[お願いと鍵の対応表](../enforce/request-lock-table.md)<!-- link:end -->を見る。
-2. **変えたいのは応答の形か（軸 B）**：口調・説明の量・確認の仕方をセッション全体で変えたいなら、出力スタイルに置く。選ぶには、`/output-style` のコマンドか、`/config` のメニューを使う。まず組み込みのスタイルで足りるかを試す。足りないとき、たとえば文体を指定したいときや役割を大きく変えたいときに、自作する。組み込みの種類と選び方は<!-- link:begin output-style-modes -->出力スタイルで応答の仕方を切り替える（準備中）<!-- link:end -->を見る。日本語で返し続けさせる設定の組み合わせは<!-- link:begin keep-replies-in-japanese -->[日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)<!-- link:end -->を見る。
+2. **変えたいのは応答の形か（軸 B）**：口調・説明の量・確認の仕方をセッション全体で変えたいなら、出力スタイルに置く。選ぶには、`/output-style` のコマンドか、`/config` のメニューを使う。まず組み込みのスタイルで足りるかを試す。足りないとき、たとえば文体を指定したいときや役割を大きく変えたいときに、自作する。組み込みの種類と選び方は<!-- link:begin output-style-modes -->[出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)<!-- link:end -->を見る。日本語で返し続けさせる設定の組み合わせは<!-- link:begin keep-replies-in-japanese -->[日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)<!-- link:end -->を見る。
 3. **毎回の作業に要る事実か（軸 C：毎回）**：コマンド・推測できない落とし穴・規則の理由は、プロジェクトの根の CLAUDE.md に置く。ただし長くするほど、コンテキストを使い、守られにくくなると公式の文書は述べている。残す行と外す行の見分け方は<!-- link:begin what-to-put-in-claude-md -->[CLAUDE.md に書くこと・書かないこと](what-to-put-in-claude-md.md)<!-- link:end -->、長さの目安と削り方は<!-- link:begin claude-md-length -->[CLAUDE.md の長さと剪定](claude-md-length.md)<!-- link:end -->を見る。
 4. **一部のフォルダやファイルにだけ要るか（軸 C：触るファイルに応じて）**：`paths` を付けた rules に置く。規約が 1 つのフォルダに収まるなら、そのフォルダの CLAUDE.md でもよい。
 5. **ときどき使う手順か（軸 C：使う作業に応じて）**：スキルに置く。説明だけが常駐し、本文は使うときに読まれる。
@@ -104,7 +104,7 @@ CLAUDE.md・rules・スキル・出力スタイルのどこに指示を置くか
     - **状況**：リリースの手順が長く、使うのは月に一度である。今は根の CLAUDE.md に全部書いてあり、毎回の作業で読み込まれている。
     - **迷う候補**：CLAUDE.md に残す。rules にする。スキルにする。
     - **選んだもの**：スキルにする。公開のように副作用のある手順なので、`disable-model-invocation: true` を付けて、人が呼んだときだけ動くようにする。
-    - **理由**：rules の読み込み条件はファイルであり、作業ではない。スキルは説明だけが常駐し、本文は使うときに読まれる。手動で呼ぶ設定にすると、説明も呼ぶまで入らない。公式の文書も、特定の作業向けで常には要らない指示にはスキルを勧めている。ただし、この設定が止めるのは、Claude が自分でスキルを呼ぶことだけである。呼んだあとの手順の承認までは止めない。公開の承認を必ず挟みたいなら、`npm publish` を ask ルール（実行の前に人の確認を挟む鍵）で止める。手動のスキルの作り方は<!-- link:begin manual-only-skills -->副作用のあるスキルを勝手に動かさない（準備中）<!-- link:end -->を見る。
+    - **理由**：rules の読み込み条件はファイルであり、作業ではない。スキルは説明だけが常駐し、本文は使うときに読まれる。手動で呼ぶ設定にすると、説明も呼ぶまで入らない。公式の文書も、特定の作業向けで常には要らない指示にはスキルを勧めている。ただし、この設定が止めるのは、Claude が自分でスキルを呼ぶことだけである。呼んだあとの手順の承認までは止めない。公開の承認を必ず挟みたいなら、`npm publish` を ask ルール（実行の前に人の確認を挟む鍵）で止める。手動のスキルの作り方は<!-- link:begin manual-only-skills -->[副作用のあるスキルを勝手に動かさない](manual-only-skills.md)<!-- link:end -->を見る。
 
 !!! example "判断例：毎回頼んでいる文体"
     - **状況**：毎回「である調で、結論から書いて」と頼んでいる。レビューの依頼のときだけは、指摘を重さの順に並べる形式も欲しい。
@@ -125,7 +125,7 @@ CLAUDE.md・rules・スキル・出力スタイルは択一ではなく、指示
 - **プロジェクトの根の CLAUDE.md**（`CLAUDE.md`）：毎回の作業に要る事実（コマンド・推測できない落とし穴・規則の理由）を置く。長い手順はスキルへ、一部のフォルダだけの規約は rules へ、口調の指定は出力スタイルへ移す。
 - **rules**（`.claude/rules/`。`paths` 付き）：一部のフォルダやファイルだけの規約を置く。圧縮の後も要る規約は、`paths` を外すか根の CLAUDE.md に置く。
 - **スキル**（`.claude/skills/<名前>/SKILL.md`）：ときどき使う手順と、その場面だけの書式を置く。毎回要る事実は置かない。
-- **出力スタイル**（`.claude/output-styles/`）：セッション全体の口調・説明の量・確認の仕方を置く。プロジェクトの知識は置かない。CLAUDE.md との細かい分担は<!-- link:begin output-style-modes#vs-claude-md -->出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担（準備中）<!-- link:end -->を見る。
+- **出力スタイル**（`.claude/output-styles/`）：セッション全体の口調・説明の量・確認の仕方を置く。プロジェクトの知識は置かない。CLAUDE.md との細かい分担は<!-- link:begin output-style-modes#vs-claude-md -->[出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担](../cli/output-style-modes.md#vs-claude-md)<!-- link:end -->を見る。
 - **鍵**（フック・deny ルール・管理設定）：例外を許さない禁止と、必ず起きるべき処理を置く。管理設定（managed settings）は、組織が配り、利用者のファイルでは上書きできない設定である。判断の基準や理由は置かず、CLAUDE.md に書く。フックとスキルの選び方は<!-- link:begin hook-vs-skill -->[フックとスキルの違い](hook-vs-skill.md)<!-- link:end -->を見る。
 - **ユーザーレベルのファイル**（`~/.claude/` の下）：自分だけの好みを置く。チームで共有する規約は置かない。
 - **起動時のフラグ `--append-system-prompt`**：その起動だけ、システムプロンプトに文を足す。起動のたびに渡すので、対話での普段使いより、スクリプトや自動化に向く。自作の出力スタイルと違い、標準の指示を外さず足すだけである。足す指示が増えるほど守られにくくなると、公式のブログは述べている。
@@ -246,8 +246,8 @@ CLAUDE.md・rules・スキル・出力スタイルに置いた指示が実際に
 
 CLAUDE.md・rules・スキル・出力スタイルは、同じ置き場所に書いても、サブエージェントやクラウドのセッションには届かないことがある。
 
-- **サブエージェント**：サブエージェントは自分のシステムプロンプトで動くので、出力スタイルは届かない。親の会話とシステムプロンプトを丸ごと引き継ぐ fork だけが例外である。CLAUDE.md とプロジェクトの rules は届くが、組み込みの Explore と Plan は起動時に読まない。親が呼んだスキルの内容と、親の会話の履歴も引き継がれない。詳しくは<!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end -->を見る。
-- **クラウドのセッション**：クラウドの環境で動く Claude Code のセッションである。リポジトリに置いた CLAUDE.md・rules・スキルは、クローンに含まれるので届く。ただし claude.ai のプロジェクトの中のスレッドでは、届くのは根の CLAUDE.md と、`paths` のない rules だけである。ユーザーの `~/.claude/CLAUDE.md` と `~/.claude/skills/` は自分のマシンにあるので届かない。セッションの仕組みは<!-- link:begin cloud-sessions-and-teleport -->クラウドセッションと teleport（準備中）<!-- link:end -->を見る。
+- **サブエージェント**：サブエージェントは自分のシステムプロンプトで動くので、出力スタイルは届かない。親の会話とシステムプロンプトを丸ごと引き継ぐ fork だけが例外である。CLAUDE.md とプロジェクトの rules は届くが、組み込みの Explore と Plan は起動時に読まない。親が呼んだスキルの内容と、親の会話の履歴も引き継がれない。詳しくは<!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](what-subagents-dont-inherit.md)<!-- link:end -->を見る。
+- **クラウドのセッション**：クラウドの環境で動く Claude Code のセッションである。リポジトリに置いた CLAUDE.md・rules・スキルは、クローンに含まれるので届く。ただし claude.ai のプロジェクトの中のスレッドでは、届くのは根の CLAUDE.md と、`paths` のない rules だけである。ユーザーの `~/.claude/CLAUDE.md` と `~/.claude/skills/` は自分のマシンにあるので届かない。セッションの仕組みは<!-- link:begin cloud-sessions-and-teleport -->[クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)<!-- link:end -->を見る。
 - **個人の好みをクラウドで効かせる**：リポジトリに置くと、そのリポジトリのセッションを開く全員に効くので、個人の好みは置かない。Anthropic のクラウド環境では、環境の setup script（セッションの開始時、Claude Code が起動する前に走る Bash のスクリプト）で `~/.claude/CLAUDE.md` を書く。書き方は、公式の [Configure cloud environments](https://code.claude.com/docs/en/cloud-environments) を見る。
 
 出力スタイルがクラウドのセッションで効くかは、確かめていない。
@@ -256,9 +256,9 @@ CLAUDE.md・rules・スキル・出力スタイルは、同じ置き場所に書
 
 CLAUDE.md・rules・スキル・出力スタイルと混同されやすい機能を、別のものとして整理する。
 
-- **claude.ai の Styles**：アプリの機能で、Claude Code の出力スタイルとは別である。2026-06-01 に、Styles をスキルへ移すという告知が出た。告知の記事は、2026-11-04 時点で元の URL では読めない。Styles のメニューが今も画面に出るかは確かめていない。移された Styles の扱いは<!-- link:begin skills-in-the-app#migrated-styles -->アプリでスキルを使う › 移された Styles（準備中）<!-- link:end -->に、アプリで口調や形式を決める場所は<!-- link:begin where-to-put-instructions -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)<!-- link:end -->にある。
+- **claude.ai の Styles**：アプリの機能で、Claude Code の出力スタイルとは別である。2026-06-01 に、Styles をスキルへ移すという告知が出た。告知の記事は、2026-11-04 時点で元の URL では読めない。Styles のメニューが今も画面に出るかは確かめていない。移された Styles の扱いは<!-- link:begin skills-in-the-app#migrated-styles -->[アプリでスキルを使う › 移された Styles](../app/skills-in-the-app.md#migrated-styles)<!-- link:end -->に、アプリで口調や形式を決める場所は<!-- link:begin where-to-put-instructions -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)<!-- link:end -->にある。
 - **カスタムスラッシュコマンド**（`.claude/commands/`）：スキルにまとめられた。`.claude/commands/` のファイルも `.claude/skills/` のスキルも、同じ名前の呼び出しを作り、同じように動く。スキルは、補助ファイルや呼び出しの制御なども足せる。
-- **自動メモリ**：Claude が自分で書き溜めるメモである。人が書く CLAUDE.md とは別で、ここで比べた置き場所には含めない。確かめ方と直し方は<!-- link:begin using-auto-memory -->自動メモリ（準備中）<!-- link:end -->を見る。
+- **自動メモリ**：Claude が自分で書き溜めるメモである。人が書く CLAUDE.md とは別で、ここで比べた置き場所には含めない。確かめ方と直し方は<!-- link:begin using-auto-memory -->[自動メモリ](using-auto-memory.md)<!-- link:end -->を見る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -293,19 +293,19 @@ CLAUDE.md・rules・スキル・出力スタイルと混同されやすい機能
 
 **関連**
 
-- 出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担（準備中）
+- [出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担](../cli/output-style-modes.md#vs-claude-md)
 - [CLAUDE.md に書くこと・書かないこと](what-to-put-in-claude-md.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
 - [拡張機能の全体図と使い分け早見表](extensions-at-a-glance.md)
 - [お願いと鍵の対応表](../enforce/request-lock-table.md)
-- 自動メモリ（準備中）
+- [自動メモリ](using-auto-memory.md)
 - [フックとスキルの違い](hook-vs-skill.md)
 - [拡張を足すタイミング](when-to-add-what.md)
 - [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)
-- サブエージェントに引き継がれないもの（準備中）
-- アプリでスキルを使う › 移された Styles（準備中）
+- [サブエージェントに引き継がれないもの](what-subagents-dont-inherit.md)
+- [アプリでスキルを使う › 移された Styles](../app/skills-in-the-app.md#migrated-styles)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
-- クラウドセッションと teleport（準備中）
+- [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 
 </div>
 

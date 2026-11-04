@@ -71,7 +71,7 @@ Claude は答えを一度に確定させて取り出すのではなく、語の�
 - **1 回で決めない**：頼み方の良し悪しや、変更が効いたかどうかは、複数回の結果を並べて決める。回数と差の大きさの目安は <!-- link:begin measure-changes#how-many-runs -->[変更が効いたかを測る（小さな eval） › 試行の数と差の大きさ](../eval/measure-changes.md#how-many-runs)<!-- link:end --> で扱う。小さく比べる手順は <!-- link:begin measure-changes#small-eval -->[変更が効いたかを測る（小さな eval） › 小さな eval の手順](../eval/measure-changes.md#small-eval)<!-- link:end --> にある。
 - **ばらつきを合図にする**：答えが毎回割れるなら、事実や前提の不足を疑う。割れる所を、根拠を確かめる場所の目印にする。重要な事実の確かめ方は <!-- link:begin fact-checking#best-of-n -->[事実を確かめる（引用・照合・best-of-N） › 何度か聞いて比べる（best-of-N）](../verify/fact-checking.md#best-of-n)<!-- link:end --> から始める。
 - **体感で決めない**：「最近よくなった」「悪くなった」という感覚は、ばらつきを取り違えて生まれることがある。同じ物差しの記録で見る理由は <!-- link:begin felt-vs-measured#why -->[体感と実測 › なぜ体感はずれるか](../eval/felt-vs-measured.md#why)<!-- link:end --> で扱う。
-- **ずれたら頼み方を直す**：ばらつきを理由に、会話の中で訂正を積むと、前の答えが文脈に残る。依頼を直して出し直す考え方は <!-- link:begin refine-in-conversation#edit-the-request -->頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す（準備中）<!-- link:end --> にある。
+- **ずれたら頼み方を直す**：ばらつきを理由に、会話の中で訂正を積むと、前の答えが文脈に残る。依頼を直して出し直す考え方は <!-- link:begin refine-in-conversation#edit-the-request -->[頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す](../prompting/refine-in-conversation.md#edit-the-request)<!-- link:end --> にある。
 
 比べるときの出し直し方は、面で少し違う。
 
@@ -119,15 +119,15 @@ Claude は答えを一度に確定させて取り出すのではなく、語の�
 **次に読む**
 
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
+- [判断を決定論的なスクリプトに移す](../enforce/move-judgment-into-scripts.md)
 - [急に賢くなくなった気がする](../symptoms/seems-less-capable.md)
-- 判断を決定論的なスクリプトに移す（準備中）
 
 **関連**
 
 - [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [ハルシネーションはなぜ起きるか](why-hallucinations.md)
-- 頼み方は一回で決めない（会話で詰める）（準備中）
+- [頼み方は一回で決めない（会話で詰める）](../prompting/refine-in-conversation.md)
 
 </div>
 

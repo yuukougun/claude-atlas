@@ -140,13 +140,13 @@ updated: 2026-11-05
     - **状況**：バージョンを上げ、変更履歴を書き、タグを付けて公開する手順がある。公開は main の上でしかしてはいけない。
     - **迷う候補**：手順の全体をスキルに書く。全体をフックにする。手順はスキルに、公開の条件だけを鍵に分ける。
     - **選んだもの**：手順はスキルに書き、「main 以外では公開しない」だけを、道具を使う前に動くフック（PreToolUse）か deny ルールで止める。
-    - **理由**：変更履歴の文面や、どこまで確認してから公開するかは、読んで判断する部分なので、スキルに向く。ブランチの条件は機械で判定でき、例外がないので、鍵に向く。公開のように副作用のある手順は、Claude が自分で呼ばないようにもできる。その設定と、それでも鍵が要る場面は<!-- link:begin manual-only-skills -->副作用のあるスキルを勝手に動かさない（準備中）<!-- link:end -->を見る。
+    - **理由**：変更履歴の文面や、どこまで確認してから公開するかは、読んで判断する部分なので、スキルに向く。ブランチの条件は機械で判定でき、例外がないので、鍵に向く。公開のように副作用のある手順は、Claude が自分で呼ばないようにもできる。その設定と、それでも鍵が要る場面は<!-- link:begin manual-only-skills -->[副作用のあるスキルを勝手に動かさない](manual-only-skills.md)<!-- link:end -->を見る。
 
 !!! example "判断例：日本語の文体を揃える"
     - **状況**：Claude に日本語の文章を書かせている。表記の揺れと、読みにくい言い回しの両方を減らしたい。
     - **迷う候補**：全部を textlint のフックで直させる。全部を推敲のスキルに任せる。機械で見つかるものはフック、判断が要るものはスキルに分ける。
     - **選んだもの**：分ける。
-    - **理由**：表記の揺れのように、機械で見つけられる違反は、書いた直後に走るフックで確実に拾える。読みにくさの型や、文章の構成の直しは、読んで判断することが多いので、スキルに任せる。分け方の詳細は<!-- link:begin textlint-hook#rules -->[textlint をフックで回す › どのルールを機械に任せるか](../japanese/textlint-hook.md#rules)<!-- link:end -->と<!-- link:begin less-ai-sounding-japanese#lint-vs-judgment -->日本語の「AI 臭さ」を減らす › lint に任せる所と、判断の要る所（準備中）<!-- link:end -->を見る。
+    - **理由**：表記の揺れのように、機械で見つけられる違反は、書いた直後に走るフックで確実に拾える。読みにくさの型や、文章の構成の直しは、読んで判断することが多いので、スキルに任せる。分け方の詳細は<!-- link:begin textlint-hook#rules -->[textlint をフックで回す › どのルールを機械に任せるか](../japanese/textlint-hook.md#rules)<!-- link:end -->と<!-- link:begin less-ai-sounding-japanese#lint-vs-judgment -->[日本語の「AI 臭さ」を減らす › lint に任せる所と、判断の要る所](../japanese/less-ai-sounding-japanese.md#lint-vs-judgment)<!-- link:end -->を見る。
 
 !!! example "判断例：テストを流す一歩が飛ばされる"
     - **状況**：スキルの最後の一歩に「テストを流して、通ってから終わる」と書いてある。ときどき、テストを流さずに終わりを宣言される。
@@ -211,10 +211,10 @@ updated: 2026-11-05
 - [お願いと鍵の対応表](../enforce/request-lock-table.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [スキルの作り方](writing-skills.md)
-- 副作用のあるスキルを勝手に動かさない（準備中）
+- [副作用のあるスキルを勝手に動かさない](manual-only-skills.md)
 - [拡張機能の全体図と使い分け早見表](extensions-at-a-glance.md)
 - [textlint をフックで回す](../japanese/textlint-hook.md)
-- 日本語の「AI 臭さ」を減らす › lint に任せる所と、判断の要る所（準備中）
+- [日本語の「AI 臭さ」を減らす › lint に任せる所と、判断の要る所](../japanese/less-ai-sounding-japanese.md#lint-vs-judgment)
 
 </div>
 

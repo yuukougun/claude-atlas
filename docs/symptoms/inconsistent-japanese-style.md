@@ -81,7 +81,7 @@ updated: 2026-11-05
 2. **散らかっている**：指定は届いているが、ほかの文体や表記が優勢になっている。貼った資料、読み込んだファイル、過去の出力、頼む文そのものの文体が、出力に映る。
 
     - 揺れた位置の直前に読んだものを控える。だ・である調の資料や、揺れた表記の多いログを読んだ直後に崩れているなら、この原因が濃い。
-    - 頼む文の文体も見る。頼む文の書き方は出力の形に映る。映り方は「<!-- link:begin output-shape#mirror -->出力の形と分量を指定する › 頼む文の書き方が出力に映る（準備中）<!-- link:end -->」にある。
+    - 頼む文の文体も見る。頼む文の書き方は出力の形に映る。映り方は「<!-- link:begin output-shape#mirror -->[出力の形と分量を指定する › 頼む文の書き方が出力に映る](../prompting/output-shape.md#mirror)<!-- link:end -->」にある。
     - 手本の文章で上書きする手がある。手本の置き方は「<!-- link:begin consistent-politeness#example -->[です・ます／だ・であるを揃える › 手本の文章を見せる](../japanese/consistent-politeness.md#example)<!-- link:end -->」にある。
     - 長い文章の途中で崩れるときは、崩れる位置を控えて、分けて書かせて比べる。長さの原因を切り分けた資料は、いまのところ見つかっていない。
 
@@ -115,7 +115,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 見えていない | [です・ます／だ・であるを揃える](../japanese/consistent-politeness.md)<br>[表記ゆれと漢字の開き](../japanese/consistent-notation.md)<br>[例を見せる](../prompting/show-examples.md) |
-| 散らかっている | 出力の形と分量を指定する › 頼む文の書き方が出力に映る（準備中）<br>[です・ます／だ・であるを揃える › 手本の文章を見せる](../japanese/consistent-politeness.md#example) |
+| 散らかっている | [出力の形と分量を指定する › 頼む文の書き方が出力に映る](../prompting/output-shape.md#mirror)<br>[です・ます／だ・であるを揃える › 手本の文章を見せる](../japanese/consistent-politeness.md#example) |
 | 縛っていない | [textlint をフックで回す](../japanese/textlint-hook.md)<br>[日本語の出力を揃える：お願いで足りること、仕組みが要ること › 確かめて差し戻す層：フックと lint](../japanese/align-japanese-output.md#lock-layer) |
 
 <!-- textlint-enable -->
@@ -143,7 +143,7 @@ updated: 2026-11-05
 - 表記の一覧は、人が持つ正本から作る。指示と検査に同じ一覧を使う。使い方は「<!-- link:begin consistent-notation#single-source -->[表記ゆれと漢字の開き › 一覧を指示と lint の両方に使う](../japanese/consistent-notation.md#single-source)<!-- link:end -->」にある。
 - 例外を許さない揺れだけを、フックと lint に移す。移す規則は少なく保つ。保ち方は「<!-- link:begin align-japanese-output#keep-few -->[日本語の出力を揃える：お願いで足りること、仕組みが要ること › 縛る規則は少なく保つ](../japanese/align-japanese-output.md#keep-few)<!-- link:end -->」と「<!-- link:begin textlint-hook#failure-and-few -->[textlint をフックで回す › フックが落ちたときと、規則を増やしすぎないこと](../japanese/textlint-hook.md#failure-and-few)<!-- link:end -->」にある。
 - 揃ったかは、直した後に出力を機械で数えて確かめる。確かめ方は「<!-- link:begin consistent-politeness#check -->[です・ます／だ・であるを揃える › 揃ったかを確かめる](../japanese/consistent-politeness.md#check)<!-- link:end -->」にある。
-- 文章の癖が気になるときは、文体の揺れと分けて直す。読みにくさの型は「<!-- link:begin less-ai-sounding-japanese#patterns -->日本語の「AI 臭さ」を減らす › 読みにくさの型を具体的に挙げる（準備中）<!-- link:end -->」にある。ほかの規則も守られないなら、「<!-- link:begin instructions-ignored -->[CLAUDE.md や指示が守られない](instructions-ignored.md)<!-- link:end -->」を見る。日本語で頼んだのに英語で返るなら、「<!-- link:begin replies-in-english -->[英語で返ってくる](replies-in-english.md)<!-- link:end -->」を見る。
+- 文章の癖が気になるときは、文体の揺れと分けて直す。読みにくさの型は「<!-- link:begin less-ai-sounding-japanese#patterns -->[日本語の「AI 臭さ」を減らす › 読みにくさの型を具体的に挙げる](../japanese/less-ai-sounding-japanese.md#patterns)<!-- link:end -->」にある。ほかの規則も守られないなら、「<!-- link:begin instructions-ignored -->[CLAUDE.md や指示が守られない](instructions-ignored.md)<!-- link:end -->」を見る。日本語で頼んだのに英語で返るなら、「<!-- link:begin replies-in-english -->[英語で返ってくる](replies-in-english.md)<!-- link:end -->」を見る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -175,15 +175,15 @@ updated: 2026-11-05
 - [です・ます／だ・であるを揃える](../japanese/consistent-politeness.md)
 - [表記ゆれと漢字の開き](../japanese/consistent-notation.md)
 - [例を見せる](../prompting/show-examples.md)
-- 出力の形と分量を指定する（準備中）
+- [出力の形と分量を指定する](../prompting/output-shape.md)
 - [textlint をフックで回す](../japanese/textlint-hook.md)
 - [日本語の出力を揃える：お願いで足りること、仕組みが要ること](../japanese/align-japanese-output.md)
 
 **関連**
 
-- 日本語の「AI 臭さ」を減らす（準備中）
-- 日本語の資料を読ませる・書かせる（準備中）
-- 文章を頼むとき（読み手・目的・手本を渡す）（準備中）
+- [日本語の「AI 臭さ」を減らす](../japanese/less-ai-sounding-japanese.md)
+- [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)
+- [文章を頼むとき（読み手・目的・手本を渡す）](../prompting/requesting-prose.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [英語で返ってくる](replies-in-english.md)
 - [意図と違うものが出てくる](not-what-i-meant.md)

@@ -1,0 +1,13 @@
+title: 空の設定フォルダで起動するスクリプト
+kind: other
+place: 端末（どのフォルダで実行してもよい）
+safety: false
+conditions:
+  - 動いている Claude Code のセッションを閉じてから実行する
+  - サブスクリプションのログイン（/login）ができる状態で試す
+expect:
+  - when: スクリプトを実行する
+    then: 初回の設定画面とログインがもう一度出る
+  - when: 起動後に /context を見る
+    then: 自分の CLAUDE.md やスキルが出ない
+control: 管理の設定は残るので、組織が配った設定のせいなら不調は残る。/status で管理の設定が効いているかを見る

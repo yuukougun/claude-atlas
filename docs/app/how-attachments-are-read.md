@@ -84,7 +84,7 @@ PDF 以外の文書（Word など）は、文字だけが抽出され、中に�
 
 - 長い資料の分け方と形の直し方：<!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end -->
 - 資料の後半を読んでいない疑いの切り分け：<!-- link:begin skipped-later-pages#diagnosis -->[添付した資料の後半を読んでいない › 原因を安く確かめる順](../symptoms/skipped-later-pages.md#diagnosis)<!-- link:end -->
-- 資料の置き場がプロジェクトのとき：<!-- link:begin too-much-project-knowledge#curate -->プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方（準備中）<!-- link:end -->
+- 資料の置き場がプロジェクトのとき：<!-- link:begin too-much-project-knowledge#curate -->[プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方](too-much-project-knowledge.md#curate)<!-- link:end -->
 
 !!! example "判断例：図が後半にもある長い報告書"
     - **状況**：長い PDF の報告書を添付した。図は前半と後半にあり、後半のグラフを聞くと、答えが曖昧になる。
@@ -162,7 +162,7 @@ PDF 以外の文書（Word など）は、文字だけが抽出され、中に�
 
 - 引用や出典の誤りの形と確かめる手順：<!-- link:begin checking-citations#steps -->[引用や出典の確かめ方 › 確かめる手順](../verify/checking-citations.md#steps)<!-- link:end -->
 - 答えの前に引用を抜かせる頼み方：<!-- link:begin long-context-first#quote-first -->[長い資料は先、質問は最後 › 答えの前に引用を抜かせる](../prompting/long-context-first.md#quote-first)<!-- link:end -->
-- 日本語の PDF を渡す前と後に確かめること：<!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end -->
+- 日本語の PDF を渡す前と後に確かめること：<!-- link:begin documents-in-japanese#pdf -->[日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること](../japanese/documents-in-japanese.md#pdf)<!-- link:end -->
 
 ## API で渡すとき（Files API・PDF・画像） {#api}
 
@@ -233,9 +233,9 @@ PDF の対応（文字と図の両方の解析）と、画像を読む機能（v
 - [長い資料は先、質問は最後](../prompting/long-context-first.md)
 - [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)
 - [引用や出典の確かめ方](../verify/checking-citations.md)
-- プロジェクトのナレッジが多すぎるとき（準備中）
+- [プロジェクトのナレッジが多すぎるとき](too-much-project-knowledge.md)
 - [ファイル作成とコード実行](files-and-code-execution.md)
-- 日本語の資料を読ませる・書かせる（準備中）
+- [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)
 - [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
 
 </div>

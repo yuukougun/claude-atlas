@@ -56,7 +56,7 @@ git との付き合い方は、Claude Code の変更をどの単位でコミッ�
 区切りを細かくする理由は 3 つある。
 
 - **戻す先が細かくなる**：悪くなった変更だけを戻せる。
-- **人が読める量になる**：差分が大きいと、人は全部を読めない。読む箇所の選び方は <!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end --> で扱う。
+- **人が読める量になる**：差分が大きいと、人は全部を読めない。読む箇所の選び方は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end --> で扱う。
 - **原因を絞り込みやすい**：コミットが小さいと、後から退行を探すときに候補が少ない。手順は <!-- link:begin bisect-regressions -->退行の原因を git bisect で探させる（準備中）<!-- link:end --> にある。
 
 小さく頻繁にコミットする根拠は、実践者の経験則だけではない。DORA の AI ケイパビリティモデルは、AI 支援の開発で効く能力に、強いバージョン管理（頻繁なコミットとロールバック）と、小さなバッチでの作業を挙げる（根拠：中。企業の一次の報告）。ただし、これは開発チーム全体についての報告で、Claude Code の個別の頼み方を測ったものではない。
@@ -66,7 +66,7 @@ git との付き合い方は、Claude Code の変更をどの単位でコミッ�
 - **試している最中**：チェックポイントで戻す。ただし、Bash で変えたファイルや外での変更は戻らない。範囲は <!-- link:begin checkpoints-and-rewind#what-is-restored -->[チェックポイントと /rewind（git との違い） › 戻せるもの・戻せないもの](checkpoints-and-rewind.md#what-is-restored)<!-- link:end --> にある。
 - **確定した区切り**：コミットにする。git と組み合わせる流れは <!-- link:begin checkpoints-and-rewind#with-git -->[チェックポイントと /rewind（git との違い） › git と組み合わせる](checkpoints-and-rewind.md#with-git)<!-- link:end --> にある。
 
-関係のない作業が混ざりそうなときは、区切りをコミットで切る前に、作業の側を分ける。別の案を試すなら <!-- link:begin resume-and-branch#branch -->セッションに名前を付けて再開・分岐する › 分岐して別案を試す（準備中）<!-- link:end --> を、同時に進めるなら <!-- link:begin parallel-with-worktrees#per-worktree-setup -->[git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）](../delegate/parallel-with-worktrees.md#per-worktree-setup)<!-- link:end --> を使う。
+関係のない作業が混ざりそうなときは、区切りをコミットで切る前に、作業の側を分ける。別の案を試すなら <!-- link:begin resume-and-branch#branch -->[セッションに名前を付けて再開・分岐する › 分岐して別案を試す](resume-and-branch.md#branch)<!-- link:end --> を、同時に進めるなら <!-- link:begin parallel-with-worktrees#per-worktree-setup -->[git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）](../delegate/parallel-with-worktrees.md#per-worktree-setup)<!-- link:end --> を使う。
 
 ## 誰がコミットするか {#who-commits}
 
@@ -83,7 +83,7 @@ git との付き合い方は、Claude Code の変更をどの単位でコミッ�
 
 任せる幅を広げる前に、先に置く守りが 3 つある。
 
-- **差分を読む箇所を決める**：テストの変更や特例の分岐など、人が必ず読む箇所を先に決める。一覧は <!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end --> にある。
+- **差分を読む箇所を決める**：テストの変更や特例の分岐など、人が必ず読む箇所を先に決める。一覧は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end --> にある。
 - **取り返しのつかない操作を止める**：force push や `git reset --hard` は、会話の頼みでなく deny ルールで止める。守り方は <!-- link:begin destructive-commands#guard -->[消されたくないもの（破壊的コマンド） › 確認を求めさせる頼み方と、鍵](../safety/destructive-commands.md#guard)<!-- link:end --> にある。
 - **出す前にリスクと証拠を書かせる**：PR の前に、リスクと確かめた証拠を書き出させる。手順は <!-- link:begin create-and-review-prs#risks-before-submitting -->PR を作り、レビューを受ける › 出す前にリスクを挙げさせる（準備中）<!-- link:end --> にある。
 
@@ -151,7 +151,7 @@ Claude の作業が悪い方向に進み続けているときは、`/clear` と 
 - **「チェックポイントがあるから git は要らない」**：チェックポイントは、Bash で変えたファイルや外での変更を戻さない。git の代わりにしない。範囲は <!-- link:begin checkpoints-and-rewind#what-is-restored -->[チェックポイントと /rewind（git との違い） › 戻せるもの・戻せないもの](checkpoints-and-rewind.md#what-is-restored)<!-- link:end --> にある。
 - **「会話で push しないでと言えば守られる」**：会話の指示は、圧縮で失われうる。例外を許さない禁止は deny ルールで止める。
 - **「コミットが多いほど良い」**：基準は数ではなく、1 つの確かめで合否が出る単位であること。意味のない細切れは、読む場面でも探す場面でも役に立たない（推論・実践例なし）。
-- **「draft PR なら任せても安全」**：draft でも、説明を自分の言葉で言えるまでは出さない。確かめ方は <!-- link:begin own-generated-code#gate -->生成コードを自分のものにする › 自分の言葉で言い直してから採る（準備中）<!-- link:end --> にある。
+- **「draft PR なら任せても安全」**：draft でも、説明を自分の言葉で言えるまでは出さない。確かめ方は <!-- link:begin own-generated-code#gate -->[生成コードを自分のものにする › 自分の言葉で言い直してから採る](../verify/own-generated-code.md#gate)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -186,12 +186,12 @@ Claude の作業が悪い方向に進み続けているときは、`/clear` と 
 
 **関連**
 
-- 人間が読むべき差分の箇所（準備中）
+- [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
-- 生成コードを自分のものにする（準備中）
+- [生成コードを自分のものにする](../verify/own-generated-code.md)
 - コミットメッセージ・コメントの言語（準備中）
-- セッションに名前を付けて再開・分岐する（準備中）
+- [セッションに名前を付けて再開・分岐する](resume-and-branch.md)
 
 </div>
 

@@ -131,7 +131,7 @@ updated: 2026-11-05
 
 === "アプリ"
 
-    web 検索とリサーチで、最近の話や公開の資料を見せられる。使い分けは <!-- link:begin search-research-thinking#choose -->[web 検索・リサーチ・拡張思考の使い分け › 選び方](../app/search-research-thinking.md#choose)<!-- link:end -->、リサーチの出典の確かめ方は <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> にある。検索を使えたかどうかも確かめる。
+    web 検索とリサーチで、最近の話や公開の資料を見せられる。使い分けは <!-- link:begin search-research-thinking#choose -->[web 検索・リサーチ・拡張思考の使い分け › 選び方](../app/search-research-thinking.md#choose)<!-- link:end -->、リサーチの出典の確かめ方は <!-- link:begin using-research#checking-sources -->[リサーチを使いこなす › 出典の確かめ方](../app/using-research.md#checking-sources)<!-- link:end --> にある。検索を使えたかどうかも確かめる。
 
 === "Claude Code"
 
@@ -170,7 +170,7 @@ updated: 2026-11-05
 **関連**
 
 - [同じ質問でも答えが変わる（非決定性）](../basics/nondeterminism.md)
-- リサーチを使いこなす（準備中）
+- [リサーチを使いこなす](../app/using-research.md)
 - [知識カットオフと「今」を知らない問題](../basics/knowledge-cutoff.md)
 - citations（根拠の箇所を返させる）（準備中）
 - 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）

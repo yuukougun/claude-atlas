@@ -1,0 +1,14 @@
+eval-repo/
+  CLAUDE.md                    # 触れてよい範囲、回し方、採否と理由の記録の場所
+  solution/                    # 解（書き換えてよい。パラメータは引数か設定で渡す）
+  tools/official/              # 公式の道具（読み取り専用）
+  brute/                       # 愚直解（遅くても明らかに正しい。読み取り専用）
+  cases/hand/                  # 手で計算したケースと期待値（人が書く。読み取り専用）
+  harness/                     # 環境の本体（確かめてから凍結する）
+    gen.py                     #   入力の生成器（種を引数に取る）
+    run_parallel.sh            #   並列の実行
+    aggregate.py               #   集計（最悪ケースと失敗の一覧を含む）
+  tests/proposed/              # Claude が新しく書いたテスト（人が見るまで凍結の外）
+  tests/frozen/                # 人が見て移したテスト（読み取り専用）
+  experiments/
+    〔日付〕-〔名前〕/            # 実験ごと：仮説・設定・結果・採否（Claude が書いてよい）

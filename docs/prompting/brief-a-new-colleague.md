@@ -110,7 +110,7 @@ Before のままでも、Claude は何かを返す。ただし、誰向けかも
 <!-- textlint-enable -->
 <!-- gen:end snippet brief-a-new-colleague/brief-template -->
 
-最初から完璧に書く必要はない。まず平易に頼み、返事を見て足りない所を足す進め方は <!-- link:begin refine-in-conversation#start-plain -->頼み方は一回で決めない（会話で詰める） › まず平易に頼み、足りない分を足す（準備中）<!-- link:end --> にある。
+最初から完璧に書く必要はない。まず平易に頼み、返事を見て足りない所を足す進め方は <!-- link:begin refine-in-conversation#start-plain -->[頼み方は一回で決めない（会話で詰める） › まず平易に頼み、足りない分を足す](refine-in-conversation.md#start-plain)<!-- link:end --> にある。
 
 ## 役割を一文で伝える {#role}
 
@@ -189,7 +189,7 @@ Claude Code は、ファイルや `CLAUDE.md` を読んで机に載せられる�
 
 - 「新人」は、能力が低いという意味ではない。公式の言い方は「brilliant but new」で、能力が高く、文脈だけを知らない人である。噛み砕きすぎた幼い書き方は要らない。
 - 長く書けばよいわけではない。足すのは、同僚が迷った所の答えである。関係のない背景を足すと、依頼が読みにくくなる。
-- 一度で決める必要はない。ずれが大きければ、元の依頼を直して頼み直す。進め方は <!-- link:begin refine-in-conversation#edit-the-request -->頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す（準備中）<!-- link:end --> にある。
+- 一度で決める必要はない。ずれが大きければ、元の依頼を直して頼み直す。進め方は <!-- link:begin refine-in-conversation#edit-the-request -->[頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す](refine-in-conversation.md#edit-the-request)<!-- link:end --> にある。
 - 呪文ではない。「新人として扱ってください」と Claude に言う必要はない。書き手が、新人に読ませる気持ちで依頼を書く。
 
 書き換え前後の例をもっと見るには、<!-- link:begin before-after-prompts#specifics -->[Before/After プロンプト集 › 具体性を足す](before-after-prompts.md#specifics)<!-- link:end --> を引く。理由を添える書き方は <!-- link:begin give-reasons#tts-example -->[理由を添える › 禁止より理由（読み上げの例）](give-reasons.md#tts-example)<!-- link:end --> にある。言葉で説明しにくい画面や図は <!-- link:begin images-and-voice#images -->[画像・スクリーンショット・音声で渡す › 画像で渡すと速いもの](images-and-voice.md#images)<!-- link:end --> で渡す。
@@ -223,7 +223,7 @@ Claude Code は、ファイルや `CLAUDE.md` を読んで机に載せられる�
 - [具体性の 4 点（対象・状況・完了・手本）](four-specifics.md)
 - [例を見せる](show-examples.md)
 - [画像・スクリーンショット・音声で渡す](images-and-voice.md)
-- 頼み方は一回で決めない（会話で詰める）（準備中）
+- [頼み方は一回で決めない（会話で詰める）](refine-in-conversation.md)
 
 **関連**
 

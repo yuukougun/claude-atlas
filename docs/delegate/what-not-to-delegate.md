@@ -49,7 +49,7 @@ updated: 2026-11-05
 
 - **評価の定義**：評価器、CV の切り方、採否の基準を決めること。何を良しとするかがここで決まり、誤ればその後の作業はすべて誤った目標へ向かう。理由は <!-- link:begin verifier-defines-problem#why -->[検証器が問題を定義する（Claude は置かれたループを何でも加速する） › 検証器に映ったものだけが目標になる](../eval/verifier-defines-problem.md#why)<!-- link:end --> で扱う。
 - **戦略の採否と撤退**：どの案を採り、いつやめるかを決めること。基準は着手前に書き、判定は作った本人から離す。やり方は <!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](../judgment/decide-when-to-quit.md#write-criteria-first)<!-- link:end --> にある。
-- **中核コードの理解**：中核は説明できるまで確かめ、説明できないものは採らない。線の引き方は <!-- link:begin how-much-understanding-to-keep#core-and-periphery -->どこまで理解を手放してよいか（中核と周辺） › 中核と周辺を分ける（準備中）<!-- link:end --> にある。
+- **中核コードの理解**：中核は説明できるまで確かめ、説明できないものは採らない。線の引き方は <!-- link:begin how-much-understanding-to-keep#core-and-periphery -->[どこまで理解を手放してよいか（中核と周辺） › 中核と周辺を分ける](../judgment/how-much-understanding-to-keep.md#core-and-periphery)<!-- link:end --> にある。
 - **本番環境の制約**：本番で守る規則や運用上の制限を把握すること。AI の手元には見えていない前提があるので、人が持ち込む。
 
 この一覧は、段階を上がっても短くならない。段階ごとの位置づけは <!-- link:begin roadmap#always-hold -->[ロードマップ（委任の段階別） › どの段階でも人が握るもの](../start/roadmap.md#always-hold)<!-- link:end --> にまとまっている。
@@ -113,7 +113,7 @@ updated: 2026-11-05
 - CSAW の LLM CTF 部門の 2025 年の結果では、平均解答数が人主導で 2.7、エージェントで 5.5、ハイブリッドで 7.7 だった（根拠：中、小標本。CTF の教育の場の結果で、他の領域には類推）。
 - Kaggle で 3,803 チーム中 5 位になった事例では、成功した施策 11 件のうち 8 件が人の発案だった（根拠：弱、自己申告の体験記）。
 
-事例の向きは割れている。そのため、案の出どころを人と AI のどちらかに決め付けず、採るときの手順を決める。案ごとに、出どころ、採った評価、採った人を残す。評価は人が定義した検証器や基準にし、AI の賛成は数えない。判定を実装した人から離す方法は <!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end --> にある。AI の承認を人の承認に数えない考え方は <!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない（準備中）<!-- link:end --> にある。考察そのものは、先に自分の案を書いてから AI に問いや反論を頼む順にすると、自分の案が AI の案に置き換わるのを避けやすい。順序と使い分けは <!-- link:begin think-before-asking#self-first -->頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI（準備中）<!-- link:end --> にある。
+事例の向きは割れている。そのため、案の出どころを人と AI のどちらかに決め付けず、採るときの手順を決める。案ごとに、出どころ、採った評価、採った人を残す。評価は人が定義した検証器や基準にし、AI の賛成は数えない。判定を実装した人から離す方法は <!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end --> にある。AI の承認を人の承認に数えない考え方は <!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->[リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない](../team/risk-tiered-approval.md#ai-approval-doesnt-count)<!-- link:end --> にある。考察そのものは、先に自分の案を書いてから AI に問いや反論を頼む順にすると、自分の案が AI の案に置き換わるのを避けやすい。順序と使い分けは <!-- link:begin think-before-asking#self-first -->[頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI](../judgment/think-before-asking.md#self-first)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -151,14 +151,14 @@ updated: 2026-11-05
 
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](../eval/verifier-defines-problem.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
-- どこまで理解を手放してよいか（中核と周辺）（準備中）
+- [どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)
 - [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
 - そのタスクは AI に向いているか（五つの軸）（準備中）
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
-- 役割を分ける（書く人・承認する人・疑う人）（準備中）
-- リスク段階別の承認（AI の承認を人の承認に数えない）（準備中）
-- 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
+- [AI に改善を回させ続ける罠（開いたループ）](open-ended-loop-trap.md)
+- [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)
+- [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)
+- [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)
 - [ロードマップ（委任の段階別）](../start/roadmap.md)
 
 </div>

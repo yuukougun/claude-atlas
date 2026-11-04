@@ -80,7 +80,7 @@ updated: 2026-11-05
 
 重要な変更は、一度に 1 つしかレビューしてマージできない、という実践者の指摘がある（根拠：弱。単独の経験談）。並列に向く作業として、同じ書き手は調査・試作・低リスクの保守・マージしない前提の偵察を挙げる。表はこの整理に沿っている。
 
-捨てる前提で回す作業の考え方は <!-- link:begin choosing-parallel-modes#expect-to-discard -->[並列の方式の選び方 › 一部は捨てる前提で回す](choosing-parallel-modes.md#expect-to-discard)<!-- link:end --> にある。仮説ごとに分けて同じ物差しで比べる手順は <!-- link:begin compare-hypotheses-in-parallel -->仮説ごとに並べて、同じ物差しで比べる（準備中）<!-- link:end --> が持つ。作業ごとに別のチェックアウトを作る方法は <!-- link:begin parallel-with-worktrees -->[git worktree で並列にする](parallel-with-worktrees.md)<!-- link:end --> を引く。
+捨てる前提で回す作業の考え方は <!-- link:begin choosing-parallel-modes#expect-to-discard -->[並列の方式の選び方 › 一部は捨てる前提で回す](choosing-parallel-modes.md#expect-to-discard)<!-- link:end --> にある。仮説ごとに分けて同じ物差しで比べる手順は <!-- link:begin compare-hypotheses-in-parallel -->[仮説ごとに並べて、同じ物差しで比べる](compare-hypotheses-in-parallel.md)<!-- link:end --> が持つ。作業ごとに別のチェックアウトを作る方法は <!-- link:begin parallel-with-worktrees -->[git worktree で並列にする](parallel-with-worktrees.md)<!-- link:end --> を引く。
 
 !!! example "判断例：機能の実装 2 本と、原因調査をまとめて並べる"
     - **状況**：マージしたい機能の実装が 2 件あり、ほかに、遅い画面の原因調査と依存ライブラリの移行の影響調査がある。マシンと利用枠には余裕がある。
@@ -93,8 +93,8 @@ updated: 2026-11-05
 本数を増やすことは、任せる幅を広げることである。幅を広げるなら、見合う守りを先に置く。守りは、本数より先に決める。
 
 - 書いた本人ではない者にレビューさせる。分け方と理由は <!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](../verify/independent-review.md#who)<!-- link:end --> にある。AI の承認は人の承認に数えない（<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](../verify/independent-review.md#ai-approval)<!-- link:end -->）。
-- 人が読む箇所を絞る。全部は読めないとき、テストの変更や例外の握りつぶしなど、必ず読む箇所を先に決める（<!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end -->）。
-- 確認を減らす場合も、残す確認は選ぶ。確認が多すぎると、中身を読まずに承認するようになる（<!-- link:begin approval-fatigue#keep-prompts -->承認疲れ › 残す確認を選ぶ（準備中）<!-- link:end -->）。
+- 人が読む箇所を絞る。全部は読めないとき、テストの変更や例外の握りつぶしなど、必ず読む箇所を先に決める（<!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end -->）。
+- 確認を減らす場合も、残す確認は選ぶ。確認が多すぎると、中身を読まずに承認するようになる（<!-- link:begin approval-fatigue#keep-prompts -->[承認疲れ › 残す確認を選ぶ](../safety/approval-fatigue.md#keep-prompts)<!-- link:end -->）。
 - 任せる段階に、確かめ方と封じ込めを合わせる（<!-- link:begin five-questions-before-delegating#proportional-guards -->[任せ方の段階と、無人で走らせる前の五つの問い › 段ごとに強める確かめ方と封じ込め](five-questions-before-delegating.md#proportional-guards)<!-- link:end -->）。
 
 見ながら進める伴走と、任せて後で確かめる委託では、詰まる場所が違う。この違いは <!-- link:begin pairing-and-delegating -->伴走と委託（準備中）<!-- link:end --> で扱う。
@@ -113,7 +113,7 @@ updated: 2026-11-05
 
 疲労の数値には注意が要る。ある開発チームの社内アンケート（12 名、2025 年 7〜9 月、自己申告）では、「疲労感が増えた」と答えたのが 5 名（42%）、「並列作業が増えた」と答えたのが 8 名だった。この 2 つは別々の設問で、並列作業が疲労を起こしたという因果は示されていない。この記事の筆者は疲労の一因に、AI の作業を見守る時間を挙げている（根拠：弱。標本が小さく自己申告）。
 
-兆しが出たら、原因を安く切り分ける順は <!-- link:begin parallel-fatigue#diagnosis -->[並列にしたら疲れた・レビューが追いつかない › 原因を安く確かめる順](../symptoms/parallel-fatigue.md#diagnosis)<!-- link:end --> にある。確認疲れで読まなくなる仕組みは <!-- link:begin approval-fatigue#why -->承認疲れ › なぜ読まなくなるか（準備中）<!-- link:end --> で扱う。
+兆しが出たら、原因を安く切り分ける順は <!-- link:begin parallel-fatigue#diagnosis -->[並列にしたら疲れた・レビューが追いつかない › 原因を安く確かめる順](../symptoms/parallel-fatigue.md#diagnosis)<!-- link:end --> にある。確認疲れで読まなくなる仕組みは <!-- link:begin approval-fatigue#why -->[承認疲れ › なぜ読まなくなるか](../safety/approval-fatigue.md#why)<!-- link:end --> で扱う。
 
 ## 実践者の幅と、この辞典の推奨 {#practitioner-range}
 
@@ -139,7 +139,7 @@ updated: 2026-11-05
 ## よくある誤解 {#misconceptions}
 
 - **マシンと予算に余裕があれば、本数を増やしてよい**：余裕は必要条件であって、十分条件ではない。上限を決めるのは、結果を読み切れるかどうかである。
-- **承認を速くすれば追いつく**：速く承認することは、読まないことに近づく。確認が安全の仕組みとして働かなくなる流れは <!-- link:begin approval-fatigue -->承認疲れ（準備中）<!-- link:end --> にある。
+- **承認を速くすれば追いつく**：速く承認することは、読まないことに近づく。確認が安全の仕組みとして働かなくなる流れは <!-- link:begin approval-fatigue -->[承認疲れ](../safety/approval-fatigue.md)<!-- link:end --> にある。
 - **疲れないから大丈夫**：疲れの感覚が出る前に、読み方が崩れていることがある（推論）。兆しの一覧を、感覚より先に見る。
 - **並列は常に悪い**：そうではない。レビューの要らない調査や偵察は、増やしても帯域を圧迫しない。分ける軸は、本数ではなく作業の種類である。
 - **実践者の本数がそのまま使える**：割れている数字を、1 つの標準として使えない。軸に直してから、自分の帯域に当てはめる。
@@ -178,13 +178,13 @@ updated: 2026-11-05
 - [任せ方の段階と、無人で走らせる前の五つの問い](five-questions-before-delegating.md)
 - 伴走と委託（準備中）
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
-- 人間が読むべき差分の箇所（準備中）
-- 承認疲れ（準備中）
+- [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
+- [承認疲れ](../safety/approval-fatigue.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [git worktree で並列にする](parallel-with-worktrees.md)
-- agent view と背景セッション（準備中）
-- 仮説ごとに並べて、同じ物差しで比べる（準備中）
+- [agent view と背景セッション](agent-view-and-background.md)
+- [仮説ごとに並べて、同じ物差しで比べる](compare-hypotheses-in-parallel.md)
 
 </div>
 

@@ -1,0 +1,16 @@
+title: プロジェクトでチームのマーケットプレイスとプラグインを有効にする .claude/settings.json
+kind: settings
+place: project   # リポジトリの .claude/settings.json。repo と名前は例で、自分のものに置き換える
+safety: false
+features: [plugins, marketplaces]
+conditions:
+  - マーケットプレイスのリポジトリを、各自が読めること（非公開なら git の認証を済ませておく）
+  - 新しいセッションで試す
+expect:
+  - when: このファイルを入れたリポジトリを、初めて開いて信頼する
+    then: 信頼の確認が出て、承認するとマーケットプレイスが登録される（観察として扱う）
+  - when: /plugin を開く
+    then: team-tools と review-helpers が一覧に出る
+  - when: 信頼していないフォルダで開く
+    then: マーケットプレイスの登録は無視される（メッセージは出ない）
+control: このファイルがなければ、各自が自分で marketplace add と install を流さないと同じ状態にならない

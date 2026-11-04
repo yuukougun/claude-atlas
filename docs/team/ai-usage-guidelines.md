@@ -88,7 +88,7 @@ C の判断は <!-- link:begin entrusted-data#contracted-surfaces -->[預かっ�
 
 確かめ：区分と面の表に空欄がない。空欄は「不可」か「要相談」で埋める。
 
-**3. レビューの責任を決める。** レビューの責任は、変更に対して誰が最終の判断をするかである。AI のレビューは補助とし、唯一の、または最終の判定者にはしない。AI の承認は人の承認に数えない。段ごとの承認の数は <!-- link:begin risk-tiered-approval#three-tiers -->リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数（準備中）<!-- link:end --> で決められる。
+**3. レビューの責任を決める。** レビューの責任は、変更に対して誰が最終の判断をするかである。AI のレビューは補助とし、唯一の、または最終の判定者にはしない。AI の承認は人の承認に数えない。段ごとの承認の数は <!-- link:begin risk-tiered-approval#three-tiers -->[リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数](risk-tiered-approval.md#three-tiers)<!-- link:end --> で決められる。
 
 確かめ：どの変更にも、マージの判断をする人の役割が割り当てられている。AI の承認だけで通る道がない。
 
@@ -140,7 +140,7 @@ C の判断は <!-- link:begin entrusted-data#contracted-surfaces -->[預かっ�
 <!-- textlint-enable -->
 <!-- gen:end snippet ai-usage-guidelines/team-rules -->
 
-雛形の最後の「判断の根拠」は、Claude が賛成したことを正しさの根拠にしない決まりである。理由は <!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](../judgment/agreement-is-not-evidence.md#what-counts)<!-- link:end --> にある。役割を持ち回りで割り当てて守る方法は <!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end --> にある。
+雛形の最後の「判断の根拠」は、Claude が賛成したことを正しさの根拠にしない決まりである。理由は <!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](../judgment/agreement-is-not-evidence.md#what-counts)<!-- link:end --> にある。役割を持ち回りで割り当てて守る方法は <!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](separate-roles.md#against-sycophancy)<!-- link:end --> にある。
 
 ## 禁止は設定で縛る {#lock-the-prohibitions}
 
@@ -227,9 +227,9 @@ CLAUDE.md に書いた禁止は、Claude が読んで判断するお願いであ
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - 管理設定と組織の強制（準備中）
-- リスク段階別の承認（AI の承認を人の承認に数えない）（準備中）
+- [リスク段階別の承認（AI の承認を人の承認に数えない）](risk-tiered-approval.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
-- 役割を分ける（書く人・承認する人・疑う人）（準備中）
+- [役割を分ける（書く人・承認する人・疑う人）](separate-roles.md)
 - 決定を文書に残す（ADR と週次アップデート）（準備中）
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - 組織に設定と MCP サーバーを配る（準備中）

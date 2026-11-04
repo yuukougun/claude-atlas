@@ -57,21 +57,21 @@ AI を使う開発の手順の多くは、AI に任せることを前提に線�
 
 大会ごとに、AI の扱いは禁止・部門分け・許可と開示のどれかに分かれる。どの大会がどの類型か、版はいつのものかは、<!-- link:begin competition-rules#rules-by-type -->[大会の規則の早見（禁止・部門分け・許可と開示） › 類型ごとの大会（確認日付き）](competition-rules.md#rules-by-type)<!-- link:end --> で引く。版を確かめていない大会は、出る前に一次資料で今の規則を読む（<!-- link:begin competition-rules#unverified-versions -->[大会の規則の早見（禁止・部門分け・許可と開示） › 大会ごとの規則のページと、出る前に確かめること](competition-rules.md#unverified-versions)<!-- link:end -->）。練習の場と本番の場で、規則の扱いが違うことがある点にも注意する。練習の場で AI を使ってよいかは、その場の規則を読んで決め、本番の規則と同じだと決め付けない。
 
-このページが名指す落とし穴は 2 つある。1 つは、練習の間に AI へ預けすぎて、本番で必要な力が育たないこと。もう 1 つは、AI と一緒に解けた体感を、自力で解ける力だと信じてしまうことである。前者は <!-- link:begin how-much-understanding-to-keep#supervision-paradox -->どこまで理解を手放してよいか（中核と周辺） › 確かめる力が衰える（監督のパラドックス）（準備中）<!-- link:end --> に、後者は <!-- link:begin felt-vs-measured#why -->[体感と実測 › なぜ体感はずれるか](../eval/felt-vs-measured.md#why)<!-- link:end --> に仕組みがある。AI と一緒だと解けるのに本番で手が止まるのは、この 2 つが重なった形である。
+このページが名指す落とし穴は 2 つある。1 つは、練習の間に AI へ預けすぎて、本番で必要な力が育たないこと。もう 1 つは、AI と一緒に解けた体感を、自力で解ける力だと信じてしまうことである。前者は <!-- link:begin how-much-understanding-to-keep#supervision-paradox -->[どこまで理解を手放してよいか（中核と周辺） › 確かめる力が衰える（監督のパラドックス）](../judgment/how-much-understanding-to-keep.md#supervision-paradox)<!-- link:end --> に、後者は <!-- link:begin felt-vs-measured#why -->[体感と実測 › なぜ体感はずれるか](../eval/felt-vs-measured.md#why)<!-- link:end --> に仕組みがある。AI と一緒だと解けるのに本番で手が止まるのは、この 2 つが重なった形である。
 
 ## 練習で AI に頼むこと {#what-to-ask-in-practice}
 
 AI を禁じる大会を目指すなら、練習では AI を解説役・採点役・テストの作り手として使い、本番は AI なしで解けるようにする（根拠：弱。実務家の紹介と立場の表明）。人が握るもの（原理でいう「握る」）は、方針を立てることと、解法を自分の言葉で言えることである。AI には、その確かめを手伝わせる。
 
-頼む順番は、先に自分で考え、その後で AI に頼む形にする。理由は、自分の案がないまま AI の案を読むと、評価の物差しが AI の案に引っ張られるからである。順序の考え方は <!-- link:begin think-before-asking#self-first -->頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI（準備中）<!-- link:end --> にある。
+頼む順番は、先に自分で考え、その後で AI に頼む形にする。理由は、自分の案がないまま AI の案を読むと、評価の物差しが AI の案に引っ張られるからである。順序の考え方は <!-- link:begin think-before-asking#self-first -->[頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI](../judgment/think-before-asking.md#self-first)<!-- link:end --> にある。
 
 | 役 | AI に頼むこと | 頼まないこと | 詳しい手順 |
 | --- | --- | --- | --- |
 | 解説役 | 詰まったときのヒントを 1 段ずつ。解説を読んだ後の見落とし | 解法やコードをそのまま出すこと | <!-- link:begin learning-with-ai#hints-not-answers -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる） › 答えではなくヒントを返させる](../judgment/learning-with-ai.md#hints-not-answers)<!-- link:end --> |
-| 採点役 | 自分の解法の誤りがありそうな点の指摘。問題文の読み違いの指摘 | 直したコードを出すこと | <!-- link:begin read-specs-yourself#misreading-detector -->仕様を自分で読み、AI に誤読を指摘させる › AI に誤読を指摘させる（準備中）<!-- link:end --> |
-| テストの作り手 | 愚直解と入力の端のケース、突き合わせの道具 | 正解の側を本解に合わせて直すこと | <!-- link:begin differential-testing#steps -->答えの分かる遅い解と比べる（差分テスト・オラクル） › 手順（準備中）<!-- link:end --> |
+| 採点役 | 自分の解法の誤りがありそうな点の指摘。問題文の読み違いの指摘 | 直したコードを出すこと | <!-- link:begin read-specs-yourself#misreading-detector -->[仕様を自分で読み、AI に誤読を指摘させる › AI に誤読を指摘させる](../recipes/read-specs-yourself.md#misreading-detector)<!-- link:end --> |
+| テストの作り手 | 愚直解と入力の端のケース、突き合わせの道具 | 正解の側を本解に合わせて直すこと | <!-- link:begin differential-testing#steps -->[答えの分かる遅い解と比べる（差分テスト・オラクル） › 手順](../eval/differential-testing.md#steps)<!-- link:end --> |
 
-どの役でも、AI が出した説明は、自分の言葉で言い直せるまで採らない。言い直せない所が、読み直す箇所になる（<!-- link:begin own-generated-code#gate -->生成コードを自分のものにする › 自分の言葉で言い直してから採る（準備中）<!-- link:end -->）。
+どの役でも、AI が出した説明は、自分の言葉で言い直せるまで採らない。言い直せない所が、読み直す箇所になる（<!-- link:begin own-generated-code#gate -->[生成コードを自分のものにする › 自分の言葉で言い直してから採る](../verify/own-generated-code.md#gate)<!-- link:end -->）。
 
 次の雛形は、練習の依頼にまとめて入れる例である。解法を書く前の段階で、AI が答えを出さないようにする。指示はお願いなので、効かないことがある。効かなかったときは、依頼を出し直すのでなく、自分の案を先に書いてから頼む順番を守る。
 
@@ -117,9 +117,9 @@ AI を禁じる大会を目指すなら、練習では AI を解説役・採点�
 3. 解けた問題の数、各問題にかかった時間、詰まった所を記録する。何を記録するかは <!-- link:begin felt-vs-measured#what-to-record -->[体感と実測 › 記録で測るもの](../eval/felt-vs-measured.md#what-to-record)<!-- link:end --> にある。
 4. 同じ条件の模擬を、AI を使った練習の合間に何度か挟み、記録を並べる。
 
-AI を使わない時間を決めて残すことは、確かめる力の衰えへの備えでもある（<!-- link:begin how-much-understanding-to-keep#ai-free-time -->どこまで理解を手放してよいか（中核と周辺） › AI を使わない時間を残す（準備中）<!-- link:end -->）。頻度や長さは、自分の記録を見て決める。
+AI を使わない時間を決めて残すことは、確かめる力の衰えへの備えでもある（<!-- link:begin how-much-understanding-to-keep#ai-free-time -->[どこまで理解を手放してよいか（中核と周辺） › AI を使わない時間を残す](../judgment/how-much-understanding-to-keep.md#ai-free-time)<!-- link:end -->）。頻度や長さは、自分の記録を見て決める。
 
-本番では、AI が使えない前提で運ぶ。AI なしでも最低限を進められる状態は、<!-- link:begin when-ai-is-unavailable#minimum-without-ai -->AI が使えないときの備え（障害・上限） › AI なしで最低限を進められる状態（準備中）<!-- link:end --> に、本番当日の備えは <!-- link:begin competition-day-operations#fallback -->本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態） › AI が止まっても続けられる備え（準備中）<!-- link:end --> にある。AI を禁じる大会では、この備えが前提になる。
+本番では、AI が使えない前提で運ぶ。AI なしでも最低限を進められる状態は、<!-- link:begin when-ai-is-unavailable#minimum-without-ai -->[AI が使えないときの備え（障害・上限） › AI なしで最低限を進められる状態](../cost/when-ai-is-unavailable.md#minimum-without-ai)<!-- link:end --> に、本番当日の備えは <!-- link:begin competition-day-operations#fallback -->本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態） › AI が止まっても続けられる備え（準備中）<!-- link:end --> にある。AI を禁じる大会では、この備えが前提になる。
 
 模擬で AI を使わずに解けた問題と、AI と一緒にだけ解けた問題を、分けて記録する。後者が多い間は、本番で手が止まりやすい、と読む。これは自分の記録に基づく読み方で、数値の目安は置かない。
 
@@ -149,15 +149,15 @@ AI を使わない時間を決めて残すことは、確かめる力の衰え�
 
 **関連**
 
-- どこまで理解を手放してよいか（中核と周辺）（準備中）
+- [どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)
 - [体感と実測](../eval/felt-vs-measured.md)
-- AI が使えないときの備え（障害・上限）（準備中）
+- [AI が使えないときの備え（障害・上限）](../cost/when-ai-is-unavailable.md)
 - 本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）
 - コンテストの形式別の早見表（AI の効き方と人が握るところ） › 短時間のアルゴリズム（準備中）
-- 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
-- 仕様を自分で読み、AI に誤読を指摘させる（準備中）
-- 生成コードを自分のものにする（準備中）
-- 答えの分かる遅い解と比べる（差分テスト・オラクル）（準備中）
+- [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)
+- [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)
+- [生成コードを自分のものにする](../verify/own-generated-code.md)
+- [答えの分かる遅い解と比べる（差分テスト・オラクル）](../eval/differential-testing.md)
 
 </div>
 

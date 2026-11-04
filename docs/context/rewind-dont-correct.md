@@ -84,7 +84,7 @@ After で足したのは、試して外れた候補の 1 行である。外れ�
 
 - 巻き戻しても直らないとき、話題が変わったときの新しい会話への切り替えは、<!-- link:begin when-to-start-fresh#signals -->[新しい会話を始めるタイミング › 新しくする合図](when-to-start-fresh.md#signals)<!-- link:end --> が扱う。
 - 同じ失敗の繰り返しの原因の切り分けは、<!-- link:begin going-in-circles#diagnosis -->[同じ失敗を繰り返す（堂々巡り） › 原因を安く確かめる順](../symptoms/going-in-circles.md#diagnosis)<!-- link:end --> が扱う。
-- 巻き戻さずに依頼の書き方を詰める進め方は、<!-- link:begin refine-in-conversation#edit-the-request -->頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す（準備中）<!-- link:end --> が扱う。
+- 巻き戻さずに依頼の書き方を詰める進め方は、<!-- link:begin refine-in-conversation#edit-the-request -->[頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す](../prompting/refine-in-conversation.md#edit-the-request)<!-- link:end --> が扱う。
 
 ## 面ごとの戻し方 {#how}
 
@@ -122,7 +122,7 @@ After で足したのは、試して外れた候補の 1 行である。外れ�
 - **戻らないもの（Claude Code）**：Bash だけが変えたファイル、Claude Code の外での変更、ほとんどのサブエージェントの編集は、巻き戻しで戻らない。これらは git で戻す。チェックポイントは、git の代わりではない。
 - **失敗から分かったこと**：「この方法は効かなかった」という知識は、会話と一緒に消える。そのまま巻き戻すと、同じ案を再び出されることがある。
 
-最後の項目への補いは、会話を捨てて学びだけを書き残すことである。何を残し、何を捨てるかは <!-- link:begin keep-failure-lessons#what-to-keep -->失敗の教訓は捨てずに書き残す › 何を残し、何を捨てるか（準備中）<!-- link:end --> が、巻き戻しとの両立は <!-- link:begin keep-failure-lessons#both -->失敗の教訓は捨てずに書き残す › 巻き戻しと記録の両立（準備中）<!-- link:end --> が扱う。最小の書き残しは、外れた候補の 1 行を、送り直す依頼に足すことである。たとえば「タイムアウト値の変更は試して効果がなかった」と書く。
+最後の項目への補いは、会話を捨てて学びだけを書き残すことである。何を残し、何を捨てるかは <!-- link:begin keep-failure-lessons#what-to-keep -->[失敗の教訓は捨てずに書き残す › 何を残し、何を捨てるか](keep-failure-lessons.md#what-to-keep)<!-- link:end --> が、巻き戻しとの両立は <!-- link:begin keep-failure-lessons#both -->[失敗の教訓は捨てずに書き残す › 巻き戻しと記録の両立](keep-failure-lessons.md#both)<!-- link:end --> が扱う。最小の書き残しは、外れた候補の 1 行を、送り直す依頼に足すことである。たとえば「タイムアウト値の変更は試して効果がなかった」と書く。
 
 戻す範囲の詳細は、チェックポイントのページの節が持つ。
 
@@ -132,11 +132,11 @@ After で足したのは、試して外れた候補の 1 行である。外れ�
 
 ## よくある誤解と実践者の幅 {#misconceptions}
 
-**誤解 1：訂正は常に悪い。** 訂正が効く場面もある。1 回目の返答が惜しく、足りない 1 点を足せば済むなら、会話で足してよい。巻き戻したほうがよいのは、方向が外れているときや、訂正が 2 回続けて効かないときである。足りない情報を見て足す進め方は、<!-- link:begin refine-in-conversation#start-plain -->頼み方は一回で決めない（会話で詰める） › まず平易に頼み、足りない分を足す（準備中）<!-- link:end --> が扱う。
+**誤解 1：訂正は常に悪い。** 訂正が効く場面もある。1 回目の返答が惜しく、足りない 1 点を足せば済むなら、会話で足してよい。巻き戻したほうがよいのは、方向が外れているときや、訂正が 2 回続けて効かないときである。足りない情報を見て足す進め方は、<!-- link:begin refine-in-conversation#start-plain -->[頼み方は一回で決めない（会話で詰める） › まず平易に頼み、足りない分を足す](../prompting/refine-in-conversation.md#start-plain)<!-- link:end --> が扱う。
 
 **誤解 2：巻き戻せば何でも元に戻る。** 戻るのはチェックポイントが記録した範囲だけである。Bash や外での変更は戻らない。重要な変更は、巻き戻しの前に git で保存しておく。
 
-**誤解 3：巻き戻すと、学びも全部なくなる。** 会話は消えるが、学びはファイルや依頼に移せる。移す手順は <!-- link:begin keep-failure-lessons#both -->失敗の教訓は捨てずに書き残す › 巻き戻しと記録の両立（準備中）<!-- link:end --> が扱う。
+**誤解 3：巻き戻すと、学びも全部なくなる。** 会話は消えるが、学びはファイルや依頼に移せる。移す手順は <!-- link:begin keep-failure-lessons#both -->[失敗の教訓は捨てずに書き残す › 巻き戻しと記録の両立](keep-failure-lessons.md#both)<!-- link:end --> が扱う。
 
 巻き戻すかどうかには、立場の幅がある。
 
@@ -173,8 +173,8 @@ After で足したのは、試して外れた候補の 1 行である。外れ�
 
 **次に読む**
 
-- やり直させるより、結果を踏まえて直させる（準備中）
-- 失敗の教訓は捨てずに書き残す（準備中）
+- [やり直させるより、結果を踏まえて直させる](build-on-results.md)
+- [失敗の教訓は捨てずに書き残す](keep-failure-lessons.md)
 
 **関連**
 
@@ -183,7 +183,7 @@ After で足したのは、試して外れた候補の 1 行である。外れ�
 - [机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)
 - [同じ失敗を繰り返す（堂々巡り）](../symptoms/going-in-circles.md)
 - [誤りを認めずに言い張る](../symptoms/insists-on-mistakes.md)
-- 頼み方は一回で決めない（会話で詰める）（準備中）
+- [頼み方は一回で決めない（会話で詰める）](../prompting/refine-in-conversation.md)
 
 </div>
 

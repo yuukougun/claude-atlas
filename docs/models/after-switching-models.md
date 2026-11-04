@@ -192,7 +192,7 @@ API を呼ぶコードの側は、次のスクリプトで候補を探せる。
 | エラーの出方 | 疑う引数 | 直し方 | 台帳 |
 | --- | --- | --- | --- |
 | thinking に手動の予算を付けた要求が 400 になる | `budget_tokens` | thinking の type を adaptive にし、深さは effort で決める | <!-- link:begin outdated-advice-ledger#budget-tokens -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#budget-tokens)<!-- link:end --> |
-| 最後が assistant のメッセージの要求が 400 になる | prefill（応答の書き出しを先に書く） | structured outputs で形を保証する。移行は <!-- link:begin structured-outputs-basics#from-prefill -->structured outputs（形式を保証する） › prefill からの移行（準備中）<!-- link:end --> | <!-- link:begin outdated-advice-ledger#prefill-for-json -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#prefill-for-json)<!-- link:end --> |
+| 最後が assistant のメッセージの要求が 400 になる | prefill（応答の書き出しを先に書く） | structured outputs で形を保証する。移行は <!-- link:begin structured-outputs-basics#from-prefill -->[structured outputs（形式を保証する） › prefill からの移行](../api/structured-outputs-basics.md#from-prefill)<!-- link:end --> | <!-- link:begin outdated-advice-ledger#prefill-for-json -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#prefill-for-json)<!-- link:end --> |
 | `temperature`・`top_p`・`top_k` を送ると 400 になる | この 3 つの引数 | 引数を消し、指示で振る舞いを導く。代わりの設定はない | <!-- link:begin outdated-advice-ledger#lower-temperature -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#lower-temperature)<!-- link:end --> |
 
 どの世代・どの API の版から断られるかは、台帳の行に日付と版つきで載っている。本文には書かない。
@@ -206,7 +206,7 @@ API を呼ぶコードの側は、次のスクリプトで候補を探せる。
 
 ## ハーネスの部品を一つずつ外して測る {#remove-one-at-a-time}
 
-ハーネスとは、CLAUDE.md、フック、補助のスクリプト、検証の指示のように、モデルの外側で結果を支える部品の全体だ。意味は <!-- link:begin harness-over-model#what-is-harness -->モデルの差よりハーネスの差 › ハーネスとは何か（準備中）<!-- link:end --> にある。各部品は「モデルが単独ではできないこと」についての仮定である。モデルが替わると、その仮定が古くなっている部品が出てくる。
+ハーネスとは、CLAUDE.md、フック、補助のスクリプト、検証の指示のように、モデルの外側で結果を支える部品の全体だ。意味は <!-- link:begin harness-over-model#what-is-harness -->[モデルの差よりハーネスの差 › ハーネスとは何か](harness-over-model.md#what-is-harness)<!-- link:end --> にある。各部品は「モデルが単独ではできないこと」についての仮定である。モデルが替わると、その仮定が古くなっている部品が出てくる。
 
 仮定が古くなった部品を探すとき、一度にまとめて外してはいけない。結果が落ちたときに、どの部品が効いていたのかが分からなくなるからだ。1 つ外して測り、結果を見てから次に進む。
 
@@ -230,7 +230,7 @@ API を呼ぶコードの側は、次のスクリプトで候補を探せる。
 
 - **合計だけで判断しない**。平均が同じでも、特定の種類のタスクだけが落ちていることがある。層ごとに見て、最悪のケースも見る。見方は <!-- link:begin measure-changes#by-stratum -->[変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)<!-- link:end --> にある。
 - **結果だけでなく過程を読む**。同じ結果でも、確認の回数やツールの使い方が変わっていることがある。見方は <!-- link:begin measure-changes#read-transcripts -->[変更が効いたかを測る（小さな eval） › transcript を読む](../eval/measure-changes.md#read-transcripts)<!-- link:end --> にある。
-- **モデルの癖の記録を残す**。止まりすぎ・やりすぎなどの傾向は、世代で変わる。自分の環境で観察した傾向を記録に残す。公式の指針は <!-- link:begin model-quirks#official-guidance -->モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向（準備中）<!-- link:end -->、記録の付け方は <!-- link:begin model-quirks#observe-and-record -->モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する（準備中）<!-- link:end --> にある。
+- **モデルの癖の記録を残す**。止まりすぎ・やりすぎなどの傾向は、世代で変わる。自分の環境で観察した傾向を記録に残す。公式の指針は <!-- link:begin model-quirks#official-guidance -->[モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向](model-quirks.md#official-guidance)<!-- link:end -->、記録の付け方は <!-- link:begin model-quirks#observe-and-record -->[モデル別の癖と、プロンプトの合わせ方 › 自分の環境で観察して記録する](model-quirks.md#observe-and-record)<!-- link:end --> にある。
 - **差が小さいとき**。ばらつきの範囲に収まる差は、見直しの効果としない。試行を増やして確かめ直す。増やしても差が埋もれるなら、その差は外す根拠にも残す根拠にもしない。
 
 ## 退役と既定の変化に気づく {#retirements-and-default-changes}
@@ -244,7 +244,7 @@ API を呼ぶコードの側は、次のスクリプトで候補を探せる。
 
 1. 使っているモデルの指定が、別名か固定の名前かを確かめる。どちらがいつ替わるかは、[Model configuration](https://code.claude.com/docs/en/model-config) で確かめる。
 2. API で使うモデルの名前が、退役の予定に入っていないかを、[Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations) で確かめる。
-3. 日付つきの変更は、[Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview) と、Claude Code の CHANGELOG で拾う。このサイトでは、<!-- link:begin change-timeline-2026#timeline -->2026 年の主な変更の年表 › 年表（準備中）<!-- link:end --> に主な変更が日付つきで並ぶ。
+3. 日付つきの変更は、[Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview) と、Claude Code の CHANGELOG で拾う。このサイトでは、<!-- link:begin change-timeline-2026#timeline -->[2026 年の主な変更の年表 › 年表](../changes/change-timeline-2026.md#timeline)<!-- link:end --> に主な変更が日付つきで並ぶ。
 4. 組織で使えるモデルが絞られているときは、管理者の設定を確かめる。
 
 退役の日付と、各モデルの既定の値は変わりやすいので、このページには書かず、上の文書と年表で引く。
@@ -254,7 +254,7 @@ API を呼ぶコードの側は、次のスクリプトで候補を探せる。
 見直しの途中で起きやすい失敗を、症状から引く。
 
 - **API が 400 を返す**。「API の引数とモデルの世代」の節の表で、疑う引数を探す。
-- **替えたら結果が悪くなった**。設定の古さではなく、劣化として疑う場合は <!-- link:begin suspected-degradation -->[劣化を疑ったら測って確かめる](suspected-degradation.md)<!-- link:end --> へ進む。モデルの差に見えて、実際はハーネスの差だった例がある。確かめ方は <!-- link:begin harness-over-model#compare-with-your-eval -->モデルの差よりハーネスの差 › 比べるときは自分の評価で（準備中）<!-- link:end --> にある。
+- **替えたら結果が悪くなった**。設定の古さではなく、劣化として疑う場合は <!-- link:begin suspected-degradation -->[劣化を疑ったら測って確かめる](suspected-degradation.md)<!-- link:end --> へ進む。モデルの差に見えて、実際はハーネスの差だった例がある。確かめ方は <!-- link:begin harness-over-model#compare-with-your-eval -->[モデルの差よりハーネスの差 › 比べるときは自分の評価で](harness-over-model.md#compare-with-your-eval)<!-- link:end --> にある。
 - **外したら悪くなった**。その部品を戻して、次の候補に進む。悪くなった部品は、そのモデルでもまだ効いている可能性が高い。
 - **結果がぶれて判断できない**。試行の数を増やす。考え方は <!-- link:begin measure-changes#how-many-runs -->[変更が効いたかを測る（小さな eval） › 試行の数と差の大きさ](../eval/measure-changes.md#how-many-runs)<!-- link:end --> にある。
 - **何から手を付けるか分からない**。「見直す順」の節の点検表を上から順に、1 つずつ済ませる。
@@ -293,14 +293,14 @@ API を呼ぶコードの側は、次のスクリプトで候補を探せる。
 
 **関連**
 
-- モデル別の癖と、プロンプトの合わせ方（準備中）
-- モデルの差よりハーネスの差（準備中）
+- [モデル別の癖と、プロンプトの合わせ方](model-quirks.md)
+- [モデルの差よりハーネスの差](harness-over-model.md)
 - [強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)
 - [検証の階段 › 「念のため確認して」と書き足すより、確かめる手段を渡す](../verify/verification-ladder.md#verbal-checks)
-- structured outputs（形式を保証する）（準備中）
+- [structured outputs（形式を保証する）](../api/structured-outputs-basics.md)
 - [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)
 - [古くなった助言の台帳](../changes/outdated-advice-ledger.md)
-- 2026 年の主な変更の年表（準備中）
+- [2026 年の主な変更の年表](../changes/change-timeline-2026.md)
 
 </div>
 

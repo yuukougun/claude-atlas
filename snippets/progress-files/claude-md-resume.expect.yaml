@@ -1,0 +1,13 @@
+title: CLAUDE.md の再開の入口と進捗ファイルの扱い
+kind: claude-md
+place: project
+safety: false
+requires: [progress/PLAN.md, progress/TODO.md, progress/DECISIONS.md, progress/KNOWLEDGE.md]
+conditions:
+  - 進捗ファイルを置いたプロジェクトで、新しいセッションを始める
+expect:
+  - when: 前回の会話を見せずに「続きをやって」とだけ頼む
+    then: 着手する前に 4 つのファイルを読み、次の一手と未決を言い直して確認を待つ
+  - when: 作業中に決めたことの内容を変えたくなる
+    then: 書き換えずに、理由を添えた提案として出す（お願いなので、守られたかは差分で観察する）
+control: この節を CLAUDE.md に書かないと、頼まれるまでファイルを読まないことがある

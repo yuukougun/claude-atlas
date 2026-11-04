@@ -106,7 +106,7 @@ Claude は、コンテキストに入っているものを読んで答える。�
 
 **「工程ごとに部下を作ると本筋が散らからない」**：小さな作業まで分けると、集め直しの費用と待ち時間が増える。文脈を分ける意味のある作業だけに使う。台帳の行は <!-- link:begin outdated-advice-ledger#subagent-per-step -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#subagent-per-step)<!-- link:end --> にある。
 
-**「部下は、こちらの決まりを全部知っている」**：会話で伝えただけの制約は、別室に届かない。必ず届けたい規則は、委任の文に書き直す。届かないものの一覧は <!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end --> にある。
+**「部下は、こちらの決まりを全部知っている」**：会話で伝えただけの制約は、別室に届かない。必ず届けたい規則は、委任の文に書き直す。届かないものの一覧は <!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)<!-- link:end --> にある。
 
 **「報告書は確かめなくてよい」**：報告書は、部下が選んで書いた要約である。結論と根拠の場所を見て、本筋の側でも確かめる。
 
@@ -134,16 +134,16 @@ Claude は、コンテキストに入っているものを読んで答える。�
 
 **次に読む**
 
+- [計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
 - [スキルとサブエージェントの違い](../extend/skill-vs-subagent.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [並列の方式の選び方](../delegate/choosing-parallel-modes.md)
-- 計画・実装・サブエージェントでモデルを分ける（準備中）
 
 **関連**
 
-- サブエージェントに引き継がれないもの（準備中）
+- [サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)
 - [エージェントループと tool use](agent-loop.md)
 
 </div>

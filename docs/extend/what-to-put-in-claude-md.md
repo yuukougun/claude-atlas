@@ -112,7 +112,7 @@ CLAUDE.md に書くのは、リポジトリを読んでも Claude に分から�
 <!-- textlint-enable -->
 <!-- gen:end snippet what-to-put-in-claude-md/short-claude-md -->
 
-読み込まれたかは、セッションの中で `/context all` を流して確かめる。確かめ方の全体は、<!-- link:begin claude-md-vs-rules-skills-styles#verify -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示が読み込まれたかの確かめ方](claude-md-vs-rules-skills-styles.md#verify)<!-- link:end -->にある。最初の叩き台を `/init` で作る進め方は、<!-- link:begin init-and-first-claude-md#run-init -->/init と最初の CLAUDE.md › /init で叩き台を作る（準備中）<!-- link:end -->が持つ。
+読み込まれたかは、セッションの中で `/context all` を流して確かめる。確かめ方の全体は、<!-- link:begin claude-md-vs-rules-skills-styles#verify -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示が読み込まれたかの確かめ方](claude-md-vs-rules-skills-styles.md#verify)<!-- link:end -->にある。最初の叩き台を `/init` で作る進め方は、<!-- link:begin init-and-first-claude-md#run-init -->[/init と最初の CLAUDE.md › /init で叩き台を作る](../cli/init-and-first-claude-md.md#run-init)<!-- link:end -->が持つ。
 
 ## 書かないことと、移し先 {#what-to-leave-out}
 
@@ -125,9 +125,9 @@ CLAUDE.md に書くのは、リポジトリを読んでも Claude に分から�
 | 特定のフォルダやファイルにだけ効く規約 | rules と paths に移す（<!-- link:begin path-scoped-rules -->[.claude/rules と paths で必要なときだけ読ませる](path-scoped-rules.md)<!-- link:end -->） |
 | たまにしか使わない長い手順 | スキルに移す（<!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)<!-- link:end -->） |
 | 例外を許さない禁止 | deny ルールかフックに移す（<!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end -->）。CLAUDE.md には理由と相談の基準だけを残す |
-| 自分だけの好み | 個人用の `CLAUDE.local.md` に書き、`.gitignore` に入れる（<!-- link:begin share-team-settings#shared-vs-personal -->チームで設定を共有する › 共有するものと個人に残すもの（準備中）<!-- link:end -->） |
+| 自分だけの好み | 個人用の `CLAUDE.local.md` に書き、`.gitignore` に入れる（<!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end -->） |
 | すぐ古くなるコードの写し | コードの場所を `file:line` で指す（根拠：中） |
-| Claude が会話の中で学んだこと | 自動メモリに任せる（<!-- link:begin using-auto-memory -->自動メモリ（準備中）<!-- link:end -->） |
+| Claude が会話の中で学んだこと | 自動メモリに任せる（<!-- link:begin using-auto-memory -->[自動メモリ](using-auto-memory.md)<!-- link:end -->） |
 | 守られない行に足す強調（IMPORTANT や全大文字） | 足さない。行が埋もれているならファイルを短くし、例外のない規則なら鍵に移す |
 
 この表のうち、構成の説明・例外のない規則・手順のスキル・個人の好み・強調の扱いは、公式の Best practices で確かめた。linter に任せることとコードの写しを避けることは、複数の実務家の記事で一致する助言である（根拠：中）。
@@ -163,7 +163,7 @@ CLAUDE.md に行を足すのは、見えていないことに気づいたとき�
 5. **足す。** Claude に「CLAUDE.md に足して」と頼むか、`/memory` でファイルを開いて自分で書く。
 6. **効いたかを確かめる。** 新しいセッションで、その行が効く依頼を出し、行が読み込まれたことと、振る舞いが変わったことを見る。変わらなければ、<!-- link:begin instructions-ignored#diagnosis -->[CLAUDE.md や指示が守られない › 原因を安く確かめる順](../symptoms/instructions-ignored.md#diagnosis)<!-- link:end -->の順で原因を切り分ける。
 
-足すだけでは、ファイルは育ち続ける。足した分は、定期的に剪定する。チームで育てる進め方は、<!-- link:begin claude-md-length#team -->[CLAUDE.md の長さと剪定 › チームで育てる](claude-md-length.md#team)<!-- link:end -->にある。`/init` で作った叩き台は、読んで削ってから使う（<!-- link:begin init-and-first-claude-md#prune -->/init と最初の CLAUDE.md › 叩き台を削ってから使う（削り方は claude-md-length）（準備中）<!-- link:end -->）。
+足すだけでは、ファイルは育ち続ける。足した分は、定期的に剪定する。チームで育てる進め方は、<!-- link:begin claude-md-length#team -->[CLAUDE.md の長さと剪定 › チームで育てる](claude-md-length.md#team)<!-- link:end -->にある。`/init` で作った叩き台は、読んで削ってから使う（<!-- link:begin init-and-first-claude-md#prune -->[/init と最初の CLAUDE.md › 叩き台を削ってから使う（削り方は claude-md-length）](../cli/init-and-first-claude-md.md#prune)<!-- link:end -->）。
 
 ## 場面別の例：チームとコンテスト {#scenes}
 
@@ -250,8 +250,8 @@ CLAUDE.md に行を足すのは、見えていないことに気づいたとき�
 CLAUDE.md は、強制される設定ではなく文脈として読まれる。何を書いても、守られる保証はない。書いた行が破られる理由は、<!-- link:begin request-vs-lock#what-happens -->[お願いと鍵（決定論的か、非決定論的か） › 何が起きるか](../basics/request-vs-lock.md#what-happens)<!-- link:end -->で確かめられる。
 
 - **長いファイルでは、行が埋もれる。** 行数が増えるほど、1 行あたりの重みは下がる。強調で補わず、短くする。
-- **会話で言った禁止は、圧縮で消える。** CLAUDE.md に書いた行は、圧縮の後、プロジェクトの根の分が<!-- gen:begin feature survives_compaction -->残る<!-- gen:end feature survives_compaction -->。入れ子の CLAUDE.md は、いったん要約に消え、必要になったときに読み直される（<!-- link:begin claude-md-loading-order#after-compaction -->CLAUDE.md の階層と読み込み順 › 圧縮の後と、クラウドのセッション（準備中）<!-- link:end -->）。会話で口にしただけの禁止は残らない（<!-- link:begin when-to-lock#spoken-rules-fade -->[お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)<!-- link:end -->）。
-- **複数のファイルで指示が食い違うと、どちらかが選ばれる。** CLAUDE.md は上書きではなく連結される。モノレポでほかのチームの指示が混ざる場合は、<!-- link:begin claude-md-loading-order#monorepo -->CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示（準備中）<!-- link:end -->で確かめる。
+- **会話で言った禁止は、圧縮で消える。** CLAUDE.md に書いた行は、圧縮の後、プロジェクトの根の分が<!-- gen:begin feature survives_compaction -->残る<!-- gen:end feature survives_compaction -->。入れ子の CLAUDE.md は、いったん要約に消え、必要になったときに読み直される（<!-- link:begin claude-md-loading-order#after-compaction -->[CLAUDE.md の階層と読み込み順 › 圧縮の後と、クラウドのセッション](claude-md-loading-order.md#after-compaction)<!-- link:end -->）。会話で口にしただけの禁止は残らない（<!-- link:begin when-to-lock#spoken-rules-fade -->[お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)<!-- link:end -->）。
+- **複数のファイルで指示が食い違うと、どちらかが選ばれる。** CLAUDE.md は上書きではなく連結される。モノレポでほかのチームの指示が混ざる場合は、<!-- link:begin claude-md-loading-order#monorepo -->[CLAUDE.md の階層と読み込み順 › モノレポとほかのチームの指示](claude-md-loading-order.md#monorepo)<!-- link:end -->で確かめる。
 - **書いたコマンドや場所は古くなる。** 存在しないファイルへの参照や、矛盾した指示は、`/doctor prompt-audit` が報告する。
 - **書いたのに使われないと感じるとき。** 行が長いファイルに埋もれているか、鍵に移すべき規則かのどちらかが多い。切り分けは<!-- link:begin instructions-ignored#diagnosis -->[CLAUDE.md や指示が守られない › 原因を安く確かめる順](../symptoms/instructions-ignored.md#diagnosis)<!-- link:end -->に任せる。毎回同じ説明をしてしまう側からの入口は、<!-- link:begin repeating-the-same-explanation#diagnosis -->[毎回同じ説明をしている › 原因を安く確かめる順](../symptoms/repeating-the-same-explanation.md#diagnosis)<!-- link:end -->にある。
 
@@ -262,7 +262,7 @@ Claude Code は WSL・Linux の CLI を基準に書いている。ほかの OS �
 CLAUDE.md から外した行の置き場所は、目的で選ぶ。
 
 - 常に効かせる規則は CLAUDE.md、フォルダごとの規約は rules、場面ごとの手順はスキル、応答の形は出力スタイルに置く。選び方は<!-- link:begin claude-md-vs-rules-skills-styles#how-to-choose -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示の置き場所の選び方](claude-md-vs-rules-skills-styles.md#how-to-choose)<!-- link:end -->にある。
-- 人が書く CLAUDE.md と、Claude が自分で書き溜める記録の分担は、<!-- link:begin using-auto-memory -->自動メモリ（準備中）<!-- link:end -->が持つ。
+- 人が書く CLAUDE.md と、Claude が自分で書き溜める記録の分担は、<!-- link:begin using-auto-memory -->[自動メモリ](using-auto-memory.md)<!-- link:end -->が持つ。
 - ほかのエージェントツールと同じ指示を共有する場合は、<!-- link:begin agents-md -->AGENTS.md とほかのツールとの共有（準備中）<!-- link:end -->を使う。
 
 ## 古くなった助言 {#outdated}
@@ -302,23 +302,23 @@ CLAUDE.md から外した行の置き場所は、目的で選ぶ。
 **次に読む**
 
 - [CLAUDE.md の長さと剪定](claude-md-length.md)
+- [CLAUDE.md の階層と読み込み順](claude-md-loading-order.md)
 - [.claude/rules と paths で必要なときだけ読ませる](path-scoped-rules.md)
-- CLAUDE.md の階層と読み込み順（準備中）
-- 自動メモリ（準備中）
+- [自動メモリ](using-auto-memory.md)
 
 **関連**
 
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](claude-md-vs-rules-skills-styles.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- /init と最初の CLAUDE.md（準備中）
+- [/init と最初の CLAUDE.md](../cli/init-and-first-claude-md.md)
 - [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
 - [毎回同じ説明をしている](../symptoms/repeating-the-same-explanation.md)
 - [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
 - AGENTS.md とほかのツールとの共有（準備中）
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)
-- チームで設定を共有する（準備中）
+- [チームで設定を共有する](../team/share-team-settings.md)
 - [拡張を足すタイミング](when-to-add-what.md)
 
 </div>

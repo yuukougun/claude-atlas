@@ -117,7 +117,7 @@ PreToolUse のフックが操作を止める方法は、終了コードの exit 
 
     強い例は、規則を事実として述べ、代わりの手段（新しいファイルで足す）まで書いている。弱い例は、何を代わりにするかが無く、回り込みを招く。
 
-止めた理由の書き方の一般論と、止めた記録の見直しは <!-- link:begin lock-side-effects#reason-and-alternative -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと（準備中）<!-- link:end --> と <!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end --> にある。縛る規則を何にするかの選び方は <!-- link:begin lock-side-effects#what-to-lock -->縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）（準備中）<!-- link:end --> を見る。
+止めた理由の書き方の一般論と、止めた記録の見直しは <!-- link:begin lock-side-effects#reason-and-alternative -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと](lock-side-effects.md#reason-and-alternative)<!-- link:end --> と <!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end --> にある。縛る規則を何にするかの選び方は <!-- link:begin lock-side-effects#what-to-lock -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）](lock-side-effects.md#what-to-lock)<!-- link:end --> を見る。
 
 ## 権限ルールとの順番 {#precedence}
 
@@ -255,9 +255,9 @@ JSON の版。
 
 - **フックが失敗すると操作は通る**。スクリプトの異常終了や JSON の崩れなどの失敗は、止めない種類のエラーになりうる。止める用途では、失敗を止めに倒す書き方が要る（<!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end -->）
 - **回り込まれる**。Edit を止めると、Claude が Bash の別のコマンドで同じファイルを変えようとすることがある。代わりの手段を返して、そちらへ向ける。同じ対象を別の道具からも触れるなら、matcher を広げるか権限ルールを重ねる
-- **止めすぎる**。matcher が広いと、関係のない操作まで止める。止めた記録を見て絞り直す（<!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end -->）
+- **止めすぎる**。matcher が広いと、関係のない操作まで止める。止めた記録を見て絞り直す（<!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end -->）
 - **フックは利用者の権限で動く**。スクリプトも、確かめてから置く（<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](writing-safe-hooks.md#runs-as-you)<!-- link:end -->）
-- **止めるのは操作の前だけ**。終わろうとするターンを止めたいときは、別の仕組みを使う（<!-- link:begin stop-hooks -->Stop フックで「終わらせない」（準備中）<!-- link:end -->）
+- **止めるのは操作の前だけ**。終わろうとするターンを止めたいときは、別の仕組みを使う（<!-- link:begin stop-hooks -->[Stop フックで「終わらせない」](stop-hooks.md)<!-- link:end -->）
 - **消えたものは戻らない**。消す操作を止められなかったときの備えは <!-- link:begin destructive-commands#not-recoverable -->[消されたくないもの（破壊的コマンド） › 巻き戻しで戻らないもの](../safety/destructive-commands.md#not-recoverable)<!-- link:end --> を見る
 
 本文の動作は WSL・Linux の CLI を基準にしている。ほかの OS と IDE 拡張での動作は未確認である。
@@ -274,9 +274,9 @@ JSON の版。
 **次に読む**
 
 - [代表的なフックのレシピ](hook-recipes.md)
+- [Stop フックで「終わらせない」](stop-hooks.md)
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
 - [textlint をフックで回す](../japanese/textlint-hook.md)
-- Stop フックで「終わらせない」（準備中）
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
 
 **関連**
 

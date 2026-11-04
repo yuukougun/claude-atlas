@@ -54,7 +54,7 @@ updated: 2026-11-05
 
 1. **依頼に書く**：確かめるコマンドと、通る条件を依頼に入れる。Claude が読んで従うお願いであり、鍵ではない。書き方は <!-- link:begin protect-tests#in-the-request -->[テストを守る（改ざんを防ぐ） › 依頼に書くこと](protect-tests.md#in-the-request)<!-- link:end --> も参照する。
 2. **判定役に見張らせる**：`/goal` で完了の条件を決めると、各ターンの後にモデルが条件を満たしたかを判定し、満たすまで次のターンを続ける。判定役は会話に出た証拠しか読まないので、証拠を会話に出させる条件を書く。判定はモデルなので、鍵ではない。条件の書き方は <!-- link:begin goal-until-done#writing-conditions -->[/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<!-- link:end --> にある。
-3. **フックで終了を止める**：Stop フックで確かめるコマンドを走らせ、通るまでターンを終えさせない。コマンドで決まる判定は、毎回必ず効く鍵になる。続けて止められる回数には上限があり、<!-- fact:begin stop-hook-block-cap -->続けて止められるのは 8 回まで（2026-11-04 時点）<!-- fact:end -->。止め続けるループの避け方は <!-- link:begin stop-hooks#avoid-loops -->Stop フックで「終わらせない」 › 止め続けるループを避ける（準備中）<!-- link:end --> にある。
+3. **フックで終了を止める**：Stop フックで確かめるコマンドを走らせ、通るまでターンを終えさせない。コマンドで決まる判定は、毎回必ず効く鍵になる。続けて止められる回数には上限があり、<!-- fact:begin stop-hook-block-cap -->続けて止められるのは 8 回まで（2026-11-04 時点）<!-- fact:end -->。止め続けるループの避け方は <!-- link:begin stop-hooks#avoid-loops -->[Stop フックで「終わらせない」 › 止め続けるループを避ける](../enforce/stop-hooks.md#avoid-loops)<!-- link:end --> にある。
 4. **書いていない者に確かめさせる**：`/code-review` の新しいサブエージェントのように、変更を生んだ会話を見ていない者に差分をレビューさせる。誰に頼み、何を見せないかは <!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](independent-review.md#who)<!-- link:end --> にある。
 
 段 1 は常に書く。段 2 から 4 は、任せる幅や失敗の重さに応じて足す。段を足すほど、用意するものが増える。
@@ -92,7 +92,7 @@ After は、同じ依頼に手段と終わりの条件を足したものであ�
 
 After で足したのは 4 点である。確かめるコマンド、直す前に失敗するテスト、変えないもの（テストの中身）、報告に貼るもの（実行したコマンドと出力）を決めた。これで「確認した」という言葉でなく、通ったという出力が残る。出力を証拠として読む手順は <!-- link:begin evidence-not-reports#what-counts -->[報告ではなく証拠を求める › 証拠の形（コマンド・生の出力・分母）](evidence-not-reports.md#what-counts)<!-- link:end --> にある。
 
-言葉の念押しの価値は、モデルによって変わった。自分の作業を言われなくても確かめるモデルに、「見直して」「double-check して」を重ねると、確かめすぎでトークンと時間が増える。モデル向けの公式の手引きは、そうしたモデルでは文言での確認の指示を外すよう勧める。ほかのモデルでは、終わる前に基準と照らして確かめるよう頼むのは今も効く。どのモデルがどちらに当たるかは台帳 <!-- link:begin outdated-advice-ledger#add-double-check -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#add-double-check)<!-- link:end --> にある。確かめる手段を整える価値は、どのモデルでも残る。モデルごとの傾向の見方は <!-- link:begin model-quirks#official-guidance -->モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向（準備中）<!-- link:end --> にある。
+言葉の念押しの価値は、モデルによって変わった。自分の作業を言われなくても確かめるモデルに、「見直して」「double-check して」を重ねると、確かめすぎでトークンと時間が増える。モデル向けの公式の手引きは、そうしたモデルでは文言での確認の指示を外すよう勧める。ほかのモデルでは、終わる前に基準と照らして確かめるよう頼むのは今も効く。どのモデルがどちらに当たるかは台帳 <!-- link:begin outdated-advice-ledger#add-double-check -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#add-double-check)<!-- link:end --> にある。確かめる手段を整える価値は、どのモデルでも残る。モデルごとの傾向の見方は <!-- link:begin model-quirks#official-guidance -->[モデル別の癖と、プロンプトの合わせ方 › 公式の指針に出てくる傾向](../models/model-quirks.md#official-guidance)<!-- link:end --> にある。
 
 ## 任せる幅に合わせて段を選ぶ {#choose-step}
 
@@ -105,7 +105,7 @@ After で足したのは 4 点である。確かめるコマンド、直す前�
 | 長い作業を任せ、コマンドの結果で決まる | 段 1 と 3 | 判断を含む良し悪しは、コマンドで決められない |
 | 差分を人に出す前、または無人で走らせた後 | 段 1 から 4 | 手間が増える。AI の承認は人の承認に数えない |
 
-段 2 と段 3 の使い分けは、条件の決まり方で見る。終了コードで決まる条件（テストと型の検査）は段 3 に向く。会話に出た証拠から読む条件は段 2 に向く。2 つの比べ方は <!-- link:begin stop-hooks#vs-goal -->Stop フックで「終わらせない」 › /goal との使い分け（準備中）<!-- link:end --> にある。
+段 2 と段 3 の使い分けは、条件の決まり方で見る。終了コードで決まる条件（テストと型の検査）は段 3 に向く。会話に出た証拠から読む条件は段 2 に向く。2 つの比べ方は <!-- link:begin stop-hooks#vs-goal -->[Stop フックで「終わらせない」 › /goal との使い分け](../enforce/stop-hooks.md#vs-goal)<!-- link:end --> にある。
 
 !!! example "判断例：夜間に任せる移行作業"
     - **状況**：テストのある API を新しい版へ移す作業を、数時間かかる前提で任せる。途中は見ない。
@@ -113,7 +113,7 @@ After で足したのは 4 点である。確かめるコマンド、直す前�
     - **選んだもの**：依頼に手段と変えないものを書き、Stop フックでテストを走らせる。差分は翌朝に新しいサブエージェントでレビューさせる。
     - **理由**：条件がテストの終了コードで決まるので、モデルの判定に任せず、毎回必ず効くフックに置ける。レビューは書いた会話を見ていない者にさせ、最後の判断は人が持つ。
 
-席を外す時間が長くなるほど、確かめる側を強める。無人で走らせる前に答える問いは <!-- link:begin five-questions-before-delegating#five-questions -->[任せ方の段階と、無人で走らせる前の五つの問い › 無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md#five-questions)<!-- link:end -->、走らせた後の見方は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->無人実行の結果を確かめる › 終了コードと要約だけで決めない（準備中）<!-- link:end --> にある。
+席を外す時間が長くなるほど、確かめる側を強める。無人で走らせる前に答える問いは <!-- link:begin five-questions-before-delegating#five-questions -->[任せ方の段階と、無人で走らせる前の五つの問い › 無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md#five-questions)<!-- link:end -->、走らせた後の見方は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->[無人実行の結果を確かめる › 終了コードと要約だけで決めない](checking-unattended-runs.md#beyond-exit-codes)<!-- link:end --> にある。
 
 ## 何に効くか、どこまで効くか {#what-it-prevents}
 
@@ -127,7 +127,7 @@ After で足したのは 4 点である。確かめるコマンド、直す前�
 - 確かめる手段そのものが甘い、または誤っているときは、誤りも同じ速さで増える。<!-- link:begin verifier-defines-problem#loops-amplify -->[検証器が問題を定義する（Claude は置かれたループを何でも加速する） › ループは何でも速める](../eval/verifier-defines-problem.md#loops-amplify)<!-- link:end --> を読む。
 - Claude がテストを書き換えて通すときは、判定役の段 2 もフックの段 3 も通ってしまう。守りの層は <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](protect-tests.md#layers)<!-- link:end --> にある。
 - 完了の報告が事実と違う症状から入るなら、<!-- link:begin claims-done-but-isnt -->[「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)<!-- link:end --> で原因を切り分ける。
-- 画面を持つ成果物は、コマンドの合否だけでは足りない。<!-- link:begin visual-checks#as-a-user -->画面で確かめる（ブラウザ・スクリーンショット・/verify） › 人のユーザーとして確かめさせる（準備中）<!-- link:end --> で、人が使うのと同じ形で確かめさせる。
+- 画面を持つ成果物は、コマンドの合否だけでは足りない。<!-- link:begin visual-checks#as-a-user -->[画面で確かめる（ブラウザ・スクリーンショット・/verify） › 人のユーザーとして確かめさせる](visual-checks.md#as-a-user)<!-- link:end --> で、人が使うのと同じ形で確かめさせる。
 
 ## 誤解しやすいこと {#misconceptions}
 
@@ -149,20 +149,20 @@ After で足したのは 4 点である。確かめるコマンド、直す前�
 
 **次に読む**
 
+- [無人実行の結果を確かめる](checking-unattended-runs.md)
 - [テストを守る（改ざんを防ぐ）](protect-tests.md)
 - [書いた本人ではない者にレビューさせる](independent-review.md)
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](../eval/verifier-defines-problem.md)
+- [Stop フックで「終わらせない」](../enforce/stop-hooks.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
-- 無人実行の結果を確かめる（準備中）
-- Stop フックで「終わらせない」（準備中）
 
 **関連**
 
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
-- モデル別の癖と、プロンプトの合わせ方（準備中）
+- [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
-- 画面で確かめる（ブラウザ・スクリーンショット・/verify）（準備中）
+- [画面で確かめる（ブラウザ・スクリーンショット・/verify）](visual-checks.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)
 
 </div>

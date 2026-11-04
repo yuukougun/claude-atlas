@@ -53,7 +53,7 @@ git worktree は、1 つのリポジトリから、ブランチごとの作業�
 
 - 別々の機能やバグ修正を、同時に進めたい。
 - 調査や使い捨ての試作を、本流の作業場所から離して走らせたい。
-- 仮説ごとに実装を分けて、あとで比べたい。比べ方は <!-- link:begin compare-hypotheses-in-parallel -->仮説ごとに並べて、同じ物差しで比べる（準備中）<!-- link:end --> にある。
+- 仮説ごとに実装を分けて、あとで比べたい。比べ方は <!-- link:begin compare-hypotheses-in-parallel -->[仮説ごとに並べて、同じ物差しで比べる](compare-hypotheses-in-parallel.md)<!-- link:end --> にある。
 
 本数を増やす前に、守りを先に置く。worktree は並列の入口にすぎず、並べた分だけ結果を確かめる人の手間が増えるからである。本数の決め方は <!-- link:begin humans-set-the-parallel-limit#guards-before-widening -->[並列の上限は人間が決める › 本数を増やす前に置く守り](humans-set-the-parallel-limit.md#guards-before-widening)<!-- link:end --> にある。秘密を写す設定は「worktree ごとの準備」の節で扱い、置き方の原則は <!-- link:begin protecting-secrets#keep-out -->[秘密情報（.env・API キー）を守る › 秘密を作業ディレクトリと会話に置かない](../safety/protecting-secrets.md#keep-out)<!-- link:end --> と <!-- link:begin sandboxing#when -->[サンドボックスで封じ込める › 使いどころ](../enforce/sandboxing.md#when)<!-- link:end --> が持つ。
 
@@ -127,7 +127,7 @@ worktree は新しいチェックアウトなので、git が追跡している�
 - **捨てるもの**：コミットしていない変更は、worktree を削除すると失われる。捨てるつもりのものだけを削除させる。
 - **古い worktree**：残した worktree は、`git worktree list` で一覧し、不要になったら `git worktree remove` で消す。放っておくと、依存の分の容量を使い続ける。
 
-巻き戻しの機能と git も混ぜない。会話とコードを巻き戻す機能は、git の代わりにならない。違いは <!-- link:begin checkpoints-and-rewind#what-is-restored -->[チェックポイントと /rewind（git との違い） › 戻せるもの・戻せないもの](../cli/checkpoints-and-rewind.md#what-is-restored)<!-- link:end --> にある。セッションを再開するときは、同じ worktree で再開するのか別に作るのかを先に決める。再開と分岐の名前の付け方は <!-- link:begin resume-and-branch#naming -->セッションに名前を付けて再開・分岐する › 名前の付け方（準備中）<!-- link:end --> にある。
+巻き戻しの機能と git も混ぜない。会話とコードを巻き戻す機能は、git の代わりにならない。違いは <!-- link:begin checkpoints-and-rewind#what-is-restored -->[チェックポイントと /rewind（git との違い） › 戻せるもの・戻せないもの](../cli/checkpoints-and-rewind.md#what-is-restored)<!-- link:end --> にある。セッションを再開するときは、同じ worktree で再開するのか別に作るのかを先に決める。再開と分岐の名前の付け方は <!-- link:begin resume-and-branch#naming -->[セッションに名前を付けて再開・分岐する › 名前の付け方](../cli/resume-and-branch.md#naming)<!-- link:end --> にある。
 
 ## 効かない場面・落とし穴 {#pitfalls}
 
@@ -142,9 +142,9 @@ worktree は新しいチェックアウトなので、git が追跡している�
 worktree は、作業場所を分ける仕組みである。目的が違う仕組みと取り違えないようにする。
 
 - **並列の方式全体**：誰が調整するか、同じファイルを触るかで選ぶ。worktree はその 1 つの手段である。比較は <!-- link:begin choosing-parallel-modes#compare -->[並列の方式の選び方 › 方式の比較](choosing-parallel-modes.md#compare)<!-- link:end --> にある。
-- **agent view と背景セッション**：見張らなくてよい作業を投入し、状態を一覧する仕組みである。作業場所を分ける仕組みとは役割が違う。向く作業の判断は <!-- link:begin agent-view-and-background#what-fits -->agent view と背景セッション › 向く作業と向かない作業（準備中）<!-- link:end --> にある。
+- **agent view と背景セッション**：見張らなくてよい作業を投入し、状態を一覧する仕組みである。作業場所を分ける仕組みとは役割が違う。向く作業の判断は <!-- link:begin agent-view-and-background#what-fits -->[agent view と背景セッション › 向く作業と向かない作業](agent-view-and-background.md#what-fits)<!-- link:end --> にある。
 - **/batch と `-p` のループ**：多数のファイルに同じ作業を流す仕組みである。worktree との併用の可否は、このページでは確かめていない。流し方は <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end --> にある。
-- **セッションの分岐**：会話の分岐であり、ファイルの置き場所は変わらない。分岐した会話を別々のファイルで動かすなら、worktree が要る。会話の分岐は <!-- link:begin resume-and-branch#branch -->セッションに名前を付けて再開・分岐する › 分岐して別案を試す（準備中）<!-- link:end --> にある。
+- **セッションの分岐**：会話の分岐であり、ファイルの置き場所は変わらない。分岐した会話を別々のファイルで動かすなら、worktree が要る。会話の分岐は <!-- link:begin resume-and-branch#branch -->[セッションに名前を付けて再開・分岐する › 分岐して別案を試す](../cli/resume-and-branch.md#branch)<!-- link:end --> にある。
 - **サブエージェント**：文脈を分ける仕組みであり、ファイルを分けるには `isolation: worktree` を足す。使いどころは <!-- link:begin writing-subagents#when-to-use -->[サブエージェントの作り方と使いどころ › 使いどころと、使わない場面](../extend/writing-subagents.md#when-to-use)<!-- link:end --> にある。
 
 古くなった助言の台帳に、この機能の行はない（確認日 2026-11-05 時点）。
@@ -172,18 +172,18 @@ worktree は、作業場所を分ける仕組みである。目的が違う仕�
 
 **次に読む**
 
-- 仮説ごとに並べて、同じ物差しで比べる（準備中）
+- [仮説ごとに並べて、同じ物差しで比べる](compare-hypotheses-in-parallel.md)
 - 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 
 **関連**
 
 - [並列の方式の選び方](choosing-parallel-modes.md)
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
-- agent view と背景セッション（準備中）
+- [agent view と背景セッション](agent-view-and-background.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
-- セッションに名前を付けて再開・分岐する（準備中）
+- [セッションに名前を付けて再開・分岐する](../cli/resume-and-branch.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
 
 </div>

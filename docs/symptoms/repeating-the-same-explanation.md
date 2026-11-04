@@ -77,9 +77,9 @@ updated: 2026-11-05
     === "Claude Code"
         - 毎回読ませたい前提は、CLAUDE.md に書く。CLAUDE.md は強制ではなく文脈として扱われる（<!-- link:begin where-instructions-sit#why -->[システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置 › なぜ強制ではなく文脈になるか](../basics/where-instructions-sit.md#why)<!-- link:end -->）。何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to-write -->[CLAUDE.md に書くこと・書かないこと › 書くこと](../extend/what-to-put-in-claude-md.md#what-to-write)<!-- link:end --> で決める。
         - 特定のフォルダだけの規約は、触れたときだけ読ませる。<!-- link:begin path-scoped-rules -->[.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)<!-- link:end --> を見る。
-        - 叩き台から始めるなら <!-- link:begin init-and-first-claude-md#run-init -->/init と最初の CLAUDE.md › /init で叩き台を作る（準備中）<!-- link:end --> を見る。
+        - 叩き台から始めるなら <!-- link:begin init-and-first-claude-md#run-init -->[/init と最初の CLAUDE.md › /init で叩き台を作る](../cli/init-and-first-claude-md.md#run-init)<!-- link:end --> を見る。
 
-3. **決まった手順か（原因：見えていない）。** 貼っている文書が毎回ほぼ同じで、使うのが特定の作業のときだけなら、スキルにする。スキルは説明文だけが常駐し、本文は必要なときだけ読まれるので、長い手順を常駐の指示へ積まずに済む。作業の種類を問わず常に要る前提なら、手順ではなく背景として、上の「書いていない背景か」の項へ戻る。見分け方と作り方は <!-- link:begin writing-skills#when-to-use -->[スキルの作り方 › どんなときにスキルにするか](../extend/writing-skills.md#when-to-use)<!-- link:end --> と <!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end --> にある。確かめ方は、スキルを呼んだときの動きが、貼っていた手順書のときと同じかを見ることである。
+3. **決まった手順か（原因：見えていない）。** 貼っている文書が毎回ほぼ同じで、使うのが特定の作業のときだけなら、スキルにする。スキルは説明文だけが常駐し、本文は必要なときだけ読まれるので、長い手順を常駐の指示へ積まずに済む。作業の種類を問わず常に要る前提なら、手順ではなく背景として、上の「書いていない背景か」の項へ戻る。見分け方と作り方は <!-- link:begin writing-skills#when-to-use -->[スキルの作り方 › どんなときにスキルにするか](../extend/writing-skills.md#when-to-use)<!-- link:end --> と <!-- link:begin skills-in-the-app -->[アプリでスキルを使う](../app/skills-in-the-app.md)<!-- link:end --> にある。確かめ方は、スキルを呼んだときの動きが、貼っていた手順書のときと同じかを見ることである。
 4. **同じ注意の繰り返しか（原因：縛っていない）。** 次のどれかなら、置き場所ではなく鍵の問題である。同じ禁止を何度も添えている。強調しても破られた。会話で言った禁止が途中で効かなくなった。例外を許さない禁止は、権限ルールやフックに移す。判断を含む規則は鍵にしない。合図と移し先は <!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end --> と <!-- link:begin when-to-lock#where-to-move -->[お願いを鍵に移す判断 › 移し先の選び方](../enforce/when-to-lock.md#where-to-move)<!-- link:end --> にある。確かめ方は、言い方を変えれば守られるのか、守られても会話が進むと消えるのかを見ることである。後者は <!-- link:begin when-to-lock#spoken-rules-fade -->[お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](../enforce/when-to-lock.md#spoken-rules-fade)<!-- link:end --> にある。
 
 毎回変わる部分は、移さない。その回の目的・対象・出来上がりの条件は頼む内容であり、置き場所に固定すると別の依頼で邪魔になる。頼んだものと違うものが出るなら <!-- link:begin not-what-i-meant#diagnosis -->[意図と違うものが出てくる › 原因を安く確かめる順](not-what-i-meant.md#diagnosis)<!-- link:end --> へ進む。ここまでで決まらないときは <!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> で 6 つの原因の全体から確かめ直す。
@@ -117,9 +117,9 @@ updated: 2026-11-05
 
 - 最初から作り込まない。同じ説明や注意を繰り返したと気づいた時点で、1 つずつ移す。回数を目安にした足し方は <!-- link:begin when-to-add-what -->[拡張を足すタイミング](../extend/when-to-add-what.md)<!-- link:end --> にある。
 - 移したら、貼っていた元の文面は使わない。二重に残すと、食い違ったときにどちらが効くのかが分からなくなる。
-- CLAUDE.md に移したら、叩き台のまま使わず削る。削り方は <!-- link:begin init-and-first-claude-md#prune -->/init と最初の CLAUDE.md › 叩き台を削ってから使う（削り方は claude-md-length）（準備中）<!-- link:end --> にある。
-- チームで同じ前提を使うなら、リポジトリに入れて共有する。個人の好みと秘密は共有のファイルに入れない（<!-- link:begin share-team-settings#shared-vs-personal -->チームで設定を共有する › 共有するものと個人に残すもの（準備中）<!-- link:end -->）。
-- 前回の作業の続きを毎回説明しているなら、背景ではなく途中の状態の問題である。<!-- link:begin progress-files#files -->進捗ファイルで、途中から再開できるようにする › ファイルの分け方（準備中）<!-- link:end --> のように、ファイルに持たせる。
+- CLAUDE.md に移したら、叩き台のまま使わず削る。削り方は <!-- link:begin init-and-first-claude-md#prune -->[/init と最初の CLAUDE.md › 叩き台を削ってから使う（削り方は claude-md-length）](../cli/init-and-first-claude-md.md#prune)<!-- link:end --> にある。
+- チームで同じ前提を使うなら、リポジトリに入れて共有する。個人の好みと秘密は共有のファイルに入れない（<!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end -->）。
+- 前回の作業の続きを毎回説明しているなら、背景ではなく途中の状態の問題である。<!-- link:begin progress-files#files -->[進捗ファイルで、途中から再開できるようにする › ファイルの分け方](../context/progress-files.md#files)<!-- link:end --> のように、ファイルに持たせる。
 - 繰り返しを洗い出すところから Claude に手伝わせるなら、次の依頼を使う。
 
 <!-- gen:begin snippet repeating-the-same-explanation/inventory-request -->
@@ -184,14 +184,14 @@ updated: 2026-11-05
 **関連**
 
 - [プロジェクトの使いどころ](../app/using-projects.md)
-- /init と最初の CLAUDE.md（準備中）
+- [/init と最初の CLAUDE.md](../cli/init-and-first-claude-md.md)
 - [スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)
 - [スキルの作り方](../extend/writing-skills.md)
-- アプリでスキルを使う（準備中）
+- [アプリでスキルを使う](../app/skills-in-the-app.md)
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)
 - [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)
-- チームで設定を共有する（準備中）
-- 進捗ファイルで、途中から再開できるようにする（準備中）
+- [チームで設定を共有する](../team/share-team-settings.md)
+- [進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)
 - [CLAUDE.md や指示が守られない](instructions-ignored.md)
 - [別の会話やプロジェクトの内容が混ざる](unexpected-memories.md)
 - [意図と違うものが出てくる](not-what-i-meant.md)

@@ -70,7 +70,7 @@ updated: 2026-11-05
 1. **確かめていない**（Claude 側の原因）
     - 何を見るか：最近マージした変更のうち、差分の要点とテスト結果を見ずに通したものはないか。
     - どう確かめるか：直近のマージから数件を選び、人が読んだ箇所を言えるかを試す。言えないなら、読む場所が決まっていない。
-    - 当たったとき：人が必ず読む箇所を絞る。見分け方は<!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end -->にある。AI が出した承認は、人の承認に数えない。
+    - 当たったとき：人が必ず読む箇所を絞る。見分け方は<!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end -->にある。AI が出した承認は、人の承認に数えない。
 2. **合っていない**（Claude 側の原因）
     - 何を見るか：並べた作業が、並列に向く形か。同じファイルを触る作業、互いの結果を待つ作業、同じ文脈を共有してほしい作業が混ざっていないか。
     - どう確かめるか：衝突、やり直し、捨てた作業が出た作業を挙げ、共通点を探す。共通点が「同じ場所を触る」「順番に依存する」なら、並べ方が作業に合っていない。
@@ -91,8 +91,8 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 確かめていない | 人間が読むべき差分の箇所（準備中）<br>[レビューのボトルネックと疲労](../team/review-bottlenecks.md)<br>リスク段階別の承認（AI の承認を人の承認に数えない）（準備中） |
-| 合っていない | [並列の方式の選び方](../delegate/choosing-parallel-modes.md)<br>agent view と背景セッション › 向く作業と向かない作業（準備中） |
+| 確かめていない | [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)<br>[レビューのボトルネックと疲労](../team/review-bottlenecks.md)<br>[リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md) |
+| 合っていない | [並列の方式の選び方](../delegate/choosing-parallel-modes.md)<br>[agent view と背景セッション › 向く作業と向かない作業](../delegate/agent-view-and-background.md#what-fits) |
 | 預けすぎる | [並列の上限は人間が決める](../delegate/humans-set-the-parallel-limit.md) |
 | 体感を信じる | [体感と実測](../eval/felt-vs-measured.md) |
 
@@ -113,11 +113,11 @@ updated: 2026-11-05
 
 - **本数と範囲を先に決める**：本流の本数、偵察の本数、人が必ず読む場所を、並列を始める前に決める。決め方は<!-- link:begin humans-set-the-parallel-limit#mainline-vs-scouting -->[並列の上限は人間が決める › 本流と偵察で本数を分ける](../delegate/humans-set-the-parallel-limit.md#mainline-vs-scouting)<!-- link:end -->にある。費用も同じ時点で決める。始める前に決める項目は<!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end -->にある。
 - **作業ごとに環境を分ける**：セッションが互いのファイルを上書きしないよう、作業ごとに別のチェックアウトを作る。準備と片付けは<!-- link:begin parallel-with-worktrees#per-worktree-setup -->[git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）](../delegate/parallel-with-worktrees.md#per-worktree-setup)<!-- link:end -->で決める。
-- **承認の段を決める**：変更の段ごとに、人の承認の数を決める。段の分け方は<!-- link:begin risk-tiered-approval#three-tiers -->リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数（準備中）<!-- link:end -->にある。
+- **承認の段を決める**：変更の段ごとに、人の承認の数を決める。段の分け方は<!-- link:begin risk-tiered-approval#three-tiers -->[リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数](../team/risk-tiered-approval.md#three-tiers)<!-- link:end -->にある。
 - **画面に張りつかない**：終わりや承認待ちを通知させ、確認する時刻を自分で決める。選び方は<!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう › 知らせるか、時刻を決めて見るか（準備中）<!-- link:end -->にある。
 - **並列の前後を記録する**：1 件あたりの完了までの時間とやり直しの回数を取り続け、本数を変えるたびに比べる。
 
-tmux で自作の組織を作って並べる古いやり方も、レビューの量は減らさない。今の置き換え先は<!-- link:begin outdated-advice-ledger#tmux-agent-orgs -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#tmux-agent-orgs)<!-- link:end -->にある。背景のセッションをまとめて見る手段は<!-- link:begin agent-view-and-background#what-fits -->agent view と背景セッション › 向く作業と向かない作業（準備中）<!-- link:end -->で、状況を確認する手間は減らせる。ただし、人が読む量は増減しない。
+tmux で自作の組織を作って並べる古いやり方も、レビューの量は減らさない。今の置き換え先は<!-- link:begin outdated-advice-ledger#tmux-agent-orgs -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#tmux-agent-orgs)<!-- link:end -->にある。背景のセッションをまとめて見る手段は<!-- link:begin agent-view-and-background#what-fits -->[agent view と背景セッション › 向く作業と向かない作業](../delegate/agent-view-and-background.md#what-fits)<!-- link:end -->で、状況を確認する手間は減らせる。ただし、人が読む量は増減しない。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -130,11 +130,11 @@ tmux で自作の組織を作って並べる古いやり方も、レビューの
 
 **次に読む**
 
-- 人間が読むべき差分の箇所（準備中）
+- [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
 - [レビューのボトルネックと疲労](../team/review-bottlenecks.md)
-- リスク段階別の承認（AI の承認を人の承認に数えない）（準備中）
+- [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)
 - [並列の方式の選び方](../delegate/choosing-parallel-modes.md)
-- agent view と背景セッション（準備中）
+- [agent view と背景セッション](../delegate/agent-view-and-background.md)
 - [並列の上限は人間が決める](../delegate/humans-set-the-parallel-limit.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 

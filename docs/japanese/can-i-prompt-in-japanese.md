@@ -139,7 +139,7 @@ CLAUDE.md は、日本語で書いてよい。日本語で書くと精度が落�
 - 日本語で書いても、CLAUDE.md の指示は守られる保証のないお願いである。例外を許さない規則は、フックなど、鍵のかかる仕組みで止める。
 - CLAUDE.md に日本語で返すよう書いても、英語のツール出力を読んだ後に返答が英語へ戻ることがある。その対処は <!-- link:begin keep-replies-in-japanese#instructions -->[日本語で返し続けさせる › CLAUDE.md と出力スタイル（お願いの層）](keep-replies-in-japanese.md#instructions)<!-- link:end --> にある。
 
-最初の CLAUDE.md を作る手順と、削り方は <!-- link:begin init-and-first-claude-md#run-init -->/init と最初の CLAUDE.md › /init で叩き台を作る（準備中）<!-- link:end --> にある。
+最初の CLAUDE.md を作る手順と、削り方は <!-- link:begin init-and-first-claude-md#run-init -->[/init と最初の CLAUDE.md › /init で叩き台を作る](../cli/init-and-first-claude-md.md#run-init)<!-- link:end --> にある。
 
 ## 日本語のトークン数と、上限への効き方 {#tokens}
 
@@ -168,7 +168,7 @@ CLAUDE.md は、日本語で書いてよい。日本語で書くと精度が落�
 この考え方に隣り合う問いの行き先を挙げる。
 
 - 日本語で頼んでも返答が英語に戻る：<!-- link:begin keep-replies-in-japanese -->[日本語で返し続けさせる](keep-replies-in-japanese.md)<!-- link:end -->
-- 日本語の PDF や社内文書を読ませる、敬語や社内用語を使わせる：<!-- link:begin documents-in-japanese -->日本語の資料を読ませる・書かせる（準備中）<!-- link:end -->
+- 日本語の PDF や社内文書を読ませる、敬語や社内用語を使わせる：<!-- link:begin documents-in-japanese -->[日本語の資料を読ませる・書かせる](documents-in-japanese.md)<!-- link:end -->
 - 精度が落ちたという体感が正しいかを確かめる：<!-- link:begin felt-vs-measured -->[体感と実測](../eval/felt-vs-measured.md)<!-- link:end -->
 
 ## 誤解されやすいこと {#misconceptions}
@@ -212,8 +212,8 @@ CLAUDE.md は、日本語で書いてよい。日本語で書くと精度が落�
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
 - [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)
 - [「考えて」と書くことの現在（ultrathink）](../models/thinking-keywords.md)
-- /init と最初の CLAUDE.md（準備中）
-- 日本語の資料を読ませる・書かせる（準備中）
+- [/init と最初の CLAUDE.md](../cli/init-and-first-claude-md.md)
+- [日本語の資料を読ませる・書かせる](documents-in-japanese.md)
 
 </div>
 

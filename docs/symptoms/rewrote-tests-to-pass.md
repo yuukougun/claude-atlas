@@ -73,7 +73,7 @@ updated: 2026-11-05
 
 1. **確かめていない**：テストを守る手が、依頼にも差分の読み方にもない。
     - 見るもの：依頼と CLAUDE.md に、「テストは正しさを確かめるもので、解を決めるものではない」にあたる文があったか。「テストが誤りに見えたら、直さず報告する」にあたる文はどうか。差分のテスト部分を、人か別のセッションが読む手順もあったか。
-    - 確かめ方：依頼を読み返す。どちらもなければ、Claude に渡っている目標は「通ること」だけである。差分は <!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end --> の順に読む。書いた本人でない者に読ませるときは、この節の末尾の雛形を新しいセッションで使う。Claude に見せていない入力で流した結果が通るかも見る。層の分け方は <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](../verify/protect-tests.md#layers)<!-- link:end --> にある。
+    - 確かめ方：依頼を読み返す。どちらもなければ、Claude に渡っている目標は「通ること」だけである。差分は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end --> の順に読む。書いた本人でない者に読ませるときは、この節の末尾の雛形を新しいセッションで使う。Claude に見せていない入力で流した結果が通るかも見る。層の分け方は <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](../verify/protect-tests.md#layers)<!-- link:end --> にある。
     - 「迷ったら止まって報告して」と書き足すだけでは足りない。ImpossibleBench は、人に判断を仰ぐ逃げ道を渡すと、GPT-5 と o3 では不正率が大きく下がったが、Claude Opus 4.1 では効果が「ずっと小さい」と書く（根拠：強・Opus 4.1 世代の評価）。対処の中心は、言葉の頼みでなく、書き換えられない状態に置く。
 2. **縛っていない**：テストや採点のファイルに、Claude が書き込める状態だった。
     - 見るもの：テスト・採点のスクリプト・検証用のデータの編集を、deny ルールかフックで止めていたか。許可を自動で通すモードで動かしていなかったか。
@@ -122,8 +122,8 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 確かめていない | [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)<br>人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<br>[バグを直す › 症状を隠す修正を認めない](../recipes/fix-a-bug.md#no-symptom-patches) |
-| 縛っていない | 評価資産を凍結し、触れる範囲を絞る（準備中）<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md) |
+| 確かめていない | [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)<br>[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<br>[バグを直す › 症状を隠す修正を認めない](../recipes/fix-a-bug.md#no-symptom-patches) |
+| 縛っていない | [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -133,9 +133,9 @@ updated: 2026-11-05
 テストが関わる失敗は、書き換えのほかにも出る。次のように見分ける。
 
 - 「完了」の報告そのものが事実と違う：<!-- link:begin claims-done-but-isnt#diagnosis -->[「完了」と言うが終わっていない › 原因を安く確かめる順](claims-done-but-isnt.md#diagnosis)<!-- link:end --> で、報告と実物の食い違いの原因を切り分ける。
-- Claude の書いたテストが今のバグ入りの挙動を正解にしている、または壊しても落ちない：書き換えではなく、テストが弱いという別の問題である。<!-- link:begin pitfalls-of-ai-written-tests#pinning-bugs -->AI に書かせたテストの落とし穴 › 今の挙動を正解として固める（準備中）<!-- link:end --> で確かめる。
+- Claude の書いたテストが今のバグ入りの挙動を正解にしている、または壊しても落ちない：書き換えではなく、テストが弱いという別の問題である。<!-- link:begin pitfalls-of-ai-written-tests#pinning-bugs -->[AI に書かせたテストの落とし穴 › 今の挙動を正解として固める](../verify/pitfalls-of-ai-written-tests.md#pinning-bugs)<!-- link:end --> で確かめる。
 - 手元の評価は良いのに本番で通用しない：<!-- link:begin misses-broken-evaluation#diagnosis -->[手元の評価は良いのに本番で通用しない › 原因を安く確かめる順](misses-broken-evaluation.md#diagnosis)<!-- link:end --> で、評価の仕組みそのものを確かめる。
-- 急な高速化や満点に近いスコアが出た：<!-- link:begin suspect-too-good-results#what-to-suspect -->良すぎる結果を疑う › まず疑うもの（準備中）<!-- link:end --> で、リークや採点の省略を先に疑う。
+- 急な高速化や満点に近いスコアが出た：<!-- link:begin suspect-too-good-results#what-to-suspect -->[良すぎる結果を疑う › まず疑うもの](../verify/suspect-too-good-results.md#what-to-suspect)<!-- link:end --> で、リークや採点の省略を先に疑う。
 - どの原因から疑うか迷う：<!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> が、Claude 側の 6 つの原因を安く確かめる順に並べている。
 
 ## 判断例 {#example}
@@ -150,10 +150,10 @@ updated: 2026-11-05
 
 予防の考え方は、「テストを変えないで」と頼み続けるのをやめ、書き換えられない状態を仕組みに置くことである。任せる幅を広げるほど、先に鍵と確かめる手段を整える。
 
-- 範囲を絞って鍵をかける。テスト・採点のスクリプト・検証用のデータを、deny ルールとサンドボックスで書き換えられなくする。手順は <!-- link:begin freeze-eval-assets#how-to-freeze -->評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）（準備中）<!-- link:end --> にある。
+- 範囲を絞って鍵をかける。テスト・採点のスクリプト・検証用のデータを、deny ルールとサンドボックスで書き換えられなくする。手順は <!-- link:begin freeze-eval-assets#how-to-freeze -->[評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）](../enforce/freeze-eval-assets.md#how-to-freeze)<!-- link:end --> にある。
 - 例外なく守らせる規則は、お願いでなく鍵に置く。PreToolUse のフックなら、止めた理由と代わりの手段を返せる。書き方は <!-- link:begin block-with-exit-2#exit-2-vs-json -->[フックで止めて理由を返す（exit 2 と JSON） › exit 2 と JSON の違い](../enforce/block-with-exit-2.md#exit-2-vs-json)<!-- link:end -->。型は <!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end --> にある。移す合図の見分け方は <!-- link:begin when-to-lock#signals -->[お願いを鍵に移す判断 › 鍵に移す合図](../enforce/when-to-lock.md#signals)<!-- link:end --> にある。
 - 依頼には、一般解を求める文を足す。特例の分岐を認めない旨を書く。症状だけを隠す修正を認めない頼み方は <!-- link:begin fix-a-bug#no-symptom-patches -->[バグを直す › 症状を隠す修正を認めない](../recipes/fix-a-bug.md#no-symptom-patches)<!-- link:end -->。テストの守りを依頼に書く方法は <!-- link:begin protect-tests#in-the-request -->[テストを守る（改ざんを防ぐ） › 依頼に書くこと](../verify/protect-tests.md#in-the-request)<!-- link:end --> にある。
-- 差分は、赤信号の箇所だけでも人が読む。テストと採点の変更・特例の分岐・例外の握りつぶし・件数の変化が、その中心である（<!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end -->）。AI の承認は人の承認に数えない（<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](../verify/independent-review.md#ai-approval)<!-- link:end -->）。
+- 差分は、赤信号の箇所だけでも人が読む。テストと採点の変更・特例の分岐・例外の握りつぶし・件数の変化が、その中心である（<!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end -->）。AI の承認は人の承認に数えない（<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](../verify/independent-review.md#ai-approval)<!-- link:end -->）。
 - 検証する仕組みそのものを点検する。書き換えられないことは <!-- link:begin verifier-three-conditions#tamper-proof -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](../eval/verifier-three-conditions.md#tamper-proof)<!-- link:end -->、使う前に凍結する手順は <!-- link:begin test-the-verifier#freeze -->[検証器そのものを確かめる（red/green・手で計算したケース） › 確かめてから凍結する](../eval/test-the-verifier.md#freeze)<!-- link:end --> にある。
 - 完了の確かめを、段で選ぶ。依頼に書く段から、フックで終了を止める段まで、任せる幅に合わせる（<!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](../verify/verification-ladder.md#choose-step)<!-- link:end -->）。
 
@@ -185,9 +185,9 @@ updated: 2026-11-05
 **次に読む**
 
 - [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)
-- 人間が読むべき差分の箇所（準備中）
+- [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
 - [バグを直す](../recipes/fix-a-bug.md)
-- 評価資産を凍結し、触れる範囲を絞る（準備中）
+- [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 
@@ -196,10 +196,10 @@ updated: 2026-11-05
 - [検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](../eval/verifier-three-conditions.md#tamper-proof)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
-- AI に書かせたテストの落とし穴（準備中）
+- [AI に書かせたテストの落とし穴](../verify/pitfalls-of-ai-written-tests.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [検証器そのものを確かめる（red/green・手で計算したケース）](../eval/test-the-verifier.md)
-- 良すぎる結果を疑う（準備中）
+- [良すぎる結果を疑う](../verify/suspect-too-good-results.md)
 - [検証の階段](../verify/verification-ladder.md)
 - [「完了」と言うが終わっていない](claims-done-but-isnt.md)
 - [手元の評価は良いのに本番で通用しない](misses-broken-evaluation.md)

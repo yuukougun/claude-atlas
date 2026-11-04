@@ -1,0 +1,10 @@
+sources:
+  - id: arxiv-2607-16241
+    url: https://arxiv.org/abs/2607.16241
+    title: 'KernelBench-Verified: Do LLM-Generated Kernels Actually Beat PyTorch?'
+    kind: 研究
+    publisher: arXiv（Zhang, Yunxiang ほか）
+    lang: en
+    checked: '2026-11-05'
+    published: '2026-06-26'
+    note: 要旨だけを確かめた（査読前）。標準の手順で 1.43 倍、検証した手順で 0.88 倍になったのは最良のモデル GPT-5.5 の値

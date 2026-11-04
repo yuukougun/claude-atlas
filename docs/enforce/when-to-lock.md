@@ -58,7 +58,7 @@ updated: 2026-11-05
 合図が出ても、すぐに鍵へ移さない。先に 2 つを確かめる。
 
 - **書き方で直らないか**：ファイルが長すぎて埋もれていないか、規則同士が矛盾していないかを、安く確かめる。順番は <!-- link:begin instructions-ignored#diagnosis -->[CLAUDE.md や指示が守られない › 原因を安く確かめる順](../symptoms/instructions-ignored.md#diagnosis)<!-- link:end --> にある。これで直るなら鍵は要らない。
-- **鍵にしてよい規則か**：機械で判定でき、破ったときの害が大きい規則だけを移す。選び方は <!-- link:begin lock-side-effects#what-to-lock -->縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）（準備中）<!-- link:end --> が持つ。
+- **鍵にしてよい規則か**：機械で判定でき、破ったときの害が大きい規則だけを移す。選び方は <!-- link:begin lock-side-effects#what-to-lock -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）](lock-side-effects.md#what-to-lock)<!-- link:end --> が持つ。
 
 次の図は、この判断の流れである。合図が出たら、まず書き方を確かめ、それでも直らず、機械で判定できて害が大きい規則だけが鍵に移る。判断を含む規則は、お願いのまま残る。
 
@@ -98,7 +98,7 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 
 - **特定のコマンドや特定のパスを止めれば足りる**：deny ルールにする。許可・確認・拒否のうち、拒否は先に評価される。使いどころは <!-- link:begin permission-rules#when -->[権限ルール（allow・ask・deny） › 使いどころ](permission-rules.md#when)<!-- link:end -->、評価の順番は <!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](permission-rules.md#evaluation-order)<!-- link:end --> にある。
 - **コマンドの中身、ファイルの内容、ターンの終わりの状態を見て判定する**：フックにする。鍵に数えるのは、スクリプトが決まった手順で判定する決定論のフックである。別のモデルに判断させるフックは、鍵ではなくお願いに近い。使いどころは <!-- link:begin hooks-basics#when -->[フックの考え方とイベント › 使いどころ](hooks-basics.md#when)<!-- link:end -->、違いは <!-- link:begin hooks-basics#deterministic -->[フックの考え方とイベント › 決定的なフックと、モデルが判断するフック](hooks-basics.md#deterministic)<!-- link:end --> にある。
-- **毎回 Claude に判断させている作業**：判断そのものをスクリプトに移す。見分け方は <!-- link:begin move-judgment-into-scripts#what-to-move -->判断を決定論的なスクリプトに移す › 移す作業の見分け方（準備中）<!-- link:end --> にある。
+- **毎回 Claude に判断させている作業**：判断そのものをスクリプトに移す。見分け方は <!-- link:begin move-judgment-into-scripts#what-to-move -->[判断を決定論的なスクリプトに移す › 移す作業の見分け方](move-judgment-into-scripts.md#what-to-move)<!-- link:end --> にある。
 
 この節の例は Claude Code の設定である。アプリと API で使える鍵は面によって違うので、<!-- link:begin request-lock-table#by-surface -->[お願いと鍵の対応表 › 面ごとの鍵の手段](request-lock-table.md#by-surface)<!-- link:end --> で確かめる。会話で言った禁止を deny ルールに移す設定の例を次に示す。
 
@@ -122,7 +122,7 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 <!-- textlint-enable -->
 <!-- gen:end snippet when-to-lock/deny-git-push -->
 
-鍵に移したら、新しいセッションで、止めたい操作をわざと頼んで止まることを確かめる。止まらないなら、ルールの書き方かパスが合っていない。そのうえで、CLAUDE.md の元の行は、禁止の言い方から、理由と代わりの手段の言い方に書き換える。鍵が止めたとき、Claude が理由を読み、回り込まずに済むようにするためである。止めるときに返すことは <!-- link:begin lock-side-effects#reason-and-alternative -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと（準備中）<!-- link:end -->、CLAUDE.md の残す行と外す行は <!-- link:begin what-to-put-in-claude-md#what-to-leave-out -->[CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](../extend/what-to-put-in-claude-md.md#what-to-leave-out)<!-- link:end --> が持つ。
+鍵に移したら、新しいセッションで、止めたい操作をわざと頼んで止まることを確かめる。止まらないなら、ルールの書き方かパスが合っていない。そのうえで、CLAUDE.md の元の行は、禁止の言い方から、理由と代わりの手段の言い方に書き換える。鍵が止めたとき、Claude が理由を読み、回り込まずに済むようにするためである。止めるときに返すことは <!-- link:begin lock-side-effects#reason-and-alternative -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと](lock-side-effects.md#reason-and-alternative)<!-- link:end -->、CLAUDE.md の残す行と外す行は <!-- link:begin what-to-put-in-claude-md#what-to-leave-out -->[CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](../extend/what-to-put-in-claude-md.md#what-to-leave-out)<!-- link:end --> が持つ。
 
 <!-- gen:begin snippet when-to-lock/reason-for-push-in-claude-md -->
 <!-- textlint-disable -->
@@ -143,7 +143,7 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 
 ## 鍵にしない規則（判断を含むもの） {#what-not-to-lock}
 
-鍵にしない規則は、判断を含むものである。機械で判定できない規則をフックや deny ルールにすると、正しい操作まで止める。止めすぎた Claude や人は、別の手段で回り込もうとする。この害は <!-- link:begin lock-side-effects#what-to-lock -->縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）（準備中）<!-- link:end --> と、止めた記録の見直し（<!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end -->）が持つ。
+鍵にしない規則は、判断を含むものである。機械で判定できない規則をフックや deny ルールにすると、正しい操作まで止める。止めすぎた Claude や人は、別の手段で回り込もうとする。この害は <!-- link:begin lock-side-effects#what-to-lock -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）](lock-side-effects.md#what-to-lock)<!-- link:end --> と、止めた記録の見直し（<!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end -->）が持つ。
 
 判断を含む規則の例は、次のようなものである。
 
@@ -216,8 +216,8 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 **関連**
 
 - [権限ルール（allow・ask・deny）](permission-rules.md)
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
-- 判断を決定論的なスクリプトに移す（準備中）
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
+- [判断を決定論的なスクリプトに移す](move-judgment-into-scripts.md)
 - [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
 - [圧縮の後に約束を忘れた](../symptoms/forgot-after-compaction.md)
 - [圧縮で消えない場所に約束を置く](../context/promises-after-compaction.md)

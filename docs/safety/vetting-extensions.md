@@ -65,7 +65,7 @@ MCP サーバー・プラグイン・スキルを入れる前の確認は、拡�
 1. 提供元を特定する。入れる元の URL を、提供元の公式の案内から辿り直す。検索の結果や、会話で勧められたリンクをそのまま使わない。
 2. 名前を突き合わせる。綴り・組織名・リポジトリ名が、よく似た別物でないかを目で比べる。
 3. 保守の状況を見る。最後の更新、未対応の問題、変更の履歴を読む。
-4. 見た目以外の根拠を探す。README・テスト・コミットの履歴がそろっていても、AI で安く作れるので品質の証拠にならない（<!-- link:begin looks-are-not-quality -->見た目は品質の証拠ではない（準備中）<!-- link:end -->）。
+4. 見た目以外の根拠を探す。README・テスト・コミットの履歴がそろっていても、AI で安く作れるので品質の証拠にならない（<!-- link:begin looks-are-not-quality -->[見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)<!-- link:end -->）。
 
 **終わりの確かめ**：提供元の名前と、入れる元の URL を、1 行で書ける。書けないものは次の段に進まない。
 
@@ -73,11 +73,11 @@ MCP サーバー・プラグイン・スキルを入れる前の確認は、拡�
 
 === "アプリ"
 
-    アプリのコネクタは、種類と信頼してよいかの判断を <!-- link:begin connectors-in-the-app#trust -->[コネクタ（MCP）をアプリで使う › 信頼してよいか](../app/connectors-in-the-app.md#trust)<!-- link:end --> で確かめる。プラグインは、入るものと動く場所を <!-- link:begin plugins-in-the-app#contents -->アプリでプラグインを使う › プラグインに入るもの・動く場所（準備中）<!-- link:end --> で確かめてから入れる。スキルは、自作と組み込みの違いを <!-- link:begin skills-in-the-app#built-in-and-custom -->アプリでスキルを使う › 組み込みのスキルと自作のスキル（準備中）<!-- link:end --> で押さえる。
+    アプリのコネクタは、種類と信頼してよいかの判断を <!-- link:begin connectors-in-the-app#trust -->[コネクタ（MCP）をアプリで使う › 信頼してよいか](../app/connectors-in-the-app.md#trust)<!-- link:end --> で確かめる。プラグインは、入るものと動く場所を <!-- link:begin plugins-in-the-app#contents -->アプリでプラグインを使う › プラグインに入るもの・動く場所（準備中）<!-- link:end --> で確かめてから入れる。スキルは、自作と組み込みの違いを <!-- link:begin skills-in-the-app#built-in-and-custom -->[アプリでスキルを使う › 組み込みのスキルと自作のスキル](../app/skills-in-the-app.md#built-in-and-custom)<!-- link:end --> で押さえる。
 
 === "Claude Code"
 
-    `.mcp.json` を見ただけでは、セッションが読み込むサーバーの全部は分からない。ほかのスコープ、claude.ai のコネクタ、プラグインもサーバーを足しうる（公式の Security の文書）。入れる前に、読み込まれる全部の一覧を作ってから確かめる。プラグインの入れる前の確認は <!-- link:begin plugins-and-marketplaces#before-install -->プラグインとマーケットプレイス › 入れる前の確認（準備中）<!-- link:end --> にある。組織で配るときは、許す範囲を <!-- link:begin org-managed-settings-and-mcp#mcp-allowlist -->組織に設定と MCP サーバーを配る › MCP サーバーの許可（準備中）<!-- link:end --> で、確認を通したものに絞る。
+    `.mcp.json` を見ただけでは、セッションが読み込むサーバーの全部は分からない。ほかのスコープ、claude.ai のコネクタ、プラグインもサーバーを足しうる（公式の Security の文書）。入れる前に、読み込まれる全部の一覧を作ってから確かめる。プラグインの入れる前の確認は <!-- link:begin plugins-and-marketplaces#before-install -->[プラグインとマーケットプレイス › 入れる前の確認](../extend/plugins-and-marketplaces.md#before-install)<!-- link:end --> にある。組織で配るときは、許す範囲を <!-- link:begin org-managed-settings-and-mcp#mcp-allowlist -->組織に設定と MCP サーバーを配る › MCP サーバーの許可（準備中）<!-- link:end --> で、確認を通したものに絞る。
 
 !!! example "判断例：スターの多い既製の MCP サーバーか、自作の小さなサーバーか"
     - **状況**：Claude に勧められて、公開の MCP サーバーを入れたい。同じ用途のものが複数あり、スターの数と README の整い方に差がある。
@@ -287,14 +287,14 @@ rug pull は、承認した後に、道具の定義や中身が差し替えら�
 **関連**
 
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](lethal-trifecta.md)
-- プラグインとマーケットプレイス（準備中）
+- [プラグインとマーケットプレイス](../extend/plugins-and-marketplaces.md)
 - MCP サーバーの選び方（準備中）
 - Mods（プラグインで挙動を深く変える）（準備中）
 - [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - アプリでプラグインを使う（準備中）
-- アプリでスキルを使う（準備中）
+- [アプリでスキルを使う](../app/skills-in-the-app.md)
 - [フックを安全に書く](../enforce/writing-safe-hooks.md)
-- 見た目は品質の証拠ではない（準備中）
+- [見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)
 - [存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)
 - [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
 - 組織に設定と MCP サーバーを配る（準備中）

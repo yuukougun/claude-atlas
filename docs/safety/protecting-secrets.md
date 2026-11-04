@@ -48,8 +48,8 @@ updated: 2026-11-05
 
 - **作業ディレクトリ**：.env やトークンのファイルは、作業ディレクトリの外へ移せるなら移す。リポジトリの中に置くしかないものだけが、次の節の対象になる。
 - **会話**：API キーやパスワードを会話に貼らない。貼った秘密は、手元の `~/.claude/projects/` にセッションの記録として平文で残る。残る期間と、記録がどこまで送られるかは <!-- link:begin where-your-data-goes#local-transcripts -->[送ったデータの行方（学習・保持期間） › 手元に残る記録](where-your-data-goes.md#local-transcripts)<!-- link:end --> を引く。
-- **報告や共有**：`/feedback` やトランスクリプトの共有に応じると、会話とコードが送られる。秘密が会話に入った後で送る前に、<!-- link:begin what-feedback-sends#what-is-sent -->/feedback・トランスクリプトの共有で送られるもの › 送られるものと残る期間（準備中）<!-- link:end --> で送られるものを確かめる。
-- **環境変数とシェルの設定**：`ANTHROPIC_API_KEY` のような変数をシェルの設定ファイルに書いて忘れると、課金の経路まで変わる。詳しくは <!-- link:begin check-billing-path#api-key-in-env -->課金の経路を確かめる（API キーとサブスクリプション） › API キーの環境変数があるとき（準備中）<!-- link:end --> を引く。
+- **報告や共有**：`/feedback` やトランスクリプトの共有に応じると、会話とコードが送られる。秘密が会話に入った後で送る前に、<!-- link:begin what-feedback-sends#what-is-sent -->[/feedback・トランスクリプトの共有で送られるもの › 送られるものと残る期間](what-feedback-sends.md#what-is-sent)<!-- link:end --> で送られるものを確かめる。
+- **環境変数とシェルの設定**：`ANTHROPIC_API_KEY` のような変数をシェルの設定ファイルに書いて忘れると、課金の経路まで変わる。詳しくは <!-- link:begin check-billing-path#api-key-in-env -->[課金の経路を確かめる（API キーとサブスクリプション） › API キーの環境変数があるとき](../cost/check-billing-path.md#api-key-in-env)<!-- link:end --> を引く。
 
 置かないだけで足りない理由が 2 つある。作業に要る .env はリポジトリの中にあることが多い。サンドボックスの読み取りは既定でマシンのほぼ全体に及ぶので、作業ディレクトリの外に置いたホームの秘密も、明示して塞がない限り読める（<!-- link:begin sandboxing#default-reads -->[サンドボックスで封じ込める › 読み取りは既定で広い](../enforce/sandboxing.md#default-reads)<!-- link:end -->）。すでに会話へ貼ってしまった場合や、鍵を読まれたかもしれない場合は、設定を直す前に <!-- link:begin secrets-exposed#first-response -->[秘密の情報を読まれた・外に出された › まず鍵を無効にする](../symptoms/secrets-exposed.md#first-response)<!-- link:end --> へ進む。
 
@@ -194,12 +194,12 @@ updated: 2026-11-05
 - [秘密の情報を読まれた・外に出された › まず鍵を無効にする](../symptoms/secrets-exposed.md#first-response)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](lethal-trifecta.md)
-- /feedback・トランスクリプトの共有で送られるもの（準備中）
+- [/feedback・トランスクリプトの共有で送られるもの](what-feedback-sends.md)
 - [送ったデータの行方（学習・保持期間）](where-your-data-goes.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [知らないリポジトリを開く前に](before-opening-unknown-repos.md)
-- 課金の経路を確かめる（API キーとサブスクリプション）（準備中）
+- [課金の経路を確かめる（API キーとサブスクリプション）](../cost/check-billing-path.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](default-safety-settings.md#by-stage)
 
 </div>

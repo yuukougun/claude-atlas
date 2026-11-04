@@ -1,0 +1,11 @@
+title: 雑務のリポジトリの構成例
+kind: other
+place: project
+safety: false
+conditions:
+  - 業務ごとにディレクトリを分け、材料と成果物は追跡しない
+expect:
+  - when: weekly-report/ を作業の場所にして週報を頼む
+    then: weekly-report/README.md の手順と注意に沿って、weekly-report/out/ に下書きが書かれる
+  - when: git status を見る
+    then: inbox/ と out/ の中身が変更として出ない

@@ -57,7 +57,7 @@ updated: 2026-11-05
 | Claude Code | 人と Claude が同じ作業場で往復する | リポジトリ、シェル、テスト、プロジェクトの設定 | 手元（ターミナル・IDE・Desktop）かクラウド |
 | API | 自分のプログラム（ループも自分で書く層と、任せる層がある） | プログラムがツールとして渡したもの | 自分のプログラムが動く場所か、Anthropic が持つ環境 |
 
-どこで動くかによって、触れられるファイル・ブラウザ・設定・秘密が変わる。理由は <!-- link:begin where-it-runs#three-locations -->[実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所](where-it-runs.md#three-locations)<!-- link:end --> にある。面ごとに使えない機能は <!-- link:begin what-each-surface-cannot-do#table -->面ごとにできないこと（早見表） › 早見表（面 × 機能）（準備中）<!-- link:end --> で引ける。
+どこで動くかによって、触れられるファイル・ブラウザ・設定・秘密が変わる。理由は <!-- link:begin where-it-runs#three-locations -->[実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所](where-it-runs.md#three-locations)<!-- link:end --> にある。面ごとに使えない機能は <!-- link:begin what-each-surface-cannot-do#table -->[面ごとにできないこと（早見表） › 早見表（面 × 機能）](what-each-surface-cannot-do.md#table)<!-- link:end --> で引ける。
 
 次の表は、アプリのタスクの機能について、数値ファイルの属性を道具が引いたものである。
 
@@ -86,7 +86,7 @@ updated: 2026-11-05
 
 「Cowork は別のアプリ」「Web 検索はトグルで入れる」という古い説明が、今の画面と合わないのは、この統合のせいである。古い助言の台帳では <!-- link:begin outdated-advice-ledger#cowork-separate-app -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#cowork-separate-app)<!-- link:end --> が該当する。手順書に「Cowork に切り替える」とあったら、自分のアカウントがどちらの体験かを、入力欄で先に確かめる。
 
-統合の後も残る制約がある。Incognito は前の体験のままで、ファイルの作成やコードの実行ができない。Add from GitHub や会話の途中からの分岐も使えない（2026-10-29 の確認）。制約は変わりやすいので、必要な機能がその面で使えるかは <!-- link:begin what-each-surface-cannot-do#table -->面ごとにできないこと（早見表） › 早見表（面 × 機能）（準備中）<!-- link:end --> で確かめる。
+統合の後も残る制約がある。Incognito は前の体験のままで、ファイルの作成やコードの実行ができない。Add from GitHub や会話の途中からの分岐も使えない（2026-10-29 の確認）。制約は変わりやすいので、必要な機能がその面で使えるかは <!-- link:begin what-each-surface-cannot-do#table -->[面ごとにできないこと（早見表） › 早見表（面 × 機能）](what-each-surface-cannot-do.md#table)<!-- link:end --> で確かめる。
 
 ## アプリのタスクか Claude Code か {#app-tasks-or-claude-code}
 
@@ -98,7 +98,7 @@ updated: 2026-11-05
 | リポジトリ、シェル、テスト、フック、プロジェクトの設定 | Claude Code | 変更が差分として見え、検査を同じ場所で回せる |
 | 手元のファイルだけで、コードではない | どちらでもよい | 見張りたい粒度と、手順を育てたいかで決める |
 
-コードを書かない仕事でも、Claude Code を使う選択はある。Desktop の Code タブで、作業用のフォルダを決め、手動のモードで始める使い方が日本語の実務記事で紹介されている（根拠：弱）。手順をファイルやスキルに育てたい事務作業は <!-- link:begin office-paperwork#work-folder -->事務作業の半自動化（経費・報告） › 作業用のフォルダと権限の設定で始める（準備中）<!-- link:end --> にある。
+コードを書かない仕事でも、Claude Code を使う選択はある。Desktop の Code タブで、作業用のフォルダを決め、手動のモードで始める使い方が日本語の実務記事で紹介されている（根拠：弱）。手順をファイルやスキルに育てたい事務作業は <!-- link:begin office-paperwork#work-folder -->[事務作業の半自動化（経費・報告） › 作業用のフォルダと権限の設定で始める](../recipes/office-paperwork.md#work-folder)<!-- link:end --> にある。
 
 日本語の実務記事には、Cowork から始め、繰り返す作業になったら Claude Code へ移す、という整理もある（根拠：弱。二次の情報で、公式の文書の推奨ではない）。この辞典は、これを目安の 1 つとして扱う。繰り返す作業は、手順が固まるほど、ファイルやスキルとして育てやすい面が向く。
 
@@ -157,9 +157,9 @@ API を使うと、課金の経路が変わりうる。API キーがあるとき
 
 - 調べものや資料の下書きをアプリのタスクで進め、その結果のファイルをリポジトリに置いて、Claude Code で実装に使う。
 - 外出先から手元の作業を見るなら、Claude Code のリモート操作で、実行とファイルを手元に残したまま画面だけ移せる。クラウドで動かすか手元に残すかは <!-- link:begin where-it-runs#remote-control -->[実行場所の違い（クラウド・自分の PC・リモート操作） › リモート操作は実行を手元に残す](where-it-runs.md#remote-control)<!-- link:end --> で決める。
-- ブラウザや画面の操作が要る作業は、コネクタがあればそれを先に使う。順番は <!-- link:begin browser-control#which-to-use -->Claude in Chrome と computer use（ブラウザと画面の操作） › コネクタ・ブラウザ・画面の順に選ぶ（準備中）<!-- link:end --> にある。
+- ブラウザや画面の操作が要る作業は、コネクタがあればそれを先に使う。順番は <!-- link:begin browser-control#which-to-use -->[Claude in Chrome と computer use（ブラウザと画面の操作） › コネクタ・ブラウザ・画面の順に選ぶ](browser-control.md#which-to-use)<!-- link:end --> にある。
 
-面を移すと、使える機能が変わる。移す前に、必要な機能が移る先にあるかを <!-- link:begin what-each-surface-cannot-do#moving-between-surfaces -->面ごとにできないこと（早見表） › 別の面に移すとき（準備中）<!-- link:end --> で確かめる。
+面を移すと、使える機能が変わる。移す前に、必要な機能が移る先にあるかを <!-- link:begin what-each-surface-cannot-do#moving-between-surfaces -->[面ごとにできないこと（早見表） › 別の面に移すとき](what-each-surface-cannot-do.md#moving-between-surfaces)<!-- link:end --> で確かめる。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -179,12 +179,12 @@ API を使うと、課金の経路が変わりうる。API キーがあるとき
 **関連**
 
 - Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）
-- 面ごとにできないこと（早見表）（準備中）
+- [面ごとにできないこと（早見表）](what-each-surface-cannot-do.md)
 - [全体地図：Claude の面と層](../start/product-map.md)
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
-- 事務作業の半自動化（経費・報告）（準備中）
-- Claude in Chrome と computer use（ブラウザと画面の操作）（準備中）
+- [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
+- [Claude in Chrome と computer use（ブラウザと画面の操作）](browser-control.md)
 - 周辺製品の一覧（準備中）
 
 </div>

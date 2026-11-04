@@ -129,7 +129,7 @@ updated: 2026-11-05
 
 - **守ってほしい方針と規則**：プロジェクトの根の CLAUDE.md に置く。圧縮の後も入れ直される。書く内容と外す内容の見分け方は <!-- link:begin what-to-put-in-claude-md -->[CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)<!-- link:end --> にある。
 - **例外を許さない禁止**：権限ルールかフックに移す。CLAUDE.md には理由と相談の基準だけを残す。フックは会話の外で動くので、圧縮の後も働く。止めた理由を返す書き方は <!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end --> にある。
-- **作業の進み具合と決めたこと**：ファイルに書かせる。置き方は <!-- link:begin progress-files -->進捗ファイルで、途中から再開できるようにする（準備中）<!-- link:end --> にある。
+- **作業の進み具合と決めたこと**：ファイルに書かせる。置き方は <!-- link:begin progress-files -->[進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)<!-- link:end --> にある。
 - **長く放置する前、または区切りの前**：書き出してから会話を新しくするか、残す焦点を指示して圧縮する。使い分けは <!-- link:begin handoff-documents#vs-compact -->[handoff 文書と document-and-clear › /compact との使い分け](../context/handoff-documents.md#vs-compact)<!-- link:end --> にある。要約の方針を CLAUDE.md の節に書く方法もある（公式の Manage costs のページが案内する）。
 
 どれも、頼んだだけで終わらせず、圧縮の後に確認の依頼で見えているかを確かめるところまで含める。
@@ -174,7 +174,7 @@ updated: 2026-11-05
 
 **関連**
 
-- 進捗ファイルで、途中から再開できるようにする（準備中）
+- [進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - [.claude/rules と paths で必要なときだけ読ませる › 圧縮の後に戻る時期](../extend/path-scoped-rules.md#after-compaction)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)

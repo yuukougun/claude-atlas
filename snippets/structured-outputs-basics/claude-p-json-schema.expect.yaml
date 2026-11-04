@@ -1,0 +1,11 @@
+title: claude -p で出力の形を指定する
+kind: other
+place: シェル（スクリプトや CI の中）
+safety: false
+conditions:
+  - README のあるリポジトリで実行する
+  - 読み取りだけの依頼にしてある（書き込みの許可を渡していない）
+expect:
+  - when: このコマンドを実行する
+    then: 出力の JSON の structured_output に title と audience が入る
+control: --json-schema を外すと、result に自由な文章で返る

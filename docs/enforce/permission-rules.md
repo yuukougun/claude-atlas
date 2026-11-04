@@ -57,9 +57,9 @@ updated: 2026-11-05
 - よく使う安全なコマンドを毎回確認させたくない。allow ルールで、決まったコマンドだけ確認を省ける
 - 会話で言った禁止は、圧縮で消えうる。設定に書いたルールは圧縮の影響を受けない。理由は <!-- link:begin when-to-lock#spoken-rules-fade -->[お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](when-to-lock.md#spoken-rules-fade)<!-- link:end --> にある
 
-任せる幅を広げる側の注意がある。確認を減らして長い作業を任せ始めるときは、allow を足す前に deny と ask を書く。守りの層は、ルールだけにしない。ルールが届かない範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](sandboxing.md#scope)<!-- link:end --> で囲む。モードを問わず保護される場所は <!-- link:begin protected-paths#protected -->消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い（準備中）<!-- link:end --> で確かめる。auto モードを使うなら、<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](what-auto-mode-stops.md#limits)<!-- link:end --> で、すり抜けうる操作を知っておく。
+任せる幅を広げる側の注意がある。確認を減らして長い作業を任せ始めるときは、allow を足す前に deny と ask を書く。守りの層は、ルールだけにしない。ルールが届かない範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](sandboxing.md#scope)<!-- link:end --> で囲む。モードを問わず保護される場所は <!-- link:begin protected-paths#protected -->[消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い](protected-paths.md#protected)<!-- link:end --> で確かめる。auto モードを使うなら、<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](what-auto-mode-stops.md#limits)<!-- link:end --> で、すり抜けうる操作を知っておく。
 
-どの規則をルールにするかは、機械的に判定でき、害の大きいものに絞る。判断を含む規則は鍵にしない（<!-- link:begin when-to-lock#what-not-to-lock -->[お願いを鍵に移す判断 › 鍵にしない規則（判断を含むもの）](when-to-lock.md#what-not-to-lock)<!-- link:end -->、<!-- link:begin lock-side-effects#what-to-lock -->縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）（準備中）<!-- link:end -->）。
+どの規則をルールにするかは、機械的に判定でき、害の大きいものに絞る。判断を含む規則は鍵にしない（<!-- link:begin when-to-lock#what-not-to-lock -->[お願いを鍵に移す判断 › 鍵にしない規則（判断を含むもの）](when-to-lock.md#what-not-to-lock)<!-- link:end -->、<!-- link:begin lock-side-effects#what-to-lock -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 縛る規則の選び方（機械的に判定でき、害の大きいものだけ）](lock-side-effects.md#what-to-lock)<!-- link:end -->）。
 
 ## 最小の使い方 {#minimal}
 
@@ -79,7 +79,7 @@ updated: 2026-11-05
 
     `Bash` の末尾の ` *`（空白とアスタリスク）は前方一致である。空白なしの `Bash(git diff*)` は `git diff-index` にも当たるので、空白を入れて書く。`:*` の書き方も同じ意味である。
 
-    ルールは設定の層をまたいで合わさる。同じキーを優先順位の高い層が上書きする設定とは動きが違う（<!-- link:begin settings-layers#merge -->設定ファイルの階層と優先順位 › 合わさる設定、上書きされる設定（準備中）<!-- link:end -->）。効いているかは `/status` で読み込まれた層を見て確かめる（<!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end -->）。
+    ルールは設定の層をまたいで合わさる。同じキーを優先順位の高い層が上書きする設定とは動きが違う（<!-- link:begin settings-layers#merge -->[設定ファイルの階層と優先順位 › 合わさる設定、上書きされる設定](../cli/settings-layers.md#merge)<!-- link:end -->）。効いているかは `/status` で読み込まれた層を見て確かめる（<!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](../cli/settings-layers.md#verify)<!-- link:end -->）。
 
     確認の数を減らしたいが、どのコマンドを allow に入れるか決められないときは、公式のスキル `/fewer-permission-prompts` が、過去の記録から読み取り専用コマンドの allow の案を作る。案は自分で読んでから入れる。
 
@@ -159,7 +159,7 @@ flowchart TD
 
 すべてのプロセスを止められるのはサンドボックスで、OS の層で Bash・PowerShell・Monitor とその子プロセスを囲む。`Read` と `Edit` の deny はサンドボックスの設定にも合わさる。一方、サンドボックスの `denyRead` は `Read` の道具を止めない。2 つは別の層で、足し合わせて使う。囲める範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](sandboxing.md#scope)<!-- link:end -->、二重にする組み方は <!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](../safety/protecting-secrets.md#two-layers)<!-- link:end --> にある。
 
-道具の側にも、作業ディレクトリの外への書き込みを止める設定 `permissions.blockWritesOutsideWorkingDirectories` がある。`Write`・`Edit`・`NotebookEdit` が、bypassPermissions を含むどのモードでも、外への書き込みを拒む。これも、シェルのコマンド・MCP の道具・フックが動かすプログラムは縛らない。公式はサンドボックスとの併用を勧める。リポジトリの設定からも true にできるが、利用者の設定を外すことはできない。true にすると、EnterWorktree と ExitWorktree の道具が使えなくなる。読み取り側の `blockReadsOutsideWorkingDirectories` もある。詳しくは <!-- link:begin protected-paths#outside-working-directory -->消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる（準備中）<!-- link:end --> を見る。
+道具の側にも、作業ディレクトリの外への書き込みを止める設定 `permissions.blockWritesOutsideWorkingDirectories` がある。`Write`・`Edit`・`NotebookEdit` が、bypassPermissions を含むどのモードでも、外への書き込みを拒む。これも、シェルのコマンド・MCP の道具・フックが動かすプログラムは縛らない。公式はサンドボックスとの併用を勧める。リポジトリの設定からも true にできるが、利用者の設定を外すことはできない。true にすると、EnterWorktree と ExitWorktree の道具が使えなくなる。読み取り側の `blockReadsOutsideWorkingDirectories` もある。詳しくは <!-- link:begin protected-paths#outside-working-directory -->[消せない場所・触れない場所（protected paths） › 作業ディレクトリの外への読み書きを閉じる](protected-paths.md#outside-working-directory)<!-- link:end --> を見る。
 
 !!! example "判断例：Python 製のプロジェクトで .env を守る"
     - **状況**：`.env` に本物の鍵が入っている。Claude にテストのスクリプトを書かせて実行させている。
@@ -167,7 +167,7 @@ flowchart TD
     - **選んだもの**：deny とサンドボックスの両方。そもそも鍵を作業ディレクトリに置かない形も検討する。
     - **理由**：deny だけだと、Claude の書いたスクリプトが `.env` を自分で開く経路が残る。道具の側の deny と、OS の層のサンドボックスは止める範囲が違う。秘密を置かない設計は <!-- link:begin protecting-secrets#keep-out -->[秘密情報（.env・API キー）を守る › 秘密を作業ディレクトリと会話に置かない](../safety/protecting-secrets.md#keep-out)<!-- link:end --> にある。
 
-評価資産のように「絶対に書き換えさせない」ファイルを凍結するときも同じで、deny だけでは子プロセスを止められない。組み方は <!-- link:begin freeze-eval-assets#how-to-freeze -->評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）（準備中）<!-- link:end --> にある。
+評価資産のように「絶対に書き換えさせない」ファイルを凍結するときも同じで、deny だけでは子プロセスを止められない。組み方は <!-- link:begin freeze-eval-assets#how-to-freeze -->[評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）](freeze-eval-assets.md#how-to-freeze)<!-- link:end --> にある。
 
 ## 信頼の前に効くもの・後に効くもの {#workspace-trust}
 
@@ -181,7 +181,7 @@ flowchart TD
 
 読み方は 2 つある。まず、リポジトリが共有の設定に書いた allow は、利用者が信頼するまで効かない。知らないリポジトリが allow で確認を外すことはできない。次に、deny と ask は信頼と関係なく効く。共有の設定に deny を書けば、開いた直後から効く。
 
-`-p` と SDK はダイアログを出さず、信頼したものとして `.claude/settings.json` のフックを走らせる。非対話の実行では確認が出ない点は <!-- link:begin before-opening-unknown-repos#headless -->[知らないリポジトリを開く前に › 非対話の実行では確認が出ない](../safety/before-opening-unknown-repos.md#headless)<!-- link:end --> にある。信頼の前後で何が効くかは <!-- link:begin before-opening-unknown-repos#trust -->[知らないリポジトリを開く前に › 信頼の前と後で効くもの](../safety/before-opening-unknown-repos.md#trust)<!-- link:end -->、チームの共有設定では <!-- link:begin share-team-settings#after-trust -->チームで設定を共有する › 信頼してから効く設定（準備中）<!-- link:end --> を見る。
+`-p` と SDK はダイアログを出さず、信頼したものとして `.claude/settings.json` のフックを走らせる。非対話の実行では確認が出ない点は <!-- link:begin before-opening-unknown-repos#headless -->[知らないリポジトリを開く前に › 非対話の実行では確認が出ない](../safety/before-opening-unknown-repos.md#headless)<!-- link:end --> にある。信頼の前後で何が効くかは <!-- link:begin before-opening-unknown-repos#trust -->[知らないリポジトリを開く前に › 信頼の前と後で効くもの](../safety/before-opening-unknown-repos.md#trust)<!-- link:end -->、チームの共有設定では <!-- link:begin share-team-settings#after-trust -->[チームで設定を共有する › 信頼してから効く設定](../team/share-team-settings.md#after-trust)<!-- link:end --> を見る。
 
 `permissions.defaultMode` の `auto` と `bypassPermissions` は、プロジェクトと手元の設定では無効である。ユーザーか管理の設定に書く。管理側で使えなくする設定は <!-- link:begin managed-settings-enforcement#disable-modes -->管理設定と組織の強制 › モードを使えなくする設定（準備中）<!-- link:end --> にある。
 
@@ -255,11 +255,11 @@ flowchart TD
 | --- | --- | --- |
 | 子プロセスまで含めて読み書きを閉じる | <!-- link:begin sandboxing -->[サンドボックスで封じ込める](sandboxing.md)<!-- link:end --> | OS の層で止める。deny は Claude Code が見分ける経路だけ |
 | 既存ファイルだけを止める、理由と代わりを返す | フック | 条件を書ける。deny はパスと道具の単純な一致 |
-| どのモードでも守りたい場所 | <!-- link:begin protected-paths -->消せない場所・触れない場所（protected paths）（準備中）<!-- link:end --> | 設定なしで保護される場所と、足りない境界を足す設定 |
+| どのモードでも守りたい場所 | <!-- link:begin protected-paths -->[消せない場所・触れない場所（protected paths）](protected-paths.md)<!-- link:end --> | 設定なしで保護される場所と、足りない境界を足す設定 |
 | 利用者の設定で外せない規則 | <!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制 › 利用者の側から外せない範囲（準備中）<!-- link:end --> | 管理設定で組織として強制する |
 | 判断を含む規則 | スキルやお願い | 鍵にせず、理由と相談の基準を伝える |
 
-スキルとフックの選び方は <!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end --> にある。縛りを足しすぎたときの止めすぎと回り込みは <!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end --> で見直す。
+スキルとフックの選び方は <!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end --> にある。縛りを足しすぎたときの止めすぎと回り込みは <!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end --> で見直す。
 
 ## 古くなった助言 {#outdated}
 
@@ -283,13 +283,13 @@ flowchart TD
 **次に読む**
 
 - [サンドボックスで封じ込める](sandboxing.md)
+- [消せない場所・触れない場所（protected paths）](protected-paths.md)
 - [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
-- 消せない場所・触れない場所（protected paths）（準備中）
+- [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
+- [チームで設定を共有する](../team/share-team-settings.md)
 - 管理設定と組織の強制（準備中）
-- dynamic workflows（スクリプトで多数のサブエージェントを動かす）（準備中）
-- Agent SDK（Claude Code をライブラリとして使う）（準備中）
 - ほか 1 ページ
 
 **関連**
@@ -297,10 +297,9 @@ flowchart TD
 - [auto モードは何を止め、何を止めないか](what-auto-mode-stops.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [お願いを鍵に移す判断](when-to-lock.md)
-- 設定ファイルの階層と優先順位（準備中）
-- 評価資産を凍結し、触れる範囲を絞る（準備中）
-- 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
-- チームで設定を共有する（準備中）
+- [設定ファイルの階層と優先順位](../cli/settings-layers.md)
+- [評価資産を凍結し、触れる範囲を絞る](freeze-eval-assets.md)
+- [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
 - [フックとスキルの違い](../extend/hook-vs-skill.md)
 
 </div>

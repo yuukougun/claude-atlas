@@ -58,7 +58,7 @@ AI と組んだ作業で人の判断が崩れる型は、次の 5 つである�
 
 5 つは別々の現象である。ただし 1 つの作業の中で重なって現れうる。たとえば、AI の「続けよう」に同意して（同意を根拠にする）、実装の速さから進んでいる気になり（体感を信じる）、方針を捨てそびれる（やめられない）。
 
-このうち「預けすぎる」の線引きは、<!-- link:begin what-not-to-delegate -->[任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)<!-- link:end --> と <!-- link:begin how-much-understanding-to-keep -->どこまで理解を手放してよいか（中核と周辺）（準備中）<!-- link:end --> が持つ。学習の場面では <!-- link:begin learning-with-ai -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](learning-with-ai.md)<!-- link:end --> が持つ。
+このうち「預けすぎる」の線引きは、<!-- link:begin what-not-to-delegate -->[任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)<!-- link:end --> と <!-- link:begin how-much-understanding-to-keep -->[どこまで理解を手放してよいか（中核と周辺）](how-much-understanding-to-keep.md)<!-- link:end --> が持つ。学習の場面では <!-- link:begin learning-with-ai -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](learning-with-ai.md)<!-- link:end --> が持つ。
 
 ## Claude 側の六つとは別の軸にする理由 {#separate-axis}
 
@@ -101,7 +101,7 @@ Claude 側の 6 つ（見えていない・散らかっている・確かめて�
 人の側の守りの中心は、<!-- link:begin four-principles#hold -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 握る](../start/four-principles.md#hold)<!-- link:end --> と <!-- link:begin four-principles#verify -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 確かめる](../start/four-principles.md#verify)<!-- link:end --> である。任せる幅を広げるほど、人が握るものを先に決めておく。その比例の考え方は <!-- link:begin four-principles#proportional-rule -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 比例則](../start/four-principles.md#proportional-rule)<!-- link:end --> にある。
 
 - **預けすぎる**：評価の定義・採否・撤退・中核の理解は人が握る。確かめる手間を下げる工夫は <!-- link:begin over-reliance#cheap-verification -->[判断を預けすぎる（過度依存） › 確かめる手間を下げる](over-reliance.md#cheap-verification)<!-- link:end --> にある。
-- **同意を根拠にする**：AI の賛成を証拠に数えない。何を証拠に数えるかは <!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](agreement-is-not-evidence.md#what-counts)<!-- link:end --> にある。疑う役を持ち回りにする決まりは <!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end --> にある。
+- **同意を根拠にする**：AI の賛成を証拠に数えない。何を証拠に数えるかは <!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](agreement-is-not-evidence.md#what-counts)<!-- link:end --> にある。疑う役を持ち回りにする決まりは <!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end --> にある。
 - **やめられない**：撤退の基準を先に書き、判定を作った本人から離す。手順は <!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](decide-when-to-quit.md#write-criteria-first)<!-- link:end --> にある。
 - **体感を信じる**：同じ物差しで記録を取り、体感ではなく記録で判断する。記録の項目は <!-- link:begin felt-vs-measured#what-to-record -->[体感と実測 › 記録で測るもの](../eval/felt-vs-measured.md#what-to-record)<!-- link:end --> にある。
 - **みんなの案になる**：差が要る場面では、先に自分の案を書く。AI の案は「ほかの人も得ている案」として扱う。線引きは <!-- link:begin ai-ideas-are-everyones#when-difference-matters -->[AI の案は「みんなの案」（均質化） › 差が要る場面と、底上げで足りる場面](ai-ideas-are-everyones.md#when-difference-matters)<!-- link:end --> にある。
@@ -177,9 +177,9 @@ AI と組んだ作業の失敗は、5 つの問いで自分の側から点検で
 - [AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](learning-with-ai.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
-- どこまで理解を手放してよいか（中核と周辺）（準備中）
+- [どこまで理解を手放してよいか（中核と周辺）](how-much-understanding-to-keep.md)
 - 振り返りで AI に評価させない（集計係にとどめる）（準備中）
-- 役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）
+- [役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)
 - [ロードマップ（委任の段階別）](../start/roadmap.md)
 
 </div>

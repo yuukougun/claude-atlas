@@ -1,0 +1,18 @@
+title: 評価用のファイルとデータを書き換えさせない設定の例
+kind: settings
+place: project
+safety: true
+features: [sandbox]
+requires: [eval/, tests/frozen/, data/holdout/]
+conditions:
+  - 新しいセッションで試す
+  - サンドボックスが使える環境（WSL2 か Linux）で試す
+  - 壊れても困らない複製のリポジトリに置く
+expect:
+  - when: Edit ツールで eval/ の中のファイルを書き換えさせる
+    then: 権限ルールの deny で止められる
+  - when: Bash から Python のスクリプトで eval/ の中のファイルに書かせる
+    then: サンドボックスの denyWrite で書き込みが失敗する
+  - when: data/holdout/ の中身を読ませる
+    then: Read の道具でも、Bash から開く方法でも読めない
+control: 設定を置かないとき、同じ依頼で eval/ の中のファイルが書き換わる

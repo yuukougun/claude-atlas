@@ -66,7 +66,7 @@ updated: 2026-11-05
 安い確かめから順に進める。先に被害を止める。
 
 0. **先に止める**：承認待ちの操作は拒否する。実行中なら中断する（Claude Code では、ずれたら即 Esc という公式の助言がある）。実行済みなら、何が外に出たか、何が書き換わったかを会話の記録と道具の実行記録で確かめる。秘密を含むものが出たなら、先に <!-- link:begin secrets-exposed#first-response -->[秘密の情報を読まれた・外に出された › まず鍵を無効にする](secrets-exposed.md#first-response)<!-- link:end --> へ進む。
-1. **指示の出どころを確かめる**：その操作は、自分の依頼や CLAUDE.md から出たのか、読ませたものから出たのか。ツール結果の本文を読み、同じ文言が読ませたものの中にあるかを見る。Claude に洗い出させる依頼の雛形を、このあと置く。返答は手がかりであり、証拠は記録である。読ませたものが AI の利用を禁じる合図だったときは、規則に従う。見分け方は <!-- link:begin instructions-hidden-in-materials#two-kinds -->課題資料・問題文に仕込まれた指示 › 仕込まれる指示の二つの型（攻撃と、利用の規則の合図）（準備中）<!-- link:end --> にある。
+1. **指示の出どころを確かめる**：その操作は、自分の依頼や CLAUDE.md から出たのか、読ませたものから出たのか。ツール結果の本文を読み、同じ文言が読ませたものの中にあるかを見る。Claude に洗い出させる依頼の雛形を、このあと置く。返答は手がかりであり、証拠は記録である。読ませたものが AI の利用を禁じる合図だったときは、規則に従う。見分け方は <!-- link:begin instructions-hidden-in-materials#two-kinds -->[課題資料・問題文に仕込まれた指示 › 仕込まれる指示の二つの型（攻撃と、利用の規則の合図）](../safety/instructions-hidden-in-materials.md#two-kinds)<!-- link:end --> にある。
 2. **縛っていない（Claude 側の原因）**：その操作は、確認なしに通る状態だったかを見る。Claude Code では `/permissions` で、その操作が allow ルールに入っていないか、確認を減らすモードで動いていなかったかを確かめる。deny ルールか ask ルールに当たる操作は、通らないか確認が出る。
    auto モードで動いていたなら、止められた操作の一覧（<!-- name:begin recently-denied-to-blocked -->Recently blocked（/permissions のタブ）<!-- name:end -->）に今回の操作が載っているかを見る。載らずに通ったなら、auto モードの限界に当たった可能性がある。auto モードは確認を減らす仕組みで、安全を保証しない（<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end -->）。
 3. **境界がない（Claude 側の原因）**：同じセッションに、次の 3 つが同居していなかったかを見る。1 つ目は信頼できない入力で、Web ページ・issue・メール・道具の説明などが当たる。2 つ目は秘密や私的なデータで、開いていたリポジトリ・ログイン済みのサイト・環境変数が当たる。3 つ目は外への送信や変更で、書き込みのできるコネクタ・ブラウザの操作・通信が当たる。3 つとも同居していたなら、原因は構成にある。同じ構成で、読ませるものだけを選び直しても、また起きる（<!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](../safety/lethal-trifecta.md#three-capabilities)<!-- link:end -->）。
@@ -76,7 +76,7 @@ updated: 2026-11-05
 診断の手順 1 と 3 で見る場所は、面で違う。読ませる経路と、同居しやすい能力は次のとおりである。
 
 === "アプリ"
-    Web 検索、コネクタ、Claude in Chrome が、読ませる経路になる。ログイン済みのサイトや、つないだメール・カレンダー・社内の資料まで届くので、3 つ目の外への送信や変更と、2 つ目の私的なデータが同居しやすい。届く範囲は <!-- link:begin browser-agent-cautions#reach -->ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）（準備中）<!-- link:end -->、つないだものを信頼してよいかは <!-- link:begin connectors-in-the-app#trust -->[コネクタ（MCP）をアプリで使う › 信頼してよいか](../app/connectors-in-the-app.md#trust)<!-- link:end --> で確かめる。
+    Web 検索、コネクタ、Claude in Chrome が、読ませる経路になる。ログイン済みのサイトや、つないだメール・カレンダー・社内の資料まで届くので、3 つ目の外への送信や変更と、2 つ目の私的なデータが同居しやすい。届く範囲は <!-- link:begin browser-agent-cautions#reach -->[ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）](../safety/browser-agent-cautions.md#reach)<!-- link:end -->、つないだものを信頼してよいかは <!-- link:begin connectors-in-the-app#trust -->[コネクタ（MCP）をアプリで使う › 信頼してよいか](../app/connectors-in-the-app.md#trust)<!-- link:end --> で確かめる。
 
 === "Claude Code"
     Web の取得、MCP、リポジトリの中のファイルが、読ませる経路になる。コマンドの実行と通信も持つので、3 つが同居しやすい。実行する側の囲いは <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> にある。
@@ -92,7 +92,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 縛っていない | [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits) |
-| 境界がない | [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)<br>[プロンプトインジェクションの実際](../safety/prompt-injection-in-practice.md)<br>課題資料・問題文に仕込まれた指示（準備中） |
+| 境界がない | [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)<br>[プロンプトインジェクションの実際](../safety/prompt-injection-in-practice.md)<br>[課題資料・問題文に仕込まれた指示](../safety/instructions-hidden-in-materials.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -141,7 +141,7 @@ updated: 2026-11-05
 仕組みに移す手は、次の 3 つである。
 
 1. **許す操作を縛る**：送信や書き込みの道具は ask か deny にして、通す操作だけを allow に置く。評価の順番は deny が先である（<!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](../enforce/permission-rules.md#evaluation-order)<!-- link:end -->）。子プロセスには効かないルールがあるので、通信や読み書きの囲いは OS の層でも持つ（<!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](../enforce/permission-rules.md#child-processes)<!-- link:end -->、<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->）。
-2. **3 つを同時に持たせない**：信頼できない入力を読ませるセッションには、私的なデータと外への送信を持たせない。3 つとも要る作業は、人の承認を挟む（<!-- link:begin lethal-trifecta#when-all-three -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つとも要るとき](../safety/lethal-trifecta.md#when-all-three)<!-- link:end -->）。ブラウザや画面の操作を任せない作業は <!-- link:begin browser-agent-cautions#what-not-to-do -->ブラウザや画面の操作を任せるときの注意 › 任せない作業（準備中）<!-- link:end --> にある。
+2. **3 つを同時に持たせない**：信頼できない入力を読ませるセッションには、私的なデータと外への送信を持たせない。3 つとも要る作業は、人の承認を挟む（<!-- link:begin lethal-trifecta#when-all-three -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つとも要るとき](../safety/lethal-trifecta.md#when-all-three)<!-- link:end -->）。ブラウザや画面の操作を任せない作業は <!-- link:begin browser-agent-cautions#what-not-to-do -->[ブラウザや画面の操作を任せるときの注意 › 任せない作業](../safety/browser-agent-cautions.md#what-not-to-do)<!-- link:end --> にある。
 3. **読ませる経路を絞る**：コネクタは使うときだけ読ませる（<!-- link:begin connectors-in-the-app#on-demand -->[コネクタ（MCP）をアプリで使う › 使うときだけ読ませる（On demand）](../app/connectors-in-the-app.md#on-demand)<!-- link:end -->）。入れた拡張は、出所と中身を確かめてから使う。
 
 仕組みに移したあと、この症状が再び出たら、auto モードの限界に当たったかを先に見る。止められた操作で依頼が通らなくなったときは、<!-- link:begin refused-or-blocked -->[断られた・止められた](refused-or-blocked.md)<!-- link:end --> で切り分ける。原因がこのページのどちらでもないときは、<!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> に戻って診断し直す。
@@ -175,11 +175,11 @@ updated: 2026-11-05
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)
 - [プロンプトインジェクションの実際](../safety/prompt-injection-in-practice.md)
-- 課題資料・問題文に仕込まれた指示（準備中）
+- [課題資料・問題文に仕込まれた指示](../safety/instructions-hidden-in-materials.md)
 
 **関連**
 
-- ブラウザや画面の操作を任せるときの注意（準備中）
+- [ブラウザや画面の操作を任せるときの注意](../safety/browser-agent-cautions.md)
 - [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)

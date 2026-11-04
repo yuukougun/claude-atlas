@@ -117,13 +117,13 @@ updated: 2026-11-05
 
 食い違いが見つかったら、言い争う代わりに、見つけた事実をそのまま見せる。見せ方は <!-- link:begin insists-on-mistakes#diagnosis -->[誤りを認めずに言い張る › 原因を安く確かめる順](../symptoms/insists-on-mistakes.md#diagnosis)<!-- link:end --> にある。
 
-Claude が書いた「こう確かめた」という説明も、同じである。表示された思考や説明は、内部の処理と一致するとは限らない。説明のもっともらしさを信じず、結果を別の方法で確かめる（仕組みは <!-- link:begin unfaithful-reasoning -->表示された思考は内部の計算と一致するとは限らない（準備中）<!-- link:end --> を参照）。
+Claude が書いた「こう確かめた」という説明も、同じである。表示された思考や説明は、内部の処理と一致するとは限らない。説明のもっともらしさを信じず、結果を別の方法で確かめる（仕組みは <!-- link:begin unfaithful-reasoning -->[表示された思考は内部の計算と一致するとは限らない](../basics/unfaithful-reasoning.md)<!-- link:end --> を参照）。
 
 !!! example "判断例：報告と差分が合わない"
     - **状況**：「テストは変えずに実装だけを直した」という報告が来た。差分には、テストの期待値の変更が含まれている。
     - **迷う候補**：実装が直ったのだから、期待値の変更は小さな整理として見逃す案と、報告と差分の食い違いとして、変更の理由を確かめる案。
     - **選んだもの**：食い違いとして、変更の理由を確かめる。
-    - **理由**：テストの変更は、通らないものを通す近道にもなる。説明と差分が合わないなら、差分を正として、その変更が妥当かを見る。読む箇所の見分け方は <!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end --> にある。
+    - **理由**：テストの変更は、通らないものを通す近道にもなる。説明と差分が合わないなら、差分を正として、その変更が妥当かを見る。読む箇所の見分け方は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](diffs-humans-must-read.md#red-flags)<!-- link:end --> にある。
 
 ## 道具の出力も確かめる（途中で切れた検索・失敗を成功として返す起動） {#tool-output}
 
@@ -134,7 +134,7 @@ Claude が書いた「こう確かめた」という説明も、同じである�
 
 どちらも、「検索で出なかった」「終了コードが 0 だった」という安い証拠が、事実を表していない例である。ここでも、出力の中身と分母（何件のうち何件を見たか）を見る。
 
-公開された事例 2（Issue #64286）では、Claude 自身が後に、道具の出力が文字化けして空になり、結果を捏造することもあったと述べている（根拠：弱。単独の報告）。出力が空のときは、成功とせず、実行できなかったものとして扱う。道具が壊れたと言い出したときの切り分けは <!-- link:begin blames-the-tools#diagnosis -->[環境や道具が壊れたと言い出す › 原因を安く確かめる順](../symptoms/blames-the-tools.md#diagnosis)<!-- link:end --> にある。人が見ていない実行の出力は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->無人実行の結果を確かめる › 終了コードと要約だけで決めない（準備中）<!-- link:end --> で扱う。
+公開された事例 2（Issue #64286）では、Claude 自身が後に、道具の出力が文字化けして空になり、結果を捏造することもあったと述べている（根拠：弱。単独の報告）。出力が空のときは、成功とせず、実行できなかったものとして扱う。道具が壊れたと言い出したときの切り分けは <!-- link:begin blames-the-tools#diagnosis -->[環境や道具が壊れたと言い出す › 原因を安く確かめる順](../symptoms/blames-the-tools.md#diagnosis)<!-- link:end --> にある。人が見ていない実行の出力は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->[無人実行の結果を確かめる › 終了コードと要約だけで決めない](checking-unattended-runs.md#beyond-exit-codes)<!-- link:end --> で扱う。
 
 ## 何に効くか、どこまで効くか {#what-it-prevents}
 
@@ -144,13 +144,13 @@ Claude が書いた「こう確かめた」という説明も、同じである�
 
 - 証拠の形式を満たしていても、中身が事実とは限らない。重要な判断の前には、自分で 1 回再実行する。
 - 分母がそろっていても、そもそも測っているものが間違っていれば、そろった数字は意味を持たない。測るものを決めるのは <!-- link:begin define-done -->[「完了」を定義して渡す](define-done.md)<!-- link:end --> の役目である。
-- 結果が良すぎるときは、形式がそろっていても疑う。<!-- link:begin suspect-too-good-results#self-check -->良すぎる結果を疑う › 報告の前に自己点検させる（準備中）<!-- link:end --> を使う。
+- 結果が良すぎるときは、形式がそろっていても疑う。<!-- link:begin suspect-too-good-results#self-check -->[良すぎる結果を疑う › 報告の前に自己点検させる](suspect-too-good-results.md#self-check)<!-- link:end --> を使う。
 
 ## 誤解しやすいこと {#misconceptions}
 
 - **「念のため確認して」と書き足せば、証拠が出る**：言葉で命じるだけでは、確かめる手段が渡っていない。何を実行して何を返すかを書く。違いは <!-- link:begin verification-ladder#verbal-checks -->[検証の階段 › 「念のため確認して」と書き足すより、確かめる手段を渡す](verification-ladder.md#verbal-checks)<!-- link:end --> にある。
 - **証拠を求めれば、捏造は起きない**：出力の貼り付けも、受け取る側が読んで初めて証拠になる。読む場所は、件数・失敗の行・終了コードの 3 つで足りる。
-- **全部の報告で、全部を再実行すべきだ**：そうではない。任せる幅に応じて確かめの段を選ぶ。選び方は <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](verification-ladder.md#choose-step)<!-- link:end --> にある。見た目がそろっているだけで安心することへの注意は <!-- link:begin looks-are-not-quality -->見た目は品質の証拠ではない（準備中）<!-- link:end --> にある。
+- **全部の報告で、全部を再実行すべきだ**：そうではない。任せる幅に応じて確かめの段を選ぶ。選び方は <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](verification-ladder.md#choose-step)<!-- link:end --> にある。見た目がそろっているだけで安心することへの注意は <!-- link:begin looks-are-not-quality -->[見た目は品質の証拠ではない](looks-are-not-quality.md)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -178,20 +178,20 @@ Claude が書いた「こう確かめた」という説明も、同じである�
 **次に読む**
 
 - [検証の階段](verification-ladder.md)
+- [画面で確かめる（ブラウザ・スクリーンショット・/verify）](visual-checks.md)
+- [人間が読むべき差分の箇所](diffs-humans-must-read.md)
+- [見た目は品質の証拠ではない](looks-are-not-quality.md)
+- [良すぎる結果を疑う](suspect-too-good-results.md)
 - [バグを直す](../recipes/fix-a-bug.md)
-- 画面で確かめる（ブラウザ・スクリーンショット・/verify）（準備中）
-- 人間が読むべき差分の箇所（準備中）
-- 見た目は品質の証拠ではない（準備中）
-- 良すぎる結果を疑う（準備中）
-- データを分析する（準備中）
+- [データを分析する](../recipes/data-analysis.md)
 
 **関連**
 
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - [環境や道具が壊れたと言い出す](../symptoms/blames-the-tools.md)
-- 無人実行の結果を確かめる（準備中）
+- [無人実行の結果を確かめる](checking-unattended-runs.md)
 - [誤りを認めずに言い張る](../symptoms/insists-on-mistakes.md)
-- 表示された思考は内部の計算と一致するとは限らない（準備中）
+- [表示された思考は内部の計算と一致するとは限らない](../basics/unfaithful-reasoning.md)
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
 
 </div>

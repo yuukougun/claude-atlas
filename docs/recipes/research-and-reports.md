@@ -68,7 +68,7 @@ updated: 2026-11-05
 
 5 では、確かめられなかった主張と引用のない主張を、Claude に指して消させるか「未確認」と書かせる。消えたかは、返ってきた文書を自分で読み直して見る。
 
-5 の後に、レポートを文書や資料の形に整えるなら、<!-- link:begin write-docs -->ドキュメント・技術文書を書く（準備中）<!-- link:end -->、<!-- link:begin make-slides -->資料・スライドを作る（準備中）<!-- link:end --> が持ち主である。日本語の資料を読ませるときは、<!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end --> を先に見る。
+5 の後に、レポートを文書や資料の形に整えるなら、<!-- link:begin write-docs -->ドキュメント・技術文書を書く（準備中）<!-- link:end -->、<!-- link:begin make-slides -->資料・スライドを作る（準備中）<!-- link:end --> が持ち主である。日本語の資料を読ませるときは、<!-- link:begin documents-in-japanese#pdf -->[日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること](../japanese/documents-in-japanese.md#pdf)<!-- link:end --> を先に見る。
 
 ## 問いと範囲を先に決める {#define-the-question}
 
@@ -83,7 +83,7 @@ updated: 2026-11-05
 
 いくつかの記事や論文を読み比べたいときは、これに加えて、比べる軸（対象・条件・前提・結論）を先に決める。軸を決めると、資料ごとに違いが同じ欄に並び、違いが見つけやすくなる。資料は、自分で選んで渡すか、URL を指定する。
 
-頼み方の詳細（範囲・出典の条件・出力の形）は、<!-- link:begin using-research#requesting -->リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）（準備中）<!-- link:end --> が持ち主である。次の雛形は、4 つを埋めて出す依頼の形である。
+頼み方の詳細（範囲・出典の条件・出力の形）は、<!-- link:begin using-research#requesting -->[リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）](../app/using-research.md#requesting)<!-- link:end --> が持ち主である。次の雛形は、4 つを埋めて出す依頼の形である。
 
 <!-- gen:begin snippet research-and-reports/research-request -->
 <!-- textlint-disable -->
@@ -120,7 +120,7 @@ updated: 2026-11-05
 
 | 機能 | 面 | 強制力 | 入った版 |
 | --- | --- | --- | --- |
-| リサーチ（Research）（準備中） | アプリ | — | 2025-04-15 |
+| [リサーチ（Research）](../app/using-research.md) | アプリ | — | 2025-04-15 |
 | [Web 検索（web search。アプリ）](../app/search-research-thinking.md) | アプリ | — | 2025-03-20 |
 | [プロジェクト（Projects）](../app/using-projects.md) | アプリ | — | 2024-06-25 |
 | [アーティファクト（artifacts）](../app/artifacts-overview.md) | アプリ・Claude Code | なし | 2024-06-20 |
@@ -133,7 +133,7 @@ updated: 2026-11-05
 面ごとの使い分けは、次のとおりである。
 
 === "アプリ"
-    - **リサーチ**：広く web を調べて、出典つきのレポートを受け取りたいとき。起動しないときの頼み方と、使える条件は <!-- link:begin using-research#requesting -->リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）（準備中）<!-- link:end --> にある。
+    - **リサーチ**：広く web を調べて、出典つきのレポートを受け取りたいとき。起動しないときの頼み方と、使える条件は <!-- link:begin using-research#requesting -->[リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）](../app/using-research.md#requesting)<!-- link:end --> にある。
     - **web 検索と拡張思考との使い分け**：最新の情報が要るか、どれだけ広く調べるかで選ぶ。基準は <!-- link:begin search-research-thinking#choose -->[web 検索・リサーチ・拡張思考の使い分け › 選び方](../app/search-research-thinking.md#choose)<!-- link:end --> にある。
     - **プロジェクト**：同じ資料を固定して、繰り返し調べるとき。資料は置いたまま、問いだけを変えられる。目的を混ぜない単位は <!-- link:begin using-projects#scope -->[プロジェクトの使いどころ › プロジェクトを切る単位（1つに1つの目的）](../app/using-projects.md#scope)<!-- link:end --> にある。
     - **アーティファクト**：レポートを文書として残し、直し、共有するとき。直し方は <!-- link:begin artifacts-overview#editing -->[アーティファクト（会話の中で作る文書・スライド・デザイン） › 直し方（頼む・直接直す・範囲を選ぶ）](../app/artifacts-overview.md#editing)<!-- link:end -->、公開するときの注意は <!-- link:begin artifacts-overview#sharing -->[アーティファクト（会話の中で作る文書・スライド・デザイン） › 公開と共有](../app/artifacts-overview.md#sharing)<!-- link:end --> にある。
@@ -153,12 +153,12 @@ updated: 2026-11-05
 
 ## 出典を原文で確かめる {#check-sources}
 
-レポートの出典は、使う主張の分だけ原文で確かめる。確かめる順は、実在、書誌、引用、主張の裏づけの 4 つである。誤りの形は <!-- link:begin checking-citations#error-types -->[引用や出典の確かめ方 › よくある誤りの形](../verify/checking-citations.md#error-types)<!-- link:end -->、リサーチのレポートでの確かめ方は <!-- link:begin using-research#checking-sources -->リサーチを使いこなす › 出典の確かめ方（準備中）<!-- link:end --> にある。調べものの場面では、次を足す。
+レポートの出典は、使う主張の分だけ原文で確かめる。確かめる順は、実在、書誌、引用、主張の裏づけの 4 つである。誤りの形は <!-- link:begin checking-citations#error-types -->[引用や出典の確かめ方 › よくある誤りの形](../verify/checking-citations.md#error-types)<!-- link:end -->、リサーチのレポートでの確かめ方は <!-- link:begin using-research#checking-sources -->[リサーチを使いこなす › 出典の確かめ方](../app/using-research.md#checking-sources)<!-- link:end --> にある。調べものの場面では、次を足す。
 
 - **主張ごとに原文の引用を付けさせる**：言い換えでなく、原文の文を一字も変えずに写させる。引用があれば、原文を検索して照合できる。頼み方は <!-- link:begin fact-checking#quotes -->[事実を確かめる（引用・照合・best-of-N） › 主張ごとに引用させる](../verify/fact-checking.md#quotes)<!-- link:end --> にある。
 - **書かれていることと推測を、表の列で分ける**：「禁じる」と頼むだけではお願いにとどまる。引用の列があれば、照合できる形になる。次の雛形で、条件・限定の列と数値の写し方も指定する。
 - **要約は原文より強い言い方になりやすい**：条件や限定が落ちて、主張の範囲が広がる。「正確に」と頼んでも直らないことがあるので、条件の列で原文と照らす。理由は <!-- link:begin summary-overgeneralization#what-happens -->[要約は原文より強く言いがち（過度な一般化） › 何が起きるか](../basics/summary-overgeneralization.md#what-happens)<!-- link:end --> にある。
-- **最重要の主張は、原文を自分で読む**：結論を左右する 1〜2 件は、表を信じずに原文を読む。読んだ内容は自分で要約し、Claude には誤読の指摘を頼む方法がある（<!-- link:begin read-specs-yourself#misreading-detector -->仕様を自分で読み、AI に誤読を指摘させる › AI に誤読を指摘させる（準備中）<!-- link:end -->）。
+- **最重要の主張は、原文を自分で読む**：結論を左右する 1〜2 件は、表を信じずに原文を読む。読んだ内容は自分で要約し、Claude には誤読の指摘を頼む方法がある（<!-- link:begin read-specs-yourself#misreading-detector -->[仕様を自分で読み、AI に誤読を指摘させる › AI に誤読を指摘させる](read-specs-yourself.md#misreading-detector)<!-- link:end -->）。
 - **一致を証拠にしない**：別のモデルや同じモデルの再実行が同じ結論を出しても、原文の確認にはならない。<!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end --> を参照する。
 
 <!-- gen:begin snippet research-and-reports/facts-vs-inference -->
@@ -193,7 +193,7 @@ updated: 2026-11-05
 - **出典を開くと、書かれていないことが書いてある**：存在しない出典か、実在する文献の細部の誤りかを切り分ける。<!-- link:begin plausible-falsehoods#diagnosis -->[もっともらしい嘘・出典の誤り › 原因を安く確かめる順](../symptoms/plausible-falsehoods.md#diagnosis)<!-- link:end --> に原因を安く確かめる順がある。引用・照合の手は <!-- link:begin fact-checking#when-it-fails -->[事実を確かめる（引用・照合・best-of-N） › うまくいかないとき](../verify/fact-checking.md#when-it-fails)<!-- link:end --> にある。
 - **古い情報が混ざっている**：最近の出来事や新しい版を間違えている。<!-- link:begin doesnt-know-latest#diagnosis -->[最新の情報を知らない › 原因を安く確かめる順](../symptoms/doesnt-know-latest.md#diagnosis)<!-- link:end --> で、検索・公式の資料・日付のどれで補うかを決める。
 - **要約が原文より断定的になっている**：<!-- link:begin summary-overgeneralization#what-helps -->[要約は原文より強く言いがち（過度な一般化） › 何に効くか](../basics/summary-overgeneralization.md#what-helps)<!-- link:end --> の手に戻り、条件の列で照らし直す。
-- **リサーチが起動しない、範囲が広すぎる**：<!-- link:begin using-research#requesting -->リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）（準備中）<!-- link:end --> で頼み方を見直し、問いと範囲を絞って出し直す。
+- **リサーチが起動しない、範囲が広すぎる**：<!-- link:begin using-research#requesting -->[リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）](../app/using-research.md#requesting)<!-- link:end --> で頼み方を見直し、問いと範囲を絞って出し直す。
 - **調査で本筋の会話が埋まる**：出力の多い調査は、別の文脈に任せる。費用の注意は <!-- link:begin research-in-subagents#cost -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る › 費用と使いすぎ](../context/research-in-subagents.md#cost)<!-- link:end --> にある。
 
 <!-- gen:begin page-links -->
@@ -208,7 +208,7 @@ updated: 2026-11-05
 
 **関連**
 
-- リサーチを使いこなす（準備中）
+- [リサーチを使いこなす](../app/using-research.md)
 - [アーティファクト（会話の中で作る文書・スライド・デザイン）](../app/artifacts-overview.md)
 - [プロジェクトの使いどころ](../app/using-projects.md)
 - [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)
@@ -217,10 +217,10 @@ updated: 2026-11-05
 - [最新の情報を知らない](../symptoms/doesnt-know-latest.md)
 - [知識カットオフと「今」を知らない問題](../basics/knowledge-cutoff.md)
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
-- 仕様を自分で読み、AI に誤読を指摘させる（準備中）
+- [仕様を自分で読み、AI に誤読を指摘させる](read-specs-yourself.md)
 - ドキュメント・技術文書を書く（準備中）
 - 資料・スライドを作る（準備中）
-- 日本語の資料を読ませる・書かせる（準備中）
+- [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)
 - 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 
 </div>

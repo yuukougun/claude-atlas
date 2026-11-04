@@ -99,7 +99,7 @@ updated: 2026-11-05
     - **選んだもの**：先に契約の持ち主へ、AI のサービスに送ってよいか、どの面なら許されるかを聞く。許可が出るまでデータは渡さない。許可の範囲が組織の契約の面なら、その面で分析する。
     - **理由**：契約が AI の利用に触れていなくても、使ってよい意味にならない。個人のアカウントは、学習に使う設定が有効なら約束した扱いと食い違いうる。許可の範囲を先に決めれば、後から使い方を変えずに済む。
 
-分析の進め方は <!-- link:begin data-analysis#check-raw-data -->データを分析する › 生データで裏を取る（準備中）<!-- link:end --> にある。事務作業に預かった情報が混ざるときの、渡す範囲の決め方は <!-- link:begin office-paperwork#private-data -->事務作業の半自動化（経費・報告） › 私的な情報を渡す範囲（準備中）<!-- link:end --> にある。
+分析の進め方は <!-- link:begin data-analysis#check-raw-data -->[データを分析する › 生データで裏を取る](../recipes/data-analysis.md#check-raw-data)<!-- link:end --> にある。事務作業に預かった情報が混ざるときの、渡す範囲の決め方は <!-- link:begin office-paperwork#private-data -->[事務作業の半自動化（経費・報告） › 私的な情報を渡す範囲](../recipes/office-paperwork.md#private-data)<!-- link:end --> にある。
 
 ## クラウドで動く作業に気をつける {#cloud-runs}
 
@@ -110,7 +110,7 @@ updated: 2026-11-05
 - **アプリのタスク**：アプリのタスクはクラウドで動き、PC を閉じても続く。スケジュールした実行も、PC の電源が切れていても動く。
 - **Claude Code のクラウドセッション**：Anthropic が管理する隔離された環境で動く。リポジトリの内容を送って作業させる。
 
-リポジトリの中に預かったデータが入っていれば、クラウドに送る作業と一緒に、そのデータも環境へ送られる。コンペのデータをリポジトリに置いたまま、クラウドのエージェントに読ませる場面がこれに当たる。クラウドに送ってよい作業は <!-- link:begin cloud-sessions-and-teleport#what-to-send -->クラウドセッションと teleport › クラウドに送ってよい作業（準備中）<!-- link:end --> で確かめる。
+リポジトリの中に預かったデータが入っていれば、クラウドに送る作業と一緒に、そのデータも環境へ送られる。コンペのデータをリポジトリに置いたまま、クラウドのエージェントに読ませる場面がこれに当たる。クラウドに送ってよい作業は <!-- link:begin cloud-sessions-and-teleport#what-to-send -->[クラウドセッションと teleport › クラウドに送ってよい作業](../cli/cloud-sessions-and-teleport.md#what-to-send)<!-- link:end --> で確かめる。
 
 作業の動く場所は、手元・クラウド・リモート操作の 3 つである。見分け方は <!-- link:begin where-it-runs#three-locations -->[実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所](../surfaces/where-it-runs.md#three-locations)<!-- link:end --> にある。リモート操作は、実行を手元に残したまま別の端末から操作する。クラウドに出したくないデータは、手元で動かす形を選ぶ。
 
@@ -162,7 +162,7 @@ updated: 2026-11-05
 
 **次に読む**
 
-- 事務作業の半自動化（経費・報告）（準備中）
+- [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
 
 **関連**
 
@@ -173,8 +173,8 @@ updated: 2026-11-05
 - [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)
 - Bedrock・Vertex AI・Foundry 経由で使う（準備中）
 - 組織で使うプランの選び方（準備中）
-- データを分析する（準備中）
-- クラウドセッションと teleport（準備中）
+- [データを分析する](../recipes/data-analysis.md)
+- [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 
 </div>
 

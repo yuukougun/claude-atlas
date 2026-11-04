@@ -144,8 +144,8 @@ updated: 2026-11-05
 - **作業の途中、常に**：ステータスラインの使用率を見る。上限が近づいたら、区切りのよい所で作業を畳む。当たった後の動きは <!-- link:begin how-usage-limits-work#when-you-hit-the-limit -->[利用上限の仕組み（面をまたいで共有する枠） › 上限に当たったとき](../cost/how-usage-limits-work.md#when-you-hit-the-limit)<!-- link:end -->にある。
 - **会話が重い、指示が効かない**：/context で、会話・読み込んだファイル・常駐するもののどれが場所を取っているかを見る。起動直後の値を控えておくと、増えた分が分かる。片付け方は <!-- link:begin inspect-context#what-to-do -->[/context で中身を見る › どの片付け方を選ぶか](../context/inspect-context.md#what-to-do)<!-- link:end --> にある。
 - **上限が早く減った**：/usage の内訳で、何が数えられたかを見る。長い会話の送り直し、大きな添付、並列の作業などを、自分の場合で突き合わせる。切り分けの順は <!-- link:begin hits-limits-quickly#diagnosis -->[すぐ上限に当たる › 原因を安く確かめる順](../symptoms/hits-limits-quickly.md#diagnosis)<!-- link:end --> にある。
-- **設定のせいか疑う**：数字だけでは分からないので、設定を外して同じ依頼で比べる。やり方は <!-- link:begin isolate-with-safe-mode -->設定を外して切り分ける（--safe-mode）（準備中）<!-- link:end --> にある。
-- **振り返る**：/usage の内訳から、削るものを選ぶ。<!-- link:begin insights-and-usage-review#usage-breakdown -->/insights と /usage で振り返る › /usage の内訳から削るものを選ぶ（準備中）<!-- link:end --> がそのやり方を持つ。
+- **設定のせいか疑う**：数字だけでは分からないので、設定を外して同じ依頼で比べる。やり方は <!-- link:begin isolate-with-safe-mode -->[設定を外して切り分ける（--safe-mode）](isolate-with-safe-mode.md)<!-- link:end --> にある。
+- **振り返る**：/usage の内訳から、削るものを選ぶ。<!-- link:begin insights-and-usage-review#usage-breakdown -->[/insights と /usage で振り返る › /usage の内訳から削るものを選ぶ](../eval/insights-and-usage-review.md#usage-breakdown)<!-- link:end --> がそのやり方を持つ。
 
 !!! example "判断例：遅くなった理由を測る"
     - **状況**：長い作業の後半で、返答が遅くなり、最初に頼んだ書き方も守られなくなってきた。
@@ -194,10 +194,10 @@ updated: 2026-11-05
 
 - [/context で中身を見る › 内訳の読み方](../context/inspect-context.md#reading)
 - [上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)
-- /insights と /usage で振り返る（準備中）
+- [/insights と /usage で振り返る](../eval/insights-and-usage-review.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
-- 設定を外して切り分ける（--safe-mode）（準備中）
+- [設定を外して切り分ける（--safe-mode）](isolate-with-safe-mode.md)
 - 主要コマンド早見表（準備中）
 
 </div>

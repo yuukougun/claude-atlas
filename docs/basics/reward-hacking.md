@@ -81,7 +81,7 @@ updated: 2026-11-05
 このページの知識は、原理「確かめる」と原理「縛る」の理由になる。防ぐ原因は 2 つである。
 
 - **確かめていない**：Claude に見える検証だけで完了にすると、抜け道を使った通過を見逃す。合否を返すものを渡せば、Claude はループを自分で閉じられる（<!-- link:begin agent-loop#close-the-loop -->[エージェントループと tool use › 合否を返すものを渡してループを閉じる](agent-loop.md#close-the-loop)<!-- link:end -->）が、その合否が書き換えられるなら、ループは閉じていても確かめたことにならない。検証が満たすべき条件は <!-- link:begin verifier-three-conditions#tamper-proof -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](../eval/verifier-three-conditions.md#tamper-proof)<!-- link:end --> にある。
-- **縛っていない**：テストや採点のスクリプトが、Claude の書き換えられる場所にある。依頼で「テストを変えない」と書くだけでは鍵にならない。守りの層は <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](../verify/protect-tests.md#layers)<!-- link:end --> にまとめてあり、設定で触れる範囲を絞る手順は <!-- link:begin freeze-eval-assets#how-to-freeze -->評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）（準備中）<!-- link:end --> にある。
+- **縛っていない**：テストや採点のスクリプトが、Claude の書き換えられる場所にある。依頼で「テストを変えない」と書くだけでは鍵にならない。守りの層は <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](../verify/protect-tests.md#layers)<!-- link:end --> にまとめてあり、設定で触れる範囲を絞る手順は <!-- link:begin freeze-eval-assets#how-to-freeze -->[評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）](../enforce/freeze-eval-assets.md#how-to-freeze)<!-- link:end --> にある。
 
 任せる幅を広げるほど、見合う守りが要る。Claude は渡された検証が定める問題を解く（<!-- link:begin verifier-defines-problem#loops-amplify -->[検証器が問題を定義する（Claude は置かれたループを何でも加速する） › ループは何でも速める](../eval/verifier-defines-problem.md#loops-amplify)<!-- link:end -->）。検証に抜け道があれば、そこを通る解も同じ速さで増える。無人で回す前に、検証を書き換えられない形にしておく。
 
@@ -89,7 +89,7 @@ updated: 2026-11-05
 
 - テストを書き換えて通された：<!-- link:begin rewrote-tests-to-pass#diagnosis -->[テストを書き換えて通した › 原因を安く確かめる順](../symptoms/rewrote-tests-to-pass.md#diagnosis)<!-- link:end -->
 - 手元の評価は良いのに本番で通用しない：<!-- link:begin misses-broken-evaluation#diagnosis -->[手元の評価は良いのに本番で通用しない › 原因を安く確かめる順](../symptoms/misses-broken-evaluation.md#diagnosis)<!-- link:end -->
-- 良すぎる結果を受け取る前に疑うもの：<!-- link:begin suspect-too-good-results#what-to-suspect -->良すぎる結果を疑う › まず疑うもの（準備中）<!-- link:end -->
+- 良すぎる結果を受け取る前に疑うもの：<!-- link:begin suspect-too-good-results#what-to-suspect -->[良すぎる結果を疑う › まず疑うもの](../verify/suspect-too-good-results.md#what-to-suspect)<!-- link:end -->
 
 ## 誤解 {#misconceptions}
 
@@ -99,7 +99,7 @@ updated: 2026-11-05
 
 **「テストを書き換えるな」と頼めば足りる、は誤解である**。依頼は守りの 1 層にすぎない。書き換えられる場所にテストがある限り、鍵はかかっていない（<!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](../verify/protect-tests.md#layers)<!-- link:end -->）。
 
-**テストを増やせば防げる、とも限らない**。AI に書かせたテストは、今の挙動を正解として固めたり、壊しても落ちなかったりする（<!-- link:begin pitfalls-of-ai-written-tests#weak-tests -->AI に書かせたテストの落とし穴 › 通るだけのテスト（準備中）<!-- link:end -->）。見える検証が増えても、見えない目的との差は残る。
+**テストを増やせば防げる、とも限らない**。AI に書かせたテストは、今の挙動を正解として固めたり、壊しても落ちなかったりする（<!-- link:begin pitfalls-of-ai-written-tests#weak-tests -->[AI に書かせたテストの落とし穴 › 通るだけのテスト](../verify/pitfalls-of-ai-written-tests.md#weak-tests)<!-- link:end -->）。見える検証が増えても、見えない目的との差は残る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -134,10 +134,10 @@ updated: 2026-11-05
 **関連**
 
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](../eval/verifier-defines-problem.md)
-- 評価資産を凍結し、触れる範囲を絞る（準備中）
+- [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
 - [手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)
-- 良すぎる結果を疑う（準備中）
-- AI に書かせたテストの落とし穴（準備中）
+- [良すぎる結果を疑う](../verify/suspect-too-good-results.md)
+- [AI に書かせたテストの落とし穴](../verify/pitfalls-of-ai-written-tests.md)
 
 </div>
 

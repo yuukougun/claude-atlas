@@ -107,7 +107,7 @@ MCP で取ってきたデータも、道具の出力の 1 つである。取れ�
 | project | このプロジェクトの、チーム全員 | リポジトリ直下の `.mcp.json` |
 | user | すべてのプロジェクトの、自分だけ | `~/.claude.json` |
 
-チームで同じ接続を使うなら project にして、`.mcp.json` を commit する。共有の設定の考え方は「<!-- link:begin share-team-settings#shared-vs-personal -->チームで設定を共有する › 共有するものと個人に残すもの（準備中）<!-- link:end -->」にある。`.mcp.json` に書くのは、サーバーの種類と URL と、秘密を差し込む環境変数の名前までにする。次の雛形は、HTTP でつなぎ、トークンを環境変数から渡す形である。
+チームで同じ接続を使うなら project にして、`.mcp.json` を commit する。共有の設定の考え方は「<!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end -->」にある。`.mcp.json` に書くのは、サーバーの種類と URL と、秘密を差し込む環境変数の名前までにする。次の雛形は、HTTP でつなぎ、トークンを環境変数から渡す形である。
 
 <!-- gen:begin snippet connecting-mcp/team-mcp -->
 <!-- textlint-disable -->
@@ -138,7 +138,7 @@ project スコープには、安全のための仕組みが 2 つある。
 - 対話のセッションでは、`.mcp.json` のサーバーを初めて使う前に承認を求められる。リポジトリを clone しただけで、見知らぬサーバーが動き出すことはない。承認の記録を消したいときは `claude mcp reset-project-choices` を使う。
 - `claude -p` のように承認を聞けない実行では、`.mcp.json` のサーバーは承認なしにつながる。CI や自動実行に載せるリポジトリでは、`.mcp.json` に入れるものを、その前提で選ぶ。外したいサーバーは `disabledMcpjsonServers` に書くか、`--strict-mcp-config` で起動する。
 
-同じ名前のサーバーが複数の場所にあると、一番優先の高い場所の定義が 1 つだけ使われる。優先順は local、project、user、プラグイン、claude.ai のコネクタの順で、組織が管理設定で配るサーバーはこれらより上になる。定義はキーごとに合わさらず、丸ごと入れ替わる。そのため、project の定義に自分用の変更を足したいときは、local に同じ名前で全体を書く。設定の層の優先は「<!-- link:begin settings-layers#layers -->設定ファイルの階層と優先順位 › 層と優先順位（準備中）<!-- link:end -->」を参照する。組織で配るサーバーの許可は「<!-- link:begin org-managed-settings-and-mcp#mcp-allowlist -->組織に設定と MCP サーバーを配る › MCP サーバーの許可（準備中）<!-- link:end -->」に任せる。
+同じ名前のサーバーが複数の場所にあると、一番優先の高い場所の定義が 1 つだけ使われる。優先順は local、project、user、プラグイン、claude.ai のコネクタの順で、組織が管理設定で配るサーバーはこれらより上になる。定義はキーごとに合わさらず、丸ごと入れ替わる。そのため、project の定義に自分用の変更を足したいときは、local に同じ名前で全体を書く。設定の層の優先は「<!-- link:begin settings-layers#layers -->[設定ファイルの階層と優先順位 › 層と優先順位](../cli/settings-layers.md#layers)<!-- link:end -->」を参照する。組織で配るサーバーの許可は「<!-- link:begin org-managed-settings-and-mcp#mcp-allowlist -->組織に設定と MCP サーバーを配る › MCP サーバーの許可（準備中）<!-- link:end -->」に任せる。
 
 !!! example "判断例：チケット管理のサーバーをどのスコープに置くか"
     - **状況**：チーム 5 人が同じチケット管理のサービスを使う。サーバーの URL は全員同じで、トークンは一人ずつ違う。
@@ -203,9 +203,9 @@ MCP のサーバーをつないだのにツールが出ないときは、状態�
     - 同じ名前のサーバーが別の場所にあると、優先の高い定義が使われ、自分が書いたほうは使われない。
     - 組織の管理設定が、許すサーバーを絞っていることがある。
 
-    どの層が読み込まれているかの確かめ方は「<!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end -->」にある。
+    どの層が読み込まれているかの確かめ方は「<!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](../cli/settings-layers.md#verify)<!-- link:end -->」にある。
 4. **環境変数を見る**。`.mcp.json` で `${変数名}` を使っているなら、起動した端末にその変数があるかを確かめる。未設定だと、文字のまま送られて認証が通らない。
-5. **自分の設定のせいかを切り分ける**。`--safe-mode` で起動し、同じ依頼を比べる。ただし `--safe-mode` は MCP も読まない。この方法で分かるのは、MCP そのものの不調ではなく、CLAUDE.md・フック・プラグインなど、ほかの設定や拡張との干渉があるかどうかである。比べ方は「<!-- link:begin isolate-with-safe-mode#compare -->設定を外して切り分ける（--safe-mode） › 比べ方（準備中）<!-- link:end -->」にある。
+5. **自分の設定のせいかを切り分ける**。`--safe-mode` で起動し、同じ依頼を比べる。ただし `--safe-mode` は MCP も読まない。この方法で分かるのは、MCP そのものの不調ではなく、CLAUDE.md・フック・プラグインなど、ほかの設定や拡張との干渉があるかどうかである。比べ方は「<!-- link:begin isolate-with-safe-mode#compare -->[設定を外して切り分ける（--safe-mode） › 比べ方](../cli/isolate-with-safe-mode.md#compare)<!-- link:end -->」にある。
 
 ツールが `/context` に並ばないことは、不調とは限らない。ツールの検索（tool search。必要なツールの定義だけを使うときに読む仕組み）が既定で働くので、起動直後は名前と指示だけが入る。ツールが見えないから失敗とは決めず、1 の `/mcp` で接続を確かめる。`/context` の見方は「<!-- link:begin inspect-context#reading -->[/context で中身を見る › 内訳の読み方](../context/inspect-context.md#reading)<!-- link:end -->」にある。
 
@@ -239,7 +239,7 @@ MCP をつなぐと、次の場面で想定とずれる。
 
 外部ツールの道は、MCP のほかに、CLI とスキルで済ませる方法がある。成熟した CLI があって、決まった作業なら、CLI のほうが文脈の効率がよい。CLI がないときや、認証つきの生きたデータが要るとき、シェル全体より狭い権限にしたいときは、MCP が生きる。選び方は「<!-- link:begin mcp-or-cli -->[MCP か CLI か](mcp-or-cli.md)<!-- link:end -->」にまとめてある。公式の文書は、つなぐ MCP と、使い方の知識を渡すスキルを組み合わせる形も勧めている。
 
-組織の全員に MCP サーバーを配るなら、「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る（準備中）<!-- link:end -->」を見る。サーバーを束にして配るなら、「<!-- link:begin plugins-and-marketplaces#before-install -->プラグインとマーケットプレイス › 入れる前の確認（準備中）<!-- link:end -->」の確認を先に通す。
+組織の全員に MCP サーバーを配るなら、「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る（準備中）<!-- link:end -->」を見る。サーバーを束にして配るなら、「<!-- link:begin plugins-and-marketplaces#before-install -->[プラグインとマーケットプレイス › 入れる前の確認](plugins-and-marketplaces.md#before-install)<!-- link:end -->」の確認を先に通す。
 
 ## 古くなった助言 {#outdated}
 
@@ -268,11 +268,11 @@ MCP を SSE の転送でつなぐ、という古い説明が残っている。�
 - [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - [/context で中身を見る](../context/inspect-context.md)
-- 設定ファイルの階層と優先順位（準備中）
-- 設定を外して切り分ける（--safe-mode）（準備中）
+- [設定ファイルの階層と優先順位](../cli/settings-layers.md)
+- [設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)
 - 組織に設定と MCP サーバーを配る（準備中）
-- プラグインとマーケットプレイス（準備中）
-- チームで設定を共有する（準備中）
+- [プラグインとマーケットプレイス](plugins-and-marketplaces.md)
+- [チームで設定を共有する](../team/share-team-settings.md)
 
 </div>
 

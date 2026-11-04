@@ -75,7 +75,7 @@ After で足したのは 3 点である。直す対象のファイル、症状�
     - **選んだもの**：原因が `login.ts` にあると分かっているので、@ で指す。分からないときは、探させる。
     - **理由**：分かっている対象は、直接渡したほうが探索の手間が省ける。分からない対象を無理に指すと、本当の原因のファイルが読まれずに、的外れな修正になる。探させる場合の進め方は <!-- link:begin explore-a-codebase#broad-to-narrow -->[知らないコードベースを読む › 広い質問から絞る](../recipes/explore-a-codebase.md#broad-to-narrow)<!-- link:end --> にある。
 
-型のある言語では、言語サーバーに尋ねて定義へ飛ばせるので、総当たりで読む量が減る。その設定は <!-- link:begin code-intelligence-plugins -->code intelligence プラグイン（LSP）（準備中）<!-- link:end --> で扱う。
+型のある言語では、言語サーバーに尋ねて定義へ飛ばせるので、総当たりで読む量が減る。その設定は <!-- link:begin code-intelligence-plugins -->[code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md)<!-- link:end --> で扱う。
 
 ## 出力を絞る {#trim-output}
 
@@ -187,7 +187,7 @@ After で足したのは 3 点である。直す対象のファイル、症状�
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](research-in-subagents.md)
 - [/context で中身を見る](inspect-context.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
-- code intelligence プラグイン（LSP）（準備中）
+- [code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md)
 - [具体性の 4 点（対象・状況・完了・手本）](../prompting/four-specifics.md)
 - [MCP か CLI か](../extend/mcp-or-cli.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)

@@ -97,7 +97,7 @@ Claude Code の返答が日本語から英語に戻るのは、1 ターン（依
 
 1. 値の綴りを見る。値は検証されないので、綴りを誤ってもエラーにならず、書いたまま Claude に届く。
 2. JSON の誤りを探す。設定ファイルは厳密な JSON で、コメントや末尾のカンマは構文エラーになる。壊れたファイルや受け付けられない値は読み飛ばされ、何を読み飛ばしたかは `claude doctor` で見られる。
-3. 上の層に別の値がないかを見る。優先順位は、高い順に管理設定、コマンドラインの `--settings`、`.claude/settings.local.json`、`.claude/settings.json`、`~/.claude/settings.json` である。リポジトリ側に `language` があれば、個人の設定より優先される。`/status` はキーの出どころを示さないので、各ファイルを開いて確かめる。層の読み方は「<!-- link:begin settings-layers#verify -->設定ファイルの階層と優先順位 › 効いているかを確かめる（準備中）<!-- link:end -->」にある。
+3. 上の層に別の値がないかを見る。優先順位は、高い順に管理設定、コマンドラインの `--settings`、`.claude/settings.local.json`、`.claude/settings.json`、`~/.claude/settings.json` である。リポジトリ側に `language` があれば、個人の設定より優先される。`/status` はキーの出どころを示さないので、各ファイルを開いて確かめる。層の読み方は「<!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](../cli/settings-layers.md#verify)<!-- link:end -->」にある。
 
 ここまでを確かめても混ざるなら、設定の限界である。設定は指示なので、守られない場面が残る。次の節以降で重ねる。
 
@@ -149,7 +149,7 @@ After で足したものは 5 つある。
 
 公式は、指示は具体的で短いほど一貫して守られると書く。言語の規則にその書き方が効くかを比べた記録はない（類推）。
 
-**置き場所**：個人の好みなら `~/.claude/CLAUDE.md`、チームの決まりならプロジェクトの `CLAUDE.md` に書く。何を知るべきかは CLAUDE.md、どう答えるかは出力スタイルに置くのが公式の分担で、言語の規則はどちらにも置ける。どちらが守られやすいかを比べた記録はない。始めるなら、雛形のある CLAUDE.md を勧める（推論・実践例なし）。出力スタイルの作り方と日本語の応答との関係は、「<!-- link:begin output-style-modes#japanese -->出力スタイルで応答の仕方を切り替える › 日本語の応答との関係（準備中）<!-- link:end -->」にある。
+**置き場所**：個人の好みなら `~/.claude/CLAUDE.md`、チームの決まりならプロジェクトの `CLAUDE.md` に書く。何を知るべきかは CLAUDE.md、どう答えるかは出力スタイルに置くのが公式の分担で、言語の規則はどちらにも置ける。どちらが守られやすいかを比べた記録はない。始めるなら、雛形のある CLAUDE.md を勧める（推論・実践例なし）。出力スタイルの作り方と日本語の応答との関係は、「<!-- link:begin output-style-modes#japanese -->[出力スタイルで応答の仕方を切り替える › 日本語の応答との関係](../cli/output-style-modes.md#japanese)<!-- link:end -->」にある。
 
 **システムプロンプトに置く**：`--append-system-prompt` は、Claude Code のシステムプロンプトの末尾に文を足す起動時のフラグである。公式は、システムプロンプトの水準で指示したいときの手段として挙げ、起動のたびに渡すので、スクリプトや自動化に向くと書く（[CLI reference](https://code.claude.com/docs/en/cli-reference)）。API の文書は、返答の言語はシステムプロンプトで明示するのが最も確実だと書く（[Multilingual support](https://platform.claude.com/docs/en/build-with-claude/multilingual-support)）。Claude Code に当てはめた効き目の記録はない（類推）。
 
@@ -175,7 +175,7 @@ Stop フックが届かないことを、先に知っておく。
 
 - **ツールの合間の一言は見ない**。Stop が受け取るのは最後の返事だけである。
 - **英語は一度画面に出る**。最後の返事は、フックが動く前に表示されている。直すのは後である。画面の読み上げで作業を追う場合のように、英語が一度でも出ては困る使い方では足りない。
-- **続けて止められる回数に上限がある**。上限を過ぎると、英語のままターンが終わる。下のスクリプトは、書き直しの返事を判定しない（`stop_hook_active` が true なら通す）。止め続けるループを避けるためで、書き直しも英語なら、2 回目は通って、英語のままターンが終わる。上限の扱いは、『<!-- link:begin stop-hooks#block-cap -->Stop フックで「終わらせない」 › 続けて止められる回数の上限（準備中）<!-- link:end -->』にある。
+- **続けて止められる回数に上限がある**。上限を過ぎると、英語のままターンが終わる。下のスクリプトは、書き直しの返事を判定しない（`stop_hook_active` が true なら通す）。止め続けるループを避けるためで、書き直しも英語なら、2 回目は通って、英語のままターンが終わる。上限の扱いは、『<!-- link:begin stop-hooks#block-cap -->[Stop フックで「終わらせない」 › 続けて止められる回数の上限](../enforce/stop-hooks.md#block-cap)<!-- link:end -->』にある。
 - **英語で答えさせたい作業でも止まる**。翻訳のように英語の返事が正しい作業も止めるので、その間は `ALLOW_ENGLISH_REPLY=1` を付けて Claude Code を起動し直し、判定を切る。
 - **判定は文字の割合で、誤判定がある**。下のスクリプトは、英字が 40 字以上あり、英字とかな・漢字の合計に占めるかな・漢字の割合が 0.25 未満の返事を、英語とみなす。そのため、英字が 40 字に満たない短い英語の返事は通る。英語の返事でも、日本語の語が混ざって割合が 0.25 以上になれば通る。逆に、コードの外に英単語や識別子を並べた日本語の返事は、英語とみなされて止まる。閾値は最初の値で、測って直す。`MIN_JA_SHARE` を下げると止まりにくく、上げると止まりやすい。`MIN_LATIN` を上げると、短い返事を通しやすい。
 - **場所によっては Stop フックが動かない**。ユーザーの `~/.claude/settings.json` に登録したフックは、クラウドのセッションに届かない。サブエージェントの最終報告は、Stop フックでなく SubagentStop フックの担当である。ただし、<!-- fact:begin subagent-handback-min-version -->Claude Code 2.1.271 以降（2026-11-05 時点）<!-- fact:end -->では、報告が SubagentStop フックの入力に入らないことがある（下の「届かない所の節」に書く）。場所ごとの対処は、[届かない所の節](#reach)にある。
@@ -298,7 +298,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 - 依頼文に言語を書く。CLAUDE.md の例（[CLAUDE.md と出力スタイルの節](#instructions)）にも、同じ 1 行を入れてある。
 - 報告が英語でも、その後の親の返答は Stop フックが確かめる。サブエージェントの最終報告そのものを確かめるなら、SubagentStop フックの `last_assistant_message` を使う。ただし、`SubagentHandback` で報告を渡す<!-- fact:begin subagent-handback-min-version -->Claude Code 2.1.271 以降（2026-11-05 時点）<!-- fact:end -->では、SubagentStop フックには結びの文しか入らない。報告は、`SubagentHandback` に当てた PreToolUse か PostToolUse のフックの `tool_input.message` にある。
 
-報告を日本語にすれば、親が英語を読む場面が減る（推論・実践例なし）。引き継がれないものの一覧は、「<!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end -->」にある。
+報告を日本語にすれば、親が英語を読む場面が減る（推論・実践例なし）。引き継がれないものの一覧は、「<!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)<!-- link:end -->」にある。
 
 !!! example "判断例：サブエージェントの報告を読んだ後だけ英語になる"
     - **状況**：`language` と CLAUDE.md の規則を入れた。調べものをサブエージェントに任せると、報告を受けた直後の返答だけ英語になる。
@@ -320,7 +320,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 - **チームの全員に効かせる**：日本語の規則と Stop フックをクラウドで使うなら、`CLAUDE.md`・`.claude/settings.json`・スクリプトをリポジトリに入れる。この方法は、チームの全員に効く。
 - **自分にだけ効かせる**：環境のセットアップスクリプトに `~/.claude/CLAUDE.md` を書かせる方法が、公式にある（[Configure cloud environments](https://code.claude.com/docs/en/cloud-environments#add-personal-preferences-without-committing-to-the-repo)）。セットアップスクリプトは、セッションの開始時、Claude Code の起動前に走る Bash スクリプトである。共有の環境ではなく、自分の環境に置く。
 
-プロジェクトのスレッドとは、Claude Code の Projects（claude.ai/code にある機能）の中で、Claude が作業ごとに始めるスレッドである。詳しくは [Let Claude coordinate ongoing work with Projects](https://code.claude.com/docs/en/claude-projects) を見る。手元の設定との違いは、「<!-- link:begin cloud-sessions-and-teleport#settings -->クラウドセッションと teleport › 手元の設定との違い（準備中）<!-- link:end -->」にある。
+プロジェクトのスレッドとは、Claude Code の Projects（claude.ai/code にある機能）の中で、Claude が作業ごとに始めるスレッドである。詳しくは [Let Claude coordinate ongoing work with Projects](https://code.claude.com/docs/en/claude-projects) を見る。手元の設定との違いは、「<!-- link:begin cloud-sessions-and-teleport#settings -->[クラウドセッションと teleport › 手元の設定との違い](../cli/cloud-sessions-and-teleport.md#settings)<!-- link:end -->」にある。
 
 ## アプリと API の場合 {#app-and-api}
 
@@ -406,12 +406,12 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 - [英語で返ってくる](../symptoms/replies-in-english.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
-- Stop フックで「終わらせない」（準備中）
-- 出力スタイルで応答の仕方を切り替える（準備中）
-- 設定ファイルの階層と優先順位（準備中）
-- サブエージェントに引き継がれないもの（準備中）
+- [Stop フックで「終わらせない」](../enforce/stop-hooks.md)
+- [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)
+- [設定ファイルの階層と優先順位](../cli/settings-layers.md)
+- [サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)
 - [圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)
-- クラウドセッションと teleport（準備中）
+- [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 - [エージェントループと tool use](../basics/agent-loop.md)
 - [システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](../basics/where-instructions-sit.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)

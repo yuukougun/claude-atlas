@@ -1,0 +1,15 @@
+title: テレメトリ・エラー報告・/feedback を止める環境変数
+kind: settings
+place: user
+safety: true
+features: [feedback]
+conditions:
+  - 新しいセッションで試す
+  - Linux か WSL2 で試す
+  - 設定を置く前に、送られる通信を確かめたい場合は、壊れても困らない作業用のディレクトリで試す
+expect:
+  - when: DISABLE_FEEDBACK_COMMAND を置いた新しいセッションで /feedback を入力する
+    then: 報告の画面に進まない。表示の文言は版によって違うかもしれないので観察として扱う
+  - when: 3 つの変数を置いたまま通常の作業をする
+    then: 作業そのものは変わらない。テレメトリとエラー報告の送信が止まるかは、通信を観測する手段がないと確かめられない
+control: 設定を置かないとき、/feedback が使え、テレメトリとエラー報告は既定の動作になる

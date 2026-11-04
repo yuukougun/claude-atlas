@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="260" viewBox="0 0 400 260" font-family="sans-serif" font-size="12">
+  <rect width="400" height="260" fill="#ffffff"/>
+  <rect x="8" y="8" width="384" height="244" fill="#f5f5f5" stroke="#555555" stroke-width="1"/>
+  <text x="200" y="28" text-anchor="middle" fill="#222222">マーケットプレイス（marketplace.json の一覧）</text>
+  <rect x="24" y="44" width="352" height="144" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="200" y="64" text-anchor="middle" fill="#111111">プラグイン（plugin.json）</text>
+  <g fill="#ffffff" stroke="#555555">
+    <rect x="36" y="76" width="104" height="30"/>
+    <rect x="148" y="76" width="104" height="30"/>
+    <rect x="260" y="76" width="104" height="30"/>
+    <rect x="36" y="114" width="104" height="30"/>
+    <rect x="148" y="114" width="104" height="30"/>
+    <rect x="260" y="114" width="104" height="30"/>
+  </g>
+  <g text-anchor="middle" fill="#222222">
+    <text x="88" y="95">スキル</text>
+    <text x="200" y="95">サブエージェント</text>
+    <text x="312" y="95">フック</text>
+    <text x="88" y="133">MCP サーバー</text>
+    <text x="200" y="133">LSP</text>
+    <text x="312" y="133">出力スタイル</text>
+  </g>
+  <text x="200" y="168" text-anchor="middle" fill="#222222">1 つにまとめて入れる・配る</text>
+  <text x="200" y="208" text-anchor="middle" fill="#222222">一覧は文脈に入らない。有効にしたプラグインの</text>
+  <text x="200" y="226" text-anchor="middle" fill="#222222">名前と説明は毎回入る</text>
+</svg>

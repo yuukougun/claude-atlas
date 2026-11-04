@@ -1,0 +1,16 @@
+chores/
+├── CLAUDE.md             # 短く。全業務に共通の守りだけ（私的な情報の扱い、確認なしで進めないこと）
+├── .gitignore            # **/inbox/ と **/out/ を追跡から外す
+├── .claude/
+│   └── skills/
+│       └── weekly-report/
+│           └── SKILL.md  # 週報の手順をスキルにしたもの
+├── weekly-report/
+│   ├── README.md         # 目的・入力・出力の形・手順・注意・前回までに決めたこと
+│   ├── inbox/            # 今週の材料のコピー（追跡しない）
+│   └── out/              # 下書き（追跡しない）
+└── expenses/
+    ├── README.md         # 同じ項目。区分表への案内を含む
+    ├── categories.md     # 経費の区分表
+    ├── inbox/            # 領収書と明細のコピー。伏せた後のもの（追跡しない）
+    └── out/              # 一覧と合計の確認（追跡しない）

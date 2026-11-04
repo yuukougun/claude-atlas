@@ -1,0 +1,14 @@
+title: 最小のプラグインの定義（plugin.json）
+kind: settings
+place: 依頼の本文   # プラグインのディレクトリの .claude-plugin/plugin.json に置く。skills/ などは同じディレクトリの直下に置く
+safety: false
+features: [plugins]
+requires:
+  - skills/<スキル名>/SKILL.md   # プラグインの直下に置く中身の一例
+conditions:
+  - 一覧（marketplace.json）の項目の name と、この name を同じにする
+  - 新しいセッションで試す
+expect:
+  - when: claude --plugin-dir ./plugins/review-helpers で起動し、中のスキルを呼ぶ
+    then: スキルがプラグイン名を前に付けた /review-helpers:<スキル名> で呼べる
+control: 定義がないディレクトリは、プラグインとして読まれない

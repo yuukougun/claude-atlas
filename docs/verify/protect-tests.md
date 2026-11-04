@@ -71,9 +71,9 @@ Anthropic の研究（2025 年）では、実際の Claude の訓練用コーデ
 図は、例外を許さない強さの順を示す模式図である。層は実際の入れ子の構造ではなく、それぞれが別の穴を塞ぐ。
 
 1. **依頼**：テストを変えずに直すこと、一般解を求めること、テストが誤りなら止まって報告することを書く。最初に置く層で、書き方と効く範囲は、この下の「依頼に書くこと」の節に書く。
-2. **差分のレビュー**：人が、テストと採点の変更、特例の分岐、件数の変化を読む。何を必ず読むかは <!-- link:begin diffs-humans-must-read#red-flags -->人間が読むべき差分の箇所 › 赤信号の一覧（準備中）<!-- link:end -->にある。テストを先に書かせる運用なら、<!-- link:begin tests-first#review-test-changes -->テストを先に書かせる › テストの変更は特に読む（準備中）<!-- link:end -->も同じ層に入る。
+2. **差分のレビュー**：人が、テストと採点の変更、特例の分岐、件数の変化を読む。何を必ず読むかは <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](diffs-humans-must-read.md#red-flags)<!-- link:end -->にある。テストを先に書かせる運用なら、<!-- link:begin tests-first#review-test-changes -->[テストを先に書かせる › テストの変更は特に読む](tests-first.md#review-test-changes)<!-- link:end -->も同じ層に入る。
 3. **deny ルールとフック（鍵）**：権限ルールはモデルではなく Claude Code が強制するので、プロンプトの指示と違い、Claude が従わなくても止まる。deny は bypassPermissions を含むどのモードでも止める。パスを縛る deny ルールは `Edit(...)` で書き、`Write(...)` は当たらない。書き方は <!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](../enforce/permission-rules.md#path-rules)<!-- link:end -->にある。フックは、止めた理由と代わりの手段を Claude に返せる。返し方は <!-- link:begin block-with-exit-2#reason -->[フックで止めて理由を返す（exit 2 と JSON） › 理由と代わりの手段の書き方](../enforce/block-with-exit-2.md#reason)<!-- link:end -->にある。
-4. **リポジトリの外の hold-out**：最終確認用の入力を、Claude の作業ディレクトリの外の、人だけが持つ場所に置く。Claude には点数だけを返し、中身を見せない。作り方は <!-- link:begin lockbox-and-holdout#scores-only -->ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す（準備中）<!-- link:end -->にある。リポジトリの中に置くと、Read を止めない限り中身を読まれる。
+4. **リポジトリの外の hold-out**：最終確認用の入力を、Claude の作業ディレクトリの外の、人だけが持つ場所に置く。Claude には点数だけを返し、中身を見せない。作り方は <!-- link:begin lockbox-and-holdout#scores-only -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す](../eval/lockbox-and-holdout.md#scores-only)<!-- link:end -->にある。リポジトリの中に置くと、Read を止めない限り中身を読まれる。
 5. **サンドボックス**：OS の層で、Claude が動かすコマンドとその子プロセスの読み書きを囲む。囲える範囲と囲えない範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->にある。
 
 3 の鍵だけでは足りない理由が 2 つある。
@@ -81,7 +81,7 @@ Anthropic の研究（2025 年）では、実際の Claude の訓練用コーデ
 - **子プロセスには効かない**：Read と Edit の deny が効くのは、組み込みのファイルの道具と、Claude Code が見分けられるシェルのコマンドだけである。テストを走らせるスクリプトが自分でファイルを開いて書き換える場合は、止まらない。限界の詳細は <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](../enforce/permission-rules.md#child-processes)<!-- link:end -->にある。
 - **フックが素通しになることがある**：スクリプトの書き方によっては、止めるはずの操作が通る。たとえば、`jq` がない環境でパスの判定が空になり、`exit 0` で通る例がある。
 
-設定で止める手順は <!-- link:begin freeze-eval-assets#how-to-freeze -->評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）（準備中）<!-- link:end -->が、止まるかの確かめ方は <!-- link:begin freeze-eval-assets#check -->評価資産を凍結し、触れる範囲を絞る › 凍結が効いているかを確かめる（準備中）<!-- link:end -->が持つ。
+設定で止める手順は <!-- link:begin freeze-eval-assets#how-to-freeze -->[評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）](../enforce/freeze-eval-assets.md#how-to-freeze)<!-- link:end -->が、止まるかの確かめ方は <!-- link:begin freeze-eval-assets#check -->[評価資産を凍結し、触れる範囲を絞る › 凍結が効いているかを確かめる](../enforce/freeze-eval-assets.md#check)<!-- link:end -->が持つ。
 
 !!! example "判断例：どの層まで入れるか"
     - **状況**：小さなリポジトリで、テストが通るまで Claude に反復を任せる。人は反復の途中を見ない。
@@ -127,7 +127,7 @@ After で足したのは 3 つである。
 
 これらは「テストは正しさを確かめるもので、解を決めるものではない」という公式の例文の考え方を、依頼の形にしたものである。
 
-止まる出口は、モデルによって効きが違う。ImpossibleBench では、人に判断を仰ぐ逃げ道を与えると、Conflicting-SWEbench での GPT-5 の不正率が 54% から 9% に下がった。一方、論文は Claude Opus 4.1 では効果が「ずっと小さい」と書く（数値はない。根拠：強。Opus 4.1 世代）。だから Claude 向けには、言葉の許可を主役にせず、deny ルール・フック・サンドボックスなどの鍵を主役にする。許可の書き方と限界は <!-- link:begin permission-to-stop#limits -->止まって報告する権利を渡す › 言葉の許可が効く範囲（モデルによる差）（準備中）<!-- link:end -->にある。
+止まる出口は、モデルによって効きが違う。ImpossibleBench では、人に判断を仰ぐ逃げ道を与えると、Conflicting-SWEbench での GPT-5 の不正率が 54% から 9% に下がった。一方、論文は Claude Opus 4.1 では効果が「ずっと小さい」と書く（数値はない。根拠：強。Opus 4.1 世代）。だから Claude 向けには、言葉の許可を主役にせず、deny ルール・フック・サンドボックスなどの鍵を主役にする。許可の書き方と限界は <!-- link:begin permission-to-stop#limits -->[止まって報告する権利を渡す › 言葉の許可が効く範囲（モデルによる差）](../prompting/permission-to-stop.md#limits)<!-- link:end -->にある。
 
 依頼の文は、例外を許さない禁止の置き場所ではない。禁止は deny ルールかフックで強制し、CLAUDE.md には理由と相談の基準だけを書く。用途ごとの置き場所の分け方は、<!-- link:begin request-lock-table#table -->[お願いと鍵の対応表 › 用途ごとの対応表](../enforce/request-lock-table.md#table)<!-- link:end -->にある。
 
@@ -145,7 +145,7 @@ After で足したのは 3 つである。
 - **「テストを通すこと」と頼めば十分**：通すこと自体を目標にすると、書き換えが最短の道になる。目的は、仕様の全範囲で正しく動くことだと書く。
 - **CLAUDE.md に禁止と書いたから安全**：CLAUDE.md の指示は、守られる保証のない「お願い」である。例外を許さない禁止は、鍵に置く。
 - **deny ルールを入れたから全部塞がった**：パスを縛るルールは `Edit(...)` で書かないと当たらない。子プロセスが自分でファイルを開く場合も止まらない。
-- **テストが全部通ったから正しい**：テストそのものが弱いと、書き換えられなくても素通りする。今の挙動を正解として固めたテストもある。テストの強さの確かめ方は <!-- link:begin pitfalls-of-ai-written-tests#test-strength -->AI に書かせたテストの落とし穴 › テストの強さを確かめる（準備中）<!-- link:end -->にある。
+- **テストが全部通ったから正しい**：テストそのものが弱いと、書き換えられなくても素通りする。今の挙動を正解として固めたテストもある。テストの強さの確かめ方は <!-- link:begin pitfalls-of-ai-written-tests#test-strength -->[AI に書かせたテストの落とし穴 › テストの強さを確かめる](pitfalls-of-ai-written-tests.md#test-strength)<!-- link:end -->にある。
 - **止まってよいと書けば、必ず止まる**：言葉の許可は、Claude Opus 4.1 では効きが小さかった。鍵と組み合わせる。
 
 <!-- gen:begin references -->
@@ -177,17 +177,17 @@ After で足したのは 3 つである。
 **関連**
 
 - [テストを書き換えて通した](../symptoms/rewrote-tests-to-pass.md)
-- 評価資産を凍結し、触れる範囲を絞る（準備中）
+- [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
 - [検証器の三条件（正しい・書き換えられない・本番を代表する）](../eval/verifier-three-conditions.md)
-- ロックボックスと hold-out（人だけが持つ検証用データ）（準備中）
+- [ロックボックスと hold-out（人だけが持つ検証用データ）](../eval/lockbox-and-holdout.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
-- 止まって報告する権利を渡す（準備中）
-- 人間が読むべき差分の箇所（準備中）
-- AI に書かせたテストの落とし穴（準備中）
-- テストを先に書かせる（準備中）
+- [止まって報告する権利を渡す](../prompting/permission-to-stop.md)
+- [人間が読むべき差分の箇所](diffs-humans-must-read.md)
+- [AI に書かせたテストの落とし穴](pitfalls-of-ai-written-tests.md)
+- [テストを先に書かせる](tests-first.md)
 - [お願いと鍵の対応表](../enforce/request-lock-table.md)
 
 </div>

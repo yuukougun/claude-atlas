@@ -93,9 +93,9 @@ updated: 2026-11-05
 
 - **訂正する**：直前の 1 回だけが外れていて、会話のほかの部分は健全なとき。まだ失敗の跡が少ないので、足りない情報を 1 つ足して頼み直す。
 - **巻き戻す**：失敗した試みが複数残り、その前の時点には戻れるとき。コード、会話、その両方のどれを戻すかを選ぶ。戻せないものがあるので、先に <!-- link:begin checkpoints-and-rewind#what-is-restored -->[チェックポイントと /rewind（git との違い） › 戻せるもの・戻せないもの](../cli/checkpoints-and-rewind.md#what-is-restored)<!-- link:end --> を見る。面ごとの戻し方は <!-- link:begin rewind-dont-correct#how -->[違うと返すより、巻き戻す・編集する › 面ごとの戻し方](../context/rewind-dont-correct.md#how)<!-- link:end --> にある。
-- **学んだことを書いて新しく始める**：会話がすでに汚れ、分かったこともある（駄目だった方法、確かめた事実）とき。駄目だったことと分かったことだけを短く書き出し、会話を新しくして、その文書から再開する。何を残すかは <!-- link:begin keep-failure-lessons#what-to-keep -->失敗の教訓は捨てずに書き残す › 何を残し、何を捨てるか（準備中）<!-- link:end --> を見る。新しくする前に残すものは <!-- link:begin when-to-start-fresh#before-clearing -->[新しい会話を始めるタイミング › 新しくする前に残すもの](../context/when-to-start-fresh.md#before-clearing)<!-- link:end --> を見る。
+- **学んだことを書いて新しく始める**：会話がすでに汚れ、分かったこともある（駄目だった方法、確かめた事実）とき。駄目だったことと分かったことだけを短く書き出し、会話を新しくして、その文書から再開する。何を残すかは <!-- link:begin keep-failure-lessons#what-to-keep -->[失敗の教訓は捨てずに書き残す › 何を残し、何を捨てるか](../context/keep-failure-lessons.md#what-to-keep)<!-- link:end --> を見る。新しくする前に残すものは <!-- link:begin when-to-start-fresh#before-clearing -->[新しい会話を始めるタイミング › 新しくする前に残すもの](../context/when-to-start-fresh.md#before-clearing)<!-- link:end --> を見る。
 
-巻き戻しと書き出しは両立する。巻き戻して会話を軽くし、分かったことだけをファイルに残せば、同じ失敗の再提案を防げる。詳しくは <!-- link:begin keep-failure-lessons#both -->失敗の教訓は捨てずに書き残す › 巻き戻しと記録の両立（準備中）<!-- link:end --> を見る。
+巻き戻しと書き出しは両立する。巻き戻して会話を軽くし、分かったことだけをファイルに残せば、同じ失敗の再提案を防げる。詳しくは <!-- link:begin keep-failure-lessons#both -->[失敗の教訓は捨てずに書き残す › 巻き戻しと記録の両立](../context/keep-failure-lessons.md#both)<!-- link:end --> を見る。
 
 学んだことを織り込んだ頼み直しの雛形を次に示す。新しい会話で出す。
 
@@ -129,7 +129,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | 失敗の教訓は捨てずに書き残す（準備中）<br>[handoff 文書と document-and-clear](../context/handoff-documents.md) |
+| 見えていない | [失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)<br>[handoff 文書と document-and-clear](../context/handoff-documents.md) |
 | 散らかっている | [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[バグを直す › 直らないときは巻き戻して頼み直す](../recipes/fix-a-bug.md#when-stuck) |
 | 確かめていない | [バグを直す › 再現と「直った」の定義を渡す](../recipes/fix-a-bug.md#reproduce-and-define-done)<br>[「完了」を定義して渡す](../verify/define-done.md) |
 | やめられない | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md) |
@@ -157,8 +157,8 @@ updated: 2026-11-05
 
 - 最初の依頼で、ファイル名、症状、「直った」の定義を渡す。バグの修正では、再現と完了の定義を先に渡す。渡し方は <!-- link:begin fix-a-bug#reproduce-and-define-done -->[バグを直す › 再現と「直った」の定義を渡す](../recipes/fix-a-bug.md#reproduce-and-define-done)<!-- link:end --> と <!-- link:begin define-done#what-to-include -->[「完了」を定義して渡す › 完了の定義に入れるもの](../verify/define-done.md#what-to-include)<!-- link:end --> を見る。
 - 最初の 1 分を見て、ずれたらすぐ止める。ずれた答えの上に訂正を重ねない。
-- 巻き戻しや `/clear` で捨てる試みから、分かったことだけを残す習慣をつける。書き残しすぎると別の問題が出るので、残す量は <!-- link:begin keep-failure-lessons#too-much -->失敗の教訓は捨てずに書き残す › 書き残しすぎの副作用（準備中）<!-- link:end --> を見て決める。
-- 出力を良くしたいときは、毎回作り直させず、前回の結果と測った値を見せて直させる。進め方は <!-- link:begin build-on-results#regenerate-or-refine -->やり直させるより、結果を踏まえて直させる › 作り直しと直しの違い（準備中）<!-- link:end --> にある。
+- 巻き戻しや `/clear` で捨てる試みから、分かったことだけを残す習慣をつける。書き残しすぎると別の問題が出るので、残す量は <!-- link:begin keep-failure-lessons#too-much -->[失敗の教訓は捨てずに書き残す › 書き残しすぎの副作用](../context/keep-failure-lessons.md#too-much)<!-- link:end --> を見て決める。
+- 出力を良くしたいときは、毎回作り直させず、前回の結果と測った値を見せて直させる。進め方は <!-- link:begin build-on-results#regenerate-or-refine -->[やり直させるより、結果を踏まえて直させる › 作り直しと直しの違い](../context/build-on-results.md#regenerate-or-refine)<!-- link:end --> にある。
 - 自分でも要件が固まっていないときは、先に Claude に質問させる。質問の頼み方は <!-- link:begin let-claude-ask#how -->[質問させる・インタビューさせる › 質問させる頼み方](../prompting/let-claude-ask.md#how)<!-- link:end --> を見る。
 - 続けるかやめるかを、着手前に書いた基準で判断する。基準の書き方は <!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](../judgment/decide-when-to-quit.md#write-criteria-first)<!-- link:end --> を見る。
 
@@ -185,7 +185,7 @@ updated: 2026-11-05
 
 **次に読む**
 
-- 失敗の教訓は捨てずに書き残す（準備中）
+- [失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
@@ -197,7 +197,7 @@ updated: 2026-11-05
 
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
 - [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)
-- やり直させるより、結果を踏まえて直させる（準備中）
+- [やり直させるより、結果を踏まえて直させる](../context/build-on-results.md)
 - [質問させる・インタビューさせる](../prompting/let-claude-ask.md)
 - [同じ確認のループにはまる](stuck-in-a-check-loop.md)
 - [直し続けて方針を疑わない（またはすぐ撤退を勧める）](wont-rethink-approach.md)

@@ -86,7 +86,7 @@ Claude が区別できないのは、Claude に渡る入力が一本の文脈で
 
     自分のコードが入力に入れた文書や、道具の実行結果が入り口になる。入れたものは、そのまま Claude が読む。
 
-経路ごとの詳しい型は<!-- link:begin prompt-injection-in-practice#channels -->[プロンプトインジェクションの実際 › 指示が入ってくる経路](../safety/prompt-injection-in-practice.md#channels)<!-- link:end -->で、ブラウザや画面の操作を任せる場合は<!-- link:begin browser-agent-cautions#reach -->ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）（準備中）<!-- link:end -->で見る。
+経路ごとの詳しい型は<!-- link:begin prompt-injection-in-practice#channels -->[プロンプトインジェクションの実際 › 指示が入ってくる経路](../safety/prompt-injection-in-practice.md#channels)<!-- link:end -->で、ブラウザや画面の操作を任せる場合は<!-- link:begin browser-agent-cautions#reach -->[ブラウザや画面の操作を任せるときの注意 › 届く範囲（ログイン済みのサイト・開いているアプリ）](../safety/browser-agent-cautions.md#reach)<!-- link:end -->で見る。
 
 ## 何に効くか {#effects}
 
@@ -109,7 +109,7 @@ Claude が区別できないのは、Claude に渡る入力が一本の文脈で
 - **指示が入ってくる経路と型を知りたい**：<!-- link:begin prompt-injection-in-practice#channels -->[プロンプトインジェクションの実際 › 指示が入ってくる経路](../safety/prompt-injection-in-practice.md#channels)<!-- link:end -->で見る。
 - **構成の側で断ちたい**：信頼できない入力・私的なデータ・外への送信を同時に持たせない考え方は<!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](../safety/lethal-trifecta.md#three-capabilities)<!-- link:end -->にある。
 - **コマンドの読み書きと通信を囲いたい**：<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->で見る。
-- **課題の資料や問題文に指示が混じっていた**：<!-- link:begin instructions-hidden-in-materials#treat-as-data -->課題資料・問題文に仕込まれた指示 › 資料をデータとして扱う（準備中）<!-- link:end -->で扱う。資料の中身は信頼できない入力として扱い、出力をシェルでそのまま自動実行しない。
+- **課題の資料や問題文に指示が混じっていた**：<!-- link:begin instructions-hidden-in-materials#treat-as-data -->[課題資料・問題文に仕込まれた指示 › 資料をデータとして扱う](../safety/instructions-hidden-in-materials.md#treat-as-data)<!-- link:end -->で扱う。資料の中身は信頼できない入力として扱い、出力をシェルでそのまま自動実行しない。
 - **知らないリポジトリや拡張を入れる**：<!-- link:begin before-opening-unknown-repos#files-to-check -->[知らないリポジトリを開く前に › 開く前に見るファイル](../safety/before-opening-unknown-repos.md#files-to-check)<!-- link:end -->と<!-- link:begin vetting-extensions#provenance -->[MCP・プラグイン・スキルを入れる前の確認 › 出所を確かめる](../safety/vetting-extensions.md#provenance)<!-- link:end -->で、入れる前に確かめる。
 
 ## 誤解 {#misconceptions}
@@ -152,10 +152,10 @@ Claude が区別できないのは、Claude に渡る入力が一本の文脈で
 
 - [お願いと鍵（決定論的か、非決定論的か）](request-vs-lock.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)
-- 課題資料・問題文に仕込まれた指示（準備中）
+- [課題資料・問題文に仕込まれた指示](../safety/instructions-hidden-in-materials.md)
 - [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
-- ブラウザや画面の操作を任せるときの注意（準備中）
+- [ブラウザや画面の操作を任せるときの注意](../safety/browser-agent-cautions.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 
 </div>

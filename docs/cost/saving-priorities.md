@@ -106,7 +106,7 @@ effort やモデルを下げるのは、ほかの手段を試した後にする�
 
 下げる手段を最後に置く理由は、答えの質が下がると手戻りが増えうる点にある。公式の文書は、最高の段は考えすぎることもあると注意している。つまり、上げ下げのどちらも、既定から始めて自分の作業で確かめる対象である。API 側の文書も、旧モデルの設定を流用せず、自分の評価で段を振って確かめるよう勧めている。
 
-下げてよい仕事もある。軽い仕事のモデルを軽くする判断は、<!-- link:begin split-models-by-role#lighter-models -->計画・実装・サブエージェントでモデルを分ける › 軽いモデルの使いどころ（準備中）<!-- link:end --> にある。段ごとの振る舞いは <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end --> にある。下げた後に訂正の往復が増えたら、元の段に戻す。
+下げてよい仕事もある。軽い仕事のモデルを軽くする判断は、<!-- link:begin split-models-by-role#lighter-models -->[計画・実装・サブエージェントでモデルを分ける › 軽いモデルの使いどころ](../models/split-models-by-role.md#lighter-models)<!-- link:end --> にある。段ごとの振る舞いは <!-- link:begin effort-levels#levels -->[effort の段階と使い分け › 段ごとの振る舞い](../models/effort-levels.md#levels)<!-- link:end --> にある。下げた後に訂正の往復が増えたら、元の段に戻す。
 
 ## 面ごとの節約の手段 {#by-surface}
 
@@ -172,7 +172,7 @@ effort やモデルを下げるのは、ほかの手段を試した後にする�
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [検証の階段](../verify/verification-ladder.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
-- 計画・実装・サブエージェントでモデルを分ける（準備中）
+- [計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)
 
 </div>
 

@@ -84,13 +84,13 @@ updated: 2026-11-05
 - 数式や脚注が抜けていないか。
 - 図が落ちていないか。図が答えに必要なら、図の部分は元の PDF のまま渡すか、図の説明を文章で足す。
 
-日本語の PDF は、読めたかを引用で確かめてから使う。手順は <!-- link:begin documents-in-japanese#pdf -->日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること（準備中）<!-- link:end --> にある。
+日本語の PDF は、読めたかを引用で確かめてから使う。手順は <!-- link:begin documents-in-japanese#pdf -->[日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること](../japanese/documents-in-japanese.md#pdf)<!-- link:end --> にある。
 
 渡し方は面で違う。
 
 === "アプリ"
 
-    会話に添付するか、プロジェクトのファイルに入れる。繰り返し使う資料はプロジェクトに入れてよいが、入れすぎると読まれ方が変わる。絞り方は <!-- link:begin too-much-project-knowledge#curate -->プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方（準備中）<!-- link:end --> にある。PDF とそれ以外の文書の読まれ方の違いは <!-- link:begin how-attachments-are-read#pdf-and-others -->[添付ファイルはどこまで読まれるか › PDF とそれ以外の文書](../app/how-attachments-are-read.md#pdf-and-others)<!-- link:end --> が、分け方の目安は <!-- link:begin how-attachments-are-read#splitting -->[添付ファイルはどこまで読まれるか › 大きな資料の分け方](../app/how-attachments-are-read.md#splitting)<!-- link:end --> が持つ。
+    会話に添付するか、プロジェクトのファイルに入れる。繰り返し使う資料はプロジェクトに入れてよいが、入れすぎると読まれ方が変わる。絞り方は <!-- link:begin too-much-project-knowledge#curate -->[プロジェクトのナレッジが多すぎるとき › 資料の絞り方と入れ直し方](../app/too-much-project-knowledge.md#curate)<!-- link:end --> にある。PDF とそれ以外の文書の読まれ方の違いは <!-- link:begin how-attachments-are-read#pdf-and-others -->[添付ファイルはどこまで読まれるか › PDF とそれ以外の文書](../app/how-attachments-are-read.md#pdf-and-others)<!-- link:end --> が、分け方の目安は <!-- link:begin how-attachments-are-read#splitting -->[添付ファイルはどこまで読まれるか › 大きな資料の分け方](../app/how-attachments-are-read.md#splitting)<!-- link:end --> が持つ。
 
 === "Claude Code"
 
@@ -192,8 +192,8 @@ Claude Code と API の限りは、このページでは数えない。API で�
 - [引用や出典の確かめ方](../verify/checking-citations.md)
 - [要約が原文より断定的になる](../symptoms/summary-overstates-source.md)
 - [@参照と、何を読ませるかの絞り込み](choose-what-to-read.md)
-- プロジェクトのナレッジが多すぎるとき（準備中）
-- 日本語の資料を読ませる・書かせる（準備中）
+- [プロジェクトのナレッジが多すぎるとき](../app/too-much-project-knowledge.md)
+- [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)
 - [調べものとレポート](../recipes/research-and-reports.md)
 
 </div>

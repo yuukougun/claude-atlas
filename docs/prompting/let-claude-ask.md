@@ -101,7 +101,7 @@ After で足したものは 4 つある。1 つ目は、実装の前にインタ
 
 Claude には、頼む側の頭の中にある条件が見えない。頼む側も、決めていない点があることに、作ってから気づく。だから、頼んだ後になって伝え忘れた条件が次々に出てくる。質問させると、Claude の側から「ここは決まっているか」を並べてくれる。答える前でも、質問の一覧そのものが、自分の決め忘れの一覧になる。
 
-答えた内容は、依頼に不足していた情報になる。<!-- link:begin four-specifics#which-to-add -->[具体性の 4 点（対象・状況・完了・手本） › ずれ方から、次に足す点を探す](four-specifics.md#which-to-add)<!-- link:end --> で、足す点を探す手間を、質問が肩代わりする形である。ずれた結果を見てから直す方法は <!-- link:begin refine-in-conversation#edit-the-request -->頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す（準備中）<!-- link:end --> にある。ずれの原因を切り分ける診断は <!-- link:begin not-what-i-meant#diagnosis -->[意図と違うものが出てくる › 原因を安く確かめる順](../symptoms/not-what-i-meant.md#diagnosis)<!-- link:end --> にある。
+答えた内容は、依頼に不足していた情報になる。<!-- link:begin four-specifics#which-to-add -->[具体性の 4 点（対象・状況・完了・手本） › ずれ方から、次に足す点を探す](four-specifics.md#which-to-add)<!-- link:end --> で、足す点を探す手間を、質問が肩代わりする形である。ずれた結果を見てから直す方法は <!-- link:begin refine-in-conversation#edit-the-request -->[頼み方は一回で決めない（会話で詰める） › 訂正を重ねるより依頼を直す](refine-in-conversation.md#edit-the-request)<!-- link:end --> にある。ずれの原因を切り分ける診断は <!-- link:begin not-what-i-meant#diagnosis -->[意図と違うものが出てくる › 原因を安く確かめる順](../symptoms/not-what-i-meant.md#diagnosis)<!-- link:end --> にある。
 
 ## 仕様を文書にしてから新しい会話で作る {#spec-then-fresh}
 
@@ -173,7 +173,7 @@ Claude には、頼む側の頭の中にある条件が見えない。頼む側�
 - 質問の画面を放置する：Claude Code では、既定で、答えるまで質問が開いたままになる。放っておいたら先へ進めたいときは、`askUserQuestionTimeout` で閉じるまでの時間を決める（指定できる値：<!-- fact:begin ask-user-question-timeout -->未確認<!-- fact:end -->）。
 - 人がいない実行で頼む：質問の答えは人が出す。サブエージェントからは使えない。`-p` の非対話の実行では、承認を受け持つ仕組みがあるときだけ使われる。質問させるのは、人がいる会話にする（[Hooks reference](https://code.claude.com/docs/en/hooks)）。
 
-選択肢を並べて選ばせる場面は、<!-- link:begin ask-for-options -->選択肢と推奨案を出させる（準備中）<!-- link:end --> が持つ。独自性が要る考察では、質問をさせる前に自分の案を書く（<!-- link:begin think-before-asking#self-first -->頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI（準備中）<!-- link:end -->）。方針や範囲に迷う作業で、編集を止めたまま計画を読む方法は <!-- link:begin when-to-plan#when -->[plan mode の使いどころ › 計画が効く作業、省いてよい作業](../cli/when-to-plan.md#when)<!-- link:end --> にある。
+選択肢を並べて選ばせる場面は、<!-- link:begin ask-for-options -->[選択肢と推奨案を出させる](ask-for-options.md)<!-- link:end --> が持つ。独自性が要る考察では、質問をさせる前に自分の案を書く（<!-- link:begin think-before-asking#self-first -->[頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI](../judgment/think-before-asking.md#self-first)<!-- link:end -->）。方針や範囲に迷う作業で、編集を止めたまま計画を読む方法は <!-- link:begin when-to-plan#when -->[plan mode の使いどころ › 計画が効く作業、省いてよい作業](../cli/when-to-plan.md#when)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -202,11 +202,11 @@ Claude には、頼む側の頭の中にある条件が見えない。頼む側�
 
 **関連**
 
-- 選択肢と推奨案を出させる（準備中）
+- [選択肢と推奨案を出させる](ask-for-options.md)
 - [plan mode の使いどころ](../cli/when-to-plan.md)
-- 頼み方は一回で決めない（会話で詰める）（準備中）
+- [頼み方は一回で決めない（会話で詰める）](refine-in-conversation.md)
 - [意図と違うものが出てくる](../symptoms/not-what-i-meant.md)
-- 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
+- [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)
 
 </div>
 

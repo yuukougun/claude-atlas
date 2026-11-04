@@ -1,0 +1,15 @@
+title: 手元の版と更新の通り道を控えるスクリプト
+kind: other
+place: 作業メモ（どのディレクトリでもよい）
+safety: false
+conditions:
+  - プロジェクトのルートで実行する（project の設定ファイルを読むため）
+  - claude コマンドが PATH にある環境（WSL・Linux・macOS）で試す
+expect:
+  - when: スクリプトを実行する
+    then: 「手元の版」の下に claude --version の出力が出る
+  - when: settings.json に autoUpdatesChannel を書いた状態で実行する
+    then: 「更新の通り道と下限の設定」の下に、その行がファイル名と行番号つきで出る
+  - when: npm のない環境で実行する
+    then: 公開されている版の目印の下に、省略した旨の 1 行が出る
+control: スクリプトを使わず claude --version だけを見ると、通り道（latest か stable か）が分からず、記録の読み方を誤りやすい

@@ -69,7 +69,7 @@ updated: 2026-11-05
 
 1. **確かめていない：評価が正しくない**（リーク〔検証用のデータの情報が学習に混ざること〕・採点の誤り）
     - 見るもの：検証用のデータの情報が、学習や特徴量の作成に入っていないか。スコアが良すぎないか。
-    - 確かめ方：急に上がったスコアや満点に近いスコアは、まずリークを疑う。何もしない解が負けるか、手で計算した値と一致するかを、評価に当てて確かめる。やり方は <!-- link:begin test-the-verifier#red-green -->[検証器そのものを確かめる（red/green・手で計算したケース） › red/green を検証器に当てる](../eval/test-the-verifier.md#red-green)<!-- link:end --> にある。疑う順は <!-- link:begin suspect-too-good-results#what-to-suspect -->良すぎる結果を疑う › まず疑うもの（準備中）<!-- link:end --> にある。
+    - 確かめ方：急に上がったスコアや満点に近いスコアは、まずリークを疑う。何もしない解が負けるか、手で計算した値と一致するかを、評価に当てて確かめる。やり方は <!-- link:begin test-the-verifier#red-green -->[検証器そのものを確かめる（red/green・手で計算したケース） › red/green を検証器に当てる](../eval/test-the-verifier.md#red-green)<!-- link:end --> にある。疑う順は <!-- link:begin suspect-too-good-results#what-to-suspect -->[良すぎる結果を疑う › まず疑うもの](../verify/suspect-too-good-results.md#what-to-suspect)<!-- link:end --> にある。
     - 機械学習のパイプラインを行の引用つきで点検させる手順は、<!-- link:begin audit-ml-pipelines -->機械学習のパイプラインを点検させる（準備中）<!-- link:end --> にある。
 2. **確かめていない：評価が書き換えられた**
     - 見るもの：評価のコード・テスト・正解のデータ・データの分割が、実験の途中で変わっていないか。
@@ -78,10 +78,10 @@ updated: 2026-11-05
     - 見るもの：検証用のデータの分布は、本番に来る入力と同じか。同じ検証用のデータで、版を選び続けていないか。
     - 確かめ方：検証用のデータと本番の入力を、いくつかの層（時期・種類・難しさ）で比べる。合計だけでなく、層ごとと最悪の場合でも測り直す。測り直し方は <!-- link:begin measure-changes#by-stratum -->[変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)<!-- link:end --> にある。
     - 同じ検証用のデータで版を選び続けると、評価の穴に合わせ込まれる。仕組みは <!-- link:begin selection-pressure#why -->[選択圧：良かった版を選び続ける罠 › なぜ正直でも外れるか](../eval/selection-pressure.md#why)<!-- link:end --> にある。
-    - 条件の見方は <!-- link:begin verifier-three-conditions#representative -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 本番を代表する](../eval/verifier-three-conditions.md#representative)<!-- link:end -->、データ分析の CV の例は <!-- link:begin evaluators-by-format#cv -->形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › データ分析：分布の差を確かめた CV（準備中）<!-- link:end --> にある。
+    - 条件の見方は <!-- link:begin verifier-three-conditions#representative -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 本番を代表する](../eval/verifier-three-conditions.md#representative)<!-- link:end -->、データ分析の CV の例は <!-- link:begin evaluators-by-format#cv -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › データ分析：分布の差を確かめた CV](../contest/evaluators-by-format.md#cv)<!-- link:end --> にある。
 4. **確かめていない：指標が目的とずれる**
     - 見るもの：評価の指標が上がることと、本当に欲しい結果が得られることは、同じ意味か。
-    - 確かめ方：指標が良いのに目的を満たさない例を、手で 1 つ探す。見つかれば、指標そのものが誤りである。確かめ方は <!-- link:begin check-the-metric#mismatch -->評価指標そのものを確かめる › 指標と目的のずれ（準備中）<!-- link:end --> にある。
+    - 確かめ方：指標が良いのに目的を満たさない例を、手で 1 つ探す。見つかれば、指標そのものが誤りである。確かめ方は <!-- link:begin check-the-metric#mismatch -->[評価指標そのものを確かめる › 指標と目的のずれ](../eval/check-the-metric.md#mismatch)<!-- link:end --> にある。
 5. **預けすぎる**（人の側）：評価の設計まで任せきっている。
     - 見るもの：評価の定義・分割・採否の基準を、誰が決めたか。人が自分の目で確かめたのは、いつが最後か。
     - 確かめ方：評価を作った者と、評価を確かめた者が同じ Claude のセッションでないか。同じなら、書いた本人が採点している。報告では「評価に問題はない」と言われても、確かめた範囲が示されていなければ、確かめたことにならない。エージェントが自分の作業を高く評価しやすい傾向は、企業の報告にある（根拠：中）。人が手元に残すものは <!-- link:begin what-not-to-delegate#what-humans-hold -->[任せないもの（評価・採否・撤退・中核の理解） › どの段階でも人が握るもの](../delegate/what-not-to-delegate.md#what-humans-hold)<!-- link:end --> にある。
@@ -118,7 +118,7 @@ Claude に点検を手伝わせてもよい。ただし、返答は手がかり�
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 確かめていない | [検証器の三条件（正しい・書き換えられない・本番を代表する）](../eval/verifier-three-conditions.md)<br>[検証器そのものを確かめる（red/green・手で計算したケース）](../eval/test-the-verifier.md)<br>評価指標そのものを確かめる（準備中） |
+| 確かめていない | [検証器の三条件（正しい・書き換えられない・本番を代表する）](../eval/verifier-three-conditions.md)<br>[検証器そのものを確かめる（red/green・手で計算したケース）](../eval/test-the-verifier.md)<br>[評価指標そのものを確かめる](../eval/check-the-metric.md) |
 | 預けすぎる | [任せないもの（評価・採否・撤退・中核の理解） › どの段階でも人が握るもの](../delegate/what-not-to-delegate.md#what-humans-hold) |
 
 <!-- textlint-enable -->
@@ -137,11 +137,11 @@ Claude に点検を手伝わせてもよい。ただし、返答は手がかり�
 予防の考え方は、「評価も見て」と頼み続けるのをやめ、評価を確かめて守る手段を仕組みに置くことである。任せる幅を広げるほど、先に評価を整える。
 
 - 最初の成果物を、評価にする。使う前に、何もしない解が負け、手で計算した値と一致することを確かめ、確かめてから凍結する（<!-- link:begin test-the-verifier#freeze -->[検証器そのものを確かめる（red/green・手で計算したケース） › 確かめてから凍結する](../eval/test-the-verifier.md#freeze)<!-- link:end -->）。
-- 入力を、開発用・検証用・人だけが持つロックボックスに分ける。節目にだけロックボックスを見て、Claude には点数だけを返す（<!-- link:begin lockbox-and-holdout#three-tiers -->ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける（準備中）<!-- link:end -->）。
+- 入力を、開発用・検証用・人だけが持つロックボックスに分ける。節目にだけロックボックスを見て、Claude には点数だけを返す（<!-- link:begin lockbox-and-holdout#three-tiers -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける](../eval/lockbox-and-holdout.md#three-tiers)<!-- link:end -->）。
 - 版を選び続ける運用に守りを置く。一変更一評価、試行の台帳、見せないデータを使う（<!-- link:begin selection-pressure#defenses -->[選択圧：良かった版を選び続ける罠 › 防ぎ方](../eval/selection-pressure.md#defenses)<!-- link:end -->）。
-- 満点に近い結果を、受け取る前に疑う。自己点検は、報告の前に Claude にさせる（<!-- link:begin suspect-too-good-results#self-check -->良すぎる結果を疑う › 報告の前に自己点検させる（準備中）<!-- link:end -->）。
+- 満点に近い結果を、受け取る前に疑う。自己点検は、報告の前に Claude にさせる（<!-- link:begin suspect-too-good-results#self-check -->[良すぎる結果を疑う › 報告の前に自己点検させる](../verify/suspect-too-good-results.md#self-check)<!-- link:end -->）。
 - 評価の定義・採否・撤退は、人が握る。分ける軸は、出力を機械的に確かめられるかである（<!-- link:begin what-not-to-delegate#verifiable-axis -->[任せないもの（評価・採否・撤退・中核の理解） › 分ける軸：機械的に確かめられるか](../delegate/what-not-to-delegate.md#verifiable-axis)<!-- link:end -->）。
-- 戦略そのものを回し続けさせない。反復させるのは、仕様が決まり停止条件のある実装の作業に限る（<!-- link:begin open-ended-loop-trap#closed-vs-open -->AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ（準備中）<!-- link:end -->）。
+- 戦略そのものを回し続けさせない。反復させるのは、仕様が決まり停止条件のある実装の作業に限る（<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](../delegate/open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->）。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -172,21 +172,21 @@ Claude に点検を手伝わせてもよい。ただし、返答は手がかり�
 
 - [検証器の三条件（正しい・書き換えられない・本番を代表する）](../eval/verifier-three-conditions.md)
 - [検証器そのものを確かめる（red/green・手で計算したケース）](../eval/test-the-verifier.md)
-- 評価指標そのものを確かめる（準備中）
+- [評価指標そのものを確かめる](../eval/check-the-metric.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 
 **関連**
 
 - [選択圧：良かった版を選び続ける罠](../eval/selection-pressure.md)
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
-- ロックボックスと hold-out（人だけが持つ検証用データ）（準備中）
-- 良すぎる結果を疑う（準備中）
+- [AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)
+- [ロックボックスと hold-out（人だけが持つ検証用データ）](../eval/lockbox-and-holdout.md)
+- [良すぎる結果を疑う](../verify/suspect-too-good-results.md)
 - [変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)
 - [採点器を騙す（reward hacking）](../basics/reward-hacking.md)
 - [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)
 - 機械学習のパイプラインを点検させる（準備中）
-- データを分析する（準備中）
-- 形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）（準備中）
+- [データを分析する](../recipes/data-analysis.md)
+- [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)
 - [テストを書き換えて通した](rewrote-tests-to-pass.md)
 - [「完了」と言うが終わっていない](claims-done-but-isnt.md)
 - [同じ確認のループにはまる](stuck-in-a-check-loop.md)

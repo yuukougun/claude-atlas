@@ -1,0 +1,30 @@
+domains:
+  - domain: openai.com
+    checked: '2026-11-05'
+    noai: false
+    url: https://openai.com/index/expanding-on-sycophancy/
+    note: robots.txt に AI 向けのクローラへの指定はない。meta は index, follow
+  - domain: cvpr.thecvf.com
+    checked: '2026-11-05'
+    noai: false
+    url: https://cvpr.thecvf.com/virtual/2023/poster/21260
+    note: robots.txt に noai の指定はない
+sources:
+  - id: openai-expanding-on-sycophancy
+    url: https://openai.com/index/expanding-on-sycophancy/
+    title: Expanding on what we missed with sycophancy
+    kind: 公式ブログ
+    publisher: OpenAI
+    lang: en
+    checked: '2026-11-05'
+    published: '2025-05-02'
+    note: 取得が 403 で本文を開けなかった。題名と公開日は記憶による仮のもの。内容は調査資料（planning/research/10-contest-supplement.md）の要約に拠る。メインが開いて確かめてほしい
+  - id: cvpr-2023-why-is-the-winner-the-best
+    url: https://cvpr.thecvf.com/virtual/2023/poster/21260
+    title: Why Is the Winner the Best?
+    kind: 研究
+    publisher: CVPR 2023
+    lang: en
+    checked: '2026-11-05'
+    published: '2023-06-01'
+    note: ポスターのページの要旨を確かめた。IEEE ISBI 2021 と MICCAI 2021 の 80 件のコンペの勝者の分析。上位チームの共通の戦略の一つが、手法の設計に評価指標を反映すること。公開日は大会の年の仮の値

@@ -1,0 +1,17 @@
+title: 仮説ごとの worktree と同じ評価器で比べる手順（記録の雛形）
+kind: other
+place: プロジェクトの記録（例：docs/experiments/compare-cache-vs-query.md）
+safety: false
+conditions:
+  - 壊れても困らない git リポジトリで試す
+  - 評価器（例の ../eval/evaluate.sh）は、自分の環境のものに置き換える
+expect:
+  - when: 雛形の 1 を実装の前に埋める
+    then: 仮説、物差しの版、勝ちの基準、打ち切りが、結果を見る前の日付で残る
+  - when: 雛形の 2 のコマンドを実行する
+    then: 案ごとの worktree とブランチが同じ基点から作られ、git worktree list に 2 つ並ぶ
+  - when: 雛形の 4 で、同じ評価器を両方の worktree に走らせる
+    then: 表の評価器の版・入力・試行が案どうしで同じになる
+  - when: 負けた案を片付ける
+    then: worktree は消えるが、記録の 5 に何で負けたかが残る
+control: 雛形を使わず、案を順に実装して比べると、評価器・入力・基点のどれかが案ごとにずれ、勝ち負けの理由が案の差かどうか分からなくなることがある

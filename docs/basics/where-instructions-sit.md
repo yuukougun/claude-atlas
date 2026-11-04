@@ -82,7 +82,7 @@ flowchart TB
     Claude Code では、次のものが別々の場所に入る。
 
     - **システムプロンプト**：既定のものを Claude Code が組み立てる。`--append-system-prompt` で書き足せるが、これは起動のたびのフラグで、設定ファイルのキーとしては書けない。圧縮の後も効く。
-    - **CLAUDE.md**：システムプロンプトの後のユーザーメッセージ（system reminder）として届く。作業ディレクトリから上の階層の分はセッション開始で、サブディレクトリの分は、Claude がそのディレクトリのファイルを読み書きしたときに読み込まれる。階層と順序は<!-- link:begin claude-md-loading-order -->CLAUDE.md の階層と読み込み順（準備中）<!-- link:end -->で扱う。
+    - **CLAUDE.md**：システムプロンプトの後のユーザーメッセージ（system reminder）として届く。作業ディレクトリから上の階層の分はセッション開始で、サブディレクトリの分は、Claude がそのディレクトリのファイルを読み書きしたときに読み込まれる。階層と順序は<!-- link:begin claude-md-loading-order -->[CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)<!-- link:end -->で扱う。
     - **出力スタイル**：公式は「Claude が従う指示で、何も強制しない」と書く。毎回のリクエストで送られ、圧縮の後も効く。主の会話では system reminder として届く。
     - **フックが足す文**：`UserPromptSubmit` フックの標準出力か `additionalContext` は、プロンプトごとに system reminder として足される。
     - **会話の発言**：あなたの依頼と Claude の返答は、会話の中身として文脈に積まれる。
@@ -111,7 +111,7 @@ flowchart TB
 | 機能 | 面 | 読み込みの時期 | 圧縮で残るか |
 | --- | --- | --- | --- |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | Claude Code | セッション開始 | 残る |
-| 出力スタイル（output styles）（準備中） | Claude Code | セッション開始と切り替えたとき | 残る |
+| [出力スタイル（output styles）](../cli/output-style-modes.md) | Claude Code | セッション開始と切り替えたとき | 残る |
 | [プロジェクトの指示（project instructions）](../app/using-projects.md) | アプリ | — | 未確認 |
 | [Claude への指示（Instructions for Claude）](../app/where-to-put-instructions.md) | アプリ | — | 未確認 |
 
@@ -132,7 +132,7 @@ CLAUDE.md は、圧縮の後で扱いが分かれる。プロジェクトの根�
 位置を知ると、次の 2 つの原理と 2 つの原因に結び付く。
 
 - **縛る（原理）と、縛っていない（原因）**：CLAUDE.md・出力スタイル・プロジェクトの指示は、どれも位置が文脈なので、書いても縛ったことにならない。例外を許さない規則は、文脈に書くのではなく、仕組みで縛る。分け方は<!-- link:begin request-vs-lock#sorting -->[お願いと鍵（決定論的か、非決定論的か） › お願いと鍵の分け方](request-vs-lock.md#sorting)<!-- link:end -->で扱う。
-- **見せる（原理）**：指示は、必要な場面で Claude の文脈に載っていなければ効かない。圧縮で消えた会話の頼み、Explore と Plan、クラウドのセッションがその例である。サブエージェントに渡したい規則は、委任の文に書く。方法は<!-- link:begin what-subagents-dont-inherit -->サブエージェントに引き継がれないもの（準備中）<!-- link:end -->で扱う。
+- **見せる（原理）**：指示は、必要な場面で Claude の文脈に載っていなければ効かない。圧縮で消えた会話の頼み、Explore と Plan、クラウドのセッションがその例である。サブエージェントに渡したい規則は、委任の文に書く。方法は<!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)<!-- link:end -->で扱う。
 - **散らかっている（原因）**：CLAUDE.md はセッションの間ずっと文脈に載り続ける。長い規則や一時的な頼みを混ぜると、肝心の行が埋もれる。置き場所を分ける基準は<!-- link:begin claude-md-vs-rules-skills-styles#how-to-choose -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示の置き場所の選び方](../extend/claude-md-vs-rules-skills-styles.md#how-to-choose)<!-- link:end -->で扱う。
 
 !!! example "判断例：毎回の規則と、今日だけの頼み"
@@ -164,18 +164,18 @@ CLAUDE.md は、圧縮の後で扱いが分かれる。プロジェクトの根�
 
 - [圧縮（compaction）で何が残り、何が消えるか](what-survives-compaction.md)
 - [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
+- [/init と最初の CLAUDE.md](../cli/init-and-first-claude-md.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - [別の会話やプロジェクトの内容が混ざる](../symptoms/unexpected-memories.md)
 - [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
 - [毎回同じ説明をしている](../symptoms/repeating-the-same-explanation.md)
-- /init と最初の CLAUDE.md（準備中）
 
 **関連**
 
 - [お願いと鍵（決定論的か、非決定論的か）](request-vs-lock.md)
-- CLAUDE.md の階層と読み込み順（準備中）
+- [CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)
-- サブエージェントに引き継がれないもの（準備中）
+- [サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)
 - [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)
 
 </div>

@@ -73,11 +73,11 @@ updated: 2026-11-05
 
 1. **一変更一評価**：1 回に変えるのは 1 つにする。複数を同時に変えると、点が上がった理由が分からないまま採ることになる。測り方は <!-- link:begin measure-changes#how-many-runs -->[変更が効いたかを測る（小さな eval） › 試行の数と差の大きさ](measure-changes.md#how-many-runs)<!-- link:end --> にある。
 2. **台帳に試した数を残す**：実行の前に仮説を書き、採否と判定者を残す。残した行の数が「何通り試した中の最高点か」の分母になり、その点を割り引いて読める。書き方は <!-- link:begin experiment-log#hypothesis-first -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 仮説を先に書く](experiment-log.md#hypothesis-first)<!-- link:end --> と <!-- link:begin experiment-log#verifier-version -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 検証器の版を残す](experiment-log.md#verifier-version)<!-- link:end --> にある。
-3. **見せないデータで確かめる**：入力を開発用・検証用・人だけが持つものに分け、人だけが持つ入力は節目にだけ見る。Claude には点数だけを返す。何度も見れば、それも選ぶ根拠に使うことになる（推論）。分け方は <!-- link:begin lockbox-and-holdout#three-tiers -->ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける（準備中）<!-- link:end --> にある。点数だけを返す運用は <!-- link:begin lockbox-and-holdout#scores-only -->ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す（準備中）<!-- link:end --> を見る。
-4. **差がぶれより大きいかを見る**：採る前に、同じ版を何度か測ってぶれの幅を知り、点の差がその幅を超えているかを確かめる。急な高速化や満点に近い点は、採る前に <!-- link:begin suspect-too-good-results#what-to-suspect -->良すぎる結果を疑う › まず疑うもの（準備中）<!-- link:end --> の手順で疑う。
+3. **見せないデータで確かめる**：入力を開発用・検証用・人だけが持つものに分け、人だけが持つ入力は節目にだけ見る。Claude には点数だけを返す。何度も見れば、それも選ぶ根拠に使うことになる（推論）。分け方は <!-- link:begin lockbox-and-holdout#three-tiers -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける](lockbox-and-holdout.md#three-tiers)<!-- link:end --> にある。点数だけを返す運用は <!-- link:begin lockbox-and-holdout#scores-only -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す](lockbox-and-holdout.md#scores-only)<!-- link:end --> を見る。
+4. **差がぶれより大きいかを見る**：採る前に、同じ版を何度か測ってぶれの幅を知り、点の差がその幅を超えているかを確かめる。急な高速化や満点に近い点は、採る前に <!-- link:begin suspect-too-good-results#what-to-suspect -->[良すぎる結果を疑う › まず疑うもの](../verify/suspect-too-good-results.md#what-to-suspect)<!-- link:end --> の手順で疑う。
 
 試行の数を増やす前に、この守りを先に置く。`/goal` やサブエージェントを多数動かす仕組みは、試す数を一気に増やすので、選択圧も同じ割合で強まる。仕様が決まり停止条件のある作業に限る話は <!-- link:begin goal-until-done#spec-tasks-only -->[/goal（完了するまで続けさせる） › 仕様の決まった実装に限る](../delegate/goal-until-done.md#spec-tasks-only)<!-- link:end --> にある。
-規模を小さく始める話は <!-- link:begin dynamic-workflows#when-and-start-small -->dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 向く規模と、小さく試す（準備中）<!-- link:end --> にある。
+規模を小さく始める話は <!-- link:begin dynamic-workflows#when-and-start-small -->[dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 向く規模と、小さく試す](../delegate/dynamic-workflows.md#when-and-start-small)<!-- link:end --> にある。
 
 ## 同じアイデアの再挑戦に上限を置く {#retry-cap}
 
@@ -99,12 +99,12 @@ updated: 2026-11-05
 
 防ぐ原因は、確かめていないである。点が上がったという報告を、手元の評価の内側だけで受け取るのは、確かめたことにならない。選んだ後の版を、選ぶ根拠に使っていない入力で一度測って、初めて確かめたことになる。
 
-比べる版を並べて同じ物差しで測る手順は <!-- link:begin compare-hypotheses-in-parallel -->仮説ごとに並べて、同じ物差しで比べる（準備中）<!-- link:end --> にある。コンテストの実験でケース数や試合数を決める話は <!-- link:begin running-contest-experiments#games-for-win-rate -->実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 勝率に要る試合数（準備中）<!-- link:end --> を使う。
+比べる版を並べて同じ物差しで測る手順は <!-- link:begin compare-hypotheses-in-parallel -->[仮説ごとに並べて、同じ物差しで比べる](../delegate/compare-hypotheses-in-parallel.md)<!-- link:end --> にある。コンテストの実験でケース数や試合数を決める話は <!-- link:begin running-contest-experiments#games-for-win-rate -->実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 勝率に要る試合数（準備中）<!-- link:end --> を使う。
 
 ## よくある誤解 {#misconceptions}
 
 - **「Claude が不正をしなければ起きない」**：起きる。選ぶのが人でも、Claude に自動で選ばせても、選び続ける手順があれば生じる。
-- **「長く回せば良くなり続ける」**：Claude Code をループで回してエージェントを最適化した事例では、最良の構成を早い段階で見つけた後は頭打ちになり、延長しても時間と金が無駄になった（根拠：弱。単独の実務家の報告）。回す長さの話は <!-- link:begin open-ended-loop-trap#longer-is-not-better -->AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない（準備中）<!-- link:end --> にある。やめる基準は着手前に書く（<!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](../judgment/decide-when-to-quit.md#write-criteria-first)<!-- link:end -->）。
+- **「長く回せば良くなり続ける」**：Claude Code をループで回してエージェントを最適化した事例では、最良の構成を早い段階で見つけた後は頭打ちになり、延長しても時間と金が無駄になった（根拠：弱。単独の実務家の報告）。回す長さの話は <!-- link:begin open-ended-loop-trap#longer-is-not-better -->[AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない](../delegate/open-ended-loop-trap.md#longer-is-not-better)<!-- link:end --> にある。やめる基準は着手前に書く（<!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](../judgment/decide-when-to-quit.md#write-criteria-first)<!-- link:end -->）。
 - **「見せないデータを持てば安全になる」**：持つだけでは足りない。その点を見て選び直すたびに、見せないデータも選ぶ根拠に変わる。見る回数を節目に絞る。
 
 <!-- gen:begin references -->
@@ -133,16 +133,16 @@ updated: 2026-11-05
 **次に読む**
 
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](experiment-log.md)
-- ロックボックスと hold-out（人だけが持つ検証用データ）（準備中）
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
+- [ロックボックスと hold-out（人だけが持つ検証用データ）](lockbox-and-holdout.md)
+- [AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)
 
 **関連**
 
-- 仮説ごとに並べて、同じ物差しで比べる（準備中）
+- [仮説ごとに並べて、同じ物差しで比べる](../delegate/compare-hypotheses-in-parallel.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
-- dynamic workflows（スクリプトで多数のサブエージェントを動かす）（準備中）
+- [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
-- 良すぎる結果を疑う（準備中）
+- [良すぎる結果を疑う](../verify/suspect-too-good-results.md)
 - 実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）（準備中）
 
 </div>

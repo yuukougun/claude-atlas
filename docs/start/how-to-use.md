@@ -86,7 +86,7 @@ updated: 2026-11-05
 | 自分のレベルで何から読むか | <!-- link:begin roadmap -->[ロードマップ（委任の段階別）](roadmap.md)<!-- link:end --> |
 | ページの前提関係（図で見たい） | <!-- link:begin knowledge-map -->[知識マップ](knowledge-map.md)<!-- link:end --> |
 | アプリ・Claude Code・API の関係 | <!-- link:begin product-map -->[全体地図：Claude の面と層](product-map.md)<!-- link:end --> |
-| 読んだ助言が今も通じるか | <!-- link:begin outdated-advice-ledger -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md)<!-- link:end -->と<!-- link:begin dating-information -->いつの情報かを見分ける（準備中）<!-- link:end --> |
+| 読んだ助言が今も通じるか | <!-- link:begin outdated-advice-ledger -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md)<!-- link:end -->と<!-- link:begin dating-information -->[いつの情報かを見分ける](../changes/dating-information.md)<!-- link:end --> |
 
 ナビゲーションの大きな区分を分野と呼ぶ。症状のページだけを章（分野の中の区切り）ごとに並べた分野が、ナビゲーションの<!-- link:begin field:symptoms -->[症状辞典](../symptoms/index.md)<!-- link:end -->である。逆引き辞典を通らずに、章から症状を探すときは、そこを開く。
 
@@ -338,7 +338,7 @@ AI が URL を読めない環境では、ページの本文を貼って渡す。
 - [全体地図：Claude の面と層](product-map.md)
 - [出典と AI 利用の方針](ai-and-sources.md)
 - [古くなった助言の台帳](../changes/outdated-advice-ledger.md)
-- いつの情報かを見分ける（準備中）
+- [いつの情報かを見分ける](../changes/dating-information.md)
 
 </div>
 

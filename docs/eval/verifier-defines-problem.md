@@ -55,7 +55,7 @@ Claude に「テストが全部通るまで直して」「スコアを上げて�
 
 - 開発：テストが戻り値の型しか調べていなければ、Claude は型だけ合う実装で全部を通す。空入力の扱いのような、書かなかった意図は、検証器に映らないので目標にならない。
 - コンテスト：手元の採点コードの計算式が公式の採点とずれていれば、Claude は手元のスコアを上げ続ける。上がるほど公式の結果から離れることがある。
-- データ分析：検証用の分割が本番のデータの分布と違えば、交差検証の点は上がっても、本番では通用しない。形式ごとの検証器の作り方は <!-- link:begin evaluators-by-format#evaluator-first -->形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › どの形式でも、最初の成果物は評価器（準備中）<!-- link:end --> にある。
+- データ分析：検証用の分割が本番のデータの分布と違えば、交差検証の点は上がっても、本番では通用しない。形式ごとの検証器の作り方は <!-- link:begin evaluators-by-format#evaluator-first -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › どの形式でも、最初の成果物は評価器](../contest/evaluators-by-format.md#evaluator-first)<!-- link:end --> にある。
 
 !!! example "Before/After：同じ修正の依頼"
     - **Before**：「`parse_date` のテストが全部通るまで直して」。
@@ -91,7 +91,7 @@ Claude は、検証器が返した結果を見て次の変更を選ぶ。検証�
 2. 作業する側が書き換えられないか：<!-- link:begin verifier-three-conditions#tamper-proof -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](verifier-three-conditions.md#tamper-proof)<!-- link:end -->
 3. 手元の勝ちが本番の勝ちを意味するか：<!-- link:begin verifier-three-conditions#representative -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 本番を代表する](verifier-three-conditions.md#representative)<!-- link:end -->
 
-検証器を Claude に作らせるときは、作った環境を既知の答えで確かめてから判定に使う。作り方は <!-- link:begin build-test-harness#what-to-build -->検証環境・テスト基盤を作らせる › 何を作らせるか（準備中）<!-- link:end -->、確かめ方は <!-- link:begin build-test-harness#check-the-harness -->検証環境・テスト基盤を作らせる › 作った環境を確かめる（準備中）<!-- link:end --> にある。テストを書き換えて通す行為を防ぐ層は <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](../verify/protect-tests.md#layers)<!-- link:end --> にある。
+検証器を Claude に作らせるときは、作った環境を既知の答えで確かめてから判定に使う。作り方は <!-- link:begin build-test-harness#what-to-build -->[検証環境・テスト基盤を作らせる › 何を作らせるか](../recipes/build-test-harness.md#what-to-build)<!-- link:end -->、確かめ方は <!-- link:begin build-test-harness#check-the-harness -->[検証環境・テスト基盤を作らせる › 作った環境を確かめる](../recipes/build-test-harness.md#check-the-harness)<!-- link:end --> にある。テストを書き換えて通す行為を防ぐ層は <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](../verify/protect-tests.md#layers)<!-- link:end --> にある。
 
 任せる幅を広げるほど、確かめる仕組みを先に強める。長く回す、並列で回す、席を外して回す、のどれも同じである。比例則は <!-- link:begin four-principles#proportional-rule -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 比例則](../start/four-principles.md#proportional-rule)<!-- link:end -->、任せる幅に合わせた段の選び方は <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](../verify/verification-ladder.md#choose-step)<!-- link:end --> にある。
 
@@ -104,7 +104,7 @@ Claude は、検証器が返した結果を見て次の変更を選ぶ。検証�
 ## よくある誤解 {#misconceptions}
 
 - 「正直に最適化するなら、検証器の穴は問題にならない」：問題になる。Claude が不正をしなくても、検証器が測っていないことは最適化されない。たくさん試して良かった版を選ぶだけでも、評価の穴に合わせ込む。防ぎ方は <!-- link:begin selection-pressure#defenses -->[選択圧：良かった版を選び続ける罠 › 防ぎ方](selection-pressure.md#defenses)<!-- link:end --> にある。
-- 「ループを長く回すほど良くなる」：検証器が決まっていない戦略そのものを回し続ける開いたループは、手元の評価への過適合を進めうる。<!-- link:begin open-ended-loop-trap#longer-is-not-better -->AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない（準備中）<!-- link:end --> で扱う。
+- 「ループを長く回すほど良くなる」：検証器が決まっていない戦略そのものを回し続ける開いたループは、手元の評価への過適合を進めうる。<!-- link:begin open-ended-loop-trap#longer-is-not-better -->[AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない](../delegate/open-ended-loop-trap.md#longer-is-not-better)<!-- link:end --> で扱う。
 - 「評価のループがあれば、AI はどの形式の大会でも人の最上位に並ぶ」：言い過ぎである。人の最上位に並んだ記録はあるが、Anthropic 自身の 2025 年の報告では、Claude は全体の上位 25% に入ることが多い一方、最も難しい課題では最上位の人のチームに及ばなかった（根拠：中）。大会で使える範囲は、大会の規則で決まる。
 - 「検証器の合格は、人が見なくてよい印である」：検証器は、測ったことだけを保証する。測っていないことは、人が握る。手元の評価は良いのに本番で通用しないときの切り分けは <!-- link:begin misses-broken-evaluation#diagnosis -->[手元の評価は良いのに本番で通用しない › 原因を安く確かめる順](../symptoms/misses-broken-evaluation.md#diagnosis)<!-- link:end --> にある。
 
@@ -113,14 +113,14 @@ Claude は、検証器が返した結果を見て次の変更を選ぶ。検証�
 このページは、評価と実験の分野の総論である。困りごとから、行き先を引く。
 
 - 検証器そのものを点検したい：<!-- link:begin verifier-three-conditions -->[検証器の三条件（正しい・書き換えられない・本番を代表する）](verifier-three-conditions.md)<!-- link:end -->
-- 検証器の環境を Claude に作らせたい：<!-- link:begin build-test-harness -->検証環境・テスト基盤を作らせる（準備中）<!-- link:end -->
-- 形式ごとに、検証器が何に当たるかを知りたい：<!-- link:begin evaluators-by-format -->形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）（準備中）<!-- link:end -->
+- 検証器の環境を Claude に作らせたい：<!-- link:begin build-test-harness -->[検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)<!-- link:end -->
+- 形式ごとに、検証器が何に当たるかを知りたい：<!-- link:begin evaluators-by-format -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)<!-- link:end -->
 - 良かった版を選び続ける罠を避けたい：<!-- link:begin selection-pressure -->[選択圧：良かった版を選び続ける罠](selection-pressure.md)<!-- link:end -->
 - CLAUDE.md・プロンプト・スキルの変更が効いたかを測りたい：<!-- link:begin measure-changes -->[変更が効いたかを測る（小さな eval）](measure-changes.md)<!-- link:end -->
 - テストの書き換えや採点の抜け道を防ぎたい：<!-- link:begin protect-tests -->[テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)<!-- link:end -->、<!-- link:begin reward-hacking -->[採点器を騙す（reward hacking）](../basics/reward-hacking.md)<!-- link:end -->
 - 手元の評価は良いのに本番で通用しない：<!-- link:begin misses-broken-evaluation -->[手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)<!-- link:end -->
 - 完了の条件を決めて、続けさせたい：<!-- link:begin goal-until-done -->[/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)<!-- link:end -->
-- 戦略そのものを回し続けさせたくなった：<!-- link:begin open-ended-loop-trap -->AI に改善を回させ続ける罠（開いたループ）（準備中）<!-- link:end -->
+- 戦略そのものを回し続けさせたくなった：<!-- link:begin open-ended-loop-trap -->[AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)<!-- link:end -->
 - 任せる範囲と、人が握る範囲を分けたい：<!-- link:begin what-not-to-delegate -->[任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)<!-- link:end -->
 - 4 つの原理と比例則の全体を見たい：<!-- link:begin four-principles -->[四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)<!-- link:end -->
 
@@ -150,9 +150,9 @@ Claude は、検証器が返した結果を見て次の変更を選ぶ。検証�
 **次に読む**
 
 - [検証器の三条件（正しい・書き換えられない・本番を代表する）](verifier-three-conditions.md)
+- [評価指標そのものを確かめる](check-the-metric.md)
 - [選択圧：良かった版を選び続ける罠](selection-pressure.md)
 - [手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)
-- 評価指標そのものを確かめる（準備中）
 - そのタスクは AI に向いているか（五つの軸）（準備中）
 
 **関連**
@@ -162,9 +162,9 @@ Claude は、検証器が返した結果を見て次の変更を選ぶ。検証�
 - [四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)
 - [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
-- 検証環境・テスト基盤を作らせる（準備中）
-- 形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）（準備中）
-- AI に改善を回させ続ける罠（開いたループ）（準備中）
+- [検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)
+- [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)
+- [AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
 
 </div>

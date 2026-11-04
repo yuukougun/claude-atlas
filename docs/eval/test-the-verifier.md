@@ -54,7 +54,7 @@ updated: 2026-11-05
 
 検証器を確かめる前に、何を確かめるのかを決める。検証器が満たすべき 3 条件のうち、このページが確かめるのは「正しい」である。<!-- link:begin verifier-three-conditions#correct -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 正しい](verifier-three-conditions.md#correct)<!-- link:end --> に条件の中身がある。
 
-- 書き換えられないことは、確かめた後に凍結して守る。ここでは「確かめてから凍結する」の節で扱い、設定の詳細は <!-- link:begin freeze-eval-assets -->評価資産を凍結し、触れる範囲を絞る（準備中）<!-- link:end --> が持つ。
+- 書き換えられないことは、確かめた後に凍結して守る。ここでは「確かめてから凍結する」の節で扱い、設定の詳細は <!-- link:begin freeze-eval-assets -->[評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)<!-- link:end --> が持つ。
 - 本番を代表することは、このページでは入力の分布を人が見るところまでを扱う。残りは <!-- link:begin verifier-three-conditions#representative -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 本番を代表する](verifier-three-conditions.md#representative)<!-- link:end --> を見る。
 - 検証器のテストは、Claude に書かせてよい。ただし検証器自体と凍結済みのテストは、書かせる作業の中で変えさせない。テストを通すために検証器を曲げる道を、先に塞ぐためである。新しいテストは提案用の場所に書かせ、人が読んでから凍結する場所へ移す。
 
@@ -62,7 +62,7 @@ Claude 側の原因は「確かめていない」である。並列の Claude �
 
 ## red/green を検証器に当てる {#red-green}
 
-red/green とは、テストが先に失敗する（red）ことを確かめてから、通る（green）状態にする進め方である。Simon Willison がコーディングエージェント向けに勧めている。これを検証器に当てはめると、凍結する前に、次の表の確認を通すことになる（類推）。実装のテストを先に書く進め方の一般形は <!-- link:begin tests-first#steps -->テストを先に書かせる › 手順（準備中）<!-- link:end --> にある。
+red/green とは、テストが先に失敗する（red）ことを確かめてから、通る（green）状態にする進め方である。Simon Willison がコーディングエージェント向けに勧めている。これを検証器に当てはめると、凍結する前に、次の表の確認を通すことになる（類推）。実装のテストを先に書く進め方の一般形は <!-- link:begin tests-first#steps -->[テストを先に書かせる › 手順](../verify/tests-first.md#steps)<!-- link:end --> にある。
 
 | 当てるもの | 期待 | 期待と違ったとき疑うこと |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ red/green とは、テストが先に失敗する（red）ことを確かめて�
 | 手で計算したケース | 手計算の値と一致する | 採点の式、丸め、許容誤差 |
 | わざと壊した検証器 | テストが落ちる | テストが弱い |
 
-表の上 3 行は、検証器を使うたびに安く回せる。「明らかに強い解」は、手で書いた単純だが確実に高得点になる解や、過去の良い提出を使う。手計算とわざと壊したコピーは、この後の 2 つの節で扱う。対戦型は、先後を入れ替えた同一ボット同士の勝率が 0.5 からずれないことも確かめる（推論）。この確認は対戦型に固有なので、<!-- link:begin evaluators-by-format#arena -->形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › 対戦型：対戦場と基準のボット（準備中）<!-- link:end --> に譲る。
+表の上 3 行は、検証器を使うたびに安く回せる。「明らかに強い解」は、手で書いた単純だが確実に高得点になる解や、過去の良い提出を使う。手計算とわざと壊したコピーは、この後の 2 つの節で扱う。対戦型は、先後を入れ替えた同一ボット同士の勝率が 0.5 からずれないことも確かめる（推論）。この確認は対戦型に固有なので、<!-- link:begin evaluators-by-format#arena -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › 対戦型：対戦場と基準のボット](../contest/evaluators-by-format.md#arena)<!-- link:end --> に譲る。
 
 各段の終わりの確かめは、次のとおりである。
 
@@ -105,7 +105,7 @@ red/green とは、テストが先に失敗する（red）ことを確かめて�
 
 ## 手で計算したケース {#hand-calculated}
 
-手で計算したケースとは、入力が小さく、正しい点を人が手で出せる例である。期待の値は、入力から手で計算して決める。検証器を実行して出た値を期待に写すと、検証器のバグを正解に固めることになる（<!-- link:begin pitfalls-of-ai-written-tests#pinning-bugs -->AI に書かせたテストの落とし穴 › 今の挙動を正解として固める（準備中）<!-- link:end --> を参照）。
+手で計算したケースとは、入力が小さく、正しい点を人が手で出せる例である。期待の値は、入力から手で計算して決める。検証器を実行して出た値を期待に写すと、検証器のバグを正解に固めることになる（<!-- link:begin pitfalls-of-ai-written-tests#pinning-bugs -->[AI に書かせたテストの落とし穴 › 今の挙動を正解として固める](../verify/pitfalls-of-ai-written-tests.md#pinning-bugs)<!-- link:end --> を参照）。
 
 - 小さなケースを数件選ぶ。点が自明なもの、端にあたるもの（空の入力・最小の入力・同点）を入れる。
 - 計算の過程をテストのコメントに残す。後から食い違ったとき、どちらが間違いかを追える。
@@ -115,7 +115,7 @@ red/green とは、テストが先に失敗する（red）ことを確かめて�
     - **状況**：手で計算した点は 18 だが、検証器は 17 を返した。
     - **迷う候補**：検証器のバグとして直す。手計算の誤りとして期待の値を直す。
     - **選んだもの**：まず手計算を別の方法でやり直し、それでも 18 なら検証器を調べる。
-    - **理由**：どちらも間違いうる。検証器を先に直すと、手計算の誤りに合わせて正しい検証器を壊すことがある。大きな入力で食い違うなら、答えの分かる遅い解と比べる <!-- link:begin differential-testing#steps -->答えの分かる遅い解と比べる（差分テスト・オラクル） › 手順（準備中）<!-- link:end --> が使える。
+    - **理由**：どちらも間違いうる。検証器を先に直すと、手計算の誤りに合わせて正しい検証器を壊すことがある。大きな入力で食い違うなら、答えの分かる遅い解と比べる <!-- link:begin differential-testing#steps -->[答えの分かる遅い解と比べる（差分テスト・オラクル） › 手順](differential-testing.md#steps)<!-- link:end --> が使える。
 
 ## わざと壊した検証器で落ちるか {#broken-copy}
 
@@ -126,7 +126,7 @@ red/green とは、テストが先に失敗する（red）ことを確かめて�
 3. 壊したコピーにテストを当てる。終わりの確かめ：誤りごとに、少なくとも 1 件のテストが落ちる。
 4. 落ちなかった誤りは、テストを足してから、もう一度壊したコピーに当てる。
 
-通るだけのテストの見つけ方は <!-- link:begin pitfalls-of-ai-written-tests#test-strength -->AI に書かせたテストの落とし穴 › テストの強さを確かめる（準備中）<!-- link:end --> が持つ。
+通るだけのテストの見つけ方は <!-- link:begin pitfalls-of-ai-written-tests#test-strength -->[AI に書かせたテストの落とし穴 › テストの強さを確かめる](../verify/pitfalls-of-ai-written-tests.md#test-strength)<!-- link:end --> が持つ。
 
 !!! example "判断例：壊したコピーでもテストが通った"
     - **状況**：許容誤差を広げたコピーに当てても、検証器のテストが全部通った。
@@ -161,7 +161,7 @@ red/green とは、テストが先に失敗する（red）ことを確かめて�
 3. 通ったテストを `tests/frozen/` へ移す。移すのは人である。
 4. 凍結済みの場所への書き込みを、設定で止める。
 
-凍結の対象と止め方は、<!-- link:begin freeze-eval-assets#what-to-freeze -->評価資産を凍結し、触れる範囲を絞る › 凍結するものと触らせるもの（準備中）<!-- link:end --> と <!-- link:begin freeze-eval-assets#how-to-freeze -->評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）（準備中）<!-- link:end --> にある。止めた後に効いているかの確認は <!-- link:begin freeze-eval-assets#check -->評価資産を凍結し、触れる範囲を絞る › 凍結が効いているかを確かめる（準備中）<!-- link:end --> で行う。
+凍結の対象と止め方は、<!-- link:begin freeze-eval-assets#what-to-freeze -->[評価資産を凍結し、触れる範囲を絞る › 凍結するものと触らせるもの](../enforce/freeze-eval-assets.md#what-to-freeze)<!-- link:end --> と <!-- link:begin freeze-eval-assets#how-to-freeze -->[評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）](../enforce/freeze-eval-assets.md#how-to-freeze)<!-- link:end --> にある。止めた後に効いているかの確認は <!-- link:begin freeze-eval-assets#check -->[評価資産を凍結し、触れる範囲を絞る › 凍結が効いているかを確かめる](../enforce/freeze-eval-assets.md#check)<!-- link:end --> で行う。
 
 全体の確かめ方は、次のチェックである。
 
@@ -180,8 +180,8 @@ red/green とは、テストが先に失敗する（red）ことを確かめて�
 - 壊したコピーでテストが落ちない：テストが弱い。壊したコピーの節に戻って、テストを足す。
 - 多数の試行で 0% のまま：たいてい課題か検証器が壊れている。Anthropic の記事に出る経験則である。同じ記事では、Opus 4.5 の CORE-Bench が最初 42% だった。厳しすぎる採点、あいまいな課題の仕様、厳密には再現できない確率的な課題を直し、さらに制約の少ない scaffold に替えて 95% になった。それぞれの寄与は書かれていない（根拠：中）。
 - 手元の評価は良いのに本番で通用しない：<!-- link:begin misses-broken-evaluation#diagnosis -->[手元の評価は良いのに本番で通用しない › 原因を安く確かめる順](../symptoms/misses-broken-evaluation.md#diagnosis)<!-- link:end --> で、原因を安く確かめる順に切り分ける。
-- 検証の環境ごと Claude に作らせた：作った環境の確かめは <!-- link:begin build-test-harness#check-the-harness -->検証環境・テスト基盤を作らせる › 作った環境を確かめる（準備中）<!-- link:end --> にある。形式ごとの違いは <!-- link:begin evaluators-by-format -->形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）（準備中）<!-- link:end --> を見る。
-- 採点を Claude に任せている：人の判定との較正が先である。<!-- link:begin model-based-grading#calibrate -->Claude に採点させる（人の判定で較正する） › 人の判定と比べて較正する（準備中）<!-- link:end --> を見る。
+- 検証の環境ごと Claude に作らせた：作った環境の確かめは <!-- link:begin build-test-harness#check-the-harness -->[検証環境・テスト基盤を作らせる › 作った環境を確かめる](../recipes/build-test-harness.md#check-the-harness)<!-- link:end --> にある。形式ごとの違いは <!-- link:begin evaluators-by-format -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)<!-- link:end --> を見る。
+- 採点を Claude に任せている：人の判定との較正が先である。<!-- link:begin model-based-grading#calibrate -->[Claude に採点させる（人の判定で較正する） › 人の判定と比べて較正する](model-based-grading.md#calibrate)<!-- link:end --> を見る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -206,14 +206,14 @@ red/green とは、テストが先に失敗する（red）ことを確かめて�
 
 **関連**
 
-- 答えの分かる遅い解と比べる（差分テスト・オラクル）（準備中）
-- Claude に採点させる（人の判定で較正する）（準備中）
-- 評価資産を凍結し、触れる範囲を絞る（準備中）
+- [答えの分かる遅い解と比べる（差分テスト・オラクル）](differential-testing.md)
+- [Claude に採点させる（人の判定で較正する）](model-based-grading.md)
+- [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
 - [手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)
-- 検証環境・テスト基盤を作らせる（準備中）
-- 形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）（準備中）
-- テストを先に書かせる（準備中）
-- AI に書かせたテストの落とし穴（準備中）
+- [検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)
+- [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)
+- [テストを先に書かせる](../verify/tests-first.md)
+- [AI に書かせたテストの落とし穴](../verify/pitfalls-of-ai-written-tests.md)
 
 </div>
 

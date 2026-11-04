@@ -1,0 +1,16 @@
+title: チーム用のマーケットプレイスの一覧（marketplace.json）
+kind: settings
+place: 依頼の本文   # リポジトリの .claude-plugin/marketplace.json に置く。名前・所有者・プラグイン名は例で、自分のものに置き換える
+safety: false
+features: [marketplaces]
+requires:
+  - plugins/review-helpers/.claude-plugin/plugin.json   # 一覧の source が指すプラグインの定義
+conditions:
+  - 一覧の name は、ほかの作者と重なりにくい名前にする
+  - 試す前に claude plugin validate ./ で書式を確かめる
+expect:
+  - when: claude plugin validate をこのリポジトリの根で流す
+    then: 必須の項目がそろっていれば検証が通る
+  - when: claude plugin marketplace add ./ を流し、claude plugin install review-helpers@team-tools を流す
+    then: プラグインが入り、claude plugin list に review-helpers@team-tools が出る
+control: 一覧がなければ、プラグインはディレクトリを渡すか --plugin-dir でしか使えず、チームの全員に同じ入れ方を案内できない
