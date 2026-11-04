@@ -2,6 +2,8 @@
 
 Claude 全般を使いこなすための、辞書として引く日本語の教材。通して読む本ではなく、困ったときや知りたいときに、言葉から該当のページを引く。この辞典は AI が書いていて、Anthropic の公式の教材ではない。書き方と確かめ方は <!-- link:begin ai-and-sources#ai-writing -->[出典と AI 利用の方針 › AI で書いていることと確かめ方](start/ai-and-sources.md#ai-writing)<!-- link:end --> にある。
 
+初版（2026-11-05）として、よく引かれるページと必須のページを公開した。どのページも下書きで、書き方と確かめ方は「<!-- link:begin ai-and-sources -->[出典と AI 利用の方針](start/ai-and-sources.md)<!-- link:end -->」にある。
+
 ## 引く入口は三つ
 
 - **困りごとから引く**：Claude の返事や動きに困っているとき。<!-- link:begin field:symptoms -->[症状辞典](symptoms/index.md)<!-- link:end --> は、症状ごとに原因を切り分けて次の一手を選ぶページを並べている。症状の言葉から探すなら <!-- link:begin reverse-index#by-symptom -->[逆引き辞典（症状・やりたいこと・状況） › 困りごとから引く](start/reverse-index.md#by-symptom)<!-- link:end --> を使う。

@@ -3,7 +3,7 @@
 Claude 全般を使いこなすための、辞書として引く日本語の教材。この辞典は Anthropic の公式の教材ではない。
 
 - サイト：https://yuukougun.github.io/claude-atlas/
-- 状態：土台を作っている段階で、ページはまだない。制作の進み具合は [planning/progress.md](planning/progress.md) にある
+- 状態：初版（2026-11-05）。第一波と必須のページを、下書きの印付きで公開している。書き方と確かめ方は「[出典と AI 利用の方針](https://yuukougun.github.io/claude-atlas/start/ai-and-sources/)」のページにある。制作の進み具合は [planning/progress.md](planning/progress.md) にある
 
 ## リポジトリの中身
 

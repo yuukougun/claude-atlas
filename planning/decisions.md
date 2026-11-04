@@ -225,3 +225,11 @@ requirements §11 の最初の質問と、そこから派生した点への回�
 | --- | --- | --- |
 | Issue のテンプレート | 誤りや古い情報の報告（report-error.yml）と、ページや症状の提案・困りごとの共有（case-suggestion.yml）を、下書き（planning/batches/step9/issue-template-draft/）のまま .github/ISSUE_TEMPLATE/ に置く。白紙の Issue は許さない。公開と秘密を書かないことの確認は必須。ラベルは付けない | 作者の承認（このまま承認する）。各ページの誤りの報告のリンクは report-error.yml の欄に題名・URL・確認日・更新日を入れて開く（tools/gen/config.yml の report_template） |
 | 鮮度の点検の skill | 手順1〜7をそろえた（手順3の Issue と手順4の直しは下書きまで。GitHub への書き込みはメインか作者。定期の実行は作者が決める）。外のリンクの確かめは tools/check_links.py（AI の利用を断るドメインと deny のドメインには問い合わせない） | 担当 SK・FS2。リンクの確かめを本物に流すのは工程10 |
+
+## 2026-11-05 初版（工程11）
+
+| 項目 | 決定 | 補足 |
+| --- | --- | --- |
+| 初版の区切り | 2026-11-05 を初版とする。第一波（136）と残りの必須のページ（54）が draft 以上で、全体の検証（planning/batches/step10/record.md）を通った | README の「状態」の行と、トップのページの1文で知らせる（文は作者の承認のとおり） |
+| 鮮度の点検の基準 | 前回の点検を 2026-11-05、Claude Code の版を 2.1.318（公式の CHANGELOG の最新。2026-11-04 の版）とする（data/inspection.yml。tools/freshness.py stamp） | 次の点検は、この日より後の CHANGELOG・リリースノート・ニュースを読む（.claude/skills/freshness-check/）。定期にするかは作者が決める |
+| 推奨と任意のページ | 初版の後に、Issue と需要の見立てから選んで足す（design §10.1 の11） | 推奨128・任意36（2026-11-05 の数） |

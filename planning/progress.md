@@ -17,7 +17,7 @@
 | 8 | 本制作 | 完了（2026-11-05。第一波136・残りの必須54がすべて draft 以上） | planning/batches/step8/ |
 | 9 | 仕組み作り | 完了（2026-11-05） | 鮮度の点検の skill（.claude/skills/freshness-check/）・tools/freshness.py・tools/check_links.py・Issue のテンプレート（.github/ISSUE_TEMPLATE/）。planning/batches/step9/ |
 | 10 | 全体の検証 | 完了（2026-11-05） | planning/batches/step10/record.md（リンク573件の切れ0、描画223ページで0件、読者の課題20項目で着けない0、ページどうしの食い違い6組を直した、トップのページを書いた） |
-| 11 | 公開と鮮度の運用 | 未着手 | |
+| 11 | 公開と鮮度の運用 | 完了（2026-11-05。初版） | 初版の知らせ（README・トップ）、鮮度の点検の基準（data/inspection.yml）。以後は、点検を手で流し、推奨のページを Issue と需要から選んで足す |
 
 ## 工程3・4：設計と見直し（完了 2026-11-04）
 
