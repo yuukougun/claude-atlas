@@ -1,0 +1,9 @@
+title: deny ルールの理由と代わりの手段だけを書く CLAUDE.md の行
+kind: claude-md
+place: project
+safety: false
+conditions:
+  - 上の deny ルールを置いたうえで試す
+expect:
+  - when: push が止められる
+    then: Claude が止められた理由を理解し、変更の内容を報告に書いて待つことが多い（お願いなので、観察として扱う）

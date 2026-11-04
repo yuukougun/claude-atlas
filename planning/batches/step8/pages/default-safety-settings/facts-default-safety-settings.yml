@@ -1,0 +1,9 @@
+proposals:
+  - fact: {id: claude-code-default-start-mode, title: Claude Code の既定の開始モード（対話の端末と VS Code は auto、-p と Agent SDK は Manual）, value: "対話の端末と VS Code：auto。-p と Agent SDK：Manual（default）", sources: [cc-docs-permission-modes, cc-changelog], checked: 2026-11-04, status: 確認済み}
+    used_in: [default-safety-settings#defaults-by-surface]
+  - fact: {id: app-default-permission-mode, title: アプリの既定の権限モード（プランと管理者の設定で違う）, value: "Auto（個人向けの有料プランと Team）、Manual（Enterprise）。管理者が既定を決められる", sources: [hc-cowork-and-chat], checked: 2026-11-04, status: 確認済み}
+    used_in: [default-safety-settings#defaults-by-surface]
+  - fact: {id: sandbox-default-state, title: サンドボックスの既定の状態, value: 既定は無効（macOS・Linux・WSL2 で動く）, sources: [cc-docs-sandboxing], checked: 2026-11-04, status: 確認済み}
+    used_in: [default-safety-settings#defaults-by-surface]
+  - fact: {id: incognito-retention-period, title: シークレットチャットの保持期間, value: 30 日（Enterprise は組織の保持期間）。履歴・メモリ・学習には使わない, sources: [hc-incognito, privacy-long-store-data], checked: 2026-11-04, status: 確認済み}
+    used_in: [default-safety-settings#defaults-by-surface]

@@ -1,0 +1,15 @@
+title: 圧縮を越えて残す約束を 3 区分で書く CLAUDE.md の例
+kind: claude-md
+place: project
+safety: false
+features: [claude-md]
+conditions:
+  - 新しいセッションで試す
+  - 置くのはプロジェクトの根の CLAUDE.md（サブフォルダの CLAUDE.md は圧縮で要約に消える）
+  - コマンド・ブランチ名・パスは、自分のリポジトリのものに書き換える
+expect:
+  - when: 長い作業の途中で /compact を実行し、続けて「今のブランチと、push のルールは」と尋ねる
+    then: CLAUDE.md の記述に沿って答える（指示は鍵ではないので、合否にしない観察として扱う）
+  - when: 同じ作業を、これらの約束を会話でだけ伝えて進め、/compact の後に同じ質問をする
+    then: 約束に触れない答えや、食い違う答えが返ることがある
+control: 約束を会話でだけ伝えたとき、圧縮の後の要約に残るかは要約しだいになる

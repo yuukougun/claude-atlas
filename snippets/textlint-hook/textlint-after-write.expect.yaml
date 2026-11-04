@@ -1,0 +1,20 @@
+title: Edit・Write の後に textlint を走らせ、違反を返すフック
+kind: hook
+place: project
+safety: false
+requires:
+  - .textlintrc.json
+  - textlint と使うルールのパッケージ（プロジェクトの node_modules に入れる）
+conditions:
+  - 新しいセッションで試す
+  - 検査する Markdown のファイルで、わざと違反を作れる設定にしておく（例：だ・である調とです・ます調を混ぜる）
+expect:
+  - when: 設定のルールに触れる Markdown を Write で書かせる
+    then: 違反の一覧が Claude に返り、続けて同じファイルを直す
+  - when: 違反のない Markdown を Write で書かせる
+    then: フックは何も返さず、そのまま次へ進む
+  - when: 拡張子が .py のファイルを Write で書かせる
+    then: 検査の対象外で、何も返らない
+  - when: textlint を入れていないプロジェクトで Markdown を Write で書かせる
+    then: textlint を実行できなかった旨が Claude に返る（黙って通らない）
+control: フックを置かないとき、同じ依頼で、違反は返らず、ファイルに残ったまま終わる

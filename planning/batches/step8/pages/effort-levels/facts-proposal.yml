@@ -1,0 +1,37 @@
+proposals:
+  - fact:
+      id: effort-default-by-model-surface
+      title: モデルごとの既定の effort（面ごと）
+      table:
+        rows: モデル
+        columns: [api, claude-code, app]
+        cells:
+          - {row: Fable 5.1, api: high, claude-code: high, app: {value: medium, note: claude.ai と Cowork。Fable 5.1 の発表}}
+          - {row: Opus 5.5, api: medium, claude-code: medium, app: {value: null, note: 文書に面ごとの値はない。発表は「既定（medium）」とだけ書く}}
+          - {row: Sonnet 5.5, api: high, claude-code: medium, app: {value: medium, note: Sonnet 5.5 の発表。Claude Code とアプリは medium、Claude Platform は high}}
+          - {row: Haiku 5.5, api: medium, claude-code: medium, app: {value: null, note: 値を書いた文書は見つけていない}}
+          - {row: Sonnet 5, api: high, claude-code: high, app: {value: null, note: 値を書いた文書は見つけていない}}
+          - {row: Opus 4.7, api: high, claude-code: xhigh, app: {value: null, note: 値を書いた文書は見つけていない}}
+          - {row: Fable 5・Opus 5・Opus 4.8・Opus 4.6・Sonnet 4.6, api: high, claude-code: high, app: {value: null, note: 値を書いた文書は見つけていない}}
+      sources: [api-docs-models-overview, api-docs-effort, cc-docs-model-config, anthropic-sonnet-5-5, anthropic-fable-mythos-5-1, anthropic-opus-5-5, hc-effort-settings]
+      checked: 2026-11-03
+      status: 確認済み
+      note: Claude Code の列は 2026-11-05 に Model configuration（「high が既定。ただし Opus 5.5・Sonnet 5.5・Haiku 5.5 は medium、Opus 4.7 は xhigh」）と照らして一致した。research/23 の 3.2 の表が元。公式同士の食い違いではなく、面ごとの既定の違い（research/23 #8）
+    used_in: [effort-levels#defaults-by-surface]
+  - fact:
+      id: effort-model-settings-min-version
+      title: モデルごとに effort を保存する modelSettings に要る Claude Code の最低の版
+      value: 2.1.251
+      sources: [cc-docs-settings-reference]
+      checked: 2026-11-05
+      status: 確認済み
+    used_in: [effort-levels#how-to-set]
+  - fact:
+      id: subagent-own-model-effort-min-version
+      title: 本体と別のモデルで動くサブエージェントが、そのモデルの保存した段か既定で動くようになる Claude Code の最低の版
+      value: 2.1.317
+      sources: [cc-changelog]
+      checked: 2026-11-03
+      status: 確認済み
+      note: research/22 #21 の記録。CHANGELOG の原文は今回開いていない。CLAUDE_CODE_SUBAGENT_EFFORT は 2.1.316
+    used_in: [effort-levels#subagents-and-org-limits]

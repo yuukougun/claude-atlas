@@ -705,6 +705,25 @@ class PacketTests(FixtureCase):
             self.assertIn("#" + m.group(0).rstrip(), sec)
         self.assertNotIn("## 3.", sec)
 
+    def test_a_hosting_page_gets_its_gen_marks_and_others_do_not(self):
+        sec = section(self.packet("concept-a"), "1. ページ")
+        self.assertIn("`<!-- gen:begin causes -->`〜`<!-- gen:end causes -->` を置く。中身は道具が書くので、手で表を書かない", sec)
+        self.assertIn("card §9：症状の原因別の表", sec)
+        self.assertIn("gen:begin signs symptom -->`〜`<!-- gen:end signs symptom -->", sec)
+        self.assertIn("card §9：逆引き・ロードマップ", sec)
+        self.assertIn("gen:begin nowhere", sec)
+        self.assertIn("に説明の行がない", sec)
+        self.assertNotIn("gen:begin", section(self.packet("lonely"), "1. ページ"))
+
+    def test_a_word_after_a_section_is_searched_in_the_enclosing_section_first(self):
+        self.write("planning/research/05-failures.md", "# 05\n\n## 1. 一\n\n### Inferences\n- 一の推論\n\n"
+                   "## 3. 三\n\n#### 3-5. 五\n本文五\n\n#### 3-6. 六\n本文六\n\n### Inferences\n- 三の推論\n")
+        it = self.resolve("05 §3-5（五の話）と Inferences")
+        self.assertEqual(it.status, "ok")
+        text = item_text(it)
+        self.assertIn("三の推論", text)
+        self.assertNotIn("一の推論", text)
+
     def test_type_musts_section_for_a_type_without_guide(self):
         sec = section(self.packet("feat-a"), "1b. 型の必ず持つもの")
         self.assertEqual(sec.rstrip().split("\n")[2:], ["この型の手引きはない"])

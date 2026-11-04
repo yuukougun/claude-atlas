@@ -38,13 +38,13 @@ updated: 2026-11-04
 !!! abstract "要点"
     - **何ができるか**：英語のツール出力やサブエージェントの報告を読んだ後に英語へ戻る返答を、`language` の設定・CLAUDE.md の指示・Stop フックの順に重ねて減らせる。どれも完全には防げず、ツールの合間の短い一言は、表示される前に止める仕組みがない。
     - **いつ引くか**：言語を日本語に設定しても、英語の返事が混ざるとき。Claude Code の返事を、いつも日本語にしたいとき。最後の返事が英語のときに、自動で日本語に直させたいとき。
-    - **前提**：<!-- link:begin align-japanese-output -->日本語の出力を揃える：お願いで足りること、仕組みが要ること（準備中）<!-- link:end -->
+    - **前提**：<!-- link:begin align-japanese-output -->[日本語の出力を揃える：お願いで足りること、仕組みが要ること](align-japanese-output.md)<!-- link:end -->
 
 <!-- textlint-disable -->
 別名：英語への回帰・返答の言語を固定する・language 設定
 <!-- textlint-enable -->
 
-日本語で返し続けさせる手順は、`language` の設定と CLAUDE.md の指示に、Stop フックを順に重ねるものである。前の 2 つは守られる保証のない「お願い」（非決定論的な指示）で、毎回実行される「鍵」（決定論的な制御）は Stop フックだけだが、その鍵も、ツールの合間の短い一言までは止められない。「お願い」と「鍵」の区別は、「<!-- link:begin request-vs-lock -->お願いと鍵（決定論的か、非決定論的か）（準備中）<!-- link:end -->」で説明している。
+日本語で返し続けさせる手順は、`language` の設定と CLAUDE.md の指示に、Stop フックを順に重ねるものである。前の 2 つは守られる保証のない「お願い」（非決定論的な指示）で、毎回実行される「鍵」（決定論的な制御）は Stop フックだけだが、その鍵も、ツールの合間の短い一言までは止められない。「お願い」と「鍵」の区別は、「<!-- link:begin request-vs-lock -->[お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)<!-- link:end -->」で説明している。
 
 ## 英語に戻りやすい場面 {#when}
 
@@ -67,7 +67,7 @@ Claude Code の返答が日本語から英語に戻るのは、1 ターン（依
 
 ある世代のモデルで増えた、という利用者の記録がある。ただし、モデルの切り替えと Claude Code の更新が同じ日に重なった例があり、原因は決められない（根拠：中）。モデルごとの癖は固定した事実として扱わない。自分が使うモデルで起きるかは、[検証の方法の節](#measure)の手順で確かめる。
 
-場面が分かったら、設定・指示・Stop フックの順に重ねて対処する。原因の切り分けは、症状のページ「<!-- link:begin replies-in-english -->英語で返ってくる（準備中）<!-- link:end -->」が、安く確かめられる順に進める。このページは、切り分けた後の対処を書く。
+場面が分かったら、設定・指示・Stop フックの順に重ねて対処する。原因の切り分けは、症状のページ「<!-- link:begin replies-in-english -->[英語で返ってくる](../symptoms/replies-in-english.md)<!-- link:end -->」が、安く確かめられる順に進める。このページは、切り分けた後の対処を書く。
 
 ## 言語の設定と、効かないときに確かめること {#language-setting}
 
@@ -290,7 +290,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 ## 届かない所（サブエージェント・圧縮の要約・クラウドのセッション） {#reach}
 
-`language` の設定・CLAUDE.md や出力スタイルの指示・Stop フックが、そのままは届かない所が 3 つある。サブエージェント、圧縮の要約、クラウドのセッションである。届く範囲の考え方は、「<!-- link:begin align-japanese-output#reach -->日本語の出力を揃える：お願いで足りること、仕組みが要ること › 届く範囲（サブエージェント・圧縮の後・クラウドのセッション）（準備中）<!-- link:end -->」にある。ここでは、場所ごとの対処を書く。
+`language` の設定・CLAUDE.md や出力スタイルの指示・Stop フックが、そのままは届かない所が 3 つある。サブエージェント、圧縮の要約、クラウドのセッションである。届く範囲の考え方は、「<!-- link:begin align-japanese-output#reach -->[日本語の出力を揃える：お願いで足りること、仕組みが要ること › 届く範囲（サブエージェント・圧縮の後・クラウドのセッション）](align-japanese-output.md#reach)<!-- link:end -->」にある。ここでは、場所ごとの対処を書く。
 
 **サブエージェント**：サブエージェントは、自分のシステムプロンプトで動く。出力スタイルは、会話を引き継ぐ fork を除いて届かない。CLAUDE.md は届くが、組み込みの Explore と Plan には届かない（[Create custom subagents](https://code.claude.com/docs/en/sub-agents)）。`language` が届くかは、調べた範囲の公式の文書に書かれていない。対処は 3 つある。
 
@@ -311,7 +311,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 - **消えるもの**：会話の中だけで出した指示は、要約に溶けて消えることがある。サブディレクトリに置いた CLAUDE.md（入れ子の CLAUDE.md）も要約に消え、必要な場面で読み直される。
 - **残るもの**：プロジェクトの根の CLAUDE.md は、圧縮の後にディスクから読み直されて入り直す。出力スタイルは毎回のリクエストで送られるので、圧縮の後も効く。フックは会話の外で動くので、圧縮の後も働く。`language` が圧縮の後も効くかは、調べた範囲の公式の文書に書かれていない。
 - **報告**：圧縮の要約が英語で書かれたという報告もある（根拠：弱。単独の報告）。
-- **対処**：規則は会話で言い直すのではなく、根の CLAUDE.md・出力スタイル・フックに置く。残るものの一覧は、「<!-- link:begin what-survives-compaction -->圧縮（compaction）で何が残り、何が消えるか（準備中）<!-- link:end -->」にある。
+- **対処**：規則は会話で言い直すのではなく、根の CLAUDE.md・出力スタイル・フックに置く。残るものの一覧は、「<!-- link:begin what-survives-compaction -->[圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)<!-- link:end -->」にある。
 
 **クラウドのセッション**：Anthropic が用意するクラウドの環境（自前のランナーで動かす環境ではないほう）のセッションは、リポジトリの新しい複製で動く。手元にしかないものは読まれない（[Configure cloud environments](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup)）。
 
@@ -330,7 +330,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
     claude.ai には、返答の言語を固定する設定がない。表示の言語（プロフィールのアイコンから「言語」）は画面の表示だけを変え、Claude は書いた言語で答える（[How to use Claude in your preferred language](https://support.claude.com/en/articles/10769299-how-to-use-claude-in-your-preferred-language)）。音声の言語は別の設定である。
 
-    固定したいときは、指示で頼むしかない。使えるのは、アカウントの Claude への指示、プロジェクトの指示、組織で使っているなら組織の指示である。どれも指示であり、返答の言語を機械的に確かめる仕組みは、調べた範囲の公式の文書に書かれていない。置き場所の選び方は、「<!-- link:begin where-to-put-instructions -->アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）（準備中）<!-- link:end -->」にある。
+    固定したいときは、指示で頼むしかない。使えるのは、アカウントの Claude への指示、プロジェクトの指示、組織で使っているなら組織の指示である。どれも指示であり、返答の言語を機械的に確かめる仕組みは、調べた範囲の公式の文書に書かれていない。置き場所の選び方は、「<!-- link:begin where-to-put-instructions -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)<!-- link:end -->」にある。
 
 === "API"
 
@@ -340,9 +340,9 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 ## 検証の方法 {#measure}
 
-設定・指示・フックのどれが効いたかは、1 回の会話から判断できない。英語の返答が毎回出るわけではなく、その割合も人や環境で大きく違うからである（自己申告。根拠：弱）。次の手順で、自分の環境の英語の割合を測る。変更が効いたかを小さな eval で確かめる一般の手順は、「<!-- link:begin measure-changes -->変更が効いたかを測る（小さな eval）（準備中）<!-- link:end -->」にある。
+設定・指示・フックのどれが効いたかは、1 回の会話から判断できない。英語の返答が毎回出るわけではなく、その割合も人や環境で大きく違うからである（自己申告。根拠：弱）。次の手順で、自分の環境の英語の割合を測る。変更が効いたかを小さな eval で確かめる一般の手順は、「<!-- link:begin measure-changes -->[変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)<!-- link:end -->」にある。
 
-1. 数える単位を 2 つに分ける。ツールの合間の一言と、ターンの最後の返事である。どちらも会話の記録（transcript）から取り出す。取り出し方は、「<!-- link:begin measure-changes#read-transcripts -->変更が効いたかを測る（小さな eval） › transcript を読む（準備中）<!-- link:end -->」にある。
+1. 数える単位を 2 つに分ける。ツールの合間の一言と、ターンの最後の返事である。どちらも会話の記録（transcript）から取り出す。取り出し方は、「<!-- link:begin measure-changes#read-transcripts -->[変更が効いたかを測る（小さな eval） › transcript を読む](../eval/measure-changes.md#read-transcripts)<!-- link:end -->」にある。
 2. 英語かどうかは、一言と最後の返事のそれぞれについて、コードの塊・インラインコード・URL・パスを除いた文章で決める。除いた後に 30 字以上残るものだけを数え、かな・漢字の割合が閾値を下回れば英語と数える。閾値は測る前に決め、全条件で同じ値に固定する。Stop フックのスクリプトの閾値と同じにしなくてもよい。
 3. 作業を 2 種類にする。英語のログや README を読ませる作業と、読ませない作業を、同じ回数ずつ流す。
 4. 条件を 3 つ、それぞれ同じ回数ずつ流す。`language` だけ、CLAUDE.md だけ、両方 + Stop フックである。
@@ -361,7 +361,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 | CLAUDE.md だけ | | |
 | 両方 + Stop フック | | |
 
-それでも英語が残るときの切り分けは、「<!-- link:begin replies-in-english#diagnosis -->英語で返ってくる › 原因を安く確かめる順（準備中）<!-- link:end -->」を見る。
+それでも英語が残るときの切り分けは、「<!-- link:begin replies-in-english#diagnosis -->[英語で返ってくる › 原因を安く確かめる順](../symptoms/replies-in-english.md#diagnosis)<!-- link:end -->」を見る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -396,7 +396,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 **前提**
 
-- 日本語の出力を揃える：お願いで足りること、仕組みが要ること（準備中）
+- [日本語の出力を揃える：お願いで足りること、仕組みが要ること](align-japanese-output.md)
 
 **次に読む**
 
@@ -404,19 +404,19 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 **関連**
 
-- 英語で返ってくる（準備中）
-- アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）（準備中）
+- [英語で返ってくる](../symptoms/replies-in-english.md)
+- [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
 - Stop フックで「終わらせない」（準備中）
 - 出力スタイルで応答の仕方を切り替える（準備中）
 - 設定ファイルの階層と優先順位（準備中）
 - サブエージェントに引き継がれないもの（準備中）
-- 圧縮（compaction）で何が残り、何が消えるか（準備中）
+- [圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)
 - クラウドセッションと teleport（準備中）
-- エージェントループと tool use（準備中）
-- システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置（準備中）
+- [エージェントループと tool use](../basics/agent-loop.md)
+- [システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](../basics/where-instructions-sit.md)
 - 代表的なフックのレシピ（準備中）
-- 変更が効いたかを測る（小さな eval）（準備中）
-- お願いと鍵（決定論的か、非決定論的か）（準備中）
+- [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
+- [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)
 
 </div>
 

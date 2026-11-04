@@ -1,0 +1,15 @@
+title: 検証器の red/green テストを書かせる依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - 検証器とテストを置く場所（ここでは eval/ と tests/）を自分の構成に読み替える
+  - 新しいセッションで試す
+expect:
+  - when: 欄を埋めた依頼を出す
+    then: テストが tests/proposed/ にだけ作られ、tests/frozen/ と eval/score.py は変わらない
+  - when: 壊したコピーに当てる
+    then: 返答の表に、壊したコピーでテストが落ちたかどうかが 1 件ずつ書かれる
+  - when: 手計算のケースを見る
+    then: 期待の値の根拠が、入力からの計算としてコメントに書かれている
+control: 雛形を置かず「検証器のテストを書いて」とだけ頼むと、検証器の今の出力をそのまま期待にしたテストが出やすい

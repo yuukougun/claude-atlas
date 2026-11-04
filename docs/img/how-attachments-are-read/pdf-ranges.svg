@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="150" viewBox="0 0 400 150" font-family="sans-serif" font-size="12">
+  <rect width="400" height="150" fill="#ffffff"/>
+  <rect x="10" y="30" width="170" height="60" fill="#dbe8f7" stroke="#222222" stroke-width="2"/>
+  <rect x="180" y="30" width="130" height="60" fill="#f2f2f2" stroke="#222222" stroke-width="2"/>
+  <rect x="310" y="30" width="80" height="60" fill="#ffffff" stroke="#222222" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="95" y="56" text-anchor="middle" fill="#111111">文字も図も</text>
+  <text x="95" y="74" text-anchor="middle" fill="#111111">読まれる</text>
+  <text x="245" y="56" text-anchor="middle" fill="#111111">文字だけ</text>
+  <text x="245" y="74" text-anchor="middle" fill="#111111">読まれる</text>
+  <text x="350" y="56" text-anchor="middle" fill="#111111">受け付け</text>
+  <text x="350" y="74" text-anchor="middle" fill="#111111">ない</text>
+  <line x1="10" y1="112" x2="385" y2="112" stroke="#222222" stroke-width="1.5"/>
+  <polygon points="392,112 383,107 383,117" fill="#222222"/>
+  <text x="10" y="132" fill="#222222">PDF のページ番号（前のページから後ろへ）</text>
+  <text x="10" y="18" fill="#222222">帯の幅は実際のページ数の比ではない</text>
+</svg>

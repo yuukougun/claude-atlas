@@ -1,0 +1,17 @@
+<documents>
+  <document>
+    <source>契約書A.pdf</source>
+    <document_content>
+    （契約書 A の本文をここに貼る）
+    </document_content>
+  </document>
+  <document>
+    <source>契約書B.pdf</source>
+    <document_content>
+    （契約書 B の本文をここに貼る）
+    </document_content>
+  </document>
+</documents>
+
+上の 2 つの契約書の、解約の条件（予告期間・違約金・手続き）の違いを表にまとめて。
+読み手は契約を結ぶ事業部の担当者で、法務の専門家ではない。

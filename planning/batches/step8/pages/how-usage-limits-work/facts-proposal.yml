@@ -1,0 +1,51 @@
+proposals:
+  - fact:
+      id: usage-limit-types-by-plan
+      title: プランごとの利用上限の種類と倍率（5 時間の上限・週の上限・最上位のモデルの別の週の上限）
+      table:
+        rows: プラン
+        columns:
+          - {id: five-hour, title: 5 時間の上限}
+          - {id: weekly, title: 週の上限}
+          - {id: top-model-weekly, title: 最上位のモデルの別の週の上限}
+        cells:
+          - {row: Pro, five-hour: {value: あり}, weekly: {value: あり（基準）}, top-model-weekly: {value: null, note: 確かめていない}}
+          - {row: Max, five-hour: {value: あり（Pro の 5 倍）}, weekly: {value: Pro の 5 倍}, top-model-weekly: {value: あり}}
+          - {row: Ultra, five-hour: {value: 確認済みの口座にはない（確認前は一時的な上限）}, weekly: {value: Pro の 10 倍}, top-model-weekly: {value: あり}}
+          - {row: Team, five-hour: {value: null, note: 束の材料に席ごとの値がない}, weekly: {value: null}, top-model-weekly: {value: null}}
+          - {row: Enterprise（使用量に基づく）, five-hour: {value: なし}, weekly: {value: なし}, top-model-weekly: {value: null}}
+      sources: [hc-ultra-plan, hc-max-plan, hc-pro-plan, hc-team-plan, hc-enterprise-plan, claude-pricing]
+      checked: 2026-11-04
+      status: 確認済み（Team の席ごとの値は未確認）
+    used_in: [how-usage-limits-work#limit-types]
+  - fact:
+      id: auto-continue-max-times
+      title: 利用上限での自動の継続が止まるまでの回数
+      value: 3
+      unit: 回
+      sources: [cc-docs-interactive-mode, cc-docs-settings-reference]
+      checked: 2026-11-04
+      status: 確認済み
+    used_in: [how-usage-limits-work#when-you-hit-the-limit]
+  - fact:
+      id: wrap-up-allowance-frequency
+      title: Wrap-Up Allowance を使える頻度（プラン別）
+      table:
+        rows: プラン
+        columns:
+          - {id: frequency, title: 使える頻度}
+        cells:
+          - {row: Pro, frequency: {value: 週に 1 回まで}}
+          - {row: Max・確認前の Ultra・Team の Premium の席, frequency: {value: 5 時間の上限に当たるたび}}
+      sources: [hc-wrap-up-allowance, hc-claude-code-plan]
+      checked: 2026-11-04
+      status: 確認済み
+    used_in: [how-usage-limits-work#when-you-hit-the-limit]
+  - fact:
+      id: wrap-up-allowance-min-version
+      title: Wrap-Up Allowance の資格に要る Claude Code の版（入った版ではない）
+      value: 2.1.277 以上
+      sources: [hc-wrap-up-allowance]
+      checked: 2026-11-04
+      status: 確認済み
+    used_in: [how-usage-limits-work#when-you-hit-the-limit]

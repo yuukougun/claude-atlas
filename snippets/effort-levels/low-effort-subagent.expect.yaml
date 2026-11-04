@@ -1,0 +1,14 @@
+title: 軽い作業のサブエージェントに低い effort を付ける例
+kind: subagent
+place: project
+safety: false
+features: [effort]
+conditions:
+  - .claude/agents/log-summarizer.md として置く
+  - 新しいセッションで試す
+expect:
+  - when: 長いテスト出力を渡してこのサブエージェントを呼ぶ
+    then: 失敗した項目と関係する行だけの短い返答が、待たされずに返る
+  - when: /agents でこのサブエージェントを開く
+    then: effort が low として見える場合がある（表示は版による。観察として扱う）
+control: effort を書かないとき、サブエージェントは本体と同じ設定か、そのモデルの既定の段で動く

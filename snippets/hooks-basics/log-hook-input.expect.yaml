@@ -1,0 +1,18 @@
+title: フックが走ったかを記録する設定（動作の確認用）
+kind: settings
+place: local
+safety: false
+features: [hooks]
+requires:
+  - jq
+conditions:
+  - 新しいセッションで試す
+  - 対話のセッションでは、フォルダの信頼のダイアログを受け入れてから試す
+  - 確かめ終わったら設定を外し、ログのファイルを消す
+expect:
+  - when: Claude が道具を呼ぶ
+    then: .claude/hook-events.log に、PreToolUse と道具の名前の行が足される
+  - when: Claude がターンを終える
+    then: .claude/hook-events.log に、Stop の行が足される
+  - when: ログに何も足されない
+    then: フックが走っていない。信頼の確認・層・matcher・登録の場所を疑う

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250" role="img" aria-labelledby="t d">
+  <title id="t">任せる段階ごとに足す安全の設定</title>
+  <desc id="d">下から、使う段階は公式の既定を基準にし、任せる段階でサンドボックスと秘密の読み取りの禁止を足し、回す段階で使い捨ての環境を足す。全段階で、預かったデータは契約のある面だけで使う。</desc>
+  <rect x="0" y="0" width="400" height="250" fill="#ffffff"/>
+  <rect x="10" y="10" width="380" height="46" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
+  <text x="20" y="30" font-size="13" font-family="sans-serif" font-weight="bold" fill="#000000">3. 回す（無人で走らせる）</text>
+  <text x="20" y="48" font-size="13" font-family="sans-serif" fill="#000000">足す：使い捨ての環境で動かす</text>
+  <rect x="10" y="62" width="380" height="46" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
+  <text x="20" y="82" font-size="13" font-family="sans-serif" font-weight="bold" fill="#000000">2. 任せる（席を離れる）</text>
+  <text x="20" y="100" font-size="13" font-family="sans-serif" fill="#000000">足す：サンドボックス、秘密の読み取りの禁止</text>
+  <rect x="10" y="114" width="380" height="46" fill="#b8b8b8" stroke="#333333" stroke-width="2"/>
+  <text x="20" y="134" font-size="13" font-family="sans-serif" font-weight="bold" fill="#000000">1. 使う（見ながら進める）</text>
+  <text x="20" y="152" font-size="13" font-family="sans-serif" fill="#000000">基準：公式の既定（auto モード）</text>
+  <rect x="10" y="172" width="380" height="60" fill="#ffffff" stroke="#333333" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="20" y="194" font-size="13" font-family="sans-serif" font-weight="bold" fill="#000000">全段階に共通</text>
+  <text x="20" y="214" font-size="13" font-family="sans-serif" fill="#000000">預かったデータは契約のある面だけで使う</text>
+</svg>

@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: long-context-order-quality-gain, title: 長い資料を先頭、質問を末尾に置いたときの品質向上（公式のテストの自己報告。複数文書で特に大きい）, value: "最大 30%（公式の記述。テスト条件は未確認）", sources: [api-docs-prompting-best-practices], checked: 2026-10-29, status: 公式の自己報告}
+    used_in: [long-context-first#order]
+  - fact: {id: long-context-quote-first-length-threshold, title: 先に逐語の引用を抜かせる対策を公式が挙げる文書の長さの目安, value: "約 20,000 トークン超（出典の記述。モデル・面で変わりうる）", sources: [api-docs-reduce-hallucinations], checked: 2026-10-29, status: 公式の記述}
+    used_in: [long-context-first#quote-first]

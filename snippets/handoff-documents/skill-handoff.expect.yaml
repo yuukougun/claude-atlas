@@ -1,0 +1,13 @@
+title: .claude/skills/handoff/SKILL.md（人が呼んだときだけ動くスキル）
+kind: skill
+place: project
+safety: false
+features: [skills]
+conditions:
+  - 新しいセッションで試す
+  - 壊れても困らない作業用のリポジトリで試す
+expect:
+  - when: "`/handoff` と入力する"
+    then: git の状態と完了のコマンドの結果を見たうえで、HANDOFF.md が 4 項目で書かれる
+  - when: Claude に「HANDOFF.md を書いて」と頼む
+    then: disable-model-invocation を付けているので、スキルは自動では呼ばれない（観察として扱う）

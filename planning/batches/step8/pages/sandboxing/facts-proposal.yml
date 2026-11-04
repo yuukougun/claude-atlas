@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: sandbox-default-reads, title: "サンドボックスの既定の読み取りは機械全体（拒否したディレクトリを除く）。~/.ssh と ~/.aws/credentials も読める", value: "機械全体（denyRead で拒否したものを除く）", sources: [cc-docs-sandboxing], checked: 2026-11-05, status: 確認済み}
+    used_in: [sandboxing#default-reads]
+  - fact: {id: sandbox-fail-open-default, title: "サンドボックスは依存が欠ける・非対応の環境だと、既定でサンドボックスなしで動く。failIfUnavailable: true で起動時に終了", value: "既定は囲いなしで動く（fail-open）", sources: [cc-docs-sandboxing], checked: 2026-11-05, status: 確認済み}
+    used_in: [sandboxing#fail-if-unavailable]

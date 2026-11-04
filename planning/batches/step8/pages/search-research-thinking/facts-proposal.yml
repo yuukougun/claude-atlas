@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: web-search-call-guide, title: "web 検索の使いどころの目安（呼び出しの回数）", value: "1〜2 回のツール呼び出しで答えられる単純な事実確認", sources: [hc-web-search-extended-thinking], checked: 2026-10-29, status: 確認済み}
+    used_in: [search-research-thinking#comparison]
+  - fact: {id: research-call-guide, title: "リサーチの使いどころの目安（呼び出しの回数と時間）", value: "5 回以上のツール呼び出しを 1〜3 分かけて行う包括的な情報収集", sources: [hc-web-search-extended-thinking], checked: 2026-10-29, status: 確認済み}
+    used_in: [search-research-thinking#comparison]

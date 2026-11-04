@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="290" viewBox="0 0 400 290" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#000000"/>
+    </marker>
+  </defs>
+  <rect width="400" height="290" fill="#ffffff"/>
+  <text x="20" y="24" font-size="14" font-weight="bold" fill="#000000">調査は別室、本筋に戻るのは報告書だけ</text>
+
+  <rect x="10" y="44" width="150" height="196" fill="#ffffff" stroke="#000000" stroke-width="3"/>
+  <text x="18" y="64" font-size="12" font-weight="bold" fill="#000000">本筋の部屋</text>
+  <text x="18" y="80" font-size="11" fill="#333333">（メインの会話）</text>
+  <text x="18" y="108" font-size="12" fill="#000000">目的</text>
+  <text x="18" y="128" font-size="12" fill="#000000">決めたこと</text>
+  <text x="18" y="148" font-size="12" fill="#000000">編集の途中</text>
+  <rect x="18" y="190" width="134" height="36" fill="#ffffff" stroke="#000000" stroke-width="3"/>
+  <text x="26" y="213" font-size="12" font-weight="bold" fill="#000000">報告書 1 枚</text>
+
+  <rect x="240" y="44" width="150" height="196" fill="#ffffff" stroke="#666666" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="248" y="64" font-size="12" font-weight="bold" fill="#000000">別室</text>
+  <text x="248" y="80" font-size="11" fill="#333333">（サブエージェント）</text>
+  <text x="248" y="108" font-size="12" fill="#333333">長いログ</text>
+  <text x="248" y="128" font-size="12" fill="#333333">大量のファイル</text>
+  <text x="248" y="148" font-size="12" fill="#333333">読む・探す・試す</text>
+  <rect x="248" y="190" width="134" height="36" fill="#ffffff" stroke="#000000" stroke-width="3"/>
+  <text x="256" y="213" font-size="12" font-weight="bold" fill="#000000">報告書を書く</text>
+
+  <line x1="166" y1="100" x2="234" y2="100" stroke="#000000" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="178" y="92" font-size="12" fill="#000000">依頼文</text>
+  <line x1="234" y1="208" x2="166" y2="208" stroke="#000000" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="172" y="200" font-size="12" fill="#000000">要約だけ</text>
+
+  <text x="20" y="266" font-size="11" fill="#333333">別室の作業にもトークン（給料）がかかる。模式図で、実測ではない。</text>
+</svg>

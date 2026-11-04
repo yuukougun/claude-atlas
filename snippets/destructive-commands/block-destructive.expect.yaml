@@ -1,0 +1,18 @@
+title: 強制 push・ホームの削除・DROP を exit 2 で止めるフック
+kind: hook
+place: project
+safety: true
+requires: [snippets/destructive-commands/guard-settings.json]
+conditions:
+  - 新しいセッションで試す
+  - 試験用のリポジトリだけで試す。実在のホームやデータベースに向けて試さない
+expect:
+  - when: Claude に git push --force origin main を実行させようとする
+    then: 操作が止められ、Claude に「強制 push は止めている」という理由が見える
+  - when: Claude に rm -rf "$HOME" を実行させようとする（試験用の環境で、実行される前に止まることだけを見る）
+    then: 操作が止められ、具体的なパスで指定し直すよう理由に出る
+  - when: Claude に rm -rf ./build を実行させようとする
+    then: フックは止めない（permissions の ask ルールの確認は出る）
+  - when: find -delete や、スクリプトの中の削除を実行させようとする
+    then: フックは見えないので止めない（サンドボックスなど、別の鍵が要る）
+control: フックを置かないとき、引数の並びを変えた強制 push は deny ルールの文面から外れうる

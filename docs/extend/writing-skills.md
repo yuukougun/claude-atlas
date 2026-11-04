@@ -58,7 +58,7 @@ updated: 2026-11-04
 
 - **決まったときに動かしたい処理**はフックにする。スキルは Claude が読んで従う手順で、従わせる力はない。違いは「<!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end -->」にまとめてある。
 - **別の文脈で作業させ、要約だけを受け取りたいとき**はサブエージェントにする。違いは「<!-- link:begin skill-vs-subagent -->スキルとサブエージェントの違い（準備中）<!-- link:end -->」にある。
-- **常に成り立つ短い事実や規約**は、CLAUDE.md や rules に置く。分け方は「<!-- link:begin claude-md-vs-rules-skills-styles -->CLAUDE.md・rules・スキル・出力スタイルの違い（準備中）<!-- link:end -->」にある。
+- **常に成り立つ短い事実や規約**は、CLAUDE.md や rules に置く。分け方は「<!-- link:begin claude-md-vs-rules-skills-styles -->[CLAUDE.md・rules・スキル・出力スタイルの違い](claude-md-vs-rules-skills-styles.md)<!-- link:end -->」にある。
 
 文章の手直しも、スキルにできる。<!-- link:begin less-ai-sounding-japanese#proofreading-skill -->日本語の「AI 臭さ」を減らす › 推敲をスキルにする（文体を保つか、構成から直すか）（準備中）<!-- link:end -->は、日本語の推敲をスキルにする例である。
 
@@ -195,7 +195,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 移した後は、`/` のメニューに出るかと、呼ぶ名前が変わっていないかを確かめる。サブフォルダに置いたコマンド（`.claude/commands/frontend/component.md` など）は、今も `/frontend:component` の形で呼ぶ。スキルの名前はフォルダ名か `name` で決まり、サブフォルダの区切りは入らない。呼び方が変わるので、たとえば `frontend-component` のように、名前を付け直す。
 
-昔の記事にある `/project:` や `/user:` を付けた呼び方は、今は使わず、`/<名前>` で呼ぶ。この古くなった助言の扱いは、「<!-- link:begin outdated-advice-ledger#commands-directory -->古くなった助言の台帳（準備中）<!-- link:end -->」にまとめてある。
+昔の記事にある `/project:` や `/user:` を付けた呼び方は、今は使わず、`/<名前>` で呼ぶ。この古くなった助言の扱いは、「<!-- link:begin outdated-advice-ledger#commands-directory -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#commands-directory)<!-- link:end -->」にまとめてある。
 
 ## 補助ファイルとスクリプトに分ける {#supporting-files}
 
@@ -295,7 +295,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 圧縮の後、スキルは<!-- gen:begin feature survives_compaction -->残る<!-- gen:end feature survives_compaction -->。ただし残るのは、呼んだスキルの本文の先頭から一定の量までで、古く呼んだものは落ちることがある（量は、[公式の文書のスキルの本文の扱い](https://code.claude.com/docs/en/skills#skill-content-lifecycle)で確かめる）。そのため、大事な指示は本文の上に置く。圧縮の後にスキルが守られなくなったら、呼び直す。
 
-スクリプトを動かすたびに確認を求められると、作業の流れが止まる。確認を省く前に、スクリプトの中身を自分で読む。リポジトリに入っている他人のスキルは、`allowed-tools` とスクリプトを読んでから使う。確認の手順は「<!-- link:begin vetting-extensions -->MCP・プラグイン・スキルを入れる前の確認（準備中）<!-- link:end -->」にある。
+スクリプトを動かすたびに確認を求められると、作業の流れが止まる。確認を省く前に、スクリプトの中身を自分で読む。リポジトリに入っている他人のスキルは、`allowed-tools` とスクリプトを読んでから使う。確認の手順は「<!-- link:begin vetting-extensions -->[MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)<!-- link:end -->」にある。
 
 確認を省くには、フロントマターの `allowed-tools` に、省きたいコマンドを書く。許可するコマンドは、本文が指示するコマンドと同じ形で書く。本文と `allowed-tools` の両方で `${CLAUDE_SKILL_DIR}` を使うと、形がそろう。次の 1 行は、この節のスクリプトの例である。
 
@@ -313,7 +313,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 <!-- textlint-enable -->
 <!-- gen:end snippet writing-skills/allowed-tools -->
 
-省くのは、そのスキルを呼んだターンの間だけで、列挙した道具に限られる。使える道具を絞る設定ではないので、禁じたいものは権限ルールで禁じる。書き方は「<!-- link:begin permission-rules -->権限ルール（allow・ask・deny）（準備中）<!-- link:end -->」にある。
+省くのは、そのスキルを呼んだターンの間だけで、列挙した道具に限られる。使える道具を絞る設定ではないので、禁じたいものは権限ルールで禁じる。書き方は「<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->」にある。
 
 ## 効いているかを確かめる {#evaluate}
 
@@ -359,7 +359,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
     - **選んだもの**：控えた依頼で、新しいセッションを使い、スキルを有効にした場合と切った場合を、それぞれ数回ずつ走らせて比べる。
     - **理由**：2 回の成功では、スキルのおかげか、たまたまかを分けられない。もう数回試しても、スキルなしでも同じ結果が出たかは分からない。スキルを書いた会話には手順の補足が残っているので、同じ会話で試すと、書き漏れも見えない。
 
-どの方法でも、1 回の試行で判断しない。体感と実測がずれる理由は「<!-- link:begin felt-vs-measured -->体感と実測（準備中）<!-- link:end -->」、小さく比べる手順は「<!-- link:begin measure-changes -->変更が効いたかを測る（小さな eval）（準備中）<!-- link:end -->」にある。効き方は使うモデルでも変わるので、公式のベストプラクティスに従い、使うモデルのすべてで試す。アプリで使うスキルが使われないときの確かめ方は、「<!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end -->」にある。
+どの方法でも、1 回の試行で判断しない。体感と実測がずれる理由は「<!-- link:begin felt-vs-measured -->[体感と実測](../eval/felt-vs-measured.md)<!-- link:end -->」、小さく比べる手順は「<!-- link:begin measure-changes -->[変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)<!-- link:end -->」にある。効き方は使うモデルでも変わるので、公式のベストプラクティスに従い、使うモデルのすべてで試す。アプリで使うスキルが使われないときの確かめ方は、「<!-- link:begin skills-in-the-app -->アプリでスキルを使う（準備中）<!-- link:end -->」にある。
 
 ## 効かない場面と落とし穴 {#limits}
 
@@ -373,7 +373,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 - **同じ名前のスキルが複数ある**：管理設定、個人用、プロジェクトの順に優先される。個人用とプロジェクトに同じ名前のスキルがあれば、個人用が動く。`.claude/commands/` のファイルと同じ名前なら、スキルが動く。詳しい表は、[公式の文書の同名の扱い](https://code.claude.com/docs/en/skills#resolve-skills-that-share-a-name)にある。
 - **組み込みのコマンドや同梱のスキルと同じ名前にしたとき**：その名前では、自作のスキルが動く。置き換わるのは名前だけで、元のコマンドの別名で呼ぶと、元のコマンドが動く。組み込みのコマンドについては、ローカルのターミナルのセッションでの挙動で、ほかの環境は確かめていない。
 - **`verify` か `simplify` という名前**：この名前のスキルがあり、Claude が呼べる設定になっていると、Claude はコミットの直前にそれを実行する。文書とテストだけの変更は除く。名前だけでコミットのたびに動くので、意図して付ける。条件は、[公式の文書のコミット前の確認](https://code.claude.com/docs/en/skills#run-your-checks-before-each-commit)にある。
-- **他人のスキルの中身**：リポジトリやプラグインから入るスキルは、スクリプトを持てる。入れる前に中身を読む。確認の手順は「<!-- link:begin vetting-extensions -->MCP・プラグイン・スキルを入れる前の確認（準備中）<!-- link:end -->」にある。
+- **他人のスキルの中身**：リポジトリやプラグインから入るスキルは、スクリプトを持てる。入れる前に中身を読む。確認の手順は「<!-- link:begin vetting-extensions -->[MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)<!-- link:end -->」にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -404,10 +404,10 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 
 - フックとスキルの違い（準備中）
 - スキルとサブエージェントの違い（準備中）
-- 権限ルール（allow・ask・deny）（準備中）
-- MCP・プラグイン・スキルを入れる前の確認（準備中）
-- 変更が効いたかを測る（小さな eval）（準備中）
-- 体感と実測（準備中）
+- [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
+- [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
+- [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
+- [体感と実測](../eval/felt-vs-measured.md)
 - 判断を決定論的なスクリプトに移す（準備中）
 - プラグインとマーケットプレイス（準備中）
 - アプリでスキルを使う（準備中）
@@ -415,7 +415,7 @@ Claude Code では、フロントマターのキーはすべて省けるが、`d
 - 日本語の「AI 臭さ」を減らす › 推敲をスキルにする（文体を保つか、構成から直すか）（準備中）
 - 拡張の棚卸しと剪定（準備中）
 - サブエージェントの作り方と使いどころ（準備中）
-- CLAUDE.md・rules・スキル・出力スタイルの違い（準備中）
+- [CLAUDE.md・rules・スキル・出力スタイルの違い](claude-md-vs-rules-skills-styles.md)
 - 拡張を足すタイミング（準備中）
 
 </div>

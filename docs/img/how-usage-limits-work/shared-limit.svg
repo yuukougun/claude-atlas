@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240" font-family="sans-serif" font-size="12">
+  <rect width="400" height="240" fill="#ffffff"/>
+  <text x="70" y="20" text-anchor="middle" fill="#222222">使う面</text>
+  <text x="290" y="20" text-anchor="middle" fill="#222222">同じ口座の利用枠</text>
+  <g fill="#f5f5f5" stroke="#555555" stroke-width="1">
+    <rect x="10" y="34" width="120" height="44"/>
+    <rect x="10" y="98" width="120" height="44"/>
+    <rect x="10" y="162" width="120" height="44"/>
+  </g>
+  <g fill="#222222" text-anchor="middle">
+    <text x="70" y="61">アプリ</text>
+    <text x="70" y="125">Claude Code</text>
+    <text x="70" y="189">Desktop</text>
+  </g>
+  <g stroke="#111111" stroke-width="2" fill="none">
+    <path d="M132 56 L188 108"/>
+    <path d="M132 120 L188 120"/>
+    <path d="M132 184 L188 132"/>
+  </g>
+  <g fill="#111111">
+    <polygon points="190,120 180,114 180,126"/>
+  </g>
+  <rect x="192" y="34" width="200" height="172" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="292" y="62" text-anchor="middle" fill="#222222">5 時間の上限（ない口座もある）</text>
+  <rect x="206" y="72" width="172" height="18" fill="#ffffff" stroke="#555555"/>
+  <rect x="206" y="72" width="104" height="18" fill="#bbbbbb" stroke="#555555"/>
+  <text x="292" y="120" text-anchor="middle" fill="#222222">週の上限</text>
+  <rect x="206" y="130" width="172" height="18" fill="#ffffff" stroke="#555555"/>
+  <rect x="206" y="130" width="60" height="18" fill="#bbbbbb" stroke="#555555"/>
+  <text x="292" y="180" text-anchor="middle" fill="#222222">どの面の使用も同じ棒を減らす</text>
+  <text x="200" y="228" text-anchor="middle" fill="#222222">灰色が使った分。会話を片付けても戻らない</text>
+</svg>

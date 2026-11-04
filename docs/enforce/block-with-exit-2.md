@@ -39,7 +39,7 @@ updated: 2026-11-05
     - **何ができるか**：PreToolUse のフックで、道具の実行の前に操作を止め、理由と代わりの手段を Claude に返せる。返し方は exit 2 と、exit 0 に付ける JSON の 2 つで、理由と代わりを分けて返せるのは JSON のほう
     - **いつ引くか**：特定のコマンドを理由つきで止めたいとき。`.env` や migrations を絶対に触らせたくないとき。フックで止めたのに Claude が理由を分からず、同じ操作を繰り返すとき
     - **強制力**：<!-- gen:begin feature enforcement -->鍵<!-- gen:end feature enforcement -->。一致した操作は、Claude の判断に関係なく止まる。止められるのはフックが見ている道具の呼び出しだけで、見ていない経路には効かない
-    - **前提**：<!-- link:begin hooks-basics -->フックの考え方とイベント（準備中）<!-- link:end -->
+    - **前提**：<!-- link:begin hooks-basics -->[フックの考え方とイベント](hooks-basics.md)<!-- link:end -->
 
 <!-- textlint-disable -->
 別名：exit 2 でブロックする・permissionDecision・PreToolUse でブロックする・フックで拒否する
@@ -54,9 +54,9 @@ PreToolUse のフックは、Claude が道具を実行する直前に走り、�
 このページが防ぐのは、原因の「縛っていない」である。典型は次の 2 つ。
 
 - 特定のコマンドを止めたい。止めるだけなら権限ルールでもできるが、理由と代わりの手段を返したいならフックが向く
-- `.env` や migrations を絶対に触らせたくない。deny ルールで足りるなら、まず <!-- link:begin permission-rules -->権限ルール（allow・ask・deny）（準備中）<!-- link:end --> で書く。足りないとき、たとえば migrations は既存のファイルを直させず新しいファイルで足させたいときに、理由と代わりを返して止める側がこのページである
+- `.env` や migrations を絶対に触らせたくない。deny ルールで足りるなら、まず <!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](permission-rules.md)<!-- link:end --> で書く。足りないとき、たとえば migrations は既存のファイルを直させず新しいファイルで足させたいときに、理由と代わりを返して止める側がこのページである
 
-フックのイベントの全体と置き場所は <!-- link:begin hooks-basics#events -->フックの考え方とイベント › 代表的なイベント（準備中）<!-- link:end --> にある。ここでは PreToolUse に絞る。
+フックのイベントの全体と置き場所は <!-- link:begin hooks-basics#events -->[フックの考え方とイベント › 代表的なイベント](hooks-basics.md#events)<!-- link:end --> にある。ここでは PreToolUse に絞る。
 
 ## exit 2 と JSON の違い {#exit-2-vs-json}
 
@@ -121,7 +121,7 @@ PreToolUse のフックが操作を止める方法は、終了コードの exit 
 
 ## 権限ルールとの順番 {#precedence}
 
-フックと権限ルールは両方とも効く。評価の順番は、権限ルールが deny、ask、allow の順で、最初に当たったものが勝つ（<!-- link:begin permission-rules#evaluation-order -->権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）（準備中）<!-- link:end -->）。フックはこれに次のように絡む。
+フックと権限ルールは両方とも効く。評価の順番は、権限ルールが deny、ask、allow の順で、最初に当たったものが勝つ（<!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](permission-rules.md#evaluation-order)<!-- link:end -->）。フックはこれに次のように絡む。
 
 - exit 2 で止めるフックは、allow ルールより先に効く。allow に書いてある操作でも止まる
 - フックが allow を返しても、deny と ask のルールは評価される。フックの allow で deny ルールを外すことはできない。安全側に倒れる設計である
@@ -133,9 +133,9 @@ PreToolUse のフックが操作を止める方法は、終了コードの exit 
 | --- | --- | --- |
 | パスやコマンドを単に禁じたい | 権限ルールの deny | 理由と代わりを返したいとき |
 | 条件付きで止めたい（既存ファイルだけ、など） | フック | ― |
-| 秘密を読ませたくない | 権限ルールとサンドボックスの二重 | 補助として。<!-- link:begin protecting-secrets#two-layers -->秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする（準備中）<!-- link:end --> を見る |
+| 秘密を読ませたくない | 権限ルールとサンドボックスの二重 | 補助として。<!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](../safety/protecting-secrets.md#two-layers)<!-- link:end --> を見る |
 
-`.env` のように「絶対に」触らせたくないものは、フックだけに頼らない。フックは Claude の道具の呼び出しを見て判定するので、書き方の違いで抜ける経路がありうる。権限ルールの落とし穴は <!-- link:begin permission-rules#path-rules -->権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール（準備中）<!-- link:end --> と <!-- link:begin permission-rules#child-processes -->権限ルール（allow・ask・deny） › 子プロセスには効かない（準備中）<!-- link:end --> にある。
+`.env` のように「絶対に」触らせたくないものは、フックだけに頼らない。フックは Claude の道具の呼び出しを見て判定するので、書き方の違いで抜ける経路がありうる。権限ルールの落とし穴は <!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](permission-rules.md#path-rules)<!-- link:end --> と <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](permission-rules.md#child-processes)<!-- link:end --> にある。
 
 ## 雛形 {#templates}
 
@@ -258,7 +258,7 @@ JSON の版。
 - **止めすぎる**。matcher が広いと、関係のない操作まで止める。止めた記録を見て絞り直す（<!-- link:begin lock-side-effects#review-blocks -->縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し（準備中）<!-- link:end -->）
 - **フックは利用者の権限で動く**。スクリプトも、確かめてから置く（<!-- link:begin writing-safe-hooks#runs-as-you -->フックを安全に書く › フックは利用者の権限で動く（準備中）<!-- link:end -->）
 - **止めるのは操作の前だけ**。終わろうとするターンを止めたいときは、別の仕組みを使う（<!-- link:begin stop-hooks -->Stop フックで「終わらせない」（準備中）<!-- link:end -->）
-- **消えたものは戻らない**。消す操作を止められなかったときの備えは <!-- link:begin destructive-commands#not-recoverable -->消されたくないもの（破壊的コマンド） › 巻き戻しで戻らないもの（準備中）<!-- link:end --> を見る
+- **消えたものは戻らない**。消す操作を止められなかったときの備えは <!-- link:begin destructive-commands#not-recoverable -->[消されたくないもの（破壊的コマンド） › 巻き戻しで戻らないもの](../safety/destructive-commands.md#not-recoverable)<!-- link:end --> を見る
 
 本文の動作は WSL・Linux の CLI を基準にしている。ほかの OS と IDE 拡張での動作は未確認である。
 
@@ -269,21 +269,21 @@ JSON の版。
 
 **前提**
 
-- フックの考え方とイベント（準備中）
+- [フックの考え方とイベント](hooks-basics.md)
 
 **次に読む**
 
+- [textlint をフックで回す](../japanese/textlint-hook.md)
 - 代表的なフックのレシピ（準備中）
 - Stop フックで「終わらせない」（準備中）
 - 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
-- textlint をフックで回す（準備中）
 
 **関連**
 
 - フックを安全に書く（準備中）
-- 権限ルール（allow・ask・deny）（準備中）
-- 秘密情報（.env・API キー）を守る（準備中）
-- 消されたくないもの（破壊的コマンド）（準備中）
+- [権限ルール（allow・ask・deny）](permission-rules.md)
+- [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
+- [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 
 </div>
 

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="330" viewBox="0 0 400 330" role="img" aria-labelledby="t d">
+  <title id="t">信頼できない入力が道具の呼び出しへ流れる経路</title>
+  <desc id="d">Web ページ・ファイル・issue・道具の説明が読み込まれ、Claude の判断で同じ文脈に並び、送信や変更などの道具の呼び出しに至る。止める場所は判断の手前ではなく、道具の呼び出しの権限と通信の側にある。</desc>
+  <rect x="0" y="0" width="400" height="330" fill="#ffffff"/>
+  <rect x="20" y="16" width="250" height="62" rx="6" fill="#ffffff" stroke="#333333" stroke-width="2"/>
+  <text x="32" y="40" font-family="sans-serif" font-size="14" fill="#111111">1. 読み込み</text>
+  <text x="32" y="62" font-family="sans-serif" font-size="12" fill="#111111">Web ページ・ファイル・issue・道具の説明</text>
+  <line x1="145" y1="78" x2="145" y2="108" stroke="#333333" stroke-width="2"/>
+  <polygon points="139,106 151,106 145,116" fill="#333333"/>
+  <rect x="20" y="116" width="250" height="62" rx="6" fill="#ffffff" stroke="#333333" stroke-width="2" stroke-dasharray="6 3"/>
+  <text x="32" y="140" font-family="sans-serif" font-size="14" fill="#111111">2. 判断（Claude）</text>
+  <text x="32" y="162" font-family="sans-serif" font-size="12" fill="#111111">頼んだ指示と同じ文脈に並ぶ</text>
+  <line x1="145" y1="178" x2="145" y2="208" stroke="#333333" stroke-width="2"/>
+  <polygon points="139,206 151,206 145,216" fill="#333333"/>
+  <rect x="20" y="216" width="250" height="62" rx="6" fill="#ffffff" stroke="#333333" stroke-width="2"/>
+  <text x="32" y="240" font-family="sans-serif" font-size="14" fill="#111111">3. 道具の呼び出し</text>
+  <text x="32" y="262" font-family="sans-serif" font-size="12" fill="#111111">送信・変更・削除・コマンドの実行</text>
+  <rect x="290" y="206" width="100" height="82" rx="6" fill="#eeeeee" stroke="#111111" stroke-width="3"/>
+  <text x="298" y="230" font-family="sans-serif" font-size="12" fill="#111111">ここで縛る</text>
+  <text x="298" y="250" font-family="sans-serif" font-size="12" fill="#111111">権限と通信</text>
+  <text x="298" y="270" font-family="sans-serif" font-size="12" fill="#111111">人の承認</text>
+  <line x1="270" y1="247" x2="290" y2="247" stroke="#111111" stroke-width="3"/>
+  <text x="20" y="312" font-family="sans-serif" font-size="12" fill="#111111">破線の枠（判断）は、確実には守れない場所</text>
+</svg>

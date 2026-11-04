@@ -1,0 +1,9 @@
+title: 更新の通り道を stable にする設定
+kind: settings
+place: user
+safety: false
+conditions:
+  - 設定を保存した後、Claude Code を起動し直す
+expect:
+  - when: 設定を保存して、次の更新の確認を待つ
+    then: 受け取る版が latest より遅れた版になる（観察として扱う。版は claude --version で記録する）

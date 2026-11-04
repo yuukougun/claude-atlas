@@ -1,0 +1,3 @@
+proposals:
+  - fact: {id: at-reference-read-limit, title: "@ 参照で全文が入るファイルの大きさの上限（Read ツールの上限）", value: "Read ツールの上限（調査資料では 25,000 トークン以内で全文、256KB 超のテキストは含めない）", sources: [cc-docs-common-workflows], checked: 2026-10-29, status: 要確認}
+    used_in: [choose-what-to-read#caveats]

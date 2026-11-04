@@ -1,0 +1,12 @@
+title: 既定を「指示を待つ」に寄せる指示
+kind: prompt
+place: システムプロンプト（API）、CLAUDE.md（Claude Code）、会話の最初の依頼（アプリ）
+safety: false
+conditions:
+  - 新しいセッションで試す
+expect:
+  - when: 「このログ出力を JSON にするのはどうか」と聞く
+    then: ファイルは変更されず、案と影響範囲と質問が返る
+  - when: 続けて「その案で書き換えて」と頼む
+    then: ファイルが変更される
+control: 指示を置かないとき、同じ質問でファイルが変更されることがある

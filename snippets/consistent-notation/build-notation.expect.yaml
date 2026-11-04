@@ -1,0 +1,13 @@
+title: 正本から prh の辞書と指示の一覧を作るスクリプト
+kind: other
+place: project
+safety: false
+requires: [glossary.yaml]
+conditions:
+  - PyYAML が入った Python で動かす（例：uv run --with pyyaml python build-notation.py）
+  - 動作は未確認の環境もある。まず小さな正本で試す
+expect:
+  - when: glossary.yaml を置いたフォルダで実行する
+    then: 同じフォルダに prh.yml と notation-list.md ができる
+  - when: 使わない表記が pattern に当たらない行を正本に入れる
+    then: 食い違いの一覧が出て、辞書を作らずに終わる

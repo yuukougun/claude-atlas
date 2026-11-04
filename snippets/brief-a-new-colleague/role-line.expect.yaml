@@ -1,0 +1,10 @@
+title: 役割を一文で伝える
+kind: prompt
+place: API のシステムプロンプト、または依頼の冒頭
+safety: false
+conditions:
+  - 新しいセッションで試す
+expect:
+  - when: 役割の一文を置いて、Python のコードの相談をする
+    then: Python の慣用に沿った答えが返りやすくなる（観察として扱い、合否にしない）
+control: 役割の一文を置かないと、答えの観点が定まらないことがある

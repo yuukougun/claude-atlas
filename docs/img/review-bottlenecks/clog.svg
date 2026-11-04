@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200" font-family="sans-serif" font-size="12">
+  <rect width="400" height="200" fill="#ffffff"/>
+  <text x="200" y="18" text-anchor="middle" fill="#222222">変更は AI で増えるが、読む人は増えない</text>
+  <rect x="10" y="50" width="100" height="70" fill="#ffffff" stroke="#222222" stroke-width="1.5"/>
+  <text x="60" y="80" text-anchor="middle" fill="#222222">AI が書く</text>
+  <text x="60" y="98" text-anchor="middle" fill="#222222">PR が増える</text>
+  <line x1="110" y1="85" x2="150" y2="85" stroke="#222222" stroke-width="1.5"/>
+  <polygon points="150,80 160,85 150,90" fill="#222222"/>
+  <rect x="165" y="30" width="100" height="14" fill="#bbbbbb" stroke="#555555"/>
+  <rect x="165" y="48" width="100" height="14" fill="#bbbbbb" stroke="#555555"/>
+  <rect x="165" y="66" width="100" height="14" fill="#bbbbbb" stroke="#555555"/>
+  <rect x="165" y="84" width="100" height="14" fill="#bbbbbb" stroke="#555555"/>
+  <rect x="165" y="102" width="100" height="14" fill="#bbbbbb" stroke="#555555"/>
+  <rect x="165" y="124" width="100" height="40" fill="#ffffff" stroke="#222222" stroke-width="2.5"/>
+  <text x="215" y="142" text-anchor="middle" fill="#222222">レビューと</text>
+  <text x="215" y="158" text-anchor="middle" fill="#222222">動作確認</text>
+  <line x1="265" y1="144" x2="295" y2="144" stroke="#222222" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <polygon points="295,139 305,144 295,149" fill="#222222"/>
+  <rect x="310" y="124" width="80" height="40" fill="#ffffff" stroke="#222222" stroke-width="1.5"/>
+  <text x="350" y="148" text-anchor="middle" fill="#222222">マージ</text>
+  <text x="200" y="186" text-anchor="middle" fill="#222222">灰色の棒は待つ PR。人の処理が細い口になる</text>
+</svg>

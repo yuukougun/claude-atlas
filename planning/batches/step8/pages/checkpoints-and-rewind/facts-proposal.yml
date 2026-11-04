@@ -1,0 +1,7 @@
+proposals:
+  - fact: {id: checkpoint-retention-count, title: セッションごとに保たれるチェックポイントの数（直近の数）, value: 100, sources: [cc-docs-checkpointing], checked: 2026-11-05, status: 確認済み}
+    used_in: [checkpoints-and-rewind#what-is-restored]
+  - fact: {id: checkpoint-retention-days, title: チェックポイントの控えを消す既定の期間（おおよそ。cleanupPeriodDays で変える）, value: 約 30 日, sources: [cc-docs-checkpointing], checked: 2026-11-05, status: 確認済み}
+    used_in: [checkpoints-and-rewind#what-is-restored]
+frontmatter:
+  - {id: checkpoints-and-rewind, key: summary, before: "Bash で変えたファイルや外での変更は戻らないので、git の代わりにはしない。", after: "Bash だけが変えたファイルや外での変更は戻らないので、git の代わりにはしない。", reason: "公式は、Claude が先に編集したファイルへの Bash の後の変更は戻ると書く。Bash だけが変えたファイルが戻らない、が正確"}

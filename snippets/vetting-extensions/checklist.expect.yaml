@@ -1,0 +1,13 @@
+title: 入れる前の確認表
+kind: other
+place: 依頼の本文
+safety: true
+open: true
+features: [mcp]
+conditions:
+  - 実在する拡張を 1 つ選び、入れる前に表を埋める
+  - 埋めるだけで、実際には入れない
+expect:
+  - when: 表の「出所」「持つ権限」「中身」を埋める
+    then: 空欄が残る項目が見つかり、入れる前に確かめることが分かる
+control: 表を使わず、README と星の数だけで判断すると、権限と中身が確かめられないまま入れることがある

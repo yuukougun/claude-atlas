@@ -1,0 +1,8 @@
+title: 表記の正本（用語集）
+kind: other
+place: project
+safety: false
+conditions:
+  - 実際に揺れた語から始める。全語を網羅しようとしない
+expect:
+  - 使わない表記は pattern に当たり、使う表記は当たらない

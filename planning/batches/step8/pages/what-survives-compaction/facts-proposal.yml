@@ -1,0 +1,9 @@
+proposals:
+  - fact: {id: compaction-reread-files-max, title: 圧縮の後に再び読み込む、読んだか編集したファイルの個数の上限, value: 5, unit: 個, sources: [cc-docs-context-window], checked: 2026-11-05, status: 確認済み}
+    used_in: [what-survives-compaction#reloaded]
+  - fact: {id: compaction-reread-file-tokens-max, title: 圧縮の後に中身つきで戻るファイル1つの大きさの上限（超えるとパスの参照だけ）, value: 5000, unit: トークン, sources: [cc-docs-context-window], checked: 2026-11-05, status: 確認済み}
+    used_in: [what-survives-compaction#reloaded]
+  - fact: {id: auto-memory-startup-load, title: 自動メモリの MEMORY.md を起動時に読む量（行数と大きさの早いほう）, value: "200 行または 25KB", sources: [cc-docs-memory], checked: 2026-11-05, status: 確認済み}
+    used_in: [what-survives-compaction#reloaded]
+  - fact: {id: hook-output-max-chars, title: フックの出力（additionalContext などと標準出力）の文字数の上限, value: 10000, unit: 文字, sources: [cc-docs-hooks], checked: 2026-11-05, status: 確認済み}
+    used_in: [what-survives-compaction#kept]

@@ -1,0 +1,17 @@
+title: 停止条件つきの /goal の条件文（終わりの状態・確かめ方・変えないもの・上限）
+kind: prompt
+place: /goal の引数
+safety: false
+features: [goal]
+conditions:
+  - 新しいセッションで試す
+  - tests/ と eval/ のあるリポジトリで、npm test と npm run lint が動く状態で試す
+  - 無人で回すなら、auto モードとサンドボックスを先に整える
+expect:
+  - when: 条件文を /goal に渡す
+    then: 直ちに 1 ターン目が始まり、画面に /goal が有効である表示が出る
+  - when: 各ターンが終わる
+    then: 判定役の判定（まだ・満たした・満たせない）がトランスクリプトに出る（Ctrl+O で理由を見る）
+  - 条件を満たしたとき、会話の中に npm test の終了コードと、git status --porcelain の空の出力が表示されている
+  - 上限に達したときは、残っている失敗と試したことが報告される（報告の中身の正しさは、自分で確かめる）
+control: 「tests/ と eval/ を変更しない」とだけ書いた条件では、git status の出力が会話に出ないので、変更していないことは判定されない

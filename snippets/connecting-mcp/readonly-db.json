@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "analytics-db": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@bytebase/dbhub",
+        "--dsn",
+        "postgresql://${ANALYTICS_RO_USER}:${ANALYTICS_RO_PASSWORD}@db.example.com:5432/analytics"
+      ]
+    }
+  }
+}

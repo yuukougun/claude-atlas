@@ -1,0 +1,3 @@
+proposals:
+  - fact: {id: clear-after-failed-corrections, title: "同じ点の訂正が失敗したら /clear して書き直すよう公式が勧める回数", value: "2 回", sources: [cc-docs-best-practices], checked: 2026-11-03, status: 確認済み}
+    used_in: [when-to-start-fresh#signals]

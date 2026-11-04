@@ -1,0 +1,16 @@
+title: 各行に「消したら誤りが出るか」を問わせる剪定のプロンプト
+kind: prompt
+place: 依頼の本文
+safety: false
+features: [claude-md]
+conditions:
+  - 試したい CLAUDE.md があるリポジトリで、新しいセッションを開く
+  - 試す前に CLAUDE.md を git に入れておく（書き換わっても戻せるようにする）
+expect:
+  - when: プロンプトを貼って依頼を出す
+    then: ファイルを書き換える前に、行ごとの判定の表が返る（観察として扱う）
+  - when: 表の「移す」の行を見る
+    then: 移し先が rules・skill・deny ルールかフックのどれかで書かれている
+  - when: 表を承認する前にファイルを確かめる
+    then: CLAUDE.md が変わっていない
+control: 「CLAUDE.md を短くして」とだけ頼むと、何を削ったかが見えないまま書き換わることがある

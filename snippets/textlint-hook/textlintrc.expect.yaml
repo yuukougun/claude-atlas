@@ -1,0 +1,19 @@
+title: 文体と表記のルールを入れた textlint の設定（.textlintrc.json）
+kind: other
+place: project
+safety: false
+requires:
+  - textlint-rule-preset-japanese
+  - textlint-rule-no-mix-dearu-desumasu
+  - textlint-rule-prh
+  - prh.yml
+conditions:
+  - 設定のファイルをプロジェクトの直下に置く
+  - 手で textlint を走らせて、違反が出るのを先に確かめる
+expect:
+  - when: 1 文が 150 字を超える Markdown を検査する
+    then: 文の長さの違反が出る
+  - when: だ・である調とです・ます調が混ざった Markdown を検査する
+    then: 文体の混在の違反が出る
+  - when: prh.yml に書いた表記と違う語がある Markdown を検査する
+    then: 表記の違反が出る

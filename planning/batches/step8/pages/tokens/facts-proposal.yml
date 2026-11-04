@@ -1,0 +1,7 @@
+proposals:
+  - fact: {id: tokenizer-token-increase-opus-4-7, title: "Claude 4.7 以降の新しい tokenizer で、同じ文章のトークン数が増える割合", value: "約 30%（それ以前のモデルとの比較）", sources: [api-docs-glossary], checked: 2026-11-05, status: 確認済み}
+    used_in: [tokens#what-happens]
+  - fact: {id: chars-per-token-earlier-models, title: "4.7 より前のモデルで 1 トークンが表す英語の文字数の目安", value: "約 3.5 文字", sources: [api-docs-glossary], checked: 2026-11-05, status: 確認済み}
+    used_in: [tokens#why]
+  - fact: {id: tokenizer-token-range-opus-5-5, title: "Opus 5.5 移行の手引きが示す、トークン数の増え方の範囲（内容による）", value: "1〜1.35 倍（研究資料 27 の写し。手引き本文は今回未確認）", sources: [api-docs-migration-guide], checked: 2026-11-03, status: 要確認}
+    used_in: [tokens#why]

@@ -1,0 +1,14 @@
+title: 覚えてほしいことを頼み、訂正する
+kind: prompt
+place: 依頼の本文
+safety: false
+features: [app-memory]
+conditions:
+  - アプリのメモリが有効である
+  - シークレットチャットではない通常の会話で試す
+expect:
+  - when: 覚えてほしい事柄を書いて頼む
+    then: Claude が保存したと返す。返答は申告なので、設定の Topics に項目があるかを目で確かめる
+  - when: 訂正の頼みを出す
+    then: Topics の項目が直るか、新しい項目になる。直らなければ Topics で編集する
+control: 頼まずに話しただけでは、何が保存されるかは Claude の判断になる

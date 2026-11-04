@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="260" viewBox="0 0 400 260" font-family="sans-serif">
+  <title>比例則の図</title>
+  <desc>任せる幅が対話から隔離した無人実行へ広がるほど、確かめる仕組みと封じ込めの強さは階段状に増える。握るものは全部の段階の上に引いた線で、どの段階でも手放さない。</desc>
+  <rect width="400" height="260" fill="#ffffff"/>
+  <rect x="50" y="12" width="340" height="28" fill="#ffffff" stroke="#222222" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="220" y="31" font-size="12" text-anchor="middle" fill="#222222">握るもの：どの段階でも手放さない</text>
+  <line x1="50" y1="200" x2="390" y2="200" stroke="#222222" stroke-width="1.5"/>
+  <line x1="50" y1="200" x2="50" y2="50" stroke="#222222" stroke-width="1.5"/>
+  <rect x="55" y="165" width="70" height="35" fill="#4a6a8a"/>
+  <rect x="135" y="130" width="70" height="70" fill="#4a6a8a"/>
+  <rect x="215" y="95" width="70" height="105" fill="#4a6a8a"/>
+  <rect x="295" y="60" width="70" height="140" fill="#4a6a8a"/>
+  <text x="90" y="216" font-size="10" text-anchor="middle" fill="#222222">対話</text>
+  <text x="170" y="216" font-size="10" text-anchor="middle" fill="#222222">計画の承認</text>
+  <text x="250" y="216" font-size="10" text-anchor="middle" fill="#222222">停止条件つき</text>
+  <text x="250" y="229" font-size="10" text-anchor="middle" fill="#222222">の反復</text>
+  <text x="330" y="216" font-size="10" text-anchor="middle" fill="#222222">隔離した</text>
+  <text x="330" y="229" font-size="10" text-anchor="middle" fill="#222222">無人実行</text>
+  <text x="220" y="252" font-size="11" text-anchor="middle" fill="#222222">任せる幅が広がる →</text>
+  <text x="14" y="125" font-size="11" text-anchor="middle" fill="#222222" transform="rotate(-90 14 125)">確かめる仕組みと封じ込めの強さ</text>
+</svg>

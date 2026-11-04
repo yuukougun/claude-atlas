@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250" role="img" aria-labelledby="t d">
+  <title id="t">内訳の 3 区分と片付け方</title>
+  <desc id="d">/context の内訳を、会話、読み込んだもの、常駐するものの 3 つに分け、会話には /clear と /compact、読み込んだものには出力を絞ることと調査を任せること、常駐するものには常駐を減らすことを対応させた図。</desc>
+  <rect x="0" y="0" width="400" height="250" fill="#ffffff"/>
+  <text x="20" y="26" font-family="sans-serif" font-size="14" font-weight="bold" fill="#222222">内訳で多いもの</text>
+  <text x="230" y="26" font-family="sans-serif" font-size="14" font-weight="bold" fill="#222222">効く片付け方</text>
+  <rect x="20" y="40" width="170" height="52" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="32" y="62" font-family="sans-serif" font-size="14" fill="#111111">会話</text>
+  <text x="32" y="82" font-family="sans-serif" font-size="11" fill="#333333">やり取り・訂正の積み重ね</text>
+  <rect x="20" y="106" width="170" height="52" fill="#fef3c7" stroke="#b45309" stroke-width="2" stroke-dasharray="6 3"/>
+  <text x="32" y="128" font-family="sans-serif" font-size="14" fill="#111111">読み込んだもの</text>
+  <text x="32" y="148" font-family="sans-serif" font-size="11" fill="#333333">ファイル・長い出力</text>
+  <rect x="20" y="172" width="170" height="52" fill="#dcfce7" stroke="#15803d" stroke-width="2" stroke-dasharray="2 3"/>
+  <text x="32" y="194" font-family="sans-serif" font-size="14" fill="#111111">常駐するもの</text>
+  <text x="32" y="214" font-family="sans-serif" font-size="11" fill="#333333">CLAUDE.md・スキル・MCP</text>
+  <text x="200" y="71" font-family="sans-serif" font-size="16" fill="#222222">→</text>
+  <text x="200" y="137" font-family="sans-serif" font-size="16" fill="#222222">→</text>
+  <text x="200" y="203" font-family="sans-serif" font-size="16" fill="#222222">→</text>
+  <text x="230" y="62" font-family="sans-serif" font-size="12" fill="#111111">/clear か /compact</text>
+  <text x="230" y="82" font-family="sans-serif" font-size="11" fill="#333333">話題が変われば /clear</text>
+  <text x="230" y="128" font-family="sans-serif" font-size="12" fill="#111111">出力を絞る・調査を任せる</text>
+  <text x="230" y="148" font-family="sans-serif" font-size="11" fill="#333333">入れる前に減らす</text>
+  <text x="230" y="194" font-family="sans-serif" font-size="12" fill="#111111">常駐を減らす</text>
+  <text x="230" y="214" font-family="sans-serif" font-size="11" fill="#333333">/clear では片付かない</text>
+</svg>

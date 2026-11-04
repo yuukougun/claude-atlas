@@ -1,0 +1,10 @@
+# consistent-notation が新しく足す出典。ドメイン（github.com）は data/sources.yml の domains で確かめ済み
+sources:
+  - id: prh-readme
+    url: https://github.com/prh/prh
+    title: prh（表記ゆれ・用語を校正するツール）
+    kind: 公式文書
+    publisher: prh
+    lang: en
+    checked: '2026-11-05'
+    note: README は version と imports を示し、辞書の書き方は misc/prh.yml を参照するよう案内する。rules の expected・pattern・specs の使い方は misc/prh.yml のページを要約した結果で、原文の逐語は確かめていない

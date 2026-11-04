@@ -1,0 +1,12 @@
+title: 文末の文体を数えさせる依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - Claude Code など、コマンドを実行できる面で試す
+expect:
+  - when: 文体が混ざったファイルを含む docs/ で、この依頼を出す
+    then: 混ざったファイルの一覧と、少ないほうの文末の行番号が出る
+  - when: 同じ依頼の後で、ファイルの差分を見る
+    then: ファイルは変わっていない

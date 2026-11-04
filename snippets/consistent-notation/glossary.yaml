@@ -1,0 +1,12 @@
+# 表記の正本。人が持つのはこのファイルだけで、指示の一覧と prh の辞書はここから作る
+# use：使う表記　avoid：使わない表記　pattern：prh が探す形（/…/ は正規表現）
+spelling:
+  - {use: サーバー, avoid: [サーバ], pattern: "/サーバ(?!ー)/"}
+  - {use: ユーザー, avoid: [ユーザ], pattern: "/ユーザ(?!ー)/"}
+  - {use: 問い合わせ, avoid: [問合せ, 問合わせ], pattern: "/問合(?:わ)?せ/"}
+# 漢字を開く語。一文字の語は部分一致で誤検出するので、語の単位で書く
+open:
+  - {use: できる, avoid: [出来る], pattern: "/出来る/"}
+  - {use: ください, avoid: [下さい], pattern: "/下さい/"}
+  - {use: さまざま, avoid: [様々], pattern: "/様々/"}
+  - {use: すべて, avoid: [全て], pattern: "/全て/"}

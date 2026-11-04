@@ -1,0 +1,12 @@
+{
+  "autoMode": {
+    "environment": [
+      "$defaults",
+      "Organization: Example Corp. Primary use: software development",
+      "Source control: github.example.com/example-corp and all repos under it",
+      "Trusted cloud buckets: s3://example-build-artifacts",
+      "Trusted internal domains: *.corp.example.com",
+      "Key internal services: Jenkins at ci.example.com, Artifactory at artifacts.example.com"
+    ]
+  }
+}

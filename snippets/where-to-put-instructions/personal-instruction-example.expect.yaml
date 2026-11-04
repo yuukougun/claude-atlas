@@ -1,0 +1,11 @@
+title: Claude への指示に書く短い方針の例（言語・文体・前提）
+kind: prompt
+place: 設定の Instructions（Claude への指示）に貼る
+safety: false
+open: true
+conditions:
+  - 新しい会話で試す（設定を変える前から続く会話では、効き方が分かりにくい）
+expect:
+  - when: 設定に貼ったあと、新しい会話で関係のない質問を出す
+    then: 返答が日本語のです・ます調で、結論が先に来る
+control: 貼らないとき、同じ質問で言語・文体・説明の深さが会話ごとにばらつく

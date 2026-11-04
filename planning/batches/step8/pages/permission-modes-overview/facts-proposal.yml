@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: permission-mode-default-interactive, title: 対話のセッションの既定の開始モード, value: "auto モード（2.1.283 以降、ターミナルと VS Code の対話のセッション。どのプランと提供元でも）", sources: [cc-docs-permission-modes, cc-changelog, claude-blog-auto-mode-default], checked: 2026-11-04, status: 確認済み}
+    used_in: [permission-modes-overview#defaults]
+  - fact: {id: permission-mode-default-noninteractive, title: claude -p と Agent SDK の既定の開始モード, value: "Manual（2.1.302 以降。承認の要る呼び出しは、allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否）", sources: [cc-docs-permission-modes, cc-changelog], checked: 2026-11-04, status: 確認済み}
+    used_in: [permission-modes-overview#defaults]

@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: auto-mode-block-pause-thresholds, title: auto モードが一時停止して手動の確認に戻る、ブロックの連続回数と合計回数, value: 連続 3 回または合計 20 回, sources: [cc-docs-permission-modes], checked: 2026-10-29, status: 要確認（束の research/01 C-1 の写しによる。今の文書で再確認していない）}
+    used_in: [what-auto-mode-stops#limits]
+  - fact: {id: auto-mode-classifier-rates-2026-03-25, title: auto モードの分類器の誤検知率と見逃し率（2026-03-25 の記事。社内の実トラフィック 10,000 件で 0.4%、行き過ぎた操作 52 件の見逃し 17%、合成した持ち出しの見逃し 5.7%）, value: 0.4% / 17% / 5.7%, sources: [anthropic-eng-code-auto-mode], checked: 2026-11-03, status: 確認済み（research/23 F2-c と 05 4-5 による。本文には研究の固定の記録として、記事の日付とデータの種類を添えて書いた）}
+    used_in: [what-auto-mode-stops#limits]

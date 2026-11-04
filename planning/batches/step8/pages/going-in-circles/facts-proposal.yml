@@ -1,0 +1,3 @@
+proposals:
+  - fact: {id: best-practices-clear-after-failed-corrections, title: "公式の Best practices が /clear を勧める、同じ点の失敗した訂正の回数", value: 2, sources: [cc-docs-best-practices], checked: 2026-11-05, status: 確認済み}
+    used_in: [going-in-circles#choose]

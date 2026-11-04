@@ -1,0 +1,1 @@
+/goal tests/ 以下のテストがすべて通り、lint が警告なしで終わっている。確かめ方：最後に `npm test` と `npm run lint` を実行し、終了コードと出力の末尾を会話に表示する。変えないもの：`git status --porcelain tests eval` の出力が空であることも会話に表示されている。上限：または 20 ターンで止まり、残っている失敗と、試したことを報告する（or stop after 20 turns）。

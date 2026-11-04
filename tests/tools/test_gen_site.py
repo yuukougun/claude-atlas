@@ -69,7 +69,7 @@ class TestNav(GenCase):
         ca = self.nav["extra"]["ca"]
         self.assertEqual(ca["fields"]["start"], "入口と地図")
         self.assertEqual(ca["types"]["concept"], "考え方")
-        self.assertEqual(ca["stages"], {"stub": "準備中", "draft": "下書き", "reviewed": "検証済み", "done": "完成"})
+        self.assertEqual(ca["stages"], {"stub": "準備中", "draft": "下書き", "reviewed": "分かりやすさ確認済み", "done": "完成"})
         self.assertEqual(ca["surfaces"]["claude-code"], "Claude Code")
         self.assertEqual(ca["levels"], ["使う", "整える", "任せる", "仕組みにする", "回す"])
         self.assertEqual(ca["pages_json"], "assets/data/pages.json")

@@ -7,24 +7,7 @@
 
 # 公開から外す試作のページの id（design §8.4・§10.1 の7「波が来るまで」）。docs/ にあり stage が draft 以上でも、
 # nav に載せず exclude_docs に書き、生成物とリンクでは未公開（「題名（準備中）」）として扱う。メインが書き換える
-held_back:   # 工程7の試作の10ページ（2026-11-04。planning/batches/step7/README.md）
-  - instructions-ignored
-  - request-vs-lock
-  - writing-skills
-  - claude-md-vs-rules-skills-styles
-  - keep-replies-in-japanese
-  - agreement-is-not-evidence
-  - competition-rules
-  - outdated-advice-ledger
-  - how-to-use
-  - four-specifics
-  # 使用量の測定に使う第一波の4ページ（2026-11-05。作者の承認の後、工程8で外す）
-  - caves-when-pushed
-  - agent-loop
-  - block-with-exit-2
-  - experiment-log
-  # 方針のページ（作者の承認まで外す。design §6.1 の8）
-  - ai-and-sources
+held_back: []   # 2026-11-05：作者の承認（decisions「工程7の終わりの頼みへの回答」）の後、試作・測定・方針のページを外して公開した。波の前に外すページがあればここに書く
 
 # 語彙の値の役（どの型が症状のページか、など）。値は site.yml の語彙
 roles:
@@ -36,7 +19,7 @@ roles:
 # 表示の言葉（site.yml の語彙の値 → 読者に見せる言葉）。V のテンプレートも nav.yml の extra.ca から読む
 labels:
   types: {concept: 考え方, feature: 機能, symptom: 症状, comparison: 比較, recipe: 手順, judgment: 判断, ledger: 台帳, guide: 案内, hub: 案内}
-  stages: {stub: 準備中, draft: 下書き, reviewed: 検証済み, done: 完成}
+  stages: {stub: 準備中, draft: 下書き, reviewed: 分かりやすさ確認済み, done: 完成}
   surfaces: {app: アプリ, claude-code: Claude Code, api: API}
   sign_types: {symptom: 困りごと, goal: やりたいこと, situation: 状況}
   cause_axes: {prevents: Claude 側, pitfalls: 人の側}   # site.yml のキー → 表示

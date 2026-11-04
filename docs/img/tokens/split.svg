@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="165" viewBox="0 0 400 165" role="img" aria-labelledby="t d">
+  <title id="t">同じ依頼を英語と日本語でトークンに区切った例</title>
+  <desc id="d">英語の一文は 5 つのかけら、日本語の同じ意味の一文は 7 つのかけらに区切られる例。区切りは説明のための仮のもので、実際の数と区切り方はモデルで変わる。</desc>
+  <rect width="400" height="165" fill="#ffffff"/>
+  <g font-family="Noto Sans CJK JP, Hiragino Sans, Meiryo, sans-serif" fill="#1f2937">
+    <text x="10" y="20" font-size="12" font-weight="bold">英語：5 つのかけら（例）</text>
+    <g font-size="12" font-family="monospace" text-anchor="middle" stroke="#1f2937" stroke-width="1.2">
+      <rect x="10" y="30" width="53" height="26" fill="#dbeafe"/>
+      <rect x="66" y="30" width="75" height="26" fill="#fde68a"/>
+      <rect x="144" y="30" width="39" height="26" fill="#dbeafe"/>
+      <rect x="186" y="30" width="39" height="26" fill="#fde68a"/>
+      <rect x="228" y="30" width="17" height="26" fill="#dbeafe"/>
+    </g>
+    <g font-size="12" font-family="monospace" text-anchor="middle">
+      <text x="36.5" y="47">Please</text>
+      <text x="103.5" y="47">summarize</text>
+      <text x="163.5" y="47">this</text>
+      <text x="205.5" y="47">file</text>
+      <text x="236.5" y="47">.</text>
+    </g>
+    <text x="10" y="88" font-size="12" font-weight="bold">日本語：7 つのかけら（例）</text>
+    <g stroke="#1f2937" stroke-width="1.2">
+      <rect x="10" y="98" width="36" height="26" fill="#dbeafe"/>
+      <rect x="49" y="98" width="62" height="26" fill="#fde68a"/>
+      <rect x="114" y="98" width="23" height="26" fill="#dbeafe"/>
+      <rect x="140" y="98" width="36" height="26" fill="#fde68a"/>
+      <rect x="179" y="98" width="36" height="26" fill="#dbeafe"/>
+      <rect x="218" y="98" width="62" height="26" fill="#fde68a"/>
+      <rect x="283" y="98" width="23" height="26" fill="#dbeafe"/>
+    </g>
+    <g font-size="13" text-anchor="middle">
+      <text x="28" y="116">この</text>
+      <text x="80" y="116">ファイル</text>
+      <text x="125.5" y="116">を</text>
+      <text x="158" y="116">要約</text>
+      <text x="197" y="116">して</text>
+      <text x="249" y="116">ください</text>
+      <text x="294.5" y="116">。</text>
+    </g>
+    <text x="10" y="150" font-size="11">区切りは説明用の仮の例。実際の数と区切り方はモデルで変わる。</text>
+  </g>
+</svg>

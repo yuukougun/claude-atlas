@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: claude-code-grep-glob-truncation-fix-version, title: Grep と Glob の検索が時間切れで途中までしか返さなかったのに、全部の結果とみなす不具合を直した版, value: v2.1.317, sources: [cc-changelog, cc-docs-changelog], checked: 2026-11-05, status: 研究資料 research/22 #18 の写し。CHANGELOG で原文を未確認}
+    used_in: [evidence-not-reports#tool-output]
+  - fact: {id: claude-code-p-startup-failure-exit-code-fix-version, title: claude -p が起動に失敗しても終了コード 0 で終わっていた不具合を直した版（エラーを出して 1 で終わるようにした）, value: v2.1.314, sources: [cc-changelog, cc-docs-changelog], checked: 2026-11-05, status: 研究資料 research/22 #24 の写し。CHANGELOG で原文を未確認}
+    used_in: [evidence-not-reports#tool-output]

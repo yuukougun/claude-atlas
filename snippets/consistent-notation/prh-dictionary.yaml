@@ -1,0 +1,40 @@
+# glossary.yaml から build-notation.py が作った辞書。手で直さず、正本を直して作り直す
+version: 1
+rules:
+  - expected: "サーバー"
+    pattern: "/サーバ(?!ー)/"
+    specs:
+      - from: "サーバ"
+        to: "サーバー"
+  - expected: "ユーザー"
+    pattern: "/ユーザ(?!ー)/"
+    specs:
+      - from: "ユーザ"
+        to: "ユーザー"
+  - expected: "問い合わせ"
+    pattern: "/問合(?:わ)?せ/"
+    specs:
+      - from: "問合せ"
+        to: "問い合わせ"
+      - from: "問合わせ"
+        to: "問い合わせ"
+  - expected: "できる"
+    pattern: "/出来る/"
+    specs:
+      - from: "出来る"
+        to: "できる"
+  - expected: "ください"
+    pattern: "/下さい/"
+    specs:
+      - from: "下さい"
+        to: "ください"
+  - expected: "さまざま"
+    pattern: "/様々/"
+    specs:
+      - from: "様々"
+        to: "さまざま"
+  - expected: "すべて"
+    pattern: "/全て/"
+    specs:
+      - from: "全て"
+        to: "すべて"

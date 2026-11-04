@@ -1,0 +1,16 @@
+title: 取り返しのつかない操作を拒む・確認させる設定（.claude/settings.json）
+kind: settings
+place: project
+safety: true
+requires: [snippets/destructive-commands/block-destructive.py]
+conditions:
+  - 新しいセッションで試す
+  - 捨てても困らない試験用のリポジトリで、リモートも試験用のものにする
+expect:
+  - when: 試験用のリポジトリで Claude に git push --force を実行させようとする
+    then: 操作が実行されずに止められる
+  - when: Claude に git reset --hard を実行させようとする
+    then: 実行の前に確認が出る
+  - when: スクリプトが無い、または動かないとき
+    then: フックは止めずに通るが、permissions のルールは効いたままである
+control: この設定を置かないとき、同じ依頼は確認なしに通りうる（モードと、ほかのルールによる）

@@ -51,7 +51,7 @@ updated: 2026-11-04
 - **会話で頼んだ禁止が消える**：長い会話の途中で「このディレクトリには触らないで」と頼んだ。自動の圧縮で会話を要約すると、初めのほうの細かい指示は落ちることがある。
 - **CLAUDE.md の中で埋もれる**：ファイルが長くなると、その一行が目立たなくなり、見落とされる。
 
-現れ方はそれぞれ違うが、どれも、破られたときに止める仕組みがない点は同じである。守らせる役目を、Claude が読んで判断する指示（このページでは「お願い」と呼ぶ）に任せているからである。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、お願いにあたる指示は、ほとんどの場合は従われるが、従う保証はないと書く。原因の切り分けは<!-- link:begin instructions-ignored -->CLAUDE.md や指示が守られない（準備中）<!-- link:end -->で扱い、指示が文脈のどこに入るかは<!-- link:begin where-instructions-sit -->システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置（準備中）<!-- link:end -->で扱う。書き方を直しても残る理由は、指示がお願いであること、つまり守るかどうかを Claude が決めることにある。
+現れ方はそれぞれ違うが、どれも、破られたときに止める仕組みがない点は同じである。守らせる役目を、Claude が読んで判断する指示（このページでは「お願い」と呼ぶ）に任せているからである。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、お願いにあたる指示は、ほとんどの場合は従われるが、従う保証はないと書く。原因の切り分けは<!-- link:begin instructions-ignored -->[CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)<!-- link:end -->で扱い、指示が文脈のどこに入るかは<!-- link:begin where-instructions-sit -->[システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](where-instructions-sit.md)<!-- link:end -->で扱う。書き方を直しても残る理由は、指示がお願いであること、つまり守るかどうかを Claude が決めることにある。
 
 ## なぜそうなるか {#why}
 
@@ -69,7 +69,7 @@ updated: 2026-11-04
 
 プロジェクトの根の CLAUDE.md は、圧縮のあとにディスクから読み直されるので、会話で頼んだ禁止より残りやすい。ただし、残っても従うかどうかは Claude の判断なので、守られるとは限らない。
 
-読ませた Web ページやファイルに紛れた指示（prompt injection）への備えも、お願いと鍵の区別で考える。読ませたファイルや Web ページの中の文も、頼んだ指示と同じ文脈に並ぶ。従うかどうかは Claude の判断に残るので、「外から来た文には従わないで」という頼みも、お願いにあたる。だから備えは、権限やサンドボックスのような鍵に置く。[Configure permissions](https://code.claude.com/docs/en/permissions) は、prompt injection で Claude の判断が崩れても、サンドボックスの制限は残ると書く。この性質と、権限と経路で守る理由は<!-- link:begin data-vs-instructions -->データと命令を区別できない（prompt injection の原理）（準備中）<!-- link:end -->で扱う。
+読ませた Web ページやファイルに紛れた指示（prompt injection）への備えも、お願いと鍵の区別で考える。読ませたファイルや Web ページの中の文も、頼んだ指示と同じ文脈に並ぶ。従うかどうかは Claude の判断に残るので、「外から来た文には従わないで」という頼みも、お願いにあたる。だから備えは、権限やサンドボックスのような鍵に置く。[Configure permissions](https://code.claude.com/docs/en/permissions) は、prompt injection で Claude の判断が崩れても、サンドボックスの制限は残ると書く。この性質と、権限と経路で守る理由は<!-- link:begin data-vs-instructions -->[データと命令を区別できない（prompt injection の原理）](data-vs-instructions.md)<!-- link:end -->で扱う。
 
 ## お願いと鍵の分け方 {#sorting}
 
@@ -100,7 +100,7 @@ updated: 2026-11-04
 - **例外がない**：どの場面でも守らせたい規則である。「関数は短く書く」のような好みは、例外が多いので、お願いのまま残す。
 - **機械が判定できる**：ファイルの場所・コマンド・テストの結果のように、ツールの呼び出しや結果に当てて書ける規則である。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、deny ルールが当たるのは意図ではなくツールの呼び出しだと書く。
 
-「返答は日本語にする」のように、返事の中身が条件になる規則は、ツールの呼び出しに当てて書けないので、「機械が判定できる」を満たしにくい。この種の規則の扱いは、原因の切り分けなら<!-- link:begin instructions-ignored -->CLAUDE.md や指示が守られない（準備中）<!-- link:end -->で、用途ごとの手段なら<!-- link:begin request-lock-table -->お願いと鍵の対応表（準備中）<!-- link:end -->で見る。
+「返答は日本語にする」のように、返事の中身が条件になる規則は、ツールの呼び出しに当てて書けないので、「機械が判定できる」を満たしにくい。この種の規則の扱いは、原因の切り分けなら<!-- link:begin instructions-ignored -->[CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)<!-- link:end -->で、用途ごとの手段なら<!-- link:begin request-lock-table -->お願いと鍵の対応表（準備中）<!-- link:end -->で見る。
 
 鍵は少なく保つ。ほとんどの場面は Claude に判断させるほうがよい。フックと deny ルールは、必要のない場面で働くことがあり、保守する人が要る。Best practices も、単なる好みまで鍵にしないよう勧める。
 
@@ -157,25 +157,25 @@ updated: 2026-11-04
 
 お願い（Claude が判断する指示）と鍵（判断によらず働く仕組み）の区別は、この辞典の原理（見せる・確かめる・縛る・握る）のうち「縛る」と、Claude 側の原因（うまくいかない理由）のうち「縛っていない」に結び付く。
 
-原理の「縛る」は、守らせたいことを、Claude の判断の外にある仕組みで守らせることである。お願いと鍵の区別は、なぜ縛る必要があるかを説明する。お願いのままでは守られる保証がないので、例外のない規則は鍵に移す。原理の全体と比例則は、<!-- link:begin four-principles -->四つの原理と比例則（見せる・確かめる・縛る・握る）（準備中）<!-- link:end -->で見る。
+原理の「縛る」は、守らせたいことを、Claude の判断の外にある仕組みで守らせることである。お願いと鍵の区別は、なぜ縛る必要があるかを説明する。お願いのままでは守られる保証がないので、例外のない規則は鍵に移す。原理の全体と比例則は、<!-- link:begin four-principles -->[四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)<!-- link:end -->で見る。
 
 原因の「縛っていない」は、絶対に起きてはならないことや、必ず行う手順を、お願いだけで守らせようとしている状態である。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) も、期待どおりに進まない典型的な場合としてこれを挙げ、プロンプトだけでは保証できないとする。
 
 次の一手は、規則ごとに選ぶ。
 
-- **どの規則を鍵に移すか**：移す合図は<!-- link:begin when-to-lock -->お願いを鍵に移す判断（準備中）<!-- link:end -->にある。
-- **鍵の作り方**：フックは<!-- link:begin hooks-basics -->フックの考え方とイベント（準備中）<!-- link:end -->、deny ルールは<!-- link:begin permission-rules -->権限ルール（allow・ask・deny）（準備中）<!-- link:end -->にある。
+- **どの規則を鍵に移すか**：移す合図は<!-- link:begin when-to-lock -->[お願いを鍵に移す判断](../enforce/when-to-lock.md)<!-- link:end -->にある。
+- **鍵の作り方**：フックは<!-- link:begin hooks-basics -->[フックの考え方とイベント](../enforce/hooks-basics.md)<!-- link:end -->、deny ルールは<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->にある。
 - **スキルとフック**：決まった手順をどちらに置くかは<!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end -->で選ぶ。
 
 ## 誤解 {#misconceptions}
 
 お願い（Claude が読んで判断する指示）と鍵（Claude の判断によらず働く仕組み）をめぐって、よく出会う誤解を 5 つ挙げる。
 
-- **「IMPORTANT や『必ず』を付ければ守られる」**：強調は文の書き方を変えるだけで、お願いのままである。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、強調を重ねるとかえって規則を当てはめすぎやすいとして、この助言をもうやめてよいものに挙げる。守られない行は、ファイルが長すぎて埋もれていないかを見る。例外のない規則なら鍵に移す。台帳の記録は<!-- link:begin outdated-advice-ledger#important-caps -->古くなった助言の台帳（準備中）<!-- link:end -->、強調語の現在は<!-- link:begin emphasis-words -->強調語（IMPORTANT・必ず）の現在（準備中）<!-- link:end -->にある。
+- **「IMPORTANT や『必ず』を付ければ守られる」**：強調は文の書き方を変えるだけで、お願いのままである。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、強調を重ねるとかえって規則を当てはめすぎやすいとして、この助言をもうやめてよいものに挙げる。守られない行は、ファイルが長すぎて埋もれていないかを見る。例外のない規則なら鍵に移す。台帳の記録は<!-- link:begin outdated-advice-ledger#important-caps -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#important-caps)<!-- link:end -->、強調語の現在は<!-- link:begin emphasis-words -->強調語（IMPORTANT・必ず）の現在（準備中）<!-- link:end -->にある。
 - **「CLAUDE.md は設定ファイルだから、書けば強制される」**：CLAUDE.md は強制される設定ではなく、文脈である。組織が配る CLAUDE.md も同じで、[How Claude remembers your project](https://code.claude.com/docs/en/memory) は、指針には CLAUDE.md を使い、強制には管理設定の deny ルールなどを使うよう勧める。強制されているかどうかは、deny ルールか、種類が `command` か `http` のフックに書いてあるかで見分ける。
-- **「フックにすれば必ず守られる」**：フックが走ることと、フックの目的が果たされることは別である。種類が `prompt` か `agent` のフックは、別のモデルが判断するので鍵ではない。種類は、設定の `type` で確かめる。種類が `command` か `http` のフックでも、文を足すだけのものは、足した文がお願いとして読まれる。毎ターン言語の指示をフックで足しても英語に戻ったという報告が、#96326 のコメントにある（根拠：弱）。鍵として働く動作は 3 つある。ハーネスが自分で処理を走らせる動作、ツールの呼び出しを止める動作、終わろうとした Claude を差し戻す動作である。対応するイベントは<!-- link:begin hooks-basics -->フックの考え方とイベント（準備中）<!-- link:end -->で選ぶ。
+- **「フックにすれば必ず守られる」**：フックが走ることと、フックの目的が果たされることは別である。種類が `prompt` か `agent` のフックは、別のモデルが判断するので鍵ではない。種類は、設定の `type` で確かめる。種類が `command` か `http` のフックでも、文を足すだけのものは、足した文がお願いとして読まれる。毎ターン言語の指示をフックで足しても英語に戻ったという報告が、#96326 のコメントにある（根拠：弱）。鍵として働く動作は 3 つある。ハーネスが自分で処理を走らせる動作、ツールの呼び出しを止める動作、終わろうとした Claude を差し戻す動作である。対応するイベントは<!-- link:begin hooks-basics -->[フックの考え方とイベント](../enforce/hooks-basics.md)<!-- link:end -->で選ぶ。
 - **「auto モードがあるから、危ない操作は止まる」**：auto モードの分類器は、別のモデルが行動ごとに判断する仕組みで、決まった規則ではない。[Best practices for Claude Code](https://code.claude.com/docs/en/best-practices) は、「never」の規則は deny ルールかフックに置くよう勧める。
-- **「鍵をかければ、その範囲は全部守られる」**：鍵にも効く範囲がある。[Configure permissions](https://code.claude.com/docs/en/permissions) によると、`Read` の deny ルールが効くのは、組み込みのファイルツールと、Claude Code が見分けられる `cat` などのコマンドである。スクリプトが自分でファイルを開く場合は範囲の外にある。全部のプロセスを OS の仕組みで止めるなら、サンドボックスを使う。守りとして頼る前に、止めたい操作を実際に頼んで、止まるかを確かめる。範囲の詳細は<!-- link:begin permission-rules -->権限ルール（allow・ask・deny）（準備中）<!-- link:end -->で確かめる。
+- **「鍵をかければ、その範囲は全部守られる」**：鍵にも効く範囲がある。[Configure permissions](https://code.claude.com/docs/en/permissions) によると、`Read` の deny ルールが効くのは、組み込みのファイルツールと、Claude Code が見分けられる `cat` などのコマンドである。スクリプトが自分でファイルを開く場合は範囲の外にある。全部のプロセスを OS の仕組みで止めるなら、サンドボックスを使う。守りとして頼る前に、止めたい操作を実際に頼んで、止まるかを確かめる。範囲の詳細は<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->で確かめる。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -203,26 +203,26 @@ updated: 2026-11-04
 
 **次に読む**
 
-- 否定形ではなく、望む形で書く（準備中）
-- 強調語（IMPORTANT・必ず）の現在（準備中）
-- 範囲を伝える（やらないこと）（準備中）
-- 拡張を足すタイミング（準備中）
-- 拡張機能の全体図と使い分け早見表（準備中）
-- CLAUDE.md に書くこと・書かないこと（準備中）
-- フックとスキルの違い（準備中）
-- 検証の階段（準備中）
+- [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)
+- [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
+- [検証の階段](../verify/verification-ladder.md)
+- [お願いを鍵に移す判断](../enforce/when-to-lock.md)
+- [日本語の出力を揃える：お願いで足りること、仕組みが要ること](../japanese/align-japanese-output.md)
+- [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
+- [英語で返ってくる](../symptoms/replies-in-english.md)
+- [文体や表記が揃わない](../symptoms/inconsistent-japanese-style.md)
 - ほか 10 ページ
 
 **関連**
 
-- お願いを鍵に移す判断（準備中）
 - お願いと鍵の対応表（準備中）
-- CLAUDE.md や指示が守られない（準備中）
-- システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置（準備中）
-- データと命令を区別できない（prompt injection の原理）（準備中）
-- フックの考え方とイベント（準備中）
-- 権限ルール（allow・ask・deny）（準備中）
-- 四つの原理と比例則（見せる・確かめる・縛る・握る） › 縛る（準備中）
+- フックとスキルの違い（準備中）
+- [システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](where-instructions-sit.md)
+- [データと命令を区別できない（prompt injection の原理）](data-vs-instructions.md)
+- 強調語（IMPORTANT・必ず）の現在（準備中）
+- [フックの考え方とイベント](../enforce/hooks-basics.md)
+- [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
+- [四つの原理と比例則（見せる・確かめる・縛る・握る） › 縛る](../start/four-principles.md#lock)
 
 </div>
 

@@ -80,7 +80,7 @@ Claude Code は、最初にすべてのファイルを読み込むのではな�
 
 こうなると、見張る役が人間に回る。公式は、検証の手段がないと「あなたがテストスイートになる」と言う。反対に、合否を返すものを渡すと、Claude は変更・実行・失敗の読み取り・修正・再実行のループを自分で閉じられる。人が見張る必要は減る。
 
-「完了」と言われたのに実際は終わっていない症状の切り分けは <!-- link:begin claims-done-but-isnt#diagnosis -->「完了」と言うが終わっていない › 原因を安く確かめる順（準備中）<!-- link:end --> にある。終わったように見えた所で止まる理由と、完了の定義に入れるものは <!-- link:begin define-done#why-it-stops -->「完了」を定義して渡す › 終わったように見えた所で止まる（準備中）<!-- link:end --> と <!-- link:begin define-done#what-to-include -->「完了」を定義して渡す › 完了の定義に入れるもの（準備中）<!-- link:end --> が持つ。
+「完了」と言われたのに実際は終わっていない症状の切り分けは <!-- link:begin claims-done-but-isnt#diagnosis -->[「完了」と言うが終わっていない › 原因を安く確かめる順](../symptoms/claims-done-but-isnt.md#diagnosis)<!-- link:end --> にある。終わったように見えた所で止まる理由と、完了の定義に入れるものは <!-- link:begin define-done#why-it-stops -->[「完了」を定義して渡す › 終わったように見えた所で止まる](../verify/define-done.md#why-it-stops)<!-- link:end --> と <!-- link:begin define-done#what-to-include -->[「完了」を定義して渡す › 完了の定義に入れるもの](../verify/define-done.md#what-to-include)<!-- link:end --> が持つ。
 
 ## 合否を返すものを渡してループを閉じる {#close-the-loop}
 
@@ -113,23 +113,23 @@ src/parser/date.ts の日付の読み取りにバグがある。直して。終�
 <!-- textlint-enable -->
 <!-- gen:end snippet agent-loop/request-with-check -->
 
-After で足したのは次のものである。合否を返すコマンド。直す前に失敗を再現するテスト。変えてはならないもの。止まって報告する条件。Before の「念のため確認して」は、確かめる手段を渡していない。何をどう確かめれば終わりかが決まっていないので、確かめたつもりで終わらせられる。この違いは <!-- link:begin verification-ladder#verbal-checks -->検証の階段 › 「念のため確認して」と書き足すより、確かめる手段を渡す（準備中）<!-- link:end --> で詳しく扱う。
+After で足したのは次のものである。合否を返すコマンド。直す前に失敗を再現するテスト。変えてはならないもの。止まって報告する条件。Before の「念のため確認して」は、確かめる手段を渡していない。何をどう確かめれば終わりかが決まっていないので、確かめたつもりで終わらせられる。この違いは <!-- link:begin verification-ladder#verbal-checks -->[検証の階段 › 「念のため確認して」と書き足すより、確かめる手段を渡す](../verify/verification-ladder.md#verbal-checks)<!-- link:end --> で詳しく扱う。
 
 この渡し方が効くのは、ループの「確かめる」に、Claude の言い分ではなく、実行結果という外の事実が入るからである。合否を返すものは、テストに限らない。型の検査、ビルドの終了コード、スクリーンショットの比較でもよい。
 
-最後の報告も、コマンドと出力で受け取る。説明と事実が食い違ったら、実行した結果を正とする。受け取り方は <!-- link:begin evidence-not-reports#what-counts -->報告ではなく証拠を求める › 証拠の形（コマンド・生の出力・分母）（準備中）<!-- link:end --> と <!-- link:begin evidence-not-reports#facts-win -->報告ではなく証拠を求める › 説明と事実が食い違ったら（準備中）<!-- link:end --> にある。
+最後の報告も、コマンドと出力で受け取る。説明と事実が食い違ったら、実行した結果を正とする。受け取り方は <!-- link:begin evidence-not-reports#what-counts -->[報告ではなく証拠を求める › 証拠の形（コマンド・生の出力・分母）](../verify/evidence-not-reports.md#what-counts)<!-- link:end --> と <!-- link:begin evidence-not-reports#facts-win -->[報告ではなく証拠を求める › 説明と事実が食い違ったら](../verify/evidence-not-reports.md#facts-win)<!-- link:end --> にある。
 
 !!! example "判断例：確かめの検査を、Claude が書き換えられる場所に置くか"
     - **状況**：Claude にバグを直させる。合否を返すテストはリポジトリの中にあり、Claude も編集できる。
     - **迷う候補**：そのまま渡して回す。テストを別の場所に置くか、変更を禁じて回す。
     - **選んだもの**：既存のテストを変えないと依頼に書き、あわせて、テストの変更を検出する手段（差分の確認や、フック）を足す。
-    - **理由**：どちらも筋が通る。ただ、採点の仕組みに抜け道があると、目的ではなく採点を満たす方向に解かれることがある（根拠：中。Anthropic の研究の報告）。通ったという主張を信じず、書き換えられない独立した確かめで見る。理由は <!-- link:begin reward-hacking -->採点器を騙す（reward hacking）（準備中）<!-- link:end --> にある。
+    - **理由**：どちらも筋が通る。ただ、採点の仕組みに抜け道があると、目的ではなく採点を満たす方向に解かれることがある（根拠：中。Anthropic の研究の報告）。通ったという主張を信じず、書き換えられない独立した確かめで見る。理由は <!-- link:begin reward-hacking -->[採点器を騙す（reward hacking）](reward-hacking.md)<!-- link:end --> にある。
 
 ## 道具の出力も確かめる {#tool-output}
 
 確かめる対象は、自分の変更だけではない。道具の出力は、実際は一部だけのことがある。Claude Code では、時間切れで途中までしか返らない検索を全部の結果とみなす不具合が、直されたことがある（変更履歴にある）。見えていない部分があることに、ループの中の Claude は気づけない。
 
-「ない」と言い切られたときは、検索が途中で打ち切られていないかを疑う。道具の出力を確かめる見方は <!-- link:begin evidence-not-reports#tool-output -->報告ではなく証拠を求める › 道具の出力も確かめる（途中で切れた検索・失敗を成功として返す起動）（準備中）<!-- link:end --> が持つ。
+「ない」と言い切られたときは、検索が途中で打ち切られていないかを疑う。道具の出力を確かめる見方は <!-- link:begin evidence-not-reports#tool-output -->[報告ではなく証拠を求める › 道具の出力も確かめる（途中で切れた検索・失敗を成功として返す起動）](../verify/evidence-not-reports.md#tool-output)<!-- link:end --> が持つ。
 
 ## フィードバック付きの逐次改善 {#iterate}
 
@@ -145,17 +145,17 @@ After で足したのは次のものである。合否を返すコマンド。�
 
 ## 何に効くか（原理「確かめる」と原因「確かめていない」） {#what-it-helps}
 
-このページの仕組みは、<!-- link:begin four-principles -->四つの原理と比例則（見せる・確かめる・縛る・握る）（準備中）<!-- link:end -->のうち「確かめる」に当たる。結果を自己申告でなく、検査や実行結果で決める原理である。ループに確かめる手段を渡すことが、この原理を当てる最も手近な形である。
+このページの仕組みは、<!-- link:begin four-principles -->[四つの原理と比例則（見せる・確かめる・縛る・握る）](../start/four-principles.md)<!-- link:end -->のうち「確かめる」に当たる。結果を自己申告でなく、検査や実行結果で決める原理である。ループに確かめる手段を渡すことが、この原理を当てる最も手近な形である。
 
-失敗の原因では、<!-- link:begin six-causes -->失敗の二つの軸と診断の入口（準備中）<!-- link:end -->の「確かめていない」に当たる。終わったように見えた所で止まるのは、この原因の典型である。手順の本体は、症状のページと、完了の定義のページが持つ。
+失敗の原因では、<!-- link:begin six-causes -->[失敗の二つの軸と診断の入口](../start/six-causes.md)<!-- link:end -->の「確かめていない」に当たる。終わったように見えた所で止まるのは、この原因の典型である。手順の本体は、症状のページと、完了の定義のページが持つ。
 
 ## 誤解 {#misconceptions}
 
-**「道具を使い続けるなら、最後まで正しく終わる」**：続けることと、正しく終わることは別である。ループが止まる条件は「終わったように見える」であって、確かめた結果ではない。完了の条件は渡す側が決める（<!-- link:begin define-done#stop-and-report -->「完了」を定義して渡す › 止まって報告する条件（準備中）<!-- link:end -->）。
+**「道具を使い続けるなら、最後まで正しく終わる」**：続けることと、正しく終わることは別である。ループが止まる条件は「終わったように見える」であって、確かめた結果ではない。完了の条件は渡す側が決める（<!-- link:begin define-done#stop-and-report -->[「完了」を定義して渡す › 止まって報告する条件](../verify/define-done.md#stop-and-report)<!-- link:end -->）。
 
-**「『最後まで続けろ』と書けば止まらない」**：「keep going」や「don't be lazy」のような一言を足しても、確かめる手段は増えない。今のモデルは合意した作業を言われなくても続け、この手の一言はやりすぎの原因になりやすい。代わりに、通すべきテストのような確かめる手段を渡す。誰も見ていない実行を続けさせたいときは <!-- link:begin goal-until-done -->/goal（完了するまで続けさせる）（準備中）<!-- link:end --> を使う。これらは古くなった助言で、台帳の行は<!-- link:begin outdated-advice-ledger#keep-going-dont-be-lazy -->古くなった助言の台帳（準備中）<!-- link:end -->にある。
+**「『最後まで続けろ』と書けば止まらない」**：「keep going」や「don't be lazy」のような一言を足しても、確かめる手段は増えない。今のモデルは合意した作業を言われなくても続け、この手の一言はやりすぎの原因になりやすい。代わりに、通すべきテストのような確かめる手段を渡す。誰も見ていない実行を続けさせたいときは <!-- link:begin goal-until-done -->[/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)<!-- link:end --> を使う。これらは古くなった助言で、台帳の行は<!-- link:begin outdated-advice-ledger#keep-going-dont-be-lazy -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#keep-going-dont-be-lazy)<!-- link:end -->にある。
 
-**「『double-check して』と書けば確かめる」**：確かめる手段を渡さない書き足しは、効きが読めない。書き足しが要らないモデルは変わるので、<!-- link:begin outdated-advice-ledger#add-double-check -->古くなった助言の台帳（準備中）<!-- link:end -->で今の扱いを見る。確かめ役を別に立てるなら、<!-- link:begin subagent-isolation -->サブエージェントは別室の部下（準備中）<!-- link:end --> と <!-- link:begin verification-ladder#choose-step -->検証の階段 › 任せる幅に合わせて段を選ぶ（準備中）<!-- link:end --> にある。
+**「『double-check して』と書けば確かめる」**：確かめる手段を渡さない書き足しは、効きが読めない。書き足しが要らないモデルは変わるので、<!-- link:begin outdated-advice-ledger#add-double-check -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#add-double-check)<!-- link:end -->で今の扱いを見る。確かめ役を別に立てるなら、<!-- link:begin subagent-isolation -->[サブエージェントは別室の部下](subagent-isolation.md)<!-- link:end --> と <!-- link:begin verification-ladder#choose-step -->[検証の階段 › 任せる幅に合わせて段を選ぶ](../verify/verification-ladder.md#choose-step)<!-- link:end --> にある。
 
 **「結果の差はモデルから来る」**：検証の手段、渡す文脈、指示といったハーネスの差から来る場合がある。比べるときは自分の評価で比べる（<!-- link:begin harness-over-model#compare-with-your-eval -->モデルの差よりハーネスの差 › 比べるときは自分の評価で（準備中）<!-- link:end -->）。
 
@@ -187,24 +187,24 @@ After で足したのは次のものである。合否を返すコマンド。�
 
 **次に読む**
 
-- 採点器を騙す（reward hacking）（準備中）
-- 権限モードの選び方（準備中）
-- MCP をつなぐ（準備中）
-- 「完了」を定義して渡す（準備中）
-- フックの考え方とイベント（準備中）
-- tool use のループ（準備中）
-- Client SDK・Agent SDK・Managed Agents・CLI の比較（準備中）
-- 確認ばかりで進まない・途中で止まる（準備中）
+- [採点器を騙す（reward hacking）](reward-hacking.md)
+- [権限モードの選び方](../cli/permission-modes-overview.md)
+- [MCP をつなぐ](../extend/connecting-mcp.md)
+- [「完了」を定義して渡す](../verify/define-done.md)
+- [フックの考え方とイベント](../enforce/hooks-basics.md)
+- [確認ばかりで進まない・途中で止まる](../symptoms/keeps-stopping.md)
+- [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
+- [同じ確認のループにはまる](../symptoms/stuck-in-a-check-loop.md)
 - ほか 3 ページ
 
 **関連**
 
-- 「完了」と言うが終わっていない（準備中）
-- 検証の階段（準備中）
-- 報告ではなく証拠を求める（準備中）
+- [検証の階段](../verify/verification-ladder.md)
+- [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
+- tool use のループ（準備中）
 - モデルの差よりハーネスの差（準備中）
-- サブエージェントは別室の部下（準備中）
-- /goal（完了するまで続けさせる）（準備中）
+- [サブエージェントは別室の部下](subagent-isolation.md)
+- [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
 
 </div>
 

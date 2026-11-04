@@ -42,7 +42,7 @@ updated: 2026-11-05
 !!! abstract "要点"
     - **何ができるか**：実験ごとに、実行前に書く仮説、提案者、分母、検証器の版、採否と判定者を台帳に残せる。結果を見てからの後付けと、同じ失敗の繰り返しを防げる。
     - **いつ引くか**：どの変更がなぜ効いたかを後から追いたいとき。前に効かなかった改善案を気づかずにまた試していたとき。結果を見てから、効いた理由を後付けしているとき。
-    - **前提**：<!-- link:begin selection-pressure -->選択圧：良かった版を選び続ける罠（準備中）<!-- link:end -->
+    - **前提**：<!-- link:begin selection-pressure -->[選択圧：良かった版を選び続ける罠](selection-pressure.md)<!-- link:end -->
 
 <!-- textlint-disable -->
 別名：実験ノート・実験の記録・実験のログ
@@ -50,7 +50,7 @@ updated: 2026-11-05
 
 実験台帳は、改善の試行を 1 件ずつ記録するファイルである。Claude に改善案を出させて回すほど、試行は増え、何を試して何が分かったかは会話から消える。台帳は、その記録を会話の外に置く。
 
-台帳の効き目は、2 つの守りに支えられている。1 つは、仮説と採否の基準を結果の前に書いて固定する守りである。もう 1 つは、同じ検証器で測った結果だけを並べる守りである。検証器が信頼できるかどうかは<!-- link:begin verifier-three-conditions -->検証器の三条件（正しい・書き換えられない・本番を代表する）（準備中）<!-- link:end -->で、良かった版を選び続ける罠は<!-- link:begin selection-pressure#defenses -->選択圧：良かった版を選び続ける罠 › 防ぎ方（準備中）<!-- link:end -->で見る。
+台帳の効き目は、2 つの守りに支えられている。1 つは、仮説と採否の基準を結果の前に書いて固定する守りである。もう 1 つは、同じ検証器で測った結果だけを並べる守りである。検証器が信頼できるかどうかは<!-- link:begin verifier-three-conditions -->[検証器の三条件（正しい・書き換えられない・本番を代表する）](verifier-three-conditions.md)<!-- link:end -->で、良かった版を選び続ける罠は<!-- link:begin selection-pressure#defenses -->[選択圧：良かった版を選び続ける罠 › 防ぎ方](selection-pressure.md#defenses)<!-- link:end -->で見る。
 
 ## 実験 1 件の流れ {#flow}
 
@@ -82,7 +82,7 @@ updated: 2026-11-05
 | 採否と判定者 | 実行後 | 採る・見送る・保留と、決めた人 |
 | なぜ効いたかの説明 | 実行後 | 結果を見た後の解釈。仮説とは別の欄に置く |
 
-分母は、結果の平均や割合が何件の何回から出たかを示す数である。「平均が上がった」だけでは、100 件の平均か 5 件の平均かが分からず、ぶれの大きさも読めない。測り方と必要な数は<!-- link:begin measure-changes#how-many-runs -->変更が効いたかを測る（小さな eval） › 試行の数と差の大きさ（準備中）<!-- link:end -->と<!-- link:begin running-contest-experiments#games-for-win-rate -->実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 勝率に要る試合数（準備中）<!-- link:end -->で決め、台帳には決めた数を書く。結果は合計だけでなく、層別と最悪ケースの値も残す（<!-- link:begin measure-changes#by-stratum -->変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る（準備中）<!-- link:end -->）。
+分母は、結果の平均や割合が何件の何回から出たかを示す数である。「平均が上がった」だけでは、100 件の平均か 5 件の平均かが分からず、ぶれの大きさも読めない。測り方と必要な数は<!-- link:begin measure-changes#how-many-runs -->[変更が効いたかを測る（小さな eval） › 試行の数と差の大きさ](measure-changes.md#how-many-runs)<!-- link:end -->と<!-- link:begin running-contest-experiments#games-for-win-rate -->実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 勝率に要る試合数（準備中）<!-- link:end -->で決め、台帳には決めた数を書く。結果は合計だけでなく、層別と最悪ケースの値も残す（<!-- link:begin measure-changes#by-stratum -->[変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](measure-changes.md#by-stratum)<!-- link:end -->）。
 
 1 件分の雛形を次に置く。閾値や回数の値は例であり、自分の課題のぶれに合わせて決め直す。
 
@@ -176,7 +176,7 @@ updated: 2026-11-05
 - **ケースを足した後**：入力の組が変わるので、平均は別の物差しになる。
 - **実行環境が変わった後**：実行環境の違いだけで、エージェント型のコーディング評価の結果が動くという Anthropic の報告がある（根拠：中）。環境の版（ランナーの設定、マシン、ライブラリ）も、分かる範囲で台帳に書く。細かい差は「ぶれ」として扱い、小さな差を採否の理由にしない。詳細は[Quantifying infrastructure noise in agentic coding evals](https://www.anthropic.com/research/infrastructure-noise)を読む。
 
-Claude に検証器そのものを書き換えさせない守りは<!-- link:begin verifier-three-conditions#tamper-proof -->検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない（準備中）<!-- link:end -->で見る。人だけが持つ入力の扱いは<!-- link:begin lockbox-and-holdout#scores-only -->ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す（準備中）<!-- link:end -->で見る。台帳のハッシュは、書き換えを事後に見つける手がかりにもなる。
+Claude に検証器そのものを書き換えさせない守りは<!-- link:begin verifier-three-conditions#tamper-proof -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](verifier-three-conditions.md#tamper-proof)<!-- link:end -->で見る。人だけが持つ入力の扱いは<!-- link:begin lockbox-and-holdout#scores-only -->ロックボックスと hold-out（人だけが持つ検証用データ） › 点数だけを返す（準備中）<!-- link:end -->で見る。台帳のハッシュは、書き換えを事後に見つける手がかりにもなる。
 
 ## 提案者を記録する {#proposer}
 
@@ -217,9 +217,9 @@ Claude に、台帳の過去の件と今回の案の重複を調べさせるの�
 台帳を付けても、同じ失敗の繰り返しは起きる。起きたときは、次の順に見直す。
 
 - **台帳を読まずに案を出している**：Claude に案を考えさせる前に、台帳を読ませる。依頼に台帳のパスを書く。台帳が長くなりすぎたら、見送った案の一覧を別に作る（<!-- link:begin keep-failure-lessons#too-much -->失敗の教訓は捨てずに書き残す › 書き残しすぎの副作用（準備中）<!-- link:end -->）。
-- **同じ案の変種を延々と試している**：変種ごとに別の案として記録すると、1 つの案への挑戦回数が見えなくなる。同じ案の再挑戦に上限を置く。チェスエンジンの検定基盤 Fishtest の FAQ は、同じアイデアの再挑戦におおむね数回の上限を置くとしている。チェスの慣行なので、他の課題への当てはめは類推である。上限の考え方は<!-- link:begin selection-pressure#retry-cap -->選択圧：良かった版を選び続ける罠 › 同じアイデアの再挑戦に上限を置く（準備中）<!-- link:end -->で見る。出典は[Fishtest FAQ](https://github.com/official-stockfish/fishtest/wiki/Fishtest-faq)にある。
-- **やめどきが決まっていない**：頭打ちになった後も実験を重ねている。方針そのものを疑う合図は<!-- link:begin decide-when-to-quit#plateau -->やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 頭打ちは方針を疑う合図（準備中）<!-- link:end -->で見る。
-- **方針を変えすぎている**：逆に、方針を頻繁に変えすぎるのも失敗になる。ML 研究の実践者に、毎日の実験とアイデアをノートに残して定期的に見返すことを勧める例がある（根拠：弱）。変えすぎの扱いは<!-- link:begin decide-when-to-quit#dont-switch-too-often -->やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 変えすぎも失敗（準備中）<!-- link:end -->にある。
+- **同じ案の変種を延々と試している**：変種ごとに別の案として記録すると、1 つの案への挑戦回数が見えなくなる。同じ案の再挑戦に上限を置く。チェスエンジンの検定基盤 Fishtest の FAQ は、同じアイデアの再挑戦におおむね数回の上限を置くとしている。チェスの慣行なので、他の課題への当てはめは類推である。上限の考え方は<!-- link:begin selection-pressure#retry-cap -->[選択圧：良かった版を選び続ける罠 › 同じアイデアの再挑戦に上限を置く](selection-pressure.md#retry-cap)<!-- link:end -->で見る。出典は[Fishtest FAQ](https://github.com/official-stockfish/fishtest/wiki/Fishtest-faq)にある。
+- **やめどきが決まっていない**：頭打ちになった後も実験を重ねている。方針そのものを疑う合図は<!-- link:begin decide-when-to-quit#plateau -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 頭打ちは方針を疑う合図](../judgment/decide-when-to-quit.md#plateau)<!-- link:end -->で見る。
+- **方針を変えすぎている**：逆に、方針を頻繁に変えすぎるのも失敗になる。ML 研究の実践者に、毎日の実験とアイデアをノートに残して定期的に見返すことを勧める例がある（根拠：弱）。変えすぎの扱いは<!-- link:begin decide-when-to-quit#dont-switch-too-often -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 変えすぎも失敗](../judgment/decide-when-to-quit.md#dont-switch-too-often)<!-- link:end -->にある。
 - **台帳が形だけになっている**：仮説の欄が「改善する」の一言である。外れたときの解釈と採否の基準が書けないなら、その実験は走らせる前に設計し直す。
 - **失敗の原因を仕組みで見たい**：誰が間違えたかではなく、どの隙間が許したかで振り返る。<!-- link:begin postmortems#which-gap -->失敗を仕組みに戻す（ポストモーテム） › 誰がではなく、どの隙間が（準備中）<!-- link:end -->を見る。
 
@@ -247,7 +247,7 @@ Claude に、台帳の過去の件と今回の案の重複を調べさせるの�
 
 **前提**
 
-- 選択圧：良かった版を選び続ける罠（準備中）
+- [選択圧：良かった版を選び続ける罠](selection-pressure.md)
 
 **次に読む**
 
@@ -256,10 +256,10 @@ Claude に、台帳の過去の件と今回の案の重複を調べさせるの�
 
 **関連**
 
-- やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）（準備中）
+- [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
 - ロックボックスと hold-out（人だけが持つ検証用データ）（準備中）
-- 変更が効いたかを測る（小さな eval）（準備中）
-- 検証器の三条件（正しい・書き換えられない・本番を代表する）（準備中）
+- [変更が効いたかを測る（小さな eval）](measure-changes.md)
+- [検証器の三条件（正しい・書き換えられない・本番を代表する）](verifier-three-conditions.md)
 - 進捗ファイルで、途中から再開できるようにする（準備中）
 - 失敗の教訓は捨てずに書き残す（準備中）
 - 生成コードを自分のものにする（準備中）

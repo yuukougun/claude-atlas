@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 330" width="400" height="330" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif">
+  <title>3 つの能力と、3 つが重なる所</title>
+  <desc>信頼できない入力、私的なデータ、外への送信や変更の 3 つの円が重なった図。3 つの円がすべて重なる中央が、仕込まれた指示が被害につながる構成で、ここには人の承認を挟む。円は実線、破線、点線で区別し、どれか 1 つを外すと中央の重なりがなくなる。</desc>
+  <rect x="0" y="0" width="400" height="330" fill="#ffffff"/>
+  <circle cx="155" cy="130" r="75" fill="#dbeafe" fill-opacity="0.6" stroke="#1e3a8a" stroke-width="2"/>
+  <circle cx="245" cy="130" r="75" fill="#fde68a" fill-opacity="0.6" stroke="#78350f" stroke-width="2" stroke-dasharray="8 4"/>
+  <circle cx="200" cy="208" r="75" fill="#fecaca" fill-opacity="0.6" stroke="#7f1d1d" stroke-width="2" stroke-dasharray="2 4"/>
+  <text x="105" y="36" font-size="14" font-weight="bold" fill="#111827" text-anchor="middle">信頼できない入力</text>
+  <text x="295" y="36" font-size="14" font-weight="bold" fill="#111827" text-anchor="middle">私的なデータ</text>
+  <text x="200" y="312" font-size="14" font-weight="bold" fill="#111827" text-anchor="middle">外への送信や変更</text>
+  <text x="200" y="158" font-size="13" font-weight="bold" fill="#111827" text-anchor="middle">3 つ全部</text>
+  <text x="200" y="176" font-size="13" fill="#111827" text-anchor="middle">人の承認</text>
+</svg>

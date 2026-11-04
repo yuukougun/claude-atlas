@@ -1,0 +1,19 @@
+title: 編集のたびに prettier を走らせる設定
+kind: settings
+place: project
+safety: false
+features: [hooks]
+requires:
+  - jq
+  - npx（prettier を呼べる Node.js の環境）
+conditions:
+  - 新しいセッションで試す
+  - 対話のセッションでは、フォルダの信頼のダイアログを受け入れてから試す
+expect:
+  - when: /hooks を開く
+    then: PostToolUse の Edit|Write に付いたフックが一覧に出る
+  - when: Claude が Edit か Write でファイルを直す
+    then: 直した直後に prettier が走り、そのファイルが整形される
+  - when: Claude が Bash でファイルを書き換える
+    then: この matcher は Edit|Write だけなので、フックは走らない
+control: 設定を置かないとき、整形は Claude に頼んだときだけ走り、頼み忘れると走らない

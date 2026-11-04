@@ -701,6 +701,15 @@ def resolve_group(doc: Doc, group: Group) -> tuple[list[Anchor], str]:
             if inner:
                 scope = inner[:MAX_SCOPES]
     found = locate(doc, scope, group.leaf)
+    if not found and scope is not whole and group.leaf.kind == "word" and narrowed is not None:
+        # 語の印は、手前の所を囲む見出しを内側から順に広げて探す（「05 §3-5 と Inferences」の Inferences は §3 の末尾のもの。
+        # 資料の先頭の別の節の同名の見出しを拾わない）
+        first = narrowed[1][0]
+        for h in sorted((h for h in doc.headings if h.level > 1 and h.start <= first.start < h.end and h is not first),
+                        key=lambda h: -h.level):
+            found = locate(doc, [(h.start + 1, h.end)], group.leaf, needle=False)
+            if found:
+                break
     if not found and scope is not whole and group.leaf.kind != "ord":      # 番号は手前の所の中でだけ数える
         found = locate(doc, whole, group.leaf, needle=False)
     if not found and group.leaf.kind == "word" and narrowed is not None:
@@ -1194,6 +1203,26 @@ class Builder:
                 out.append(f"- {label}：{'・'.join(value)}")
         if page.is_wave:
             out.append("- wave：1（第一波の核）")
+        return out + self.hosted_lines(page.id)
+
+    def hosted_lines(self, pid: str) -> list[str]:
+        """tools/gen/config.yml の hosts にあるページの、持つ生成の目印（名前ごとに置き方と card §9 の説明の1行）。ないページは空。"""
+        path = self.root / "tools" / "gen" / "config.yml"
+        names = []
+        if path.is_file():
+            hosts = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("hosts") or {}
+            names = [" ".join(str(n).split()) for n in (hosts.get(pid) or [])]
+        if not names:
+            return []
+        card = self.root / GUIDES_DIR / "card.md"
+        rows = [ln for ln in card.read_text(encoding="utf-8").split("\n") if ln.startswith("|")] if card.is_file() else []
+        out = ["", "**このページが持つ生成の目印**（tools/gen/config.yml の hosts。表や一覧を手で書かない）"]
+        for name in names:
+            head = name.split()[0]
+            row = next((r for r in rows if re.search(r"`" + re.escape(head) + r"[ `]", split_cells(r)[0])), None)
+            desc = split_cells(row)[2] if row and len(split_cells(row)) >= 3 else f"（{GUIDES_DIR}/card.md の §9 に説明の行がない）"
+            out.append(f"- `<!-- gen:begin {name} -->`〜`<!-- gen:end {name} -->` を置く。中身は道具が書くので、手で表を書かない。"
+                       f"card §9：{desc}")
         return out
 
     def link_line(self, ref: Ref) -> str:

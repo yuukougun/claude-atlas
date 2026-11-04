@@ -41,13 +41,13 @@ updated: 2026-11-05
 !!! abstract "要点"
     - **何ができるか**：押すとすぐ同意して答えを変えるとき、変わった理由に新しい根拠があるかを見る。聞き方の問題か同意を根拠に数える側の問題かを切り分け、好みを伏せた聞き方か実行や計測での確かめを選べる。
     - **いつ引くか**：こちらの誤った指摘にも同意された、「本当に？」と聞いたら答えが変わった、Claude も賛成したのに計画が失敗した、のどれかのとき。
-    - **前提**：<!-- link:begin sycophancy -->迎合（sycophancy）（準備中）<!-- link:end -->
+    - **前提**：<!-- link:begin sycophancy -->[迎合（sycophancy）](../basics/sycophancy.md)<!-- link:end -->
 
 <!-- textlint-disable -->
 別名：迎合・押すと折れる・イエスマンになる
 <!-- textlint-enable -->
 
-すぐ同意して意見を変える症状は、こちらの押しや好みに合わせて、答えの中身が変わってしまう現象である。答えが変わること自体は問題ではない。新しい根拠が出たから変わったのか、押されたから変わったのかを分けるのが、このページの出発点になる。逆に、誤りを認めず言い張る症状は <!-- link:begin insists-on-mistakes -->誤りを認めずに言い張る（準備中）<!-- link:end --> で扱う。
+すぐ同意して意見を変える症状は、こちらの押しや好みに合わせて、答えの中身が変わってしまう現象である。答えが変わること自体は問題ではない。新しい根拠が出たから変わったのか、押されたから変わったのかを分けるのが、このページの出発点になる。逆に、誤りを認めず言い張る症状は <!-- link:begin insists-on-mistakes -->[誤りを認めずに言い張る](insists-on-mistakes.md)<!-- link:end --> で扱う。
 
 ## よくある形 {#forms}
 
@@ -59,7 +59,7 @@ updated: 2026-11-05
 
 最初の 2 つは Claude が折れる場面で、最後の 1 つは人が賛成を安心の材料にする場面である。前者は Claude 側の原因（確かめていない）、後者は人の側の落とし穴（同意を根拠にする）で、対処が違う。次の節で分けて確かめる。
 
-迎合は、モデルに共通して報告されている性質である。押し返した会話で強まることもある。なぜ起きるか、どんな押し方で強まるかは、前提の <!-- link:begin sycophancy -->迎合（sycophancy）（準備中）<!-- link:end --> にある。このページは、起きたときの切り分けと対処を扱う。
+迎合は、モデルに共通して報告されている性質である。押し返した会話で強まることもある。なぜ起きるか、どんな押し方で強まるかは、前提の <!-- link:begin sycophancy -->[迎合（sycophancy）](../basics/sycophancy.md)<!-- link:end --> にある。このページは、起きたときの切り分けと対処を扱う。
 
 ## 原因を安く確かめる順 {#diagnosis}
 
@@ -76,8 +76,8 @@ updated: 2026-11-05
 
 - 手順 1（確かめていない）：<!-- link:begin ask-without-sycophancy#hide-preferences -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる（準備中）<!-- link:end -->。
 - 手順 1（確かめていない）：<!-- link:begin ask-without-sycophancy#fresh-context-critique -->迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 新しい文脈で、成果物と基準だけを見せる（準備中）<!-- link:end -->。
-- 手順 2（同意を根拠にする）：<!-- link:begin agreement-is-not-evidence#what-counts -->同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの（準備中）<!-- link:end -->。
-- 人の側の落とし穴の全体：<!-- link:begin human-pitfalls -->人の側の五つの落とし穴（総論）（準備中）<!-- link:end -->。
+- 手順 2（同意を根拠にする）：<!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](../judgment/agreement-is-not-evidence.md#what-counts)<!-- link:end -->。
+- 人の側の落とし穴の全体：<!-- link:begin human-pitfalls -->[人の側の五つの落とし穴（総論）](../judgment/human-pitfalls.md)<!-- link:end -->。
 
 原因ごとの振り分け先は次の表のとおりである。
 
@@ -86,8 +86,8 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 確かめていない | 迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）<br>書いた本人ではない者にレビューさせる（準備中） |
-| 同意を根拠にする | 同意は根拠に数えない（AI レビュアーの一致を含む）（準備中）<br>役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中） |
+| 確かめていない | 迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）<br>[書いた本人ではない者にレビューさせる](../verify/independent-review.md) |
+| 同意を根拠にする | [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)<br>役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中） |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -172,11 +172,11 @@ updated: 2026-11-05
 
 確かめ方を決まりにする手は次の 3 つである。
 
-- 独立したレビューを使う。分け方と、AI の承認の扱いは <!-- link:begin independent-review -->書いた本人ではない者にレビューさせる（準備中）<!-- link:end --> が持つ。
-- Claude や複数の AI レビュアーの一致を、正しさの証拠に数えない。実行結果・計測・一次資料を証拠に数える。人が握るものの一覧を <!-- link:begin agreement-is-not-evidence#what-you-keep -->同意は根拠に数えない（AI レビュアーの一致を含む） › 人が握るもの（準備中）<!-- link:end --> に置いている。別のモデルに意見を求めても、一致は証拠にならない（<!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end -->）。
+- 独立したレビューを使う。分け方と、AI の承認の扱いは <!-- link:begin independent-review -->[書いた本人ではない者にレビューさせる](../verify/independent-review.md)<!-- link:end --> が持つ。
+- Claude や複数の AI レビュアーの一致を、正しさの証拠に数えない。実行結果・計測・一次資料を証拠に数える。人が握るものの一覧を <!-- link:begin agreement-is-not-evidence#what-you-keep -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 人が握るもの](../judgment/agreement-is-not-evidence.md#what-you-keep)<!-- link:end --> に置いている。別のモデルに意見を求めても、一致は証拠にならない（<!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end -->）。
 - チームでは、評価の役を実装する人から離し、疑う役を持ち回りにする。決まりは <!-- link:begin separate-roles#against-sycophancy -->役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）（準備中）<!-- link:end --> にある。
 
-頼み方は、答えを選ぶ場面と案を作る場面で変わる。<!-- link:begin ask-for-options#choose -->選択肢と推奨案を出させる › 答えを選ぶ場面：選択肢と推奨案（準備中）<!-- link:end --> と <!-- link:begin think-before-asking#choose-vs-ideate -->頼む前に自分で考える（AI には問い・反論・道具を頼む） › 答えを選ぶ場面と、発想する場面（準備中）<!-- link:end --> を見る。原因がこのページのどちらでもないときは、<!-- link:begin six-causes#diagnosis -->失敗の二つの軸と診断の入口 › 安く確かめられる順の診断（準備中）<!-- link:end --> に戻って診断し直す。出典のない主張を疑う場面は <!-- link:begin plausible-falsehoods -->もっともらしい嘘・出典の誤り（準備中）<!-- link:end --> が持つ。
+頼み方は、答えを選ぶ場面と案を作る場面で変わる。<!-- link:begin ask-for-options#choose -->選択肢と推奨案を出させる › 答えを選ぶ場面：選択肢と推奨案（準備中）<!-- link:end --> と <!-- link:begin think-before-asking#choose-vs-ideate -->頼む前に自分で考える（AI には問い・反論・道具を頼む） › 答えを選ぶ場面と、発想する場面（準備中）<!-- link:end --> を見る。原因がこのページのどちらでもないときは、<!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> に戻って診断し直す。出典のない主張を疑う場面は <!-- link:begin plausible-falsehoods -->[もっともらしい嘘・出典の誤り](plausible-falsehoods.md)<!-- link:end --> が持つ。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -199,13 +199,13 @@ updated: 2026-11-05
 
 **前提**
 
-- 迎合（sycophancy）（準備中）
+- [迎合（sycophancy）](../basics/sycophancy.md)
 
 **次に読む**
 
 - 迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）（準備中）
-- 書いた本人ではない者にレビューさせる（準備中）
-- 同意は根拠に数えない（AI レビュアーの一致を含む）（準備中）
+- [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
+- [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
 - 役割を分ける（書く人・承認する人・疑う人）（準備中）
 
 **関連**
@@ -213,10 +213,10 @@ updated: 2026-11-05
 - 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 - 選択肢と推奨案を出させる（準備中）
 - 頼む前に自分で考える（AI には問い・反論・道具を頼む）（準備中）
-- 人の側の五つの落とし穴（総論）（準備中）
-- 誤りを認めずに言い張る（準備中）
-- もっともらしい嘘・出典の誤り（準備中）
-- 失敗の二つの軸と診断の入口（準備中）
+- [人の側の五つの落とし穴（総論）](../judgment/human-pitfalls.md)
+- [誤りを認めずに言い張る](insists-on-mistakes.md)
+- [もっともらしい嘘・出典の誤り](plausible-falsehoods.md)
+- [失敗の二つの軸と診断の入口](../start/six-causes.md)
 
 </div>
 

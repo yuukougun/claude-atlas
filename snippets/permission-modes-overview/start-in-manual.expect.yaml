@@ -1,0 +1,16 @@
+title: 起動したときのモードを Manual（設定の値は default）に固定する設定
+kind: settings
+place: user
+safety: true
+features: [permission-modes]
+conditions:
+  - 新しいセッションで試す
+  - 既定の開始モードが Manual でない版・環境で試す
+expect:
+  - when: この設定を入れて、新しいセッションを起動する
+    then: 画面の下の表示が manual mode になる
+  - when: ファイルの編集を頼む
+    then: 確認が出る
+  - when: Shift+Tab でモードを切り替える
+    then: 切り替えられる（この設定は開始のモードを決めるだけで、切り替えを止めない）
+control: この設定を置かないとき、既定の開始モードは版とプランによる。対話の端末では別のモードで始まりうる

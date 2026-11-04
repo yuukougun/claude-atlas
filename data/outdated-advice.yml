@@ -260,7 +260,7 @@ advice:
     until: '2026-10-27'
     note: Opus 5 の頼み方の手引き（2026-07-24 の公開）が委任のしすぎを抑えるよう書き、Best practices の改稿（2026-10-27 ごろ）が「よい答えのためにサブエージェントに任せる」を古い助言の表に入れた
     label: 始まり：Opus 5 の頼み方の手引きの公開日。終わり：Best practices の改稿の日
-  status: 条件付き
+  status: 撤回
   surfaces:
   - claude-code
   see_also:
@@ -308,7 +308,7 @@ advice:
   changed:
     date: '2026-02-05'
     note: Claude Opus 4.6 の公開の日。4.6 以降のモデル（と Claude Mythos Preview）は最後のターンの prefill を受け付けない。それより前のモデルは今も受け付け、会話の途中の assistant のメッセージには当たらない
-  status: 撤回
+  status: 置換
   surfaces:
   - api
   principle:
@@ -327,7 +327,7 @@ advice:
   changed:
     date: '2026-02-05'
     note: Opus 4.6 の公開とともに budget_tokens の手動の思考が非推奨になり、effort が beta を外れた。Claude 4.7 以降（Opus 4.7 の公開は 2026-04-16）は受け付けない
-  status: 撤回
+  status: 置換
   surfaces:
   - api
   principle:
@@ -346,7 +346,7 @@ advice:
   changed:
     date: '2026-06-09'
     note: Claude Fable 5 の公開の日。拒否の分類に reasoning_extraction が足された。思考を切れるモデルで思考を切ったときは、今も手で段階を踏ませ、答えを <answer> タグに書かせる手が使える
-  status: 撤回
+  status: 条件付き
   surfaces:
   - api
   principle:
@@ -406,7 +406,7 @@ advice:
   changed:
     date: '2026-09-16'
     note: 新しい Claude の体験の展開の始まり（Pro と Max から。2026-11-04 の記事では Pro・Max・Ultra、Team は beta、Enterprise は有効にした組織）
-  status: 撤回
+  status: 条件付き
   surfaces:
   - app
   principle_kind: feature
@@ -531,7 +531,7 @@ advice:
   changed:
     date: '2025-03-26'
     note: MCP の仕様の版 2025-03-26 で、HTTP+SSE の転送が Streamable HTTP に置き換えられた。Claude Code は 1.0.27（2025-06-18）で Streamable HTTP に対応した。公式の文書は SSE の転送を非推奨と書く
-  status: 撤回
+  status: 置換
   surfaces:
   - claude-code
   principle:

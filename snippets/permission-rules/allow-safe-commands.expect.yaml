@@ -1,0 +1,15 @@
+title: 読み取り中心のコマンドだけを確認なしにし、push は確認に残す権限ルール
+kind: settings
+place: project
+safety: true
+conditions:
+  - 新しいセッションで試す
+  - プロジェクトの信頼の確認を受け入れた後に試す（このファイルの allow は信頼の後で使われる）
+expect:
+  - when: git status と git diff を実行させる
+    then: 確認なしで実行される
+  - when: git push を実行させる
+    then: 確認が出る
+  - when: allow に書いていないコマンドを実行させる
+    then: 権限モードの既定どおりに扱われる
+control: ルールを置かないとき、同じ依頼で git status にも確認が出る場合がある（既定のモードによる）

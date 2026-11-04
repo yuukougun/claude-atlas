@@ -1,0 +1,12 @@
+title: "@ でファイルを指して頼む雛形"
+kind: prompt
+place: 依頼の本文
+features: [interactive-mode]
+conditions:
+  - Claude Code の対話モードで、作業するリポジトリの中から始める
+expect:
+  - when: 欄を埋め、@ の後にパスを打って候補から選んで依頼を出す
+    then: Claude が探し回らず、指したファイルを起点に作業を始める
+  - when: 範囲と触れないものを書いた依頼を出す
+    then: 変更が書いた範囲に収まる
+control: パスを書かず「あの設定ファイル」とだけ頼むと、Claude が探す手間が増え、別のファイルを読む場合がある

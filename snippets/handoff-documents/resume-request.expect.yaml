@@ -1,0 +1,13 @@
+title: 新しい会話の最初に出す再開の依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - /clear した後の新しい会話で、HANDOFF.md があるフォルダから試す
+expect:
+  - when: 依頼を出す
+    then: 返答が、目的・完了のコマンド・最初の 1 つ・避ける案を言い直す形になる
+  - when: 文書の根拠のコマンドを実行させる
+    then: 結果が文書と合うか、食い違いが報告される
+  - when: 返答を見る
+    then: 確認の前にファイルを変えない（観察として扱う）

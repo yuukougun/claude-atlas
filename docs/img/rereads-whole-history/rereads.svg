@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200" role="img" aria-labelledby="t d">
+  <title id="t">会話が進むほど、毎回読む量が増える様子</title>
+  <desc id="d">1 回目は前置きと新しい発言だけを読む。2 回目は前置き、1 回目のやり取り、新しい発言を読む。3 回目は前置き、1 回目から 2 回目のやり取り、新しい発言を読む。毎回、上から全部を読み直すので、読む量は回ごとに増える。</desc>
+  <rect width="400" height="200" fill="#ffffff"/>
+  <g font-family="Noto Sans CJK JP, Hiragino Sans, Meiryo, sans-serif" font-size="11" fill="#1f2937" text-anchor="middle">
+    <text x="70" y="28" font-size="12" font-weight="bold">1 回目</text>
+    <text x="200" y="28" font-size="12" font-weight="bold">2 回目</text>
+    <text x="330" y="28" font-size="12" font-weight="bold">3 回目</text>
+
+    <rect x="15" y="40" width="110" height="28" fill="#dbe4f0" stroke="#1f2937"/>
+    <text x="70" y="58">前置き</text>
+    <rect x="15" y="68" width="110" height="28" fill="#ffffff" stroke="#1f2937" stroke-dasharray="4 3"/>
+    <text x="70" y="86">新しい発言</text>
+
+    <rect x="145" y="40" width="110" height="28" fill="#dbe4f0" stroke="#1f2937"/>
+    <text x="200" y="58">前置き</text>
+    <rect x="145" y="68" width="110" height="30" fill="#eceff3" stroke="#1f2937"/>
+    <text x="200" y="87">過去のやり取り</text>
+    <rect x="145" y="98" width="110" height="28" fill="#ffffff" stroke="#1f2937" stroke-dasharray="4 3"/>
+    <text x="200" y="116">新しい発言</text>
+
+    <rect x="275" y="40" width="110" height="28" fill="#dbe4f0" stroke="#1f2937"/>
+    <text x="330" y="58">前置き</text>
+    <rect x="275" y="68" width="110" height="60" fill="#eceff3" stroke="#1f2937"/>
+    <text x="330" y="102">過去のやり取り</text>
+    <rect x="275" y="128" width="110" height="28" fill="#ffffff" stroke="#1f2937" stroke-dasharray="4 3"/>
+    <text x="330" y="146">新しい発言</text>
+
+    <text x="200" y="182">枠の全体が、毎回読む量（点線の枠が新しい分）</text>
+  </g>
+</svg>

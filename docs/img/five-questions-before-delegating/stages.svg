@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 340" width="400" height="340" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif">
+  <title>任せ方の 4 段と、段ごとに強める確かめ方と封じ込め</title>
+  <desc>任せ方を 4 段に分け、段が上がるほど棒を長く描いた図。1 は対話で、人が毎ターン見る。2 は計画の承認で、人が計画を承認してから編集を自動で承認する。3 は停止条件つきの反復で、測れる終わりの状態と上限を渡す。4 は隔離した無人実行で、使い捨ての環境と許可した道具だけで動かす。任せる幅が広がるほど、確かめ方と封じ込めを強める。</desc>
+  <rect x="0" y="0" width="400" height="340" fill="#ffffff"/>
+
+  <text x="12" y="22" font-size="14" font-weight="700" fill="#1a1a1a">任せ方の 4 段（上ほど手元、下ほど任せる幅が広い）</text>
+
+  <!-- 1 -->
+  <rect x="12" y="36" width="130" height="52" rx="4" fill="#e6effa" stroke="#1f5fa8" stroke-width="1.5"/>
+  <text x="20" y="56" font-size="14" font-weight="700" fill="#1a1a1a">1 対話</text>
+  <text x="20" y="76" font-size="12" fill="#1a1a1a">人が毎ターン見る</text>
+
+  <!-- 2 -->
+  <rect x="12" y="98" width="200" height="52" rx="4" fill="#e6effa" stroke="#1f5fa8" stroke-width="1.5"/>
+  <text x="20" y="118" font-size="14" font-weight="700" fill="#1a1a1a">2 計画の承認</text>
+  <text x="20" y="138" font-size="12" fill="#1a1a1a">計画を承認し、編集は自動で承認</text>
+
+  <!-- 3 -->
+  <rect x="12" y="160" width="290" height="52" rx="4" fill="#fbebdd" stroke="#b24a00" stroke-width="1.5"/>
+  <text x="20" y="180" font-size="14" font-weight="700" fill="#1a1a1a">3 停止条件つきの反復</text>
+  <text x="20" y="200" font-size="12" fill="#1a1a1a">測れる終わりの状態・証明・変えないもの・上限</text>
+
+  <!-- 4 -->
+  <rect x="12" y="222" width="376" height="52" rx="4" fill="#fbebdd" stroke="#b24a00" stroke-width="2.5" stroke-dasharray="6 3"/>
+  <text x="20" y="242" font-size="14" font-weight="700" fill="#1a1a1a">4 隔離した無人実行</text>
+  <text x="20" y="262" font-size="12" fill="#1a1a1a">使い捨ての環境で、許可した道具だけ</text>
+
+  <!-- arrow -->
+  <line x1="12" y1="298" x2="388" y2="298" stroke="#444444" stroke-width="1.5"/>
+  <polygon points="388,298 380,293 380,303" fill="#444444"/>
+  <text x="12" y="320" font-size="12" fill="#1a1a1a">段が上がるほど、確かめ方と封じ込めを強める</text>
+</svg>

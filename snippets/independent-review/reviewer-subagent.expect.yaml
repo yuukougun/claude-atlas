@@ -1,0 +1,16 @@
+title: 編集できないレビュアーのサブエージェント
+kind: subagent
+place: project
+safety: false
+features: [subagents]
+requires: [.claude/agents/reviewer.md]
+conditions:
+  - .claude/agents/reviewer.md として置く
+  - 新しいセッションで試す
+  - レビューするファイルと基準を、依頼の本文に書く
+expect:
+  - when: 変更したファイルの名前と基準を渡して、reviewer を呼ぶ
+    then: 指摘が、場所・問題・確かめ方の組で返る
+  - when: reviewer に、ファイルを直すよう頼む
+    then: 編集の道具を持たないので、ファイルは変わらない（道具の制限は鍵として働く）
+control: tools を書かないとき、サブエージェントは親と同じ道具を引き継ぎ、ファイルを編集できる

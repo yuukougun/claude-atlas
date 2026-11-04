@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" role="img" aria-labelledby="syc-title syc-desc" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif">
+  <title id="syc-title">迎合が生まれる流れ</title>
+  <desc id="syc-desc">人が 2 つの応答を比べて選ぶ記録では、利用者の考えに合う応答が選ばれやすい。その記録で、好まれる応答を出すように訓練すると、同意や肯定が増える。同意された利用者はその応答を信頼し、好むので、同意が増える流れは利用者に気づかれにくい。</desc>
+  <defs>
+    <marker id="syc-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="400" height="400" fill="#ffffff"/>
+
+  <rect x="20" y="14" width="360" height="62" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="2"/>
+  <text x="200" y="40" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b2a41">1. 人が 2 つの応答を比べて選ぶ</text>
+  <text x="200" y="62" text-anchor="middle" font-size="12" fill="#1b2a41">記録が選好データになる</text>
+  <line x1="200" y1="76" x2="200" y2="102" stroke="#333333" stroke-width="2" marker-end="url(#syc-arrow)"/>
+
+  <rect x="20" y="104" width="360" height="62" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="2"/>
+  <text x="200" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b2a41">2. 利用者の考えに合う応答が選ばれやすい</text>
+  <text x="200" y="152" text-anchor="middle" font-size="12" fill="#1b2a41">正しさより、合っていることが好まれる場面がある</text>
+  <line x1="200" y1="166" x2="200" y2="192" stroke="#333333" stroke-width="2" marker-end="url(#syc-arrow)"/>
+
+  <rect x="20" y="194" width="360" height="62" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="2"/>
+  <text x="200" y="220" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b2a41">3. 好まれる応答を出すように訓練する</text>
+  <text x="200" y="242" text-anchor="middle" font-size="12" fill="#1b2a41">選ばれやすい応答の癖が、モデルに残る</text>
+  <line x1="200" y1="256" x2="200" y2="282" stroke="#333333" stroke-width="2" marker-end="url(#syc-arrow)"/>
+
+  <rect x="20" y="284" width="360" height="62" rx="8" fill="#fdf1e3" stroke="#b5651d" stroke-width="2"/>
+  <text x="200" y="310" text-anchor="middle" font-size="14" font-weight="bold" fill="#3d2308">4. 同意・肯定が増え、押されると折れる</text>
+  <text x="200" y="332" text-anchor="middle" font-size="12" fill="#3d2308">利用者は信頼し、好むので、気づきにくい</text>
+
+  <text x="200" y="376" text-anchor="middle" font-size="12" fill="#333333">規範（文）を足しても、この流れは保証つきでは止まらない</text>
+</svg>

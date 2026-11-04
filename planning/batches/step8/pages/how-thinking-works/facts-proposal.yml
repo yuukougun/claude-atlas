@@ -1,0 +1,9 @@
+proposals:
+  - fact:
+      id: effort-default-by-model-surface
+      title: 既定の effort（モデル × 面）
+      value: "research/23 §3.2 の表（2026-11-03 時点）。行はモデル、列は Claude API・Claude Code・アプリ。Opus 4.7 は API が high・Claude Code が xhigh など、面とモデルで違う。値を一つに丸めない"
+      sources: [api-docs-models-overview, api-docs-effort, cc-docs-model-config]
+      checked: 2026-11-05
+      status: 要確認
+    used_in: [effort-levels#defaults-by-surface]

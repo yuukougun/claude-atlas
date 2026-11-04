@@ -1,0 +1,17 @@
+title: claude -p で /goal を無人で回す（ターンと費用の外枠つき）
+kind: other
+place: シェル（タスクスケジューラや tmux の中）
+safety: true
+features: [goal]
+requires:
+  - sandboxing（サンドボックス）の設定
+conditions:
+  - 使い捨てのブランチかワークツリーで試す
+  - claude -p の起動の外枠（--max-turns・--max-budget-usd）は、手元の claude --help で名前と効き方を確かめる
+  - 数値は例。自分の作業の大きさと使える量から決める
+expect:
+  - when: コマンドを流す
+    then: stream-json の形で、メッセージがターンごとに流れる（既定のテキスト出力では、ループが終わるまで最後の返答が出ず、止まって見える）
+  - 条件を満たす、満たせないと判定される、外枠の上限に達する、のどれかでプロセスが終わる
+  - 条件の上限（ターン）と、外枠の上限（--max-turns・--max-budget-usd）は別の仕組みで、先に当たったほうで止まる
+control: 外枠なしで流すと、条件が満たされない・判定されないときに、止まる所が条件の文だけになる

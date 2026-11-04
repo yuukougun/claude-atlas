@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260" role="img" aria-label="試した版の数が増えるほど、手元の評価での最高点は階段状に上がるが、見せないデータでの点はほぼ横ばいのままである模式図">
+  <rect x="0" y="0" width="400" height="260" fill="#ffffff"/>
+  <line x1="50" y1="210" x2="380" y2="210" stroke="#333333" stroke-width="1.5"/>
+  <line x1="50" y1="30" x2="50" y2="210" stroke="#333333" stroke-width="1.5"/>
+  <text x="215" y="244" font-size="13" text-anchor="middle" fill="#222222" font-family="sans-serif">試した版の数（右ほど多い）</text>
+  <text x="14" y="120" font-size="13" text-anchor="middle" fill="#222222" font-family="sans-serif" transform="rotate(-90 14 120)">点（高いほど良い）</text>
+  <polyline points="60,170 100,150 140,150 180,128 220,128 260,110 300,110 340,92 372,92" fill="none" stroke="#1f4e9c" stroke-width="3"/>
+  <circle cx="372" cy="92" r="5" fill="#1f4e9c"/>
+  <polyline points="60,172 100,170 140,174 180,171 220,173 260,172 300,174 340,172 372,173" fill="none" stroke="#b34700" stroke-width="3" stroke-dasharray="7 5"/>
+  <rect x="367" y="168" width="10" height="10" fill="#b34700"/>
+  <text x="200" y="60" font-size="13" text-anchor="middle" fill="#1f4e9c" font-family="sans-serif">実線：手元の評価での、ここまでの最高点</text>
+  <text x="200" y="198" font-size="13" text-anchor="middle" fill="#b34700" font-family="sans-serif">破線：見せないデータでの点（ほぼ横ばい）</text>
+  <text x="300" y="148" font-size="12" text-anchor="middle" fill="#222222" font-family="sans-serif">この差が上振れ</text>
+  <line x1="388" y1="96" x2="388" y2="166" stroke="#222222" stroke-width="1.5"/>
+</svg>

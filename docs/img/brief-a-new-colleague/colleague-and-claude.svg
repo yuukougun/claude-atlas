@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250" font-family="sans-serif" font-size="13">
+  <title>同じ依頼文を、文脈を知らない同僚と Claude が読む</title>
+  <desc>依頼文「先月の売上レポートを要約して」だけを渡された同僚と Claude は、どちらも読み手・期間・長さの 3 点で迷う。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="400" height="250" fill="#ffffff"/>
+  <rect x="80" y="12" width="240" height="46" fill="#f2f2f2" stroke="#333333" stroke-width="1.5"/>
+  <text x="200" y="31" text-anchor="middle" fill="#111111">依頼文</text>
+  <text x="200" y="49" text-anchor="middle" fill="#111111">「先月の売上レポートを要約して」</text>
+  <line x1="150" y1="58" x2="105" y2="96" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="250" y1="58" x2="295" y2="96" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="15" y="98" width="175" height="76" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
+  <text x="102" y="120" text-anchor="middle" fill="#111111">文脈を知らない同僚</text>
+  <text x="102" y="142" text-anchor="middle" fill="#111111">依頼文しか渡されて</text>
+  <text x="102" y="160" text-anchor="middle" fill="#111111">いない</text>
+  <rect x="210" y="98" width="175" height="76" fill="#ffffff" stroke="#333333" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text x="297" y="120" text-anchor="middle" fill="#111111">Claude</text>
+  <text x="297" y="142" text-anchor="middle" fill="#111111">依頼文しか渡されて</text>
+  <text x="297" y="160" text-anchor="middle" fill="#111111">いない</text>
+  <line x1="102" y1="174" x2="102" y2="196" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="297" y1="174" x2="297" y2="196" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="15" y="198" width="370" height="40" fill="#f2f2f2" stroke="#333333" stroke-width="1.5"/>
+  <text x="200" y="215" text-anchor="middle" fill="#111111">どちらも同じ所で迷う</text>
+  <text x="200" y="232" text-anchor="middle" fill="#111111">誰が読むか・どの期間か・どの長さか</text>
+</svg>

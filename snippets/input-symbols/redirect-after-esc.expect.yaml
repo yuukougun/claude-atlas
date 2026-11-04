@@ -1,0 +1,10 @@
+title: Esc で止めた後に方向を直す雛形
+kind: prompt
+place: 依頼の本文
+features: [interactive-mode]
+conditions:
+  - 作業の途中で Esc を押して止めた直後の入力欄で使う
+expect:
+  - when: 欄を埋めて、止めた直後に送る
+    then: Claude が残す変更と戻す変更を分け、新しい方向の計画を 3 行で返す
+control: 止めた理由と方向を書かず「違う」とだけ送ると、Claude が止まる前と同じ方向で続けることがある

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="260" viewBox="0 0 400 260" font-family="sans-serif" font-size="12">
+  <rect width="400" height="260" fill="#ffffff"/>
+  <text x="100" y="20" text-anchor="middle" fill="#222222" font-weight="bold">戻せる（実線）</text>
+  <text x="300" y="20" text-anchor="middle" fill="#222222" font-weight="bold">戻せない（点線）</text>
+  <rect x="8" y="30" width="184" height="220" fill="#e3eefa" stroke="#1f4e8c" stroke-width="2"/>
+  <rect x="208" y="30" width="184" height="220" fill="#f5f5f5" stroke="#555555" stroke-width="2" stroke-dasharray="6 4"/>
+  <rect x="20" y="46" width="160" height="56" fill="#ffffff" stroke="#1f4e8c" stroke-width="1.5"/>
+  <text x="100" y="68" text-anchor="middle" fill="#111111">Claude のファイルの道具で</text>
+  <text x="100" y="86" text-anchor="middle" fill="#111111">編集したファイル</text>
+  <rect x="20" y="114" width="160" height="56" fill="#ffffff" stroke="#1f4e8c" stroke-width="1.5"/>
+  <text x="100" y="136" text-anchor="middle" fill="#111111">編集済みのファイルに</text>
+  <text x="100" y="154" text-anchor="middle" fill="#111111">Bash が後から入れた変更</text>
+  <rect x="20" y="182" width="160" height="56" fill="#ffffff" stroke="#1f4e8c" stroke-width="1.5"/>
+  <text x="100" y="204" text-anchor="middle" fill="#111111">会話（メッセージ）</text>
+  <text x="100" y="222" text-anchor="middle" fill="#111111">そのもの</text>
+  <rect x="220" y="46" width="160" height="56" fill="#ffffff" stroke="#555555" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="300" y="68" text-anchor="middle" fill="#111111">Bash だけが変えた</text>
+  <text x="300" y="86" text-anchor="middle" fill="#111111">ファイル（rm・mv・cp）</text>
+  <rect x="220" y="114" width="160" height="56" fill="#ffffff" stroke="#555555" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="300" y="136" text-anchor="middle" fill="#111111">自分や別のセッションが</text>
+  <text x="300" y="154" text-anchor="middle" fill="#111111">外で行った変更</text>
+  <rect x="220" y="182" width="160" height="56" fill="#ffffff" stroke="#555555" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="300" y="204" text-anchor="middle" fill="#111111">多くのサブエージェントの</text>
+  <text x="300" y="222" text-anchor="middle" fill="#111111">編集（git で戻す）</text>
+</svg>

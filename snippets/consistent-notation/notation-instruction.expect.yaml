@@ -1,0 +1,12 @@
+title: 指示に貼る表記の一覧
+kind: claude-md
+place: project
+safety: false
+requires: [glossary.yaml, build-notation.py]
+conditions:
+  - 新しいセッションで試す
+  - 一覧は build-notation.py の出力（notation-list.md）をそのまま使う
+expect:
+  - when: 「サーバ」「出来る」を含む下書きを渡して、書き直しを頼む
+    then: 「サーバー」「できる」に直った文が返る。指示はお願いなので、毎回そうなるとは限らない
+control: 一覧を貼らず同じ依頼を出すと、綴りが元のまま残ることがある

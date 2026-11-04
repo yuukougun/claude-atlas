@@ -1,0 +1,15 @@
+title: auto モードに環境を説明する設定（autoMode.environment）
+kind: settings
+place: user
+safety: true
+features: [auto-mode]
+conditions:
+  - 例の組織名・ドメイン・バケットを自分のものに置き換える
+  - 新しいセッションで試す
+  - 置く場所は ~/.claude/settings.json か管理設定。プロジェクトの .claude/settings.json に置いても分類器は読まない
+expect:
+  - when: 保存したあとで claude auto-mode config を流す
+    then: 出力の environment に、既定の項目に続けて、書いた項目が入っている
+  - when: 書いた組織のリポジトリへ、作業の流れで push させる
+    then: 書く前に止められていた push が、止められなくなる。これは観察として扱い、合否にしない
+control: 設定を置かないとき、分類器が信頼するのは作業ディレクトリと、いまのリポジトリの remote だけで、会社の別のリポジトリへの push は止められる

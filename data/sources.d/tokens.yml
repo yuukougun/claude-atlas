@@ -1,0 +1,9 @@
+sources:
+  - id: api-docs-glossary
+    url: https://platform.claude.com/docs/en/about-claude/glossary
+    title: Glossary
+    kind: 公式文書
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-05'
+    note: 用語集の「Tokens」の項を確かめた。トークンが単語・語のかけら・文字・バイトに当たること、1 トークンが表す文字数がモデルと言語で変わること、Claude 4.7 以降の新しい tokenizer、token counting の案内

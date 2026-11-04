@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="280" viewBox="0 0 400 280" font-family="sans-serif" font-size="11">
+  <rect width="400" height="280" fill="#ffffff"/>
+  <rect x="4" y="4" width="392" height="272" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="12" y="19" fill="#111111">サンドボックス（OS の層。Bash の子プロセスまで囲む）</text>
+  <rect x="20" y="24" width="360" height="232" fill="#f5f5f5" stroke="#111111" stroke-width="2.5"/>
+  <text x="28" y="39" fill="#111111">リポジトリの外の hold-out（人だけが持つ）</text>
+  <rect x="36" y="44" width="328" height="192" fill="#ffffff" stroke="#333333" stroke-width="2"/>
+  <text x="44" y="59" fill="#111111">鍵：deny ルールとフック（道具の前で止める）</text>
+  <rect x="52" y="64" width="296" height="152" fill="#f5f5f5" stroke="#555555" stroke-width="1.5"/>
+  <text x="60" y="79" fill="#111111">人の目：差分のレビュー</text>
+  <rect x="68" y="84" width="264" height="112" fill="#ffffff" stroke="#777777" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text x="76" y="99" fill="#111111">お願い：依頼に書く</text>
+  <rect x="84" y="108" width="232" height="72" fill="#f5f5f5" stroke="#111111" stroke-width="1"/>
+  <text x="200" y="140" text-anchor="middle" fill="#111111">テストと採点のファイル</text>
+  <text x="200" y="158" text-anchor="middle" fill="#111111">（守りたいもの）</text>
+  <text x="200" y="270" text-anchor="middle" font-size="10" fill="#333333">外側の線ほど太く、例外を許さない</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" lang="ja" viewBox="0 0 400 250" width="400" height="250" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif" role="img">
+  <title>白紙と山を張る答えの得点の違い</title>
+  <desc>正解なら点が付き、間違いと白紙はどちらも 0 点という採点では、分からない問題に山を張る答えは当たる見込みの分だけ得をし、白紙は得をしない。そのため、採点に合わせて磨かれたモデルは、分からないときも答えを作る側に寄る。</desc>
+  <rect x="0" y="0" width="400" height="250" fill="#ffffff"/>
+  <text x="12" y="24" font-size="14" font-weight="700" fill="#1a1a1a">分からない問題への二つの答え方</text>
+  <text x="12" y="44" font-size="12" fill="#333333">採点：正解は 1 点、間違いも白紙も 0 点</text>
+
+  <rect x="8" y="58" width="184" height="130" rx="6" fill="#f3f5f7" stroke="#5b6672" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text x="18" y="80" font-size="13" font-weight="700" fill="#1a1a1a">白紙で出す</text>
+  <text x="18" y="102" font-size="12" fill="#1a1a1a">「分かりません」と書く</text>
+  <text x="18" y="124" font-size="12" fill="#1a1a1a">得点：必ず 0 点</text>
+  <text x="18" y="146" font-size="12" fill="#1a1a1a">当たる見込みもない</text>
+
+  <rect x="208" y="58" width="184" height="130" rx="6" fill="#ffffff" stroke="#2f3b48" stroke-width="1.8"/>
+  <text x="218" y="80" font-size="13" font-weight="700" fill="#1a1a1a">山を張る</text>
+  <text x="218" y="102" font-size="12" fill="#1a1a1a">それらしい答えを書く</text>
+  <text x="218" y="124" font-size="12" fill="#1a1a1a">得点：当たれば 1 点</text>
+  <text x="218" y="146" font-size="12" fill="#1a1a1a">外れても失うものがない</text>
+
+  <text x="12" y="214" font-size="12.5" font-weight="700" fill="#1a1a1a">この採点では、山を張るほうが得になる</text>
+  <text x="12" y="234" font-size="12" fill="#333333">白紙が損になる採点が続くと、答えを作る癖が強まる</text>
+</svg>

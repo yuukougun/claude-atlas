@@ -1,0 +1,13 @@
+title: 正本から作った prh の辞書の例
+kind: other
+place: project
+safety: false
+requires: [glossary.yaml, build-notation.py]
+conditions:
+  - textlint と prh のルールを入れ、辞書のパスを設定する（設定は textlint-hook のページ）
+  - 実際の置き場所とファイル名は prh.yml にする
+expect:
+  - when: 辞書を設定した textlint で「サーバ」を含む文を検査する
+    then: 「サーバー」に直すよう指摘が出る
+  - when: 辞書を読み込む
+    then: specs が通らない行があれば、読み込みの段階で止まる（prh の仕様。未確認の環境もある）

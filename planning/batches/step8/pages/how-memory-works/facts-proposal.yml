@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: memory-default-by-plan, title: メモリの既定（プランごと）, value: "Free・Pro・Max・Ultra は既定で有効。Team と Enterprise は owner が使えるかを決め、各メンバーは自分で有効にするまで無効", sources: [hc-memory], checked: 2026-11-04, status: 確認済み}
+    used_in: [how-memory-works#what-is-saved]
+  - fact: {id: chat-search-plans, title: 過去チャットの検索を使えるプラン, value: "Pro・Max・Ultra・Team・Enterprise（web・Desktop・Mobile）。customer-managed encryption keys を使う Enterprise では使えない", sources: [hc-memory], checked: 2026-11-04, status: 確認済み}
+    used_in: [how-memory-works#chat-search]

@@ -1,0 +1,12 @@
+title: 内訳を読んで、減らす候補を出させる依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+features: [usage]
+conditions:
+  - Claude Code の対話のセッションで試す
+  - /usage の内訳が出るプランで試す
+expect:
+  - when: 上の依頼を出す
+    then: 内訳でいちばん大きい項目と、減らす候補が手間の小さい順に出る。推奨は適用されず、理由が付く
+control: 依頼を出さず /usage を自分で読むとき、候補を選ぶ手間が自分に残る

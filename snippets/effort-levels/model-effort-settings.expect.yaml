@@ -1,0 +1,16 @@
+title: モデルごとの effort を設定に書く例
+kind: settings
+place: user
+safety: false
+features: [effort]
+conditions:
+  - modelSettings を読める版の Claude Code で試す
+  - 例のモデルの名前は、自分が使うモデルの名前に替える
+expect:
+  - when: 設定を置いて、新しいセッションで /effort を開く
+    then: 例のモデルを選んでいるとき、スライダーの初期位置が high になる
+  - when: 別のモデルに切り替えて /effort を開く
+    then: そのモデルに保存した段か、そのモデルの既定の段になる
+  - when: /effort auto を実行する
+    then: 現在のモデルに保存した段が消え、そのモデルの既定に戻る
+control: 設定を置かないとき、例のモデルはそのモデルの既定の段で動く

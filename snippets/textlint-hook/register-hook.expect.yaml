@@ -1,0 +1,14 @@
+title: textlint のフックを PostToolUse に登録する設定
+kind: settings
+place: project
+safety: false
+requires:
+  - .claude/hooks/textlint-after-write.py
+conditions:
+  - 新しいセッションで試す
+  - 初めて開くプロジェクトでは、信頼の確認を済ませてから試す
+expect:
+  - when: /hooks を開く
+    then: PostToolUse の Edit|Write に、このフックが 1 件出る
+  - when: スクリプトを消して Markdown を Write で書かせる
+    then: フックの失敗が止めるのと同じに扱われ、Claude に見える

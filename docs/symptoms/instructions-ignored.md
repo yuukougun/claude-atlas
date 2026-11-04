@@ -43,7 +43,7 @@ updated: 2026-11-04
 !!! abstract "要点"
     - **何ができるか**：CLAUDE.md・rules・スキルに書いた指示が破られる原因を、見えていない・散らかっている・縛っていないの順に安く確かめられる。書き方を直すか、どれを仕組み（鍵）に移すかも決められる。会話の中で頼んだだけの指示は、このページの対象外である。
     - **いつ引くか**：CLAUDE.md に書いても守られないとき。長い会話の途中から、CLAUDE.md などに書いた規則を無視し始めたとき。作ったスキルが使われないとき。CLAUDE.md を書き足すほど守られなくなったとき。決めたコマンド（uv・pnpm など）を使わず別の方法で実行されるとき。
-    - **前提**：<!-- link:begin request-vs-lock -->お願いと鍵（決定論的か、非決定論的か）（準備中）<!-- link:end -->、<!-- link:begin where-instructions-sit -->システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置（準備中）<!-- link:end -->
+    - **前提**：<!-- link:begin request-vs-lock -->[お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)<!-- link:end -->、<!-- link:begin where-instructions-sit -->[システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](../basics/where-instructions-sit.md)<!-- link:end -->
 
 <!-- textlint-disable -->
 別名：指示を無視される・CLAUDE.md が効かない・skill が使われない・ルールを破られる・決めたコマンドを使わない
@@ -65,7 +65,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
 
 守られなかった規則を 1 つ選び、書いた場所と、守られなかった場面（会話のどのあたりか、どのファイルを扱っていたか）を控える。上から順に確かめる。上の原因ほど、確かめる手間が小さい。
 
-このページが扱うのは、CLAUDE.md・rules・スキルのように、書いて置いた指示である。会話の中で頼んだだけの指示が守られないときは、先に「<!-- link:begin not-what-i-meant -->意図と違うものが出てくる（準備中）<!-- link:end -->」と「<!-- link:begin forgets-in-long-chats -->長い会話で前提を忘れる・雑になる（準備中）<!-- link:end -->」を見る。圧縮の後に忘れたなら、「<!-- link:begin forgot-after-compaction -->圧縮の後に約束を忘れた（準備中）<!-- link:end -->」も見る。
+このページが扱うのは、CLAUDE.md・rules・スキルのように、書いて置いた指示である。会話の中で頼んだだけの指示が守られないときは、先に「<!-- link:begin not-what-i-meant -->[意図と違うものが出てくる](not-what-i-meant.md)<!-- link:end -->」と「<!-- link:begin forgets-in-long-chats -->[長い会話で前提を忘れる・雑になる](forgets-in-long-chats.md)<!-- link:end -->」を見る。圧縮の後に忘れたなら、「<!-- link:begin forgot-after-compaction -->[圧縮の後に約束を忘れた](forgot-after-compaction.md)<!-- link:end -->」も見る。
 
 各項目で原因を直したら、新しい会話を始め、破られた依頼をもう一度出して、守られるかを見る。何度か出しても破られるなら、次の項目に進む。
 
@@ -74,7 +74,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
     === "アプリ"
 
         - アプリには、指示の置き場所が複数ある（Claude への指示・プロジェクトの指示・メモリ・スキル）。効く範囲と読まれる時期は、置き場所ごとに違う。規則を書いた場所を思い出し、守られなかったチャットにその場所の指示が届くかを見る。たとえば、プロジェクトの指示は、そのプロジェクトの中のチャットにだけ効く。規則をプロジェクトの指示に書いたのに、プロジェクトの外で始めたチャットで頼んでいたなら、原因は「見えていない」である。
-        - 置き場所の比べ方は「<!-- link:begin where-to-put-instructions -->アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）（準備中）<!-- link:end -->」にある。
+        - 置き場所の比べ方は「<!-- link:begin where-to-put-instructions -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)<!-- link:end -->」にある。
         - 作ったスキルが使われないときの確かめ方は、アプリでは未確認である。
 
     === "Claude Code"
@@ -108,7 +108,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
 
 3. **縛っていない**：「見えていない」と「散らかっている」を直しても破られるなら、規則は届いていて、埋もれてもいない。CLAUDE.md・rules・スキルの指示は、Claude が読んで判断するお願いなので、読まれたうえで外れることがある。外れて困る規則を洗い出して、鍵（毎回必ず効く制御）へ移す候補にする。
 
-    - 同じ注意を 2 回したか。強調して頼んでも破られたか。会話で言った禁止が圧縮で消えたか。1 つでも当てはまれば、鍵に移す合図である。判断の手順は「<!-- link:begin when-to-lock -->お願いを鍵に移す判断（準備中）<!-- link:end -->」にある。
+    - 同じ注意を 2 回したか。強調して頼んでも破られたか。会話で言った禁止が圧縮で消えたか。1 つでも当てはまれば、鍵に移す合図である。判断の手順は「<!-- link:begin when-to-lock -->[お願いを鍵に移す判断](../enforce/when-to-lock.md)<!-- link:end -->」にある。
     - 破られると困る規則か、例外があるかを自分に問う。例外を許さない規則は鍵に移し、CLAUDE.md には理由と相談の基準を残す。例外がある規則は、鍵に移さず、お願いのまま、理由と相談の基準を書く。
 
     === "アプリ"
@@ -119,7 +119,7 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
     === "Claude Code"
 
         - 鍵の選び方（権限ルールの deny か、フックか）は、[予防の節](#prevention)に書いた。
-        - 決めたコマンドを使わない場合は、まず CLAUDE.md にコマンドと理由を書く。それでも破られるなら、PreToolUse（道具を呼ぶ直前に動くフックのイベント）のフックで止める。フックの考え方は「<!-- link:begin hooks-basics -->フックの考え方とイベント（準備中）<!-- link:end -->」にある。
+        - 決めたコマンドを使わない場合は、まず CLAUDE.md にコマンドと理由を書く。それでも破られるなら、PreToolUse（道具を呼ぶ直前に動くフックのイベント）のフックで止める。フックの考え方は「<!-- link:begin hooks-basics -->[フックの考え方とイベント](../enforce/hooks-basics.md)<!-- link:end -->」にある。
         - 決めたコマンドが使われない報告と対処は、実践者の記事にある。pip で入れる、指示しても `uv pip install` を使う、という報告が[Basic Claude Code](https://harper.blog/2025/05/08/basic-claude-code/)に、誤ったコマンドを PATH 上の代わりの実行ファイルで止め、`uv run python` を案内する対処が[Agentic Coding Things That Didn’t Work](https://lucumr.pocoo.org/2025/7/30/things-that-didnt-work/)にある（根拠：弱）。
         - スキルの手順が、最初は守られ、後から守られなくなるなら、毎回必ず走らせる分をフックに移す。Claude の判断で使う分は、作業の間ずっと当てはまる指示の形に書き直す。公式が勧める書き方で、たとえば「最初に型を確かめる」のような一度きりの手順は、「型を変えるたびに確かめる」と書く。圧縮の後は、呼んだスキルの本文が外れていることがあるので、外れたと思うときは呼び直す。
 
@@ -132,9 +132,9 @@ CLAUDE.md や指示が守られない原因は、見えていない（規則が 
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | /context で中身を見る（準備中）<br>CLAUDE.md の階層と読み込み順（準備中）<br>スキルの description の書き方（準備中） |
-| 散らかっている | CLAUDE.md の長さと剪定（準備中）<br>CLAUDE.md に書くこと・書かないこと（準備中）<br>.claude/rules と paths で必要なときだけ読ませる（準備中） |
-| 縛っていない | お願いを鍵に移す判断（準備中）<br>権限ルール（allow・ask・deny）（準備中）<br>代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）（準備中） |
+| 見えていない | [/context で中身を見る](../context/inspect-context.md)<br>CLAUDE.md の階層と読み込み順（準備中）<br>スキルの description の書き方（準備中） |
+| 散らかっている | [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)<br>[CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)<br>.claude/rules と paths で必要なときだけ読ませる（準備中） |
+| 縛っていない | [お願いを鍵に移す判断](../enforce/when-to-lock.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<br>代表的なフックのレシピ › 決めたコマンドへ誘導する（pip の代わりに uv など）（準備中） |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -172,11 +172,11 @@ CLAUDE.md や指示を直しても、同じ規則が破られ続けるときは�
 
 | 機能 | 強制力 | 読み込みの時期 | コンテキストのコスト | 圧縮で残るか |
 | --- | --- | --- | --- | --- |
-| CLAUDE.md（準備中） | お願い | セッション開始 | 常駐 | 残る |
+| [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | お願い | セッション開始 | 常駐 | 残る |
 | rules（.claude/rules/）（準備中） | お願い | セッション開始か、一致するファイルを扱うとき | 常駐か、一致するファイルのときだけ | 条件による |
-| スキル（skills）（準備中） | お願い | セッション開始と使うとき | 使うまで小さい | 残る |
-| フック（hooks）（準備中） | 鍵 | イベントが起きたとき | ゼロ（出力を返さない限り） | 残る |
-| 権限（permissions）（準備中） | 鍵 | — | — | 残る |
+| [スキル（skills）](../extend/writing-skills.md) | お願い | セッション開始と使うとき | 使うまで小さい | 残る |
+| [フック（hooks）](../enforce/hooks-basics.md) | 鍵 | イベントが起きたとき | ゼロ（出力を返さない限り） | 残る |
+| [権限（permissions）](../enforce/permission-rules.md) | 鍵 | — | — | 残る |
 
 <!-- textlint-enable -->
 <!-- gen:end compare 強制力 読み込みの時期 コンテキストのコスト 圧縮で残るか -->
@@ -209,8 +209,8 @@ CLAUDE.md の側には、使うコマンド、理由、例外のときの相談�
 
 鍵は、規則の種類で選ぶ。
 
-- **道具やファイルの使用を禁じる規則**：権限ルールの deny にする。権限ルールは、モデルでなく Claude Code が強制し、deny はどのモードでも止める。ただし、限界が 2 つある。1 つ目は、パスの書き方が合わないルールは当たらないことである。先頭が `/` 1 つのパスは、ファイルシステムの根でなく、設定を置いた場所を基準にする。2 つ目は、子プロセスには効かない場合があることである。Python のスクリプトが自分でファイルを開くときは、Read の deny は働かない。詳しくは「<!-- link:begin permission-rules -->権限ルール（allow・ask・deny）（準備中）<!-- link:end -->」にある。
-- **決めたコマンドへの誘導や、危ない操作の遮断**：PreToolUse（道具を呼ぶ直前に動くフックのイベント）のフックにする。止めるときは、理由と代わりの手段を返す。返し方は「<!-- link:begin block-with-exit-2 -->フックで止めて理由を返す（exit 2 と JSON）（準備中）<!-- link:end -->」にある。フックは会話の外で動くので、圧縮の後も効く。鍵に数えるのは、コマンドなどの決まった処理を走らせるフックである。prompt と agent の型のフックは、別のモデルが判断するので、鍵に数えない。
+- **道具やファイルの使用を禁じる規則**：権限ルールの deny にする。権限ルールは、モデルでなく Claude Code が強制し、deny はどのモードでも止める。ただし、限界が 2 つある。1 つ目は、パスの書き方が合わないルールは当たらないことである。先頭が `/` 1 つのパスは、ファイルシステムの根でなく、設定を置いた場所を基準にする。2 つ目は、子プロセスには効かない場合があることである。Python のスクリプトが自分でファイルを開くときは、Read の deny は働かない。詳しくは「<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->」にある。
+- **決めたコマンドへの誘導や、危ない操作の遮断**：PreToolUse（道具を呼ぶ直前に動くフックのイベント）のフックにする。止めるときは、理由と代わりの手段を返す。返し方は「<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end -->」にある。フックは会話の外で動くので、圧縮の後も効く。鍵に数えるのは、コマンドなどの決まった処理を走らせるフックである。prompt と agent の型のフックは、別のモデルが判断するので、鍵に数えない。
 - **決まった手順**：スキルのままにするか、フックで必ず走らせるかは、「<!-- link:begin hook-vs-skill -->フックとスキルの違い（準備中）<!-- link:end -->」で選ぶ。
 
 鍵を足したら、効いたかを確かめる。壊れても困らない操作（たとえば、中身のない試験用のファイルの読み取り）をわざと頼み、止まることを見る。止まらなければ、ルールの書き方と、当てはまる範囲を見直す。
@@ -244,19 +244,19 @@ CLAUDE.md の側には、使うコマンド、理由、例外のときの相談�
 
 **前提**
 
-- お願いと鍵（決定論的か、非決定論的か）（準備中）
-- システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置（準備中）
+- [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)
+- [システムプロンプト・ユーザーメッセージ・CLAUDE.md の位置](../basics/where-instructions-sit.md)
 
 **次に読む**
 
-- /context で中身を見る（準備中）
+- [/context で中身を見る](../context/inspect-context.md)
 - CLAUDE.md の階層と読み込み順（準備中）
 - スキルの description の書き方（準備中）
-- CLAUDE.md の長さと剪定（準備中）
-- CLAUDE.md に書くこと・書かないこと（準備中）
+- [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)
+- [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - .claude/rules と paths で必要なときだけ読ませる（準備中）
-- お願いを鍵に移す判断（準備中）
-- 権限ルール（allow・ask・deny）（準備中）
+- [お願いを鍵に移す判断](../enforce/when-to-lock.md)
+- [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - ほか 1 ページ
 
 **関連**
@@ -264,19 +264,19 @@ CLAUDE.md の側には、使うコマンド、理由、例外のときの相談�
 - 強調語（IMPORTANT・必ず）の現在（準備中）
 - フックとスキルの違い（準備中）
 - お願いと鍵の対応表（準備中）
-- フックの考え方とイベント（準備中）
-- フックで止めて理由を返す（exit 2 と JSON）（準備中）
-- アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）（準備中）
+- [フックの考え方とイベント](../enforce/hooks-basics.md)
+- [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
+- [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)
 - /init と最初の CLAUDE.md（準備中）
-- 圧縮の後に約束を忘れた（準備中）
-- 英語で返ってくる（準備中）
-- 毎回同じ説明をしている（準備中）
-- 文体や表記が揃わない（準備中）
+- [圧縮の後に約束を忘れた](forgot-after-compaction.md)
+- [英語で返ってくる](replies-in-english.md)
+- [毎回同じ説明をしている](repeating-the-same-explanation.md)
+- [文体や表記が揃わない](inconsistent-japanese-style.md)
 - 設定を外して切り分ける（--safe-mode）（準備中）
 - 縛りすぎの害と見直し（止めすぎ・回り込み）（準備中）
-- 失敗の二つの軸と診断の入口（準備中）
-- 意図と違うものが出てくる（準備中）
-- 長い会話で前提を忘れる・雑になる（準備中）
+- [失敗の二つの軸と診断の入口](../start/six-causes.md)
+- [意図と違うものが出てくる](not-what-i-meant.md)
+- [長い会話で前提を忘れる・雑になる](forgets-in-long-chats.md)
 
 </div>
 

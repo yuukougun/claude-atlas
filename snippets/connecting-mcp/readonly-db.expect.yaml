@@ -1,0 +1,16 @@
+title: 読み取り専用の資格情報でデータベースの MCP をつなぐ例
+kind: settings
+place: local   # 共有しないなら claude mcp add の local スコープで同じ内容を登録する。共有するなら project の .mcp.json
+safety: true
+features: [mcp]
+requires:
+  - データベース側で作った、SELECT だけを許す読み取り専用のユーザー   # 例のサーバー名はデータベースの MCP の一例で、推薦ではない
+conditions:
+  - ANALYTICS_RO_USER と ANALYTICS_RO_PASSWORD を、読み取り専用のユーザーの値で設定する
+  - 本番ではなく、壊れても困らないデータベースで先に試す
+expect:
+  - when: 集計の SELECT を頼む
+    then: 結果が返る
+  - when: 行の更新や削除を頼む
+    then: データベース側が権限不足で断る（止めるのはデータベースの権限で、Claude の判断ではない）
+control: 書き込みできるユーザーの接続文字列を渡すと、同じ依頼で更新が通ってしまう

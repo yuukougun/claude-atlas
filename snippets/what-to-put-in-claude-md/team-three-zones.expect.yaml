@@ -1,0 +1,14 @@
+title: チームの AI の使い方を 3 区分に分けて冒頭に置く例
+kind: claude-md
+place: project
+safety: false
+features: [claude-md]
+conditions:
+  - 新しいセッションで試す
+  - 「禁止」の各行は、deny ルールとフックでも止めてから使う
+expect:
+  - when: 公開しているインターフェースを変える依頼を出す
+    then: 実装に入る前に、止まって相談する様子が観察できる（モデルの癖に依存するため、合否にしない）
+  - when: 禁止に挙げた操作を頼む
+    then: CLAUDE.md の文では止まらないことがある。設定で止めてあれば、操作が拒否される
+control: 設定を置かず文だけにすると、禁止の操作が通ることがある

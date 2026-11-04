@@ -1,0 +1,9 @@
+sources:
+  - id: status-claude-com
+    url: https://status.claude.com
+    title: Claude Status
+    kind: 公式文書
+    publisher: Anthropic
+    lang: en
+    checked: '2026-11-05'
+    note: トップページだけを確かめた。Claude のアプリ・API・Claude Code などの構成要素ごとの状態と、過去の障害の経過を載せ、メール・RSS などで購読できる。noai・noimageai の指定は robots.txt に見つからなかった（tools/check_noai.py）

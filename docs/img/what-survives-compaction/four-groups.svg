@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="270" viewBox="0 0 400 270" role="img" aria-labelledby="t d">
+  <title id="t">圧縮のあとに分かれる 4 つの群</title>
+  <desc id="d">圧縮のあと、そのまま効くもの（system prompt と output style）、ディスクなどから入れ直されるもの（根の CLAUDE.md、paths のない rules、auto memory、plan mode の計画、スキルの説明）、必要になったら読み直されるもの（paths 付きの rules、サブフォルダの CLAUDE.md）、要約に溶けるもの（会話の中だけで伝えた指示、hook が前に足した文脈）の 4 つに分かれる。</desc>
+  <rect width="400" height="270" fill="#ffffff"/>
+  <g font-family="Noto Sans CJK JP, Hiragino Sans, Meiryo, sans-serif" fill="#1f2937">
+    <text x="10" y="20" font-size="13" font-weight="bold">圧縮のあとに分かれる 4 つの群</text>
+    <rect x="5" y="32" width="190" height="112" fill="#dbeafe" stroke="#1f2937" stroke-width="1.2"/>
+    <text x="14" y="52" font-size="12" font-weight="bold">1 そのまま効く</text>
+    <text x="14" y="72" font-size="11">system prompt</text>
+    <text x="14" y="90" font-size="11">output style</text>
+    <rect x="205" y="32" width="190" height="112" fill="#d1fae5" stroke="#1f2937" stroke-width="1.2"/>
+    <text x="214" y="52" font-size="12" font-weight="bold">2 入れ直される</text>
+    <text x="214" y="72" font-size="11">根の CLAUDE.md</text>
+    <text x="214" y="88" font-size="11">paths のない rules</text>
+    <text x="214" y="104" font-size="11">auto memory・plan mode の計画</text>
+    <text x="214" y="120" font-size="11">スキルの説明・呼んだスキルの本文</text>
+    <rect x="5" y="154" width="190" height="112" fill="#fde68a" stroke="#1f2937" stroke-width="1.2"/>
+    <text x="14" y="174" font-size="12" font-weight="bold">3 必要になったら読み直す</text>
+    <text x="14" y="194" font-size="11">paths 付きの rules</text>
+    <text x="14" y="210" font-size="11">サブフォルダの CLAUDE.md</text>
+    <text x="14" y="232" font-size="10">引き金のファイルを読む・書くまで戻らない</text>
+    <rect x="205" y="154" width="190" height="112" fill="#fecaca" stroke="#1f2937" stroke-width="1.2" stroke-dasharray="5 3"/>
+    <text x="214" y="174" font-size="12" font-weight="bold">4 要約に溶ける</text>
+    <text x="214" y="194" font-size="11">会話の中だけで伝えた指示</text>
+    <text x="214" y="210" font-size="11">hook が前に足した文脈</text>
+    <text x="214" y="232" font-size="10">要約に載った分だけが残る</text>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 330" width="400" height="330" font-family="'Noto Sans JP','Hiragino Sans','Yu Gothic',Meiryo,sans-serif">
+  <title>検証の階段：確かめ方の 4 つの段</title>
+  <desc>完了の確かめ方を 4 つの段で並べた図。1 は依頼に書くお願い、2 は判定役が会話の証拠で条件を判定する /goal、3 はコマンドが通るまでターンを終えさせない Stop フックという鍵、4 は書いていない者によるレビュー。下の段ほど、任せる幅が広いときに足す。</desc>
+  <rect x="0" y="0" width="400" height="330" fill="#ffffff"/>
+
+  <text x="12" y="22" font-size="14" font-weight="700" fill="#1a1a1a">検証の階段：確かめ方の 4 つの段</text>
+  <text x="12" y="42" font-size="12" fill="#444444">下の段ほど、任せる幅が広いときに足す</text>
+
+  <rect x="12" y="54" width="376" height="52" rx="4" fill="#e6effa" stroke="#1f5fa8" stroke-width="1.5"/>
+  <text x="20" y="74" font-size="13" font-weight="700" fill="#1a1a1a">1 依頼に書く（お願い）</text>
+  <text x="20" y="94" font-size="12" fill="#1a1a1a">確かめるコマンドと、通る条件を依頼に入れる</text>
+
+  <rect x="40" y="114" width="348" height="52" rx="4" fill="#fbebdd" stroke="#b24a00" stroke-width="1.5"/>
+  <text x="48" y="134" font-size="13" font-weight="700" fill="#1a1a1a">2 判定役に見張らせる（/goal・モデルが判定）</text>
+  <text x="48" y="154" font-size="12" fill="#1a1a1a">毎ターンの後に、会話の証拠で条件を判定する</text>
+
+  <rect x="68" y="174" width="320" height="52" rx="4" fill="#e4f3e7" stroke="#2a7a3b" stroke-width="1.5"/>
+  <text x="76" y="194" font-size="13" font-weight="700" fill="#1a1a1a">3 フックで終了を止める（鍵）</text>
+  <text x="76" y="214" font-size="12" fill="#1a1a1a">コマンドが通るまで、ターンを終えさせない</text>
+
+  <rect x="96" y="234" width="292" height="52" rx="4" fill="#efe8f7" stroke="#6b3fa0" stroke-width="1.5"/>
+  <text x="104" y="254" font-size="13" font-weight="700" fill="#1a1a1a">4 書いていない者に確かめさせる</text>
+  <text x="104" y="274" font-size="12" fill="#1a1a1a">会話を見ていない新しいサブエージェントが差分を見る</text>
+
+  <text x="12" y="312" font-size="12" fill="#444444">段は重ねて使える。1 は常に書き、必要な段を足す。</text>
+</svg>

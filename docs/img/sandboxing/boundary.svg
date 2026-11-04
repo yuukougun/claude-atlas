@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="260" viewBox="0 0 400 260" font-family="sans-serif" font-size="12">
+  <rect width="400" height="260" fill="#ffffff"/>
+  <rect x="8" y="8" width="384" height="244" fill="#f5f5f5" stroke="#555555" stroke-width="1"/>
+  <text x="200" y="28" text-anchor="middle" fill="#222222" font-weight="bold">Claude Code が動かすもの</text>
+  <rect x="20" y="40" width="170" height="200" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="105" y="60" text-anchor="middle" fill="#111111" font-weight="bold">内側（OS が囲う）</text>
+  <text x="105" y="88" text-anchor="middle" fill="#222222">Bash</text>
+  <text x="105" y="108" text-anchor="middle" fill="#222222">PowerShell</text>
+  <text x="105" y="128" text-anchor="middle" fill="#222222">Monitor</text>
+  <text x="105" y="156" text-anchor="middle" fill="#222222">と、そこから起きる</text>
+  <text x="105" y="174" text-anchor="middle" fill="#222222">子プロセス</text>
+  <text x="105" y="204" text-anchor="middle" fill="#222222">読み書きと通信を制限</text>
+  <rect x="210" y="40" width="170" height="200" fill="#ffffff" stroke="#999999" stroke-dasharray="6 4" stroke-width="2"/>
+  <text x="295" y="60" text-anchor="middle" fill="#111111" font-weight="bold">外側（囲われない）</text>
+  <text x="295" y="88" text-anchor="middle" fill="#222222">Read・Edit・Write</text>
+  <text x="295" y="108" text-anchor="middle" fill="#222222">WebFetch・WebSearch</text>
+  <text x="295" y="128" text-anchor="middle" fill="#222222">フック</text>
+  <text x="295" y="148" text-anchor="middle" fill="#222222">ローカルの MCP サーバー</text>
+  <text x="295" y="178" text-anchor="middle" fill="#222222">権限ルールで縛る</text>
+  <text x="295" y="196" text-anchor="middle" fill="#222222">（フックと MCP は別の手段）</text>
+</svg>

@@ -1,0 +1,11 @@
+title: 起動直後の基準値を控えるメモ
+kind: other
+place: 手元のメモ
+safety: false
+conditions:
+  - 新しいセッションで、何も入力せずに最初に /context all を実行する
+expect:
+  - when: 新しいセッションで /context all を実行して値を写す
+    then: 内訳の項目ごとのトークン数が、メモの表に埋まる
+  - when: 拡張を足した後、同じ作業フォルダ・同じモデルの新しいセッションで取り直す
+    then: 差の出た項目が、足したものに当たる（観察として扱う）

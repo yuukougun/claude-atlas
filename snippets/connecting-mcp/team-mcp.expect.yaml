@@ -1,0 +1,16 @@
+title: チームで共有する .mcp.json（HTTP でつなぎ、秘密は環境変数から渡す）
+kind: settings
+place: project   # リポジトリの直下の .mcp.json。URL は例で、実在のサーバーに置き換える
+safety: true
+features: [mcp]
+conditions:
+  - 環境変数 ISSUE_TRACKER_TOKEN を、各自のシェルに設定してから起動する（トークンはファイルに書かない）
+  - 新しいセッションで試す
+expect:
+  - when: リポジトリの直下にこのファイルを置いて claude を起動する
+    then: 初めてこのサーバーを使う前に、承認を求める表示が出る
+  - when: 承認して /mcp を開く
+    then: issue-tracker が一覧に出て、接続の状態が分かる（観察として扱う）
+  - when: 環境変数を設定しないで起動する
+    then: 警告が出て、${ISSUE_TRACKER_TOKEN} の文字のまま送られるので、認証が通らない
+control: .mcp.json を置かないと、同じリポジトリで起動してもこのサーバーは一覧に出ない

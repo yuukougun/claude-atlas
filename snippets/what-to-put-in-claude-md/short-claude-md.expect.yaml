@@ -1,0 +1,14 @@
+title: 短い CLAUDE.md の例（コマンド・理由・落とし穴・確かめ方）
+kind: claude-md
+place: project
+safety: false
+features: [claude-md]
+conditions:
+  - 新しいセッションで試す
+  - コマンドと場所は、自分のリポジトリのものに書き換える
+expect:
+  - when: 新しいセッションで「`generated/` の型を直したい」と頼む
+    then: 手で直さず、`make codegen` で作り直す方針を述べる（指示は鍵ではないので、合否にしない観察として扱う）
+  - when: 変更を頼んだ後、確かめ方を尋ねる
+    then: 書いたコマンドで型検査やテストを流そうとする
+control: 同じ頼みを、CLAUDE.md なしの新しいセッションで出すと、生成物を手で直す案が出ることがある

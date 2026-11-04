@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="290" viewBox="0 0 400 290" font-family="sans-serif" font-size="12">
+  <rect width="400" height="290" fill="#ffffff"/>
+  <text x="8" y="16" fill="#222222" font-weight="bold">面（使う入口）</text>
+  <g fill="#f5f5f5" stroke="#555555" stroke-width="1">
+    <rect x="8" y="24" width="90" height="34"/>
+    <rect x="104" y="24" width="90" height="34"/>
+    <rect x="200" y="24" width="90" height="34"/>
+    <rect x="296" y="24" width="96" height="34"/>
+  </g>
+  <g fill="#222222" text-anchor="middle">
+    <text x="53" y="46">アプリ</text>
+    <text x="149" y="46">Claude Code</text>
+    <text x="245" y="46">API・SDK</text>
+    <text x="344" y="46">周辺製品</text>
+  </g>
+  <text x="8" y="80" fill="#222222" font-weight="bold">層（どの面にも重なる）</text>
+  <g fill="#ffffff" stroke="#555555" stroke-width="1">
+    <rect x="8" y="88" width="384" height="46"/>
+    <rect x="8" y="140" width="384" height="46"/>
+    <rect x="8" y="192" width="384" height="46"/>
+    <rect x="8" y="244" width="384" height="40" stroke-dasharray="6 3"/>
+  </g>
+  <g fill="#111111" font-weight="bold">
+    <text x="16" y="116">モデル</text>
+    <text x="16" y="168">ハーネス</text>
+    <text x="16" y="220">拡張</text>
+    <text x="16" y="268">縛り</text>
+  </g>
+  <g fill="#222222">
+    <text x="84" y="108">答えを作る Claude 本体。</text>
+    <text x="84" y="125">選べるモデルは面とプランで違う</text>
+    <text x="84" y="160">モデルを包む仕組み。道具を呼び、</text>
+    <text x="84" y="177">文脈を集め、結果を確かめる輪を回す</text>
+    <text x="84" y="212">CLAUDE.md・スキル・MCP など。</text>
+    <text x="84" y="229">文脈と手順を足す</text>
+    <text x="84" y="260">権限・フック・sandbox など。</text>
+    <text x="84" y="276">守らせることを仕組みで強制する</text>
+  </g>
+</svg>

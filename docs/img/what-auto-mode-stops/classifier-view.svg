@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250" role="img" aria-label="分類器が見るもの（利用者の発言、道具の呼び出し、CLAUDE.md）と、見ないもの（Claude の文章、道具の出力）の図">
+  <rect x="0" y="0" width="400" height="250" fill="#ffffff"/>
+  <text x="200" y="22" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#222222">auto モードの分類器の入力</text>
+  <rect x="10" y="40" width="185" height="150" rx="6" fill="#f4f8ff" stroke="#1a56a0" stroke-width="2"/>
+  <text x="102" y="62" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a56a0">見るもの（実線）</text>
+  <text x="22" y="90" font-family="sans-serif" font-size="12" fill="#222222">・利用者の発言</text>
+  <text x="22" y="114" font-family="sans-serif" font-size="12" fill="#222222">・道具の呼び出し</text>
+  <text x="34" y="132" font-family="sans-serif" font-size="11" fill="#444444">（コマンドと引数）</text>
+  <text x="22" y="156" font-family="sans-serif" font-size="12" fill="#222222">・CLAUDE.md の内容</text>
+  <rect x="205" y="40" width="185" height="150" rx="6" fill="#ffffff" stroke="#8a4b00" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="297" y="62" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#8a4b00">見ないもの（破線）</text>
+  <text x="217" y="90" font-family="sans-serif" font-size="12" fill="#222222">・Claude の文章</text>
+  <text x="217" y="114" font-family="sans-serif" font-size="12" fill="#222222">・道具の出力</text>
+  <text x="229" y="132" font-family="sans-serif" font-size="11" fill="#444444">（ファイルの中身、Web ページ）</text>
+  <text x="200" y="215" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#222222">見るものだけで、実行してよい操作かを判定する</text>
+  <text x="200" y="236" font-family="sans-serif" font-size="11" text-anchor="middle" fill="#444444">読んだ文章に仕込まれた指示の説得力に左右されにくくする作り</text>
+</svg>

@@ -1,0 +1,13 @@
+title: 文体の指定の例（CLAUDE.md とアプリの指示）
+kind: claude-md
+place: project
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - 手本に書いた docs/overview.md を、自分の文書に置き換える
+expect:
+  - when: 指定を置いたプロジェクトで、短い設計メモを書かせる
+    then: 本文・見出し・箇条書きの文末が、だ・である調で揃う
+  - when: 同じプロジェクトで、チャットで質問する
+    then: 返答の調子は、この指定では変わらない
+control: 指定を置かないとき、同じ依頼で、文末が依頼の文や既存の文書に引かれて混ざることがある
