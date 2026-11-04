@@ -1,0 +1,74 @@
+name: 誤りや古い情報の報告
+description: 辞典の内容の誤りや、古くなった情報を知らせる
+body:
+  - type: markdown
+    attributes:
+      value: |
+        誤りや古い情報を知らせるフォームである。報告への返事と、直す時期は約束しない。
+        Issue は公開される。秘密の情報、個人の情報、認証情報は書かない。
+  - type: input
+    id: page-title
+    attributes:
+      label: ページの題名
+      description: 各ページの「このページの誤りを報告する」から開くと入る。
+    validations:
+      required: false
+  - type: input
+    id: page-url
+    attributes:
+      label: ページの URL
+      description: 各ページの「このページの誤りを報告する」から開くと入る。
+    validations:
+      required: true
+  - type: input
+    id: page-verified
+    attributes:
+      label: ページの確認日と版
+      description: 各ページの「このページの誤りを報告する」から開くと入る。下書きのページは「未検証」である。
+    validations:
+      required: false
+  - type: input
+    id: page-updated
+    attributes:
+      label: ページの更新日
+      description: 各ページの「このページの誤りを報告する」から開くと入る。
+    validations:
+      required: false
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 種類
+      options:
+        - 誤り
+        - 情報が古い
+        - その他
+    validations:
+      required: true
+  - type: textarea
+    id: what-differs
+    attributes:
+      label: どの記述が、どう違うか
+      description: どの記述か、何が違うかを書く。食い違う公式の文書などの URL があれば添える。
+    validations:
+      required: true
+  - type: textarea
+    id: correct-info
+    attributes:
+      label: 正しいと思う情報と出典（任意）
+      description: 出典の URL と、読んだ日と版があれば添える。
+    validations:
+      required: false
+  - type: input
+    id: checked-date
+    attributes:
+      label: 確かめた日（任意）
+      description: 出典や動作を確かめた日。
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 確認
+      options:
+        - label: Issue が公開されること、秘密の情報・個人の情報・認証情報を書いていないことを確かめた。
+          required: true

@@ -93,6 +93,9 @@ def extra_lines(gen, lists: list[tuple[str, str]]) -> list[str]:
     out.append(f"    published_stages: [{', '.join(yaml_scalar(x) for x in site.published_stages)}]")
     out.append(f"    pages_json: {PAGES_JSON}")
     out.append(f"    graph_json: {GRAPH_JSON}")
+    report = gen.config.raw.get("report_template")   # 誤りの報告の Issue のテンプレート（作る層の設定。overrides/main.html が欄に入れて開く）
+    if report:
+        out.append(f"    report_template: {yaml_scalar(str(report))}")
     keys = {cfg["key"]: f"lists/{cfg['file']}" for cfg in gen.config.list_pages() if (cfg["title"], cfg["file"]) in lists}
     out += mapping("lists", keys)
     # ページごとの、テンプレートが data 属性とバッジに出す値（design §8.5：期限の日は道具が数え、比べるのはブラウザ）。

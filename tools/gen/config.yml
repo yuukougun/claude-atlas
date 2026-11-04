@@ -7,6 +7,7 @@
 
 # 公開から外す試作のページの id（design §8.4・§10.1 の7「波が来るまで」）。docs/ にあり stage が draft 以上でも、
 # nav に載せず exclude_docs に書き、生成物とリンクでは未公開（「題名（準備中）」）として扱う。メインが書き換える
+report_template: report-error.yml   # 誤りの報告の Issue のテンプレート（.github/ISSUE_TEMPLATE/。作者の承認 2026-11-05。overrides/main.html が欄に入れて開く）
 held_back: []   # 2026-11-05：作者の承認（decisions「工程7の終わりの頼みへの回答」）の後、試作・測定・方針のページを外して公開した。波の前に外すページがあればここに書く
 
 # 語彙の値の役（どの型が症状のページか、など）。値は site.yml の語彙

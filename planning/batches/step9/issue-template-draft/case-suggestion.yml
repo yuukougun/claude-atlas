@@ -1,0 +1,55 @@
+name: ページや症状の提案・困りごとの共有
+description: ページや症状の提案、使っていて出会った困りごとを知らせる
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ページや症状の提案と、Claude を使っていて出会った困りごとを受けるフォームである。
+        返事、採否、反映の時期は約束しない。いただいた内容を、そのままページにするとも約束しない。
+        Issue は公開される。秘密の情報、個人の情報、認証情報は書かない。
+  - type: textarea
+    id: goal
+    attributes:
+      label: 何をしようとしたか
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: 何が起きたか
+      description: 期待と違った点も書く。
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: 試したこと（任意）
+    validations:
+      required: false
+  - type: input
+    id: surface
+    attributes:
+      label: 使った面・版（任意）
+      description: 例として、Claude Code の CLI、Claude のアプリなど。分かれば版も書く。
+    validations:
+      required: false
+  - type: input
+    id: related-page
+    attributes:
+      label: 関係しそうなページの URL（任意）
+    validations:
+      required: false
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 辞典に足してほしいこと（任意）
+      description: 足してほしいページや症状があれば書く。
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 確認
+      options:
+        - label: Issue が公開されること、秘密の情報・個人の情報・認証情報を書いていないことを確かめた。
+          required: true
