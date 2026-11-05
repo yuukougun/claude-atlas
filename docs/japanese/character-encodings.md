@@ -135,11 +135,11 @@ updated: 2026-11-05
 
     - 作業のフォルダに原本を置き、`iconv` で複製を作らせる。複製は Bash の道具で作るので、編集の道具が拒む場合でも進められる。
     - 複製を作ったら、行数と先頭の行を見せさせる。読めたことを確かめてから、集計や編集を頼む。
-    - Windows のシェルで出力が化けるときは、この変換の話ではない。<!-- link:begin windows-wsl-ime#mojibake -->Windows・WSL・IME で困ったら › Windows の文字化け（準備中）<!-- link:end --> を引く。
+    - Windows のシェルで出力が化けるときは、この変換の話ではない。<!-- link:begin windows-wsl-ime#mojibake -->Windows・WSL・IME で困ったら<!-- link:end --> を引く。
 
 ## Claude Code の編集の道具と文字コード {#claude-code}
 
-Claude Code の編集の道具（Edit と Write）は、UTF-8 でないファイルを扱うのが苦手である。変更の記録で 2026-11-03 に確かめた経緯は次のとおりである。Shift_JIS・Windows-1252・GBK のファイルを Edit で直すと、非 ASCII の文字が置き換わる不具合があった。その修正として、新しい版の Edit（拒むようになった版：<!-- fact:begin edit-refuses-non-utf8-since -->未確認<!-- fact:end -->）はそうした編集を拒む。Write も、Shift_JIS などのファイルを黙って UTF-8 に変えず、拒む（拒むようになった版：<!-- fact:begin write-refuses-non-utf8-since -->未確認<!-- fact:end -->）。拒む版かどうかは、使っている版を変更の記録と突き合わせて確かめる。版の見つけ方は <!-- link:begin windows-wsl-ime#version -->Windows・WSL・IME で困ったら › まず版と既知の不具合を確かめる（準備中）<!-- link:end --> にある。
+Claude Code の編集の道具（Edit と Write）は、UTF-8 でないファイルを扱うのが苦手である。変更の記録で 2026-11-03 に確かめた経緯は次のとおりである。Shift_JIS・Windows-1252・GBK のファイルを Edit で直すと、非 ASCII の文字が置き換わる不具合があった。その修正として、新しい版の Edit（拒むようになった版：<!-- fact:begin edit-refuses-non-utf8-since -->Claude Code 2.1.296（2026-11-06 時点）<!-- fact:end -->）はそうした編集を拒む。Write も、Shift_JIS などのファイルを黙って UTF-8 に変えず、拒む（拒むようになった版：<!-- fact:begin write-refuses-non-utf8-since -->Claude Code 2.1.299（2026-11-06 時点）<!-- fact:end -->）。拒む版かどうかは、使っている版を変更の記録と突き合わせて確かめる。版の見つけ方は <!-- link:begin windows-wsl-ime#version -->Windows・WSL・IME で困ったら<!-- link:end --> にある。
 
 拒まれたときの進め方は、複製を作ることである。
 
@@ -156,7 +156,7 @@ Claude Code の編集の道具（Edit と Write）は、UTF-8 でないファイ
 3. 取り込み先が CP932 を要るなら、直した複製を `iconv -f UTF-8 -t CP932` で戻し、別の名前で保存する。変換がエラーで止まったら、その文字を直す。
 4. 戻したファイルを、取り込み先に近い形（Excel で開く、取り込みの画面で試す）で開き、日本語が読めるかを確かめる。
 
-Windows のシェルが CP932 の出力を UTF-8 として読む問題は、このページの範囲ではない。<!-- link:begin windows-wsl-ime#mojibake -->Windows・WSL・IME で困ったら › Windows の文字化け（準備中）<!-- link:end --> を引く。IDE の拡張や WSL 以外の OS での動作は未確認である。
+Windows のシェルが CP932 の出力を UTF-8 として読む問題は、このページの範囲ではない。<!-- link:begin windows-wsl-ime#mojibake -->Windows・WSL・IME で困ったら<!-- link:end --> を引く。IDE の拡張や WSL 以外の OS での動作は未確認である。
 
 ## 全体の確かめ方 {#verify}
 
@@ -174,7 +174,7 @@ Windows のシェルが CP932 の出力を UTF-8 として読む問題は、こ�
 - **変換でエラーになる**：原本の側の文字コードの指定が違うか、変換先の CP932 にない文字がある。エラーの文言と行を確かめ、指定か文字を直して変換し直す。
 - **先頭の列名だけ合わない**：BOM が付いている。BOM を外して読ませる（Python の `pandas.read_csv` なら `encoding="utf-8-sig"`）。
 - **PDF や文書の日本語が崩れる**：CSV の文字コードではない。<!-- link:begin documents-in-japanese#pdf -->[日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること](documents-in-japanese.md#pdf)<!-- link:end --> を引く。
-- **Windows や WSL で入力・表示が化ける**：<!-- link:begin windows-wsl-ime#mojibake -->Windows・WSL・IME で困ったら › Windows の文字化け（準備中）<!-- link:end --> を引く。
+- **Windows や WSL で入力・表示が化ける**：<!-- link:begin windows-wsl-ime#mojibake -->Windows・WSL・IME で困ったら<!-- link:end --> を引く。
 - **作ったファイルの受け取り方が分からない**：<!-- link:begin files-and-code-execution#outputs -->[ファイル作成とコード実行 › 作ったファイルの受け取り方](../app/files-and-code-execution.md#outputs)<!-- link:end --> を引く。
 
 <!-- gen:begin page-links -->
@@ -193,7 +193,6 @@ Windows のシェルが CP932 の出力を UTF-8 として読む問題は、こ�
 - [データを分析する](../recipes/data-analysis.md)
 - [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
 - [日本語の資料を読ませる・書かせる](documents-in-japanese.md)
-- Windows・WSL・IME で困ったら（準備中）
 
 </div>
 

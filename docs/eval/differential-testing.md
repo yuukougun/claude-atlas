@@ -80,7 +80,7 @@ flowchart LR
     - 終わりの印：本解にわざと間違いを入れた版で、駆動役が止まり、保存物ができた（<!-- link:begin test-the-verifier#broken-copy -->[検証器そのものを確かめる（red/green・手で計算したケース） › わざと壊した検証器で落ちるか](test-the-verifier.md#broken-copy)<!-- link:end --> と同じ考え方）。
 4. **回す**。不一致が出ても、本解をその場で直させない。保存物を報告させて、止める。
     - 終わりの印：不一致なしなら、回した件数と種の範囲が実行ログに出ている。不一致ありなら、再現できる保存物がある。
-5. **不一致を縮めて、直させる**。保存した入力が大きいときは、<!-- link:begin shrink-failing-inputs -->失敗する入力を縮めるスクリプトを書かせる（準備中）<!-- link:end --> の手順で最小の再現例に縮めてから、<!-- link:begin fix-a-bug -->[バグを直す](../recipes/fix-a-bug.md)<!-- link:end --> の流れで直させる。
+5. **不一致を縮めて、直させる**。保存した入力が大きいときは、<!-- link:begin shrink-failing-inputs -->失敗する入力を縮めるスクリプトを書かせる<!-- link:end --> の手順で最小の再現例に縮めてから、<!-- link:begin fix-a-bug -->[バグを直す](../recipes/fix-a-bug.md)<!-- link:end --> の流れで直させる。
     - 終わりの印：縮めた入力で、直す前は食い違い、直した後は一致する。
 6. **同じ種の範囲で回し直す**。直した後に、直す前と同じ範囲を回し、不一致 0 件を実行ログで示させる。
     - 終わりの印：実行ログに、種の範囲と不一致 0 件がある。
@@ -171,7 +171,7 @@ flowchart LR
 
 Anthropic の Engineering ブログ（2026-02）には、C コンパイラを並列の Claude で作った事例がある。GCC を既知の正解として使い、並列のエージェントが別々のバグを直せるように問題を分けた。事例は版と条件に依存するので、真似る手順としてではなく、正解の側を置いた構成の例として読む。
 
-局所探索で差分スコアを更新するコードは、全再計算との一致を assert させる形に広がる。探索コードに固有の点検は <!-- link:begin search-code-checklist#search-code -->探索コードと高速化の点検表（AI に書かせたとき） › 探索コードの点検の観点（準備中）<!-- link:end --> が持つ。入力から性質を確かめる別の方法には <!-- link:begin property-based-tests -->プロパティテストを書かせる（準備中）<!-- link:end --> がある。性質が書けない問題では、参照の解との一致が使いやすい。
+局所探索で差分スコアを更新するコードは、全再計算との一致を assert させる形に広がる。探索コードに固有の点検は <!-- link:begin search-code-checklist#search-code -->探索コードと高速化の点検表（AI に書かせたとき）<!-- link:end --> が持つ。入力から性質を確かめる別の方法には <!-- link:begin property-based-tests -->プロパティテストを書かせる<!-- link:end --> がある。性質が書けない問題では、参照の解との一致が使いやすい。
 
 ## 確かめ方と失敗したとき {#check-and-failure}
 
@@ -184,9 +184,9 @@ Anthropic の Engineering ブログ（2026-02）には、C コンパイラを並
 
 - **愚直解が本解と同じ考え違いをしている**。同じ Claude が同じ文脈で両方を書くと、仕様の読み違いが両方に入りうる（推論・実践例なし）。愚直解は本解を見せずに書かせ、仕様の解釈が分かれる点は人が確かめる。
 - **生成器が本番の入力に届いていない**。大きい入力・特殊な形・本番だけの値を出していない。入力の分布を人が見直す。
-- **愚直解が遅すぎて、小さい入力しか回せない**。小さい入力で出ない間違いは、別の確かめ（<!-- link:begin property-based-tests -->プロパティテストを書かせる（準備中）<!-- link:end --> など）と組み合わせる。
+- **愚直解が遅すぎて、小さい入力しか回せない**。小さい入力で出ない間違いは、別の確かめ（<!-- link:begin property-based-tests -->プロパティテストを書かせる<!-- link:end --> など）と組み合わせる。
 
-直した後に別の場所が壊れたときは、<!-- link:begin bisect-regressions -->退行の原因を git bisect で探させる（準備中）<!-- link:end --> で原因の変更を絞る。
+直した後に別の場所が壊れたときは、<!-- link:begin bisect-regressions -->退行の原因を git bisect で探させる<!-- link:end --> で原因の変更を絞る。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -213,17 +213,13 @@ Anthropic の Engineering ブログ（2026-02）には、C コンパイラを並
 
 - [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)
 - [性能改善を頼む（プロファイルが先・出力の一致と実測）](../recipes/performance-tuning.md)
-- 失敗する入力を縮めるスクリプトを書かせる（準備中）
 
 **関連**
 
 - [AI に書かせたテストの落とし穴](../verify/pitfalls-of-ai-written-tests.md)
 - [検証器そのものを確かめる（red/green・手で計算したケース）](test-the-verifier.md)
-- プロパティテストを書かせる（準備中）
-- 退行の原因を git bisect で探させる（準備中）
 - [バグを直す](../recipes/fix-a-bug.md)
 - [検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)
-- 探索コードと高速化の点検表（AI に書かせたとき）（準備中）
 
 </div>
 

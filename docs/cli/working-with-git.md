@@ -57,7 +57,7 @@ git との付き合い方は、Claude Code の変更をどの単位でコミッ�
 
 - **戻す先が細かくなる**：悪くなった変更だけを戻せる。
 - **人が読める量になる**：差分が大きいと、人は全部を読めない。読む箇所の選び方は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end --> で扱う。
-- **原因を絞り込みやすい**：コミットが小さいと、後から退行を探すときに候補が少ない。手順は <!-- link:begin bisect-regressions -->退行の原因を git bisect で探させる（準備中）<!-- link:end --> にある。
+- **原因を絞り込みやすい**：コミットが小さいと、後から退行を探すときに候補が少ない。手順は <!-- link:begin bisect-regressions -->退行の原因を git bisect で探させる<!-- link:end --> にある。
 
 小さく頻繁にコミットする根拠は、実践者の経験則だけではない。DORA の AI ケイパビリティモデルは、AI 支援の開発で効く能力に、強いバージョン管理（頻繁なコミットとロールバック）と、小さなバッチでの作業を挙げる（根拠：中。企業の一次の報告）。ただし、これは開発チーム全体についての報告で、Claude Code の個別の頼み方を測ったものではない。
 
@@ -181,8 +181,6 @@ Claude の作業が悪い方向に進み続けているときは、`/clear` と 
 - [git worktree で並列にする](../delegate/parallel-with-worktrees.md)
 - [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)
 - [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
-- 退行の原因を git bisect で探させる（準備中）
-- ノート・PKM（Obsidian など）（準備中）
 
 **関連**
 

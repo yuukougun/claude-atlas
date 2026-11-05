@@ -53,7 +53,7 @@ updated: 2026-11-05
 - **終わりの判断を進捗ログだけに置かない**：進捗の指標が良く見えても、結果が正しいとは限らない。確かめる順序と、最後の判断を人へ置く考え方は <!-- link:begin checking-unattended-runs#guards-first -->[無人実行の結果を確かめる › 先に整える守り](../verify/checking-unattended-runs.md#guards-first)<!-- link:end --> で扱っている。
 - **止める条件と上限を先に決める**：ジョブを任せ続けるなら、終わりの状態と上限を条件に書く。書き方は <!-- link:begin goal-until-done#writing-conditions -->[/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](goal-until-done.md#writing-conditions)<!-- link:end --> を見る。
 - **見張りに許す操作を絞る**：Monitor の道具は、背景で動かしたコマンドの出力を 1 行ずつ Claude に返す Claude Code の道具で、Bash と同じ権限ルールで動く。見張りのコマンドは、読むだけのもの（`tail` や `grep`）に限り、Bash の allow ルールと deny ルールで範囲を決める。
-- **フックの効く範囲を知っておく**：Bash に当てたフックは Monitor が起動するシェルコマンドにも走る（版の条件：<!-- fact:begin hook-monitor-min-version -->未確認<!-- fact:end -->）。止める・確認を求めることはできるが、許可や書き換えはできない。それより前の版では、Bash のフックは Monitor のコマンドを素通しにしていた。
+- **フックの効く範囲を知っておく**：Bash に当てたフックは Monitor が起動するシェルコマンドにも走る（版の条件：<!-- fact:begin hook-monitor-min-version -->Claude Code 2.1.314 以降（2026-11-06 時点）<!-- fact:end -->）。止める・確認を求めることはできるが、許可や書き換えはできない。それより前の版では、Bash のフックは Monitor のコマンドを素通しにしていた。
 
 席を外して背景のセッションに投げる場合は、投げる前に決める守りが別にある。<!-- link:begin agent-view-and-background#guards-first -->[agent view と背景セッション › 投げる前に決める守り](agent-view-and-background.md#guards-first)<!-- link:end --> を見る。
 
@@ -81,7 +81,7 @@ updated: 2026-11-05
     - 見張りには期限があり、期限が来ると見張りは終わって、Claude には 1 回だけ知らせが来る。まだ要るなら張り直させる。既定の期限は<!-- fact:begin monitor-default-deadline -->5 分（2026-11-05 時点）<!-- fact:end -->、上限は対話で<!-- fact:begin monitor-max-deadline -->30 分（2026-11-05 時点）<!-- fact:end -->、`-p` で<!-- fact:begin monitor-print-mode-max-deadline -->10 分（2026-11-05 時点）<!-- fact:end -->である。提供経路か通信の抑制の環境変数があるときは、<!-- fact:begin monitor-min-version-restricted-envs -->Claude Code 2.1.310 以降（2026-11-05 時点）<!-- fact:end -->が要る。
     - 終わり：異常の行が出たときだけ、Claude が割り込んで報告する。
 7. **人の側の見方を決める**
-    - 人は `tail -f progress.jsonl` で眺めればよい。席を離れるなら、終わりや異常の知らせを受ける仕組みを使う。仕組みの選び方は <!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう › 知らせるか、時刻を決めて見るか（準備中）<!-- link:end --> を見る。
+    - 人は `tail -f progress.jsonl` で眺めればよい。席を離れるなら、終わりや異常の知らせを受ける仕組みを使う。仕組みの選び方は <!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう<!-- link:end --> を見る。
     - 終わり：離席中に異常が起きたとき、戻る前に気づける。
 
 要約の行は、たとえば次の形になる。
@@ -237,7 +237,6 @@ updated: 2026-11-05
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [長時間エージェントのコンテキスト管理](../api/long-running-agent-context.md)
 - [/compact と自動圧縮](../context/compact-and-auto-compact.md)
-- 終わったら知らせてもらう（準備中）
 - [環境や道具が壊れたと言い出す](../symptoms/blames-the-tools.md)
 
 </div>

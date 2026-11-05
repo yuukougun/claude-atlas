@@ -151,7 +151,7 @@ AI と組んだ作業の失敗は、5 つの問いで自分の側から点検で
 
 答えは作業の後に人が書き、結果を見てから問いを書き換えない。問いに当てはまったことは、その落とし穴が失敗の原因だと決めるものではない。Claude 側の原因との切り分けは <!-- link:begin six-causes -->[失敗の二つの軸と診断の入口](../start/six-causes.md)<!-- link:end --> で行う。
 
-点検の答えを AI に採点させない。AI に頼むのは、ログの集計までにとどめる。その進め方は <!-- link:begin retros-without-ai-verdicts -->振り返りで AI に評価させない（集計係にとどめる）（準備中）<!-- link:end --> にある。
+点検の答えを AI に採点させない。AI に頼むのは、ログの集計までにとどめる。その進め方は <!-- link:begin retros-without-ai-verdicts -->振り返りで AI に評価させない（集計係にとどめる）<!-- link:end --> にある。
 
 段階ごとに何を握るかは <!-- link:begin roadmap -->[ロードマップ（委任の段階別）](../start/roadmap.md)<!-- link:end --> にまとめてある。
 
@@ -178,7 +178,6 @@ AI と組んだ作業の失敗は、5 つの問いで自分の側から点検で
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 - [どこまで理解を手放してよいか（中核と周辺）](how-much-understanding-to-keep.md)
-- 振り返りで AI に評価させない（集計係にとどめる）（準備中）
 - [役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)
 - [ロードマップ（委任の段階別）](../start/roadmap.md)
 

@@ -167,7 +167,7 @@ After で足したものは 3 つある。「重大なものだけ」を「絞�
 
 「批判せよ」を強めすぎると、正しいものまで否定される。加減は <!-- link:begin ask-without-sycophancy#dont-overdo-criticism -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 批判を強めすぎない](../judgment/ask-without-sycophancy.md#dont-overdo-criticism)<!-- link:end --> にある。
 
-AI のレビューは、人の承認に数えない（<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](independent-review.md#ai-approval)<!-- link:end -->）。見落としを直した PR から観点を足していく方法は <!-- link:begin grow-review-checklists -->[レビューの観点を育てる](../team/grow-review-checklists.md)<!-- link:end -->、別の系統のモデルに第二の意見を求める場面は <!-- link:begin second-opinion-from-another-model#when -->別のモデルに第二の意見を求める（一致は証拠にならない） › 使いどころ（準備中）<!-- link:end --> にある。
+AI のレビューは、人の承認に数えない（<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](independent-review.md#ai-approval)<!-- link:end -->）。見落としを直した PR から観点を足していく方法は <!-- link:begin grow-review-checklists -->[レビューの観点を育てる](../team/grow-review-checklists.md)<!-- link:end -->、別の系統のモデルに第二の意見を求める場面は <!-- link:begin second-opinion-from-another-model#when -->別のモデルに第二の意見を求める（一致は証拠にならない）<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -202,8 +202,6 @@ AI のレビューは、人の承認に数えない（<!-- link:begin independen
 - [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
 - [頼んでいないことまでやる（過剰設計）](../symptoms/does-more-than-asked.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
-- 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
-- 自動 PR レビュー（Code Review・/ultrareview）（準備中）
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
 
 </div>

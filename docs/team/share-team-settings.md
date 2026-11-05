@@ -190,9 +190,9 @@ CLAUDE.md は Claude が文脈として読むお願いで、守らせる力は�
 - **同じキーの値が人によって違う**：手元の `.claude/settings.local.json` か `~/.claude/settings.json` が上書きしている。優先順位は <!-- link:begin settings-layers#layers -->[設定ファイルの階層と優先順位 › 層と優先順位](../cli/settings-layers.md#layers)<!-- link:end --> を引く。
 - **共有の allow ルールが効かず、確認が出る**：ワークスペースの信頼を通していない。または、パスの書き方が何にも当たっていない。<!-- link:begin permission-rules#workspace-trust -->[権限ルール（allow・ask・deny） › 信頼の前に効くもの・後に効くもの](../enforce/permission-rules.md#workspace-trust)<!-- link:end --> と <!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](../enforce/permission-rules.md#path-rules)<!-- link:end --> を引く。
 - **MCP のツールが出てこない**：<!-- link:begin connecting-mcp#troubleshooting -->[MCP をつなぐ › つながらない・ツールが出てこないとき](../extend/connecting-mcp.md#troubleshooting)<!-- link:end --> で切り分ける。
-- **組織の管理設定に負ける、または外せない規則を作りたい**：managed の層は最上位で、利用者の設定では外せない。優先の順番は <!-- link:begin managed-settings-enforcement#precedence -->管理設定と組織の強制 › 優先の順番（準備中）<!-- link:end -->、全員に配る経路は <!-- link:begin org-managed-settings-and-mcp#delivery -->組織に設定と MCP サーバーを配る › 配る経路（準備中）<!-- link:end --> を引く。
+- **組織の管理設定に負ける、または外せない規則を作りたい**：managed の層は最上位で、利用者の設定では外せない。優先の順番は <!-- link:begin managed-settings-enforcement#precedence -->管理設定と組織の強制<!-- link:end -->、全員に配る経路は <!-- link:begin org-managed-settings-and-mcp#delivery -->組織に設定と MCP サーバーを配る<!-- link:end --> を引く。
 - **CLAUDE.md の行が守られない**：お願いを鍵に移す。移し先の決め方は <!-- link:begin what-to-put-in-claude-md#what-to-leave-out -->[CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](../extend/what-to-put-in-claude-md.md#what-to-leave-out)<!-- link:end --> を引く。
-- **広め方そのものを決めたい**：<!-- link:begin rolling-out-to-teams#onboarding-guide -->チームに広める（/team-onboarding など） › 立ち上げの手引きを作る（準備中）<!-- link:end --> へ進む。
+- **広め方そのものを決めたい**：<!-- link:begin rolling-out-to-teams#onboarding-guide -->チームに広める（/team-onboarding など）<!-- link:end --> へ進む。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -218,11 +218,6 @@ CLAUDE.md は Claude が文脈として読むお願いで、守らせる力は�
 - [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 
-**次に読む**
-
-- チームに広める（/team-onboarding など）（準備中）
-- 組織に設定と MCP サーバーを配る（準備中）
-
 **関連**
 
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
@@ -234,7 +229,6 @@ CLAUDE.md は Claude が文脈として読むお願いで、守らせる力は�
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
-- 管理設定と組織の強制（準備中）
 
 </div>
 

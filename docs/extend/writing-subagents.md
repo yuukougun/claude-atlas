@@ -119,7 +119,7 @@ updated: 2026-11-05
 - **前の結果に次が依存する作業**：順番に進めるほうが、受け渡しがない分だけ速い。
 - **同じファイルを触る作業**：担当どうしが衝突する。分け方は <!-- link:begin choosing-parallel-modes#same-files -->[並列の方式の選び方 › 同じファイルを触るか](../delegate/choosing-parallel-modes.md#same-files)<!-- link:end --> を見る。
 - **小さな作業**：担当は文脈を集め直すので、かえって遅くなることがある。
-- **担当どうしの連絡が要る作業**：サブエージェントは結果を本筋へ返すだけである。互いに連絡させたいなら <!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）（準備中）<!-- link:end --> を検討する。
+- **担当どうしの連絡が要る作業**：サブエージェントは結果を本筋へ返すだけである。互いに連絡させたいなら <!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）<!-- link:end --> を検討する。
 - **役の作りすぎ**：専門の担当を増やすほど、呼び分けと受け渡しの調整が増える。
 
 担当に渡しても、同じ作業の答えはよくならない。よくなるのは、書く過程を見ていない者に別のレビューを頼むときである。コンテキストの窓を守るためだけにも使わない。窓が溢れることはまれになったので、使う理由は、出力の切り離し・並列・独立したレビューのどれかに置く。評価や採否のように、そもそも任せない仕事は <!-- link:begin what-not-to-delegate#verifiable-axis -->[任せないもの（評価・採否・撤退・中核の理解） › 分ける軸：機械的に確かめられるか](../delegate/what-not-to-delegate.md#verifiable-axis)<!-- link:end --> で分ける。
@@ -266,7 +266,6 @@ updated: 2026-11-05
 - [代表的なフックのレシピ › 担当にだけ禁じる（agent\_id）](../enforce/hook-recipes.md#subagent-only)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [並列の方式の選び方](../delegate/choosing-parallel-modes.md)
-- エージェントチーム（複数の Claude に分担させる）（準備中）
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)

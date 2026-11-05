@@ -42,7 +42,7 @@ updated: 2026-11-05
 別名：料金プラン・プランの比較・個人向けプラン・サブスクリプション
 <!-- textlint-enable -->
 
-プランの選び方は、個人向けの有料プランのどの段にするかを決める話である。このページは段を選ぶ基準を書き、料金と倍率は確認日つきの表に任せる。組織で使うプランは別の話で、<!-- link:begin choosing-an-org-plan -->組織で使うプランの選び方（準備中）<!-- link:end --> が扱う。
+プランの選び方は、個人向けの有料プランのどの段にするかを決める話である。このページは段を選ぶ基準を書き、料金と倍率は確認日つきの表に任せる。組織で使うプランは別の話で、<!-- link:begin choosing-an-org-plan -->組織で使うプランの選び方<!-- link:end --> が扱う。
 
 ## 比べる観点 {#what-to-compare}
 
@@ -53,7 +53,7 @@ updated: 2026-11-05
 - **上位のモデルの扱い**：最上位のモデルは、プランによって、枠に含まれるか usage credits から引かれるかが違う。使う予定があるなら、先に <!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](before-using-top-model.md#which-limit)<!-- link:end --> で引かれ方を確かめる。
 - **上限の形**：5 時間の上限と週の上限のどちらを持つかは、プランで違う。短い時間に集中して使う人には 5 時間の上限が効き、毎日少しずつ使う人には週の上限が効く。持ち方と倍率は、次の節の表で見る。
 
-月額は、4 つの観点で候補を絞った後に見る。円での支払いと消費税は <!-- link:begin paying-in-yen#currency-and-tax -->円での支払い・消費税・インボイス › 為替と消費税（準備中）<!-- link:end --> が扱う。
+月額は、4 つの観点で候補を絞った後に見る。円での支払いと消費税は <!-- link:begin paying-in-yen#currency-and-tax -->円での支払い・消費税・インボイス<!-- link:end --> が扱う。
 
 ## プランの表（確認日つき） {#plan-table}
 
@@ -89,7 +89,7 @@ updated: 2026-11-05
 
 - **5 時間の上限が自分の口座にあるか**：アプリの Settings > Usage に Current session の棒がなければ、5 時間の上限がない口座である。<!-- name:begin max-20x-to-ultra -->Ultra<!-- name:end --> の確認は口座と支払いの履歴などから自動で行われ、済むまでは一時的な上限がかかる。電話番号の確認は別のもので、この上限を外さない（[What is the Ultra plan?](https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan)）。
 - **「—」の欄**：この辞典がまだ確かめていない値で、「ない」という意味ではない。
-- **Team と Enterprise の行**：組織のプランの行は、個人の選択には使わない。組織のプランは <!-- link:begin choosing-an-org-plan -->組織で使うプランの選び方（準備中）<!-- link:end --> で比べる。
+- **Team と Enterprise の行**：組織のプランの行は、個人の選択には使わない。組織のプランは <!-- link:begin choosing-an-org-plan -->組織で使うプランの選び方<!-- link:end --> で比べる。
 - **月額**：上の個人向けの月額の表で見る。月額と、年払いが選べるかは、プランで違う。[Plans & pricing](https://claude.com/pricing) でも確かめる。Max の記事は、モバイルで買う価格が Web と異なる場合があると書く（[What is the Max plan?](https://support.claude.com/en/articles/11049741-what-is-the-max-plan)）。
 - **最上位のモデル**：枠への含まれ方は <!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](before-using-top-model.md#which-limit)<!-- link:end --> の表で見る。
 - **プランに付く API credits**：付くプランと使い道は <!-- link:begin check-billing-path#monthly-api-credits -->[課金の経路を確かめる（API キーとサブスクリプション） › プランに付く API credits](check-billing-path.md#monthly-api-credits)<!-- link:end --> で確かめる。
@@ -153,17 +153,12 @@ updated: 2026-11-05
 
 - [利用上限の仕組み（面をまたいで共有する枠）](how-usage-limits-work.md)
 
-**次に読む**
-
-- 円での支払い・消費税・インボイス（準備中）
-
 **関連**
 
 - [最上位のモデルを使う前に](before-using-top-model.md)
 - [usage credits（上限を超えた分の従量課金）](usage-credits-basics.md)
 - [課金の経路を確かめる（API キーとサブスクリプション）](check-billing-path.md)
 - [モデルの選び方（三段階）](../models/choosing-a-model.md)
-- 組織で使うプランの選び方（準備中）
 - [節約の優先順位（手戻りを減らすのが先）](saving-priorities.md)
 - [用語索引と旧名の対応](../start/term-index.md)
 - [2026 年の主な変更の年表](../changes/change-timeline-2026.md)

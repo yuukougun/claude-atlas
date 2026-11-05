@@ -58,7 +58,7 @@ updated: 2026-11-05
 - 自分だけ、そのリポジトリだけに効かせたい：手元だけの層（コミットしない）
 - 組織として外させたくない：管理の層
 
-任せる幅を広げる設定（`allow` ルールの追加など）は、止めるほうの設定を先に置く。チームのファイルでは、`allow` を足す前に `deny` ルールで読ませないものを決める。`deny` は信頼の前から効き、評価でも先に当たる（<!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](../enforce/permission-rules.md#evaluation-order)<!-- link:end -->）。利用者に外させない縛りが要るなら、管理の層を使う（<!-- link:begin managed-settings-enforcement -->管理設定と組織の強制（準備中）<!-- link:end -->）。
+任せる幅を広げる設定（`allow` ルールの追加など）は、止めるほうの設定を先に置く。チームのファイルでは、`allow` を足す前に `deny` ルールで読ませないものを決める。`deny` は信頼の前から効き、評価でも先に当たる（<!-- link:begin permission-rules#evaluation-order -->[権限ルール（allow・ask・deny） › 評価の順番（deny → ask → allow）](../enforce/permission-rules.md#evaluation-order)<!-- link:end -->）。利用者に外させない縛りが要るなら、管理の層を使う（<!-- link:begin managed-settings-enforcement -->管理設定と組織の強制<!-- link:end -->）。
 
 !!! example "判断例：チームの規則と自分の好み"
     - **状況**：リポジトリで `.env` を Claude に読ませたくない。同時に、自分はスピナーの下のヒントを消したい。
@@ -77,7 +77,7 @@ updated: 2026-11-05
 | 手元だけ | `.claude/settings.local.json` | 自分の、そのプロジェクトだけ。コミットしない |
 | 管理 | `managed-settings.json` など | 組織が配った先の全員 |
 
-`.claude/settings.local.json` は、Claude Code が作るときは git の対象から外す。手で作ったときは、自分で `.gitignore` に追加する。管理の層は組織が配るもので、利用者が作ったり直したりしない。配り方と中身は <!-- link:begin managed-settings-enforcement -->管理設定と組織の強制（準備中）<!-- link:end --> が持つ。
+`.claude/settings.local.json` は、Claude Code が作るときは git の対象から外す。手で作ったときは、自分で `.gitignore` に追加する。管理の層は組織が配るもので、利用者が作ったり直したりしない。配り方と中身は <!-- link:begin managed-settings-enforcement -->管理設定と組織の強制<!-- link:end --> が持つ。
 
 同じキーが複数の層にあるときは、優先順位の高い層の値が使われる。上の 4 つの層に、ファイルではない起動時の `--settings` を加えた高い順は次のとおりである。
 
@@ -89,7 +89,7 @@ updated: 2026-11-05
 
 環境変数はこの順位の層ではない。`model` のように設定のキーと環境変数が対になるものは、キーと環境変数の組ごとにどちらが勝つかが決まる。キーごとの扱いは、公式の「All settings」で引く。
 
-例外が 2 つある。1 つは、利用者を制限する一部のキーで、下の層に書いた厳しい値が管理の値より優先される場合である。もう 1 つは、`model` の管理の値が既定にとどまり、セッションの中で替えられる場合である。例外の範囲は <!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制 › 利用者の側から外せない範囲（準備中）<!-- link:end --> と <!-- link:begin managed-settings-enforcement#precedence -->管理設定と組織の強制 › 優先の順番（準備中）<!-- link:end --> に任せる。
+例外が 2 つある。1 つは、利用者を制限する一部のキーで、下の層に書いた厳しい値が管理の値より優先される場合である。もう 1 つは、`model` の管理の値が既定にとどまり、セッションの中で替えられる場合である。例外の範囲は <!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制<!-- link:end --> と <!-- link:begin managed-settings-enforcement#precedence -->管理設定と組織の強制<!-- link:end --> に任せる。
 
 Claude Code は、`~/.claude.json` という第 5 のファイルも持つ。アカウント情報や MCP の設定、フォルダごとの信頼の記録などを Claude Code 自身が書くもので、手で直す前提のファイルではない。このページの層の順位には入らない。
 
@@ -97,7 +97,7 @@ Claude Code は、`~/.claude.json` という第 5 のファイルも持つ。ア
 
 同じキーが複数の層にあるとき、値の種類で結果が変わる。単独の値のキー（文字列や真偽値）は、優先順位の高い層の値が選ばれ、低い層の値は捨てられる。リストのキーは、層をまたいで合わさる。
 
-`permissions.allow` のような権限ルールのリストがその例である。ユーザーの層に `allow` ルールがあり、プロジェクトの層にも別の `allow` ルールがあれば、両方が効く。各層は、ほかの層のルールを消さずに自分の分を足せる。組織の `allow` ルールも、利用者の分と並んで効く。管理の層が、利用者の層のルールを使わせない設定を持つ場合は別で、それは <!-- link:begin managed-settings-enforcement -->管理設定と組織の強制（準備中）<!-- link:end --> の範囲である。
+`permissions.allow` のような権限ルールのリストがその例である。ユーザーの層に `allow` ルールがあり、プロジェクトの層にも別の `allow` ルールがあれば、両方が効く。各層は、ほかの層のルールを消さずに自分の分を足せる。組織の `allow` ルールも、利用者の分と並んで効く。管理の層が、利用者の層のルールを使わせない設定を持つ場合は別で、それは <!-- link:begin managed-settings-enforcement -->管理設定と組織の強制<!-- link:end --> の範囲である。
 
 リストのキーのうち、モデルの一覧や 1 モデルごとの項目を持つ `fallbackModel`・`modelPicker`・`availableModels`・`modelSettings` は例外で、独自の合わせ方をする。モデルの選び方はこのページの範囲外なので、公式の「All settings」で該当のキーを引く。
 
@@ -185,7 +185,7 @@ Claude Code は、`~/.claude.json` という第 5 のファイルも持つ。ア
 
 ## 効かない場面・落とし穴 {#limits}
 
-- **管理の層は外せない**：利用者の側の設定では、管理の層が決めた規則を外せない。組織の規則に当たったときは、管理者に相談する。強制の仕組みは <!-- link:begin managed-settings-enforcement -->管理設定と組織の強制（準備中）<!-- link:end --> が持つ
+- **管理の層は外せない**：利用者の側の設定では、管理の層が決めた規則を外せない。組織の規則に当たったときは、管理者に相談する。強制の仕組みは <!-- link:begin managed-settings-enforcement -->管理設定と組織の強制<!-- link:end --> が持つ
 - **クラウドのセッションは、ユーザーと手元だけの層を読まない**：別の機械で動くので、自分の機械にある 2 つのファイルは届かない。コミットしたプロジェクトの層は、クローンの一部として読まれる
 - **共有の層に秘密を入れない**：プロジェクトの層はコミットされ、全員に渡る。API キーや認証情報は置かない。読ませない設定は <!-- link:begin protecting-secrets#two-layers -->[秘密情報（.env・API キー）を守る › 権限ルールとサンドボックスの二重にする](../safety/protecting-secrets.md#two-layers)<!-- link:end --> に従う。何を共有して何を個人に残すかは <!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end --> が持つ
 - **設定は、指示の層とは別である**：`settings.json` は動作を決める設定で、`CLAUDE.md` は読ませる指示（お願い）である。本人が書き換えられない鍵になるのは、管理の層だけである。後者の重なりは <!-- link:begin claude-md-loading-order -->[CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)<!-- link:end --> で確かめる
@@ -196,7 +196,7 @@ Claude Code は、`~/.claude.json` という第 5 のファイルも持つ。ア
 設定の層を選ぶときに、近い役目のページと分担する。
 
 - チームで共有する手順（何をコミットし、何を個人に残すか）：<!-- link:begin share-team-settings -->[チームで設定を共有する](../team/share-team-settings.md)<!-- link:end -->
-- 組織として外させない規則：<!-- link:begin managed-settings-enforcement -->管理設定と組織の強制（準備中）<!-- link:end -->
+- 組織として外させない規則：<!-- link:begin managed-settings-enforcement -->管理設定と組織の強制<!-- link:end -->
 - 許可・確認・拒否のルールそのもの：<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->
 - 権限モードの既定と切り替え：<!-- link:begin permission-modes-overview -->[権限モードの選び方](permission-modes-overview.md)<!-- link:end -->
 - 応答の仕方の設定：<!-- link:begin output-style-modes -->[出力スタイルで応答の仕方を切り替える](output-style-modes.md)<!-- link:end -->
@@ -228,7 +228,6 @@ Claude Code は、`~/.claude.json` という第 5 のファイルも持つ。ア
 
 - [設定を外して切り分ける（--safe-mode）](isolate-with-safe-mode.md)
 - [チームで設定を共有する](../team/share-team-settings.md)
-- 管理設定と組織の強制（準備中）
 
 **関連**
 

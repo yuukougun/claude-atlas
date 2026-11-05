@@ -202,7 +202,7 @@ monorepo/
 <!-- gen:end fact-table claude-md-on-demand-char-limit -->
 
 - **矛盾は選び方が保証されない**：個人・プロジェクト・サブフォルダの間で矛盾すると、Claude はどちらかを選ぶ。読まれる順の最後が勝つとは言えないので、矛盾は定期的に探して消す。
-- **管理の CLAUDE.md は外せない**：`claudeMdExcludes` は、組織が配る管理の CLAUDE.md には効かない。強制の仕組みは、<!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制 › 利用者の側から外せない範囲（準備中）<!-- link:end -->にある。
+- **管理の CLAUDE.md は外せない**：`claudeMdExcludes` は、組織が配る管理の CLAUDE.md には効かない。強制の仕組みは、<!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制<!-- link:end -->にある。
 - **手元の確認は WSL・Linux の CLI を基準にしている**：ほかの OS と IDE 拡張で、読み込まれる場所や順番が同じかは、未確認である。
 
 ## 比べる相手 {#compare}
@@ -256,7 +256,6 @@ CLAUDE.md と rules は、どちらも指示をファイルで置く機能だが
 - [圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)
 - [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [自動メモリ](using-auto-memory.md)
-- 管理設定と組織の強制（準備中）
 - [チームで設定を共有する](../team/share-team-settings.md)
 - [/context で中身を見る](../context/inspect-context.md)
 - [CLAUDE.md の長さと剪定](claude-md-length.md)

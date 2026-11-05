@@ -57,7 +57,7 @@ updated: 2026-11-05
 - 互いに独立していて、途中で人に聞き返す必要がほとんどない
 - 失敗しても、ブランチを捨てれば元に戻せる
 
-向かない作業は、方針が固まっていない作業、手元の DB や秘密を使う作業、途中で何度も判断を挟みたい作業である。方針が固まっていないなら、先に手元で <!-- link:begin when-to-plan#how-to -->[plan mode の使いどころ › 最小の使い方](when-to-plan.md#how-to)<!-- link:end --> から計画を作る。手元で動かしたまま席を離れたいだけなら、実行を手元に残す <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> のほうが合う。
+向かない作業は、方針が固まっていない作業、手元の DB や秘密を使う作業、途中で何度も判断を挟みたい作業である。方針が固まっていないなら、先に手元で <!-- link:begin when-to-plan#how-to -->[plan mode の使いどころ › 最小の使い方](when-to-plan.md#how-to)<!-- link:end --> から計画を作る。手元で動かしたまま席を離れたいだけなら、実行を手元に残す <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）<!-- link:end --> のほうが合う。
 
 ### 先に整えるもの
 
@@ -209,7 +209,7 @@ CLI からの引き渡しは、クラウドから手元への一方向である�
 
 - **手元の作業はクラウドに戻らない**：取り込んだセッションは手元の別の写しになる。以降の作業は、claude.ai やモバイルアプリのクラウドのセッションには現れない
 - **圧縮された部分は届かない**：クラウドのセッションが長くなって圧縮されていると、要約される前のやり取りは手元に写されない。Claude は要約から続ける。元のやり取りは claude.ai で読む
-- **スマホから見続けるなら別に始める**：取り込んだ手元のセッションで `/remote-control` を始める。仕組みは <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> を参照する
+- **スマホから見続けるなら別に始める**：取り込んだ手元のセッションで `/remote-control` を始める。仕組みは <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）<!-- link:end --> を参照する
 
 手元の端末の会話そのものを再開・分岐するには、クラウドとは別に <!-- link:begin resume-and-branch#resume -->[セッションに名前を付けて再開・分岐する › 再開する](resume-and-branch.md#resume)<!-- link:end --> を使う。`--resume` は手元の履歴を開くので、クラウドのセッションは一覧に出ない。
 
@@ -233,7 +233,7 @@ CLI からの引き渡しは、クラウドから手元への一方向である�
 
 | 手段 | 向く場面 | 詳しい説明 |
 | --- | --- | --- |
-| Remote Control | 実行とファイルを手元に残し、席を離れて見る | <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> |
+| Remote Control | 実行とファイルを手元に残し、席を離れて見る | <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）<!-- link:end --> |
 | クラウドの定期タスク | 決まった時刻や GitHub のイベントで、人なしで動かす | <!-- link:begin cloud-schedules -->[クラウドの定期タスク](../delegate/cloud-schedules.md)<!-- link:end --> |
 | 背景セッション | 手元の PC で、見張らなくてよい作業を投入する | <!-- link:begin agent-view-and-background -->[agent view と背景セッション](../delegate/agent-view-and-background.md)<!-- link:end --> |
 | 並列の方式 | 並列の数と、誰が調整するかを決める | <!-- link:begin choosing-parallel-modes -->[並列の方式の選び方](../delegate/choosing-parallel-modes.md)<!-- link:end --> |
@@ -271,7 +271,6 @@ CLI からの引き渡しは、クラウドから手元への一方向である�
 
 **関連**
 
-- スマホから操作する（Remote Control）（準備中）
 - [セッションに名前を付けて再開・分岐する](resume-and-branch.md)
 - [agent view と背景セッション](../delegate/agent-view-and-background.md)
 - [並列の方式の選び方](../delegate/choosing-parallel-modes.md)

@@ -88,7 +88,7 @@ READYFOR の元の記事は社内アンケートの報告で、筆者は疲労�
 1. **詰まりを測る。** PR が出てから承認されるまでの時間、承認が集まっている人、差し戻しの回数を記録する。「回っている気がする」という体感だけで判断しない。体感と実測がずれる理由は <!-- link:begin felt-vs-measured#why -->[体感と実測 › なぜ体感はずれるか](../eval/felt-vs-measured.md#why)<!-- link:end --> にある。
 2. **流す量に上限を置く。** 1 人が 1 日に動かして確かめられる PR の数を、実際の記録から見積もり、それを超えて出さない。レビューが要る本流は少なく、使い捨ての調査や試作は多めにしてよい。分け方は <!-- link:begin humans-set-the-parallel-limit#mainline-vs-scouting -->[並列の上限は人間が決める › 本流と偵察で本数を分ける](../delegate/humans-set-the-parallel-limit.md#mainline-vs-scouting)<!-- link:end --> にある。
 3. **読む深さを分ける。** すべての PR を同じ深さで読まない。リスクの段に分けて、段ごとに人の承認の数と読む深さを決める。段の決め方は <!-- link:begin risk-tiered-approval#three-tiers -->[リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数](risk-tiered-approval.md#three-tiers)<!-- link:end --> に、人が必ず読む箇所は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end --> にある。
-4. **AI のレビューは下ごしらえに使う。** 人が見る前に指摘を出させて、読む手間を減らす。承認は人が決める。AI の承認は人の承認に数えない（<!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->[リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない](risk-tiered-approval.md#ai-approval-doesnt-count)<!-- link:end -->）。仕組みは <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> にある。
+4. **AI のレビューは下ごしらえに使う。** 人が見る前に指摘を出させて、読む手間を減らす。承認は人が決める。AI の承認は人の承認に数えない（<!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->[リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない](risk-tiered-approval.md#ai-approval-doesnt-count)<!-- link:end -->）。仕組みは <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）<!-- link:end --> にある。
 5. **見落としを観点に戻す。** 見落としが見つかったら、その理由をレビューの観点に足す。育て方は <!-- link:begin grow-review-checklists -->[レビューの観点を育てる](grow-review-checklists.md)<!-- link:end --> にある。
 
 AI のレビューについては、実践者の報告が 1 件ある。ある開発組織は、AI にコードレビューを任せて、1 件あたり 10〜15 分かかっていたのが 2〜3 分ほどになったと書いている。時間を測った条件は記事に書かれていない（根拠：弱。自己申告）。同じ記事の筆者は、承認までを自動にしたのは「やりすぎ」だったとして、承認を自動にしないルールを置いた。下ごしらえは AI に、承認は人に、と分けた形である。
@@ -146,7 +146,6 @@ AI は組織の土台の強さも弱さも増幅する。広げる前にテス�
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](risk-tiered-approval.md)
 - [役割を分ける（書く人・承認する人・疑う人）](separate-roles.md)
 - [レビューの観点を育てる](grow-review-checklists.md)
-- 自動 PR レビュー（Code Review・/ultrareview）（準備中）
 - [承認疲れ](../safety/approval-fatigue.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [禁止ではなく安全な道を作る › AI は土台の強さも弱さも増幅する（広げる前に見直すもの）](paved-roads.md#amplifier)

@@ -173,7 +173,7 @@ updated: 2026-11-05
 確かめ方を決まりにする手は次の 3 つである。
 
 - 独立したレビューを使う。分け方と、AI の承認の扱いは <!-- link:begin independent-review -->[書いた本人ではない者にレビューさせる](../verify/independent-review.md)<!-- link:end --> が持つ。
-- Claude や複数の AI レビュアーの一致を、正しさの証拠に数えない。実行結果・計測・一次資料を証拠に数える。人が握るものの一覧を <!-- link:begin agreement-is-not-evidence#what-you-keep -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 人が握るもの](../judgment/agreement-is-not-evidence.md#what-you-keep)<!-- link:end --> に置いている。別のモデルに意見を求めても、一致は証拠にならない（<!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end -->）。
+- Claude や複数の AI レビュアーの一致を、正しさの証拠に数えない。実行結果・計測・一次資料を証拠に数える。人が握るものの一覧を <!-- link:begin agreement-is-not-evidence#what-you-keep -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 人が握るもの](../judgment/agreement-is-not-evidence.md#what-you-keep)<!-- link:end --> に置いている。別のモデルに意見を求めても、一致は証拠にならない（<!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない）<!-- link:end -->）。
 - チームでは、評価の役を実装する人から離し、疑う役を持ち回りにする。決まりは <!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end --> にある。
 
 頼み方は、答えを選ぶ場面と案を作る場面で変わる。<!-- link:begin ask-for-options#choose -->[選択肢と推奨案を出させる › 答えを選ぶ場面：選択肢と推奨案](../prompting/ask-for-options.md#choose)<!-- link:end --> と <!-- link:begin think-before-asking#choose-vs-ideate -->[頼む前に自分で考える（AI には問い・反論・道具を頼む） › 答えを選ぶ場面と、発想する場面](../judgment/think-before-asking.md#choose-vs-ideate)<!-- link:end --> を見る。原因がこのページのどちらでもないときは、<!-- link:begin six-causes#diagnosis -->[失敗の二つの軸と診断の入口 › 安く確かめられる順の診断](../start/six-causes.md#diagnosis)<!-- link:end --> に戻って診断し直す。出典のない主張を疑う場面は <!-- link:begin plausible-falsehoods -->[もっともらしい嘘・出典の誤り](plausible-falsehoods.md)<!-- link:end --> が持つ。
@@ -210,7 +210,6 @@ updated: 2026-11-05
 
 **関連**
 
-- 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 - [選択肢と推奨案を出させる](../prompting/ask-for-options.md)
 - [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)
 - [人の側の五つの落とし穴（総論）](../judgment/human-pitfalls.md)

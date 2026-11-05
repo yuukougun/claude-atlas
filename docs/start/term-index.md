@@ -1894,7 +1894,7 @@ updated: 2026-11-05
 - Anthropic Academy → Claude Academy（不明）
 - Claude Code on the web → クラウドセッション（cloud sessions）（2026-09-10〜2026-09-17）：[クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 - Claude Code SDK → Claude Agent SDK（2025-09-29・Claude Code 2.0.0）：[Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)
-- Claude in Slack → Claude Tag（2026-08-03）：周辺製品の一覧（準備中）
+- Claude in Slack → Claude Tag（2026-08-03）：周辺製品の一覧
 - claude-code-sdk（Python のパッケージ） → Claude Agent SDK（2025-09-29・Claude Code 2.0.0）：[Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)
 - default モード（表示の名前） → Manual（権限モード。設定の値は default のまま）（2026-07-03・Claude Code 2.1.200）：[権限モードの選び方](../cli/permission-modes-overview.md)
 - extra usage → usage credits（/usage-credits）（2026-05-19・Claude Code 2.1.144）：[usage credits（上限を超えた分の従量課金）](../cost/usage-credits-basics.md)
@@ -1905,8 +1905,8 @@ updated: 2026-11-05
 - session limit → 5-hour limit（5 時間の上限）（2026-10-27・Claude Code 2.1.312）：[利用上限の仕組み（面をまたいで共有する枠）](../cost/how-usage-limits-work.md)
 - Workbench → playground（Claude Console）（2026-08-18）
 - workflow（起動のキーワード） → ultracode（dynamic workflows を起動するキーワード）（2026-06-02・Claude Code 2.1.160）：[dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
-- 「Customize」 → 「Plugins」（サイドバー・チャットのメニュー・設定の名前と、1 つの「Plugins」のページ）（2026-10-29〜2026-11-30）：アプリでプラグインを使う（準備中）
-- 「Customize」の「Skills」「Connectors」「Plugins」のタブ → 「Plugins」（サイドバー・チャットのメニュー・設定の名前と、1 つの「Plugins」のページ）（2026-10-29〜2026-11-30）：アプリでプラグインを使う（準備中）
+- 「Customize」 → 「Plugins」（サイドバー・チャットのメニュー・設定の名前と、1 つの「Plugins」のページ）（2026-10-29〜2026-11-30）：アプリでプラグインを使う
+- 「Customize」の「Skills」「Connectors」「Plugins」のタブ → 「Plugins」（サイドバー・チャットのメニュー・設定の名前と、1 つの「Plugins」のページ）（2026-10-29〜2026-11-30）：アプリでプラグインを使う
 
 <!-- textlint-enable -->
 <!-- gen:end terms old -->

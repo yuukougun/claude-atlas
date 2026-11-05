@@ -183,7 +183,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end snippet spec-first/mock-request -->
 
-モックを見たら、直す点を伝えて作り直させ、合意できた見た目と動きを SPEC.md の「画面の決定事項」に書き写させる。モックのファイルの場所も書いておくと、実装するセッションが参照できる。見た目を手本と見比べて直させる進め方は <!-- link:begin frontend-design -->フロントエンドのデザイン（準備中）<!-- link:end --> にある。
+モックを見たら、直す点を伝えて作り直させ、合意できた見た目と動きを SPEC.md の「画面の決定事項」に書き写させる。モックのファイルの場所も書いておくと、実装するセッションが参照できる。見た目を手本と見比べて直させる進め方は <!-- link:begin frontend-design -->フロントエンドのデザイン<!-- link:end --> にある。
 
 !!! example "判断例：モックを作るか"
     - **状況**：管理画面の新しい一覧画面を作る。並べ方や空のときの表示など、見た目と動きに決めていない点が多い。
@@ -318,7 +318,6 @@ Claude Code では、この計画の段を plan mode で行うと、承認する
 **関連**
 
 - [仕様を自分で読み、AI に誤読を指摘させる](read-specs-yourself.md)
-- フロントエンドのデザイン（準備中）
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)
 - [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)

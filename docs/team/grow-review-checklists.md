@@ -126,7 +126,7 @@ updated: 2026-11-05
 
 - **観点が増えすぎて、レビューが重くなった**：観点を型ごとにまとめ直し、指摘が出ないものを外す。詰まりの見方は <!-- link:begin review-bottlenecks#where-it-clogs -->[レビューのボトルネックと疲労 › 詰まる場所はレビューと動作確認](review-bottlenecks.md#where-it-clogs)<!-- link:end --> にある。
 - **足した観点が広すぎて、的外れな指摘が増えた**：観点を「どの変更で」の条件で絞る。指摘の網羅と選別を分ける頼み方は <!-- link:begin instructing-reviewers#exhaustive-then-filter -->[レビュアーへの指示の書き方 › 網羅と選別を分ける](../verify/instructing-reviewers.md#exhaustive-then-filter)<!-- link:end --> にある。
-- **同じ見落としが、観点を足した後も再発する**：観点が読まれていないか、確かめ方が曖昧である。足した先が読み込まれる場面かを見直す。レビューを AI に任せているなら、AI のレビューで通ったことを理由に人の確認を省いていないかも見る（<!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end -->）。
+- **同じ見落としが、観点を足した後も再発する**：観点が読まれていないか、確かめ方が曖昧である。足した先が読み込まれる場面かを見直す。レビューを AI に任せているなら、AI のレビューで通ったことを理由に人の確認を省いていないかも見る（<!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）<!-- link:end -->）。
 - **失敗の記録そのものが残っていない**：<!-- link:begin keep-failure-lessons -->[失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)<!-- link:end --> の書き残し方から始める。
 
 PR の説明で、リスクと確かめた証拠を先に書かせる方法は <!-- link:begin create-and-review-prs#pr-description -->[PR を作り、レビューを受ける › PR の説明に書くこと](../recipes/create-and-review-prs.md#pr-description)<!-- link:end --> にある。観点を増やす前に、説明の側で見落としを減らせることもある。
@@ -143,7 +143,6 @@ PR の説明で、リスクと確かめた証拠を先に書かせる方法は <
 **関連**
 
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
-- 自動 PR レビュー（Code Review・/ultrareview）（準備中）
 - [PR を作り、レビューを受ける › PR の説明に書くこと](../recipes/create-and-review-prs.md#pr-description)
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](risk-tiered-approval.md)
 - [レビューのボトルネックと疲労](review-bottlenecks.md)

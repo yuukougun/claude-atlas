@@ -2,7 +2,7 @@
 
   <!-- gen:begin references -->  見出し「参考」{#references}（手で書いた同じ anchor の見出しがあれば書かない）と、
                                  front matter の sources の出典（data の sources）
-  <!-- gen:begin page-links -->  前提・次に読む・関連（未公開のページは「題名（準備中）」の平文）
+  <!-- gen:begin page-links -->  前提・次に読む・関連（未公開のページは「題名（準備中）」の平文。書かないページは載せない）
 
 どちらも、ページに目印がなければ gen_site.py が本文の末尾に足す（markers.py）。参考の節は sources があるときだけ。
 ページ下部は <div class="ca-page-links" markdown> で囲む（見た目は V のテンプレートと CSS が付ける）。
@@ -21,7 +21,7 @@ from .text import md_text
 
 
 def _ref_anchor_text(gen, host: str, refs: list[Ref]) -> list[str]:
-    return [gen.ref_link(host, r) for r in refs]
+    return [gen.ref_link(host, r) for r in refs if not gen.is_unplanned_ref(r)]
 
 
 def _references_anchors(gen, page, param):
@@ -71,10 +71,10 @@ def next_pages(gen, page) -> list:
         for route in sorted(page.routes, key=lambda r: (rank.get(r.cause, len(rank)), r.index)):
             for r in route.to:
                 p = gen.resolve(r)
-                if p is not None and p.id not in seen:
+                if p is not None and p.id not in seen and not gen.is_unplanned(p):
                     out.append(p)
                     seen.add(p.id)
-    deps = [p for p in gen.dependents.get(page.id, []) if p.id not in seen]
+    deps = [p for p in gen.dependents.get(page.id, []) if p.id not in seen and not gen.is_unplanned(p)]
     deps.sort(key=lambda p: (not gen.is_pub(p), gen.rank.get(p.id, 0)))
     out += deps
     return out
@@ -101,7 +101,7 @@ def b_page_links(ctx) -> str:
     rel, seen = [], set()
     for r in page.related:
         key = r.raw.strip()
-        if key in seen or (r.anchor is None and r.target in shown):
+        if key in seen or (r.anchor is None and r.target in shown) or gen.is_unplanned_ref(r):
             continue
         seen.add(key)
         rel.append(gen.ref_link(host, r))

@@ -166,7 +166,7 @@ updated: 2026-11-05
 - **Option を使うキー**：`Option+P`（モデル切替）・`Option+T`（thinking 切替）・`Option+O`（fast mode）は Mac の表記である。WSL・Linux での対応は未確認。
 - **一覧**：どのキーが使えるかは、入力欄で `?` を押すと出るショートカットの一覧で確かめる。
 - **IDE 拡張**：VS Code などの拡張には、`!` のシェルの近道とタブ補完がない。選択範囲の参照は `Option+K`（Mac）か `Alt+K` で入れる。公式の文書による（確認日 2026-11-03）。動作は試していない。
-- **日本語の入力と表示**：IME の不具合や文字化けは、版ごとに個別に直されてきた。まず <!-- link:begin windows-wsl-ime#version -->Windows・WSL・IME で困ったら › まず版と既知の不具合を確かめる（準備中）<!-- link:end --> を見る。WSL については <!-- link:begin windows-wsl-ime#wsl -->Windows・WSL・IME で困ったら › WSL で使う（準備中）<!-- link:end --> がある。
+- **日本語の入力と表示**：IME の不具合や文字化けは、版ごとに個別に直されてきた。まず <!-- link:begin windows-wsl-ime#version -->Windows・WSL・IME で困ったら<!-- link:end --> を見る。WSL については <!-- link:begin windows-wsl-ime#wsl -->Windows・WSL・IME で困ったら<!-- link:end --> がある。
 
 ## 効かない場面・落とし穴 {#pitfalls}
 
@@ -209,7 +209,6 @@ updated: 2026-11-05
 - [本筋を汚さずに聞く（/btw）](../context/side-questions-btw.md)
 - [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)
 - [agent view と背景セッション](../delegate/agent-view-and-background.md)
-- Windows・WSL・IME で困ったら（準備中）
 
 </div>
 

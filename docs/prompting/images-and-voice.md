@@ -116,7 +116,7 @@ Claude 自身にブラウザを操作させ、画面を見て確かめさせた�
 
 | 機能 | 面 | 成熟度 |
 | --- | --- | --- |
-| 音声モード（voice mode）（準備中） | アプリ | beta |
+| 音声モード（voice mode） | アプリ | beta |
 | [音声入力（/voice）](images-and-voice.md) | Claude Code | GA |
 
 <!-- textlint-enable -->
@@ -124,7 +124,7 @@ Claude 自身にブラウザを操作させ、画面を見て確かめさせた�
 
 === "アプリ"
 
-    アプリの音声モードは、Claude と声で会話する機能である。始め方と、モバイルでできることは <!-- link:begin voice-and-mobile#voice -->音声モード・Quick entry・モバイル › 音声モード（準備中）<!-- link:end --> にある。
+    アプリの音声モードは、Claude と声で会話する機能である。始め方と、モバイルでできることは <!-- link:begin voice-and-mobile#voice -->音声モード・Quick entry・モバイル<!-- link:end --> にある。
 
 === "Claude Code"
 
@@ -219,15 +219,10 @@ After で足したものは 4 つある。話の要点、完了の条件、触�
 
 - [新人の同僚に頼むつもりで](brief-a-new-colleague.md)
 
-**次に読む**
-
-- フロントエンドのデザイン（準備中）
-
 **関連**
 
 - [画面で確かめる（ブラウザ・スクリーンショット・/verify）](../verify/visual-checks.md)
 - [添付ファイルはどこまで読まれるか](../app/how-attachments-are-read.md)
-- 音声モード・Quick entry・モバイル（準備中）
 - [入力の記号（/ ! @）と Esc](../cli/input-symbols.md)
 - [質問させる・インタビューさせる](let-claude-ask.md)
 - [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)

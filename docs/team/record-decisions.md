@@ -207,7 +207,7 @@ CLAUDE.md に足す、ADR の置き場所を指す数行である。決定の本
 | 実験の仮説や判定の記録が散らばる | 決定の記録と実験の台帳を分けていない | <!-- link:begin experiment-log -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)<!-- link:end --> |
 | 役割が分かれず、書いた人が承認も兼ねる | 決める人・確かめる人が同じ | <!-- link:begin separate-roles -->[役割を分ける（書く人・承認する人・疑う人）](separate-roles.md)<!-- link:end --> |
 
-AI の利用を開示する場面や、事前に作った資料の出所の記録が必要なときは、決定の記録とは別に<!-- link:begin disclosure-and-provenance#provenance -->[AI 利用の開示と出所の記録 › 出所を記録する](../safety/disclosure-and-provenance.md#provenance)<!-- link:end -->を使う。チーム全体に記録の習慣を広げる段取りは<!-- link:begin rolling-out-to-teams -->チームに広める（/team-onboarding など）（準備中）<!-- link:end -->、他のエージェントツールと指示を共有するなら<!-- link:begin agents-md -->[AGENTS.md とほかのツールとの共有](../extend/agents-md.md)<!-- link:end -->を見る。仮説ごとに並べて試す作業の記録は、<!-- link:begin compare-hypotheses-in-parallel#template -->[仮説ごとに並べて、同じ物差しで比べる › 雛形：比較の記録と手順](../delegate/compare-hypotheses-in-parallel.md#template)<!-- link:end -->に比較の記録の雛形がある。
+AI の利用を開示する場面や、事前に作った資料の出所の記録が必要なときは、決定の記録とは別に<!-- link:begin disclosure-and-provenance#provenance -->[AI 利用の開示と出所の記録 › 出所を記録する](../safety/disclosure-and-provenance.md#provenance)<!-- link:end -->を使う。チーム全体に記録の習慣を広げる段取りは<!-- link:begin rolling-out-to-teams -->チームに広める（/team-onboarding など）<!-- link:end -->、他のエージェントツールと指示を共有するなら<!-- link:begin agents-md -->[AGENTS.md とほかのツールとの共有](../extend/agents-md.md)<!-- link:end -->を見る。仮説ごとに並べて試す作業の記録は、<!-- link:begin compare-hypotheses-in-parallel#template -->[仮説ごとに並べて、同じ物差しで比べる › 雛形：比較の記録と手順](../delegate/compare-hypotheses-in-parallel.md#template)<!-- link:end -->に比較の記録の雛形がある。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -227,7 +227,6 @@ AI の利用を開示する場面や、事前に作った資料の出所の記�
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - [AGENTS.md とほかのツールとの共有](../extend/agents-md.md)
 - [役割を分ける（書く人・承認する人・疑う人）](separate-roles.md)
-- チームに広める（/team-onboarding など）（準備中）
 - [仮説ごとに並べて、同じ物差しで比べる](../delegate/compare-hypotheses-in-parallel.md)
 
 </div>

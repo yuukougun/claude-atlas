@@ -64,7 +64,7 @@ Claude Code は、使える認証が複数あるとき、決まった順で 1 �
 
 - 3 は、その鍵を持つ Console の組織への API の従量課金になる
 - 5 と 7 は、サブスクリプションの側になる
-- 1 は提供元のクラウドの契約の側になる。扱いは <!-- link:begin via-cloud-providers -->Bedrock・Vertex AI・Foundry 経由で使う（準備中）<!-- link:end --> にある
+- 1 は提供元のクラウドの契約の側になる。扱いは <!-- link:begin via-cloud-providers -->Bedrock・Vertex AI・Foundry 経由で使う<!-- link:end --> にある
 - 2 と 4 の課金先は、この辞典では確かめていない。鍵や token を出す側の仕組みで決まるので、使う前にその仕組みの持ち主に確かめる
 
 ## API キーの環境変数があるとき {#api-key-in-env}
@@ -92,7 +92,7 @@ Claude Code は、使える認証が複数あるとき、決まった順で 1 �
     - **状況**：手元の WSL で、シェルの設定ファイルに `ANTHROPIC_API_KEY` を置いたまま、夜間に `claude -p` のスクリプトを回したい。普段の対話はプランで使っている。
     - **迷う候補**：A は鍵を残し、API の従量で回す。B は鍵を外し、プランの利用枠で回す。
     - **選んだもの**：B。その実行だけ `env -u ANTHROPIC_API_KEY claude -p "..."` で鍵を外して動かし、今の経路を確かめてから回す。
-    - **理由**：A も筋は通るが、使った量がそのまま請求に変わり、止まる場所が上限ではなく予算になる。B は上限に当たれば止まる。ただし B は、日中の対話と同じ利用枠を使う（枠の共有は <!-- link:begin how-usage-limits-work#shared-limit -->[利用上限の仕組み（面をまたいで共有する枠） › 面をまたいで一つの枠](how-usage-limits-work.md#shared-limit)<!-- link:end --> を見る）。A を選ぶなら、先に費用の見当と止まる上限を決める（<!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](../delegate/headless-basics.md#limits)<!-- link:end --> と <!-- link:begin reading-api-pricing#claude-code-on-api -->API 料金の読み方 › Claude Code を API の料金で使うときの目安（準備中）<!-- link:end --> を使う）。
+    - **理由**：A も筋は通るが、使った量がそのまま請求に変わり、止まる場所が上限ではなく予算になる。B は上限に当たれば止まる。ただし B は、日中の対話と同じ利用枠を使う（枠の共有は <!-- link:begin how-usage-limits-work#shared-limit -->[利用上限の仕組み（面をまたいで共有する枠） › 面をまたいで一つの枠](how-usage-limits-work.md#shared-limit)<!-- link:end --> を見る）。A を選ぶなら、先に費用の見当と止まる上限を決める（<!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](../delegate/headless-basics.md#limits)<!-- link:end --> と <!-- link:begin reading-api-pricing#claude-code-on-api -->API 料金の読み方<!-- link:end --> を使う）。
 
 ## 今の経路を確かめる {#check-current-path}
 
@@ -189,7 +189,7 @@ Claude Code は、使える認証が複数あるとき、決まった順で 1 �
 - 繰り越されない。期末に失効する
 - 使い切って他に credits がなければ API は止まる。プランに請求が回ることはない
 
-API credits で検証や自動化を動かすには、API キーが要る。つまり、API credits を使う経路と、思わぬ従量課金の経路は、同じ `ANTHROPIC_API_KEY` を通る。キーを置くのは、どの組織のどの予算で動かすかを決めた実行に限る。API の料金の読み方は <!-- link:begin reading-api-pricing#price-components -->API 料金の読み方 › 料金の内訳（準備中）<!-- link:end --> にある。
+API credits で検証や自動化を動かすには、API キーが要る。つまり、API credits を使う経路と、思わぬ従量課金の経路は、同じ `ANTHROPIC_API_KEY` を通る。キーを置くのは、どの組織のどの予算で動かすかを決めた実行に限る。API の料金の読み方は <!-- link:begin reading-api-pricing#price-components -->API 料金の読み方<!-- link:end --> にある。
 
 ## どの原因に関わるか {#cause}
 
@@ -231,10 +231,6 @@ API credits で検証や自動化を動かすには、API キーが要る。つ�
 
 - [利用上限の仕組み（面をまたいで共有する枠）](how-usage-limits-work.md)
 
-**次に読む**
-
-- Bedrock・Vertex AI・Foundry 経由で使う（準備中）
-
 **関連**
 
 - [非対話モード（claude -p）の基本 › 課金の経路（API キーがあるとき）](../delegate/headless-basics.md#billing-path)
@@ -242,7 +238,6 @@ API credits で検証や自動化を動かすには、API キーが要る。つ�
 - [Agent SDK（Claude Code をライブラリとして使う） › 課金の経路](../api/agent-sdk-basics.md#billing)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [usage credits（上限を超えた分の従量課金） › API credits との違い](usage-credits-basics.md#vs-api-credits)
-- API 料金の読み方（準備中）
 - [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)
 - [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)

@@ -87,7 +87,7 @@ auto モードは確認を減らす仕組みで、安全を保証しない。限
 2. **広い allow ルールは働かない。** auto モードに入ると、`Bash(*)` や、インタプリタをワイルドカードで許すルールのような、任意のコードを動かせる広い allow ルールは止まる。一方で `Bash(npm test)` のような狭いルールは、分類器より先に解決されて残る。狭いルールは、想定しなかったスクリプトのパスや引数が付いても、分類器が見ないまま通りうる。全部のシェルコマンドを分類器に通したいなら、`autoMode.classifyAllShell` を `true` にする。待ち時間が増える代わりに、見る範囲が広がる。
 3. **会話で言った境界は消えうる。** 「push しないで」と言うと分類器は尊重するが、会話の圧縮でその発言が消えると効かなくなる。消えてはいけない境界は、deny ルールか ask ルールに書く（<!-- link:begin when-to-lock#spoken-rules-fade -->[お願いを鍵に移す判断 › 会話で言った禁止は圧縮で消える](when-to-lock.md#spoken-rules-fade)<!-- link:end -->）。
 4. **設定の足し方にも穴がある。** `autoMode` は、利用者の設定と管理設定からだけ読まれる。プロジェクトの `.claude/settings.json` に書いても読まれない。リポジトリに入れた設定で、分類器の許可を書き換えられないようにするためである。各階層の項目は足し合わされるので、個人の `allow` の項目が組織の `soft_deny` の項目の例外になりうる。絶対に止めたい操作は、管理設定の `permissions.deny` に書く。
-5. **連続して止められると手動に戻る。** ブロックが <!-- fact:begin auto-mode-block-pause-thresholds -->未確認<!-- fact:end --> に達すると、auto モードは一時停止して手動の確認に戻る。無人の実行では、そこで進まなくなる。
+5. **連続して止められると手動に戻る。** ブロックが <!-- fact:begin auto-mode-block-pause-thresholds -->連続 3 回または合計 20 回（2026-11-06 時点）<!-- fact:end --> に達すると、auto モードは一時停止して手動の確認に戻る。無人の実行では、そこで進まなくなる。
 
 この限界を補う守りは、同じ流れの中で先に決めておく。
 
@@ -235,7 +235,6 @@ auto モードの周りには、古い前提の助言が残っている。
 - [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - [agent view と背景セッション](../delegate/agent-view-and-background.md)
 - [/loop と定期実行の方式](../delegate/loop-and-scheduling.md)
-- エージェントチーム（複数の Claude に分担させる）（準備中）
 
 **関連**
 

@@ -159,7 +159,7 @@ updated: 2026-11-05
 - **書かれていることと推測を、表の列で分ける**：「禁じる」と頼むだけではお願いにとどまる。引用の列があれば、照合できる形になる。次の雛形で、条件・限定の列と数値の写し方も指定する。
 - **要約は原文より強い言い方になりやすい**：条件や限定が落ちて、主張の範囲が広がる。「正確に」と頼んでも直らないことがあるので、条件の列で原文と照らす。理由は <!-- link:begin summary-overgeneralization#what-happens -->[要約は原文より強く言いがち（過度な一般化） › 何が起きるか](../basics/summary-overgeneralization.md#what-happens)<!-- link:end --> にある。
 - **最重要の主張は、原文を自分で読む**：結論を左右する 1〜2 件は、表を信じずに原文を読む。読んだ内容は自分で要約し、Claude には誤読の指摘を頼む方法がある（<!-- link:begin read-specs-yourself#misreading-detector -->[仕様を自分で読み、AI に誤読を指摘させる › AI に誤読を指摘させる](read-specs-yourself.md#misreading-detector)<!-- link:end -->）。
-- **一致を証拠にしない**：別のモデルや同じモデルの再実行が同じ結論を出しても、原文の確認にはならない。<!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end --> を参照する。
+- **一致を証拠にしない**：別のモデルや同じモデルの再実行が同じ結論を出しても、原文の確認にはならない。<!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない）<!-- link:end --> を参照する。
 
 <!-- gen:begin snippet research-and-reports/facts-vs-inference -->
 <!-- textlint-disable -->
@@ -221,7 +221,6 @@ updated: 2026-11-05
 - [ドキュメント・技術文書を書く](write-docs.md)
 - [資料・スライドを作る](make-slides.md)
 - [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)
-- 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 
 </div>
 

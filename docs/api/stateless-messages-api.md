@@ -99,7 +99,7 @@ API は、モデルを呼ぶ前に会話を組み立て直す。そのため、�
 
 使うときに押さえることが 3 つある。
 
-- **スレッドの寿命は短い**：寿命は次のとおりである（<!-- fact:begin message-threads-lifetime -->未確認<!-- fact:end -->）。期限の長さは変わりうるので、使う前に公式の文書で確かめる。
+- **スレッドの寿命は短い**：寿命は次のとおりである（<!-- fact:begin message-threads-lifetime -->最後の要求から 5 分で切れ、最後に使ってから 1 時間以内に消える（2026-11-06 時点）<!-- fact:end -->）。期限の長さは変わりうるので、使う前に公式の文書で確かめる。
 - **足すだけの形である**：会話を圧縮するには、要約から新しいスレッドを始める。圧縮や古い結果の削除の手段は、<!-- link:begin long-running-agent-context#three-tools -->[長時間エージェントのコンテキスト管理 › 三つの手段（compaction・context editing・memory tool）](long-running-agent-context.md#three-tools)<!-- link:end -->にある。
 - **データの扱いが変わる**：公式の文書は、ZDR（ゼロデータ保持の契約）と HIPAA 対応の利用の対象外としている。会話がサーバーに残る間の扱いは、<!-- link:begin where-your-data-goes#retention -->[送ったデータの行方（学習・保持期間） › 残る期間](../safety/where-your-data-goes.md#retention)<!-- link:end -->と合わせて確かめる。
 
@@ -149,7 +149,6 @@ API は、モデルを呼ぶ前に会話を組み立て直す。そのため、�
 
 - [プロンプトキャッシングの実務](prompt-caching-in-practice.md)
 - [長時間エージェントのコンテキスト管理](long-running-agent-context.md)
-- Message Batches API（急がない大量の処理）（準備中）
 
 **関連**
 

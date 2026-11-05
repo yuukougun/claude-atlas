@@ -554,7 +554,7 @@ updated: 2026-11-04
 - **どの原理の回避策だったか**：握る
 - **かつてなぜ正しかったか**：公式の仕組みが入る前は、tmux の画面を分けて複数の Claude Code を並べ、役割を決めて手で連絡させる自作の組織が使われた。
 - **自分の設定や記事で見つける方法**：tmux の設定やスクリプトで、複数の claude を起動して互いにメッセージを送る仕組みを探す。
-- **関わるページ**：[agent view と背景セッション](../delegate/agent-view-and-background.md)・エージェントチーム（複数の Claude に分担させる）（準備中）・[並列にしたら疲れた・レビューが追いつかない](../symptoms/parallel-fatigue.md)
+- **関わるページ**：[agent view と背景セッション](../delegate/agent-view-and-background.md)・[並列にしたら疲れた・レビューが追いつかない](../symptoms/parallel-fatigue.md)
 - **出典**：[Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)、[Claude Code changelog](https://code.claude.com/docs/en/changelog)、[Orchestrate teams of Claude Code sessions](https://code.claude.com/docs/en/agent-teams)、[Manage multiple agents with agent view](https://code.claude.com/docs/en/agent-view)
 
 ### Opus は高いので避ける {#avoid-opus-as-expensive}
@@ -606,7 +606,7 @@ updated: 2026-11-04
 - **この機能が受け持つ原理**：見せる
 - **かつてなぜ正しかったか**：2026-02-25 に Claude Desktop に、スキル・プラグイン・コネクタをまとめる Customize の区画が入り、その中のタブで管理した。
 - **自分の設定や記事で見つける方法**：手順書の「Customize &gt; Skills」のような道順を探し、「Plugins」のページの道順に読み替える。自分の口座がどちらの画面かは、サイドバーに「Customize」と「Plugins」のどちらが出るかで分かる（公式の記事にも、Cowork とチャットが一つになった体験の記事のように、まだ「Customize &gt; Connectors」と書くものがある）。
-- **関わるページ**：[コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)・[アプリでスキルを使う](../app/skills-in-the-app.md)・アプリでプラグインを使う（準備中）
+- **関わるページ**：[コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)・[アプリでスキルを使う](../app/skills-in-the-app.md)
 - **出典**：[Manage plugins, skills, and connectors from one Plugins page](https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page)、[Release notes](https://support.claude.com/en/articles/12138966-release-notes)、[Claude Cowork and chat are one Claude](https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude)
 
 ### temperature（や top\_p・top\_k）を下げて出力を安定させる {#lower-temperature}

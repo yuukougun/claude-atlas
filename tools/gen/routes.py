@@ -32,7 +32,7 @@ def b_routes(ctx) -> str:
     cfg = gen.config
     rows = []
     for r in ordered:
-        links = [gen.ref_link(ctx.host, ref, table=True) for ref in r.to]
+        links = [gen.ref_link(ctx.host, ref, table=True) for ref in r.to if not gen.is_unplanned_ref(ref)]
         rows.append([md_text(r.cause, True), "<br>".join(links) or "—"])   # 行き先は1つずつセルの中で改行する
     return table([md_text(cfg.text("routes", "cause", "原因"), True), md_text(cfg.text("routes", "to", "対処のページ（近い順）"), True)],
                  rows)

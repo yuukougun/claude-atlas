@@ -265,7 +265,6 @@ Claude に、台帳の過去の件と今回の案の重複を調べさせるの�
 - [生成コードを自分のものにする](../verify/own-generated-code.md)
 - [決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)
 - [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)
-- 上界を測って「限界です」を反証する（準備中）
 
 </div>
 

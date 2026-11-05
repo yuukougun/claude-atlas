@@ -103,7 +103,7 @@ AI のレビューの扱いについて、記事は次の運用を挙げてい�
 - 指摘には必ず答える。
 - セキュリティの指摘は、解決するまでマージを止める。
 
-PR ごとに AI のレビューを自動で付ける機能の使い方は <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> が持つ。PR を作る側が出す前にリスクと確かめた証拠を書く手順は <!-- link:begin create-and-review-prs#risks-before-submitting -->[PR を作り、レビューを受ける › 出す前にリスクを挙げさせる](../recipes/create-and-review-prs.md#risks-before-submitting)<!-- link:end --> にある。
+PR ごとに AI のレビューを自動で付ける機能の使い方は <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）<!-- link:end --> が持つ。PR を作る側が出す前にリスクと確かめた証拠を書く手順は <!-- link:begin create-and-review-prs#risks-before-submitting -->[PR を作り、レビューを受ける › 出す前にリスクを挙げさせる](../recipes/create-and-review-prs.md#risks-before-submitting)<!-- link:end --> にある。
 
 !!! example "判断例：高の段の変更で、承認できる人が足りない"
     - **状況**：高の段と決めたパスを変更する PR がある。高の段は人の承認が 2 人要る。承認できる人は 1 人だけで、AI のレビューは 2 回通っている。
@@ -173,7 +173,6 @@ AI の承認の扱いは、チームの AI 利用の決まりに、レビュー�
 **関連**
 
 - [レビューのボトルネックと疲労](review-bottlenecks.md)
-- 自動 PR レビュー（Code Review・/ultrareview）（準備中）
 - [役割を分ける（書く人・承認する人・疑う人）](separate-roles.md)
 - [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)
 - [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)

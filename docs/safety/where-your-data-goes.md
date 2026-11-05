@@ -74,7 +74,7 @@ updated: 2026-11-05
     - **選んだもの**：契約のある面に移す。
     - **理由**：オフにしても、標準の保持期間と、安全の審査での利用は残る。そもそも預かったデータを個人のアカウントに渡してよいかは顧客との契約が決める。判断の基準は <!-- link:begin entrusted-data#contracted-surfaces -->[預かったデータ・規約付きのデータを AI に渡してよいか › 契約のある面だけで使う](entrusted-data.md#contracted-surfaces)<!-- link:end --> にある。
 
-組織で使うプランの選び方は <!-- link:begin choosing-an-org-plan -->組織で使うプランの選び方（準備中）<!-- link:end --> を見る。
+組織で使うプランの選び方は <!-- link:begin choosing-an-org-plan -->組織で使うプランの選び方<!-- link:end --> を見る。
 
 ## 学習への利用の設定 {#training-setting}
 
@@ -177,7 +177,6 @@ updated: 2026-11-05
 - [預かったデータ・規約付きのデータを AI に渡してよいか](entrusted-data.md)
 - [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)
 - [秘密の情報を読まれた・外に出された](../symptoms/secrets-exposed.md)
-- 組織で使うプランの選び方（準備中）
 
 **関連**
 

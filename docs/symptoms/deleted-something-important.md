@@ -147,7 +147,7 @@ updated: 2026-11-05
 
 同じことを繰り返さないために、戻せる状態を先に作り、消されたくないものは鍵で守る。
 
-- **戻せる状態を先に作る**：変更を小さく区切ってコミットしておくと、消されても戻せる。区切り方は<!-- link:begin working-with-git#granularity -->[git との付き合い方 › どこで区切るか](../cli/working-with-git.md#granularity)<!-- link:end -->にある。ノートの保管庫のような、コードでないフォルダに一括の書き換えを任せるときも、先に戻せる状態にする。<!-- link:begin notes-and-pkm -->ノート・PKM（Obsidian など）（準備中）<!-- link:end -->を参照する。
+- **戻せる状態を先に作る**：変更を小さく区切ってコミットしておくと、消されても戻せる。区切り方は<!-- link:begin working-with-git#granularity -->[git との付き合い方 › どこで区切るか](../cli/working-with-git.md#granularity)<!-- link:end -->にある。ノートの保管庫のような、コードでないフォルダに一括の書き換えを任せるときも、先に戻せる状態にする。<!-- link:begin notes-and-pkm -->ノート・PKM（Obsidian など）<!-- link:end -->を参照する。
 - **消されたくないものは鍵で守る**：例外を許さない禁止は、deny ルールかフックで止める。CLAUDE.md には、理由と相談の基準だけを書く。経路と、巻き戻しで戻らないものは<!-- link:begin destructive-commands#how-it-happens -->[消されたくないもの（破壊的コマンド） › 消える経路](../safety/destructive-commands.md#how-it-happens)<!-- link:end -->にある。止めた理由と代わりの手段を返すフックの書き方は、<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end -->と<!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end -->にある。
 - **境界を OS の層で足す**：サンドボックスでシェルのコマンドを囲む。確認をすべて外す運用は、隔離した使い捨ての環境だけにする。古くなった助言は<!-- link:begin outdated-advice-ledger#yolo-skip-permissions -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#yolo-skip-permissions)<!-- link:end -->にある。
 - **任せる幅に守りを合わせる**：確認を減らすほど、守りを同じ流れの中で足す。段階ごとの設定は<!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end -->にある。
@@ -201,7 +201,6 @@ updated: 2026-11-05
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)
-- ノート・PKM（Obsidian など）（準備中）
 - [承認の確認が多すぎる・少なすぎる](wrong-amount-of-approvals.md)
 - [秘密の情報を読まれた・外に出された](secrets-exposed.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

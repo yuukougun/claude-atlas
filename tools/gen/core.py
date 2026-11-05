@@ -3,7 +3,8 @@
 
 公開（design §8.4）：読む層の Atlas.is_published（docs/ にあり、stage が site.yml の published_stages、作る層の設定の
 held_back にない）。生成物（nav・入口・一覧・逆引き・索引・ロードマップ・知識マップ・llms.txt・サイト用のデータ）には
-公開するページだけを載せる。ページ下部と本文の目印が未公開のページを指すときは「題名（準備中）」の平文にする。
+公開するページだけを載せる。ページ下部と本文の目印が未公開のページを指すときは「題名（準備中）」の平文にする
+（書かないページ＝優先度が unplanned_priorities の骨格は、題名だけ。ページ下部の一覧と routes の表からは外す）。
 """
 from __future__ import annotations
 
@@ -73,6 +74,19 @@ class Gen:
 
     def is_pub(self, page) -> bool:
         return page is not None and page.id in self.pub_ids
+
+    def is_unplanned(self, page) -> bool:
+        """書かないページ：優先度が config.yml の unplanned_priorities に当たり、stage が最初の段階（stub）のもの。
+        リンクにせず「（準備中）」も付けず題名だけを出し、前提・次に読む・関連と生成の表からは外す。"""
+        stages = self.site.stages
+        return (page is not None and bool(page.priority) and page.priority in self.config.unplanned_priorities
+                and bool(stages) and page.stage == stages[0])
+
+    def is_unplanned_ref(self, ref: Ref | str) -> bool:
+        """参照（id か id#anchor）の先が書かないページか（先がない・分野の指定は False）。"""
+        if isinstance(ref, str) and ref.strip().startswith(FIELD_PREFIX):
+            return False
+        return self.is_unplanned(self.atlas.resolve(Ref.parse(ref) if isinstance(ref, str) else ref))
 
     @staticmethod
     def doc_rel(page) -> str:
@@ -153,8 +167,10 @@ class Gen:
     # ---- リンク
 
     def page_link(self, host: str, page, anchor: str | None = None, table: bool = False, text: str | None = None) -> str:
-        """ページへのリンク。未公開なら「題名（準備中）」の平文。anchor はそのページで指せるときだけ付ける。"""
+        """ページへのリンク。未公開なら「題名（準備中）」の平文（書かないページは題名だけ）。anchor はそのページで指せるときだけ付ける。"""
         label = text if text is not None else md_text(self.title(page), table)
+        if self.is_unplanned(page):
+            return label
         if anchor:
             sec = self.section_title(page, anchor)
             if sec and text is None:

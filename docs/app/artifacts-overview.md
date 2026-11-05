@@ -185,7 +185,7 @@ Docs は、チームで同時に編集できる。Dashboards と Motion は、�
 名前の似たものが 2 つある。1 つ目は、アーティファクトのテンプレートである Design で、本体のアプリの会話の中で使う。2 つ目は、Anthropic Labs が出している Claude Design という別の製品である。
 
 - **会話の中の Design**：アーティファクトの一種として、会話の横にモックや試作を作る。このページが扱う。
-- **Claude Design**：デザイン、プロトタイプ、スライドなどを作る別の製品で、コードベースやデザインファイルからデザインシステムを作ったり、Claude Code へ引き渡したりできる、と発表されている。位置づけと確認日つきの一覧は <!-- link:begin peripheral-products#list -->周辺製品の一覧 › 一覧（確認日つき）（準備中）<!-- link:end --> にある。
+- **Claude Design**：デザイン、プロトタイプ、スライドなどを作る別の製品で、コードベースやデザインファイルからデザインシステムを作ったり、Claude Code へ引き渡したりできる、と発表されている。位置づけと確認日つきの一覧は <!-- link:begin peripheral-products#list -->周辺製品の一覧<!-- link:end --> にある。
 
 読者がふつうに触れるのは、会話の中のほうである。Claude Design の操作の手順は、このページでは扱わない。
 
@@ -225,7 +225,6 @@ Docs は、チームで同時に編集できる。Dashboards と Motion は、�
 - [ドキュメント・技術文書を書く](../recipes/write-docs.md)
 - [見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
-- 周辺製品の一覧（準備中）
 
 </div>
 

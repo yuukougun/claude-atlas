@@ -63,14 +63,14 @@ updated: 2026-11-05
 
 ultrathink は、プロンプトに書くと、その 1 ターンだけ深く考えるよう頼む言葉として認識される。セッションの effort は変えない。使いどころは、ふだんは既定の effort で足りるが、この 1 回の依頼だけ慎重に考えさせたい場面である。effort を全体で上げると、以降のすべてのターンの待ち時間と使用量が増える。
 
-Claude Code の対話の端末では、条件がそろうと、そのターンの effort を引き上げて動かす場合がある。引き上がるときは、入力欄の ultrathink が虹色で表示される。引き上がる段と、対応するモデル・面は、<!-- fact:begin ultrathink-raise-target-and-models -->未確認<!-- fact:end -->である。対応する版は、対話のターミナルが <!-- fact:begin ultrathink-raise-min-version-terminal -->Claude Code 2.1.311 以降（2026-11-04 時点）<!-- fact:end -->、VS Code が <!-- fact:begin ultrathink-raise-min-version-vscode -->未確認<!-- fact:end --> である。次の場合は、引き上がらない。
+Claude Code の対話の端末では、条件がそろうと、そのターンの effort を引き上げて動かす場合がある。引き上がるときは、入力欄の ultrathink が虹色で表示される。引き上がる段と、対応するモデル・面は、<!-- fact:begin ultrathink-raise-target-and-models -->xhigh。Anthropic の API で Opus 5.5・Sonnet 5.5・Haiku 5.5・Fable 5.1 を使うとき（2026-11-06 時点）<!-- fact:end -->である。対応する版は、対話のターミナルが <!-- fact:begin ultrathink-raise-min-version-terminal -->Claude Code 2.1.311 以降（2026-11-04 時点）<!-- fact:end -->、VS Code が <!-- fact:begin ultrathink-raise-min-version-vscode -->Claude Code 2.1.316 以降（2026-11-06 時点）<!-- fact:end --> である。次の場合は、引き上がらない。
 
 
 - `CLAUDE_CODE_EFFORT_LEVEL` で、引き上げる先より低い段に固定しているとき。
 - 組織の上限が設定されているとき。
 - Bedrock など、Anthropic の API 以外で動かしているとき。
 
-`CLAUDE_CODE_DISABLE_ULTRATHINK` を設定すると、この動きを止められる（使える版：<!-- fact:begin ultrathink-disable-env-min-version -->未確認<!-- fact:end -->）。引き上がらない場合でも、ultrathink の語は頼みとして文脈に渡る。
+`CLAUDE_CODE_DISABLE_ULTRATHINK` を設定すると、この動きを止められる（使える版：<!-- fact:begin ultrathink-disable-env-min-version -->Claude Code 2.1.316 以降（2026-11-06 時点）<!-- fact:end -->）。引き上がらない場合でも、ultrathink の語は頼みとして文脈に渡る。
 
 === "アプリ"
 

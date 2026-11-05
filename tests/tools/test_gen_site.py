@@ -448,6 +448,59 @@ class TestCheckAndPage(GenCase):
 
 
 @unittest.skipUnless(shutil.which("mkdocs") or (REPO / ".venv").exists(), "mkdocs がない")
+class TestUnplanned(GenCase):
+    """書かないページ（優先度が unplanned_priorities の骨格）：link の目印は題名だけ、一覧と表からは外す。"""
+
+    NAME = "書かない例"
+
+    def setUp(self):
+        super().setUp()
+        self.write("stubs/extend/not-written.md", (
+            "---\nid: not-written\ntitle: 書かない例\ntype: concept\nfield: extend\nchapter: CLAUDE.md\norder: 90\n"
+            "level: 整える\npriority: 任意\nsummary: 試験用の要約。\nsigns:\n  - {type: goal, text: 書かないページ}\n"
+            "prerequisites: [hooks-basics]\nsections:\n  - {title: 小さな節, anchor: small}\nsources: []\nvolatility: 中\n"
+            "stage: stub\nupdated: 2026-11-04\n---\n\n<!-- gen:begin page-links -->\n<!-- gen:end page-links -->\n"))
+        self.replace("docs/start/how-to-use.md", "試験用の本文。", "試験用の本文。<!-- link:begin not-written --><!-- link:end -->"
+                     "と<!-- link:begin not-written#small --><!-- link:end -->。")
+        self.replace("docs/symptoms/instructions-ignored.md", "writing-safe-hooks]}", "not-written, writing-safe-hooks]}")
+        self.replace("docs/symptoms/instructions-ignored.md", "related: [six-causes]", "related: [six-causes, not-written, not-written#small]")
+        self.replace("docs/symptoms/instructions-ignored.md", "prerequisites: [request-vs-lock]",
+                     "prerequisites: [request-vs-lock, not-written]")
+        self.generate()
+
+    def test_link_marker_is_only_the_title(self):
+        use = self.read("docs/start/how-to-use.md")
+        self.assertIn("<!-- link:begin not-written -->書かない例<!-- link:end -->", use)
+        self.assertIn("<!-- link:begin not-written#small -->書かない例<!-- link:end -->", use)    # 節を指す形も題名だけ
+        self.assertNotIn("書かない例（準備中）", use)
+        self.assertNotIn("not-written.md", use)
+
+    def test_page_bottom_leaves_it_out(self):
+        bottom = block_content(self.read("docs/symptoms/instructions-ignored.md"), "page-links")
+        self.assertNotIn(self.NAME, bottom)
+        self.assertIn("**前提**\n\n- [お願いと鍵](../basics/request-vs-lock.md)\n", bottom)
+        self.assertIn("**関連**\n\n- [失敗の二つの軸と診断の入口](../start/six-causes.md)\n", bottom)
+        self.assertIn("安全なフックの書き方（準備中）", bottom)               # 書く予定のページは今まで通り
+        self.assertNotIn(self.NAME, block_content(self.read("docs/enforce/hooks-basics.md"), "page-links"))   # 次に読む
+
+    def test_routes_table_leaves_it_out(self):
+        block = block_content(self.read("docs/symptoms/instructions-ignored.md"), "routes")
+        self.assertNotIn(self.NAME, block)
+        self.assertIn("安全なフックの書き方（準備中） |", block)
+
+    def test_not_in_generated_lists(self):
+        for rel in ("nav.yml", "docs/llms.txt", "docs/start/reverse-index.md", "docs/start/term-index.md"):
+            self.assertNotIn(self.NAME, self.read(rel), rel)
+
+    def test_front_matter_is_not_rewritten(self):
+        self.assertIn("related: [six-causes, not-written, not-written#small]", self.read("docs/symptoms/instructions-ignored.md"))
+
+    def test_other_priorities_still_show_pending(self):
+        self.write_config({"unplanned_priorities: [任意]": "unplanned_priorities: []"})
+        self.generate()
+        self.assertIn("<!-- link:begin not-written -->書かない例（準備中）<!-- link:end -->", self.read("docs/start/how-to-use.md"))
+
+
 class TestBuild(GenCase):
     """生成した試験用のサイトが、MkDocs（と Zensical。入っていれば）の --strict のビルドを通る（リンク・anchor・nav・
     exclude_docs の確かめ）。"""

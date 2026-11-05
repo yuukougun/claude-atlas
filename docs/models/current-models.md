@@ -107,7 +107,7 @@ updated: 2026-11-05
 Fable と Mythos は、同じモデルを、安全装置の強さだけ変えて提供するものである。公式は、同じモデルで安全装置の水準が違うと説明している。
 
 - Fable は一般に提供される。ふつうの利用ではこちらを使う。
-- Mythos は、検証の制度を通した組織だけに提供される。提供される範囲は、<!-- fact:begin mythos-availability -->未確認<!-- fact:end -->（公式の発表で確かめる）。
+- Mythos は、検証の制度を通した組織だけに提供される。提供される範囲は、<!-- fact:begin mythos-availability -->信頼されたアクセスの制度を通した、現在は米国の一部の組織に限る。Life Sciences Verification Program では使える。Cyber Verification Program は今は Opus・Sonnet 級で、Mythos 級は今後含める予定（2026-11-06 時点）<!-- fact:end -->（公式の発表で確かめる）。
 
 この 2 つは、読者が選び分ける組ではない。ふつうに使えるのは Fable で、Mythos は提供の条件を満たした組織の側の話だ。そのため、このページの系統の表では Fable だけを置き、Mythos は行にしていない。
 
@@ -133,7 +133,7 @@ Fable と Mythos は、同じモデルを、安全装置の強さだけ変えて
 
 === "API"
 
-    リクエストにモデルの ID を書いて選ぶ。ID の形と、退役の予定は、公式の [Models overview](https://platform.claude.com/docs/en/models/overview) と [Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations) で確かめる。たとえば Sonnet 4.5 の退役の予定日は、<!-- fact:begin sonnet-4-5-retirement-date -->未確認<!-- fact:end -->である。退役の日を過ぎたモデルは使えなくなるので、退役の予定があるモデルを固定して使っている場合は、先に後継へ替える。
+    リクエストにモデルの ID を書いて選ぶ。ID の形と、退役の予定は、公式の [Models overview](https://platform.claude.com/docs/en/models/overview) と [Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations) で確かめる。たとえば Sonnet 4.5 の退役の予定日は、<!-- fact:begin sonnet-4-5-retirement-date -->2026-11-30（2026-11-06 時点）<!-- fact:end -->である。退役の日を過ぎたモデルは使えなくなるので、退役の予定があるモデルを固定して使っている場合は、先に後継へ替える。
 
 面やプランの変更は、日付つきで <!-- link:begin change-timeline-2026#timeline -->[2026 年の主な変更の年表 › 年表](../changes/change-timeline-2026.md#timeline)<!-- link:end --> に記録される。モデルの名前や旧名から引くときは <!-- link:begin term-index#how-to-read -->[用語索引と旧名の対応 › 引き方](../start/term-index.md#how-to-read)<!-- link:end --> を使う。
 

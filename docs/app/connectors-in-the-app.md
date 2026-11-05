@@ -184,7 +184,7 @@ Custom connectors は Anthropic の検証を受けていない。公式の記事
 
 - **Claude Code の MCP**：設定の置き場所とスコープを自分で決める。アプリの画面操作ではなく、設定ファイルと CLI で扱う。仕組みは <!-- link:begin connecting-mcp -->[MCP をつなぐ](../extend/connecting-mcp.md)<!-- link:end --> にある。
 - **CLI とスキルで済ませる**：成熟した CLI があれば、MCP をつながずに済むことがある。選び方は <!-- link:begin mcp-or-cli -->[MCP か CLI か](../extend/mcp-or-cli.md)<!-- link:end --> にある。
-- **プラグイン**：スキル・コネクタ・サブエージェントなどの束。職種ごとの道具一式を入れたいときは <!-- link:begin plugins-in-the-app -->アプリでプラグインを使う（準備中）<!-- link:end --> を見る。
+- **プラグイン**：スキル・コネクタ・サブエージェントなどの束。職種ごとの道具一式を入れたいときは <!-- link:begin plugins-in-the-app -->アプリでプラグインを使う<!-- link:end --> を見る。
 - **リサーチと組み合わせる**：コネクタをつなぐと、リサーチが社内の資料も調べに使える。頼み方と出典の確かめ方は <!-- link:begin using-research#with-connectors -->[リサーチを使いこなす › コネクタと組み合わせる](using-research.md#with-connectors)<!-- link:end --> にある。
 
 ## 古くなった助言 {#outdated}
@@ -216,10 +216,6 @@ Custom connectors は Anthropic の検証を受けていない。公式の記事
 **前提**
 
 - なし
-
-**次に読む**
-
-- アプリでプラグインを使う（準備中）
 
 **関連**
 

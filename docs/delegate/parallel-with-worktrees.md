@@ -134,7 +134,7 @@ worktree は新しいチェックアウトなので、git が追跡している�
 - **外の状態は分かれない**：データベース・キャッシュ・外部のサービス・ポートは、worktree を分けても同じものを指す。ファイルの衝突は減るが、実行時の衝突は残る。
 - **統合のぶつかりは残る**：2 つの worktree が同じファイルを変えれば、取り込むときにマージの衝突が起きる。同じファイルを触る作業は並べず、触る範囲を分けて割り当てる。判断の基準は <!-- link:begin choosing-parallel-modes#same-files -->[並列の方式の選び方 › 同じファイルを触るか](choosing-parallel-modes.md#same-files)<!-- link:end --> にある。
 - **出入りの道具が止まる設定がある**：設定のキー `permissions.blockWritesOutsideWorkingDirectories` を true にすると、作業ディレクトリの外への書き込みを、どの権限モードでも拒む。この設定を入れると、会話の途中で worktree を出入りする EnterWorktree と ExitWorktree の道具は使えない。シェルのコマンドと MCP の道具は縛られないため、シェルの側はサンドボックスで塞ぐ（[CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)）。
-- **無人の再開で保護が抜けた版がある**：`claude -p --resume` や `--continue` で入った worktree で、サンドボックスの保護が働かない不具合があった。直った版は CHANGELOG で確かめ、無人で走らせる前に自分の版を見る（[CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)）。無人の流し方は <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end --> にある。
+- **無人の再開で保護が抜けた版がある**：`claude -p --resume` や `--continue` で入った worktree で、サンドボックスの保護が働かない不具合があった。直った版は CHANGELOG で確かめ、無人で走らせる前に自分の版を見る（[CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)）。無人の流し方は <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end --> にある。
 - **本数が増えると確かめきれない**：worktree は何本でも作れるが、結果を確かめる人は増えない。本数の上限は人の側にある。理由は <!-- link:begin humans-set-the-parallel-limit#why-human-side -->[並列の上限は人間が決める › 上限が人の側にある理由](humans-set-the-parallel-limit.md#why-human-side)<!-- link:end --> にある。
 
 ## 比べる相手 {#compare}
@@ -143,7 +143,7 @@ worktree は、作業場所を分ける仕組みである。目的が違う仕�
 
 - **並列の方式全体**：誰が調整するか、同じファイルを触るかで選ぶ。worktree はその 1 つの手段である。比較は <!-- link:begin choosing-parallel-modes#compare -->[並列の方式の選び方 › 方式の比較](choosing-parallel-modes.md#compare)<!-- link:end --> にある。
 - **agent view と背景セッション**：見張らなくてよい作業を投入し、状態を一覧する仕組みである。作業場所を分ける仕組みとは役割が違う。向く作業の判断は <!-- link:begin agent-view-and-background#what-fits -->[agent view と背景セッション › 向く作業と向かない作業](agent-view-and-background.md#what-fits)<!-- link:end --> にある。
-- **/batch と `-p` のループ**：多数のファイルに同じ作業を流す仕組みである。worktree との併用の可否は、このページでは確かめていない。流し方は <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end --> にある。
+- **/batch と `-p` のループ**：多数のファイルに同じ作業を流す仕組みである。worktree との併用の可否は、このページでは確かめていない。流し方は <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end --> にある。
 - **セッションの分岐**：会話の分岐であり、ファイルの置き場所は変わらない。分岐した会話を別々のファイルで動かすなら、worktree が要る。会話の分岐は <!-- link:begin resume-and-branch#branch -->[セッションに名前を付けて再開・分岐する › 分岐して別案を試す](../cli/resume-and-branch.md#branch)<!-- link:end --> にある。
 - **サブエージェント**：文脈を分ける仕組みであり、ファイルを分けるには `isolation: worktree` を足す。使いどころは <!-- link:begin writing-subagents#when-to-use -->[サブエージェントの作り方と使いどころ › 使いどころと、使わない場面](../extend/writing-subagents.md#when-to-use)<!-- link:end --> にある。
 
@@ -173,7 +173,6 @@ worktree は、作業場所を分ける仕組みである。目的が違う仕�
 **次に読む**
 
 - [仮説ごとに並べて、同じ物差しで比べる](compare-hypotheses-in-parallel.md)
-- 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 
 **関連**
 

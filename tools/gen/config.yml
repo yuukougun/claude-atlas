@@ -10,6 +10,11 @@
 report_template: report-error.yml   # 誤りの報告の Issue のテンプレート（.github/ISSUE_TEMPLATE/。作者の承認 2026-11-05。overrides/main.html が欄に入れて開く）
 held_back: []   # 2026-11-05：作者の承認（decisions「工程7の終わりの頼みへの回答」）の後、試作・測定・方針のページを外して公開した。波の前に外すページがあればここに書く
 
+# 書かないページ（作者の決め 2026-11-06）。優先度がこれに当たり、stage が最初の段階（stub）のページは、書かない。
+# 「題名（準備中）」を出し続けないよう、link の目印（と生成の部分）は題名だけを平文で出し（リンクも「準備中」も付けない。id#anchor も同じ）、
+# ページ下部の前提・次に読む・関連と、症状の振り分けの表・台帳の関わるページからは外す。front matter の値は書き換えない
+unplanned_priorities: [任意]
+
 # 語彙の値の役（どの型が症状のページか、など）。値は site.yml の語彙
 roles:
   symptom_type: symptom          # routes を持ち、診断の節の振り分け（routes）と症状の原因別の表の元になる型

@@ -84,7 +84,7 @@ updated: 2026-11-05
 - 2026-07-24：[「最後に double-check して」と書き足す](outdated-advice-ledger.md#add-double-check) → 確かめる手段（テスト・型の検査・照らす基準）を渡す。Opus 5 は自分の作業を言われなくても確かめるので、「見直して」「double-check して」や、確かめ役のサブエージェントを使わせる指示は消す（確かめすぎでトークンと時間が増える）。Opus 5.5 の公式の手引きは、Opus 5 の頼み方を出発点として使えるとするので、同じ扱いから始め、自分の作業で比べる。ほかのモデルでは、終わる前に基準と照らして確かめるよう頼むのは今も効く。
 - 2026-07-24〜2026-10-27：[工程ごとにサブエージェントを大量に作る](outdated-advice-ledger.md#subagent-per-step) → サブエージェントは、文脈を分ける意味のある作業に使う：本筋に残したくない長い出力（すべてのテストの実行や広い検索）、並べられる独立の作業、書く過程を見ていないレビュー、道具を絞った役。小さな作業は本体で済ませる。新しいサブエージェントは文脈を集め直すので、かえって遅くなることもある。
 - 2026-07-24〜2026-10-27：[「subagent を使え」と書き足す](outdated-advice-ledger.md#tell-it-to-use-subagents) → 書き足さない。サブエージェントに任せるのは、大きく、本当に独立していて並べられる作業だけにする。同じ作業をサブエージェントに渡しても答えはよくならない（よくなるのは、書く過程を見ていない別のレビューを頼むとき）。Claude Code では CLAUDE\_CODE\_MAX\_SUBAGENT\_SPAWN\_DEPTH と CLAUDE\_CODE\_MAX\_CONCURRENT\_SUBAGENTS で数を縛れる。
-- 2026-08-03：Claude in Slack → Claude Tag（周辺製品の一覧（準備中））
+- 2026-08-03：Claude in Slack → Claude Tag（周辺製品の一覧）
 - 2026-08-06・Claude Code 2.1.223：/review → /code-review（[書いた本人ではない者にレビューさせる](../verify/independent-review.md)）
 - 2026-08-14〜2026-09-28・Claude Code 2.1.283：[最初は毎回承認を求められる](outdated-advice-ledger.md#approve-everything-first) → 何も設定していなければ、ターミナルと VS Code の対話のセッションは auto モードで始まる（2.1.283 以上）。毎回確かめたいなら、permissions.defaultMode を default（表示は Manual）にするか、--permission-mode manual で起動する。claude -p と Agent SDK は、決めていなければ Manual で動く。
 - 2026-08-14〜2026-09-28：[--dangerously-skip-permissions で YOLO 運用](outdated-advice-ledger.md#yolo-skip-permissions) → ふだんの対話は auto モード（今の既定）にし、サンドボックスを重ねる。bypassPermissions（--dangerously-skip-permissions と同じ）は、使い捨てのコンテナや VM の中だけで使う。permissions.blockWritesOutsideWorkingDirectories（2.1.314 以上）は、bypass でも Write・Edit・NotebookEdit が作業ディレクトリの外に書くのを止める。ただしシェルのコマンドは止めないので、隔離の代わりにはならない。
@@ -103,7 +103,7 @@ updated: 2026-11-05
 - 2026-10-27 ごろ：[「keep going」「don't be lazy」と書く](outdated-advice-ledger.md#keep-going-dont-be-lazy) → こうした一言は消す。今のモデルは合意した作業を言われなくても続け、この手の文はやりすぎの原因になりやすい。代わりに、通すべきテストのような確かめる手段を渡す。途中で止まったら continue と言い、誰も見ていない実行は /goal か Stop フックで続けさせる。
 - 2026-10-27 ごろ：[200k を前提にコンテキストを最優先で節約する](outdated-advice-ledger.md#save-context-for-200k) → 今の多くのモデルは 1M トークンのコンテキストウィンドウを持ち、圧縮も自動なので、溢れることはまれになった。関係のない作業に移るときの /clear は、答えの質とコストのために今も勧められる。大きな会話（既定で 200K トークン以上）を 1 時間ほど放置すると、プロンプトキャッシュが切れる前に要約される（idle compaction）。ターミナルは 2.1.299、VS Code と Desktop の Code タブは 2.1.314 から働き、idleCompaction を false にするか /config で止められる。
 - 2026-10-27 ごろ：[コンテキストを守るためにサブエージェントに調べさせる](outdated-advice-ledger.md#subagents-to-save-context) → 溢れることはまれになったので、守るためだけには使わない。サブエージェントが今も向くのは、並べる作業、うるさい出力を本筋から離すこと、独立したレビュー。どれもトークンが余分にかかる。
-- 2026-10-29〜2026-11-30：「Customize」・「Customize」の「Skills」「Connectors」「Plugins」のタブ → 「Plugins」（サイドバー・チャットのメニュー・設定の名前と、1 つの「Plugins」のページ）（アプリでプラグインを使う（準備中））
+- 2026-10-29〜2026-11-30：「Customize」・「Customize」の「Skills」「Connectors」「Plugins」のタブ → 「Plugins」（サイドバー・チャットのメニュー・設定の名前と、1 つの「Plugins」のページ）（アプリでプラグインを使う）
 - 2026-10-29〜2026-11-30：[Customize の「Skills」「Connectors」「Plugins」の各タブで管理する](outdated-advice-ledger.md#customize-tabs) → サイドバーの名前は「Plugins」に変わる途中で、変わった口座では 1 つの「Plugins」のページでプラグイン・スキル・コネクタを管理する（スキルとコネクタだけに絞り込める）。展開の途中なので、サイドバーに「Customize」が出る口座は、まだ前の画面（Skills・Connectors・Plugins の各タブ）のままである。スキルはチャットの「+」か「/」で使う。Team と Enterprise で「Skills」を切っている組織は、2026-11-30 から Desktop のプラグインも止まる。
 - 2026-10-30：Max 20x → Ultra（[プランの選び方](../cost/choosing-a-plan.md)）
 - 2026-10-30・Claude Code 2.1.314：Recently denied・Recent → Recently blocked（/permissions のタブ）（[auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)）

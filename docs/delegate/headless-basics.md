@@ -144,7 +144,7 @@ updated: 2026-11-05
 
 `json` の出力の `total_cost_usd` は、実行ごとの費用の見積もりである。`--continue` や `--resume` で続けると、会話全体の合計が出る。CI の時間切れのような、ジョブ側の制限も併用する。
 
-費用がどこで増えるかは <!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> で確かめる。多数のファイルに同じ作業を流す場合は、まず数件で上限を試す（<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->）。
+費用がどこで増えるかは <!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> で確かめる。多数のファイルに同じ作業を流す場合は、まず数件で上限を試す（<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end -->）。
 
 ## 知らないフォルダで動かすとき {#untrusted-folders}
 
@@ -227,7 +227,7 @@ updated: 2026-11-05
 - 決まった時刻・イベント・スクリプトのどれから動かすか、どこで動くか、どの課金になるかで選ぶ：<!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)<!-- link:end -->。
 - GitHub のイベントや `@claude` で動かす：<!-- link:begin github-actions-with-claude#modes -->[GitHub Actions と @claude › 呼ばれて動く形と、イベントで動く形](github-actions-with-claude.md#modes)<!-- link:end -->。
 - 自分のプログラムに組み込み、承認のコールバックや型付きのメッセージが要る：<!-- link:begin agent-sdk-basics#same-and-different -->[Agent SDK（Claude Code をライブラリとして使う） › Claude Code と同じもの・違うもの](../api/agent-sdk-basics.md#same-and-different)<!-- link:end -->。層の比較は <!-- link:begin sdk-comparison#comparison -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › 層ごとの比較（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で動かす）](../api/sdk-comparison.md#comparison)<!-- link:end --> にある。
-- 多数のファイルに同じ作業を流す：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->。
+- 多数のファイルに同じ作業を流す：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end -->。
 
 ## 古くなった助言 {#outdated}
 
@@ -263,7 +263,6 @@ updated: 2026-11-05
 - [自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)
 - [--bare と再現性](bare-mode.md)
 - [GitHub Actions と @claude](github-actions-with-claude.md)
-- 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 
 **関連**
 

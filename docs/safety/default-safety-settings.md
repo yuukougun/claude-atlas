@@ -68,7 +68,7 @@ updated: 2026-11-05
 既定の値そのものは版・プラン・管理者の設定で変わるので、このページには書かない。観点ごとに、値を確かめる先を示す。
 
 - **権限**：既定の開始モードは版で変わってきた。対話の端末と VS Code の既定は、<!-- fact:begin permission-mode-default-interactive -->auto モード（Claude Code 2.1.283 以降の、ターミナルと VS Code の対話のセッション。どのプランと提供元でも）（2026-11-04 時点）<!-- fact:end -->。手元の既定は <!-- link:begin permission-modes-overview#defaults -->[権限モードの選び方 › 既定のモードと版](../cli/permission-modes-overview.md#defaults)<!-- link:end --> で確かめる。非対話の実行（`-p` と Agent SDK）は対話と既定が違い、<!-- fact:begin permission-mode-default-noninteractive -->Manual（Claude Code 2.1.302 以降。承認の要る呼び出しは、allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否）（2026-11-04 時点）<!-- fact:end -->。承認に答える人がいないので、<!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end --> を先に読む
-- **通信と読み書き**：Claude が動かすコマンドの囲いは、サンドボックスが担う。サンドボックスの既定の状態は、<!-- fact:begin sandbox-default-state -->未確認<!-- fact:end -->。囲える範囲と囲えない範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> に、読み取りが既定で広いことは <!-- link:begin sandboxing#default-reads -->[サンドボックスで封じ込める › 読み取りは既定で広い](../enforce/sandboxing.md#default-reads)<!-- link:end --> にある
+- **通信と読み書き**：Claude が動かすコマンドの囲いは、サンドボックスが担う。サンドボックスの既定の状態は、<!-- fact:begin sandbox-default-state -->既定は無効（macOS・Linux・WSL2 で動く）（2026-11-06 時点）<!-- fact:end -->。囲える範囲と囲えない範囲は <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end --> に、読み取りが既定で広いことは <!-- link:begin sandboxing#default-reads -->[サンドボックスで封じ込める › 読み取りは既定で広い](../enforce/sandboxing.md#default-reads)<!-- link:end --> にある
 - **データ**：送った会話が学習に使われる条件は、個人向けと商用の規約で分かれる。条件は <!-- link:begin where-your-data-goes#consumer-vs-commercial -->[送ったデータの行方（学習・保持期間） › 個人のプランと商用のプラン](where-your-data-goes.md#consumer-vs-commercial)<!-- link:end -->、設定の場所は <!-- link:begin where-your-data-goes#training-setting -->[送ったデータの行方（学習・保持期間） › 学習への利用の設定](where-your-data-goes.md#training-setting)<!-- link:end --> にある
 - **記録**：手元の記録は、送ったデータの扱いとは別に残る。<!-- link:begin where-your-data-goes#local-transcripts -->[送ったデータの行方（学習・保持期間） › 手元に残る記録](where-your-data-goes.md#local-transcripts)<!-- link:end --> で場所と期間を確かめる。アプリで記録を残さず試すなら <!-- link:begin incognito-chats#retention -->[シークレットチャット（記録を残さない会話） › 残らないもの・残るもの](../app/incognito-chats.md#retention)<!-- link:end --> を読む
 
@@ -76,7 +76,7 @@ updated: 2026-11-05
 
 === "アプリ"
 
-    権限は、確認なしに進める Auto と、毎回確かめる Manual から選ぶ。既定はプランと管理者の設定で変わりうる。いまの既定は、<!-- fact:begin app-default-permission-mode -->未確認<!-- fact:end -->。選び方は <!-- link:begin permission-modes-in-the-app#modes -->[アプリの権限モード（Auto と Manual）と安全 › Auto と Manual](../app/permission-modes-in-the-app.md#modes)<!-- link:end --> にある。
+    権限は、確認なしに進める Auto と、毎回確かめる Manual から選ぶ。既定はプランと管理者の設定で変わりうる。いまの既定は、<!-- fact:begin app-default-permission-mode -->Auto（Pro・Max・Ultra・Team）、Manual（Enterprise）（2026-11-06 時点）<!-- fact:end -->。選び方は <!-- link:begin permission-modes-in-the-app#modes -->[アプリの権限モード（Auto と Manual）と安全 › Auto と Manual](../app/permission-modes-in-the-app.md#modes)<!-- link:end --> にある。
 
     記録と記憶は、会話ごとの設定とシークレットチャットで調整する。表の incognito と app-memory の行が対応する。シークレットチャットの保持期間は次のとおり：
     <!-- fact:begin incognito-retention-period -->30 日（Enterprise は組織の保持期間）。履歴・メモリ・学習には使わない（2026-11-05 時点）<!-- fact:end -->

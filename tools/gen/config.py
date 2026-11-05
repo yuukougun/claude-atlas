@@ -57,6 +57,11 @@ class Config:
     def held_back(self) -> list[str]:
         return as_strings(self.raw.get("held_back"))
 
+    @property
+    def unplanned_priorities(self) -> list[str]:
+        """書かないページの優先度（これに当たり、stage が最初の段階 stub のページが「書かないページ」）。"""
+        return as_strings(self.raw.get("unplanned_priorities"))
+
     def role(self, name: str) -> str:
         return as_text(self.section("roles").get(name))
 

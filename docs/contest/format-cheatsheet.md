@@ -123,7 +123,7 @@ updated: 2026-11-05
 - **評価器**：公式とスコアが一致するテスタ。作り方は <!-- link:begin evaluators-by-format#tester -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › ヒューリスティック：公式とスコアが一致するテスタ](evaluators-by-format.md#tester)<!-- link:end --> にある。
 - **規則と当日**：長期には、AI を使う部門と使わない部門を分ける回がある。部門の有無と版は <!-- link:begin competition-rules#rules-by-type -->[大会の規則の早見（禁止・部門分け・許可と開示） › 類型ごとの大会（確認日付き）](competition-rules.md#rules-by-type)<!-- link:end --> の表で確かめ、初回提出の前に部門を選ぶ。ログを残し、費用の上限を決める。短期は補完ツールが指定のリストにあるか確かめる。
 
-AI に書かせた探索コードの点検は <!-- link:begin search-code-checklist#search-code -->探索コードと高速化の点検表（AI に書かせたとき） › 探索コードの点検の観点（準備中）<!-- link:end --> にある。ケース数・集計・勝率に要る試合数は <!-- link:begin running-contest-experiments#more-cases -->[実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › ぶれるならケースを増やす](running-contest-experiments.md#more-cases)<!-- link:end --> にある。観察の道具を作らせる使い方は <!-- link:begin build-observation-tools -->[観察の道具を作らせる（可視化・集計・ログ）](../recipes/build-observation-tools.md)<!-- link:end --> にある。
+AI に書かせた探索コードの点検は <!-- link:begin search-code-checklist#search-code -->探索コードと高速化の点検表（AI に書かせたとき）<!-- link:end --> にある。ケース数・集計・勝率に要る試合数は <!-- link:begin running-contest-experiments#more-cases -->[実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › ぶれるならケースを増やす](running-contest-experiments.md#more-cases)<!-- link:end --> にある。観察の道具を作らせる使い方は <!-- link:begin build-observation-tools -->[観察の道具を作らせる（可視化・集計・ログ）](../recipes/build-observation-tools.md)<!-- link:end --> にある。
 
 ## 性能改善 {#performance-tuning}
 
@@ -178,7 +178,7 @@ AI の案が他の参加者と似通う点は <!-- link:begin ai-ideas-are-every
 - **評価器**：対戦場と基準のボット。作り方は <!-- link:begin evaluators-by-format#arena -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場） › 対戦型：対戦場と基準のボット](evaluators-by-format.md#arena)<!-- link:end --> にある。
 - **規則と当日**：要項と行動規範を読み、不明点は運営に確かめて記録する。直前の大きな変更を避け、戻せるようにする。
 
-採否は旧版と他のチームの両方を相手に決める。この進め方と役割の分け方は <!-- link:begin long-team-competitions#adoption -->チーム戦の運用（長期・対戦型） › 採否は旧版とほかのチームの両方で決める（準備中）<!-- link:end --> と <!-- link:begin long-team-competitions#roles -->チーム戦の運用（長期・対戦型） › 役割を分ける（準備中）<!-- link:end --> にある。凍結とリハーサルは <!-- link:begin long-team-competitions#freeze-and-rehearse -->チーム戦の運用（長期・対戦型） › 凍結とリハーサル（準備中）<!-- link:end --> にある。
+採否は旧版と他のチームの両方を相手に決める。この進め方と役割の分け方は <!-- link:begin long-team-competitions#adoption -->チーム戦の運用（長期・対戦型）<!-- link:end --> と <!-- link:begin long-team-competitions#roles -->チーム戦の運用（長期・対戦型）<!-- link:end --> にある。凍結とリハーサルは <!-- link:begin long-team-competitions#freeze-and-rehearse -->チーム戦の運用（長期・対戦型）<!-- link:end --> にある。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -197,8 +197,6 @@ AI の案が他の参加者と似通う点は <!-- link:begin ai-ideas-are-every
 - [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](evaluators-by-format.md)
 - [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](competition-day-operations.md)
 - [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](running-contest-experiments.md)
-- 探索コードと高速化の点検表（AI に書かせたとき）（準備中）
-- チーム戦の運用（長期・対戦型）（準備中）
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](../eval/verifier-defines-problem.md)
 - [学校・組織・コンテストの規則（類型と確認表）](../safety/checking-ai-rules.md)
 - [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)

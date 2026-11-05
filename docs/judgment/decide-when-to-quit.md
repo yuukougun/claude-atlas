@@ -136,7 +136,7 @@ updated: 2026-11-05
 - **AI の賛成を判定の根拠に数えない**：AI が「この方針は有望です」と答えても、基準を満たした証拠にはならない。何を証拠に数えるかは<!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](agreement-is-not-evidence.md#what-counts)<!-- link:end -->が扱う。
 - **戦略の改善を AI に回し続けさせて、やめどきも AI に決めさせる運用はしない**：開いたループが過適合を進める理由は<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](../delegate/open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->が扱う。
 
-チームの役割の分け方は<!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end -->が、長期のチーム戦での置き方は<!-- link:begin long-team-competitions#roles -->チーム戦の運用（長期・対戦型） › 役割を分ける（準備中）<!-- link:end -->が扱う。
+チームの役割の分け方は<!-- link:begin separate-roles#against-sycophancy -->[役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)<!-- link:end -->が、長期のチーム戦での置き方は<!-- link:begin long-team-competitions#roles -->チーム戦の運用（長期・対戦型）<!-- link:end -->が扱う。
 
 ## 頭打ちは方針を疑う合図 {#plateau}
 
@@ -267,7 +267,6 @@ AI にどれだけ任せても、方針の単位では次の 3 つを人が握�
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](agreement-is-not-evidence.md)
 - [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](../contest/running-contest-experiments.md)
 - [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](../contest/competition-day-operations.md)
-- チーム戦の運用（長期・対戦型）（準備中）
 
 </div>
 

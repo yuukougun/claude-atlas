@@ -139,7 +139,7 @@ trial を走らせる手段は、面ごとに違う。
     task ごとに新しいセッションを開く。作業ディレクトリは、同じコミットを新しく取り出したものにする。非対話モードの `claude -p` を使うと、スクリプトから回せる。無人で回すときは、許す道具と止まる上限を明示する（<!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](../delegate/headless-basics.md#limits)<!-- link:end -->）。
 
 === "API"
-    変更前と変更後のシステムプロンプトを用意し、task の入力を、同じモデルと同じ設定で何度か送る。試行が多いときは、急がない処理を一括で流す手段が使える（<!-- link:begin batch-api-basics#fit -->Message Batches API（急がない大量の処理） › 向く仕事・向かない仕事（準備中）<!-- link:end -->）。
+    変更前と変更後のシステムプロンプトを用意し、task の入力を、同じモデルと同じ設定で何度か送る。試行が多いときは、急がない処理を一括で流す手段が使える（<!-- link:begin batch-api-basics#fit -->Message Batches API（急がない大量の処理）<!-- link:end -->）。
 
 ## スキルの有り無しを新しいセッションで比べる（skill-creator・claude plugin eval） {#compare-skills}
 
@@ -297,7 +297,6 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 - [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)
 - [Claude に採点させる（人の判定で較正する）](model-based-grading.md)
 - [選択圧：良かった版を選び続ける罠](selection-pressure.md)
-- 上界を測って「限界です」を反証する（準備中）
 
 **関連**
 
@@ -312,7 +311,6 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 - [検証器そのものを確かめる（red/green・手で計算したケース）](test-the-verifier.md)
 - [/insights と /usage で振り返る](insights-and-usage-review.md)
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
-- Message Batches API（急がない大量の処理）（準備中）
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](verifier-defines-problem.md)
 
 </div>

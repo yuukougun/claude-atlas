@@ -171,7 +171,7 @@ structured outputs でも、形が崩れる場合はある。また、形が合�
 - **途中で切れたとき**：`stop_reason` が `max_tokens` の応答は、JSON が途中で終わる。`max_tokens` を上げて再試行する。
 - **enum の大文字小文字**：enum の値が、大文字小文字だけ違う形で返ることがある。比較は大文字小文字を区別しない形にする。
 - **未対応のスキーマ**：再帰するスキーマや数値の範囲（最小・最大）などは使えず、400 エラーになる。スキーマの複雑さにも上限がある。細部は公式の文書で確かめる。
-- **併用できない機能**：citations とは併用できず、400 エラーになる。<!-- link:begin citations-basics#limits -->citations（根拠の箇所を返させる） › 一緒に使えない機能（準備中）<!-- link:end --> にまとまっている。
+- **併用できない機能**：citations とは併用できず、400 エラーになる。<!-- link:begin citations-basics#limits -->citations（根拠の箇所を返させる）<!-- link:end --> にまとまっている。
 
 形の保証は、中身の正しさの保証ではない。スキーマは「金額は数値」とは言えても、「その金額が請求書と合う」とは言えない。数値の範囲を縛れないので、範囲の検査はコードの側で行う。見た目が整っていることを品質の証拠にしない理由は <!-- link:begin looks-are-not-quality -->[見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)<!-- link:end --> にある。
 
@@ -233,7 +233,7 @@ Claude Code を非対話で動かす `claude -p` には、`--json-schema` でス
 | 機械が読む出力の形を必ず守らせる | structured outputs |
 | 書式や長さをそろえる | <!-- link:begin output-shape#guaranteed -->[出力の形と分量を指定する › 必ず守らせたい形式は仕組みで](../prompting/output-shape.md#guaranteed)<!-- link:end --> |
 | 特定の道具を必ず呼ばせる | <!-- link:begin tool-use-loop#forcing -->[tool use のループ › 呼ばせ方を縛る（tool\_choice・strict）](tool-use-loop.md#forcing)<!-- link:end --> |
-| 根拠の箇所を返させる | <!-- link:begin citations-basics -->citations（根拠の箇所を返させる）（準備中）<!-- link:end --> |
+| 根拠の箇所を返させる | <!-- link:begin citations-basics -->citations（根拠の箇所を返させる）<!-- link:end --> |
 
 道具の呼び出しを強制する設定は、モデルによって使えないことがある。その場合、公式は strict tool use や JSON outputs を勧める。citations とは併用できないので、どちらが要るかを先に決める。
 
@@ -268,7 +268,6 @@ Claude Code を非対話で動かす `claude -p` には、`--json-schema` でス
 - [出力の形と分量を指定する](../prompting/output-shape.md)
 - [見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)
 - [tool use のループ](tool-use-loop.md)
-- citations（根拠の箇所を返させる）（準備中）
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
 
 </div>

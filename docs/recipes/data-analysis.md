@@ -107,7 +107,7 @@ updated: 2026-11-05
 4. **層に分けて見る**：全体の合計だけで判断せず、期間や種類などの層ごと、いちばん悪い層も見る。見方は <!-- link:begin measure-changes#by-stratum -->[変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)<!-- link:end --> にある。合計と層ごとの数字が矛盾しなければ終わりである。
 5. **指標が目的に合うかを確かめる**：数えているものが、本当に知りたいことと合っているかを見る。ずれの見つけ方は <!-- link:begin check-the-metric#mismatch -->[評価指標そのものを確かめる › 指標と目的のずれ](../eval/check-the-metric.md#mismatch)<!-- link:end --> にある。
 
-結果が良すぎるときは、まず集計の側を疑う。急に良くなった数字や満点に近い数字の疑い方は <!-- link:begin suspect-too-good-results#what-to-suspect -->[良すぎる結果を疑う › まず疑うもの](../verify/suspect-too-good-results.md#what-to-suspect)<!-- link:end --> にある。機械学習のスコアなら、検証用のデータの漏れも疑う。点検の頼み方は <!-- link:begin audit-ml-pipelines -->機械学習のパイプラインを点検させる（準備中）<!-- link:end --> にある。
+結果が良すぎるときは、まず集計の側を疑う。急に良くなった数字や満点に近い数字の疑い方は <!-- link:begin suspect-too-good-results#what-to-suspect -->[良すぎる結果を疑う › まず疑うもの](../verify/suspect-too-good-results.md#what-to-suspect)<!-- link:end --> にある。機械学習のスコアなら、検証用のデータの漏れも疑う。点検の頼み方は <!-- link:begin audit-ml-pipelines -->機械学習のパイプラインを点検させる<!-- link:end --> にある。
 
 「預けすぎる」落とし穴は、この段で起きやすい。裏取りのコマンドを Claude に走らせるのはよいが、「合っています」という報告を読んで終えると、確かめたことにならない。出力そのものを自分の目で読む。
 
@@ -182,10 +182,6 @@ updated: 2026-11-05
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - [ファイル作成とコード実行](../app/files-and-code-execution.md)
 - [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)
-
-**次に読む**
-
-- 機械学習のパイプラインを点検させる（準備中）
 
 **関連**
 

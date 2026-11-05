@@ -99,7 +99,7 @@ updated: 2026-11-05
 - **確かめ**：報告された変更の関数が、貼ったプロファイルの上位に入っているかを、差分で見る
 - **手で最適化する前**：SIMD などの手書きの最適化の前に、コンパイラが自動ベクトル化していないかを確かめさせる。SimdBench（LLM の SIMD 生成の研究）では、正しい AVX のコードがスカラーより速かった割合が、`-O0` では 96% だったのに `-O3` では 42% に下がった。コンパイラがすでに効いている場面があるからである（根拠：強）。同じ研究で、失敗の約 41% は存在しないか名前の違う intrinsic によるコンパイルエラーだった。この症状は <!-- link:begin uses-nonexistent-apis -->[存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)<!-- link:end --> で扱う
 
-コンテストの探索コードでは、点検の観点と計測の手順を <!-- link:begin search-code-checklist#measure-first -->探索コードと高速化の点検表（AI に書かせたとき） › 高速化は計測が先（準備中）<!-- link:end --> が持つ。
+コンテストの探索コードでは、点検の観点と計測の手順を <!-- link:begin search-code-checklist#measure-first -->探索コードと高速化の点検表（AI に書かせたとき）<!-- link:end --> が持つ。
 
 ## 出力の一致と実測を証拠にする {#same-output-and-timing}
 
@@ -167,7 +167,7 @@ updated: 2026-11-05
 
 - 評価物やテストを書き換えて通された：<!-- link:begin rewrote-tests-to-pass -->[テストを書き換えて通した](../symptoms/rewrote-tests-to-pass.md)<!-- link:end -->
 - 存在しない関数や intrinsic を使われた：<!-- link:begin uses-nonexistent-apis -->[存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)<!-- link:end -->
-- 前は速かったのに遅くなった原因を探したい：<!-- link:begin bisect-regressions -->退行の原因を git bisect で探させる（準備中）<!-- link:end -->
+- 前は速かったのに遅くなった原因を探したい：<!-- link:begin bisect-regressions -->退行の原因を git bisect で探させる<!-- link:end -->
 - 報告が証拠のない「全部通りました」になる：<!-- link:begin evidence-not-reports -->[報告ではなく証拠を求める](../verify/evidence-not-reports.md)<!-- link:end -->
 - 高速化が挙動を変える書き換えに広がった：<!-- link:begin refactor-and-migrate -->[リファクタリングと大規模な移行](refactor-and-migrate.md)<!-- link:end -->
 - 試した最適化と結果を残したい：<!-- link:begin experiment-log -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)<!-- link:end -->
@@ -186,15 +186,12 @@ updated: 2026-11-05
 
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - [観察の道具を作らせる（可視化・集計・ログ）](build-observation-tools.md)
-- 退行の原因を git bisect で探させる（準備中）
 - [リファクタリングと大規模な移行](refactor-and-migrate.md)
 - [変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)
 - [体感と実測](../eval/felt-vs-measured.md)
-- 上界を測って「限界です」を反証する（準備中）
 - [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
 - [テストを書き換えて通した](../symptoms/rewrote-tests-to-pass.md)
 - [存在しない関数やパッケージを使う](../symptoms/uses-nonexistent-apis.md)
-- 探索コードと高速化の点検表（AI に書かせたとき）（準備中）
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
 
 </div>

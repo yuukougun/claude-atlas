@@ -97,7 +97,7 @@ effort とモデルを確かめる場所は面で違う。固有の詳しい手�
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)<br>[拡張の棚卸しと剪定](../extend/pruning-extensions.md) |
-| 合っていない | [effort の段階と使い分け](../models/effort-levels.md)<br>[モデルの選び方（三段階）](../models/choosing-a-model.md)<br>fast mode と advisor（準備中） |
+| 合っていない | [effort の段階と使い分け](../models/effort-levels.md)<br>[モデルの選び方（三段階）](../models/choosing-a-model.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -150,7 +150,6 @@ effort とモデルを確かめる場所は面で違う。固有の詳しい手�
 - [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
 - [モデルの選び方（三段階）](../models/choosing-a-model.md)
-- fast mode と advisor（準備中）
 
 **関連**
 

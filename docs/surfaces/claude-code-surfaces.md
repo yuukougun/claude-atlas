@@ -68,10 +68,10 @@ Claude Code の面が違っても、中で動くエージェントループは�
 
 | 機能 | 強制力 | 入った版 |
 | --- | --- | --- |
-| IDE の拡張（準備中） | — | — |
+| IDE の拡張 | — | — |
 | [Desktop アプリの Claude Code](claude-code-surfaces.md) | — | 2.0.51（2025-11-24） |
 | [クラウドのセッション](../cli/cloud-sessions-and-teleport.md) | なし | — |
-| Remote Control（準備中） | — | — |
+| Remote Control | — | — |
 
 すべて共通：面 Claude Code、成熟度 GA、確認日 2026-11-04。
 
@@ -85,7 +85,7 @@ Claude Code の面が違っても、中で動くエージェントループは�
 - **クラウドのセッション**：Anthropic のクラウドで動き、手元を閉じても続く。<!-- name:begin web-to-cloud-sessions -->クラウドセッション（cloud sessions）<!-- name:end -->という名前で、ブラウザの入口は今も Claude Code on the web とも呼ばれる。手元の設定の一部を読まないので、計画と縛りはリポジトリに置いてから送る。
 - **Remote Control**：手元で動くセッションを、ブラウザやスマホから見て指示し、承認する。実行とファイルは手元に残る。API キーでは使えない。
 
-IDE の拡張の動作は、公式の文書による記述で、この辞典の環境では試していない。JetBrains の拡張が提供する機能の細部は、<!-- link:begin using-ides#vs-cli -->IDE（VS Code・JetBrains）で使う › CLI との違い（準備中）<!-- link:end --> を先に読む。
+IDE の拡張の動作は、公式の文書による記述で、この辞典の環境では試していない。JetBrains の拡張が提供する機能の細部は、<!-- link:begin using-ides#vs-cli -->IDE（VS Code・JetBrains）で使う<!-- link:end --> を先に読む。
 
 各面で使えない機能を引くときは、<!-- link:begin what-each-surface-cannot-do#table -->[面ごとにできないこと（早見表） › 早見表（面 × 機能）](what-each-surface-cannot-do.md#table)<!-- link:end --> の早見表が早い。
 
@@ -113,7 +113,7 @@ Claude Code の中で迷う場面は、おおよそ次の 3 つである。
     - **選んだもの**：先に面の違いを疑い、その面で使えない機能かを確かめる。
     - **理由**：面ごとに使える機能の集合が違う。設定を直す前に、<!-- link:begin what-each-surface-cannot-do#table -->[面ごとにできないこと（早見表） › 早見表（面 × 機能）](what-each-surface-cannot-do.md#table)<!-- link:end --> で、その機能がその面にあるかを引く。設定が効かないだけなら、`/status` で読み込まれた層を見る（確かめ方は <!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](../cli/settings-layers.md#verify)<!-- link:end --> にある）。
 
-任せる幅を広げる面（クラウドと背景のセッション）では、先に守りを決める。投げる前に決める守りは <!-- link:begin agent-view-and-background#guards-first -->[agent view と背景セッション › 投げる前に決める守り](../delegate/agent-view-and-background.md#guards-first)<!-- link:end --> にある。IDE では、権限を緩めたモードで IDE が自動で実行する設定ファイルを Claude が書き換えうる。安全の注意は <!-- link:begin using-ides#safety -->IDE（VS Code・JetBrains）で使う › 安全の注意（準備中）<!-- link:end --> を読む。
+任せる幅を広げる面（クラウドと背景のセッション）では、先に守りを決める。投げる前に決める守りは <!-- link:begin agent-view-and-background#guards-first -->[agent view と背景セッション › 投げる前に決める守り](../delegate/agent-view-and-background.md#guards-first)<!-- link:end --> にある。IDE では、権限を緩めたモードで IDE が自動で実行する設定ファイルを Claude が書き換えうる。安全の注意は <!-- link:begin using-ides#safety -->IDE（VS Code・JetBrains）で使う<!-- link:end --> を読む。
 
 古い助言として、ターミナルからクラウドのセッションを始めるフラグを `--remote` と書く手順が残っている。今のフラグは <!-- name:begin remote-to-cloud-flag -->--cloud<!-- name:end --> なので、そちらに替える。`--remote-control` は別の機能なので替えない。台帳の行は <!-- link:begin outdated-advice-ledger#code-on-the-web-remote -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#code-on-the-web-remote)<!-- link:end --> にある。
 
@@ -123,7 +123,7 @@ Claude Code の中で迷う場面は、おおよそ次の 3 つである。
 
 - **計画は手元、実行はクラウド**：手元の plan mode で計画を作り、計画ファイルをリポジトリに置いてから、クラウドに送る。クラウドは手元の設定の一部を読まないので、縛りもリポジトリに置く。
 - **クラウドで始めて、手元に取り込む**：終わったセッションは teleport で手元の端末に取り込める。取り込み方は <!-- link:begin cloud-sessions-and-teleport#teleport -->[クラウドセッションと teleport › teleport で取り込む](../cli/cloud-sessions-and-teleport.md#teleport)<!-- link:end --> にある。
-- **手元で動かして、外から見る**：手元のセッションを Remote Control でつなぎ、スマホから承認だけ返す。手元の PC は動かし続ける必要がある。手順は <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> にある。
+- **手元で動かして、外から見る**：手元のセッションを Remote Control でつなぎ、スマホから承認だけ返す。手元の PC は動かし続ける必要がある。手順は <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）<!-- link:end --> にある。
 - **ターミナルを基準にして、IDE を足す**：IDE の拡張が動いていると、ターミナルの CLI も IDE の差分表示を使える。統合ターミナルで CLI を使うなら、CLI は別に入れる。
 
 独立した作業を複数投げるなら、背景のセッションに置く手もある。使い方は <!-- link:begin agent-view-and-background -->[agent view と背景セッション](../delegate/agent-view-and-background.md)<!-- link:end --> にある。
@@ -153,16 +153,10 @@ Claude Code の中で迷う場面は、おおよそ次の 3 つである。
 
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](where-it-runs.md)
 
-**次に読む**
-
-- IDE（VS Code・JetBrains）で使う（準備中）
-
 **関連**
 
 - [アプリ・Claude Code・API の選び方](choosing-a-surface.md)
-- IDE（VS Code・JetBrains）で使う › CLI との違い（準備中）
 - [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
-- スマホから操作する（Remote Control）（準備中）
 - [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [agent view と背景セッション](../delegate/agent-view-and-background.md)
 - [面ごとにできないこと（早見表）](what-each-surface-cannot-do.md)

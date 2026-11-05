@@ -146,7 +146,7 @@ After で足したのは、結果の置き場所（経路）、成功の定義�
 
 結果は、走り終えた報告だけで決めない。出力・記録・差分で確かめる。この考え方は <!-- link:begin checking-unattended-runs#beyond-exit-codes -->[無人実行の結果を確かめる › 終了コードと要約だけで決めない](../verify/checking-unattended-runs.md#beyond-exit-codes)<!-- link:end --> にある。
 
-最後の判断を人に置く流儀は <!-- link:begin checking-unattended-runs#final-decision -->[無人実行の結果を確かめる › 最後の判断を人に置く](../verify/checking-unattended-runs.md#final-decision)<!-- link:end --> を読む。知らせを待つか、時刻を決めて見に行くかは <!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう › 知らせるか、時刻を決めて見るか（準備中）<!-- link:end --> で選ぶ。
+最後の判断を人に置く流儀は <!-- link:begin checking-unattended-runs#final-decision -->[無人実行の結果を確かめる › 最後の判断を人に置く](../verify/checking-unattended-runs.md#final-decision)<!-- link:end --> を読む。知らせを待つか、時刻を決めて見に行くかは <!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう<!-- link:end --> で選ぶ。
 
 間隔を短くするほど、実行の回数が増える。費用は、本数・回数・1 回の文脈の掛け算で膨らむ。始める前に、止める条件と上限を決める。手順は <!-- link:begin parallel-and-loop-costs#decide-before-starting -->[並列・ループ・workflows のコスト › 始める前に決める三つ](../cost/parallel-and-loop-costs.md#decide-before-starting)<!-- link:end --> を読む。
 
@@ -246,7 +246,6 @@ After で足したのは、結果の置き場所（経路）、成功の定義�
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
 - [/goal（完了するまで続けさせる）](goal-until-done.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
-- 終わったら知らせてもらう（準備中）
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [非対話モード（claude -p）の基本](headless-basics.md)
 

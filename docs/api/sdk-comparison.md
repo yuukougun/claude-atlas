@@ -101,7 +101,7 @@ Managed Agents は、Anthropic がエージェントのループと実行環境�
 2. **環境を囲う**：自前でホストする環境は、読み書きと通信を <!-- link:begin sandboxing -->[サンドボックスで封じ込める](../enforce/sandboxing.md)<!-- link:end --> で囲う。
 3. **データの扱いを確かめる**：Managed Agents は ZDR（ゼロデータ保持。送ったデータを Anthropic 側に残さない契約）の対象外である。送ったデータが残る期間は、プランの種類を含めて <!-- link:begin where-your-data-goes#retention -->[送ったデータの行方（学習・保持期間） › 残る期間](../safety/where-your-data-goes.md#retention)<!-- link:end --> で確かめてから、送る内容を決める。
 
-費用の面では、セッションが動いている時間に応じた料金がかかる。単価は <!-- fact:begin managed-agents-session-hour-price -->未確認<!-- fact:end -->（変わりやすいので、公式の料金表で確かめる）。この層は beta であり、機能の追加が多い。固定の前提にせず、使う前に Platform のリリースノートを見る。
+費用の面では、セッションが動いている時間に応じた料金がかかる。単価は <!-- fact:begin managed-agents-session-hour-price -->セッション 1 時間あたり $0.08（running 中のみ）（2026-11-06 時点）<!-- fact:end -->（変わりやすいので、公式の料金表で確かめる）。この層は beta であり、機能の追加が多い。固定の前提にせず、使う前に Platform のリリースノートを見る。
 
 ## 選び方の判断例 {#examples}
 

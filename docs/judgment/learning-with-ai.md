@@ -213,7 +213,7 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 - 引用が原文にあるかを、原文で確かめる。要約が原文より断定的になっていないかは、別のページの手順で確かめられる。<!-- link:begin summary-overstates-source#diagnosis -->[要約が原文より断定的になる › 原因を安く確かめる順](../symptoms/summary-overstates-source.md#diagnosis)<!-- link:end -->
 - 最も重要な 1 つの解法は、要約に頼らず原文を自分で読む。
 
-コンテストの後に、自分の AI の使い方（モデル・効いた指示・効かなかった指示）を書き残すと、次の練習に戻せる。書き残し方は別のページが扱う。<!-- link:begin retros-without-ai-verdicts#record-ai-usage -->振り返りで AI に評価させない（集計係にとどめる） › 作業の後に AI の使い方を書き残す（準備中）<!-- link:end -->
+コンテストの後に、自分の AI の使い方（モデル・効いた指示・効かなかった指示）を書き残すと、次の練習に戻せる。書き残し方は別のページが扱う。<!-- link:begin retros-without-ai-verdicts#record-ai-usage -->振り返りで AI に評価させない（集計係にとどめる）<!-- link:end -->
 
 ## 人が握るもの {#what-you-keep}
 
@@ -285,7 +285,6 @@ AI に答えを返させると理解が落ちる場面でも、返し方を変�
 - [頼む前に自分で考える（AI には問い・反論・道具を頼む）](think-before-asking.md)
 - [知らないコードベースを読む](../recipes/explore-a-codebase.md)
 - [バグを直す](../recipes/fix-a-bug.md)
-- 振り返りで AI に評価させない（集計係にとどめる）（準備中）
 
 </div>
 

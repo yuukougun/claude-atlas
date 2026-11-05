@@ -76,7 +76,7 @@ updated: 2026-11-05
 - **ローカルの作業**：クラウドで動くタスクは、PC を閉じても続く。ローカルのファイルやアプリを使うタスクは、Desktop を開いておく要がある。この差は <!-- link:begin where-it-runs#what-cloud-cannot-reach -->[実行場所の違い（クラウド・自分の PC・リモート操作） › クラウドで動くときに届かないもの](where-it-runs.md#what-cloud-cannot-reach)<!-- link:end --> で扱う。
 - **Claude Code のクラウドのセッション**：user 設定・local 設定・ローカルのプラグインを読まない。手元では効いていた設定が、クラウドでは効かない。面ごとの違いは <!-- link:begin claude-code-surfaces#comparison-table -->[Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 面ごとの違い（表）](claude-code-surfaces.md#comparison-table)<!-- link:end --> で見る。
 - **画面操作（computer use）**：使える connector やツールがないときに画面を直接操作する機能で、公式の記事では Desktop の機能として説明されている。優先順位は、connectors、ブラウザ操作、画面操作の順である。Web やモバイルの側で同じ機能を使えるかは確かめていない。
-- **モバイル**：タスクの監視・質問への回答・方向の修正・開始はできる。それ以外でモバイルだけ使えない機能は、このページでは確かめていない。範囲は <!-- link:begin voice-and-mobile#mobile -->音声モード・Quick entry・モバイル › モバイルでできること・できないこと（準備中）<!-- link:end --> で確かめる。
+- **モバイル**：タスクの監視・質問への回答・方向の修正・開始はできる。それ以外でモバイルだけ使えない機能は、このページでは確かめていない。範囲は <!-- link:begin voice-and-mobile#mobile -->音声モード・Quick entry・モバイル<!-- link:end --> で確かめる。
 
 ## 別の面に移すとき {#moving-between-surfaces}
 
@@ -131,7 +131,6 @@ updated: 2026-11-05
 - [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](claude-code-surfaces.md)
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](where-it-runs.md)
 - [シークレットチャット（記録を残さない会話） › 使えない機能](../app/incognito-chats.md#limits)
-- 音声モード・Quick entry・モバイル › モバイルでできること・できないこと（準備中）
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)
 
 </div>

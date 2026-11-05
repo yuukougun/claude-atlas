@@ -68,13 +68,13 @@ updated: 2026-11-05
 
 === "API"
 
-    API はリクエストごとに `model` を指定する。計画を作る呼び出しと実装の呼び出しで、別のモデルを自分のコードで指定すればよい。公式のモデル選択の文書は、上位のモデルが難しい判断を受け持ち、安いモデルに作業を割り振る組み合わせ方を 2 つ挙げている（上位のモデルに難しい判断だけを相談する形と、上位のモデルが安いモデルへ作業を割り振る形）。前者の形は <!-- link:begin fast-mode-and-advisor#advisor -->fast mode と advisor › advisor（準備中）<!-- link:end --> にある。
+    API はリクエストごとに `model` を指定する。計画を作る呼び出しと実装の呼び出しで、別のモデルを自分のコードで指定すればよい。公式のモデル選択の文書は、上位のモデルが難しい判断を受け持ち、安いモデルに作業を割り振る組み合わせ方を 2 つ挙げている（上位のモデルに難しい判断だけを相談する形と、上位のモデルが安いモデルへ作業を割り振る形）。前者の形は <!-- link:begin fast-mode-and-advisor#advisor -->fast mode と advisor<!-- link:end --> にある。
 
 ### 分けた側で動く effort と文脈
 
 分けるときは、分けた側で何が引き継がれるかを確かめる。
 
-- **effort**：本体と別のモデルで動くサブエージェントは、セッションの effort を受け継がない。そのモデルに保存した effort か、そのモデルの既定で動く。この挙動が入った Claude Code の版は <!-- fact:begin subagent-own-model-effort-min-version -->未確認<!-- fact:end --> である。軽いモデルを割り当てた時点で、effort は既定になると見ておく。固定のしかたは <!-- link:begin effort-levels#subagents-and-org-limits -->[effort の段階と使い分け › サブエージェントと組織の上限](effort-levels.md#subagents-and-org-limits)<!-- link:end --> にある。
+- **effort**：本体と別のモデルで動くサブエージェントは、セッションの effort を受け継がない。そのモデルに保存した effort か、そのモデルの既定で動く。この挙動が入った Claude Code の版は <!-- fact:begin subagent-own-model-effort-min-version -->Claude Code 2.1.317 以降（2026-11-06 時点）<!-- fact:end --> である。軽いモデルを割り当てた時点で、effort は既定になると見ておく。固定のしかたは <!-- link:begin effort-levels#subagents-and-org-limits -->[effort の段階と使い分け › サブエージェントと組織の上限](effort-levels.md#subagents-and-org-limits)<!-- link:end --> にある。
 - **文脈**：サブエージェントは、自分のシステムプロンプト・指定したスキル・`CLAUDE.md` と git の状態で、新しい文脈を作って動く。本体の会話は見えない（親の会話を引き継ぐ fork は別）。したがって、安いモデルに渡す依頼は、前提・対象のファイル・返してほしい形を依頼の本文に書く。
 - **計画の引き継ぎ**：計画と実装は同じ会話の中の工程なので、承認した計画は会話に残る。計画を別のセッションで実装するなら、計画をファイルに書き出して渡す。
 
@@ -196,7 +196,6 @@ updated: 2026-11-05
 - [effort の段階と使い分け › サブエージェントと組織の上限](effort-levels.md#subagents-and-org-limits)
 - [plan mode の使いどころ](../cli/when-to-plan.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
-- fast mode と advisor（準備中）
 - [現行モデルの一覧と位置づけ](current-models.md)
 - [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)

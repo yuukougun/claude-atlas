@@ -217,7 +217,6 @@ updated: 2026-11-05
 - [資料・スライドを作る](make-slides.md)
 - [決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)
 - [知らないコードベースを読む](explore-a-codebase.md)
-- ノート・PKM（Obsidian など）（準備中）
 
 </div>
 

@@ -119,7 +119,7 @@ cross-session messaging は、1 つのセッションの Claude が、自分の�
 - **送るもの**：Claude が書いた文章だけである。会話の履歴やファイルは送らない。会話ごと移したいなら、そのセッションを再開する。
 - **送り方**：Claude が `ListAgents` で相手を探し、`SendMessage` で送る。人はこの道具を直接呼ばない。「別のターミナルのセッションに、移行が終わったか聞いて」のように頼む。`/list-agents`（別名 `/peers`）で、届く相手の一覧を見られる。
 - **届く範囲**：同じ機械のセッションには、Anthropic のサーバを通さずに届く。別の機械やクラウドのセッションは、Claude のサブスクリプションで認証し、Remote Control につながっているときに届く。ほかの認証では同じ機械の中だけである。
-- **待機（idle）の知らせ**：同じ機械のほかのセッションが次に待機（idle）になったとき、一度だけ知らせてもらうよう頼める。長い作業の終わりを待つときに使う。必要な版は公式の文書で確かめる。画面の通知やフックで知らせる流儀との使い分けは <!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう › 知らせるか、時刻を決めて見るか（準備中）<!-- link:end --> にある。
+- **待機（idle）の知らせ**：同じ機械のほかのセッションが次に待機（idle）になったとき、一度だけ知らせてもらうよう頼める。長い作業の終わりを待つときに使う。必要な版は公式の文書で確かめる。画面の通知やフックで知らせる流儀との使い分けは <!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう<!-- link:end --> にある。
 
 受け取る側には 3 つの扱いがある。設定 `crossSessionInbound` は、届いたメッセージを渡す（accept）、保留して通知だけ出す（hold）、捨てる（refuse）から選ぶ。何も設定しないときの扱いは、両方のセッションの権限モードで決まる。たとえば、権限の確認を飛ばすモードで動くセッションが受け取るメッセージは、既定では保留され、人が承認すると渡る。
 
@@ -148,7 +148,7 @@ cross-session messaging は、1 つのセッションの Claude が、自分の�
 <!-- textlint-enable -->
 <!-- gen:end compare 成熟度 入った版 -->
 
-並列の方式のうち、背景のセッションを選ぶ基準は <!-- link:begin choosing-parallel-modes#compare -->[並列の方式の選び方 › 方式の比較](choosing-parallel-modes.md#compare)<!-- link:end --> にある。ほかの方式との組み合わせ方は <!-- link:begin choosing-parallel-modes#combine -->[並列の方式の選び方 › 組み合わせ方](choosing-parallel-modes.md#combine)<!-- link:end --> を引く。スマホから見て承認するなら <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> を、長い作業の途中経過を残すなら <!-- link:begin progress-logs-for-long-jobs -->[長時間ジョブの進捗ログを設計する](progress-logs-for-long-jobs.md)<!-- link:end --> を使う。
+並列の方式のうち、背景のセッションを選ぶ基準は <!-- link:begin choosing-parallel-modes#compare -->[並列の方式の選び方 › 方式の比較](choosing-parallel-modes.md#compare)<!-- link:end --> にある。ほかの方式との組み合わせ方は <!-- link:begin choosing-parallel-modes#combine -->[並列の方式の選び方 › 組み合わせ方](choosing-parallel-modes.md#combine)<!-- link:end --> を引く。スマホから見て承認するなら <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）<!-- link:end --> を、長い作業の途中経過を残すなら <!-- link:begin progress-logs-for-long-jobs -->[長時間ジョブの進捗ログを設計する](progress-logs-for-long-jobs.md)<!-- link:end --> を使う。
 
 ## 古くなった助言 {#outdated}
 
@@ -171,8 +171,6 @@ tmux で複数の Claude Code を並べ、手で連絡させる自作の組織�
 - [伴走と委託](pairing-and-delegating.md)
 - [長時間ジョブの進捗ログを設計する](progress-logs-for-long-jobs.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
-- 終わったら知らせてもらう（準備中）
-- スマホから操作する（Remote Control）（準備中）
 - [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 

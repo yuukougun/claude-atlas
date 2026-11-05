@@ -138,7 +138,7 @@ project スコープには、安全のための仕組みが 2 つある。
 - 対話のセッションでは、`.mcp.json` のサーバーを初めて使う前に承認を求められる。リポジトリを clone しただけで、見知らぬサーバーが動き出すことはない。承認の記録を消したいときは `claude mcp reset-project-choices` を使う。
 - `claude -p` のように承認を聞けない実行では、`.mcp.json` のサーバーは承認なしにつながる。CI や自動実行に載せるリポジトリでは、`.mcp.json` に入れるものを、その前提で選ぶ。外したいサーバーは `disabledMcpjsonServers` に書くか、`--strict-mcp-config` で起動する。
 
-同じ名前のサーバーが複数の場所にあると、一番優先の高い場所の定義が 1 つだけ使われる。優先順は local、project、user、プラグイン、claude.ai のコネクタの順で、組織が管理設定で配るサーバーはこれらより上になる。定義はキーごとに合わさらず、丸ごと入れ替わる。そのため、project の定義に自分用の変更を足したいときは、local に同じ名前で全体を書く。設定の層の優先は「<!-- link:begin settings-layers#layers -->[設定ファイルの階層と優先順位 › 層と優先順位](../cli/settings-layers.md#layers)<!-- link:end -->」を参照する。組織で配るサーバーの許可は「<!-- link:begin org-managed-settings-and-mcp#mcp-allowlist -->組織に設定と MCP サーバーを配る › MCP サーバーの許可（準備中）<!-- link:end -->」に任せる。
+同じ名前のサーバーが複数の場所にあると、一番優先の高い場所の定義が 1 つだけ使われる。優先順は local、project、user、プラグイン、claude.ai のコネクタの順で、組織が管理設定で配るサーバーはこれらより上になる。定義はキーごとに合わさらず、丸ごと入れ替わる。そのため、project の定義に自分用の変更を足したいときは、local に同じ名前で全体を書く。設定の層の優先は「<!-- link:begin settings-layers#layers -->[設定ファイルの階層と優先順位 › 層と優先順位](../cli/settings-layers.md#layers)<!-- link:end -->」を参照する。組織で配るサーバーの許可は「<!-- link:begin org-managed-settings-and-mcp#mcp-allowlist -->組織に設定と MCP サーバーを配る<!-- link:end -->」に任せる。
 
 !!! example "判断例：チケット管理のサーバーをどのスコープに置くか"
     - **状況**：チーム 5 人が同じチケット管理のサービスを使う。サーバーの URL は全員同じで、トークンは一人ずつ違う。
@@ -232,14 +232,14 @@ MCP をつなぐと、次の場面で想定とずれる。
 - **サンドボックスの外で動く**。Bash のコマンドを囲うサンドボックスは、MCP サーバーのプロセスには効かない。サーバーの権限は、資格情報とサーバー自身の作りで決まる。
 - **入れた後に中身が変わりうる**。承認したときの定義と、後から読まれる定義が同じとは限らない。ツールの説明に指示が隠れている場合もある。入れる前の確認と、入れた後の変化の見方は「<!-- link:begin vetting-extensions#changes-after-install -->[MCP・プラグイン・スキルを入れる前の確認 › 入れた後に変わる（rug pull）](../safety/vetting-extensions.md#changes-after-install)<!-- link:end -->」にある。この辞典は、脅威の型の説明を safety のページに任せる。
 - **`.mcp.json` だけでは、読み込まれるサーバーの全体は分からない**。ほかのスコープ、claude.ai のコネクタ、プラグインもサーバーを足す。全体は `/mcp` で見る。
-- **出力が大きいと扱いにくい**。ツールの出力が大きいと警告が出て、さらに大きいと上限で扱いきれなくなる。値は、<!-- fact:begin mcp-output-token-limits -->未確認<!-- fact:end -->。大量のデータは、サーバー側で絞るか、必要な範囲だけを取らせる。
+- **出力が大きいと扱いにくい**。ツールの出力が大きいと警告が出て、さらに大きいと上限で扱いきれなくなる。値は、<!-- fact:begin mcp-output-token-limits -->警告は 10,000 トークン、既定の上限は 25,000 トークン（環境変数 MAX\_MCP\_OUTPUT\_TOKENS で変える）（2026-11-06 時点）<!-- fact:end -->。大量のデータは、サーバー側で絞るか、必要な範囲だけを取らせる。
 - **入れすぎると場所を取る**。サーバーを足すたびに、ツールの一覧が文脈に増える。判断を良くする分より増えるなら外す。選ぶ基準は「<!-- link:begin choosing-mcp-servers -->[MCP サーバーの選び方](choosing-mcp-servers.md)<!-- link:end -->」にある。
 
 ## 比べる相手 {#compare}
 
 外部ツールの道は、MCP のほかに、CLI とスキルで済ませる方法がある。成熟した CLI があって、決まった作業なら、CLI のほうが文脈の効率がよい。CLI がないときや、認証つきの生きたデータが要るとき、シェル全体より狭い権限にしたいときは、MCP が生きる。選び方は「<!-- link:begin mcp-or-cli -->[MCP か CLI か](mcp-or-cli.md)<!-- link:end -->」にまとめてある。公式の文書は、つなぐ MCP と、使い方の知識を渡すスキルを組み合わせる形も勧めている。
 
-組織の全員に MCP サーバーを配るなら、「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る（準備中）<!-- link:end -->」を見る。サーバーを束にして配るなら、「<!-- link:begin plugins-and-marketplaces#before-install -->[プラグインとマーケットプレイス › 入れる前の確認](plugins-and-marketplaces.md#before-install)<!-- link:end -->」の確認を先に通す。
+組織の全員に MCP サーバーを配るなら、「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る<!-- link:end -->」を見る。サーバーを束にして配るなら、「<!-- link:begin plugins-and-marketplaces#before-install -->[プラグインとマーケットプレイス › 入れる前の確認](plugins-and-marketplaces.md#before-install)<!-- link:end -->」の確認を先に通す。
 
 ## 古くなった助言 {#outdated}
 
@@ -270,7 +270,6 @@ MCP を SSE の転送でつなぐ、という古い説明が残っている。�
 - [/context で中身を見る](../context/inspect-context.md)
 - [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)
-- 組織に設定と MCP サーバーを配る（準備中）
 - [プラグインとマーケットプレイス](plugins-and-marketplaces.md)
 - [チームで設定を共有する](../team/share-team-settings.md)
 

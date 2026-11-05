@@ -57,7 +57,7 @@ updated: 2026-11-05
 
     会話の共有は、claude.ai の Web から行う。モバイルのアプリからは、まだ共有できない。共有された会話は、どの端末でも開ける。
 
-    共有のメニューで、招待か公開かを選ぶ。組織の中での共有の権限の考え方は <!-- link:begin shared-projects-and-org-skills#shared-projects -->アプリをチームで使う（共有プロジェクト・組織のスキル） › プロジェクトの共有と権限（準備中）<!-- link:end --> と考え方がつながる。
+    共有のメニューで、招待か公開かを選ぶ。組織の中での共有の権限の考え方は <!-- link:begin shared-projects-and-org-skills#shared-projects -->アプリをチームで使う（共有プロジェクト・組織のスキル）<!-- link:end --> と考え方がつながる。
 
 === "Claude Code"
 
@@ -103,7 +103,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end fact-table chat-sharing-plans -->
 
-- **招待の期限**：開かれない招待が切れるまでの期間は、<!-- fact:begin chat-sharing-invite-expiry -->未確認<!-- fact:end -->である。
+- **招待の期限**：開かれない招待が切れるまでの期間は、<!-- fact:begin chat-sharing-invite-expiry -->30 日（2026-11-06 時点）<!-- fact:end -->である。
 - **ファイルを含む会話の公開**：コードの実行とファイル作成で作ったファイルを含む会話は、<!-- fact:begin shared-chat-with-created-files-restriction -->Free・Pro・Max・Ultra では公開共有できない（Team・Enterprise は公式の文書に記述なし）（2026-11-05 時点）<!-- fact:end -->。安全のための措置と明記されている。ファイルの扱いは <!-- link:begin files-and-code-execution#outputs -->[ファイル作成とコード実行 › 作ったファイルの受け取り方](../app/files-and-code-execution.md#outputs)<!-- link:end --> にある。
 
 プランごとの可否や期間は変わりやすい。契約しているプランで何が使えるかは、公式の共有の記事でも確かめる。
@@ -181,7 +181,6 @@ updated: 2026-11-05
 - [送ったデータの行方（学習・保持期間）](where-your-data-goes.md)
 - [/feedback・トランスクリプトの共有で送られるもの](what-feedback-sends.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](entrusted-data.md)
-- アプリをチームで使う（共有プロジェクト・組織のスキル）（準備中）
 - [ファイル作成とコード実行](../app/files-and-code-execution.md)
 - [プロンプトインジェクションの実際](prompt-injection-in-practice.md)
 - [アーティファクトを小さなアプリにする](../app/artifacts-as-apps.md)

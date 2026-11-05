@@ -58,7 +58,7 @@ dynamic workflows は、Claude が書いた JavaScript のスクリプトを実�
 
 - 対象が数件で済む作業。サブエージェントを数個動かすほうが軽い。
 - 途中で人の判断を挟む作業。実行中のワークフローは、人の入力を受けない。段の間で承認が要るなら、段ごとに別のワークフローにする。
-- 担当どうしが連絡し合う作業。これは <!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）（準備中）<!-- link:end --> の領分である。
+- 担当どうしが連絡し合う作業。これは <!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）<!-- link:end --> の領分である。
 - 同じファイルを触る作業。担当どうしの変更がぶつかる。担当ごとに隔離したコピーで作業させられるなら使える。
 
 ### 先に決める守り
@@ -190,8 +190,8 @@ dynamic workflows は、Claude が書いた JavaScript のスクリプトを実�
 ## 比べる相手 {#compare}
 
 - **<!-- link:begin choosing-parallel-modes#compare -->[並列の方式の選び方 › 方式の比較](choosing-parallel-modes.md#compare)<!-- link:end -->**：並列の方式の全体の比較。誰が調整するかで選ぶ。
-- **<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->**：多数のファイルに同じ作業を、自分が書いたループで流す。計画を自分が持ちたいとき、ワークフローではなくこちらを選ぶ。
-- **<!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）（準備中）<!-- link:end -->**：担当どうしが連絡し合うとき。ワークフローの担当は互いに話さず、スクリプトがつなぐ。
+- **<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end -->**：多数のファイルに同じ作業を、自分が書いたループで流す。計画を自分が持ちたいとき、ワークフローではなくこちらを選ぶ。
+- **<!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）<!-- link:end -->**：担当どうしが連絡し合うとき。ワークフローの担当は互いに話さず、スクリプトがつなぐ。
 - **<!-- link:begin goal-until-done -->[/goal（完了するまで続けさせる）](goal-until-done.md)<!-- link:end -->**：検証できる終わりの条件まで、順番に回し続けるとき。依存のある直列の作業は /goal、独立した並列の作業はワークフロー、という分け方が実務家の間にある（根拠：弱）。
 - **<!-- link:begin research-in-subagents -->[出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)<!-- link:end -->**：出力の多い調査を 1 つ任せるだけなら、サブエージェント 1 つで足りる。
 
@@ -232,8 +232,6 @@ dynamic workflows は、Claude が書いた JavaScript のスクリプトを実�
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
-- 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
-- エージェントチーム（複数の Claude に分担させる）（準備中）
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
 - [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)

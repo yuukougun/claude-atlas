@@ -164,7 +164,7 @@ Styles で応答の調子と形式を切り替えていた場合は、いまの�
 
 ただし、この優先は強制の仕組みではなく、プロンプトの層の指示に頼る。まれに挙動が変わる、と公式も明記している。個人の指示を書くときは、組織の指示と食い違う文を置かない。
 
-組織の指示を誰が、どう設定し、どう配るかは、このページでは扱わない。<!-- link:begin shared-projects-and-org-skills#org-instructions -->アプリをチームで使う（共有プロジェクト・組織のスキル） › 組織の指示（準備中）<!-- link:end --> を見る。
+組織の指示を誰が、どう設定し、どう配るかは、このページでは扱わない。<!-- link:begin shared-projects-and-org-skills#org-instructions -->アプリをチームで使う（共有プロジェクト・組織のスキル）<!-- link:end --> を見る。
 
 ## Claude Code の置き場所との対応 {#claude-code}
 
@@ -211,7 +211,6 @@ Claude Code 側の置き場所の選び方は <!-- link:begin claude-md-vs-rules
 - [プロジェクトの使いどころ](using-projects.md)
 - [アプリのメモリ（仕組み・範囲・消し方と止め方）](how-memory-works.md)
 - [アプリでスキルを使う](skills-in-the-app.md)
-- アプリをチームで使う（共有プロジェクト・組織のスキル） › 組織の指示（準備中）
 - [毎回同じ説明をしている](../symptoms/repeating-the-same-explanation.md)
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)
 - [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)

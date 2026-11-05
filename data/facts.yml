@@ -390,11 +390,10 @@ facts:
     claude_code: 2.1.317
   sources:
   - cc-changelog
-  - cc-docs-changelog
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 研究資料 research/22 #18 の写し。CHANGELOG で原文を確かめていない。足し先：evidence-not-reports#tool-output・claims-done-but-isnt#forms（同じ値の提案 2 件を 1 つにした）
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.317 の項に「Fixed Claude treating partial Grep and Glob results as complete when a search hit its time limit」とある（2026-11-06 に原文で確認）。足し先：evidence-not-reports#tool-output・claims-done-but-isnt#forms（同じ値の提案 2 件を 1 つにした）'
 - id: claude-code-p-startup-failure-exit-code-fix-version
   title: claude -p が起動に失敗しても終了コード 0 で終わっていた不具合を直した Claude Code の版（エラーを出して 1 で終わるようにした）
   value: 2.1.314
@@ -403,11 +402,10 @@ facts:
     claude_code: 2.1.314
   sources:
   - cc-changelog
-  - cc-docs-changelog
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 研究資料 research/22 #24 の写し。CHANGELOG で原文を確かめていない。足し先：evidence-not-reports#tool-output・claims-done-but-isnt#forms（同じ値の提案 2 件を 1 つにした）
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.314 の項に「Fixed `claude -p` exiting with code 0 and no output when startup failed; it now prints the error and exits 1」とある（2026-11-06 に原文で確認）。足し先：evidence-not-reports#tool-output・claims-done-but-isnt#forms（同じ値の提案 2 件を 1 つにした）'
 - id: compaction-bugfix-version
   title: 圧縮の後の "Prompt is too long" と要約の取りこぼしを直した Claude Code の版
   value: 2.1.317
@@ -416,30 +414,30 @@ facts:
     claude_code: 2.1.317
   sources:
   - cc-changelog
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 'forgot-after-compaction の提案（id は compaction-bugfix-min-version）。CHANGELOG で原文を確かめていない。検索の不具合の修正（claude-code-search-truncation-fix-version）と値は同じ 2.1.317 だが、直した不具合が別なので別の項目にした。足し先：forgot-after-compaction#diagnosis'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.317 の項に「Fixed "Prompt is too long" after automatic compaction in sessions whose very large CLAUDE.md changed since it was last sent」と「Fixed very long conversations losing their earlier summary when compaction had to shorten its own request」とある（2026-11-06 に原文で確認）。検索の不具合の修正（claude-code-search-truncation-fix-version）と値は同じ 2.1.317 だが、直した不具合が別なので別の項目にした。足し先：forgot-after-compaction#diagnosis'
 - id: hook-event-count
   title: フックのイベントの数
   value: 33
   unit: 種類
   sources:
   - cc-docs-hooks
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'hooks-basics の提案。足し先：hooks-basics#events'
+  status: 確認済み
+  note: 'Hooks reference の一覧表に 33 のイベントが載る（2026-11-06 に数えて確認）。足し先：hooks-basics#events'
 - id: hook-handler-types
   title: フックのハンドラの種類の数（command・http・mcp_tool・prompt・agent）
   value: 5
   unit: 種類
   sources:
   - cc-docs-hooks
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'hooks-basics の提案。足し先：hooks-basics#deterministic'
+  status: 確認済み
+  note: 'Hooks reference に「There are five types」とあり、command・http・mcp_tool・prompt・agent が挙がる（2026-11-06 に確認）。足し先：hooks-basics#deterministic'
 - id: hook-monitor-min-version
   title: Bash に当てたフックが Monitor のシェルにも走る最低の Claude Code の版
   value: 2.1.314
@@ -447,11 +445,11 @@ facts:
   versions:
     claude_code: 2.1.314
   sources:
-  - cc-docs-changelog
-  checked: '2026-11-05'
+  - cc-changelog
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'hooks-basics の提案。足し先：hooks-basics#limits'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.314 の項に「Fixed hooks matching Bash not running on shell commands started by the Monitor tool; such hooks can block or ask, but not approve or rewrite those commands」とある（2026-11-06 に原文で確認）。足し先：hooks-basics#limits'
 - id: hook-agent-id-min-version
   title: フックの入力に agent_id が付く最低の Claude Code の版
   value: 2.1.69
@@ -459,11 +457,11 @@ facts:
   versions:
     claude_code: 2.1.69
   sources:
-  - cc-docs-changelog
-  checked: '2026-11-05'
+  - cc-changelog
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'hooks-basics の提案。足し先：hooks-basics#locations'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.69 の項に「Added `agent_id` (for subagents) and `agent_type` (for subagents and `--agent`) to hook events」とある（2026-11-06 に原文で確認）。足し先：hooks-basics#locations'
 - id: compaction-reread-files-max
   title: 圧縮の後に再び読み込む、読んだか編集したファイルの個数の上限
   value: 5
@@ -616,10 +614,10 @@ facts:
     claude_code: 2.1.317
   sources:
   - cc-changelog
-  checked: '2026-11-03'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 提案の status は「確認済み」だが、note に「research/22 #21 の記録。CHANGELOG の原文は今回開いていない」とあるので 未確認 にした。CLAUDE_CODE_SUBAGENT_EFFORT は 2.1.316。足し先：effort-levels#subagents-and-org-limits
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.317 の項に「Changed subagents and teammates on a different model from the main conversation to use that model''s saved effort level or its default, instead of the session''s effort level」とある（2026-11-06 に原文で確認）。CLAUDE_CODE_SUBAGENT_EFFORT の追加の版は CHANGELOG の 2.1.316 の項で確認。足し先：effort-levels#subagents-and-org-limits'
 - id: usage-limit-types-by-plan
   title: プランごとの利用上限の種類と倍率（5 時間の上限・週の上限・最上位のモデルの別の週の上限）
   table:
@@ -720,10 +718,10 @@ facts:
     note: 314 は判定がないのに「止めた」と表示する不具合、316 は claude -p が止まった理由を言わない不具合、317 は subagent の呼び出しに判定がないとき画面に何も出ない不具合の修正。versions の版は最後の 317
   sources:
   - cc-changelog
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 調査資料 research/22 #11 からの転記で、CHANGELOG で再確認していない。3 つの修正の版をまとめた範囲で、1 つの版ではない。足し先：keeps-stopping#diagnosis
+  status: 確認済み
+  note: 'CHANGELOG で 3 つの修正を原文で確認した（2026-11-06）。2.1.314「Fixed auto mode reporting a call as blocked, and listing it in `/permissions`, when its safety check gave no verdict」、2.1.316「Fixed `claude -p` text output sometimes not saying why auto mode stopped a turn when a background agent was still running」、2.1.317「Added a notice when auto mode''s check has no answer for a subagent''s tool call, which used to leave nothing in the main view」。3 つの修正の版をまとめた範囲で、1 つの版ではない。足し先：keeps-stopping#diagnosis'
 - id: long-context-order-quality-gain
   title: 長い資料を先頭、質問を末尾に置いたときの品質向上（公式のテストの自己報告。複数文書で特に大きい）
   value: 30
@@ -884,24 +882,24 @@ facts:
   note: 'sandboxing の提案。足し先：sandboxing#fail-if-unavailable'
 - id: app-default-permission-mode
   title: アプリの既定の権限モード（プランと管理者の設定で違う）
-  value: Auto（個人向けの有料プランと Team）、Manual（Enterprise）。管理者が既定を決められる
+  value: Auto（Pro・Max・Ultra・Team）、Manual（Enterprise）
   sentence: '{value}'
   sources:
   - hc-cowork-and-chat
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: default-safety-settings の提案。値は束の data と research の写しから起こしたもので、一次資料を開いて確かめていない（write.md）ので 未確認。足し先：default-safety-settings#defaults-by-surface
+  status: 確認済み
+  note: 'Claude Cowork and Chat are one Claude の記事に「Auto (default on Pro, Max, Ultra, and Team plans)」「Manual (default on Enterprise plans)」とある（2026-11-06 に確認）。前の値にあった「管理者が既定を決められる」は、この記事に書かれていないので外した。足し先：default-safety-settings#defaults-by-surface'
 - id: sandbox-default-state
   title: サンドボックスの既定の状態
   value: 既定は無効（macOS・Linux・WSL2 で動く）
   sentence: '{value}'
   sources:
   - cc-docs-sandboxing
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: default-safety-settings の提案。一次資料を開いて確かめていない（write.md）ので 未確認。足し先：default-safety-settings#defaults-by-surface
+  status: 確認済み
+  note: 'Sandboxing の文書に「The sandbox is off by default」「The sandbox runs on macOS, Linux, and WSL2」とある（2026-11-06 に確認）。ネイティブの Windows では、サンドボックスなしで走る。足し先：default-safety-settings#defaults-by-surface'
 - id: incognito-retention-period
   title: シークレットチャットの保持期間
   value: 30
@@ -942,31 +940,30 @@ facts:
   sentence: '{value}'
   sources:
   - cc-docs-common-workflows
-  checked: '2026-10-29'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: choose-what-to-read の提案（status は要確認）。値は調査資料の写しで、Read ツールの上限として出典で確かめていない。足し先：choose-what-to-read#caveats
+  status: 確認済み
+  note: 'Common workflows に「fits the Read tool''s token limit, 25,000 tokens by default. A text file larger than 256KB isn''t included」とある（2026-11-06 に確認）。Tools reference は、1 回の Read が既定で最大 25,000 トークン、256 KB 超の全体は拒むと書く。足し先：choose-what-to-read#caveats'
 - id: mcp-output-token-limits
   title: MCP ツールの出力の警告と上限（トークン）
   value: 警告は 10,000 トークン、既定の上限は 25,000 トークン（環境変数 MAX_MCP_OUTPUT_TOKENS で変える）
   sentence: '{value}'
   sources:
   - cc-docs-mcp
-  - cc-docs-features-overview
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: connecting-mcp の提案（status は要確認）。調査資料 01 G-1 の値で、一次資料では確かめていない。足し先：connecting-mcp#limits
+  status: 確認済み
+  note: 'MCP の文書に「displays a warning when MCP tool output exceeds 10,000 tokens and limits output to 25,000 tokens by default」「set the `MAX_MCP_OUTPUT_TOKENS` environment variable」「The warning threshold is fixed」とある（2026-11-06 に確認）。足し先：connecting-mcp#limits'
 - id: auto-mode-block-pause-thresholds
   title: auto モードが一時停止して手動の確認に戻る、ブロックの連続回数と合計回数
   value: 連続 3 回または合計 20 回
   sentence: '{value}'
   sources:
   - cc-docs-permission-modes
-  checked: '2026-10-29'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: what-auto-mode-stops の提案（status は要確認）。束の research/01 C-1 の写しによる。今の文書で再確認していない。足し先：what-auto-mode-stops#limits
+  status: 確認済み
+  note: 'Permission modes に「if the classifier blocks an action 3 times in a row or 20 times total, auto mode pauses and Claude Code resumes prompting」「not configurable」とある（2026-11-06 に確認）。足し先：what-auto-mode-stops#limits'
 - id: goal-condition-max-chars
   title: /goal の条件の長さの上限
   value: 4000
@@ -1100,21 +1097,20 @@ facts:
   sentence: '{value}'
   sources:
   - api-docs-model-deprecations
-  - api-release-notes
-  checked: '2026-10-29'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'current-models の sonnet-4-5-retirement と after-switching-models の sonnet-4-5-api-retirement-date を 1 つにした（値は同じ）。提案の status は「要確認」で、どちらの担当も一次資料を開いていない（research/22 #41 の写し）。11-30 の前に Model deprecations で確かめ直す。足し先：current-models#by-surface・after-switching-models#retirements-and-default-changes'
+  status: 確認済み
+  note: 'Model deprecations の表に claude-sonnet-4-5-20250929（Deprecated 2026-09-30、退役 2026-11-30）とある（2026-11-06 に確認）。current-models の sonnet-4-5-retirement と after-switching-models の sonnet-4-5-api-retirement-date を 1 つにした（値は同じ）。足し先：current-models#by-surface・after-switching-models#retirements-and-default-changes'
 - id: mythos-availability
   title: Mythos の提供範囲（検証の制度と、提供先の国・組織）
-  value: Cyber Verification Program と Life Sciences Verification Program 経由のみ。現在は米国の組織に限る
+  value: 信頼されたアクセスの制度を通した、現在は米国の一部の組織に限る。Life Sciences Verification Program では使える。Cyber Verification Program は今は Opus・Sonnet 級で、Mythos 級は今後含める予定
   sentence: '{value}'
   sources:
   - anthropic-fable-mythos-5-1
-  checked: '2026-10-29'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'current-models の提案。提案の status は確認済みだが、write.md が「一次資料を開いていない（Web の取得 0 回）。束の写し」と書くので 未確認 にした。足し先：current-models#fable-and-mythos'
+  status: 確認済み
+  note: 'Anthropic の発表に「Mythos 5.1 is available only through our trusted access programs」「Currently, it is only available to a set of US organizations」「The CVP currently provides access to certain Opus- and Sonnet-class models ... In the near future, this program will also include access to Claude Mythos-class models」「life sciences professionals can use Claude Mythos 5.1」（Life Sciences Verification Program）とある（2026-11-06 に確認）。前の値は Cyber Verification Program 経由で Mythos が使えるように読めたので、発表のとおりに直した。足し先：current-models#fable-and-mythos'
 - id: ultrathink-raise-min-version-terminal
   title: ultrathink がそのターンの effort を引き上げる Claude Code の最低の版（対話のターミナル）
   value: 2.1.311
@@ -1136,11 +1132,10 @@ facts:
     claude_code: 2.1.316
   sources:
   - cc-changelog
-  - cc-docs-model-config
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'thinking-keywords の提案。提案の status は確認済みだが、write.md が「束の調査資料の写しで、一次資料は開いていない」と書くので 未確認 にした。足し先：thinking-keywords#ultrathink'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.316 の項に「[VSCode] Changed `ultrathink` to run its turn at `xhigh` effort and show in a rainbow in the chat box, as in the terminal」とある（2026-11-06 に原文で確認）。端末は 2.1.311（Model configuration も v2.1.311 以降と書く）。2.1.317 に「[VSCode] Fixed `ultrathink` not raising effort for its turn ... when telemetry is off」の修正がある。足し先：thinking-keywords#ultrathink'
 - id: ultrathink-raise-target-and-models
   title: ultrathink が引き上げる先の段と、対象のモデル・面
   value: xhigh。Anthropic の API で Opus 5.5・Sonnet 5.5・Haiku 5.5・Fable 5.1 を使うとき
@@ -1148,10 +1143,10 @@ facts:
   sources:
   - cc-changelog
   - cc-docs-model-config
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'thinking-keywords の提案。引き上げる先 xhigh は features の ultrathink の note と一致するが、対象のモデルの一覧は一次資料で確かめていない（write.md）ので 未確認 にした。足し先：thinking-keywords#ultrathink'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.311 の項に「Changed `ultrathink` in the interactive terminal to run its turn at xhigh effort on Opus 5.5, Sonnet 5.5, Haiku 5.5 and Fable 5.1 through Anthropic''s API」とある（2026-11-06 に原文で確認）。Model configuration は、Bedrock などでは使えず effort を設定すると書く。足し先：thinking-keywords#ultrathink'
 - id: ultrathink-disable-env-min-version
   title: CLAUDE_CODE_DISABLE_ULTRATHINK が使える Claude Code の最低の版
   value: 2.1.316
@@ -1160,10 +1155,10 @@ facts:
     claude_code: 2.1.316
   sources:
   - cc-changelog
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'thinking-keywords の提案。提案の status は確認済みだが、一次資料を開いていない（write.md）ので 未確認 にした。足し先：thinking-keywords#ultrathink'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.316 の項に「Added `CLAUDE_CODE_DISABLE_ULTRATHINK`, which turns the `ultrathink` keyword off」とある（2026-11-06 に原文で確認）。足し先：thinking-keywords#ultrathink'
 - id: api-version-removing-sampling-params
   title: temperature・top_p・top_k を外した API の版
   value: '2026-10-21'
@@ -1184,17 +1179,17 @@ facts:
   checked: '2026-11-05'
   volatility: 中
   status: 未確認
-  note: 'let-claude-ask の提案。write.md が「一次資料を開いていない」と書くので 未確認 にした。選択肢の数と header の字数の根拠は Agent SDK の文書（Handle approvals and user input）だが、その出典は data の sources にない（research/26 §3.9 の写し）。sources に足してから確かめる。足し先：let-claude-ask#how・#limits'
+  note: 'let-claude-ask の提案。2026-11-06 に Tools reference（AskUserQuestion の節）を読んだが、問数・選択肢の数・header の字数は書かれていなかった。Hooks reference は長く、前半しか読めていない。選択肢の数と header の字数の根拠は Agent SDK の文書（Handle approvals and user input、code.claude.com/docs/en/agent-sdk/user-input）だが、その出典は data の sources にない。取得の回数の上限に達して読めなかったので 未確認 のまま。本文は数を使わない形に直した。足し先：let-claude-ask#how・#limits'
 - id: ask-user-question-timeout
   title: askUserQuestionTimeout の指定できる値
   value: 60s・5m・10m（放っておくと、選んだ分だけ送って先へ進む）
   sentence: '{value}'
   sources:
   - cc-docs-tools-reference
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'let-claude-ask の提案。write.md が「一次資料を開いていない」と書くので 未確認 にした。足し先：let-claude-ask#limits'
+  status: 確認済み
+  note: 'Tools reference に「set the `askUserQuestionTimeout` setting to `60s`, `5m`, or `10m`」「it submits any options you''d already selected and tells Claude you may be away from your keyboard」とある（2026-11-06 に確認）。足し先：let-claude-ask#limits'
 - id: idle-compaction-min-tokens
   title: idle compaction が働く会話の大きさ（既定。変えられる）
   value: 200,000
@@ -1202,23 +1197,20 @@ facts:
   sentence: 既定で {value} {unit}以上（変えられる）
   sources:
   - cc-changelog
-  - cc-docs-context-window
-  - cc-docs-settings-reference
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'compact-and-auto-compact の提案。write.md が「idle compaction の条件の数値は research/22 #15 の写しで、CHANGELOG の原文は開いていない」と書くので 未確認 にした。足し先：compact-and-auto-compact#idle-compaction'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.299 の項に「Added `CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS` to change idle compaction''s 200K-token minimum」とある（2026-11-06 に原文で確認）。足し先：compact-and-auto-compact#idle-compaction'
 - id: idle-compaction-wait
   title: idle compaction が要約するまでの放置の時間（1 時間の prompt cache のとき）
-  value: 約 1 時間
-  sentence: '{value}（prompt cache が 1 時間のとき。2.1.299 の CHANGELOG は約 54 分と書く）'
+  value: 約 54 分
+  sentence: '{value}（prompt cache が 1 時間のとき。キャッシュが切れる前に要約する）'
   sources:
   - cc-changelog
-  - cc-docs-costs
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'compact-and-auto-compact の提案。原文を開いていない（research/22 #15 の写し）ので 未確認。足し先：compact-and-auto-compact#idle-compaction'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.299 の項に「a 200K+ token conversation left idle for about 54 minutes is compacted before its one-hour prompt cache expires」とある（2026-11-06 に原文で確認）。前の値の「約 1 時間」は原文と違うので「約 54 分」に直した。足し先：compact-and-auto-compact#idle-compaction'
 - id: idle-compaction-terminal-version
   title: idle compaction が端末で既定で有効になった Claude Code の版
   value: 2.1.299
@@ -1227,10 +1219,10 @@ facts:
     claude_code: 2.1.299
   sources:
   - cc-changelog
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'compact-and-auto-compact の提案。CHANGELOG の原文を開いていないので 未確認。足し先：compact-and-auto-compact#idle-compaction'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.299 の項に「Added idle compaction in the terminal」とある（2026-11-06 に原文で確認）。足し先：compact-and-auto-compact#idle-compaction'
 - id: idle-compaction-ide-version
   title: idle compaction が VS Code と Desktop の Code タブにも広がった Claude Code の版
   value: 2.1.314
@@ -1239,10 +1231,10 @@ facts:
     claude_code: 2.1.314
   sources:
   - cc-changelog
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'compact-and-auto-compact の提案。CHANGELOG の原文を開いていないので 未確認。足し先：compact-and-auto-compact#idle-compaction'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.314 の項に「Added idle compaction to VS Code and Claude Desktop''s Code tab」とある（2026-11-06 に原文で確認）。足し先：compact-and-auto-compact#idle-compaction'
 - id: auto-compact-window-range
   title: autoCompactWindow に指定できるトークン数の範囲と、必要な版
   value: 100,000 から 1,000,000
@@ -1389,10 +1381,10 @@ facts:
   sentence: '{value}'
   sources:
   - cc-docs-interactive-mode
-  checked: '2026-10-29'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 'must-know-operations の提案（提案の status は「要確認」）。足し先：must-know-operations#watch-and-background'
+  status: 確認済み
+  note: 'Interactive mode の表に「Ctrl+O  Toggle transcript viewer」「Ctrl+B  Background running tasks（Backgrounds Bash commands and agents）」とある（2026-11-06 に確認）。足し先：must-know-operations#watch-and-background'
 - id: skill-description-rebuild-min-version
   title: 圧縮の後にスキルの説明文を作り直して入れ直す、最低の Claude Code の版
   value: 2.1.304
@@ -1400,12 +1392,11 @@ facts:
   versions:
     claude_code: 2.1.304
   sources:
-  - cc-docs-context-window
   - cc-changelog
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'how-skills-load の提案。提案の status は確認済みだが、write.md が「事実は束の写しと data の項目に基づく。公式の文書は開いていない」と書くので 未確認 にした。足し先：how-skills-load#after-compaction'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.304 の項に「Changed compaction to send Claude the skill list again afterwards; `/reload-skills` now sends only new or changed skills」とある（2026-11-06 に原文で確認）。足し先：how-skills-load#after-compaction'
 - id: plugin-not-used-recently-threshold
   title: /plugin の Installed タブで「Not used recently」に移るまでの未使用の期間と回数
   value: 14 日かつ 10 セッション
@@ -1456,11 +1447,11 @@ facts:
   value: $0.08
   sentence: セッション 1 時間あたり {value}（running 中のみ）
   sources:
-  - api-docs-managed-agents
-  checked: '2026-10-29'
+  - api-docs-pricing
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'sdk-comparison の提案（提案の status は「要確認」。調査資料 02 §5-9 の写しで、公式の Pricing の表で確かめていない）。足し先：sdk-comparison#managed-agents'
+  status: 確認済み
+  note: 'Pricing の Claude Managed Agents pricing の表に「Session runtime  $0.08 USD per session-hour  `running` status duration」とある（2026-11-06 に確認）。足し先：sdk-comparison#managed-agents'
 - id: agent-teams-plan-mode-token-multiple
   title: チームメイトが plan mode で動くときの、通常のセッションに対するトークン使用量の倍率（公式の費用の文書の値。条件つき）
   value: 7
@@ -1583,10 +1574,10 @@ facts:
   sentence: '{value} {unit}'
   sources:
   - hc-share-people
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'shared-artifacts-and-files の提案（提案の status は「要確認」。research/26 の写しのみで一次資料を開いていない）。1 日に招待できる人数の上限は材料にない。足し先：shared-artifacts-and-files#who-can-see'
+  status: 確認済み
+  note: 'Share a chat with specific people の記事に「Pending invites expire after 30 days if they aren''t opened」とある（2026-11-06 に確認）。1 日に招待できる人数の上限はあると書くが、数は書かない。足し先：shared-artifacts-and-files#who-can-see'
 - id: top-model-by-plan
   title: 最上位のモデルの引かれ先（プランごと）
   value: Max・Ultra・Team と席ごとの Enterprise の premium seat は通常の週の上限の内側（一部まで）。Pro・Team と席ごとの Enterprise の standard seat は usage credits（席ごとの Enterprise は組織が有効にした場合）。使用量に基づく Enterprise と API は標準の API 料金。Free は使えない
@@ -1599,7 +1590,7 @@ facts:
   checked: '2026-11-05'
   volatility: 高
   status: 未確認
-  note: 'before-using-top-model の提案（提案の status は「確認済み」。Fable の記事は WebFetch の要約で確かめたが、料金のページと Max・Ultra の記事は束の写しのまま。Fable の記事は別の週の上限なしと書き、usage-limit-types-by-plan の最上位のモデルの別の週の上限の列と食い違う〔正本の見直しは持ち主へ〕）。足し先：before-using-top-model#which-limit・choosing-a-model#plans・choosing-a-plan#plan-table'
+  note: 'before-using-top-model の提案（提案の status は「確認済み」。Fable の記事は WebFetch の要約で確かめたが、料金のページと Max・Ultra の記事は束の写しのまま。Fable の記事は別の週の上限なしと書き、usage-limit-types-by-plan の最上位のモデルの別の週の上限の列と食い違う〔正本の見直しは持ち主へ〕）。2026-11-06 の確かめでは、4 つの出典（Fable の記事・料金のページ・Max・Ultra の記事）を読む回数の上限に達して読めなかったので 未確認 のまま。本文は、プランごとの扱いの中身を書かない形に直した。足し先：before-using-top-model#which-limit・choosing-a-model#plans・choosing-a-plan#plan-table'
 - id: top-model-weekly-share
   title: プランに含まれる最上位のモデルの割合（通常の週の上限のうち）
   value: 50
@@ -1653,10 +1644,10 @@ facts:
   sentence: '{value}'
   sources:
   - hc-computer-use
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'browser-control の提案（提案の status は「確認済み」。write.md は computer use の文書を開いていないと書くので 未確認）。足し先：browser-control#computer-use'
+  status: 確認済み
+  note: 'Let Claude use your computer in Cowork の記事に、Pro・Max・Ultra で使える・「Team and Enterprise plans don''t have access to computer use at this time」・macOS と Windows の Claude Desktop・beta・「investment and trading platforms, cryptocurrency」は既定でブロック、とある（2026-11-06 に確認）。足し先：browser-control#computer-use'
 - id: loop-recurring-expiry-days
   title: セッション内の繰り返し（/loop）の失効までの日数
   value: 7
@@ -1845,10 +1836,10 @@ facts:
     claude_code: 2.1.317
   sources:
   - cc-changelog
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 'cloud-schedules の提案（research/22 #27 の写しで、公式の文書では見ていない〔write.md〕ので 未確認）。足し先：cloud-schedules#least-privilege'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.317 の項に「Added a warning to `/schedule` when a new cloud scheduled task gets connectors you did not ask for, with how to remove them」とある（2026-11-06 に原文で確認）。足し先：cloud-schedules#least-privilege'
 - id: scheduled-tasks-run-history-question-version
   title: /schedule で実行の履歴を尋ねられる Claude Code の版（GitHub の起動を CLI から足せる版は 2.1.225）
   value: 2.1.227
@@ -1900,10 +1891,10 @@ facts:
     claude_code: 2.1.314
   sources:
   - cc-changelog
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 'bare-mode の提案（research/22 #6 の写し。提案の status は「要確認」で、CHANGELOG の再確認が要る）。足し先：bare-mode#pitfalls'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.314 の項に「Fixed a settings file excluded with `--setting-sources` still supplying some settings, such as auto mode rules and saved permission consents」とある（2026-11-06 に原文で確認）。足し先：bare-mode#pitfalls'
 - id: bare-mode-partial-limits-before
   title: --bare の MCP・システムリマインダー・バックグラウンドの制限が完全になった版
   value: v2.1.286 より前は一部だけ
@@ -1942,10 +1933,10 @@ facts:
   sentence: '{value}'
   sources:
   - api-docs-prompt-caching
-  checked: '2026-10-29'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'prompt-caching-in-practice の提案（提案の status は「要確認」）。足し先：prompt-caching-in-practice#pitfalls'
+  status: 確認済み
+  note: 'Prompt caching の Cache limitations に、最小の長さが 512 トークン（Fable 5.1・Opus 5.5・Sonnet 5.5・Haiku 5.5 など）、1,024、2,048、4,096 トークン（Opus 4.6・4.5、Haiku 4.5）と載る（2026-11-06 に確認）。足し先：prompt-caching-in-practice#pitfalls'
 - id: prompt-cache-max-breakpoints
   title: 明示するキャッシュの区切りの数の上限
   value: 4
@@ -1953,10 +1944,10 @@ facts:
   sentence: '{value} {unit}まで'
   sources:
   - api-docs-prompt-caching
-  checked: '2026-10-29'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'prompt-caching-in-practice の提案（提案の status は「要確認」）。足し先：prompt-caching-in-practice#breakpoints'
+  status: 確認済み
+  note: 'Prompt caching に「You can define up to 4 cache breakpoints」とある（2026-11-06 に確認）。足し先：prompt-caching-in-practice#breakpoints'
 - id: agents-md-direct-read-min-version
   title: AGENTS.md を読み込みの設定で直接読む最低の Claude Code の版
   value: 2.1.277
@@ -2104,10 +2095,10 @@ facts:
   sentence: 最長 {value} {unit}
   sources:
   - cc-docs-data-usage
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 中
-  status: 未確認
-  note: 'what-feedback-sends の提案（提案の status は「確認済み」。write.md は一次資料を開いていないと書くので 未確認）。足し先：what-feedback-sends#what-is-sent'
+  status: 確認済み
+  note: 'Data usage の Session quality surveys に、Yes を選ぶと「Shared transcripts are retained for up to 6 months」とある（2026-11-06 に確認）。足し先：what-feedback-sends#what-is-sent'
 - id: refusals-auto-switch-default
   title: 自動のモデルの切り替えの既定（アプリと Claude Code は有効。API は既定でなく fallbacks を設定して使う）
   value: アプリ・Claude Code：有効。API：fallbacks を設定して使う（server-side は beta）
@@ -2116,10 +2107,10 @@ facts:
   - hc-switched-models
   - cc-docs-model-config
   - api-docs-refusals
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'when-requests-are-refused の提案（提案の status は「確認済み」。write.md は公式の記事を開き直していないと書くので 未確認）。足し先：when-requests-are-refused#by-surface'
+  status: 確認済み
+  note: 'アプリの記事に「Automatic switching is enabled by default」、同じ働きが Claude Code にもあり、Claude Code は Config の「Switch models when a message is flagged」で切れる、API は既定でなく fallbacks を設定すると書く。Refusals and fallback に、server-side の fallbacks は beta とある（2026-11-06 に確認）。足し先：when-requests-are-refused#by-surface'
 - id: refusals-cc-per-category-switch-min-version
   title: 分類ごとの切り替えが要る Claude Code の最低の版
   value: 2.1.219
@@ -2127,65 +2118,62 @@ facts:
   versions:
     claude_code: 2.1.219
   sources:
-  - cc-docs-errors
   - cc-docs-model-config
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 'when-requests-are-refused の提案（提案の status は「確認済み」。write.md は公式の記事を開き直していないと書くので 未確認）。足し先：when-requests-are-refused#by-surface'
+  status: 確認済み
+  note: 'Model configuration に「Category-based fallback requires Claude Code v2.1.219 or later」とある（2026-11-06 に確認）。足し先：when-requests-are-refused#by-surface'
 - id: refusals-api-categories
   title: API の stop_details.category の値
   value: cyber・bio・frontier_llm・reasoning_extraction・general_harms（または null）
   sentence: '{value}'
   sources:
   - api-docs-refusals
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'when-requests-are-refused の提案（提案の status は「確認済み」。write.md は公式の記事を開き直していないと書くので 未確認）。足し先：when-requests-are-refused#by-surface'
+  status: 確認済み
+  note: 'Refusals and fallback の表に、category の値として cyber・bio・frontier_llm・reasoning_extraction・general_harms が載り、named category に当たらない拒否は null とある（2026-11-06 に確認）。足し先：when-requests-are-refused#by-surface'
 - id: refusals-billing-by-category
   title: 拒否の課金の扱い（分野ごと。出力の前に止まっても課金される分類がある）
-  value: 出力の前に止まった拒否でも課金される分類は bio・frontier_llm・reasoning_extraction（アプリの記事では distillation）。ほかの分類は課金されない。途中で止まれば、それまでの入出力は課金される（2026-09 時点。2026 年に何度か変わった）
+  value: 出力の前に止まった拒否でも課金される分類は bio・frontier_llm・reasoning_extraction。ほかの分類は課金されない。途中で止まれば、それまでの入出力は課金される（2026-09 時点。2026 年に何度か変わった）
   sentence: '{value}'
   sources:
   - api-docs-refusals
-  - cc-docs-errors
   - api-release-notes
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: when-requests-are-refused の refusals-billing-by-category（値は「要確認」）と asking-for-reasoning の reasoning-extraction-billing（要確認）を、後者の値で 1 つにした。足し先：when-requests-are-refused#by-surface・asking-for-reasoning#refusal
+  status: 確認済み
+  note: 'Refusals and fallback の How refusals are billed に、出力の前の拒否は bio・frontier_llm・reasoning_extraction で課金され（2026 年 9 月時点）、ほかの分類と null は課金されず、途中で止まった拒否は入力と出た出力が課金されるとある。API の release notes に 2026-06-02・06-09 の課金しない扱いと 2026-09-24 の分類ごとの再開が載る（2026-11-06 に確認）。前の値の「アプリの記事では distillation」は今回確かめていないので外した。when-requests-are-refused の refusals-billing-by-category と asking-for-reasoning の reasoning-extraction-billing を 1 つにした。足し先：when-requests-are-refused#by-surface・asking-for-reasoning#refusal'
 - id: refusals-cvp-tiers
   title: Cyber Verification Program の段階と、個人で申し込める段階
   value: 3 段階。個人は Defense の段階だけ（2026-10 時点）
   sentence: '{value}'
   sources:
   - hc-cyber-verification-program
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'when-requests-are-refused の提案（提案の status は「確認済み」。write.md は公式の記事を開き直していないと書くので 未確認）。足し先：when-requests-are-refused#official-steps'
+  status: 確認済み
+  note: 'Cyber Verification Program の記事に「three access tiers」（Defense Access・Red Team Access・Specialized Access）と「only Defense access is available for individual applicants at this time」とある。ページは 2026-10 の更新（2026-11-06 に確認）。足し先：when-requests-are-refused#official-steps'
 - id: reasoning-extraction-since
   title: reasoning_extraction が拒否の分類に足された日
   value: '2026-06-09'
   sentence: '{value}（Claude Fable 5 の公開の日）'
   sources:
   - api-release-notes
-  - api-docs-thinking
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 'asking-for-reasoning の提案（提案の status は「要確認」）。足し先：asking-for-reasoning#refusal'
+  status: 確認済み
+  note: 'API の release notes の 2026-06-09 に、stop_details.category が Claude Fable 5 で "reasoning_extraction" を含むようになったとあり、同じ日に Claude Fable 5 の公開が載る（2026-11-06 に確認）。足し先：asking-for-reasoning#refusal'
 - id: usage-credits-expiry-japan
   title: usage credits の失効の期間（日本など）
-  value: 購入から 6 か月（2026-09-10 以降の購入分）
+  value: 購入から 6 か月（2026-09-10 から）
   sentence: '{value}'
   sources:
   - hc-usage-credits
-  checked: '2026-11-04'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'usage-credits-basics の提案（提案の status は「確認済み」。write.md は一次資料を開いていないと書くので 未確認）。足し先：usage-credits-basics#how-it-works'
+  status: 確認済み
+  note: 'Manage usage credits の記事に「in certain jurisdictions such as Japan, usage credits expire six months after purchase starting September 10, 2026」とある（2026-11-06 に確認）。多くの場合は失効しない。前の値の「2026-09-10 以降の購入分」は、記事がそこまで書かないので外した。足し先：usage-credits-basics#how-it-works'
 - id: plan-prices-individual
   title: 個人向けのプランの月額と払い方（Web の価格）
   table:
@@ -2228,11 +2216,10 @@ facts:
   sentence: '{value}'
   sources:
   - api-docs-message-threads
-  - api-docs-messages
-  checked: '2026-11-05'
+  checked: '2026-11-06'
   volatility: 高
-  status: 未確認
-  note: 'stateless-messages-api の提案（提案の status は「確認済み」。write.md は message threads の文書そのものを開いていない・束の写しと書くので 未確認）。足し先：stateless-messages-api#message-threads'
+  status: 確認済み
+  note: 'Message threads の文書に「It expires 5 minutes after its last request, and the API deletes it no more than 1 hour after its last use」とある（beta。2026-11-06 に確認）。足し先：stateless-messages-api#message-threads'
 - id: edit-refuses-non-utf8-since
   title: Edit が UTF-8 でないファイルの編集を拒むようになった Claude Code の版
   value: 2.1.296
@@ -2241,10 +2228,10 @@ facts:
     claude_code: 2.1.296
   sources:
   - cc-changelog
-  checked: '2026-11-03'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 'character-encodings の提案（write.md が変更の記録の版は束の写しのままと書くので 未確認）。足し先：character-encodings#claude-code'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.296 の項に「Fixed Edit and NotebookEdit replacing every non-ASCII character in files that are not valid UTF-8 (Windows-1252, Shift-JIS, GBK); such edits are now refused」とある（2026-11-06 に原文で確認）。足し先：character-encodings#claude-code'
 - id: write-refuses-non-utf8-since
   title: Write が Shift-JIS などを黙って UTF-8 に変えず拒むようになった Claude Code の版
   value: 2.1.299
@@ -2253,10 +2240,10 @@ facts:
     claude_code: 2.1.299
   sources:
   - cc-changelog
-  checked: '2026-11-03'
+  checked: '2026-11-06'
   volatility: 低
-  status: 未確認
-  note: 'character-encodings の提案（write.md が変更の記録の版は束の写しのままと書くので 未確認）。足し先：character-encodings#claude-code'
+  status: 確認済み
+  note: 'CHANGELOG の 2.1.299 の項に「Write dropping byte-order marks or silently converting Windows-1252, Shift-JIS, GBK or UTF-16BE files to UTF-8 (now refused)」の修正とある（2026-11-06 に原文で確認）。足し先：character-encodings#claude-code'
 features:
 - id: claude-md
   title: CLAUDE.md

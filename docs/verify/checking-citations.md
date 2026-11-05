@@ -86,7 +86,7 @@ Claude が挙げる出典の誤りは、存在しない文献だけではない�
 <!-- textlint-enable -->
 <!-- gen:end snippet checking-citations/checkable-list -->
 
-Research を使って調べさせた場合の頼み方は <!-- link:begin using-research#requesting -->[リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）](../app/using-research.md#requesting)<!-- link:end --> にある。API で渡した文書の中の根拠を返させる仕組みは <!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる） › 引用させる指示との違い（準備中）<!-- link:end --> で扱う。どの守りを入れても、挙げられた出典を原文で確かめる手順は要る。
+Research を使って調べさせた場合の頼み方は <!-- link:begin using-research#requesting -->[リサーチを使いこなす › 頼み方（範囲・出典の条件・出力の形）](../app/using-research.md#requesting)<!-- link:end --> にある。API で渡した文書の中の根拠を返させる仕組みは <!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる）<!-- link:end --> で扱う。どの守りを入れても、挙げられた出典を原文で確かめる手順は要る。
 
 ## 確かめる手順 {#steps}
 
@@ -161,7 +161,6 @@ Research を使って調べさせた場合の頼み方は <!-- link:begin using-
 **次に読む**
 
 - [調べものとレポート](../recipes/research-and-reports.md)
-- citations（根拠の箇所を返させる）（準備中）
 
 **関連**
 

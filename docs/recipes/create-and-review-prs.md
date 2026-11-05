@@ -202,7 +202,7 @@ PR そのものを作らせるときは、上の 4 段と説明文の下書き�
 
 PR を作ったセッションは、`claude --from-pr <番号>` や、名前を付けたセッションの再開で戻れる（<!-- link:begin resume-and-branch#resume -->[セッションに名前を付けて再開・分岐する › 再開する](../cli/resume-and-branch.md#resume)<!-- link:end -->）。再開したセッションは、変更を書いたときの推論を引き継いでいる。指摘が正しいかの見立ては、新しいセッションなど、その推論を見ていない者にも出させて比べる。
 
-自動の PR レビュー（Code Review・/ultrareview）の指摘も、人のレビューの指摘と同じ扱いにする。使い方は <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> に任せる。指摘の採否と承認は人が決める。
+自動の PR レビュー（Code Review・/ultrareview）の指摘も、人のレビューの指摘と同じ扱いにする。使い方は <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）<!-- link:end --> に任せる。指摘の採否と承認は人が決める。
 
 ## 全体の確かめ方 {#verify-overall}
 
@@ -265,7 +265,6 @@ GitHub Actions から Claude に PR を作らせる場合は、鍵と権限を�
 **関連**
 
 - [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
-- 自動 PR レビュー（Code Review・/ultrareview）（準備中）
 - [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)
 - [レビューの観点を育てる](../team/grow-review-checklists.md)

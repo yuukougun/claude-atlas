@@ -218,7 +218,6 @@ Anthropic が複数の Claude を並列に動かして C コンパイラを作�
 - [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
 - [検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)
 - [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)
-- 退行の原因を git bisect で探させる（準備中）
 
 **関連**
 

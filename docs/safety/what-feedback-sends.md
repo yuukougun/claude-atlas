@@ -53,7 +53,7 @@ updated: 2026-11-05
 - **評価の記録**：アンケートに答えると、評価だけが記録される。会話の中身は付かない。
 - **記録の共有**：評価の後に、記録を見てよいかを聞かれる。ここで Yes を選んだときだけ、記録が送られる。
 
-Yes を選ぶと、ソースコードやファイルの内容がそのままアップロードされる。既知の API キーやトークンの形式は伏せ字になるが、伏せ字にされるのは既知の形式だけである。会話に貼ったパスワードや、形式の決まっていない秘密は、そのまま送られると考える。この記録の共有で残る期間には、/feedback の保持とは別の上限が付く（<!-- fact:begin feedback-transcript-share-retention-months -->未確認<!-- fact:end -->）。送る前に公式の [Data usage](https://code.claude.com/docs/en/data-usage) で確かめる。
+Yes を選ぶと、ソースコードやファイルの内容がそのままアップロードされる。既知の API キーやトークンの形式は伏せ字になるが、伏せ字にされるのは既知の形式だけである。会話に貼ったパスワードや、形式の決まっていない秘密は、そのまま送られると考える。この記録の共有で残る期間には、/feedback の保持とは別の上限が付く（<!-- fact:begin feedback-transcript-share-retention-months -->最長 6 か月（2026-11-06 時点）<!-- fact:end -->）。送る前に公式の [Data usage](https://code.claude.com/docs/en/data-usage) で確かめる。
 
 === "アプリ"
 
@@ -128,7 +128,7 @@ WebFetch は、取得の前に、ホスト名だけを api.anthropic.com に送�
 <!-- textlint-enable -->
 <!-- gen:end snippet what-feedback-sends/disable-reporting -->
 
-組織で記録を集める側の話、つまり OpenTelemetry や監査ログで何が記録され、何が記録されないかは <!-- link:begin audit-logs-and-telemetry#what-is-recorded -->監査ログと可視化（OpenTelemetry など） › 記録されるもの、されないもの（準備中）<!-- link:end --> が持つ。面ごとの既定の記録の扱いは <!-- link:begin default-safety-settings#defaults-by-surface -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 面ごとの既定（生成の表）](default-safety-settings.md#defaults-by-surface)<!-- link:end --> の表で比べられる。
+組織で記録を集める側の話、つまり OpenTelemetry や監査ログで何が記録され、何が記録されないかは <!-- link:begin audit-logs-and-telemetry#what-is-recorded -->監査ログと可視化（OpenTelemetry など）<!-- link:end --> が持つ。面ごとの既定の記録の扱いは <!-- link:begin default-safety-settings#defaults-by-surface -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 面ごとの既定（生成の表）](default-safety-settings.md#defaults-by-surface)<!-- link:end --> の表で比べられる。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -145,7 +145,6 @@ WebFetch は、取得の前に、ホスト名だけを api.anthropic.com に送�
 - [共有リンクと公開アーティファクトの扱い](shared-artifacts-and-files.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](entrusted-data.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](default-safety-settings.md)
-- 監査ログと可視化（OpenTelemetry など）（準備中）
 
 </div>
 

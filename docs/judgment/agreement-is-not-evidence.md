@@ -85,7 +85,7 @@ Claude の賛成は、案の出来のほかに、聞き方と押し方でも増�
 
 AI レビュアーは、問題を見つけさせる道具として使う。人の判定と基準を合わせていない AI レビュアーの「問題なし」は、合格を決める判定に使わない。指摘は、再現や実行で確かめられる。「問題なし」は、どこを見てそう言ったのかが分からず、確かめる手がかりがない。指摘ごとに確かめ方（再現の手順や実行するコマンド）を付けさせると、受け取った側がそのまま実行して確かめられる。依頼の書き方は、<!-- link:begin instructing-reviewers -->[レビュアーへの指示の書き方](../verify/instructing-reviewers.md)<!-- link:end -->にある。
 
-レビューする者を変更の書き手から分ける理由と分け方は、<!-- link:begin independent-review -->[書いた本人ではない者にレビューさせる](../verify/independent-review.md)<!-- link:end -->にある。別のモデルに第二の意見を求める使いどころは、<!-- link:begin second-opinion-from-another-model -->別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）<!-- link:end -->にある。
+レビューする者を変更の書き手から分ける理由と分け方は、<!-- link:begin independent-review -->[書いた本人ではない者にレビューさせる](../verify/independent-review.md)<!-- link:end -->にある。別のモデルに第二の意見を求める使いどころは、<!-- link:begin second-opinion-from-another-model -->別のモデルに第二の意見を求める（一致は証拠にならない）<!-- link:end -->にある。
 
 人の判定と比べて基準を合わせた AI の採点は、扱いが別になる。人の判定とどれだけ一致するかを測り、その度合いを添えれば、計測の一種として使える。合わせ方は、<!-- link:begin model-based-grading -->[Claude に採点させる（人の判定で較正する）](../eval/model-based-grading.md)<!-- link:end -->にある。
 
@@ -144,7 +144,7 @@ AI が何体賛成しても、人が手放さないものは 3 つある。採�
 
 - AI が賛成した案は何件あり、そのうち実行や計測で確かめたのは何件、外れたのは何件か。日付つきで記録しているか
 - 件数が少ないうちは傾向として読み、断定していないか。確かめた案のうち外れた割合は、数件でも、自分の環境で賛成がどれだけ当てにならないかの目安になる
-- 振り返りの評価を AI に任せていないか。AI には集計だけを頼む進め方は、<!-- link:begin retros-without-ai-verdicts -->振り返りで AI に評価させない（集計係にとどめる）（準備中）<!-- link:end -->にある
+- 振り返りの評価を AI に任せていないか。AI には集計だけを頼む進め方は、<!-- link:begin retros-without-ai-verdicts -->振り返りで AI に評価させない（集計係にとどめる）<!-- link:end -->にある
 
 どの確かめでも、賛成に寄りかかっている点が見つかったら、その賛成は根拠から外し、実行・計測・一次資料で確かめ直す。確かめ直すまでは「未確認」と書く。
 
@@ -180,13 +180,11 @@ AI が何体賛成しても、人が手放さないものは 3 つある。採�
 - [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](ask-without-sycophancy.md)
 - [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)
-- 振り返りで AI に評価させない（集計係にとどめる）（準備中）
 
 **関連**
 
 - [すぐ同意して意見を変える（迎合）](../symptoms/caves-when-pushed.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
-- 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 - [Claude に採点させる（人の判定で較正する）](../eval/model-based-grading.md)
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
 - [役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)

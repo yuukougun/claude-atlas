@@ -419,11 +419,11 @@ CLAUDE.md に何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to
 - **Notification**：Claude が許可を求めたとき（`permission_prompt`）や、入力を待っているとき（`idle_prompt`）に走る。`matcher` で通知の種類を絞る
 - **Stop**：Claude が 1 回の応答を終えるたびに走る。長く任せた作業の終わりを知るのに向く
 
-雛形の通知のコマンドは `notify-send` で、Linux のデスクトップを前提にする。WSL・macOS・Windows の通知の出し方は、未確認である。端末ごとの手段は <!-- link:begin completion-notifications#channels -->終わったら知らせてもらう › 知らせる手段（端末の設定とフック）（準備中）<!-- link:end --> にある。
+雛形の通知のコマンドは `notify-send` で、Linux のデスクトップを前提にする。WSL・macOS・Windows の通知の出し方は、未確認である。端末ごとの手段は <!-- link:begin completion-notifications#channels -->終わったら知らせてもらう<!-- link:end --> にある。
 
 手順の確かめは、短い作業を頼んで、終わったときに通知が出ることを見る。
 
-知らせを増やしすぎると、作業が細切れになる。Stop のたびに通知を出すか、時刻を決めて自分で見に行くかは、<!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう › 知らせるか、時刻を決めて見るか（準備中）<!-- link:end --> で選ぶ。Stop のフックには、別の使い方もあり、確かめる処理が通るまでターンを終えさせない型は <!-- link:begin stop-hooks -->[Stop フックで「終わらせない」](stop-hooks.md)<!-- link:end --> が持つ。
+知らせを増やしすぎると、作業が細切れになる。Stop のたびに通知を出すか、時刻を決めて自分で見に行くかは、<!-- link:begin completion-notifications#when-to-notify -->終わったら知らせてもらう<!-- link:end --> で選ぶ。Stop のフックには、別の使い方もあり、確かめる処理が通るまでターンを終えさせない型は <!-- link:begin stop-hooks -->[Stop フックで「終わらせない」](stop-hooks.md)<!-- link:end --> が持つ。
 
 ## 担当にだけ禁じる（agent_id） {#subagent-only}
 
@@ -570,7 +570,6 @@ CLAUDE.md に何を残すかは <!-- link:begin what-to-put-in-claude-md#what-to
 - [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
 - [サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)
-- 終わったら知らせてもらう（準備中）
 
 </div>
 

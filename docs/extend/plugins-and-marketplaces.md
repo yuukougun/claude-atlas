@@ -69,7 +69,7 @@ updated: 2026-11-05
 
 === "アプリ"
 
-    アプリでは、Plugins のページ（以前は Customize という名前で、展開中のため画面は変わりうる）から探して入れる。アプリのプラグインはアカウントに保存され、Claude Code へ同期される。入れられる中身と画面の操作は「<!-- link:begin plugins-in-the-app#contents -->アプリでプラグインを使う › プラグインに入るもの・動く場所（準備中）<!-- link:end -->」にある。同期の仕組みと必要な版は「<!-- link:begin plugins-in-the-app#sync -->アプリでプラグインを使う › Claude Code との同期（準備中）<!-- link:end -->」にある。
+    アプリでは、Plugins のページ（以前は Customize という名前で、展開中のため画面は変わりうる）から探して入れる。アプリのプラグインはアカウントに保存され、Claude Code へ同期される。入れられる中身と画面の操作は「<!-- link:begin plugins-in-the-app#contents -->アプリでプラグインを使う<!-- link:end -->」にある。同期の仕組みと必要な版は「<!-- link:begin plugins-in-the-app#sync -->アプリでプラグインを使う<!-- link:end -->」にある。
 
     アプリで入れたプラグインも、Claude Code に同期されれば、次の「入れる前の確認」と常駐のコストの対象になる。フックとローカルの MCP は、Cowork と Claude Code でだけ動く。
 
@@ -91,7 +91,7 @@ updated: 2026-11-05
 
 入れた後も、確認は終わらない。中身は後から変わることがある。変わり方は「<!-- link:begin vetting-extensions#changes-after-install -->[MCP・プラグイン・スキルを入れる前の確認 › 入れた後に変わる（rug pull）](../safety/vetting-extensions.md#changes-after-install)<!-- link:end -->」にある。使っていないものは外す。`/plugin` の Installed タブでは、<!-- fact:begin plugin-not-used-recently-threshold -->14 日かつ 10 セッション（2026-11-05 時点）<!-- fact:end -->使われていないものが「Not used recently」に移るので、外す候補になる。棚卸しの手順は「<!-- link:begin pruning-extensions#measure -->[拡張の棚卸しと剪定 › 測る](pruning-extensions.md#measure)<!-- link:end -->」にある。
 
-プラグインの一種に、Claude Code の画面や挙動そのものを変える mod がある。動くコードが深く入り込むので、ほかのプラグインより確認を重くする。くわしくは「<!-- link:begin mods -->Mods（プラグインで挙動を深く変える）（準備中）<!-- link:end -->」を見る。
+プラグインの一種に、Claude Code の画面や挙動そのものを変える mod がある。動くコードが深く入り込むので、ほかのプラグインより確認を重くする。くわしくは「<!-- link:begin mods -->Mods（プラグインで挙動を深く変える）<!-- link:end -->」を見る。
 
 ## チームのマーケットプレイスを作る {#team-marketplace}
 
@@ -99,7 +99,7 @@ updated: 2026-11-05
 
 - **確認を通したものだけを載せる**。載せたプラグインは、チーム全員の権限で動く。入れる前の確認は、載せる側が先に済ませる。
 - **変更をレビューに通す**。一覧とプラグインの中身の変更は、プルリクエストを通してから取り込む。自動更新（`autoUpdate`）を有効にすると、取り込んだ変更が背景で各自の手元に届くからだ。
-- **使えるマーケットプレイスを絞る**。組織の管理設定の `strictKnownMarketplaces` で、使えるマーケットプレイスの出どころを限れる。配る経路は「<!-- link:begin org-managed-settings-and-mcp#delivery -->組織に設定と MCP サーバーを配る › 配る経路（準備中）<!-- link:end -->」にある。
+- **使えるマーケットプレイスを絞る**。組織の管理設定の `strictKnownMarketplaces` で、使えるマーケットプレイスの出どころを限れる。配る経路は「<!-- link:begin org-managed-settings-and-mcp#delivery -->組織に設定と MCP サーバーを配る<!-- link:end -->」にある。
 
 最小の一覧は、名前（`name`）、所有者（`owner`）、プラグインの配列（`plugins`）の 3 つが必須である。配列の各項目には、名前と取得元（`source`）を書く。同じマーケットプレイスの中のプラグインは、一覧の根からの相対のパスで指す。次の雛形は、1 つのプラグインを載せた一覧である。
 
@@ -179,7 +179,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end snippet plugins-and-marketplaces/project-settings -->
 
-プラグインの取得元が一覧の外（プラグイン自身の GitHub リポジトリなど）にあるときは、この設定だけでは入らない。各自が `claude plugin install <プラグイン名>@<マーケットプレイス名> --scope project` を流すまで、有効だが入っていない、という表示が出る。チームの設定ファイルをどこまで共有するかは「<!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end -->」にある。組織の全員へ強制して配るなら「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る（準備中）<!-- link:end -->」を見る。
+プラグインの取得元が一覧の外（プラグイン自身の GitHub リポジトリなど）にあるときは、この設定だけでは入らない。各自が `claude plugin install <プラグイン名>@<マーケットプレイス名> --scope project` を流すまで、有効だが入っていない、という表示が出る。チームの設定ファイルをどこまで共有するかは「<!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](../team/share-team-settings.md#shared-vs-personal)<!-- link:end -->」にある。組織の全員へ強制して配るなら「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る<!-- link:end -->」を見る。
 
 ## 効かない場面と落とし穴 {#limits}
 
@@ -200,9 +200,9 @@ updated: 2026-11-05
 - **リポジトリの `.claude/` に置く**：そのリポジトリだけで使うなら足りる。ほかのリポジトリへは、手でコピーする。
 - **個人の設定に置く**：自分のすべてのプロジェクトで使える。チームには届かない。
 - **プラグインとマーケットプレイス**：複数のリポジトリと複数の人へ、同じ版を配る。作る手間と、他人のコードを入れる責任が増える。
-- **組織の管理設定**：全員に強制できる。配る経路は「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る（準備中）<!-- link:end -->」にある。
+- **組織の管理設定**：全員に強制できる。配る経路は「<!-- link:begin org-managed-settings-and-mcp -->組織に設定と MCP サーバーを配る<!-- link:end -->」にある。
 
-拡張の層の全体と、置く先の選び方は「<!-- link:begin extensions-at-a-glance#layers -->[拡張機能の全体図と使い分け早見表 › 拡張の 4 つの層](extensions-at-a-glance.md#layers)<!-- link:end -->」にある。スキルの作り方は「<!-- link:begin writing-skills -->[スキルの作り方](writing-skills.md)<!-- link:end -->」、MCP のつなぎ方は「<!-- link:begin connecting-mcp -->[MCP をつなぐ](connecting-mcp.md)<!-- link:end -->」を見る。型のある言語の code intelligence プラグインは「<!-- link:begin code-intelligence-plugins -->[code intelligence プラグイン（LSP）](code-intelligence-plugins.md)<!-- link:end -->」にある。チームに広める流れは「<!-- link:begin rolling-out-to-teams -->チームに広める（/team-onboarding など）（準備中）<!-- link:end -->」を見る。
+拡張の層の全体と、置く先の選び方は「<!-- link:begin extensions-at-a-glance#layers -->[拡張機能の全体図と使い分け早見表 › 拡張の 4 つの層](extensions-at-a-glance.md#layers)<!-- link:end -->」にある。スキルの作り方は「<!-- link:begin writing-skills -->[スキルの作り方](writing-skills.md)<!-- link:end -->」、MCP のつなぎ方は「<!-- link:begin connecting-mcp -->[MCP をつなぐ](connecting-mcp.md)<!-- link:end -->」を見る。型のある言語の code intelligence プラグインは「<!-- link:begin code-intelligence-plugins -->[code intelligence プラグイン（LSP）](code-intelligence-plugins.md)<!-- link:end -->」にある。チームに広める流れは「<!-- link:begin rolling-out-to-teams -->チームに広める（/team-onboarding など）<!-- link:end -->」を見る。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -216,19 +216,15 @@ updated: 2026-11-05
 **次に読む**
 
 - [code intelligence プラグイン（LSP）](code-intelligence-plugins.md)
-- Mods（プラグインで挙動を深く変える）（準備中）
 
 **関連**
 
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - [チームで設定を共有する](../team/share-team-settings.md)
 - [拡張の棚卸しと剪定](pruning-extensions.md)
-- アプリでプラグインを使う（準備中）
 - [スキルの作り方](writing-skills.md)
 - [MCP をつなぐ](connecting-mcp.md)
-- 組織に設定と MCP サーバーを配る（準備中）
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
-- チームに広める（/team-onboarding など）（準備中）
 
 </div>
 

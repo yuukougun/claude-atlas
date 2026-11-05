@@ -59,7 +59,7 @@ updated: 2026-11-05
 | --- | --- | --- |
 | [サブエージェント（subagents）](../extend/writing-subagents.md) | GA | 1.0.60（2025-07-24） |
 | [agent view](agent-view-and-background.md) | research preview | 2.1.139（2026-05-11） |
-| エージェントチーム（agent teams）（準備中） | experimental | 2.1.32（2026-02-05） |
+| エージェントチーム（agent teams） | experimental | 2.1.32（2026-02-05） |
 | [ワークフロー（workflows）](dynamic-workflows.md) | GA | 2.1.154（2026-05-28） |
 | [worktree](parallel-with-worktrees.md) | GA | 2.1.49（2026-02-19） |
 | [Claude Code の Projects（並列の threads）](choosing-parallel-modes.md) | beta | — |
@@ -81,10 +81,10 @@ updated: 2026-11-05
 | --- | --- | --- | --- |
 | サブエージェント | Claude が、1 つの会話の中で | 並べられる独立の作業・出力が多い作業の切り離し・独立したレビュー | <!-- link:begin writing-subagents#when-to-use -->[サブエージェントの作り方と使いどころ › 使いどころと、使わない場面](../extend/writing-subagents.md#when-to-use)<!-- link:end --> |
 | agent view | 自分が背景のセッションに投入し、後で確認する | 見張らなくてよい独立した作業 | <!-- link:begin agent-view-and-background#what-fits -->[agent view と背景セッション › 向く作業と向かない作業](agent-view-and-background.md#what-fits)<!-- link:end --> |
-| エージェントチーム | リードの Claude が計画・割り当て・監督をする | 互いに連絡しながら進める、小さく焦点を絞った作業 | <!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）（準備中）<!-- link:end --> |
+| エージェントチーム | リードの Claude が計画・割り当て・監督をする | 互いに連絡しながら進める、小さく焦点を絞った作業 | <!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）<!-- link:end --> |
 | workflows | Claude が書いたスクリプトが計画を持つ | コードベース全体の監査や、大量のファイルの移行 | <!-- link:begin dynamic-workflows#when-and-start-small -->[dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 向く規模と、小さく試す](dynamic-workflows.md#when-and-start-small)<!-- link:end --> |
 | Projects | Claude が、続いている会話の中で | 会話を軸に、タスクごとに threads を分けたい作業 | [Let Claude coordinate ongoing work with Projects](https://code.claude.com/docs/en/claude-projects) |
-| /batch と claude -p のループ | 自分が出したコマンドかループ | 同じ作業を多数のファイルに流す | <!-- link:begin batch-and-p-loops#not-the-batch-api -->多数のファイルに同じ作業を流す（/batch と -p のループ） › API の Message Batches API とは別のもの（準備中）<!-- link:end --> |
+| /batch と claude -p のループ | 自分が出したコマンドかループ | 同じ作業を多数のファイルに流す | <!-- link:begin batch-and-p-loops#not-the-batch-api -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end --> |
 
 互いに連絡が要るかは、この軸とほぼ重なる。サブエージェントは別の文脈で作業して、要約だけを返す。エージェントチームだけが、共有のタスクリストと相互のメッセージで、担当どうしが途中経過を渡し合える。途中経過を渡し合う必要がなければ、エージェントチームを選ぶ理由は薄い。チームメイトの数だけトークンを使うからである。背景のセッションに別のセッションから知らせたいだけなら、<!-- link:begin agent-view-and-background#cross-session-messaging -->[agent view と背景セッション › ほかのセッションに知らせる（cross-session messaging）](agent-view-and-background.md#cross-session-messaging)<!-- link:end --> で足りる。
 
@@ -103,7 +103,7 @@ updated: 2026-11-05
 - 触るファイルが重なる作業：作業ごとに worktree を作り、別のセッションで進める。依存の導入・秘密のファイルの写し方・データベースは worktree ごとに決める。手順は <!-- link:begin parallel-with-worktrees#per-worktree-setup -->[git worktree で並列にする › worktree ごとの準備（依存・秘密・データベース）](parallel-with-worktrees.md#per-worktree-setup)<!-- link:end --> にある。
 - 触るファイルが重ならない作業：worktree は要らない。分けると、準備と片付けの手間だけが増える。
 - エージェントチームで進める作業：チームメイトごとに担当のファイルを決め、同じファイルを 2 人に渡さない。
-- 同じ作業を多数のファイルに流す作業：/batch は、worktree で隔離したサブエージェントに分けて進める。範囲の決め方は <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end --> にある。
+- 同じ作業を多数のファイルに流す作業：/batch は、worktree で隔離したサブエージェントに分けて進める。範囲の決め方は <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end --> にある。
 
 worktree は、片付けも要る。残すものと消すものは <!-- link:begin parallel-with-worktrees#cleanup -->[git worktree で並列にする › 片付けと残すもの](parallel-with-worktrees.md#cleanup)<!-- link:end --> で決める。
 
@@ -219,13 +219,11 @@ Claude の推奨は、本文の基準と食い違うことがある。食い違�
 
 - [agent view と背景セッション](agent-view-and-background.md)
 - [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](dynamic-workflows.md)
-- エージェントチーム（複数の Claude に分担させる）（準備中）
 
 **関連**
 
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
 - [git worktree で並列にする](parallel-with-worktrees.md)
-- 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 - [仮説ごとに並べて、同じ物差しで比べる](compare-hypotheses-in-parallel.md)
 - [サブエージェントの作り方と使いどころ](../extend/writing-subagents.md)
 - [スキルとサブエージェントの違い](../extend/skill-vs-subagent.md)

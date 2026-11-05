@@ -78,7 +78,7 @@ updated: 2026-11-05
 2. コード実行とファイル作成が有効かを見る。無効だと、スキルは動かない。
 3. 依頼の文に、スキルの名前を挙げて頼み直す。これで動けば、スキル自体は壊れておらず、説明文が依頼と合っていない。
 4. 説明文を直す。いつ使うスキルかを先頭に具体的に書き、ほかのスキルと重ならないようにする。書き方は「<!-- link:begin skill-descriptions#front-load -->[スキルの description の書き方 › いつ使うかを先頭に具体的に書く](../extend/skill-descriptions.md#front-load)<!-- link:end -->」と「<!-- link:begin skill-descriptions#overlap -->[スキルの description の書き方 › ほかのスキルと重ならないようにする](../extend/skill-descriptions.md#overlap)<!-- link:end -->」にある。
-5. 組織で使っているときは、組織の設定でスキルが切られていないかを管理者に聞く。配布の仕組みは「<!-- link:begin shared-projects-and-org-skills#org-skills -->アプリをチームで使う（共有プロジェクト・組織のスキル） › 組織のスキルと配布（準備中）<!-- link:end -->」にある。
+5. 組織で使っているときは、組織の設定でスキルが切られていないかを管理者に聞く。配布の仕組みは「<!-- link:begin shared-projects-and-org-skills#org-skills -->アプリをチームで使う（共有プロジェクト・組織のスキル）<!-- link:end -->」にある。
 
 直した後は、新しい会話で、同じ依頼をもう一度出して確かめる。確かめ方の全体は「<!-- link:begin skill-descriptions#check -->[スキルの description の書き方 › 起動を確かめる](../extend/skill-descriptions.md#check)<!-- link:end -->」にある。
 
@@ -137,9 +137,9 @@ Styles は、応答の調子と形式を選ぶ機能だった。2026 年 6 月�
 
 スキルの中身の書き方は、「<!-- link:begin writing-skills#minimal -->[スキルの作り方 › 最小のスキルを作る](../extend/writing-skills.md#minimal)<!-- link:end -->」にある。本文を短く保ち、詳しい資料は補助ファイルに分ける（「<!-- link:begin writing-skills#supporting-files -->[スキルの作り方 › 補助ファイルとスクリプトに分ける](../extend/writing-skills.md#supporting-files)<!-- link:end -->」）。
 
-組織に配る場合は、権限と配布の仕組みが別にある。Team と Enterprise で共有や配布ができると Help Center は書く。一方、Platform の Agent Skills の文書は、claude.ai のカスタムスキルを各人だけのもので、面をまたいで同期しないと書く。公式同士で食い違っているので、組織で使えるかどうかは、自分の画面と管理者の設定で確かめる。配布は「<!-- link:begin shared-projects-and-org-skills#org-skills -->アプリをチームで使う（共有プロジェクト・組織のスキル） › 組織のスキルと配布（準備中）<!-- link:end -->」を見る。
+組織に配る場合は、権限と配布の仕組みが別にある。Team と Enterprise で共有や配布ができると Help Center は書く。一方、Platform の Agent Skills の文書は、claude.ai のカスタムスキルを各人だけのもので、面をまたいで同期しないと書く。公式同士で食い違っているので、組織で使えるかどうかは、自分の画面と管理者の設定で確かめる。配布は「<!-- link:begin shared-projects-and-org-skills#org-skills -->アプリをチームで使う（共有プロジェクト・組織のスキル）<!-- link:end -->」を見る。
 
-Claude の設定で有効にしたスキルは、同じアカウントでログインした Claude Code にも読み込まれる（片方向）。同期の条件は「<!-- link:begin plugins-in-the-app#sync -->アプリでプラグインを使う › Claude Code との同期（準備中）<!-- link:end -->」にある。
+Claude の設定で有効にしたスキルは、同じアカウントでログインした Claude Code にも読み込まれる（片方向）。同期の条件は「<!-- link:begin plugins-in-the-app#sync -->アプリでプラグインを使う<!-- link:end -->」にある。
 
 ## 効かない場面と落とし穴 {#limits}
 
@@ -152,7 +152,7 @@ Claude の設定で有効にしたスキルは、同じアカウントでログ�
 ## 比べる相手 {#compare}
 
 - **Claude への指示・プロジェクトの指示・メモリ**：常に、または特定のプロジェクトで効く前提を置く場所である。スキルは、必要なときだけ読まれる手順を置く場所である。比較は「<!-- link:begin where-to-put-instructions -->[アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](where-to-put-instructions.md)<!-- link:end -->」にある。
-- **プラグイン**：スキルのほか、コネクタやサブエージェントなどをまとめた束である。職種ごとの道具一式を入れたいときは「<!-- link:begin plugins-in-the-app -->アプリでプラグインを使う（準備中）<!-- link:end -->」を見る。
+- **プラグイン**：スキルのほか、コネクタやサブエージェントなどをまとめた束である。職種ごとの道具一式を入れたいときは「<!-- link:begin plugins-in-the-app -->アプリでプラグインを使う<!-- link:end -->」を見る。
 - **Claude Code のスキル**：同じ仕組みだが、置く場所と作り方が違う。作り方は「<!-- link:begin writing-skills -->[スキルの作り方](../extend/writing-skills.md)<!-- link:end -->」にある。
 
 ## 古くなった助言 {#old-advice}
@@ -183,11 +183,6 @@ Claude の設定で有効にしたスキルは、同じアカウントでログ�
 **前提**
 
 - [スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)
-
-**次に読む**
-
-- アプリでプラグインを使う（準備中）
-- アプリをチームで使う（共有プロジェクト・組織のスキル）（準備中）
 
 **関連**
 

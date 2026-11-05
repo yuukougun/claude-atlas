@@ -83,11 +83,11 @@ After で足したのは、説明の中身の指定である。決め手の数�
 
 ## 全文を求める指示が断られる理由 {#refusal}
 
-推論の全文や決まった形（`<thinking>` の欄、JSON の `reasoning` の欄など）を本文に書かせる指示は、`reasoning_extraction` という拒否の分類に当たることがある。新しいモデルの世代で、この分類が足された（足された日：<!-- fact:begin reasoning-extraction-since -->未確認<!-- fact:end -->。対象のモデルは台帳の行にある）。断られると、API の応答は `stop_reason` が `refusal` になり、`stop_details.category` に分類が入る。
+推論の全文や決まった形（`<thinking>` の欄、JSON の `reasoning` の欄など）を本文に書かせる指示は、`reasoning_extraction` という拒否の分類に当たることがある。新しいモデルの世代で、この分類が足された（足された日：<!-- fact:begin reasoning-extraction-since -->2026-06-09（Claude Fable 5 の公開の日）（2026-11-06 時点）<!-- fact:end -->。対象のモデルは台帳の行にある）。断られると、API の応答は `stop_reason` が `refusal` になり、`stop_details.category` に分類が入る。
 
 この種の指示は、頼んだ本人が書いていなくても入り込む。CLAUDE.md・スキル・サブエージェント・出力スタイル・MCP のツールの説明に、推論の全文や決まった形の欄を求める文が入っていることがある。`claude --safe-mode` で設定を外すと、どこから来たかを切り分けられる。止められた原因の見分け方は <!-- link:begin refused-or-blocked#diagnosis -->[断られた・止められた › 原因を安く確かめる順](../symptoms/refused-or-blocked.md#diagnosis)<!-- link:end --> にまとめてある。
 
-出力の前に止まった拒否でも、課金される分類がある（課金の扱い：<!-- fact:begin refusals-billing-by-category -->未確認<!-- fact:end -->）。断られても費用は発生しうるので、どの分類が課金されるかは、公式の Refusals の文書（参考の節に出典を載せる）で確かめる。
+出力の前に止まった拒否でも、課金される分類がある（課金の扱い：<!-- fact:begin refusals-billing-by-category -->出力の前に止まった拒否でも課金される分類は bio・frontier\_llm・reasoning\_extraction。ほかの分類は課金されない。途中で止まれば、それまでの入出力は課金される（2026-09 時点。2026 年に何度か変わった）（2026-11-06 時点）<!-- fact:end -->）。断られても費用は発生しうるので、どの分類が課金されるかは、公式の Refusals の文書（参考の節に出典を載せる）で確かめる。
 
 「`<thinking>` タグに推論を書かせる」は、<!-- link:begin outdated-advice-ledger#thinking-tags -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#thinking-tags)<!-- link:end -->に載る助言で、かつては有効だった。思考の機能を使わないころは、答えの前に考えを書かせると答えがよくなり、その過程を読んで確かめられた。今は、推論を見たいときは本文に書かせず、思考のブロックを読む。
 

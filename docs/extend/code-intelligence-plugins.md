@@ -143,7 +143,7 @@ code intelligence プラグインが効かない、または期待と違う動�
 
 公式は、シンボルの検索が広いファイルの読み込みを置き換えるので、全体として使うコンテキストは減りうると書く。ただし、減るかどうかは環境による。誤検出の診断が多い環境では、その対応で読む量が増えうるので、自分の環境で見てから判断する。
 
-IDE の拡張が持つ診断の道具は、このプラグインとは別の仕組みである。IDE 側でできることと違いは <!-- link:begin using-ides#what-you-get -->IDE（VS Code・JetBrains）で使う › IDE で得られるもの（準備中）<!-- link:end --> にある。
+IDE の拡張が持つ診断の道具は、このプラグインとは別の仕組みである。IDE 側でできることと違いは <!-- link:begin using-ides#what-you-get -->IDE（VS Code・JetBrains）で使う<!-- link:end --> にある。
 
 ## 比べる相手 {#compare}
 
@@ -154,7 +154,7 @@ code intelligence プラグインを、ほかの手段と比べる。
 | code intelligence プラグイン | 型のある言語で、定義の探索と編集後の型エラーの確認が繰り返し起きる |
 | `@` で直接指す | 読むファイルが分かっている。<!-- link:begin choose-what-to-read#point-or-search -->[@参照と、何を読ませるかの絞り込み › 直接指すか、探させるか](../context/choose-what-to-read.md#point-or-search)<!-- link:end --> |
 | 文字列の検索とテスト・ビルドの実行 | 型のない言語、または言語サーバーが使えない環境 |
-| IDE の拡張の診断 | IDE を使っていて、IDE 側の検査の結果を読ませたい。<!-- link:begin using-ides#vs-cli -->IDE（VS Code・JetBrains）で使う › CLI との違い（準備中）<!-- link:end --> |
+| IDE の拡張の診断 | IDE を使っていて、IDE 側の検査の結果を読ませたい。<!-- link:begin using-ides#vs-cli -->IDE（VS Code・JetBrains）で使う<!-- link:end --> |
 
 このプラグインはプラグインの一種なので、読み込みの時期やコストは次の表のとおりである。
 
@@ -199,7 +199,6 @@ code intelligence プラグインを、ほかの手段と比べる。
 
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
 - [知らないコードベースを読む](../recipes/explore-a-codebase.md)
-- IDE（VS Code・JetBrains）で使う（準備中）
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - [拡張を足すタイミング](when-to-add-what.md)
 

@@ -157,7 +157,7 @@ computer use は、使えるコネクタもブラウザの道具もないとき�
 成熟度の表記は、面と出典で違う。Cowork と Desktop の Help Center は beta と書き、Claude Code の文書は research preview と書く。この辞典の成熟度の表（先頭の節）は、Cowork と Desktop の Help Center の表記に合わせている。研究中の機能なので、操作の手順は書かず、対象のプラン・OS・面は公式で確かめる。
 
 === "アプリ"
-    Cowork と Desktop で使える。設定の「Enable computer use」の切り替えで有効にする。対象のプランと OS は（<!-- fact:begin computer-use-requirements -->未確認<!-- fact:end -->）。
+    Cowork と Desktop で使える。設定の「Enable computer use」の切り替えで有効にする。対象のプランと OS は（<!-- fact:begin computer-use-requirements -->macOS・Windows の Desktop。Pro・Max・Ultra。Team と Enterprise は対象外（beta）。投資・取引・暗号資産のアプリは既定でブロック（2026-11-06 時点）<!-- fact:end -->）。
 
 === "Claude Code"
     Desktop の Code タブと、CLI から使える。CLI は Desktop と対象の OS が違い、使える条件が限られる。公式の文書（確認日 2026-11-05）で確かめる。

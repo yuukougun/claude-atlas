@@ -81,7 +81,7 @@ updated: 2026-11-05
     - 見ること：同じ質問への答えが、回ごとに違っていないか。
     - 確かめ方：同じ質問を数回出して並べる。割れた主張は、根拠が弱い部分の合図として扱い、原文で確かめる。比べ方は <!-- link:begin fact-checking#best-of-n -->[事実を確かめる（引用・照合・best-of-N） › 何度か聞いて比べる（best-of-N）](../verify/fact-checking.md#best-of-n)<!-- link:end -->、割れる理由は <!-- link:begin nondeterminism#why -->[同じ質問でも答えが変わる（非決定性） › なぜ答えが変わるか](../basics/nondeterminism.md#why)<!-- link:end --> にある。
 
-人の側の落とし穴も 1 つ疑う。確かめる手段として、別のモデルや同じモデルの別の回の「同意」を使っていないか。何体が同意しても、それは根拠にならない。同意を数えず、原文や実行の結果で確かめる。理由は <!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](../judgment/agreement-is-not-evidence.md#what-counts)<!-- link:end --> と <!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end --> にある。
+人の側の落とし穴も 1 つ疑う。確かめる手段として、別のモデルや同じモデルの別の回の「同意」を使っていないか。何体が同意しても、それは根拠にならない。同意を数えず、原文や実行の結果で確かめる。理由は <!-- link:begin agreement-is-not-evidence#what-counts -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 証拠として数えるもの](../judgment/agreement-is-not-evidence.md#what-counts)<!-- link:end --> と <!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない）<!-- link:end --> にある。
 
 ## 原因ごとの対処 {#to-fixes}
 
@@ -139,7 +139,7 @@ updated: 2026-11-05
 
 === "API"
 
-    citations という機能で、渡した資料の根拠の箇所を API に返させられる。引用させる指示との違いは <!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる） › 引用させる指示との違い（準備中）<!-- link:end --> にある。
+    citations という機能で、渡した資料の根拠の箇所を API に返させられる。引用させる指示との違いは <!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる）<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -172,8 +172,6 @@ updated: 2026-11-05
 - [同じ質問でも答えが変わる（非決定性）](../basics/nondeterminism.md)
 - [リサーチを使いこなす](../app/using-research.md)
 - [知識カットオフと「今」を知らない問題](../basics/knowledge-cutoff.md)
-- citations（根拠の箇所を返させる）（準備中）
-- 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
 - [要約が原文より断定的になる](summary-overstates-source.md)
 - [存在しない関数やパッケージを使う](uses-nonexistent-apis.md)

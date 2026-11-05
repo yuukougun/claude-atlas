@@ -65,7 +65,7 @@ usage credits は、プランの利用上限を使い切った後も、前払い
 
 使った分は、前払いした残高から引かれる。残高が足りなくなったときに自動で補充する設定もある。補充の設定は、上限額とセットで見る必要がある（次の節）。
 
-購入した分には失効の期限がある。日本などでの失効の期間は、<!-- fact:begin usage-credits-expiry-japan -->未確認<!-- fact:end -->である。期間と日付は変わりやすいので、まとめて買う前に、公式の記事で確かめる。失効の前には、メールで知らせが届く。
+購入した分には失効の期限がある。日本などでの失効の期間は、<!-- fact:begin usage-credits-expiry-japan -->購入から 6 か月（2026-09-10 から）（2026-11-06 時点）<!-- fact:end -->である。期間と日付は変わりやすいので、まとめて買う前に、公式の記事で確かめる。失効の前には、メールで知らせが届く。
 
 呼び名は変わった。以前は extra usage、コマンドは `/extra-usage` だった。今は <!-- name:begin extra-usage-to-usage-credits -->usage credits（/usage-credits）<!-- name:end --> である。旧名のコマンドも今は動く。公式の記事や古い手順書には旧名が残っているので、読み替えて読む。
 
@@ -116,7 +116,7 @@ usage credits は、プランの利用上限を使い切った後も、前払い
 - **モデルによっては最初から対象**：最上位のモデルは、プランによっては枠に含まれず、最初から usage credits で使う。使う前の確かめ方は <!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](before-using-top-model.md#which-limit)<!-- link:end --> にある。
 - **使うほど増える**：払う額は使った量に比例する。無人で回す仕事は、止める条件と費用の上限を先に決める。
 - **失効**：買った分は、期限が来ると使えなくなる。まとめ買いの前に期間を確かめる。
-- **円での支払い**：為替、消費税、請求書の扱いは <!-- link:begin paying-in-yen -->円での支払い・消費税・インボイス（準備中）<!-- link:end --> にある。
+- **円での支払い**：為替、消費税、請求書の扱いは <!-- link:begin paying-in-yen -->円での支払い・消費税・インボイス<!-- link:end --> にある。
 
 「請求が思ったより多かった」ときは、まず、上限額を決めずに有効にしていないか、並列やループが走っていないかを見る。
 
@@ -151,7 +151,6 @@ usage credits は、プランの利用上限を使い切った後も、前払い
 - [課金の経路を確かめる（API キーとサブスクリプション） › プランに付く API credits](check-billing-path.md#monthly-api-credits)
 - [プランの選び方](choosing-a-plan.md)
 - [最上位のモデルを使う前に](before-using-top-model.md)
-- 円での支払い・消費税・インボイス（準備中）
 - [並列・ループ・workflows のコスト](parallel-and-loop-costs.md)
 - [AI が使えないときの備え（障害・上限）](when-ai-is-unavailable.md)
 

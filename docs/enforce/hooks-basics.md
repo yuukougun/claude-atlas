@@ -72,7 +72,7 @@ updated: 2026-11-05
 
 ## 代表的なイベント {#events}
 
-フックのイベントは、Claude Code の輪の中の決まった点である。イベントの数は <!-- fact:begin hook-event-count -->未確認<!-- fact:end --> で、全部の網羅は公式のフックのリファレンスに任せる。ここでは、止める・整える・知らせるに使う代表的なものだけを挙げる。
+フックのイベントは、Claude Code の輪の中の決まった点である。イベントの数は <!-- fact:begin hook-event-count -->33 種類（2026-11-06 時点）<!-- fact:end --> で、全部の網羅は公式のフックのリファレンスに任せる。ここでは、止める・整える・知らせるに使う代表的なものだけを挙げる。
 
 ```mermaid
 flowchart LR
@@ -214,7 +214,7 @@ flowchart LR
 
 **サブエージェントの中でも走る。** 設定ファイル・管理の設定・プラグインのフックは、サブエージェントの中でも走り、PreToolUse と PostToolUse がメインの会話と同じように発火する。サブエージェントのフロントマターに書いたフックは、その担当が動く間だけ走る。このとき Stop は SubagentStop に変わる。サブエージェントの作り方は <!-- link:begin writing-subagents#define -->[サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)<!-- link:end --> にある。
 
-フックへの入力には `agent_id` が付き（付く最低の版は <!-- fact:begin hook-agent-id-min-version -->未確認<!-- fact:end -->）、呼び出しがサブエージェントの中のものかを見分けられる。`agent_id` が付くのはサブエージェントなどの中で発火したときだけで、メインの会話には付かない。`agent_type` は `--agent` で起動したセッションのメインにも付くので、見分けには使わない。ワークフローの担当でフックが走るかは、文書に明記がなく、このページでは未確認である。
+フックへの入力には `agent_id` が付き（付く最低の版は <!-- fact:begin hook-agent-id-min-version -->Claude Code 2.1.69 以降（2026-11-06 時点）<!-- fact:end -->）、呼び出しがサブエージェントの中のものかを見分けられる。`agent_id` が付くのはサブエージェントなどの中で発火したときだけで、メインの会話には付かない。`agent_type` は `--agent` で起動したセッションのメインにも付くので、見分けには使わない。ワークフローの担当でフックが走るかは、文書に明記がなく、このページでは未確認である。
 
 !!! example "判断例：メイン以外に commit させない"
     - **状況**：commit はメインの会話だけに許し、サブエージェントには禁じたい。
@@ -228,7 +228,7 @@ flowchart LR
 
 ## 決定的なフックと、モデルが判断するフック {#deterministic}
 
-フックには、複数のハンドラ（走らせるものの種類。数は <!-- fact:begin hook-handler-types -->未確認<!-- fact:end -->）があり、すべてが決定的なわけではない。鍵として頼れるかは、誰が判定するかで決まる。
+フックには、複数のハンドラ（走らせるものの種類。数は <!-- fact:begin hook-handler-types -->5 種類（2026-11-06 時点）<!-- fact:end -->）があり、すべてが決定的なわけではない。鍵として頼れるかは、誰が判定するかで決まる。
 
 | ハンドラ | 判定する主体 | 鍵に数えるか |
 | --- | --- | --- |
@@ -267,7 +267,7 @@ flowchart LR
 - **道具の後のフックは、操作を取り消せない。** 止めたいなら PreToolUse に置く
 - **見ていない経路には効かない。** 1 つの道具に当てたフックは、別の道具から同じ結果になる経路を止めない。縛る範囲を、権限ルールやサンドボックスとの二重にする（<!-- link:begin request-lock-table#by-surface -->[お願いと鍵の対応表 › 面ごとの鍵の手段](request-lock-table.md#by-surface)<!-- link:end -->）
 - **失敗すると通すのが既定である。** 止める用途では、失敗を止めに倒す書き方が要る。詳しくは <!-- link:begin writing-safe-hooks#fail-open -->[フックを安全に書く › 既定は失敗すると通す（fail-open）](writing-safe-hooks.md#fail-open)<!-- link:end --> を見る
-- **版によって、効く範囲が違う。** Bash に当てたフックは、新しい版（<!-- fact:begin hook-monitor-min-version -->未確認<!-- fact:end -->）では Monitor の道具が起動するシェルコマンドにも走る。止める・確認を求めることはできるが、許可や書き換えはできない。それより前の版では、Bash のフックは Monitor のコマンドを素通しにしていた。自分の版で確かめる
+- **版によって、効く範囲が違う。** Bash に当てたフックは、新しい版（<!-- fact:begin hook-monitor-min-version -->Claude Code 2.1.314 以降（2026-11-06 時点）<!-- fact:end -->）では Monitor の道具が起動するシェルコマンドにも走る。止める・確認を求めることはできるが、許可や書き換えはできない。それより前の版では、Bash のフックは Monitor のコマンドを素通しにしていた。自分の版で確かめる
 - **フックは利用者の権限で動く。** 他人のフックを入れるときは、コードとして読んでから使う（<!-- link:begin writing-safe-hooks#runs-as-you -->[フックを安全に書く › フックは利用者の権限で動く](writing-safe-hooks.md#runs-as-you)<!-- link:end -->）
 - **Claude Code は WSL・Linux の CLI を基準に書いている。** ほかの OS と IDE 拡張でのフックの動きは、このページでは未確認である
 

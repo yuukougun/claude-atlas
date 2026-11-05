@@ -57,7 +57,7 @@ QA・実装・レビューの形で例を見る。ある機能の改修を、1 �
 
 3 は <!-- link:begin decide-when-to-quit#why-escalation -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › なぜやめられなくなるか](../judgment/decide-when-to-quit.md#why-escalation)<!-- link:end --> の形である。4 は <!-- link:begin agreement-is-not-evidence#agreement-depends-on-asking -->[同意は根拠に数えない（AI レビュアーの一致を含む） › 賛成は聞き方と押し方で増える](../judgment/agreement-is-not-evidence.md#agreement-depends-on-asking)<!-- link:end --> の形で、賛成は聞き方と押し方で増える。どちらも、1 人が書く・承認する・疑うを兼ねることで起きる。
 
-コンテストの長期のチーム戦でも同じ形が出る。そちらの例は <!-- link:begin long-team-competitions#roles -->チーム戦の運用（長期・対戦型） › 役割を分ける（準備中）<!-- link:end --> にある。このページは、業務の形を先に書く。
+コンテストの長期のチーム戦でも同じ形が出る。そちらの例は <!-- link:begin long-team-competitions#roles -->チーム戦の運用（長期・対戦型）<!-- link:end --> にある。このページは、業務の形を先に書く。
 
 ## 三つの役割が持つもの {#roles}
 
@@ -177,10 +177,6 @@ AI の同意は、チームの判断の根拠に数えない。この決まり�
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
 
-**次に読む**
-
-- チーム戦の運用（長期・対戦型）（準備中）
-
 **関連**
 
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](risk-tiered-approval.md)
@@ -189,11 +185,9 @@ AI の同意は、チームの判断の根拠に数えない。この決まり�
 - [レビューのボトルネックと疲労](review-bottlenecks.md)
 - [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)
 - [すぐ同意して意見を変える（迎合）](../symptoms/caves-when-pushed.md)
-- 振り返りで AI に評価させない（集計係にとどめる）（準備中）
 - [ロックボックスと hold-out（人だけが持つ検証用データ）](../eval/lockbox-and-holdout.md)
 - [検証器の三条件（正しい・書き換えられない・本番を代表する）](../eval/verifier-three-conditions.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
-- 案出しは独立に、突き合わせは AI に（準備中）
 - [決定を文書に残す（ADR と週次アップデート）](record-decisions.md)
 
 </div>

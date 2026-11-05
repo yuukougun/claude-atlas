@@ -134,7 +134,7 @@ updated: 2026-11-05
 - 指示を使えるプランに食い違いがある。個人設定の記事は、プロジェクトの指示を有料プランだけとする所がある。一方、同じ記事とプロジェクトの記事は、Free でもプロジェクトを作れると書き、指示の設定にプランの制限を書いていない（[Understanding Claude's personalization features](https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features)）。2026-11-03 の確認でも食い違いは続いていた。自分のプランで指示の欄が使えるかは、画面で確かめる。
 - ナレッジの差し替えを忘れる。資料を改訂しても、ナレッジの古い版が残っていると、古い内容が使われる。改訂したら、古い版を消して入れ直す。
 - 他のプロジェクトのメモリは使われない。プロジェクトの中では、そのプロジェクトのメモリと、プロジェクトの外のアカウントのメモリが使われる。完全に分けたいときの設定は <!-- link:begin how-memory-works#scope -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › アカウントのメモリとプロジェクトのメモリ](how-memory-works.md#scope)<!-- link:end --> にある。
-- 共有すると、見える範囲が広がる。チームで使うときの権限と配る前の確認は <!-- link:begin shared-projects-and-org-skills#shared-projects -->アプリをチームで使う（共有プロジェクト・組織のスキル） › プロジェクトの共有と権限（準備中）<!-- link:end --> にある。
+- 共有すると、見える範囲が広がる。チームで使うときの権限と配る前の確認は <!-- link:begin shared-projects-and-org-skills#shared-projects -->アプリをチームで使う（共有プロジェクト・組織のスキル）<!-- link:end --> にある。
 - 同じ名前の別の機能がある。Claude Code 側から順に広がっている新しい版（beta。1 つの会話を並列の threads に分ける）は、アプリのプロジェクトとは別の機能で、このページの対象にしない。
 - 会話そのものが長くなる問題は、プロジェクトでは解決しない。会話を新しくする・書き出すなどの整え方は <!-- link:begin tidy-the-desk#in-the-app -->[机を整える：新鮮さ・巻き戻し・書き出し・委任 › アプリでの整え方](../context/tidy-the-desk.md#in-the-app)<!-- link:end --> にある。
 
@@ -169,7 +169,6 @@ updated: 2026-11-05
 
 - [プロジェクトのナレッジが多すぎるとき](too-much-project-knowledge.md)
 - [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
-- アプリをチームで使う（共有プロジェクト・組織のスキル）（準備中）
 
 **関連**
 

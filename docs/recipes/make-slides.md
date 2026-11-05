@@ -128,7 +128,7 @@ updated: 2026-11-05
 | 機能 | 面 |
 | --- | --- |
 | [アーティファクト（artifacts）](../app/artifacts-overview.md) | アプリ・Claude Code |
-| Claude for Microsoft 365 のアドイン（Excel・PowerPoint・Word・Outlook）（準備中） | アプリ |
+| Claude for Microsoft 365 のアドイン（Excel・PowerPoint・Word・Outlook） | アプリ |
 | [ファイルの作成と編集（create and edit files）](../app/files-and-code-execution.md) | アプリ |
 
 すべて共通：成熟度 GA。
@@ -140,7 +140,7 @@ updated: 2026-11-05
     アプリでは 3 つの手段のどれも使える。
 
     - アーティファクトは、会話の中でスライドを作り、直し、共有できる。会話で直しながら筋を詰めたいときに向く。テンプレートの選び方は <!-- link:begin artifacts-overview#templates -->[アーティファクト（会話の中で作る文書・スライド・デザイン） › テンプレートの選び方](../app/artifacts-overview.md#templates)<!-- link:end -->、直し方は <!-- link:begin artifacts-overview#editing -->[アーティファクト（会話の中で作る文書・スライド・デザイン） › 直し方（頼む・直接直す・範囲を選ぶ）](../app/artifacts-overview.md#editing)<!-- link:end -->、公開の注意は <!-- link:begin artifacts-overview#sharing -->[アーティファクト（会話の中で作る文書・スライド・デザイン） › 公開と共有](../app/artifacts-overview.md#sharing)<!-- link:end --> が持つ。
-    - PowerPoint のアドインは、既存のテンプレートでスライドを作り、特定のスライドだけを直し、箇条書きを図やグラフにできる。会社のテンプレートに載せたいときに向く。位置づけと確認日つきの一覧は <!-- link:begin peripheral-products#office-add-ins -->周辺製品の一覧 › Office アドイン（準備中）<!-- link:end --> が持つ。
+    - PowerPoint のアドインは、既存のテンプレートでスライドを作り、特定のスライドだけを直し、箇条書きを図やグラフにできる。会社のテンプレートに載せたいときに向く。位置づけと確認日つきの一覧は <!-- link:begin peripheral-products#office-add-ins -->周辺製品の一覧<!-- link:end --> が持つ。
     - ファイルの作成は、スライドのファイルを作らせて受け取る。受け取り方と実行環境の注意は <!-- link:begin files-and-code-execution#outputs -->[ファイル作成とコード実行 › 作ったファイルの受け取り方](../app/files-and-code-execution.md#outputs)<!-- link:end --> が持つ。
 
     どの手段でも、手順 1〜4 は同じである。変わるのは手順 5 の見た目の整え方だけである。
@@ -150,7 +150,7 @@ updated: 2026-11-05
 
     - 原稿はリポジトリのファイルとして置く。差分で変更が見え、1 枚ごとの主張の並べ替えも追いやすい。
     - 手順 3 の依頼で、出力を Markdown の原稿にするよう指定する。1 枚の区切りは、使う変換の道具の書き方に合わせる。
-    - 見た目の確認は、変換した結果を人が開いて行う。仕上がりを画像で見せて直させる進め方は <!-- link:begin frontend-design -->フロントエンドのデザイン（準備中）<!-- link:end --> が持つ。
+    - 見た目の確認は、変換した結果を人が開いて行う。仕上がりを画像で見せて直させる進め方は <!-- link:begin frontend-design -->フロントエンドのデザイン<!-- link:end --> が持つ。
 
     Claude Code で、PowerPoint などのファイルを直接作らせる手順は、この辞典では確かめていない。
 
@@ -190,11 +190,9 @@ updated: 2026-11-05
 **関連**
 
 - [見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)
-- 周辺製品の一覧 › Office アドイン（準備中）
 - [ファイル作成とコード実行](../app/files-and-code-execution.md)
 - [ドキュメント・技術文書を書く](write-docs.md)
 - [調べものとレポート](research-and-reports.md)
-- フロントエンドのデザイン（準備中）
 - [日本語の「AI 臭さ」を減らす](../japanese/less-ai-sounding-japanese.md)
 - [AI の案は「みんなの案」（均質化）](../judgment/ai-ideas-are-everyones.md)
 

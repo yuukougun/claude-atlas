@@ -77,7 +77,7 @@ updated: 2026-11-05
 | `/rename` | <!-- link:begin resume-and-branch#naming -->[セッションに名前を付けて再開・分岐する › 名前の付け方](resume-and-branch.md#naming)<!-- link:end --> | セッションに名前を付けて、戻る先を探しやすくする |
 | `/branch` | <!-- link:begin resume-and-branch#branch -->[セッションに名前を付けて再開・分岐する › 分岐して別案を試す](resume-and-branch.md#branch)<!-- link:end --> | 会話を分岐して、別の案を試す |
 | `/teleport` | <!-- link:begin cloud-sessions-and-teleport#teleport -->[クラウドセッションと teleport › teleport で取り込む](cloud-sessions-and-teleport.md#teleport)<!-- link:end --> | クラウドのセッションを手元の端末に取り込む |
-| `/remote-control` | <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> | 手元のセッションをブラウザやスマホから操作する |
+| `/remote-control` | <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）<!-- link:end --> | 手元のセッションをブラウザやスマホから操作する |
 
 **状態を見る・設定する**
 
@@ -88,7 +88,7 @@ updated: 2026-11-05
 | `/status` | <!-- link:begin settings-layers#verify -->[設定ファイルの階層と優先順位 › 効いているかを確かめる](settings-layers.md#verify)<!-- link:end --> | 読み込まれた設定の層を確かめる |
 | `/permissions` | <!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end --> | 許可・確認・拒否のルールを見直す |
 | `/output-style` | <!-- link:begin output-style-modes#built-in -->[出力スタイルで応答の仕方を切り替える › 組み込みのスタイル](output-style-modes.md#built-in)<!-- link:end --> | 応答の仕方を切り替える |
-| `/ide` | <!-- link:begin using-ides -->IDE（VS Code・JetBrains）で使う（準備中）<!-- link:end --> | IDE と連携して使う |
+| `/ide` | <!-- link:begin using-ides -->IDE（VS Code・JetBrains）で使う<!-- link:end --> | IDE と連携して使う |
 
 **進め方を決める**
 

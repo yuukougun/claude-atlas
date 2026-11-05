@@ -71,7 +71,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end compare -->
 
-面の全体の地図と、周辺の製品の位置づけは <!-- link:begin product-map#surfaces -->[全体地図：Claude の面と層 › 面の地図](../start/product-map.md#surfaces)<!-- link:end --> と <!-- link:begin peripheral-products#list -->周辺製品の一覧 › 一覧（確認日つき）（準備中）<!-- link:end --> にある。
+面の全体の地図と、周辺の製品の位置づけは <!-- link:begin product-map#surfaces -->[全体地図：Claude の面と層 › 面の地図](../start/product-map.md#surfaces)<!-- link:end --> と <!-- link:begin peripheral-products#list -->周辺製品の一覧<!-- link:end --> にある。
 
 ## アプリはチャットとタスクを一つの会話で扱う {#app-chat-and-tasks}
 
@@ -185,7 +185,6 @@ API を使うと、課金の経路が変わりうる。API キーがあるとき
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
 - [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
 - [Claude in Chrome と computer use（ブラウザと画面の操作）](browser-control.md)
-- 周辺製品の一覧（準備中）
 
 </div>
 

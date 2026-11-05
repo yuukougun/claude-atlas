@@ -98,7 +98,7 @@ updated: 2026-11-05
 - コードを戻す 2 つの動作は、選んだ時点より後にファイルの変更が記録されているときだけ出る。
 - 会話を戻した後や「Summarize from here」の後は、選んだプロンプトの文が入力欄に戻る。そのまま、または直して送り直せる。
 - 記録はセッションと一緒に保存されるので、セッションを再開した後でも `/rewind` が使える。`/clear` した後でも、同じ Claude Code のプロセスの間は、メニューの先頭の項目から直前のセッションへ戻れる。
-- IDE の拡張にも似た機能がある。動作はこの辞典では未確認で、違いは <!-- link:begin using-ides#vs-cli -->IDE（VS Code・JetBrains）で使う › CLI との違い（準備中）<!-- link:end --> にまとめてある。
+- IDE の拡張にも似た機能がある。動作はこの辞典では未確認で、違いは <!-- link:begin using-ides#vs-cli -->IDE（VS Code・JetBrains）で使う<!-- link:end --> にまとめてある。
 
 ## 戻せるもの・戻せないもの {#what-is-restored}
 
@@ -202,7 +202,6 @@ updated: 2026-11-05
 - [セッションに名前を付けて再開・分岐する](resume-and-branch.md)
 - [/compact と自動圧縮](../context/compact-and-auto-compact.md)
 - [消してはいけないものを消された](../symptoms/deleted-something-important.md)
-- IDE（VS Code・JetBrains）で使う（準備中）
 
 </div>
 

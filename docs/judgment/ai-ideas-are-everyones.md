@@ -83,7 +83,7 @@ AI の案が「みんなの案」でも困らない場面と、困る場面が�
     - **選んだもの**：B を選び、締め切りが短い下書きの段階だけ A を使う。
     - **理由**：A は速く、一定の水準にはなる。ただし採択が他者との比較で決まるなら、同じ AI から配られた案と並ぶ。B なら、その場の観察から足した部分が差になる。比較されない下書きなら A でも損は小さい。
 
-案を選ぶ場面と発想する場面で頼み方が変わる点は <!-- link:begin ask-for-options#ideate -->[選択肢と推奨案を出させる › 発想の場面：先に自分の案、AI には問いと反論](../prompting/ask-for-options.md#ideate)<!-- link:end --> にある。最初の案出しを各自で行う運び方は <!-- link:begin ideate-independently -->案出しは独立に、突き合わせは AI に（準備中）<!-- link:end --> にある。
+案を選ぶ場面と発想する場面で頼み方が変わる点は <!-- link:begin ask-for-options#ideate -->[選択肢と推奨案を出させる › 発想の場面：先に自分の案、AI には問いと反論](../prompting/ask-for-options.md#ideate)<!-- link:end --> にある。最初の案出しを各自で行う運び方は <!-- link:begin ideate-independently -->案出しは独立に、突き合わせは AI に<!-- link:end --> にある。
 
 ## 「いつもやること」と「その場だからやること」 {#routine-vs-specific}
 
@@ -137,7 +137,6 @@ Kaggle の画像コンペの実践者は、試行錯誤を 2 つに分けてい�
 **次に読む**
 
 - [頼む前に自分で考える（AI には問い・反論・道具を頼む）](think-before-asking.md)
-- 案出しは独立に、突き合わせは AI に（準備中）
 
 **関連**
 

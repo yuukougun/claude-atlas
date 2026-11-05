@@ -60,8 +60,8 @@ updated: 2026-11-05
 無人の実行の結果を、終了コードと Claude の要約だけで成功と決めてはいけない。どちらも「何が起きたか」の一部しか言わないからである。
 
 - **要約は Claude の言葉である。** GitHub の報告に、2 つの例がある。1 つは、回帰テストが落ちたのに件数を書き換えて「全部通過」と返し、壊れたコードを commit した例である（Opus 4.6、2026 年 4 月）。もう 1 つは、テストが失敗したのに「全部緑」と返して main へ push した例である（Opus 4.8、2026 年 5 月）。どちらも単独の報告である（根拠：弱）。人が見ていれば気づける食い違いが、無人では気づかれないまま残る。仕組みは <!-- link:begin evidence-not-reports#what-happens -->[報告ではなく証拠を求める › 件数が変わっても「全部通過」と返ってくる](evidence-not-reports.md#what-happens)<!-- link:end --> が持つ。
-- **終了コードは、プロセスが終わったことしか言わない。** 0 であっても、作業が正しいとは限らない。版にも左右される。実際に、<!-- fact:begin claude-code-p-startup-failure-exit-code-fix-version -->未確認<!-- fact:end --> より前の版では、`claude -p` が起動に失敗しても何も出さず終了コード 0 で終わった。終了コードだけで成功を決める CI は、この失敗を見逃していた。終了コードの意味は <!-- link:begin headless-basics#output-and-exit-codes -->[非対話モード（claude -p）の基本 › 出力の形式と終了コード](../delegate/headless-basics.md#output-and-exit-codes)<!-- link:end --> を引く。
-- **止まった理由が出力に出ないことがある。** auto モードの判定が返らないとき、`claude -p` の出力が止まった理由を言わないことがあった。この見え方の不具合は、<!-- fact:begin auto-mode-no-verdict-display-fixed -->未確認<!-- fact:end --> で直されている。止め方の全体は <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> が持つ。
+- **終了コードは、プロセスが終わったことしか言わない。** 0 であっても、作業が正しいとは限らない。版にも左右される。実際に、<!-- fact:begin claude-code-p-startup-failure-exit-code-fix-version -->Claude Code 2.1.314（2026-11-06 時点）<!-- fact:end --> より前の版では、`claude -p` が起動に失敗しても何も出さず終了コード 0 で終わった。終了コードだけで成功を決める CI は、この失敗を見逃していた。終了コードの意味は <!-- link:begin headless-basics#output-and-exit-codes -->[非対話モード（claude -p）の基本 › 出力の形式と終了コード](../delegate/headless-basics.md#output-and-exit-codes)<!-- link:end --> を引く。
+- **止まった理由が出力に出ないことがある。** auto モードの判定が返らないとき、`claude -p` の出力が止まった理由を言わないことがあった。この見え方の不具合は、<!-- fact:begin auto-mode-no-verdict-display-fixed -->Claude Code 2.1.314〜2.1.317（2026-11-06 時点）<!-- fact:end --> で直されている。止め方の全体は <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> が持つ。
 
 見るものごとに、分かることと分からないことを分けておく。
 
@@ -186,7 +186,7 @@ updated: 2026-11-05
 
 結果を採用するかの最終決定は、ブランチの保護と、マージを承認する人に置く。Claude の要約には置かない。main への直接の push を許さず、PR にして、必須のチェックと人の承認を通すのが基本の形である。
 
-- **AI の承認は、人の承認に数えない。** 自動のレビューは、人が見る前に指摘を出す補助として使う（<!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end -->）。書いていない者にレビューさせる理由と分け方は <!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](independent-review.md#ai-approval)<!-- link:end --> が持つ。
+- **AI の承認は、人の承認に数えない。** 自動のレビューは、人が見る前に指摘を出す補助として使う（<!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）<!-- link:end -->）。書いていない者にレビューさせる理由と分け方は <!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](independent-review.md#ai-approval)<!-- link:end --> が持つ。
 - **無人実行の確かめが防ぐもの。** Claude が確かめないまま終わる原因（確かめていない）と、人が結果を預けすぎる落とし穴（預けすぎる）である。点検表は、人が見る場所を決めるだけで、読む責任をなくさない。
 - **確かめを強めるときは、監督の少なさに比例させる。** 監督が少ないほど、再実行・差分の確認・承認する人を増やす。無人でない対話に戻したほうがよい合図は <!-- link:begin five-questions-before-delegating#back-to-dialogue -->[任せ方の段階と、無人で走らせる前の五つの問い › 対話に戻す合図](../delegate/five-questions-before-delegating.md#back-to-dialogue)<!-- link:end --> が持つ。
 
@@ -237,7 +237,6 @@ updated: 2026-11-05
 - [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)
 - [クラウドの定期タスク](../delegate/cloud-schedules.md)
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
-- 自動 PR レビュー（Code Review・/ultrareview）（準備中）
 - [自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [報告ではなく証拠を求める](evidence-not-reports.md)

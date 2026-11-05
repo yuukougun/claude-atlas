@@ -185,7 +185,7 @@ claude -p "ok" --output-format stream-json --verbose \
 - 同じ条件であって、同じ出力ではない：読み込みを揃えても、モデルの出力は毎回同じにはならない。モデルと版を固定して記録し、結果は<!-- link:begin checking-unattended-runs -->[無人実行の結果を確かめる](../verify/checking-unattended-runs.md)<!-- link:end -->のように確かめる。
 - 鍵の置き忘れ：シェルの設定ファイルに `ANTHROPIC_API_KEY` を書いたまま、サブスクリプションのつもりで `claude -p` を動かすと、従量課金になる。`--bare` なしでも、`-p` は変数があれば必ずその鍵を使う。
 - 知らないリポジトリの安全は別の話：`--bare` はリポジトリのフックと MCP の設定を読まないだけで、Bash の道具は残る。指示にだまされて危険なコマンドを実行する問題は残る。隔離や許可の絞り込みと組み合わせる。
-- 外した設定が漏れる古い版：`--setting-sources` で外した設定ファイルの一部が、渡り続ける不具合が過去にあった（直った版：<!-- fact:begin setting-sources-leak-fix-version -->未確認<!-- fact:end -->）。Claude Code を更新して使い、版を記録する。
+- 外した設定が漏れる古い版：`--setting-sources` で外した設定ファイルの一部が、渡り続ける不具合が過去にあった（直った版：<!-- fact:begin setting-sources-leak-fix-version -->Claude Code 2.1.314（2026-11-06 時点）<!-- fact:end -->）。Claude Code を更新して使い、版を記録する。
 - `-p` の既定が変わる予定：<!-- fact:begin bare-mode-default-plan -->公式の headless の文書は、--bare を将来 -p の既定にすると書く（予定。入る版は未定）（2026-11-05 時点）<!-- fact:end -->。予定は変わりうるので、実行の挙動を前提にするときは `--bare` を毎回書く。
 - 動作の確認は WSL・Linux の CLI が基準である。ほかの OS と IDE 拡張の動作は未確認である。
 
@@ -202,7 +202,7 @@ claude -p "ok" --output-format stream-json --verbose \
 - 認証を変えずに壊れた設定の切り分けをしたいなら、<!-- link:begin isolate-with-safe-mode -->[設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)<!-- link:end --> を使う。プロジェクトのフックも止まるので、そのフックそのものの確認には使えない。
 - 読む設定の層を選ぶなら `--setting-sources`。層の考え方は <!-- link:begin settings-layers -->[設定ファイルの階層と優先順位](../cli/settings-layers.md)<!-- link:end --> にある。
 - 外の人が書いた拡張を入れる前の確認は <!-- link:begin vetting-extensions -->[MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)<!-- link:end --> にある。`--bare` は入れた後の読み込みを止めるだけで、中身の確認の代わりにならない。
-- 同じ作業を多数のファイルに流すなら <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->。ループの 1 回ごとの呼び出しに `--bare` を付ければ、毎回同じ条件になる。GitHub Actions から動かす形は <!-- link:begin github-actions-with-claude -->[GitHub Actions と @claude](github-actions-with-claude.md)<!-- link:end -->、動かし方そのものの選び方は <!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)<!-- link:end --> にある。
+- 同じ作業を多数のファイルに流すなら <!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end -->。ループの 1 回ごとの呼び出しに `--bare` を付ければ、毎回同じ条件になる。GitHub Actions から動かす形は <!-- link:begin github-actions-with-claude -->[GitHub Actions と @claude](github-actions-with-claude.md)<!-- link:end -->、動かし方そのものの選び方は <!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -235,7 +235,6 @@ claude -p "ok" --output-format stream-json --verbose \
 - [設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [GitHub Actions と @claude](github-actions-with-claude.md)
-- 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 - [自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)
 
 </div>

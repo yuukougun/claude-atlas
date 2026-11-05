@@ -80,7 +80,7 @@ C の判断は <!-- link:begin entrusted-data#contracted-surfaces -->[預かっ�
 
 === "Claude Code"
 
-    ファイルを読み、コマンドを実行する面である。作業ディレクトリにあるものは、貼らなくても読まれうる。許すモードを決め、確認を省くモードを使わせない場合は <!-- link:begin managed-settings-enforcement#disable-modes -->管理設定と組織の強制 › モードを使えなくする設定（準備中）<!-- link:end --> で配布側から外す。
+    ファイルを読み、コマンドを実行する面である。作業ディレクトリにあるものは、貼らなくても読まれうる。許すモードを決め、確認を省くモードを使わせない場合は <!-- link:begin managed-settings-enforcement#disable-modes -->管理設定と組織の強制<!-- link:end --> で配布側から外す。
 
 === "API"
 
@@ -150,7 +150,7 @@ CLAUDE.md に書いた禁止は、Claude が読んで判断するお願いであ
 
 1. 禁止の項目を 1 つずつ見て、機械で判定できるかを決める。ファイルのパス、コマンドの形のように、当たる・当たらないが決まるものは機械で判定できる。「顧客に失礼な文面」のように、中身を読んで決めるものはできない。
 2. 機械で判定できる項目を、deny ルールに書く。書き方と、ルールが効く範囲は <!-- link:begin permission-rules#minimal -->[権限ルール（allow・ask・deny） › 最小の使い方](../enforce/permission-rules.md#minimal)<!-- link:end --> にある。
-3. 利用者の設定で外されたくないものは、管理設定で配る。優先の順番は <!-- link:begin managed-settings-enforcement#precedence -->管理設定と組織の強制 › 優先の順番（準備中）<!-- link:end --> にある。
+3. 利用者の設定で外されたくないものは、管理設定で配る。優先の順番は <!-- link:begin managed-settings-enforcement#precedence -->管理設定と組織の強制<!-- link:end --> にある。
 4. 機械で判定できない項目は、CLAUDE.md のお願いのまま残し、レビューで人が見る項目に回す。
 
 次の雛形は、先の CLAUDE.md の禁止のうち、パスとコマンドで判定できるものを deny ルールにしたものである。CLAUDE.md の雛形と組にして置く。
@@ -226,13 +226,11 @@ CLAUDE.md に書いた禁止は、Claude が読んで判断するお願いであ
 - [AI 利用の開示と出所の記録](../safety/disclosure-and-provenance.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- 管理設定と組織の強制（準備中）
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](risk-tiered-approval.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
 - [役割を分ける（書く人・承認する人・疑う人）](separate-roles.md)
 - [決定を文書に残す（ADR と週次アップデート）](record-decisions.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
-- 組織に設定と MCP サーバーを配る（準備中）
 
 </div>
 

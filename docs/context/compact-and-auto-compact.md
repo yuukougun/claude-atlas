@@ -116,9 +116,9 @@ idle compaction は、大きな会話を長く放置したときに、Claude Cod
 
 この仕組みの条件は、会話の大きさ・放置の時間・入った版で決まる。どれも変わりやすい。押さえておくことは次の 4 つである。
 
-- **対象は大きな会話だけ**：小さな会話は、要約されない（大きさの目安：<!-- fact:begin idle-compaction-min-tokens -->未確認<!-- fact:end -->）。
-- **放置の時間**：要約が働くまでの放置は、<!-- fact:begin idle-compaction-wait -->未確認<!-- fact:end -->である。
-- **動く面**：端末と、VS Code と Desktop の Code タブで動く（端末で既定になった版：<!-- fact:begin idle-compaction-terminal-version -->未確認<!-- fact:end -->、VS Code と Desktop の Code タブに広がった版：<!-- fact:begin idle-compaction-ide-version -->未確認<!-- fact:end -->）。それ以外の面と、ほかの OS の動作は未確認である。
+- **対象は大きな会話だけ**：小さな会話は、要約されない（大きさの目安：<!-- fact:begin idle-compaction-min-tokens -->既定で 200,000 トークン以上（変えられる）（2026-11-06 時点）<!-- fact:end -->）。
+- **放置の時間**：要約が働くまでの放置は、<!-- fact:begin idle-compaction-wait -->約 54 分（prompt cache が 1 時間のとき。キャッシュが切れる前に要約する）（2026-11-06 時点）<!-- fact:end -->である。
+- **動く面**：端末と、VS Code と Desktop の Code タブで動く（端末で既定になった版：<!-- fact:begin idle-compaction-terminal-version -->Claude Code 2.1.299 以降（2026-11-06 時点）<!-- fact:end -->、VS Code と Desktop の Code タブに広がった版：<!-- fact:begin idle-compaction-ide-version -->Claude Code 2.1.314 以降（2026-11-06 時点）<!-- fact:end -->）。それ以外の面と、ほかの OS の動作は未確認である。
 - **止められる**：設定の `idleCompaction` を `false` にするか、`/config` の行で止める。止めると、要約されない代わりに、戻った最初の 1 手が全体の読み直しになる。
 
 備えは、席を外す前に自分で畳むことである。実務家の記事にも「離席の前に畳む」という声がある（根拠：弱）。焦点を付けた `/compact` なら、残すものを自分で決められる。作業が重いときは、書き出してから離れる。

@@ -87,7 +87,7 @@ Claude にリポジトリや資料をまるごと作らせると、体裁だけ�
 
 自分で見る時間がないときは、書いた本人ではない者に確かめさせる。変更を生んだ推論を見ていない新しいセッションや別の人が向く。AI の承認は、人の承認に数えない。分け方は <!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](independent-review.md#who)<!-- link:end --> にある。
 
-他人のリポジトリや拡張を選ぶときも、見た目に頼れないのは同じである（類推）。整った README や履歴だけで入れず、出所と中身を確かめる。手順は <!-- link:begin vetting-extensions#provenance -->[MCP・プラグイン・スキルを入れる前の確認 › 出所を確かめる](../safety/vetting-extensions.md#provenance)<!-- link:end --> にある。画面のデザインのように見た目そのものが成果物のときは、見た目を手本と見比べて直させる。これは <!-- link:begin frontend-design -->フロントエンドのデザイン（準備中）<!-- link:end --> が扱う。
+他人のリポジトリや拡張を選ぶときも、見た目に頼れないのは同じである（類推）。整った README や履歴だけで入れず、出所と中身を確かめる。手順は <!-- link:begin vetting-extensions#provenance -->[MCP・プラグイン・スキルを入れる前の確認 › 出所を確かめる](../safety/vetting-extensions.md#provenance)<!-- link:end --> にある。画面のデザインのように見た目そのものが成果物のときは、見た目を手本と見比べて直させる。これは <!-- link:begin frontend-design -->フロントエンドのデザイン<!-- link:end --> が扱う。
 
 !!! example "判断例：立派な見た目のリポジトリを受け取る"
     - **状況**：Claude に小さなコマンドラインの道具を作らせた。README があり、テストが 40 件並び、履歴も整っている。報告は「全部通った」である。
@@ -145,7 +145,6 @@ Claude にリポジトリや資料をまるごと作らせると、体裁だけ�
 - [人間が読むべき差分の箇所](diffs-humans-must-read.md)
 - [書いた本人ではない者にレビューさせる](independent-review.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
-- フロントエンドのデザイン（準備中）
 - [資料・スライドを作る](../recipes/make-slides.md)
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - [AI に書かせたテストの落とし穴](pitfalls-of-ai-written-tests.md)

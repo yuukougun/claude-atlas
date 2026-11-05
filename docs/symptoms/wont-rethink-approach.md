@@ -93,7 +93,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[handoff 文書と document-and-clear](../context/handoff-documents.md) |
-| 確かめていない | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › AI の「やめよう」「続けよう」を再検証する](../judgment/decide-when-to-quit.md#ai-advice-on-quitting)<br>上界を測って「限界です」を反証する（準備中）<br>[目標値・上界を伝える](../prompting/share-targets-and-bounds.md) |
+| 確かめていない | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › AI の「やめよう」「続けよう」を再検証する](../judgment/decide-when-to-quit.md#ai-advice-on-quitting)<br>[目標値・上界を伝える](../prompting/share-targets-and-bounds.md) |
 | 預けすぎる | [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)<br>[判断を預けすぎる（過度依存）](../judgment/over-reliance.md) |
 | やめられない | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md) |
 
@@ -173,7 +173,6 @@ updated: 2026-11-05
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
-- 上界を測って「限界です」を反証する（準備中）
 - [目標値・上界を伝える](../prompting/share-targets-and-bounds.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 - [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)

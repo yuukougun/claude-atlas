@@ -76,7 +76,7 @@ def b_ledger(ctx) -> str:
             rows.append((word("why_then", "かつてなぜ正しかったか"), md_text(a.text("why_then"))))
         if a.text("how_to_find"):
             rows.append((word("how_to_find", "自分の設定や記事で見つける方法"), md_text(a.text("how_to_find"))))
-        pages = gen.advice_pages.get(a.id, [])
+        pages = [p for p in gen.advice_pages.get(a.id, []) if not gen.is_unplanned(p)]
         if pages:
             rows.append((word("pages", "関わるページ"), "・".join(gen.page_link(ctx.host, p) for p in pages)))
         also = []

@@ -309,10 +309,6 @@ updated: 2026-11-05
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 
-**次に読む**
-
-- ノート・PKM（Obsidian など）（準備中）
-
 **関連**
 
 - [消してはいけないものを消された](../symptoms/deleted-something-important.md)

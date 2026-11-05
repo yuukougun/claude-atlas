@@ -70,7 +70,7 @@ AI の利用を禁じても、使いたい人がいなくなるとは限らな�
 
 1. 公式の既定を基準にする。面ごとの既定と、任せる段階ごとに足すものは、正本のページにある（<!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end -->）。このページでは書き直さない。
 2. 例外を許さない規則は、お願いではなく鍵に移す。deny ルールやフックで、守らせたいことを毎回必ず効く形にする（<!-- link:begin request-vs-lock#two-layers -->[お願いと鍵（決定論的か、非決定論的か） › 二層で書く](../basics/request-vs-lock.md#two-layers)<!-- link:end -->）。
-3. 利用者が外せない範囲を、組織の設定で決める。配る経路と優先の順番は、別のページで選ぶ（<!-- link:begin org-managed-settings-and-mcp#delivery -->組織に設定と MCP サーバーを配る › 配る経路（準備中）<!-- link:end -->、<!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制 › 利用者の側から外せない範囲（準備中）<!-- link:end -->）。
+3. 利用者が外せない範囲を、組織の設定で決める。配る経路と優先の順番は、別のページで選ぶ（<!-- link:begin org-managed-settings-and-mcp#delivery -->組織に設定と MCP サーバーを配る<!-- link:end -->、<!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制<!-- link:end -->）。
 4. チームでは、共有する設定と個人に残す設定を分ける（<!-- link:begin share-team-settings#shared-vs-personal -->[チームで設定を共有する › 共有するものと個人に残すもの](share-team-settings.md#shared-vs-personal)<!-- link:end -->）。
 5. 任せる幅が広い作業には、封じ込めを足す。読み書きと通信を OS の層で囲える（<!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](../enforce/sandboxing.md#scope)<!-- link:end -->）。
 
@@ -93,7 +93,7 @@ AI の利用を禁じても、使いたい人がいなくなるとは限らな�
 
 広げるときは、段を分けて、段ごとに承認の数を決める（<!-- link:begin risk-tiered-approval#three-tiers -->[リスク段階別の承認（AI の承認を人の承認に数えない） › 三つの段と承認の数](risk-tiered-approval.md#three-tiers)<!-- link:end -->）。段を上げる前に、その段の変更が効いたかを、同じ物差しで測る（<!-- link:begin measure-changes#small-eval -->[変更が効いたかを測る（小さな eval） › 小さな eval の手順](../eval/measure-changes.md#small-eval)<!-- link:end -->、<!-- link:begin felt-vs-measured#what-to-record -->[体感と実測 › 記録で測るもの](../eval/felt-vs-measured.md#what-to-record)<!-- link:end -->）。体感の「速くなった」だけで広げない。
 
-日本語圏の実務の記事では、セキュリティ部門と協力しながら、低リスクの作業から始める進め方がよく勧められている（根拠：弱）。立ち上げの手引きの作り方は、導入のページにまとめてある（<!-- link:begin rolling-out-to-teams#onboarding-guide -->チームに広める（/team-onboarding など） › 立ち上げの手引きを作る（準備中）<!-- link:end -->）。
+日本語圏の実務の記事では、セキュリティ部門と協力しながら、低リスクの作業から始める進め方がよく勧められている（根拠：弱）。立ち上げの手引きの作り方は、導入のページにまとめてある（<!-- link:begin rolling-out-to-teams#onboarding-guide -->チームに広める（/team-onboarding など）<!-- link:end -->）。
 
 !!! example "判断例：最初に任せる作業を選ぶ"
     - **状況**：チームに Claude Code を広げ始める。候補になる作業が 2 つある。
@@ -142,18 +142,12 @@ AI を入れて速くなったのに障害や手戻りが増えたとき、原�
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)
 - [お願いと鍵（決定論的か、非決定論的か）](../basics/request-vs-lock.md)
 
-**次に読む**
-
-- チームに広める（/team-onboarding など）（準備中）
-
 **関連**
 
 - [社内ガイドラインに書くこと](ai-usage-guidelines.md)
 - [レビューのボトルネックと疲労](review-bottlenecks.md)
 - [四つの原理と比例則（見せる・確かめる・縛る・握る） › 比例則](../start/four-principles.md#proportional-rule)
 - [チームで設定を共有する](share-team-settings.md)
-- 組織に設定と MCP サーバーを配る（準備中）
-- 管理設定と組織の強制（準備中）
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [送ったデータの行方（学習・保持期間）](../safety/where-your-data-goes.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](../safety/entrusted-data.md)

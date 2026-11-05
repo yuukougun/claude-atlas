@@ -183,7 +183,7 @@ flowchart TD
 
 `-p` と SDK はダイアログを出さず、信頼したものとして `.claude/settings.json` のフックを走らせる。非対話の実行では確認が出ない点は <!-- link:begin before-opening-unknown-repos#headless -->[知らないリポジトリを開く前に › 非対話の実行では確認が出ない](../safety/before-opening-unknown-repos.md#headless)<!-- link:end --> にある。信頼の前後で何が効くかは <!-- link:begin before-opening-unknown-repos#trust -->[知らないリポジトリを開く前に › 信頼の前と後で効くもの](../safety/before-opening-unknown-repos.md#trust)<!-- link:end -->、チームの共有設定では <!-- link:begin share-team-settings#after-trust -->[チームで設定を共有する › 信頼してから効く設定](../team/share-team-settings.md#after-trust)<!-- link:end --> を見る。
 
-`permissions.defaultMode` の `auto` と `bypassPermissions` は、プロジェクトと手元の設定では無効である。ユーザーか管理の設定に書く。管理側で使えなくする設定は <!-- link:begin managed-settings-enforcement#disable-modes -->管理設定と組織の強制 › モードを使えなくする設定（準備中）<!-- link:end --> にある。
+`permissions.defaultMode` の `auto` と `bypassPermissions` は、プロジェクトと手元の設定では無効である。ユーザーか管理の設定に書く。管理側で使えなくする設定は <!-- link:begin managed-settings-enforcement#disable-modes -->管理設定と組織の強制<!-- link:end --> にある。
 
 ## 雛形 {#templates}
 
@@ -256,7 +256,7 @@ flowchart TD
 | 子プロセスまで含めて読み書きを閉じる | <!-- link:begin sandboxing -->[サンドボックスで封じ込める](sandboxing.md)<!-- link:end --> | OS の層で止める。deny は Claude Code が見分ける経路だけ |
 | 既存ファイルだけを止める、理由と代わりを返す | フック | 条件を書ける。deny はパスと道具の単純な一致 |
 | どのモードでも守りたい場所 | <!-- link:begin protected-paths -->[消せない場所・触れない場所（protected paths）](protected-paths.md)<!-- link:end --> | 設定なしで保護される場所と、足りない境界を足す設定 |
-| 利用者の設定で外せない規則 | <!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制 › 利用者の側から外せない範囲（準備中）<!-- link:end --> | 管理設定で組織として強制する |
+| 利用者の設定で外せない規則 | <!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制<!-- link:end --> | 管理設定で組織として強制する |
 | 判断を含む規則 | スキルやお願い | 鍵にせず、理由と相談の基準を伝える |
 
 スキルとフックの選び方は <!-- link:begin hook-vs-skill -->[フックとスキルの違い](../extend/hook-vs-skill.md)<!-- link:end --> にある。縛りを足しすぎたときの止めすぎと回り込みは <!-- link:begin lock-side-effects#review-blocks -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めた記録の見直し](lock-side-effects.md#review-blocks)<!-- link:end --> で見直す。
@@ -290,7 +290,6 @@ flowchart TD
 - [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
 - [Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)
 - [チームで設定を共有する](../team/share-team-settings.md)
-- ほか 1 ページ
 
 **関連**
 
@@ -299,7 +298,6 @@ flowchart TD
 - [お願いを鍵に移す判断](when-to-lock.md)
 - [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [評価資産を凍結し、触れる範囲を絞る](freeze-eval-assets.md)
-- 管理設定と組織の強制（準備中）
 - [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
 - [フックとスキルの違い](../extend/hook-vs-skill.md)
 

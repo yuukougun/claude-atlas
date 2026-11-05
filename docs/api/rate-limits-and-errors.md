@@ -145,14 +145,14 @@ Claude API の上限は、大きく支出の上限と rate limits の 2 つに�
 
 - **一定の速さで流す。** 急に増やすと acceleration limits にも当たる。徐々に増やし、使い方を一定に保つ。クライアント側に同時に流す数の上限を置き、応答のヘッダーの残りが少なくなったら遅くする。
 - **キャッシュを使う。** 同じ先頭部分を何度も送るなら、キャッシュから読む分は入力の上限に数えない（多くのモデル）。区切りの置き方と無効になる変更は<!-- link:begin prompt-caching-in-practice#prefix -->[プロンプトキャッシングの実務 › どこまでがキャッシュされるか（tools・system・messages の順）](prompt-caching-in-practice.md#prefix)<!-- link:end -->で確かめる。
-- **急がない処理は一括に回す。** 待てる大量の処理は、Message Batches API が別の上限を持つ。向く仕事と向かない仕事は<!-- link:begin batch-api-basics#fit -->Message Batches API（急がない大量の処理） › 向く仕事・向かない仕事（準備中）<!-- link:end -->で確かめる。
+- **急がない処理は一括に回す。** 待てる大量の処理は、Message Batches API が別の上限を持つ。向く仕事と向かない仕事は<!-- link:begin batch-api-basics#fit -->Message Batches API（急がない大量の処理）<!-- link:end -->で確かめる。
 - **入力を減らす。** 不要な履歴や資料を送らない。
 - **ワークスペースで枠を分ける。** 組織の枠を、用途ごとにワークスペースの上限で仕切ると、1 つの処理が全体の枠を食い尽くすのを防げる。
 - **上限を上げてもらう。** Console の Rate limits のページから、段の引き上げを依頼できる。
 
 送る量を差分にする仕組み（message threads、beta）は、上限を下げない。API が呼び出しの前に会話を組み立て直す。そのため、モデルが読む量は変わらず、料金と rate limits も同じである（2026-11-02 の Platform のリリースノートによる）。
 
-費用の見積もりと合わせて上限を確かめたいときは、<!-- link:begin reading-api-pricing#estimate -->API 料金の読み方 › 見積もりの手順（準備中）<!-- link:end -->も併せて読む。
+費用の見積もりと合わせて上限を確かめたいときは、<!-- link:begin reading-api-pricing#estimate -->API 料金の読み方<!-- link:end -->も併せて読む。
 
 ## エラーにならずに止まる応答（長さの上限・拒否） {#non-error-stops}
 
@@ -223,12 +223,10 @@ Claude Code の errors のページは長く、この辞典は表示の文の一
 
 - [AI が使えないときの備え（障害・上限）](../cost/when-ai-is-unavailable.md)
 - [利用上限の仕組み（面をまたいで共有する枠）](../cost/how-usage-limits-work.md)
-- Message Batches API（急がない大量の処理）（準備中）
 - [プロンプトキャッシングの実務](prompt-caching-in-practice.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [structured outputs（形式を保証する） › 形が保証されない場合](structured-outputs-basics.md#not-guaranteed)
 - [正当な依頼が断られたとき](../safety/when-requests-are-refused.md)
-- API 料金の読み方（準備中）
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](sdk-comparison.md)
 - [Agent SDK（Claude Code をライブラリとして使う）](agent-sdk-basics.md)
 

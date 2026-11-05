@@ -253,7 +253,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 - **`/goal`**：条件を満たすまで続けたいとき。判定役が条件を見て、次のターンを始める。
 - **`/loop`**：時間の間隔で繰り返したいとき。条件ではなく時計で動く。使い分けは <!-- link:begin loop-and-scheduling#where-to-run -->[/loop と定期実行の方式 › どこで走らせるか（セッション・手元・クラウド）](loop-and-scheduling.md#where-to-run)<!-- link:end --> にある。
 - **Stop フック**：確かめる処理を自分のスクリプトで決定的に書きたいとき。`/goal` との使い分けは <!-- link:begin stop-hooks#vs-goal -->[Stop フックで「終わらせない」 › /goal との使い分け](../enforce/stop-hooks.md#vs-goal)<!-- link:end -->、続けて止められる回数の上限は <!-- link:begin stop-hooks#block-cap -->[Stop フックで「終わらせない」 › 続けて止められる回数の上限](../enforce/stop-hooks.md#block-cap)<!-- link:end --> にある。
-- **多数のファイルへ同じ作業を流す**：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end --> を引く。
+- **多数のファイルへ同じ作業を流す**：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end --> を引く。
 - **auto モード**：確認を減らすだけで、新しいターンは始めない。`/goal` は新しいターンを始めるが、確認は減らさない。両者は補い合うので、席を外すなら併用する。
 
 完了の確かめ方を段で選ぶ考え方は <!-- link:begin verification-ladder#four-steps -->[検証の階段 › 四つの段](../verify/verification-ladder.md#four-steps)<!-- link:end -->、止まって報告してよいと渡す書き方は <!-- link:begin permission-to-stop#conditions -->[止まって報告する権利を渡す › 止まって報告する条件を書く](../prompting/permission-to-stop.md#conditions)<!-- link:end --> にある。
@@ -302,9 +302,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 - [リファクタリングと大規模な移行 › /goal で回すときの停止条件](../recipes/refactor-and-migrate.md#goal-stop-conditions)
 - [AI に改善を回させ続ける罠（開いたループ）](open-ended-loop-trap.md)
 - [長時間ジョブの進捗ログを設計する](progress-logs-for-long-jobs.md)
-- 終わったら知らせてもらう（準備中）
 - [/loop と定期実行の方式](loop-and-scheduling.md)
-- 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 - [止まって報告する権利を渡す](../prompting/permission-to-stop.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [AI が使えないときの備え（障害・上限）](../cost/when-ai-is-unavailable.md)

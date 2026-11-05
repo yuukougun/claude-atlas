@@ -85,7 +85,7 @@ Action は、workflow に `prompt` の入力があるかどうかで、動き方
     - **状況**：チームのリポジトリで、PR の一次のレビューを Claude に手伝わせたい。PR の数は多く、人のレビューは必ず残す。
     - **迷う候補**：PR のイベントで動く形にして、全部の PR を見させる。呼ばれて動く形にして、レビューを頼みたい PR のコメントで @claude と呼ぶ。
     - **選んだもの**：まず呼ばれて動く形で始め、手順が固まってから、イベントで動く形に移す。
-    - **理由**：呼ぶ形は、どの PR に費用と権限を使うかを人が選べる。手順と指摘の質が見えてから、全部の PR に広げても遅くない。PR ごとに自動で付けたいだけなら、workflow を自分で持たない <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> も選べる。
+    - **理由**：呼ぶ形は、どの PR に費用と権限を使うかを人が選べる。手順と指摘の質が見えてから、全部の PR に広げても遅くない。PR ごとに自動で付けたいだけなら、workflow を自分で持たない <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）<!-- link:end --> も選べる。
 
 ## 最小の使い方 {#minimal}
 
@@ -287,7 +287,7 @@ Action には、この経路を狭める既定の確認がある。
 ## 比べる相手 {#compare}
 
 - 決まった時刻・イベント・スクリプトのどれから、どこで動かすかで選ぶ：<!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)<!-- link:end -->。
-- PR ごとの自動のレビューを、workflow を持たずに付ける：<!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end -->。
+- PR ごとの自動のレビューを、workflow を持たずに付ける：<!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）<!-- link:end -->。
 - workflow を自分で持たず、`claude -p` をスクリプトや CI に直接書く：<!-- link:begin headless-basics -->[非対話モード（claude -p）の基本](headless-basics.md)<!-- link:end -->。
 - 動かす環境を隔離する考え方：<!-- link:begin where-bypass-is-ok#decision -->[bypassPermissions と無人の実行はどこで動かすか › 無人の夜間実行をどこで動かすかの判断例](../safety/where-bypass-is-ok.md#decision)<!-- link:end -->。
 
@@ -324,7 +324,6 @@ Action には、この経路を狭める既定の確認がある。
 - [プロンプトインジェクションの実際](../safety/prompt-injection-in-practice.md)
 - [bypassPermissions と無人の実行はどこで動かすか](../safety/where-bypass-is-ok.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
-- 自動 PR レビュー（Code Review・/ultrareview）（準備中）
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)
 - [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)

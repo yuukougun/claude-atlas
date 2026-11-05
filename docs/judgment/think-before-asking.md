@@ -208,7 +208,6 @@ AI に頼んでも手放さないものは、次の 4 つである。
 - [選択肢と推奨案を出させる](../prompting/ask-for-options.md)
 - [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](ask-without-sycophancy.md)
 - [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)
-- 案出しは独立に、突き合わせは AI に（準備中）
 - [AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](learning-with-ai.md)
 - [用途別プロンプトの型](../prompting/prompt-patterns.md)
 - [長い資料は先、質問は最後](../prompting/long-context-first.md)

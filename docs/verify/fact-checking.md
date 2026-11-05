@@ -99,7 +99,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end snippet fact-checking/quote-each-claim -->
 
-API では、指示で引用させる代わりに、根拠の箇所を返させる機能がある。違いは <!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる） › 引用させる指示との違い（準備中）<!-- link:end --> にある。
+API では、指示で引用させる代わりに、根拠の箇所を返させる機能がある。違いは <!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる）<!-- link:end --> にある。
 
 ## 渡した資料の範囲で答えさせる {#sources-only}
 
@@ -117,7 +117,7 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 
 === "API"
 
-    資料を依頼の本文に入れる。根拠の箇所まで返させるなら、<!-- link:begin citations-basics#limits -->citations（根拠の箇所を返させる） › 一緒に使えない機能（準備中）<!-- link:end --> の制約を先に確かめる。
+    資料を依頼の本文に入れる。根拠の箇所まで返させるなら、<!-- link:begin citations-basics#limits -->citations（根拠の箇所を返させる）<!-- link:end --> の制約を先に確かめる。
 
 依頼の雛形は次のとおりである。
 
@@ -228,7 +228,7 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 
 確かめても誤りが残るときは、困りごとの形から次のページへ進む。
 
-- **引用が原文にない、または言い換えられている**：指示で引用させても、引用は作られうる。API なら、<!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる） › 引用させる指示との違い（準備中）<!-- link:end --> の方法を検討する。
+- **引用が原文にない、または言い換えられている**：指示で引用させても、引用は作られうる。API なら、<!-- link:begin citations-basics#vs-prompting -->citations（根拠の箇所を返させる）<!-- link:end --> の方法を検討する。
 - **実在する文献だが、細部が違う**：<!-- link:begin checking-citations#error-types -->[引用や出典の確かめ方 › よくある誤りの形](checking-citations.md#error-types)<!-- link:end --> で誤りの形を調べる。
 - **もっともらしい嘘が出る**：<!-- link:begin plausible-falsehoods#diagnosis -->[もっともらしい嘘・出典の誤り › 原因を安く確かめる順](../symptoms/plausible-falsehoods.md#diagnosis)<!-- link:end --> で原因を切り分ける。
 - **最近の話で間違う**：<!-- link:begin knowledge-cutoff -->[知識カットオフと「今」を知らない問題](../basics/knowledge-cutoff.md)<!-- link:end --> を確かめ、検索の結果か最新の資料を渡す。調べ方の選択は <!-- link:begin search-research-thinking#comparison -->[web 検索・リサーチ・拡張思考の使い分け › 三つの使い分け](../app/search-research-thinking.md#comparison)<!-- link:end --> にある。
@@ -268,7 +268,6 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 - [要約が原文より断定的になる](../symptoms/summary-overstates-source.md)
 - [長い資料を渡すとき](../context/handing-long-documents.md)
 - [調べものとレポート](../recipes/research-and-reports.md)
-- citations（根拠の箇所を返させる）（準備中）
 
 </div>
 

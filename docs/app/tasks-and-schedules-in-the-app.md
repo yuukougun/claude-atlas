@@ -167,7 +167,7 @@ Claude がした行動の責任は利用者にある。評価の定義・採否�
 
 スマホのアプリからは、走っているタスクの監視、Claude からの質問への回答、方向の修正、新しいタスクの開始ができる。Recents には、チャットとタスクが 1 つの一覧に並ぶ。モバイルは artifacts に対応しない（[Use Claude Cowork on web, desktop, and mobile](https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile)）。
 
-質問への回答を待って止まっているタスクは、PC を閉じていても進まない。外出先では、まず Recents で待っているタスクがないかを見る。音声やモバイルでできないことの全体は <!-- link:begin voice-and-mobile#mobile -->音声モード・Quick entry・モバイル › モバイルでできること・できないこと（準備中）<!-- link:end --> が持つ。
+質問への回答を待って止まっているタスクは、PC を閉じていても進まない。外出先では、まず Recents で待っているタスクがないかを見る。音声やモバイルでできないことの全体は <!-- link:begin voice-and-mobile#mobile -->音声モード・Quick entry・モバイル<!-- link:end --> が持つ。
 
 ## 何に効くか、どこまで効くか {#what-it-prevents}
 
@@ -216,7 +216,6 @@ Claude がした行動の責任は利用者にある。評価の定義・採否�
 - [自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)
 - [Claude in Chrome と computer use（ブラウザと画面の操作）](../surfaces/browser-control.md)
-- 音声モード・Quick entry・モバイル（準備中）
 - [上限を早く使う要因](../cost/what-uses-up-limits.md)
 
 </div>

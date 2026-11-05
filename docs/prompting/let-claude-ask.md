@@ -69,7 +69,7 @@ After で足したものは 4 つある。1 つ目は、実装の前にインタ
     同じ依頼の文面が使える。選択式の質問がどう表示されるかは未確認である。質問が文章で返ったら、番号に沿って答える。
 
 === "Claude Code"
-    Claude は、AskUserQuestion という組み込みの道具で選択式の質問をする。成熟度は <!-- gen:begin feature ask-user-question/maturity -->GA<!-- gen:end feature ask-user-question/maturity --> で、入った版は <!-- gen:begin feature ask-user-question/since -->2.0.21（2025-10-18）<!-- gen:end feature ask-user-question/since --> である（[Tools reference](https://code.claude.com/docs/en/tools-reference)）。1 回の呼び出しで聞ける問数と、各問の選択肢の数には上限があり（上限の値：<!-- fact:begin ask-user-question-limits -->未確認<!-- fact:end -->）、多くの点を聞くときは何回かに分かれる（[Hooks reference](https://code.claude.com/docs/en/hooks)）。選択肢のほかに、自由に答えを書ける。
+    Claude は、AskUserQuestion という組み込みの道具で選択式の質問をする。成熟度は <!-- gen:begin feature ask-user-question/maturity -->GA<!-- gen:end feature ask-user-question/maturity --> で、入った版は <!-- gen:begin feature ask-user-question/since -->2.0.21（2025-10-18）<!-- gen:end feature ask-user-question/since --> である（[Tools reference](https://code.claude.com/docs/en/tools-reference)）。1 回の呼び出しで聞ける問数と、各問の選択肢の数には上限があり、多くの点を聞くときは何回かに分かれる（[Hooks reference](https://code.claude.com/docs/en/hooks)）。上限の値は、この辞書では確かめていないので、公式の文書で見る。選択肢のほかに、自由に答えを書ける。
 
 依頼の雛形を置く。角かっこの所を自分の依頼に置き換える。
 
@@ -170,7 +170,7 @@ Claude には、頼む側の頭の中にある条件が見えない。頼む側�
 
 - 質問が多すぎる：分かりきった質問を許すと、答えるだけで疲れる。「答えで設計が変わる点だけを聞く」と絞る。
 - 質問に答えず先へ進む：質問の途中で「もう作って」と頼むと、未決の点を Claude が推測で埋める。残る点は要確認として文書に残す。
-- 質問の画面を放置する：Claude Code では、既定で、答えるまで質問が開いたままになる。放っておいたら先へ進めたいときは、`askUserQuestionTimeout` で閉じるまでの時間を決める（指定できる値：<!-- fact:begin ask-user-question-timeout -->未確認<!-- fact:end -->）。
+- 質問の画面を放置する：Claude Code では、既定で、答えるまで質問が開いたままになる。放っておいたら先へ進めたいときは、`askUserQuestionTimeout` で閉じるまでの時間を決める（指定できる値：<!-- fact:begin ask-user-question-timeout -->60s・5m・10m（放っておくと、選んだ分だけ送って先へ進む）（2026-11-06 時点）<!-- fact:end -->）。
 - 人がいない実行で頼む：質問の答えは人が出す。サブエージェントからは使えない。`-p` の非対話の実行では、承認を受け持つ仕組みがあるときだけ使われる。質問させるのは、人がいる会話にする（[Hooks reference](https://code.claude.com/docs/en/hooks)）。
 
 選択肢を並べて選ばせる場面は、<!-- link:begin ask-for-options -->[選択肢と推奨案を出させる](ask-for-options.md)<!-- link:end --> が持つ。独自性が要る考察では、質問をさせる前に自分の案を書く（<!-- link:begin think-before-asking#self-first -->[頼む前に自分で考える（AI には問い・反論・道具を頼む） › 先に自分、その後で AI](../judgment/think-before-asking.md#self-first)<!-- link:end -->）。方針や範囲に迷う作業で、編集を止めたまま計画を読む方法は <!-- link:begin when-to-plan#when -->[plan mode の使いどころ › 計画が効く作業、省いてよい作業](../cli/when-to-plan.md#when)<!-- link:end --> にある。

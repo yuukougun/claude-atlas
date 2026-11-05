@@ -187,7 +187,6 @@ usage credits を有効にしていると、プランの枠を超えても従量
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
 - [/loop と定期実行の方式](../delegate/loop-and-scheduling.md)
 - [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
-- エージェントチーム（複数の Claude に分担させる）（準備中）
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)

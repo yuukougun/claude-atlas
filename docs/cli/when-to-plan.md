@@ -116,7 +116,7 @@ plan mode の Claude は、ファイルを読み、調べるためのシェル�
 
 直し方は 2 通りある。方向の違いは、計画の選択画面で `No, keep planning` を選び、何を変えるかを言葉で返す。計画の中の小さな直しは、`Ctrl+G` で計画を既定のテキストエディタに開き、直接書き換える。方向の違いは言葉で、数か所の差し替えは直接の編集で直すと、やり取りが短く済む（推論・実践例なし）。直接編集した内容が Claude にどう伝わるかは、この辞典では確かめていない。
 
-VS Code の拡張では、plan mode の計画が Markdown の文書として開き、行ごとにコメントを付けて返せる。使い方は <!-- link:begin using-ides#what-you-get -->IDE（VS Code・JetBrains）で使う › IDE で得られるもの（準備中）<!-- link:end --> にある。この辞典では動作を試していない。
+VS Code の拡張では、plan mode の計画が Markdown の文書として開き、行ごとにコメントを付けて返せる。使い方は <!-- link:begin using-ides#what-you-get -->IDE（VS Code・JetBrains）で使う<!-- link:end --> にある。この辞典では動作を試していない。
 
 計画を読んでも判断がつかないときは、実装に入らず、迷った点を質問として返す。計画の段階で「分からない」と言えることが、plan mode のいちばんの利点である。
 
@@ -190,7 +190,6 @@ VS Code の拡張では、plan mode の計画が Markdown の文書として開�
 - [意図と違うものが出てくる](../symptoms/not-what-i-meant.md)
 - [頼んでいないことまでやる（過剰設計）](../symptoms/does-more-than-asked.md)
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
-- IDE（VS Code・JetBrains）で使う（準備中）
 
 </div>
 

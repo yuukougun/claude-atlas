@@ -137,7 +137,6 @@ updated: 2026-11-05
 - [毎ターン全履歴を読み直す](rereads-whole-history.md)
 - [思考（thinking）と effort の仕組み](how-thinking-works.md)
 - [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)
-- API 料金の読み方（準備中）
 
 **関連**
 

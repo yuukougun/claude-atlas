@@ -58,7 +58,7 @@ updated: 2026-11-05
 
     アプリには作業用のフォルダがない。境界になるのは、会話に添付したファイルと、つないだコネクタが読める範囲である。添付は作業に要るものだけにし、コネクタは使うものだけをつなぐ。コネクタの種類と、信頼してよいかの判断は <!-- link:begin connectors-in-the-app#types -->[コネクタ（MCP）をアプリで使う › コネクタの種類](../app/connectors-in-the-app.md#types)<!-- link:end --> と <!-- link:begin connectors-in-the-app#trust -->[コネクタ（MCP）をアプリで使う › 信頼してよいか](../app/connectors-in-the-app.md#trust)<!-- link:end --> にある。
 
-    調べてファイルに仕上げるような多段の作業は、結果で頼むと進められる。定期にもできるが、何を定期にしないかを先に決める。手順は <!-- link:begin tasks-and-schedules-in-the-app#ask-for-results -->[タスクと定期タスク（Cowork） › 結果で頼む](../app/tasks-and-schedules-in-the-app.md#ask-for-results)<!-- link:end --> を引く。Excel や Word の中で使いたいときは、アプリの外の製品の位置づけを <!-- link:begin peripheral-products#office-add-ins -->周辺製品の一覧 › Office アドイン（準備中）<!-- link:end --> で確かめる。
+    調べてファイルに仕上げるような多段の作業は、結果で頼むと進められる。定期にもできるが、何を定期にしないかを先に決める。手順は <!-- link:begin tasks-and-schedules-in-the-app#ask-for-results -->[タスクと定期タスク（Cowork） › 結果で頼む](../app/tasks-and-schedules-in-the-app.md#ask-for-results)<!-- link:end --> を引く。Excel や Word の中で使いたいときは、アプリの外の製品の位置づけを <!-- link:begin peripheral-products#office-add-ins -->周辺製品の一覧<!-- link:end --> で確かめる。
 
 === "Claude Code"
 
@@ -239,7 +239,7 @@ updated: 2026-11-05
 
 ルートの `CLAUDE.md` は短くし、全業務に共通の守りだけを書く。業務ごとの手順は、その業務の README に置く。頼むときに、その README を指す。こうすると、関係のない業務の手順を毎回読ませずに済む。残す行と外す行の判断は <!-- link:begin what-to-put-in-claude-md#what-to-leave-out -->[CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](../extend/what-to-put-in-claude-md.md#what-to-leave-out)<!-- link:end --> にある。
 
-前回までに決めたことと、まだ人に聞くことは、README の末尾か別ファイルに分けて残す。ファイルの分け方と、決めたことを壊されにくくする方法は <!-- link:begin progress-files#files -->[進捗ファイルで、途中から再開できるようにする › ファイルの分け方](../context/progress-files.md#files)<!-- link:end --> と <!-- link:begin progress-files#decided-vs-open -->[進捗ファイルで、途中から再開できるようにする › 決めたことと、聞くべきことを分ける](../context/progress-files.md#decided-vs-open)<!-- link:end --> にある。Obsidian などのノートの保管庫で同じ運用をする場合は <!-- link:begin notes-and-pkm -->ノート・PKM（Obsidian など）（準備中）<!-- link:end --> を引く。
+前回までに決めたことと、まだ人に聞くことは、README の末尾か別ファイルに分けて残す。ファイルの分け方と、決めたことを壊されにくくする方法は <!-- link:begin progress-files#files -->[進捗ファイルで、途中から再開できるようにする › ファイルの分け方](../context/progress-files.md#files)<!-- link:end --> と <!-- link:begin progress-files#decided-vs-open -->[進捗ファイルで、途中から再開できるようにする › 決めたことと、聞くべきことを分ける](../context/progress-files.md#decided-vs-open)<!-- link:end --> にある。Obsidian などのノートの保管庫で同じ運用をする場合は <!-- link:begin notes-and-pkm -->ノート・PKM（Obsidian など）<!-- link:end --> を引く。
 
 業務を横断して一度に頼むのは、慎重にする。業務ごとに守りの線が違うので、横断の依頼は、渡す範囲を超えやすい。1 つの業務のディレクトリで起動して頼む形を基本にする。
 
@@ -287,7 +287,6 @@ updated: 2026-11-05
 **関連**
 
 - [送ったデータの行方（学習・保持期間）](../safety/where-your-data-goes.md)
-- ノート・PKM（Obsidian など）（準備中）
 - [データを分析する](data-analysis.md)
 - [権限モードの選び方](../cli/permission-modes-overview.md)
 - [スキルの作り方](../extend/writing-skills.md)
@@ -295,7 +294,6 @@ updated: 2026-11-05
 - [進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
 - [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
-- 周辺製品の一覧 › Office アドイン（準備中）
 - [文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)

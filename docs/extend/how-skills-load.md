@@ -81,7 +81,7 @@ After で足したのは、「いつ使うか」を書いた短い説明文と�
 
 会話が長くなって圧縮が走ると、スキルの部品は種類ごとに違う戻り方をする。
 
-- **説明文**：今あるスキルの一覧から作り直して入れ直される。この挙動が入る前の版では戻らなかった。入った版は <!-- fact:begin skill-description-rebuild-min-version -->未確認<!-- fact:end -->（[公式の変更履歴](https://code.claude.com/docs/en/changelog)で確かめる）。
+- **説明文**：今あるスキルの一覧から作り直して入れ直される。この挙動が入る前の版では戻らなかった。入った版は <!-- fact:begin skill-description-rebuild-min-version -->Claude Code 2.1.304 以降（2026-11-06 時点）<!-- fact:end -->（[公式の変更履歴](https://code.claude.com/docs/en/changelog)で確かめる）。
 - **呼んだスキルの本文**：上限つきで入れ直される。1 つあたり<!-- fact:begin skill-reattach-tokens-each -->先頭から 5000 トークンまで（2026-11-04 時点）<!-- fact:end -->、全体で<!-- fact:begin skill-reattach-tokens-total -->合計 25000 トークンまで（2026-11-04 時点）<!-- fact:end -->で、古く呼んだものから落ちる。
 - **補助ファイルの中身**：読んだだけで本文に入っていないものは、圧縮で要約に溶けうる。必要になったら、もう一度読ませる。
 

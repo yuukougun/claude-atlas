@@ -103,7 +103,7 @@ VS Code の拡張の最初のモードも、版で変わってきた。公式の
 
 毎回確かめたいなら、設定で Manual に固定するか、起動時に `--permission-mode manual` を付ける。固定する設定の例は、雛形の節にある。
 
-チームメイトを動かすときは、リードの権限モードをチームメイトが受け継ぐかを確かめてから任せる。受け継ぎ方に不具合があった版もある（<!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）（準備中）<!-- link:end -->）。アプリには別の 2 択がある（<!-- link:begin permission-modes-in-the-app#modes -->[アプリの権限モード（Auto と Manual）と安全 › Auto と Manual](../app/permission-modes-in-the-app.md#modes)<!-- link:end -->）。
+チームメイトを動かすときは、リードの権限モードをチームメイトが受け継ぐかを確かめてから任せる。受け継ぎ方に不具合があった版もある（<!-- link:begin agent-teams -->エージェントチーム（複数の Claude に分担させる）<!-- link:end -->）。アプリには別の 2 択がある（<!-- link:begin permission-modes-in-the-app#modes -->[アプリの権限モード（Auto と Manual）と安全 › Auto と Manual](../app/permission-modes-in-the-app.md#modes)<!-- link:end -->）。
 
 ## 切り替え方 {#switch}
 
@@ -228,7 +228,6 @@ VS Code の拡張の最初のモードも、版で変わってきた。公式の
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの）](../safety/default-safety-settings.md)
 - [承認疲れ](../safety/approval-fatigue.md)
-- スマホから操作する（Remote Control）（準備中）
 
 **関連**
 
@@ -240,7 +239,6 @@ VS Code の拡張の最初のモードも、版で変わってきた。公式の
 - [承認の確認が多すぎる・少なすぎる](../symptoms/wrong-amount-of-approvals.md)
 - [アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)
 - [非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)
-- エージェントチーム（複数の Claude に分担させる）（準備中）
 
 </div>
 

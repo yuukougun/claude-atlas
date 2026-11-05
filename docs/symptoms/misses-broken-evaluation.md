@@ -70,7 +70,7 @@ updated: 2026-11-05
 1. **確かめていない：評価が正しくない**（リーク〔検証用のデータの情報が学習に混ざること〕・採点の誤り）
     - 見るもの：検証用のデータの情報が、学習や特徴量の作成に入っていないか。スコアが良すぎないか。
     - 確かめ方：急に上がったスコアや満点に近いスコアは、まずリークを疑う。何もしない解が負けるか、手で計算した値と一致するかを、評価に当てて確かめる。やり方は <!-- link:begin test-the-verifier#red-green -->[検証器そのものを確かめる（red/green・手で計算したケース） › red/green を検証器に当てる](../eval/test-the-verifier.md#red-green)<!-- link:end --> にある。疑う順は <!-- link:begin suspect-too-good-results#what-to-suspect -->[良すぎる結果を疑う › まず疑うもの](../verify/suspect-too-good-results.md#what-to-suspect)<!-- link:end --> にある。
-    - 機械学習のパイプラインを行の引用つきで点検させる手順は、<!-- link:begin audit-ml-pipelines -->機械学習のパイプラインを点検させる（準備中）<!-- link:end --> にある。
+    - 機械学習のパイプラインを行の引用つきで点検させる手順は、<!-- link:begin audit-ml-pipelines -->機械学習のパイプラインを点検させる<!-- link:end --> にある。
 2. **確かめていない：評価が書き換えられた**
     - 見るもの：評価のコード・テスト・正解のデータ・データの分割が、実験の途中で変わっていないか。
     - 確かめ方：評価に関わるファイルの差分を、人が `git diff` で見る。変わっていれば、いつ誰が変えたかをたどる。書き換えられない状態に置けていたかは <!-- link:begin verifier-three-conditions#tamper-proof -->[検証器の三条件（正しい・書き換えられない・本番を代表する） › 書き換えられない](../eval/verifier-three-conditions.md#tamper-proof)<!-- link:end -->、テストを書き換えて通した症状との見分けは <!-- link:begin rewrote-tests-to-pass#diagnosis -->[テストを書き換えて通した › 原因を安く確かめる順](rewrote-tests-to-pass.md#diagnosis)<!-- link:end --> にある。
@@ -184,7 +184,6 @@ Claude に点検を手伝わせてもよい。ただし、返答は手がかり�
 - [変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)
 - [採点器を騙す（reward hacking）](../basics/reward-hacking.md)
 - [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)
-- 機械学習のパイプラインを点検させる（準備中）
 - [データを分析する](../recipes/data-analysis.md)
 - [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)
 - [テストを書き換えて通した](rewrote-tests-to-pass.md)

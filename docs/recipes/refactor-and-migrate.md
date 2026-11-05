@@ -161,14 +161,14 @@ flowchart TD
 
 同じ変更を多数のファイルに流すときの進め方と確かめ方を、この節で扱う。流す操作そのものは、別のページが扱う。
 
-- `/batch` と `claude -p` のループ：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->
+- `/batch` と `claude -p` のループ：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end -->
 - スクリプトで多数のサブエージェントを動かす方法：<!-- link:begin dynamic-workflows -->[dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)<!-- link:end -->
 - 作業ごとに別のチェックアウトを作る方法：<!-- link:begin parallel-with-worktrees -->[git worktree で並列にする](../delegate/parallel-with-worktrees.md)<!-- link:end -->
 
 広げる順は次のとおりである。
 
 1. まず 1 単位だけを、手元の会話の中で通す。基準の取り方、依頼の型、確かめ方を決める。
-2. 数件を流して、プロンプトと許可を直す。結果を確かめてから、全件に広げる（<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->）。
+2. 数件を流して、プロンプトと許可を直す。結果を確かめてから、全件に広げる（<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end -->）。
 3. 全件を流す。担当（サブエージェントや別のセッション）にも、同じ基準と同じ確かめ方を渡す。担当にも効く縛りは <!-- link:begin dynamic-workflows#guards-for-workers -->[dynamic workflows（スクリプトで多数のサブエージェントを動かす） › 担当にも効く縛り、確かめていない縛り](../delegate/dynamic-workflows.md#guards-for-workers)<!-- link:end --> にある。
 4. 結果を一覧にさせ、取りこぼしを探す。
 
@@ -266,7 +266,6 @@ flowchart TD
 - [AI に書かせたテストの落とし穴](../verify/pitfalls-of-ai-written-tests.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)
 - [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
-- 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
 - [git worktree で並列にする](../delegate/parallel-with-worktrees.md)
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
 - [進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)

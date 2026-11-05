@@ -137,7 +137,7 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
 
 - **縛る**：縛る場所を、確認から環境の隔離へ移す。確認は人の目に頼るが、隔離は人が見ていなくても効く。
 - **境界がない**：Claude の触れる範囲に、はっきりした線を引けていない状態である。環境の通信・秘密・マウントを絞ることで、線を引き直す。
-- 同じ原因に効く別の手段は、サンドボックス（<!-- link:begin sandboxing#when -->[サンドボックスで封じ込める › 使いどころ](../enforce/sandboxing.md#when)<!-- link:end -->）と、組織の側で強制する設定（<!-- link:begin managed-settings-enforcement#disable-modes -->管理設定と組織の強制 › モードを使えなくする設定（準備中）<!-- link:end -->）である。後者は、bypassPermissions そのものを使えなくする。
+- 同じ原因に効く別の手段は、サンドボックス（<!-- link:begin sandboxing#when -->[サンドボックスで封じ込める › 使いどころ](../enforce/sandboxing.md#when)<!-- link:end -->）と、組織の側で強制する設定（<!-- link:begin managed-settings-enforcement#disable-modes -->管理設定と組織の強制<!-- link:end -->）である。後者は、bypassPermissions そのものを使えなくする。
 
 ## 誤解されやすいこと {#misconceptions}
 
@@ -145,7 +145,7 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
 - **無人だから bypassPermissions が要る**：要るとは限らない。許す道具と上限を明示して渡し、確認を外さずに無人で走らせる道がある。まず <!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end --> を見る。
 - **今でも YOLO 運用が普通のやり方**：auto モードが使えるようになる前の近道である。いまは、ふだんの対話は auto モードとサンドボックスで足りる。bypass は隔離環境の中だけにする。経緯は <!-- link:begin outdated-advice-ledger#yolo-skip-permissions -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#yolo-skip-permissions)<!-- link:end --> にある。
 - **自分で気を付ければ手元で使ってよい**：このモードの警告は、気を付ける人にも同じである。止め手がないので、どれだけ気を付けても、勘違いや紛れ込んだ指示による操作はそのまま通り、手元の端末やホームの中身に届く。
-- **使うかどうかは個人の自由**：組織は、このモードを使えなくする設定を強制できる。優先の順番は <!-- link:begin managed-settings-enforcement#precedence -->管理設定と組織の強制 › 優先の順番（準備中）<!-- link:end --> にある。
+- **使うかどうかは個人の自由**：組織は、このモードを使えなくする設定を強制できる。優先の順番は <!-- link:begin managed-settings-enforcement#precedence -->管理設定と組織の強制<!-- link:end --> にある。
 
 権限モードの全体は、<!-- link:begin permission-modes-overview#modes -->[権限モードの選び方 › モードごとに確認なしで進むもの](../cli/permission-modes-overview.md#modes)<!-- link:end --> を見る。
 
@@ -165,7 +165,6 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](default-safety-settings.md#by-stage)
 - [権限モードの選び方](../cli/permission-modes-overview.md)
-- 管理設定と組織の強制（準備中）
 - [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)
 - [知らないリポジトリを開く前に](before-opening-unknown-repos.md)
 - [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)

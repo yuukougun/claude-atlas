@@ -79,7 +79,7 @@ updated: 2026-11-05
 
 === "Claude Code"
 
-    ログインに使っているアカウントや認証の方式で、契約の側が決まる。個人のアカウントでログインしていれば個人向け、組織の契約や API の認証なら商用の側になる。クラウド事業者経由で使うときは、そのクラウドの契約と統制の中で動く。選び方は <!-- link:begin via-cloud-providers -->Bedrock・Vertex AI・Foundry 経由で使う（準備中）<!-- link:end --> にある。
+    ログインに使っているアカウントや認証の方式で、契約の側が決まる。個人のアカウントでログインしていれば個人向け、組織の契約や API の認証なら商用の側になる。クラウド事業者経由で使うときは、そのクラウドの契約と統制の中で動く。選び方は <!-- link:begin via-cloud-providers -->Bedrock・Vertex AI・Foundry 経由で使う<!-- link:end --> にある。
 
     手元に残る記録は、提供元の契約とは別の保存である。預かったデータを読ませたセッションの記録は、手元に平文で残る。扱いは <!-- link:begin where-your-data-goes#local-transcripts -->[送ったデータの行方（学習・保持期間） › 手元に残る記録](where-your-data-goes.md#local-transcripts)<!-- link:end --> で確かめる。
 
@@ -89,7 +89,7 @@ updated: 2026-11-05
 
     ただし、API を使うことは、持ち主との約束を満たすことではない。約束が提供元や地域を指定していないかを、先に確かめる。
 
-組織で使うプランは <!-- link:begin choosing-an-org-plan -->組織で使うプランの選び方（準備中）<!-- link:end --> で比べる。プランごとの学習と保持の扱いは、公式の文書（参考の Data usage と Privacy Center）で今の記述を確かめる。
+組織で使うプランは <!-- link:begin choosing-an-org-plan -->組織で使うプランの選び方<!-- link:end --> で比べる。プランごとの学習と保持の扱いは、公式の文書（参考の Data usage と Privacy Center）で今の記述を確かめる。
 
 面を絞る決めは、個人の注意に任せず、組織の決まりに書いておくと守られやすい。書く項目は <!-- link:begin ai-usage-guidelines#what-to-write -->[社内ガイドラインに書くこと › 書くこと（データの区分・面とモード・レビューの責任）](../team/ai-usage-guidelines.md#what-to-write)<!-- link:end --> にある。書いた禁止はお願いにすぎないので、守らせたいものは設定で縛る。縛る段階は <!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](default-safety-settings.md#by-stage)<!-- link:end --> を正本にする。
 
@@ -171,8 +171,6 @@ updated: 2026-11-05
 - [秘密情報（.env・API キー）を守る](protecting-secrets.md)
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)
 - [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)
-- Bedrock・Vertex AI・Foundry 経由で使う（準備中）
-- 組織で使うプランの選び方（準備中）
 - [データを分析する](../recipes/data-analysis.md)
 - [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 

@@ -27,6 +27,7 @@ sections:
   - {title: 安全と拡張の語, anchor: safety-terms}
   - {title: 評価の語, anchor: eval-terms}
   - {title: 機能と利用の語, anchor: product-terms}
+  - {title: API と SDK の語, anchor: api-terms}
   - {title: 学びと表記の語, anchor: human-terms}
 stage: draft
 updated: 2026-11-05
@@ -144,11 +145,11 @@ updated: 2026-11-05
 - メモリ：<!-- link:begin how-memory-works -->[アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)<!-- link:end -->・<!-- link:begin using-auto-memory -->[自動メモリ](../extend/using-auto-memory.md)<!-- link:end -->
 - 出力スタイル／Styles：<!-- link:begin output-style-modes -->[出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)<!-- link:end -->・<!-- link:begin skills-in-the-app#migrated-styles -->[アプリでスキルを使う › 移された Styles](../app/skills-in-the-app.md#migrated-styles)<!-- link:end -->
 - プロジェクト：<!-- link:begin using-projects -->[プロジェクトの使いどころ](../app/using-projects.md)<!-- link:end -->
-- 音声：<!-- link:begin voice-and-mobile -->音声モード・Quick entry・モバイル（準備中）<!-- link:end -->
+- 音声：<!-- link:begin voice-and-mobile -->音声モード・Quick entry・モバイル<!-- link:end -->
 - タスク：<!-- link:begin tasks-and-schedules-in-the-app -->[タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)<!-- link:end -->・<!-- link:begin loop-and-scheduling -->[/loop と定期実行の方式](../delegate/loop-and-scheduling.md)<!-- link:end -->
-- スキル・プラグイン：<!-- link:begin skills-in-the-app -->[アプリでスキルを使う](../app/skills-in-the-app.md)<!-- link:end -->・<!-- link:begin plugins-in-the-app -->アプリでプラグインを使う（準備中）<!-- link:end -->
+- スキル・プラグイン：<!-- link:begin skills-in-the-app -->[アプリでスキルを使う](../app/skills-in-the-app.md)<!-- link:end -->・<!-- link:begin plugins-in-the-app -->アプリでプラグインを使う<!-- link:end -->
 - 権限モード：<!-- link:begin permission-modes-overview -->[権限モードの選び方](../cli/permission-modes-overview.md)<!-- link:end -->・<!-- link:begin permission-modes-in-the-app -->[アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)<!-- link:end -->
-- バッチ：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->・<!-- link:begin batch-api-basics -->Message Batches API（急がない大量の処理）（準備中）<!-- link:end -->
+- バッチ：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）<!-- link:end -->・<!-- link:begin batch-api-basics -->Message Batches API（急がない大量の処理）<!-- link:end -->
 - 圧縮：<!-- link:begin what-survives-compaction -->[圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)<!-- link:end -->
 
 出力スタイルと Styles は、特に取り違えやすい。2 つは別の機能で、片方の手順をもう片方に当てはめない。
@@ -166,6 +167,7 @@ updated: 2026-11-05
 | <span id="compaction"></span>圧縮 | 長い会話を要約に置き換えること | API の機能名 compaction は英語のまま |
 | <span id="resident"></span>常駐 | 読み込まれた後、会話の間コンテキストに居続けること | |
 | <span id="bypass"></span>回り込み | 鍵で止められた操作の代わりに、止められていない別の手段で同じ結果を得ること | 縛りすぎの害の一つ |
+| <span id="over-blocking"></span>止めすぎ | 縛りが強すぎて、必要な作業まで止めてしまうこと | 回り込みと並ぶ、縛りすぎの害。解説は <!-- link:begin lock-side-effects -->[縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)<!-- link:end --> |
 | <span id="turn"></span>ターン | 依頼を送ってから最後の返事までの 1 区切り。途中でツールを何度も呼ぶ | |
 | <span id="aside"></span>ツールの合間の一言 | Claude がツールを呼ぶ前後に書く短い文。最後の返事とは別で、Stop フックは見ない | |
 | <span id="block-back"></span>差し戻し | フックが Claude に返事のやり直しを求め、ターンを終えさせないこと | `decision` を `block` にする形 |
@@ -195,6 +197,9 @@ Claude の出力の信頼性を考えるときの語である。
 | <span id="tool-poisoning"></span>tool poisoning | ツールの説明文に、利用者から見えない指示が仕込まれていること | 入れる前の確かめ方は <!-- link:begin vetting-extensions -->[MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)<!-- link:end --> |
 | <span id="rug-pull"></span>rug pull | 入れたときは無害だった拡張が、あとで中身を差し替えられること | 入れる前の確かめ方は tool poisoning の行と同じ |
 | <span id="slopsquatting"></span>slopsquatting | AI が実在しないパッケージ名を作り出す傾向につけ込み、その名前のパッケージを先に公開しておくこと | 入れる前の確かめ方は tool poisoning の行と同じ |
+| <span id="trust-boundary"></span>信頼境界 | 信頼できる出典の内側と外側を分ける線。外側の情報を読めることと、被害につながる行動ができることが両方そろうと、攻撃される | 片方を外すと難しくなる。解説は <!-- link:begin tasks-and-schedules-in-the-app -->[タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)<!-- link:end --> |
+| <span id="critical-paths"></span>critical paths・protected paths | 重要な場所への `rm` と `rmdir` は、どのルールでも通せない。公式はこの対象を critical paths と呼ぶ | 解説は <!-- link:begin protected-paths -->[消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)<!-- link:end --> |
+| <span id="path-traversal"></span>path traversal | `../` などで、決められた保存先の範囲の外のファイルを読み書きされること。memory tool を実装する側が、パスを検証して防ぐ | 解説は <!-- link:begin long-running-agent-context -->[長時間エージェントのコンテキスト管理](../api/long-running-agent-context.md)<!-- link:end --> |
 
 ## 評価の語 {#eval-terms}
 
@@ -212,6 +217,13 @@ Claude の出力の信頼性を考えるときの語である。
 | <span id="verifier"></span>検証器 | 出力が正しいかを機械的に判定する仕組み（テスト・採点スクリプトなど） | 検証器自体を確かめる方法は <!-- link:begin test-the-verifier -->[検証器そのものを確かめる（red/green・手で計算したケース）](../eval/test-the-verifier.md)<!-- link:end --> |
 | <span id="red-green"></span>red/green | 検証器が、壊れた入力で落ち（red）、正しい入力で通る（green）ことを確かめる手順 | 確かめ方は検証器の行を参照 |
 | <span id="freeze"></span>凍結 | 作業の途中で検証器や採点の基準が変わらないよう、固定しておくこと | 確かめ方は検証器の行を参照 |
+| <span id="evaluator"></span>評価器 | 点や正しさを、提出の前に自分で測る道具。コンテストではローカルのテスタ、業務ではテスト基盤に当たる | 形式ごとの姿は <!-- link:begin evaluators-by-format -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)<!-- link:end --> |
+| <span id="referee"></span>referee（審判） | 対戦型の大会で、公式が用意する、試合を進めて結果を決めるプログラム。ローカルの対戦場では、書き直さずに呼ぶ | 評価器の行を参照 |
+| <span id="cv"></span>CV（交差検証） | データを複数に分け、順に検証用へ回して測る方法。分け方が本番の分布を代表しないと、値が良くても本番では効かない | 評価器の行を参照 |
+| <span id="brute-and-main"></span>愚直解・本解 | 愚直解は、遅くてよいので仕様を読んだだけで正しいと分かる解（全探索など）。本解は、確かめたい側の解 | 同じ入力を両方に流して食い違いを探す。解説は <!-- link:begin differential-testing -->[答えの分かる遅い解と比べる（差分テスト・オラクル）](../eval/differential-testing.md)<!-- link:end --> |
+| <span id="evaluator-role"></span>判定役 | `/goal` で、完了の条件を満たしたかを各ターンの後に判定する別のモデル。会話に出た証拠しか読まない | 解説は <!-- link:begin goal-until-done -->[/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)<!-- link:end --> |
+| <span id="lockbox-holdout"></span>ロックボックス・hold-out | hold-out は、作る途中の調整では使わず取り置く検証用のデータ。ロックボックスは、その中で人だけが持ち、節目にしか開けない最後の層 | 解説は <!-- link:begin lockbox-and-holdout -->[ロックボックスと hold-out（人だけが持つ検証用データ）](../eval/lockbox-and-holdout.md)<!-- link:end --> |
+| <span id="ablation"></span>アブレーション | 要素を 1 つずつ足して、それぞれの効きを見る実験 | 例は <!-- link:begin ai-in-contests-today -->[AI はコンテストでどこまで来たか（確認日付き）](../contest/ai-in-contests-today.md)<!-- link:end --> |
 | <span id="oof"></span>OOF（学習に使わなかった分の予測） | 交差検証で、学習に使わなかった分に対して出した予測。学習に使った分で測ると、評価が甘くなる | 評価が壊れている症状は <!-- link:begin misses-broken-evaluation -->[手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)<!-- link:end --> |
 
 ## 機能と利用の語 {#product-terms}
@@ -225,6 +237,25 @@ Claude の出力の信頼性を考えるときの語である。
 | <span id="memory-topics"></span>Topics | アプリのメモリで、覚えた内容をまとめた項目。画面での訳は確かめていない | 見る・直す方法は <!-- link:begin how-memory-works#manage -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › 覚えた内容を見る・直す（棚卸し）](../app/how-memory-works.md#manage)<!-- link:end --> |
 | <span id="memory-pause-reset"></span>Pause・Reset | アプリのメモリを止める操作（Pause）と、覚えた内容を消す操作（Reset） | 解説は <!-- link:begin how-memory-works#turning-off -->[アプリのメモリ（仕組み・範囲・消し方と止め方） › 消し方と止め方（Pause・Reset・会話ごとのオフ・シークレットチャット）](../app/how-memory-works.md#turning-off)<!-- link:end --> |
 | <span id="usage-limit"></span>利用上限 | 一定の期間内に使える量の上限。別名は利用制限・使用制限 | 数値と種類はプランで違う。解説は <!-- link:begin how-usage-limits-work -->[利用上限の仕組み（面をまたいで共有する枠）](../cost/how-usage-limits-work.md)<!-- link:end --> |
+| <span id="settings-layer"></span>層（設定の） | 設定ファイルを置く場所の区分（ユーザー・プロジェクト・手元だけ・管理の 4 つ）。同じキーは優先順位の高い層が勝つ | 解説は <!-- link:begin settings-layers -->[設定ファイルの階層と優先順位](../cli/settings-layers.md)<!-- link:end --> |
+| <span id="model-tier"></span>上位の系統・日常の系統・軽い系統 | モデルを仕事の重さで分けた呼び方。公式は、日常のコーディングは日常の系統、複雑な設計判断は上位の系統、サブエージェントは軽いモデルを勧める | 解説は <!-- link:begin split-models-by-role -->[計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)<!-- link:end --> |
+| <span id="marketplace"></span>マーケットプレイス | プラグインの一覧（`marketplace.json`）を持つカタログ。ストアではない | 解説は <!-- link:begin plugins-and-marketplaces -->[プラグインとマーケットプレイス](../extend/plugins-and-marketplaces.md)<!-- link:end --> |
+| <span id="teleport"></span>teleport | クラウドのセッションで走らせた作業を、手元の端末に取り込むこと | 解説は <!-- link:begin cloud-sessions-and-teleport -->[クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)<!-- link:end --> |
+| <span id="statusline"></span>ステータスライン（status line） | `/usage`・`/context` と並ぶ、Claude Code の状態を数字で見る道具の 1 つ。見るだけで、使用量を減らす力は持たない | 表記は「ステータスライン」。解説は <!-- link:begin usage-context-statusline -->[/usage・/context・ステータスラインで状態を見る](../cli/usage-context-statusline.md)<!-- link:end --> |
+| <span id="skill-description"></span>description（スキルの説明文） | スキルの `SKILL.md` のフロントマターにあり、Claude がそのスキルを読み込むかを決める手がかりになる文。名前とともに毎回の会話に載る | 起動を保証しない。解説は <!-- link:begin skill-descriptions -->[スキルの description の書き方](../extend/skill-descriptions.md)<!-- link:end --> |
+| <span id="legacy-artifacts"></span>legacy artifacts | アーティファクトが今の形になる前に作ったもの。動き続けるが、新しくは作れない | 日付は解説のページで確かめる。解説は <!-- link:begin artifacts-overview -->[アーティファクト（会話の中で作る文書・スライド・デザイン）](../app/artifacts-overview.md)<!-- link:end --> |
+
+## API と SDK の語 {#api-terms}
+
+API と Agent SDK で出る語である。
+
+| 語 | 意味 | 備考 |
+| --- | --- | --- |
+| <span id="setting-sources"></span>settingSources | Agent SDK が `.claude/` のどの設定を読むかを決める指定（Python では `setting_sources`）。値は `user`・`project`・`local` | 省いたときの読み込みは版で変わりうる。解説は <!-- link:begin agent-sdk-basics -->[Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)<!-- link:end --> |
+| <span id="stateless"></span>stateless（状態を持たない） | Messages API が会話をモデルの文脈として覚えず、呼び出し側が毎回それまでの全体を渡すこと | 送ったデータが残るかは別の話。解説は <!-- link:begin stateless-messages-api -->[Messages API と会話の正体](../api/stateless-messages-api.md)<!-- link:end --> |
+| <span id="zdr"></span>ZDR（ゼロデータ保持） | 送ったデータを Anthropic 側に残さない契約。MCP connector・Files API・Managed Agents など、対象外の機能がある | 解説は <!-- link:begin sdk-comparison -->[Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)<!-- link:end --> |
+| <span id="tool-use-result"></span>tool_use・tool_result | tool_use は、Claude が道具の名前と引数を返すブロック。tool_result は、呼び出し側が実行した結果を入れて返すブロック | 実行は呼び出し側で起き、Claude に見えるのは tool_result の中身だけ。解説は <!-- link:begin tool-use-loop -->[tool use のループ](../api/tool-use-loop.md)<!-- link:end --> |
+| <span id="managed-agents-parts"></span>Agent・Environment・Session・Events | Managed Agents の構成要素。Environment は作業する場所、Session は Agent を Environment で動かす 1 回の実行、Events はセッションの途中経過と結果を受け取る流れ | Agent は動かす主体。解説は <!-- link:begin sdk-comparison -->[Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)<!-- link:end --> |
 
 ## 学びと表記の語 {#human-terms}
 
@@ -234,6 +265,8 @@ AI と付き合う人の側の語と、日本語の表記を揃えるための�
 | --- | --- | --- |
 | <span id="cognitive-debt"></span>認知負債 | AI に任せて自分で理解を組み立てなかった分が、あとで理解の不足として返ってくること | 解説は <!-- link:begin learning-with-ai -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](../judgment/learning-with-ai.md)<!-- link:end --> |
 | <span id="skill-formation"></span>技能形成 | 自分で試し、つまずきながら、力が身につくこと。AI に先に答えを出させると、この過程が減りうる | 解説は認知負債の行を参照 |
+| <span id="pairing-delegating"></span>伴走・委託 | 伴走は、人が Claude の進みを見ながら、一歩ずつ方向を直していく進め方。委託は、完了条件を渡して任せ、戻ってきた結果を後で確かめる進め方 | どちらが上ではなく、作業ごとに選ぶ。別名の「丸投げ」は委託の言い方。解説は <!-- link:begin pairing-and-delegating -->[伴走と委託](../delegate/pairing-and-delegating.md)<!-- link:end --> |
+| <span id="emphasis-words"></span>強調語 | IMPORTANT・YOU MUST・全部が大文字の行・「絶対に」「必ず」のように、指示を強く見せる書き方。重ねても守られるようにならず、効きすぎる害もある | 解説は <!-- link:begin emphasis-words -->[強調語（IMPORTANT・必ず）の現在](../prompting/emphasis-words.md)<!-- link:end --> |
 | <span id="notation-source"></span>表記の正本 | 表記の揺れを直すときに、基準にする 1 つの文書 | この辞典では、このページが正本である。解説は <!-- link:begin consistent-notation -->[表記ゆれと漢字の開き](../japanese/consistent-notation.md)<!-- link:end --> |
 | <span id="open-kanji"></span>漢字を開く | 漢字で書ける語を、かなで書くこと | 解説は表記の正本の行を参照 |
 
