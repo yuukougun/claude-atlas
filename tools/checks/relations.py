@@ -353,6 +353,20 @@ def check_symptom_signs(ctx: Context) -> Iterator[Finding]:
             yield at(ctx, p, f"signs のうち type が {SYMPTOM_SIGN} のものが {n} つ（{MIN_SYMPTOM_SIGNS} つ以上にする）", "signs")
 
 
+@check("signs の anchor", ERROR)
+def check_signs_anchor(ctx: Context) -> Iterator[Finding]:
+    """signs の項目の anchor（任意。逆引きの行き先を ページ#anchor にする）が、そのページの見出しの {#anchor}（本文）にも
+    sections の anchor にもない"""
+    for p in ctx.pages:
+        have = set(p.anchors()) | set(getattr(p, "heading_anchors", lambda: [])())
+        for sign in p.parts("signs"):
+            anchor = as_text(sign.get("anchor"))
+            if anchor and anchor not in have:
+                shown = f"あるのは {joined(sorted(have))}" if have else "見出しの anchor がない"
+                yield at(ctx, p, f"signs の「{as_text(sign.get('text'))}」の anchor「{anchor}」が、このページの見出しにない（{shown}）",
+                         "signs")
+
+
 def sign_key(text: str) -> str:
     """signs の文を比べる形：NFKC で全角と半角をそろえ、空白と記号（Unicode の分類の P・S・Z・C）を除く。"""
     return "".join(ch for ch in unicodedata.normalize("NFKC", text) if unicodedata.category(ch)[0] not in "PSZC")

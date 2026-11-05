@@ -83,7 +83,7 @@ AI を使わない時間をわざと残すことも、この状態を保つ手�
 
 - **待つ**：上限は戻る時刻まで、障害は復旧まで待つ。待つ間に AI なしでできる作業があれば、その作業へ移る。
 - **追加の枠で続ける**：プランの上限を使い切っても、usage credits で従量課金に切り替えて続けられる。思わぬ請求を防ぐため、上限額と通知を先に決めておく。仕組みは <!-- link:begin usage-credits-basics#how-it-works -->[usage credits（上限を超えた分の従量課金） › 切り替わる仕組み](usage-credits-basics.md#how-it-works)<!-- link:end -->、上限額は <!-- link:begin usage-credits-basics#set-a-cap -->[usage credits（上限を超えた分の従量課金） › 上限額と通知を決める](usage-credits-basics.md#set-a-cap)<!-- link:end --> にある。
-- **別の経路を使う**：API は、プランの枠とは別の経路である。違いは <!-- link:begin usage-credits-basics#vs-api-credits -->[usage credits（上限を超えた分の従量課金） › API credits との違い](usage-credits-basics.md#vs-api-credits)<!-- link:end --> にある。
+- **別の経路を使う**：API は、プランの枠とは別の経路である。どの経路で課金されるかは <!-- link:begin check-billing-path -->[課金の経路を確かめる（API キーとサブスクリプション）](check-billing-path.md)<!-- link:end --> で確かめる。プランの枠との違いは <!-- link:begin usage-credits-basics#vs-api-credits -->[usage credits（上限を超えた分の従量課金） › API credits との違い](usage-credits-basics.md#vs-api-credits)<!-- link:end --> にある。
 - **AI なしで進める**：先に決めた最低限の完了の線（手順書の「最低限の完了」）まで、人の手で進める。作り方は上の節にある。
 
 面ごとの違いは、次のとおりである。

@@ -277,6 +277,12 @@ class PageRecord(Record):
                 if isinstance(s.get("type"), str) and isinstance(s.get("text"), str)]
 
     @property
+    def sign_items(self) -> list[tuple[str, str, str]]:
+        """(type, text, anchor) の組（anchor は任意で、なければ空。type・text が文字列でない要素は飛ばす）。"""
+        return [(as_text(s.get("type")), as_text(s.get("text")), as_text(s.get("anchor")))
+                for s in self.parts("signs") if isinstance(s.get("type"), str) and isinstance(s.get("text"), str)]
+
+    @property
     def surfaces(self) -> list[str]:
         return self.strings("surfaces")
 

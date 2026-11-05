@@ -137,6 +137,7 @@ sections:
           list:
             type: {required: all, format: {vocab: sign_types}}
             text: {required: all, format: text, note: 平文。読者の言葉}
+            anchor: {format: id, note: 任意。答えがある節の anchor。逆引きの行き先を ページ#anchor にする（そのページの見出しにあるか。検査の層）}
         writer: 目次（執筆者は提案）
         shows: 逆引き辞典
         catalog: true

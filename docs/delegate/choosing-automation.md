@@ -111,7 +111,7 @@ Agent SDK は、どの設定を読み込むかをプログラムで決める。�
 
 ### どの課金の経路か
 
-経路は、方式より認証で決まる。環境に API キーがあると、サブスクリプションでログインしていても API の従量になる。claude -p では、変数があれば必ずその鍵を使う。決まる順は <!-- link:begin check-billing-path#how-the-path-is-chosen -->[課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順](../cost/check-billing-path.md#how-the-path-is-chosen)<!-- link:end -->、無人で回す前の確かめ方は <!-- link:begin check-billing-path#check-current-path -->[課金の経路を確かめる（API キーとサブスクリプション） › 今の経路を確かめる](../cost/check-billing-path.md#check-current-path)<!-- link:end --> にある。
+経路は、方式より認証で決まる。環境に API キーがあると、サブスクリプションでログインしていても API の従量になる。claude -p では、変数があれば必ずその鍵を使う。例外はクラウドの予定のタスクで、環境に鍵を置いてもサブスクリプションの認証が使われる（<!-- link:begin cloud-schedules#pitfalls -->[クラウドの定期タスク › 効かない場面・落とし穴](cloud-schedules.md#pitfalls)<!-- link:end -->）。決まる順は <!-- link:begin check-billing-path#how-the-path-is-chosen -->[課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順](../cost/check-billing-path.md#how-the-path-is-chosen)<!-- link:end -->、無人で回す前の確かめ方は <!-- link:begin check-billing-path#check-current-path -->[課金の経路を確かめる（API キーとサブスクリプション） › 今の経路を確かめる](../cost/check-billing-path.md#check-current-path)<!-- link:end --> にある。
 
 プランに付く月の API credits は、使える方式と使えない方式がある。対象は起動の仕方で変わる。確かめ方は <!-- link:begin check-billing-path#monthly-api-credits -->[課金の経路を確かめる（API キーとサブスクリプション） › プランに付く API credits](../cost/check-billing-path.md#monthly-api-credits)<!-- link:end --> にある。Agent SDK の課金の経路は <!-- link:begin agent-sdk-basics#billing -->[Agent SDK（Claude Code をライブラリとして使う） › 課金の経路](../api/agent-sdk-basics.md#billing)<!-- link:end --> にある。--bare を使うときの認証は <!-- link:begin bare-mode#authentication -->[--bare と再現性 › 認証が変わる（サブスクリプションで使うとき）](bare-mode.md#authentication)<!-- link:end --> にある。
 

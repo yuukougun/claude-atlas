@@ -16,7 +16,7 @@ scenes: [開発]
 summary: /compact に残す焦点を指示して会話を要約させ、自動圧縮や放置したときの圧縮で何が消えうるかを見越して備える。要約で失いたくない作業は、書き出してから /clear する。
 signs:
   - {type: goal, text: 長い作業を同じセッションのまま続けたい}
-  - {type: symptom, text: 席を外して戻ったら、会話が要約されていた}
+  - {type: symptom, text: 席を外して戻ったら、会話が要約されていた, anchor: idle-compaction}
   - {type: situation, text: 自動圧縮のタイミングを変えるべきか迷っている}
 prerequisites: [what-survives-compaction]
 related: [promises-after-compaction, handoff-documents, when-to-start-fresh, checkpoints-and-rewind#summarize, inspect-context, forgot-after-compaction, when-to-lock#spoken-rules-fade, long-chat-limits, large-context-window, why-prompt-caching, what-uses-up-limits, keep-replies-in-japanese]

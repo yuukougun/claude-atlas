@@ -16,7 +16,7 @@ scenes: [開発, チーム]
 summary: 編集後の整形・危ない操作の遮断・決めたコマンドへの誘導・テスト出力の絞り込み・終わりの通知・担当にだけ禁じる操作を、フックで組める。どの型も、当てる範囲を狭くし、効いたかを確かめてから常設する。
 signs:
   - {type: goal, text: 編集のたびにフォーマッタをかけさせたい}
-  - {type: goal, text: pip ではなく uv のように、決めたコマンドを必ず使わせたい}
+  - {type: goal, text: pip ではなく uv のように、決めたコマンドを必ず使わせたい, anchor: redirect-commands}
   - {type: goal, text: テストやログの出力で会話が埋まるのを防ぎたい}
   - {type: goal, text: サブエージェントにだけ commit を禁じたい}
 prerequisites: [block-with-exit-2, writing-safe-hooks]

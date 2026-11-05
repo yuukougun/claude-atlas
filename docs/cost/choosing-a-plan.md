@@ -75,6 +75,8 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end fact-table usage-limit-types-by-plan -->
 
+表の「最上位のモデルの別の週の上限」の列は、公式の文書の間で書き方が分かれている。食い違いは <!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](before-using-top-model.md#which-limit)<!-- link:end --> で確かめる。
+
 個人向けの月額と払い方は、次の表のとおりである。
 
 <!-- gen:begin fact-table plan-prices-individual -->

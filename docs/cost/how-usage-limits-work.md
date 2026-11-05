@@ -85,7 +85,7 @@ updated: 2026-11-05
 
 - 個人向けの Pro と Max は、5 時間の上限と週の上限の 2 段を持つ。
 - <!-- name:begin max-20x-to-ultra -->Ultra<!-- name:end --> は、確認が済んだ口座には 5 時間の上限がなく、週の上限だけである（[What is the Ultra plan?](https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan)）。確認は口座と支払いの履歴などから自動で行われ、済むまでは一時的な上限がかかる。
-- Max と Ultra には、最上位のモデル向けに別の週の上限がある。引かれ方は <!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](before-using-top-model.md#which-limit)<!-- link:end --> で確かめる。
+- 最上位のモデルに別の週の上限があるかは、公式の文書の間で書き方が分かれている。表の「最上位のモデルの別の週の上限」の列もその影響を受ける。食い違いと引かれ方は <!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](before-using-top-model.md#which-limit)<!-- link:end --> で確かめる。
 - 使用量に基づく Enterprise には、プランの上限がない。使った分は API の料金で払う。
 
 倍率や料金を含むプランごとの表は <!-- link:begin choosing-a-plan#plan-table -->[プランの選び方 › プランの表（確認日つき）](choosing-a-plan.md#plan-table)<!-- link:end --> にある。自分の口座に 5 時間の上限があるかは、アプリの Settings > Usage で分かる（見る場所は、続く節「残りを見る場所」にある）。

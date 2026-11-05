@@ -16,7 +16,7 @@ scenes: [開発]
 summary: 取り返しのつかない削除や書き換えが起きる経路と、巻き戻しで戻らないものが分かり、消されたくないものを権限ルール・サンドボックス・バックアップで守れる。
 signs:
   - {type: goal, text: 本番のデータベースやリモートのブランチに触らせたくない}
-  - {type: goal, text: 取り返しのつかない操作の前には、必ず止めてほしい}
+  - {type: goal, text: 取り返しのつかない操作の前には、必ず止めてほしい, anchor: guard}
 prerequisites: [checkpoints-and-rewind, permission-rules]
 related: [deleted-something-important, protected-paths, sandboxing, what-auto-mode-stops, block-with-exit-2, hook-recipes, working-with-git, where-bypass-is-ok]
 tracks: [checkpoints, auto-mode, sandbox, permissions]

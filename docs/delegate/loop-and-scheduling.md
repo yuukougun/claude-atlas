@@ -85,7 +85,7 @@ updated: 2026-11-05
 | --- | --- | --- | --- |
 | /loop | 開いているセッション（自分の機械） | セッションの間だけの見張り。手元のファイルも使える | この節 |
 | Desktop scheduled tasks | 自分の機械。セッションは開けなくてよい | 手元のファイルや道具が要る定期の作業。機械は起きている必要がある | この表の下の説明 |
-| クラウドの定期タスク | Anthropic のクラウド。機械は要らない | 機械を閉じても動かしたい作業。作業は新しい clone の上で動き、手元のファイルは見えない | <!-- link:begin cloud-schedules#triggers -->[クラウドの定期タスク › きっかけ（時刻・API・GitHub のイベント）](cloud-schedules.md#triggers)<!-- link:end --> |
+| クラウドの予定のタスク | Anthropic のクラウド。機械は要らない | 機械を閉じても動かしたい作業。作業は新しい clone の上で動き、手元のファイルは見えない | <!-- link:begin cloud-schedules#triggers -->[クラウドの定期タスク › きっかけ（時刻・API・GitHub のイベント）](cloud-schedules.md#triggers)<!-- link:end --> |
 
 公式の比較表は、権限の扱いも分けている。/loop は、開いているセッションの権限を引き継ぐ。Desktop は、タスクごとの設定である。クラウドは、既定で auto モードが動く。人が答えられない実行では、確認が要る操作は止まるか、分類器の判断に任される。止められたときの見直し方は、<!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> を引く。
 
@@ -112,8 +112,8 @@ Desktop scheduled tasks は、Claude Code Desktop で作る、自分の機械で
 
 !!! example "判断例：毎朝の調査"
     - **状況**：毎朝、依存パッケージの更新情報を調べて、前日との差をまとめさせたい。自分の PC は朝に閉じていることが多い。
-    - **迷う候補**：Desktop scheduled tasks は手元のファイルが使える。クラウドの定期タスクは PC を閉じていても動く。
-    - **選んだもの**：クラウドの定期タスク。
+    - **迷う候補**：Desktop scheduled tasks は手元のファイルが使える。クラウドの予定のタスクは PC を閉じていても動く。
+    - **選んだもの**：クラウドの予定のタスク。
     - **理由**：調べる対象は公開の情報とリポジトリだけで、手元のファイルが要らない。PC が閉じていることが多いので、機械が起きている前提の方式は取りこぼす。
 
 !!! example "判断例：デプロイの見張り"

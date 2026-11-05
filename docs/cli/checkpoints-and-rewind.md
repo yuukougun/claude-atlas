@@ -16,7 +16,7 @@ scenes: [開発]
 summary: プロンプトごとの時点に、コード・会話・その両方を戻し、途中から要約もできる。Bash だけが変えたファイルや外での変更は戻らないので、git の代わりにはしない。
 signs:
   - {type: goal, text: 試しにやらせて、駄目なら元に戻したい}
-  - {type: symptom, text: 巻き戻したのに、一部のファイルが元に戻らない}
+  - {type: symptom, text: 巻き戻したのに、一部のファイルが元に戻らない, anchor: what-is-restored}
 prerequisites: [input-symbols]
 related: [rewind-dont-correct, working-with-git, recover-lost-work, resume-and-branch, compact-and-auto-compact, deleted-something-important, destructive-commands, using-ides]
 tracks: [checkpoints]

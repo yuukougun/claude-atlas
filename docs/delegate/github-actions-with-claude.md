@@ -281,7 +281,7 @@ Action には、この経路を狭める既定の確認がある。
 - 定時の実行：GitHub は、既定のブランチにある workflow だけを定時で動かす。公開のリポジトリでは、動きのない期間が続くと、定時の実行が止められる。
 - 古い記事の書き方：`@beta` や `direct_prompt` を使う記事のとおりに書くと動かない。直し方は、下の「古くなった助言」の節にある。
 - 課金の取り違え：`ANTHROPIC_API_KEY` を渡すと、API の従量の課金になる。サブスクリプションのつもりなら、OAuth のトークンを使う。無人で回す前に、経路を確かめる（<!-- link:begin check-billing-path#how-the-path-is-chosen -->[課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順](../cost/check-billing-path.md#how-the-path-is-chosen)<!-- link:end -->）。
-- 手元の設定が混ざる：Action はリポジトリをチェックアウトして動くので、リポジトリの `CLAUDE.md` や設定が読まれる。信頼できないブランチの設定が混ざるのを避けたいときは <!-- link:begin bare-mode#what-is-skipped -->[--bare と再現性 › 読み込まないもの](bare-mode.md#what-is-skipped)<!-- link:end --> を見る。この組み合わせは、この辞典では確かめていない。
+- 手元の設定が混ざる：Action はリポジトリをチェックアウトして動くので、リポジトリの `CLAUDE.md` や設定が読まれる。信頼できないブランチの設定が混ざるのを避けたいときは <!-- link:begin bare-mode#what-is-skipped -->[--bare と再現性 › 読み込まないもの](bare-mode.md#what-is-skipped)<!-- link:end --> を見る。`--bare` は OAuth のトークンを読まないので、API キーの secret が要る（<!-- link:begin bare-mode#authentication -->[--bare と再現性 › 認証が変わる（サブスクリプションで使うとき）](bare-mode.md#authentication)<!-- link:end -->）。この組み合わせは、この辞典では確かめていない。
 - AI のレビューが通ったからといって、承認にはならない。指摘の採否と承認は、人が決める。
 
 ## 比べる相手 {#compare}

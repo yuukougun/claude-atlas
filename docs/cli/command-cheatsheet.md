@@ -97,7 +97,8 @@ updated: 2026-11-05
 | `/plan` | <!-- link:begin when-to-plan -->[plan mode の使いどころ](when-to-plan.md)<!-- link:end --> | plan mode で、編集を止めたまま調べさせる |
 | `/init` | <!-- link:begin init-and-first-claude-md#run-init -->[/init と最初の CLAUDE.md › /init で叩き台を作る](init-and-first-claude-md.md#run-init)<!-- link:end --> | リポジトリを調べさせて CLAUDE.md の叩き台を作る |
 | `/memory` | <!-- link:begin using-auto-memory -->[自動メモリ](../extend/using-auto-memory.md)<!-- link:end --> | CLAUDE.md や自動メモリのファイルを開く |
-| `/powerup`・`/insights` | <!-- link:begin ask-claude-code#what-to-ask -->[Claude Code 自身に聞く › 何を聞けるか](ask-claude-code.md#what-to-ask)<!-- link:end --> | 対話のレッスンで使い方を学ぶ。自分の使い方のレポートを出す |
+| `/powerup` | <!-- link:begin ask-claude-code#what-to-ask -->[Claude Code 自身に聞く › 何を聞けるか](ask-claude-code.md#what-to-ask)<!-- link:end --> | 実演で使い方を学ぶ |
+| `/insights` | <!-- link:begin insights-and-usage-review#insights-as-drafts -->[/insights と /usage で振り返る › /insights の提案を下書きとして読む](../eval/insights-and-usage-review.md#insights-as-drafts)<!-- link:end --> | 自分の使い方のレポートを出す |
 
 **拡張を扱う**
 

@@ -659,7 +659,7 @@ extra:
       freeze-eval-assets: "2027-02-02"
       lock-side-effects: "2027-02-02"
       default-safety-settings: "2026-12-04"
-      approval-fatigue: "2027-02-02"
+      approval-fatigue: "2026-12-04"
       where-bypass-is-ok: "2027-02-02"
       where-your-data-goes: "2027-02-02"
       what-feedback-sends: "2027-02-02"

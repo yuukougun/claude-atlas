@@ -355,6 +355,63 @@ class TestIndexBlocks(GenCase):
         self.assertIn('<div class="ca-graph" data-graph="../../assets/data/graph.json"></div>', block)
 
 
+class TestReverseAnchors(GenCase):
+    """逆引きの signs：anchor のある項目は ページ#anchor を指す。同じ行き先（ページ。anchor が違えば別）の項目は1行に束ねる。"""
+
+    HB = "docs/enforce/hooks-basics.md"
+    OLD = "  - {type: goal, text: 必ず守らせたい手順がある}\n"
+
+    def goal(self) -> str:
+        return block_content(self.read("docs/start/reverse-index.md"), "signs goal")
+
+    def signs(self, *lines: str) -> None:
+        self.replace(self.HB, self.OLD, "".join(f"  - {x}\n" for x in lines))
+
+    def test_anchor_points_to_the_section(self):
+        self.signs("{type: goal, text: 必ず守らせたい手順がある, anchor: exit-codes}")
+        self.generate()
+        self.assertIn("- 必ず守らせたい手順がある → [フック（hooks）の基本 › 終了コード](../enforce/hooks-basics.md#exit-codes)"
+                      "（Claude Code、機能）", self.goal())
+
+    def test_same_destination_is_one_row(self):
+        self.signs("{type: goal, text: 一つ目の言葉, anchor: exit-codes}", "{type: goal, text: 二つ目の言葉, anchor: exit-codes}",
+                   "{type: goal, text: 三つ目の言葉}")
+        self.generate()
+        goal = self.goal()
+        link = "[フック（hooks）の基本 › 終了コード](../enforce/hooks-basics.md#exit-codes)（Claude Code、機能）"
+        # 言葉は改行（<br>）で並べ、行き先は最後の改行の後。anchor が違えば（なし・exit-codes）別の行
+        self.assertIn(f"- 一つ目の言葉<br>二つ目の言葉<br>→ {link}\n", goal)
+        self.assertIn("- 三つ目の言葉 → [フック（hooks）の基本](../enforce/hooks-basics.md)（Claude Code、機能）\n", goal)
+        self.assertEqual(sum(1 for x in goal.splitlines() if "hooks-basics.md" in x), 2)
+        self.assertLess(goal.index("一つ目の言葉"), goal.index("三つ目の言葉"))     # 言葉は書いた順
+
+    def test_bundling_is_within_one_type(self):
+        self.signs("{type: goal, text: 目的の言葉}", "{type: situation, text: 状況の言葉}")
+        self.generate()
+        text = self.read("docs/start/reverse-index.md")
+        self.assertIn("- 目的の言葉 → ", block_content(text, "signs goal"))
+        self.assertIn("- 状況の言葉 → ", block_content(text, "signs situation"))
+        self.assertNotIn("<br>", block_content(text, "signs situation"))
+
+    def test_same_words_still_list_both_destinations(self):
+        # 同じ言葉が複数のページにあれば、行き先を並べた1行にする。行き先の並びが違う別の言葉は、別の行
+        self.signs("{type: goal, text: テストが通るまで終わらせたくない}", "{type: goal, text: 別の言葉}")
+        self.generate()
+        goal = self.goal()
+        row = next(x for x in goal.splitlines() if x.startswith("- テストが通るまで終わらせたくない"))
+        for page in ("verification-ladder", "checking-long-tasks", "hooks-basics"):
+            self.assertIn(f"/{page}.md)", row)
+        self.assertNotIn("<br>", row)
+        self.assertIn("- 別の言葉 → [フック（hooks）の基本](../enforce/hooks-basics.md)（Claude Code、機能）\n", goal)
+
+    def test_missing_anchor_falls_back_to_the_page(self):
+        self.signs("{type: goal, text: 必ず守らせたい手順がある, anchor: no-such}")
+        out = self.generate()
+        self.assertIn("hooks-basics#no-such の見出しが hooks-basics の本文にない", out)
+        self.assertIn("- 必ず守らせたい手順がある → [フック（hooks）の基本](../enforce/hooks-basics.md)（Claude Code、機能）",
+                      self.goal())
+
+
 class TestCheckAndPage(GenCase):
     def test_check_after_write_is_clean(self):
         code, out, _ = self.cli("--check")

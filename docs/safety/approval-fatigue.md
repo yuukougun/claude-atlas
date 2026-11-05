@@ -68,7 +68,7 @@ Anthropic 自身の測定が、この傾向を示す。2026-03-25 の engineerin
 
 auto モードが日常の操作を止めるときは、分類器に信頼する場所を教える。信頼する場所の記述は、個人の `~/.claude/settings.json` に置く。プロジェクトの設定に置いても、分類器は読まない。`/auto-mode-setup` が下書きを作る。止められた操作は `/permissions` の <!-- name:begin recently-denied-to-blocked -->Recently blocked（/permissions のタブ）<!-- name:end --> で見直せる。見直し方は <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> にある。
 
-「最初はすべての確認が出るので、承認していく」という前提の助言は古い。何も設定していなければ、対話のセッションは auto モードで始まる。今の既定と版は <!-- link:begin permission-modes-overview#defaults -->[権限モードの選び方 › 既定のモードと版](../cli/permission-modes-overview.md#defaults)<!-- link:end --> で確かめる。台帳の行は <!-- link:begin outdated-advice-ledger#approve-everything-first -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#approve-everything-first)<!-- link:end --> にある。
+「最初はすべての確認が出るので、承認していく」という前提の助言は古い。何も設定していなければ、対話のセッションの既定は <!-- fact:begin permission-mode-default-interactive -->auto モード（Claude Code 2.1.283 以降の、ターミナルと VS Code の対話のセッション。どのプランと提供元でも）（2026-11-04 時点）<!-- fact:end --> である。版で変わってきたので、今の既定と版は <!-- link:begin permission-modes-overview#defaults -->[権限モードの選び方 › 既定のモードと版](../cli/permission-modes-overview.md#defaults)<!-- link:end --> で確かめる。台帳の行は <!-- link:begin outdated-advice-ledger#approve-everything-first -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#approve-everything-first)<!-- link:end --> にある。
 
 面によって、減らす手の置き場所が違う。
 

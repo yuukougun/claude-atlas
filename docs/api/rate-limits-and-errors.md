@@ -150,7 +150,7 @@ Claude API の上限は、大きく支出の上限と rate limits の 2 つに�
 - **ワークスペースで枠を分ける。** 組織の枠を、用途ごとにワークスペースの上限で仕切ると、1 つの処理が全体の枠を食い尽くすのを防げる。
 - **上限を上げてもらう。** Console の Rate limits のページから、段の引き上げを依頼できる。
 
-送る量を差分にする仕組み（message threads、beta）は、上限を下げない。API が呼び出しの前に会話を組み立て直す。そのため、モデルが読む量は変わらず、料金と rate limits も同じである（2026-11-02 の Platform のリリースノートによる）。
+送る量を差分にする仕組み（<!-- link:begin stateless-messages-api#message-threads -->[Messages API と会話の正体 › message threads（送る量だけを減らす）](stateless-messages-api.md#message-threads)<!-- link:end -->、<!-- gen:begin feature message-threads/maturity -->beta<!-- gen:end feature message-threads/maturity -->）は、上限を下げない。API が呼び出しの前に会話を組み立て直す。そのため、モデルが読む量は変わらず、料金と rate limits も同じである（2026-11-02 の Platform のリリースノートによる）。
 
 費用の見積もりと合わせて上限を確かめたいときは、<!-- link:begin reading-api-pricing#estimate -->API 料金の読み方<!-- link:end -->も併せて読む。
 

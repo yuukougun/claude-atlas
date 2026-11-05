@@ -118,6 +118,12 @@
             "type": "string",
             "minLength": 1,
             "x-message": "空でない文字列（平文）にする"
+          },
+          "anchor": {
+            "description": "任意。答えがある節の anchor。逆引きの行き先を ページ#anchor にする（そのページの見出しにあるか。検査の層）",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "x-message": "id（英小文字・数字・ハイフン）にする"
           }
         }
       }

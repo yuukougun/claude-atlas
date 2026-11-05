@@ -16,7 +16,7 @@ summary: 表計算・スライド・文書・PDF のファイルを作らせ、�
 signs:
   - {type: goal, text: 表計算やスライドのファイルを作らせたい}
   - {type: goal, text: データを集計して図にしてほしい}
-  - {type: situation, text: 社外に出したくないデータを分析させる}
+  - {type: situation, text: 社外に出したくないデータを分析させる, anchor: network}
 prerequisites: []
 related: [artifacts-overview, data-analysis, office-paperwork, prompt-injection-in-practice, entrusted-data, character-encodings, how-attachments-are-read, shared-artifacts-and-files]
 tracks: [file-creation, code-execution]

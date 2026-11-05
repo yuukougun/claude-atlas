@@ -15,7 +15,7 @@ scenes: [データ分析, 開発]
 summary: Shift_JIS などで保存されたファイルは文字化けや集計の空欄の元になるので、UTF-8 に変えてから渡すか、文字コードを伝えて読ませる。Claude Code の編集の道具がそうしたファイルを拒むこともある。
 signs:
   - {type: symptom, text: CSV を集計させたら、日本語の列が空欄や文字化けになった}
-  - {type: symptom, text: Shift_JIS のファイルを編集させようとしたら断られた}
+  - {type: symptom, text: Shift_JIS のファイルを編集させようとしたら断られた, anchor: claude-code}
   - {type: situation, text: Excel や古い業務システムが書き出したファイルを渡す}
 prerequisites: []
 related: [files-and-code-execution, how-attachments-are-read, data-analysis, office-paperwork, documents-in-japanese, windows-wsl-ime]

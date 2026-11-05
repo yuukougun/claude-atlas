@@ -16,7 +16,7 @@ scenes: [開発]
 summary: / でコマンドとスキルを呼び、! で自分でシェルを実行して結果を会話に入れ、@ でファイルを直接指し、Esc で作業を止めて方向を直す。ずれに気づいたら早く止めるほど手戻りが小さい。
 signs:
   - {type: goal, text: Claude Code の入力欄でできることを最初に知りたい}
-  - {type: symptom, text: 間違った方向に進み始めたのに、止め方が分からない}
+  - {type: symptom, text: 間違った方向に進み始めたのに、止め方が分からない, anchor: esc}
 prerequisites: []
 related: [must-know-operations, choose-what-to-read, checkpoints-and-rewind, ask-claude-code, command-cheatsheet, images-and-voice]
 tracks: [interactive-mode]

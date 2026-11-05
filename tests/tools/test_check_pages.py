@@ -222,6 +222,22 @@ class TestBody(PagesCase):
         self.replace(RVL, "## 二つの層 {#two-layers}", "## 二つの層")
         self.assertFound(("sections", "request-vs-lock"))
 
+    @covers("signs の anchor")
+    def test_signs_anchor_must_be_a_heading_of_the_page(self):
+        # 見出し（sections）にある anchor はよい。ない anchor は、そのページの signs の行を指して止める
+        self.replace(RVL, "text: 試験用のやりたいこと2}", "text: 試験用のやりたいこと2, anchor: two-layers}")
+        self.assertFound()
+        self.replace(RVL, "anchor: two-layers}\nprerequisites", "anchor: no-such-section}\nprerequisites")
+        issues = self.assertFound(("signs の anchor", "request-vs-lock"))
+        self.assertEqual(issues[0].severity, ERROR)
+        self.assertIn("anchor「no-such-section」", issues[0].message)
+        self.assertIn("two-layers", issues[0].message)       # あるものを添える
+        self.assertEqual(issues[0].line, 14)
+
+    def test_signs_anchor_is_optional_and_must_be_an_id(self):
+        self.replace(RVL, "text: 試験用のやりたいこと2}", "text: 試験用のやりたいこと2, anchor: 日本語}")
+        self.assertIn("形", {i.check for i in self.issues()})
+
     def test_renamed_heading_is_a_warning(self):
         self.replace(RVL, "## 二つの層 {#two-layers}", "## 二つの層の違い {#two-layers}")
         issues = self.assertFound(("sections", "request-vs-lock"))

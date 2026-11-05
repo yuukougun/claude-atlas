@@ -31,6 +31,7 @@
 ```
 
 - 「何ができるか」の1文目は、答えそのもの。summary と食い違わせない。90字ほどまで（囲みの見出し行と行頭の記号も textlint の文字数に入る）。「いつ引くか」は読者の言葉で書き、signs と食い違わせない
+- `signs` の項目は、答えが3節目以降にあるとき、任意の `anchor`（そのページの見出しの `{#anchor}`）を持てる（`{type: symptom, text: …, anchor: pitfalls}`）。逆引きの行き先が「ページ#anchor」になる。signs は直さず、anchor は提案する
 - 「前提」は front matter の `prerequisites` を全部、link の目印で並べる。ないときは「なし」
 - 別名の行は `aliases` を全部並べ、textlint の無効の囲みで包む。aliases が空なら置かない
 - バッジの列と、冒頭・フッターの非公式の文はテンプレートが出す。本文に書かない。型によって項目を足す（feature の強制力など。§11）

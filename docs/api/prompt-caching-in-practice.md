@@ -15,7 +15,7 @@ scenes: [開発]
 summary: 毎回同じ先頭部分をキャッシュして、API の費用と待ち時間を抑えられる。区切りをどこに置くか、何を変えるとキャッシュが無効になるかが分かる。
 signs:
   - {type: goal, text: 長いシステムプロンプトや資料を毎回送る費用を抑えたい}
-  - {type: symptom, text: キャッシュを指定したのに効いていない}
+  - {type: symptom, text: キャッシュを指定したのに効いていない, anchor: pitfalls}
 prerequisites: [why-prompt-caching, stateless-messages-api]
 related: [reading-api-pricing, feature-to-api-mapping, using-projects, batch-api-basics, effort-levels, saving-priorities]
 tracks: [prompt-caching]

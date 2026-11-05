@@ -68,6 +68,8 @@ compaction は、古い発言を、サーバー側で Claude が書く要約に�
 
 context editing は、古い道具の結果や thinking のブロックを、規則に従ってサーバー側で消す。要約はしない。消した部分は、文脈からなくなる。公式の説明では、多くの用途では compaction が主な手段で、context editing はより細かく制御したいときに使う。たとえば、大きな検索結果だけを古い順に落とし、会話の発言はそのまま残したい場面である。
 
+compaction も context editing も、履歴の先頭側を書き換えるので、プロンプトキャッシングの先頭の一致を崩し、その箇所から後ろのキャッシュが使い回されなくなる。崩れる範囲と見分け方は <!-- link:begin prompt-caching-in-practice#invalidation -->[プロンプトキャッシングの実務 › キャッシュを無効にする変更](prompt-caching-in-practice.md#invalidation)<!-- link:end --> にある。
+
 ### memory tool
 
 memory tool は、会話をまたいで残したい情報を `/memories` ディレクトリのファイルに書き、後で読む道具である。道具は呼び出し側（client）で動き、保存先は実装する側が決める。作業を始める前にディレクトリを見る。要約に頼らず、決めたことを文脈の外に置ける。

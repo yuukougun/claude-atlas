@@ -123,7 +123,7 @@ Claude が採点を走らせることは止めない。読んで走らせるの�
 <!-- textlint-enable -->
 <!-- gen:end snippet freeze-eval-assets/freeze-settings -->
 
-権限ルールとサンドボックスの各機能の詳細は、それぞれのページに任せる。ルールの評価の順と、何にも当たらないパスは <!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](permission-rules.md#path-rules)<!-- link:end -->、子プロセスに効かない理由は <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](permission-rules.md#child-processes)<!-- link:end --> にある。どの権限モードでも保護される場所は <!-- link:begin protected-paths#protected -->[消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い](protected-paths.md#protected)<!-- link:end --> にある。サンドボックスが囲えるものと囲えないものは <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](sandboxing.md#scope)<!-- link:end --> を引く。
+権限ルールとサンドボックスの各機能の詳細は、それぞれのページに任せる。ルールの評価の順と、何にも当たらないパスは <!-- link:begin permission-rules#path-rules -->[権限ルール（allow・ask・deny） › パスの書き方と、何にも当たらないルール](permission-rules.md#path-rules)<!-- link:end -->、子プロセスに効かない理由は <!-- link:begin permission-rules#child-processes -->[権限ルール（allow・ask・deny） › 子プロセスには効かない](permission-rules.md#child-processes)<!-- link:end --> にある。Claude Code が書き込みを事前承認しない場所（モードによっては止まらない）は <!-- link:begin protected-paths#protected -->[消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い](protected-paths.md#protected)<!-- link:end --> にある。サンドボックスが囲えるものと囲えないものは <!-- link:begin sandboxing#scope -->[サンドボックスで封じ込める › 囲えるもの・囲えないもの](sandboxing.md#scope)<!-- link:end --> を引く。
 
 権限ルールとサンドボックスは別々に効く。公式は、`Read` と `Edit` の deny がサンドボックスの設定にも合わさると書く。それでも雛形は両方に書く。設定を読んだだけで、どこが凍結されているかが分かるためである。
 

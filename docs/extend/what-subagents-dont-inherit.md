@@ -110,6 +110,8 @@ After で足したのは、範囲（編集しない）と、報告の言語と�
 
 通常のスキルは、説明文だけが常駐し、本文は必要なときに読まれる（仕組みは <!-- link:begin how-skills-load#what-happens -->[スキルの考え方（手順を必要なときだけ読む） › 何が起きるか](how-skills-load.md#what-happens)<!-- link:end --> を見る）。定義の `skills` に挙げたスキルはそうならず、担当の文脈に最初から入る。長いスキルを何本も挙げると、担当の文脈を最初から使うので、その担当が使う分だけに絞る。
 
+手動専用（`disable-model-invocation: true`）のスキルは、担当の定義の `skills` に挙げても、事前の読み込みができない。そのスキルが要る手順は、人が呼ぶか、委任の文に書き直す。理由と範囲は <!-- link:begin manual-only-skills#limits -->[副作用のあるスキルを勝手に動かさない › 効かない場面と落とし穴](manual-only-skills.md#limits)<!-- link:end --> にある。
+
 <!-- gen:begin snippet what-subagents-dont-inherit/skills-in-definition -->
 <!-- textlint-disable -->
 
