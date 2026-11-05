@@ -107,7 +107,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 確かめていない | [いつの情報かを見分ける › 日付と版の確かめ方](../changes/dating-information.md#check-date-and-version)<br>[最新を自分で確かめる方法](../changes/checking-for-updates.md)<br>[古くなった助言の台帳 › 自分の設定や記事で見つける](../changes/outdated-advice-ledger.md#find-in-your-setup) |
-| 合っていない | [古くなった助言の台帳](../changes/outdated-advice-ledger.md)<br>[用語索引と旧名の対応 › 旧名から引く](../start/term-index.md#old-names)<br>主要コマンド早見表（準備中） |
+| 合っていない | [古くなった助言の台帳](../changes/outdated-advice-ledger.md)<br>[用語索引と旧名の対応 › 旧名から引く](../start/term-index.md#old-names)<br>[主要コマンド早見表](../cli/command-cheatsheet.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -143,7 +143,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end snippet old-advice-doesnt-work/check-article -->
 
-Claude Code に自分の使い方を聞く場合も、答えが手元の版より新しい機能を含みうる。使う前に版を確かめる方法は <!-- link:begin ask-claude-code#check-version -->Claude Code 自身に聞く › 答えの版を確かめる（準備中）<!-- link:end --> にある。
+Claude Code に自分の使い方を聞く場合も、答えが手元の版より新しい機能を含みうる。使う前に版を確かめる方法は <!-- link:begin ask-claude-code#check-version -->[Claude Code 自身に聞く › 答えの版を確かめる](../cli/ask-claude-code.md#check-version)<!-- link:end --> にある。
 
 ## 判断例 {#example}
 
@@ -192,11 +192,11 @@ Claude Code に自分の使い方を聞く場合も、答えが手元の版よ�
 - [最新を自分で確かめる方法](../changes/checking-for-updates.md)
 - [古くなった助言の台帳](../changes/outdated-advice-ledger.md)
 - [用語索引と旧名の対応](../start/term-index.md)
-- 主要コマンド早見表（準備中）
+- [主要コマンド早見表](../cli/command-cheatsheet.md)
 
 **関連**
 
-- Claude Code 自身に聞く › 答えの版を確かめる（準備中）
+- [Claude Code 自身に聞く › 答えの版を確かめる](../cli/ask-claude-code.md#check-version)
 - [2026 年の主な変更の年表](../changes/change-timeline-2026.md)
 - [スキルの作り方 › カスタムコマンドから移る](../extend/writing-skills.md#from-commands)
 - [サブエージェントの作り方と使いどころ › 定義の書き方（ファイルを書くか、Claude に作らせる）](../extend/writing-subagents.md#define)

@@ -1,0 +1,28 @@
+domains:
+  - domain: sre.google
+    checked: '2026-11-05'
+    noai: false
+    url: https://sre.google/workbook/postmortem-culture/
+    note: robots.txt に AI 向けのクローラへの指定はない。meta に noai の指定はない
+  - domain: corporate.jcx.au
+    checked: '2026-11-05'
+    noai: false
+    url: https://corporate.jcx.au/premortem
+    note: robots.txt に AI 向けのクローラへの指定はない。meta に noai の指定はない
+sources:
+  - id: google-sre-workbook-postmortem-culture
+    url: https://sre.google/workbook/postmortem-culture/
+    title: 'Postmortem Culture: Learning from Failure (The Site Reliability Workbook, Chapter 10)'
+    kind: 公式文書
+    publisher: Google
+    lang: en
+    checked: '2026-11-05'
+    note: ページに章ごとの公開日はなく、著作権表示は 2018 年。誰がでなく何が許したかを問うこと、アクション項目に単一のオーナーと測れる完了状態を付けること、レビューの扱いを確かめた
+  - id: collins-premortem
+    url: https://corporate.jcx.au/premortem
+    title: Pre-mortem
+    kind: 実践者
+    publisher: Jason Collins
+    lang: en
+    checked: '2026-11-05'
+    note: 調査資料（planning/research/10-contest-supplement.md）の要約に拠る。本文は取得していない。「原因特定能力が 30% 向上」が、原典では挙げた理由の数の増加で、質は測っていない、という指摘をメインが確かめてほしい

@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: artifact-storage-limit, title: アーティファクトのデータ保存の上限（1 アーティファクトあたり。文字のみ）, value: "20 MB", sources: [hc-artifacts], checked: 2026-11-05, status: 確認済み}
+    used_in: [artifacts-as-apps#runtime]
+  - fact: {id: artifact-runtime-plans, title: アーティファクトのアプリ接続とデータ保存が使えるプラン, value: "Pro・Max・Ultra・Team・Enterprise（Web とデスクトップ）", sources: [hc-artifacts, claude-pricing], checked: 2026-11-05, status: 確認済み}
+    used_in: [artifacts-as-apps#runtime, artifacts-as-apps#pitfalls]

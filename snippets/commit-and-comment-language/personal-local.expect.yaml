@@ -1,0 +1,12 @@
+title: 自分だけの返答の言語（CLAUDE.local.md）
+kind: claude-md
+place: local
+safety: false
+features: [claude-md]
+conditions:
+  - 使い捨てのリポジトリの根に置き、CLAUDE.local.md を .gitignore に足す
+  - 新しいセッションで試す
+expect:
+  - when: 変更の内容を日本語で質問し、続けてコミットさせる
+    then: 返答は日本語になり、コミットメッセージは日本語にならない（観察として扱う。指示は鍵ではないので、合否にしない）
+control: この指示を置かないとき、返答の言語につられてコミットメッセージが日本語になるかを見る

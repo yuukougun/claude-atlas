@@ -61,7 +61,7 @@ updated: 2026-11-05
 
 - 小さな調査を任せると、新しいサブエージェントは本筋がすでに持っていた文脈を集め直すので、かえって遅くなることがある
 - サブエージェントは本筋の会話の履歴を見ない。会話で決めた経緯に頼る調査は、依頼に書き込むか本筋で行う（引き継がれるものは <!-- link:begin what-subagents-dont-inherit -->[サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)<!-- link:end --> にある）
-- 出力を絞る手は <!-- link:begin choose-what-to-read#trim-output -->[@参照と、何を読ませるかの絞り込み › 出力を絞る](choose-what-to-read.md#trim-output)<!-- link:end --> にある。ちょっとした質問なら <!-- link:begin side-questions-btw#which -->本筋を汚さずに聞く（/btw） › /btw・新しい会話・サブエージェントの使い分け（準備中）<!-- link:end --> に使い分けがある
+- 出力を絞る手は <!-- link:begin choose-what-to-read#trim-output -->[@参照と、何を読ませるかの絞り込み › 出力を絞る](choose-what-to-read.md#trim-output)<!-- link:end --> にある。ちょっとした質問なら <!-- link:begin side-questions-btw#which -->[本筋を汚さずに聞く（/btw） › /btw・新しい会話・サブエージェントの使い分け](side-questions-btw.md#which)<!-- link:end --> に使い分けがある
 - 知らないコードの全体像をつかむ流れは <!-- link:begin explore-a-codebase -->[知らないコードベースを読む](../recipes/explore-a-codebase.md)<!-- link:end --> で扱う
 
 !!! example "判断例：長い失敗ログの原因を探す"
@@ -187,7 +187,7 @@ After で足したのは 4 つある。
 - [サブエージェントに引き継がれないもの](../extend/what-subagents-dont-inherit.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [@参照と、何を読ませるかの絞り込み](choose-what-to-read.md)
-- 本筋を汚さずに聞く（/btw）（準備中）
+- [本筋を汚さずに聞く（/btw）](side-questions-btw.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [知らないコードベースを読む](../recipes/explore-a-codebase.md)
 - [机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)

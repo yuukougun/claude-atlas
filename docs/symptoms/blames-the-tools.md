@@ -124,7 +124,7 @@ updated: 2026-11-05
 
 「壊れた」と言われてから動くより、見える状態を先に作る。
 
-- 長い作業には進捗ログを用意し、人と Claude の両方に状況が見えるようにする。道具への不満が増える様子を早く拾える。設計は <!-- link:begin progress-logs-for-long-jobs -->長時間ジョブの進捗ログを設計する（準備中）<!-- link:end --> にある。
+- 長い作業には進捗ログを用意し、人と Claude の両方に状況が見えるようにする。道具への不満が増える様子を早く拾える。設計は <!-- link:begin progress-logs-for-long-jobs -->[長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)<!-- link:end --> にある。
 - 「壊れた」と判断する前に、実行したコマンドと生の出力を出す決まりを、依頼に書く。上の雛形を、そのまま依頼に足せる。
 - 無人で走らせる作業は、終了コードと要約だけで決めず、出力と記録で確かめる。確かめ方は <!-- link:begin checking-unattended-runs -->[無人実行の結果を確かめる](../verify/checking-unattended-runs.md)<!-- link:end --> にある。
 - フックや deny ルールで操作を止めているなら、止めるときに理由と代わりの手段を返す設計かを見直す。見直し方は <!-- link:begin lock-side-effects#reason-and-alternative -->[縛りすぎの害と見直し（止めすぎ・回り込み） › 止めるときに返すこと](../enforce/lock-side-effects.md#reason-and-alternative)<!-- link:end --> にある。
@@ -160,7 +160,7 @@ updated: 2026-11-05
 
 **関連**
 
-- 長時間ジョブの進捗ログを設計する（準備中）
+- [長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)
 - [/context で中身を見る](../context/inspect-context.md)
 - [同じ確認のループにはまる](stuck-in-a-check-loop.md)
 - [誤りを認めずに言い張る](insists-on-mistakes.md)

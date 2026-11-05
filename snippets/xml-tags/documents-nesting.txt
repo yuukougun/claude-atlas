@@ -1,0 +1,16 @@
+<documents>
+<document index="1">
+<source>2026-q3-report.md</source>
+<document_content>
+（Q3 の報告書の本文を貼る）
+</document_content>
+</document>
+<document index="2">
+<source>2026-q4-plan.md</source>
+<document_content>
+（Q4 の計画書の本文を貼る）
+</document_content>
+</document>
+</documents>
+
+2 つの文書を読み比べて、Q3 の報告で触れた課題のうち、Q4 の計画に対応が書かれていないものを挙げてほしい。挙げるときは、文書の index と、該当する箇所の引用を付ける。

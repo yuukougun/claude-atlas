@@ -40,7 +40,7 @@ updated: 2026-11-05
     - **何ができるか**：Claude が書いたスクリプトで多数のサブエージェントを背景で動かし、コードベース全体の監査や大量のファイルの移行を進められる。
     - **いつ引くか**：コードベース全体の監査や大規模な移行を一度に進めたいとき。ワークフローで動かしたら、思ったより利用枠を使ったとき。
     - **前提**：<!-- link:begin choosing-parallel-modes -->[並列の方式の選び方](choosing-parallel-modes.md)<!-- link:end -->、<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->
-    - **止められるもの**：担当の道具の呼び出しには、権限ルールとサンドボックスが効く。規模の警告は助言で、実行を止めない。費用の上限は自分で決める。
+    - **止められるもの**：担当の道具の呼び出しには、権限ルールとサンドボックスが効く。ワークフロー自体の強制力は「<!-- gen:begin feature workflows/enforcement -->なし<!-- gen:end feature workflows/enforcement -->」で、規模の警告は助言にとどまり、実行を止めない。費用の上限は自分で決める。
 
 <!-- textlint-disable -->
 別名：ultracode・workflows・/workflows・ワークフロー・/deep-research
@@ -78,7 +78,9 @@ dynamic workflows は、Claude が書いた JavaScript のスクリプトを実�
 3. 走っている間に `/workflows` を開き、担当ごとのトークンの使用量を見る。そこから、いつでも止められる。止めても、終わった分の結果は多くの場合残る。
 4. 使用量と結果の質（誤検出の多さなど）を見てから、範囲を広げるかを決める。
 
-進捗の行に `Large workflow` の警告が出る場合がある。担当の数が多いか、トークンの見込みが大きいときである。警告は助言で、実行を止めたり制限したりしない。しきい値は公式の Cost の節で確かめる。担当の数の目安を段階で変える設定 `workflowSizeGuideline` もあるが、これも Claude への助言で、上限ではない。上限になるのは、実行環境が持つ同時に動かせる担当の数と、1 回の実行で呼べる担当の総数である。
+進捗の行に `Large workflow` の警告が出る場合がある。出る条件は、<!-- fact:begin workflow-large-warning -->担当が 25 を超えるか、トークンの見込みが 150 万を超えたとき。size guideline を自分で選ぶと、担当の数のしきい値はその段の数に替わる。ultracode が on の間は出ない。警告は助言で、止めない（2026-11-05 時点）<!-- fact:end -->である。担当の数の目安を段階で変える設定 `workflowSizeGuideline` もあり、段階の目安は<!-- fact:begin workflow-size-guideline -->unrestricted は目安なし、small は 5 未満、medium は 10 未満、large は 50 未満。既定は medium、Pro で v2.1.271 以降は small。助言で上限ではない（2026-11-05 時点）<!-- fact:end -->である。
+
+上限になるのは、実行環境が持つ同時に動かせる担当の数と、1 回の実行で呼べる担当の総数である。同時に動かせる担当の数は、<!-- fact:begin workflow-concurrent-agents -->既定は 16。CPU が少ないと減る。環境変数 CLAUDE\_CODE\_WORKFLOW\_MAX\_CONCURRENT\_AGENTS で 1〜256（v2.1.269 以降）（2026-11-05 時点）<!-- fact:end -->。1 回の実行の上限は、<!-- fact:begin workflow-agent-caps -->担当は 1 回の実行で合計 1000。parallel() と pipeline() の 1 回の呼び出しは 4096 件まで（2026-11-05 時点）<!-- fact:end -->。
 
 !!! example "判断例：全ルートの認証の監査を、どこから流すか"
     - **状況**：ルートハンドラーが多数あるリポジトリで、認証の確認の抜けを全部洗い出したい。
@@ -152,7 +154,7 @@ dynamic workflows は、Claude が書いた JavaScript のスクリプトを実�
 <!-- textlint-enable -->
 <!-- gen:end snippet dynamic-workflows/scoped-migration -->
 
-移行の分け方と、挙動が保たれたことの確かめ方は <!-- link:begin refactor-and-migrate#bulk-changes -->リファクタリングと大規模な移行 › 多数のファイルに同じ変更を流す（準備中）<!-- link:end --> と <!-- link:begin refactor-and-migrate#behavior-preserved -->リファクタリングと大規模な移行 › 挙動が変わっていないことを確かめる（準備中）<!-- link:end --> が扱う。
+移行の分け方と、挙動が保たれたことの確かめ方は <!-- link:begin refactor-and-migrate#bulk-changes -->[リファクタリングと大規模な移行 › 多数のファイルに同じ変更を流す](../recipes/refactor-and-migrate.md#bulk-changes)<!-- link:end --> と <!-- link:begin refactor-and-migrate#behavior-preserved -->[リファクタリングと大規模な移行 › 挙動が変わっていないことを確かめる](../recipes/refactor-and-migrate.md#behavior-preserved)<!-- link:end --> が扱う。
 
 ## 担当にも効く縛り、確かめていない縛り {#guards-for-workers}
 
@@ -234,7 +236,7 @@ dynamic workflows は、Claude が書いた JavaScript のスクリプトを実�
 - エージェントチーム（複数の Claude に分担させる）（準備中）
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
-- リファクタリングと大規模な移行（準備中）
+- [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
 
 </div>

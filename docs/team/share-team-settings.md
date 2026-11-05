@@ -80,7 +80,7 @@ updated: 2026-11-05
 | [設定（settings.json）](../cli/settings-layers.md) | — | — |
 | [CLAUDE.md](../extend/what-to-put-in-claude-md.md) | お願い | セッション開始 |
 | [MCP](../extend/connecting-mcp.md) | なし | セッション開始 |
-| [プラグイン（plugins）](../extend/plugins-and-marketplaces.md) | — | セッション開始と使うとき |
+| [プラグイン（plugins）](../extend/plugins-and-marketplaces.md) | なし | セッション開始と使うとき |
 | [権限（permissions）](../enforce/permission-rules.md) | 鍵 | — |
 
 <!-- textlint-enable -->
@@ -102,7 +102,7 @@ CLAUDE.md は Claude が文脈として読むお願いで、守らせる力は�
 2. **チームの縛りを共有に書く**：手順の下にある共有用の雛形を `.claude/settings.json` に置く。許可は最小にし、`git push` は ask ルールに、秘密のファイルは deny ルールにする。確かめ：新しいセッションで、許可したコマンドが通り、deny の対象が止まる。
 3. **個人の分を手元に残す**：自分だけの許可は、手順の下にある手元用の雛形のように、`.claude/settings.local.json` へ置く。確かめ：`git status` に出ない。出るなら `.gitignore` に足す。
 4. **MCP の定義を `.mcp.json` に置く**：チームで使うサーバーだけを、環境変数で資格情報を渡す形で書く。スコープの選び方と共有の範囲は <!-- link:begin connecting-mcp#scopes -->[MCP をつなぐ › スコープと共有](../extend/connecting-mcp.md#scopes)<!-- link:end --> を引く。確かめ：別の人が開くと、初回に承認が出る。
-5. **CLAUDE.md に前提を書く**：ビルドとテストのコマンド、守る理由、落とし穴を書く。育て方と見直しは <!-- link:begin claude-md-length#team -->[CLAUDE.md の長さと剪定 › チームで育てる](../extend/claude-md-length.md#team)<!-- link:end --> を引く。ほかのエージェントツールも使うチームは <!-- link:begin agents-md -->AGENTS.md とほかのツールとの共有（準備中）<!-- link:end --> で指示を共有する。確かめ：新しいセッションで、Claude がコマンドを聞かずに実行できる。
+5. **CLAUDE.md に前提を書く**：ビルドとテストのコマンド、守る理由、落とし穴を書く。育て方と見直しは <!-- link:begin claude-md-length#team -->[CLAUDE.md の長さと剪定 › チームで育てる](../extend/claude-md-length.md#team)<!-- link:end --> を引く。ほかのエージェントツールも使うチームは <!-- link:begin agents-md -->[AGENTS.md とほかのツールとの共有](../extend/agents-md.md)<!-- link:end --> で指示を共有する。確かめ：新しいセッションで、Claude がコマンドを聞かずに実行できる。
 6. **プラグインを共有する**：チーム専用のマーケットプレイスを作るかは <!-- link:begin plugins-and-marketplaces#team-marketplace -->[プラグインとマーケットプレイス › チームのマーケットプレイスを作る](../extend/plugins-and-marketplaces.md#team-marketplace)<!-- link:end --> を引く。入れたものは使わないときも説明が常駐するので、全員に要るものだけに絞る。入れる前の確認は <!-- link:begin plugins-and-marketplaces#before-install -->[プラグインとマーケットプレイス › 入れる前の確認](../extend/plugins-and-marketplaces.md#before-install)<!-- link:end --> にある。確かめ：別の人の環境で、有効になったものの一覧が自分と合う。
 7. **PR で入れる**：共有のファイルの追加は、別の人がレビューして承認する。確かめ：新しく clone した環境で、次の確かめ方を一通り流す。
 
@@ -227,7 +227,7 @@ CLAUDE.md は Claude が文脈として読むお願いで、守らせる力は�
 
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - [CLAUDE.md の長さと剪定 › チームで育てる](../extend/claude-md-length.md#team)
-- AGENTS.md とほかのツールとの共有（準備中）
+- [AGENTS.md とほかのツールとの共有](../extend/agents-md.md)
 - [MCP をつなぐ](../extend/connecting-mcp.md)
 - [プラグインとマーケットプレイス](../extend/plugins-and-marketplaces.md)
 - [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)

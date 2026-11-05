@@ -7,7 +7,7 @@
 - 1行が1ページ：「- [題名](URL)（id・型・レベル・段階・確認日）：要約」
 - 型：concept・feature・symptom・comparison・recipe・judgment・ledger・guide・hub。レベル（低い順）：使う・整える・任せる・仕組みにする・回す。レベルを持たない型（ledger・guide・hub）は「—」
 - 段階：draft・reviewed・done（draft は下書き・未検証）。確認日のないページは「未検証」
-- ページ数：278
+- ページ数：321
 
 ## 入口と地図
 
@@ -48,6 +48,7 @@
 
 - [アプリ・Claude Code・API の選び方](https://yuukougun.github.io/claude-atlas/surfaces/choosing-a-surface/)（choosing-a-surface・comparison・使う・draft・未検証）：頼みたい作業を、アプリ・Claude Code・API のどれで進めるかを、誰が手を動かすか・何に触れるか・どこで動くかの三つで選べる。迷ったら、触れる必要のあるものから決める。
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](https://yuukougun.github.io/claude-atlas/surfaces/where-it-runs/)（where-it-runs・concept・整える・draft・未検証）：同じ依頼でも、クラウド・自分の PC・リモート操作のどこで動くかで、触れられるファイル・ブラウザ・設定・秘密と、PC を閉じても続くかが変わる理由が分かる。
+- [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](https://yuukougun.github.io/claude-atlas/surfaces/claude-code-surfaces/)（claude-code-surfaces・comparison・整える・draft・未検証）：Claude Code をターミナル・IDE・Desktop・Web・モバイルのどれで使うかを、動く場所・読む設定・画面の機能の違いで選べる。中で動くエージェントループは同じである。
 - [面ごとにできないこと（早見表）](https://yuukougun.github.io/claude-atlas/surfaces/what-each-surface-cannot-do/)（what-each-surface-cannot-do・ledger・—・draft・未検証）：アプリの Web・Desktop・モバイル、Claude Code の各面、API のそれぞれで使えない機能を引ける。使いたい機能がない面では、使える面に移るかを決める。
 - [Claude in Chrome と computer use（ブラウザと画面の操作）](https://yuukougun.github.io/claude-atlas/surfaces/browser-control/)（browser-control・feature・任せる・draft・未検証）：Claude in Chrome でブラウザを、computer use で手元のアプリの画面を操作させ、作った画面の確かめや手作業の代行に使える。コネクタ（MCP）があればそちらを先に使い、機微な作業は任せない。
 
@@ -75,15 +76,19 @@
 - [提案してほしいのか、実行してほしいのか](https://yuukougun.github.io/claude-atlas/prompting/suggest-or-do/)（suggest-or-do・concept・整える・draft・未検証）：提案だけか、実行までか、懸念があれば止まって相談するのかを動詞で書き分けると、勝手に書き換えられることも提案で止まることも減る。既定でどちらに寄せるかも、指示に書いておける。
 - [範囲を伝える（やらないこと）](https://yuukougun.github.io/claude-atlas/prompting/state-the-scope/)（state-the-scope・concept・整える・draft・未検証）：依頼に、やること・やらないこと・触ってよい範囲を書くと、頼んでいない機能や変更が増えにくくなる。例外を許さない範囲は、言葉ではなく権限やフックで縛る。
 - [細かく指図するか、成果で頼むか](https://yuukougun.github.io/claude-atlas/prompting/ask-for-outcomes/)（ask-for-outcomes・concept・任せる・reviewed・未検証）：目的と完了の条件は測れる成果として渡し、どこを攻めるか・何で測るかは具体的に書く。成果だけを渡すと、指標だけを満たす変更や迷走が起きうる。
+- [目標値・上界を伝える](https://yuukougun.github.io/claude-atlas/prompting/share-targets-and-bounds/)（share-targets-and-bounds・concept・任せる・draft・未検証）：達成できる値や理論上の上界が分かっていれば依頼に書くと、早く打ち切ったり「限界です」と言ったりしにくくなる。分からないときは、先に上界を測る。
 - [出力の形と分量を指定する](https://yuukougun.github.io/claude-atlas/prompting/output-shape/)（output-shape・concept・整える・draft・未検証）：書式・長さ・要約の有無は望む形で指定し、頼む文の書き方も出力の形に合わせる。機械が読む出力で形を必ず守らせたいなら、形式を保証する仕組みを使う。
 - [長い資料は先、質問は最後](https://yuukougun.github.io/claude-atlas/prompting/long-context-first/)（long-context-first・concept・整える・draft・未検証）：長い資料は依頼の先頭に置き、質問と指示を最後に書くと答えの質が上がる。答えの前に関係する箇所を原文から引用させると、誤読と取りこぼしを確かめやすい。
+- [XML タグで区切る](https://yuukougun.github.io/claude-atlas/prompting/xml-tags/)（xml-tags・concept・整える・draft・未検証）：指示・資料・例を説明的なタグで区切ると、どれが何かを Claude が取り違えにくくなる。タグの名前に決まりはなく、一貫していればよい。
 - [画像・スクリーンショット・音声で渡す](https://yuukougun.github.io/claude-atlas/prompting/images-and-voice/)（images-and-voice・concept・整える・draft・未検証）：言葉で説明しにくい画面・図・エラーは画像で、まとまらない考えは音声で渡すと、見せられる文脈が増える。読み取りの誤りは残るので、要点は文字でも確かめる。
 - [頼み方は一回で決めない（会話で詰める）](https://yuukougun.github.io/claude-atlas/prompting/refine-in-conversation/)（refine-in-conversation・concept・使う・draft・未検証）：最初は平易に頼み、返事を見て足りない情報だけを足すほうが、完璧な依頼文を先に作るより速い。ずれが大きいときは、訂正を重ねるより元の依頼を直して頼み直す。
 - [質問させる・インタビューさせる](https://yuukougun.github.io/claude-atlas/prompting/let-claude-ask/)（let-claude-ask・concept・整える・draft・未検証）：自分でも要件が固まっていないときは、先に Claude に質問させて決めるべき点を洗い出す。大きな作業は、質問で仕様を文書にしてから新しい会話で作らせる。
 - [選択肢と推奨案を出させる](https://yuukougun.github.io/claude-atlas/prompting/ask-for-options/)（ask-for-options・concept・整える・draft・未検証）：答えを選ぶ場面では、選択肢と推奨案と理由を出させてから人が決める。独自性が要る発想の場面では、先に自分の案を書き、AI には問いと反論を求める。
 - [「分からない」と言ってよいと伝える](https://yuukougun.github.io/claude-atlas/prompting/allow-i-dont-know/)（allow-i-dont-know・concept・使う・draft・未検証）：分からなければ分からないと答えてよい、根拠のない所は推測と書け、と添えると、もっともらしい作り話が減る。減るだけで無くならないので、大事な事実は確かめる。
 - [止まって報告する権利を渡す](https://yuukougun.github.io/claude-atlas/prompting/permission-to-stop/)（permission-to-stop・concept・任せる・draft・未検証）：テストや評価がおかしいと判断したら回避せずに止まって報告してよい、と依頼に書く。言葉の許可だけでは防ぎきれないので、テストを書き換えられない仕組みと組み合わせる。
+- [推論を見せてほしいとき](https://yuukougun.github.io/claude-atlas/prompting/asking-for-reasoning/)（asking-for-reasoning・concept・整える・draft・未検証）：答えの理由を知りたいときは、短い根拠の説明を頼むか、表示される思考の要約を読む。推論の全文を本文に書かせる指示は断られることがあり、書かれた推論が実際の計算と一致する保証もない。
 - [Before/After プロンプト集](https://yuukougun.github.io/claude-atlas/prompting/before-after-prompts/)（before-after-prompts・recipe・整える・draft・未検証）：よくある依頼の書き換え前と後を比べて、自分の依頼に足りないもの（具体性・理由・範囲と完了・確かめる手段）を見つけられる。同じ書き換えを、アプリ・Claude Code・API のタブで比べられる。
+- [用途別プロンプトの型](https://yuukougun.github.io/claude-atlas/prompting/prompt-patterns/)（prompt-patterns・recipe・整える・draft・未検証）：調査・要約・レビュー・計画・バグ報告などの依頼で毎回書く項目を型にして使い回す。繰り返し使う型はスキルにして呼べるようにし、変えたら効いたかを測る。
 - [文章を頼むとき（読み手・目的・手本を渡す）](https://yuukougun.github.io/claude-atlas/prompting/requesting-prose/)（requesting-prose・recipe・整える・draft・未検証）：文章を頼むときは、読み手・目的・分量・手本と、避けたい言い回しを具体的に渡す。「もっと自然に」と形容詞で頼むより、嫌な箇所を例で示すほうが直る。
 
 ## 文脈を整える
@@ -102,6 +107,7 @@
 - [@参照と、何を読ませるかの絞り込み](https://yuukougun.github.io/claude-atlas/context/choose-what-to-read/)（choose-what-to-read・concept・整える・draft・未検証）：読むべきファイルを @ で直接指し、テストやログの長い出力は要点の数行に絞ってから会話に入れる。探させる手間と、関係のない読み込みが答えをぼかすことの両方を減らせる。
 - [長い資料を渡すとき](https://yuukougun.github.io/claude-atlas/context/handing-long-documents/)（handing-long-documents・concept・整える・draft・未検証）：長い資料は、分けたり、テキストや Markdown に直したりして、形と量を整えてから渡す。面ごとの読み込みの限界を知っておくと、読まれていない部分に気づける。
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](https://yuukougun.github.io/claude-atlas/context/research-in-subagents/)（research-in-subagents・concept・任せる・draft・未検証）：ログや多数のファイルを読む調査を別の文脈で行わせ、本筋には結論と根拠の場所だけを戻させる。トークンは余分にかかるので、出力が多く本筋から独立した調査に限る。
+- [本筋を汚さずに聞く（/btw）](https://yuukougun.github.io/claude-atlas/context/side-questions-btw/)（side-questions-btw・feature・整える・draft・未検証）：作業の途中のちょっとした質問を /btw で聞き、答えを会話の履歴に残さない。本筋の文脈を汚さずに、用語の確認や寄り道ができる。
 
 ## アプリを使いこなす
 
@@ -116,6 +122,7 @@
 - [リサーチを使いこなす](https://yuukougun.github.io/claude-atlas/app/using-research/)（using-research・feature・整える・reviewed・未検証）：リサーチに広く調べさせ、出典付きのレポートを受け取れる。起動しないときの頼み方と、出典を自分で確かめる手順が分かる。
 - [ファイル作成とコード実行](https://yuukougun.github.io/claude-atlas/app/files-and-code-execution/)（files-and-code-execution・feature・整える・draft・未検証）：表計算・スライド・文書・PDF のファイルを作らせ、隔離された環境でコードを実行して集計や図を作れる。ネットワークの設定と、その危険も分かる。
 - [アーティファクト（会話の中で作る文書・スライド・デザイン）](https://yuukougun.github.io/claude-atlas/app/artifacts-overview/)（artifacts-overview・feature・整える・draft・未検証）：会話の中で文書・スライド・デザインなどを作り、直し、共有できる。テンプレートの選び方と、公開するときの注意が分かる。
+- [アーティファクトを小さなアプリにする](https://yuukougun.github.io/claude-atlas/app/artifacts-as-apps/)（artifacts-as-apps・feature・仕組みにする・draft・未検証）：アーティファクトに Claude の呼び出し・アプリの接続・データの保存を持たせ、繰り返し使う道具にできる。共有したとき誰の権限と枠で動くかも分かる。
 - [コネクタ（MCP）をアプリで使う](https://yuukougun.github.io/claude-atlas/app/connectors-in-the-app/)（connectors-in-the-app・feature・整える・draft・未検証）：メール・カレンダー・社内の資料や自分の MCP サーバーをアプリにつなぎ、会話から使える。多くつなぐときの読ませ方と、信頼してよいかの判断が分かる。
 - [アプリでスキルを使う](https://yuukougun.github.io/claude-atlas/app/skills-in-the-app/)（skills-in-the-app・feature・任せる・draft・未検証）：決まった手順や書式をスキルとしてアプリに持たせ、必要な場面だけ読ませられる。使われないときに確かめることも分かる。
 - [アプリの権限モード（Auto と Manual）と安全](https://yuukougun.github.io/claude-atlas/app/permission-modes-in-the-app/)（permission-modes-in-the-app・feature・任せる・draft・未検証）：アプリが確認なしに進める Auto と、毎回確かめる Manual を選べる。読める範囲と行動できる範囲を同時に広げない置き方と、低いリスクから始める手順が分かる。
@@ -125,17 +132,20 @@
 
 - [入力の記号（/ ! @）と Esc](https://yuukougun.github.io/claude-atlas/cli/input-symbols/)（input-symbols・feature・使う・draft・未検証）：/ でコマンドとスキルを呼び、! で自分でシェルを実行して結果を会話に入れ、@ でファイルを直接指し、Esc で作業を止めて方向を直す。ずれに気づいたら早く止めるほど手戻りが小さい。
 - [知らないと損をする操作](https://yuukougun.github.io/claude-atlas/cli/must-know-operations/)（must-know-operations・feature・整える・draft・未検証）：権限モードの切り替え、長い指示を外部エディタで書く、画像を貼る、作業の様子を見る、実行中の処理を背景に回すなど、知っていると手戻りが減る操作を場面ごとに引ける。
+- [Claude Code 自身に聞く](https://yuukougun.github.io/claude-atlas/cli/ask-claude-code/)（ask-claude-code・concept・使う・draft・未検証）：Claude Code の機能や設定の使い方を Claude Code 自身に聞くと、公式の文書を調べて答える。答えは手元の版より新しい機能を含みうるので、版を確かめてから使う。
 - [権限モードの選び方](https://yuukougun.github.io/claude-atlas/cli/permission-modes-overview/)（permission-modes-overview・feature・整える・draft・未検証）：権限モードごとに何が確認なしで進むかを知り、作業の危うさと見ていられる度合いに合わせて選ぶ。既定は版で変わってきたので、手元の既定と確認の出方を確かめてから任せる。
 - [plan mode の使いどころ](https://yuukougun.github.io/claude-atlas/cli/when-to-plan/)（when-to-plan・feature・整える・draft・未検証）：plan mode で編集を止めたまま調べさせ、出てきた計画を読んで直してから実装に入る。誤解は計画の段階で見つけるほど安く直せるので、方針や範囲に迷いがある作業で使う。
 - [チェックポイントと /rewind（git との違い）](https://yuukougun.github.io/claude-atlas/cli/checkpoints-and-rewind/)（checkpoints-and-rewind・feature・整える・draft・未検証）：プロンプトごとの時点に、コード・会話・その両方を戻し、途中から要約もできる。Bash だけが変えたファイルや外での変更は戻らないので、git の代わりにはしない。
 - [git との付き合い方](https://yuukougun.github.io/claude-atlas/cli/working-with-git/)（working-with-git・concept・整える・draft・未検証）：変更を小さく区切ってコミットし、コミットと push を人が握るか任せるかを段階で決める。一つの変更を一つの評価と一つのコミットに対応させると、悪くなったときにすぐ戻せる。
 - [セッションに名前を付けて再開・分岐する](https://yuukougun.github.io/claude-atlas/cli/resume-and-branch/)（resume-and-branch・feature・整える・draft・未検証）：セッションに名前を付けてブランチのように扱い、続きから再開したり、分岐して別の案を試したりする。関係のない作業は新しいセッションに分け、戻る先を名前で見つけられるようにする。
+- [セッション記録から失った作業を取り戻す](https://yuukougun.github.io/claude-atlas/cli/recover-lost-work/)（recover-lost-work・recipe・任せる・draft・未検証）：見失った成果や途中のやり取りを、セッションの一覧・保存されたトランスクリプト・チェックポイント・git の記録の順に探して取り戻せる。トランスクリプトには秘密も平文で残るので、扱いに気をつける。
 - [/usage・/context・ステータスラインで状態を見る](https://yuukougun.github.io/claude-atlas/cli/usage-context-statusline/)（usage-context-statusline・feature・整える・draft・未検証）：上限の使い方は /usage、文脈の内訳は /context で見て、遅い・高い・言うことを聞かない理由を推測せずに測る。ステータスラインに出しておけば、長い作業の途中でも気づける。
-- [設定を外して切り分ける（--safe-mode）](https://yuukougun.github.io/claude-atlas/cli/isolate-with-safe-mode/)（isolate-with-safe-mode・feature・任せる・draft・未検証）：CLAUDE.md・スキル・プラグイン・フック・MCP などを読まずに起動し、同じ依頼で挙動を比べて、不調が自分の設定から来るかを切り分ける。権限と管理の設定は効いたままで、安全の設定を外す道具ではない。
+- [設定を外して切り分ける（--safe-mode）](https://yuukougun.github.io/claude-atlas/cli/isolate-with-safe-mode/)（isolate-with-safe-mode・feature・任せる・draft・未検証）：CLAUDE.md・スキル・フック・MCP などを読まずに起動し、同じ依頼で挙動を比べて不調の原因を切り分ける。認証と管理の設定は効いたままで、自分の deny ルールは外れる。
 - [設定ファイルの階層と優先順位](https://yuukougun.github.io/claude-atlas/cli/settings-layers/)（settings-layers・feature・任せる・draft・未検証）：設定を、誰に効かせたいかでユーザー・プロジェクト・手元だけ・管理の層に書き分け、効かないときは /status で読み込まれた層を確かめて直せる。同じキーは優先順の高い層が勝つが、権限ルールは層をまたいで合わさる。
 - [/init と最初の CLAUDE.md](https://yuukougun.github.io/claude-atlas/cli/init-and-first-claude-md/)（init-and-first-claude-md・feature・整える・draft・未検証）：/init でリポジトリを調べさせて CLAUDE.md の叩き台を作り、読んで削ってから使い始められる。手で一行ずつ書く流儀もあり、どちらで始めても書いた後に削る。
 - [出力スタイルで応答の仕方を切り替える](https://yuukougun.github.io/claude-atlas/cli/output-style-modes/)（output-style-modes・feature・整える・draft・未検証）：組み込みや自作の出力スタイルで、説明の多さ・簡潔さ・確認の仕方・学び方をセッション全体について切り替える。何を知るべきかは CLAUDE.md、どう答えるかは出力スタイルに置く。
 - [クラウドセッションと teleport](https://yuukougun.github.io/claude-atlas/cli/cloud-sessions-and-teleport/)（cloud-sessions-and-teleport・feature・任せる・draft・未検証）：作業をクラウドのセッションで走らせて手元を閉じても続けさせ、終わったら teleport で手元の端末に取り込む。クラウドは手元の設定の一部を読まないので、計画と縛りをリポジトリに置いてから送る。
+- [主要コマンド早見表](https://yuukougun.github.io/claude-atlas/cli/command-cheatsheet/)（command-cheatsheet・ledger・—・draft・未検証）：よく使うコマンドを、何に使うか・判断を書いたページ・旧名とあわせて引ける。全コマンドの網羅は公式の一覧に任せる。
 
 ## 文脈と指示を仕組みにする
 
@@ -146,6 +156,7 @@
 - [CLAUDE.md の階層と読み込み順](https://yuukougun.github.io/claude-atlas/extend/claude-md-loading-order/)（claude-md-loading-order・feature・任せる・draft・未検証）：どの CLAUDE.md がいつ読まれ、どう重なるかを確かめられる。上書きではなく連結され、サブフォルダの分は後から読まれ、取り込みではコンテキストが減らないことが分かる。
 - [.claude/rules と paths で必要なときだけ読ませる](https://yuukougun.github.io/claude-atlas/extend/path-scoped-rules/)（path-scoped-rules・feature・任せる・draft・未検証）：特定のフォルダやファイル向けの規約を、そのファイルに触れたときだけ読み込ませられる。常駐を減らせるが、圧縮の後は引き金のファイルを読むまで戻らない。
 - [自動メモリ](https://yuukougun.github.io/claude-atlas/extend/using-auto-memory/)（using-auto-memory・feature・任せる・draft・未検証）：Claude が自分で書き溜める記録を確かめ、直し、止められる。人が書く CLAUDE.md との分担と、誤った結論が残って後の作業を汚さないための見直し方が分かる。
+- [AGENTS.md とほかのツールとの共有](https://yuukougun.github.io/claude-atlas/extend/agents-md/)（agents-md・feature・任せる・draft・未検証）：AGENTS.md を読ませて、ほかのエージェントツールと同じ指示を共有できる。読み込みの設定に任せるか、CLAUDE.md から取り込むかを、Claude だけに向けた指示があるかで選ぶ。
 - [CLAUDE.md・rules・スキル・出力スタイルの違い](https://yuukougun.github.io/claude-atlas/extend/claude-md-vs-rules-skills-styles/)（claude-md-vs-rules-skills-styles・comparison・任せる・draft・未検証）：常に効かせる規則・フォルダごとの規約・場面ごとの手順・応答の形を、どこに置くかを選べる。常駐か条件付きか、知識か応答の形かで分け、例外を許さないものは鍵に移す。
 - [スキルの考え方（手順を必要なときだけ読む）](https://yuukougun.github.io/claude-atlas/extend/how-skills-load/)（how-skills-load・concept・任せる・draft・未検証）：スキルが説明文だけを常駐させ、本文と補助ファイルを必要なときにだけ読む仕組みが分かる。長い手順を常駐の指示から外せる理由と、入れすぎたときに残るコストも分かる。
 - [スキルの作り方](https://yuukougun.github.io/claude-atlas/extend/writing-skills/)（writing-skills・feature・仕組みにする・draft・未検証）：繰り返す手順をスキルにして、Claude にも自分にも呼べるようにできる。本文は短くし、詳しい資料と決まった処理は補助ファイルとスクリプトに分ける。
@@ -157,6 +168,7 @@
 - [スキルとサブエージェントの違い](https://yuukougun.github.io/claude-atlas/extend/skill-vs-subagent/)（skill-vs-subagent・comparison・任せる・draft・未検証）：手順を今の会話で読ませるか、別の文脈の担当に任せるかを選べる。スキルは知識と手順を足し、サブエージェントは作業を本筋から隔てて要約だけを返す。
 - [MCP をつなぐ](https://yuukougun.github.io/claude-atlas/extend/connecting-mcp/)（connecting-mcp・feature・任せる・draft・未検証）：外部のサービスやツールを MCP でつなぎ、共有の範囲と資格情報を決め、つながらないときは切り分けられる。誰と使うかでスコープを選び、信頼できるサーバーと読み取り専用の資格情報から始める。
 - [MCP か CLI か](https://yuukougun.github.io/claude-atlas/extend/mcp-or-cli/)（mcp-or-cli・comparison・任せる・draft・未検証）：外部ツールを MCP でつなぐか、CLI とスキルで済ませるかを選べる。成熟した CLI があればコンテキストの効率がよく、CLI がないときや権限を狭く絞りたいときに MCP が生きる。
+- [MCP サーバーの選び方](https://yuukougun.github.io/claude-atlas/extend/choosing-mcp-servers/)（choosing-mcp-servers・feature・任せる・draft・未検証）：どの MCP サーバーを入れるかを、足りない能力・提供元・権限・コンテキストのコストで判断できる。よく使われる種類を例に、入れすぎない基準を持つ。
 - [プラグインとマーケットプレイス](https://yuukougun.github.io/claude-atlas/extend/plugins-and-marketplaces/)（plugins-and-marketplaces・feature・仕組みにする・draft・未検証）：スキル・サブエージェント・フック・MCP などをプラグインに束ねて入れ、配れる。入れたものは使わないときも説明が常駐し、ユーザーの権限でコードを動かすことを踏まえて選ぶ。
 - [code intelligence プラグイン（LSP）](https://yuukougun.github.io/claude-atlas/extend/code-intelligence-plugins/)（code-intelligence-plugins・feature・仕組みにする・draft・未検証）：型のある言語で、定義へのジャンプや型エラーの報告を Claude に使わせられる。ファイルを総当たりで読む代わりに言語サーバーに尋ねるので、探索で読む量が減る。
 - [拡張の棚卸しと剪定](https://yuukougun.github.io/claude-atlas/extend/pruning-extensions/)（pruning-extensions・recipe・仕組みにする・draft・未検証）：入れた CLAUDE.md・スキル・MCP・プラグインを定期的に見直し、使っていないものを外せる。常駐のコストを測ってから切り、共有するものは複数の人が使うものに絞る。
@@ -230,22 +242,30 @@
 - [秘密情報（.env・API キー）を守る](https://yuukougun.github.io/claude-atlas/safety/protecting-secrets/)（protecting-secrets・recipe・任せる・draft・未検証）：.env や API キー、認証情報を Claude に読ませない設定を、権限ルールとサンドボックスの二重にして作れる。会話に貼った秘密は、手元の記録に平文で残る。
 - [消されたくないもの（破壊的コマンド）](https://yuukougun.github.io/claude-atlas/safety/destructive-commands/)（destructive-commands・concept・任せる・draft・未検証）：取り返しのつかない削除や書き換えが起きる経路と、巻き戻しで戻らないものが分かり、消されたくないものを権限ルール・サンドボックス・バックアップで守れる。
 - [学校・組織・コンテストの規則（類型と確認表）](https://yuukougun.github.io/claude-atlas/safety/checking-ai-rules/)（checking-ai-rules・concept・使う・draft・未検証）：学校・組織・大会の AI の規則が、禁止・部門分け・許可と開示のどの型かを見分け、確かめる点を確認表で押さえられる。規則に AI の文言がないことは、使ってよいことを意味しない。
+- [AI 利用の開示と出所の記録](https://yuukougun.github.io/claude-atlas/safety/disclosure-and-provenance/)（disclosure-and-provenance・concept・整える・draft・未検証）：AI をどこにどう使ったかを開示し、事前に作ったコードや資料の出所を記録しておくと、規則の確認と説明の求めに答えられる。開示の求め方は場ごとに違うので、規則で確かめる。
 - [正当な依頼が断られたとき](https://yuukougun.github.io/claude-atlas/safety/when-requests-are-refused/)（when-requests-are-refused・concept・使う・draft・未検証）：正当な依頼が止められたときに、公式が案内する手段（巻き戻しや新しい会話で引き金を外す・本当の目的と文脈を足す・誤判定を報告する・検証の制度）から選べる。面ごとの表示と、分類器が会話全体を見る仕組み・自動のモデルの切り替えも分かる。
 
 ## 任せて並べる
 
 - [任せないもの（評価・採否・撤退・中核の理解）](https://yuukougun.github.io/claude-atlas/delegate/what-not-to-delegate/)（what-not-to-delegate・concept・任せる・draft・未検証）：評価の定義・採否・撤退・中核の理解など、どの段階でも人が握るものと、任せてよいものの分け方が分かる。分ける軸は、出力を機械的に確かめられるかである。
+- [そのタスクは AI に向いているか（五つの軸）](https://yuukougun.github.io/claude-atlas/delegate/is-the-task-ai-suited/)（is-the-task-ai-suited・concept・任せる・draft・未検証）：検証器の速さ・典型度・テキストで完結するか・環境の制約・期間の五つの軸で、作業を AI に任せて効くかを見積もれる。欠ける軸があれば、その部分は人が受け持つ。
+- [伴走と委託](https://yuukougun.github.io/claude-atlas/delegate/pairing-and-delegating/)（pairing-and-delegating・concept・任せる・reviewed・未検証）：見ながら一緒に進める伴走と、任せて後で確かめる委託の違いが分かる。どちらを選ぶかで、詰まる場所が舵取りからレビューに移る。
 - [任せ方の段階と、無人で走らせる前の五つの問い](https://yuukougun.github.io/claude-atlas/delegate/five-questions-before-delegating/)（five-questions-before-delegating・concept・仕組みにする・draft・未検証）：作業をどこまで任せるか（対話・計画の承認・停止条件つきの反復・隔離した無人実行）の段階と、無人で走らせる前に答える五つの問いが分かる。任せる幅を広げるほど、確かめ方と封じ込めを強める。
 - [AI に改善を回させ続ける罠（開いたループ）](https://yuukougun.github.io/claude-atlas/delegate/open-ended-loop-trap/)（open-ended-loop-trap・concept・仕組みにする・draft・未検証）：戦略そのものを AI に改善させ続ける開いたループが、手元の評価への過適合を自動で進めてしまう理由が分かる。反復させるのは、仕様が決まり停止条件のある実装の作業に限る。
 - [/goal（完了するまで続けさせる）](https://yuukougun.github.io/claude-atlas/delegate/goal-until-done/)（goal-until-done・feature・仕組みにする・draft・未検証）：完了の条件を満たすまで Claude にターンを続けさせ、席を外している間も作業を進められる。判定役は会話に出た証拠しか読まないので、証拠を会話に出させる条件を書く。
+- [長時間ジョブの進捗ログを設計する](https://yuukougun.github.io/claude-atlas/delegate/progress-logs-for-long-jobs/)（progress-logs-for-long-jobs・recipe・仕組みにする・draft・未検証）：長時間の作業に、要約した指標を定期的に書き出す進捗ログを用意し、Claude にも人にも状況が見えるようにできる。生のログを大量に出すと、Claude 自身が状況を追えなくなる。
 - [並列の上限は人間が決める](https://yuukougun.github.io/claude-atlas/delegate/humans-set-the-parallel-limit/)（humans-set-the-parallel-limit・concept・仕組みにする・draft・未検証）：並列の本数を決めるのはマシンや予算ではなく、結果をレビューする人の帯域だと分かる。レビューの要る本流は少なく、調査や使い捨ての試作は多めに並べる。
 - [並列の方式の選び方](https://yuukougun.github.io/claude-atlas/delegate/choosing-parallel-modes/)（choosing-parallel-modes・comparison・仕組みにする・draft・未検証）：並列の方式を、誰が調整するか・同じファイルを触るか・互いに連絡が要るかで選べる。どの方式でも、結果を確かめる人の手間は本数に応じて増える。
 - [git worktree で並列にする](https://yuukougun.github.io/claude-atlas/delegate/parallel-with-worktrees/)（parallel-with-worktrees・feature・仕組みにする・draft・未検証）：git worktree で作業ごとに別のチェックアウトを作り、複数のセッションが互いのファイルを上書きせずに並行して進められる。依存の導入や秘密のファイルの写し方は worktree ごとに決める。
 - [仮説ごとに並べて、同じ物差しで比べる](https://yuukougun.github.io/claude-atlas/delegate/compare-hypotheses-in-parallel/)（compare-hypotheses-in-parallel・recipe・仕組みにする・draft・未検証）：仮説ごとに worktree かブランチを分けて別々に実装させ、同じ評価器で比べて、勝った方だけを取り込める。仮説と物差しと採否は人が決める。
 - [agent view と背景セッション](https://yuukougun.github.io/claude-atlas/delegate/agent-view-and-background/)（agent-view-and-background・feature・仕組みにする・draft・未検証）：見張らなくてよい独立した作業を背景のセッションに投入し、一覧で状態を見て、要るときだけ返事をできる。セッションごとに利用枠を使うので、同時に動かす数を決めてから投入する。
 - [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](https://yuukougun.github.io/claude-atlas/delegate/dynamic-workflows/)（dynamic-workflows・feature・回す・draft・未検証）：Claude が書いたスクリプトで多数のサブエージェントを動かし、コードベース全体の監査や大量のファイルの移行を背景で進められる。費用が大きくなりやすいので、小さな範囲で試してから広げる。
+- [自動化の選び方（定期タスク・非対話モード・SDK）](https://yuukougun.github.io/claude-atlas/delegate/choosing-automation/)（choosing-automation・comparison・回す・draft・未検証）：決まった時刻・イベント・スクリプトから Claude を動かす方法を、どこで動くか・何に触れられるか・どの課金になるかで選べる。
 - [/loop と定期実行の方式](https://yuukougun.github.io/claude-atlas/delegate/loop-and-scheduling/)（loop-and-scheduling・feature・仕組みにする・draft・未検証）：開いているセッションの中で依頼を繰り返す /loop と、手元やクラウドで決まった時刻に走らせる方式を使い分けられる。途中で質問できないので、成功の定義と結果の置き場所を依頼に書く。
+- [クラウドの定期タスク](https://yuukougun.github.io/claude-atlas/delegate/cloud-schedules/)（cloud-schedules・feature・回す・draft・未検証）：手元の PC を閉じていても、決まった時刻や GitHub のイベントでクラウドの Claude Code に作業させられる。接続先と権限を最小にし、成功の定義と結果の確かめ方を先に決める。
 - [非対話モード（claude -p）の基本](https://yuukougun.github.io/claude-atlas/delegate/headless-basics/)（headless-basics・feature・回す・draft・未検証）：claude -p でスクリプトや CI から Claude Code を動かし、結果を決まった形式で受け取れる。無人では確認に答える人がいないので、許す道具と止まる上限を明示して渡す。
+- [--bare と再現性](https://yuukougun.github.io/claude-atlas/delegate/bare-mode/)（bare-mode・feature・回す・draft・未検証）：--bare で CLAUDE.md・フック・MCP などの自動の読み込みを止め、どのマシンでも同じ条件で claude -p を動かせる。手元の設定や、知らないリポジトリのフックが自動の実行に混ざるのを防ぐ。
+- [GitHub Actions と @claude](https://yuukougun.github.io/claude-atlas/delegate/github-actions-with-claude/)（github-actions-with-claude・feature・回す・draft・未検証）：GitHub Actions から Claude Code を動かし、issue や PR で @claude と呼んだり、イベントや定時で作業させたりできる。鍵は secrets に置き、権限を最小にし、マージの前に人がレビューする。
 
 ## 判断と理解を守る
 
@@ -258,18 +278,26 @@
 - [頼む前に自分で考える（AI には問い・反論・道具を頼む）](https://yuukougun.github.io/claude-atlas/judgment/think-before-asking/)（think-before-asking・judgment・整える・draft・未検証）：独自性が要る考察では先に自分の案と疑問を書き、AI には答えではなく問い・反論・観察の道具を頼む、という順序と使い分けが分かる。
 - [AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](https://yuukougun.github.io/claude-atlas/judgment/learning-with-ai/)（learning-with-ai・judgment・整える・draft・未検証）：AI に書かせても速さの得は確かめられず、理解が残りにくいことと、生成の後に理解を確かめる、エラーは自分で直す、といった理解が残る使い方が分かる。
 - [どこまで理解を手放してよいか（中核と周辺）](https://yuukougun.github.io/claude-atlas/judgment/how-much-understanding-to-keep/)（how-much-understanding-to-keep・judgment・任せる・draft・未検証）：コードを中核と周辺に分け、周辺は任せきり、中核は説明できるまで理解を確かめる線引きと、任せるほど確かめる力が衰えうることへの備えが分かる。
+- [失敗を仕組みに戻す（ポストモーテム）](https://yuukougun.github.io/claude-atlas/judgment/postmortems/)（postmortems・judgment・仕組みにする・draft・未検証）：AI と組んだ作業の失敗を、誰の誤りかではなくどの仕組みの隙間が許したかで書き、再発防止を CLAUDE.md・フック・レビューの観点のどこに入れるかを決められる。
 
 ## API・SDK の概念
 
 - [アプリの機能と API の概念の対応表](https://yuukougun.github.io/claude-atlas/api/feature-to-api-mapping/)（feature-to-api-mapping・comparison・任せる・draft・未検証）：プロジェクトのキャッシュ・長い会話の自動の要約・メモリ・スキルなどが、API のどの概念に当たるかが分かる。アプリや Claude Code の挙動を仕組みから説明できる。
+- [Messages API と会話の正体](https://yuukougun.github.io/claude-atlas/api/stateless-messages-api/)（stateless-messages-api・concept・任せる・draft・未検証）：Messages API の基本の形は状態を持たず、呼び出し側が system と messages で毎回それまでの全体を渡すことが分かる。message threads で送る量を減らしても、モデルが読む量は変わらないことも分かる。
+- [tool use のループ](https://yuukougun.github.io/claude-atlas/api/tool-use-loop/)（tool-use-loop・concept・仕組みにする・draft・未検証）：Claude が道具の呼び出しを頼み、呼び出し側が実行して結果を返すループの形が分かる。必ず呼ばせたい・形を守らせたいときに、指示でなく設定で縛る理由も分かる。
 - [structured outputs（形式を保証する）](https://yuukougun.github.io/claude-atlas/api/structured-outputs-basics/)（structured-outputs-basics・feature・仕組みにする・draft・未検証）：出力やツールの呼び出しを、指定したスキーマどおりの形で受け取れる。それでも形が崩れる場合と、形が正しくても中身は別に確かめる理由が分かる。
+- [プロンプトキャッシングの実務](https://yuukougun.github.io/claude-atlas/api/prompt-caching-in-practice/)（prompt-caching-in-practice・feature・仕組みにする・draft・未検証）：毎回同じ先頭部分をキャッシュして、API の費用と待ち時間を抑えられる。区切りをどこに置くか、何を変えるとキャッシュが無効になるかが分かる。
+- [rate limits とエラー（混雑と再試行）](https://yuukougun.github.io/claude-atlas/api/rate-limits-and-errors/)（rate-limits-and-errors・concept・仕組みにする・draft・未検証）：API が返す上限のエラーと混雑のエラーを見分け、待って再試行するか、送る量や時期を変えるかを決められる。再試行には間隔と回数の上限を設ける。
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](https://yuukougun.github.io/claude-atlas/api/sdk-comparison/)（sdk-comparison・comparison・仕組みにする・draft・未検証）：Client SDK・Agent SDK・Managed Agents・CLI を、ループを誰が回すか、どこで動くかで比べ、自分の用途に合う層を選べる。
+- [Agent SDK（Claude Code をライブラリとして使う）](https://yuukougun.github.io/claude-atlas/api/agent-sdk-basics/)（agent-sdk-basics・feature・回す・draft・未検証）：Claude Code と同じ道具とループを、自分のプログラムからライブラリとして使える。読み込む設定・権限・課金の経路を、対話の Claude Code との違いとして押さえられる。
+- [長時間エージェントのコンテキスト管理](https://yuukougun.github.io/claude-atlas/api/long-running-agent-context/)（long-running-agent-context・concept・回す・draft・未検証）：長く動くエージェントで文脈が溢れないよう、要約・古い結果の削除・外部の記憶をどう組み合わせるかが分かる。何を文脈に残し、何をファイルに出すかも判断できる。
 
 ## 費用と利用上限
 
 - [利用上限の仕組み（面をまたいで共有する枠）](https://yuukougun.github.io/claude-atlas/cost/how-usage-limits-work/)（how-usage-limits-work・concept・使う・draft・未検証）：アプリ・Claude Code・Desktop が同じ利用枠を分け合うことと、枠の種類と戻り方が分かる。会話を片付けても、使った分は戻らない。
 - [上限を早く使う要因](https://yuukougun.github.io/claude-atlas/cost/what-uses-up-limits/)（what-uses-up-limits・concept・整える・draft・未検証）：長い会話の送り直し・大きな添付・ツール・effort・並列の作業など、利用枠を早く減らす原因と、自分の場合に何が使っているかの確かめ方が分かる。
 - [節約の優先順位（手戻りを減らすのが先）](https://yuukougun.github.io/claude-atlas/cost/saving-priorities/)（saving-priorities・concept・整える・draft・未検証）：小手先の節約より、計画と確かめで手戻りを減らすほうが効く理由が分かる。次に関係のない文脈を片付けて常駐するものを減らし、effort やモデルを下げるのは最後にする。
+- [プランの選び方](https://yuukougun.github.io/claude-atlas/cost/choosing-a-plan/)（choosing-a-plan・comparison・使う・draft・未検証）：個人向けのプランを、使う面・Claude Code の量・上位のモデルの扱い・上限の形で比べて選べる。料金と倍率は確認日つきの表で確かめる。
 - [最上位のモデルを使う前に](https://yuukougun.github.io/claude-atlas/cost/before-using-top-model/)（before-using-top-model・concept・整える・draft・未検証）：最上位のモデルは、プランの枠との関係がほかのモデルと違い、使用量の減りも速いことが分かる。使う前に、どの枠や支払いから引かれるかと、本当に要る仕事かを確かめる。
 - [usage credits（上限を超えた分の従量課金）](https://yuukougun.github.io/claude-atlas/cost/usage-credits-basics/)（usage-credits-basics・feature・整える・draft・未検証）：プランの上限を使い切っても、usage credits で従量課金に切り替えて作業を続けられる。思わぬ請求を防ぐため、月の上限額と通知を先に決めておく。
 - [課金の経路を確かめる（API キーとサブスクリプション）](https://yuukougun.github.io/claude-atlas/cost/check-billing-path/)（check-billing-path・concept・任せる・draft・未検証）：Claude Code がプランと API キーのどちらで課金されているかを確かめ、思わぬ従量課金を防げる。環境変数・起動の仕方・面で経路が変わるので、無人で回す前に確かめる。
@@ -281,11 +309,13 @@
 - [日本語で指示して大丈夫か](https://yuukougun.github.io/claude-atlas/japanese/can-i-prompt-in-japanese/)（can-i-prompt-in-japanese・concept・使う・draft・未検証）：日本語で頼んでよく、作業の指示を日本語と英語で比べたデータはない。言語を替えるより、具体性と構造を整え、コマンド・パス・識別子を原文のまま書くほうが先である。
 - [日本語の出力を揃える：お願いで足りること、仕組みが要ること](https://yuukougun.github.io/claude-atlas/japanese/align-japanese-output/)（align-japanese-output・concept・整える・draft・未検証）：返答の言語・文体・表記を揃える手段を、届く範囲と強制力で選び分けられる。指示はどれも保証にならず、仕組みで止められる場所にも限りがあることを前提に組む。
 - [日本語で返し続けさせる](https://yuukougun.github.io/claude-atlas/japanese/keep-replies-in-japanese/)（keep-replies-in-japanese・recipe・整える・draft・未検証）：英語のツール出力やサブエージェントの報告を読んだ後に英語へ戻る返答を、設定・指示・フックの組み合わせで減らす。どれも完全には防げず、ツールの合間の短い一言が画面に出る前に止める仕組みはない。
+- [コミットメッセージ・コメントの言語](https://yuukougun.github.io/claude-atlas/japanese/commit-and-comment-language/)（commit-and-comment-language・concept・任せる・draft・未検証）：コミットメッセージとコメントの言語はチームの決まりとして共有の指示に書き、個人の好みは個人の設定に分けて置く。返答の言語の設定がそこまで効くかは公式に書かれていない。
 - [です・ます／だ・であるを揃える](https://yuukougun.github.io/claude-atlas/japanese/consistent-politeness/)（consistent-politeness・recipe・整える・draft・未検証）：文体を一行で指定し、手本の文章を見せ、毎回読まれる場所に置くと揺れが減る。それでも揺れは残るので、混在は lint で見つけて直させる。
 - [表記ゆれと漢字の開き](https://yuukougun.github.io/claude-atlas/japanese/consistent-notation/)（consistent-notation・recipe・整える・draft・未検証）：用語の表記と漢字を開く語を一覧にして渡し、機械で見つけられる揺れは辞書つきの lint で直させる。一覧は人が持つ正本から作り、指示と検査に同じものを使う。
 - [日本語の「AI 臭さ」を減らす](https://yuukougun.github.io/claude-atlas/japanese/less-ai-sounding-japanese/)（less-ai-sounding-japanese・recipe・整える・draft・未検証）：定型の言い回し・過剰な装飾・硬すぎる漢字遣いなど、読みにくさの型を具体的に挙げて直させる。AI が書いたと分からなくするためではなく、読み手のための品質として直す。
 - [textlint をフックで回す](https://yuukougun.github.io/claude-atlas/japanese/textlint-hook/)（textlint-hook・recipe・仕組みにする・draft・未検証）：ファイルを書いた直後に textlint を走らせ、残った違反を Claude に返して直させる。指示では揺れる文体と表記を、機械で見つけられる範囲だけ仕組みで揃える。
 - [日本語の資料を読ませる・書かせる](https://yuukougun.github.io/claude-atlas/japanese/documents-in-japanese/)（documents-in-japanese・recipe・整える・draft・未検証）：日本語の PDF や社内文書は、読めたかを引用で確かめてから使う。敬語や社内用語を使わせるときは、読み手・相手との関係・用語の一覧を添えて頼む。
+- [文字コード（Shift\_JIS の CSV など）](https://yuukougun.github.io/claude-atlas/japanese/character-encodings/)（character-encodings・recipe・整える・draft・未検証）：Shift_JIS などで保存されたファイルは文字化けや集計の空欄の元になるので、UTF-8 に変えてから渡すか、文字コードを伝えて読ませる。Claude Code の編集の道具がそうしたファイルを拒むこともある。
 
 ## 用途別レシピ
 
@@ -293,24 +323,37 @@
 - [仕様を自分で読み、AI に誤読を指摘させる](https://yuukougun.github.io/claude-atlas/recipes/read-specs-yourself/)（read-specs-yourself・recipe・整える・draft・未検証）：与えられた仕様は原文を自分で読んで要約を書き、AI には原文と突き合わせて誤読や落とした条件を指摘させる。理解は、採点や検証の処理を書いて公式の値と照らして確かめる。
 - [バグを直す](https://yuukougun.github.io/claude-atlas/recipes/fix-a-bug/)（fix-a-bug・recipe・整える・draft・未検証）：バグは、再現の手順と「直った」の定義を渡し、失敗するテストで再現させてから直させる。原因の仮説を確かめる前にコードを変えさせず、症状を隠すだけの修正を認めない。
 - [仕様を先に固める（spec・インタビュー・モック先行）](https://yuukougun.github.io/claude-atlas/recipes/spec-first/)（spec-first・recipe・任せる・draft・未検証）：大きな機能は実装の前に Claude にインタビューさせて仕様を書かせ、範囲外と確かめ方まで決める。画面はモックで先に合意し、実装は仕様を渡した新しいセッションで行う。
+- [リファクタリングと大規模な移行](https://yuukougun.github.io/claude-atlas/recipes/refactor-and-migrate/)（refactor-and-migrate・recipe・任せる・draft・未検証）：挙動を変えないリファクタリングや大規模な移行を、小さく確かめられる単位に分けて任せる。挙動が保たれたことは、変更前後のテストの結果と出力を比べて確かめる。
+- [性能改善を頼む（プロファイルが先・出力の一致と実測）](https://yuukougun.github.io/claude-atlas/recipes/performance-tuning/)（performance-tuning・recipe・任せる・draft・未検証）：性能改善は、プロファイルで遅い箇所を確かめてから対象を指定して頼む。速くなったという報告は信じず、変更前後の出力の一致と、複数回の実測の比較を証拠として求める。
+- [PR を作り、レビューを受ける](https://yuukougun.github.io/claude-atlas/recipes/create-and-review-prs/)（create-and-review-prs・recipe・任せる・draft・未検証）：変更から PR を作らせ、出す前にリスクと確かめた証拠を書き出させる。説明は自分の言葉で書けるまで読み、AI のレビューが通ったことを人の承認の代わりにしない。
 - [検証環境・テスト基盤を作らせる](https://yuukougun.github.io/claude-atlas/recipes/build-test-harness/)（build-test-harness・recipe・任せる・draft・未検証）：入力の生成・並列の実行・集計・比べる基準など、確かめるための環境を Claude に作らせる。できた環境は判定に使う前に既知の答えで確かめ、作業する側が書き換えられない場所に置く。
+- [観察の道具を作らせる（可視化・集計・ログ）](https://yuukougun.github.io/claude-atlas/recipes/build-observation-tools/)（build-observation-tools・recipe・任せる・draft・未検証）：結論を出させる代わりに、可視化・集計・ログなど観察のための道具を作らせ、浮いた時間を自分の観察に回す。道具の出す値は、小さな例で手計算と合うかを先に確かめる。
 - [データを分析する](https://yuukougun.github.io/claude-atlas/recipes/data-analysis/)（data-analysis・recipe・任せる・reviewed・未検証）：データの集計や分析を、あとで再実行できるクエリやスクリプトの形で Claude に任せる。数字は生データで裏を取り、観察した事実と原因の解釈を分けて出させる。
 - [調べものとレポート](https://yuukougun.github.io/claude-atlas/recipes/research-and-reports/)（research-and-reports・recipe・整える・draft・未検証）：調べものは、問いと範囲を決めてから頼み、出典つきのレポートを書かせる。結論は出典の原文と照らして確かめ、書かれていることと推測を分けさせる。
+- [ドキュメント・技術文書を書く](https://yuukougun.github.io/claude-atlas/recipes/write-docs/)（write-docs・recipe・整える・draft・未検証）：README や設計文書などの技術文書を、プロジェクトの既存の文書と規約を手本に見せて書かせる。内容はコードと照らして確かめ、文体と表記は検査の道具でそろえる。
+- [資料・スライドを作る](https://yuukougun.github.io/claude-atlas/recipes/make-slides/)（make-slides・recipe・整える・draft・未検証）：発表資料やスライドを、伝えたい筋と聞き手を先に決めてから作らせる。たたき台は Claude に任せ、主張と数字の確認と最後の仕上げは人が行う。
 - [事務作業の半自動化（経費・報告）](https://yuukougun.github.io/claude-atlas/recipes/office-paperwork/)（office-paperwork・recipe・任せる・draft・未検証）：経費の整理や週次の報告など繰り返す事務作業を、人が材料を渡し、Claude が下書きし、人が確かめて出す流れで半自動にする。手順はファイルやスキルに育て、私的な情報は渡す範囲を先に決める。
 
 ## 組織・チームで使う
 
 - [社内ガイドラインに書くこと](https://yuukougun.github.io/claude-atlas/team/ai-usage-guidelines/)（ai-usage-guidelines・recipe・整える・draft・未検証）：チームの AI 利用の決まりに、データの区分・許す面とモード・レビューの責任・止まって相談する場面を書ける。書いた禁止はお願いにすぎないので、守らせたいものは設定で縛る。
+- [禁止ではなく安全な道を作る](https://yuukougun.github.io/claude-atlas/team/paved-roads/)（paved-roads・concept・整える・draft・未検証）：AI の利用を禁じる代わりに、安全な既定と許す面を用意した、使ってよい道を作れる。AI は組織の土台の強さも弱さも増幅するので、テストとレビューを見直し、危険の小さい作業から広げる。
 - [チームで設定を共有する](https://yuukougun.github.io/claude-atlas/team/share-team-settings/)（share-team-settings・recipe・仕組みにする・draft・未検証）：CLAUDE.md・共有の設定・MCP の設定・プラグインをリポジトリに入れ、チームで同じ前提と縛りで Claude Code を使える。個人の好みと秘密は共有のファイルに入れない。
 - [レビューのボトルネックと疲労](https://yuukougun.github.io/claude-atlas/team/review-bottlenecks/)（review-bottlenecks・concept・任せる・draft・未検証）：AI で変更が増えると、レビューと動作確認が人に積もって詰まり、疲れも溜まりやすい理由が分かる。変更を出す速さではなく、レビューできる量に合わせて流す。
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](https://yuukougun.github.io/claude-atlas/team/risk-tiered-approval/)（risk-tiered-approval・concept・任せる・draft・未検証）：変更をリスクの段に分け、段ごとに人の承認の数を決められる。AI の承認は人の承認に数えず、危ない場所は常に人が見る。
 - [役割を分ける（書く人・承認する人・疑う人）](https://yuukougun.github.io/claude-atlas/team/separate-roles/)（separate-roles・concept・任せる・draft・未検証）：AI と進めるチームの役割を、書く人・承認する人・疑う人に分け、評価と撤退の判断を実装する人から離せる。AI の同意を根拠に数えない決まりも、持ち回りの疑う役で守る。
+- [レビューの観点を育てる](https://yuukougun.github.io/claude-atlas/team/grow-review-checklists/)（grow-review-checklists・recipe・仕組みにする・draft・未検証）：見落としを直した PR から見落とした理由を抜き出し、人の承認を経てレビューの観点に足していける。AI のレビュアーへの指示も同じ観点で育てる。
+- [決定を文書に残す（ADR と週次アップデート）](https://yuukougun.github.io/claude-atlas/team/record-decisions/)（record-decisions・recipe・任せる・draft・未検証）：決めたことと理由を ADR に残し、週ごとに決めたこと・AI に任せたこと・見てほしい点を書面で共有できる。新しい人が文書だけで作業を始められるかで、書けているかを確かめる。
 
 ## コンテストで使う
 
+- [コンテストの形式別の早見表（AI の効き方と人が握るところ）](https://yuukougun.github.io/claude-atlas/contest/format-cheatsheet/)（format-cheatsheet・hub・—・draft・未検証）：七つの形式ごとに、AI が効くところ・人が握るところ・評価器・規則の類型・当日の注意を一つの表で引ける。形式で効き方が違う理由も五つの軸で分かる。
+- [AI はコンテストでどこまで来たか（確認日付き）](https://yuukougun.github.io/claude-atlas/contest/ai-in-contests-today/)（ai-in-contests-today・concept・使う・draft・未検証）：AI が人の上位に並んだ大会と届かなかった大会を確認日付きで示し、勝ち方の構造と、人の寄与がどこに残ったかを読み取れる。
 - [大会の規則の早見（禁止・部門分け・許可と開示）](https://yuukougun.github.io/claude-atlas/contest/competition-rules/)（competition-rules・concept・使う・draft・未検証）：主な大会の AI の規則を、類型（禁止・部門分け・許可と開示）・版・確認日・一次資料の所在で引ける。版が未確認の大会は、出る前に一次資料で今の規則を読む。
 - [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](https://yuukougun.github.io/claude-atlas/contest/practice-vs-contest-day/)（practice-vs-contest-day・concept・整える・draft・未検証）：本番で AI を使えない大会に向けて、練習では AI を解説役・採点役・テストの作り手として使い、本番の条件で自力を確かめる使い分けが分かる。
 - [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](https://yuukougun.github.io/claude-atlas/contest/evaluators-by-format/)（evaluators-by-format・concept・任せる・draft・未検証）：形式ごとに検証器が何に当たるか（テスタ・ベンチマーカー・CV・flag の検証・対戦場など）と、公式や本番とのずれをどう確かめるかが分かる。
+- [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](https://yuukougun.github.io/claude-atlas/contest/running-contest-experiments/)（running-contest-experiments・recipe・仕組みにする・draft・未検証）：結果のぶれを見込んでケース数と集計の方法を決め、パラメータの調整と勝率の判定を、誤差に負けない試合数で回す手順が分かる。
+- [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](https://yuukougun.github.io/claude-atlas/contest/competition-day-operations/)（competition-day-operations・recipe・任せる・draft・未検証）：前日・開始直後・中盤・終盤・提出の各段で、規則の確認、評価器を先に立てること、変更の凍結、AI が止まっても提出できる備えを順に進める手順が分かる。
 
 ## 症状辞典
 

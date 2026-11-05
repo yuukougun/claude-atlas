@@ -249,9 +249,9 @@ updated: 2026-11-05
 - **毎回同じ説明をしている**：進捗の問題ではなく、背景や手順の置き場所の問題かもしれない。<!-- link:begin repeating-the-same-explanation#diagnosis -->[毎回同じ説明をしている › 原因を安く確かめる順](../symptoms/repeating-the-same-explanation.md#diagnosis)<!-- link:end --> で原因を切り分ける。
 - **同じ失敗の案が出る**：書き残しが足りないか、多すぎて埋もれている。<!-- link:begin keep-failure-lessons#too-much -->[失敗の教訓は捨てずに書き残す › 書き残しすぎの副作用](keep-failure-lessons.md#too-much)<!-- link:end --> を見る。
 - **圧縮の後に決めごとを忘れる**：入口が読み直される場所にない。<!-- link:begin promises-after-compaction#what-comes-back -->[圧縮で消えない場所に約束を置く › 読み直される場所と、要約に溶ける約束](promises-after-compaction.md#what-comes-back)<!-- link:end --> を見る。
-- **無人の長時間ジョブの状況を追いたい**：人と Claude が対話で再開する状態ではなく、観察するための記録が要る。<!-- link:begin progress-logs-for-long-jobs -->長時間ジョブの進捗ログを設計する（準備中）<!-- link:end --> を見る。
+- **無人の長時間ジョブの状況を追いたい**：人と Claude が対話で再開する状態ではなく、観察するための記録が要る。<!-- link:begin progress-logs-for-long-jobs -->[長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)<!-- link:end --> を見る。
 - **実験の仮説と結果を残したい**：進捗ファイルとは別の台帳が向く。違いは <!-- link:begin experiment-log#not-progress-file -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 進捗ファイルなどとの違い](../eval/experiment-log.md#not-progress-file)<!-- link:end --> にある。
-- **API で長く動くエージェントを作っている**：状態をファイルに持たせる考え方は <!-- link:begin long-running-agent-context#external-state -->長時間エージェントのコンテキスト管理 › 状態をファイルに持たせる（準備中）<!-- link:end --> にある。
+- **API で長く動くエージェントを作っている**：状態をファイルに持たせる考え方は <!-- link:begin long-running-agent-context#external-state -->[長時間エージェントのコンテキスト管理 › 状態をファイルに持たせる](../api/long-running-agent-context.md#external-state)<!-- link:end --> にある。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -264,14 +264,14 @@ updated: 2026-11-05
 
 **次に読む**
 
-- 長時間ジョブの進捗ログを設計する（準備中）
+- [長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)
 
 **関連**
 
 - [失敗の教訓は捨てずに書き残す](keep-failure-lessons.md)
-- 長時間エージェントのコンテキスト管理（準備中）
+- [長時間エージェントのコンテキスト管理](../api/long-running-agent-context.md)
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
-- 決定を文書に残す（ADR と週次アップデート）（準備中）
+- [決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)
 - [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)
 - [セッションに名前を付けて再開・分岐する](../cli/resume-and-branch.md)
 - [圧縮で消えない場所に約束を置く](promises-after-compaction.md)

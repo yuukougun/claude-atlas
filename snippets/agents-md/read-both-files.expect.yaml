@@ -1,0 +1,16 @@
+title: CLAUDE.md と AGENTS.md を両方読ませる設定
+kind: settings
+place: user
+safety: false
+features: [claude-md]
+conditions:
+  - ~/.claude/settings.json に書く（既に pluginConfigs があるときは、その中に足す）
+  - プロジェクトに AGENTS.md と CLAUDE.md の両方がある
+  - プラグインの ID は版で変わった経緯がある。効かないときは /config の Project instructions の欄で同じ値を選ぶ
+  - 新しいセッションで試す
+expect:
+  - when: セッションを始めて /context all を実行する
+    then: CLAUDE.md と AGENTS.md の両方が Memory files の一覧に出る
+  - when: /config を開く
+    then: Project instructions の欄が claude-md-and-agents-md になっている
+control: 設定を置かないとき、CLAUDE.md があるプロジェクトでは AGENTS.md は読まれない

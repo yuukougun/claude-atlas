@@ -173,7 +173,7 @@ Claude は、会話に出ているものを根拠にして答える。巻き戻�
 - **「全部残せば安全」**：失敗の記録を大量に読ませると、AI が消極的になる報告がある（詳しくは「書き残しすぎの副作用」の節）。量は逆効果になりうる。
 - **「記録があるなら、巻き戻しは要らない」**：記録は巻き戻しの代わりにならない。訂正の往復と失敗の跡を会話に残さない利点は、記録を取っても変わらない。両方を使う。
 - **「記録はいつまでも正しい」**：状況が変われば、禁止事項は古くなる。見直す条件を書き、定期的に棚卸しする。
-- **効かない場面**：失敗の原因が会話の外にあるときは、書き残しても繰り返す。たとえば、仕様の読み違いや、足りない権限である。原因の切り分けは <!-- link:begin going-in-circles#diagnosis -->[同じ失敗を繰り返す（堂々巡り） › 原因を安く確かめる順](../symptoms/going-in-circles.md#diagnosis)<!-- link:end --> へ。失敗が仕組みの隙間から来ているなら、記録でなく仕組みを直す。置き場所の決め方は <!-- link:begin postmortems#where-to-put-fixes -->失敗を仕組みに戻す（ポストモーテム） › 再発防止をどこに入れるか（準備中）<!-- link:end --> にある。
+- **効かない場面**：失敗の原因が会話の外にあるときは、書き残しても繰り返す。たとえば、仕様の読み違いや、足りない権限である。原因の切り分けは <!-- link:begin going-in-circles#diagnosis -->[同じ失敗を繰り返す（堂々巡り） › 原因を安く確かめる順](../symptoms/going-in-circles.md#diagnosis)<!-- link:end --> へ。失敗が仕組みの隙間から来ているなら、記録でなく仕組みを直す。置き場所の決め方は <!-- link:begin postmortems#where-to-put-fixes -->[失敗を仕組みに戻す（ポストモーテム） › 再発防止をどこに入れるか](../judgment/postmortems.md#where-to-put-fixes)<!-- link:end --> にある。
 - **実験を何度も回す作業**：仮説や分母を持つ台帳が向く。この記録はそこまで求めない軽い版である。台帳の流れは <!-- link:begin experiment-log#flow -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 実験 1 件の流れ](../eval/experiment-log.md#flow)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
@@ -203,7 +203,7 @@ Claude は、会話に出ているものを根拠にして答える。巻き戻�
 - [やり直させるより、結果を踏まえて直させる](build-on-results.md)
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
-- 失敗を仕組みに戻す（ポストモーテム）（準備中）
+- [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)
 - [同じ失敗を繰り返す（堂々巡り）](../symptoms/going-in-circles.md)
 - [直し続けて方針を疑わない（またはすぐ撤退を勧める）](../symptoms/wont-rethink-approach.md)
 

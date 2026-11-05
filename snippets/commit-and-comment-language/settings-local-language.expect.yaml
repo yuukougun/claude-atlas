@@ -1,0 +1,12 @@
+title: 自分だけの返答の言語（.claude/settings.local.json）
+kind: settings
+place: local
+safety: false
+features: [language-setting]
+conditions:
+  - 使い捨てのリポジトリで、.claude/settings.json に language を別の値で置いた状態から始める
+  - 新しいセッションで試す
+expect:
+  - when: 設定を置いて、新しいセッションで質問する
+    then: 共有の settings.json の language ではなく、この値の言語で返答する（観察として扱う。値は検証されず、お願いの層である）
+control: このファイルを置かないとき、共有の settings.json の language の言語で返答する

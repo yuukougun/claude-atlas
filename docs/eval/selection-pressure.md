@@ -99,7 +99,7 @@ updated: 2026-11-05
 
 防ぐ原因は、確かめていないである。点が上がったという報告を、手元の評価の内側だけで受け取るのは、確かめたことにならない。選んだ後の版を、選ぶ根拠に使っていない入力で一度測って、初めて確かめたことになる。
 
-比べる版を並べて同じ物差しで測る手順は <!-- link:begin compare-hypotheses-in-parallel -->[仮説ごとに並べて、同じ物差しで比べる](../delegate/compare-hypotheses-in-parallel.md)<!-- link:end --> にある。コンテストの実験でケース数や試合数を決める話は <!-- link:begin running-contest-experiments#games-for-win-rate -->実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 勝率に要る試合数（準備中）<!-- link:end --> を使う。
+比べる版を並べて同じ物差しで測る手順は <!-- link:begin compare-hypotheses-in-parallel -->[仮説ごとに並べて、同じ物差しで比べる](../delegate/compare-hypotheses-in-parallel.md)<!-- link:end --> にある。コンテストの実験でケース数や試合数を決める話は <!-- link:begin running-contest-experiments#games-for-win-rate -->[実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 勝率に要る試合数](../contest/running-contest-experiments.md#games-for-win-rate)<!-- link:end --> を使う。
 
 ## よくある誤解 {#misconceptions}
 
@@ -143,7 +143,7 @@ updated: 2026-11-05
 - [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
 - [良すぎる結果を疑う](../verify/suspect-too-good-results.md)
-- 実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）（準備中）
+- [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](../contest/running-contest-experiments.md)
 
 </div>
 

@@ -65,7 +65,7 @@ AI に資料を読ませる前に、その課題・大会・組織の AI の利�
 
 1. 規則の文書を読む。確かめる点は <!-- link:begin checking-ai-rules#checklist -->[学校・組織・コンテストの規則（類型と確認表） › 確認表](checking-ai-rules.md#checklist)<!-- link:end --> の確認表にある。大会の規則は版があるので、<!-- link:begin competition-rules#unverified-versions -->[大会の規則の早見（禁止・部門分け・許可と開示） › 大会ごとの規則のページと、出る前に確かめること](../contest/competition-rules.md#unverified-versions)<!-- link:end --> のとおり、出る前に一次資料で今の規則を読む。
 2. 禁止なら、その資料を AI に読ませて解かせない。AI を使えない場に向けた練習は、別の題材で、<!-- link:begin practice-vs-contest-day#what-to-ask-in-practice -->[練習と本番の使い分け（AI を禁じる大会に向けた練習を含む） › 練習で AI に頼むこと](../contest/practice-vs-contest-day.md#what-to-ask-in-practice)<!-- link:end --> のように AI を解説役や採点役にして行う。
-3. 許可や条件付きなら、条件の範囲で使う。どこにどう使ったかの記録と開示は、<!-- link:begin disclosure-and-provenance#four-points -->AI 利用の開示と出所の記録 › 開示・相談・出所・意図の四つの観点（準備中）<!-- link:end --> で決める。
+3. 許可や条件付きなら、条件の範囲で使う。どこにどう使ったかの記録と開示は、<!-- link:begin disclosure-and-provenance#four-points -->[AI 利用の開示と出所の記録 › 開示・相談・出所・意図の四つの観点](disclosure-and-provenance.md#four-points)<!-- link:end --> で決める。
 4. 規則に AI の文言がないときは、使ってよいという意味ではない。<!-- link:begin checking-ai-rules#when-unclear -->[学校・組織・コンテストの規則（類型と確認表） › 文言がないとき・分からないとき](checking-ai-rules.md#when-unclear)<!-- link:end --> のとおり、出題者や主催者に尋ねる。
 
 資料の中に AI 向けの文を見つけたときも、同じ手順に戻る。合図を見つけたら、読ませ方を工夫して続けるのではなく、規則を確かめる側に戻る。
@@ -144,7 +144,7 @@ AI に資料を読ませる前に、その課題・大会・組織の AI の利�
 
 - [学校・組織・コンテストの規則（類型と確認表）](checking-ai-rules.md)
 - [読ませたページやファイルの指示に従ってしまった](../symptoms/followed-injected-instructions.md)
-- AI 利用の開示と出所の記録（準備中）
+- [AI 利用の開示と出所の記録](disclosure-and-provenance.md)
 - [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](../contest/practice-vs-contest-day.md)
 - [大会の規則の早見（禁止・部門分け・許可と開示）](../contest/competition-rules.md)
 - [データと命令を区別できない（prompt injection の原理）](../basics/data-vs-instructions.md)

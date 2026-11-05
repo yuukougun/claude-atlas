@@ -82,7 +82,7 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
 
 最初から条件がそろっている例が、クラウドセッションである。Anthropic がホストする隔離した VM で動き、GitHub の資格情報は VM に入らず proxy 側で付与される。ブランチの削除やタグの push は拒否され、操作は監査ログに残る（公式の Security の文書、2026-11-04 に確認した範囲）。名前は <!-- name:begin web-to-cloud-sessions -->クラウドセッション（cloud sessions）<!-- name:end --> である。送ってよい作業と手元の設定との違いは <!-- link:begin cloud-sessions-and-teleport#what-to-send -->[クラウドセッションと teleport › クラウドに送ってよい作業](../cli/cloud-sessions-and-teleport.md#what-to-send)<!-- link:end --> と <!-- link:begin cloud-sessions-and-teleport#settings -->[クラウドセッションと teleport › 手元の設定との違い](../cli/cloud-sessions-and-teleport.md#settings)<!-- link:end --> にある。
 
-自分で用意するコンテナ（Docker・devcontainer）は、条件を自分で満たす必要がある。コンテナと OS のサンドボックスの使い分けは <!-- link:begin sandboxing#containers -->[サンドボックスで封じ込める › コンテナ（Docker・devcontainer）との使い分け](../enforce/sandboxing.md#containers)<!-- link:end --> にある。GitHub Actions で動かすときの鍵と権限は <!-- link:begin github-actions-with-claude#secrets-and-permissions -->GitHub Actions と @claude › 鍵と権限（準備中）<!-- link:end --> にある。知らないフォルダを非対話で動かすと信頼の確認が出ないので、隔離して動かす。理由は <!-- link:begin before-opening-unknown-repos#headless -->[知らないリポジトリを開く前に › 非対話の実行では確認が出ない](before-opening-unknown-repos.md#headless)<!-- link:end --> にある。
+自分で用意するコンテナ（Docker・devcontainer）は、条件を自分で満たす必要がある。コンテナと OS のサンドボックスの使い分けは <!-- link:begin sandboxing#containers -->[サンドボックスで封じ込める › コンテナ（Docker・devcontainer）との使い分け](../enforce/sandboxing.md#containers)<!-- link:end --> にある。GitHub Actions で動かすときの鍵と権限は <!-- link:begin github-actions-with-claude#secrets-and-permissions -->[GitHub Actions と @claude › 鍵と権限](../delegate/github-actions-with-claude.md#secrets-and-permissions)<!-- link:end --> にある。知らないフォルダを非対話で動かすと信頼の確認が出ないので、隔離して動かす。理由は <!-- link:begin before-opening-unknown-repos#headless -->[知らないリポジトリを開く前に › 非対話の実行では確認が出ない](before-opening-unknown-repos.md#headless)<!-- link:end --> にある。
 
 起動前の確認の一覧を、雛形として用意した。環境を作った後、動かす前に使う。
 
@@ -129,7 +129,7 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
     - **選んだもの**：先に、手元で auto モードとサンドボックスを使う形を試す。それでは作業が進まず、しかも使い捨ての環境の条件をすべて満たせるときだけ、コンテナで bypassPermissions を使う。
     - **理由**：手元の形は確認を減らすだけで、ホストの端末に境界が残る。コンテナの形は止め手を外す代わりに、被害を環境の中に閉じ込める。条件のどれかを満たせないなら、止め手を外すだけで閉じ込めが伴わないので使わない。止められた操作の見直し方は <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> にある。
 
-確認を外さずに無人で動かす道もある。許す道具を明示して渡すやり方は <!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end --> にある。取り消しにくい操作は、定期実行の対象にしない。接続先と権限を最小にする考え方は <!-- link:begin cloud-schedules#least-privilege -->クラウドの定期タスク › 接続先と権限を最小にする（準備中）<!-- link:end --> にある。
+確認を外さずに無人で動かす道もある。許す道具を明示して渡すやり方は <!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end --> にある。取り消しにくい操作は、定期実行の対象にしない。接続先と権限を最小にする考え方は <!-- link:begin cloud-schedules#least-privilege -->[クラウドの定期タスク › 接続先と権限を最小にする](../delegate/cloud-schedules.md#least-privilege)<!-- link:end --> にある。
 
 ## どの原理・どの原因に効くか {#what-it-prevents}
 
@@ -168,11 +168,11 @@ bypassPermissions を隔離した使い捨ての環境だけで使うのは、�
 - 管理設定と組織の強制（準備中）
 - [消せない場所・触れない場所（protected paths）](../enforce/protected-paths.md)
 - [知らないリポジトリを開く前に](before-opening-unknown-repos.md)
-- GitHub Actions と @claude（準備中）
+- [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)
 - [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [消されたくないもの（破壊的コマンド）](destructive-commands.md)
-- クラウドの定期タスク（準備中）
+- [クラウドの定期タスク](../delegate/cloud-schedules.md)
 
 </div>
 

@@ -100,7 +100,7 @@ MCP の属性を、データから作った表で見る。CLI は Claude Code �
     - **選んだもの**：ブラウザを操作する MCP サーバー。画面の操作が決まったテストになったら、その部分だけスクリプトに移す。
     - **理由**：認証つきのライブな状態を見ながら、操作ごとの結果を返す道具が要る。最初から手順を決められないので、スキルと CLI だけでは足りない。
 
-どの MCP サーバーを入れるかは <!-- link:begin choosing-mcp-servers -->MCP サーバーの選び方（準備中）<!-- link:end --> で判断する。
+どの MCP サーバーを入れるかは <!-- link:begin choosing-mcp-servers -->[MCP サーバーの選び方](choosing-mcp-servers.md)<!-- link:end --> で判断する。
 
 ## 組み合わせ方 {#combine}
 
@@ -189,7 +189,7 @@ MCP の属性を、データから作った表で見る。CLI は Claude Code �
 - [判断を決定論的なスクリプトに移す](../enforce/move-judgment-into-scripts.md)
 - [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
-- MCP サーバーの選び方（準備中）
+- [MCP サーバーの選び方](choosing-mcp-servers.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)
 - [スキルの作り方](writing-skills.md)

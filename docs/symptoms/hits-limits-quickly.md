@@ -101,7 +101,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 6. **枠の側（プランの上限の種類・課金の経路）**
     - **見るもの**：1 から 5 のどれにも当たらないとき、自分の口座にどの上限があるか。API キーの環境変数があって、意図しない経路で課金されていないか。
     - **確かめ方**：上限の種類と戻る時刻は <!-- link:begin how-usage-limits-work#limit-types -->[利用上限の仕組み（面をまたいで共有する枠） › 枠の種類と戻る時刻（プランごとの表）](../cost/how-usage-limits-work.md#limit-types)<!-- link:end --> で確かめる。経路は <!-- link:begin check-billing-path#how-the-path-is-chosen -->[課金の経路を確かめる（API キーとサブスクリプション） › 経路が決まる順](../cost/check-billing-path.md#how-the-path-is-chosen)<!-- link:end --> で確かめる。
-    - **当たったとき**：原因を直した後でも足りないときだけ、プランを見直す。比べ方は <!-- link:begin choosing-a-plan#what-to-compare -->プランの選び方 › 比べる観点（準備中）<!-- link:end --> にある。
+    - **当たったとき**：原因を直した後でも足りないときだけ、プランを見直す。比べ方は <!-- link:begin choosing-a-plan#what-to-compare -->[プランの選び方 › 比べる観点](../cost/choosing-a-plan.md#what-to-compare)<!-- link:end --> にある。
 
 人の側にも落とし穴がある。並列の数を増やして任せ、気づいたら裏の仕事が上限を使っていた、という形である。並列にして疲れた、レビューが追いつかないときは <!-- link:begin parallel-fatigue#diagnosis -->[並列にしたら疲れた・レビューが追いつかない › 原因を安く確かめる順](parallel-fatigue.md#diagnosis)<!-- link:end --> から切り分ける。
 
@@ -206,7 +206,7 @@ Claude Code の知らせでの 5 時間の上限の呼び名は、今は <!-- na
 
 **関連**
 
-- プランの選び方（準備中）
+- [プランの選び方](../cost/choosing-a-plan.md)
 - [/usage・/context・ステータスラインで状態を見る](../cli/usage-context-statusline.md)
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)

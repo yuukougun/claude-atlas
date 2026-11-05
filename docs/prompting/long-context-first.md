@@ -95,7 +95,7 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
 
 公式の Prompting best practices は、長い文書を先頭に置き、質問と指示を最後に置くよう勧める。複数の文書を渡すときは、各文書を `<document>` で包み、名前を `<source>`、本文を `<document_content>` に入れる形も挙げる。公式は、この並べ方で自社のテストの品質が<!-- fact:begin long-context-order-quality-gain -->最大 30%（2026-10-29 時点）<!-- fact:end -->上がり、複数の文書を渡す場合に特に効いたと述べる。テストの中身はこの辞典では確かめていないので、効き目の大きさは自分の資料で試して確かめる。
 
-資料を包むタグの考え方は <!-- link:begin xml-tags#nesting -->XML タグで区切る › 文書を入れ子にする（準備中）<!-- link:end --> が、指示と資料を分ける理由は <!-- link:begin xml-tags#separate -->XML タグで区切る › 指示・資料・例を分ける（準備中）<!-- link:end --> が扱う。
+資料を包むタグの考え方は <!-- link:begin xml-tags#nesting -->[XML タグで区切る › 文書を入れ子にする](xml-tags.md#nesting)<!-- link:end --> が、指示と資料を分ける理由は <!-- link:begin xml-tags#separate -->[XML タグで区切る › 指示・資料・例を分ける](xml-tags.md#separate)<!-- link:end --> が扱う。
 
 資料を渡す手段は、面で違う。
 
@@ -215,7 +215,7 @@ After は、Before と同じ依頼に 3 つを足している。資料を質問�
 
 - [長い資料を渡すとき](../context/handing-long-documents.md)
 - [context rot と紛らわしい情報 › 中ほどの情報は使われにくいか（lost in the middle）](../basics/context-rot.md#lost-in-the-middle)
-- XML タグで区切る（準備中）
+- [XML タグで区切る](xml-tags.md)
 - [引用や出典の確かめ方](../verify/checking-citations.md)
 - [添付した資料の後半を読んでいない](../symptoms/skipped-later-pages.md)
 - [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)

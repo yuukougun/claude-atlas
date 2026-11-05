@@ -211,7 +211,7 @@ CLAUDE.md に書く手もある。ルートの CLAUDE.md は圧縮の後にデ�
 
 - [お願いと鍵の対応表](request-lock-table.md)
 - [フックの考え方とイベント](hooks-basics.md)
-- 失敗を仕組みに戻す（ポストモーテム）（準備中）
+- [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)
 
 **関連**
 

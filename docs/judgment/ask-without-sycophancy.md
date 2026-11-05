@@ -290,7 +290,7 @@ AI の批評は、人のレビューの代わりにならない。人のレビ�
 - [頼む前に自分で考える（AI には問い・反論・道具を頼む）](think-before-asking.md)
 - 案出しは独立に、突き合わせは AI に（準備中）
 - [役割を分ける（書く人・承認する人・疑う人） › 迎合と過信に備える（AI の同意を根拠に数えない）](../team/separate-roles.md#against-sycophancy)
-- 用途別プロンプトの型（準備中）
+- [用途別プロンプトの型](../prompting/prompt-patterns.md)
 - [Before/After プロンプト集](../prompting/before-after-prompts.md)
 
 </div>

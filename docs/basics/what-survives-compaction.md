@@ -182,8 +182,8 @@ updated: 2026-11-05
 - [圧縮で消えない場所に約束を置く](../context/promises-after-compaction.md)
 - [拡張機能の全体図と使い分け早見表](../extend/extensions-at-a-glance.md)
 - [お願いを鍵に移す判断](../enforce/when-to-lock.md)
+- [長時間エージェントのコンテキスト管理](../api/long-running-agent-context.md)
 - [圧縮の後に約束を忘れた](../symptoms/forgot-after-compaction.md)
-- 長時間エージェントのコンテキスト管理（準備中）
 
 **関連**
 

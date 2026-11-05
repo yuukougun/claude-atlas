@@ -1,0 +1,13 @@
+title: UTF-8 の複製を作って行数を突き合わせるスクリプト
+kind: other
+place: project
+safety: false
+conditions:
+  - iconv が使える環境（WSL・Linux・macOS）で動かす
+  - 動作は未確認の環境もある。まず小さな CSV で試す
+  - 元の文字コードは CP932 を既定にする。EUC-JP などのファイルは第 3 引数で指定する
+expect:
+  - when: Shift_JIS 系で保存した CSV を渡して実行する
+    then: 出力のファイルが UTF-8 になり、行数の比較と先頭の 3 行が出る
+  - when: 元の文字コードの指定が合わない
+    then: iconv がエラーで止まって出力のファイルを作らないか、先頭の行が読める日本語にならない

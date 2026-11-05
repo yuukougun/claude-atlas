@@ -91,7 +91,7 @@ After で足したことは 3 つある。依頼の文面を、見出しや箇�
 形の注文は、ほかにも書ける。
 
 - 数式の記法（LaTeX）が要らないなら、記号を使わない plain text で書くよう頼む。
-- 返事の一部を後で取り出したいなら、その部分をタグで囲ませる。タグの使い方は <!-- link:begin xml-tags -->XML タグで区切る（準備中）<!-- link:end --> が扱う。
+- 返事の一部を後で取り出したいなら、その部分をタグで囲ませる。タグの使い方は <!-- link:begin xml-tags -->[XML タグで区切る](xml-tags.md)<!-- link:end --> が扱う。
 - 形を言葉で説明しにくいなら、望む返事の例を見せる。選び方は <!-- link:begin show-examples#before-after -->[例を見せる › 言葉の説明を例に替える](show-examples.md#before-after)<!-- link:end --> が扱う。
 
 ## 長さと要約の有無 {#length}
@@ -227,7 +227,7 @@ Claude Code の `-p` で形を指定する手は <!-- link:begin structured-outp
 - [例を見せる](show-examples.md)
 - [structured outputs（形式を保証する）](../api/structured-outputs-basics.md)
 - [モデル別の癖と、プロンプトの合わせ方](../models/model-quirks.md)
-- XML タグで区切る（準備中）
+- [XML タグで区切る](xml-tags.md)
 - [文章を頼むとき（読み手・目的・手本を渡す）](requesting-prose.md)
 - [日本語の「AI 臭さ」を減らす](../japanese/less-ai-sounding-japanese.md)
 - [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)

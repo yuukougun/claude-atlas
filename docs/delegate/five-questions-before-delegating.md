@@ -145,7 +145,7 @@ updated: 2026-11-05
 - 点数が頭打ちになった。方針を疑う合図なので、続けさせる前に <!-- link:begin decide-when-to-quit#plateau -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 頭打ちは方針を疑う合図](../judgment/decide-when-to-quit.md#plateau)<!-- link:end --> で撤退の基準を見直す。
 - 反復で戦略そのものを改善させようとしている。反復させるのは、仕様が決まり停止条件のある実装の作業に限る（<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->）。
 
-Claude は走り出せば長い作業を自分で進める。人に残るのは、始めること、今回の「終わり」の意味を決めること、最後に承認することである。見ながら進める伴走との使い分けは <!-- link:begin pairing-and-delegating -->伴走と委託（準備中）<!-- link:end --> にある。
+Claude は走り出せば長い作業を自分で進める。人に残るのは、始めること、今回の「終わり」の意味を決めること、最後に承認することである。見ながら進める伴走との使い分けは <!-- link:begin pairing-and-delegating -->[伴走と委託](pairing-and-delegating.md)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -182,8 +182,8 @@ Claude は走り出せば長い作業を自分で進める。人に残るのは�
 
 **関連**
 
-- 伴走と委託（準備中）
-- そのタスクは AI に向いているか（五つの軸）（準備中）
+- [伴走と委託](pairing-and-delegating.md)
+- [そのタスクは AI に向いているか（五つの軸）](is-the-task-ai-suited.md)
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
 - [安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)

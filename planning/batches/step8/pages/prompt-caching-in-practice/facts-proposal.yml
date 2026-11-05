@@ -1,0 +1,9 @@
+proposals:
+  - fact: {id: prompt-cache-ttl, title: プロンプトキャッシュの寿命（既定と長い方）, value: "既定は 5 分（使うたびに無料で延長）。1 時間の寿命もある", sources: [api-docs-prompt-caching], checked: 2026-10-29, status: 要確認}
+    used_in: [prompt-caching-in-practice#pitfalls]
+  - fact: {id: prompt-cache-price-multipliers, title: キャッシュの書き込みと読み取りの料金の倍率, value: "書き込みは基本単価の 1.25 倍（5 分）か 2 倍（1 時間）。読み取りは 0.1 倍。モデルによって読み取りの倍率が違う（調査資料 02 §5-2 は 0.025 倍と 0.05 倍の例を挙げる）", sources: [api-docs-prompt-caching], checked: 2026-10-29, status: 要確認}
+    used_in: [prompt-caching-in-practice#breakpoints]
+  - fact: {id: prompt-cache-min-length, title: キャッシュできる最小の長さ（モデル別）, value: "モデルによって 512 から 4,096 トークン", sources: [api-docs-prompt-caching], checked: 2026-10-29, status: 要確認}
+    used_in: [prompt-caching-in-practice#pitfalls]
+  - fact: {id: prompt-cache-max-breakpoints, title: 明示する区切りの数の上限, value: "4 つ", sources: [api-docs-prompt-caching], checked: 2026-10-29, status: 要確認}
+    used_in: [prompt-caching-in-practice#breakpoints]

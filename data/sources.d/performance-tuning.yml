@@ -1,0 +1,10 @@
+sources:
+  - id: arxiv-2511-06090
+    url: https://arxiv.org/abs/2511.06090
+    title: 'SWE-fficiency: Can Language Models Optimize Real-World Repositories on Real Workloads?'
+    kind: 研究
+    publisher: arXiv（Ma, Jeffrey Jian ほか）
+    lang: en
+    checked: '2026-11-05'
+    published: '2025-11-08'
+    note: 題名・著者・要旨は abs のページで確かめた（版 v3 は 2026-06-27）。Claude 4.5 Opus の 0.225 倍と、専門家の改善の 68% 超がモデルの編集しない関数にある点は、調査資料（planning/research/24-errata-contest.md の A-11）に拠り、v3 の本文では確かめていない

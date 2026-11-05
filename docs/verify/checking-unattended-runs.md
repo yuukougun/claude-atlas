@@ -52,8 +52,8 @@ updated: 2026-11-05
 
 1. **完了の定義を、合否が機械から返る形にして渡す。** テスト、ビルドの終了コード、linter、fixture との差分などである。Claude は作業が終わったように見えた時点で止まる。終わったかを判定するものがなければ、見た目の完了しか材料がない。
 2. **許す道具と止まる上限を明示する。** 無人では確認に答える人がいない。許可と上限の渡し方は <!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](../delegate/headless-basics.md#limits)<!-- link:end --> を引く。
-3. **触れる範囲を最小にする。** 鍵と権限は <!-- link:begin github-actions-with-claude#secrets-and-permissions -->GitHub Actions と @claude › 鍵と権限（準備中）<!-- link:end -->、クラウドの定期タスクの接続先は <!-- link:begin cloud-schedules#least-privilege -->クラウドの定期タスク › 接続先と権限を最小にする（準備中）<!-- link:end --> が持つ。取り消しにくい操作は、そもそも定期にしない（<!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end -->）。
-4. **結果の残し場所を決める。** 出力・記録・差分を、Claude の外（CI のログ、git の履歴、保存したファイル）に残す。長い作業は、要約した指標を定期的に書く進捗ログを用意する（<!-- link:begin progress-logs-for-long-jobs -->長時間ジョブの進捗ログを設計する（準備中）<!-- link:end -->）。
+3. **触れる範囲を最小にする。** 鍵と権限は <!-- link:begin github-actions-with-claude#secrets-and-permissions -->[GitHub Actions と @claude › 鍵と権限](../delegate/github-actions-with-claude.md#secrets-and-permissions)<!-- link:end -->、クラウドの定期タスクの接続先は <!-- link:begin cloud-schedules#least-privilege -->[クラウドの定期タスク › 接続先と権限を最小にする](../delegate/cloud-schedules.md#least-privilege)<!-- link:end --> が持つ。取り消しにくい操作は、そもそも定期にしない（<!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end -->）。
+4. **結果の残し場所を決める。** 出力・記録・差分を、Claude の外（CI のログ、git の履歴、保存したファイル）に残す。長い作業は、要約した指標を定期的に書く進捗ログを用意する（<!-- link:begin progress-logs-for-long-jobs -->[長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)<!-- link:end -->）。
 
 ## 終了コードと要約だけで決めない {#beyond-exit-codes}
 
@@ -176,7 +176,7 @@ updated: 2026-11-05
 
 === "Claude Code"
 
-    `claude -p` や GitHub Actions では、保存した出力、CI のログ、git の差分が確かめる対象になる。起動の形は <!-- link:begin headless-basics#minimal -->[非対話モード（claude -p）の基本 › 最小の使い方](../delegate/headless-basics.md#minimal)<!-- link:end --> と <!-- link:begin github-actions-with-claude#modes -->GitHub Actions と @claude › 呼ばれて動く形と、イベントで動く形（準備中）<!-- link:end --> を引く。
+    `claude -p` や GitHub Actions では、保存した出力、CI のログ、git の差分が確かめる対象になる。起動の形は <!-- link:begin headless-basics#minimal -->[非対話モード（claude -p）の基本 › 最小の使い方](../delegate/headless-basics.md#minimal)<!-- link:end --> と <!-- link:begin github-actions-with-claude#modes -->[GitHub Actions と @claude › 呼ばれて動く形と、イベントで動く形](../delegate/github-actions-with-claude.md#modes)<!-- link:end --> を引く。
 
 === "API"
 
@@ -204,7 +204,7 @@ updated: 2026-11-05
 
 - **成功と出たのに中身が壊れていた：** 説明と事実が食い違ったときは、実行・grep・git で見た事実を正とする（<!-- link:begin evidence-not-reports#facts-win -->[報告ではなく証拠を求める › 説明と事実が食い違ったら](evidence-not-reports.md#facts-win)<!-- link:end -->）。以後の実行は、書いた本人ではない者に確かめさせる（<!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](independent-review.md#who)<!-- link:end -->）。
 - **止まった理由が分からない：** auto モードに止められた操作の見直し方は <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> を引く。ターンと費用の上限で止まったかは <!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](../delegate/headless-basics.md#limits)<!-- link:end --> で確かめる。
-- **無人のまま任せてよいか迷う：** 任せ方を見直す。どこで動かすかの選び方は <!-- link:begin choosing-automation -->自動化の選び方（定期タスク・非対話モード・SDK）（準備中）<!-- link:end --> が持つ。
+- **無人のまま任せてよいか迷う：** 任せ方を見直す。どこで動かすかの選び方は <!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)<!-- link:end --> が持つ。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -233,12 +233,12 @@ updated: 2026-11-05
 
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
-- 長時間ジョブの進捗ログを設計する（準備中）
-- GitHub Actions と @claude（準備中）
-- クラウドの定期タスク（準備中）
+- [長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)
+- [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)
+- [クラウドの定期タスク](../delegate/cloud-schedules.md)
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
 - 自動 PR レビュー（Code Review・/ultrareview）（準備中）
-- 自動化の選び方（定期タスク・非対話モード・SDK）（準備中）
+- [自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [報告ではなく証拠を求める](evidence-not-reports.md)
 - [書いた本人ではない者にレビューさせる](independent-review.md)

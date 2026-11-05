@@ -49,7 +49,7 @@ updated: 2026-11-05
 
 - **禁止**：AI の利用を認めない。
 - **部門分け**：AI を使える部門（課題）と、使えない部門（課題）に分ける。
-- **許可と開示**：AI の利用を認め、使い方の説明を求める。開示のしかたは<!-- link:begin disclosure-and-provenance -->AI 利用の開示と出所の記録（準備中）<!-- link:end -->にある。
+- **許可と開示**：AI の利用を認め、使い方の説明を求める。開示のしかたは<!-- link:begin disclosure-and-provenance -->[AI 利用の開示と出所の記録](../safety/disclosure-and-provenance.md)<!-- link:end -->にある。
 
 ![主な大会を三類型に置いた図。禁止の欄は、禁止と確かめた大会がなく空。部門分けは長期 AHC と IEEEXtreme 20.0、許可と開示は ISUCON2026 と U-22。文言なし・未確認の大会は三類型の外。次の表と同じ内容。](../img/competition-rules/rules-by-type.svg)
 
@@ -98,7 +98,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end fact-table contest-ai-rules -->
 
-表にない形式の大会（CTF・データ分析・ハッカソンなど）は、一次資料で確かめた規則がまだない。出る前に確かめる手順は、表にない大会にも使える。形式ごとの傾向は<!-- link:begin format-cheatsheet -->コンテストの形式別の早見表（AI の効き方と人が握るところ）（準備中）<!-- link:end -->にある。各大会の規則のページは、[大会ごとの規則のページと、出る前に確かめること](#unverified-versions)の節に並べた。
+表にない形式の大会（CTF・データ分析・ハッカソンなど）は、一次資料で確かめた規則がまだない。出る前に確かめる手順は、表にない大会にも使える。形式ごとの傾向は<!-- link:begin format-cheatsheet -->[コンテストの形式別の早見表（AI の効き方と人が握るところ）](format-cheatsheet.md)<!-- link:end -->にある。各大会の規則のページは、[大会ごとの規則のページと、出る前に確かめること](#unverified-versions)の節に並べた。
 
 ## 大会ごとの規則のページと、出る前に確かめること {#unverified-versions}
 
@@ -138,7 +138,7 @@ Claude 側の原因「境界がない」は、使ってよい範囲を渡され�
 
 そこで、規則を読んだ人が、使ってよい範囲を決めて、頼みに書いて渡す。たとえば、出る部門と規則で許される用途を頼みの冒頭に書き、「それを越える頼みは実行する前に知らせてほしい」と添える。
 
-規則を確かめた後の進め方は、持ち主のページに任せる。練習で AI に頼むことは<!-- link:begin practice-vs-contest-day -->[練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](practice-vs-contest-day.md)<!-- link:end -->に任せる。本番の運用は<!-- link:begin competition-day-operations -->本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）<!-- link:end -->に任せる。
+規則を確かめた後の進め方は、持ち主のページに任せる。練習で AI に頼むことは<!-- link:begin practice-vs-contest-day -->[練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](practice-vs-contest-day.md)<!-- link:end -->に任せる。本番の運用は<!-- link:begin competition-day-operations -->[本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](competition-day-operations.md)<!-- link:end -->に任せる。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -172,16 +172,16 @@ Claude 側の原因「境界がない」は、使ってよい範囲を渡され�
 **次に読む**
 
 - [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](practice-vs-contest-day.md)
-- 本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）
+- [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](competition-day-operations.md)
 
 **関連**
 
-- コンテストの形式別の早見表（AI の効き方と人が握るところ）（準備中）
-- AI 利用の開示と出所の記録（準備中）
+- [コンテストの形式別の早見表（AI の効き方と人が握るところ）](format-cheatsheet.md)
+- [AI 利用の開示と出所の記録](../safety/disclosure-and-provenance.md)
 - [課題資料・問題文に仕込まれた指示](../safety/instructions-hidden-in-materials.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](../safety/entrusted-data.md)
 - [いつの情報かを見分ける](../changes/dating-information.md)
-- AI はコンテストでどこまで来たか（確認日付き）（準備中）
+- [AI はコンテストでどこまで来たか（確認日付き）](ai-in-contests-today.md)
 
 </div>
 

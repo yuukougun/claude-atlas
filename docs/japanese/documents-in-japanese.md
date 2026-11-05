@@ -48,7 +48,7 @@ updated: 2026-11-05
 日本語の資料の仕事で最初に守るのは、「読めたはず」「通じたはず」で進めないことである。見えていない部分は、答えの質が悪いのではなく、答えの材料に入っていない。入っていないことは答えの見た目では分からないので、確かめる仕掛けを依頼に入れる。
 
 - **原文を見せる**：PDF は要約させる前に、原文の引用を先に出させる。引用の仕組みは <!-- link:begin long-context-first#quote-first -->[長い資料は先、質問は最後 › 答えの前に引用を抜かせる](../prompting/long-context-first.md#quote-first)<!-- link:end --> にある。
-- **渡す形を整える**：文字化けしやすいファイルや大きな資料は、読ませる前に形と量を整える。方法は <!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end --> と <!-- link:begin character-encodings#check -->文字コード（Shift\_JIS の CSV など） › 渡す前に文字コードを確かめる（準備中）<!-- link:end --> にある。
+- **渡す形を整える**：文字化けしやすいファイルや大きな資料は、読ませる前に形と量を整える。方法は <!-- link:begin handing-long-documents#split-and-convert -->[長い資料を渡すとき › 分ける・形を直す](../context/handing-long-documents.md#split-and-convert)<!-- link:end --> と <!-- link:begin character-encodings#check -->[文字コード（Shift\_JIS の CSV など） › 渡す前に文字コードを確かめる](character-encodings.md#check)<!-- link:end --> にある。
 - **人が最後に読む**：敬語のメールは、送る前に人が全文を読む。相手との関係は、依頼に書かない限り Claude には見えない。
 - **揺れは検査に任せる**：敬体と常体の混在や用語の揺れは、依頼の文面で防ぎきれない。検査の道具で見つける考え方は <!-- link:begin consistent-politeness#lint -->[です・ます／だ・であるを揃える › 混在を lint で見つける](consistent-politeness.md#lint)<!-- link:end --> と <!-- link:begin consistent-notation#guard -->[表記ゆれと漢字の開き › 先に整える守り：指示だけに頼らない](consistent-notation.md#guard)<!-- link:end --> にある。
 
@@ -193,7 +193,7 @@ Claude Code で PDF を扱うときは、ファイルを読ませる前に、テ
 | 敬語で書かせる | 関係に合った段階か | 人が全文を読み、迷った文の挙げ方を見る |
 | 社内用語で書かせる | 一覧どおりか | 使わない言い方を検索し、一覧にない語の報告を見る |
 
-使わない言い方の検索は、手で行うほか、表記の検査の道具に登録して自動化できる。登録の方法は <!-- link:begin consistent-notation#verify -->[表記ゆれと漢字の開き › 確かめ方](consistent-notation.md#verify)<!-- link:end --> にある。文書を書かせる仕事の全般は <!-- link:begin write-docs -->ドキュメント・技術文書を書く（準備中）<!-- link:end -->、調べた内容を報告にまとめる仕事は <!-- link:begin research-and-reports -->[調べものとレポート](../recipes/research-and-reports.md)<!-- link:end --> を見る。
+使わない言い方の検索は、手で行うほか、表記の検査の道具に登録して自動化できる。登録の方法は <!-- link:begin consistent-notation#verify -->[表記ゆれと漢字の開き › 確かめ方](consistent-notation.md#verify)<!-- link:end --> にある。文書を書かせる仕事の全般は <!-- link:begin write-docs -->[ドキュメント・技術文書を書く](../recipes/write-docs.md)<!-- link:end -->、調べた内容を報告にまとめる仕事は <!-- link:begin research-and-reports -->[調べものとレポート](../recipes/research-and-reports.md)<!-- link:end --> を見る。
 
 ## うまくいかないとき {#failure}
 
@@ -201,7 +201,7 @@ Claude Code で PDF を扱うときは、ファイルを読ませる前に、テ
 
 - **PDF の後半が答えに出ない**：読み込みの範囲か、注意の偏りかを切り分ける。<!-- link:begin skipped-later-pages -->[添付した資料の後半を読んでいない](../symptoms/skipped-later-pages.md)<!-- link:end --> へ進む。
 - **引用が出ない、または原文と合わない**：画像だけの PDF や、読み順の崩れが疑われる。ページの画像を見せて確かめるか、テキストに変換してから渡す。変換した後も同じ引用の確かめを使う。
-- **文字化けや空欄が出る**：ファイルの文字コードが合っていない可能性がある。<!-- link:begin character-encodings -->文字コード（Shift\_JIS の CSV など）（準備中）<!-- link:end --> を見る。
+- **文字化けや空欄が出る**：ファイルの文字コードが合っていない可能性がある。<!-- link:begin character-encodings -->[文字コード（Shift\_JIS の CSV など）](character-encodings.md)<!-- link:end --> を見る。
 - **敬語の段階が合わない**：宛先と関係の書き方が足りない。判断例の理由を見て、書き出しと結びの手本を足す。
 - **社内用語が守られない**：一覧を毎回読まれる場所に置いたかを見る。長い会話の途中なら、一覧を依頼の最後にもう一度付ける。
 - **日本語で頼むこと自体が不安**：<!-- link:begin can-i-prompt-in-japanese -->[日本語で指示して大丈夫か](can-i-prompt-in-japanese.md)<!-- link:end --> を見る。
@@ -223,8 +223,8 @@ Claude Code で PDF を扱うときは、ファイルを読ませる前に、テ
 - [です・ます／だ・であるを揃える](consistent-politeness.md)
 - [添付した資料の後半を読んでいない](../symptoms/skipped-later-pages.md)
 - [日本語で指示して大丈夫か](can-i-prompt-in-japanese.md)
-- 文字コード（Shift\_JIS の CSV など）（準備中）
-- ドキュメント・技術文書を書く（準備中）
+- [文字コード（Shift\_JIS の CSV など）](character-encodings.md)
+- [ドキュメント・技術文書を書く](../recipes/write-docs.md)
 - [調べものとレポート](../recipes/research-and-reports.md)
 
 </div>

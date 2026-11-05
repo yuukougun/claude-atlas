@@ -65,7 +65,7 @@ updated: 2026-11-05
 - Proactive は権限モードを変えない。確認が減るのは「Claude が尋ねる」部分だけで、ツールの許可の確認は権限モードのとおりに出る。権限は <!-- link:begin permission-modes-overview -->[権限モードの選び方](permission-modes-overview.md)<!-- link:end --> で決める。
 - Proactive でも、データの削除や共有環境を変える操作の前には、会話の中で確認するよう指示される。これも指示であり、許可の画面とは別である。
 - Concise は、頼まれた説明、エラー、テストの失敗、破壊的な操作の確認を省かない。エンジニアリングの作業そのものは Default と同じ丁寧さで進める。
-- Concise は新しい組み込みで、古い版の Claude Code にはない。使えるか迷うときは版を確かめる。
+- Concise は新しい組み込みで、<!-- fact:begin output-style-concise-min-version -->Claude Code 2.1.237 以降（2026-11-05 時点）<!-- fact:end --> でないと使えない。使えるか迷うときは版を確かめる。
 - Learning は、`TODO(human)` というコメントを置いて作業を止め、何を書くかを説明してから待つ。書き終えたと伝えると、Claude が続きに進む。
 
 Learning の学習の効果を実証したデータは、確認できていない。ここでの説明は設計の意図であり、理解が残るかは使い方による。理解を確かめる使い方は <!-- link:begin learning-with-ai#patterns -->[AI で新しい技術を学ぶ（生成させた後に理解を確かめる） › 理解が残る使い方・残らない使い方](../judgment/learning-with-ai.md#patterns)<!-- link:end --> に、どこまでを自分の理解に残すかは <!-- link:begin how-much-understanding-to-keep#core-and-periphery -->[どこまで理解を手放してよいか（中核と周辺） › 中核と周辺を分ける](../judgment/how-much-understanding-to-keep.md#core-and-periphery)<!-- link:end --> にある。
@@ -80,9 +80,9 @@ Learning の学習の効果を実証したデータは、確認できていな�
 
 出力スタイルを切り替える方法は、コマンド・メニュー・設定ファイルの 3 つである。この節は WSL・Linux の CLI を基準にする。VS Code 拡張とデスクトップアプリには別の入口があり、動作は未確認である。
 
-- `/output-style <名前>`：その場で切り替える。引数なしで一覧を出し、今のスタイルに印が付く。名前の大文字小文字は区別されない。新しい版が要る。
+- `/output-style <名前>`：その場で切り替える。引数なしで一覧を出し、今のスタイルに印が付く。名前の大文字小文字は区別されない。使えるのは <!-- fact:begin output-style-command-min-version -->Claude Code 2.1.269 以降（2026-11-05 時点）<!-- fact:end --> である。
 - `/config`：メニューの出力スタイルの項目から選ぶ。
-- 設定ファイルの `outputStyle`：値を直接書く。大文字小文字を区別するので、`Explanatory` と書く。`explanatory` のように合わない値は、エラーも出ず Default の扱いになる。
+- 設定ファイルの `outputStyle`：値を直接書く。<!-- fact:begin output-style-setting-case-sensitive -->設定の値は大文字小文字を区別する（合わない値は Default になる。/output-style コマンドは区別しない）（2026-11-05 時点）<!-- fact:end -->ので、`Explanatory` と書く。`explanatory` のような値は、エラーも出ず Default の扱いになる。
 
 コマンドとメニューの選択は、プロジェクトの個人用の設定（`.claude/settings.local.json`）に保存される。全プロジェクトの既定にするなら、`~/.claude/settings.json` に `outputStyle` を書く。プロジェクト側の設定が優先される。
 

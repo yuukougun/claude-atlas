@@ -39,7 +39,7 @@ updated: 2026-11-05
 !!! abstract "要点"
     - **何ができるか**：見張らなくてよい独立した作業を背景のセッションに投げ、一覧で状態を見て、要るときだけ返事ができる。
     - **いつ引くか**：いくつかの作業を投げておいて、後でまとめて確かめたいとき。背景で動かしたセッションがどうなったか分からないとき。
-    - **止められるもの**：状態を見て返事をする画面であり、作業の中身は縛らない。縛りは権限とフックで先に置く。
+    - **強制力**：<!-- gen:begin feature agent-view/enforcement -->なし<!-- gen:end feature agent-view/enforcement -->。状態を見て返事をする画面であり、作業の中身は縛らない。縛りは権限とフックで先に置く。
     - **前提**：<!-- link:begin choosing-parallel-modes -->[並列の方式の選び方](choosing-parallel-modes.md)<!-- link:end -->、<!-- link:begin what-auto-mode-stops -->[auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)<!-- link:end -->
 
 <!-- textlint-disable -->
@@ -58,7 +58,7 @@ agent view と背景セッションは、見張らなくてよい独立した作
 | PR のレビュー・調査 | 向く | 成果が文章で、読めば確かめられる。 |
 | 同じファイルを触る複数の変更 | 向かない | 互いの結果に依存し、衝突の確認が戻ってから集中する。 |
 | 方針が決まっていない設計 | 向かない | 途中の判断が多く、返事待ちで止まり続ける。 |
-| 手元で見ながら進めたい作業 | 向かない | 伴走のほうが速い。<!-- link:begin pairing-and-delegating -->伴走と委託（準備中）<!-- link:end -->を引く。 |
+| 手元で見ながら進めたい作業 | 向かない | 伴走のほうが速い。<!-- link:begin pairing-and-delegating -->[伴走と委託](pairing-and-delegating.md)<!-- link:end -->を引く。 |
 
 !!! example "判断例：3 件の作業を投げる"
     - **状況**：朝のうちに、独立したバグ 2 件と、まだ方針の決まっていないリファクタリング 1 件を片付けたい。
@@ -148,7 +148,7 @@ cross-session messaging は、1 つのセッションの Claude が、自分の�
 <!-- textlint-enable -->
 <!-- gen:end compare 成熟度 入った版 -->
 
-並列の方式のうち、背景のセッションを選ぶ基準は <!-- link:begin choosing-parallel-modes#compare -->[並列の方式の選び方 › 方式の比較](choosing-parallel-modes.md#compare)<!-- link:end --> にある。ほかの方式との組み合わせ方は <!-- link:begin choosing-parallel-modes#combine -->[並列の方式の選び方 › 組み合わせ方](choosing-parallel-modes.md#combine)<!-- link:end --> を引く。スマホから見て承認するなら <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> を、長い作業の途中経過を残すなら <!-- link:begin progress-logs-for-long-jobs -->長時間ジョブの進捗ログを設計する（準備中）<!-- link:end --> を使う。
+並列の方式のうち、背景のセッションを選ぶ基準は <!-- link:begin choosing-parallel-modes#compare -->[並列の方式の選び方 › 方式の比較](choosing-parallel-modes.md#compare)<!-- link:end --> にある。ほかの方式との組み合わせ方は <!-- link:begin choosing-parallel-modes#combine -->[並列の方式の選び方 › 組み合わせ方](choosing-parallel-modes.md#combine)<!-- link:end --> を引く。スマホから見て承認するなら <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> を、長い作業の途中経過を残すなら <!-- link:begin progress-logs-for-long-jobs -->[長時間ジョブの進捗ログを設計する](progress-logs-for-long-jobs.md)<!-- link:end --> を使う。
 
 ## 古くなった助言 {#outdated}
 
@@ -168,8 +168,8 @@ tmux で複数の Claude Code を並べ、手で連絡させる自作の組織�
 
 - [git worktree で並列にする](parallel-with-worktrees.md)
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
-- 伴走と委託（準備中）
-- 長時間ジョブの進捗ログを設計する（準備中）
+- [伴走と委託](pairing-and-delegating.md)
+- [長時間ジョブの進捗ログを設計する](progress-logs-for-long-jobs.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - 終わったら知らせてもらう（準備中）
 - スマホから操作する（Remote Control）（準備中）

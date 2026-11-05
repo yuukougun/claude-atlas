@@ -141,7 +141,7 @@ updated: 2026-11-05
 | [サブエージェント（subagents）](writing-subagents.md) | — | 起動したとき | 分離 | 未確認 |
 | [MCP](connecting-mcp.md) | なし | セッション開始 | 使うまで小さい | 未確認 |
 | [フック（hooks）](../enforce/hooks-basics.md) | 鍵 | イベントが起きたとき | ゼロ（出力を返さない限り） | 残る |
-| [プラグイン（plugins）](plugins-and-marketplaces.md) | — | セッション開始と使うとき | 使うまで小さい | 未確認 |
+| [プラグイン（plugins）](plugins-and-marketplaces.md) | なし | セッション開始と使うとき | 使うまで小さい | 未確認 |
 
 <!-- textlint-enable -->
 <!-- gen:end compare 強制力 読み込みの時期 コンテキストのコスト 圧縮で残るか -->

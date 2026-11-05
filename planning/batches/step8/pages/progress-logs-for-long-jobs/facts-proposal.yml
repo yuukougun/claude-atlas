@@ -1,0 +1,9 @@
+proposals:
+  - fact: {id: monitor-default-deadline, title: Monitor の見張りの既定の期限, value: 5 分, sources: [cc-docs-tools-reference], checked: 2026-11-05, status: 確認済み}
+    used_in: [progress-logs-for-long-jobs#steps]
+  - fact: {id: monitor-max-deadline, title: Monitor の見張りの期限の上限（対話の場合）, value: 30 分, sources: [cc-docs-tools-reference], checked: 2026-11-05, status: 確認済み}
+    used_in: [progress-logs-for-long-jobs#steps]
+  - fact: {id: monitor-print-mode-max-deadline, title: 単一の prompt で非対話（-p）に走らせたときの Monitor の見張りの期限の上限, value: 10 分, sources: [cc-docs-tools-reference], checked: 2026-11-05, status: 確認済み}
+    used_in: [progress-logs-for-long-jobs#steps]
+  - fact: {id: monitor-min-version-restricted-envs, title: Bedrock などの提供経路か通信の抑制の環境変数があるときに Monitor が要る最低の Claude Code の版, value: 2.1.310, sources: [cc-docs-tools-reference], checked: 2026-11-05, status: 確認済み}
+    used_in: [progress-logs-for-long-jobs#steps]

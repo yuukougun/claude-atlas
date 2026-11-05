@@ -96,7 +96,7 @@ effort を変えると、プロンプトキャッシュが外れることがあ�
 
 **画面に出る思考が、Claude の計算のすべてである**。そうとは限らない。画面に出るのは要約であることがあり、数えられるのは生の思考の量である。要約や説明が、実際の内部の処理と一致する保証もない。この点は <!-- link:begin unfaithful-reasoning -->[表示された思考は内部の計算と一致するとは限らない](unfaithful-reasoning.md)<!-- link:end --> にある。
 
-**推論の全文を本文に書かせれば、確かめやすくなる**。確かめやすくはならない。推論を本文に書かせる指示の効き方は、モデルと版で変わる（推論・実践例なし）。根拠が要るなら、短い説明を頼むか、表示される思考の要約を読む。やり方は <!-- link:begin asking-for-reasoning#alternatives -->推論を見せてほしいとき › 短い根拠と思考の要約で読む（準備中）<!-- link:end -->、台帳の行は <!-- link:begin outdated-advice-ledger#thinking-tags -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#thinking-tags)<!-- link:end --> にある。
+**推論の全文を本文に書かせれば、確かめやすくなる**。確かめやすくはならない。推論を本文に書かせる指示の効き方は、モデルと版で変わる（推論・実践例なし）。根拠が要るなら、短い説明を頼むか、表示される思考の要約を読む。やり方は <!-- link:begin asking-for-reasoning#alternatives -->[推論を見せてほしいとき › 短い根拠と思考の要約で読む](../prompting/asking-for-reasoning.md#alternatives)<!-- link:end -->、台帳の行は <!-- link:begin outdated-advice-ledger#thinking-tags -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#thinking-tags)<!-- link:end --> にある。
 
 **thinking は、いつでも切れる**。モデルで違う。新しいモデルの中には、thinking を切れないものがある。切れるかどうかは、使うモデルと面の組で確かめる。切り替えの扱いは <!-- link:begin effort-levels#thinking-toggle -->[effort の段階と使い分け › thinking の切り替え](../models/effort-levels.md#thinking-toggle)<!-- link:end --> にある。
 
@@ -138,7 +138,7 @@ effort を変えると、プロンプトキャッシュが外れることがあ�
 
 - [「考えて」と書くことの現在（ultrathink）](../models/thinking-keywords.md)
 - [モデルの選び方（三段階）](../models/choosing-a-model.md)
-- 推論を見せてほしいとき（準備中）
+- [推論を見せてほしいとき](../prompting/asking-for-reasoning.md)
 - [プロンプトキャッシング（先頭が変わらないことの価値）](why-prompt-caching.md)
 
 </div>

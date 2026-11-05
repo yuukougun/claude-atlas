@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: sdk-auto-retry-default, title: 公式 SDK の自動の再試行の既定（回数。retry-after を尊重し、指数的に広げる間隔で再試行する）, value: 2 回（接続の失敗・rate limits・5xx が対象）, sources: [api-docs-errors], checked: 2026-11-05, status: 確認済み}
+    used_in: [rate-limits-and-errors#retry]
+  - fact: {id: claude-code-auto-retry-default, title: Claude Code の自動の再試行の既定（一時的な失敗の回数。529 の初期の待ちと上限の待ちを含む）, value: 10 回（CLAUDE_CODE_MAX_RETRIES で変更。ウォッチドッグがなければ上限 15 回）。529 の待ちは初期 500 ms、上限 32 秒, sources: [cc-docs-errors], checked: 2026-11-05, status: 確認済み}
+    used_in: [rate-limits-and-errors#retry, rate-limits-and-errors#in-claude-code]

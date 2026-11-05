@@ -54,7 +54,7 @@ updated: 2026-11-05
 
 たとえば、午前にアプリで長い調べものをした日は、午後に Claude Code を開いた時点で、枠はすでに減っている。Claude Code でほとんど作業していなくても、早く上限に当たることがある。
 
-この共有は、サブスクリプション（プランの利用枠）の話である。API キーで呼ぶときの rate limits はプランの利用枠とは別の仕組みなので、<!-- link:begin rate-limits-and-errors#limit-types -->rate limits とエラー（混雑と再試行） › 上限の種類と、今の値の確かめ方（準備中）<!-- link:end --> を見る。
+この共有は、サブスクリプション（プランの利用枠）の話である。API キーで呼ぶときの rate limits はプランの利用枠とは別の仕組みなので、<!-- link:begin rate-limits-and-errors#limit-types -->[rate limits とエラー（混雑と再試行） › 上限の種類と、今の値の確かめ方](../api/rate-limits-and-errors.md#limit-types)<!-- link:end --> を見る。
 
 ## 枠の種類と戻る時刻（プランごとの表） {#limit-types}
 
@@ -88,7 +88,7 @@ updated: 2026-11-05
 - Max と Ultra には、最上位のモデル向けに別の週の上限がある。引かれ方は <!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](before-using-top-model.md#which-limit)<!-- link:end --> で確かめる。
 - 使用量に基づく Enterprise には、プランの上限がない。使った分は API の料金で払う。
 
-倍率や料金を含むプランごとの表は <!-- link:begin choosing-a-plan#plan-table -->プランの選び方 › プランの表（確認日つき）（準備中）<!-- link:end --> にある。自分の口座に 5 時間の上限があるかは、アプリの Settings > Usage で分かる（見る場所は、続く節「残りを見る場所」にある）。
+倍率や料金を含むプランごとの表は <!-- link:begin choosing-a-plan#plan-table -->[プランの選び方 › プランの表（確認日つき）](choosing-a-plan.md#plan-table)<!-- link:end --> にある。自分の口座に 5 時間の上限があるかは、アプリの Settings > Usage で分かる（見る場所は、続く節「残りを見る場所」にある）。
 
 「有料プランなら 5 時間待つしかない」という古い助言は、Ultra の確認済みの口座には当てはまらない。上限に当たったときの手も増えた（<!-- link:begin outdated-advice-ledger#wait-out-5-hour-limit -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#wait-out-5-hour-limit)<!-- link:end -->）。
 
@@ -112,7 +112,7 @@ updated: 2026-11-05
 
 **待つ**。5 時間の上限は 5 時間ごとに、週の上限は口座ごとの決まった時刻に戻る。待つ間にも進められる仕事を先に決めておくと、止まる時間が無駄にならない。決め方は <!-- link:begin when-ai-is-unavailable#minimum-without-ai -->[AI が使えないときの備え（障害・上限） › AI なしで最低限を進められる状態](when-ai-is-unavailable.md#minimum-without-ai)<!-- link:end --> にある。
 
-**枠を足す**。usage credits を有効にすると、プランの上限を使い切った後も従量課金で続けられる（[Manage usage credits for paid Claude plans](https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans)）。思わぬ請求を防ぐため、月の上限額と通知を先に決める。手順は <!-- link:begin usage-credits-basics#how-it-works -->[usage credits（上限を超えた分の従量課金） › 切り替わる仕組み](usage-credits-basics.md#how-it-works)<!-- link:end --> にある。プランを上げる手もあり、上げると新しい上限はすぐに適用される。比べ方は <!-- link:begin choosing-a-plan#what-to-compare -->プランの選び方 › 比べる観点（準備中）<!-- link:end --> にある。
+**枠を足す**。usage credits を有効にすると、プランの上限を使い切った後も従量課金で続けられる（[Manage usage credits for paid Claude plans](https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans)）。思わぬ請求を防ぐため、月の上限額と通知を先に決める。手順は <!-- link:begin usage-credits-basics#how-it-works -->[usage credits（上限を超えた分の従量課金） › 切り替わる仕組み](usage-credits-basics.md#how-it-works)<!-- link:end --> にある。プランを上げる手もあり、上げると新しい上限はすぐに適用される。比べ方は <!-- link:begin choosing-a-plan#what-to-compare -->[プランの選び方 › 比べる観点](choosing-a-plan.md#what-to-compare)<!-- link:end --> にある。
 
 **Claude Code に待ちを任せる**。Claude Code には、上限で止まった作業を自動で続ける機能がある。claude.ai の上限で止まった作業を、開いたままのセッションで待ち、上限が戻った後に自分で続ける。設定は `autoContinueAtUsageLimit` で、claude.ai のサブスクリプションで入った対話のセッションでは、既定で有効である。成熟度は <!-- gen:begin feature auto-continue/maturity -->GA<!-- gen:end feature auto-continue/maturity --> で、入った版は <!-- gen:begin feature auto-continue/since -->2.1.234（2026-08-17）<!-- gen:end feature auto-continue/since --> である（[Interactive mode](https://code.claude.com/docs/en/interactive-mode)、[All settings](https://code.claude.com/docs/en/settings-reference)）。
 
@@ -170,19 +170,19 @@ updated: 2026-11-05
 
 - [/usage・/context・ステータスラインで状態を見る](../cli/usage-context-statusline.md)
 - [上限を早く使う要因](what-uses-up-limits.md)
+- [プランの選び方](choosing-a-plan.md)
 - [最上位のモデルを使う前に](before-using-top-model.md)
 - [usage credits（上限を超えた分の従量課金）](usage-credits-basics.md)
 - [課金の経路を確かめる（API キーとサブスクリプション）](check-billing-path.md)
 - [AI が使えないときの備え（障害・上限）](when-ai-is-unavailable.md)
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
-- プランの選び方（準備中）
 
 **関連**
 
 - [節約の優先順位（手戻りを減らすのが先）](saving-priorities.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [/usage・/context・ステータスラインで状態を見る › ステータスラインに出すもの](../cli/usage-context-statusline.md#statusline)
-- rate limits とエラー（混雑と再試行）（準備中）
+- [rate limits とエラー（混雑と再試行）](../api/rate-limits-and-errors.md)
 
 </div>
 

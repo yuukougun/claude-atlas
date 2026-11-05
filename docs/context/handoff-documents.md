@@ -201,7 +201,7 @@ handoff 文書と document-and-clear は、会話を捨てる前に続きに要�
 - **前に決めた約束が守られない**：約束が文書にしかなく、読み直される場所にない。置き場所の移し方は、読み直される場所を整理した <!-- link:begin promises-after-compaction#what-comes-back -->[圧縮で消えない場所に約束を置く › 読み直される場所と、要約に溶ける約束](promises-after-compaction.md#what-comes-back)<!-- link:end --> にある。
 - **終わっていないのに終わったと言う**：完了の条件が測れる形で書かれていない。<!-- link:begin define-done#why-it-stops -->[「完了」を定義して渡す › 終わったように見えた所で止まる](../verify/define-done.md#why-it-stops)<!-- link:end --> を見て、完了の条件を書き直す。
 - **文書が古い**：書いた後に作業を続けて、文書と実際がずれた。続きの作業をした日は、区切る前に書き直させる。
-- **長時間のジョブの状況が見えない**：1 回の引き継ぎでは足りない。<!-- link:begin progress-logs-for-long-jobs -->長時間ジョブの進捗ログを設計する（準備中）<!-- link:end --> のように、進捗を定期的に書き出す仕組みを足す。
+- **長時間のジョブの状況が見えない**：1 回の引き継ぎでは足りない。<!-- link:begin progress-logs-for-long-jobs -->[長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)<!-- link:end --> のように、進捗を定期的に書き出す仕組みを足す。
 
 ## /compact との使い分け {#vs-compact}
 
@@ -219,7 +219,7 @@ handoff 文書と document-and-clear は、会話を捨てる前に続きに要�
     - **選んだもの**：書き出して `/clear` する。
     - **理由**：試して駄目だった方法と、どのコマンドで確かめたかは、要約で薄まると取り返しにくい。文書に書けば、残るものを自分で選べる。逆に、同じ修正を続けているだけの数十分なら、焦点を指示した `/compact` で足りる。
 
-両者の関係は <!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)<!-- link:end --> にも書いてある。API で長く動くエージェントを組む場合は、<!-- link:begin long-running-agent-context -->長時間エージェントのコンテキスト管理（準備中）<!-- link:end --> の手段を使う。4 つの動作の全体は <!-- link:begin tidy-the-desk -->[机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)<!-- link:end --> にある。
+両者の関係は <!-- link:begin compact-and-auto-compact#compact-or-clear -->[/compact と自動圧縮 › 圧縮か、書き出して /clear か](compact-and-auto-compact.md#compact-or-clear)<!-- link:end --> にも書いてある。API で長く動くエージェントを組む場合は、<!-- link:begin long-running-agent-context -->[長時間エージェントのコンテキスト管理](../api/long-running-agent-context.md)<!-- link:end --> の手段を使う。4 つの動作の全体は <!-- link:begin tidy-the-desk -->[机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)<!-- link:end --> にある。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -233,7 +233,7 @@ handoff 文書と document-and-clear は、会話を捨てる前に続きに要�
 **次に読む**
 
 - [進捗ファイルで、途中から再開できるようにする](progress-files.md)
-- 決定を文書に残す（ADR と週次アップデート）（準備中）
+- [決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)
 
 **関連**
 
@@ -243,8 +243,8 @@ handoff 文書と document-and-clear は、会話を捨てる前に続きに要�
 - [セッションに名前を付けて再開・分岐する](../cli/resume-and-branch.md)
 - [「完了」を定義して渡す](../verify/define-done.md)
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
-- 長時間エージェントのコンテキスト管理（準備中）
-- 長時間ジョブの進捗ログを設計する（準備中）
+- [長時間エージェントのコンテキスト管理](../api/long-running-agent-context.md)
+- [長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)
 - [机を整える：新鮮さ・巻き戻し・書き出し・委任](tidy-the-desk.md)
 
 </div>

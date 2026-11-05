@@ -194,7 +194,7 @@ Claude Code のチームのレビュー運用を述べた記事も、エージ�
 
 （出典：[How the Claude Code team does code review](https://claude.dev/blog/solving-code-review-at-anthropic/)。Anthropic の開発者向けのブログである。）
 
-変更をリスクの段に分け、段ごとに人の承認の数を決める方法の本体は、<!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->[リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない](../team/risk-tiered-approval.md#ai-approval-doesnt-count)<!-- link:end --> にある。AI のレビューが付いた PR の扱いは、<!-- link:begin create-and-review-prs#risks-before-submitting -->PR を作り、レビューを受ける › 出す前にリスクを挙げさせる（準備中）<!-- link:end --> と <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> が扱う。
+変更をリスクの段に分け、段ごとに人の承認の数を決める方法の本体は、<!-- link:begin risk-tiered-approval#ai-approval-doesnt-count -->[リスク段階別の承認（AI の承認を人の承認に数えない） › AI の承認を数えない](../team/risk-tiered-approval.md#ai-approval-doesnt-count)<!-- link:end --> にある。AI のレビューが付いた PR の扱いは、<!-- link:begin create-and-review-prs#risks-before-submitting -->[PR を作り、レビューを受ける › 出す前にリスクを挙げさせる](../recipes/create-and-review-prs.md#risks-before-submitting)<!-- link:end --> と <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> が扱う。
 
 AI のレビュアーを何体並べても、全員の一致は正しさの証拠にならない。決め手は実行と計測である。理由は <!-- link:begin agreement-is-not-evidence#reviewer-agreement -->[同意は根拠に数えない（AI レビュアーの一致を含む） › AI レビュアーの一致](../judgment/agreement-is-not-evidence.md#reviewer-agreement)<!-- link:end --> と <!-- link:begin second-opinion-from-another-model#agreement -->別のモデルに第二の意見を求める（一致は証拠にならない） › 一致は証拠にならない（準備中）<!-- link:end --> にある。
 
@@ -288,12 +288,12 @@ AI のレビューで見つからなかったことを、安全の証拠に数�
 **次に読む**
 
 - [レビュアーへの指示の書き方](instructing-reviewers.md)
+- [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
 - [レビューのボトルネックと疲労](../team/review-bottlenecks.md)
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)
 - [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)
 - 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 - 自動 PR レビュー（Code Review・/ultrareview）（準備中）
-- PR を作り、レビューを受ける（準備中）
 
 **関連**
 

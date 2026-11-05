@@ -79,7 +79,7 @@ updated: 2026-11-05
     権限は、確認なしに進める Auto と、毎回確かめる Manual から選ぶ。既定はプランと管理者の設定で変わりうる。いまの既定は、<!-- fact:begin app-default-permission-mode -->未確認<!-- fact:end -->。選び方は <!-- link:begin permission-modes-in-the-app#modes -->[アプリの権限モード（Auto と Manual）と安全 › Auto と Manual](../app/permission-modes-in-the-app.md#modes)<!-- link:end --> にある。
 
     記録と記憶は、会話ごとの設定とシークレットチャットで調整する。表の incognito と app-memory の行が対応する。シークレットチャットの保持期間は次のとおり：
-    <!-- fact:begin incognito-retention-period -->未確認<!-- fact:end -->
+    <!-- fact:begin incognito-retention-period -->30 日（Enterprise は組織の保持期間）。履歴・メモリ・学習には使わない（2026-11-05 時点）<!-- fact:end -->
 
 === "Claude Code"
 
@@ -167,7 +167,7 @@ updated: 2026-11-05
 **次に読む**
 
 - [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
-- 禁止ではなく安全な道を作る（準備中）
+- [禁止ではなく安全な道を作る](../team/paved-roads.md)
 
 **関連**
 

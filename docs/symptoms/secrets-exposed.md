@@ -117,7 +117,7 @@ updated: 2026-11-05
     - 特定の操作を止めて理由を返すなら、<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end --> を使う。型は <!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end --> にある。
     - 3 つ（信頼できない入力・秘密・外への送信）が要る作業は、<!-- link:begin lethal-trifecta#when-all-three -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つとも要るとき](../safety/lethal-trifecta.md#when-all-three)<!-- link:end --> で人の承認を挟む。
 
-任せる幅を広げる前に、この縛りを先に置く。出たものを仕組みの隙間として記録し、再発防止をどこに入れるかは <!-- link:begin postmortems#where-to-put-fixes -->失敗を仕組みに戻す（ポストモーテム） › 再発防止をどこに入れるか（準備中）<!-- link:end --> で決める。
+任せる幅を広げる前に、この縛りを先に置く。出たものを仕組みの隙間として記録し、再発防止をどこに入れるかは <!-- link:begin postmortems#where-to-put-fixes -->[失敗を仕組みに戻す（ポストモーテム） › 再発防止をどこに入れるか](../judgment/postmortems.md#where-to-put-fixes)<!-- link:end --> で決める。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -158,7 +158,7 @@ updated: 2026-11-05
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - [知らないリポジトリを開く前に](../safety/before-opening-unknown-repos.md)
-- 失敗を仕組みに戻す（ポストモーテム）（準備中）
+- [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)
 - [読ませたページやファイルの指示に従ってしまった](followed-injected-instructions.md)
 - [消してはいけないものを消された](deleted-something-important.md)
 - [失敗の二つの軸と診断の入口](../start/six-causes.md)

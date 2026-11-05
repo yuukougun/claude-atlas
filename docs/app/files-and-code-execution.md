@@ -105,7 +105,7 @@ updated: 2026-11-05
 
 After で足したのは、シートごとの中身、作る前の件数の報告、合計を突き合わせる確かめ、止まる条件の 4 つである。合計の列を式にする指定も入れた。値でなく式なら、元の数字を直したときに追従する。
 
-文字コードが Shift_JIS の CSV は、文字化けや空欄の元になる。UTF-8 に変えて渡す手順は、別のページにある（<!-- link:begin character-encodings#convert -->文字コード（Shift\_JIS の CSV など） › UTF-8 に変えてから渡す（準備中）<!-- link:end -->）。大きな PDF や図を含む資料の読まれ方は、添付ファイルのページで確かめる（<!-- link:begin how-attachments-are-read#splitting -->[添付ファイルはどこまで読まれるか › 大きな資料の分け方](how-attachments-are-read.md#splitting)<!-- link:end -->）。
+文字コードが Shift_JIS の CSV は、文字化けや空欄の元になる。UTF-8 に変えて渡す手順は、別のページにある（<!-- link:begin character-encodings#convert -->[文字コード（Shift\_JIS の CSV など） › UTF-8 に変えてから渡す](../japanese/character-encodings.md#convert)<!-- link:end -->）。大きな PDF や図を含む資料の読まれ方は、添付ファイルのページで確かめる（<!-- link:begin how-attachments-are-read#splitting -->[添付ファイルはどこまで読まれるか › 大きな資料の分け方](how-attachments-are-read.md#splitting)<!-- link:end -->）。
 
 事務作業の中でこの機能を使うときは、人が材料を渡し、Claude が下書きし、人が確かめて出す流れにする（<!-- link:begin office-paperwork#human-ai-human -->[事務作業の半自動化（経費・報告） › 人 → AI → 人の流れにする](../recipes/office-paperwork.md#human-ai-human)<!-- link:end -->）。
 
@@ -233,7 +233,7 @@ MCP の連携は、ネットワークの設定にかかわらず、外と通信�
 - [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)
 - [プロンプトインジェクションの実際](../safety/prompt-injection-in-practice.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](../safety/entrusted-data.md)
-- 文字コード（Shift\_JIS の CSV など）（準備中）
+- [文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)
 - [添付ファイルはどこまで読まれるか](how-attachments-are-read.md)
 - [共有リンクと公開アーティファクトの扱い](../safety/shared-artifacts-and-files.md)
 

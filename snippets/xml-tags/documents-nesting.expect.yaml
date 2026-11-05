@@ -1,0 +1,12 @@
+title: 複数の文書を入れ子のタグで渡す依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - 2 つの文書には、実際の本文を貼る
+expect:
+  - when: 欄を埋めた依頼を出す
+    then: 返答の各項目に、文書の index と引用が付く
+  - when: 文書が 3 つ以上に増える
+    then: document タグを index を変えて足すだけで、同じ依頼の形で通る

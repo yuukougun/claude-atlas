@@ -58,7 +58,7 @@ Claude は、返事をするたびに、会話の最初から今の発言まで�
 
 ## なぜそうなるか {#why}
 
-Claude は、会話の状態を自分の中に持ち続けない。API の基本の形では、呼び出す側が `system` と `messages` で、それまでの全体を毎回渡す。この仕組みは<!-- link:begin stateless-messages-api#stateless -->Messages API と会話の正体 › 毎回、全体を渡す（準備中）<!-- link:end -->で詳しく扱う。Claude Code は、利用者に代わって、この「全体を渡す」作業を毎回行っている。
+Claude は、会話の状態を自分の中に持ち続けない。API の基本の形では、呼び出す側が `system` と `messages` で、それまでの全体を毎回渡す。この仕組みは<!-- link:begin stateless-messages-api#stateless -->[Messages API と会話の正体 › 毎回、全体を渡す](../api/stateless-messages-api.md#stateless)<!-- link:end -->で詳しく扱う。Claude Code は、利用者に代わって、この「全体を渡す」作業を毎回行っている。
 
 比喩にすると、Claude は「毎回、会話を最初から読み直してから返事をする筆記試験の受験者」である。前の回の答案を手元に持ち越さない。毎回、問題用紙の束がまるごと机に置かれ、受験者はそれを頭から読んで答える。机の広さ（コンテキスト）が足りるかどうかとは別に、束が厚いほど読むのに時間がかかり、読んだ分だけ費用がかかる。
 
@@ -80,7 +80,7 @@ Claude は、会話の状態を自分の中に持ち続けない。API の基本
 
 === "API"
 
-    呼び出す側のコードが、毎回、それまでの全体を渡す。message threads という仕組みを使うと、送る量を差分だけに減らせる。ただし、API は呼び出しの前に会話を組み立て直す。モデルが読む量も、料金も変わらない。送る量と読む量は別である。詳しくは<!-- link:begin stateless-messages-api#message-threads -->Messages API と会話の正体 › message threads（送る量だけを減らす）（準備中）<!-- link:end -->を見る。
+    呼び出す側のコードが、毎回、それまでの全体を渡す。message threads という仕組みを使うと、送る量を差分だけに減らせる。ただし、API は呼び出しの前に会話を組み立て直す。モデルが読む量も、料金も変わらない。送る量と読む量は別である。詳しくは<!-- link:begin stateless-messages-api#message-threads -->[Messages API と会話の正体 › message threads（送る量だけを減らす）](../api/stateless-messages-api.md#message-threads)<!-- link:end -->を見る。
 
 ### 前置きが同じなら安くなる理由
 
@@ -140,13 +140,13 @@ Claude は、会話の状態を自分の中に持ち続けない。API の基本
 - [常駐するもののコスト（CLAUDE.md・MCP・スキル）](../context/always-on-costs.md)
 - [長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)
 - [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)
-- [上限を早く使う要因](../cost/what-uses-up-limits.md)
+- [Messages API と会話の正体](../api/stateless-messages-api.md)
 - ほか 3 ページ
 
 **関連**
 
 - [コンテキストウィンドウと注意の予算](attention-budget.md)
-- Messages API と会話の正体（準備中）
+- [上限を早く使う要因](../cost/what-uses-up-limits.md)
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
 
 </div>

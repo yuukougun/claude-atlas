@@ -66,7 +66,7 @@ structured outputs は、縛る対象の違う 2 つの方式からなる。
 - strict tool use は、Claude が「どう道具を呼ぶか」の形を決める。入力の型やキー名が、定義のスキーマからずれない。
 - 2 つは同じ依頼で併用できる。併用すると、応答が `tool_use` ブロックの場合と JSON の text ブロックの場合がある。`stop_reason` とブロックの種類を見て分岐する。
 
-どちらも、制約つきのデコード（constrained decoding）で、生成する語をスキーマに合う範囲へ絞る仕組みである。後から検査して直すのではなく、外れた形をそもそも出させない。道具を呼ばせるループの全体は <!-- link:begin tool-use-loop -->tool use のループ（準備中）<!-- link:end --> にある。
+どちらも、制約つきのデコード（constrained decoding）で、生成する語をスキーマに合う範囲へ絞る仕組みである。後から検査して直すのではなく、外れた形をそもそも出させない。道具を呼ばせるループの全体は <!-- link:begin tool-use-loop -->[tool use のループ](tool-use-loop.md)<!-- link:end --> にある。
 
 ## 最小の使い方 {#minimal}
 
@@ -232,7 +232,7 @@ Claude Code を非対話で動かす `claude -p` には、`--json-schema` でス
 | --- | --- |
 | 機械が読む出力の形を必ず守らせる | structured outputs |
 | 書式や長さをそろえる | <!-- link:begin output-shape#guaranteed -->[出力の形と分量を指定する › 必ず守らせたい形式は仕組みで](../prompting/output-shape.md#guaranteed)<!-- link:end --> |
-| 特定の道具を必ず呼ばせる | <!-- link:begin tool-use-loop#forcing -->tool use のループ › 呼ばせ方を縛る（tool\_choice・strict）（準備中）<!-- link:end --> |
+| 特定の道具を必ず呼ばせる | <!-- link:begin tool-use-loop#forcing -->[tool use のループ › 呼ばせ方を縛る（tool\_choice・strict）](tool-use-loop.md#forcing)<!-- link:end --> |
 | 根拠の箇所を返させる | <!-- link:begin citations-basics -->citations（根拠の箇所を返させる）（準備中）<!-- link:end --> |
 
 道具の呼び出しを強制する設定は、モデルによって使えないことがある。その場合、公式は strict tool use や JSON outputs を勧める。citations とは併用できないので、どちらが要るかを先に決める。
@@ -267,7 +267,7 @@ Claude Code を非対話で動かす `claude -p` には、`--json-schema` でス
 
 - [出力の形と分量を指定する](../prompting/output-shape.md)
 - [見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)
-- tool use のループ（準備中）
+- [tool use のループ](tool-use-loop.md)
 - citations（根拠の箇所を返させる）（準備中）
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
 

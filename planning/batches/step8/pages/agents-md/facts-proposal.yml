@@ -1,0 +1,10 @@
+proposals:
+  - fact: {id: agents-md-direct-read-min-version, title: AGENTS.md を読み込みの設定で直接読む最低の Claude Code の版, value: 2.1.277, sources: [cc-docs-memory, cc-docs-changelog], checked: 2026-11-05, status: 確認済み}
+    used_in: [agents-md#limits, agents-md#outdated]
+    note: 公式の memory の文書が「Reading AGENTS.md directly requires Claude Code v2.1.277 or later」と書く。調査資料 01 A-4 は 2026-09-18 とする。CHANGELOG の原文は今回開いていない
+  - fact: {id: agents-md-instruction-files-default, title: 読み込みの設定（Project instructions）の既定の値, value: claude-md-or-agents-md（CLAUDE.md を読み、作業ディレクトリかその上に CLAUDE.md・CLAUDE.local.md がないときだけ AGENTS.md を読む）, sources: [cc-docs-memory], checked: 2026-11-05, status: 確認済み}
+    used_in: [agents-md#choose, agents-md#limits]
+    note: ほかの値は claude-md-and-agents-md・claude-md・managed-only。本文は値の名前を出さず「初期の動き」と書いたので、目印を置くなら choose の該当の段落
+  - fact: {id: agents-md-plugin-id-rename, title: AGENTS.md を読む組み込みプラグインの ID の変更, value: agents-md@builtin から cc-plugin-agents-md@builtin へ。後者の項目を読むのは 2.1.285 以降（前者も同じ版以降は読む）, sources: [cc-docs-memory], checked: 2026-11-05, status: 確認済み}
+    used_in: [agents-md#templates]
+    note: 雛形 read-both-files.json は cc-plugin-agents-md@builtin を使う。名前の変更として names への追加も検討

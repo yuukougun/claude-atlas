@@ -59,7 +59,7 @@ updated: 2026-11-05
 
 依頼にスキルを渡すこともできる。ただし、Claude が自分で呼び出してよいスキルだけが動く。`/permissions` などの組み込みコマンドは、実行されず、ただの文字として届く。
 
-間隔を省いた形は、状態が変わらないと長めに待つ。Monitor の道具が使えるセッションでは、Claude が繰り返しの代わりに Monitor を使うこともある。出力を流して受け取れるので、繰り返しよりも無駄が少ない。
+間隔を省いた形は、Claude が <!-- fact:begin loop-self-paced-interval-range -->1 分から 1 時間（2026-11-05 時点）<!-- fact:end --> の範囲で間隔を選び、状態が変わらないと長めに待つ。Monitor の道具が使えるセッションでは、Claude が繰り返しの代わりに Monitor を使うこともある。出力を流して受け取れるので、繰り返しよりも無駄が少ない。
 
 ### 止め方と限界
 
@@ -73,7 +73,9 @@ updated: 2026-11-05
 - セッションを閉じると止まる。`--resume` や `--continue` で、期限が切れていない固定の間隔の繰り返しは戻る。間隔を Claude が決める形は戻らないので、`/loop` を打ち直す
 - Claude が応答の途中のときは発火せず、ターンの間に動く。長い作業の間に過ぎた回は、取りこぼした回数ぶんではなく 1 回だけ動く
 - 発火の時刻は少し遅れる。API への集中を避けるために、道具が時刻をずらすからである
-- 繰り返しの期限は、作ってから一定の日数で切れる。期限の日数は変わりうるので、公式の文書で確かめる。長く使いたいときは、作り直すか、手元やクラウドの方式に移す
+- 繰り返しは、作ってから <!-- fact:begin loop-recurring-expiry-days -->7 日で失効する（2026-11-05 時点）<!-- fact:end -->。日数は変わりうるので、公式の文書で確かめる。
+- 1 セッションに置ける予定のタスクは <!-- fact:begin loop-max-tasks-per-session -->50 件まで（2026-11-05 時点）<!-- fact:end --> である。
+- 長く使いたいときは、作り直すか、手元やクラウドの方式に移す
 
 ## どこで走らせるか（セッション・手元・クラウド） {#where-to-run}
 
@@ -83,13 +85,13 @@ updated: 2026-11-05
 | --- | --- | --- | --- |
 | /loop | 開いているセッション（自分の機械） | セッションの間だけの見張り。手元のファイルも使える | この節 |
 | Desktop scheduled tasks | 自分の機械。セッションは開けなくてよい | 手元のファイルや道具が要る定期の作業。機械は起きている必要がある | この表の下の説明 |
-| クラウドの定期タスク | Anthropic のクラウド。機械は要らない | 機械を閉じても動かしたい作業。作業は新しい clone の上で動き、手元のファイルは見えない | <!-- link:begin cloud-schedules#triggers -->クラウドの定期タスク › きっかけ（時刻・API・GitHub のイベント）（準備中）<!-- link:end --> |
+| クラウドの定期タスク | Anthropic のクラウド。機械は要らない | 機械を閉じても動かしたい作業。作業は新しい clone の上で動き、手元のファイルは見えない | <!-- link:begin cloud-schedules#triggers -->[クラウドの定期タスク › きっかけ（時刻・API・GitHub のイベント）](cloud-schedules.md#triggers)<!-- link:end --> |
 
 公式の比較表は、権限の扱いも分けている。/loop は、開いているセッションの権限を引き継ぐ。Desktop は、タスクごとの設定である。クラウドは、既定で auto モードが動く。人が答えられない実行では、確認が要る操作は止まるか、分類器の判断に任される。止められたときの見直し方は、<!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<!-- link:end --> を引く。
 
 Desktop scheduled tasks は、Claude Code Desktop で作る、自分の機械で走る定期タスクである。時刻になると、開いているセッションがなくても新しいセッションが立ち上がる。手元のファイルを読めるのが、クラウドとの違いである。作り方の詳細は、公式の文書を引く。
 
-間隔の下限と失効の日数は、方式ごとに違う。クラウドは下限が最も長い。数値は変わりうるので、公式の文書で確かめる。成熟度と入った版は、道具が次の表に出す。
+間隔の下限は、方式ごとに違う。`/loop` は <!-- fact:begin loop-min-interval -->1 分（2026-11-05 時点）<!-- fact:end -->、Desktop は <!-- fact:begin desktop-scheduled-task-min-interval -->Claude が設定すると 1 分、フォームでは 1 時間（2026-11-05 時点）<!-- fact:end -->、クラウドは <!-- fact:begin cloud-scheduled-task-min-interval -->1 時間（2026-11-05 時点）<!-- fact:end --> で、クラウドが最も長い。数値は変わりうるので、公式の文書で確かめる。成熟度と入った版は、道具が次の表に出す。
 
 <!-- gen:begin compare -->
 <!-- textlint-disable -->
@@ -97,14 +99,14 @@ Desktop scheduled tasks は、Claude Code Desktop で作る、自分の機械で
 | 機能 | 成熟度 | 入った版 |
 | --- | --- | --- |
 | [/loop](loop-and-scheduling.md) | GA | 2.1.71（2026-03-07） |
-| 予定のタスク（scheduled tasks）（準備中） | research preview | — |
+| [予定のタスク（scheduled tasks）](cloud-schedules.md) | research preview | — |
 
 すべて共通：面 Claude Code、確認日 2026-11-04。
 
 <!-- textlint-enable -->
 <!-- gen:end compare -->
 
-クラウドの定期実行は、<!-- name:begin routines-to-scheduled-tasks -->クラウドの予定のタスク（cloud scheduled tasks）<!-- name:end --> が今の名前である。古い記事には routines と書かれている。接続先と権限を最小にする考え方は <!-- link:begin cloud-schedules#least-privilege -->クラウドの定期タスク › 接続先と権限を最小にする（準備中）<!-- link:end --> にある。アプリで頼むタスクの定期実行は、<!-- link:begin tasks-and-schedules-in-the-app#where-it-runs -->[タスクと定期タスク（Cowork） › どこで動くか（クラウドと Desktop）](../app/tasks-and-schedules-in-the-app.md#where-it-runs)<!-- link:end --> が持つ。名前が似ているが、ここで扱う Desktop scheduled tasks は Claude Code の公式の名前である。
+クラウドの定期実行は、<!-- name:begin routines-to-scheduled-tasks -->クラウドの予定のタスク（cloud scheduled tasks）<!-- name:end --> が今の名前である。古い記事には routines と書かれている。接続先と権限を最小にする考え方は <!-- link:begin cloud-schedules#least-privilege -->[クラウドの定期タスク › 接続先と権限を最小にする](cloud-schedules.md#least-privilege)<!-- link:end --> にある。アプリで頼むタスクの定期実行は、<!-- link:begin tasks-and-schedules-in-the-app#where-it-runs -->[タスクと定期タスク（Cowork） › どこで動くか（クラウドと Desktop）](../app/tasks-and-schedules-in-the-app.md#where-it-runs)<!-- link:end --> が持つ。名前が似ているが、ここで扱う Desktop scheduled tasks は Claude Code の公式の名前である。
 
 無人に近づくほど、守りを先に厚くする。任せる段階ごとの確かめ方と封じ込めは <!-- link:begin five-questions-before-delegating#proportional-guards -->[任せ方の段階と、無人で走らせる前の五つの問い › 段ごとに強める確かめ方と封じ込め](five-questions-before-delegating.md#proportional-guards)<!-- link:end --> にある。
 
@@ -220,9 +222,9 @@ After で足したのは、結果の置き場所（経路）、成功の定義�
 ## 比べる相手 {#compare}
 
 - 完了の条件まで、間隔ではなく条件で続けさせたいときは、<!-- link:begin goal-until-done#when -->[/goal（完了するまで続けさせる） › 使いどころ](goal-until-done.md#when)<!-- link:end --> を選ぶ。/loop は時間の間隔、/goal は条件が軸である
-- 決まった時刻・イベント・スクリプトから Claude を動かす方法を、動く場所と課金の違いで選ぶときは、<!-- link:begin choosing-automation -->自動化の選び方（定期タスク・非対話モード・SDK）（準備中）<!-- link:end --> を引く
+- 決まった時刻・イベント・スクリプトから Claude を動かす方法を、動く場所と課金の違いで選ぶときは、<!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)<!-- link:end --> を引く
 - スクリプトや CI から結果を決まった形式で受け取りたいときは、<!-- link:begin headless-basics -->[非対話モード（claude -p）の基本](headless-basics.md)<!-- link:end --> を使う
-- クラウドの定期タスクの詳細は、<!-- link:begin cloud-schedules -->クラウドの定期タスク（準備中）<!-- link:end --> を引く
+- クラウドの定期タスクの詳細は、<!-- link:begin cloud-schedules -->[クラウドの定期タスク](cloud-schedules.md)<!-- link:end --> を引く
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -236,8 +238,8 @@ After で足したのは、結果の置き場所（経路）、成功の定義�
 
 **次に読む**
 
-- 自動化の選び方（定期タスク・非対話モード・SDK）（準備中）
-- クラウドの定期タスク（準備中）
+- [自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)
+- [クラウドの定期タスク](cloud-schedules.md)
 
 **関連**
 

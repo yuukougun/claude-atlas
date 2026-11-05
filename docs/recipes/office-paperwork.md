@@ -24,9 +24,9 @@ tracks: [skills, app-skills]
 sources: [cc-docs-skills, hc-skills-what, hc-skills-use]
 volatility: 中
 sections:
-  - {title: 人 → AI → 人の流れにする, anchor: human-ai-human}
   - {title: 作業用のフォルダと権限の設定で始める, anchor: work-folder}
   - {title: 私的な情報を渡す範囲, anchor: private-data}
+  - {title: 人 → AI → 人の流れにする, anchor: human-ai-human}
   - {title: 手順をファイルとスキルに育てる, anchor: grow-procedures, level: 仕組みにする}
   - {title: 雑務をまとめたリポジトリ, anchor: chores-repo, level: 仕組みにする}
   - {title: 全体の確かめ方, anchor: check}
@@ -45,52 +45,6 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 
 事務作業の半自動化は、経費の整理や週次の報告のような繰り返す作業を、Claude に下書きまでさせて、出すところは人が持つ形にすることである。任せるのは真ん中の 1 段だけにする。渡す材料の範囲と、出す前の確かめを人が握ることで、手間は減らし、誤りが外に出る道は残さない。
-
-## 人 → AI → 人の流れにする {#human-ai-human}
-
-事務作業を任せる流れは、人 → AI → 人の 3 段にする。人が材料を渡し、Claude が下書きを作り、人が確かめて出す。人の段を「確かめる」と「出す」に分けると、手順は 4 つになる。最初と最後を人が持つのは、事務作業の誤りが、もっともらしい文や整った表の形で出てくるからである。読んだだけでは気づきにくい。確かめていない下書きが外へ出ると、取り消しにくい。
-
-先に整える守りは、次の 2 つの節にある。渡す範囲は「作業用のフォルダと権限の設定で始める」と「私的な情報を渡す範囲」で決める。この節では、守りを決めた後に回す手順を書く。
-
-1. **材料を渡す（人）**：何を渡すかを決め、作業用のフォルダに置く。終わりの確かめ：渡すものだけが入り、渡さないものが入っていない。
-2. **下書きを作らせる（Claude）**：出力の形（見出し・列・置き場所）を先に指定する。終わりの確かめ：指定の形のファイルができ、材料にない項目は「材料なし」と書かれている。
-3. **確かめる（人）**：数字と日付と名前を、材料の原本と突き合わせて直す。終わりの確かめ：下書きの各項目を、元の材料までたどれた。
-4. **出す（人）**：送信・提出・登録は人の手で行う。終わりの確かめ：出した記録が人の側に残っている。
-
-下書きを「見せる」形にするのが、3 段目を成り立たせる鍵である。各項目に元の材料の名前を付けさせ、材料にないことは書かせない。こうすると、確かめる人は全文を読み直さず、項目ごとに元を開いて突き合わせられる。
-
-<!-- gen:begin snippet office-paperwork/weekly-report-request -->
-<!-- textlint-disable -->
-
-??? example "雛形：週報の下書きを頼む依頼"
-
-    ```markdown
-    今週の週報の下書きを作ってほしい。
-
-    材料：`weekly-report/inbox/` の中のファイルだけを読む（議事メモ、チケットの一覧、先週の週報）。
-    形：`weekly-report/out/weekly-YYYY-MM-DD.md` に、「進んだこと」「止まっていること」「来週やること」の 3 見出しで書く。
-
-    決まり：
-    - 各項目の末尾に、元にした材料のファイル名を付ける。
-    - 材料に書かれていないことは書かず、「材料なし」と書く。
-    - 件数や日数は材料から数え直し、材料に書かれた値と食い違うときは両方を書く。
-    - 送信や投稿はしない。下書きのファイルだけを作る。
-
-    終わったら、「材料なし」にした項目と、判断に迷った項目を最後に列挙する。
-    ```
-
-    動作を確かめていない雛形。要る最低の版：Claude Code 2.0.20。
-
-<!-- textlint-enable -->
-<!-- gen:end snippet office-paperwork/weekly-report-request -->
-
-経費の一覧づくりも、この人 → AI → 人の流れで回す。違いは、数字が主役になることである。合計は Claude の暗算にせず、スクリプトで出させて、明細の合計と並べて報告させる。集計の頼み方は <!-- link:begin data-analysis#reproducible-queries -->[データを分析する › 再実行できる形で集計させる](data-analysis.md#reproducible-queries)<!-- link:end --> に、生データでの裏取りは <!-- link:begin data-analysis#check-raw-data -->[データを分析する › 生データで裏を取る](data-analysis.md#check-raw-data)<!-- link:end --> にある。
-
-!!! example "判断例：週報を、そのまま送らせるか、下書きで止めるか"
-    - **状況**：毎週の報告を、決まった宛先へメールで送っている。材料は議事メモとチケットの一覧で、Claude が文章にまとめるところまでは安定してきた。
-    - **迷う候補**：下書きができたら、そのまま送信まで任せる。下書きのファイルかメールの下書きで止め、送るのは自分の手にする。
-    - **選んだもの**：下書きで止め、送るのは自分の手にする。
-    - **理由**：送信は取り消しにくく、宛先が社外にも及ぶ。下書きを確かめる手間は小さいが、誤りが出てからの後始末は大きい。定期に回す場合も、送信までは含めない。線引きは <!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end --> にある。
 
 ## 作業用のフォルダと権限の設定で始める {#work-folder}
 
@@ -132,7 +86,7 @@ updated: 2026-11-05
 <!-- textlint-enable -->
 <!-- gen:end snippet office-paperwork/expense-list-request -->
 
-銀行やカードの明細の CSV は、Shift_JIS で保存されていることがある。渡す前に <!-- link:begin character-encodings#check -->文字コード（Shift\_JIS の CSV など） › 渡す前に文字コードを確かめる（準備中）<!-- link:end --> で文字コードを確かめる。確かめずに渡すと、文字化けや集計の空欄になる。
+銀行やカードの明細の CSV は、Shift_JIS で保存されていることがある。渡す前に <!-- link:begin character-encodings#check -->[文字コード（Shift\_JIS の CSV など） › 渡す前に文字コードを確かめる](../japanese/character-encodings.md#check)<!-- link:end --> で文字コードを確かめる。確かめずに渡すと、文字化けや集計の空欄になる。
 
 ## 私的な情報を渡す範囲 {#private-data}
 
@@ -155,6 +109,52 @@ updated: 2026-11-05
     - **迷う候補**：写真をそのまま渡す。氏名を伏せたコピーを渡し、同席者の欄は自分で足す。
     - **選んだもの**：氏名を伏せたコピーを渡す。
     - **理由**：一覧づくりに要るのは日付・店名・金額・区分で、氏名は要らない。伏せた氏名を足す手間は小さい。ただし、同席者の記載が精算の要件で、数が多いときは、伏せずに渡す選択も筋が通る。その場合は、先に使う面の保持の扱いを確かめる。
+
+## 人 → AI → 人の流れにする {#human-ai-human}
+
+事務作業を任せる流れは、人 → AI → 人の 3 段にする。人が材料を渡し、Claude が下書きを作り、人が確かめて出す。人の段を「確かめる」と「出す」に分けると、手順は 4 つになる。最初と最後を人が持つのは、事務作業の誤りが、もっともらしい文や整った表の形で出てくるからである。読んだだけでは気づきにくい。確かめていない下書きが外へ出ると、取り消しにくい。
+
+先に整える守りは、前の 2 つの節にある。渡す範囲は「作業用のフォルダと権限の設定で始める」と「私的な情報を渡す範囲」で決める。この節では、守りを決めた後に回す手順を書く。
+
+1. **材料を渡す（人）**：何を渡すかを決め、作業用のフォルダに置く。終わりの確かめ：渡すものだけが入り、渡さないものが入っていない。
+2. **下書きを作らせる（Claude）**：出力の形（見出し・列・置き場所）を先に指定する。終わりの確かめ：指定の形のファイルができ、材料にない項目は「材料なし」と書かれている。
+3. **確かめる（人）**：数字と日付と名前を、材料の原本と突き合わせて直す。終わりの確かめ：下書きの各項目を、元の材料までたどれた。
+4. **出す（人）**：送信・提出・登録は人の手で行う。終わりの確かめ：出した記録が人の側に残っている。
+
+下書きを「見せる」形にするのが、3 段目を成り立たせる鍵である。各項目に元の材料の名前を付けさせ、材料にないことは書かせない。こうすると、確かめる人は全文を読み直さず、項目ごとに元を開いて突き合わせられる。
+
+<!-- gen:begin snippet office-paperwork/weekly-report-request -->
+<!-- textlint-disable -->
+
+??? example "雛形：週報の下書きを頼む依頼"
+
+    ```markdown
+    今週の週報の下書きを作ってほしい。
+
+    材料：`weekly-report/inbox/` の中のファイルだけを読む（議事メモ、チケットの一覧、先週の週報）。
+    形：`weekly-report/out/weekly-YYYY-MM-DD.md` に、「進んだこと」「止まっていること」「来週やること」の 3 見出しで書く。
+
+    決まり：
+    - 各項目の末尾に、元にした材料のファイル名を付ける。
+    - 材料に書かれていないことは書かず、「材料なし」と書く。
+    - 件数や日数は材料から数え直し、材料に書かれた値と食い違うときは両方を書く。
+    - 送信や投稿はしない。下書きのファイルだけを作る。
+
+    終わったら、「材料なし」にした項目と、判断に迷った項目を最後に列挙する。
+    ```
+
+    動作を確かめていない雛形。要る最低の版：Claude Code 2.0.20。
+
+<!-- textlint-enable -->
+<!-- gen:end snippet office-paperwork/weekly-report-request -->
+
+経費の一覧づくりも、この人 → AI → 人の流れで回す。違いは、数字が主役になることである。合計は Claude の暗算にせず、スクリプトで出させて、明細の合計と並べて報告させる。集計の頼み方は <!-- link:begin data-analysis#reproducible-queries -->[データを分析する › 再実行できる形で集計させる](data-analysis.md#reproducible-queries)<!-- link:end --> に、生データでの裏取りは <!-- link:begin data-analysis#check-raw-data -->[データを分析する › 生データで裏を取る](data-analysis.md#check-raw-data)<!-- link:end --> にある。
+
+!!! example "判断例：週報を、そのまま送らせるか、下書きで止めるか"
+    - **状況**：毎週の報告を、決まった宛先へメールで送っている。材料は議事メモとチケットの一覧で、Claude が文章にまとめるところまでは安定してきた。
+    - **迷う候補**：下書きができたら、そのまま送信まで任せる。下書きのファイルかメールの下書きで止め、送るのは自分の手にする。
+    - **選んだもの**：下書きで止め、送るのは自分の手にする。
+    - **理由**：送信は取り消しにくく、宛先が社外にも及ぶ。下書きを確かめる手間は小さいが、誤りが出てからの後始末は大きい。定期に回す場合も、送信までは含めない。線引きは <!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end --> にある。
 
 ## 手順をファイルとスキルに育てる {#grow-procedures}
 
@@ -256,7 +256,7 @@ updated: 2026-11-05
 
 ## うまくいかないとき {#troubleshoot}
 
-- **集計が合わない、空欄が出る**：文字コードを疑う。<!-- link:begin character-encodings#convert -->文字コード（Shift\_JIS の CSV など） › UTF-8 に変えてから渡す（準備中）<!-- link:end --> で UTF-8 に変えてから渡す。それでも合わないときは、スクリプトの出力と原本の合計を並べて、食い違う行を絞る。
+- **集計が合わない、空欄が出る**：文字コードを疑う。<!-- link:begin character-encodings#convert -->[文字コード（Shift\_JIS の CSV など） › UTF-8 に変えてから渡す](../japanese/character-encodings.md#convert)<!-- link:end --> で UTF-8 に変えてから渡す。それでも合わないときは、スクリプトの出力と原本の合計を並べて、食い違う行を絞る。
 - **渡すつもりのないものを渡した**：会話に貼った内容は、手元の記録に残る。対処は <!-- link:begin protecting-secrets#when-it-fails -->[秘密情報（.env・API キー）を守る › 効かなかったとき](../safety/protecting-secrets.md#when-it-fails)<!-- link:end --> と <!-- link:begin where-your-data-goes#retention -->[送ったデータの行方（学習・保持期間） › 残る期間](../safety/where-your-data-goes.md#retention)<!-- link:end --> を引く。
 - **手順を無視される**：手順は読ませる指示であり、破られうる。破られると困る線は権限の設定で縛る。足し方は <!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end --> にある。
 - **定期に回したら、確認なしで先まで進んだ**：定期にする作業を見直す。送信や提出のような、取り消しにくい操作は含めない。線引きは <!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end --> にある。
@@ -296,7 +296,7 @@ updated: 2026-11-05
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
 - [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)
 - 周辺製品の一覧 › Office アドイン（準備中）
-- 文字コード（Shift\_JIS の CSV など）（準備中）
+- [文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 

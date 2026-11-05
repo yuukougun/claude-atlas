@@ -185,9 +185,9 @@ Claude がした行動の責任は利用者にある。評価の定義・採否�
 アプリのタスクと定期タスクは、Claude Code の定期実行とは別の機能である。
 
 - 頼みたい作業をアプリのタスクで進めるか Claude Code で進めるかは <!-- link:begin choosing-a-surface#app-tasks-or-claude-code -->[アプリ・Claude Code・API の選び方 › アプリのタスクか Claude Code か](../surfaces/choosing-a-surface.md#app-tasks-or-claude-code)<!-- link:end --> で決める。
-- Claude Code を、PC を閉じていても決まった時刻に走らせたいときは <!-- link:begin cloud-schedules -->クラウドの定期タスク（準備中）<!-- link:end --> を見る。
+- Claude Code を、PC を閉じていても決まった時刻に走らせたいときは <!-- link:begin cloud-schedules -->[クラウドの定期タスク](../delegate/cloud-schedules.md)<!-- link:end --> を見る。
 - 開いているセッションの中で繰り返すのは <!-- link:begin loop-and-scheduling -->[/loop と定期実行の方式](../delegate/loop-and-scheduling.md)<!-- link:end --> が持つ。
-- 時刻・イベント・スクリプトから動かす方法の全体の選び方は <!-- link:begin choosing-automation -->自動化の選び方（定期タスク・非対話モード・SDK）（準備中）<!-- link:end --> にある。
+- 時刻・イベント・スクリプトから動かす方法の全体の選び方は <!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)<!-- link:end --> にある。
 
 ## 古くなった助言 {#outdated-advice}
 
@@ -212,8 +212,8 @@ Claude がした行動の責任は利用者にある。評価の定義・採否�
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
 - [/loop と定期実行の方式](../delegate/loop-and-scheduling.md)
-- クラウドの定期タスク（準備中）
-- 自動化の選び方（定期タスク・非対話モード・SDK）（準備中）
+- [クラウドの定期タスク](../delegate/cloud-schedules.md)
+- [自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)
 - [Claude in Chrome と computer use（ブラウザと画面の操作）](../surfaces/browser-control.md)
 - 音声モード・Quick entry・モバイル（準備中）

@@ -1,0 +1,14 @@
+title: 手元の設定を読み込まずに呼ぶ（TypeScript）
+kind: other
+place: 自分のプログラムの中
+safety: false
+requires: ["@anthropic-ai/claude-agent-sdk（TypeScript のパッケージ）", 認証（環境変数かログイン）]
+conditions:
+  - 使い捨ての作業ディレクトリで試す
+  - 作業ディレクトリに README.md を置き、ユーザーの CLAUDE.md に目印になる指示を書いておく
+expect:
+  - when: 実行して、ユーザーの CLAUDE.md にある目印の指示が効いているかを返答で見る
+    then: 目印の指示に沿わない（settingSources が空なので読み込まれない。観察として扱う）
+  - when: 管理者の設定（managed policy）がある環境で実行する
+    then: settingSources が空でも管理設定は読み込まれる（文書の記述。環境がなければ確かめない）
+control: settingSources を省くと、user・project・local の設定が読み込まれる（今の文書の記述。版で変わりうる）

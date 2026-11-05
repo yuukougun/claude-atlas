@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="232" viewBox="0 0 400 232" font-family="sans-serif" font-size="12">
+  <rect x="0" y="0" width="400" height="232" fill="#ffffff"/>
+  <text x="20" y="22" fill="#111111">コンテキスト（広い机）の中身</text>
+  <rect x="20" y="34" width="110" height="40" fill="#f2f2f2" stroke="#333333"/>
+  <text x="30" y="58" fill="#111111">古い発言</text>
+  <rect x="130" y="34" width="140" height="40" fill="#e0e0e0" stroke="#333333"/>
+  <text x="140" y="58" fill="#111111">古い道具の結果</text>
+  <rect x="270" y="34" width="110" height="40" fill="#ffffff" stroke="#333333"/>
+  <text x="280" y="58" fill="#111111">最近のやり取り</text>
+  <line x1="75" y1="74" x2="75" y2="85" stroke="#333333"/>
+  <circle cx="75" cy="93" r="8" fill="#ffffff" stroke="#333333"/>
+  <text x="72" y="97" fill="#111111">1</text>
+  <line x1="200" y1="74" x2="200" y2="85" stroke="#333333"/>
+  <circle cx="200" cy="93" r="8" fill="#ffffff" stroke="#333333"/>
+  <text x="197" y="97" fill="#111111">2</text>
+  <line x1="325" y1="74" x2="325" y2="105" stroke="#333333"/>
+  <polygon points="320,104 330,104 325,112" fill="#333333"/>
+  <circle cx="325" cy="90" r="8" fill="#ffffff" stroke="#333333"/>
+  <text x="322" y="94" fill="#111111">3</text>
+  <rect x="20" y="112" width="360" height="32" fill="#ffffff" stroke="#333333" stroke-dasharray="5 3"/>
+  <text x="30" y="132" fill="#111111">机の外のファイル（/memories）</text>
+  <text x="20" y="170" fill="#111111">1　compaction：古い発言を要約に置き換える</text>
+  <text x="20" y="194" fill="#111111">2　context editing：古い道具の結果を規則で消す</text>
+  <text x="20" y="218" fill="#111111">3　memory tool：机の外のファイルに書き残して読む</text>
+</svg>

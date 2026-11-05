@@ -1,0 +1,12 @@
+title: CLAUDE.md に置く「決定の記録」の指す先
+kind: claude-md
+place: project
+safety: false
+requires: [docs/decisions/0000-template.md]
+conditions:
+  - 新しいセッションで試す
+  - docs/decisions/ に、触る範囲に関わる ADR が 1 つある
+expect:
+  - when: ADR の決定と食い違う変更を頼む
+    then: Claude が変更の前に食い違う ADR を挙げる（お願いなので、必ず挙げるとは限らない。観察として扱う）
+control: 指す先の行がないと、Claude は docs/decisions/ を読まずに変更を進めることがある

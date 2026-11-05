@@ -157,10 +157,10 @@ updated: 2026-11-05
 
 手段は 2 つある。
 
-- 自動の読み込みを止める：`--bare` を付けると、フック・スキル・プラグイン・MCP・自動メモリ・CLAUDE.md の自動検出を止め、どのマシンでも同じ条件になる。止めるものの一覧は <!-- link:begin bare-mode#what-is-skipped -->--bare と再現性 › 読み込まないもの（準備中）<!-- link:end --> にある。`--bare` は API キーで認証し、サブスクリプションのログインを使わない（<!-- link:begin bare-mode#authentication -->--bare と再現性 › 認証が変わる（サブスクリプションで使うとき）（準備中）<!-- link:end -->）。
+- 自動の読み込みを止める：`--bare` を付けると、フック・スキル・プラグイン・MCP・自動メモリ・CLAUDE.md の自動検出を止め、どのマシンでも同じ条件になる。止めるものの一覧は <!-- link:begin bare-mode#what-is-skipped -->[--bare と再現性 › 読み込まないもの](bare-mode.md#what-is-skipped)<!-- link:end --> にある。`--bare` は API キーで認証し、サブスクリプションのログインを使わない（<!-- link:begin bare-mode#authentication -->[--bare と再現性 › 認証が変わる（サブスクリプションで使うとき）](bare-mode.md#authentication)<!-- link:end -->）。
 - 隔離する：使い捨ての環境と <!-- link:begin sandboxing#minimal -->[サンドボックスで封じ込める › 最小の使い方](../enforce/sandboxing.md#minimal)<!-- link:end --> で、動いても困らない範囲に閉じる（<!-- link:begin before-opening-unknown-repos#isolate -->[知らないリポジトリを開く前に › 隔離して動かす](../safety/before-opening-unknown-repos.md#isolate)<!-- link:end -->）。
 
-外の人が書いた issue や PR を読ませる場合は、<!-- link:begin github-actions-with-claude#untrusted-input -->GitHub Actions と @claude › 外の人が書いた issue と PR（準備中）<!-- link:end --> も読む。鍵や秘密は、作業ディレクトリと会話に置かない（<!-- link:begin protecting-secrets#keep-out -->[秘密情報（.env・API キー）を守る › 秘密を作業ディレクトリと会話に置かない](../safety/protecting-secrets.md#keep-out)<!-- link:end -->）。
+外の人が書いた issue や PR を読ませる場合は、<!-- link:begin github-actions-with-claude#untrusted-input -->[GitHub Actions と @claude › 外の人が書いた issue と PR](github-actions-with-claude.md#untrusted-input)<!-- link:end --> も読む。鍵や秘密は、作業ディレクトリと会話に置かない（<!-- link:begin protecting-secrets#keep-out -->[秘密情報（.env・API キー）を守る › 秘密を作業ディレクトリと会話に置かない](../safety/protecting-secrets.md#keep-out)<!-- link:end -->）。
 
 ## 課金の経路（API キーがあるとき） {#billing-path}
 
@@ -224,9 +224,9 @@ updated: 2026-11-05
 
 ## 比べる相手 {#compare}
 
-- 決まった時刻・イベント・スクリプトのどれから動かすか、どこで動くか、どの課金になるかで選ぶ：<!-- link:begin choosing-automation -->自動化の選び方（定期タスク・非対話モード・SDK）（準備中）<!-- link:end -->。
-- GitHub のイベントや `@claude` で動かす：<!-- link:begin github-actions-with-claude#modes -->GitHub Actions と @claude › 呼ばれて動く形と、イベントで動く形（準備中）<!-- link:end -->。
-- 自分のプログラムに組み込み、承認のコールバックや型付きのメッセージが要る：<!-- link:begin agent-sdk-basics#same-and-different -->Agent SDK（Claude Code をライブラリとして使う） › Claude Code と同じもの・違うもの（準備中）<!-- link:end -->。層の比較は <!-- link:begin sdk-comparison#comparison -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › 層ごとの比較（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で動かす）](../api/sdk-comparison.md#comparison)<!-- link:end --> にある。
+- 決まった時刻・イベント・スクリプトのどれから動かすか、どこで動くか、どの課金になるかで選ぶ：<!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)<!-- link:end -->。
+- GitHub のイベントや `@claude` で動かす：<!-- link:begin github-actions-with-claude#modes -->[GitHub Actions と @claude › 呼ばれて動く形と、イベントで動く形](github-actions-with-claude.md#modes)<!-- link:end -->。
+- 自分のプログラムに組み込み、承認のコールバックや型付きのメッセージが要る：<!-- link:begin agent-sdk-basics#same-and-different -->[Agent SDK（Claude Code をライブラリとして使う） › Claude Code と同じもの・違うもの](../api/agent-sdk-basics.md#same-and-different)<!-- link:end -->。層の比較は <!-- link:begin sdk-comparison#comparison -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › 層ごとの比較（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で動かす）](../api/sdk-comparison.md#comparison)<!-- link:end --> にある。
 - 多数のファイルに同じ作業を流す：<!-- link:begin batch-and-p-loops -->多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）<!-- link:end -->。
 
 ## 古くなった助言 {#outdated}
@@ -260,10 +260,10 @@ updated: 2026-11-05
 
 **次に読む**
 
+- [自動化の選び方（定期タスク・非対話モード・SDK）](choosing-automation.md)
+- [--bare と再現性](bare-mode.md)
+- [GitHub Actions と @claude](github-actions-with-claude.md)
 - 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）
-- 自動化の選び方（定期タスク・非対話モード・SDK）（準備中）
-- --bare と再現性（準備中）
-- GitHub Actions と @claude（準備中）
 
 **関連**
 
@@ -278,7 +278,7 @@ updated: 2026-11-05
 - [上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](../cost/what-uses-up-limits.md#find-what-uses-it)
 - [structured outputs（形式を保証する）](../api/structured-outputs-basics.md)
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)
-- Agent SDK（Claude Code をライブラリとして使う）（準備中）
+- [Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)
 
 </div>
 

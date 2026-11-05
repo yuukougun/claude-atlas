@@ -92,7 +92,7 @@ updated: 2026-11-05
 
 保持の期間は、次のとおりである。
 
-- 既定の保持：<!-- fact:begin incognito-retention-period -->未確認<!-- fact:end -->
+- 既定の保持：<!-- fact:begin incognito-retention-period -->30 日（Enterprise は組織の保持期間）。履歴・メモリ・学習には使わない（2026-11-05 時点）<!-- fact:end -->
 
 組織向けのプランでは、組織の保持の設定でこれより長くなることがある。期間は変わりやすいので、数字は上の目印の値を見る。学習に使われる条件と、プランごとの保持の全体は <!-- link:begin where-your-data-goes#retention -->[送ったデータの行方（学習・保持期間） › 残る期間](../safety/where-your-data-goes.md#retention)<!-- link:end --> が持つ。
 

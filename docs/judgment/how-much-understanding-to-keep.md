@@ -84,7 +84,7 @@ AI にコードを書かせる量が増えると、全部を同じ深さで理�
 
 説明できない理由が AI の説明を読んでいないだけなら、読めば済む。読んでも言い直せないなら、そのコードを採らず、小さく作り直させるか、自分で書く。
 
-AI にレビューさせて通っても、説明できたことにはならない。AI の承認は人の承認に数えない。理由は<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](../verify/independent-review.md#ai-approval)<!-- link:end -->を参照する。PR の説明を自分の言葉で書けるまで読む手順は、<!-- link:begin create-and-review-prs#pr-description -->PR を作り、レビューを受ける › PR の説明に書くこと（準備中）<!-- link:end -->にある。
+AI にレビューさせて通っても、説明できたことにはならない。AI の承認は人の承認に数えない。理由は<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](../verify/independent-review.md#ai-approval)<!-- link:end -->を参照する。PR の説明を自分の言葉で書けるまで読む手順は、<!-- link:begin create-and-review-prs#pr-description -->[PR を作り、レビューを受ける › PR の説明に書くこと](../recipes/create-and-review-prs.md#pr-description)<!-- link:end -->にある。
 
 !!! example "判断例：AI が書いた集計と課金計算を、期日までに出す"
     - **状況**：小さな社内サービスで、AI がログ整形、集計バッチ、課金の計算を書いた。期日が近く、全部を読む時間はない。
@@ -112,7 +112,7 @@ Anthropic の社内調査では、この懸念が挙がっている。Claude で
 - 週次の振り返りで、AI なしの時間を取れたかを確かめる。
 - チームなら、批評担当を持ち回りにして、説明できない変更を指摘する役を固定しない。
 
-見ながら一緒に進める伴走と、任せて後で確かめる委託では、理解の残り方が違う。選び方は<!-- link:begin pairing-and-delegating -->伴走と委託（準備中）<!-- link:end -->が扱う。
+見ながら一緒に進める伴走と、任せて後で確かめる委託では、理解の残り方が違う。選び方は<!-- link:begin pairing-and-delegating -->[伴走と委託](../delegate/pairing-and-delegating.md)<!-- link:end -->が扱う。
 
 AI を禁じる大会を目指す場合は、練習で AI を解説役にしつつ、本番の条件で自力を確かめる。<!-- link:begin practice-vs-contest-day#test-under-contest-conditions -->[練習と本番の使い分け（AI を禁じる大会に向けた練習を含む） › 本番の条件で自力を確かめる](../contest/practice-vs-contest-day.md#test-under-contest-conditions)<!-- link:end -->を参照する。
 
@@ -159,11 +159,11 @@ AI を禁じる大会を目指す場合は、練習で AI を解説役にしつ�
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 - [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
 - [レビューのボトルネックと疲労](../team/review-bottlenecks.md)
-- 伴走と委託（準備中）
+- [伴走と委託](../delegate/pairing-and-delegating.md)
 - [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](../contest/practice-vs-contest-day.md)
 - [判断を預けすぎる（過度依存）](over-reliance.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
-- PR を作り、レビューを受ける（準備中）
+- [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
 - [人の側の五つの落とし穴（総論）](human-pitfalls.md)
 
 </div>

@@ -82,7 +82,7 @@ updated: 2026-11-05
     - 戻せるのは、Claude のファイル編集の道具で変えたファイルだけである。Bash で消したファイル、Bash だけが変えたファイル、Claude Code の外での変更、ほとんどのサブエージェントの編集は戻らない。
     - 戻せるものと戻せないものの詳細は、<!-- link:begin checkpoints-and-rewind#what-is-restored -->[チェックポイントと /rewind（git との違い） › 戻せるもの・戻せないもの](../cli/checkpoints-and-rewind.md#what-is-restored)<!-- link:end -->にある。チェックポイントは git の代わりにならない。
 
-どこにも見つからないときは、失った作業をセッションの記録から探す。探す順と記録の場所は、<!-- link:begin recover-lost-work#order -->セッション記録から失った作業を取り戻す › 探す順（準備中）<!-- link:end -->にある。
+どこにも見つからないときは、失った作業をセッションの記録から探す。探す順と記録の場所は、<!-- link:begin recover-lost-work#order -->[セッション記録から失った作業を取り戻す › 探す順](../cli/recover-lost-work.md#order)<!-- link:end -->にある。
 
 戻せたら、戻した内容が消える前と同じかを、差分で確かめる。そのうえで、次の節で原因を切り分ける。
 
@@ -151,7 +151,7 @@ updated: 2026-11-05
 - **消されたくないものは鍵で守る**：例外を許さない禁止は、deny ルールかフックで止める。CLAUDE.md には、理由と相談の基準だけを書く。経路と、巻き戻しで戻らないものは<!-- link:begin destructive-commands#how-it-happens -->[消されたくないもの（破壊的コマンド） › 消える経路](../safety/destructive-commands.md#how-it-happens)<!-- link:end -->にある。止めた理由と代わりの手段を返すフックの書き方は、<!-- link:begin block-with-exit-2 -->[フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)<!-- link:end -->と<!-- link:begin hook-recipes#block-dangerous -->[代表的なフックのレシピ › 危ない操作を止める](../enforce/hook-recipes.md#block-dangerous)<!-- link:end -->にある。
 - **境界を OS の層で足す**：サンドボックスでシェルのコマンドを囲む。確認をすべて外す運用は、隔離した使い捨ての環境だけにする。古くなった助言は<!-- link:begin outdated-advice-ledger#yolo-skip-permissions -->[古くなった助言の台帳](../changes/outdated-advice-ledger.md#yolo-skip-permissions)<!-- link:end -->にある。
 - **任せる幅に守りを合わせる**：確認を減らすほど、守りを同じ流れの中で足す。段階ごとの設定は<!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end -->にある。
-- **失敗を仕組みに戻す**：誰の誤りかではなく、どの隙間が許したかで振り返る。方法は<!-- link:begin postmortems -->失敗を仕組みに戻す（ポストモーテム）（準備中）<!-- link:end -->にある。
+- **失敗を仕組みに戻す**：誰の誤りかではなく、どの隙間が許したかで振り返る。方法は<!-- link:begin postmortems -->[失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)<!-- link:end -->にある。
 
 承認の確認の量が合っていないことが根にあるなら、<!-- link:begin wrong-amount-of-approvals -->[承認の確認が多すぎる・少なすぎる](wrong-amount-of-approvals.md)<!-- link:end -->を見る。秘密の情報が読まれた疑いがあるなら、<!-- link:begin secrets-exposed -->[秘密の情報を読まれた・外に出された](secrets-exposed.md)<!-- link:end -->を先に見る。症状全体の振り分けは<!-- link:begin six-causes -->[失敗の二つの軸と診断の入口](../start/six-causes.md)<!-- link:end -->から始める。
 
@@ -197,10 +197,10 @@ updated: 2026-11-05
 
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
 - [git との付き合い方](../cli/working-with-git.md)
-- セッション記録から失った作業を取り戻す（準備中）
+- [セッション記録から失った作業を取り戻す](../cli/recover-lost-work.md)
 - [フックで止めて理由を返す（exit 2 と JSON）](../enforce/block-with-exit-2.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
-- 失敗を仕組みに戻す（ポストモーテム）（準備中）
+- [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)
 - ノート・PKM（Obsidian など）（準備中）
 - [承認の確認が多すぎる・少なすぎる](wrong-amount-of-approvals.md)
 - [秘密の情報を読まれた・外に出された](secrets-exposed.md)

@@ -1,0 +1,31 @@
+proposals:
+  - fact:
+      id: plan-prices-individual
+      title: 個人向けのプランの月額と払い方（Web の価格）
+      table:
+        rows: プラン
+        columns:
+          - {id: monthly, title: 月払いの月額}
+          - {id: annual, title: 年払いの月あたり}
+          - {id: note, title: 備考}
+        cells:
+          - {row: Free, monthly: "$0", annual: —, note: 無料}
+          - {row: Pro, monthly: "$20", annual: "$17（$200 の前払い）", note: ""}
+          - {row: Max, monthly: "$100", annual: 年払いなし（月払いのみ）, note: 今の Max は 1 つの段}
+          - {row: Ultra, monthly: "$200", annual: 年払いなし（月払いのみ）, note: 旧 Max 20x}
+      sources: [claude-pricing, hc-max-plan, hc-ultra-plan, hc-pro-plan]
+      checked: 2026-11-03
+      status: 確認済み
+    used_in: [choosing-a-plan#plan-table]
+    note: 元は research/02 §2-1（料金のページ 2026-10-29）と research/22 #32・research/26 #19（Max・Ultra の記事 2026-10-30 更新）。Pro と Free は料金のページ 2026-10-29 の記録だけで、今回は開いていない。モバイルの価格は Web と異なる場合がある（Max の記事）。本文は数字を書いていない。fact が入ったら、plan-table の fact-table の直前か直後に fact-table plan-prices-individual の目印を足す。
+  - fact:
+      id: claude-code-in-free-plan
+      title: Free で Claude Code を使えるか
+      value: 使えない（Free に Claude Code は含まれない）
+      sources: [claude-pricing]
+      checked: 2026-11-03
+      status: 未確認
+    used_in: [choosing-a-plan#what-to-compare]
+    note: 任意。research/02 §2-1 の記述（2026-10-29）のみ。本文は Free の比較に触れていないため、入れなくてよい。
+frontmatter:
+  - {id: choosing-a-plan, key: related, before: [before-using-top-model, usage-credits-basics, paying-in-yen, check-billing-path, choosing-a-model, choosing-an-org-plan, term-index, change-timeline-2026], after: [before-using-top-model, usage-credits-basics, paying-in-yen, check-billing-path, choosing-a-model, choosing-an-org-plan, saving-priorities, term-index, change-timeline-2026], reason: "判断例 1 の「枠が足りない」の前に、節約の優先順位を先に見る導線が欲しい。本文からは束にないため指していない"}

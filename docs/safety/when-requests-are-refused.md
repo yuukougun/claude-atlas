@@ -59,15 +59,16 @@ updated: 2026-11-05
 
 === "Claude Code"
     - **表示**：新しい会話を始めるよう促す文が出る。判定は会話全体にかかるので、同じセッションで送り直しても、`--continue` や `--resume` で開き直しても、また止まる。
-    - **サイバーの分類**：別の表示になり、検証の制度へのリンクが付く。自動の切り替えがあるモデルでは表示の文が違い、このリンクは付かない。
+    - **サイバーの分類**：別の表示になり、検証の制度へのリンクが付く。自動の切り替えがあるモデルでは表示の文が違い、このリンクは付かない。分類ごとの切り替えが要る版は、<!-- fact:begin refusals-cc-per-category-switch-min-version -->未確認<!-- fact:end -->である。
+    - **既定**：自動の切り替えの既定は、（<!-- fact:begin refusals-auto-switch-default -->未確認<!-- fact:end -->）である。
     - **設定**：自動の切り替えは、`/config` の Switch models when a message is flagged（設定のキーは `switchModelsOnFlag`）で切れる（2026-11-04 時点）。
     - **文の確かめ方**：表示の文は版で変わる。手元の文は [Error reference](https://code.claude.com/docs/en/errors) で突き合わせる。
 
 === "API"
-    - **拒否の形**：拒否はエラーではなく、HTTP 200 の普通の応答である。`stop_reason` が `refusal` になり、`stop_details.category` が分野を示す。
+    - **拒否の形**：拒否はエラーではなく、HTTP 200 の普通の応答である。`stop_reason` が `refusal` になり、`stop_details.category` が分野を示す。分野の値は、（<!-- fact:begin refusals-api-categories -->未確認<!-- fact:end -->）である。
     - **引っかかり**：どの分類でも、無害な仕事が引っかかりうると文書は書く。
     - **自動の切り替え**：リクエストに `fallbacks` を設定して使う。詳しくは [Refusals and fallback](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback) にある。
-    - **課金**：拒否の課金の扱いは分野で違い、何度か変わった。出力の前に止まっても課金される分類がある。同じ文書で確かめる。
+    - **課金**：拒否の課金の扱いは分野で違い、何度か変わった。現在の扱いは、（<!-- fact:begin refusals-billing-by-category -->未確認<!-- fact:end -->）である。同じ文書で確かめる。
 
 別の仕組みに、「Output blocked by content filtering policy」のエラーがある。これは既存の著作物をそのまま再現させないためのもので、内容の是非の判断ではない。公式の説明は [Why am I receiving an 'Output blocked by content filtering policy' error?](https://support.claude.com/en/articles/9205721-why-am-i-receiving-an-output-blocked-by-content-filtering-policy-error) にある。モデルの切り替えの設定は [Model configuration](https://code.claude.com/docs/en/model-config) に、切り替えの理由は [Why Claude switched models in your conversation with Opus 5 or Opus 5.5](https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5-or-opus-5-5) にある。
 
@@ -76,10 +77,10 @@ updated: 2026-11-05
 正当な依頼が止められたときに公式が案内する手段は、引き金を会話から外す・推論の全文を求める指示を外す・本当の目的と文脈を足す・誤判定を報告する・検証の制度に申し込む、の 5 つである。選び方は原因の見立てによる。引き金になった内容が会話に残っていそうなら 1、設定や CLAUDE.md に推論を求める指示がありそうなら 2、依頼の目的が伝わっていないなら 3、誤判定だと思うなら 4、継続する専門の仕事なら 5 を使う。1 と 3 と 4 は重ねてよい。
 
 1. **引き金になったやり取りより前に戻す。** Claude Code では Esc を 2 回押すか `/rewind` を使う。どこが原因か分からなければ `/clear` で新しい会話にする（前の会話は `/resume` に残る）。`-p` では `--continue` を付けずに新しいセッションで言い直す。アプリでは前のメッセージを直して送る。判定が会話全体にかかるので、止まった内容を会話に残さないことが効く。手順は <!-- link:begin checkpoints-and-rewind#how-to -->[チェックポイントと /rewind（git との違い） › 最小の使い方](../cli/checkpoints-and-rewind.md#how-to)<!-- link:end --> と <!-- link:begin rewind-dont-correct#how -->[違うと返すより、巻き戻す・編集する › 面ごとの戻し方](../context/rewind-dont-correct.md#how)<!-- link:end --> に、新しくする合図は <!-- link:begin when-to-start-fresh#signals -->[新しい会話を始めるタイミング › 新しくする合図](../context/when-to-start-fresh.md#signals)<!-- link:end --> にある。
-2. **推論の全文や決まった形を求める指示を外す。** `<thinking>` の欄や JSON の reasoning の欄を求める指示は、止まる原因になる。CLAUDE.md・スキル・サブエージェント・出力スタイル・MCP のツールの説明に入っていることもあり、`claude --safe-mode` で設定を外すと切り分けられる。理由を知りたいときは、短い説明か根拠の要約を頼む。経緯は <!-- link:begin asking-for-reasoning#refusal -->推論を見せてほしいとき › 全文を求める指示が断られる理由（準備中）<!-- link:end --> に、切り分けは <!-- link:begin isolate-with-safe-mode#compare -->[設定を外して切り分ける（--safe-mode） › 比べ方](../cli/isolate-with-safe-mode.md#compare)<!-- link:end --> にある。
+2. **推論の全文や決まった形を求める指示を外す。** `<thinking>` の欄や JSON の reasoning の欄を求める指示は、止まる原因になる。CLAUDE.md・スキル・サブエージェント・出力スタイル・MCP のツールの説明に入っていることもあり、`claude --safe-mode` で設定を外すと切り分けられる。理由を知りたいときは、短い説明か根拠の要約を頼む。経緯は <!-- link:begin asking-for-reasoning#refusal -->[推論を見せてほしいとき › 全文を求める指示が断られる理由](../prompting/asking-for-reasoning.md#refusal)<!-- link:end --> に、切り分けは <!-- link:begin isolate-with-safe-mode#compare -->[設定を外して切り分ける（--safe-mode） › 比べ方](../cli/isolate-with-safe-mode.md#compare)<!-- link:end --> にある。
 3. **本当の目的と文脈を足す。** 誰が、どの範囲で、何のために頼んでいるかを、事実のとおりに書く。同じ会話では止まり続けることがあるので、1 の戻した先か新しい会話の最初に書く。理由を添えると意図が伝わる仕組みは <!-- link:begin give-reasons#what-changes -->[理由を添える › 理由を添えると何が変わるか](../prompting/give-reasons.md#what-changes)<!-- link:end --> にある。偽の文脈は手段に入らない。入らない理由は、このページの節「分類器を避ける頼み方をしない理由（利用ポリシー）」に書いた。
 4. **誤判定を報告する。** アプリは Send feedback から、Claude Code は `/feedback` から報告する（表示の Request ID を添えられる）。API ではサポートに request ID を添える。アカウントの停止には異議申し立ての窓口がある。報告では会話が送られるので、送る前に <!-- link:begin what-feedback-sends#what-is-sent -->[/feedback・トランスクリプトの共有で送られるもの › 送られるものと残る期間](what-feedback-sends.md#what-is-sent)<!-- link:end --> で中身を確かめる。
-5. **正当な専門の仕事なら、検証の制度に申し込む。** サイバーは Cyber Verification Program がある。個人で申し込める範囲は変わるので [Cyber Verification Program](https://support.claude.com/en/articles/14604842-cyber-verification-program) で確かめる。生命科学には Life Sciences Verification Program があり、組織向けと案内されている。
+5. **正当な専門の仕事なら、検証の制度に申し込む。** サイバーは Cyber Verification Program がある。段階と個人で申し込める範囲は、（<!-- fact:begin refusals-cvp-tiers -->未確認<!-- fact:end -->）である。範囲は変わるので [Cyber Verification Program](https://support.claude.com/en/articles/14604842-cyber-verification-program) で確かめる。生命科学には Life Sciences Verification Program があり、組織向けと案内されている。
 
 頼み直しの文は、同じ依頼で並べると差が分かる。
 
@@ -151,7 +152,7 @@ auto モードの分類器に操作を止められた場合の見直し方は、
 - [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
-- 推論を見せてほしいとき › 全文を求める指示が断られる理由（準備中）
+- [推論を見せてほしいとき › 全文を求める指示が断られる理由](../prompting/asking-for-reasoning.md#refusal)
 - [設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)
 - [/feedback・トランスクリプトの共有で送られるもの](what-feedback-sends.md)
 - [学校・組織・コンテストの規則（類型と確認表）](checking-ai-rules.md)

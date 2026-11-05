@@ -142,7 +142,7 @@ updated: 2026-11-05
 - **言い直せない所に印を付ける**。そこが読み直す箇所になる。該当の行だけを Claude に質問し、答えを読んだらもう一度、見ずに言い直す。
 - **言い直せるまで採らない**。中核の変更は、言い直せるまでマージしない。この出荷の基準の置き方は <!-- link:begin how-much-understanding-to-keep#explain-or-reject -->[どこまで理解を手放してよいか（中核と周辺） › 説明できないものは採らない](../judgment/how-much-understanding-to-keep.md#explain-or-reject)<!-- link:end --> にある。確かめる手間を惜しんで説明を読んだだけで採る流れは、<!-- link:begin over-reliance -->[判断を預けすぎる（過度依存）](../judgment/over-reliance.md)<!-- link:end --> の落とし穴にあたる。
 
-言い直した文は、PR の説明にそのまま使える。書き方は <!-- link:begin create-and-review-prs#pr-description -->PR を作り、レビューを受ける › PR の説明に書くこと（準備中）<!-- link:end --> にある。
+言い直した文は、PR の説明にそのまま使える。書き方は <!-- link:begin create-and-review-prs#pr-description -->[PR を作り、レビューを受ける › PR の説明に書くこと](../recipes/create-and-review-prs.md#pr-description)<!-- link:end --> にある。
 
 この考え方は、実在の組織の規約にもある。Rust コンパイラの開発ガイドは、LLM が生成したコードを含む変更について、作者に自分の言葉での説明、バグの再現、エッジケースの列挙を求めるよう、レビュアーに指示している（2026-11-04 に確認。ガイドの版で変わりうる）。
 
@@ -190,7 +190,7 @@ updated: 2026-11-05
 
 **次に読む**
 
-- PR を作り、レビューを受ける（準備中）
+- [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
 
 **関連**
 

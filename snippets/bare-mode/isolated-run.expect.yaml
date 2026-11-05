@@ -1,0 +1,17 @@
+title: 自分の設定を混ぜない claude -p の起動例（サブスクリプションのまま）
+kind: other
+place: project
+safety: true
+features: [headless]
+conditions:
+  - 新しいシェルで試す。CLAUDE.md を持たない使い捨てのフォルダの中で実行する
+  - 専用の置き場所（CLAUDE_CONFIG_DIR）で一度だけ /login しておく
+  - jq は要らない。出力は JSON のまま確かめる
+expect:
+  - when: 自分の ~/.claude に目印になる指示（例：返答の最後に特定の一言を付ける）を書いてから、スクリプトを実行する
+    then: 返答にその一言が出ない
+  - when: ANTHROPIC_API_KEY を設定したシェルから実行する
+    then: スクリプトの中で変数が外れ、サブスクリプションの認証で動く
+  - when: MODEL を空にして実行する
+    then: MODEL の指定を求めるエラーで、claude を呼ぶ前に止まる
+control: 環境変数と --setting-sources を外した同じ依頼では、自分の ~/.claude の設定や CLAUDE.md が混ざる

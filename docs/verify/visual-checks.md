@@ -39,7 +39,7 @@ updated: 2026-11-05
 !!! abstract "要点"
     - **何ができるか**：画面を持つ成果物を、ブラウザの操作やスクリーンショットの比較で、人が使うのと同じように確かめさせられる。
     - **いつ引くか**：見た目の崩れを確かめさせたいとき。テストは通るのに、画面を開くと動かないとき。モックと出来上がりの画面の違いを挙げさせたいとき。
-    - **強制力**：<!-- gen:begin feature verify-skill/enforcement -->—<!-- gen:end feature verify-skill/enforcement -->（値は数値ファイルの登録待ち）。確かめる手段を渡すだけで、確かめずに完了と言うことは止められない。止めたいときは、完了の条件にスクリーンショットを入れ、証拠として受け取る。
+    - **強制力**：<!-- gen:begin feature verify-skill/enforcement -->お願い<!-- gen:end feature verify-skill/enforcement -->。確かめる手段を渡すだけで、確かめずに完了と言うことは止められない。止めたいときは、完了の条件にスクリーンショットを入れ、証拠として受け取る。
     - **前提**：<!-- link:begin evidence-not-reports -->[報告ではなく証拠を求める](evidence-not-reports.md)<!-- link:end -->
 
 <!-- textlint-disable -->
@@ -99,7 +99,7 @@ Anthropic の長時間エージェントの運用例では、Claude は単体テ
 
 比べる条件は揃える。画面の幅、表示するデータ、ログインの状態が違うと、違いの一覧に本物の崩れと条件の差が混ざる。幅は 2 通りほど決めて、撮る状態を依頼に書く。
 
-違いの一覧は、場所・モックの見た目・出来上がりの見た目・直す必要があるかの判断、の 4 つの欄で返させると、直す・直さないを人が決めやすい。画面の資料やスライドの見た目を確かめる場合の流れは <!-- link:begin make-slides -->資料・スライドを作る（準備中）<!-- link:end --> にある。
+違いの一覧は、場所・モックの見た目・出来上がりの見た目・直す必要があるかの判断、の 4 つの欄で返させると、直す・直さないを人が決めやすい。画面の資料やスライドの見た目を確かめる場合の流れは <!-- link:begin make-slides -->[資料・スライドを作る](../recipes/make-slides.md)<!-- link:end --> にある。
 
 ## 依頼の雛形 {#templates}
 
@@ -194,7 +194,7 @@ Anthropic の長時間エージェントの運用例では、Claude は単体テ
 - [検証の階段](verification-ladder.md)
 - [ブラウザや画面の操作を任せるときの注意](../safety/browser-agent-cautions.md)
 - [見た目は品質の証拠ではない](looks-are-not-quality.md)
-- 資料・スライドを作る（準備中）
+- [資料・スライドを作る](../recipes/make-slides.md)
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 
 </div>

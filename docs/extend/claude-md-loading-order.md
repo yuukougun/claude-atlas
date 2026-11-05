@@ -85,11 +85,11 @@ monorepo/
 - 同じ階層の兄弟フォルダ（上の図の `other-team/`）は、起動時には読まれない。ただし Claude がそのフォルダのファイルを読めば、後から入る。
 - `--add-dir` で足したフォルダの CLAUDE.md は、既定では読まれない。環境変数 `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` を `1` にすると読まれる。
 
-なお、AGENTS.md は、作業ディレクトリかその上に CLAUDE.md か `CLAUDE.local.md` があると、既定では読まれない。その扱いは<!-- link:begin agents-md -->AGENTS.md とほかのツールとの共有（準備中）<!-- link:end -->にまとめてある。
+なお、AGENTS.md は、作業ディレクトリかその上に CLAUDE.md か `CLAUDE.local.md` があると、既定では読まれない。その扱いは<!-- link:begin agents-md -->[AGENTS.md とほかのツールとの共有](agents-md.md)<!-- link:end -->にまとめてある。
 
 ## 取り込みでは減らない {#import}
 
-`@path/to/file` と書くと、別のファイルを CLAUDE.md の中に取り込める。相対パスは、取り込む側のファイルを基準に解決される。取り込みは入れ子にでき、上限の段数がある（段数は公式の文書を見る）。
+`@path/to/file` と書くと、別のファイルを CLAUDE.md の中に取り込める。相対パスは、取り込む側のファイルを基準に解決される。取り込みは入れ子にでき、段数は<!-- fact:begin claude-md-import-max-hops -->4 段（ホップ）まで（2026-11-05 時点）<!-- fact:end -->。
 
 取り込みは整理のための仕組みで、文脈の節約にはならない。取り込まれたファイルも起動時に一緒に展開されるので、読み込まれる量は変わらない。サブフォルダの CLAUDE.md が取り込むファイルも、その CLAUDE.md と一緒に後から読まれる。
 
@@ -185,7 +185,22 @@ monorepo/
 - **階層は強制ではない**：どの階層の CLAUDE.md も、Claude には文脈として渡るだけである。深いフォルダの CLAUDE.md に書いても、守らせる力は強くならない。例外を許さない禁止は、置き場所をどう工夫しても守られる保証にならない。鍵に移し、CLAUDE.md には理由を書く。移し先は<!-- link:begin what-to-put-in-claude-md#what-to-leave-out -->[CLAUDE.md に書くこと・書かないこと › 書かないことと、移し先](what-to-put-in-claude-md.md#what-to-leave-out)<!-- link:end -->にある。
 - **「取り込めば短くなる」は誤解**：取り込みは、読む側のファイルを短く見せるだけで、文脈に入る量は同じである。長さが問題なら、<!-- link:begin claude-md-length#deletion-test -->[CLAUDE.md の長さと剪定 › 削るときの問い](claude-md-length.md#deletion-test)<!-- link:end -->の問いで行を減らす。
 - **サブフォルダの分は、必要な時点で入るとは限らない**：Claude がそのフォルダのファイルを読むまで入らない。作業の最初の指示にそのフォルダの規約が要るなら、サブフォルダの CLAUDE.md では間に合わないことがある。
-- **後から読まれる分には大きさの上限がある**：サブフォルダの CLAUDE.md や、後から読まれる rules が上限を超えると、先頭だけが渡る。後半は Claude がファイルを読みに行くまで文脈に入らない。上限の値は公式の文書を見る。
+- **後から読まれる分には大きさの上限がある**：サブフォルダの CLAUDE.md や、後から読まれる rules が上限を超えると、先頭だけが渡る。後半は Claude がファイルを読みに行くまで文脈に入らない。上限は、下の表のとおりである。
+
+<!-- gen:begin fact-table claude-md-on-demand-char-limit -->
+<!-- textlint-disable -->
+
+| コンテキストの窓とモデル | 上限（文字数） |
+| --- | --- |
+| 200K の窓 | 40000 |
+| 1M の窓（Claude Opus 4.6・Claude Sonnet 4.6） | 200000 |
+| 1M の窓（それより後のモデル） | 150000 |
+
+確認日 2026-11-04。出典：[How Claude remembers your project](https://code.claude.com/docs/en/memory)。
+
+<!-- textlint-enable -->
+<!-- gen:end fact-table claude-md-on-demand-char-limit -->
+
 - **矛盾は選び方が保証されない**：個人・プロジェクト・サブフォルダの間で矛盾すると、Claude はどちらかを選ぶ。読まれる順の最後が勝つとは言えないので、矛盾は定期的に探して消す。
 - **管理の CLAUDE.md は外せない**：`claudeMdExcludes` は、組織が配る管理の CLAUDE.md には効かない。強制の仕組みは、<!-- link:begin managed-settings-enforcement#cannot-override -->管理設定と組織の強制 › 利用者の側から外せない範囲（準備中）<!-- link:end -->にある。
 - **手元の確認は WSL・Linux の CLI を基準にしている**：ほかの OS と IDE 拡張で、読み込まれる場所や順番が同じかは、未確認である。
@@ -233,7 +248,7 @@ CLAUDE.md と rules は、どちらも指示をファイルで置く機能だが
 
 **次に読む**
 
-- AGENTS.md とほかのツールとの共有（準備中）
+- [AGENTS.md とほかのツールとの共有](agents-md.md)
 
 **関連**
 

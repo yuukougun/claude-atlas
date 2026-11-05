@@ -84,7 +84,7 @@ flowchart LR
     - **状況**：コンテスト向けの最適化問題で、解法 A と解法 B のどちらで進めるか迷っている。どちらも、手元の入力に対する採点のスクリプトで点が出せる。
     - **迷う候補**：A を作り込んでから B に移る。または、A と B を worktree に分けて同時に実装させ、同じ採点で比べる。
     - **選んだもの**：同じ入力の集合と同じ採点のスクリプトを先に固定し、A と B を別の worktree で実装させて比べる。
-    - **理由**：順に作ると、A の作り込みで得た知識が B に入り、手元の入力への慣れも変わるので、同じ条件で比べられない。並べれば、差を案の違いに絞れる。一方、勝敗が僅差なら案を足さず、ケースや試行を増やす。その進め方は <!-- link:begin running-contest-experiments#more-cases -->実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › ぶれるならケースを増やす（準備中）<!-- link:end --> にある。
+    - **理由**：順に作ると、A の作り込みで得た知識が B に入り、手元の入力への慣れも変わるので、同じ条件で比べられない。並べれば、差を案の違いに絞れる。一方、勝敗が僅差なら案を足さず、ケースや試行を増やす。その進め方は <!-- link:begin running-contest-experiments#more-cases -->[実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › ぶれるならケースを増やす](../contest/running-contest-experiments.md#more-cases)<!-- link:end --> にある。
 
 ## 雛形：比較の記録と手順 {#template}
 
@@ -171,7 +171,7 @@ flowchart LR
 - **差が誤差より大きいか**：差が試行ごとのぶれの範囲に収まるなら、勝ちとは言わない。試行を増やすか、引き分けにする。見方は <!-- link:begin measure-changes -->[変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)<!-- link:end --> にある。
 - **評価器の穴に合わせていないか**：勝った案が評価器だけに通じる書き方をしていないか。評価に使わなかった入力か、人が読む確認で見直す。同じ評価器で良かった版を選び続けるほど、合わせ込みは強まる。その防ぎ方は <!-- link:begin selection-pressure#defenses -->[選択圧：良かった版を選び続ける罠 › 防ぎ方](../eval/selection-pressure.md#defenses)<!-- link:end --> にある。
 - **体感で決めていないか**：決めた理由が、記録の値と差分にある。速そうに見えた、読みやすそうに見えた、という印象だけで決めていない。ずれる理由は <!-- link:begin felt-vs-measured -->[体感と実測](../eval/felt-vs-measured.md)<!-- link:end --> にある。
-- **決めたことが残っているか**：採否と理由が、新しい人が文書だけで追える形で残っている。残し方は <!-- link:begin record-decisions -->決定を文書に残す（ADR と週次アップデート）（準備中）<!-- link:end --> にある。
+- **決めたことが残っているか**：採否と理由が、新しい人が文書だけで追える形で残っている。残し方は <!-- link:begin record-decisions -->[決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)<!-- link:end --> にある。
 
 ## 失敗したとき {#when-it-fails}
 
@@ -202,8 +202,8 @@ flowchart LR
 - [並列の上限は人間が決める](humans-set-the-parallel-limit.md)
 - [AI の案は「みんなの案」（均質化）](../judgment/ai-ideas-are-everyones.md)
 - [体感と実測](../eval/felt-vs-measured.md)
-- 決定を文書に残す（ADR と週次アップデート）（準備中）
-- 実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）（準備中）
+- [決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)
+- [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](../contest/running-contest-experiments.md)
 
 </div>
 

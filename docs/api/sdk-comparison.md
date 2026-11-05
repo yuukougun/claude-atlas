@@ -44,7 +44,7 @@ updated: 2026-11-05
 
 ## 層ごとの比較（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で動かす） {#comparison}
 
-4 つの層は、エージェントのループを誰が回すかと、どこで動くかの 2 つの軸で分かれる。ループは、Claude が道具の呼び出しを頼み、呼び出し側が実行して結果を返す輪である（仕組みは <!-- link:begin tool-use-loop#who-runs-the-loop -->tool use のループ › ループを誰が回すか（準備中）<!-- link:end --> にある）。
+4 つの層は、エージェントのループを誰が回すかと、どこで動くかの 2 つの軸で分かれる。ループは、Claude が道具の呼び出しを頼み、呼び出し側が実行して結果を返す輪である（仕組みは <!-- link:begin tool-use-loop#who-runs-the-loop -->[tool use のループ › ループを誰が回すか](tool-use-loop.md#who-runs-the-loop)<!-- link:end --> にある）。
 
 ![ループを誰が回すかと、どこで動くかの 2 軸の図。自分の環境には Client SDK、Agent SDK、CLI が入り、Anthropic のクラウドには Managed Agents が入る。](../img/sdk-comparison/loop-and-place.svg)
 
@@ -64,8 +64,8 @@ updated: 2026-11-05
 
 | 機能 | 面 | 成熟度 |
 | --- | --- | --- |
-| Messages API（準備中） | API | GA |
-| Agent SDK（Claude Agent SDK）（準備中） | Claude Code・API | GA |
+| [Messages API](stateless-messages-api.md) | API | GA |
+| [Agent SDK（Claude Agent SDK）](agent-sdk-basics.md) | Claude Code・API | GA |
 | [Managed Agents（Claude Managed Agents）](sdk-comparison.md) | API | beta |
 | [非対話モード（claude -p）](../delegate/headless-basics.md) | Claude Code | GA |
 
@@ -74,8 +74,8 @@ updated: 2026-11-05
 
 層によって、課金の経路と守りの置き場所も違う。
 
-- **Client SDK**：API キーの課金である。道具の実行、権限の確認、止める条件を自分のコードに書く。呼び方を設定で縛る方法は <!-- link:begin tool-use-loop#forcing -->tool use のループ › 呼ばせ方を縛る（tool\_choice・strict）（準備中）<!-- link:end --> にある。
-- **Agent SDK**：Claude Code の本体を動かすので、読み込む設定と権限の確認も Claude Code に準ずる。違いは <!-- link:begin agent-sdk-basics#same-and-different -->Agent SDK（Claude Code をライブラリとして使う） › Claude Code と同じもの・違うもの（準備中）<!-- link:end --> と <!-- link:begin agent-sdk-basics#permissions -->Agent SDK（Claude Code をライブラリとして使う） › 権限と承認（準備中）<!-- link:end --> で押さえる。課金は、プランでログインするか API キーで動かすかで変わる。詳しくは<!-- link:begin agent-sdk-basics#billing -->Agent SDK（Claude Code をライブラリとして使う） › 課金の経路（準備中）<!-- link:end --> にある。
+- **Client SDK**：API キーの課金である。道具の実行、権限の確認、止める条件を自分のコードに書く。呼び方を設定で縛る方法は <!-- link:begin tool-use-loop#forcing -->[tool use のループ › 呼ばせ方を縛る（tool\_choice・strict）](tool-use-loop.md#forcing)<!-- link:end --> にある。
+- **Agent SDK**：Claude Code の本体を動かすので、読み込む設定と権限の確認も Claude Code に準ずる。違いは <!-- link:begin agent-sdk-basics#same-and-different -->[Agent SDK（Claude Code をライブラリとして使う） › Claude Code と同じもの・違うもの](agent-sdk-basics.md#same-and-different)<!-- link:end --> と <!-- link:begin agent-sdk-basics#permissions -->[Agent SDK（Claude Code をライブラリとして使う） › 権限と承認](agent-sdk-basics.md#permissions)<!-- link:end --> で押さえる。課金は、プランでログインするか API キーで動かすかで変わる。詳しくは<!-- link:begin agent-sdk-basics#billing -->[Agent SDK（Claude Code をライブラリとして使う） › 課金の経路](agent-sdk-basics.md#billing)<!-- link:end --> にある。
     第三者が自分の製品で claude.ai のログインやプランの上限を提供することは、Anthropic の承認がない限り認められていない。製品に組み込むなら API キーで考える。
 - **CLI**：`claude -p` は、公式が Agent SDK の CLI として説明する入口である。許す道具と止まる上限を明示して渡す（<!-- link:begin headless-basics#permissions -->[非対話モード（claude -p）の基本 › 許可と権限モード](../delegate/headless-basics.md#permissions)<!-- link:end -->、<!-- link:begin headless-basics#limits -->[非対話モード（claude -p）の基本 › 止まる上限（ターンと費用）](../delegate/headless-basics.md#limits)<!-- link:end -->）。
 - **Managed Agents**：API の課金で、環境の守りは Anthropic のクラウドのサンドボックスに預ける。次の節で詳しく書く。
@@ -109,7 +109,7 @@ Managed Agents は、Anthropic がエージェントのループと実行環境�
     - **状況**：社内の Slack から質問を受け、3 つの社内 API だけを呼んで答える窓口を作る。道具は決まっていて、呼び方の形も守らせたい。
     - **迷う候補**：Client SDK で tool use のループを書く。Agent SDK で Claude Code の道具ごと任せる。
     - **選んだもの**：Client SDK である。
-    - **理由**：道具が少数で決まっているので、Claude Code の組み込みの道具（ファイルの編集やコマンドの実行）は要らない。呼ばせ方も設定で縛れる（<!-- link:begin tool-use-loop#forcing -->tool use のループ › 呼ばせ方を縛る（tool\_choice・strict）（準備中）<!-- link:end -->）。要らない能力を持ち込むと、権限の管理が増える。
+    - **理由**：道具が少数で決まっているので、Claude Code の組み込みの道具（ファイルの編集やコマンドの実行）は要らない。呼ばせ方も設定で縛れる（<!-- link:begin tool-use-loop#forcing -->[tool use のループ › 呼ばせ方を縛る（tool\_choice・strict）](tool-use-loop.md#forcing)<!-- link:end -->）。要らない能力を持ち込むと、権限の管理が増える。
 
 !!! example "判断例：プルリクエストごとの変更の点検"
     - **状況**：CI で、プルリクエストが出るたびに差分を点検し、結果を決まった形式で受け取って次の工程へ渡す。
@@ -133,10 +133,10 @@ Managed Agents は、Anthropic がエージェントのループと実行環境�
 
 層は 1 つに絞る必要はなく、何をどこに置くかで組み合わせられる。
 
-- **試作は CLI、製品は SDK**：端末の Claude Code で道具・権限・プロンプトを試し、固まったものを Agent SDK に移す。読み込む設定を明示して移す（<!-- link:begin agent-sdk-basics#setting-sources -->Agent SDK（Claude Code をライブラリとして使う） › 読み込む設定を決める（準備中）<!-- link:end -->）。
+- **試作は CLI、製品は SDK**：端末の Claude Code で道具・権限・プロンプトを試し、固まったものを Agent SDK に移す。読み込む設定を明示して移す（<!-- link:begin agent-sdk-basics#setting-sources -->[Agent SDK（Claude Code をライブラリとして使う） › 読み込む設定を決める](agent-sdk-basics.md#setting-sources)<!-- link:end -->）。
 - **単純な呼び出しは Client SDK、作業は Agent SDK**：分類や要約のような 1 回で終わる呼び出しは Client SDK に置き、ファイルを触る作業だけを Agent SDK に任せると、権限の及ぶ範囲を狭くできる。
-- **長く動く作業は文脈を外へ出す**：Client SDK や Agent SDK で長く動かすと、文脈が溢れる。要約・古い結果の削除・外部の記憶の組み合わせは <!-- link:begin long-running-agent-context#three-tools -->長時間エージェントのコンテキスト管理 › 三つの手段（compaction・context editing・memory tool）（準備中）<!-- link:end --> にある。Managed Agents でも、何を残し何を出すかの判断は同じである。
-- **自分の作業の自動化は別の比較**：決まった時刻やイベントで自分の作業を回す方法の選び方は <!-- link:begin choosing-automation -->自動化の選び方（定期タスク・非対話モード・SDK）（準備中）<!-- link:end --> が持つ。この比較は、製品や仕組みに Claude を組み込む側を扱う。
+- **長く動く作業は文脈を外へ出す**：Client SDK や Agent SDK で長く動かすと、文脈が溢れる。要約・古い結果の削除・外部の記憶の組み合わせは <!-- link:begin long-running-agent-context#three-tools -->[長時間エージェントのコンテキスト管理 › 三つの手段（compaction・context editing・memory tool）](long-running-agent-context.md#three-tools)<!-- link:end --> にある。Managed Agents でも、何を残し何を出すかの判断は同じである。
+- **自分の作業の自動化は別の比較**：決まった時刻やイベントで自分の作業を回す方法の選び方は <!-- link:begin choosing-automation -->[自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)<!-- link:end --> が持つ。この比較は、製品や仕組みに Claude を組み込む側を扱う。
 - **アプリの機能との対応**：アプリや Claude Code の挙動が API のどの概念に当たるかは <!-- link:begin feature-to-api-mapping#table -->[アプリの機能と API の概念の対応表 › 対応表](feature-to-api-mapping.md#table)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
@@ -168,16 +168,16 @@ Managed Agents は、Anthropic がエージェントのループと実行環境�
 
 **次に読む**
 
-- Agent SDK（Claude Code をライブラリとして使う）（準備中）
+- [Agent SDK（Claude Code をライブラリとして使う）](agent-sdk-basics.md)
 
 **関連**
 
-- tool use のループ（準備中）
+- [tool use のループ](tool-use-loop.md)
 - [非対話モード（claude -p）の基本](../delegate/headless-basics.md)
-- 自動化の選び方（定期タスク・非対話モード・SDK）（準備中）
+- [自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)
 - [送ったデータの行方（学習・保持期間）](../safety/where-your-data-goes.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
-- 長時間エージェントのコンテキスト管理（準備中）
+- [長時間エージェントのコンテキスト管理](long-running-agent-context.md)
 - [アプリの機能と API の概念の対応表](feature-to-api-mapping.md)
 
 </div>

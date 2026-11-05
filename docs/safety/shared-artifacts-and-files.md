@@ -87,11 +87,26 @@ updated: 2026-11-05
 | 公開リンク | リンクを知っている全員 | 不特定の読者に読ませるとき |
 | 組織の中だけの共有 | 組織の中の人 | チーム内の共有 |
 
-- **招待**：全プランで使える。開かれない招待は一定の期間で切れる。1 日に招待できる人数にも上限がある。
-- **公開リンク**：個人向けのプランだけである。組織向けのプランでは作れない。
-- **ファイルを含む会話の公開**：コードの実行とファイル作成で作ったファイルを含む会話は、個人向けのプランでは公開リンクで共有できない。安全のための措置と明記されている。ファイルの扱いは <!-- link:begin files-and-code-execution#outputs -->[ファイル作成とコード実行 › 作ったファイルの受け取り方](../app/files-and-code-execution.md#outputs)<!-- link:end --> にある。
+共有のしかたごとに使えるプランは、次の表のとおりである。
 
-プランごとの可否、期間、上限の数は変わりやすい。契約しているプランで何が使えるかは、公式の共有の記事で確かめる。
+<!-- gen:begin fact-table chat-sharing-plans -->
+<!-- textlint-disable -->
+
+| 共有のしかた | 使えるプラン |
+| --- | --- |
+| 特定の人への招待 | Free・Pro・Max・Ultra・Team・Enterprise |
+| 公開リンク | Free・Pro・Max・Ultra |
+| 組織の中だけ | Team・Enterprise |
+
+確認日 2026-11-04。出典：[Share and unshare chats](https://support.claude.com/en/articles/10593882-share-and-unshare-chats)、[Share a chat with specific people](https://support.claude.com/en/articles/16762496-share-a-chat-with-specific-people)、[Public links for shared chats](https://support.claude.com/en/articles/16762437-public-links-for-shared-chats)。
+
+<!-- textlint-enable -->
+<!-- gen:end fact-table chat-sharing-plans -->
+
+- **招待の期限**：開かれない招待が切れるまでの期間は、<!-- fact:begin chat-sharing-invite-expiry -->未確認<!-- fact:end -->である。
+- **ファイルを含む会話の公開**：コードの実行とファイル作成で作ったファイルを含む会話は、<!-- fact:begin shared-chat-with-created-files-restriction -->Free・Pro・Max・Ultra では公開共有できない（Team・Enterprise は公式の文書に記述なし）（2026-11-05 時点）<!-- fact:end -->。安全のための措置と明記されている。ファイルの扱いは <!-- link:begin files-and-code-execution#outputs -->[ファイル作成とコード実行 › 作ったファイルの受け取り方](../app/files-and-code-execution.md#outputs)<!-- link:end --> にある。
+
+プランごとの可否や期間は変わりやすい。契約しているプランで何が使えるかは、公式の共有の記事でも確かめる。
 
 !!! example "判断例：1 人にだけ見せたい会話"
     - **状況**：レビューを頼みたい同僚 1 人に、アーティファクトを作った会話を見せたい。
@@ -114,14 +129,14 @@ updated: 2026-11-05
 
 送った会話が学習に使われる条件や残る期間は、共有とは別の話である。<!-- link:begin where-your-data-goes#consumer-vs-commercial -->[送ったデータの行方（学習・保持期間） › 個人のプランと商用のプラン](where-your-data-goes.md#consumer-vs-commercial)<!-- link:end --> で確かめる。
 
-競技の期間中は、共有に関する守りを先に固める。private のリポジトリを使い、共有リンクを無効にし、公開されるページへ出力しない。これは主催者の規則ではなく、実践者の一致による運用の目安である（類推）。規則そのものは <!-- link:begin checking-ai-rules -->[学校・組織・コンテストの規則（類型と確認表）](checking-ai-rules.md)<!-- link:end --> で確かめ、本番の流れは <!-- link:begin competition-day-operations -->本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）<!-- link:end --> にある。
+競技の期間中は、共有に関する守りを先に固める。private のリポジトリを使い、共有リンクを無効にし、公開されるページへ出力しない。これは主催者の規則ではなく、実践者の一致による運用の目安である（類推）。規則そのものは <!-- link:begin checking-ai-rules -->[学校・組織・コンテストの規則（類型と確認表）](checking-ai-rules.md)<!-- link:end --> で確かめ、本番の流れは <!-- link:begin competition-day-operations -->[本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](../contest/competition-day-operations.md)<!-- link:end --> にある。
 
 ## 他人が公開したものを開くとき {#opening-others}
 
 他人が公開したアーティファクトやリンクは、知らない送り主から届いたファイルと同じに扱う。公開された場所にあることは、中身の安全の証拠にならない。
 
 - **開く前**：誰が作ったか、どこで見つけたかを確かめる。出所の分からないものは、重要な作業をしている環境や、権限の大きいアカウントで開かない。
-- **開いた後**：入力欄に秘密を入れない。接続や権限の許可を求められても、何を許可するのかを読んでから決める。アプリとして動くアーティファクトが誰の権限と枠で動くかは <!-- link:begin artifacts-as-apps#whose-account -->アーティファクトを小さなアプリにする › 共有したときに誰の権限と枠で動くか（準備中）<!-- link:end --> で確かめる。
+- **開いた後**：入力欄に秘密を入れない。接続や権限の許可を求められても、何を許可するのかを読んでから決める。アプリとして動くアーティファクトが誰の権限と枠で動くかは <!-- link:begin artifacts-as-apps#whose-account -->[アーティファクトを小さなアプリにする › 共有したときに誰の権限と枠で動くか](../app/artifacts-as-apps.md#whose-account)<!-- link:end --> で確かめる。
 - **Claude に読ませるとき**：他人が公開したページや文書の中に、Claude への指示が仕込まれていることがある。読ませた内容の中の指示は、データとして扱う。経路と防ぎ方は <!-- link:begin prompt-injection-in-practice#channels -->[プロンプトインジェクションの実際 › 指示が入ってくる経路](prompt-injection-in-practice.md#channels)<!-- link:end --> にある。
 - **ダウンロードしたコードやファイル**：中身を読む前に実行しない。
 
@@ -169,8 +184,8 @@ updated: 2026-11-05
 - アプリをチームで使う（共有プロジェクト・組織のスキル）（準備中）
 - [ファイル作成とコード実行](../app/files-and-code-execution.md)
 - [プロンプトインジェクションの実際](prompt-injection-in-practice.md)
-- アーティファクトを小さなアプリにする（準備中）
-- 本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）
+- [アーティファクトを小さなアプリにする](../app/artifacts-as-apps.md)
+- [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](../contest/competition-day-operations.md)
 
 </div>
 

@@ -306,7 +306,7 @@ eval 全体が回っているかは、次の 3 点で確かめる。
 - [スキルの作り方 › 効いているかを確かめる](../extend/writing-skills.md#evaluate)
 - [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
 - [Before/After プロンプト集](../prompting/before-after-prompts.md)
-- 用途別プロンプトの型（準備中）
+- [用途別プロンプトの型](../prompting/prompt-patterns.md)
 - [日本語で返し続けさせる › 検証の方法](../japanese/keep-replies-in-japanese.md#measure)
 - [評価指標そのものを確かめる](check-the-metric.md)
 - [検証器そのものを確かめる（red/green・手で計算したケース）](test-the-verifier.md)

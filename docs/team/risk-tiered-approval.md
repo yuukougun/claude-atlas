@@ -103,7 +103,7 @@ AI のレビューの扱いについて、記事は次の運用を挙げてい�
 - 指摘には必ず答える。
 - セキュリティの指摘は、解決するまでマージを止める。
 
-PR ごとに AI のレビューを自動で付ける機能の使い方は <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> が持つ。PR を作る側が出す前にリスクと確かめた証拠を書く手順は <!-- link:begin create-and-review-prs#risks-before-submitting -->PR を作り、レビューを受ける › 出す前にリスクを挙げさせる（準備中）<!-- link:end --> にある。
+PR ごとに AI のレビューを自動で付ける機能の使い方は <!-- link:begin automated-pr-review -->自動 PR レビュー（Code Review・/ultrareview）（準備中）<!-- link:end --> が持つ。PR を作る側が出す前にリスクと確かめた証拠を書く手順は <!-- link:begin create-and-review-prs#risks-before-submitting -->[PR を作り、レビューを受ける › 出す前にリスクを挙げさせる](../recipes/create-and-review-prs.md#risks-before-submitting)<!-- link:end --> にある。
 
 !!! example "判断例：高の段の変更で、承認できる人が足りない"
     - **状況**：高の段と決めたパスを変更する PR がある。高の段は人の承認が 2 人要る。承認できる人は 1 人だけで、AI のレビューは 2 回通っている。
@@ -121,7 +121,7 @@ PR ごとに AI のレビューを自動で付ける機能の使い方は <!-- l
 
 常に人が見る場所は、Claude 自身が書き換えられないようにする守りと、組にして使う。どの権限モードでも確認なしには書かせない場所は <!-- link:begin protected-paths#protected -->[消せない場所・触れない場所（protected paths） › 保護される場所と、モードごとの扱い](../enforce/protected-paths.md#protected)<!-- link:end --> が持つ。テストや採点のスクリプトを書き換えさせない設定は <!-- link:begin freeze-eval-assets#how-to-freeze -->[評価資産を凍結し、触れる範囲を絞る › 設定で止める（権限ルール・サンドボックス・ファイルの権限）](../enforce/freeze-eval-assets.md#how-to-freeze)<!-- link:end --> にある。承認の段を決めても、書き換えを止める鍵がなければ、承認の前に書き換わる場所が残る。
 
-低の段の軽い扱いは、任せる幅を広げる決めである。広げる前に、守りが先にそろっている必要がある。守りとは、AI のレビューとセキュリティの確認が通ること、作者が信頼済みの一覧にいること、常に人が見る場所を段の外に置くことである。外の人が出した issue や PR を Claude に読ませる場合の注意は <!-- link:begin github-actions-with-claude#untrusted-input -->GitHub Actions と @claude › 外の人が書いた issue と PR（準備中）<!-- link:end --> が持つ。
+低の段の軽い扱いは、任せる幅を広げる決めである。広げる前に、守りが先にそろっている必要がある。守りとは、AI のレビューとセキュリティの確認が通ること、作者が信頼済みの一覧にいること、常に人が見る場所を段の外に置くことである。外の人が出した issue や PR を Claude に読ませる場合の注意は <!-- link:begin github-actions-with-claude#untrusted-input -->[GitHub Actions と @claude › 外の人が書いた issue と PR](../delegate/github-actions-with-claude.md#untrusted-input)<!-- link:end --> が持つ。
 
 !!! example "判断例：文書の修正に見える PR へ CI の設定が混じっている"
     - **状況**：PR の題は「README の文言を直す」で、AI のレビューもセキュリティの確認も通っている。差分を見ると、CI のワークフローのファイルも書き換えている。
@@ -179,8 +179,8 @@ AI の承認の扱いは、チームの AI 利用の決まりに、レビュー�
 - [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
 - [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
 - [社内ガイドラインに書くこと](ai-usage-guidelines.md)
-- PR を作り、レビューを受ける（準備中）
-- GitHub Actions と @claude（準備中）
+- [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
+- [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)
 
 </div>
 

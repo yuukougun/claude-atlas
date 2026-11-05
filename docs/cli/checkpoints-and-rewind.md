@@ -151,7 +151,7 @@ updated: 2026-11-05
     - **選んだもの**：先にコミットしてから任せ、すぐ取り消したい分はチェックポイントで戻す。
     - **理由**：書き換えの途中で、Claude が Bash でファイルを動かす可能性は残る。その変更はチェックポイントでは戻らないが、コミットがあれば `git restore` で確実に戻せる。チェックポイントは速くて範囲が狭く、コミットは遅くて範囲が広い。そこで役割を分ける。
 
-セッションの記録が残っていて、成果を取り戻したいときは <!-- link:begin recover-lost-work#order -->セッション記録から失った作業を取り戻す › 探す順（準備中）<!-- link:end --> の順で探す。
+セッションの記録が残っていて、成果を取り戻したいときは <!-- link:begin recover-lost-work#order -->[セッション記録から失った作業を取り戻す › 探す順](recover-lost-work.md#order)<!-- link:end --> の順で探す。
 
 ## 比べる相手 {#compare}
 
@@ -167,7 +167,7 @@ updated: 2026-11-05
 関連する手順は次のページにある。
 
 - セッションに名前を付けて再開する流れ：<!-- link:begin resume-and-branch#resume -->[セッションに名前を付けて再開・分岐する › 再開する](resume-and-branch.md#resume)<!-- link:end -->
-- 失った作業をセッションの記録から探す手順：<!-- link:begin recover-lost-work#transcripts -->セッション記録から失った作業を取り戻す › トランスクリプトの場所と読み方（準備中）<!-- link:end -->
+- 失った作業をセッションの記録から探す手順：<!-- link:begin recover-lost-work#transcripts -->[セッション記録から失った作業を取り戻す › トランスクリプトの場所と読み方](recover-lost-work.md#transcripts)<!-- link:end -->
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -193,8 +193,8 @@ updated: 2026-11-05
 **次に読む**
 
 - [git との付き合い方](working-with-git.md)
+- [セッション記録から失った作業を取り戻す](recover-lost-work.md)
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
-- セッション記録から失った作業を取り戻す（準備中）
 
 **関連**
 

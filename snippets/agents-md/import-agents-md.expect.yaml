@@ -1,0 +1,16 @@
+title: AGENTS.md を取り込み、Claude だけへの指示を足す CLAUDE.md
+kind: claude-md
+place: project
+safety: false
+features: [claude-md]
+requires: [AGENTS.md]
+conditions:
+  - プロジェクトの根に AGENTS.md があり、その隣にこのファイルを CLAUDE.md として置く
+  - 下の 2 項目は自分のプロジェクトの規約に書き換える
+  - 新しいセッションで試す
+expect:
+  - when: セッションを始めて /context all を実行する
+    then: CLAUDE.md が Memory files の一覧に出て、AGENTS.md の内容も文脈に入っている
+  - when: 「いま見えている指示を挙げて」と頼む
+    then: AGENTS.md の内容と、Claude Code の節の内容の両方が挙がる（観察として扱う。合否にしない）
+control: CLAUDE.md を置かないとき、AGENTS.md だけが読まれ、Claude だけへの指示は置く場所がない

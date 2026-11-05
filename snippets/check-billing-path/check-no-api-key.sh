@@ -23,8 +23,12 @@ for f in "$HOME/.claude/settings.json" .claude/settings.json .claude/settings.lo
 done
 
 # 3. シェルの設定ファイルに書いたままになっていないか（-l でファイル名だけを出す）
-grep -l 'ANTHROPIC_API_KEY' "$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.profile" 2>/dev/null \
-  | sed 's/^/シェルの設定に記述あり：/'
+for f in "$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.profile"; do
+  if [ -f "$f" ] && grep -q 'ANTHROPIC_API_KEY' "$f"; then
+    echo "シェルの設定に記述あり：$f"
+    found=1
+  fi
+done
 
 if [ "$found" -eq 1 ]; then
   echo "API 側の課金になりうる設定がある。意図したものでなければ外してから動かす。"

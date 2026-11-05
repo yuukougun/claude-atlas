@@ -249,8 +249,8 @@ API では、指示で引用させる代わりに、根拠の箇所を返させ�
 - [引用や出典の確かめ方](checking-citations.md)
 - [知らないコードベースを読む](../recipes/explore-a-codebase.md)
 - [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)
-- ドキュメント・技術文書を書く（準備中）
-- 資料・スライドを作る（準備中）
+- [ドキュメント・技術文書を書く](../recipes/write-docs.md)
+- [資料・スライドを作る](../recipes/make-slides.md)
 
 **関連**
 

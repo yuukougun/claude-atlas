@@ -266,7 +266,7 @@ Claude Code では、この計画の段を plan mode で行うと、承認する
 
 この段の終わりの印は、条件に書いたコマンドの出力が会話に出ていること、または上限で止まって、残りの失敗が報告されていることである。
 
-仕様の決まっていない作業で、戦略そのものを改善させ続ける開いたループは、この辞典では勧めない。大きな移行を小さく分けて回す場合の停止条件は <!-- link:begin refactor-and-migrate#goal-stop-conditions -->リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）<!-- link:end --> にある。
+仕様の決まっていない作業で、戦略そのものを改善させ続ける開いたループは、この辞典では勧めない。大きな移行を小さく分けて回す場合の停止条件は <!-- link:begin refactor-and-migrate#goal-stop-conditions -->[リファクタリングと大規模な移行 › /goal で回すときの停止条件](refactor-and-migrate.md#goal-stop-conditions)<!-- link:end --> にある。
 
 ## 全体の確かめ方 {#verify}
 
@@ -288,7 +288,7 @@ Claude Code では、この計画の段を plan mode で行うと、承認する
 - 新しいセッションが仕様を読み落とす：引き継ぎの確かめ方と対処は <!-- link:begin handoff-documents#troubleshoot -->[handoff 文書と document-and-clear › 引き継いだのにうまくいかないとき](../context/handoff-documents.md#troubleshoot)<!-- link:end --> にある。
 - 作業が長引いて途中から再開する：進捗をファイルに分けて持たせる（<!-- link:begin progress-files#files -->[進捗ファイルで、途中から再開できるようにする › ファイルの分け方](../context/progress-files.md#files)<!-- link:end -->）。
 - 与えられた仕様がある：自分で原文を読み、Claude には誤読の指摘だけを頼む（<!-- link:begin read-specs-yourself#read-first -->[仕様を自分で読み、AI に誤読を指摘させる › 先に自分で読んで要約する](read-specs-yourself.md#read-first)<!-- link:end -->）。
-- 決めたことと理由をチームで残したい：<!-- link:begin record-decisions -->決定を文書に残す（ADR と週次アップデート）（準備中）<!-- link:end --> を使う。
+- 決めたことと理由をチームで残したい：<!-- link:begin record-decisions -->[決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)<!-- link:end --> を使う。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -327,8 +327,8 @@ Claude Code では、この計画の段を plan mode で行うと、承認する
 - [意図と違うものが出てくる](../symptoms/not-what-i-meant.md)
 - [頼んでいないことまでやる（過剰設計）](../symptoms/does-more-than-asked.md)
 - [進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)
-- 決定を文書に残す（ADR と週次アップデート）（準備中）
-- リファクタリングと大規模な移行（準備中）
+- [決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)
+- [リファクタリングと大規模な移行](refactor-and-migrate.md)
 
 </div>
 

@@ -263,7 +263,7 @@ CLAUDE.md から外した行の置き場所は、目的で選ぶ。
 
 - 常に効かせる規則は CLAUDE.md、フォルダごとの規約は rules、場面ごとの手順はスキル、応答の形は出力スタイルに置く。選び方は<!-- link:begin claude-md-vs-rules-skills-styles#how-to-choose -->[CLAUDE.md・rules・スキル・出力スタイルの違い › 指示の置き場所の選び方](claude-md-vs-rules-skills-styles.md#how-to-choose)<!-- link:end -->にある。
 - 人が書く CLAUDE.md と、Claude が自分で書き溜める記録の分担は、<!-- link:begin using-auto-memory -->[自動メモリ](using-auto-memory.md)<!-- link:end -->が持つ。
-- ほかのエージェントツールと同じ指示を共有する場合は、<!-- link:begin agents-md -->AGENTS.md とほかのツールとの共有（準備中）<!-- link:end -->を使う。
+- ほかのエージェントツールと同じ指示を共有する場合は、<!-- link:begin agents-md -->[AGENTS.md とほかのツールとの共有](agents-md.md)<!-- link:end -->を使う。
 
 ## 古くなった助言 {#outdated}
 
@@ -315,7 +315,7 @@ CLAUDE.md から外した行の置き場所は、目的で選ぶ。
 - [CLAUDE.md や指示が守られない](../symptoms/instructions-ignored.md)
 - [毎回同じ説明をしている](../symptoms/repeating-the-same-explanation.md)
 - [スキルの考え方（手順を必要なときだけ読む）](how-skills-load.md)
-- AGENTS.md とほかのツールとの共有（準備中）
+- [AGENTS.md とほかのツールとの共有](agents-md.md)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
 - [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)
 - [チームで設定を共有する](../team/share-team-settings.md)

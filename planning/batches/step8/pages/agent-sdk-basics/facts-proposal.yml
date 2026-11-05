@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: agent-sdk-setting-sources-default, title: "Agent SDK で settingSources を省いたときの読み込み（user・project・local をすべて読む。managed policy・~/.claude.json・自動の記憶・claude.ai の MCP コネクタは settingSources と無関係に読まれる）", value: "user・project・local を読む", sources: [cc-docs-agent-sdk-claude-code-features], checked: 2026-11-05, status: 確認済み}
+    used_in: [agent-sdk-basics#setting-sources]
+  - fact: {id: agent-sdk-default-permission-mode, title: "権限モードを決めていない claude -p と Agent SDK の実行の既定（default。承認の要る呼び出しは allow ルール・フック・canUseTool・--permission-prompt-tool で認めない限り拒否）", value: "default（承認の要る呼び出しは認めない限り拒否）", sources: [cc-docs-permission-modes, cc-docs-headless], checked: 2026-11-03, status: 確認済み}
+    used_in: [agent-sdk-basics#permissions]

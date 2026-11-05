@@ -73,7 +73,7 @@ CLAUDE.md を書く側の方針は<!-- link:begin what-to-put-in-claude-md -->[C
 
 ## 最小の使い方 {#usage}
 
-自動メモリを見る・直す・止める手順は、Claude Code の中で行う。公式の文書（2026-11-05 に確かめた）に基づく。
+自動メモリを見る・直す・止める手順は、Claude Code の中で行う。公式の文書（2026-11-05 に確かめた）に基づく。ローカルのセッションでの自動メモリは、<!-- fact:begin auto-memory-default-local -->既定で有効（2026-11-05 時点）<!-- fact:end --> である。
 
 === "Claude Code"
 

@@ -321,7 +321,7 @@ After
 - 提案だけで止まる、または頼んでいない書き換えが起きる：動詞を書き分ける（<!-- link:begin suggest-or-do#verbs -->[提案してほしいのか、実行してほしいのか › 提案と実行を動詞で分ける](suggest-or-do.md#verbs)<!-- link:end -->）。
 - 長い資料の読み違いが多い：資料を先頭に置き、引用を抜かせる（<!-- link:begin long-context-first#quote-first -->[長い資料は先、質問は最後 › 答えの前に引用を抜かせる](long-context-first.md#quote-first)<!-- link:end -->）。
 - バグが直らない：再現と完了を渡して仮説から進める（<!-- link:begin fix-a-bug#flow -->[バグを直す › 進める順番と、各段の終わりの印](../recipes/fix-a-bug.md#flow)<!-- link:end -->）。
-- 同じ種類の依頼を毎回書く：項目を型にして使い回す（<!-- link:begin prompt-patterns#research -->用途別プロンプトの型 › 調査と要約の型（準備中）<!-- link:end -->）。
+- 同じ種類の依頼を毎回書く：項目を型にして使い回す（<!-- link:begin prompt-patterns#research -->[用途別プロンプトの型 › 調査と要約の型](prompt-patterns.md#research)<!-- link:end -->）。
 
 関連する原理は、<!-- link:begin brief-a-new-colleague -->[新人の同僚に頼むつもりで](brief-a-new-colleague.md)<!-- link:end -->、<!-- link:begin give-reasons -->[理由を添える](give-reasons.md)<!-- link:end -->、<!-- link:begin show-examples -->[例を見せる](show-examples.md)<!-- link:end --> にある。
 
@@ -355,7 +355,7 @@ After
 - [範囲を伝える（やらないこと）](state-the-scope.md)
 - [長い資料は先、質問は最後](long-context-first.md)
 - [検証の階段 › 「念のため確認して」と書き足すより、確かめる手段を渡す](../verify/verification-ladder.md#verbal-checks)
-- 用途別プロンプトの型（準備中）
+- [用途別プロンプトの型](prompt-patterns.md)
 - [バグを直す](../recipes/fix-a-bug.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 

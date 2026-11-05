@@ -1,0 +1,14 @@
+title: 読み込む設定と権限を明示して呼ぶ（Python）
+kind: other
+place: 自分のプログラムの中
+safety: false
+requires: [claude-agent-sdk（Python のパッケージ）, 認証（環境変数かログイン）]
+conditions:
+  - 使い捨ての作業ディレクトリで試す
+  - 作業ディレクトリの .claude/ に CLAUDE.md か設定を置いておく
+expect:
+  - when: 作業ディレクトリに project の CLAUDE.md がある状態で実行する
+    then: 返答が CLAUDE.md の内容に沿う（観察として扱う。指示は鍵でないので合否にしない）
+  - when: 読み取りの許可に含めていない道具（書き込みなど）が要る依頼を出す
+    then: 承認の要る呼び出しとして扱われ、許さない限り実行されない
+control: setting_sources を省くと、読み込まれる設定が実行する環境（ユーザーの設定など）で変わる

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240" font-family="sans-serif" font-size="12">
+  <rect width="400" height="240" fill="#ffffff"/>
+  <text x="100" y="18" text-anchor="middle" fill="#222222">変えない</text>
+  <text x="300" y="18" text-anchor="middle" fill="#222222">system を変えた</text>
+  <rect x="30" y="30" width="140" height="40" fill="#bbbbbb" stroke="#555555"/>
+  <text x="100" y="54" text-anchor="middle" fill="#222222">tools　再利用</text>
+  <rect x="30" y="76" width="140" height="40" fill="#bbbbbb" stroke="#555555"/>
+  <text x="100" y="100" text-anchor="middle" fill="#222222">system　再利用</text>
+  <rect x="30" y="122" width="140" height="40" fill="#bbbbbb" stroke="#555555"/>
+  <text x="100" y="146" text-anchor="middle" fill="#222222">messages　再利用</text>
+  <rect x="230" y="30" width="140" height="40" fill="#bbbbbb" stroke="#555555"/>
+  <text x="300" y="54" text-anchor="middle" fill="#222222">tools　再利用</text>
+  <rect x="230" y="76" width="140" height="40" fill="#ffffff" stroke="#222222" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="300" y="100" text-anchor="middle" fill="#222222">system　無効</text>
+  <rect x="230" y="122" width="140" height="40" fill="#ffffff" stroke="#222222" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="300" y="146" text-anchor="middle" fill="#222222">messages　無効</text>
+  <text x="200" y="190" text-anchor="middle" fill="#222222">上の段から順に一致を見る。</text>
+  <text x="200" y="208" text-anchor="middle" fill="#222222">変えた段から後ろは、すべて読み直す。</text>
+  <text x="200" y="228" text-anchor="middle" fill="#555555">模式図</text>
+</svg>

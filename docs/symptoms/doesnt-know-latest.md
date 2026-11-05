@@ -88,7 +88,7 @@ updated: 2026-11-05
     - 当てはまったら：検索を有効にするか、公式の文書の URL を渡して読ませる。
 4. **最新の資料を渡したか**（何を見る：根拠にさせる文書が会話にあるか）
     - 検索が使えないとき、または検索が正しいページに届かないときは、公式の文書の URL か抜粋を渡すのが確実である。
-    - 確かめ方：資料を付けて同じ質問を出し、答えが資料に沿うかを見る。Claude Code の機能については、Claude Code 自身に聞く手がある。ただし、答えは手元の版より新しい機能を含みうる。版は <!-- link:begin ask-claude-code#check-version -->Claude Code 自身に聞く › 答えの版を確かめる（準備中）<!-- link:end --> で確かめる。
+    - 確かめ方：資料を付けて同じ質問を出し、答えが資料に沿うかを見る。Claude Code の機能については、Claude Code 自身に聞く手がある。ただし、答えは手元の版より新しい機能を含みうる。版は <!-- link:begin ask-claude-code#check-version -->[Claude Code 自身に聞く › 答えの版を確かめる](../cli/ask-claude-code.md#check-version)<!-- link:end --> で確かめる。
     - 当てはまったら：資料を渡す。読ませる範囲の絞り方は <!-- link:begin choose-what-to-read#point-or-search -->[@参照と、何を読ませるかの絞り込み › 直接指すか、探させるか](../context/choose-what-to-read.md#point-or-search)<!-- link:end --> にある。
 5. **検索で拾った情報自体が古くないか**（何を見る：出典の日付と版）
     - 検索に成功しても、古い記事を拾うと古い答えが返る。
@@ -112,7 +112,7 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | [web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md)<br>[@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)<br>Claude Code 自身に聞く（準備中） |
+| 見えていない | [web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md)<br>[@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)<br>[Claude Code 自身に聞く](../cli/ask-claude-code.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -195,7 +195,7 @@ updated: 2026-11-05
 
 - [web 検索・リサーチ・拡張思考の使い分け](../app/search-research-thinking.md)
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
-- Claude Code 自身に聞く（準備中）
+- [Claude Code 自身に聞く](../cli/ask-claude-code.md)
 
 **関連**
 

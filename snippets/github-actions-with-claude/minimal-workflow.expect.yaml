@@ -1,0 +1,17 @@
+title: 最小権限の workflow（@claude に応える）
+kind: other
+place: project
+safety: true
+features: [github-actions]
+conditions:
+  - 使い捨てのテスト用のリポジトリで試す。本番のリポジトリで最初に試さない
+  - Claude GitHub App をリポジトリに入れ、secrets に ANTHROPIC_API_KEY を置いておく
+  - 試すのはリポジトリへの write 権限を持つ人だけにする
+expect:
+  - when: 書き込み権限のある人が、issue のコメントに「@claude」を含む依頼を書く
+    then: workflow が起動し、Claude が同じ issue にコメントで返事をする
+  - when: 「@claude」を含まないコメントを書く
+    then: ジョブの if で外れ、runner が起動しない
+  - when: 書き込み権限のない人が「@claude」を含むコメントを書く
+    then: action の確認で実行が失敗し、Claude は作業を始めない
+control: workflow の外で、claude -p に同じ依頼を渡す。権限と鍵の置き場所を、自分で決めることになる

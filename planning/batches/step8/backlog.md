@@ -2,6 +2,45 @@
 
 [rules.md](rules.md) の「後でまとめて扱うもの」。バッチの終わりに足していく。
 
+## 推奨R3（TR-R3）
+
+### 強制力（enforcement）の値の案（お願い・鍵・モデルの判定・なし。decisions 2026-11-05「強制力の語彙」の線引き）
+
+- agent-sdk（agent-sdk-basics）：なし（機能全体では決まらない。権限・フックの側が決める）
+- github-actions（github-actions-with-claude）：鍵とお願いの混在。起動を担うだけなら「なし」、権限（permissions・許可ツール）は鍵、依頼文はお願い。1 つに決めるなら「なし」を推す
+- btw（side-questions-btw）：なし（write.md の proposal のとおり。確認済み、cc-docs-interactive-mode）
+- scheduled-tasks（cloud-schedules）：なし（起動を担うだけ。止めるのは権限の側）。依頼文はお願い、保護ルール・環境は鍵の混在
+- bare-mode：鍵（起動時に読み込みを止める。道具の許可は絞らない点は note に）。足したら要点を目印に置き換える
+
+### 用語集に足す語
+
+- settingSources（agent-sdk-basics）・path traversal（保存先のパスが許す範囲の外へ出る攻撃。long-running-agent-context）・stateless（状態を持たない）・ZDR（ゼロデータ保持）・HIPAA 対応・評価器（点や正しさを提出の前に自分で測る道具。ローカルテスタと同族）・アブレーション・Project instructions（画面の名前。prh は「プロジェクトの指示」を要求。例外か用語集か）
+- 伴走（人が途中を見ながら一歩ずつ方向を直して進める協業の形）・委託（完了条件を渡して任せ、戻ってきた結果を後で確かめる協業の形）。「丸投げ」は別に定義
+- 見せる／見えていない（ask-claude-code）・tool_use／tool_result／tool runner・Monitor（道具）・「ゲートウェイ」の説明（rate-limits-and-errors）
+
+### 道具・data の形
+
+- command-cheatsheet：`command-table` の目印を新設（features にコマンド・一言・page・anchor を持たせる）。暫定は手書きの表。`/skills`・`/hooks`・`/mcp`・`/plugin` の一言は公式の表で未確認。旧名 `/review`・`/allowed-tools` の台帳の行
+- choosing-automation：軸の表（動く場所・触れられるもの・課金の経路）を data の属性にできるか。claude-code-surfaces も同じ（属性：動く場所・読む設定）
+- 自己リンクになる compare 表：claude-code-surfaces（Desktop アプリの Claude Code）・tool-use-loop・refactor-and-migrate（recipe に compare を置く是非。成熟度が全行共通で表から外れる）
+- cloud-schedules の `#compare`、format-cheatsheet の規則の列：`fact-cell` のようなセル単位の目印
+- github-actions-with-claude：雛形を載せる方針の確認（カード §10 と目次の食い違い）。`permissions` を read に絞った効果は未確認
+- 台帳（outdated-advice）：AGENTS.md の回避策（CLAUDE.md に「読め」と書く・SessionStart フック）の行。`/review`・`/allowed-tools` の行
+- dora.dev を sources.yml のドメイン一覧へ（paved-roads。生成で確認）
+- choosing-a-plan：Team 行のセルの文言を「未確認」に直す（data の `usage-limit-types-by-plan`）。料金の facts（`plan-prices-individual`）を入れたら、#plan-table の fact-table の直後に目印を足す。Team の席ごとの上限を facts に足すか
+- 数値の提案の取り込み（facts-proposal.yml・write.md の proposals）：message-threads-lifetime、scheduled-tasks 系 6 件（hourly-cap は要確認）、bare-mode 系 3 件（leak-fix-version は要確認）、edit/write-refuses-non-utf8-since、agents-md 系 3 件、prompt-caching 4 件、ai-in-contests-today 4 件、reasoning-extraction 2 件、rate-limits 2 件、artifacts-as-apps 2 件、progress-logs（Monitor の見張りの期限 3 件・hook-monitor-min-version を確認済みに）、tool-use-loop（tool_choice の既定・強制が使えないモデル）、refactor-and-migrate（/goal 構文の fact）、recover-lost-work（key-transcript-and-background を確認済みに。sessions の note に「圧縮の前のやり取りの残り方は未確認」）。取り込み後に各ページへ目印を置く
+- 同期：agent-sdk-basics の settingSources の既定（省くと user・project・local をすべて読む）を提案の fact に。headless-basics#permissions の権限モードの記述が数値・版なしか、持ち主の側で確認
+
+### 出典・確認が要る事実
+
+- sources の足し先：pairing-and-delegating（実務家の整理の元の投稿。check_noai のうえで）・record-decisions（ADR の公式の説明）・grow-review-checklists（企業ブログの URL）・build-observation-tools（threadreaderapp・speakerdeck は未確認、noai の恐れ）・progress-logs-for-long-jobs（ログが大きすぎた例）・postmortems（collins-premortem の「30% は理由の数」を原典で。SRE Workbook は 1 回確認済み）・is-the-task-ai-suited（仮想の場面の差し替えは任意）・competition-day-operations（ISUCON13 初参加、DEF CON 33）・ai-in-contests-today（AWTF 2025・ICPC 2025・IOI 2025・MLE-bench 等は出典なし。AWTF 2026 Heuristic は二次の報道）・running-contest-experiments（recursive.cc の Halite III 事例は check_noai が timed out。再確認して通れば事例と出典を足す）・share-targets-and-bounds（Anthropic の記事 2026-01-21 を確認済み。材料表の「未確認」の印を外すか）
+- disclosure-and-provenance：文部科学省の通知の本文は未確認（版は書いていない）
+- stateless-messages-api：ZDR と HIPAA の対象外（research/22 #40）を公式の文書で再確認
+- running-contest-experiments：式 (1.96 × s / d)² は筆者が導いたもの。別の担当が確かめる
+- competition-day-operations：review の指摘 2 の文は、出典を足すか削る
+- prompt-patterns：snippets/prompt-patterns/analysis-request.md が書けていない（Write が止められた）。メインが作って gen_site --page prompt-patterns で埋める。案は build-TR-R3.md に載せた
+- make-slides：周辺製品とフロントエンドのデザインのページの公開後に「準備中」表示が変わる
+
 ## 数値の提案（第一波の終わりに data へ入れ、目印を置く）
 
 | ページ | 提案 | 置く所（used_in） |
@@ -280,3 +319,56 @@ where-to-put-instructions の `app-instruction-scope-and-timing`（値が「本�
 - 確認が要る事実（束の外）：stop-hooks の Stop フックと `/goal` の併用・resume-and-branch の「分岐が分けるのは会話でファイルではない」・approval-fatigue のサンドボックスの自動許可の記述・output-style-modes の Proactive・Concise の挙動・own-generated-code の Rust ガイドの規約
 - 目次の備考・調査資料 11 の要約の直し：DrivenData の記事はモデルとハーネスを切り分けていない（harness-over-model は記事に合わせた）
 - 注釈付きのセッション記録（目次の見せ方 DR-17）：lock-side-effects・stop-hooks・checking-unattended-runs で未作成。state/blocks.log などの材料をメインが渡すとき
+
+## 推奨R2（TR-R2、2026-11-05）
+
+### 数値の提案（第一波の終わりに data へ。各ページの write.md の proposals のとおり）
+
+| ページ | 提案 | 置く所 |
+| --- | --- | --- |
+| safe-mode | safe-mode-enforcement（なし） | isolate-with-safe-mode#what-is-disabled |
+| shared-artifacts-and-files | chat-sharing-plans・chat-sharing-invite-expiry（要確認）・chat-sharing-file-limit。features chat-sharing の since は未確認 | #who-can-see |
+| claude-md-loading-order | claude-md-import-max-hops・claude-md-on-demand-size-limit（要確認） | #import・#limits |
+| check-billing-path | api-credits-eligible-plans-and-amounts・api-key-env-p-mode-uses-key-without-confirmation・auth-precedence-order（本文の確認日の手書きを目印に替える） | #monthly-api-credits・#api-key-in-env・#how-the-path-is-chosen |
+| what-feedback-sends | feedback-transcript-share-retention-months（6） | #what-is-sent |
+| agent-view-and-background | agent-view-worktree-delete（任意。features の note でもよい） | #pitfalls |
+| incognito-chats | incognito-retention-period を確認済みにする | — |
+| before-using-top-model | top-model-by-plan・top-model-weekly-share・top-model-claude-code-min-version。正本の見直し：facts usage-limits の note と usage-limit-types-by-plan の最上位のモデルの別の週の上限の列（公式同士の食い違い。Fable の記事は別の週の上限なし）。how-usage-limits-work#limit-types の最後の箇条も | #which-limit 他 |
+| browser-control | chrome-extension-requirements・computer-use-requirements（公式同士の食い違いのため両方の出典） | #claude-in-chrome・#computer-use |
+| loop-and-scheduling | loop-recurring-expiry-days・loop-max-tasks-per-session・loop-min-interval・loop-self-paced-interval-range・desktop-scheduled-task-min-interval・cloud-scheduled-task-min-interval | #loop・#where-to-run |
+| usage-credits-basics | usage-credits-expiry-japan | #how-it-works |
+| dynamic-workflows | workflow-concurrent-agents・workflow-agent-caps・workflow-large-warning・workflow-size-guideline（facts-proposal.yml） | 各節 |
+| checking-for-updates | stable の遅れの日数（facts-proposal.yml） | — |
+| when-requests-are-refused | facts-proposal.yml のとおり（既定の有効・版・表示の文・分類の名前・課金・対象のモデル・検証の制度の段階） | write.md の used_in |
+| instructing-reviewers | モデル別の傾向の数値ファイルがあれば目印で書き足す | — |
+
+### 強制力（enforcement）の値の案（お願い・鍵・モデルの判定・なし。decisions 2026-11-05「強制力の語彙」の線引き）
+
+- safe-mode：なし（読み込みを止めるだけ。write.md の proposal のとおり）
+- insights・usage（insights-and-usage-review）：なし（見るだけ）
+- feedback（what-feedback-sends）：なし（強制の仕組みではない）
+- agent-view・cross-session-messaging（agent-view-and-background）：なし（見る・送る機能）
+- projects（too-much-project-knowledge）：なし（ナレッジは使える状態にするだけ）
+- incognito：なし（保持と管理者への見え方は止められないが、止める機能ではない。鍵に見える読み取りは Help Center 由来で未確認）
+- browser-control の Chrome 拡張のサイト許可：鍵に近い／computer use のアプリごとの許可：鍵（要確認）
+- usage-credits：なし（課金の仕組み）
+- code-intelligence：なし（write.md の feature_patch のとおり。足したら冒頭を `feature code-intelligence/enforcement` の目印に）
+- verify-skill（visual-checks）：お願い（cc-docs-skills で確かめてから。足したら括弧を外す）
+- workflows（dynamic-workflows）：なし（何も強制しない）
+
+### 用語集に足す語
+
+- 写し（snapshot：共有した時点の内容の複製）・RAG（mode）・較正（calibrate）・判定役／採点役・ミューテーションスコア・変異・カバレッジ
+- ローカルテスタ・ベンチマーカー・CV・referee（対戦の審判）・愚直解・本解・月次のふり返り（monthly recap。あれば合わせる）
+
+### 道具・data の形
+
+- 出典（sources）の足し先：evaluators-by-format（ISUCON14・Battlecode・CV 実験。check_noai のうえで）・ask-for-options（公式の裏付け）・when-requests-are-refused（Life Sciences Verification Program の記事）・instructing-reviewers（api-docs-prompting-opus-5 は束の写しのまま未取得）・check-the-metric（OpenAI の sycophancy の記事は 403 で未取得。題名と日付は仮、Kaggle ブログの 0.967/0.874 は未確認、CVPR の published は仮）・when-ai-is-unavailable（status 系の出典・2026-08-16 の障害の日付）
+- browser-agent-cautions：束の材料 6.3 の The Register（noai）を claude-for-chrome-blog に差し替えた。反映時に同じ URL の重複がないか確認
+- 調査資料の見直し：p34#61・p34#63（59.6〜68.1%・PBT-Bench 約 31%）は arXiv の要旨で確認できず、誤読の疑い。catalog/verify.yaml の notes に追記
+- data の形：what-each-surface-cannot-do（アプリの面ごとの制約を持つ属性がなく、表が「アプリ」1 行になる）
+- tracks の chat-sharing / features の since 未確認
+- 確認が要る事実（束の外）：manual-only-skills の ask ルール `Bash(./scripts/deploy.sh *)` の書式（permission-rules と突き合わせ）・loop-and-scheduling の Desktop の説明（新しいセッション・手元のファイル）・unfaithful-reasoning の平方根の例と表のモデル（tracing-thoughts と突き合わせ）・looks-are-not-quality の Anthropic ブログ URL（/research/ と /engineering/）・check-billing-path の ANTHROPIC_AUTH_TOKEN と apiKeyHelper の課金先・move-judgment-into-scripts の 1 件の研究・harness 系の「調査資料が拾った研究」の名・年
+- data-analysis：A-8 の雛形 `snippets/data-analysis/observe-and-hypothesize` が正本。prompt-patterns の担当に同じ id を gen の目印で取り込むよう伝える
+- 雛形：when-ai-is-unavailable の expect.yaml（features を空にして「要る最低の版」の表示を消すか）
+- 図：claude-md-loading-order の木は文字の code ブロック（static の図が要るなら別の担当）。pitfalls・unfaithful-reasoning・looks-are-not-quality・move-judgment-into-scripts・build-test-harness は図なし（表や雛形で代えた）

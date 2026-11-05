@@ -1,0 +1,16 @@
+title: 要約の進捗ログだけを読ませ、異常の行だけで知らせさせる依頼
+kind: prompt
+place: 依頼の本文
+safety: false
+conditions:
+  - 新しいセッションで試す
+  - raw.log と progress.jsonl に書き出すジョブ（progress-writer の形）が背景で動いている
+  - ファイル名・指標の名前は例。自分のジョブのものに置き換える
+expect:
+  - when: 依頼を出す
+    then: Claude が progress.jsonl を見張る Monitor を始め、異常の行が出るまで知らせが来ない
+  - when: 状況を聞く
+    then: progress.jsonl の末尾だけを読んで答え、raw.log の全体は読まない（読んだかどうかは、ツール呼び出しの記録で観察する。指示は鍵ではないので、合否にしない）
+  - when: failed の行を出させる
+    then: raw.log のその時刻の前後を grep で読み、短い見当を報告する。ジョブには触れない
+control: 依頼を出さずに「状況を教えて」と聞くと、raw.log の全体を読みに行くことがある

@@ -233,7 +233,7 @@ MCP をつなぐと、次の場面で想定とずれる。
 - **入れた後に中身が変わりうる**。承認したときの定義と、後から読まれる定義が同じとは限らない。ツールの説明に指示が隠れている場合もある。入れる前の確認と、入れた後の変化の見方は「<!-- link:begin vetting-extensions#changes-after-install -->[MCP・プラグイン・スキルを入れる前の確認 › 入れた後に変わる（rug pull）](../safety/vetting-extensions.md#changes-after-install)<!-- link:end -->」にある。この辞典は、脅威の型の説明を safety のページに任せる。
 - **`.mcp.json` だけでは、読み込まれるサーバーの全体は分からない**。ほかのスコープ、claude.ai のコネクタ、プラグインもサーバーを足す。全体は `/mcp` で見る。
 - **出力が大きいと扱いにくい**。ツールの出力が大きいと警告が出て、さらに大きいと上限で扱いきれなくなる。値は、<!-- fact:begin mcp-output-token-limits -->未確認<!-- fact:end -->。大量のデータは、サーバー側で絞るか、必要な範囲だけを取らせる。
-- **入れすぎると場所を取る**。サーバーを足すたびに、ツールの一覧が文脈に増える。判断を良くする分より増えるなら外す。選ぶ基準は「<!-- link:begin choosing-mcp-servers -->MCP サーバーの選び方（準備中）<!-- link:end -->」にある。
+- **入れすぎると場所を取る**。サーバーを足すたびに、ツールの一覧が文脈に増える。判断を良くする分より増えるなら外す。選ぶ基準は「<!-- link:begin choosing-mcp-servers -->[MCP サーバーの選び方](choosing-mcp-servers.md)<!-- link:end -->」にある。
 
 ## 比べる相手 {#compare}
 
@@ -257,8 +257,8 @@ MCP を SSE の転送でつなぐ、という古い説明が残っている。�
 **次に読む**
 
 - [MCP か CLI か](mcp-or-cli.md)
+- [MCP サーバーの選び方](choosing-mcp-servers.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
-- MCP サーバーの選び方（準備中）
 
 **関連**
 

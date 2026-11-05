@@ -1,0 +1,14 @@
+domains:
+  - domain: dora.dev
+    checked: '2026-11-05'
+    noai: false
+    url: https://dora.dev/research/2025/dora-report/
+sources:
+  - id: dora-2025-report
+    url: https://dora.dev/research/2025/dora-report/
+    title: 2025 DORA State of AI-assisted Software Development Report
+    kind: 研究
+    publisher: DORA（Google Cloud）
+    lang: en
+    checked: '2026-11-05'
+    note: ページの本文で、AI の主な役割が組織の強みと弱みを拡大する増幅器だと述べる箇所を確かめた。スループットとの関係、不安定さ、標本の大きさ、相関か因果かは、このページには書かれていない（全文の報告書は未確認）

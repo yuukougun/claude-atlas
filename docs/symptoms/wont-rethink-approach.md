@@ -93,7 +93,7 @@ updated: 2026-11-05
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[handoff 文書と document-and-clear](../context/handoff-documents.md) |
-| 確かめていない | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › AI の「やめよう」「続けよう」を再検証する](../judgment/decide-when-to-quit.md#ai-advice-on-quitting)<br>上界を測って「限界です」を反証する（準備中）<br>目標値・上界を伝える（準備中） |
+| 確かめていない | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › AI の「やめよう」「続けよう」を再検証する](../judgment/decide-when-to-quit.md#ai-advice-on-quitting)<br>上界を測って「限界です」を反証する（準備中）<br>[目標値・上界を伝える](../prompting/share-targets-and-bounds.md) |
 | 預けすぎる | [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)<br>[判断を預けすぎる（過度依存）](../judgment/over-reliance.md) |
 | やめられない | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md) |
 
@@ -138,7 +138,7 @@ updated: 2026-11-05
 予防は、判断を仕組みに移すことである。
 
 - 着手前に撤退基準を書き、判定を作った本人から離す。書き方は<!-- link:begin decide-when-to-quit#write-criteria-first -->[やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する） › 基準を着手前に書く](../judgment/decide-when-to-quit.md#write-criteria-first)<!-- link:end -->を読む。
-- 達成できる値や上界が分かるなら、依頼に書く。分からないなら先に測る。<!-- link:begin share-targets-and-bounds#measure -->目標値・上界を伝える › 上界が分からないときは測る（準備中）<!-- link:end -->を読む。
+- 達成できる値や上界が分かるなら、依頼に書く。分からないなら先に測る。<!-- link:begin share-targets-and-bounds#measure -->[目標値・上界を伝える › 上界が分からないときは測る](../prompting/share-targets-and-bounds.md#measure)<!-- link:end -->を読む。
 - 実装の前に方針を確かめる。plan mode で編集を止めたまま調べさせ、計画を読んで直してから実装に入る。<!-- link:begin when-to-plan -->[plan mode の使いどころ](../cli/when-to-plan.md)<!-- link:end -->を読む。
 - 試した方針と結果は、仮説を先に書く台帳へ残す。<!-- link:begin experiment-log#hypothesis-first -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 仮説を先に書く](../eval/experiment-log.md#hypothesis-first)<!-- link:end -->を読む。
 - 方針そのものを長く回し続けて直そうとしない。<!-- link:begin open-ended-loop-trap#longer-is-not-better -->[AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない](../delegate/open-ended-loop-trap.md#longer-is-not-better)<!-- link:end -->を読む。
@@ -174,7 +174,7 @@ updated: 2026-11-05
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)
 - 上界を測って「限界です」を反証する（準備中）
-- 目標値・上界を伝える（準備中）
+- [目標値・上界を伝える](../prompting/share-targets-and-bounds.md)
 - [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)
 - [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)
 

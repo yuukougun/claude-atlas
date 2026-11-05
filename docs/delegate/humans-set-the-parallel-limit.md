@@ -97,7 +97,7 @@ updated: 2026-11-05
 - 確認を減らす場合も、残す確認は選ぶ。確認が多すぎると、中身を読まずに承認するようになる（<!-- link:begin approval-fatigue#keep-prompts -->[承認疲れ › 残す確認を選ぶ](../safety/approval-fatigue.md#keep-prompts)<!-- link:end -->）。
 - 任せる段階に、確かめ方と封じ込めを合わせる（<!-- link:begin five-questions-before-delegating#proportional-guards -->[任せ方の段階と、無人で走らせる前の五つの問い › 段ごとに強める確かめ方と封じ込め](five-questions-before-delegating.md#proportional-guards)<!-- link:end -->）。
 
-見ながら進める伴走と、任せて後で確かめる委託では、詰まる場所が違う。この違いは <!-- link:begin pairing-and-delegating -->伴走と委託（準備中）<!-- link:end --> で扱う。
+見ながら進める伴走と、任せて後で確かめる委託では、詰まる場所が違う。この違いは <!-- link:begin pairing-and-delegating -->[伴走と委託](pairing-and-delegating.md)<!-- link:end --> で扱う。
 
 ## 疲れの兆し {#signs-of-fatigue}
 
@@ -176,7 +176,7 @@ updated: 2026-11-05
 - [レビューのボトルネックと疲労](../team/review-bottlenecks.md)
 - [並列の方式の選び方](choosing-parallel-modes.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](five-questions-before-delegating.md)
-- 伴走と委託（準備中）
+- [伴走と委託](pairing-and-delegating.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [人間が読むべき差分の箇所](../verify/diffs-humans-must-read.md)
 - [承認疲れ](../safety/approval-fatigue.md)

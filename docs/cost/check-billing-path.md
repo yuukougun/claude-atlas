@@ -82,7 +82,7 @@ Claude Code は、使える認証が複数あるとき、決まった順で 1 �
 | VS Code の拡張・GitHub Actions | CLI を包む面なので、`ANTHROPIC_API_KEY` などの環境の認証情報が効く |
 | Claude Desktop・クラウドのセッション | 環境の鍵を読まず、OAuth を使う。環境に鍵を置いても、サブスクリプションの認証が使われる |
 
-この表は WSL・Linux の CLI を基準に、公式文書で確かめた挙動をまとめたものである（[Authentication](https://code.claude.com/docs/en/authentication)）。VS Code の拡張など、ほかの面の細かい動作は未確認である。`--bare` の詳しい挙動は <!-- link:begin bare-mode#authentication -->--bare と再現性 › 認証が変わる（サブスクリプションで使うとき）（準備中）<!-- link:end --> が扱う。
+この表は WSL・Linux の CLI を基準に、公式文書で確かめた挙動をまとめたものである（[Authentication](https://code.claude.com/docs/en/authentication)）。VS Code の拡張など、ほかの面の細かい動作は未確認である。`--bare` の詳しい挙動は <!-- link:begin bare-mode#authentication -->[--bare と再現性 › 認証が変わる（サブスクリプションで使うとき）](../delegate/bare-mode.md#authentication)<!-- link:end --> が扱う。
 
 落とし穴は、鍵をシェルの設定ファイルに書いたまま忘れることである。対話では最初の確認で気づけても、`-p` には確認がない。cron や CI から動かすスクリプトは、人が画面を見ていない。気づく機会がないまま、従量課金が積み上がる。任せる幅を広げる話なので、次の節の確認を先に済ませる。
 
@@ -135,8 +135,12 @@ Claude Code は、使える認証が複数あるとき、決まった順で 1 �
     done
 
     # 3. シェルの設定ファイルに書いたままになっていないか（-l でファイル名だけを出す）
-    grep -l 'ANTHROPIC_API_KEY' "$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.profile" 2>/dev/null \
-      | sed 's/^/シェルの設定に記述あり：/'
+    for f in "$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.profile"; do
+      if [ -f "$f" ] && grep -q 'ANTHROPIC_API_KEY' "$f"; then
+        echo "シェルの設定に記述あり：$f"
+        found=1
+      fi
+    done
 
     if [ "$found" -eq 1 ]; then
       echo "API 側の課金になりうる設定がある。意図したものでなければ外してから動かす。"
@@ -200,7 +204,7 @@ API credits で検証や自動化を動かすには、API キーが要る。つ�
 - **API credits があるので、対話の Claude Code の分も払われる**：払われない。使える範囲は節「プランに付く API credits」の一覧にある。
 - **プランでログインした `-p` や Agent SDK は、API credits を使う**：使わない。プランの利用上限から引かれる。
 - **Desktop やクラウドのセッションに鍵を置けば、API で課金される**：置いても読まれない。OAuth のサブスクリプションが使われる。
-- **自作のツールで、利用者に claude.ai のログインを使わせてよい**：許可がなければ認められていない。第三者の開発者が自分の製品で claude.ai のログインや利用枠を提供することは、Agent SDK の公式文書が許可なしには認めていない（[Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview)）。Agent SDK 側の整理は <!-- link:begin agent-sdk-basics#billing -->Agent SDK（Claude Code をライブラリとして使う） › 課金の経路（準備中）<!-- link:end --> にある。
+- **自作のツールで、利用者に claude.ai のログインを使わせてよい**：許可がなければ認められていない。第三者の開発者が自分の製品で claude.ai のログインや利用枠を提供することは、Agent SDK の公式文書が許可なしには認めていない（[Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview)）。Agent SDK 側の整理は <!-- link:begin agent-sdk-basics#billing -->[Agent SDK（Claude Code をライブラリとして使う） › 課金の経路](../api/agent-sdk-basics.md#billing)<!-- link:end --> にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -234,14 +238,14 @@ API credits で検証や自動化を動かすには、API キーが要る。つ�
 **関連**
 
 - [非対話モード（claude -p）の基本 › 課金の経路（API キーがあるとき）](../delegate/headless-basics.md#billing-path)
-- --bare と再現性 › 認証が変わる（サブスクリプションで使うとき）（準備中）
-- Agent SDK（Claude Code をライブラリとして使う） › 課金の経路（準備中）
+- [--bare と再現性 › 認証が変わる（サブスクリプションで使うとき）](../delegate/bare-mode.md#authentication)
+- [Agent SDK（Claude Code をライブラリとして使う） › 課金の経路](../api/agent-sdk-basics.md#billing)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [usage credits（上限を超えた分の従量課金） › API credits との違い](usage-credits-basics.md#vs-api-credits)
 - API 料金の読み方（準備中）
 - [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)
-- GitHub Actions と @claude（準備中）
+- [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)
 
 </div>
 

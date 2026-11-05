@@ -217,7 +217,7 @@ exit 2 より、exit 0 と JSON の `permissionDecisionReason` のほうが、�
     - **選んだもの**：後者。理由に「生成物は生成のスクリプトで作り直す」という代わりの手段を足し、数日分の記録で回数を見る。
     - **理由**：代わりの手段がないと、目的が残って回り込みが続く。経路ごとに規則を足すと、止めすぎが増える。破ると戻せない害が出る規則なら、塞ぐ側に倒してよい。
 
-見直しの結果、狭めても回り込みや止めすぎが減らない規則は、外してお願い（CLAUDE.md の理由と相談の基準）に戻す。外した規則と、その例は記録に残す。失敗から縛りを足すときの置き場所は <!-- link:begin postmortems#where-to-put-fixes -->失敗を仕組みに戻す（ポストモーテム） › 再発防止をどこに入れるか（準備中）<!-- link:end --> にある。
+見直しの結果、狭めても回り込みや止めすぎが減らない規則は、外してお願い（CLAUDE.md の理由と相談の基準）に戻す。外した規則と、その例は記録に残す。失敗から縛りを足すときの置き場所は <!-- link:begin postmortems#where-to-put-fixes -->[失敗を仕組みに戻す（ポストモーテム） › 再発防止をどこに入れるか](../judgment/postmortems.md#where-to-put-fixes)<!-- link:end --> にある。
 
 ## 何に効くか {#effects}
 
@@ -229,7 +229,7 @@ exit 2 より、exit 0 と JSON の `permissionDecisionReason` のほうが、�
 - 実行と確認を繰り返すだけで進まない：<!-- link:begin stuck-in-a-check-loop -->[同じ確認のループにはまる](../symptoms/stuck-in-a-check-loop.md)<!-- link:end -->
 - 止められた後に環境や道具が壊れたと言い出す：<!-- link:begin blames-the-tools -->[環境や道具が壊れたと言い出す](../symptoms/blames-the-tools.md)<!-- link:end -->
 
-禁じる代わりに、安全な既定と許す道を用意する考え方は <!-- link:begin paved-roads#defaults-over-attention -->禁止ではなく安全な道を作る › 注意力に頼らない既定（準備中）<!-- link:end --> にある。auto モードが止めた操作の見直し方は <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](what-auto-mode-stops.md#when-blocked)<!-- link:end --> にある。
+禁じる代わりに、安全な既定と許す道を用意する考え方は <!-- link:begin paved-roads#defaults-over-attention -->[禁止ではなく安全な道を作る › 注意力に頼らない既定](../team/paved-roads.md#defaults-over-attention)<!-- link:end --> にある。auto モードが止めた操作の見直し方は <!-- link:begin what-auto-mode-stops#when-blocked -->[auto モードは何を止め、何を止めないか › 止められたときの見直し方](what-auto-mode-stops.md#when-blocked)<!-- link:end --> にある。
 
 ## 誤解 {#misconceptions}
 
@@ -270,8 +270,8 @@ exit 2 より、exit 0 と JSON の `permissionDecisionReason` のほうが、�
 - [同じ確認のループにはまる](../symptoms/stuck-in-a-check-loop.md)
 - [確認ばかりで進まない・途中で止まる](../symptoms/keeps-stopping.md)
 - [環境や道具が壊れたと言い出す](../symptoms/blames-the-tools.md)
-- 失敗を仕組みに戻す（ポストモーテム）（準備中）
-- 禁止ではなく安全な道を作る（準備中）
+- [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)
+- [禁止ではなく安全な道を作る](../team/paved-roads.md)
 
 </div>
 

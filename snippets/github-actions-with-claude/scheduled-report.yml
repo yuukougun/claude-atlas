@@ -1,0 +1,28 @@
+# .github/workflows/daily-report.yml
+# prompt を渡して、定時に読むだけの作業をさせる例（イベントで動く形）。
+# 結果は既定で workflow の実行ログに出る。リポジトリには何も書かない。
+# 時刻（cron）と --max-turns は例。自分の作業に合わせて決める。
+name: Daily Report
+
+on:
+  schedule:
+    - cron: "0 9 * * *"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: read
+      id-token: write
+    steps:
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: "Generate a summary of yesterday's commits and open issues"
+          # prompt を渡した実行では、道具を列挙して渡さないと、
+          # シェルも GitHub の API も使えない。読むだけの道具に絞る。
+          claude_args: |
+            --max-turns 8
+            --allowedTools "mcp__github__list_commits,mcp__github__list_issues"

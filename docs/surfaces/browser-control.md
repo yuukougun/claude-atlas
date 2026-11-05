@@ -97,7 +97,7 @@ Claude in Chrome は、Claude がブラウザのページを読み、クリッ�
 === "Claude Code"
     ターミナルから `claude --chrome` で起動すると、ブラウザの操作が使える。接続の状態の確認、権限の管理、再接続、使うブラウザの選択は、`/chrome` で行う。毎回フラグを付けない設定もあるが、ブラウザの道具の説明が常に読み込まれるため、コンテキストの使用量が増える。必要なときだけ接続するほうが軽い。
 
-    API キーや長期のトークンで認証しているセッションでは、この連携は有効にならない。`/login` でのログインが要る。公式の文書（確認日 2026-11-05）には、WSL では使えないとも書かれている。ほかの OS と IDE 拡張の動作は未確認である。
+    Claude Code から使う要件は、次のとおりである（<!-- fact:begin chrome-extension-requirements -->拡張 1.0.36 以降。Chrome・Edge と、検出される Chromium 系。直接の Anthropic のプラン（Pro・Max・Ultra・Team・Enterprise）。/login での認証が要る（API キーと setup-token では無効）。WSL は非対応。第三者のプロバイダー経由は不可（2026-11-05 時点）<!-- fact:end -->）。API キーや長期のトークンで認証しているセッションでは、この連携は有効にならない。`/login` でのログインが要る。ほかの OS と IDE 拡張の動作は未確認である。
 
 Claude Code から画面を確かめさせる依頼と、フォーム入力を送信の手前で止める依頼の雛形を載せる。どちらも、試験用の画面と偽のデータで試す。
 
@@ -157,7 +157,7 @@ computer use は、使えるコネクタもブラウザの道具もないとき�
 成熟度の表記は、面と出典で違う。Cowork と Desktop の Help Center は beta と書き、Claude Code の文書は research preview と書く。この辞典の成熟度の表（先頭の節）は、Cowork と Desktop の Help Center の表記に合わせている。研究中の機能なので、操作の手順は書かず、対象のプラン・OS・面は公式で確かめる。
 
 === "アプリ"
-    Cowork と Desktop で使える。設定の「Enable computer use」の切り替えで有効にする。対象のプランと OS は公式の Help Center（確認日 2026-11-05）で確かめる。
+    Cowork と Desktop で使える。設定の「Enable computer use」の切り替えで有効にする。対象のプランと OS は（<!-- fact:begin computer-use-requirements -->未確認<!-- fact:end -->）。
 
 === "Claude Code"
     Desktop の Code タブと、CLI から使える。CLI は Desktop と対象の OS が違い、使える条件が限られる。公式の文書（確認日 2026-11-05）で確かめる。

@@ -60,7 +60,7 @@ updated: 2026-11-05
 
 各組を詳しく読むページは次のとおりである。
 
-- キャッシュ：<!-- link:begin why-prompt-caching -->[プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)<!-- link:end -->、<!-- link:begin prompt-caching-in-practice -->プロンプトキャッシングの実務（準備中）<!-- link:end -->、<!-- link:begin using-projects#knowledge -->[プロジェクトの使いどころ › ナレッジを置くと何が変わるか](../app/using-projects.md#knowledge)<!-- link:end -->を読む。
+- キャッシュ：<!-- link:begin why-prompt-caching -->[プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)<!-- link:end -->、<!-- link:begin prompt-caching-in-practice -->[プロンプトキャッシングの実務](prompt-caching-in-practice.md)<!-- link:end -->、<!-- link:begin using-projects#knowledge -->[プロジェクトの使いどころ › ナレッジを置くと何が変わるか](../app/using-projects.md#knowledge)<!-- link:end -->を読む。
 - 要約と圧縮：<!-- link:begin long-chat-limits -->[長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)<!-- link:end -->と<!-- link:begin what-survives-compaction -->[圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)<!-- link:end -->を読む。
 - メモリ：<!-- link:begin how-memory-works -->[アプリのメモリ（仕組み・範囲・消し方と止め方）](../app/how-memory-works.md)<!-- link:end -->、<!-- link:begin using-auto-memory -->[自動メモリ](../extend/using-auto-memory.md)<!-- link:end -->を読む。
 - スキル：<!-- link:begin skills-in-the-app -->[アプリでスキルを使う](../app/skills-in-the-app.md)<!-- link:end -->、<!-- link:begin how-skills-load -->[スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)<!-- link:end -->を読む。
@@ -76,16 +76,16 @@ updated: 2026-11-05
 | 機能 | 面 | 成熟度 |
 | --- | --- | --- |
 | [プロジェクト（Projects）](../app/using-projects.md) | アプリ | GA |
-| プロンプトキャッシング（prompt caching）（準備中） | API | GA |
+| [プロンプトキャッシング（prompt caching）](prompt-caching-in-practice.md) | API | GA |
 | [アプリの自動のコンテキスト管理（automatic context management）](../app/long-chat-limits.md) | アプリ | GA |
-| compaction（API）（準備中） | API | beta |
+| [compaction（API）](long-running-agent-context.md) | API | beta |
 | [メモリ（アプリ。memory）](../app/how-memory-works.md) | アプリ | GA |
-| memory tool（準備中） | API | GA |
+| [memory tool](long-running-agent-context.md) | API | GA |
 | [スキル（アプリ。skills）](../app/skills-in-the-app.md) | アプリ | GA |
-| サーバーの道具（server tools）（準備中） | API | GA |
+| [サーバーの道具（server tools）](tool-use-loop.md) | API | GA |
 | [MCP connector](feature-to-api-mapping.md) | API | beta |
 | [Files API](../app/how-attachments-are-read.md) | API | GA |
-| Agent SDK（Claude Agent SDK）（準備中） | Claude Code・API | GA |
+| [Agent SDK（Claude Agent SDK）](agent-sdk-basics.md) | Claude Code・API | GA |
 | [Managed Agents（Claude Managed Agents）](sdk-comparison.md) | API | beta |
 
 すべて共通：確認日 2026-11-04。
@@ -97,8 +97,8 @@ updated: 2026-11-05
 
 対応表を使うと、アプリの挙動の理由を API の仕組みから説明できる。
 
-- **長い会話が重い理由**：Claude は毎回、会話の最初から読み直して返事をする。<!-- link:begin stateless-messages-api#stateless -->Messages API と会話の正体 › 毎回、全体を渡す（準備中）<!-- link:end -->とあるとおり、API でも毎回、全体を渡す。アプリの自動の要約も API の compaction も、この読み直す量を減らす手段である。要約が起きる長い会話は、利用上限を多く使う。
-- **資料をプロジェクトに置く理由**：同じ先頭が続けば読み直しが安く済む。<!-- link:begin prompt-caching-in-practice#invalidation -->プロンプトキャッシングの実務 › キャッシュを無効にする変更（準備中）<!-- link:end -->にあるとおり、途中を変えるとそこから後は外れる。資料と指示を毎回同じ形で置けるのが、プロジェクトの利点である。
+- **長い会話が重い理由**：Claude は毎回、会話の最初から読み直して返事をする。<!-- link:begin stateless-messages-api#stateless -->[Messages API と会話の正体 › 毎回、全体を渡す](stateless-messages-api.md#stateless)<!-- link:end -->とあるとおり、API でも毎回、全体を渡す。アプリの自動の要約も API の compaction も、この読み直す量を減らす手段である。要約が起きる長い会話は、利用上限を多く使う。
+- **資料をプロジェクトに置く理由**：同じ先頭が続けば読み直しが安く済む。<!-- link:begin prompt-caching-in-practice#invalidation -->[プロンプトキャッシングの実務 › キャッシュを無効にする変更](prompt-caching-in-practice.md#invalidation)<!-- link:end -->にあるとおり、途中を変えるとそこから後は外れる。資料と指示を毎回同じ形で置けるのが、プロジェクトの利点である。
 - **圧縮の後に何が戻るか**：要約に置き換わったあとも、そのまま効くものと、溶けて消えるものがある。<!-- link:begin what-survives-compaction#kept -->[圧縮（compaction）で何が残り、何が消えるか › そのまま効くもの](../basics/what-survives-compaction.md#kept)<!-- link:end -->と<!-- link:begin how-skills-load#after-compaction -->[スキルの考え方（手順を必要なときだけ読む） › 圧縮の後に戻るもの](../extend/how-skills-load.md#after-compaction)<!-- link:end -->で確かめる。残したい規則は、要約に頼らず別の置き場所に出す。
 - **会話を消してもメモリが残る理由**：メモリは会話の中身ではなく、会話をまたいで残す記録だからである。API の memory tool も、会話をまたいでファイルに残す仕組みである。残った記録が誤っていないかは、<!-- link:begin using-auto-memory#review -->[自動メモリ › 誤った記録の見直し](../extend/using-auto-memory.md#review)<!-- link:end -->で見直す。
 
@@ -114,7 +114,7 @@ updated: 2026-11-05
     - **状況**：アプリで続けている長い調査を、同じ手順で夜間にスクリプトから回したい。途中で会話が長くなり、決めた方針を忘れさせたくない。
     - **迷う候補**：古い発言を compaction で要約に置き換える。決めた方針をファイルに出して memory tool で持たせる。
     - **選んだもの**：両方を使う。compaction で作業中の文脈を小さく保ち、残したい決定は memory tool のファイルに書く。
-    - **理由**：公式は、compaction で文脈を小さく保ち、memory で要約後も残す情報を保存する組み合わせを勧める。要約だけでは方針が溶けて消えうる。詳しい分担は<!-- link:begin long-running-agent-context#external-state -->長時間エージェントのコンテキスト管理 › 状態をファイルに持たせる（準備中）<!-- link:end -->を読む。
+    - **理由**：公式は、compaction で文脈を小さく保ち、memory で要約後も残す情報を保存する組み合わせを勧める。要約だけでは方針が溶けて消えうる。詳しい分担は<!-- link:begin long-running-agent-context#external-state -->[長時間エージェントのコンテキスト管理 › 状態をファイルに持たせる](long-running-agent-context.md#external-state)<!-- link:end -->を読む。
 
 !!! example "判断例：アプリの利用上限の減りが速い理由を知りたい"
     - **状況**：アプリの長い会話で、利用上限の減りが速い。理由を仕組みから知りたいが、自分でプログラムを書く予定はない。
@@ -171,8 +171,8 @@ API の機能には、ZDR（ゼロデータ保持）の対象外のものがあ�
 
 **関連**
 
-- Messages API と会話の正体（準備中）
-- プロンプトキャッシングの実務（準備中）
+- [Messages API と会話の正体](stateless-messages-api.md)
+- [プロンプトキャッシングの実務](prompt-caching-in-practice.md)
 - [プロンプトキャッシング（先頭が変わらないことの価値）](../basics/why-prompt-caching.md)
 - [圧縮（compaction）で何が残り、何が消えるか](../basics/what-survives-compaction.md)
 - [長い会話の自動のコンテキスト管理と長さの上限](../app/long-chat-limits.md)
@@ -185,7 +185,7 @@ API の機能には、ZDR（ゼロデータ保持）の対象外のものがあ�
 - [添付ファイルはどこまで読まれるか › API で渡すとき（Files API・PDF・画像）](../app/how-attachments-are-read.md#api)
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較 › Managed Agents（Anthropic がループと環境を持つ）](sdk-comparison.md#managed-agents)
-- 長時間エージェントのコンテキスト管理（準備中）
+- [長時間エージェントのコンテキスト管理](long-running-agent-context.md)
 - [effort の段階と使い分け](../models/effort-levels.md)
 - [全体地図：Claude の面と層](../start/product-map.md)
 

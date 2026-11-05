@@ -85,7 +85,7 @@ updated: 2026-11-05
 - 確かめられる作業でも、結果を採るかは人が決める。スコアが上がっても、その案を採ってよいとは限らない。
 - 任せる幅を広げるほど、確かめる仕組みと封じ込めを強める。比例則は <!-- link:begin four-principles#proportional-rule -->[四つの原理と比例則（見せる・確かめる・縛る・握る） › 比例則](../start/four-principles.md#proportional-rule)<!-- link:end --> にある。無人で走らせる前の確認は <!-- link:begin five-questions-before-delegating#five-questions -->[任せ方の段階と、無人で走らせる前の五つの問い › 無人で走らせる前の五つの問い](five-questions-before-delegating.md#five-questions)<!-- link:end --> で行う。
 
-作業そのものが AI に向くかの見積もりは、<!-- link:begin is-the-task-ai-suited#five-axes -->そのタスクは AI に向いているか（五つの軸） › 五つの軸（準備中）<!-- link:end --> で行う。欠ける軸があれば、その部分は人が受け持つ。
+作業そのものが AI に向くかの見積もりは、<!-- link:begin is-the-task-ai-suited#five-axes -->[そのタスクは AI に向いているか（五つの軸） › 五つの軸](is-the-task-ai-suited.md#five-axes)<!-- link:end --> で行う。欠ける軸があれば、その部分は人が受け持つ。
 
 !!! example "判断例：高速化を頼むとき、評価スクリプトはどちらが書くか"
     - **状況**：ヒューリスティック系のコンテストで、解法の実行が遅い。AI に高速化を頼みたい。
@@ -144,8 +144,8 @@ updated: 2026-11-05
 
 **次に読む**
 
+- [伴走と委託](pairing-and-delegating.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](five-questions-before-delegating.md)
-- 伴走と委託（準備中）
 
 **関連**
 
@@ -154,7 +154,7 @@ updated: 2026-11-05
 - [どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)
 - [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
-- そのタスクは AI に向いているか（五つの軸）（準備中）
+- [そのタスクは AI に向いているか（五つの軸）](is-the-task-ai-suited.md)
 - [AI に改善を回させ続ける罠（開いたループ）](open-ended-loop-trap.md)
 - [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)

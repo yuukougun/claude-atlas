@@ -187,7 +187,7 @@ B を外す具体的な手は <!-- link:begin protecting-secrets#two-layers -->[
 **次に読む**
 
 - [アプリの権限モード（Auto と Manual）と安全](../app/permission-modes-in-the-app.md)
-- クラウドの定期タスク（準備中）
+- [クラウドの定期タスク](../delegate/cloud-schedules.md)
 
 **関連**
 

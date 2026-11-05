@@ -71,7 +71,7 @@ Claude に作らせる環境の部品は 5 つある。コンテストでは評�
 4. 集計を作らせる。合計だけでなく、最悪ケースと失敗した件の一覧を出させる。合計だけでは、一部の層の悪化が隠れる（見方は <!-- link:begin measure-changes#by-stratum -->[変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)<!-- link:end --> が持つ）。確かめ：手で計算した小さいケースと集計が一致する。
 5. 実験ごとの記録の置き場を作らせる。仮説・設定・結果・採否を残す形は <!-- link:begin experiment-log#flow -->[実験台帳（仮説を先に書く・提案者・分母・検証器の版） › 実験 1 件の流れ](../eval/experiment-log.md#flow)<!-- link:end --> が持つ。確かめ：1 件の実験が、記録だけから再現できる。
 
-形式ごとに、環境が何に当たるかは違う。テスタ・ベンチマーカー・交差検証・対戦場の違いは <!-- link:begin evaluators-by-format -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)<!-- link:end --> が持つ。結論を出させる代わりに、可視化や集計の道具を作らせる使い方は <!-- link:begin build-observation-tools -->観察の道具を作らせる（可視化・集計・ログ）（準備中）<!-- link:end --> にある。
+形式ごとに、環境が何に当たるかは違う。テスタ・ベンチマーカー・交差検証・対戦場の違いは <!-- link:begin evaluators-by-format -->[形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)<!-- link:end --> が持つ。結論を出させる代わりに、可視化や集計の道具を作らせる使い方は <!-- link:begin build-observation-tools -->[観察の道具を作らせる（可視化・集計・ログ）](build-observation-tools.md)<!-- link:end --> にある。
 
 次の依頼は、手順の 1 から 4 と、完成後の確かめまでをまとめて頼む型である。確かめの 3 点を依頼に入れておくと、環境が動いたというだけの報告で終わりにくい。
 
@@ -184,7 +184,7 @@ Claude に作らせる環境の部品は 5 つある。コンテストでは評�
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
 - [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)
 - [手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)
-- 観察の道具を作らせる（可視化・集計・ログ）（準備中）
+- [観察の道具を作らせる（可視化・集計・ログ）](build-observation-tools.md)
 - [AI に書かせたテストの落とし穴](../verify/pitfalls-of-ai-written-tests.md)
 
 </div>

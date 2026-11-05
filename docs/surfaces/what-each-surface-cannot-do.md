@@ -74,7 +74,7 @@ updated: 2026-11-05
 - **シークレットチャット**：新しい体験では、ファイルの作成とコードの実行が使えない。ファイルが要る依頼は、通常の会話で行う。詳しい範囲は <!-- link:begin incognito-chats#limits -->[シークレットチャット（記録を残さない会話） › 使えない機能](../app/incognito-chats.md#limits)<!-- link:end --> にある。
 - **統合の後の制約**：Chat と Cowork が 1 つの会話にまとまった後の制約として、公式の統合の記事は次を挙げている。GitHub からの追加、会話の途中からの分岐、古い Cowork タスク（統合の前にアプリで作ったタスク）の検索は使えない。Dispatch という機能は新しいユーザーには提供されない。
 - **ローカルの作業**：クラウドで動くタスクは、PC を閉じても続く。ローカルのファイルやアプリを使うタスクは、Desktop を開いておく要がある。この差は <!-- link:begin where-it-runs#what-cloud-cannot-reach -->[実行場所の違い（クラウド・自分の PC・リモート操作） › クラウドで動くときに届かないもの](where-it-runs.md#what-cloud-cannot-reach)<!-- link:end --> で扱う。
-- **Claude Code のクラウドのセッション**：user 設定・local 設定・ローカルのプラグインを読まない。手元では効いていた設定が、クラウドでは効かない。面ごとの違いは <!-- link:begin claude-code-surfaces#comparison-table -->Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 面ごとの違い（表）（準備中）<!-- link:end --> で見る。
+- **Claude Code のクラウドのセッション**：user 設定・local 設定・ローカルのプラグインを読まない。手元では効いていた設定が、クラウドでは効かない。面ごとの違いは <!-- link:begin claude-code-surfaces#comparison-table -->[Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 面ごとの違い（表）](claude-code-surfaces.md#comparison-table)<!-- link:end --> で見る。
 - **画面操作（computer use）**：使える connector やツールがないときに画面を直接操作する機能で、公式の記事では Desktop の機能として説明されている。優先順位は、connectors、ブラウザ操作、画面操作の順である。Web やモバイルの側で同じ機能を使えるかは確かめていない。
 - **モバイル**：タスクの監視・質問への回答・方向の修正・開始はできる。それ以外でモバイルだけ使えない機能は、このページでは確かめていない。範囲は <!-- link:begin voice-and-mobile#mobile -->音声モード・Quick entry・モバイル › モバイルでできること・できないこと（準備中）<!-- link:end --> で確かめる。
 
@@ -128,7 +128,7 @@ updated: 2026-11-05
 **関連**
 
 - [アプリ・Claude Code・API の選び方](choosing-a-surface.md)
-- Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）
+- [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](claude-code-surfaces.md)
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](where-it-runs.md)
 - [シークレットチャット（記録を残さない会話） › 使えない機能](../app/incognito-chats.md#limits)
 - 音声モード・Quick entry・モバイル › モバイルでできること・できないこと（準備中）

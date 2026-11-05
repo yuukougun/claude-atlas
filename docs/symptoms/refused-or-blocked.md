@@ -101,7 +101,7 @@ Claude 側の原因を、確かめる手間が小さい順に並べる。全体�
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
 | 見えていない | [正当な依頼が断られたとき › 公式が案内する手段](../safety/when-requests-are-refused.md#official-steps)<br>[理由を添える](../prompting/give-reasons.md) |
-| 散らかっている | [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>推論を見せてほしいとき › 全文を求める指示が断られる理由（準備中） |
+| 散らかっている | [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)<br>[新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[推論を見せてほしいとき › 全文を求める指示が断られる理由](../prompting/asking-for-reasoning.md#refusal) |
 | 合っていない | [auto モードは何を止め、何を止めないか › 止められたときの見直し方](../enforce/what-auto-mode-stops.md#when-blocked)<br>[縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)<br>[権限ルール（allow・ask・deny）](../enforce/permission-rules.md) |
 
 <!-- textlint-enable -->
@@ -166,7 +166,7 @@ Claude 側の原因を、確かめる手間が小さい順に並べる。全体�
 - [理由を添える](../prompting/give-reasons.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
-- 推論を見せてほしいとき（準備中）
+- [推論を見せてほしいとき](../prompting/asking-for-reasoning.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)

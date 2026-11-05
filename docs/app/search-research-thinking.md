@@ -55,7 +55,7 @@ web 検索は、役に立つときに検索して、答えに出典を付ける�
 | 機能 | 面 | 強制力 | 入った版 |
 | --- | --- | --- | --- |
 | [Web 検索（web search。アプリ）](search-research-thinking.md) | アプリ | — | 2025-03-20 |
-| [リサーチ（Research）](using-research.md) | アプリ | — | 2025-04-15 |
+| [リサーチ（Research）](using-research.md) | アプリ | お願い | 2025-04-15 |
 | [effort](../models/effort-levels.md) | アプリ・Claude Code・API | なし | 2025-11-24 |
 
 すべて共通：成熟度 GA、確認日 2026-11-04。

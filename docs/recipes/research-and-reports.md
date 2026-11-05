@@ -68,7 +68,7 @@ updated: 2026-11-05
 
 5 では、確かめられなかった主張と引用のない主張を、Claude に指して消させるか「未確認」と書かせる。消えたかは、返ってきた文書を自分で読み直して見る。
 
-5 の後に、レポートを文書や資料の形に整えるなら、<!-- link:begin write-docs -->ドキュメント・技術文書を書く（準備中）<!-- link:end -->、<!-- link:begin make-slides -->資料・スライドを作る（準備中）<!-- link:end --> が持ち主である。日本語の資料を読ませるときは、<!-- link:begin documents-in-japanese#pdf -->[日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること](../japanese/documents-in-japanese.md#pdf)<!-- link:end --> を先に見る。
+5 の後に、レポートを文書や資料の形に整えるなら、<!-- link:begin write-docs -->[ドキュメント・技術文書を書く](write-docs.md)<!-- link:end -->、<!-- link:begin make-slides -->[資料・スライドを作る](make-slides.md)<!-- link:end --> が持ち主である。日本語の資料を読ませるときは、<!-- link:begin documents-in-japanese#pdf -->[日本語の資料を読ませる・書かせる › 日本語の PDF を渡す前と後に確かめること](../japanese/documents-in-japanese.md#pdf)<!-- link:end --> を先に見る。
 
 ## 問いと範囲を先に決める {#define-the-question}
 
@@ -120,9 +120,9 @@ updated: 2026-11-05
 
 | 機能 | 面 | 強制力 | 入った版 |
 | --- | --- | --- | --- |
-| [リサーチ（Research）](../app/using-research.md) | アプリ | — | 2025-04-15 |
+| [リサーチ（Research）](../app/using-research.md) | アプリ | お願い | 2025-04-15 |
 | [Web 検索（web search。アプリ）](../app/search-research-thinking.md) | アプリ | — | 2025-03-20 |
-| [プロジェクト（Projects）](../app/using-projects.md) | アプリ | — | 2024-06-25 |
+| [プロジェクト（Projects）](../app/using-projects.md) | アプリ | なし | 2024-06-25 |
 | [アーティファクト（artifacts）](../app/artifacts-overview.md) | アプリ・Claude Code | なし | 2024-06-20 |
 
 すべて共通：成熟度 GA、確認日 2026-11-04。
@@ -218,8 +218,8 @@ updated: 2026-11-05
 - [知識カットオフと「今」を知らない問題](../basics/knowledge-cutoff.md)
 - [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)
 - [仕様を自分で読み、AI に誤読を指摘させる](read-specs-yourself.md)
-- ドキュメント・技術文書を書く（準備中）
-- 資料・スライドを作る（準備中）
+- [ドキュメント・技術文書を書く](write-docs.md)
+- [資料・スライドを作る](make-slides.md)
 - [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)
 - 別のモデルに第二の意見を求める（一致は証拠にならない）（準備中）
 

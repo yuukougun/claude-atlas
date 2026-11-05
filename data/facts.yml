@@ -910,10 +910,10 @@ facts:
   sources:
   - hc-incognito
   - privacy-long-store-data
-  checked: '2026-11-04'
+  checked: '2026-11-05'
   volatility: 中
-  status: 未確認
-  note: default-safety-settings の提案。一次資料を開いて確かめていない（write.md）ので 未確認。足し先：default-safety-settings#defaults-by-surface
+  status: 確認済み
+  note: default-safety-settings の提案。incognito-chats の担当が hc-incognito を開き、30 日の既定と Enterprise の扱いが記述と合うことを確かめた（write.md）ので 確認済み（privacy-long-store-data は開いていない）。足し先：default-safety-settings#defaults-by-surface・where-your-data-goes#misconceptions・incognito-chats#retention
 - id: checkpoint-retention-count
   title: セッションごとに保たれるチェックポイントの数（直近の数）
   value: 100
@@ -1327,10 +1327,10 @@ facts:
   sentence: '{value}'
   sources:
   - hc-artifacts
-  checked: '2026-10-29'
+  checked: '2026-11-05'
   volatility: 中
-  status: 未確認
-  note: 'artifacts-overview の提案（公式の記事を開いていない）。足し先は artifacts-as-apps#runtime'
+  status: 確認済み
+  note: 'artifacts-overview の提案（公式の記事を開いていない）を、artifacts-as-apps の担当が hc-artifacts を取得して同じ値と確かめた（facts-proposal.yml。同じ値なので新しい id は作らない）ので 確認済み。足し先は artifacts-as-apps#runtime'
 - id: artifacts-required-setting
   title: アーティファクトに要る設定の名前
   value: Cloud code execution and file creation（新しい設定の画面では Create and edit files）をオンにしておく
@@ -1473,6 +1473,790 @@ facts:
   volatility: 中
   status: 未確認
   note: 'parallel-and-loop-costs の提案（提案の status は「要確認」）。Agent teams の文書は倍率を書かない（research/23 #7）。Manage costs の原文で再確認してから確認済みにする。足し先：parallel-and-loop-costs#multiplication・#reading-examples・#misconceptions'
+- id: output-style-concise-min-version
+  title: Concise スタイルが要る Claude Code の最低の版
+  value: 2.1.237
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.237
+  sources:
+  - cc-docs-output-styles
+  - cc-changelog
+  checked: '2026-11-05'
+  volatility: 低
+  status: 確認済み
+  note: 'output-style-modes の提案。足し先：output-style-modes#built-in'
+- id: output-style-command-min-version
+  title: /output-style コマンドが要る Claude Code の最低の版
+  value: 2.1.269
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.269
+  sources:
+  - cc-docs-output-styles
+  - cc-changelog
+  checked: '2026-11-05'
+  volatility: 低
+  status: 確認済み
+  note: 'output-style-modes の提案。足し先：output-style-modes#switch'
+- id: output-style-setting-case-sensitive
+  title: outputStyle の設定値の大文字小文字（/output-style コマンドは区別しない）
+  value: 区別する
+  sentence: 設定の値は大文字小文字を{value}（合わない値は Default になる。/output-style コマンドは区別しない）
+  sources:
+  - cc-docs-output-styles
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'output-style-modes の提案。足し先：output-style-modes#switch'
+- id: block-writes-outside-min-version
+  title: permissions.blockWritesOutsideWorkingDirectories が入った Claude Code の最低の版
+  value: 2.1.314
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.314
+  sources:
+  - cc-changelog
+  - cc-docs-permission-modes
+  - cc-docs-settings-reference
+  checked: '2026-11-05'
+  volatility: 低
+  status: 確認済み
+  note: 'protected-paths の提案。足し先：protected-paths#outside-working-directory'
+- id: opusplan-alias-mapping
+  title: opusplan エイリアスの割り当て（plan mode と実行で使う系統）
+  value: plan mode では opus、実行では sonnet に自動で切り替わる
+  sentence: '{value}'
+  sources:
+  - cc-docs-model-config
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: 'split-models-by-role の提案。担当が model-config を開いて確かめた（write.md）。足し先：split-models-by-role#patterns'
+- id: auto-memory-default-local
+  title: 自動メモリの既定の状態（ローカルのセッション）
+  value: 既定で有効
+  sentence: '{value}'
+  sources:
+  - cc-docs-memory
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'using-auto-memory の提案。足し先：using-auto-memory#usage'
+- id: claude-md-import-max-hops
+  title: CLAUDE.md の @import の入れ子の段数の上限
+  value: 4
+  unit: 段（ホップ）
+  sentence: '{value} {unit}まで'
+  sources:
+  - cc-docs-memory
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'claude-md-loading-order の提案。足し先：claude-md-loading-order#import'
+- id: chat-sharing-plans
+  title: 会話の共有のしかたとプランの対応
+  table:
+    rows: 共有のしかた
+    columns:
+    - id: plans
+      title: 使えるプラン
+    cells:
+    - row: 特定の人への招待
+      plans: Free・Pro・Max・Ultra・Team・Enterprise
+    - row: 公開リンク
+      plans: Free・Pro・Max・Ultra
+    - row: 組織の中だけ
+      plans: Team・Enterprise
+  sources:
+  - hc-share-chats
+  - hc-share-people
+  - hc-share-public
+  checked: '2026-11-04'
+  volatility: 高
+  status: 確認済み
+  note: 'shared-artifacts-and-files の提案。足し先：shared-artifacts-and-files#who-can-see。コード実行で作ったファイルを含む会話の公開リンクの制限は、既存の shared-chat-with-created-files-restriction（同じ値）を使う'
+- id: chat-sharing-invite-expiry
+  title: 開かれない招待が切れるまでの期間
+  value: 30
+  unit: 日
+  sentence: '{value} {unit}'
+  sources:
+  - hc-share-people
+  checked: '2026-11-04'
+  volatility: 中
+  status: 未確認
+  note: 'shared-artifacts-and-files の提案（提案の status は「要確認」。research/26 の写しのみで一次資料を開いていない）。1 日に招待できる人数の上限は材料にない。足し先：shared-artifacts-and-files#who-can-see'
+- id: top-model-by-plan
+  title: 最上位のモデルの引かれ先（プランごと）
+  value: Max・Ultra・Team と席ごとの Enterprise の premium seat は通常の週の上限の内側（一部まで）。Pro・Team と席ごとの Enterprise の standard seat は usage credits（席ごとの Enterprise は組織が有効にした場合）。使用量に基づく Enterprise と API は標準の API 料金。Free は使えない
+  sentence: '{value}'
+  sources:
+  - hc-fable-models-plan
+  - claude-pricing
+  - hc-max-plan
+  - hc-ultra-plan
+  checked: '2026-11-05'
+  volatility: 高
+  status: 未確認
+  note: 'before-using-top-model の提案（提案の status は「確認済み」。Fable の記事は WebFetch の要約で確かめたが、料金のページと Max・Ultra の記事は束の写しのまま。Fable の記事は別の週の上限なしと書き、usage-limit-types-by-plan の最上位のモデルの別の週の上限の列と食い違う〔正本の見直しは持ち主へ〕）。足し先：before-using-top-model#which-limit・choosing-a-model#plans・choosing-a-plan#plan-table'
+- id: top-model-weekly-share
+  title: プランに含まれる最上位のモデルの割合（通常の週の上限のうち）
+  value: 50
+  unit: '%'
+  sentence: '{value}{unit}（料金のページは「半分まで」）'
+  sources:
+  - hc-fable-models-plan
+  - claude-pricing
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: 'before-using-top-model の提案。Fable の記事を担当が WebFetch で確かめた。足し先：before-using-top-model#which-limit'
+- id: top-model-claude-code-min-version
+  title: 最上位のモデルを Claude Code で使う最低の版
+  value: モデル 5 は 2.1.170、モデル 5.1 は 2.1.255（モデルの世代ごと）
+  sentence: '{value}'
+  sources:
+  - hc-fable-models-plan
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'before-using-top-model の提案。足し先：before-using-top-model#which-limit'
+- id: claude-code-stable-channel-delay
+  title: Claude Code の stable の通り道が latest より遅れる日数
+  value: ふつう 1 週間ほど前の版（大きな退行のある版を飛ばす）
+  sentence: '{value}'
+  sources:
+  - cc-docs-setup
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'checking-for-updates の提案。公式（Advanced setup の Configure release channel）は「typically about one week old, skipping releases with major regressions」と書く。足し先：checking-for-updates#steps'
+- id: chrome-extension-requirements
+  title: Claude in Chrome を Claude Code から使う要件（拡張の版・対応ブラウザ・プラン・認証の方法・WSL）
+  value: 拡張 1.0.36 以降。Chrome・Edge と、検出される Chromium 系。直接の Anthropic のプラン（Pro・Max・Ultra・Team・Enterprise）。/login での認証が要る（API キーと setup-token では無効）。WSL は非対応。第三者のプロバイダー経由は不可
+  sentence: '{value}'
+  conflict:
+  - value: Chrome のみ・有料プラン
+    sources:
+    - hc-claude-in-chrome
+    note: Help Center の入門の記事の記述（調査資料 02 §1-12、確認日 2026-10-29）。Claude Code の文書は Chrome・Edge と Chromium 系を挙げる
+  sources:
+  - cc-docs-chrome
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: 'browser-control の提案。足し先：browser-control#claude-in-chrome'
+- id: computer-use-requirements
+  title: computer use（Cowork・Desktop）の対象のプランと OS
+  value: macOS・Windows の Desktop。Pro・Max・Ultra。Team と Enterprise は対象外（beta）。投資・取引・暗号資産のアプリは既定でブロック
+  sentence: '{value}'
+  sources:
+  - hc-computer-use
+  checked: '2026-11-05'
+  volatility: 高
+  status: 未確認
+  note: 'browser-control の提案（提案の status は「確認済み」。write.md は computer use の文書を開いていないと書くので 未確認）。足し先：browser-control#computer-use'
+- id: loop-recurring-expiry-days
+  title: セッション内の繰り返し（/loop）の失効までの日数
+  value: 7
+  unit: 日
+  sentence: '{value} {unit}で失効する'
+  sources:
+  - cc-docs-scheduled-tasks
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'loop-and-scheduling の提案。足し先：loop-and-scheduling#loop'
+- id: loop-max-tasks-per-session
+  title: 1 セッションに置ける予定のタスク数の上限
+  value: 50
+  unit: 件
+  sentence: '{value} {unit}まで'
+  sources:
+  - cc-docs-scheduled-tasks
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'loop-and-scheduling の提案。足し先：loop-and-scheduling#loop'
+- id: loop-min-interval
+  title: /loop の最小の間隔
+  value: 1 分
+  sentence: '{value}'
+  sources:
+  - cc-docs-scheduled-tasks
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'loop-and-scheduling の提案。足し先：loop-and-scheduling#where-to-run'
+- id: loop-self-paced-interval-range
+  title: 間隔を省いた /loop で Claude が選ぶ間隔の範囲
+  value: 1 分から 1 時間
+  sentence: '{value}'
+  sources:
+  - cc-docs-scheduled-tasks
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'loop-and-scheduling の提案。足し先：loop-and-scheduling#loop'
+- id: desktop-scheduled-task-min-interval
+  title: Desktop の予定のタスクの最小の間隔
+  value: Claude が設定すると 1 分、フォームでは 1 時間
+  sentence: '{value}'
+  sources:
+  - cc-docs-scheduled-tasks
+  - cc-docs-desktop-scheduled-tasks
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'loop-and-scheduling の提案。足し先：loop-and-scheduling#where-to-run'
+- id: cloud-scheduled-task-min-interval
+  title: クラウドの予定のタスクの最小の間隔（cron の 1 時間より短い間隔は拒否）
+  value: 1 時間
+  sentence: '{value}'
+  sources:
+  - cc-docs-scheduled-tasks
+  - cc-docs-routines
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'loop-and-scheduling の cloud-scheduled-task-min-interval と cloud-schedules の scheduled-tasks-min-interval（同じ値）を 1 つにした。足し先：loop-and-scheduling#where-to-run・cloud-schedules#triggers'
+- id: workflow-concurrent-agents
+  title: ワークフローで同時に動かせる担当の数
+  value: 既定は 16。CPU が少ないと減る。環境変数 CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS で 1〜256（v2.1.269 以降）
+  sentence: '{value}'
+  versions:
+    claude_code: 2.1.269
+    note: 環境変数で変えられる版
+  sources:
+  - cc-docs-workflows
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'dynamic-workflows の提案。足し先：dynamic-workflows#when-and-start-small'
+- id: workflow-agent-caps
+  title: ワークフローの 1 回の実行の上限
+  value: 担当は 1 回の実行で合計 1000。parallel() と pipeline() の 1 回の呼び出しは 4096 件まで
+  sentence: '{value}'
+  sources:
+  - cc-docs-workflows
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'dynamic-workflows の提案。足し先：dynamic-workflows#when-and-start-small'
+- id: workflow-large-warning
+  title: Large workflow の警告が出るしきい値
+  value: 担当が 25 を超えるか、トークンの見込みが 150 万を超えたとき。size guideline を自分で選ぶと、担当の数のしきい値はその段の数に替わる。ultracode が on の間は出ない。警告は助言で、止めない
+  sentence: '{value}'
+  sources:
+  - cc-docs-workflows
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'dynamic-workflows の提案。足し先：dynamic-workflows#when-and-start-small'
+- id: workflow-size-guideline
+  title: ワークフローの規模の目安（workflowSizeGuideline）
+  value: unrestricted は目安なし、small は 5 未満、medium は 10 未満、large は 50 未満。既定は medium、Pro で v2.1.271 以降は small。助言で上限ではない
+  sentence: '{value}'
+  sources:
+  - cc-docs-workflows
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'dynamic-workflows の提案。足し先：dynamic-workflows#when-and-start-small'
+- id: agent-sdk-setting-sources-default
+  title: Agent SDK で settingSources を省いたときの読み込み
+  value: user・project・local をすべて読む。managed policy・~/.claude.json・自動の記憶・claude.ai の MCP コネクタは settingSources と無関係に読まれる
+  sentence: '{value}'
+  sources:
+  - cc-docs-agent-sdk-claude-code-features
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'agent-sdk-basics の提案。足し先：agent-sdk-basics#setting-sources。権限モードの既定は既存の permission-mode-default-noninteractive（同じ値）を使う'
+- id: monitor-default-deadline
+  title: Monitor の見張りの既定の期限
+  value: 5 分
+  sentence: '{value}'
+  sources:
+  - cc-docs-tools-reference
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'progress-logs-for-long-jobs の提案。足し先：progress-logs-for-long-jobs#steps'
+- id: monitor-max-deadline
+  title: Monitor の見張りの期限の上限（対話の場合）
+  value: 30 分
+  sentence: '{value}'
+  sources:
+  - cc-docs-tools-reference
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'progress-logs-for-long-jobs の提案。足し先：progress-logs-for-long-jobs#steps'
+- id: monitor-print-mode-max-deadline
+  title: 単一の prompt で非対話（-p）に走らせたときの Monitor の見張りの期限の上限
+  value: 10 分
+  sentence: '{value}'
+  sources:
+  - cc-docs-tools-reference
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'progress-logs-for-long-jobs の提案。足し先：progress-logs-for-long-jobs#steps'
+- id: monitor-min-version-restricted-envs
+  title: Bedrock などの提供経路か通信の抑制の環境変数があるときに Monitor が要る最低の Claude Code の版
+  value: 2.1.310
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.310
+  sources:
+  - cc-docs-tools-reference
+  checked: '2026-11-05'
+  volatility: 低
+  status: 確認済み
+  note: 'progress-logs-for-long-jobs の提案。足し先：progress-logs-for-long-jobs#steps'
+- id: tool-choice-default
+  title: tool_choice の既定値
+  value: auto
+  sentence: '{value}'
+  sources:
+  - api-docs-tool-use
+  checked: '2026-11-05'
+  volatility: 低
+  status: 確認済み
+  note: 'tool-use-loop の提案（Tool use overview の When Claude uses tools の節）。足し先：tool-use-loop#forcing'
+- id: scheduled-tasks-github-lapse
+  title: GitHub の接続が切れたとき実行を飛ばす期間と、その後に止まるまでの期間
+  value: 72
+  unit: 時間
+  sentence: '{value} {unit}'
+  sources:
+  - cc-docs-routines
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'cloud-schedules の提案。足し先：cloud-schedules#pitfalls'
+- id: scheduled-tasks-schedule-warning-version
+  title: /schedule が頼んでいない連携先に警告を出すようになった Claude Code の版
+  value: 2.1.317
+  sentence: Claude Code {value}
+  versions:
+    claude_code: 2.1.317
+  sources:
+  - cc-changelog
+  checked: '2026-11-04'
+  volatility: 低
+  status: 未確認
+  note: 'cloud-schedules の提案（research/22 #27 の写しで、公式の文書では見ていない〔write.md〕ので 未確認）。足し先：cloud-schedules#least-privilege'
+- id: scheduled-tasks-run-history-question-version
+  title: /schedule で実行の履歴を尋ねられる Claude Code の版（GitHub の起動を CLI から足せる版は 2.1.225）
+  value: 2.1.227
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.227
+  sources:
+  - cc-docs-routines
+  checked: '2026-11-05'
+  volatility: 低
+  status: 確認済み
+  note: 'cloud-schedules の提案。足し先：cloud-schedules#success-and-results'
+- id: scheduled-tasks-plans
+  title: クラウドの予定のタスクが使えるプラン
+  value: Pro・Max・Ultra・Team・Enterprise
+  sentence: '{value}'
+  sources:
+  - cc-docs-routines
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: 'cloud-schedules の提案。足し先：cloud-schedules#triggers'
+- id: artifact-runtime-plans
+  title: アーティファクトのアプリ接続とデータ保存が使えるプラン
+  value: Pro・Max・Ultra・Team・Enterprise（Web とデスクトップ）
+  sentence: '{value}'
+  sources:
+  - hc-artifacts
+  - claude-pricing
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: 'artifacts-as-apps の提案。足し先：artifacts-as-apps#runtime・#pitfalls。保存の上限は既存の artifacts-storage-limit（同じ値）を使う'
+- id: bare-mode-default-plan
+  title: -p の既定を --bare にする予定の有無
+  value: 公式の headless の文書は、--bare を将来 -p の既定にすると書く（予定。入る版は未定）
+  sentence: '{value}'
+  sources:
+  - cc-docs-headless
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: 'bare-mode の提案。足し先：bare-mode#pitfalls'
+- id: setting-sources-leak-fix-version
+  title: --setting-sources で外した設定が漏れる不具合を直した Claude Code の版
+  value: 2.1.314
+  sentence: Claude Code {value}
+  versions:
+    claude_code: 2.1.314
+  sources:
+  - cc-changelog
+  checked: '2026-11-05'
+  volatility: 低
+  status: 未確認
+  note: 'bare-mode の提案（research/22 #6 の写し。提案の status は「要確認」で、CHANGELOG の再確認が要る）。足し先：bare-mode#pitfalls'
+- id: bare-mode-partial-limits-before
+  title: --bare の MCP・システムリマインダー・バックグラウンドの制限が完全になった版
+  value: v2.1.286 より前は一部だけ
+  sentence: '{value}'
+  versions:
+    claude_code: 2.1.286
+  sources:
+  - cc-docs-headless
+  checked: '2026-11-05'
+  volatility: 低
+  status: 確認済み
+  note: 'bare-mode の提案（headless の文書）。足し先：bare-mode#what-is-skipped'
+- id: prompt-cache-default-ttl
+  title: プロンプトキャッシュの既定の寿命
+  value: 5 分（使うたびに延びる。1 時間の寿命も選べる）
+  sentence: '{value}'
+  sources:
+  - api-docs-prompt-caching
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: why-prompt-caching の prompt-cache-default-ttl と prompt-caching-in-practice の prompt-cache-ttl（同じ値。後者の提案は 2026-10-29・要確認）を 1 つにした。足し先：why-prompt-caching#why・prompt-caching-in-practice#pitfalls
+- id: prompt-cache-price-multipliers
+  title: キャッシュの読み取りと書き込みの料金の倍率（基本の入力単価に対して）
+  value: 読み取りは多くのモデルで 0.1 倍（モデルにより 0.05 倍・0.025 倍の例外がある）。書き込みは 5 分の寿命で 1.25 倍、1 時間で 2 倍
+  sentence: '{value}'
+  sources:
+  - api-docs-prompt-caching
+  checked: '2026-11-05'
+  volatility: 高
+  status: 確認済み
+  note: why-prompt-caching の prompt-cache-read-multiplier と prompt-caching-in-practice の prompt-cache-price-multipliers（同じ値）を 1 つにした。足し先：why-prompt-caching#what-happens・prompt-caching-in-practice#breakpoints
+- id: prompt-cache-min-length
+  title: キャッシュできる最小の長さ（モデル別）
+  value: モデルによって 512 から 4,096 トークン
+  sentence: '{value}'
+  sources:
+  - api-docs-prompt-caching
+  checked: '2026-10-29'
+  volatility: 高
+  status: 未確認
+  note: 'prompt-caching-in-practice の提案（提案の status は「要確認」）。足し先：prompt-caching-in-practice#pitfalls'
+- id: prompt-cache-max-breakpoints
+  title: 明示するキャッシュの区切りの数の上限
+  value: 4
+  unit: つ
+  sentence: '{value} {unit}まで'
+  sources:
+  - api-docs-prompt-caching
+  checked: '2026-10-29'
+  volatility: 中
+  status: 未確認
+  note: 'prompt-caching-in-practice の提案（提案の status は「要確認」）。足し先：prompt-caching-in-practice#breakpoints'
+- id: agents-md-direct-read-min-version
+  title: AGENTS.md を読み込みの設定で直接読む最低の Claude Code の版
+  value: 2.1.277
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.277
+  sources:
+  - cc-docs-memory
+  - cc-docs-changelog
+  checked: '2026-11-05'
+  volatility: 低
+  status: 確認済み
+  note: 'agents-md の提案。公式の memory の文書が「Reading AGENTS.md directly requires Claude Code v2.1.277 or later」と書く（CHANGELOG の原文は開いていない）。調査資料 01 A-4 は 2026-09-18 とする。足し先：agents-md#limits・#outdated'
+- id: agents-md-instruction-files-default
+  title: 読み込みの設定（Project instructions）の既定の値
+  value: claude-md-or-agents-md（CLAUDE.md を読み、作業ディレクトリかその上に CLAUDE.md・CLAUDE.local.md がないときだけ AGENTS.md を読む）
+  sentence: '{value}'
+  sources:
+  - cc-docs-memory
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'agents-md の提案。ほかの値は claude-md-and-agents-md・claude-md・managed-only。足し先：agents-md#choose・#limits'
+- id: agents-md-plugin-id-rename
+  title: AGENTS.md を読む組み込みプラグインの ID の変更
+  value: agents-md@builtin から cc-plugin-agents-md@builtin へ。後者の項目を読むのは 2.1.285 以降（前者も同じ版以降は読む）
+  sentence: '{value}'
+  versions:
+    claude_code: 2.1.285
+  sources:
+  - cc-docs-memory
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'agents-md の提案。雛形 read-both-files.json は cc-plugin-agents-md@builtin を使う。名称の変更なので names に移す案もある。足し先：agents-md#templates'
+- id: sdk-auto-retry-default
+  title: 公式 SDK の自動の再試行の既定（retry-after を尊重し、指数的に広げる間隔で再試行する）
+  value: 2
+  unit: 回
+  sentence: '{value} {unit}（接続の失敗・rate limits・5xx が対象）'
+  sources:
+  - api-docs-errors
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'rate-limits-and-errors の提案。足し先：rate-limits-and-errors#retry'
+- id: claude-code-auto-retry-default
+  title: Claude Code の自動の再試行の既定（一時的な失敗の回数。529 の初期の待ちと上限の待ちを含む）
+  value: 10 回（CLAUDE_CODE_MAX_RETRIES で変更。ウォッチドッグがなければ上限 15 回）。529 の待ちは初期 500 ms、上限 32 秒
+  sentence: '{value}'
+  sources:
+  - cc-docs-errors
+  checked: '2026-11-05'
+  volatility: 中
+  status: 確認済み
+  note: 'rate-limits-and-errors の提案。足し先：rate-limits-and-errors#retry・#in-claude-code'
+- id: model-prompting-tendencies
+  title: 公式のモデル別プロンプト指針が挙げる偏り（系統・版・effort ごと）
+  table:
+    rows: モデル
+    columns:
+    - id: tendency
+      title: 偏りと対処
+    cells:
+    - row: Opus 5
+      tendency: 既定で冗長。自分で検証するので確かめ直しの指示は外す。委任しすぎを抑える
+    - row: Opus 5.5
+      tendency: 既定 effort は medium で thinking は常時オン。思考を減らすなら指示より effort を下げる
+    - row: Sonnet 5.5
+      tendency: low と medium では確認で止まりすぎ、high 以上では頼まれていない追加をしがち
+    - row: Fable 5.1
+      tendency: 最後の段落が計画や約束で終わらないか確かめさせる。low では検索を減らし記憶で答えがち。書式を控えめにする
+    - row: Haiku 5.5
+      tendency: low では早く止まりがちで、medium に上げると減った。一律の「何でも検索」は過剰検索になる
+  sources:
+  - api-docs-prompting-opus-5
+  - api-docs-prompting-opus-5-5
+  - api-docs-prompting-claude-sonnet-5-5
+  - api-docs-prompting-claude-fable-5-1
+  - api-docs-prompting-claude-haiku-5-5
+  - api-docs-prompting-best-practices
+  checked: '2026-10-29'
+  volatility: 高
+  status: 未確認
+  note: 'model-quirks の提案（調査資料 02 §4-13 の写し。一次資料は未再確認で、fact にする前に各指針で再確認が要る）。足し先：model-quirks#official-guidance'
+- id: api-credits-eligible-plans-and-amounts
+  title: プランに付く月の API credits の対象と額
+  table:
+    rows: プラン
+    columns:
+    - id: eligible
+      title: 対象
+    - id: amount
+      title: 額（月）
+    cells:
+    - row: Max
+      eligible: 対象
+      amount: 100 ドル
+    - row: Ultra
+      eligible: 対象
+      amount: 200 ドル
+    - row: Team
+      eligible: 対象
+      amount: 席ごとの額の合算で月 500 ドルまで
+    - row: Free
+      eligible: 対象外
+      amount: —
+    - row: Pro
+      eligible: 対象外
+      amount: —
+    - row: Enterprise
+      eligible: 対象外
+      amount: —
+  sources:
+  - hc-api-credits
+  checked: '2026-11-04'
+  volatility: 高
+  status: 未確認
+  note: 'check-billing-path の提案（提案の status は「確認済み」。write.md は束の材料に基づき再確認していないと書くので 未確認）。足し先：check-billing-path#monthly-api-credits'
+- id: api-key-env-p-mode-uses-key-without-confirmation
+  title: ANTHROPIC_API_KEY があるとき claude -p は確認なしにその鍵を使う
+  value: 変数があれば必ずその鍵を使い、Console の組織に API の従量の料金がかかる。対話では最初に一度確認が出る
+  sentence: '{value}'
+  sources:
+  - cc-docs-authentication
+  - hc-claude-code-plan
+  checked: '2026-11-04'
+  volatility: 中
+  status: 未確認
+  note: 'check-billing-path の提案（提案の status は「確認済み」。write.md は束の材料に基づき再確認していないと書くので 未確認）。足し先：check-billing-path#api-key-in-env'
+- id: auth-precedence-order
+  title: Claude Code の認証の優先順位
+  value: クラウドの提供元 > ANTHROPIC_AUTH_TOKEN > ANTHROPIC_API_KEY > apiKeyHelper > CLAUDE_CODE_OAUTH_TOKEN > profile と federation > /login
+  sentence: '{value}'
+  sources:
+  - cc-docs-authentication
+  checked: '2026-11-04'
+  volatility: 中
+  status: 未確認
+  note: 'check-billing-path の提案（提案の status は「確認済み」。write.md は束の材料に基づき再確認していないと書くので 未確認）。足し先：check-billing-path#how-the-path-is-chosen'
+- id: feedback-transcript-share-retention-months
+  title: セッション評価の後の記録の共有（Yes を選んだとき）の最長の保持期間
+  value: 6
+  unit: か月
+  sentence: 最長 {value} {unit}
+  sources:
+  - cc-docs-data-usage
+  checked: '2026-11-05'
+  volatility: 中
+  status: 未確認
+  note: 'what-feedback-sends の提案（提案の status は「確認済み」。write.md は一次資料を開いていないと書くので 未確認）。足し先：what-feedback-sends#what-is-sent'
+- id: refusals-auto-switch-default
+  title: 自動のモデルの切り替えの既定（アプリと Claude Code は有効。API は既定でなく fallbacks を設定して使う）
+  value: アプリ・Claude Code：有効。API：fallbacks を設定して使う（server-side は beta）
+  sentence: '{value}'
+  sources:
+  - hc-switched-models
+  - cc-docs-model-config
+  - api-docs-refusals
+  checked: '2026-11-04'
+  volatility: 高
+  status: 未確認
+  note: 'when-requests-are-refused の提案（提案の status は「確認済み」。write.md は公式の記事を開き直していないと書くので 未確認）。足し先：when-requests-are-refused#by-surface'
+- id: refusals-cc-per-category-switch-min-version
+  title: 分類ごとの切り替えが要る Claude Code の最低の版
+  value: 2.1.219
+  sentence: Claude Code {value} 以降
+  versions:
+    claude_code: 2.1.219
+  sources:
+  - cc-docs-errors
+  - cc-docs-model-config
+  checked: '2026-11-04'
+  volatility: 低
+  status: 未確認
+  note: 'when-requests-are-refused の提案（提案の status は「確認済み」。write.md は公式の記事を開き直していないと書くので 未確認）。足し先：when-requests-are-refused#by-surface'
+- id: refusals-api-categories
+  title: API の stop_details.category の値
+  value: cyber・bio・frontier_llm・reasoning_extraction・general_harms（または null）
+  sentence: '{value}'
+  sources:
+  - api-docs-refusals
+  checked: '2026-11-04'
+  volatility: 高
+  status: 未確認
+  note: 'when-requests-are-refused の提案（提案の status は「確認済み」。write.md は公式の記事を開き直していないと書くので 未確認）。足し先：when-requests-are-refused#by-surface'
+- id: refusals-billing-by-category
+  title: 拒否の課金の扱い（分野ごと。出力の前に止まっても課金される分類がある）
+  value: 出力の前に止まった拒否でも課金される分類は bio・frontier_llm・reasoning_extraction（アプリの記事では distillation）。ほかの分類は課金されない。途中で止まれば、それまでの入出力は課金される（2026-09 時点。2026 年に何度か変わった）
+  sentence: '{value}'
+  sources:
+  - api-docs-refusals
+  - cc-docs-errors
+  - api-release-notes
+  checked: '2026-11-05'
+  volatility: 高
+  status: 未確認
+  note: when-requests-are-refused の refusals-billing-by-category（値は「要確認」）と asking-for-reasoning の reasoning-extraction-billing（要確認）を、後者の値で 1 つにした。足し先：when-requests-are-refused#by-surface・asking-for-reasoning#refusal
+- id: refusals-cvp-tiers
+  title: Cyber Verification Program の段階と、個人で申し込める段階
+  value: 3 段階。個人は Defense の段階だけ（2026-10 時点）
+  sentence: '{value}'
+  sources:
+  - hc-cyber-verification-program
+  checked: '2026-11-04'
+  volatility: 高
+  status: 未確認
+  note: 'when-requests-are-refused の提案（提案の status は「確認済み」。write.md は公式の記事を開き直していないと書くので 未確認）。足し先：when-requests-are-refused#official-steps'
+- id: reasoning-extraction-since
+  title: reasoning_extraction が拒否の分類に足された日
+  value: '2026-06-09'
+  sentence: '{value}（Claude Fable 5 の公開の日）'
+  sources:
+  - api-release-notes
+  - api-docs-thinking
+  checked: '2026-11-05'
+  volatility: 低
+  status: 未確認
+  note: 'asking-for-reasoning の提案（提案の status は「要確認」）。足し先：asking-for-reasoning#refusal'
+- id: usage-credits-expiry-japan
+  title: usage credits の失効の期間（日本など）
+  value: 購入から 6 か月（2026-09-10 以降の購入分）
+  sentence: '{value}'
+  sources:
+  - hc-usage-credits
+  checked: '2026-11-04'
+  volatility: 高
+  status: 未確認
+  note: 'usage-credits-basics の提案（提案の status は「確認済み」。write.md は一次資料を開いていないと書くので 未確認）。足し先：usage-credits-basics#how-it-works'
+- id: plan-prices-individual
+  title: 個人向けのプランの月額と払い方（Web の価格）
+  table:
+    rows: プラン
+    columns:
+    - id: monthly
+      title: 月払いの月額
+    - id: annual
+      title: 年払いの月あたり
+    - id: note
+      title: 備考
+    cells:
+    - row: Free
+      monthly: $0
+      annual: —
+      note: 無料
+    - row: Pro
+      monthly: $20
+      annual: $17（$200 の前払い）
+    - row: Max
+      monthly: $100
+      annual: 年払いなし（月払いのみ）
+      note: 今の Max は 1 つの段
+    - row: Ultra
+      monthly: $200
+      annual: 年払いなし（月払いのみ）
+      note: 旧 Max 20x
+  sources:
+  - claude-pricing
+  - hc-max-plan
+  - hc-ultra-plan
+  - hc-pro-plan
+  checked: '2026-11-03'
+  volatility: 高
+  status: 未確認
+  note: 'choosing-a-plan の提案（提案の status は「確認済み」。write.md は束の写しで一次資料を開いていないと書くので 未確認。元は research/02 §2-1〔料金のページ 2026-10-29〕と research/22）。足し先：choosing-a-plan#plan-table'
+- id: message-threads-lifetime
+  title: message threads のスレッドの寿命（最後の要求から切れるまでと、最後に使ってから消えるまで）
+  value: 最後の要求から 5 分で切れ、最後に使ってから 1 時間以内に消える
+  sentence: '{value}'
+  sources:
+  - api-docs-message-threads
+  - api-docs-messages
+  checked: '2026-11-05'
+  volatility: 高
+  status: 未確認
+  note: 'stateless-messages-api の提案（提案の status は「確認済み」。write.md は message threads の文書そのものを開いていない・束の写しと書くので 未確認）。足し先：stateless-messages-api#message-threads'
+- id: edit-refuses-non-utf8-since
+  title: Edit が UTF-8 でないファイルの編集を拒むようになった Claude Code の版
+  value: 2.1.296
+  sentence: Claude Code {value}
+  versions:
+    claude_code: 2.1.296
+  sources:
+  - cc-changelog
+  checked: '2026-11-03'
+  volatility: 低
+  status: 未確認
+  note: 'character-encodings の提案（write.md が変更の記録の版は束の写しのままと書くので 未確認）。足し先：character-encodings#claude-code'
+- id: write-refuses-non-utf8-since
+  title: Write が Shift-JIS などを黙って UTF-8 に変えず拒むようになった Claude Code の版
+  value: 2.1.299
+  sentence: Claude Code {value}
+  versions:
+    claude_code: 2.1.299
+  sources:
+  - cc-changelog
+  checked: '2026-11-03'
+  volatility: 低
+  status: 未確認
+  note: 'character-encodings の提案（write.md が変更の記録の版は束の写しのままと書くので 未確認）。足し先：character-encodings#claude-code'
 features:
 - id: claude-md
   title: CLAUDE.md
@@ -1717,6 +2501,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   load_timing: セッション開始と使うとき
   context_cost: 使うまで小さい
   since:
@@ -1822,6 +2607,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   load_timing: 編集の後と調べるとき
   context_cost: 小さい
   since:
@@ -2270,6 +3056,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   since:
     claude_code: 2.0.0
     date: '2025-09-29'
@@ -2293,6 +3080,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   match_terms:
   - /insights
   - Insights
@@ -2357,6 +3145,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   since:
     claude_code: 0.2.93
     date: '2025-04-30'
@@ -2385,6 +3174,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   context_cost: ゼロ
   match_terms:
   - /btw
@@ -2492,6 +3282,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   match_terms:
   - /feedback
   - /bug
@@ -2513,6 +3304,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: お願い
   match_terms:
   - /verify
   - verify skill
@@ -2641,6 +3433,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   load_timing: 起動したとき
   context_cost: 分離
   since:
@@ -2698,6 +3491,7 @@ features:
   surfaces:
   - claude-code
   maturity: research preview
+  enforcement: なし
   since:
     claude_code: 2.1.139
     date: '2026-05-11'
@@ -2722,6 +3516,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   match_terms:
   - cloud session
   - cloud sessions
@@ -2802,6 +3597,7 @@ features:
   surfaces:
   - claude-code
   maturity: GA
+  enforcement: なし
   since:
     claude_code: 2.1.224
     date: '2026-08-07'
@@ -3054,6 +3850,7 @@ features:
   surfaces:
   - app
   maturity: GA
+  enforcement: なし
   since:
     date: '2024-06-25'
     note: Pro と Team に公開（Claude Apps のリリースノートの写し）。今は Free でも5件まで作れる
@@ -3311,6 +4108,7 @@ features:
   surfaces:
   - app
   maturity: GA
+  enforcement: お願い
   since:
     date: '2025-04-15'
     note: Max・Team・Enterprise に early beta で公開（米国・日本・ブラジル）。2025-06-03 に Pro にも（公式ブログ）
@@ -3564,6 +4362,7 @@ features:
   surfaces:
   - app
   maturity: GA
+  enforcement: なし
   since:
     date: '2025-11-24'
     note: Context window compaction（Help Center のリリースノート）
@@ -3878,6 +4677,7 @@ features:
   - claude-code
   - api
   maturity: GA
+  enforcement: なし
   since:
     date: '2025-06-16'
     note: Claude Code SDK として公開された日（CHANGELOG 1.0.23 の「Released Python SDK」「Released TypeScript SDK」）。SDK は Claude Code とは別のパッケージなので、Claude Code の版は書かない
@@ -4157,6 +4957,7 @@ features:
   surfaces:
   - app
   - claude-code
+  enforcement: なし
   since:
     date: '2025-08-20'
     note: Team と Enterprise に Extra usage の名前で公開（Help Center のリリースノート）。個人のプランへの公開の時期は確かめていない

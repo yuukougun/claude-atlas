@@ -1,0 +1,10 @@
+# ai-in-contests-today の数値の提案（本文はこれらの数字なしで読める形。採用後に fact-table や fact の目印へ置き換える場所を used_in に書く）
+proposals:
+  - fact: {id: ahc058-ale-agent-result, title: "AHC058（2025-12-14、4 時間）での ALE-Agent の結果", value: "人間 804 人を抑えて 1 位。費用は約 1,300 ドル（API 料金が約 1,000 ドル、残りは AWS などの基盤）。GPT-5.2 を 2,654 回、Gemini 3 Pro Preview を 2,119 回呼び出した", sources: [sakana-ahc058], checked: 2026-11-03, status: 確認済み（research/24 B-33。1 位の事実は Akiba の X でも確認。人数・費用・回数は 11 が sakana.ai で確認済み）}
+    used_in: [ai-in-contests-today#dated-results, ai-in-contests-today#how-ai-wins]
+  - fact: {id: ale-bench-ablation-gemini-2-5-pro, title: "ALE-Bench のアブレーション（Gemini 2.5 Pro）", value: "素のエージェント 1167、知識の注入 1264、局所評価で選ぶ探索を加えると 1879（上位 6.8%）。親ごとに k=30 の子、固定 50 ケース。独立 150 回の一発生成との比較は 6 問", sources: [arxiv-2506-09050, sakana-ale-bench], checked: 2026-11-03, status: 確認済み（research/24 B-32。論文本文と付録 B.2）}
+    used_in: [ai-in-contests-today#how-ai-wins]
+  - fact: {id: ale-bench-per-problem-variance, title: "ALE-Bench の問題ごとのばらつき（o4-mini-high）", value: "同じレート帯の人は 56.2% の問題で 1600 以上、o4-mini-high は 32.5%。短期戦の平均 1677、長期戦の平均 1307", sources: [arxiv-2506-09050], checked: 2026-11-03, status: 確認済み（research/24 B-32）}
+    used_in: [ai-in-contests-today#where-ai-falls-short]
+  - fact: {id: anthropic-public-ctf-2025, title: "Anthropic が Claude を出した公開 CTF の結果（2025 年）", value: "PicoCTF 2025 で 10,460 チーム中 297 位（上位 3%）。PlaidCTF と DEF CON CTF 予選では 0 問", sources: [anthropic-research-cyber-competitions], checked: 2026-11-03, status: 企業の一次の報告（モデルと世代は報告で確かめる。本文は固定の記録として書いた）}
+    used_in: [ai-in-contests-today#dated-results, ai-in-contests-today#where-ai-falls-short]

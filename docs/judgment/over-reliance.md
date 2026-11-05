@@ -69,7 +69,7 @@ Dell'Acqua ほか（2023）は、事前登録された実験である。BCG の�
 
 得意な課題では AI が成績を上げ、苦手な課題では下げる。得意と苦手の境目は外から見えにくく、研究者はこれを能力の凸凹と呼ぶ。境目の分からない作業ほど、出力を確かめずに採る損が大きくなると考えられる（推論）。
 
-誤答がもっともらしくなる仕組みは <!-- link:begin why-hallucinations -->[ハルシネーションはなぜ起きるか](../basics/why-hallucinations.md)<!-- link:end --> にある。課題が AI に向くかどうかの見積もりは <!-- link:begin is-the-task-ai-suited#five-axes -->そのタスクは AI に向いているか（五つの軸） › 五つの軸（準備中）<!-- link:end --> で見る。
+誤答がもっともらしくなる仕組みは <!-- link:begin why-hallucinations -->[ハルシネーションはなぜ起きるか](../basics/why-hallucinations.md)<!-- link:end --> にある。課題が AI に向くかどうかの見積もりは <!-- link:begin is-the-task-ai-suited#five-axes -->[そのタスクは AI に向いているか（五つの軸） › 五つの軸](../delegate/is-the-task-ai-suited.md#five-axes)<!-- link:end --> で見る。
 
 ## なぜ預けてしまうか {#why-we-hand-over}
 
@@ -151,7 +151,7 @@ CSAW の LLM CTF 部門の分析では、人が主導するトラックの会話
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](agreement-is-not-evidence.md)
 - [書いた本人ではない者にレビューさせる](../verify/independent-review.md)
 - [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](../eval/verifier-defines-problem.md)
-- そのタスクは AI に向いているか（五つの軸）（準備中）
+- [そのタスクは AI に向いているか（五つの軸）](../delegate/is-the-task-ai-suited.md)
 - [事実を確かめる（引用・照合・best-of-N）](../verify/fact-checking.md)
 
 </div>

@@ -35,7 +35,7 @@ updated: 2026-11-05
 !!! abstract "要点"
     - **何ができるか**：型のある言語で、言語サーバーに尋ねて、定義へのジャンプと編集後の型エラーの報告を Claude に使わせられる。
     - **いつ引くか**：関数の定義を探すたびに多くのファイルを読ませているとき。編集の後の型エラーに、Claude 自身に気づかせたいとき。
-    - **強制力**：Claude に何かを禁じる機能ではない。診断は編集の後に自動で返り、シンボルの検索は読み取り専用の道具である。Claude の動きを止める働きはない。
+    - **強制力**：<!-- gen:begin feature code-intelligence/enforcement -->なし<!-- gen:end feature code-intelligence/enforcement -->。Claude に何かを禁じる機能ではない。診断は編集の後に自動で返り、シンボルの検索は読み取り専用の道具である。Claude の動きを止める働きはない。
     - **前提**：<!-- link:begin plugins-and-marketplaces -->[プラグインとマーケットプレイス](plugins-and-marketplaces.md)<!-- link:end -->
 
 <!-- textlint-disable -->

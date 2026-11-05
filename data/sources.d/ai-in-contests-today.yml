@@ -1,0 +1,19 @@
+# ai-in-contests-today の出典（執筆の担当が足す。形は schema/sources.schema.json、data/sources.yml と同じ）
+# - 既にある出典は data/sources.yml のものを使う。ここで足すのは Google DeepMind のブログ 1 件だけ
+# - ICPC の検証範囲の但し書きは、このブログが書く Gemini の結果についてのもの（research/24 の B-36）。本文は束の写しに基づき、ブログ本文は今回開いていない
+domains:
+- domain: deepmind.google
+  checked: '2026-11-05'
+  noai: false
+  url: https://deepmind.google/blog/gemini-achieves-gold-medal-level-at-the-international-collegiate-programming-contest-world-finals/
+  note: tools/check_noai.py で確認。X-Robots-Tag と meta に指定はなく、robots.txt に AI 向けの指定はない
+sources:
+- id: deepmind-gemini-icpc-2025
+  url: https://deepmind.google/blog/gemini-achieves-gold-medal-level-at-the-international-collegiate-programming-contest-world-finals/
+  title: Gemini achieves gold-medal level at the International Collegiate Programming Contest World Finals
+  kind: 公式ブログ
+  publisher: Google DeepMind
+  lang: en
+  checked: '2026-11-05'
+  published: '2025-09-17'
+  note: 12 問中 10 問を解いた Gemini の結果。ICPC が確認したのは提出した解が完全で受理されたことまでで、DeepMind のシステム・手順・モデルの検証には及ばない、という但し書きが付く

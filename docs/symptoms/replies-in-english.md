@@ -163,7 +163,7 @@ issue に書かれた件数や割合は、利用者が自分の記録を数え�
 - 同じ指示を複数の層に書かない。層をまたぐと、食い違いで古い値が残り、診断の 1 が長引く。
 - 仕組みにする規則は少なく保つ。保ち方は「<!-- link:begin align-japanese-output#keep-few -->[日本語の出力を揃える：お願いで足りること、仕組みが要ること › 縛る規則は少なく保つ](../japanese/align-japanese-output.md#keep-few)<!-- link:end -->」にある。
 - モデルや版を替えたときは、英語になる割合を記録して比べる。記録の付け方は「<!-- link:begin keep-replies-in-japanese#measure -->[日本語で返し続けさせる › 検証の方法](../japanese/keep-replies-in-japanese.md#measure)<!-- link:end -->」にある。
-- コミットメッセージやコメントの言語は、返答の言語の設定とは別に決める。決め方は「<!-- link:begin commit-and-comment-language -->コミットメッセージ・コメントの言語（準備中）<!-- link:end -->」にある。
+- コミットメッセージやコメントの言語は、返答の言語の設定とは別に決める。決め方は「<!-- link:begin commit-and-comment-language -->[コミットメッセージ・コメントの言語](../japanese/commit-and-comment-language.md)<!-- link:end -->」にある。
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -208,7 +208,7 @@ issue に書かれた件数や割合は、利用者が自分の記録を数え�
 **関連**
 
 - [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)
-- コミットメッセージ・コメントの言語（準備中）
+- [コミットメッセージ・コメントの言語](../japanese/commit-and-comment-language.md)
 - [代表的なフックのレシピ](../enforce/hook-recipes.md)
 - [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)
 - [圧縮の後に約束を忘れた](forgot-after-compaction.md)

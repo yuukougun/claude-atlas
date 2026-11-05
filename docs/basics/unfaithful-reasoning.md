@@ -82,7 +82,7 @@ Anthropic の解釈可能性の研究（2025-03-27）は、Claude の内部を�
 - **結果を独立に確かめる**：実行、テスト、grep、差分の確認で、結果そのものを見る。説明が食い違ったときは、見た事実を正とする。やり方は <!-- link:begin evidence-not-reports#facts-win -->[報告ではなく証拠を求める › 説明と事実が食い違ったら](../verify/evidence-not-reports.md#facts-win)<!-- link:end --> にある。
 - **確かめる役を分ける**：書いた本人の推論を見ていない者に確かめさせる。推論を見せるとレビューも同じ道筋に引かれやすいので、見せない。理由は <!-- link:begin independent-review#hide-reasoning -->[書いた本人ではない者にレビューさせる › 推論を見せない](../verify/independent-review.md#hide-reasoning)<!-- link:end --> にある。
 - **思考は手がかりとして読む**：思考の筋道は、どこで迷ったかを知る手がかりにはなる。その筋道が合っていると結論づける根拠にはしない。
-- **根拠が要るときの頼み方**：全文を本文に書かせず、短い根拠の説明を頼むか、表示される思考の要約を読む。全文を求める指示は断られることがある。理由と代わりの手段は <!-- link:begin asking-for-reasoning#refusal -->推論を見せてほしいとき › 全文を求める指示が断られる理由（準備中）<!-- link:end --> と <!-- link:begin asking-for-reasoning#alternatives -->推論を見せてほしいとき › 短い根拠と思考の要約で読む（準備中）<!-- link:end --> にある。
+- **根拠が要るときの頼み方**：全文を本文に書かせず、短い根拠の説明を頼むか、表示される思考の要約を読む。全文を求める指示は断られることがある。理由と代わりの手段は <!-- link:begin asking-for-reasoning#refusal -->[推論を見せてほしいとき › 全文を求める指示が断られる理由](../prompting/asking-for-reasoning.md#refusal)<!-- link:end --> と <!-- link:begin asking-for-reasoning#alternatives -->[推論を見せてほしいとき › 短い根拠と思考の要約で読む](../prompting/asking-for-reasoning.md#alternatives)<!-- link:end --> にある。
 
 !!! example "判断例：説明は「境界値も考慮した」と言うが、コードに分岐が見えない"
     - **状況**：Claude Code に関数の修正を頼んだ。思考の要約と最後の説明には「空の入力と上限の値も考慮した」とある。差分を見ると、その分岐は見当たらない。
@@ -128,7 +128,7 @@ Anthropic の解釈可能性の研究（2025-03-27）は、Claude の内部を�
 
 **次に読む**
 
-- 推論を見せてほしいとき（準備中）
+- [推論を見せてほしいとき](../prompting/asking-for-reasoning.md)
 
 **関連**
 

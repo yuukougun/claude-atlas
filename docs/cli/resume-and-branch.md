@@ -120,7 +120,7 @@ updated: 2026-11-05
     - **選んだもの**：会話の履歴は残っていて足りるなら `--continue` で続ける。履歴が長く、試して駄目だったことが入り組んでいるなら、文書を作らせてから新しく始める。
     - **理由**：再開は履歴をそのまま戻す操作で、履歴に積もった古い前提も戻る。古い前提を持ち越さず、焦点の合った会話から始めたいときは、<!-- link:begin handoff-documents#four-items -->[handoff 文書と document-and-clear › 書かせる四項目](../context/handoff-documents.md#four-items)<!-- link:end --> の形で書き出すほうがよい。再開の手順は <!-- link:begin handoff-documents#resume -->[handoff 文書と document-and-clear › 新しい会話での再開の仕方](../context/handoff-documents.md#resume)<!-- link:end --> にある。
 
-保存された記録は `~/.claude/projects/` の下に JSONL で置かれ、保持期間は <!-- fact:begin local-transcript-cleanup-days -->既定で 30 日（2026-11-05 時点）<!-- fact:end --> である（`cleanupPeriodDays` で変えられる）。期間を過ぎた記録は消えるので、何日も寝かせる作業は、書き残す文書も作っておく。記録から失った作業を探す順序は <!-- link:begin recover-lost-work#order -->セッション記録から失った作業を取り戻す › 探す順（準備中）<!-- link:end --> にある。
+保存された記録は `~/.claude/projects/` の下に JSONL で置かれ、保持期間は <!-- fact:begin local-transcript-cleanup-days -->既定で 30 日（2026-11-05 時点）<!-- fact:end --> である（`cleanupPeriodDays` で変えられる）。期間を過ぎた記録は消えるので、何日も寝かせる作業は、書き残す文書も作っておく。記録から失った作業を探す順序は <!-- link:begin recover-lost-work#order -->[セッション記録から失った作業を取り戻す › 探す順](recover-lost-work.md#order)<!-- link:end --> にある。
 
 ## 分岐して別案を試す {#branch}
 
@@ -232,7 +232,7 @@ flowchart LR
 
 **次に読む**
 
-- セッション記録から失った作業を取り戻す（準備中）
+- [セッション記録から失った作業を取り戻す](recover-lost-work.md)
 
 **関連**
 

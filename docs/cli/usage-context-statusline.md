@@ -153,11 +153,11 @@ updated: 2026-11-05
     - **選んだもの**：先に /context で内訳を見て、数字を控えてから決める。
     - **理由**：体感だけでは、モデルの問題か、会話の長さの問題かが分からない。内訳で文脈が埋まっていると分かれば、片付けるのが筋になる。埋まっていなければ、別の原因を探せる。体感と実測のずれは <!-- link:begin felt-vs-measured#why -->[体感と実測 › なぜ体感はずれるか](../eval/felt-vs-measured.md#why)<!-- link:end --> にある。
 
-コマンドの早見は <!-- link:begin command-cheatsheet -->主要コマンド早見表（準備中）<!-- link:end --> から引ける。
+コマンドの早見は <!-- link:begin command-cheatsheet -->[主要コマンド早見表](command-cheatsheet.md)<!-- link:end --> から引ける。
 
 ## 効かない場面と落とし穴 {#pitfalls}
 
-- **見るだけで、止めない**：ステータスラインと /usage は、使用量を抑えない。作業を止める力はなく、強制力は持たない道具である。
+- **見るだけで、止めない**：ステータスラインと /usage は、使用量を抑えない。作業を止める力はない。強制力は「<!-- gen:begin feature usage/enforcement -->なし<!-- gen:end feature usage/enforcement -->」である。
 - **原因までは出ない**：ステータスラインの使用率は、増えたことだけを示す。何が使ったかは、/usage の内訳か /context で見る。
 - **数字は今の値で、将来の予測ではない**：使用率が低くても、次の依頼で大きく増えることがある。余裕の目安として読み、ぎりぎりまで使い切る判断の根拠にしない。
 - **表示を信じすぎない**：画面の項目の名前や出る条件は、版で変わりうる。表示が空でも、使用量がゼロとは限らない。疑わしいときは /usage で確かめる。
@@ -198,7 +198,7 @@ updated: 2026-11-05
 - [体感と実測](../eval/felt-vs-measured.md)
 - [すぐ上限に当たる](../symptoms/hits-limits-quickly.md)
 - [設定を外して切り分ける（--safe-mode）](isolate-with-safe-mode.md)
-- 主要コマンド早見表（準備中）
+- [主要コマンド早見表](command-cheatsheet.md)
 
 </div>
 

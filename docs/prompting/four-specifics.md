@@ -300,7 +300,7 @@ LLM が生成したコードの不具合 333 件を分類した研究では、�
 - [細かく指図するか、成果で頼むか](ask-for-outcomes.md)
 - [質問させる・インタビューさせる](let-claude-ask.md)
 - [Before/After プロンプト集](before-after-prompts.md)
-- 用途別プロンプトの型（準備中）
+- [用途別プロンプトの型](prompt-patterns.md)
 
 **関連**
 

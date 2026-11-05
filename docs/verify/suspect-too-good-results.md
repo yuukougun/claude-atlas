@@ -105,7 +105,7 @@ After は、同じ依頼に、次の雛形を付けた場合である。足し�
 
 点検の 4 点には、それぞれ確かめ方の持ち主のページがある。
 
-- 退化は、変更の前後の出力を、同じ入力で突き合わせる。答えの分かる遅い解との比べ方は <!-- link:begin differential-testing#steps -->[答えの分かる遅い解と比べる（差分テスト・オラクル） › 手順](../eval/differential-testing.md#steps)<!-- link:end -->、速度改善の側の手順は <!-- link:begin performance-tuning#too-good-speedups -->性能改善を頼む（プロファイルが先・出力の一致と実測） › 良すぎる速度向上を疑う（準備中）<!-- link:end -->にある。
+- 退化は、変更の前後の出力を、同じ入力で突き合わせる。答えの分かる遅い解との比べ方は <!-- link:begin differential-testing#steps -->[答えの分かる遅い解と比べる（差分テスト・オラクル） › 手順](../eval/differential-testing.md#steps)<!-- link:end -->、速度改善の側の手順は <!-- link:begin performance-tuning#too-good-speedups -->[性能改善を頼む（プロファイルが先・出力の一致と実測） › 良すぎる速度向上を疑う](../recipes/performance-tuning.md#too-good-speedups)<!-- link:end -->にある。
 - 採点の省略は、件数と分母、スキップの有無、計測の対象を確かめる。数字を生のデータで裏付ける考え方は <!-- link:begin data-analysis#check-raw-data -->[データを分析する › 生データで裏を取る](../recipes/data-analysis.md#check-raw-data)<!-- link:end -->にある。
 - リークは、検証用のデータの分け方と、前処理を当てはめた範囲を確かめる。人だけが持つ検証用データの置き方は <!-- link:begin lockbox-and-holdout#three-tiers -->[ロックボックスと hold-out（人だけが持つ検証用データ） › 三層に分ける](../eval/lockbox-and-holdout.md#three-tiers)<!-- link:end -->にある。
 - 特例の分岐は、差分を読んで、入力の値で分かれる箇所を探す。テストや採点の側を書き換えさせない層は <!-- link:begin protect-tests#layers -->[テストを守る（改ざんを防ぐ） › 守りの層](protect-tests.md#layers)<!-- link:end -->にある。
@@ -160,7 +160,7 @@ After は、同じ依頼に、次の雛形を付けた場合である。足し�
 
 **次に読む**
 
-- 性能改善を頼む（プロファイルが先・出力の一致と実測）（準備中）
+- [性能改善を頼む（プロファイルが先・出力の一致と実測）](../recipes/performance-tuning.md)
 - 機械学習のパイプラインを点検させる（準備中）
 
 **関連**

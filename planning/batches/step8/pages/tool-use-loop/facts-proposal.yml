@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: tool-choice-forced-support, title: "tool_choice の any・tool（道具の強制）が使えるモデルと、400 になるモデル", value: "Opus 5.5 は any・tool が 400 エラー（auto・none と strict または structured outputs で代替）。モデルごとの表を作る", sources: [api-docs-tool-use, api-docs-define-tools], checked: 2026-11-05, status: 要確認}
+    used_in: [tool-use-loop#forcing]
+  - fact: {id: tool-choice-default, title: "tool_choice の既定値", value: "auto（Tool use overview の When Claude uses tools の節）", sources: [api-docs-tool-use], checked: 2026-11-05, status: 確認済み}
+    used_in: [tool-use-loop#forcing]

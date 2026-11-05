@@ -85,7 +85,7 @@ git との付き合い方は、Claude Code の変更をどの単位でコミッ�
 
 - **差分を読む箇所を決める**：テストの変更や特例の分岐など、人が必ず読む箇所を先に決める。一覧は <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](../verify/diffs-humans-must-read.md#red-flags)<!-- link:end --> にある。
 - **取り返しのつかない操作を止める**：force push や `git reset --hard` は、会話の頼みでなく deny ルールで止める。守り方は <!-- link:begin destructive-commands#guard -->[消されたくないもの（破壊的コマンド） › 確認を求めさせる頼み方と、鍵](../safety/destructive-commands.md#guard)<!-- link:end --> にある。
-- **出す前にリスクと証拠を書かせる**：PR の前に、リスクと確かめた証拠を書き出させる。手順は <!-- link:begin create-and-review-prs#risks-before-submitting -->PR を作り、レビューを受ける › 出す前にリスクを挙げさせる（準備中）<!-- link:end --> にある。
+- **出す前にリスクと証拠を書かせる**：PR の前に、リスクと確かめた証拠を書き出させる。手順は <!-- link:begin create-and-review-prs#risks-before-submitting -->[PR を作り、レビューを受ける › 出す前にリスクを挙げさせる](../recipes/create-and-review-prs.md#risks-before-submitting)<!-- link:end --> にある。
 
 守りを置いたうえで、任せる幅を 3 段で考える。
 
@@ -95,9 +95,9 @@ git との付き合い方は、Claude Code の変更をどの単位でコミッ�
 | 2. コミットまで任せる | 区切りごとのコミット | push と、push 前の差分の確認 | 取り返しのつかない操作を deny ルールで止める |
 | 3. draft PR まで任せる | push と draft PR の作成 | PR の説明を読み、マージと承認をする | 出す前のリスクと証拠 |
 
-段階 3 でも、マージと承認は人が握る。AI のレビューが通ったことは、人の承認の代わりにならない。説明の書き方は <!-- link:begin create-and-review-prs#pr-description -->PR を作り、レビューを受ける › PR の説明に書くこと（準備中）<!-- link:end --> にある。
+段階 3 でも、マージと承認は人が握る。AI のレビューが通ったことは、人の承認の代わりにならない。説明の書き方は <!-- link:begin create-and-review-prs#pr-description -->[PR を作り、レビューを受ける › PR の説明に書くこと](../recipes/create-and-review-prs.md#pr-description)<!-- link:end --> にある。
 
-コミットメッセージの言語は、チームの決まりとして共有の指示に書く。分け方は <!-- link:begin commit-and-comment-language#team-vs-personal -->コミットメッセージ・コメントの言語 › チームの決まりと個人の好みを分ける（準備中）<!-- link:end --> にある。
+コミットメッセージの言語は、チームの決まりとして共有の指示に書く。分け方は <!-- link:begin commit-and-comment-language#team-vs-personal -->[コミットメッセージ・コメントの言語 › チームの決まりと個人の好みを分ける](../japanese/commit-and-comment-language.md#team-vs-personal)<!-- link:end --> にある。
 
 !!! example "判断例：コミットをどこまで任せるか"
     - **状況**：個人のリポジトリで、Claude Code を使い始めて数週間たつ。テストは整っていて、巻き戻しはまだ使ったことがない。
@@ -179,9 +179,9 @@ Claude の作業が悪い方向に進み続けているときは、`/clear` と 
 **次に読む**
 
 - [git worktree で並列にする](../delegate/parallel-with-worktrees.md)
+- [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)
+- [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
 - 退行の原因を git bisect で探させる（準備中）
-- リファクタリングと大規模な移行（準備中）
-- PR を作り、レビューを受ける（準備中）
 - ノート・PKM（Obsidian など）（準備中）
 
 **関連**
@@ -190,7 +190,7 @@ Claude の作業が悪い方向に進み続けているときは、`/clear` と 
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [生成コードを自分のものにする](../verify/own-generated-code.md)
-- コミットメッセージ・コメントの言語（準備中）
+- [コミットメッセージ・コメントの言語](../japanese/commit-and-comment-language.md)
 - [セッションに名前を付けて再開・分岐する](resume-and-branch.md)
 
 </div>

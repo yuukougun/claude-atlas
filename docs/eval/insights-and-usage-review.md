@@ -38,7 +38,7 @@ updated: 2026-11-05
 !!! abstract "要点"
     - **何ができるか**：`/insights` で摩擦の起きた所を、`/usage` で使い方の内訳を見て、仕組みに移すものと削るものを選べる。
     - **いつ引くか**：自分の使い方のどこに無駄や引っかかりがあるか知りたいとき。どの拡張がどれだけ使われているかを見たいとき。
-    - **強制力**：なし。報告と内訳を見せるだけで、見ても設定と動作は変わらない。設定を変えるのは自分で、`/usage` の推奨の自動適用を使うときだけ例外になる。
+    - **強制力**：<!-- gen:begin feature insights/enforcement -->なし<!-- gen:end feature insights/enforcement -->。報告と内訳を見せるだけで、見ても設定と動作は変わらない。設定を変えるのは自分で、`/usage` の推奨の自動適用を使うときだけ例外になる。
     - **前提**：<!-- link:begin felt-vs-measured -->[体感と実測](felt-vs-measured.md)<!-- link:end -->
 
 <!-- textlint-disable -->
@@ -74,7 +74,7 @@ updated: 2026-11-05
 提案を仕組みへ移す前に、次の 3 つを自分で確かめる。
 
 1. **繰り返しが見えるか**：同じ摩擦が複数のセッションで起きているか。1 回きりの摩擦を規則にすると、指示が増えるだけである。足す時期の考え方は <!-- link:begin when-to-add-what#why -->[拡張を足すタイミング › 繰り返しが見えてから足す理由](../extend/when-to-add-what.md#why)<!-- link:end --> にある。
-2. **原因は何の隙間か**：指示の不足か、仕組みの隙間か。誰の誤りかではなく、どの隙間が許したかで見る。見方は <!-- link:begin postmortems#which-gap -->失敗を仕組みに戻す（ポストモーテム） › 誰がではなく、どの隙間が（準備中）<!-- link:end --> にある。
+2. **原因は何の隙間か**：指示の不足か、仕組みの隙間か。誰の誤りかではなく、どの隙間が許したかで見る。見方は <!-- link:begin postmortems#which-gap -->[失敗を仕組みに戻す（ポストモーテム） › 誰がではなく、どの隙間が](../judgment/postmortems.md#which-gap)<!-- link:end --> にある。
 3. **移した後の効果を確かめられるか**：確かめ方がない提案は、反映した後に効果が分からない。確かめ方は <!-- link:begin measure-changes#small-eval -->[変更が効いたかを測る（小さな eval） › 小さな eval の手順](measure-changes.md#small-eval)<!-- link:end --> にある。
 
 移す先は、繰り返しの種類で決まる。毎回同じ説明をしているなら <!-- link:begin repeating-the-same-explanation#causes -->[毎回同じ説明をしている › 原因ごとの対処](../symptoms/repeating-the-same-explanation.md#causes)<!-- link:end --> を、置き場所の選び方なら <!-- link:begin when-to-add-what#triggers -->[拡張を足すタイミング › 繰り返しの種類と移す先](../extend/when-to-add-what.md#triggers)<!-- link:end --> を引く。
@@ -186,7 +186,7 @@ updated: 2026-11-05
 | [/insights](insights-and-usage-review.md) | — |
 | [/usage](../cli/usage-context-statusline.md) | 2.0.0（2025-09-29） |
 
-すべて共通：面 Claude Code、成熟度 GA、確認日 2026-11-04。
+すべて共通：面 Claude Code、成熟度 GA、強制力 なし、確認日 2026-11-04。
 
 <!-- textlint-enable -->
 <!-- gen:end compare -->
@@ -225,7 +225,7 @@ updated: 2026-11-05
 - [拡張の棚卸しと剪定](../extend/pruning-extensions.md)
 - [拡張を足すタイミング](../extend/when-to-add-what.md)
 - [毎回同じ説明をしている](../symptoms/repeating-the-same-explanation.md)
-- 失敗を仕組みに戻す（ポストモーテム）（準備中）
+- [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)
 - [変更が効いたかを測る（小さな eval）](measure-changes.md)
 
 </div>

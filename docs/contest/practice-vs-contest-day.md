@@ -112,14 +112,14 @@ AI を禁じる大会を目指すなら、練習では AI を解説役・採点�
 
 確かめ方の例は次のとおりである（推論・実践例なし。この辞典の提案）。
 
-1. 本番の形式と制限時間を、<!-- link:begin format-cheatsheet#algorithm -->コンテストの形式別の早見表（AI の効き方と人が握るところ） › 短時間のアルゴリズム（準備中）<!-- link:end --> などで確かめる。
+1. 本番の形式と制限時間を、<!-- link:begin format-cheatsheet#algorithm -->[コンテストの形式別の早見表（AI の効き方と人が握るところ） › 短時間のアルゴリズム](format-cheatsheet.md#algorithm)<!-- link:end --> などで確かめる。
 2. 規則が許す道具の範囲を、<!-- link:begin competition-rules -->[大会の規則の早見（禁止・部門分け・許可と開示）](competition-rules.md)<!-- link:end --> と一次資料で確かめる。そこで許される道具だけで、その時間を解く。
 3. 解けた問題の数、各問題にかかった時間、詰まった所を記録する。何を記録するかは <!-- link:begin felt-vs-measured#what-to-record -->[体感と実測 › 記録で測るもの](../eval/felt-vs-measured.md#what-to-record)<!-- link:end --> にある。
 4. 同じ条件の模擬を、AI を使った練習の合間に何度か挟み、記録を並べる。
 
 AI を使わない時間を決めて残すことは、確かめる力の衰えへの備えでもある（<!-- link:begin how-much-understanding-to-keep#ai-free-time -->[どこまで理解を手放してよいか（中核と周辺） › AI を使わない時間を残す](../judgment/how-much-understanding-to-keep.md#ai-free-time)<!-- link:end -->）。頻度や長さは、自分の記録を見て決める。
 
-本番では、AI が使えない前提で運ぶ。AI なしでも最低限を進められる状態は、<!-- link:begin when-ai-is-unavailable#minimum-without-ai -->[AI が使えないときの備え（障害・上限） › AI なしで最低限を進められる状態](../cost/when-ai-is-unavailable.md#minimum-without-ai)<!-- link:end --> に、本番当日の備えは <!-- link:begin competition-day-operations#fallback -->本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態） › AI が止まっても続けられる備え（準備中）<!-- link:end --> にある。AI を禁じる大会では、この備えが前提になる。
+本番では、AI が使えない前提で運ぶ。AI なしでも最低限を進められる状態は、<!-- link:begin when-ai-is-unavailable#minimum-without-ai -->[AI が使えないときの備え（障害・上限） › AI なしで最低限を進められる状態](../cost/when-ai-is-unavailable.md#minimum-without-ai)<!-- link:end --> に、本番当日の備えは <!-- link:begin competition-day-operations#fallback -->[本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態） › AI が止まっても続けられる備え](competition-day-operations.md#fallback)<!-- link:end --> にある。AI を禁じる大会では、この備えが前提になる。
 
 模擬で AI を使わずに解けた問題と、AI と一緒にだけ解けた問題を、分けて記録する。後者が多い間は、本番で手が止まりやすい、と読む。これは自分の記録に基づく読み方で、数値の目安は置かない。
 
@@ -152,8 +152,8 @@ AI を使わない時間を決めて残すことは、確かめる力の衰え�
 - [どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)
 - [体感と実測](../eval/felt-vs-measured.md)
 - [AI が使えないときの備え（障害・上限）](../cost/when-ai-is-unavailable.md)
-- 本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）
-- コンテストの形式別の早見表（AI の効き方と人が握るところ） › 短時間のアルゴリズム（準備中）
+- [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](competition-day-operations.md)
+- [コンテストの形式別の早見表（AI の効き方と人が握るところ） › 短時間のアルゴリズム](format-cheatsheet.md#algorithm)
 - [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)
 - [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)
 - [生成コードを自分のものにする](../verify/own-generated-code.md)

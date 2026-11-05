@@ -130,7 +130,7 @@ updated: 2026-11-05
 
 **なぜ広げるほど強めるのか。** 確認を減らすほど、人の目が届かない操作は増える。承認を求めすぎると、人は中身を見ずに承認するようになる（承認疲れ）。自動の分類器にも見逃しはある。auto モードは確認を減らす仕組みで、安全を保証しない（<!-- link:begin what-auto-mode-stops#limits -->[auto モードは何を止め、何を止めないか › すり抜けと限界](../enforce/what-auto-mode-stops.md#limits)<!-- link:end -->）。信頼できない入力、秘密や私的なデータ、外への送信や変更の 3 つを 1 つの構成に同時に持たせないことも、封じ込めの核になる（<!-- link:begin lethal-trifecta#three-capabilities -->[三つを同時に持たせない（lethal trifecta と Rule of Two） › 三つの能力](../safety/lethal-trifecta.md#three-capabilities)<!-- link:end -->）。
 
-**既定の中身は繰り返さない。** 面ごとの安全の既定と、段階ごとに足す設定は <!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end --> が正本である。任せる幅は、危険の小さい作業から広げる。組織でも同じで、AI は土台の強さも弱さも増幅する（<!-- link:begin paved-roads#amplifier -->禁止ではなく安全な道を作る › AI は土台の強さも弱さも増幅する（広げる前に見直すもの）（準備中）<!-- link:end -->）。
+**既定の中身は繰り返さない。** 面ごとの安全の既定と、段階ごとに足す設定は <!-- link:begin default-safety-settings#by-stage -->[安全の早見表（面ごとの既定と、段階ごとに足すもの） › 段階ごとに足すもの](../safety/default-safety-settings.md#by-stage)<!-- link:end --> が正本である。任せる幅は、危険の小さい作業から広げる。組織でも同じで、AI は土台の強さも弱さも増幅する（<!-- link:begin paved-roads#amplifier -->[禁止ではなく安全な道を作る › AI は土台の強さも弱さも増幅する（広げる前に見直すもの）](../team/paved-roads.md#amplifier)<!-- link:end -->）。
 
 !!! example "判断例：夜のうちにテストを直させたい"
     - **状況**：失敗しているテストが多数ある。夜の間に Claude Code に反復して直させたい。
@@ -195,7 +195,7 @@ updated: 2026-11-05
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [三つを同時に持たせない（lethal trifecta と Rule of Two）](../safety/lethal-trifecta.md)
-- 禁止ではなく安全な道を作る › AI は土台の強さも弱さも増幅する（広げる前に見直すもの）（準備中）
+- [禁止ではなく安全な道を作る › AI は土台の強さも弱さも増幅する（広げる前に見直すもの）](../team/paved-roads.md#amplifier)
 - [古くなった助言の台帳](../changes/outdated-advice-ledger.md)
 
 </div>

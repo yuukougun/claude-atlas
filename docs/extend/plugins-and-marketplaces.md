@@ -38,7 +38,7 @@ updated: 2026-11-05
     - **何ができるか**：スキル・サブエージェント・フック・MCP などを 1 つのプラグインに束ねて入れ、マーケットプレイスの一覧で配れる。
     - **いつ引くか**：別のリポジトリにも同じ設定を作ろうとしているとき。作った手順や設定を、チームに配りたいとき。チームで同じ設定を使いたいとき。
     - **読み込みとコスト**：読み込みの時期は <!-- gen:begin feature plugins/load_timing -->セッション開始と使うとき<!-- gen:end feature plugins/load_timing -->、コンテキストのコストは<!-- gen:begin feature plugins/context_cost -->使うまで小さい<!-- gen:end feature plugins/context_cost -->。ただし中身による。成熟度は <!-- gen:begin feature plugins/maturity -->GA<!-- gen:end feature plugins/maturity --> である。
-    - **止めるもの**：プラグインは道具を束ねて配るだけで、何も止めない。入れたコードは使う人の権限で動くので、止めるのは入れる前の確認と、マーケットプレイスを絞る管理設定である。
+    - **止めるもの**：強制力は「<!-- gen:begin feature plugins/enforcement -->なし<!-- gen:end feature plugins/enforcement -->」で、プラグインは道具を束ねて配るだけである。入れたコードは使う人の権限で動くので、止めるのは入れる前の確認と、マーケットプレイスを絞る管理設定である。
     - **前提**：<!-- link:begin extensions-at-a-glance -->[拡張機能の全体図と使い分け早見表](extensions-at-a-glance.md)<!-- link:end -->
 
 <!-- textlint-disable -->

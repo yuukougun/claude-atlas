@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="220" viewBox="0 0 400 220" font-family="sans-serif" font-size="12">
+  <rect width="400" height="220" fill="#ffffff"/>
+  <text x="8" y="20" fill="#222222">伴走：直列で、途中に舵取りが入る</text>
+  <g fill="#f5f5f5" stroke="#555555">
+    <rect x="8" y="30" width="80" height="40"/>
+    <rect x="160" y="30" width="80" height="40"/>
+    <rect x="312" y="30" width="80" height="40"/>
+  </g>
+  <g fill="#222222" text-anchor="middle">
+    <text x="48" y="54">一歩進める</text>
+    <text x="200" y="54">人が見る</text>
+    <text x="352" y="54">舵を切る</text>
+  </g>
+  <g stroke="#111111" stroke-width="2" fill="none">
+    <path d="M88 50 H160"/>
+    <path d="M240 50 H312"/>
+    <path d="M352 70 V90 H48 V70"/>
+  </g>
+  <text x="200" y="108" text-anchor="middle" fill="#222222">この輪を何度も回す。詰まる場所は舵取り</text>
+  <line x1="8" y1="124" x2="392" y2="124" stroke="#999999" stroke-dasharray="4 3"/>
+  <text x="8" y="146" fill="#222222">委託：並列で、後にレビューが集まる</text>
+  <g fill="#f5f5f5" stroke="#555555">
+    <rect x="8" y="156" width="90" height="26"/>
+    <rect x="148" y="152" width="90" height="16"/>
+    <rect x="148" y="170" width="90" height="16"/>
+    <rect x="148" y="188" width="90" height="16"/>
+  </g>
+  <rect x="292" y="152" width="100" height="52" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <g fill="#222222" text-anchor="middle" font-size="11">
+    <text x="53" y="173">依頼と完了条件</text>
+    <text x="193" y="164">作業 1</text>
+    <text x="193" y="182">作業 2</text>
+    <text x="193" y="200">作業 3</text>
+    <text x="342" y="174">レビュー</text>
+    <text x="342" y="192">ここに積もる</text>
+  </g>
+  <g stroke="#111111" stroke-width="2" fill="none">
+    <path d="M98 169 H148"/>
+    <path d="M238 160 H292"/>
+    <path d="M238 178 H292"/>
+    <path d="M238 196 H292"/>
+  </g>
+</svg>

@@ -74,7 +74,7 @@ updated: 2026-11-05
 
 Docs は、チームで同時に編集できる。Dashboards と Motion は、成熟度と使えるプランが Docs・Slides・Design と別に定められている。プランごとの可否と成熟度は変わりやすいので、本文には書かず、公式の記事と料金のページで確かめる。公式の記事は、スプレッドシート型のテンプレートを挙げていない。表計算が要るときは、ファイル作成で xlsx を作らせるか、Dashboards を使う。ファイルの受け取り方は <!-- link:begin files-and-code-execution#outputs -->[ファイル作成とコード実行 › 作ったファイルの受け取り方](files-and-code-execution.md#outputs)<!-- link:end --> にある。
 
-アーティファクトの中から Claude を呼ぶ、接続したアプリを読み書きする、データを残す、という使い方は別の機能として扱う。繰り返し使う小さな道具にしたいときは <!-- link:begin artifacts-as-apps#runtime -->アーティファクトを小さなアプリにする › Claude を呼ぶ・アプリにつなぐ・データを残す（準備中）<!-- link:end --> へ進む。
+アーティファクトの中から Claude を呼ぶ、接続したアプリを読み書きする、データを残す、という使い方は別の機能として扱う。繰り返し使う小さな道具にしたいときは <!-- link:begin artifacts-as-apps#runtime -->[アーティファクトを小さなアプリにする › Claude を呼ぶ・アプリにつなぐ・データを残す](artifacts-as-apps.md#runtime)<!-- link:end --> へ進む。
 
 最初の頼み方は、種類、目的、読み手、分量、資料の範囲を書く形が確実である。次の雛形は、資料にない数字を空欄にさせ、推測した箇所を会話の側に報告させる。
 
@@ -109,7 +109,7 @@ Docs は、チームで同時に編集できる。Dashboards と Motion は、�
     - **選んだもの**：Design で作り、説明の数行はモックの中に置く。
     - **理由**：画面案の良し悪しは、文章よりも見て触って判断するほうが早い。打ち合わせの議論も、文章の解釈ではなくモックの修正に集まる。文章中心の仕様書が必要になったら、そのとき Docs に作り直す。
 
-資料やスライドを作る手順は、<!-- link:begin make-slides -->資料・スライドを作る（準備中）<!-- link:end --> と <!-- link:begin write-docs -->ドキュメント・技術文書を書く（準備中）<!-- link:end --> にある。
+資料やスライドを作る手順は、<!-- link:begin make-slides -->[資料・スライドを作る](../recipes/make-slides.md)<!-- link:end --> と <!-- link:begin write-docs -->[ドキュメント・技術文書を書く](../recipes/write-docs.md)<!-- link:end --> にある。
 
 ## 直し方（頼む・直接直す・範囲を選ぶ） {#editing}
 
@@ -164,7 +164,7 @@ Docs は、チームで同時に編集できる。Dashboards と Motion は、�
 
 他人が公開したアーティファクトを開くときは、知らない送り主から届いたファイルと同じに扱う。公式がこの注意を出している。開く前の確かめ方は <!-- link:begin shared-artifacts-and-files#opening-others -->[共有リンクと公開アーティファクトの扱い › 他人が公開したものを開くとき](../safety/shared-artifacts-and-files.md#opening-others)<!-- link:end --> にある。
 
-アーティファクトに Claude の呼び出しやアプリの接続を持たせると、共有したときに誰の権限と枠で動くかが問題になる。公式の記事は、閲覧者が自分のアプリを接続し、利用分も各ユーザーのプランから引かれる、と説明している。詳しくは <!-- link:begin artifacts-as-apps#whose-account -->アーティファクトを小さなアプリにする › 共有したときに誰の権限と枠で動くか（準備中）<!-- link:end --> にある。
+アーティファクトに Claude の呼び出しやアプリの接続を持たせると、共有したときに誰の権限と枠で動くかが問題になる。公式の記事は、閲覧者が自分のアプリを接続し、利用分も各ユーザーのプランから引かれる、と説明している。詳しくは <!-- link:begin artifacts-as-apps#whose-account -->[アーティファクトを小さなアプリにする › 共有したときに誰の権限と枠で動くか](artifacts-as-apps.md#whose-account)<!-- link:end --> にある。
 
 !!! example "判断例：試作を社外の人に見せる"
     - **状況**：作ったデモの画面を、社外の取引先に見せたい。
@@ -215,14 +215,14 @@ Docs は、チームで同時に編集できる。Dashboards と Motion は、�
 
 **次に読む**
 
+- [アーティファクトを小さなアプリにする](artifacts-as-apps.md)
 - [共有リンクと公開アーティファクトの扱い](../safety/shared-artifacts-and-files.md)
-- アーティファクトを小さなアプリにする（準備中）
-- 資料・スライドを作る（準備中）
+- [資料・スライドを作る](../recipes/make-slides.md)
 
 **関連**
 
 - [ファイル作成とコード実行](files-and-code-execution.md)
-- ドキュメント・技術文書を書く（準備中）
+- [ドキュメント・技術文書を書く](../recipes/write-docs.md)
 - [見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)
 - [違うと返すより、巻き戻す・編集する](../context/rewind-dont-correct.md)
 - 周辺製品の一覧（準備中）

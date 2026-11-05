@@ -46,7 +46,7 @@ updated: 2026-11-05
 
 - **比べる基準を控える**：手元の版、更新の通り道（latest と stable のどちらか）、前回確かめた日を、1 行のメモにする。メモがないと、「前回より後」の範囲が決まらない。
 - **点検は読むだけで頼む**：Claude に点検させるときは、「ファイルは書き換えず、読むだけにする」と頼む。これはお願いであり、鍵ではない。直しは作業ツリーをきれいにしてから受け、差分で確かめる。
-- **記事や Claude の答えは、版と日付を付けて扱う**：記事の日付と版の見方は <!-- link:begin dating-information#check-date-and-version -->[いつの情報かを見分ける › 日付と版の確かめ方](dating-information.md#check-date-and-version)<!-- link:end --> にある。Claude Code に機能を聞いた答えは、手元の版より新しい機能を含みうる。確かめ方は <!-- link:begin ask-claude-code#check-version -->Claude Code 自身に聞く › 答えの版を確かめる（準備中）<!-- link:end --> にある。
+- **記事や Claude の答えは、版と日付を付けて扱う**：記事の日付と版の見方は <!-- link:begin dating-information#check-date-and-version -->[いつの情報かを見分ける › 日付と版の確かめ方](dating-information.md#check-date-and-version)<!-- link:end --> にある。Claude Code に機能を聞いた答えは、手元の版より新しい機能を含みうる。確かめ方は <!-- link:begin ask-claude-code#check-version -->[Claude Code 自身に聞く › 答えの版を確かめる](../cli/ask-claude-code.md#check-version)<!-- link:end --> にある。
 
 ## 変更の記録の在り処 {#where-records-live}
 
@@ -80,7 +80,7 @@ updated: 2026-11-05
 
 次の 6 段で進める。各段の末尾に「確かめ」を付けた。この確かめが取れてから次へ進む。
 
-1. **手元の版と更新の通り道を控える**。`claude --version` が版を出す。`/status` の Status タブにも版が出る。`claude doctor` は、セッションを始めずにインストールの状態を読むだけで診断し、自動更新が有効かと、最後の更新の結果を見られる。通り道は `autoUpdatesChannel` で決まる。既定は latest で、新しい版をすぐ受け取る。stable は latest より遅れて届き、大きな退行のある版を飛ばす。Homebrew は cask の名前で、apt・dnf・apk はリポジトリで通り道を選ぶ。**確かめ**：版・通り道・前回確かめた日が、メモに 1 行で書けている。
+1. **手元の版と更新の通り道を控える**。`claude --version` が版を出す。`/status` の Status タブにも版が出る。`claude doctor` は、セッションを始めずにインストールの状態を読むだけで診断し、自動更新が有効かと、最後の更新の結果を見られる。通り道は `autoUpdatesChannel` で決まる。既定は latest で、新しい版をすぐ受け取る。stable が受け取る版は、latest より遅れる（<!-- fact:begin claude-code-stable-channel-delay -->ふつう 1 週間ほど前の版（大きな退行のある版を飛ばす）（2026-11-05 時点）<!-- fact:end -->）。Homebrew は cask の名前で、apt・dnf・apk はリポジトリで通り道を選ぶ。**確かめ**：版・通り道・前回確かめた日が、メモに 1 行で書けている。
 2. **前回より後の記録を読む**。「変更の記録の在り処」の節に挙げた記録を、メモの版より後から読む。Claude Code は `/release-notes` か CHANGELOG、アプリは Help Center、API は Platform のリリースノートを使う。手元が stable なら、latest にだけ入った項目はまだ手元にない。**確かめ**：読む記録ごとに、読み終えた最後の版か日付が書き留めてある。
 3. **自分の設定に当たる語を探す**。コマンド名・設定のキー・環境変数・モデル名・機能名を、`CLAUDE.md`、`settings.json`、スキル、フックから拾い、記録の項目に出る語と突き合わせる。手で突き合わせる代わりに、次の依頼を使える。**確かめ**：当たった項目が、「版・項目・自分の設定の場所」の一覧になっている。
 4. **手元の版に入っているかを確かめ、1 つずつ試す**。項目の版が手元の版以下なら試せる。新しいセッションで 1 つずつ試し、効果が出たかを版付きで書き留める。まとめて直すと、どれが効いたか分からなくなる。外すものを 1 つずつ外して測る手順は <!-- link:begin after-switching-models#remove-one-at-a-time -->[新しいモデルに替えたら見直すこと › ハーネスの部品を一つずつ外して測る](../models/after-switching-models.md#remove-one-at-a-time)<!-- link:end --> にある。推奨や安全の既定に関わる項目は、自分の判断で採否を決める。**確かめ**：試した項目ごとに、「版・試した日・結果」の 1 行がある。
@@ -240,7 +240,7 @@ updated: 2026-11-05
 - [いつの情報かを見分ける](dating-information.md)
 - [古くなった助言の台帳](outdated-advice-ledger.md)
 - [2026 年の主な変更の年表](change-timeline-2026.md)
-- Claude Code 自身に聞く（準備中）
+- [Claude Code 自身に聞く](../cli/ask-claude-code.md)
 - [劣化を疑ったら測って確かめる](../models/suspected-degradation.md)
 - [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)
 

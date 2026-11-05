@@ -100,7 +100,7 @@ C の判断は <!-- link:begin entrusted-data#contracted-surfaces -->[預かっ�
 - **止まって相談する**：戻しにくい変更、人の判断が要る変更を置く。スキーマ変更、認証・課金、依存の追加が例になる。
 - **禁止**：区分 D を読む・貼る、本番への直接の操作、共有ブランチの履歴を壊す操作を置く。
 
-3 区分のどこに入れるかが迷う項目は、禁止にも任せてよいにも寄せず、止まって相談する側に置く。迷う項目を禁止に入れると、現場が回避し始める。禁止を増やす代わりに安全な道を作る考え方は <!-- link:begin paved-roads#defaults-over-attention -->禁止ではなく安全な道を作る › 注意力に頼らない既定（準備中）<!-- link:end --> にある。
+3 区分のどこに入れるかが迷う項目は、禁止にも任せてよいにも寄せず、止まって相談する側に置く。迷う項目を禁止に入れると、現場が回避し始める。禁止を増やす代わりに安全な道を作る考え方は <!-- link:begin paved-roads#defaults-over-attention -->[禁止ではなく安全な道を作る › 注意力に頼らない既定](paved-roads.md#defaults-over-attention)<!-- link:end --> にある。
 
 !!! example "判断例：テストデータに本番のログを混ぜてよいか"
     - **状況**：再現テストを書くために、本番のログの一部を Claude に渡したい。
@@ -188,7 +188,7 @@ CLAUDE.md に書いた禁止は、Claude が読んで判断するお願いであ
 - **鍵が効くか**：壊れても困らない作業用のリポジトリに偽の秘密を置き、禁止した操作を頼む。止められるかを観察する。偽の秘密の置き方は <!-- link:begin protecting-secrets#verify -->[秘密情報（.env・API キー）を守る › 偽の秘密で確かめる](../safety/protecting-secrets.md#verify)<!-- link:end --> にある。
 - **お願いの行を過信していないか**：CLAUDE.md の禁止の各行に、対応する鍵があるか、鍵にできない理由が書いてある。
 
-決まりを変えたときは、決めたことと理由を <!-- link:begin record-decisions -->決定を文書に残す（ADR と週次アップデート）（準備中）<!-- link:end --> の形で残すと、なぜその決まりになったかを後から辿れる。
+決まりを変えたときは、決めたことと理由を <!-- link:begin record-decisions -->[決定を文書に残す（ADR と週次アップデート）](record-decisions.md)<!-- link:end --> の形で残すと、なぜその決まりになったかを後から辿れる。
 
 ## 失敗したとき {#when-it-fails}
 
@@ -221,16 +221,16 @@ CLAUDE.md に書いた禁止は、Claude が読んで判断するお願いであ
 
 **関連**
 
-- 禁止ではなく安全な道を作る（準備中）
+- [禁止ではなく安全な道を作る](paved-roads.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](../safety/entrusted-data.md)
-- AI 利用の開示と出所の記録（準備中）
+- [AI 利用の開示と出所の記録](../safety/disclosure-and-provenance.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [権限ルール（allow・ask・deny）](../enforce/permission-rules.md)
 - 管理設定と組織の強制（準備中）
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](risk-tiered-approval.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
 - [役割を分ける（書く人・承認する人・疑う人）](separate-roles.md)
-- 決定を文書に残す（ADR と週次アップデート）（準備中）
+- [決定を文書に残す（ADR と週次アップデート）](record-decisions.md)
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - 組織に設定と MCP サーバーを配る（準備中）
 

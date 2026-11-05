@@ -1,0 +1,14 @@
+{
+  "model": "<使うモデルの id>",
+  "max_tokens": 1024,
+  "system": [
+    {
+      "type": "text",
+      "text": "<毎回変わらない長い指示と資料>",
+      "cache_control": {"type": "ephemeral"}
+    }
+  ],
+  "messages": [
+    {"role": "user", "content": "<毎回変わる質問>"}
+  ]
+}

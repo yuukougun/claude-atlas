@@ -75,8 +75,8 @@ CLAUDE.md・rules・自動メモリ・スキル・サブエージェント・出
 | [出力スタイル（output styles）](../cli/output-style-modes.md) | お願い | セッション開始と切り替えたとき | 常駐 | 残る |
 | [フック（hooks）](../enforce/hooks-basics.md) | 鍵 | イベントが起きたとき | ゼロ（出力を返さない限り） | 残る |
 | [MCP](connecting-mcp.md) | なし | セッション開始 | 使うまで小さい | 未確認 |
-| [プラグイン（plugins）](plugins-and-marketplaces.md) | — | セッション開始と使うとき | 使うまで小さい | 未確認 |
-| [code intelligence プラグイン（LSP）](code-intelligence-plugins.md) | — | 編集の後と調べるとき | 小さい | 未確認 |
+| [プラグイン（plugins）](plugins-and-marketplaces.md) | なし | セッション開始と使うとき | 使うまで小さい | 未確認 |
+| [code intelligence プラグイン（LSP）](code-intelligence-plugins.md) | なし | 編集の後と調べるとき | 小さい | 未確認 |
 
 <!-- textlint-enable -->
 <!-- gen:end compare 強制力 読み込みの時期 コンテキストのコスト 圧縮で残るか -->

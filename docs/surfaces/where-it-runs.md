@@ -179,9 +179,9 @@ PC を閉じても進めさせるのは、見ていない間に動かすこと�
 
 **次に読む**
 
+- [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](claude-code-surfaces.md)
 - [Claude in Chrome と computer use（ブラウザと画面の操作）](browser-control.md)
 - [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)
-- Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）
 
 **関連**
 

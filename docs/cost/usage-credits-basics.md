@@ -54,7 +54,7 @@ usage credits は、プランの利用上限を使い切った後も、前払い
 
 払う前に確かめることが 2 つある。
 
-- 枠を待つか、プランを見直すか、払うか。プランの比べ方は <!-- link:begin choosing-a-plan -->プランの選び方（準備中）<!-- link:end --> にある。
+- 枠を待つか、プランを見直すか、払うか。プランの比べ方は <!-- link:begin choosing-a-plan -->[プランの選び方](choosing-a-plan.md)<!-- link:end --> にある。
 - 本当に今日要る作業か。止まったときの備えは <!-- link:begin when-ai-is-unavailable -->[AI が使えないときの備え（障害・上限）](when-ai-is-unavailable.md)<!-- link:end --> にある。
 
 ## 切り替わる仕組み {#how-it-works}
@@ -65,7 +65,7 @@ usage credits は、プランの利用上限を使い切った後も、前払い
 
 使った分は、前払いした残高から引かれる。残高が足りなくなったときに自動で補充する設定もある。補充の設定は、上限額とセットで見る必要がある（次の節）。
 
-購入した分には失効の期限がある。日本などでは、ある日付以降の購入分が、一定の期間で失効する。期間と日付は変わりやすいので、本文には書かない。まとめて買う前に、公式の記事で確かめる。失効の前には、メールで知らせが届く。
+購入した分には失効の期限がある。日本などでの失効の期間は、<!-- fact:begin usage-credits-expiry-japan -->未確認<!-- fact:end -->である。期間と日付は変わりやすいので、まとめて買う前に、公式の記事で確かめる。失効の前には、メールで知らせが届く。
 
 呼び名は変わった。以前は extra usage、コマンドは `/extra-usage` だった。今は <!-- name:begin extra-usage-to-usage-credits -->usage credits（/usage-credits）<!-- name:end --> である。旧名のコマンドも今は動く。公式の記事や古い手順書には旧名が残っているので、読み替えて読む。
 
@@ -149,7 +149,7 @@ usage credits は、プランの利用上限を使い切った後も、前払い
 **関連**
 
 - [課金の経路を確かめる（API キーとサブスクリプション） › プランに付く API credits](check-billing-path.md#monthly-api-credits)
-- プランの選び方（準備中）
+- [プランの選び方](choosing-a-plan.md)
 - [最上位のモデルを使う前に](before-using-top-model.md)
 - 円での支払い・消費税・インボイス（準備中）
 - [並列・ループ・workflows のコスト](parallel-and-loop-costs.md)

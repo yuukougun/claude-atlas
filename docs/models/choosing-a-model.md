@@ -117,8 +117,8 @@ effort にも限りがある。最も高い段でも足りない仕事が、上�
 
 モデルを選ぶときは、プランとの関係も見る。選ぶモデルで、上限の減り方が変わるからである。
 
-- **上位のモデルの扱いはプランで違う**：枠に含まれるか、追加の支払いから引かれるかが、プランによって違う。どの枠から引かれるかは<!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](../cost/before-using-top-model.md#which-limit)<!-- link:end -->の表で確かめる。
-- **プランの比べ方**：使う面・上位のモデルの扱い・上限の形は<!-- link:begin choosing-a-plan#plan-table -->プランの選び方 › プランの表（確認日つき）（準備中）<!-- link:end -->で比べる。
+- **上位のモデルの扱いはプランで違う**：枠に含まれるか、追加の支払いから引かれるかが、プランによって違う（<!-- fact:begin top-model-by-plan -->未確認<!-- fact:end -->）。どの枠から引かれるかは<!-- link:begin before-using-top-model#which-limit -->[最上位のモデルを使う前に › どの枠から引かれるか（プランごとの表）](../cost/before-using-top-model.md#which-limit)<!-- link:end -->の表で確かめる。
+- **プランの比べ方**：使う面・上位のモデルの扱い・上限の形は<!-- link:begin choosing-a-plan#plan-table -->[プランの選び方 › プランの表（確認日つき）](../cost/choosing-a-plan.md#plan-table)<!-- link:end -->で比べる。
 - **減り方は自分で見る**：モデルを替えた後は、`/usage` で上限の減り方を確かめる。
 - **選べるモデルが絞られていることがある**：組織の管理者が、使えるモデルや effort を制限している場合がある。上位のモデルが選べないときは、3 段目に進めない。2 段目の effort で足りるかを先に確かめる。
 
@@ -206,7 +206,7 @@ effort にも限りがある。最も高い段でも足りない仕事が、上�
 - fast mode と advisor（準備中）
 - [変更が効いたかを測る（小さな eval）](../eval/measure-changes.md)
 - [体感と実測](../eval/felt-vs-measured.md)
-- プランの選び方（準備中）
+- [プランの選び方](../cost/choosing-a-plan.md)
 
 </div>
 

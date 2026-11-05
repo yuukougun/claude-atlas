@@ -180,7 +180,7 @@ deny ルールが効くか、送る前に確かめる。偽の秘密だけを入
 
 秘密は、リポジトリに commit せず、会話にも貼らない。置き方の考え方は <!-- link:begin protecting-secrets#keep-out -->[秘密情報（.env・API キー）を守る › 秘密を作業ディレクトリと会話に置かない](../safety/protecting-secrets.md#keep-out)<!-- link:end --> にある。API キーをクラウドのセッションで使う設定は、公式の [Configure cloud environments](https://code.claude.com/docs/en/cloud-environments) で確かめる。
 
-クラウドの環境は、ネットワークの接続先も設定で決まる。公式の文書によると、Anthropic が管理する環境では接続先が既定で制限され、無効にもできる。接続先と権限を最小にする考え方は <!-- link:begin cloud-schedules#least-privilege -->クラウドの定期タスク › 接続先と権限を最小にする（準備中）<!-- link:end --> にある。
+クラウドの環境は、ネットワークの接続先も設定で決まる。公式の文書によると、Anthropic が管理する環境では接続先が既定で制限され、無効にもできる。接続先と権限を最小にする考え方は <!-- link:begin cloud-schedules#least-privilege -->[クラウドの定期タスク › 接続先と権限を最小にする](../delegate/cloud-schedules.md#least-privilege)<!-- link:end --> にある。
 
 なお、リモートのないリポジトリや、Claude の GitHub アプリが入っていない GitHub のリポジトリから送ると、ローカルのリポジトリをまとめて直接アップロードする経路になることがある。この経路でコミット前の変更が含まれるかは、この辞典では確かめていない。手元の変更を送りたくないときは、先に stash するか戻してから送る。
 
@@ -234,7 +234,7 @@ CLI からの引き渡しは、クラウドから手元への一方向である�
 | 手段 | 向く場面 | 詳しい説明 |
 | --- | --- | --- |
 | Remote Control | 実行とファイルを手元に残し、席を離れて見る | <!-- link:begin control-from-phone -->スマホから操作する（Remote Control）（準備中）<!-- link:end --> |
-| クラウドの定期タスク | 決まった時刻や GitHub のイベントで、人なしで動かす | <!-- link:begin cloud-schedules -->クラウドの定期タスク（準備中）<!-- link:end --> |
+| クラウドの定期タスク | 決まった時刻や GitHub のイベントで、人なしで動かす | <!-- link:begin cloud-schedules -->[クラウドの定期タスク](../delegate/cloud-schedules.md)<!-- link:end --> |
 | 背景セッション | 手元の PC で、見張らなくてよい作業を投入する | <!-- link:begin agent-view-and-background -->[agent view と背景セッション](../delegate/agent-view-and-background.md)<!-- link:end --> |
 | 並列の方式 | 並列の数と、誰が調整するかを決める | <!-- link:begin choosing-parallel-modes -->[並列の方式の選び方](../delegate/choosing-parallel-modes.md)<!-- link:end --> |
 | 実行場所の違い | クラウド・自分の PC・リモート操作を選ぶ | <!-- link:begin where-it-runs -->[実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)<!-- link:end --> |
@@ -275,7 +275,7 @@ CLI からの引き渡しは、クラウドから手元への一方向である�
 - [セッションに名前を付けて再開・分岐する](resume-and-branch.md)
 - [agent view と背景セッション](../delegate/agent-view-and-background.md)
 - [並列の方式の選び方](../delegate/choosing-parallel-modes.md)
-- クラウドの定期タスク（準備中）
+- [クラウドの定期タスク](../delegate/cloud-schedules.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [無人実行の結果を確かめる](../verify/checking-unattended-runs.md)
 - [チームで設定を共有する](../team/share-team-settings.md)

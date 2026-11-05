@@ -163,9 +163,9 @@ flowchart LR
 <!-- textlint-enable -->
 <!-- gen:end snippet differential-testing/legacy-compare -->
 
-旧実装は、仕様どおりとは限らない。旧実装の誤りまで再現されていた場合は、違いを「新しい実装のバグ」と「旧実装のバグを直した結果」に人が分ける。挙動を保つ移行の全体は <!-- link:begin refactor-and-migrate#behavior-preserved -->リファクタリングと大規模な移行 › 挙動が変わっていないことを確かめる（準備中）<!-- link:end --> が持つ。
+旧実装は、仕様どおりとは限らない。旧実装の誤りまで再現されていた場合は、違いを「新しい実装のバグ」と「旧実装のバグを直した結果」に人が分ける。挙動を保つ移行の全体は <!-- link:begin refactor-and-migrate#behavior-preserved -->[リファクタリングと大規模な移行 › 挙動が変わっていないことを確かめる](../recipes/refactor-and-migrate.md#behavior-preserved)<!-- link:end --> が持つ。
 
-速くした後の出力の一致の確かめ方は <!-- link:begin performance-tuning#same-output-and-timing -->性能改善を頼む（プロファイルが先・出力の一致と実測） › 出力の一致と実測を証拠にする（準備中）<!-- link:end --> が持つ。
+速くした後の出力の一致の確かめ方は <!-- link:begin performance-tuning#same-output-and-timing -->[性能改善を頼む（プロファイルが先・出力の一致と実測） › 出力の一致と実測を証拠にする](../recipes/performance-tuning.md#same-output-and-timing)<!-- link:end --> が持つ。
 
 **コンテストの例：ストレステスト。** 生成器・本解・愚直解・不一致で止まる駆動役の組は、競技プログラミングの古典的なストレステストである。USACO Guide は、テストケースの生成器を書き、より単純で遅い解の出力と比べる手を、誤答を調べる手の 1 つとして挙げている（根拠：弱。実践者の案内）。この組は、そのまま Claude に作らせられる。依頼の雛形は、手順の節に置いたストレステストの雛形である。
 
@@ -211,9 +211,9 @@ Anthropic の Engineering ブログ（2026-02）には、C コンパイラを並
 
 **次に読む**
 
+- [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)
+- [性能改善を頼む（プロファイルが先・出力の一致と実測）](../recipes/performance-tuning.md)
 - 失敗する入力を縮めるスクリプトを書かせる（準備中）
-- リファクタリングと大規模な移行（準備中）
-- 性能改善を頼む（プロファイルが先・出力の一致と実測）（準備中）
 
 **関連**
 

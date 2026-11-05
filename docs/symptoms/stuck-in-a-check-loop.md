@@ -103,10 +103,10 @@ updated: 2026-11-05
 
 | 原因 | 対処のページ（近い順） |
 | --- | --- |
-| 見えていない | 目標値・上界を伝える（準備中）<br>[失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)<br>[実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md) |
+| 見えていない | [目標値・上界を伝える](../prompting/share-targets-and-bounds.md)<br>[失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)<br>[実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md) |
 | 散らかっている | [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)<br>[handoff 文書と document-and-clear](../context/handoff-documents.md) |
 | 合っていない | [/goal（完了するまで続けさせる） › 条件の書き方（終わりの状態・証明・変えないもの・上限）](../delegate/goal-until-done.md#writing-conditions)<br>[Stop フックで「終わらせない」 › 止め続けるループを避ける](../enforce/stop-hooks.md#avoid-loops)<br>[AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md) |
-| 預けすぎる | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)<br>長時間ジョブの進捗ログを設計する（準備中）<br>[無人実行の結果を確かめる](../verify/checking-unattended-runs.md) |
+| 預けすぎる | [やめどきを先に決める（撤退基準を着手前に書き、実装者以外が判定する）](../judgment/decide-when-to-quit.md)<br>[長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)<br>[無人実行の結果を確かめる](../verify/checking-unattended-runs.md) |
 
 <!-- textlint-enable -->
 <!-- gen:end routes -->
@@ -142,7 +142,7 @@ updated: 2026-11-05
 
 **次に読む**
 
-- 目標値・上界を伝える（準備中）
+- [目標値・上界を伝える](../prompting/share-targets-and-bounds.md)
 - [失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)
 - [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)
 - [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)
@@ -154,7 +154,7 @@ updated: 2026-11-05
 
 **関連**
 
-- 性能改善を頼む（プロファイルが先・出力の一致と実測）（準備中）
+- [性能改善を頼む（プロファイルが先・出力の一致と実測）](../recipes/performance-tuning.md)
 - [止まって報告する権利を渡す](../prompting/permission-to-stop.md)
 - [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)
 - [同じ失敗を繰り返す（堂々巡り）](going-in-circles.md)

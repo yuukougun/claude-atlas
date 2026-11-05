@@ -60,7 +60,7 @@ flowchart LR
 
 図の要点は次のとおりである。道具の結果が次の判断に戻ること。「確かめる」から「考える」へ戻る矢印が、確かめる手段があるときだけ引けること。矢印が欠けると、ループはそこで閉じず、終わったように見えた所で止まる。
 
-道具は、ファイルの読み取りや検索、編集、コマンドの実行といった手足にあたる。Claude が一度の応答で答えを書き切るのとは違い、道具の結果を見てから次の手を変えられる。結果を受けるたびに考え直せる仕組み（interleaved thinking）も、この途中の判断を支える。API でこのループを誰が回すかは <!-- link:begin tool-use-loop#who-runs-the-loop -->tool use のループ › ループを誰が回すか（準備中）<!-- link:end --> で説明している。
+道具は、ファイルの読み取りや検索、編集、コマンドの実行といった手足にあたる。Claude が一度の応答で答えを書き切るのとは違い、道具の結果を見てから次の手を変えられる。結果を受けるたびに考え直せる仕組み（interleaved thinking）も、この途中の判断を支える。API でこのループを誰が回すかは <!-- link:begin tool-use-loop#who-runs-the-loop -->[tool use のループ › ループを誰が回すか](../api/tool-use-loop.md#who-runs-the-loop)<!-- link:end --> で説明している。
 
 ## 文脈は必要になった時点で取りに行く {#gather}
 
@@ -192,16 +192,16 @@ After で足したのは次のものである。合否を返すコマンド。�
 - [MCP をつなぐ](../extend/connecting-mcp.md)
 - [「完了」を定義して渡す](../verify/define-done.md)
 - [フックの考え方とイベント](../enforce/hooks-basics.md)
+- [tool use のループ](../api/tool-use-loop.md)
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)
 - [確認ばかりで進まない・途中で止まる](../symptoms/keeps-stopping.md)
-- [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - ほか 3 ページ
 
 **関連**
 
+- [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - [検証の階段](../verify/verification-ladder.md)
 - [報告ではなく証拠を求める](../verify/evidence-not-reports.md)
-- tool use のループ（準備中）
 - [モデルの差よりハーネスの差](../models/harness-over-model.md)
 - [サブエージェントは別室の部下](subagent-isolation.md)
 - [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)

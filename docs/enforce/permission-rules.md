@@ -288,8 +288,8 @@ flowchart TD
 - [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)
 - [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)
 - [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)
+- [Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)
 - [チームで設定を共有する](../team/share-team-settings.md)
-- 管理設定と組織の強制（準備中）
 - ほか 1 ページ
 
 **関連**
@@ -299,6 +299,7 @@ flowchart TD
 - [お願いを鍵に移す判断](when-to-lock.md)
 - [設定ファイルの階層と優先順位](../cli/settings-layers.md)
 - [評価資産を凍結し、触れる範囲を絞る](freeze-eval-assets.md)
+- 管理設定と組織の強制（準備中）
 - [縛りすぎの害と見直し（止めすぎ・回り込み）](lock-side-effects.md)
 - [フックとスキルの違い](../extend/hook-vs-skill.md)
 

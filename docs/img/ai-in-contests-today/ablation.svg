@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 190" width="400" height="190" role="img" aria-labelledby="t d">
+  <title id="t">ALE-Bench のアブレーション（Gemini 2.5 Pro）</title>
+  <desc id="d">素のエージェントの評価値は 1167。知識を足すと 1264 で、約 100 の伸び。局所評価で選ぶ探索を足すと 1879（上位 6.8%）で、約 600 の伸び。評価のループを足した分のほうが、知識を足した分より大きく伸びた。</desc>
+  <defs>
+    <style>
+      text { font-family: sans-serif; font-size: 11px; fill: #222222; }
+      .h { font-size: 13px; font-weight: bold; }
+      .small { font-size: 10px; }
+      .b1 { fill: #ffffff; stroke: #222222; stroke-width: 1.5; }
+      .b2 { fill: #bbbbbb; stroke: #222222; stroke-width: 1.5; }
+      .b3 { fill: #444444; stroke: #222222; stroke-width: 1.5; }
+    </style>
+  </defs>
+  <rect width="400" height="190" fill="#ffffff"/>
+
+  <text class="h" x="10" y="20">足したものと、評価値の伸び</text>
+
+  <text x="10" y="53">素のエージェント</text>
+  <rect class="b1" x="130" y="38" width="137" height="22"/>
+  <text x="272" y="53">1167</text>
+
+  <text x="10" y="93">知識を足す</text>
+  <rect class="b2" x="130" y="78" width="148" height="22"/>
+  <text x="283" y="93">1264（約 +100）</text>
+
+  <text x="10" y="133">局所評価で選ぶ探索</text>
+  <rect class="b3" x="130" y="118" width="220" height="22"/>
+  <text x="130" y="157">1879（約 +600、上位 6.8%）</text>
+
+  <text class="small" x="10" y="180">Gemini 2.5 Pro。ALE-Bench の論文（2025 年）。2026-11-03 確認</text>
+</svg>

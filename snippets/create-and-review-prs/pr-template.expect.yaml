@@ -1,0 +1,13 @@
+title: PR の説明の雛形
+kind: other
+place: project
+safety: false
+conditions:
+  - リポジトリの PR テンプレートの置き場（例：`.github/pull_request_template.md`）に置く
+  - GitHub の PR で試す
+expect:
+  - when: テンプレートを置いたリポジトリで PR を新しく作る
+    then: 説明欄に 5 つの見出しが最初から入る
+  - when: Claude に説明文の下書きを頼むとき、この雛形の見出しに沿うよう指示する
+    then: 返った下書きが 5 つの見出しに分かれる。「自分の言葉での短い説明」は人が書き直す
+control: 雛形を置かないと、説明欄が空か、変更の要約だけになる

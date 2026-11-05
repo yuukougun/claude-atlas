@@ -1,0 +1,12 @@
+title: チームの言語の決まり（リポジトリの CLAUDE.md）
+kind: claude-md
+place: project
+safety: false
+features: [claude-md]
+conditions:
+  - 使い捨てのリポジトリで、新しいセッションで試す
+  - 個人の設定には、コミットの言語に関する指示を入れない
+expect:
+  - when: 小さなファイルの変更を頼み、そのままコミットさせる
+    then: git log の件名が日本語になり、追加したコメントが英語になる（観察として扱う。CLAUDE.md は鍵ではないので、合否にしない）
+control: この節を置かないとき、同じ依頼でコミットメッセージの言語が返答の言語や既存の履歴に引きずられて揺れるかを見る

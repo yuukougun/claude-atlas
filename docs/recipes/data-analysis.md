@@ -50,7 +50,7 @@ updated: 2026-11-05
 データ分析で任せる幅を広げる前に、守りを 4 つ先に整える。数字は一見もっともらしく読めるので、後から気づくのが難しい。
 
 1. **渡してよいデータかを決める**：顧客のデータや規約付きのデータは、契約で扱いが決まった面だけで使う。判断は <!-- link:begin entrusted-data#contracted-surfaces -->[預かったデータ・規約付きのデータを AI に渡してよいか › 契約のある面だけで使う](../safety/entrusted-data.md#contracted-surfaces)<!-- link:end --> に任せる。送ったデータが学習に使われる条件と残る期間は <!-- link:begin where-your-data-goes -->[送ったデータの行方（学習・保持期間）](../safety/where-your-data-goes.md)<!-- link:end --> で確かめる。
-2. **ファイルの文字コードをそろえる**：Shift_JIS の CSV は文字化けや集計の空欄の元になる。渡す前の確かめ方は <!-- link:begin character-encodings#check -->文字コード（Shift\_JIS の CSV など） › 渡す前に文字コードを確かめる（準備中）<!-- link:end --> にある。
+2. **ファイルの文字コードをそろえる**：Shift_JIS の CSV は文字化けや集計の空欄の元になる。渡す前の確かめ方は <!-- link:begin character-encodings#check -->[文字コード（Shift\_JIS の CSV など） › 渡す前に文字コードを確かめる](../japanese/character-encodings.md#check)<!-- link:end --> にある。
 3. **証拠の形を先に決める**：集計結果は、実行したコマンドと生の出力と分母で受け取る。「集計しました」という報告だけでは受け取らない。形は <!-- link:begin evidence-not-reports#what-counts -->[報告ではなく証拠を求める › 証拠の形（コマンド・生の出力・分母）](../verify/evidence-not-reports.md#what-counts)<!-- link:end --> にある。
 4. **自分の仮説を伏せる**：「原因は新機能だと思う」と書いて頼むと、その仮説に合う分析が返りやすい。伏せ方は <!-- link:begin ask-without-sycophancy#hide-preferences -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる](../judgment/ask-without-sycophancy.md#hide-preferences)<!-- link:end --> にある。
 
@@ -102,8 +102,8 @@ updated: 2026-11-05
 集計の数字は、Claude の説明ではなく生データに照らして確かめる。説明と事実が食い違えば、実行して見た事実を正とする（<!-- link:begin evidence-not-reports#facts-win -->[報告ではなく証拠を求める › 説明と事実が食い違ったら](../verify/evidence-not-reports.md#facts-win)<!-- link:end -->）。次の順に、段ごとに何で終わったかを見る。
 
 1. **分母を合わせる**：入力の総行数、除いた行数、集計に使った行数を出させる。総行数が、除いた行数と使った行数の合計と合えば、この段は終わりである。合わなければ、読み込みで落ちた行がある。
-2. **数行を手で追う**：結果の表の上位と下位から数行を選び、元データの該当行を抜き出して、手計算が合うかを見る。合えば終わりである。手計算の習慣は <!-- link:begin build-observation-tools -->観察の道具を作らせる（可視化・集計・ログ）（準備中）<!-- link:end --> でも小さな例で扱う。
-3. **欠損と型を見る**：空欄の数、値の型、文字化けを確かめる。文字コードに由来する空欄は、集計の数字を黙って小さくする（<!-- link:begin character-encodings -->文字コード（Shift\_JIS の CSV など）（準備中）<!-- link:end -->）。欠損の数が説明できれば終わりである。
+2. **数行を手で追う**：結果の表の上位と下位から数行を選び、元データの該当行を抜き出して、手計算が合うかを見る。合えば終わりである。手計算の習慣は <!-- link:begin build-observation-tools -->[観察の道具を作らせる（可視化・集計・ログ）](build-observation-tools.md)<!-- link:end --> でも小さな例で扱う。
+3. **欠損と型を見る**：空欄の数、値の型、文字化けを確かめる。文字コードに由来する空欄は、集計の数字を黙って小さくする（<!-- link:begin character-encodings -->[文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)<!-- link:end -->）。欠損の数が説明できれば終わりである。
 4. **層に分けて見る**：全体の合計だけで判断せず、期間や種類などの層ごと、いちばん悪い層も見る。見方は <!-- link:begin measure-changes#by-stratum -->[変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)<!-- link:end --> にある。合計と層ごとの数字が矛盾しなければ終わりである。
 5. **指標が目的に合うかを確かめる**：数えているものが、本当に知りたいことと合っているかを見る。ずれの見つけ方は <!-- link:begin check-the-metric#mismatch -->[評価指標そのものを確かめる › 指標と目的のずれ](../eval/check-the-metric.md#mismatch)<!-- link:end --> にある。
 
@@ -166,7 +166,7 @@ updated: 2026-11-05
 | --- | --- |
 | 数字の出どころが分からない | 上の「再実行できる形で集計させる」で、スクリプトとして書き直させる |
 | 再実行すると数字が変わる | 入力のファイルが更新されていないか、定義の除外条件が曖昧でないかを確かめる |
-| 文字化けや空欄が多い | <!-- link:begin character-encodings -->文字コード（Shift\_JIS の CSV など）（準備中）<!-- link:end --> |
+| 文字化けや空欄が多い | <!-- link:begin character-encodings -->[文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)<!-- link:end --> |
 | 完了と報告されたが数が合わない | <!-- link:begin evidence-not-reports -->[報告ではなく証拠を求める](../verify/evidence-not-reports.md)<!-- link:end --> |
 | 自分の仮説に合う分析ばかり返る | <!-- link:begin ask-without-sycophancy -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)<!-- link:end --> |
 | 結果が良すぎる | <!-- link:begin suspect-too-good-results -->[良すぎる結果を疑う](../verify/suspect-too-good-results.md)<!-- link:end --> |
@@ -189,10 +189,10 @@ updated: 2026-11-05
 
 **関連**
 
-- 観察の道具を作らせる（可視化・集計・ログ）（準備中）
+- [観察の道具を作らせる（可視化・集計・ログ）](build-observation-tools.md)
 - [預かったデータ・規約付きのデータを AI に渡してよいか](../safety/entrusted-data.md)
 - [送ったデータの行方（学習・保持期間）](../safety/where-your-data-goes.md)
-- 文字コード（Shift\_JIS の CSV など）（準備中）
+- [文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)
 - [変更が効いたかを測る（小さな eval） › 合計ではなく、層別と最悪ケースで見る](../eval/measure-changes.md#by-stratum)
 - [評価指標そのものを確かめる](../eval/check-the-metric.md)
 - [ロックボックスと hold-out（人だけが持つ検証用データ）](../eval/lockbox-and-holdout.md)

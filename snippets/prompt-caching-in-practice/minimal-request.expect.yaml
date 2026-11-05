@@ -1,0 +1,13 @@
+title: 長い system の末尾に区切りを 1 つ置いた最小の要求
+kind: other
+place: 要求の本文（Messages API）
+safety: false
+conditions:
+  - 区切りの前の長さが、使うモデルの最小の長さを超えている
+  - 同じ要求を、キャッシュの寿命が切れる前にもう 1 回送る
+expect:
+  - when: 最初の要求を送る
+    then: 応答の usage で、キャッシュへの書き込みの量（cache_creation_input_tokens）が 0 を超える
+  - when: 質問だけを変えて、同じ system で 2 回目の要求を送る
+    then: 応答の usage で、キャッシュからの読み取りの量（cache_read_input_tokens）が 0 を超える
+control: 区切りを置かないと、自動のキャッシュを使わない限り、2 回目も読み取りの量が 0 のままになる

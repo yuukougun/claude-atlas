@@ -1,0 +1,15 @@
+title: 定時に読むだけの報告をさせる workflow（prompt あり）
+kind: other
+place: project
+safety: true
+features: [github-actions]
+conditions:
+  - 使い捨てのテスト用のリポジトリで試す
+  - workflow を既定のブランチに置く（定時の実行は既定のブランチからだけ動く）
+  - secrets に ANTHROPIC_API_KEY を置いておく
+expect:
+  - when: Actions の画面から手で実行する（workflow_dispatch を足したとき）、または定時を待つ
+    then: Claude が許した 2 つの道具だけで要約を作り、結果が実行ログに出る
+  - when: allowedTools の列挙を外して実行する
+    then: コミットや issue を読めず、要約が作れない。止まり方は観察して記録する
+control: prompt を書かない同じ workflow では、@claude の呼びかけを待つ形になり、定時では何も起きない

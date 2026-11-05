@@ -82,7 +82,7 @@ Claude にリポジトリや資料をまるごと作らせると、体裁だけ�
 | 「全部通った」の報告 | 実行したコマンド・生の出力・分母 | <!-- link:begin claims-done-but-isnt -->[「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)<!-- link:end --> |
 | きれいな差分 | テスト・評価・特例の分岐・例外の握りつぶし・件数の変化 | <!-- link:begin diffs-humans-must-read#red-flags -->[人間が読むべき差分の箇所 › 赤信号の一覧](diffs-humans-must-read.md#red-flags)<!-- link:end --> |
 | 整った生成コード | 処理の流れと入力の端を説明させ、実際の動きと照らす | <!-- link:begin own-generated-code#explain -->[生成コードを自分のものにする › 処理の流れと入力の端を説明させる](own-generated-code.md#explain)<!-- link:end --> |
-| 整った報告書や資料 | 数字の出所を元のデータまでたどる | <!-- link:begin make-slides -->資料・スライドを作る（準備中）<!-- link:end --> |
+| 整った報告書や資料 | 数字の出所を元のデータまでたどる | <!-- link:begin make-slides -->[資料・スライドを作る](../recipes/make-slides.md)<!-- link:end --> |
 | 満点に近い結果 | リーク・退化・採点の省略を疑う | <!-- link:begin suspect-too-good-results#what-to-suspect -->[良すぎる結果を疑う › まず疑うもの](suspect-too-good-results.md#what-to-suspect)<!-- link:end --> |
 
 自分で見る時間がないときは、書いた本人ではない者に確かめさせる。変更を生んだ推論を見ていない新しいセッションや別の人が向く。AI の承認は、人の承認に数えない。分け方は <!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](independent-review.md#who)<!-- link:end --> にある。
@@ -146,7 +146,7 @@ Claude にリポジトリや資料をまるごと作らせると、体裁だけ�
 - [書いた本人ではない者にレビューさせる](independent-review.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
 - フロントエンドのデザイン（準備中）
-- 資料・スライドを作る（準備中）
+- [資料・スライドを作る](../recipes/make-slides.md)
 - [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)
 - [AI に書かせたテストの落とし穴](pitfalls-of-ai-written-tests.md)
 

@@ -187,7 +187,7 @@ updated: 2026-11-05
 
 **次に読む**
 
-- GitHub Actions と @claude（準備中）
+- [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)
 
 **関連**
 

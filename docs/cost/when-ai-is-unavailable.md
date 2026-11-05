@@ -57,8 +57,8 @@ AI が止まる理由は、障害・上限・規則の 3 つに分けられる�
 
 - 障害は、始まる時刻と終わる時刻を利用者が決められない。備えは、戻る時刻を当てにしない形にする。
 - 上限は、戻る時刻が分かる。枠の種類と戻り方は <!-- link:begin how-usage-limits-work#limit-types -->[利用上限の仕組み（面をまたいで共有する枠） › 枠の種類と戻る時刻（プランごとの表）](how-usage-limits-work.md#limit-types)<!-- link:end -->、残りを見る場所は <!-- link:begin how-usage-limits-work#where-to-check -->[利用上限の仕組み（面をまたいで共有する枠） › 残りを見る場所](how-usage-limits-work.md#where-to-check)<!-- link:end --> にある。アプリ・Claude Code・Desktop は同じ枠を分け合うので、<!-- link:begin how-usage-limits-work#shared-limit -->[利用上限の仕組み（面をまたいで共有する枠） › 面をまたいで一つの枠](how-usage-limits-work.md#shared-limit)<!-- link:end --> のとおり、面を変えても逃げ道にならない。
-- 規則は、使えないことが事前に分かる。AI の利用を禁じる大会や、使える範囲を決めた職場がこれに当たる。大会の運用は <!-- link:begin competition-day-operations#fallback -->本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態） › AI が止まっても続けられる備え（準備中）<!-- link:end --> が持つ。
-- API で組んだ仕組みが混雑や上限で止まるときのエラーの見分け方と再試行は、<!-- link:begin rate-limits-and-errors#kinds -->rate limits とエラー（混雑と再試行） › エラーの見分け方（自分の上限・全体の混雑・要求の誤り）（準備中）<!-- link:end --> が持つ。このページはそこを繰り返さない。
+- 規則は、使えないことが事前に分かる。AI の利用を禁じる大会や、使える範囲を決めた職場がこれに当たる。大会の運用は <!-- link:begin competition-day-operations#fallback -->[本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態） › AI が止まっても続けられる備え](../contest/competition-day-operations.md#fallback)<!-- link:end --> が持つ。
+- API で組んだ仕組みが混雑や上限で止まるときのエラーの見分け方と再試行は、<!-- link:begin rate-limits-and-errors#kinds -->[rate limits とエラー（混雑と再試行） › エラーの見分け方（自分の上限・全体の混雑・要求の誤り）](../api/rate-limits-and-errors.md#kinds)<!-- link:end --> が持つ。このページはそこを繰り返さない。
 
 止まったのが障害か上限かが分からないときは、自分の残りの使用量を先に見る。使用量に余裕があるのに止まっているなら、障害を疑う。
 
@@ -104,9 +104,9 @@ AI を使わない時間をわざと残すことも、この状態を保つ手�
 
 === "API"
 
-    - API で組んだ仕組みは、プランの上限の仕組みの外にある。止まるときは、混雑や上限のエラーとして返る。見分け方と再試行は <!-- link:begin rate-limits-and-errors#retry -->rate limits とエラー（混雑と再試行） › 再試行の考え方（間隔を広げ、回数に上限を設ける）（準備中）<!-- link:end --> が持つ。
+    - API で組んだ仕組みは、プランの上限の仕組みの外にある。止まるときは、混雑や上限のエラーとして返る。見分け方と再試行は <!-- link:begin rate-limits-and-errors#retry -->[rate limits とエラー（混雑と再試行） › 再試行の考え方（間隔を広げ、回数に上限を設ける）](../api/rate-limits-and-errors.md#retry)<!-- link:end --> が持つ。
     - 再試行しても通らない時間が続くことを前提に、仕組みの側で「AI なしの手順に落とす」経路を作っておく。たとえば、処理を溜めておいて人が見る、定型の返答に切り替える、などである（推論・実践例なし）。
-    - エラーにならずに止まる応答（長さの上限や拒否）は、<!-- link:begin rate-limits-and-errors#non-error-stops -->rate limits とエラー（混雑と再試行） › エラーにならずに止まる応答（長さの上限・拒否）（準備中）<!-- link:end --> で扱う。
+    - エラーにならずに止まる応答（長さの上限や拒否）は、<!-- link:begin rate-limits-and-errors#non-error-stops -->[rate limits とエラー（混雑と再試行） › エラーにならずに止まる応答（長さの上限・拒否）](../api/rate-limits-and-errors.md#non-error-stops)<!-- link:end --> で扱う。
 
 切り替え先を決めた後は、手順書にまとめて、止まる前に読める場所へ置く。雛形は、止まった理由ごとの切り替え先と、最低限の完了の条件と、切り替えを決める人を書く欄を持つ。
 
@@ -186,8 +186,8 @@ AI を使わない時間をわざと残すことも、この状態を保つ手�
 - [handoff 文書と document-and-clear](../context/handoff-documents.md)
 - [進捗ファイルで、途中から再開できるようにする](../context/progress-files.md)
 - [usage credits（上限を超えた分の従量課金）](usage-credits-basics.md)
-- rate limits とエラー（混雑と再試行）（準備中）
-- 本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）
+- [rate limits とエラー（混雑と再試行）](../api/rate-limits-and-errors.md)
+- [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](../contest/competition-day-operations.md)
 
 </div>
 

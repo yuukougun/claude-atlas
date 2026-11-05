@@ -152,7 +152,7 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 
 ## 雛形 {#templates}
 
-1 つめは、停止条件つきの条件文である。終わりの状態と、確かめ方と、変えないものと、上限を 1 つの文に入れた。変えないものを判定できるよう、`git status` の出力を会話に出させる形にしてある。リファクタリングと移行で同じ条件を使うので、同じ雛形を <!-- link:begin spec-first#goal-with-stop-conditions -->[仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)<!-- link:end --> と <!-- link:begin refactor-and-migrate#goal-stop-conditions -->リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）<!-- link:end --> でも取り込む。
+1 つめは、停止条件つきの条件文である。終わりの状態と、確かめ方と、変えないものと、上限を 1 つの文に入れた。変えないものを判定できるよう、`git status` の出力を会話に出させる形にしてある。リファクタリングと移行で同じ条件を使うので、同じ雛形を <!-- link:begin spec-first#goal-with-stop-conditions -->[仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)<!-- link:end --> と <!-- link:begin refactor-and-migrate#goal-stop-conditions -->[リファクタリングと大規模な移行 › /goal で回すときの停止条件](../recipes/refactor-and-migrate.md#goal-stop-conditions)<!-- link:end --> でも取り込む。
 
 <!-- gen:begin snippet goal-until-done/stop-condition -->
 <!-- textlint-disable -->
@@ -191,11 +191,11 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 
 ## 仕様の決まった実装に限る {#spec-tasks-only}
 
-反復させてよいのは、仕様が決まり、停止条件のある実装の作業に限る。終わりの状態がテストや出力で測れるからである。大きな機能は、先に仕様を固め、仕様を渡した新しいセッションで `/goal` を回す。流れは <!-- link:begin spec-first#goal-with-stop-conditions -->[仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)<!-- link:end --> にある。挙動を変えないリファクタリングや大きな移行は、小さく確かめられる単位に分けて回す（<!-- link:begin refactor-and-migrate#goal-stop-conditions -->リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）<!-- link:end -->）。
+反復させてよいのは、仕様が決まり、停止条件のある実装の作業に限る。終わりの状態がテストや出力で測れるからである。大きな機能は、先に仕様を固め、仕様を渡した新しいセッションで `/goal` を回す。流れは <!-- link:begin spec-first#goal-with-stop-conditions -->[仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)<!-- link:end --> にある。挙動を変えないリファクタリングや大きな移行は、小さく確かめられる単位に分けて回す（<!-- link:begin refactor-and-migrate#goal-stop-conditions -->[リファクタリングと大規模な移行 › /goal で回すときの停止条件](../recipes/refactor-and-migrate.md#goal-stop-conditions)<!-- link:end -->）。
 
 戦略そのものを AI に改善させ続ける使い方は、このページでは扱わない。評価が決まっていない開いたループは、手元の評価への過適合を自動で進める（<!-- link:begin open-ended-loop-trap#closed-vs-open -->[AI に改善を回させ続ける罠（開いたループ） › 閉じた反復と開いたループ](open-ended-loop-trap.md#closed-vs-open)<!-- link:end -->）。長く回せば良くなるとも限らない。Claude Code をループで回してエージェントを最適化した実験では、最良の構成を早く見つけた後は頭打ちになり、延長しても時間と費用の無駄だった（根拠：弱、単独の実験の自己申告）。詳しくは <!-- link:begin open-ended-loop-trap#longer-is-not-better -->[AI に改善を回させ続ける罠（開いたループ） › 長く回せば良くなるとは限らない](open-ended-loop-trap.md#longer-is-not-better)<!-- link:end --> にある。
 
-長い作業の進みを人と Claude の両方に見せる方法は <!-- link:begin progress-logs-for-long-jobs -->長時間ジョブの進捗ログを設計する（準備中）<!-- link:end --> にある。
+長い作業の進みを人と Claude の両方に見せる方法は <!-- link:begin progress-logs-for-long-jobs -->[長時間ジョブの進捗ログを設計する](progress-logs-for-long-jobs.md)<!-- link:end --> にある。
 
 ## 自作ループ（Ralph など）から移る {#from-homemade-loops}
 
@@ -299,9 +299,9 @@ After が足したのは 3 つである。1 つめは、「通った」ことの
 - [auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)
 - [サンドボックスで封じ込める](../enforce/sandboxing.md)
 - [仕様を先に固める（spec・インタビュー・モック先行） › 決まった仕様の実装を停止条件つきで回す](../recipes/spec-first.md#goal-with-stop-conditions)
-- リファクタリングと大規模な移行 › /goal で回すときの停止条件（準備中）
+- [リファクタリングと大規模な移行 › /goal で回すときの停止条件](../recipes/refactor-and-migrate.md#goal-stop-conditions)
 - [AI に改善を回させ続ける罠（開いたループ）](open-ended-loop-trap.md)
-- 長時間ジョブの進捗ログを設計する（準備中）
+- [長時間ジョブの進捗ログを設計する](progress-logs-for-long-jobs.md)
 - 終わったら知らせてもらう（準備中）
 - [/loop と定期実行の方式](loop-and-scheduling.md)
 - 多数のファイルに同じ作業を流す（/batch と -p のループ）（準備中）

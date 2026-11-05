@@ -1,0 +1,14 @@
+title: 要約の指標だけを定期的に書き出す進捗ログの書き手（Python）
+kind: other
+place: ジョブのコードと同じ場所（progress-writer.py）
+safety: false
+conditions:
+  - 使い捨てのディレクトリで試す
+  - Python 3 が使える（標準のライブラリだけで動く）
+  - 指標の名前（errors・score）は例。自分のジョブで見たいものに置き換える
+expect:
+  - when: python progress-writer.py を流す
+    then: 5 秒ほどで終わり、progress.jsonl に running の行が数行と、最後に status が done の行が 1 行できる
+  - 1 行は 1 つの JSON で、ts・status・step・total・elapsed_s と、渡した指標が入る
+  - ループの途中で例外を起こすと、status が failed の行が書かれてから例外が出る
+control: tick を毎ステップ書く形（every_sec を 0 にする）にすると、ステップの数だけ行が増え、要約になる前に Claude の読む量が膨らむ

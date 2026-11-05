@@ -109,7 +109,7 @@ updated: 2026-11-05
 
 定期タスクにしないものは <!-- link:begin tasks-and-schedules-in-the-app#what-not-to-schedule -->[タスクと定期タスク（Cowork） › 定期タスクにしないもの](../app/tasks-and-schedules-in-the-app.md#what-not-to-schedule)<!-- link:end --> にある。
 
-Claude Code の中の面（ターミナル・IDE・Desktop・Web・モバイル）の選び方は、同じエージェントループの別の窓口を選ぶ話である。<!-- link:begin claude-code-surfaces#how-to-choose -->Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 選び方（準備中）<!-- link:end --> に任せる。
+Claude Code の中の面（ターミナル・IDE・Desktop・Web・モバイル）の選び方は、同じエージェントループの別の窓口を選ぶ話である。<!-- link:begin claude-code-surfaces#how-to-choose -->[Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 選び方](claude-code-surfaces.md#how-to-choose)<!-- link:end --> に任せる。
 
 ## 自分のプログラムから呼ぶとき（API・SDK） {#when-to-build-with-api}
 
@@ -178,7 +178,7 @@ API を使うと、課金の経路が変わりうる。API キーがあるとき
 
 **関連**
 
-- Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）
+- [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](claude-code-surfaces.md)
 - [面ごとにできないこと（早見表）](what-each-surface-cannot-do.md)
 - [全体地図：Claude の面と層](../start/product-map.md)
 - [タスクと定期タスク（Cowork）](../app/tasks-and-schedules-in-the-app.md)

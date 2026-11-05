@@ -154,7 +154,7 @@ updated: 2026-11-05
 
 作業が違う方向に進んだと見えたら、早く止めるほど手戻りが小さい。止め方は <!-- link:begin input-symbols#esc -->[入力の記号（/ ! @）と Esc › Esc で止める・割り込む](input-symbols.md#esc)<!-- link:end --> にある。`Esc` を 2 回押す操作は、入力のクリアか rewind のどちらかに働くので、押した後の表示を確かめる。戻し方は <!-- link:begin checkpoints-and-rewind#how-to -->[チェックポイントと /rewind（git との違い） › 最小の使い方](checkpoints-and-rewind.md#how-to)<!-- link:end --> にある。
 
-実行中のタスクは、`Ctrl+B` で背景に回せる。長い処理を待つ間に、次の依頼を出したいときに使う。処理ではなく、セッションごと背景に回す方法もある。向く作業と向かない作業は <!-- link:begin agent-view-and-background#what-fits -->[agent view と背景セッション › 向く作業と向かない作業](../delegate/agent-view-and-background.md#what-fits)<!-- link:end --> に、同時に動かす数の決め方も同じページにある。本筋を汚さずに短く聞きたいだけなら、<!-- link:begin side-questions-btw#which -->本筋を汚さずに聞く（/btw） › /btw・新しい会話・サブエージェントの使い分け（準備中）<!-- link:end --> の使い分けを見る。
+実行中のタスクは、`Ctrl+B` で背景に回せる。長い処理を待つ間に、次の依頼を出したいときに使う。処理ではなく、セッションごと背景に回す方法もある。向く作業と向かない作業は <!-- link:begin agent-view-and-background#what-fits -->[agent view と背景セッション › 向く作業と向かない作業](../delegate/agent-view-and-background.md#what-fits)<!-- link:end --> に、同時に動かす数の決め方も同じページにある。本筋を汚さずに短く聞きたいだけなら、<!-- link:begin side-questions-btw#which -->[本筋を汚さずに聞く（/btw） › /btw・新しい会話・サブエージェントの使い分け](../context/side-questions-btw.md#which)<!-- link:end --> の使い分けを見る。
 
 離れる前の作業は、セッションに名前を付けておくと戻りやすい。再開は <!-- link:begin resume-and-branch#resume -->[セッションに名前を付けて再開・分岐する › 再開する](resume-and-branch.md#resume)<!-- link:end --> にある。
 
@@ -179,7 +179,7 @@ updated: 2026-11-05
 ## 比べる相手 {#compare}
 
 - **入力の記号**：`/`・`!`・`@`・`Esc` は、入力欄の先頭や途中で意味を持つ記号である。キー操作との分担は <!-- link:begin input-symbols#which -->[入力の記号（/ ! @）と Esc › 入力の記号の使い分け](input-symbols.md#which)<!-- link:end --> にある。
-- **コマンドの早見表**：コマンド全般を引くなら <!-- link:begin command-cheatsheet -->主要コマンド早見表（準備中）<!-- link:end --> を見る。本ページは、キーと場面の判断に絞る。
+- **コマンドの早見表**：コマンド全般を引くなら <!-- link:begin command-cheatsheet -->[主要コマンド早見表](command-cheatsheet.md)<!-- link:end --> を見る。本ページは、キーと場面の判断に絞る。
 - **権限モードの選び方**：切り替え先の選び方は <!-- link:begin permission-modes-overview#examples -->[権限モードの選び方 › 選び方の判断例](permission-modes-overview.md#examples)<!-- link:end --> にある。本ページは、切り替えるキーを持つ。
 - **背景セッション**：処理でなく作業を丸ごと背景に回すなら <!-- link:begin agent-view-and-background -->[agent view と背景セッション](../delegate/agent-view-and-background.md)<!-- link:end --> を使う。
 
@@ -202,11 +202,11 @@ updated: 2026-11-05
 
 **関連**
 
-- 主要コマンド早見表（準備中）
+- [主要コマンド早見表](command-cheatsheet.md)
 - [権限モードの選び方](permission-modes-overview.md)
 - [チェックポイントと /rewind（git との違い）](checkpoints-and-rewind.md)
 - [セッションに名前を付けて再開・分岐する](resume-and-branch.md)
-- 本筋を汚さずに聞く（/btw）（準備中）
+- [本筋を汚さずに聞く（/btw）](../context/side-questions-btw.md)
 - [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)
 - [agent view と背景セッション](../delegate/agent-view-and-background.md)
 - Windows・WSL・IME で困ったら（準備中）

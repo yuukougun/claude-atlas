@@ -71,7 +71,7 @@ AI の規則が場ごとに割れるのは、その場が何を測りたいか�
 
 - **規則そのもの**：規則の版と日付、部門、当日のマニュアル、形式（個人戦・チーム戦の別、オンサイト・オフラインの別）、提出の環境。当日のマニュアルが規則より優先される場合がある。優先順位は規則の中で確かめる。
 - **AI の許可の範囲**：翻訳、補完、チャット、エージェント、結果分析、自動ループの 6 区分に分けて、許可・不許可・条件付き・不明のどれかを書く。「AI は可」と一括りにされた規則でも、エージェントや自動ループだけが別扱いのことがある。この 6 区分は、学校や会社の規則にも使える。
-- **開示とデータ**：開示の義務、事前に作ったコードや資料の扱い、外部のデータを使ってよいか、外部へ送ってよいか、外部への相談の可否。開示の考え方は<!-- link:begin disclosure-and-provenance#four-points -->AI 利用の開示と出所の記録 › 開示・相談・出所・意図の四つの観点（準備中）<!-- link:end -->、データの持ち主と契約は<!-- link:begin entrusted-data#whose-data -->[預かったデータ・規約付きのデータを AI に渡してよいか › 誰のデータで、何が決まっているか](entrusted-data.md#whose-data)<!-- link:end -->で扱う。
+- **開示とデータ**：開示の義務、事前に作ったコードや資料の扱い、外部のデータを使ってよいか、外部へ送ってよいか、外部への相談の可否。開示の考え方は<!-- link:begin disclosure-and-provenance#four-points -->[AI 利用の開示と出所の記録 › 開示・相談・出所・意図の四つの観点](disclosure-and-provenance.md#four-points)<!-- link:end -->、データの持ち主と契約は<!-- link:begin entrusted-data#whose-data -->[預かったデータ・規約付きのデータを AI に渡してよいか › 誰のデータで、何が決まっているか](entrusted-data.md#whose-data)<!-- link:end -->で扱う。
 - **不明点の記録**：分からない点、運営や担当者に質問した日付、回答、チームの結論と合意した日。
 
 学校や組織で使うときは、次の 4 点を足す。データの区分ごとの可否、使ってよい面（アプリ・Claude Code・API）、成果物に AI を使った旨を書く決まり、確認先（指導教員・上長・情報システムなど）である。組織の決まりを自分で書く側に回ったら、<!-- link:begin ai-usage-guidelines#what-to-write -->[社内ガイドラインに書くこと › 書くこと（データの区分・面とモード・レビューの責任）](../team/ai-usage-guidelines.md#what-to-write)<!-- link:end -->を見る。
@@ -170,7 +170,7 @@ AI が書いたコードや文章を製品や OSS に入れてよいかは、こ
 
 どこにも答えが書かれていない、または解釈が分かれるときは、自分で決めず、組織の担当に確かめる。このページは法令の解釈を書かない。
 
-入れてよいと分かった後に、AI をどこに使ったかを開示し、出所を記録する方法は<!-- link:begin disclosure-and-provenance#provenance -->AI 利用の開示と出所の記録 › 出所を記録する（準備中）<!-- link:end -->で扱う。
+入れてよいと分かった後に、AI をどこに使ったかを開示し、出所を記録する方法は<!-- link:begin disclosure-and-provenance#provenance -->[AI 利用の開示と出所の記録 › 出所を記録する](disclosure-and-provenance.md#provenance)<!-- link:end -->で扱う。
 
 <!-- gen:begin page-links -->
 <!-- textlint-disable -->
@@ -183,9 +183,9 @@ AI が書いたコードや文章を製品や OSS に入れてよいかは、こ
 
 **次に読む**
 
+- [AI 利用の開示と出所の記録](disclosure-and-provenance.md)
 - [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)
 - [大会の規則の早見（禁止・部門分け・許可と開示）](../contest/competition-rules.md)
-- AI 利用の開示と出所の記録（準備中）
 
 **関連**
 

@@ -45,7 +45,7 @@ updated: 2026-11-05
 | 面 | 入口の性格 | 詳しいページ |
 | --- | --- | --- |
 | アプリ | 会話で頼む。チャットとタスクを一つの会話で扱う | <!-- link:begin choosing-a-surface#app-chat-and-tasks -->[アプリ・Claude Code・API の選び方 › アプリはチャットとタスクを一つの会話で扱う](../surfaces/choosing-a-surface.md#app-chat-and-tasks)<!-- link:end --> |
-| Claude Code | エージェントループを動かし、コードとファイルを直接触る。ターミナル・IDE・Desktop・Web・モバイルから使える | <!-- link:begin claude-code-surfaces#comparison-table -->Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 面ごとの違い（表）（準備中）<!-- link:end --> |
+| Claude Code | エージェントループを動かし、コードとファイルを直接触る。ターミナル・IDE・Desktop・Web・モバイルから使える | <!-- link:begin claude-code-surfaces#comparison-table -->[Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 面ごとの違い（表）](../surfaces/claude-code-surfaces.md#comparison-table)<!-- link:end --> |
 | API・SDK | 自分のプログラムから呼ぶ。ループを誰が回すかで層が分かれる | <!-- link:begin sdk-comparison#comparison -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › 層ごとの比較（自分のプロセスに組み込む・Anthropic にホストさせる・CLI で動かす）](../api/sdk-comparison.md#comparison)<!-- link:end --> |
 | 周辺製品 | 本体のアプリの外で使う製品。Office アドインなど | <!-- link:begin peripheral-products#list -->周辺製品の一覧 › 一覧（確認日つき）（準備中）<!-- link:end --> |
 
@@ -113,7 +113,7 @@ updated: 2026-11-05
 | --- | --- |
 | アプリ・Claude Code・API のどれで進めるか | <!-- link:begin choosing-a-surface#examples -->[アプリ・Claude Code・API の選び方 › 判断例](../surfaces/choosing-a-surface.md#examples)<!-- link:end --> |
 | クラウドか手元かで何が変わるか | <!-- link:begin where-it-runs#three-locations -->[実行場所の違い（クラウド・自分の PC・リモート操作） › 三つの実行場所](../surfaces/where-it-runs.md#three-locations)<!-- link:end --> |
-| Claude Code をどの窓口で使うか | <!-- link:begin claude-code-surfaces#how-to-choose -->Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 選び方（準備中）<!-- link:end --> |
+| Claude Code をどの窓口で使うか | <!-- link:begin claude-code-surfaces#how-to-choose -->[Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル） › 選び方](../surfaces/claude-code-surfaces.md#how-to-choose)<!-- link:end --> |
 | 使いたい機能がない面から移るか | <!-- link:begin what-each-surface-cannot-do#moving-between-surfaces -->[面ごとにできないこと（早見表） › 別の面に移すとき](../surfaces/what-each-surface-cannot-do.md#moving-between-surfaces)<!-- link:end --> |
 | Office アドインの位置づけ | <!-- link:begin peripheral-products#office-add-ins -->周辺製品の一覧 › Office アドイン（準備中）<!-- link:end --> |
 | SDK や Managed Agents のどの層を使うか | <!-- link:begin sdk-comparison#examples -->[Client SDK・Agent SDK・Managed Agents・CLI の比較 › 選び方の判断例](../api/sdk-comparison.md#examples)<!-- link:end --> |
@@ -134,7 +134,7 @@ updated: 2026-11-05
 
 - [アプリ・Claude Code・API の選び方](../surfaces/choosing-a-surface.md)
 - [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)
-- Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）（準備中）
+- [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](../surfaces/claude-code-surfaces.md)
 - [面ごとにできないこと（早見表）](../surfaces/what-each-surface-cannot-do.md)
 - 周辺製品の一覧（準備中）
 - [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)

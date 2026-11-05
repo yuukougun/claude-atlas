@@ -133,7 +133,7 @@ CLAUDE.md はセッションの開始で読まれる文脈であり、強制さ�
 
 ## 比べる相手 {#compare}
 
-- ほかのツールと指示を共有したいとき：AGENTS.md を読ませる方法がある。選び方は <!-- link:begin agents-md -->AGENTS.md とほかのツールとの共有（準備中）<!-- link:end --> にある。
+- ほかのツールと指示を共有したいとき：AGENTS.md を読ませる方法がある。選び方は <!-- link:begin agents-md -->[AGENTS.md とほかのツールとの共有](../extend/agents-md.md)<!-- link:end --> にある。
 - 答え方（説明の多さ・簡潔さ）を変えたいとき：CLAUDE.md ではなく出力スタイルに置く。分担は <!-- link:begin output-style-modes#vs-claude-md -->[出力スタイルで応答の仕方を切り替える › CLAUDE.md・スキルとの分担](output-style-modes.md#vs-claude-md)<!-- link:end --> にある。
 - 削った後の運用：長さを保つ判断は <!-- link:begin claude-md-length -->[CLAUDE.md の長さと剪定](../extend/claude-md-length.md)<!-- link:end --> が持つ。
 
@@ -167,7 +167,7 @@ CLAUDE.md はセッションの開始で読まれる文脈であり、強制さ�
 - [CLAUDE.md に書くこと・書かないこと](../extend/what-to-put-in-claude-md.md)
 - [拡張を足すタイミング](../extend/when-to-add-what.md)
 - [毎回同じ説明をしている](../symptoms/repeating-the-same-explanation.md)
-- AGENTS.md とほかのツールとの共有（準備中）
+- [AGENTS.md とほかのツールとの共有](../extend/agents-md.md)
 - [出力スタイルで応答の仕方を切り替える](output-style-modes.md)
 
 </div>

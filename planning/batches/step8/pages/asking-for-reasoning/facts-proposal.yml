@@ -1,0 +1,5 @@
+proposals:
+  - fact: {id: reasoning-extraction-billing, title: reasoning_extraction の拒否は出力の前に止まっても課金される分類に入る, value: "出力の前に止まった拒否でも課金される分類は bio・frontier_llm・reasoning_extraction（アプリの記事では distillation）。ほかの分類は課金されない。途中で止まれば、それまでの入出力は課金される（2026-09 時点）", sources: [api-docs-refusals], checked: 2026-11-05, status: 要確認}
+    used_in: [asking-for-reasoning#refusal]
+  - fact: {id: reasoning-extraction-since, title: reasoning_extraction が拒否の分類に足された日, value: "2026-06-09（Claude Fable 5 の公開の日）", sources: [api-release-notes, api-docs-thinking], checked: 2026-11-05, status: 要確認}
+    used_in: [asking-for-reasoning#refusal]

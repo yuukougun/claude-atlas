@@ -118,7 +118,7 @@ updated: 2026-11-05
 3. 不正な出力や制限超過の扱い。公式は 0 点にするのか、失格にするのか
 4. 実行環境の差。時間制限に近い解は、手元の機械と本番で結果が変わる
 
-原因が分からないうちは、テスタ側を公式に合わせて直させず、違いの原因を先に報告させる。合わないまま最適化を回すと、間違った目標に向かって速く進む。症状としての切り分けは <!-- link:begin misses-broken-evaluation#diagnosis -->[手元の評価は良いのに本番で通用しない › 原因を安く確かめる順](../symptoms/misses-broken-evaluation.md#diagnosis)<!-- link:end --> にある。相対スコアでの集計は <!-- link:begin running-contest-experiments#aggregation -->実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 集計の方法を選ぶ（相対スコア）（準備中）<!-- link:end --> が持つ。
+原因が分からないうちは、テスタ側を公式に合わせて直させず、違いの原因を先に報告させる。合わないまま最適化を回すと、間違った目標に向かって速く進む。症状としての切り分けは <!-- link:begin misses-broken-evaluation#diagnosis -->[手元の評価は良いのに本番で通用しない › 原因を安く確かめる順](../symptoms/misses-broken-evaluation.md#diagnosis)<!-- link:end --> にある。相対スコアでの集計は <!-- link:begin running-contest-experiments#aggregation -->[実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 集計の方法を選ぶ（相対スコア）](running-contest-experiments.md#aggregation)<!-- link:end --> が持つ。
 
 ## 性能改善：ベンチマーカーと計装 {#benchmarker}
 
@@ -126,7 +126,7 @@ updated: 2026-11-05
 
 ISUCON14 の再挑戦の事後報告では、遅い原因は SQL ではなくコネクションプールの待ちで、横断的な計測データを見て初めて分かった（根拠：中。1 つの大会の参加報告）。一般化すると、推測より計測になる。Claude に「遅そうな所」を推測で直させるより、計測の道具を作らせて、値を見てから直す箇所を決める。
 
-計装を作らせる方法は <!-- link:begin build-observation-tools -->観察の道具を作らせる（可視化・集計・ログ）（準備中）<!-- link:end --> が持つ。道具の出す値は、小さな例で手計算と合うかを先に確かめる。計装そのものが処理を遅くすることもあるので、計装を入れた版と外した版で、ベンチマーカーの点数を見比べる。
+計装を作らせる方法は <!-- link:begin build-observation-tools -->[観察の道具を作らせる（可視化・集計・ログ）](../recipes/build-observation-tools.md)<!-- link:end --> が持つ。道具の出す値は、小さな例で手計算と合うかを先に確かめる。計装そのものが処理を遅くすることもあるので、計装を入れた版と外した版で、ベンチマーカーの点数を見比べる。
 
 ## CTF：提出の前の flag の検証 {#flag}
 
@@ -136,7 +136,7 @@ CTF では、評価器に当たるのは、提出前に人が flag を検証す�
 - 誤答のペナルティを、規則で先に確かめる。誤答の回数で提出が止まる大会がある。条件は大会と版で変わるので、数字は書かず、規則の確認に回す
 - flag の形式と出所を、人が見る。取った値が、問題の指す場所から出たものかを確かめる
 
-提出の段の運用は <!-- link:begin competition-day-operations#submission -->本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態） › 提出：人が確かめる（準備中）<!-- link:end --> が持つ。形式としての CTF の効き方は <!-- link:begin format-cheatsheet#ctf -->コンテストの形式別の早見表（AI の効き方と人が握るところ） › CTF（準備中）<!-- link:end --> で引ける。
+提出の段の運用は <!-- link:begin competition-day-operations#submission -->[本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態） › 提出：人が確かめる](competition-day-operations.md#submission)<!-- link:end --> が持つ。形式としての CTF の効き方は <!-- link:begin format-cheatsheet#ctf -->[コンテストの形式別の早見表（AI の効き方と人が握るところ） › CTF](format-cheatsheet.md#ctf)<!-- link:end --> で引ける。
 
 ## データ分析：分布の差を確かめた CV {#cv}
 
@@ -164,7 +164,7 @@ CTF では、評価器に当たるのは、提出前に人が flag を検証す�
 
 - 性質の異なる基準のボット（ランダム、貪欲、攻撃型、守備型、複数の旧版）を用意する。戦略の仕様は人が書き分ける
 - 他チームとのスクリムを併用する。手元の相手に含まれない戦略が出る
-- 勝敗は二値で、差の大きさの情報を捨てている。勝率の判定には、誤差に負けない試合数が要る（<!-- link:begin running-contest-experiments#games-for-win-rate -->実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 勝率に要る試合数（準備中）<!-- link:end -->）
+- 勝敗は二値で、差の大きさの情報を捨てている。勝率の判定には、誤差に負けない試合数が要る（<!-- link:begin running-contest-experiments#games-for-win-rate -->[実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数） › 勝率に要る試合数](running-contest-experiments.md#games-for-win-rate)<!-- link:end -->）
 
 同じモデルに基準のボットをすべて書かせると、戦略が似通うのではないかと考えられる。これは仮説で、確かめられていない。仮説でも、戦略の仕様を人が書き分けておけば、この害を避けられる。
 
@@ -219,9 +219,9 @@ CTF では、評価器に当たるのは、提出前に人が flag を検証す�
 
 **次に読む**
 
-- 実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）（準備中）
+- [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](running-contest-experiments.md)
+- [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](competition-day-operations.md)
 - 探索コードと高速化の点検表（AI に書かせたとき）（準備中）
-- 本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）（準備中）
 
 **関連**
 
@@ -231,8 +231,8 @@ CTF では、評価器に当たるのは、提出前に人が flag を検証す�
 - [ロックボックスと hold-out（人だけが持つ検証用データ）](../eval/lockbox-and-holdout.md)
 - [評価指標そのものを確かめる](../eval/check-the-metric.md)
 - [検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)
-- 観察の道具を作らせる（可視化・集計・ログ）（準備中）
-- コンテストの形式別の早見表（AI の効き方と人が握るところ）（準備中）
+- [観察の道具を作らせる（可視化・集計・ログ）](../recipes/build-observation-tools.md)
+- [コンテストの形式別の早見表（AI の効き方と人が握るところ）](format-cheatsheet.md)
 - [評価資産を凍結し、触れる範囲を絞る](../enforce/freeze-eval-assets.md)
 - [テストを守る（改ざんを防ぐ）](../verify/protect-tests.md)
 - [手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)

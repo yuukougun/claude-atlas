@@ -57,7 +57,7 @@ updated: 2026-11-05
 - 2025-06-02・Claude Code 1.0.7：/allowed-tools → /permissions（[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)）
 - 2025-06-16・Claude Code 1.0.25：/project:&lt;名前&gt;・/user:&lt;名前&gt; → /&lt;名前&gt;（サブディレクトリのファイルは /&lt;フォルダ&gt;:&lt;名前&gt;）（[スキルの作り方](../extend/writing-skills.md)）
 - 2025-08-26：[GitHub Action を @beta と direct\_prompt で書く](outdated-advice-ledger.md#action-beta-direct-prompt) → anthropics/claude-code-action@v1 を使い、direct\_prompt は prompt に、max\_turns や model などの CLI の設定は claude\_args に移す。mode の入力は外す（自動で判定する）。custom\_instructions は claude\_args の --append-system-prompt になる。
-- 2025-09-29・Claude Code 2.0.0：Claude Code SDK・claude-code-sdk（Python のパッケージ） → Claude Agent SDK（Agent SDK（Claude Code をライブラリとして使う）（準備中））
+- 2025-09-29・Claude Code 2.0.0：Claude Code SDK・claude-code-sdk（Python のパッケージ） → Claude Agent SDK（[Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)）
 - 2025-12-15・Claude Code 2.0.70：[「#」で始めると CLAUDE.md に記憶される](outdated-advice-ledger.md#hash-to-memorize) → CLAUDE.md に足したいことは、Claude に CLAUDE.md の編集を頼むか、/memory でファイルを開いて自分で書く。セッションの中で学んだことは、自動メモリが書き残す。
 - 2026-01-09・Claude Code 2.1.3：[.claude/commands/ にカスタムコマンドを作る、/project:name 記法](outdated-advice-ledger.md#commands-directory) → 新しく作るものはスキル（.claude/skills/&lt;名前&gt;/SKILL.md）にする。.claude/commands/ のファイルも今も同じように動き、同じ名前のスキルがあればスキルが優先される。名前に project: や user: は付けず /&lt;名前&gt; で呼ぶ（サブディレクトリのファイルは /&lt;フォルダ&gt;:&lt;名前&gt;）。
 - 2026-02-05：[budget\_tokens で思考量を指定する](outdated-advice-ledger.md#budget-tokens) → thinking の type を adaptive にし、深さは effort で決める。Claude 4.7 以降のモデルは、budget\_tokens を使う要求を 400 エラーで断る。Opus 4.6 と Sonnet 4.6 では非推奨。手動の思考しか持たないモデル（Opus 4.5・Haiku 4.5 など）は今のままでよい。
@@ -94,7 +94,7 @@ updated: 2026-11-05
 - 2026-09-10〜2026-09-17：[Claude Code on the Web と --remote を使う](outdated-advice-ledger.md#code-on-the-web-remote) → 機能の名前はクラウドセッション（cloud sessions）。ターミナルからは、claude --cloud に頼む内容を付けて始める（--remote は非推奨の別名として今も動く）。ブラウザの claude.ai/code は、今も Claude Code on the web とも呼ばれる。
 - 2026-09-16：[Cowork は別アプリ、Web search はトグルで入れる](outdated-advice-ledger.md#cowork-separate-app) → 新しい Claude の体験では、チャットと Cowork は 1 つの会話にまとまり、モードを選ばずに頼む。Web 検索のトグルはなく、Claude が要るときに自分で検索する。リサーチは /deep-research か「+」から選ぶ。体験は順に展開中で、入力欄に「Chat」と「Cowork」の選択が残るアカウントは、まだ前のやり方のまま。
 - 2026-09-22・Claude Code 2.1.280：[Opus は高いので避ける](outdated-advice-ledger.md#avoid-opus-as-expensive) → 一律に避けず、自分の作業で比べて選ぶ。Opus 5.5 は Opus 5 より安く、Claude Code の Pro・Max・Ultra・Team・Enterprise と API で既定のモデル（2.1.280 以上）。プランでは、選ぶモデルで上限の減り方が変わるので、/usage で確かめる。
-- 2026-10-20 ごろ：routines → クラウドの予定のタスク（cloud scheduled tasks）（クラウドの定期タスク（準備中））
+- 2026-10-20 ごろ：routines → クラウドの予定のタスク（cloud scheduled tasks）（[クラウドの定期タスク](../delegate/cloud-schedules.md)）
 - 2026-10-20 ごろ：[routines で定期実行を作る](outdated-advice-ledger.md#routines-name) → 今の名前はクラウドの予定のタスク（cloud scheduled tasks）。claude.ai/code/routines か Desktop の Code タブ（Local と Cloud の選択が出たら Cloud）、CLI の /schedule で作る。一部の画面・URL・/routines の別名・API には旧名が残るが、同じ機能を指す。
 - 2026-10-21：[temperature（や top\_p・top\_k）を下げて出力を安定させる](outdated-advice-ledger.md#lower-temperature) → 引数を送らず、指示で振る舞いを導く。API の版 2026-10-21 では、この 3 つを送ると、既定の値でも 400 エラーになる。それより前の API の版でも、Claude 4.7 以降のモデルは、既定以外の値で 400 エラーになる。既定以外の値を受け付けるモデル（Sonnet 4.6 など）を古い API の版で呼ぶときだけ、今も効く。API の版を上げると効き目がなくなり、代わりの設定はない。
 - 2026-10-27・Claude Code 2.1.312：session limit → 5-hour limit（5 時間の上限）（[利用上限の仕組み（面をまたいで共有する枠）](../cost/how-usage-limits-work.md)）
@@ -105,7 +105,7 @@ updated: 2026-11-05
 - 2026-10-27 ごろ：[コンテキストを守るためにサブエージェントに調べさせる](outdated-advice-ledger.md#subagents-to-save-context) → 溢れることはまれになったので、守るためだけには使わない。サブエージェントが今も向くのは、並べる作業、うるさい出力を本筋から離すこと、独立したレビュー。どれもトークンが余分にかかる。
 - 2026-10-29〜2026-11-30：「Customize」・「Customize」の「Skills」「Connectors」「Plugins」のタブ → 「Plugins」（サイドバー・チャットのメニュー・設定の名前と、1 つの「Plugins」のページ）（アプリでプラグインを使う（準備中））
 - 2026-10-29〜2026-11-30：[Customize の「Skills」「Connectors」「Plugins」の各タブで管理する](outdated-advice-ledger.md#customize-tabs) → サイドバーの名前は「Plugins」に変わる途中で、変わった口座では 1 つの「Plugins」のページでプラグイン・スキル・コネクタを管理する（スキルとコネクタだけに絞り込める）。展開の途中なので、サイドバーに「Customize」が出る口座は、まだ前の画面（Skills・Connectors・Plugins の各タブ）のままである。スキルはチャットの「+」か「/」で使う。Team と Enterprise で「Skills」を切っている組織は、2026-11-30 から Desktop のプラグインも止まる。
-- 2026-10-30：Max 20x → Ultra（プランの選び方（準備中））
+- 2026-10-30：Max 20x → Ultra（[プランの選び方](../cost/choosing-a-plan.md)）
 - 2026-10-30・Claude Code 2.1.314：Recently denied・Recent → Recently blocked（/permissions のタブ）（[auto モードは何を止め、何を止めないか](../enforce/what-auto-mode-stops.md)）
 - 2026-10-30：[Max は 5x と 20x から選ぶ](outdated-advice-ledger.md#max-5x-or-20x) → 個人の上位のプランは Max と Ultra（旧 Max 20x）の 2 つ。Max は 5 時間ごとと週ごとの上限を持ち、Ultra は確認済みの口座なら 5 時間の上限がなく週の上限だけ。倍率と料金はプランのページで確かめる。
 - 2026-10-30：[有料プランは 5 時間の上限に当たったら待つしかない](outdated-advice-ledger.md#wait-out-5-hour-limit) → 確認済みの Ultra の口座には 5 時間の上限がなく、週の上限だけ。ほかの有料プランは 5 時間と週の 2 段のまま。上限に当たったら、待つほかに、usage credits を有効にして続けるか、プランを上げる手がある。Claude Code（2.1.234 以上）は、開いたままのセッションで待ち、上限が戻ると自動で作業を続ける（続けるのは 3 回まで）。

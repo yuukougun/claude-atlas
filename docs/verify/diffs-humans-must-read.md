@@ -227,10 +227,10 @@ Claude に候補を挙げさせることもできる。ただし挙げるのは�
 効かない場面もある。
 
 - 赤信号に当たらない、ふつうのバグは拾えない。動作の確認や別の者によるレビューと組み合わせる。別の者に読ませる理由と分け方は <!-- link:begin independent-review#who -->[書いた本人ではない者にレビューさせる › 誰にレビューさせるか](independent-review.md#who)<!-- link:end --> にある。
-- 一覧は経験則で、網羅ではない。見落とした変更が見つかったら、その理由を観点に足して育てる。手順は <!-- link:begin grow-review-checklists -->レビューの観点を育てる（準備中）<!-- link:end --> にある。
+- 一覧は経験則で、網羅ではない。見落とした変更が見つかったら、その理由を観点に足して育てる。手順は <!-- link:begin grow-review-checklists -->[レビューの観点を育てる](../team/grow-review-checklists.md)<!-- link:end --> にある。
 - AI のレビューが通ったことは、人が読んだことの代わりにならない。数え方は、<!-- link:begin independent-review#ai-approval -->[書いた本人ではない者にレビューさせる › AI の承認を人の承認に数えない](independent-review.md#ai-approval)<!-- link:end --> が持つ。
 
-PR の説明に、出す前のリスクと確かめた証拠を書かせると、読む箇所の見当が付きやすい。書かせ方は <!-- link:begin create-and-review-prs#pr-description -->PR を作り、レビューを受ける › PR の説明に書くこと（準備中）<!-- link:end --> にある。
+PR の説明に、出す前のリスクと確かめた証拠を書かせると、読む箇所の見当が付きやすい。書かせ方は <!-- link:begin create-and-review-prs#pr-description -->[PR を作り、レビューを受ける › PR の説明に書くこと](../recipes/create-and-review-prs.md#pr-description)<!-- link:end --> にある。
 
 ## 誤解しやすいこと {#misconceptions}
 
@@ -256,9 +256,9 @@ PR の説明に、出す前のリスクと確かめた証拠を書かせると�
 - [生成コードを自分のものにする](own-generated-code.md)
 - [採点器を騙す（reward hacking）](../basics/reward-hacking.md)
 - [レビューのボトルネックと疲労](../team/review-bottlenecks.md)
-- レビューの観点を育てる（準備中）
+- [レビューの観点を育てる](../team/grow-review-checklists.md)
 - [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)
-- PR を作り、レビューを受ける（準備中）
+- [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)
 - [git との付き合い方](../cli/working-with-git.md)
 
 </div>

@@ -53,7 +53,7 @@ updated: 2026-11-05
 - **読み手と目的を渡す**：誰が何のために読む文章かを、先に伝える。渡し方は <!-- link:begin requesting-prose#reader -->[文章を頼むとき（読み手・目的・手本を渡す） › 読み手と目的を渡す](../prompting/requesting-prose.md#reader)<!-- link:end --> にある。
 - **文体を決める**：です・ますか、だ・であるかを揃える。決め方は <!-- link:begin consistent-politeness#guards -->[です・ます／だ・であるを揃える › 先に決めておくこと](consistent-politeness.md#guards)<!-- link:end --> にある。推敲の依頼が文体まで変えてしまうのを防ぐ。
 - **元の文章を残す**：推敲は意味を変えることがある。元のファイルは残し、差分で確かめられる状態にしておく。
-- **隠す目的にしない**：この手順が減らすのは読みにくさであり、AI を使ったという事実ではない。AI を使ったことの開示と出所の記録は別の話で、<!-- link:begin disclosure-and-provenance#four-points -->AI 利用の開示と出所の記録 › 開示・相談・出所・意図の四つの観点（準備中）<!-- link:end --> で扱う。
+- **隠す目的にしない**：この手順が減らすのは読みにくさであり、AI を使ったという事実ではない。AI を使ったことの開示と出所の記録は別の話で、<!-- link:begin disclosure-and-provenance#four-points -->[AI 利用の開示と出所の記録 › 開示・相談・出所・意図の四つの観点](../safety/disclosure-and-provenance.md#four-points)<!-- link:end --> で扱う。
 
 ## 読みにくさの型を具体的に挙げる {#patterns}
 
@@ -272,7 +272,7 @@ lint は、書いた直後に走らせて Claude に直させると手間が減�
 - [スキルの作り方](../extend/writing-skills.md)
 - [アプリでスキルを使う](../app/skills-in-the-app.md)
 - [MCP・プラグイン・スキルを入れる前の確認](../safety/vetting-extensions.md)
-- AI 利用の開示と出所の記録（準備中）
+- [AI 利用の開示と出所の記録](../safety/disclosure-and-provenance.md)
 
 </div>
 

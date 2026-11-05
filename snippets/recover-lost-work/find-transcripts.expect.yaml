@@ -1,0 +1,14 @@
+title: トランスクリプトから語を探すスクリプト
+kind: other
+place: user
+safety: true
+features: [sessions]
+conditions:
+  - grep と date のある環境（WSL・Linux）で試す
+  - 壊れても困らない、試し用のセッションを 1 つ作ってから試す
+expect:
+  - when: 試し用のセッションで目印の語（例：その場限りの合言葉）を発言してから、その語を引数にして実行する
+    then: そのセッションの JSONL ファイルの名前が、更新日時つきで 1 行出る
+  - when: 記録のどこにもない語を引数にして実行する
+    then: 何も出ない
+control: 中身を出す grep にすると、同じ探し方でも、貼られた秘密が画面に出る。名前だけに絞ると、そのおそれを減らせる

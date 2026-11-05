@@ -80,7 +80,7 @@ After で足したのは 5 つある。直す対象の版、測った値、落�
 
 直して測るループを Claude に回させるほど、任せる幅は広がる。先に、終わりの条件と、止まって報告する条件を渡す。渡し方は <!-- link:begin define-done#stop-and-report -->[「完了」を定義して渡す › 止まって報告する条件](../verify/define-done.md#stop-and-report)<!-- link:end --> にある。値は Claude の「良くなった」という報告で受け取らず、実行した出力と、前後で分母のそろった数で受け取る。見方は <!-- link:begin evidence-not-reports#what-counts -->[報告ではなく証拠を求める › 証拠の形（コマンド・生の出力・分母）](../verify/evidence-not-reports.md#what-counts)<!-- link:end --> にある。
 
-測る手段そのものの作り方と、効いたかの比べ方は、<!-- link:begin measure-changes#small-eval -->[変更が効いたかを測る（小さな eval） › 小さな eval の手順](../eval/measure-changes.md#small-eval)<!-- link:end --> が扱う。性能改善のように測る対象がはっきりしている例は、<!-- link:begin performance-tuning#same-output-and-timing -->性能改善を頼む（プロファイルが先・出力の一致と実測） › 出力の一致と実測を証拠にする（準備中）<!-- link:end --> にある。
+測る手段そのものの作り方と、効いたかの比べ方は、<!-- link:begin measure-changes#small-eval -->[変更が効いたかを測る（小さな eval） › 小さな eval の手順](../eval/measure-changes.md#small-eval)<!-- link:end --> が扱う。性能改善のように測る対象がはっきりしている例は、<!-- link:begin performance-tuning#same-output-and-timing -->[性能改善を頼む（プロファイルが先・出力の一致と実測） › 出力の一致と実測を証拠にする](../recipes/performance-tuning.md#same-output-and-timing)<!-- link:end --> にある。
 
 面によって、前回の結果と値の渡し方が変わる。
 
@@ -191,7 +191,7 @@ After で足したのは 5 つある。直す対象の版、測った値、落�
 - [新しい会話を始めるタイミング](when-to-start-fresh.md)
 - [頼み方は一回で決めない（会話で詰める）](../prompting/refine-in-conversation.md)
 - [直し続けて方針を疑わない（またはすぐ撤退を勧める）](../symptoms/wont-rethink-approach.md)
-- 性能改善を頼む（プロファイルが先・出力の一致と実測）（準備中）
+- [性能改善を頼む（プロファイルが先・出力の一致と実測）](../recipes/performance-tuning.md)
 
 </div>
 

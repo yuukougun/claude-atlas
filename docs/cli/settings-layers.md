@@ -200,7 +200,7 @@ Claude Code は、`~/.claude.json` という第 5 のファイルも持つ。ア
 - 許可・確認・拒否のルールそのもの：<!-- link:begin permission-rules -->[権限ルール（allow・ask・deny）](../enforce/permission-rules.md)<!-- link:end -->
 - 権限モードの既定と切り替え：<!-- link:begin permission-modes-overview -->[権限モードの選び方](permission-modes-overview.md)<!-- link:end -->
 - 応答の仕方の設定：<!-- link:begin output-style-modes -->[出力スタイルで応答の仕方を切り替える](output-style-modes.md)<!-- link:end -->
-- 言語の設定を層の例として見る：<!-- link:begin keep-replies-in-japanese#language-setting -->[日本語で返し続けさせる › 言語の設定と、効かないときに確かめること](../japanese/keep-replies-in-japanese.md#language-setting)<!-- link:end -->、共有の設定が個人の設定を上書きする場合は <!-- link:begin commit-and-comment-language#override -->コミットメッセージ・コメントの言語 › 共有の設定の言語は個人の設定を上書きする（準備中）<!-- link:end -->
+- 言語の設定を層の例として見る：<!-- link:begin keep-replies-in-japanese#language-setting -->[日本語で返し続けさせる › 言語の設定と、効かないときに確かめること](../japanese/keep-replies-in-japanese.md#language-setting)<!-- link:end -->、共有の設定が個人の設定を上書きする場合は <!-- link:begin commit-and-comment-language#override -->[コミットメッセージ・コメントの言語 › 共有の設定の言語は個人の設定を上書きする](../japanese/commit-and-comment-language.md#override)<!-- link:end -->
 
 <!-- gen:begin references -->
 <!-- textlint-disable -->
@@ -238,7 +238,7 @@ Claude Code は、`~/.claude.json` という第 5 のファイルも持つ。ア
 - [CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)
 - [秘密情報（.env・API キー）を守る](../safety/protecting-secrets.md)
 - [日本語で返し続けさせる › 言語の設定と、効かないときに確かめること](../japanese/keep-replies-in-japanese.md#language-setting)
-- コミットメッセージ・コメントの言語 › 共有の設定の言語は個人の設定を上書きする（準備中）
+- [コミットメッセージ・コメントの言語 › 共有の設定の言語は個人の設定を上書きする](../japanese/commit-and-comment-language.md#override)
 
 </div>
 

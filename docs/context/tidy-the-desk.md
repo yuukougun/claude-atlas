@@ -181,7 +181,7 @@ flowchart TD
 
 **次に読む**
 
-- 本筋を汚さずに聞く（/btw）（準備中）
+- [本筋を汚さずに聞く（/btw）](side-questions-btw.md)
 
 **関連**
 

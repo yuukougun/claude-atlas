@@ -76,10 +76,13 @@ updated: 2026-11-05
 - 相談のつもりだったのに、ファイルを書き換えられた → [提案してほしいのか、実行してほしいのか](../prompting/suggest-or-do.md)（アプリ・Claude Code・API、考え方）
 - 「スコアを上げて」と頼んだら、関係のない所をいじり続ける → [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)（Claude Code・アプリ・API、考え方）
 - 細かく指示したら、指示の外の問題を見落とした → [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)（Claude Code・アプリ・API、考え方）
+- 指示・資料・例を一つの依頼に詰め込むと、どれがどれか混ざる → [XML タグで区切る](../prompting/xml-tags.md)（API・Claude Code・アプリ、考え方）
 - 画面の崩れを言葉で説明しきれない → [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)（アプリ・Claude Code、考え方）
 - 完璧なプロンプトを書こうとして、頼む前に時間がかかる → [頼み方は一回で決めない（会話で詰める）](../prompting/refine-in-conversation.md)（アプリ・Claude Code、考え方）
 - 頼んだ後になって、伝え忘れた条件が次々に出てくる → [質問させる・インタビューさせる](../prompting/let-claude-ask.md)（アプリ・Claude Code、考え方）
 - 一つの案しか出てこず、ほかと比べられない → [選択肢と推奨案を出させる](../prompting/ask-for-options.md)（アプリ・Claude Code・API、考え方）
+- 推論を書き出すよう頼んだら断られた → [推論を見せてほしいとき](../prompting/asking-for-reasoning.md)（アプリ・Claude Code・API、考え方）
+- 同じ種類の依頼を毎回ゼロから書いている → [用途別プロンプトの型](../prompting/prompt-patterns.md)（アプリ・Claude Code・API、手順）
 - 「もっと自然に」と頼んでも、文章が良くならない → [文章を頼むとき（読み手・目的・手本を渡す）](../prompting/requesting-prose.md)（アプリ・Claude Code、手順）
 - 話題を変えたのに、前の話に引きずられた答えが返る → [新しい会話を始めるタイミング](../context/when-to-start-fresh.md)（アプリ・Claude Code、考え方）
 - 調べてと頼んでも、深く調べずに答えが返る → [リサーチを使いこなす](../app/using-research.md)（アプリ、機能）
@@ -94,7 +97,12 @@ updated: 2026-11-05
 - 縛りを増やしたら、作業が進まなくなった → [縛りすぎの害と見直し（止めすぎ・回り込み）](../enforce/lock-side-effects.md)（Claude Code、考え方）
 - 自分の案を AI に見せると、たいてい褒められる → [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)（アプリ・Claude Code、判断）
 - 「この方針で良いよね？」と聞くと、いつも同意される → [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)（アプリ・Claude Code、判断）
+- API で呼ぶと、前の発言を覚えていない → [Messages API と会話の正体](../api/stateless-messages-api.md)（API、考え方）
+- 道具を呼んでほしい場面で、呼ばずに答えてしまう → [tool use のループ](../api/tool-use-loop.md)（API、考え方）
 - JSON で返すよう頼んでも形が崩れる → [structured outputs（形式を保証する）](../api/structured-outputs-basics.md)（API・Claude Code、機能）
+- キャッシュを指定したのに効いていない → [プロンプトキャッシングの実務](../api/prompt-caching-in-practice.md)（API、機能）
+- API が 429 や 529 のエラーを返す → [rate limits とエラー（混雑と再試行）](../api/rate-limits-and-errors.md)（API・Claude Code、考え方）
+- API で組んだエージェントを長く動かすと、前に決めたことを忘れる → [長時間エージェントのコンテキスト管理](../api/long-running-agent-context.md)（API、考え方）
 - 実装した人が自分で評価して、撤退の判断もしている → [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)（Claude Code・アプリ、考え方）
 - チームの議論で「AI も賛成した」が決め手になっている → [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)（Claude Code・アプリ、考え方）
 - 頼んだものと違うものが出てくる → [意図と違うものが出てくる](../symptoms/not-what-i-meant.md)（アプリ・Claude Code・API、症状）
@@ -128,6 +136,7 @@ updated: 2026-11-05
 - 長い資料を渡すと、質問の肝心な所を外す → [長い資料は先、質問は最後](../prompting/long-context-first.md)（アプリ・Claude Code・API、考え方）
 - 資料を足すほど、答えが資料を踏まえなくなった気がする → [プロジェクトのナレッジが多すぎるとき](../app/too-much-project-knowledge.md)（アプリ、機能）
 - Word の資料に入れた図を読んでくれない → [添付ファイルはどこまで読まれるか](../app/how-attachments-are-read.md)（アプリ・API、機能）
+- Claude Code に教わった機能や設定が、手元の版にない → [Claude Code 自身に聞く](../cli/ask-claude-code.md)（Claude Code、考え方）
 - 関数の定義を探すたびに、多くのファイルを読ませている → [code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md)（Claude Code、機能）
 - 引用された論文の題名や著者が、微妙に違っていた → [引用や出典の確かめ方](../verify/checking-citations.md)（アプリ・Claude Code・API、手順）
 - 実装に合わせてテストまで書かれ、何を確かめたのか分からない → [テストを先に書かせる](../verify/tests-first.md)（Claude Code、手順）
@@ -163,6 +172,8 @@ updated: 2026-11-05
 - 新しい会話にしたら、前に駄目だった案をまた出してくる → [失敗の教訓は捨てずに書き残す](../context/keep-failure-lessons.md)（Claude Code・アプリ、考え方）
 - 間違った方向に進み始めたのに、止め方が分からない → [入力の記号（/ ! @）と Esc](../cli/input-symbols.md)（Claude Code、機能）
 - 巻き戻したのに、一部のファイルが元に戻らない → [チェックポイントと /rewind（git との違い）](../cli/checkpoints-and-rewind.md)（Claude Code、機能）
+- 前日の作業の成果が、どのセッションにあったか分からない → [セッション記録から失った作業を取り戻す](../cli/recover-lost-work.md)（Claude Code、手順）
+- 異常終了したセッションの、途中のやり取りが見つからない → [セッション記録から失った作業を取り戻す](../cli/recover-lost-work.md)（Claude Code、手順）
 - 上限に近づいていることに、止まるまで気づけない → [/usage・/context・ステータスラインで状態を見る](../cli/usage-context-statusline.md)（Claude Code、機能）
 - 個人の指示とプロジェクトの指示の、どちらが効いているか分からない → [CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)（Claude Code、機能）
 - ほかのチームのフォルダの指示まで読み込まれている → [CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)（Claude Code、機能）
@@ -189,6 +200,7 @@ updated: 2026-11-05
 
 - クラウドで動かすと、手元の設定が効いていない → [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)（アプリ・Claude Code・API、考え方）
 - アプリのタスクが手元のファイルを読めない → [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)（アプリ・Claude Code・API、考え方）
+- ターミナルではできたことが、IDE や Desktop ではできない → [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](../surfaces/claude-code-surfaces.md)（Claude Code、比較）
 - スマホのアプリだと、Web で使えた機能が出てこない → [面ごとにできないこと（早見表）](../surfaces/what-each-surface-cannot-do.md)（アプリ・Claude Code・API、台帳）
 - シークレットチャットではファイルを作ってくれない → [面ごとにできないこと（早見表）](../surfaces/what-each-surface-cannot-do.md)（アプリ・Claude Code・API、台帳）
 - 設定した指示が、関係のない会話にまで効いてしまう → [アプリの指示の置き場所（Claude への指示・プロジェクト・メモリ・スキル）](../app/where-to-put-instructions.md)（アプリ、比較）
@@ -227,11 +239,14 @@ updated: 2026-11-05
 - 日本語で頼むと精度が落ちる気がする → [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)（アプリ・Claude Code・API、考え方）
 - 日本語だとトークンや上限を早く使う気がする → [日本語で指示して大丈夫か](../japanese/can-i-prompt-in-japanese.md)（アプリ・Claude Code・API、考え方）
 - 言語を日本語に設定しても、英語の返事が混ざる → [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)（Claude Code・アプリ・API、手順）
+- 返事は日本語なのに、コミットメッセージだけ英語になる → [コミットメッセージ・コメントの言語](../japanese/commit-and-comment-language.md)（Claude Code、考え方）
 - 漢字が多くて硬い文章になる → [表記ゆれと漢字の開き](../japanese/consistent-notation.md)（アプリ・Claude Code、手順）
 - 推敲を頼んでも、日本語の言い回しの癖が直らない → [日本語の「AI 臭さ」を減らす](../japanese/less-ai-sounding-japanese.md)（アプリ・Claude Code、手順）
 - 太字や箇条書きが多く、読み物として読みにくい → [日本語の「AI 臭さ」を減らす](../japanese/less-ai-sounding-japanese.md)（アプリ・Claude Code、手順）
 - 用語集を渡して頼んでも、表記の揺れが残る → [textlint をフックで回す](../japanese/textlint-hook.md)（Claude Code、手順）
 - 社内の言い方と違う用語で書かれる → [日本語の資料を読ませる・書かせる](../japanese/documents-in-japanese.md)（アプリ・Claude Code・API、手順）
+- CSV を集計させたら、日本語の列が空欄や文字化けになった → [文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)（アプリ・Claude Code、手順）
+- Shift\_JIS のファイルを編集させようとしたら断られた → [文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)（アプリ・Claude Code、手順）
 - 返事が英語になる → [英語で返ってくる](../symptoms/replies-in-english.md)（Claude Code・アプリ・API、症状）
 - 途中から英語に切り替わって戻らない → [英語で返ってくる](../symptoms/replies-in-english.md)（Claude Code・アプリ・API、症状）
 - ツールの結果を読んだ後の一言だけ英語になる → [英語で返ってくる](../symptoms/replies-in-english.md)（Claude Code・アプリ・API、症状）
@@ -251,7 +266,7 @@ updated: 2026-11-05
 - 「重大なものだけ」と頼んだら、大事な指摘まで減った → [レビュアーへの指示の書き方](../verify/instructing-reviewers.md)（Claude Code・アプリ、考え方）
 - README もテストもそろっているのに、中身が動かない → [見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)（Claude Code・アプリ、考え方）
 - 丁寧で整った報告書なのに、肝心の数字が合っていない → [見た目は品質の証拠ではない](../verify/looks-are-not-quality.md)（Claude Code・アプリ、考え方）
-- 桁違いに速くなったと報告されたが、本当か怪しい → [良すぎる結果を疑う](../verify/suspect-too-good-results.md)（Claude Code・アプリ、考え方）
+- 桁違いに速くなったと報告されたが、本当か怪しい → [良すぎる結果を疑う](../verify/suspect-too-good-results.md)（Claude Code・アプリ、考え方）・[性能改善を頼む（プロファイルが先・出力の一致と実測）](../recipes/performance-tuning.md)（Claude Code、手順）
 - 精度がほぼ満点になって、かえって怪しい → [良すぎる結果を疑う](../verify/suspect-too-good-results.md)（Claude Code・アプリ、考え方）
 - テストに書いた条件だけが満たされ、書かなかった意図は抜けていた → [検証器が問題を定義する（Claude は置かれたループを何でも加速する）](../eval/verifier-defines-problem.md)（Claude Code・API、考え方）
 - 手元で試した入力と、本番の入力の傾向が違っていた → [検証器の三条件（正しい・書き換えられない・本番を代表する）](../eval/verifier-three-conditions.md)（Claude Code・API、考え方）
@@ -267,12 +282,19 @@ updated: 2026-11-05
 - もっともらしい答えを、確かめずにそのまま使ってしまう → [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)（アプリ・Claude Code、判断）
 - AI の出力がおかしいと感じても、自分の判断で上書きできない → [判断を預けすぎる（過度依存）](../judgment/over-reliance.md)（アプリ・Claude Code、判断）
 - コードの説明がもっともらしいが、本当にそう動くのか分からない → [知らないコードベースを読む](../recipes/explore-a-codebase.md)（Claude Code、手順）
+- 大きな変更を一度に頼んだら、どこで壊れたのか分からなくなった → [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)（Claude Code、手順）
+- 速くしてと頼んだら、遅くない所ばかり書き換えられた → [性能改善を頼む（プロファイルが先・出力の一致と実測）](../recipes/performance-tuning.md)（Claude Code、手順）
+- AI のレビューで問題なしと出たのに、人のレビューで欠陥が見つかった → [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)（Claude Code、手順）
 - 分析の結論はもっともらしいが、数字の出どころが分からない → [データを分析する](../recipes/data-analysis.md)（Claude Code・アプリ、手順）
 - 自分の仮説に合う分析ばかり返ってくる → [データを分析する](../recipes/data-analysis.md)（Claude Code・アプリ、手順）
 - レポートの出典を開くと、書かれていないことが書いてある → [調べものとレポート](../recipes/research-and-reports.md)（アプリ・Claude Code、手順）
+- 書かせた文書が、コードの実際の動きと合っていない → [ドキュメント・技術文書を書く](../recipes/write-docs.md)（Claude Code・アプリ、手順）
+- 作らせたスライドは見栄えがよいが、中身が薄い → [資料・スライドを作る](../recipes/make-slides.md)（アプリ・Claude Code、手順）
 - 大会の AI のルールが前と変わっていて、どれが最新か分からない → [大会の規則の早見（禁止・部門分け・許可と開示）](../contest/competition-rules.md)（考え方）
 - AI と一緒だと解けるのに、本番では手が止まる → [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](../contest/practice-vs-contest-day.md)（Claude Code・アプリ、考え方）
 - 手元の評価器のスコアが、公式の採点と合わない → [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)（Claude Code、考え方）
+- 改善したはずの版が、ケースを増やすと負ける → [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](../contest/running-contest-experiments.md)（Claude Code、手順）
+- 終了間際の変更で、提出したものが壊れていた → [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](../contest/competition-day-operations.md)（Claude Code・アプリ、手順）
 - 「全部通りました」と言うが信用できない → [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)（Claude Code・アプリ・API、症状）
 - 完了と報告されたのに動かない → [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)（Claude Code・アプリ・API、症状）
 - 計画したはずの確認を実際にはやっていない → [「完了」と言うが終わっていない](../symptoms/claims-done-but-isnt.md)（Claude Code・アプリ・API、症状）
@@ -286,28 +308,40 @@ updated: 2026-11-05
 
 ### 長い作業と方針
 
+- 最適化を頼むと、早々に打ち切る → [目標値・上界を伝える](../prompting/share-targets-and-bounds.md)（Claude Code・API、考え方）
 - AI で速くなった気がするが、本当か分からない → [体感と実測](../eval/felt-vs-measured.md)（アプリ・Claude Code、判断）
 - 前に効かなかった改善案を、気づかずにまた試していた → [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)（Claude Code、手順）
 - 結果を見てから、効いた理由を後付けしている → [実験台帳（仮説を先に書く・提案者・分母・検証器の版）](../eval/experiment-log.md)（Claude Code、手順）
 - 拒否のルールを書いたのに、スクリプト経由で読まれた → [サンドボックスで封じ込める](../enforce/sandboxing.md)（Claude Code、機能）
+- AI に任せたのに、確かめる手間で結局遅くなった → [そのタスクは AI に向いているか（五つの軸）](../delegate/is-the-task-ai-suited.md)（アプリ・Claude Code、考え方）
+- 任せたつもりが、ずっと画面を見張っている → [伴走と委託](../delegate/pairing-and-delegating.md)（アプリ・Claude Code、考え方）
 - 条件に入れた「テストを変えない」が守られたか判定されない → [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)（Claude Code、機能）
+- 長いジョブのログが大きすぎて、Claude が状況を追えない → [長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)（Claude Code、手順）
 - 並列の方法が多すぎて、どれを使えばいいか分からない → [並列の方式の選び方](../delegate/choosing-parallel-modes.md)（Claude Code、比較）
 - 並列のセッションが、互いのファイルを書き換えてしまう → [git worktree で並列にする](../delegate/parallel-with-worktrees.md)（Claude Code、機能）
 - 案を順に試すと、前の案と同じ条件で比べられなくなる → [仮説ごとに並べて、同じ物差しで比べる](../delegate/compare-hypotheses-in-parallel.md)（Claude Code、手順）
 - 背景で動かしたセッションがどうなったか分からない → [agent view と背景セッション](../delegate/agent-view-and-background.md)（Claude Code、機能）
 - ワークフローで動かしたら、思ったより利用枠を使った → [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)（Claude Code、機能）
+- 自分の作業を自動で回したいが、どの仕組みで動かすか決められない → [自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)（Claude Code・アプリ・API、比較）
 - スクリプトから動かすと、ファイルの編集やコマンドをせずに終わる → [非対話モード（claude -p）の基本](../delegate/headless-basics.md)（Claude Code、機能）
 - CI では成功と出たのに、実際は何もしていなかった → [非対話モード（claude -p）の基本](../delegate/headless-basics.md)（Claude Code、機能）
 - サブスクリプションで使っているつもりが、API の請求が来た → [非対話モード（claude -p）の基本](../delegate/headless-basics.md)（Claude Code、機能）・[課金の経路を確かめる（API キーとサブスクリプション）](../cost/check-billing-path.md)（Claude Code・API、考え方）
+- 手元と CI で、同じ指示なのに結果が違う → [--bare と再現性](../delegate/bare-mode.md)（Claude Code、機能）
+- 自動の実行に、自分の CLAUDE.md や hooks が混ざる → [--bare と再現性](../delegate/bare-mode.md)（Claude Code、機能）
+- 古い記事の書き方で、Claude の GitHub Action が動かない → [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)（Claude Code、機能）
 - AI に頼りきって、判断を誤った気がする → [人の側の五つの落とし穴（総論）](../judgment/human-pitfalls.md)（アプリ・Claude Code、判断）
 - AI に出させた企画が、どこかで見たようなものばかりになる → [AI の案は「みんなの案」（均質化）](../judgment/ai-ideas-are-everyones.md)（アプリ・Claude Code、判断）
 - 最初に AI の案を見ると、それ以外が思いつかなくなる → [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)（アプリ・Claude Code、判断）
 - AI と一緒だと分かった気になるが、AI なしでは解けない → [AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](../judgment/learning-with-ai.md)（アプリ・Claude Code、判断）
 - AI が書いたコードが増えて、全体を把握できなくなってきた → [どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)（Claude Code、判断）
 - AI に書かせたコードを、自分では説明できない → [どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)（Claude Code、判断）
+- 注意したのに、同じ種類の失敗が別の作業でまた起きた → [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)（Claude Code、判断）
+- AI を入れて速くなったのに、障害や手戻りが増えた → [禁止ではなく安全な道を作る](../team/paved-roads.md)（アプリ・Claude Code、考え方）
 - 人によって Claude Code の振る舞いが違う → [チームで設定を共有する](../team/share-team-settings.md)（Claude Code、手順）
 - マネージャーのところで PR が止まる → [レビューのボトルネックと疲労](../team/review-bottlenecks.md)（Claude Code、考え方）
 - AI のレビューが通った PR を、人がよく見ずに承認している → [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)（Claude Code、考え方）
+- 同じ種類の見落としが、レビューをすり抜ける → [レビューの観点を育てる](../team/grow-review-checklists.md)（Claude Code、手順）
+- なぜそう決めたかが、後から分からない → [決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)（Claude Code・アプリ、手順）
 - ベンチを回してスコアを見るだけの繰り返しになる → [同じ確認のループにはまる](../symptoms/stuck-in-a-check-loop.md)（Claude Code、症状）
 - 同じ修正と確認を利用上限まで繰り返す → [同じ確認のループにはまる](../symptoms/stuck-in-a-check-loop.md)（Claude Code、症状）
 - 何時間も回したのに途中から進んでいない → [同じ確認のループにはまる](../symptoms/stuck-in-a-check-loop.md)（Claude Code、症状）
@@ -409,7 +443,7 @@ updated: 2026-11-05
 - 動くか確かめないまま終わったことにする理由を知りたい → [エージェントループと tool use](../basics/agent-loop.md)（Claude Code・アプリ・API、考え方）
 - 考える量を増やすと何が良くなり、何が悪くなるのか知りたい → [思考（thinking）と effort の仕組み](../basics/how-thinking-works.md)（アプリ・Claude Code・API、考え方）
 - 表示された思考の過程を根拠にしてよいか知りたい → [表示された思考は内部の計算と一致するとは限らない](../basics/unfaithful-reasoning.md)（アプリ・Claude Code・API、考え方）
-- なぜその答えになったのか、過程を全部見せてほしい → [表示された思考は内部の計算と一致するとは限らない](../basics/unfaithful-reasoning.md)（アプリ・Claude Code・API、考え方）
+- なぜその答えになったのか、過程を全部見せてほしい → [表示された思考は内部の計算と一致するとは限らない](../basics/unfaithful-reasoning.md)（アプリ・Claude Code・API、考え方）・[推論を見せてほしいとき](../prompting/asking-for-reasoning.md)（アプリ・Claude Code・API、考え方）
 - もっともらしい誤りを自信を持って言う理由を知りたい → [ハルシネーションはなぜ起きるか](../basics/why-hallucinations.md)（アプリ・Claude Code・API、考え方）
 - Claude が最近の出来事や今日の日付を知らない理由を知りたい → [知識カットオフと「今」を知らない問題](../basics/knowledge-cutoff.md)（アプリ・Claude Code・API、考え方）
 - 同じ頼み方でも答えが毎回変わる理由を知りたい → [同じ質問でも答えが変わる（非決定性）](../basics/nondeterminism.md)（アプリ・Claude Code・API、考え方）
@@ -430,6 +464,8 @@ updated: 2026-11-05
 - 自分のプログラムから Claude を呼ぶべきか、今ある面で足りるかを決めたい → [アプリ・Claude Code・API の選び方](../surfaces/choosing-a-surface.md)（アプリ・Claude Code・API、比較）
 - PC を閉じても作業を進めておいてほしい → [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)（アプリ・Claude Code・API、考え方）
 - 外出先から触る作業を、手元とクラウドのどちらで動かすか決めたい → [実行場所の違い（クラウド・自分の PC・リモート操作）](../surfaces/where-it-runs.md)（アプリ・Claude Code・API、考え方）
+- ターミナルと VS Code の拡張のどちらで Claude Code を使うか決めたい → [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](../surfaces/claude-code-surfaces.md)（Claude Code、比較）
+- ブラウザやスマホから Claude Code に作業を頼みたい → [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](../surfaces/claude-code-surfaces.md)（Claude Code、比較）
 - 使いたい機能がどの面で使えるかを、始める前に確かめたい → [面ごとにできないこと（早見表）](../surfaces/what-each-surface-cannot-do.md)（アプリ・Claude Code・API、台帳）
 - 作った Web の画面を、Claude に実際のブラウザで確かめさせたい → [Claude in Chrome と computer use（ブラウザと画面の操作）](../surfaces/browser-control.md)（アプリ・Claude Code、機能）
 - ブラウザでのフォーム入力のような手作業を代わりにやってほしい → [Claude in Chrome と computer use（ブラウザと画面の操作）](../surfaces/browser-control.md)（アプリ・Claude Code、機能）
@@ -462,9 +498,11 @@ updated: 2026-11-05
 - 小さな修正は、小さいまま終わらせたい → [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)（アプリ・Claude Code・API、考え方）
 - 触ってよいファイルを限りたい → [範囲を伝える（やらないこと）](../prompting/state-the-scope.md)（アプリ・Claude Code・API、考え方）
 - やり方まで指示せずに任せたい → [細かく指図するか、成果で頼むか](../prompting/ask-for-outcomes.md)（Claude Code・アプリ・API、考え方）
+- 最適化を、目標の値に届くまで粘らせたい → [目標値・上界を伝える](../prompting/share-targets-and-bounds.md)（Claude Code・API、考え方）
 - 返事の書式や長さを、用途に合わせて指定したい → [出力の形と分量を指定する](../prompting/output-shape.md)（アプリ・Claude Code・API、考え方）
 - 複数の文書を読ませて比べたい → [長い資料は先、質問は最後](../prompting/long-context-first.md)（アプリ・Claude Code・API、考え方）
 - 資料のどこを根拠にしたのか示してほしい → [長い資料は先、質問は最後](../prompting/long-context-first.md)（アプリ・Claude Code・API、考え方）
+- 長い依頼を、読み違えられない形に整えたい → [XML タグで区切る](../prompting/xml-tags.md)（API・Claude Code・アプリ、考え方）
 - 考えを話しながら頼みたい → [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)（アプリ・Claude Code、考え方）
 - エラー画面をそのまま見せたい → [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)（アプリ・Claude Code、考え方）
 - 返事を見ながら、依頼を少しずつ詰めたい → [頼み方は一回で決めない（会話で詰める）](../prompting/refine-in-conversation.md)（アプリ・Claude Code、考え方）
@@ -478,6 +516,7 @@ updated: 2026-11-05
 - 仕様と食い違うときは、手を止めて知らせてほしい → [止まって報告する権利を渡す](../prompting/permission-to-stop.md)（Claude Code・API、考え方）
 - 良い頼み方の具体例を見たい → [Before/After プロンプト集](../prompting/before-after-prompts.md)（アプリ・Claude Code・API、手順）
 - 自分の依頼のどこが足りないか、例と比べて知りたい → [Before/After プロンプト集](../prompting/before-after-prompts.md)（アプリ・Claude Code・API、手順）
+- レビューや要約を頼むときの決まった書き方がほしい → [用途別プロンプトの型](../prompting/prompt-patterns.md)（アプリ・Claude Code・API、手順）
 - 読み手と目的に合った文章を書かせたい → [文章を頼むとき（読み手・目的・手本を渡す）](../prompting/requesting-prose.md)（アプリ・Claude Code、手順）
 
 ### 文脈を整える
@@ -500,6 +539,7 @@ updated: 2026-11-05
 - 長い PDF や仕様書をもとに答えさせたい → [長い資料を渡すとき](../context/handing-long-documents.md)（アプリ・Claude Code・API、考え方）
 - 長い資料を、読み落とされにくい形にしてから渡したい → [長い資料を渡すとき](../context/handing-long-documents.md)（アプリ・Claude Code・API、考え方）
 - 調べものの途中経過で、本筋の会話を埋めたくない → [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)（Claude Code、考え方）
+- ちょっとした質問で本筋を汚したくない → [本筋を汚さずに聞く（/btw）](../context/side-questions-btw.md)（Claude Code、機能）
 
 ### アプリを使いこなす
 
@@ -525,6 +565,8 @@ updated: 2026-11-05
 - 会話の中で文書やスライドを作って直したい → [アーティファクト（会話の中で作る文書・スライド・デザイン）](../app/artifacts-overview.md)（アプリ、機能）
 - 画面のモックや試作をすぐ見たい → [アーティファクト（会話の中で作る文書・スライド・デザイン）](../app/artifacts-overview.md)（アプリ、機能）
 - 作ったものを人に見せられる形で渡したい → [アーティファクト（会話の中で作る文書・スライド・デザイン）](../app/artifacts-overview.md)（アプリ、機能）
+- 簡単な計算ツールや入力フォームを作って使い回したい → [アーティファクトを小さなアプリにする](../app/artifacts-as-apps.md)（アプリ、機能）
+- チームで使う小さな道具を会話から作りたい → [アーティファクトを小さなアプリにする](../app/artifacts-as-apps.md)（アプリ、機能）
 - メールやカレンダー、社内の資料を踏まえて答えてほしい → [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)（アプリ、機能）
 - 自分の MCP サーバーをアプリから使いたい → [コネクタ（MCP）をアプリで使う](../app/connectors-in-the-app.md)（アプリ、機能）
 - 長い手順を、必要なときだけ読ませたい → [アプリでスキルを使う](../app/skills-in-the-app.md)（アプリ、機能）・[スキルの考え方（手順を必要なときだけ読む）](../extend/how-skills-load.md)（Claude Code・アプリ・API、考え方）
@@ -539,6 +581,7 @@ updated: 2026-11-05
 
 - Claude Code の入力欄でできることを最初に知りたい → [入力の記号（/ ! @）と Esc](../cli/input-symbols.md)（Claude Code、機能）
 - Claude Code の操作をもっと速くしたい → [知らないと損をする操作](../cli/must-know-operations.md)（Claude Code、機能）
+- フックの書き方などを、その場で調べたい → [Claude Code 自身に聞く](../cli/ask-claude-code.md)（Claude Code、考え方）
 - 確認を減らしたいが、どのモードにすればよいか分からない → [権限モードの選び方](../cli/permission-modes-overview.md)（Claude Code、機能）
 - 既定の権限モードで、何が確認なしで実行されるのか知りたい → [権限モードの選び方](../cli/permission-modes-overview.md)（Claude Code、機能）
 - いきなり実装させず、先に方針を確かめたい → [plan mode の使いどころ](../cli/when-to-plan.md)（Claude Code、機能）
@@ -546,6 +589,7 @@ updated: 2026-11-05
 - コミットや PR の作成をどこまで任せてよいか決めたい → [git との付き合い方](../cli/working-with-git.md)（Claude Code、考え方）
 - 昨日のセッションの続きから再開したい → [セッションに名前を付けて再開・分岐する](../cli/resume-and-branch.md)（Claude Code、機能）
 - 今の会話を残したまま、別の案を試したい → [セッションに名前を付けて再開・分岐する](../cli/resume-and-branch.md)（Claude Code、機能）
+- 過去のセッションや、圧縮の前のやり取りを読み返したい → [セッション記録から失った作業を取り戻す](../cli/recover-lost-work.md)（Claude Code、手順）
 - 上限やコンテキストの使用量を、いつも見えるようにしたい → [/usage・/context・ステータスラインで状態を見る](../cli/usage-context-statusline.md)（Claude Code、機能）
 - おかしな挙動が、自分の設定や拡張のせいか確かめたい → [設定を外して切り分ける（--safe-mode）](../cli/isolate-with-safe-mode.md)（Claude Code、機能）
 - 自分だけの設定と、チームで共有する設定を分けたい → [設定ファイルの階層と優先順位](../cli/settings-layers.md)（Claude Code、機能）
@@ -553,6 +597,7 @@ updated: 2026-11-05
 - 説明を増やしたり簡潔にしたりを、毎回言わずに切り替えたい → [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)（Claude Code、機能）
 - コードを学びながら進めたいので、一部を自分で書きたい → [出力スタイルで応答の仕方を切り替える](../cli/output-style-modes.md)（Claude Code、機能）
 - 手元で計画した作業をクラウドに渡し、PC を閉じても進めさせたい → [クラウドセッションと teleport](../cli/cloud-sessions-and-teleport.md)（Claude Code、機能）
+- コマンドの名前や、古い記事で見た旧名から、使い方のページを引きたい → [主要コマンド早見表](../cli/command-cheatsheet.md)（Claude Code、台帳）
 
 ### 文脈と指示を仕組みにする
 
@@ -564,6 +609,7 @@ updated: 2026-11-05
 - CLAUDE.md から何を削ればよいか知りたい → [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)（Claude Code、機能）
 - 特定のディレクトリだけのルールを書きたい → [.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)（Claude Code、機能）
 - Claude Code が書き溜めた記録の場所を知り、見て直したい → [自動メモリ](../extend/using-auto-memory.md)（Claude Code、機能）
+- ほかのエージェントツールと指示を共有したい → [AGENTS.md とほかのツールとの共有](../extend/agents-md.md)（Claude Code、機能）
 - 常に守らせたい規則と、ときどき使う手順の置き場所を分けたい → [CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)（Claude Code、比較）
 - 応答の口調や形式を変えたいが、どこに書けばよいか分からない → [CLAUDE.md・rules・スキル・出力スタイルの違い](../extend/claude-md-vs-rules-skills-styles.md)（Claude Code、比較）
 - 繰り返す作業の手順を、名前で呼べるようにしたい → [スキルの作り方](../extend/writing-skills.md)（Claude Code・アプリ、機能）
@@ -580,6 +626,8 @@ updated: 2026-11-05
 - ブラウザからコピーして貼っているデータを、直接取りに行かせたい → [MCP をつなぐ](../extend/connecting-mcp.md)（Claude Code・アプリ、機能）
 - 社内のツールや外部のサービスを、Claude から使いたい → [MCP をつなぐ](../extend/connecting-mcp.md)（Claude Code・アプリ、機能）
 - 外部ツールをつなぐか、コマンドで済ませるかを決めたい → [MCP か CLI か](../extend/mcp-or-cli.md)（Claude Code、比較）
+- 見つけた MCP サーバーを、入れる価値があるか見極めたい → [MCP サーバーの選び方](../extend/choosing-mcp-servers.md)（Claude Code、機能）
+- どの外部ツールをつなぐと効果があるか知りたい → [MCP サーバーの選び方](../extend/choosing-mcp-servers.md)（Claude Code、機能）
 - 作った手順や設定を、チームに配りたい → [プラグインとマーケットプレイス](../extend/plugins-and-marketplaces.md)（Claude Code・アプリ、機能）
 - チームで同じ設定を使いたい → [プラグインとマーケットプレイス](../extend/plugins-and-marketplaces.md)（Claude Code・アプリ、機能）・[チームで設定を共有する](../team/share-team-settings.md)（Claude Code、手順）
 - 編集の後の型エラーに、Claude 自身に気づかせたい → [code intelligence プラグイン（LSP）](../extend/code-intelligence-plugins.md)（Claude Code、機能）
@@ -673,24 +721,32 @@ updated: 2026-11-05
 - 取り返しのつかない操作の前には、必ず止めてほしい → [消されたくないもの（破壊的コマンド）](../safety/destructive-commands.md)（Claude Code・アプリ、考え方）
 - 規則のどこを読めばよいか知りたい → [学校・組織・コンテストの規則（類型と確認表）](../safety/checking-ai-rules.md)（アプリ・Claude Code・API、考え方）
 - AI が書いたコードを、製品や OSS に入れてよいか確かめたい → [学校・組織・コンテストの規則（類型と確認表）](../safety/checking-ai-rules.md)（アプリ・Claude Code・API、考え方）
+- AI で作ったコードを使ったことを、後で説明できるようにしたい → [AI 利用の開示と出所の記録](../safety/disclosure-and-provenance.md)（アプリ・Claude Code、考え方）
 - 誤って断られた依頼を、どう頼み直せばよいか知りたい → [正当な依頼が断られたとき](../safety/when-requests-are-refused.md)（アプリ・Claude Code・API、考え方）
 - 返事のモデルが途中で切り替わった理由を知りたい → [正当な依頼が断られたとき](../safety/when-requests-are-refused.md)（アプリ・Claude Code・API、考え方）
 
 ### 任せて並べる
 
 - AI にどこまで任せてよいか、線を引きたい → [任せないもの（評価・採否・撤退・中核の理解）](../delegate/what-not-to-delegate.md)（アプリ・Claude Code、考え方）
+- この作業を AI に任せて効くか、始める前に見積もりたい → [そのタスクは AI に向いているか（五つの軸）](../delegate/is-the-task-ai-suited.md)（アプリ・Claude Code、考え方）
+- 見ながら一緒に進めるか、任せて後で見るかを決めたい → [伴走と委託](../delegate/pairing-and-delegating.md)（アプリ・Claude Code、考え方）
 - 長い作業を任せたい → [任せ方の段階と、無人で走らせる前の五つの問い](../delegate/five-questions-before-delegating.md)（Claude Code・アプリ、考え方）
 - AI に改善をずっと回させておきたい → [AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)（Claude Code、考え方）
 - AI に回させる反復を、どこまでに限るか決めたい → [AI に改善を回させ続ける罠（開いたループ）](../delegate/open-ended-loop-trap.md)（Claude Code、考え方）
 - 条件を満たすまで、自分で作業を続けさせたい → [/goal（完了するまで続けさせる）](../delegate/goal-until-done.md)（Claude Code、機能）
+- 長時間の実験やジョブの途中経過を見えるようにしたい → [長時間ジョブの進捗ログを設計する](../delegate/progress-logs-for-long-jobs.md)（Claude Code、手順）
 - 何本まで並べてよいか決めたい → [並列の上限は人間が決める](../delegate/humans-set-the-parallel-limit.md)（Claude Code、考え方）
 - 複数の作業を同時に進めたい → [並列の方式の選び方](../delegate/choosing-parallel-modes.md)（Claude Code、比較）
 - 同じリポジトリで、複数のセッションを同時に動かしたい → [git worktree で並列にする](../delegate/parallel-with-worktrees.md)（Claude Code、機能）
 - 二つの設計案を実際に作らせて比べたい → [仮説ごとに並べて、同じ物差しで比べる](../delegate/compare-hypotheses-in-parallel.md)（Claude Code、手順）
 - いくつかの作業を投げておいて、後でまとめて確かめたい → [agent view と背景セッション](../delegate/agent-view-and-background.md)（Claude Code、機能）
 - コードベース全体の監査や大規模な移行を、一度に進めたい → [dynamic workflows（スクリプトで多数のサブエージェントを動かす）](../delegate/dynamic-workflows.md)（Claude Code、機能）
+- 決まった時刻やイベントで、Claude を自動で動かしたい → [自動化の選び方（定期タスク・非対話モード・SDK）](../delegate/choosing-automation.md)（Claude Code・アプリ・API、比較）
 - 数分おきにビルドやデプロイの状態を見張らせたい → [/loop と定期実行の方式](../delegate/loop-and-scheduling.md)（Claude Code・アプリ、機能）
-- スクリプトや CI から Claude Code を使いたい → [非対話モード（claude -p）の基本](../delegate/headless-basics.md)（Claude Code、機能）
+- 決まった時刻の作業を、手元の PC なしで走らせたい → [クラウドの定期タスク](../delegate/cloud-schedules.md)（Claude Code、機能）
+- PR が開いたら、自動で Claude に作業させたい → [クラウドの定期タスク](../delegate/cloud-schedules.md)（Claude Code、機能）
+- スクリプトや CI から Claude Code を使いたい → [非対話モード（claude -p）の基本](../delegate/headless-basics.md)（Claude Code、機能）・[GitHub Actions と @claude](../delegate/github-actions-with-claude.md)（Claude Code、機能）
+- issue や PR で、@claude と呼んで作業させたい → [GitHub Actions と @claude](../delegate/github-actions-with-claude.md)（Claude Code、機能）
 
 ### 判断と理解を守る
 
@@ -709,9 +765,16 @@ updated: 2026-11-05
 
 - アプリの挙動を仕組みから理解したい → [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)（アプリ・Claude Code・API、比較）
 - アプリでしていることを、自分のプログラムで再現したい → [アプリの機能と API の概念の対応表](../api/feature-to-api-mapping.md)（アプリ・Claude Code・API、比較）
+- API で会話を続けるには、毎回何を送ればよいか知りたい → [Messages API と会話の正体](../api/stateless-messages-api.md)（API、考え方）
+- 自分の関数を Claude に呼ばせたい → [tool use のループ](../api/tool-use-loop.md)（API、考え方）
 - 出力を必ず決まった形で受け取りたい → [structured outputs（形式を保証する）](../api/structured-outputs-basics.md)（API・Claude Code、機能）
+- 長いシステムプロンプトや資料を毎回送る費用を抑えたい → [プロンプトキャッシングの実務](../api/prompt-caching-in-practice.md)（API、機能）
+- 混雑や上限で失敗した呼び出しを、安全に再試行したい → [rate limits とエラー（混雑と再試行）](../api/rate-limits-and-errors.md)（API・Claude Code、考え方）
+- 大量の呼び出しを流す前に、上限に当たらないかを確かめたい → [rate limits とエラー（混雑と再試行）](../api/rate-limits-and-errors.md)（API・Claude Code、考え方）
 - 自分のアプリに Claude を組み込みたい → [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)（API・Claude Code、比較）
 - エージェントのループを自分で書くか、任せるかを決めたい → [Client SDK・Agent SDK・Managed Agents・CLI の比較](../api/sdk-comparison.md)（API・Claude Code、比較）
+- Claude Code と同じ動きを自分のプログラムから使いたい → [Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)（API・Claude Code、機能）
+- 何時間も動くエージェントの文脈が溢れないようにしたい → [長時間エージェントのコンテキスト管理](../api/long-running-agent-context.md)（API、考え方）
 
 ### 費用と利用上限
 
@@ -720,6 +783,9 @@ updated: 2026-11-05
 - 何が使用量を食っているのか知りたい → [上限を早く使う要因](../cost/what-uses-up-limits.md)（アプリ・Claude Code、考え方）
 - /usage の内訳から、何を減らせばよいかを読み取りたい → [上限を早く使う要因](../cost/what-uses-up-limits.md)（アプリ・Claude Code、考え方）
 - 上限に当たらないように、使い方を節約したい → [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)（アプリ・Claude Code・API、考え方）
+- どのプランにすべきか迷う → [プランの選び方](../cost/choosing-a-plan.md)（アプリ・Claude Code、比較）
+- 今のプランから上げるべきか迷う → [プランの選び方](../cost/choosing-a-plan.md)（アプリ・Claude Code、比較）
+- Claude Code をよく使うので、合うプランを知りたい → [プランの選び方](../cost/choosing-a-plan.md)（アプリ・Claude Code、比較）
 - いちばん高性能なモデルを使ってみたい → [最上位のモデルを使う前に](../cost/before-using-top-model.md)（アプリ・Claude Code・API、考え方）
 - 上限に当たっても、作業を止めたくない → [usage credits（上限を超えた分の従量課金）](../cost/usage-credits-basics.md)（アプリ・Claude Code、機能）
 - スクリプトから動かすとき、どの支払いで動くのか確かめたい → [課金の経路を確かめる（API キーとサブスクリプション）](../cost/check-billing-path.md)（Claude Code・API、考え方）
@@ -732,6 +798,7 @@ updated: 2026-11-05
 - 日本語の出力を、いつも同じ文体と表記にしたい → [日本語の出力を揃える：お願いで足りること、仕組みが要ること](../japanese/align-japanese-output.md)（アプリ・Claude Code・API、考え方）
 - Claude Code の返事を、いつも日本語にしたい → [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)（Claude Code・アプリ・API、手順）
 - 最後の返事が英語のときは、自動で日本語に直させたい → [日本語で返し続けさせる](../japanese/keep-replies-in-japanese.md)（Claude Code・アプリ・API、手順）
+- コミットメッセージは日本語、コードのコメントは英語にしたい → [コミットメッセージ・コメントの言語](../japanese/commit-and-comment-language.md)（Claude Code、考え方）
 - 文書を、です・ますか、だ・であるのどちらかに揃えたい → [です・ます／だ・であるを揃える](../japanese/consistent-politeness.md)（アプリ・Claude Code、手順）
 - チームの文書を、いつも同じ文体で書かせたい → [です・ます／だ・であるを揃える](../japanese/consistent-politeness.md)（アプリ・Claude Code、手順）
 - 社内の用語集どおりの表記で書かせたい → [表記ゆれと漢字の開き](../japanese/consistent-notation.md)（アプリ・Claude Code、手順）
@@ -748,23 +815,40 @@ updated: 2026-11-05
 - 大きな機能を作る前に、要件の抜けをなくしたい → [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)（Claude Code・アプリ、手順）
 - 作り始める前に、画面の見た目と動きをモックで合意したい → [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)（Claude Code・アプリ、手順）
 - 何を作るのかを、質問に答えながら詰めていきたい → [仕様を先に固める（spec・インタビュー・モック先行）](../recipes/spec-first.md)（Claude Code・アプリ、手順）
+- 古いライブラリや API からの移行を、たくさんのファイルにわたって進めたい → [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)（Claude Code、手順）
+- 動きを変えずにコードを整理したい → [リファクタリングと大規模な移行](../recipes/refactor-and-migrate.md)（Claude Code、手順）
+- 遅い処理を Claude に速くしてもらいたい → [性能改善を頼む（プロファイルが先・出力の一致と実測）](../recipes/performance-tuning.md)（Claude Code、手順）
+- PR の作成と説明文の下書きを任せたい → [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)（Claude Code、手順）
 - テストデータの生成器や、たくさんのケースを一度に回す仕組みを作らせたい → [検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)（Claude Code、手順）
+- 結果やログを見やすくする道具を手早く作りたい → [観察の道具を作らせる（可視化・集計・ログ）](../recipes/build-observation-tools.md)（Claude Code・アプリ、手順）
+- 原因を AI に推測させるより、自分で見て考えたい → [観察の道具を作らせる（可視化・集計・ログ）](../recipes/build-observation-tools.md)（Claude Code・アプリ、手順）
 - ログや CSV を集計して傾向をつかみたい → [データを分析する](../recipes/data-analysis.md)（Claude Code・アプリ、手順）
 - ある技術や製品について、出典つきで調べてほしい → [調べものとレポート](../recipes/research-and-reports.md)（アプリ・Claude Code、手順）
 - いくつかの記事や論文を読み比べて、違いを整理したい → [調べものとレポート](../recipes/research-and-reports.md)（アプリ・Claude Code、手順）
+- コードに合った README や設計書を書かせたい → [ドキュメント・技術文書を書く](../recipes/write-docs.md)（Claude Code・アプリ、手順）
+- プロジェクトの文書の文体と用語を、既存の文書にそろえたい → [ドキュメント・技術文書を書く](../recipes/write-docs.md)（Claude Code・アプリ、手順）
+- 説明用のスライドのたたき台を早く作りたい → [資料・スライドを作る](../recipes/make-slides.md)（アプリ・Claude Code、手順）
+- Markdown の原稿からスライドを作りたい → [資料・スライドを作る](../recipes/make-slides.md)（アプリ・Claude Code、手順）
 - 毎週の報告書づくりを楽にしたい → [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)（アプリ・Claude Code、手順）
 - 領収書や明細から経費の一覧を作らせたい → [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)（アプリ・Claude Code、手順）
 
 ### 組織・チームで使う
 
 - どのデータを AI に渡してよいか、チームで決めたい → [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)（アプリ・Claude Code・API、手順）
+- AI を禁止せずに、安全に使える状態を作りたい → [禁止ではなく安全な道を作る](../team/paved-roads.md)（アプリ・Claude Code、考え方）
 - AI で増えた PR を、チームでレビューできる量に合わせて流したい → [レビューのボトルネックと疲労](../team/review-bottlenecks.md)（Claude Code、考え方）
 - AI が書いた変更の承認の仕方を、危なさで分けたい → [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)（Claude Code、考え方）
+- 見落としから、レビューの観点を増やしていきたい → [レビューの観点を育てる](../team/grow-review-checklists.md)（Claude Code、手順）
+- AI に任せたことと決めたことを、チームに書面で伝えたい → [決定を文書に残す（ADR と週次アップデート）](../team/record-decisions.md)（Claude Code・アプリ、手順）
 
 ### コンテストで使う
 
+- 出る大会で、AI がどこまで役に立つか見当を付けたい → [コンテストの形式別の早見表（AI の効き方と人が握るところ）](../contest/format-cheatsheet.md)（Claude Code・アプリ、案内）
+- AI がプログラミングコンテストでどこまで勝てるのか知りたい → [AI はコンテストでどこまで来たか（確認日付き）](../contest/ai-in-contests-today.md)（考え方）
 - AHC のローカルテスタを AI に作らせたい → [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)（Claude Code、考え方）
 - 対戦型の大会で、ボットの強さを手元で比べたい → [形式別の評価器（テスタ・ベンチマーカー・CV・flag・対戦場）](../contest/evaluators-by-format.md)（Claude Code、考え方）
+- 勝率が本当に上がったのか、何試合やれば言えるか知りたい → [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](../contest/running-contest-experiments.md)（Claude Code、手順）
+- AI にパラメータの探索を回させたい → [実験の回し方（ケース数・集計・パラメータ・勝率に要る試合数）](../contest/running-contest-experiments.md)（Claude Code、手順）
 
 ### 古くなった助言と変更の記録
 
@@ -815,6 +899,10 @@ updated: 2026-11-05
 - 既定のモデルが新しくなったと知った → [新しいモデルに替えたら見直すこと](../models/after-switching-models.md)（Claude Code・API・アプリ、手順）
 - 「計画は上位のモデル、実装は安いモデル」というコツが今も得か分からない → [計画・実装・サブエージェントでモデルを分ける](../models/split-models-by-role.md)（Claude Code・API、考え方）
 
+### 頼み方
+
+- 性能改善やスコアを競う課題を任せている → [目標値・上界を伝える](../prompting/share-targets-and-bounds.md)（Claude Code・API、考え方）
+
 ### 文脈を整える
 
 - コンテキストが大きくなった今も、片付ける意味があるのか迷っている → [机を整える：新鮮さ・巻き戻し・書き出し・委任](../context/tidy-the-desk.md)（アプリ・Claude Code、考え方）
@@ -825,6 +913,7 @@ updated: 2026-11-05
 - 一つの会話では終わらない作業を任せている → [handoff 文書と document-and-clear](../context/handoff-documents.md)（Claude Code・アプリ、手順）
 - 大きなコードベースで作業している → [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)（Claude Code・アプリ、考え方）
 - 「subagent を使え」と書き足すべきか迷っている → [出力の多い調査はサブエージェントに任せて要約だけ受け取る](../context/research-in-subagents.md)（Claude Code、考え方）
+- 作業の途中で、関係のない疑問がわいた → [本筋を汚さずに聞く（/btw）](../context/side-questions-btw.md)（Claude Code、機能）
 
 ### アプリを使いこなす
 
@@ -847,6 +936,7 @@ updated: 2026-11-05
 - 便利な拡張の記事を見て、全部入れたくなっている → [拡張を足すタイミング](../extend/when-to-add-what.md)（Claude Code、考え方）
 - CLAUDE.md が長くなってきた → [CLAUDE.md の長さと剪定](../extend/claude-md-length.md)（Claude Code、機能）・[.claude/rules と paths で必要なときだけ読ませる](../extend/path-scoped-rules.md)（Claude Code、機能）
 - モノレポで、フォルダごとに違う規約がある → [CLAUDE.md の階層と読み込み順](../extend/claude-md-loading-order.md)（Claude Code、機能）
+- チームで Claude Code とほかの AI ツールを併用している → [AGENTS.md とほかのツールとの共有](../extend/agents-md.md)（Claude Code、機能）
 - 昔の記事のとおり、コマンド用のフォルダに Markdown を置いている → [スキルの作り方](../extend/writing-skills.md)（Claude Code・アプリ、機能）
 - チームで同じ外部ツールへの接続を使いたい → [MCP をつなぐ](../extend/connecting-mcp.md)（Claude Code・アプリ、機能）
 - 別のリポジトリにも同じ設定を作ろうとしている → [プラグインとマーケットプレイス](../extend/plugins-and-marketplaces.md)（Claude Code・アプリ、機能）
@@ -890,6 +980,7 @@ updated: 2026-11-05
 - 会社や学校で使ってよいか確かめたい → [学校・組織・コンテストの規則（類型と確認表）](../safety/checking-ai-rules.md)（アプリ・Claude Code・API、考え方）
 - AI の利用に規則のある大会に出る → [学校・組織・コンテストの規則（類型と確認表）](../safety/checking-ai-rules.md)（アプリ・Claude Code・API、考え方）
 - 大会や学校、会社の規則に、AI のことが書かれていない → [学校・組織・コンテストの規則（類型と確認表）](../safety/checking-ai-rules.md)（アプリ・Claude Code・API、考え方）
+- レポートや提出物に、AI を使った箇所を書くよう求められた → [AI 利用の開示と出所の記録](../safety/disclosure-and-provenance.md)（アプリ・Claude Code、考え方）
 - セキュリティや生命科学の正当な仕事に Claude を使っている → [正当な依頼が断られたとき](../safety/when-requests-are-refused.md)（アプリ・Claude Code・API、考え方）
 
 ### 任せて並べる
@@ -908,10 +999,16 @@ updated: 2026-11-05
 - コンテストの考察で、AI をどこまで使うか迷っている → [頼む前に自分で考える（AI には問い・反論・道具を頼む）](../judgment/think-before-asking.md)（アプリ・Claude Code、判断）
 - 新しいライブラリや手法を、AI と一緒に覚えたい → [AI で新しい技術を学ぶ（生成させた後に理解を確かめる）](../judgment/learning-with-ai.md)（アプリ・Claude Code、判断）
 - 障害が起きたら、自分でデバッグしなければならない部分がある → [どこまで理解を手放してよいか（中核と周辺）](../judgment/how-much-understanding-to-keep.md)（Claude Code、判断）
+- AI に任せた作業で事故が起きたので、再発を防ぎたい → [失敗を仕組みに戻す（ポストモーテム）](../judgment/postmortems.md)（Claude Code、判断）
+
+### API・SDK の概念
+
+- 社内の仕組みに Claude Code を組み込む → [Agent SDK（Claude Code をライブラリとして使う）](../api/agent-sdk-basics.md)（API・Claude Code、機能）
 
 ### 費用と利用上限
 
 - 節約のコツをいろいろ試したが、あまり変わらない → [節約の優先順位（手戻りを減らすのが先）](../cost/saving-priorities.md)（アプリ・Claude Code・API、考え方）
+- プランの名前が変わり、どれが前のどれに当たるか分からない → [プランの選び方](../cost/choosing-a-plan.md)（アプリ・Claude Code、比較）
 - プランに付く API credits と usage credits の違いが分からない → [usage credits（上限を超えた分の従量課金）](../cost/usage-credits-basics.md)（アプリ・Claude Code、機能）
 - プランに付く API credits を Claude Code で使えるのか分からない → [課金の経路を確かめる（API キーとサブスクリプション）](../cost/check-billing-path.md)（Claude Code・API、考え方）
 - agent teams や workflows を試したいが、どれだけ使うか分からない → [並列・ループ・workflows のコスト](../cost/parallel-and-loop-costs.md)（Claude Code・API、考え方）
@@ -921,12 +1018,15 @@ updated: 2026-11-05
 
 - 日本語の指示を足しても揃わず、仕組みにすべきか迷っている → [日本語の出力を揃える：お願いで足りること、仕組みが要ること](../japanese/align-japanese-output.md)（アプリ・Claude Code・API、考え方）
 - チームで日本語の文書を Claude に書かせる → [日本語の出力を揃える：お願いで足りること、仕組みが要ること](../japanese/align-japanese-output.md)（アプリ・Claude Code・API、考え方）
+- OSS で、自分だけ日本語で返事をもらいたい → [コミットメッセージ・コメントの言語](../japanese/commit-and-comment-language.md)（Claude Code、考え方）
 - 日本語のドキュメントを Claude Code で大量に書かせている → [textlint をフックで回す](../japanese/textlint-hook.md)（Claude Code、手順）
+- Excel や古い業務システムが書き出したファイルを渡す → [文字コード（Shift\_JIS の CSV など）](../japanese/character-encodings.md)（アプリ・Claude Code、手順）
 
 ### 用途別レシピ
 
 - 引き継いだリポジトリで、どこに何があるか分からない → [知らないコードベースを読む](../recipes/explore-a-codebase.md)（Claude Code、手順）
 - 長い問題文や規約を読んでから取りかかる → [仕様を自分で読み、AI に誤読を指摘させる](../recipes/read-specs-yourself.md)（アプリ・Claude Code、手順）
+- AI が書いた変更を、チームのレビューに出す → [PR を作り、レビューを受ける](../recipes/create-and-review-prs.md)（Claude Code、手順）
 - 変更が良くなったかを、毎回同じ物差しで測る環境がない → [検証環境・テスト基盤を作らせる](../recipes/build-test-harness.md)（Claude Code、手順）
 - コードを書かない仕事に Claude Code を使いたい → [事務作業の半自動化（経費・報告）](../recipes/office-paperwork.md)（アプリ・Claude Code、手順）
 
@@ -934,14 +1034,22 @@ updated: 2026-11-05
 
 - チームで Claude を導入する → [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)（アプリ・Claude Code・API、手順）
 - チームの AI 利用のルールを書くことになった → [社内ガイドラインに書くこと](../team/ai-usage-guidelines.md)（アプリ・Claude Code・API、手順）
+- 会社が AI の利用を禁じていて、隠れて使う人がいる → [禁止ではなく安全な道を作る](../team/paved-roads.md)（アプリ・Claude Code、考え方）
+- 組織全体に AI を広げる前に、何を整えるか考える → [禁止ではなく安全な道を作る](../team/paved-roads.md)（アプリ・Claude Code、考え方）
 - AI のレビューが通ったら、人の承認は要らないか迷っている → [リスク段階別の承認（AI の承認を人の承認に数えない）](../team/risk-tiered-approval.md)（Claude Code、考え方）
 - AI と進めるチームで、誰が何を決めるかを決める → [役割を分ける（書く人・承認する人・疑う人）](../team/separate-roles.md)（Claude Code・アプリ、考え方）
 
 ### コンテストで使う
 
+- AHC や Kaggle、ISUCON、CTF に AI を使って出たい → [コンテストの形式別の早見表（AI の効き方と人が握るところ）](../contest/format-cheatsheet.md)（Claude Code・アプリ、案内）
+- 初めての形式の大会に出るので、AI の使いどころが分からない → [コンテストの形式別の早見表（AI の効き方と人が握るところ）](../contest/format-cheatsheet.md)（Claude Code・アプリ、案内）
+- AI が大会で優勝したと聞いて、自分の大会でも同じことができるか考えている → [AI はコンテストでどこまで来たか（確認日付き）](../contest/ai-in-contests-today.md)（考え方）
+- 考察は人にしかできないと思って、AI をほとんど使っていない → [AI はコンテストでどこまで来たか（確認日付き）](../contest/ai-in-contests-today.md)（考え方）
 - 出る大会で、AI をどこまで使ってよいか確かめたい → [大会の規則の早見（禁止・部門分け・許可と開示）](../contest/competition-rules.md)（考え方）
 - AI を禁じる大会に向けて練習している → [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](../contest/practice-vs-contest-day.md)（Claude Code・アプリ、考え方）
 - AI を使ってよい部門と使えない部門の、どちらに出るか迷っている → [練習と本番の使い分け（AI を禁じる大会に向けた練習を含む）](../contest/practice-vs-contest-day.md)（Claude Code・アプリ、考え方）
+- AI を使ってよい大会の本番に出る → [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](../contest/competition-day-operations.md)（Claude Code・アプリ、手順）
+- 大会の途中で、AI の利用上限や障害に当たらないか不安 → [本番の運用（開始直後に評価器・終盤は凍結・AI なしでも提出できる状態）](../contest/competition-day-operations.md)（Claude Code・アプリ、手順）
 
 ### 古くなった助言と変更の記録
 

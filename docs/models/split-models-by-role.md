@@ -56,7 +56,7 @@ updated: 2026-11-05
 | 計画と実装 | 同じ会話の中の工程 | 計画（調べて方針を決める） | 実装（決まった方針を形にする） |
 | 本体とサブエージェント | 別の文脈で動く担当 | 本体の会話（判断と統合） | 件数の多い調査・分類・要約 |
 
-**計画と実装を分ける**。plan mode で調べさせて計画を作り、承認してから実装に入る流れ（<!-- link:begin when-to-plan#when -->[plan mode の使いどころ › 計画が効く作業、省いてよい作業](../cli/when-to-plan.md#when)<!-- link:end -->）で、工程ごとにモデルを替える。Claude Code には `opusplan` というエイリアスがある。plan mode では上位の系統、実行では日常の系統のモデルで動き、工程の切り替えで自動的に替わる（公式の model-config、2026-10-29 に確認）。手で替えるなら `/model` を使う。どの系統が上位で、どれが日常向けかは <!-- link:begin current-models#lineup -->[現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）](current-models.md#lineup)<!-- link:end --> で確かめる。
+**計画と実装を分ける**。plan mode で調べさせて計画を作り、承認してから実装に入る流れ（<!-- link:begin when-to-plan#when -->[plan mode の使いどころ › 計画が効く作業、省いてよい作業](../cli/when-to-plan.md#when)<!-- link:end -->）で、工程ごとにモデルを替える。Claude Code には `opusplan` というエイリアスがある。<!-- fact:begin opusplan-alias-mapping -->plan mode では opus、実行では sonnet に自動で切り替わる（2026-11-05 時点）<!-- fact:end -->（公式の model-config）。手で替えるなら `/model` を使う。どの系統が上位で、どれが日常向けかは <!-- link:begin current-models#lineup -->[現行モデルの一覧と位置づけ › 系統ごとの位置づけ（表）](current-models.md#lineup)<!-- link:end --> で確かめる。
 
 **本体とサブエージェントを分ける**。サブエージェントの定義の `model` で、そのサブエージェントだけ別のモデルにできる。公式の費用の文書も、使用量を抑える手段として「サブエージェントに軽いモデルを指定する」を挙げている（`model: haiku` の例、2026-10-29 に確認）。環境変数 `CLAUDE_CODE_SUBAGENT_MODEL` でサブエージェントのモデルをまとめて決める方法も、コミュニティの解説にある（根拠：弱）。この変数と定義の `model` のどちらが優先されるかは、公式の model-config に書かれていない。使う前に自分の環境で確かめる。
 

@@ -152,8 +152,8 @@ Claude は、検証器が返した結果を見て次の変更を選ぶ。検証�
 - [検証器の三条件（正しい・書き換えられない・本番を代表する）](verifier-three-conditions.md)
 - [評価指標そのものを確かめる](check-the-metric.md)
 - [選択圧：良かった版を選び続ける罠](selection-pressure.md)
+- [そのタスクは AI に向いているか（五つの軸）](../delegate/is-the-task-ai-suited.md)
 - [手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)
-- そのタスクは AI に向いているか（五つの軸）（準備中）
 
 **関連**
 

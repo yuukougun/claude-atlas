@@ -101,7 +101,7 @@ Claude Code の返答が日本語から英語に戻るのは、1 ターン（依
 
 ここまでを確かめても混ざるなら、設定の限界である。設定は指示なので、守られない場面が残る。次の節以降で重ねる。
 
-`language` がコミットメッセージやコードのコメントにも効くかは、公式の文書に書かれていない。その扱いは「<!-- link:begin commit-and-comment-language -->コミットメッセージ・コメントの言語（準備中）<!-- link:end -->」にある。
+`language` がコミットメッセージやコードのコメントにも効くかは、公式の文書に書かれていない。その扱いは「<!-- link:begin commit-and-comment-language -->[コミットメッセージ・コメントの言語](commit-and-comment-language.md)<!-- link:end -->」にある。
 
 ## CLAUDE.md と出力スタイル（お願いの層） {#instructions}
 
@@ -400,7 +400,7 @@ echo '{"stop_hook_active": false, "last_assistant_message": "パーサーを更�
 
 **次に読む**
 
-- コミットメッセージ・コメントの言語（準備中）
+- [コミットメッセージ・コメントの言語](commit-and-comment-language.md)
 
 **関連**
 

@@ -62,7 +62,7 @@ updated: 2026-11-05
 - **標準の API 料金**：使用量に基づく Enterprise と API。
 - **使えない**：Free。
 
-含まれる割合と、各プランの上限の大きさは、このページに書かない。割合は料金のページで、プランの比べ方は <!-- link:begin choosing-a-plan#plan-table -->プランの選び方 › プランの表（確認日つき）（準備中）<!-- link:end --> で確かめる。
+プランに含まれる最上位のモデルの割合は、通常の週の上限のうち <!-- fact:begin top-model-weekly-share -->50%（料金のページは「半分まで」）（2026-11-05 時点）<!-- fact:end --> である。各プランの上限の大きさは、このページに書かない。プランの比べ方は <!-- link:begin choosing-a-plan#plan-table -->[プランの選び方 › プランの表（確認日つき）](choosing-a-plan.md#plan-table)<!-- link:end --> で確かめる。
 
 !!! warning "公式の書き方が食い違っている"
     - 料金のページは「週上限の半分まで」と書く。
@@ -82,7 +82,7 @@ updated: 2026-11-05
 
     `/usage` で、使用量の内訳を見る。読み方は <!-- link:begin what-uses-up-limits#find-what-uses-it -->[上限を早く使う要因 › /usage の内訳の読み方（自分の場合を確かめる）](what-uses-up-limits.md#find-what-uses-it)<!-- link:end --> にある。
 
-    アプリと Claude Code は同じ枠を分け合う。アプリで試した分も、Claude Code の残りから減っている。最上位のモデルを Claude Code で選ぶには、最低の版が要る。要る版は公式の記事で確かめる。古い版では選べないことがある。
+    アプリと Claude Code は同じ枠を分け合う。アプリで試した分も、Claude Code の残りから減っている。最上位のモデルを Claude Code で選ぶには、最低の版が要る。要る版は、<!-- fact:begin top-model-claude-code-min-version -->モデル 5 は 2.1.170、モデル 5.1 は 2.1.255（モデルの世代ごと）（2026-11-05 時点）<!-- fact:end --> である。古い版では選べないことがある。
 
 === "API"
 
@@ -162,7 +162,7 @@ updated: 2026-11-05
 **関連**
 
 - [usage credits（上限を超えた分の従量課金）](usage-credits-basics.md)
-- プランの選び方（準備中）
+- [プランの選び方](choosing-a-plan.md)
 - [現行モデルの一覧と位置づけ › Fable と Mythos](../models/current-models.md#fable-and-mythos)
 - [上限を早く使う要因](what-uses-up-limits.md)
 - [モデルの差よりハーネスの差](../models/harness-over-model.md)

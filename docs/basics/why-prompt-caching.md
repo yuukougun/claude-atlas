@@ -51,7 +51,7 @@ Claude は毎回、会話の最初から読み直してから答える。この�
 | 同じ設定のまま質問を重ねる | 前回と同じ | 先頭は使い回され、新しく足した発言だけを読む |
 | 途中で effort を変えてから質問する | 変わった | 変えた所から後ろは使い回せず、その分を読み直す |
 
-後者では、会話は同じ長さなのに、その 1 回だけ読み直しの費用が増える。次の回からは、新しい先頭がまた使い回される。費用の増え方はモデルと設定で違う。数字は <!-- link:begin prompt-caching-in-practice -->プロンプトキャッシングの実務（準備中）<!-- link:end --> と公式の文書で確かめる。
+後者では、会話は同じ長さなのに、その 1 回だけ読み直しの費用が増える。次の回からは、新しい先頭がまた使い回される。費用の増え方はモデルと設定で違う。数字は <!-- link:begin prompt-caching-in-practice -->[プロンプトキャッシングの実務](../api/prompt-caching-in-practice.md)<!-- link:end --> と公式の文書で確かめる。
 
 !!! example "判断例：長い作業の途中で effort を上げたい"
     - **状況**：Claude Code で長い調査を進めていて、次の質問だけ深く考えさせたくなった。
@@ -73,7 +73,7 @@ Claude に渡される先頭は、次の順に積まれている。
 
 ![tools・system・messages の 3 段の積み木。system を変えると system と messages が外れ、tools は残る。](../img/why-prompt-caching/stack.svg)
 
-図が言いたいことは、変える段が下であるほど、外れる範囲が広いことである。公式の文書は、ある段の変更はその段とそれより後の段を無効にすると説明している。たとえばツールの定義を変えると 3 段すべてが外れ、会話に画像を足したり消したりすると messages だけが外れる。どの変更がどの段を外すかの一覧は <!-- link:begin prompt-caching-in-practice#invalidation -->プロンプトキャッシングの実務 › キャッシュを無効にする変更（準備中）<!-- link:end --> にある。
+図が言いたいことは、変える段が下であるほど、外れる範囲が広いことである。公式の文書は、ある段の変更はその段とそれより後の段を無効にすると説明している。たとえばツールの定義を変えると 3 段すべてが外れ、会話に画像を足したり消したりすると messages だけが外れる。どの変更がどの段を外すかの一覧は <!-- link:begin prompt-caching-in-practice#invalidation -->[プロンプトキャッシングの実務 › キャッシュを無効にする変更](../api/prompt-caching-in-practice.md#invalidation)<!-- link:end --> にある。
 
 キャッシュには寿命もある。使うたびに延びるが、しばらく使わないと切れて、次の request は全部を読み直す。寿命の長さはモデルや設定で選べるので、数字はここに書かず、公式の文書で確かめる。
 
@@ -98,7 +98,7 @@ Claude に渡される先頭は、次の順に積まれている。
 
 === "API"
 
-    `tools`・`system`・`messages` の順にキャッシュされるので、変わらないものを先頭に、変わるものを後ろに置く。どこに区切りを置くか、何を変えると外れるかは <!-- link:begin prompt-caching-in-practice#breakpoints -->プロンプトキャッシングの実務 › 区切りの置き方（準備中）<!-- link:end --> と <!-- link:begin prompt-caching-in-practice#prefix -->プロンプトキャッシングの実務 › どこまでがキャッシュされるか（tools・system・messages の順）（準備中）<!-- link:end --> で扱う。応答の `usage` に、キャッシュから読んだ量と書き込んだ量が分かれて出るので、効いているかはそこで確かめる。
+    `tools`・`system`・`messages` の順にキャッシュされるので、変わらないものを先頭に、変わるものを後ろに置く。どこに区切りを置くか、何を変えると外れるかは <!-- link:begin prompt-caching-in-practice#breakpoints -->[プロンプトキャッシングの実務 › 区切りの置き方](../api/prompt-caching-in-practice.md#breakpoints)<!-- link:end --> と <!-- link:begin prompt-caching-in-practice#prefix -->[プロンプトキャッシングの実務 › どこまでがキャッシュされるか（tools・system・messages の順）](../api/prompt-caching-in-practice.md#prefix)<!-- link:end --> で扱う。応答の `usage` に、キャッシュから読んだ量と書き込んだ量が分かれて出るので、効いているかはそこで確かめる。
 
 effort の変更を例にすると、公式の文書は、effort を既定以外の値に変えると messages のキャッシュが外れると書いている。既定のままなら外れない。effort そのものの仕組みは <!-- link:begin how-thinking-works#effects -->[思考（thinking）と effort の仕組み › 何に効くか](how-thinking-works.md#effects)<!-- link:end --> にある。
 
@@ -137,7 +137,7 @@ effort の変更を例にすると、公式の文書は、effort を既定以外
 
 **次に読む**
 
-- プロンプトキャッシングの実務（準備中）
+- [プロンプトキャッシングの実務](../api/prompt-caching-in-practice.md)
 
 **関連**
 

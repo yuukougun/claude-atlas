@@ -13,6 +13,7 @@ title: 製品の地図と面の選び方
 
 ## 面ごとの違い
 
+- [Claude Code の面（ターミナル・IDE・Desktop・Web・モバイル）](claude-code-surfaces.md)（整える・下書き）：Claude Code をターミナル・IDE・Desktop・Web・モバイルのどれで使うかを、動く場所・読む設定・画面の機能の違いで選べる。
 - [面ごとにできないこと（早見表）](what-each-surface-cannot-do.md)（下書き）：アプリの Web・Desktop・モバイル、Claude Code の各面、API のそれぞれで使えない機能を引ける。
 
 ## ブラウザと周辺製品

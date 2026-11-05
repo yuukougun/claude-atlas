@@ -94,7 +94,7 @@ updated: 2026-11-05
 
 手本が長くなるなら、スキルに置いて、文書を書くときだけ読ませる。スキルは名前と説明を先に見て、関わるときだけ本体を読む。使われないときの確かめ方は <!-- link:begin skills-in-the-app#not-triggered -->[アプリでスキルを使う › 使われないとき](../app/skills-in-the-app.md#not-triggered)<!-- link:end --> にある。
 
-技術文書を書かせる場面では、プロジェクトの既存の文書を手本にする流れが <!-- link:begin write-docs -->ドキュメント・技術文書を書く（準備中）<!-- link:end --> にある。文章を頼むときの渡し方は <!-- link:begin requesting-prose -->[文章を頼むとき（読み手・目的・手本を渡す）](../prompting/requesting-prose.md)<!-- link:end --> にある。
+技術文書を書かせる場面では、プロジェクトの既存の文書を手本にする流れが <!-- link:begin write-docs -->[ドキュメント・技術文書を書く](../recipes/write-docs.md)<!-- link:end --> にある。文章を頼むときの渡し方は <!-- link:begin requesting-prose -->[文章を頼むとき（読み手・目的・手本を渡す）](../prompting/requesting-prose.md)<!-- link:end --> にある。
 
 確かめ：手本を入れたセッションで、手本と同じ種類の文書を新しく書かせ、文末が手本と揃うかを見る。
 
@@ -248,7 +248,7 @@ lint まで入れても揺れが残るときは、症状から原因を切り分
 
 **次に読む**
 
-- ドキュメント・技術文書を書く（準備中）
+- [ドキュメント・技術文書を書く](../recipes/write-docs.md)
 
 **関連**
 

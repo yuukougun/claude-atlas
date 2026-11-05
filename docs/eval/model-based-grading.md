@@ -18,7 +18,7 @@ signs:
   - {type: goal, text: 文章の質のような、機械で判定しにくいものを Claude に採点させたい}
   - {type: symptom, text: AI の採点は高いのに、読んでみると良くない}
 prerequisites: [verifier-three-conditions, measure-changes]
-related: [test-the-verifier, agreement-is-not-evidence, ask-without-sycophancy, sycophancy, independent-review, instructing-reviewers, goal-until-done, textlint-hook]
+related: [misses-broken-evaluation, test-the-verifier, agreement-is-not-evidence, ask-without-sycophancy, sycophancy, independent-review, instructing-reviewers, goal-until-done, textlint-hook]
 tracks: []
 outdated_advice: []
 sources: [anthropic-eng-demystifying-evals-ai-agents, anthropic-eng-harness-design-long-running]
@@ -112,7 +112,7 @@ AI の採点を評価の仕組みに入れる前に、その仕組みが <!-- li
 較正とは、採点役の点を人の点に近づけるために、採点の依頼を直す作業である。人の点が正しいと決まっているのではなく、人が握る基準に採点役を合わせるのである。小さな eval の考え方（<!-- link:begin measure-changes#small-eval -->[変更が効いたかを測る（小さな eval） › 小さな eval の手順](measure-changes.md#small-eval)<!-- link:end -->）と同じく、実際に出た失敗から集めた少数の例で足りる。
 
 1. **人が先に採点した例を集める**。実際に出た、良い出力と悪い出力と、判断が割れそうな出力を混ぜる。人は、採点役の点を見る前に、基準にそって点と理由を付ける。AI の点を見てから付けると、人の点が AI の点に引きずられる（<!-- link:begin ask-without-sycophancy#hide-preferences -->[迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる） › 好みと確信を伏せる](../judgment/ask-without-sycophancy.md#hide-preferences)<!-- link:end -->）。終わりの確認：例ごとに、人の点と理由が表に残っている。
-2. **例を 2 つに分ける**。片方は採点の依頼に入れる例、もう片方は一致を測る例にする。後者は依頼に入れず、人が持つ。採点役とエージェントには中身を見せない。終わりの確認：測るための例が、依頼のどこにも出てこない。
+2. **例を 2 つに分ける**。片方は採点の依頼に入れる例、もう片方は一致を測る例にする。後者は依頼に入れず、人が持つ。採点役とエージェントには中身を見せない。（推論・実践例なし）終わりの確認：測るための例が、依頼のどこにも出てこない。
 3. **新しいセッションで採点させる**。成果物と基準だけを見せ、書いた側の説明や推論は見せない（見せるものは次の節）。同じ例を何度か採点させ、点が揺れるかも見る（<!-- link:begin measure-changes#how-many-runs -->[変更が効いたかを測る（小さな eval） › 試行の数と差の大きさ](measure-changes.md#how-many-runs)<!-- link:end -->）。終わりの確認：例ごとに、採点役の点が複数回分ある。
 4. **食い違いを表にして読む**。点の差がある行について、成果物と人の理由と採点役の根拠を読み、原因を分ける。主な原因は 4 つある。基準があいまいで別の意味に読まれた。基準にない好み（長さや語調）で点が動いた。人の点のほうが誤りだった。成果物だけでは決められなかった。終わりの確認：食い違いの行ごとに原因が 1 つ付いている。
 5. **採点の依頼を直して、もう一度測る**。原因が基準のあいまいさなら基準の文を直し、好みで動いているなら「基準にない好みで点を動かさない」を足し、決められないものは判定不能の条件を足す。人の点が誤りだったときだけ、人が確かめて人の点を直す。採点役に合わせて人の点を直さない。終わりの確認：直した後の依頼で、測るための例の食い違いが減ったかを同じ表で比べている。
@@ -218,6 +218,7 @@ AI の採点が高いことを、そのまま合意として数えない。採�
 
 **関連**
 
+- [手元の評価は良いのに本番で通用しない](../symptoms/misses-broken-evaluation.md)
 - [検証器そのものを確かめる（red/green・手で計算したケース）](test-the-verifier.md)
 - [同意は根拠に数えない（AI レビュアーの一致を含む）](../judgment/agreement-is-not-evidence.md)
 - [迎合させない聞き方（好みを伏せる・並べて比べる・新しい文脈で批評させる）](../judgment/ask-without-sycophancy.md)

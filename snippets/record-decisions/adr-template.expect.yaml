@@ -1,0 +1,10 @@
+title: ADR の雛形（docs/decisions/ に置く 1 決定 1 ファイル）
+kind: other
+place: project
+safety: false
+conditions:
+  - リポジトリに docs/decisions/ を作り、雛形を ADR-0001 として写す
+expect:
+  - when: 雛形の欄を埋めて、新しいセッションで「docs/decisions/ の ADR だけを読んで、決めたことと理由を説明して」と頼む
+    then: 返答が「決めたこと」「理由」「見直す条件」を雛形の記述どおりに挙げ、書いていない理由を足さない
+control: 雛形を使わず、会話の履歴だけに決定を残したとき、新しいセッションは理由を答えられず推測で補う

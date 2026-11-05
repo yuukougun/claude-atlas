@@ -1,0 +1,14 @@
+title: 本筋の途中で、文脈にあることを聞き返す /btw の質問
+kind: prompt
+place: 依頼の本文
+safety: false
+features: [btw]
+conditions:
+  - Claude Code の対話のセッションで、ファイルを読んだ後に試す
+  - 質問の中身は、自分のセッションで Claude が読んだファイルや説明した語に置き換える
+expect:
+  - when: 1 行ずつ送る
+    then: 答えが重ね表示で返り、閉じると入力欄に戻る
+  - when: 閉じた後で、本筋の Claude に「今の質問への答えを覚えているか」と聞く
+    then: 答えが会話の履歴に入っていないので、本筋の Claude はその答えを前提にしない（観察として扱う。合否にしない）
+control: 同じ質問を /btw なしで送ると、質問と答えが会話の履歴に残る

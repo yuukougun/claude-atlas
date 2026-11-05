@@ -71,7 +71,7 @@ updated: 2026-11-05
 
 `/` が働くのは、メッセージの先頭にあるときだけである。文の途中の `/` は、コマンド名の補完が出ることはあっても、コマンドとしては走らない。`/tmp/notes.md` のようなパスを文中に書いても、コマンドとは見なされない。
 
-コマンドの全部は覚えなくてよい。よく使うものは <!-- link:begin command-cheatsheet -->主要コマンド早見表（準備中）<!-- link:end --> で引く。公式の一覧は [Commands](https://code.claude.com/docs/en/commands) にある。使い方が分からないコマンドは、<!-- link:begin ask-claude-code#what-to-ask -->Claude Code 自身に聞く › 何を聞けるか（準備中）<!-- link:end --> のとおり Claude Code 自身に聞く。
+コマンドの全部は覚えなくてよい。よく使うものは <!-- link:begin command-cheatsheet -->[主要コマンド早見表](command-cheatsheet.md)<!-- link:end --> で引く。公式の一覧は [Commands](https://code.claude.com/docs/en/commands) にある。使い方が分からないコマンドは、<!-- link:begin ask-claude-code#what-to-ask -->[Claude Code 自身に聞く › 何を聞けるか](ask-claude-code.md#what-to-ask)<!-- link:end --> のとおり Claude Code 自身に聞く。
 
 ## ! シェルを自分で走らせる {#bang}
 
@@ -176,7 +176,7 @@ Vim のモードを使っているときは、`Esc` の動きが変わる。入�
 - モードの切り替えや、長い指示・画像の渡し方、背景に回す操作は、<!-- link:begin must-know-operations -->[知らないと損をする操作](must-know-operations.md)<!-- link:end --> にまとまっている。
 - 画像や音声で渡すと速いものは、<!-- link:begin images-and-voice -->[画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)<!-- link:end --> にある。
 - 止めた後の巻き戻しと要約は、<!-- link:begin checkpoints-and-rewind -->[チェックポイントと /rewind（git との違い）](checkpoints-and-rewind.md)<!-- link:end --> にある。
-- 機能の使い方を迷ったら、<!-- link:begin ask-claude-code -->Claude Code 自身に聞く（準備中）<!-- link:end --> のとおり、Claude Code 自身に聞く。
+- 機能の使い方を迷ったら、<!-- link:begin ask-claude-code -->[Claude Code 自身に聞く](ask-claude-code.md)<!-- link:end --> のとおり、Claude Code 自身に聞く。
 
 ## 古くなった助言 {#outdated}
 
@@ -207,13 +207,13 @@ Vim のモードを使っているときは、`Esc` の動きが変わる。入�
 **次に読む**
 
 - [知らないと損をする操作](must-know-operations.md)
+- [Claude Code 自身に聞く](ask-claude-code.md)
 - [チェックポイントと /rewind（git との違い）](checkpoints-and-rewind.md)
-- Claude Code 自身に聞く（準備中）
 
 **関連**
 
 - [@参照と、何を読ませるかの絞り込み](../context/choose-what-to-read.md)
-- 主要コマンド早見表（準備中）
+- [主要コマンド早見表](command-cheatsheet.md)
 - [画像・スクリーンショット・音声で渡す](../prompting/images-and-voice.md)
 
 </div>
